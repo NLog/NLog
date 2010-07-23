@@ -31,54 +31,40 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog.LayoutRenderers
 {
     using System;
-    using System.Collections.Generic;
-    using NLog.Common;
+    using System.Globalization;
+    using System.Text;
+    using NLog.Config;
 
     /// <summary>
-    /// Provides helpers to sort log events and associated continuations.
+    /// Installation parameter (passed to InstallNLogConfig).
     /// </summary>
-    internal static class SortHelpers
+    [LayoutRenderer("install-context")]
+    public class InstallContextLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Key selector delegate.
+        /// Gets or sets the name of the parameter.
         /// </summary>
-        /// <typeparam name="TValue">The type of the value.</typeparam>
-        /// <typeparam name="TKey">The type of the key.</typeparam>
-        /// <param name="value">Value to extract key information from.</param>
-        /// <returns>Key selected from log event.</returns>
-        internal delegate TKey KeySelector<TValue, TKey>(TValue value);
+        /// <docgen category='Rendering Options' order='10' />
+        [RequiredParameter]
+        [DefaultParameter]
+        public string Parameter { get; set; }
 
         /// <summary>
-        /// Performs bucket sort (group by) on an array of items and returns a dictionary for easy traversal of the result set.
+        /// Renders the specified installation parameter and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
-        /// <typeparam name="TValue">The type of the value.</typeparam>
-        /// <typeparam name="TKey">The type of the key.</typeparam>
-        /// <param name="inputs">The inputs.</param>
-        /// <param name="keySelector">The key selector function.</param>
-        /// <returns>
-        /// Dictonary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
-        /// </returns>
-        public static Dictionary<TKey, List<TValue>> BucketSort<TValue, TKey>(this IEnumerable<TValue> inputs, KeySelector<TValue, TKey> keySelector)
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var buckets = new Dictionary<TKey, List<TValue>>();
+            object value;
 
-            foreach (var input in inputs)
+            if (logEvent.Properties.TryGetValue(this.Parameter, out value))
             {
-                var keyValue = keySelector(input);
-                List<TValue> eventsInBucket;
-                if (!buckets.TryGetValue(keyValue, out eventsInBucket))
-                {
-                    eventsInBucket = new List<TValue>();
-                    buckets.Add(keyValue, eventsInBucket);
-                }
-
-                eventsInBucket.Add(input);
+                builder.Append(Convert.ToString(value, CultureInfo.InvariantCulture));
             }
-
-            return buckets;
         }
     }
 }

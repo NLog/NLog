@@ -6,6 +6,7 @@
   <ItemGroup>
     <RefFile Include="$(DotNet4RefPath)\mscorlib.dll" />
     <RefFile Include="$(DotNet4RefPath)\System.dll" />
+    <RefFile Include="$(DotNet4RefPath)\System.Core.dll" />
     <RefFile Include="$(DotNet4RefPath)\System.ServiceModel.dll" />
     <RefFile Include="$(DotNet4RefPath)\System.Xml.dll" />
     <RefFile Include="$(DotNet4RefPath)\System.Windows.Forms.dll" />

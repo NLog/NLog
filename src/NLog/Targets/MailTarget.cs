@@ -223,7 +223,7 @@ namespace NLog.Targets
         /// <param name="events">Array of logging events.</param>
         protected override void Write(AsyncLogEventInfo[] events)
         {
-            foreach (var bucket in SortHelpers.BucketSort(this.GetSmtpSettingsKey, events))
+            foreach (var bucket in SortHelpers.BucketSort(events, c => this.GetSmtpSettingsKey(c.LogEvent)))
             {
                 var eventInfos = bucket.Value;
                 this.ProcessSingleMailMessage(eventInfos);

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,54 +31,32 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog.Config
 {
-    using System;
-    using System.Collections.Generic;
-    using NLog.Common;
-
     /// <summary>
-    /// Provides helpers to sort log events and associated continuations.
+    /// Implemented by objects which support installation and uninstallation.
     /// </summary>
-    internal static class SortHelpers
+    public interface IInstallable
     {
         /// <summary>
-        /// Key selector delegate.
+        /// Performs installation which requires administrative permissions.
         /// </summary>
-        /// <typeparam name="TValue">The type of the value.</typeparam>
-        /// <typeparam name="TKey">The type of the key.</typeparam>
-        /// <param name="value">Value to extract key information from.</param>
-        /// <returns>Key selected from log event.</returns>
-        internal delegate TKey KeySelector<TValue, TKey>(TValue value);
+        /// <param name="installationContext">The installation context.</param>
+        void Install(InstallationContext installationContext);
 
         /// <summary>
-        /// Performs bucket sort (group by) on an array of items and returns a dictionary for easy traversal of the result set.
+        /// Performs uninstallation which requires administrative permissions.
         /// </summary>
-        /// <typeparam name="TValue">The type of the value.</typeparam>
-        /// <typeparam name="TKey">The type of the key.</typeparam>
-        /// <param name="inputs">The inputs.</param>
-        /// <param name="keySelector">The key selector function.</param>
+        /// <param name="installationContext">The installation context.</param>
+        void Uninstall(InstallationContext installationContext);
+
+        /// <summary>
+        /// Determines whether the item is installed.
+        /// </summary>
+        /// <param name="installationContext">The installation context.</param>
         /// <returns>
-        /// Dictonary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
+        /// Value indicating whether the item is installed or null if it is not possible to determine.
         /// </returns>
-        public static Dictionary<TKey, List<TValue>> BucketSort<TValue, TKey>(this IEnumerable<TValue> inputs, KeySelector<TValue, TKey> keySelector)
-        {
-            var buckets = new Dictionary<TKey, List<TValue>>();
-
-            foreach (var input in inputs)
-            {
-                var keyValue = keySelector(input);
-                List<TValue> eventsInBucket;
-                if (!buckets.TryGetValue(keyValue, out eventsInBucket))
-                {
-                    eventsInBucket = new List<TValue>();
-                    buckets.Add(keyValue, eventsInBucket);
-                }
-
-                eventsInBucket.Add(input);
-            }
-
-            return buckets;
-        }
+        bool? IsInstalled(InstallationContext installationContext);
     }
 }

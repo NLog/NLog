@@ -37,6 +37,7 @@ var supportedFrameworks = new []
     {
         ShortName = "NetFx20",
         FullName = ".NET Framework 2.0",
+        HasConfigInstaller = true,
         AssemblyInfoRegistryKeys = 
         {
             @"SOFTWARE\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog2",
@@ -46,6 +47,7 @@ var supportedFrameworks = new []
     {
         ShortName = "NetFx35",
         FullName = ".NET Framework 3.5",
+        HasConfigInstaller = true,
         HasExtendedProfile = true,
         AssemblyInfoRegistryKeys = 
         {
@@ -57,6 +59,7 @@ var supportedFrameworks = new []
         ShortName = "NetFx40",
         FullName = ".NET Framework 4.0",
         HasExtendedProfile = true,
+        HasConfigInstaller = true,
         HasNLogC = true,
         AssemblyInfoRegistryKeys = 
         {
@@ -319,6 +322,10 @@ foreach (var vs in visualStudioVersions) {
       <Component Id="<#= framework.ShortName #>_Binaries" Guid="<#= GetGuid(framework.ShortName, "Binaries") #>">
         <File Id="<#= framework.ShortName #>_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="<#= framework.ShortName #>_NLog.xml" Name="NLog.xml" />
+        <# if (framework.HasConfigInstaller) { #>
+
+        <File Id="<#= framework.ShortName #>_InstallNLogConfig.exe" Name="InstallNLogConfig.exe" />
+        <# } #>
         <# if (framework.HasExtendedProfile) { #>
         
         <File Id="<#= framework.ShortName #>_NLog.Extended.dll" Name="NLog.Extended.dll" Vital="yes" />
@@ -338,6 +345,10 @@ foreach (var vs in visualStudioVersions) {
         <# if (framework.HasExtendedProfile) { #>
         
         <File Id="<#= framework.ShortName #>_NLog.<#= framework.GetDebugInfo("NLog.Extended.dll") #>" Name="<#= framework.GetDebugInfo("NLog.Extended.dll") #>" />
+        <# } #> 
+        <# if (framework.HasConfigInstaller) { #>
+        
+        <File Id="<#= framework.ShortName #>_InstallNLogConfig.pdb" Name="InstallNLogConfig.pdb" />
         <# } #> 
       </Component>
 
@@ -639,6 +650,7 @@ public class FrameworkInfo
     public string ShortName { get; set; }
     public string FullName { get; set; }
     public bool HasExtendedProfile { get; set; }
+    public bool HasConfigInstaller { get; set; }
     public bool HasNLogC { get; set; }
     public string DebugInfoExtension { get; set; }
     public List<string> AssemblyInfoRegistryKeys { get; private set; }

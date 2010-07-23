@@ -286,6 +286,15 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes the target. Can be used by inheriting classes
+        /// to initialize logging.
+        /// </summary>
+        protected virtual void InitializeTarget()
+        {
+            this.GetAllLayouts();
+        }
+
+        /// <summary>
         /// Closes the target and releases any unmanaged resources.
         /// </summary>
         protected virtual void CloseTarget()
@@ -299,15 +308,6 @@ namespace NLog.Targets
         protected virtual void FlushAsync(AsyncContinuation asyncContinuation)
         {
             asyncContinuation(null);
-        }
-
-        /// <summary>
-        /// Initializes the target. Can be used by inheriting classes
-        /// to initialize logging.
-        /// </summary>
-        protected virtual void InitializeTarget()
-        {
-            this.GetAllLayouts();
         }
 
         /// <summary>

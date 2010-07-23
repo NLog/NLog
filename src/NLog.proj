@@ -181,6 +181,13 @@
              ContinueOnError="$(BuildAllFrameworks)" 
              StopOnFirstFailure="false"
              Condition="Exists('NLog\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj')" />
+    <MSBuild Projects="..\tools\InstallNLogConfig\InstallNLogConfig%(TargetFramework.ProjectFileSuffix).csproj" 
+             Targets="Build" 
+             Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
+             ToolsVersion="%(TargetFramework.ToolsVersion)" 
+             ContinueOnError="$(BuildAllFrameworks)" 
+             StopOnFirstFailure="false"
+             Condition="Exists('..\tools\InstallNLogConfig\InstallNLogConfig%(TargetFramework.ProjectFileSuffix).csproj')" />
 
     <CallTarget Targets="BuildNLogC" />
   </Target>

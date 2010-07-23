@@ -314,11 +314,12 @@
       <Component Id="Mono2_Binaries" Guid="53066b9f-9a03-3684-9aeb-6d044b77328d">
         <File Id="Mono2_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="Mono2_NLog.xml" Name="NLog.xml" />
-                        
+                                
       </Component>
 
       <Component Id="Mono2_DebugInfo" Guid="b04ec0aa-04ca-35d3-edaa-f95f9743dd95">
         <File Id="Mono2_NLog.NLog.dll.mdb" Name="NLog.dll.mdb" />
+         
          
       </Component>
 
@@ -333,7 +334,9 @@
       <Component Id="NetFx20_Binaries" Guid="59f34cf7-e964-392a-f351-01f3a8123f77">
         <File Id="NetFx20_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="NetFx20_NLog.xml" Name="NLog.xml" />
-                      
+        
+        <File Id="NetFx20_InstallNLogConfig.exe" Name="InstallNLogConfig.exe" />
+                              
         <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETFX20_DIR]"></RegistryValue>
         </RegistryKey>
@@ -342,6 +345,9 @@
 
       <Component Id="NetFx20_DebugInfo" Guid="da6cd4ae-acca-3786-41d8-c12857bceaa9">
         <File Id="NetFx20_NLog.NLog.pdb" Name="NLog.pdb" />
+         
+                
+        <File Id="NetFx20_InstallNLogConfig.pdb" Name="InstallNLogConfig.pdb" />
          
       </Component>
 
@@ -356,7 +362,9 @@
       <Component Id="NetFx35_Binaries" Guid="d3df8c8f-6034-3558-7ede-f3f634a2593c">
         <File Id="NetFx35_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="NetFx35_NLog.xml" Name="NLog.xml" />
-                
+        
+        <File Id="NetFx35_InstallNLogConfig.exe" Name="InstallNLogConfig.exe" />
+                        
         <File Id="NetFx35_NLog.Extended.dll" Name="NLog.Extended.dll" Vital="yes" />
         <File Id="NetFx35_NLog.Extended.xml" Name="NLog.Extended.xml" />
                       
@@ -370,6 +378,9 @@
         <File Id="NetFx35_NLog.NLog.pdb" Name="NLog.pdb" />
                 
         <File Id="NetFx35_NLog.NLog.Extended.pdb" Name="NLog.Extended.pdb" />
+         
+                
+        <File Id="NetFx35_InstallNLogConfig.pdb" Name="InstallNLogConfig.pdb" />
          
       </Component>
 
@@ -409,7 +420,9 @@
       <Component Id="NetFx40_Binaries" Guid="952d0e68-0411-3dab-5475-b62268911bd8">
         <File Id="NetFx40_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="NetFx40_NLog.xml" Name="NLog.xml" />
-                
+        
+        <File Id="NetFx40_InstallNLogConfig.exe" Name="InstallNLogConfig.exe" />
+                        
         <File Id="NetFx40_NLog.Extended.dll" Name="NLog.Extended.dll" Vital="yes" />
         <File Id="NetFx40_NLog.Extended.xml" Name="NLog.Extended.xml" />
                       
@@ -424,6 +437,9 @@
                 
         <File Id="NetFx40_NLog.NLog.Extended.pdb" Name="NLog.Extended.pdb" />
          
+                
+        <File Id="NetFx40_InstallNLogConfig.pdb" Name="InstallNLogConfig.pdb" />
+         
       </Component>
 
     </DirectoryRef>
@@ -437,7 +453,7 @@
       <Component Id="NetCf20_Binaries" Guid="2784836b-1c10-3a59-1317-a99d82c95c94">
         <File Id="NetCf20_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="NetCf20_NLog.xml" Name="NLog.xml" />
-                      
+                              
         <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\PocketPC\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF20_DIR]"></RegistryValue>
         </RegistryKey>
@@ -455,6 +471,7 @@
       <Component Id="NetCf20_DebugInfo" Guid="e89cadcf-9c02-33b4-8a4a-ff825a0be44d">
         <File Id="NetCf20_NLog.NLog.pdb" Name="NLog.pdb" />
          
+         
       </Component>
 
     </DirectoryRef>
@@ -468,7 +485,7 @@
       <Component Id="NetCf35_Binaries" Guid="2bc82848-e91f-38ea-29b4-eabe62a903b5">
         <File Id="NetCf35_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="NetCf35_NLog.xml" Name="NLog.xml" />
-                      
+                              
         <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\PocketPC\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETCF35_DIR]"></RegistryValue>
         </RegistryKey>
@@ -486,6 +503,7 @@
       <Component Id="NetCf35_DebugInfo" Guid="f5e93c21-05df-3e5e-bdda-80df5fa5a0ec">
         <File Id="NetCf35_NLog.NLog.pdb" Name="NLog.pdb" />
          
+         
       </Component>
 
     </DirectoryRef>
@@ -499,7 +517,7 @@
       <Component Id="SL2_Binaries" Guid="31122809-76f7-3bb8-e901-97886dec6afa">
         <File Id="SL2_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="SL2_NLog.xml" Name="NLog.xml" />
-                      
+                              
         <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v2.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[SL2_DIR]"></RegistryValue>
         </RegistryKey>
@@ -508,6 +526,7 @@
 
       <Component Id="SL2_DebugInfo" Guid="55dcedc3-bbcf-3212-a8e7-8e4a41f6b6a5">
         <File Id="SL2_NLog.NLog.pdb" Name="NLog.pdb" />
+         
          
       </Component>
 
@@ -522,7 +541,7 @@
       <Component Id="SL3_Binaries" Guid="7290271e-199b-3fc7-2299-b70e8c42123a">
         <File Id="SL3_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="SL3_NLog.xml" Name="NLog.xml" />
-                      
+                              
         <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v3.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[SL3_DIR]"></RegistryValue>
         </RegistryKey>
@@ -531,6 +550,7 @@
 
       <Component Id="SL3_DebugInfo" Guid="e24ef179-dc63-32a5-890d-9dbc94a1e237">
         <File Id="SL3_NLog.NLog.pdb" Name="NLog.pdb" />
+         
          
       </Component>
 
@@ -545,7 +565,7 @@
       <Component Id="SL4_Binaries" Guid="11fac951-098c-374a-b886-e547361fa2ff">
         <File Id="SL4_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="SL4_NLog.xml" Name="NLog.xml" />
-                      
+                              
         <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v4.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[SL4_DIR]"></RegistryValue>
         </RegistryKey>
@@ -554,6 +574,7 @@
 
       <Component Id="SL4_DebugInfo" Guid="81ed7b32-87f3-3d63-5ec2-fe06dc792fa3">
         <File Id="SL4_NLog.NLog.pdb" Name="NLog.pdb" />
+         
          
       </Component>
 

@@ -37,10 +37,13 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Globalization;
+    using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Increments specified performance counter on each write.
@@ -69,12 +72,10 @@ namespace NLog.Targets
     ///    another counter instance (with dynamic creation of new instance). This could be done with layouts. 
     /// </remarks>
     [Target("PerfCounter")]
-    public class PerformanceCounterTarget : Target
+    public class PerformanceCounterTarget : Target, IInstallable
     {
-        private static ArrayList perfCounterTargets = new ArrayList();
-
         private PerformanceCounter perfCounter;
-        private bool operational = true;
+        private bool initialized;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PerformanceCounterTarget" /> class.
@@ -83,14 +84,7 @@ namespace NLog.Targets
         {
             this.CounterType = PerformanceCounterType.NumberOfItems32;
             this.InstanceName = string.Empty;
-
-            lock (perfCounterTargets)
-            {
-                if (!perfCounterTargets.Contains(this))
-                {
-                    perfCounterTargets.Add(this);
-                }
-            }
+            this.CounterHelp = string.Empty;
         }
 
         /// <summary>
@@ -120,10 +114,119 @@ namespace NLog.Targets
         public string InstanceName { get; set; }
 
         /// <summary>
+        /// Gets or sets the counter help text.
+        /// </summary>
+        /// <docgen category='Performance Counter Options' order='10' />
+        public string CounterHelp { get; set; }
+
+        /// <summary>
         /// Gets or sets the performance counter type.
         /// </summary>
         /// <docgen category='Performance Counter Options' order='10' />
+        [DefaultValue(PerformanceCounterType.NumberOfItems32)]
         public PerformanceCounterType CounterType { get; set; }
+
+        /// <summary>
+        /// Performs installation which requires administrative permissions.
+        /// </summary>
+        /// <param name="installationContext">The installation context.</param>
+        public void Install(InstallationContext installationContext)
+        {
+            // categories must be installed together, so we must find all PerfCounter targets in the configuration file
+            var countersByCategory = installationContext.Configuration.AllTargets.OfType<PerformanceCounterTarget>().BucketSort(c => c.CategoryName);
+            string categoryName = this.CategoryName;
+
+            if (installationContext.State.ContainsKey("PerfCountersInstalled" + categoryName))
+            {
+                installationContext.Trace("Category '{0}' has already been installed.", categoryName);
+                return;
+            }
+
+            try
+            {
+                PerformanceCounterCategoryType categoryType;
+                CounterCreationDataCollection ccds = GetCounterCreationDataCollection(countersByCategory[this.CategoryName], out categoryType);
+
+                if (PerformanceCounterCategory.Exists(categoryName))
+                {
+                    installationContext.Debug("Deleting category '{0}'", categoryName);
+                    PerformanceCounterCategory.Delete(categoryName);
+                }
+
+                installationContext.Debug("Creating category '{0}' with {1} counter(s) (Type: {2})", categoryName, ccds.Count, categoryType);
+                foreach (CounterCreationData c in ccds)
+                {
+                    installationContext.Trace("  Counter: '{0}' Type: ({1}) Help: {2}", c.CounterName, c.CounterType, c.CounterHelp);
+                }
+
+                PerformanceCounterCategory.Create(categoryName, "Category created by NLog", categoryType, ccds);
+            }
+            catch (Exception exception)
+            {
+                if (installationContext.IgnoreFailures)
+                {
+                    installationContext.Warning("Error creating category '{0}': {1}", categoryName, exception.Message);
+                }
+                else
+                {
+                    installationContext.Error("Error creating category '{0}': {1}", categoryName, exception.Message);
+                    throw;
+                }
+            }
+            finally
+            {
+                installationContext.State["PerfCountersInstalled" + categoryName] = true;
+            }
+        }
+
+        /// <summary>
+        /// Performs uninstallation which requires administrative permissions.
+        /// </summary>
+        /// <param name="installationContext">The installation context.</param>
+        public void Uninstall(InstallationContext installationContext)
+        {
+            string categoryName = this.CategoryName;
+
+            if (installationContext.State.ContainsKey("PerfCountersUninstalled" + categoryName))
+            {
+                installationContext.Trace("Category '{0}' has already been uninstalled.", categoryName);
+                return;
+            }
+
+            try
+            {
+                if (PerformanceCounterCategory.Exists(categoryName))
+                {
+                    installationContext.Debug("Deleting category '{0}'", categoryName);
+                    PerformanceCounterCategory.Delete(categoryName);
+                }
+                else
+                {
+                    installationContext.Debug("Category '{0}' does not exist.", categoryName);
+                }
+            }
+            finally
+            {
+                installationContext.State["PerfCountersUninstalled" + categoryName] = true;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether the item is installed.
+        /// </summary>
+        /// <param name="installationContext">The installation context.</param>
+        /// <returns>
+        /// Value indicating whether the item is installed or null if it is not possible to determine.
+        /// </returns>
+        public bool? IsInstalled(InstallationContext installationContext)
+        {
+            if (!PerformanceCounterCategory.Exists(this.CategoryName))
+            {
+                return false;
+            }
+
+            return PerformanceCounterCategory.CounterExists(this.CounterName, this.CategoryName);
+        }
 
         /// <summary>
         /// Increments the configured performance counter.
@@ -131,111 +234,66 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            if (!this.operational)
-            {
-                return;
-            }
-
-            if (this.perfCounter == null)
-            {
-                this.InitializePerfCounter();
-            }
-
-            if (this.perfCounter == null)
-            {
-                // not operational
-                return;
-            }
-
-            bool ok = false;
-
-            try
+            if (this.EnsureInitialized())
             {
                 this.perfCounter.Increment();
-                ok = true;
-            }
-            finally
-            {
-                this.operational = ok;
             }
         }
 
-        private void InitializePerfCounter()
+        /// <summary>
+        /// Closes the target and releases any unmanaged resources.
+        /// </summary>
+        protected override void CloseTarget()
         {
-            lock (this)
+            base.CloseTarget();
+
+            if (this.perfCounter != null)
             {
-                this.operational = true;
+                this.perfCounter.Close();
+                this.perfCounter = null;
+            }
+
+            this.initialized = false;
+        }
+
+        private static CounterCreationDataCollection GetCounterCreationDataCollection(IEnumerable<PerformanceCounterTarget> countersInCategory, out PerformanceCounterCategoryType categoryType)
+        {
+            categoryType = PerformanceCounterCategoryType.SingleInstance;
+
+            var ccds = new CounterCreationDataCollection();
+            foreach (var counter in countersInCategory)
+            {
+                if (!string.IsNullOrEmpty(counter.InstanceName))
+                {
+                    categoryType = PerformanceCounterCategoryType.MultiInstance;
+                }
+
+                ccds.Add(new CounterCreationData(counter.CounterName, counter.CounterHelp, counter.CounterType));
+            }
+
+            return ccds;
+        }
+
+        /// <summary>
+        /// Ensures that the performance counter has been initialized.
+        /// </summary>
+        /// <returns>True if the performance counter is operational, false otherwise.</returns>
+        private bool EnsureInitialized()
+        {
+            if (!this.initialized)
+            {
+                this.initialized = true;
                 try
                 {
-                    if (this.perfCounter != null)
-                    {
-                        this.perfCounter.Close(); 
-                        this.perfCounter = null;
-                    }
-
-                    if (this.CategoryName == null || this.CounterName == null)
-                    {
-                        throw new Win32Exception("Missing category name or counter name for target: " + this.Name);
-                    }
-
-                    if (!PerformanceCounterCategory.Exists(this.CategoryName) || !PerformanceCounterCategory.CounterExists(this.CounterName, this.CategoryName))
-                    {
-                        ArrayList targets = new ArrayList();
-                        bool doCreate = false;
-                        foreach (PerformanceCounterTarget t in perfCounterTargets)
-                        {
-                            if (t.CategoryName == this.CategoryName)
-                            {
-                                targets.Add(t);
-                                if (t.AutoCreate)
-                                {
-                                    doCreate = true;
-                                }
-                            }
-                        }
-
-                        if (doCreate)
-                        {
-                            if (PerformanceCounterCategory.Exists(this.CategoryName))
-                            {
-                                // delete the whole category and rebuild from scratch
-                                PerformanceCounterCategory.Delete(this.CategoryName);
-                            }
-
-                            CounterCreationDataCollection ccds = new CounterCreationDataCollection();
-                            foreach (PerformanceCounterTarget t in targets)
-                            {
-                                CounterCreationData ccd = new CounterCreationData();
-                                ccd.CounterName = t.CounterName;
-                                ccd.CounterType = t.CounterType;
-                                ccds.Add(ccd);
-                            }
-
-                            PerformanceCounterCategory.Create(
-                                this.CategoryName,
-                                "Category created by NLog",
-                                (this.InstanceName != null) ? PerformanceCounterCategoryType.MultiInstance : PerformanceCounterCategoryType.SingleInstance,
-                                ccds);
-                        }
-                        else
-                        {
-                            throw new Win32Exception(string.Format(CultureInfo.InvariantCulture, "Counter does not exist: {0}|{1}", this.CounterName, this.CategoryName));
-                        }
-                    }
-
                     this.perfCounter = new PerformanceCounter(this.CategoryName, this.CounterName, this.InstanceName, false);
-                    this.operational = true;
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
-                    this.operational = false;
-                    this.perfCounter = null;
-                    if (LogManager.ThrowExceptions)
-                    {
-                        throw;
-                    }
+                    InternalLogger.Error("Cannot open performance counter {0}/{1}/{2}: {3}", this.CategoryName, this.CounterName, this.InstanceName, exception);
                 }
             }
+
+            return this.perfCounter != null;
         }
     }
 }

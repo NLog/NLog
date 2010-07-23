@@ -40,6 +40,7 @@ namespace NLog.Targets
     using System.Diagnostics;
     using System.Globalization;
     using NLog.Common;
+    using NLog.Config;
     using NLog.Layouts;
 
     /// <summary>
@@ -62,7 +63,7 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/EventLog/Simple/Example.cs" />
     /// </example>
     [Target("EventLog")]
-    public class EventLogTarget : TargetWithLayout
+    public class EventLogTarget : TargetWithLayout, IInstallable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
@@ -111,11 +112,66 @@ namespace NLog.Targets
         public string Log { get; set; }
 
         /// <summary>
+        /// Performs installation which requires administrative permissions.
+        /// </summary>
+        /// <param name="installationContext">The installation context.</param>
+        public void Install(InstallationContext installationContext)
+        {
+            if (EventLog.SourceExists(this.Source, this.MachineName))
+            {
+                string currentLogName = EventLog.LogNameFromSourceName(this.Source, this.MachineName);
+                if (currentLogName != this.Log)
+                {
+                    // re-create the association between Log and Source
+                    EventLog.DeleteEventSource(this.Source, this.MachineName);
+
+                    var escd = new EventSourceCreationData(this.Source, this.Log)
+                    {
+                        MachineName = this.MachineName
+                    };
+
+                    EventLog.CreateEventSource(escd);
+                }
+            }
+            else
+            {
+                var escd = new EventSourceCreationData(this.Source, this.Log)
+                {
+                    MachineName = this.MachineName
+                };
+
+                EventLog.CreateEventSource(escd);
+            }
+        }
+
+        /// <summary>
+        /// Performs uninstallation which requires administrative permissions.
+        /// </summary>
+        /// <param name="installationContext">The installation context.</param>
+        public void Uninstall(InstallationContext installationContext)
+        {
+            EventLog.DeleteEventSource(this.Source, this.MachineName);
+        }
+
+        /// <summary>
+        /// Determines whether the item is installed.
+        /// </summary>
+        /// <param name="installationContext">The installation context.</param>
+        /// <returns>
+        /// Value indicating whether the item is installed or null if it is not possible to determine.
+        /// </returns>
+        public bool? IsInstalled(InstallationContext installationContext)
+        {
+            return EventLog.SourceExists(this.Source, this.MachineName);
+        }
+
+        /// <summary>
         /// Initializes the target.
         /// </summary>
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
+
             this.CreateEventSourceIfNeeded();
         }
 
@@ -176,19 +232,21 @@ namespace NLog.Targets
                     {
                         // re-create the association between Log and Source
                         EventLog.DeleteEventSource(this.Source, this.MachineName);
-                        var escd = new EventSourceCreationData(this.Source, this.Log);
-                        escd.MachineName = this.MachineName;
+                        var escd = new EventSourceCreationData(this.Source, this.Log)
+                        {
+                            MachineName = this.MachineName
+                        };
+
                         EventLog.CreateEventSource(escd);
-                    }
-                    else
-                    {
-                        // ok, Source registered and associated with the correct Log
                     }
                 }
                 else
                 {
-                    var escd = new EventSourceCreationData(this.Source, this.Log);
-                    escd.MachineName = this.MachineName;
+                    var escd = new EventSourceCreationData(this.Source, this.Log)
+                    {
+                        MachineName = this.MachineName
+                    };
+
                     EventLog.CreateEventSource(escd);
                 }
             }

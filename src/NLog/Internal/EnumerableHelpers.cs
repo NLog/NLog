@@ -33,6 +33,7 @@
 
 namespace NLog.Internal
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
 
@@ -53,7 +54,7 @@ namespace NLog.Internal
         /// <returns>
         /// Items of specified type.
         /// </returns>
-        public static IEnumerable<T> OfType<T>(IEnumerable enumerable)
+        public static IEnumerable<T> OfType<T>(this IEnumerable enumerable)
             where T : class
         {
             foreach (object o in enumerable)
@@ -78,12 +79,43 @@ namespace NLog.Internal
         /// <returns>
         /// Reversed enumerable.
         /// </returns>
-        public static IEnumerable<T> Reverse<T>(IEnumerable<T> enumerable)
+        public static IEnumerable<T> Reverse<T>(this IEnumerable<T> enumerable)
             where T : class
         {
             List<T> tmp = new List<T>(enumerable);
             tmp.Reverse();
             return tmp;
+        }
+
+        /// <summary>
+        /// Determines is the given predicate is met by any element of the enumerable.
+        /// </summary>
+        /// <typeparam name="T">Element type.</typeparam>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <param name="predicate">The predicate.</param>
+        /// <returns>True if predicate returns true for any element of the collection, false otherwise.</returns>
+        public static bool Any<T>(this IEnumerable<T> enumerable, Predicate<T> predicate)
+        {
+            foreach (var t in enumerable)
+            {
+                if (predicate(t))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Converts the enumerable to list.
+        /// </summary>
+        /// <typeparam name="T">Type of the list element.</typeparam>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <returns>List of elements.</returns>
+        public static List<T> ToList<T>(this IEnumerable<T> enumerable)
+        {
+            return new List<T>(enumerable);
         }
     }
 }

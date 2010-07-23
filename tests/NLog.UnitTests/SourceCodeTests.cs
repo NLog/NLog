@@ -66,6 +66,7 @@ namespace NLog.UnitTests
             "AssemblyInfo.cs",
             "AssemblyBuildInfo.cs",
             "GlobalSuppressions.cs",
+            "CompilerAttributes.cs",
         };
 
         private string sourceCodeDirectory;

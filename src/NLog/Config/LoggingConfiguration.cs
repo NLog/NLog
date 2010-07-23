@@ -35,6 +35,7 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Reflection;
 
     using NLog.Common;
@@ -72,6 +73,14 @@ namespace NLog.Config
         /// Gets the collection of logging rules.
         /// </summary>
         public IList<LoggingRule> LoggingRules { get; private set; }
+
+        /// <summary>
+        /// Gets all targets.
+        /// </summary>
+        public ReadOnlyCollection<Target> AllTargets
+        {
+            get { return new List<Target>(EnumerableHelpers.OfType<Target>(this.configItems)).AsReadOnly(); }
+        }
 
         /// <summary>
         /// Registers the specified target object under a given name.
@@ -151,6 +160,85 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Installs target-specific objects on current system.
+        /// </summary>
+        /// <param name="installationContext">The installation context.</param>
+        /// <remarks>
+        /// Installation typically runs with administrative permissions.
+        /// </remarks>
+        public void Install(InstallationContext installationContext)
+        {
+            if (installationContext == null)
+            {
+                throw new ArgumentNullException("installationContext");
+            }
+
+            installationContext.Configuration = this;
+            this.InitializeAll();
+            try
+            {
+                foreach (IInstallable installable in EnumerableHelpers.OfType<IInstallable>(this.configItems))
+                {
+                    installationContext.Info("Installing '{0}'", installable);
+
+                    try
+                    {
+                        installable.Install(installationContext);
+                        installationContext.Info("Finished installing '{0}'.", installable);
+                    }
+                    catch (Exception exception)
+                    {
+                        installationContext.Error("'{0}' installation failed: {1}.", installable, exception);
+                    }
+                }
+            }
+            finally
+            {
+                installationContext.Configuration = null;
+            }
+        }
+
+        /// <summary>
+        /// Uninstalls target-specific objects from current system.
+        /// </summary>
+        /// <param name="installationContext">The installation context.</param>
+        /// <remarks>
+        /// Uninstallation typically runs with administrative permissions.
+        /// </remarks>
+        public void Uninstall(InstallationContext installationContext)
+        {
+            if (installationContext == null)
+            {
+                throw new ArgumentNullException("installationContext");
+            }
+
+            this.InitializeAll();
+
+            installationContext.Configuration = this;
+            try
+            {
+                foreach (IInstallable installable in EnumerableHelpers.OfType<IInstallable>(this.configItems))
+                {
+                    installationContext.Info("Uninstalling '{0}'", installable);
+
+                    try
+                    {
+                        installable.Uninstall(installationContext);
+                        installationContext.Info("Finished uninstalling '{0}'.", installable);
+                    }
+                    catch (Exception exception)
+                    {
+                        installationContext.Error("Uninstallation of '{0}' failed: {1}.", installable, exception);
+                    }
+                }
+            }
+            finally
+            {
+                installationContext.Configuration = null;
+            }
+        }
+
+        /// <summary>
         /// Closes all targets and releases any unmanaged resources.
         /// </summary>
         internal void Close()
@@ -196,7 +284,7 @@ namespace NLog.Config
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         internal void FlushAllTargets(AsyncContinuation asyncContinuation)
         {
-            List<Target> targets = new List<Target>();
+            var targets = new List<Target>();
             foreach (var rule in this.LoggingRules)
             {
                 foreach (var t in rule.Targets)
@@ -211,7 +299,10 @@ namespace NLog.Config
             AsyncHelpers.ForEachItemInParallel(targets, asyncContinuation, (target, cont) => target.Flush(cont));
         }
 
-        internal void InitializeAll()
+        /// <summary>
+        /// Validates the configuration.
+        /// </summary>
+        internal void ValidateConfig()
         {
             var roots = new List<INLogConfigurationItem>();
             foreach (LoggingRule r in this.LoggingRules)
@@ -234,6 +325,11 @@ namespace NLog.Config
             {
                 PropertyHelper.CheckRequiredParameters(o);
             }
+        }
+
+        internal void InitializeAll()
+        {
+            this.ValidateConfig();
 
             foreach (ISupportsInitialize initialize in EnumerableHelpers.Reverse(EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems)))
             {

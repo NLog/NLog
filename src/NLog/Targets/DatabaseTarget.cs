@@ -69,7 +69,7 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/Database/MSSQL/Example.cs" height="630" />
     /// </example>
     [Target("Database")]
-    public sealed class DatabaseTarget : Target
+    public sealed class DatabaseTarget : Target, IInstallable
     {
         private static Assembly systemDataAssembly = typeof(IDbConnection).Assembly;
 
@@ -82,6 +82,8 @@ namespace NLog.Targets
         public DatabaseTarget()
         {
             this.Parameters = new List<DatabaseParameterInfo>();
+            this.InstallDdlCommands = new List<DatabaseCommandInfo>();
+            this.UninstallDdlCommands = new List<DatabaseCommandInfo>();
             this.DbProvider = "sqlserver";
             this.DbHost = ".";
 #if !NET_CF
@@ -135,6 +137,26 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public Layout ConnectionString { get; set; }
+
+        /// <summary>
+        /// Gets or sets the connection string using for installation and uninstallation. If not provided, regular ConnectionString is being used.
+        /// </summary>
+        /// <docgen category='Installation Options' order='10' />
+        public Layout InstallConnectionString { get; set; }
+
+        /// <summary>
+        /// Gets the installation DDL commands.
+        /// </summary>
+        /// <docgen category='Installation Options' order='10' />
+        [ArrayParameter(typeof(DatabaseCommandInfo), "install-command")]
+        public IList<DatabaseCommandInfo> InstallDdlCommands { get; private set; }
+
+        /// <summary>
+        /// Gets the uninstallation DDL commands.
+        /// </summary>
+        /// <docgen category='Installation Options' order='10' />
+        [ArrayParameter(typeof(DatabaseCommandInfo), "uninstall-command")]
+        public IList<DatabaseCommandInfo> UninstallDdlCommands { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to keep the 
@@ -215,6 +237,36 @@ namespace NLog.Targets
 #endif
 
         internal Type ConnectionType { get; set; }
+
+        /// <summary>
+        /// Performs installation which requires administrative permissions.
+        /// </summary>
+        /// <param name="installationContext">The installation context.</param>
+        public void Install(InstallationContext installationContext)
+        {
+            this.RunInstallCommands(installationContext, this.InstallDdlCommands, false);
+        }
+
+        /// <summary>
+        /// Performs uninstallation which requires administrative permissions.
+        /// </summary>
+        /// <param name="installationContext">The installation context.</param>
+        public void Uninstall(InstallationContext installationContext)
+        {
+            this.RunInstallCommands(installationContext, this.UninstallDdlCommands, true);
+        }
+
+        /// <summary>
+        /// Determines whether the item is installed.
+        /// </summary>
+        /// <param name="installationContext">The installation context.</param>
+        /// <returns>
+        /// Value indicating whether the item is installed or null if it is not possible to determine.
+        /// </returns>
+        public bool? IsInstalled(InstallationContext installationContext)
+        {
+            return null;
+        }
 
         internal IDbConnection OpenConnection(string connectionString)
         {
@@ -346,7 +398,7 @@ namespace NLog.Targets
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            var buckets = SortHelpers.BucketSort(this.BuildConnectionString, logEvents);
+            var buckets = SortHelpers.BucketSort(logEvents, c => this.BuildConnectionString(c.LogEvent));
 
             try
             {
@@ -479,6 +531,64 @@ namespace NLog.Targets
                 this.activeConnection.Close();
                 this.activeConnection = null;
                 this.activeConnectionString = null;
+            }
+        }
+
+        private void RunInstallCommands(InstallationContext installationContext, IEnumerable<DatabaseCommandInfo> commands, bool isUninstall)
+        {
+            // create log event that will be used to render all layouts
+            LogEventInfo logEvent = installationContext.CreateLogEvent();
+
+            try
+            {
+                foreach (var commandInfo in commands)
+                {
+                    string cs;
+
+                    if (commandInfo.ConnectionString != null)
+                    {
+                        // if there is connection string specified on the command info, use it
+                        cs = commandInfo.ConnectionString.Render(logEvent);
+                    }
+                    else if (this.InstallConnectionString != null)
+                    {
+                        // next, try InstallConnectionString
+                        cs = this.InstallConnectionString.Render(logEvent);
+                    }
+                    else
+                    {
+                        // if it's not defined, fall back to regular connection string
+                        cs = this.BuildConnectionString(logEvent);
+                    }
+
+                    this.EnsureConnectionOpen(cs);
+
+                    var command = this.activeConnection.CreateCommand();
+                    command.CommandType = commandInfo.CommandType;
+                    command.CommandText = commandInfo.Text.Render(logEvent);
+
+                    try
+                    {
+                        installationContext.Trace("Executing {0} '{1}'", command.CommandType, command.CommandText);
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception exception)
+                    {
+                        if (commandInfo.IgnoreFailures || installationContext.IgnoreFailures)
+                        {
+                            installationContext.Warning(exception.Message);
+                        }
+                        else
+                        {
+                            installationContext.Error(exception.Message);
+                            throw;
+                        }
+                    }
+                }
+            }
+            finally 
+            {
+                this.CloseConnection();
             }
         }
     }

@@ -98,8 +98,10 @@
     <Compile Include="Config\DefaultParameterAttribute.cs" />
     <Compile Include="Config\Factory.cs" />
     <Compile Include="Config\IFactory.cs" />
+    <Compile Include="Config\IInstallable.cs" />
     <Compile Include="Config\INamedItemFactory.cs" />
     <Compile Include="Config\INLogConfigurationItem.cs" />
+    <Compile Include="Config\InstallationContext.cs" />
     <Compile Include="Config\LoggingConfiguration.cs" />
     <Compile Include="Config\LoggingConfigurationChangedEventArgs.cs" />
     <Compile Include="Config\LoggingConfigurationReloadedEventArgs.cs" />
@@ -130,6 +132,7 @@
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Internal\CompactFrameworkHelper.cs" />
+    <Compile Include="Internal\CompilerAttributes.cs" />
     <Compile Include="Internal\CurrentTimeGetter.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EnumerableHelpers.cs" />
@@ -206,6 +209,7 @@
     <Compile Include="LayoutRenderers\GdcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GuidLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\IdentityLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\InstallContextLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\LayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\LayoutRendererAttribute.cs" />
     <Compile Include="LayoutRenderers\LevelLayoutRenderer.cs" />
@@ -291,6 +295,7 @@
     <Compile Include="Targets\ConsoleRowHighlightingRule.cs" />
     <Compile Include="Targets\ConsoleTarget.cs" />
     <Compile Include="Targets\ConsoleWordHighlightingRule.cs" />
+    <Compile Include="Targets\DatabaseCommandInfo.cs" />
     <Compile Include="Targets\DatabaseParameterInfo.cs" />
     <Compile Include="Targets\DatabaseTarget.cs" />
     <Compile Include="Targets\DebuggerTarget.cs" />
