@@ -239,6 +239,7 @@
   </Target>
 
   <Target Name="RunTests">
+    <Exec Command="..\tests\CreateTestUsers.cmd" IgnoreExitCode="true" />
     <CallTarget Targets="DeleteTrxFiles" />
     <CallTarget Targets="PrepareTestResultSummary" />
     <CallTarget Targets="Mono2Test" Condition="'$(BuildMono2)'=='true'"/>
@@ -251,6 +252,7 @@
     <CallTarget Targets="SL3Test" Condition="'$(BuildSL3)'=='true'"/>
     <CallTarget Targets="SL4Test" Condition="'$(BuildSL4)'=='true'"/>
     <CallTarget Targets="RunComApiTests" />
+    <Exec Command="..\tests\DeleteTestUsers.cmd" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="RunComApiTests">
