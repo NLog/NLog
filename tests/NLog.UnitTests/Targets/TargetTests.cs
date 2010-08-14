@@ -48,7 +48,7 @@ namespace NLog.UnitTests.Targets
         public void InitializeTest()
         {
             var target = new MyTarget();
-            target.Initialize();
+            target.Initialize(null);
 
             // initialize was called once
             Assert.AreEqual(1, target.InitializeCount);
@@ -59,8 +59,8 @@ namespace NLog.UnitTests.Targets
         public void DoubleInitializeTest()
         {
             var target = new MyTarget();
-            target.Initialize();
-            target.Initialize();
+            target.Initialize(null);
+            target.Initialize(null);
 
             // initialize was called once
             Assert.AreEqual(1, target.InitializeCount);
@@ -71,7 +71,7 @@ namespace NLog.UnitTests.Targets
         public void DoubleCloseTest()
         {
             var target = new MyTarget();
-            target.Initialize();
+            target.Initialize(null);
             target.Close();
             target.Close();
 
@@ -114,7 +114,7 @@ namespace NLog.UnitTests.Targets
         public void WriteOnClosedTargetTest()
         {
             var target = new MyTarget();
-            target.Initialize();
+            target.Initialize(null);
             target.Close();
 
             var exceptions = new List<Exception>();
@@ -140,7 +140,7 @@ namespace NLog.UnitTests.Targets
         {
             var target = new MyTarget();
             List<Exception> exceptions = new List<Exception>();
-            target.Initialize();
+            target.Initialize(null);
             target.Flush(exceptions.Add);
 
             // flush was called
@@ -168,7 +168,7 @@ namespace NLog.UnitTests.Targets
         public void FlushOnClosedTargetTest()
         {
             var target = new MyTarget();
-            target.Initialize();
+            target.Initialize(null);
             target.Close();
             Assert.AreEqual(1, target.InitializeCount);
             Assert.AreEqual(1, target.CloseCount);
@@ -187,7 +187,7 @@ namespace NLog.UnitTests.Targets
         public void LockingTest()
         {
             var target = new MyTarget();
-            target.Initialize();
+            target.Initialize(null);
 
             var mre = new ManualResetEvent(false);
 
@@ -210,7 +210,7 @@ namespace NLog.UnitTests.Targets
             });
 
 
-            target.Initialize();
+            target.Initialize(null);
             t.Start();
             Thread.Sleep(50);
             List<Exception> exceptions = new List<Exception>();

@@ -69,8 +69,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 DefaultFilter = "level >= LogLevel.Info",
             };
 
-            wrapper.Initialize();
-            target.Initialize();
+            wrapper.Initialize(null);
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
             
@@ -115,8 +115,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 DefaultFilter = "level >= LogLevel.Info",
             };
 
-            wrapper.Initialize();
-            target.Initialize();
+            wrapper.Initialize(null);
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
 
@@ -172,8 +172,8 @@ Trace After filtering: 6 events
                 DefaultFilter = "level >= LogLevel.Info",
             };
 
-            wrapper.Initialize();
-            target.Initialize();
+            wrapper.Initialize(null);
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
 
@@ -219,8 +219,8 @@ Trace After filtering: 7 events
                 WrappedTarget = target,
             };
 
-            wrapper.Initialize();
-            target.Initialize();
+            wrapper.Initialize(null);
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
 

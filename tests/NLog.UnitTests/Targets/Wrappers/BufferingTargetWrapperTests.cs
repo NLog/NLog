@@ -54,8 +54,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 BufferSize = 10,
             };
 
-            myTarget.Initialize();
-            targetWrapper.Initialize();
+            myTarget.Initialize(null);
+            targetWrapper.Initialize(null);
 
             int totalEvents = 100;
 
@@ -169,8 +169,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 FlushTimeout = 1000,
             };
 
-            myTarget.Initialize();
-            targetWrapper.Initialize();
+            myTarget.Initialize(null);
+            targetWrapper.Initialize(null);
 
             int totalEvents = 100;
 
@@ -241,8 +241,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 BufferSize = 10,
             };
 
-            myTarget.Initialize();
-            targetWrapper.Initialize();
+            myTarget.Initialize(null);
+            targetWrapper.Initialize(null);
 
             int totalEvents = 100;
 
@@ -356,8 +356,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 SlidingTimeout = false,
             };
 
-            myTarget.Initialize();
-            targetWrapper.Initialize();
+            myTarget.Initialize(null);
+            targetWrapper.Initialize(null);
 
             int totalEvents = 100;
 
@@ -401,8 +401,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 FlushTimeout = 400,
             };
 
-            myTarget.Initialize();
-            targetWrapper.Initialize();
+            myTarget.Initialize(null);
+            targetWrapper.Initialize(null);
 
             int totalEvents = 100;
 

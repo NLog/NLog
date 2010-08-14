@@ -76,6 +76,7 @@ namespace NLog.Targets
     {
         private PerformanceCounter perfCounter;
         private bool initialized;
+        private bool created;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PerformanceCounterTarget" /> class.
@@ -133,10 +134,10 @@ namespace NLog.Targets
         public void Install(InstallationContext installationContext)
         {
             // categories must be installed together, so we must find all PerfCounter targets in the configuration file
-            var countersByCategory = installationContext.Configuration.AllTargets.OfType<PerformanceCounterTarget>().BucketSort(c => c.CategoryName);
+            var countersByCategory = this.LoggingConfiguration.AllTargets.OfType<PerformanceCounterTarget>().BucketSort(c => c.CategoryName);
             string categoryName = this.CategoryName;
 
-            if (installationContext.State.ContainsKey("PerfCountersInstalled" + categoryName))
+            if (countersByCategory[categoryName].Any(c => c.created))
             {
                 installationContext.Trace("Category '{0}' has already been installed.", categoryName);
                 return;
@@ -175,7 +176,10 @@ namespace NLog.Targets
             }
             finally
             {
-                installationContext.State["PerfCountersInstalled" + categoryName] = true;
+                foreach (var t in countersByCategory[categoryName])
+                {
+                    t.created = true;
+                }
             }
         }
 
@@ -187,27 +191,14 @@ namespace NLog.Targets
         {
             string categoryName = this.CategoryName;
 
-            if (installationContext.State.ContainsKey("PerfCountersUninstalled" + categoryName))
+            if (PerformanceCounterCategory.Exists(categoryName))
             {
-                installationContext.Trace("Category '{0}' has already been uninstalled.", categoryName);
-                return;
+                installationContext.Debug("Deleting category '{0}'", categoryName);
+                PerformanceCounterCategory.Delete(categoryName);
             }
-
-            try
+            else
             {
-                if (PerformanceCounterCategory.Exists(categoryName))
-                {
-                    installationContext.Debug("Deleting category '{0}'", categoryName);
-                    PerformanceCounterCategory.Delete(categoryName);
-                }
-                else
-                {
-                    installationContext.Debug("Category '{0}' does not exist.", categoryName);
-                }
-            }
-            finally
-            {
-                installationContext.State["PerfCountersUninstalled" + categoryName] = true;
+                installationContext.Debug("Category '{0}' does not exist.", categoryName);
             }
         }
 
@@ -283,6 +274,13 @@ namespace NLog.Targets
             if (!this.initialized)
             {
                 this.initialized = true;
+
+                if (this.AutoCreate)
+                {
+                    var context = new InstallationContext();
+                    this.Install(context);
+                }
+
                 try
                 {
                     this.perfCounter = new PerformanceCounter(this.CategoryName, this.CounterName, this.InstanceName, false);

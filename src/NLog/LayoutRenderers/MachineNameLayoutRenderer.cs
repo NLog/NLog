@@ -52,9 +52,9 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeLayoutRenderer()
         {
-            base.Initialize();
+            base.InitializeLayoutRenderer();
             try
             {
                 this.MachineName = Environment.MachineName;

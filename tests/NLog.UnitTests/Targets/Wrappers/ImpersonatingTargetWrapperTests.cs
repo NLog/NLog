@@ -66,8 +66,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = wrapped,
             };
 
-            // wrapped.Initialize();
-            wrapper.Initialize();
+            // wrapped.Initialize(null);
+            wrapper.Initialize(null);
 
             var exceptions = new List<Exception>();
             wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
@@ -111,8 +111,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                     RevertToSelf = true,
                 };
 
-                // wrapped.Initialize();
-                wrapper.Initialize();
+                // wrapped.Initialize(null);
+                wrapper.Initialize(null);
 
                 var exceptions = new List<Exception>();
                 wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
@@ -159,7 +159,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             try
             {
-                wrapper.Initialize();
+                wrapper.Initialize(null);
                 Assert.Fail("Expected exception");
             }
             catch (COMException)
@@ -188,7 +188,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             try
             {
-                wrapper.Initialize();
+                wrapper.Initialize(null);
                 Assert.Fail("Expected exception");
             }
             catch (COMException)

@@ -76,13 +76,7 @@ namespace NLog.Config
             this.LogOutput = logOutput;
             this.Parameters = new Dictionary<string, string>();
             this.LogLevel = LogLevel.Info;
-            this.State = new Dictionary<string, object>();
         }
-
-        /// <summary>
-        /// Gets the installation state.
-        /// </summary>
-        public IDictionary<string, object> State { get; private set; }
 
         /// <summary>
         /// Gets or sets the installation log level.
@@ -93,11 +87,6 @@ namespace NLog.Config
         /// Gets or sets a value indicating whether to ignore failures during installation.
         /// </summary>
         public bool IgnoreFailures { get; set; }
-
-        /// <summary>
-        /// Gets or sets the configuration.
-        /// </summary>
-        public LoggingConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Gets the installation parameters.

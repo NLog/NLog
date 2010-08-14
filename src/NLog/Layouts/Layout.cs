@@ -99,7 +99,7 @@ namespace NLog.Layouts
             if (!this.isInitialized)
             {
                 this.isInitialized = true;
-                this.Initialize();
+                this.InitializeLayout();
             }
 
             return this.GetFormattedMessage(eventInfo);
@@ -108,13 +108,10 @@ namespace NLog.Layouts
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        void ISupportsInitialize.Initialize()
+        /// <param name="configuration">The configuration.</param>
+        void ISupportsInitialize.Initialize(LoggingConfiguration configuration)
         {
-            if (!this.isInitialized)
-            {
-                this.isInitialized = true;
-                this.Initialize();
-            }
+            this.Initialize(configuration);
         }
 
         /// <summary>
@@ -122,24 +119,45 @@ namespace NLog.Layouts
         /// </summary>
         void ISupportsInitialize.Close()
         {
+            this.Close();
+        }
+
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
+        internal void Initialize(LoggingConfiguration configuration)
+        {
+            if (!this.isInitialized)
+            {
+                this.isInitialized = true;
+                this.InitializeLayout();
+            }
+        }
+
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        internal void Close()
+        {
             if (this.isInitialized)
             {
                 this.isInitialized = false;
-                this.Close();
+                this.CloseLayout();
             }
         }
 
         /// <summary>
         /// Initializes the layout.
         /// </summary>
-        protected virtual void Initialize()
+        protected virtual void InitializeLayout()
         {
         }
 
         /// <summary>
         /// Closes the layout.
         /// </summary>
-        protected virtual void Close()
+        protected virtual void CloseLayout()
         {
         }
 

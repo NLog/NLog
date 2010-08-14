@@ -512,7 +512,7 @@ namespace NLog.UnitTests.Targets
             var fileTarget = new FileTarget();
             fileTarget.FileName = "${logger}.txt";
             fileTarget.Layout = "${message}";
-            fileTarget.Initialize();
+            fileTarget.Initialize(null);
 
             // make sure that when file names get sorted, the asynchronous continuations are sorted with them as well
             var exceptions = new List<Exception>();

@@ -111,9 +111,9 @@ namespace NLog.Layouts
         /// <summary>
         /// Initializes the layout.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeLayout()
         {
-            base.Initialize();
+            base.InitializeLayout();
             switch (this.Delimiter)
             {
                 case CsvColumnDelimiterMode.Auto:

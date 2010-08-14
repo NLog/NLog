@@ -60,12 +60,12 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             Assert.AreEqual(s1, s2);
 
             // calling Close() on Layout Renderer will reset the cached value
-            ((ISupportsInitialize)l.Renderers[0]).Close();
+            l.Renderers[0].Close();
             s3 = l.Render(LogEventInfo.CreateNullEvent());
             Assert.AreNotEqual(s2, s3);
 
             // calling Initialize() on Layout Renderer will reset the cached value
-            ((ISupportsInitialize)l.Renderers[0]).Close();
+            l.Renderers[0].Close();
             string s4 = l.Render(LogEventInfo.CreateNullEvent());
             Assert.AreNotEqual(s3, s4);
 

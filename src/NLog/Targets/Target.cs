@@ -65,6 +65,11 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Gets the logging configuration this target is part of.
+        /// </summary>
+        protected LoggingConfiguration LoggingConfiguration { get; private set; }
+
+        /// <summary>
         /// Gets a value indicating whether the target has been initialized.
         /// </summary>
         protected bool IsInitialized { get; private set; }
@@ -72,48 +77,18 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public void Initialize()
+        /// <param name="configuration">The configuration.</param>
+        void ISupportsInitialize.Initialize(LoggingConfiguration configuration)
         {
-            lock (this.SyncRoot)
-            {
-                if (!this.IsInitialized)
-                {
-                    PropertyHelper.CheckRequiredParameters(this);
-                    try
-                    {
-                        this.InitializeTarget();
-                        this.IsInitialized = true;
-                    }
-                    catch (Exception exception)
-                    {
-                        InternalLogger.Error("Error initializing target {0} {1}.", this, exception);
-                        throw;
-                    }
-                }
-            }
+            this.Initialize(configuration);
         }
 
         /// <summary>
         /// Closes this instance.
         /// </summary>
-        public void Close()
+        void ISupportsInitialize.Close()
         {
-            lock (this.SyncRoot)
-            {
-                if (this.IsInitialized)
-                {
-                    try
-                    {
-                        this.CloseTarget();
-                        this.IsInitialized = false;
-                    }
-                    catch (Exception exception)
-                    {
-                        InternalLogger.Error("Error closing target {0} {1}.", this, exception);
-                        throw;
-                    }
-                }
-            }
+            this.Close();
         }
 
         /// <summary>
@@ -251,6 +226,58 @@ namespace NLog.Targets
                     foreach (var ev in wrappedEvents)
                     {
                         ev.Continuation(ex);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
+        internal void Initialize(LoggingConfiguration configuration)
+        {
+            lock (this.SyncRoot)
+            {
+                this.LoggingConfiguration = configuration;
+
+                if (!this.IsInitialized)
+                {
+                    PropertyHelper.CheckRequiredParameters(this);
+                    try
+                    {
+                        this.InitializeTarget();
+                        this.IsInitialized = true;
+                    }
+                    catch (Exception exception)
+                    {
+                        InternalLogger.Error("Error initializing target {0} {1}.", this, exception);
+                        throw;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        internal void Close()
+        {
+            lock (this.SyncRoot)
+            {
+                this.LoggingConfiguration = null;
+
+                if (this.IsInitialized)
+                {
+                    try
+                    {
+                        this.CloseTarget();
+                        this.IsInitialized = false;
+                    }
+                    catch (Exception exception)
+                    {
+                        InternalLogger.Error("Error closing target {0} {1}.", this, exception);
+                        throw;
                     }
                 }
             }

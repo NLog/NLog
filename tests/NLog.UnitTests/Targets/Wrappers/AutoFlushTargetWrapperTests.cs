@@ -54,8 +54,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = myTarget,
             };
 
-            myTarget.Initialize();
-            wrapper.Initialize();
+            myTarget.Initialize(null);
+            wrapper.Initialize(null);
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             bool continuationHit = false;
@@ -86,8 +86,8 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             var myTarget = new MyAsyncTarget();
             var wrapper = new AutoFlushTargetWrapper(myTarget);
-            myTarget.Initialize();
-            wrapper.Initialize();
+            myTarget.Initialize(null);
+            wrapper.Initialize(null);
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             var continuationHit = new ManualResetEvent(false);
@@ -123,8 +123,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             var wrapper = new AutoFlushTargetWrapper(myTarget);
-            myTarget.Initialize();
-            wrapper.Initialize();
+            myTarget.Initialize(null);
+            wrapper.Initialize(null);
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             var continuationHit = new ManualResetEvent(false);

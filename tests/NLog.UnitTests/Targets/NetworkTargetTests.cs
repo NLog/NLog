@@ -36,10 +36,13 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Net;
+    using System.Net.Sockets;
     using System.Text;
     using System.Threading;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NLog.Common;
+    using NLog.Config;
     using NLog.Internal.NetworkSenders;
     using NLog.Targets;
 
@@ -56,7 +59,7 @@ namespace NLog.UnitTests.Targets
             target.Layout = "${message}";
             target.NewLine = true;
             target.KeepConnection = true;
-            target.Initialize();
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -113,7 +116,7 @@ namespace NLog.UnitTests.Targets
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
             target.KeepConnection = true;
-            target.Initialize();
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -178,7 +181,7 @@ namespace NLog.UnitTests.Targets
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
             target.KeepConnection = true;
-            target.Initialize();
+            target.Initialize(null);
 
             var mre = new ManualResetEvent(false);
 
@@ -205,7 +208,7 @@ namespace NLog.UnitTests.Targets
             target.Layout = "${message}";
             target.KeepConnection = true;
             target.ConnectionCacheSize = 2;
-            target.Initialize();
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -268,7 +271,7 @@ namespace NLog.UnitTests.Targets
             target.SenderFactory = senderFactory;
             target.Layout = "${message}";
             target.KeepConnection = false;
-            target.Initialize();
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -336,7 +339,7 @@ namespace NLog.UnitTests.Targets
             target.KeepConnection = true;
             target.MaxMessageSize = 9;
             target.OnOverflow = NetworkTargetOverflowAction.Split;
-            target.Initialize();
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -396,7 +399,7 @@ namespace NLog.UnitTests.Targets
             target.KeepConnection = true;
             target.MaxMessageSize = 10;
             target.OnOverflow = NetworkTargetOverflowAction.Discard;
-            target.Initialize();
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -449,7 +452,7 @@ namespace NLog.UnitTests.Targets
             target.KeepConnection = true;
             target.MaxMessageSize = 10;
             target.OnOverflow = NetworkTargetOverflowAction.Error;
-            target.Initialize();
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -502,7 +505,7 @@ namespace NLog.UnitTests.Targets
             target.Layout = "${message}";
             target.KeepConnection = true;
             target.OnOverflow = NetworkTargetOverflowAction.Discard;
-            target.Initialize();
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);
@@ -554,6 +557,244 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(expectedLog, senderFactory.Log.ToString());
         }
 
+#if !SILVERLIGHT
+        [TestMethod]
+        public void NetworkTargetTcpTest()
+        {
+            NetworkTarget target;
+
+            target = new NetworkTarget()
+            {
+                Address = "tcp://127.0.0.1:3004",
+                Layout = "${message}\n",
+                KeepConnection = true,
+            };
+
+            string expectedResult = string.Empty;
+
+            using (var listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
+            {
+                Exception receiveException = null;
+                var resultStream = new MemoryStream();
+                var receiveFinished = new ManualResetEvent(false);
+
+                listener.Bind(new IPEndPoint(IPAddress.Loopback, 3004));
+                listener.Listen(10);
+                listener.BeginAccept(
+                    result =>
+                    {
+                        try
+                        {
+                            Console.WriteLine("Accepting...");
+                            byte[] buffer = new byte[4096];
+                            using (Socket connectedSocket = listener.EndAccept(result))
+                            {
+                                Console.WriteLine("Accepted...");
+                                int got;
+                                while ((got = connectedSocket.Receive(buffer, 0, buffer.Length, SocketFlags.None)) > 0)
+                                {
+                                    Console.WriteLine("Got {0} bytes", got);
+                                    resultStream.Write(buffer, 0, got);
+                                }
+                                Console.WriteLine("Closing connection...");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Receive exception {0}", ex);
+                            receiveException = ex;
+                        }
+                        finally
+                        {
+                            receiveFinished.Set();
+                        }
+                    }, null);
+
+                target.Initialize(new LoggingConfiguration());
+
+                int pendingWrites = 100;
+                var writeCompleted = new ManualResetEvent(false);
+                var exceptions = new List<Exception>();
+
+                AsyncContinuation writeFinished =
+                    ex =>
+                    {
+                        lock (exceptions)
+                        {
+                            Console.WriteLine("{0} Write finished {1}", pendingWrites, ex);
+                            exceptions.Add(ex);
+                            pendingWrites--;
+                            if (pendingWrites == 0)
+                            {
+                                writeCompleted.Set();
+                            }
+                        }
+                    };
+
+                int toWrite = pendingWrites;
+                for (int i = 0; i < toWrite; ++i)
+                {
+                    var ev = new LogEventInfo(LogLevel.Info, "logger1", "messagemessagemessagemessagemessage" + i).WithContinuation(writeFinished);
+                    target.WriteAsyncLogEvent(ev);
+                    expectedResult += "messagemessagemessagemessagemessage" + i + "\n";
+                }
+
+                Assert.IsTrue(writeCompleted.WaitOne(10000, false), "Writes did not complete");
+                target.Close();
+                Assert.IsTrue(receiveFinished.WaitOne(10000, false), "Receive did not complete");
+                string resultString = Encoding.UTF8.GetString(resultStream.GetBuffer(), 0, (int)resultStream.Length);
+                Assert.IsNull(receiveException, "Receive exception: " + receiveException);
+                Assert.AreEqual(expectedResult, resultString);
+            }
+        }
+
+        [TestMethod]
+        public void NetworkTargetUdpTest()
+        {
+            var target = new NetworkTarget()
+            {
+                Address = "udp://127.0.0.1:3002",
+                Layout = "${message}\n",
+                KeepConnection = true,
+            };
+
+            string expectedResult = string.Empty;
+
+            using (var listener = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp))
+            {
+                Exception receiveException = null;
+                var receivedMessages = new List<string>();
+                var receiveFinished = new ManualResetEvent(false);
+
+                byte[] receiveBuffer = new byte[4096];
+
+                listener.Bind(new IPEndPoint(IPAddress.Loopback, 3002));
+                EndPoint remoteEndPoint = null;
+                AsyncCallback receivedDatagram = null;
+
+                receivedDatagram = result =>
+                    {
+                        try
+                        {
+                            int got = listener.EndReceiveFrom(result, ref remoteEndPoint);
+                            string message = Encoding.UTF8.GetString(receiveBuffer, 0, got);
+                            lock (receivedMessages)
+                            {
+                                receivedMessages.Add(message);
+                                if (receivedMessages.Count == 100)
+                                {
+                                    receiveFinished.Set();
+                                }
+                            }
+
+                            remoteEndPoint = new IPEndPoint(IPAddress.Any, 0);
+                            listener.BeginReceiveFrom(receiveBuffer, 0, receiveBuffer.Length, SocketFlags.None, ref remoteEndPoint, receivedDatagram, null);
+                        }
+                        catch (Exception ex)
+                        {
+                            receiveException = ex;
+                        }
+                    };
+
+                remoteEndPoint = new IPEndPoint(IPAddress.Any, 0);
+                listener.BeginReceiveFrom(receiveBuffer, 0, receiveBuffer.Length, SocketFlags.None, ref remoteEndPoint, receivedDatagram, null);
+
+                target.Initialize(new LoggingConfiguration());
+
+                int pendingWrites = 100;
+                var writeCompleted = new ManualResetEvent(false);
+                var exceptions = new List<Exception>();
+
+                AsyncContinuation writeFinished =
+                    ex =>
+                    {
+                        lock (exceptions)
+                        {
+                            exceptions.Add(ex);
+                            pendingWrites--;
+                            if (pendingWrites == 0)
+                            {
+                                writeCompleted.Set();
+                            }
+                        }
+                    };
+
+                int toWrite = pendingWrites;
+                for (int i = 0; i < toWrite; ++i)
+                {
+                    var ev = new LogEventInfo(LogLevel.Info, "logger1", "message" + i).WithContinuation(writeFinished);
+                    target.WriteAsyncLogEvent(ev);
+                    expectedResult += "message" + i + "\n";
+                }
+
+                Assert.IsTrue(writeCompleted.WaitOne(30000, false));
+                target.Close();
+                Assert.IsTrue(receiveFinished.WaitOne(30000, false));
+                Assert.AreEqual(toWrite, receivedMessages.Count);
+                for (int i = 0; i < toWrite; ++i)
+                {
+                    Assert.IsTrue(receivedMessages.Contains("message" + i + "\n"), "Message #" + i + " not received.");
+                }
+
+                Assert.IsNull(receiveException, "Receive exception: " + receiveException);
+            }
+        }
+
+        [TestMethod]
+        public void NetworkTargetNotConnectedTest()
+        {
+            var target = new NetworkTarget()
+            {
+                Address = "tcp4://127.0.0.1:33415",
+                Layout = "${message}\n",
+                KeepConnection = true,
+            };
+
+            target.Initialize(new LoggingConfiguration());
+
+            int toWrite = 10;
+            int pendingWrites = toWrite;
+            var writeCompleted = new ManualResetEvent(false);
+            var exceptions = new List<Exception>();
+
+            AsyncContinuation writeFinished =
+                ex =>
+                {
+                    lock (exceptions)
+                    {
+                        exceptions.Add(ex);
+                        pendingWrites--;
+                        Console.WriteLine("Write finished. Pending {0}", pendingWrites);
+                        if (pendingWrites == 0)
+                        {
+                            writeCompleted.Set();
+                        }
+                    }
+                };
+
+            for (int i = 0; i < toWrite; ++i)
+            {
+                var ev = new LogEventInfo(LogLevel.Info, "logger1", "message" + i).WithContinuation(writeFinished);
+                target.WriteAsyncLogEvent(ev);
+            }
+
+            Console.WriteLine("Waiting for completion...");
+            writeCompleted.WaitOne();
+
+            Console.WriteLine("Closing...");
+
+            // no exception
+            target.Close();
+
+            Assert.AreEqual(toWrite, exceptions.Count);
+            foreach (var ex in exceptions)
+            {
+                Assert.IsNotNull(ex);
+            }
+
+            Thread.Sleep(1000);
+        }
+#endif
 
         [TestMethod]
         public void NetworkTargetSendFailureWithoutKeepAliveTests()
@@ -569,7 +810,7 @@ namespace NLog.UnitTests.Targets
             target.Layout = "${message}";
             target.KeepConnection = false;
             target.OnOverflow = NetworkTargetOverflowAction.Discard;
-            target.Initialize();
+            target.Initialize(null);
 
             var exceptions = new List<Exception>();
             var mre = new ManualResetEvent(false);

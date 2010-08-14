@@ -394,7 +394,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
                 form.Controls.Add(rtb);
                 form.Shown += (sender, e) =>
                     {
-                        target.Initialize();
+                        target.Initialize(null);
                         form.Activate();
                         Application.DoEvents();
                         Assert.AreSame(form, target.TargetForm);
@@ -441,7 +441,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
                     form1.Show();
                     form1.Activate();
 
-                    target.Initialize();
+                    target.Initialize(null);
                     Assert.AreSame(form1, target.TargetForm);
                     Assert.AreSame(rtb2, target.TargetRichTextBox);
                 }
@@ -474,7 +474,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
                 form.Show();
                 try
                 {
-                    target.Initialize();
+                    target.Initialize(null);
                     Assert.Fail("Expected exception.");
                 }
                 catch (NLogConfigurationException ex)
@@ -502,7 +502,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
 
                 try
                 {
-                    target.Initialize();
+                    target.Initialize(null);
                     Assert.Fail("Expected exception.");
                 }
                 catch (NLogConfigurationException ex)

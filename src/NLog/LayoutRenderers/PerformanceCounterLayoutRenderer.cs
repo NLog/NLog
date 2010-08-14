@@ -84,9 +84,9 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeLayoutRenderer()
         {
-            base.Initialize();
+            base.InitializeLayoutRenderer();
 
             if (this.MachineName != null)
             {
@@ -101,9 +101,9 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Closes the layout renderer.
         /// </summary>
-        protected override void Close()
+        protected override void CloseLayoutRenderer()
         {
-            base.Close();
+            base.CloseLayoutRenderer();
             if (this.perfCounter != null)
             {
                 this.perfCounter.Close();

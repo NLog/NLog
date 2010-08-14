@@ -79,7 +79,7 @@ namespace NLog.Config
         /// </summary>
         public ReadOnlyCollection<Target> AllTargets
         {
-            get { return new List<Target>(EnumerableHelpers.OfType<Target>(this.configItems)).AsReadOnly(); }
+            get { return this.configItems.OfType<Target>().ToList().AsReadOnly(); }
         }
 
         /// <summary>
@@ -173,28 +173,20 @@ namespace NLog.Config
                 throw new ArgumentNullException("installationContext");
             }
 
-            installationContext.Configuration = this;
             this.InitializeAll();
-            try
+            foreach (IInstallable installable in EnumerableHelpers.OfType<IInstallable>(this.configItems))
             {
-                foreach (IInstallable installable in EnumerableHelpers.OfType<IInstallable>(this.configItems))
-                {
-                    installationContext.Info("Installing '{0}'", installable);
+                installationContext.Info("Installing '{0}'", installable);
 
-                    try
-                    {
-                        installable.Install(installationContext);
-                        installationContext.Info("Finished installing '{0}'.", installable);
-                    }
-                    catch (Exception exception)
-                    {
-                        installationContext.Error("'{0}' installation failed: {1}.", installable, exception);
-                    }
+                try
+                {
+                    installable.Install(installationContext);
+                    installationContext.Info("Finished installing '{0}'.", installable);
                 }
-            }
-            finally
-            {
-                installationContext.Configuration = null;
+                catch (Exception exception)
+                {
+                    installationContext.Error("'{0}' installation failed: {1}.", installable, exception);
+                }
             }
         }
 
@@ -214,27 +206,19 @@ namespace NLog.Config
 
             this.InitializeAll();
 
-            installationContext.Configuration = this;
-            try
+            foreach (IInstallable installable in EnumerableHelpers.OfType<IInstallable>(this.configItems))
             {
-                foreach (IInstallable installable in EnumerableHelpers.OfType<IInstallable>(this.configItems))
-                {
-                    installationContext.Info("Uninstalling '{0}'", installable);
+                installationContext.Info("Uninstalling '{0}'", installable);
 
-                    try
-                    {
-                        installable.Uninstall(installationContext);
-                        installationContext.Info("Finished uninstalling '{0}'.", installable);
-                    }
-                    catch (Exception exception)
-                    {
-                        installationContext.Error("Uninstallation of '{0}' failed: {1}.", installable, exception);
-                    }
+                try
+                {
+                    installable.Uninstall(installationContext);
+                    installationContext.Info("Finished uninstalling '{0}'.", installable);
                 }
-            }
-            finally
-            {
-                installationContext.Configuration = null;
+                catch (Exception exception)
+                {
+                    installationContext.Error("Uninstallation of '{0}' failed: {1}.", installable, exception);
+                }
             }
         }
 
@@ -244,7 +228,7 @@ namespace NLog.Config
         internal void Close()
         {
             InternalLogger.Debug("Closing logging configuration...");
-            foreach (ISupportsInitialize initialize in EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems))
+            foreach (ISupportsInitialize initialize in this.configItems.OfType<ISupportsInitialize>())
             {
                 InternalLogger.Trace("Closing {0}", initialize);
                 try
@@ -331,12 +315,13 @@ namespace NLog.Config
         {
             this.ValidateConfig();
 
-            foreach (ISupportsInitialize initialize in EnumerableHelpers.Reverse(EnumerableHelpers.OfType<ISupportsInitialize>(this.configItems)))
+            foreach (ISupportsInitialize initialize in this.configItems.OfType<ISupportsInitialize>().Reverse())
             {
                 InternalLogger.Trace("Initializing {0}", initialize);
+
                 try
                 {
-                    initialize.Initialize();
+                    initialize.Initialize(this);
                 }
                 catch (Exception ex)
                 {

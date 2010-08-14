@@ -104,9 +104,9 @@ namespace NLog.UnitTests
 
         protected void AssertLayoutRendererOutput(Layout l, string expected)
         {
-            ((ISupportsInitialize)l).Initialize();
+            l.Initialize(null);
             string actual = l.Render(LogEventInfo.Create(LogLevel.Info, "loggername", "message"));
-            ((ISupportsInitialize)l).Close();
+            l.Close();
             Assert.AreEqual(expected, actual);
         }
 

@@ -81,9 +81,9 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeLayoutRenderer()
         {
-            base.Initialize();
+            base.InitializeLayoutRenderer();
             string regexString = this.SearchFor;
 
             if (!this.RegEx)

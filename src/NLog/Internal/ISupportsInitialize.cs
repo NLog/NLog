@@ -33,6 +33,8 @@
 
 namespace NLog.Internal
 {
+    using NLog.Config;
+
     /// <summary>
     /// Supports object initialization and termination.
     /// </summary>
@@ -41,7 +43,8 @@ namespace NLog.Internal
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        void Initialize();
+        /// <param name="configuration">The configuration.</param>
+        void Initialize(LoggingConfiguration configuration);
 
         /// <summary>
         /// Closes this instance.

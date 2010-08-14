@@ -79,8 +79,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 WrappedTarget = myTarget,
             };
-            targetWrapper.Initialize();
-            myTarget.Initialize();
+            targetWrapper.Initialize(null);
+            myTarget.Initialize(null);
 
             var logEvent = new LogEventInfo();
             Exception lastException = null;
@@ -115,8 +115,8 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             var myTarget = new MyAsyncTarget();
             var targetWrapper = new AsyncTargetWrapper(myTarget);
-            targetWrapper.Initialize();
-            myTarget.Initialize();
+            targetWrapper.Initialize(null);
+            myTarget.Initialize(null);
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             var continuationHit = new ManualResetEvent(false);
@@ -149,8 +149,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             var targetWrapper = new AsyncTargetWrapper(myTarget);
-            targetWrapper.Initialize();
-            myTarget.Initialize();
+            targetWrapper.Initialize(null);
+            myTarget.Initialize(null);
             var logEvent = new LogEventInfo();
             Exception lastException = null;
             var continuationHit = new ManualResetEvent(false);
@@ -195,8 +195,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
             };
 
-            targetWrapper.Initialize();
-            myTarget.Initialize();
+            targetWrapper.Initialize(null);
+            myTarget.Initialize(null);
 
             List<Exception> exceptions = new List<Exception>();
 
@@ -268,8 +268,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 TimeToSleepBetweenBatches = 1000,
             };
 
-            targetWrapper.Initialize();
-            myTarget.Initialize();
+            targetWrapper.Initialize(null);
+            myTarget.Initialize(null);
 
             bool continuationHit = false;
 
@@ -293,7 +293,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = new DebugTarget(),
             };
 
-            targetWrapper.Initialize();
+            targetWrapper.Initialize(null);
 
             // null out wrapped target - will cause exception on the timer thread
             targetWrapper.WrappedTarget = null;

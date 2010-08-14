@@ -272,9 +272,9 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
-        protected override void Initialize()
+        protected override void InitializeLayoutRenderer()
         {
-            base.Initialize();
+            base.InitializeLayoutRenderer();
             this.propertyInfo = typeof(Process).GetProperty(this.Property.ToString());
             if (this.propertyInfo == null)
             {
@@ -287,7 +287,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Closes the layout renderer.
         /// </summary>
-        protected override void Close()
+        protected override void CloseLayoutRenderer()
         {
             if (this.process != null)
             {
@@ -295,7 +295,7 @@ namespace NLog.LayoutRenderers
                 this.process = null;
             }
 
-            base.Close();
+            base.CloseLayoutRenderer();
         }
 
         /// <summary>

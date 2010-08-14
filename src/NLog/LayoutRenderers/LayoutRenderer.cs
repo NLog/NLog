@@ -92,13 +92,10 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        void ISupportsInitialize.Initialize()
+        /// <param name="configuration">The configuration.</param>
+        void ISupportsInitialize.Initialize(LoggingConfiguration configuration)
         {
-            if (!this.isInitialized)
-            {
-                this.isInitialized = true;
-                this.Initialize();
-            }
+            this.Initialize(configuration);
         }
 
         /// <summary>
@@ -106,10 +103,31 @@ namespace NLog.LayoutRenderers
         /// </summary>
         void ISupportsInitialize.Close()
         {
+            this.Close();
+        }
+
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
+        internal void Initialize(LoggingConfiguration configuration)
+        {
+            if (!this.isInitialized)
+            {
+                this.isInitialized = true;
+                this.InitializeLayoutRenderer();
+            }
+        }
+
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        internal void Close()
+        {
             if (this.isInitialized)
             {
                 this.isInitialized = false;
-                this.Close();
+                this.CloseLayoutRenderer();
             }
         }
 
@@ -118,7 +136,7 @@ namespace NLog.LayoutRenderers
             if (!this.isInitialized)
             {
                 this.isInitialized = true;
-                this.Initialize();
+                this.InitializeLayoutRenderer();
             }
 
             try
@@ -141,14 +159,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
-        protected virtual void Initialize()
+        protected virtual void InitializeLayoutRenderer()
         {
         }
 
         /// <summary>
         /// Closes the layout renderer.
         /// </summary>      
-        protected virtual void Close()
+        protected virtual void CloseLayoutRenderer()
         {
         }
     }

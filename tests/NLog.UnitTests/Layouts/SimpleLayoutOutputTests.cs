@@ -121,12 +121,12 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual(1, lr.InitCount);
             Assert.AreEqual(0, lr.CloseCount);
 
-            ((ISupportsInitialize)lr).Close();
+            lr.Close();
             Assert.AreEqual(1, lr.InitCount);
             Assert.AreEqual(1, lr.CloseCount);
 
             // second call to Close() will be ignored
-            ((ISupportsInitialize)lr).Close();
+            lr.Close();
             Assert.AreEqual(1, lr.InitCount);
             Assert.AreEqual(1, lr.CloseCount);
         }
@@ -139,11 +139,11 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual(0, lr.CloseCount);
 
             // calls to Close() will be ignored because 
-            ((ISupportsInitialize)lr).Close();
+            lr.Close();
             Assert.AreEqual(0, lr.InitCount);
             Assert.AreEqual(0, lr.CloseCount);
 
-            ((ISupportsInitialize)lr).Initialize();
+            lr.Initialize(null);
             Assert.AreEqual(1, lr.InitCount);
 
             // make sure render will not call another Init
@@ -151,7 +151,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual(1, lr.InitCount);
             Assert.AreEqual(0, lr.CloseCount);
 
-            ((ISupportsInitialize)lr).Close();
+            lr.Close();
             Assert.AreEqual(1, lr.InitCount);
             Assert.AreEqual(1, lr.CloseCount);
         }
@@ -179,15 +179,15 @@ namespace NLog.UnitTests.Layouts
 
             public int CloseCount { get; set; }
 
-            protected override void Initialize()
+            protected override void InitializeLayout()
             {
-                base.Initialize();
+                base.InitializeLayout();
                 this.InitCount++;
             }
 
-            protected override void Close()
+            protected override void CloseLayout()
             {
-                base.Close();
+                base.CloseLayout();
                 this.CloseCount++;
             }
 
