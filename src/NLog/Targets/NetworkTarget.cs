@@ -210,8 +210,6 @@ namespace NLog.Targets
             
             lock (this.openNetworkSenders)
             {
-                // otherwise call FlushAsync() on all senders
-                // and invoke continuation at the very end
                 foreach (var openSender in this.openNetworkSenders)
                 {
                     openSender.Close(ex => { });
@@ -347,13 +345,17 @@ namespace NLog.Targets
 
         private void ReleaseCachedConnection(NetworkSender sender)
         {
-            lock (this.openNetworkSenders)
-            {
-                this.openNetworkSenders.Remove(sender);
-            }
-
             lock (this.currentSenderCache)
             {
+                lock (this.openNetworkSenders)
+                {
+                    if (this.openNetworkSenders.Remove(sender))
+                    {
+                        // only remove it once
+                        sender.Close(ex => { });
+                    }
+                }
+
                 NetworkSender sender2;
 
                 // make sure the current sender for this address is the one we want to remove
@@ -364,8 +366,6 @@ namespace NLog.Targets
                         this.currentSenderCache.Remove(sender.Address);
                     }
                 }
-
-                sender.Close(ex => { });
             }
         }
 

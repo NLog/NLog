@@ -42,7 +42,7 @@ namespace NLog.Internal.NetworkSenders
     /// <summary>
     /// Emulate missing functionality from .NET Compact Framework
     /// </summary>
-    internal class SocketAsyncEventArgs : EventArgs
+    internal class SocketAsyncEventArgs : EventArgs, IDisposable
     {
         public EventHandler<SocketAsyncEventArgs> Completed;
         public EndPoint RemoteEndPoint { get; set; }
@@ -104,6 +104,11 @@ namespace NLog.Internal.NetworkSenders
             }
 
             this.OnCompleted(this);
+        }
+
+        public void Dispose()
+        {
+            // not needed
         }
 
         internal void SetBuffer(byte[] bytes, int offset, int length)

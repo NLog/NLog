@@ -143,6 +143,8 @@ namespace NLog.Internal.NetworkSenders
                 error = new IOException("Error: " + e.SocketError);
             }
 
+            e.Dispose();
+
             if (asyncContinuation != null)
             {
                 asyncContinuation(error);

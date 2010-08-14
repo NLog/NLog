@@ -188,6 +188,8 @@ namespace NLog.Internal.NetworkSenders
                     this.pendingError = new IOException("Error: " + e.SocketError);
                 }
 
+                e.Dispose();
+
                 if (asyncContinuation != null)
                 {
                     asyncContinuation(this.pendingError);

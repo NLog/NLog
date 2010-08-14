@@ -63,14 +63,22 @@ namespace NLog.UnitTests.Internal.NetworkSenders
 
                 for (int i = 1; i < 8; i *= 2)
                 {
-                    sender.Send(buffer, 0, i, exceptions.Add);
+                    sender.Send(
+                        buffer, 0, i, ex =>
+                        {
+                            lock (exceptions) exceptions.Add(ex);
+                        });
                 }
 
                 var mre = new ManualResetEvent(false);
 
                 sender.FlushAsync(ex =>
                     {
-                        exceptions.Add(ex);
+                        lock (exceptions)
+                        {
+                            exceptions.Add(ex);
+                        }
+
                         mre.Set();
                     });
 
@@ -78,13 +86,9 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                 string expectedLog = @"Parse endpoint address tcp://hostname:123/ Unspecified
 create socket 10000 Stream Tcp
 connect async to {mock end point: tcp://hostname:123/}
-async op completed
 send async 0 1 'q'
-async op completed
 send async 0 2 'qu'
-async op completed
 send async 0 4 'quic'
-async op completed
 ";
 
                 Assert.AreEqual(expectedLog, sender.Log.ToString());
@@ -92,12 +96,20 @@ async op completed
                 mre.Reset();
                 for (int i = 1; i < 8; i *= 2)
                 {
-                    sender.Send(buffer, 0, i, exceptions.Add);
+                    sender.Send(
+                        buffer, 0, i, ex =>
+                        {
+                            lock (exceptions) exceptions.Add(ex);
+                        });
                 }
 
                 sender.Close(ex =>
                     {
-                        exceptions.Add(ex);
+                        lock (exceptions)
+                        {
+                            exceptions.Add(ex);
+                        }
+
                         mre.Set();
                     });
 
@@ -105,19 +117,12 @@ async op completed
                 expectedLog = @"Parse endpoint address tcp://hostname:123/ Unspecified
 create socket 10000 Stream Tcp
 connect async to {mock end point: tcp://hostname:123/}
-async op completed
 send async 0 1 'q'
-async op completed
 send async 0 2 'qu'
-async op completed
 send async 0 4 'quic'
-async op completed
 send async 0 1 'q'
-async op completed
 send async 0 2 'qu'
-async op completed
 send async 0 4 'quic'
-async op completed
 close
 ";
 
@@ -150,20 +155,41 @@ close
             byte[] buffer = Encoding.UTF8.GetBytes("quick brown fox jumps over the lazy dog");
 
             var exceptions = new List<Exception>();
+            var allSent = new ManualResetEvent(false);
 
-            for (int i = 1; i < 8; i *= 2)
+            for (int i = 1; i < 8; i++)
             {
-                sender.Send(buffer, 0, i, exceptions.Add);
+                sender.Send(
+                    buffer, 0, i, ex =>
+                    {
+                        lock (exceptions)
+                        {
+                            exceptions.Add(ex);
+                            if (exceptions.Count == 7)
+                            {
+                                allSent.Set();
+                            }
+                        }
+                    });
             }
 
-            var mre = new ManualResetEvent(false);
+#if SILVERLIGHT
+            Assert.IsTrue(allSent.WaitOne(3000));
+#else
+            Assert.IsTrue(allSent.WaitOne(3000, false));
+#endif
 
+            var mre = new ManualResetEvent(false);
             sender.FlushAsync(ex => mre.Set());
-            mre.WaitOne();
+#if SILVERLIGHT
+            mre.WaitOne(3000);
+#else
+            mre.WaitOne(3000, false);
+#endif
             string expectedLog = @"Parse endpoint address tcp://hostname:123/ Unspecified
 create socket 10000 Stream Tcp
 connect async to {mock end point: tcp://hostname:123/}
-async op completed
+failed
 ";
 
             Assert.AreEqual(expectedLog, sender.Log.ToString());
@@ -185,36 +211,49 @@ async op completed
             sender.Initialize();
             byte[] buffer = Encoding.UTF8.GetBytes("quick brown fox jumps over the lazy dog");
 
-            var exceptions = new List<Exception>();
+            var exceptions = new Exception[9];
+
+            var writeFinished = new ManualResetEvent(false);
+            int remaining = exceptions.Length;
 
             for (int i = 1; i < 10; i++)
             {
-                sender.Send(buffer, 0, i, exceptions.Add);
+                int pos = i - 1;
+
+                sender.Send(
+                    buffer, 0, i, ex =>
+                    {
+                        lock (exceptions)
+                        {
+                            exceptions[pos] = ex;
+                            if (--remaining == 0)
+                            {
+                                writeFinished.Set();
+                            }
+                        }
+                    });
             }
 
             var mre = new ManualResetEvent(false);
-
+            writeFinished.WaitOne();
             sender.Close(ex => mre.Set());
             mre.WaitOne();
             string expectedLog = @"Parse endpoint address tcp://hostname:123/ Unspecified
 create socket 10000 Stream Tcp
 connect async to {mock end point: tcp://hostname:123/}
-async op completed
 send async 0 1 'q'
-async op completed
 send async 0 2 'qu'
-async op completed
 send async 0 3 'qui'
-async op completed
+failed
 close
 ";
 
             Assert.AreEqual(expectedLog, sender.Log.ToString());
-            for (int i = 0; i < exceptions.Count; ++i)
+            for (int i = 0; i < exceptions.Length; ++i)
             {
                 if (i < 2)
                 {
-                    Assert.IsNull(exceptions[i]);
+                    Assert.IsNull(exceptions[i], "EXCEPTION: " + exceptions[i]);
                 }
                 else
                 {
@@ -255,6 +294,7 @@ close
         {
             private readonly MyTcpNetworkSender sender;
             private readonly StringWriter log;
+            private bool faulted = false;
 
             public MockSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, MyTcpNetworkSender sender)
             {
@@ -266,10 +306,16 @@ close
             public bool ConnectAsync(SocketAsyncEventArgs args)
             {
                 this.log.WriteLine("connect async to {0}", args.RemoteEndPoint);
-                if (this.sender.ConnectFailure > 0)
+
+                lock (this)
                 {
-                    this.sender.ConnectFailure--;
-                    args.SocketError = SocketError.SocketError;
+                    if (this.sender.ConnectFailure > 0)
+                    {
+                        this.sender.ConnectFailure--;
+                        this.faulted = true;
+                        args.SocketError = SocketError.SocketError;
+                        this.log.WriteLine("failed");
+                    }
                 }
 
                 return InvokeCallback(args);
@@ -277,41 +323,52 @@ close
 
             private bool InvokeCallback(SocketAsyncEventArgs args)
             {
-                var args2 = args as TcpNetworkSender.MySocketAsyncEventArgs;
-
-                if (this.sender.Async)
+                lock (this)
                 {
-                    ThreadPool.QueueUserWorkItem(s =>
-                        {
-                            Thread.Sleep(10);
-                            this.log.WriteLine("async op completed");
+                    var args2 = args as TcpNetworkSender.MySocketAsyncEventArgs;
 
-                            args2.RaiseCompleted();
-                        });
+                    if (this.sender.Async)
+                    {
+                        ThreadPool.QueueUserWorkItem(s =>
+                            {
+                                Thread.Sleep(10);
+                                args2.RaiseCompleted();
+                            });
 
-                    return true;
-                }
-                else
-                {
-                    this.log.WriteLine("async op completed");
-                    args2.RaiseCompleted();
-                    return false;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
 
             public void Close()
             {
-                this.log.WriteLine("close");
+                lock (this)
+                {
+                    this.log.WriteLine("close");
+                }
             }
 
             public bool SendAsync(SocketAsyncEventArgs args)
             {
-                this.log.WriteLine("send async {0} {1} '{2}'", args.Offset, args.Count, Encoding.UTF8.GetString(args.Buffer, args.Offset, args.Count));
-                if (this.sender.SendFailureIn > 0)
+                lock (this)
                 {
-                    this.sender.SendFailureIn--;
-                    if (this.sender.SendFailureIn == 0)
+                    this.log.WriteLine("send async {0} {1} '{2}'", args.Offset, args.Count, Encoding.UTF8.GetString(args.Buffer, args.Offset, args.Count));
+                    if (this.sender.SendFailureIn > 0)
                     {
+                        this.sender.SendFailureIn--;
+                        if (this.sender.SendFailureIn == 0)
+                        {
+                            this.faulted = true;
+                        }
+                    }
+
+                    if (this.faulted)
+                    {
+                        this.log.WriteLine("failed");
                         args.SocketError = SocketError.SocketError;
                     }
                 }
@@ -321,8 +378,11 @@ close
 
             public bool SendToAsync(SocketAsyncEventArgs args)
             {
-                this.log.WriteLine("sendto async {0} {1} '{2}' {3}", args.Offset, args.Count, Encoding.UTF8.GetString(args.Buffer, args.Offset, args.Count), args.RemoteEndPoint);
-                return InvokeCallback(args);
+                lock (this)
+                {
+                    this.log.WriteLine("sendto async {0} {1} '{2}' {3}", args.Offset, args.Count, Encoding.UTF8.GetString(args.Buffer, args.Offset, args.Count), args.RemoteEndPoint);
+                    return InvokeCallback(args);
+                }
             }
         }
 
