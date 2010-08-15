@@ -34,86 +34,90 @@
 namespace NLog
 {
     using System;
+    using NLog.Internal;
 
     /// <summary>
     /// Defines available log levels.
     /// </summary>
-    public class LogLevel : IComparable
+    public sealed class LogLevel : IComparable
     {
         /// <summary>
         /// Trace log level.
         /// </summary>
-        public static readonly LogLevel Trace;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
+        public static readonly LogLevel Trace = new LogLevel("Trace", 0);
 
         /// <summary>
         /// Debug log level.
         /// </summary>
-        public static readonly LogLevel Debug;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
+        public static readonly LogLevel Debug = new LogLevel("Debug", 1);
 
         /// <summary>
         /// Info log level.
         /// </summary>
-        public static readonly LogLevel Info;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
+        public static readonly LogLevel Info = new LogLevel("Info", 2);
 
         /// <summary>
         /// Warn log level.
         /// </summary>
-        public static readonly LogLevel Warn;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
+        public static readonly LogLevel Warn = new LogLevel("Warn", 3);
 
         /// <summary>
         /// Error log level.
         /// </summary>
-        public static readonly LogLevel Error;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
+        public static readonly LogLevel Error = new LogLevel("Error", 4);
 
         /// <summary>
         /// Fatal log level.
         /// </summary>
-        public static readonly LogLevel Fatal;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
+        public static readonly LogLevel Fatal = new LogLevel("Fatal", 5);
 
         /// <summary>
         /// Off log level.
         /// </summary>
-        public static readonly LogLevel Off;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
+        public static readonly LogLevel Off = new LogLevel("Off", 6);
 
-        private static readonly LogLevel[] levelByOrdinal;
-
-        /// <summary>
-        /// Initializes static members of the LogLevel class.
-        /// </summary>
-        static LogLevel()
-        {
-            int ordinal = 0;
-
-            Trace = new LogLevel("Trace", ordinal++);
-            Debug = new LogLevel("Debug", ordinal++);
-            Info = new LogLevel("Info", ordinal++);
-            Warn = new LogLevel("Warn", ordinal++);
-            Error = new LogLevel("Error", ordinal++);
-            Fatal = new LogLevel("Fatal", ordinal++);
-            Off = new LogLevel("Off", ordinal);
-
-            levelByOrdinal = new[] { Trace, Debug, Info, Warn, Error, Fatal, Off };
-            MinLevel = levelByOrdinal[0];
-            MaxLevel = levelByOrdinal[levelByOrdinal.Length - 2]; // ignore the Off level
-        }
+        private readonly int ordinal;
+        private readonly string name;
 
         // to be changed into public in the future.
         private LogLevel(string name, int ordinal)
         {
-            this.Name = name;
-            this.Ordinal = ordinal;
+            this.name = name;
+            this.ordinal = ordinal;
         }
 
         /// <summary>
         /// Gets the name of the log level.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name
+        {
+            get { return this.name; }
+        }
 
-        internal static LogLevel MaxLevel { get; set; }
+        internal static LogLevel MaxLevel
+        {
+            get { return Fatal; }
+        }
 
-        internal static LogLevel MinLevel { get; set; }
+        internal static LogLevel MinLevel
+        {
+            get { return Trace; }
+        }
 
-        internal int Ordinal { get; private set; }
+        /// <summary>
+        /// Gets the ordinal of the log level.
+        /// </summary>
+        internal int Ordinal
+        {
+            get { return this.ordinal; }
+        }
 
         /// <summary>
         /// Compares two <see cref="LogLevel"/> objects 
@@ -171,6 +175,9 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal &gt; level2.Ordinal</c>.</returns>
         public static bool operator >(LogLevel level1, LogLevel level2)
         {
+            ParameterUtils.AssertNotNull(level1, "level1");
+            ParameterUtils.AssertNotNull(level2, "level2");
+
             return level1.Ordinal > level2.Ordinal;
         }
 
@@ -184,6 +191,9 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal &gt;= level2.Ordinal</c>.</returns>
         public static bool operator >=(LogLevel level1, LogLevel level2)
         {
+            ParameterUtils.AssertNotNull(level1, "level1");
+            ParameterUtils.AssertNotNull(level2, "level2");
+
             return level1.Ordinal >= level2.Ordinal;
         }
 
@@ -197,6 +207,9 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal &lt; level2.Ordinal</c>.</returns>
         public static bool operator <(LogLevel level1, LogLevel level2)
         {
+            ParameterUtils.AssertNotNull(level1, "level1");
+            ParameterUtils.AssertNotNull(level2, "level2");
+
             return level1.Ordinal < level2.Ordinal;
         }
 
@@ -210,6 +223,9 @@ namespace NLog
         /// <returns>The value of <c>level1.Ordinal &lt;= level2.Ordinal</c>.</returns>
         public static bool operator <=(LogLevel level1, LogLevel level2)
         {
+            ParameterUtils.AssertNotNull(level1, "level1");
+            ParameterUtils.AssertNotNull(level2, "level2");
+
             return level1.Ordinal <= level2.Ordinal;
         }
 
@@ -220,7 +236,26 @@ namespace NLog
         /// <returns>The <see cref="LogLevel"/> instance. For 0 it returns <see cref="LogLevel.Debug"/>, 1 gives <see cref="LogLevel.Info"/> and so on.</returns>
         public static LogLevel FromOrdinal(int ordinal)
         {
-            return levelByOrdinal[ordinal];
+            switch (ordinal)
+            {
+                case 0:
+                    return Trace;
+                case 1:
+                    return Debug;
+                case 2:
+                    return Info;
+                case 3:
+                    return Warn;
+                case 4:
+                    return Error;
+                case 5:
+                    return Fatal;
+                case 6:
+                    return Off;
+
+                default:
+                    throw new ArgumentException("Invalid ordinal.");
+            }
         }
 
         /// <summary>
@@ -230,22 +265,44 @@ namespace NLog
         /// <returns>The enumeration value.</returns>
         public static LogLevel FromString(string levelName)
         {
-            // case sensitive search first
-            for (int i = 0; i < levelByOrdinal.Length; ++i)
+            if (levelName == null)
             {
-                if (0 == String.Compare(levelByOrdinal[i].Name, levelName, StringComparison.OrdinalIgnoreCase))
-                {
-                    return levelByOrdinal[i];
-                }
+                throw new ArgumentNullException("levelName");
             }
 
-            // case insensitive search
-            for (int i = 0; i < levelByOrdinal.Length; ++i)
+            if (levelName.Equals("Trace", StringComparison.OrdinalIgnoreCase))
             {
-                if (0 == String.Compare(levelByOrdinal[i].Name, levelName, StringComparison.OrdinalIgnoreCase))
-                {
-                    return levelByOrdinal[i];
-                }
+                return Trace;
+            }
+
+            if (levelName.Equals("Debug", StringComparison.OrdinalIgnoreCase))
+            {
+                return Debug;
+            }
+
+            if (levelName.Equals("Info", StringComparison.OrdinalIgnoreCase))
+            {
+                return Info;
+            }
+
+            if (levelName.Equals("Warn", StringComparison.OrdinalIgnoreCase))
+            {
+                return Warn;
+            }
+
+            if (levelName.Equals("Error", StringComparison.OrdinalIgnoreCase))
+            {
+                return Error;
+            }
+
+            if (levelName.Equals("Fatal", StringComparison.OrdinalIgnoreCase))
+            {
+                return Fatal;
+            }
+
+            if (levelName.Equals("Off", StringComparison.OrdinalIgnoreCase))
+            {
+                return Off;
             }
 
             throw new ArgumentException("Unknown log level: " + levelName);

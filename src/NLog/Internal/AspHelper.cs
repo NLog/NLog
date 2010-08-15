@@ -39,6 +39,8 @@ using System.Runtime.InteropServices;
 
 namespace NLog.Internal
 {
+    using System.Globalization;
+
     /// <summary>
     /// Various helper methods for accessing state of ASP application.
     /// </summary>
@@ -240,7 +242,7 @@ namespace NLog.Internal
         {
             if (o == null)
                 return null;
-            return o.GetType().InvokeMember(string.Empty, BindingFlags.GetProperty, null, o, new object[] { });
+            return o.GetType().InvokeMember(string.Empty, BindingFlags.GetProperty, null, o, new object[] { }, CultureInfo.InvariantCulture);
         }
 
     }

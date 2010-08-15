@@ -312,14 +312,24 @@ namespace NLog.Targets
             this.TargetRichTextBox.Invoke(new DelSendTheMessageToRichTextBox(this.SendTheMessageToRichTextBox), new object[] { logMessage, matchingRule });
         }
 
+        private static Color GetColorFromString(string color, Color defaultColor)
+        {
+            if (color == "Empty")
+            {
+                return defaultColor;
+            }
+
+            return Color.FromName(color);
+        }
+
         private void SendTheMessageToRichTextBox(string logMessage, RichTextBoxRowColoringRule rule)
         {
             RichTextBox rtbx = this.TargetRichTextBox;
 
             int startIndex = rtbx.Text.Length;
             rtbx.SelectionStart = startIndex;
-            rtbx.SelectionBackColor = this.GetColorFromString(rule.BackgroundColor, rtbx.BackColor);
-            rtbx.SelectionColor = this.GetColorFromString(rule.FontColor, rtbx.ForeColor);
+            rtbx.SelectionBackColor = GetColorFromString(rule.BackgroundColor, rtbx.BackColor);
+            rtbx.SelectionColor = GetColorFromString(rule.FontColor, rtbx.ForeColor);
             rtbx.SelectionFont = new Font(rtbx.SelectionFont, rtbx.SelectionFont.Style ^ rule.Style);
             rtbx.AppendText(logMessage + "\n");
             rtbx.SelectionLength = rtbx.Text.Length - rtbx.SelectionStart;
@@ -332,8 +342,8 @@ namespace NLog.Targets
                 {
                     rtbx.SelectionStart = m.Index;
                     rtbx.SelectionLength = m.Length;
-                    rtbx.SelectionBackColor = this.GetColorFromString(wordRule.BackgroundColor, rtbx.BackColor);
-                    rtbx.SelectionColor = this.GetColorFromString(wordRule.FontColor, rtbx.ForeColor);
+                    rtbx.SelectionBackColor = GetColorFromString(wordRule.BackgroundColor, rtbx.BackColor);
+                    rtbx.SelectionColor = GetColorFromString(wordRule.FontColor, rtbx.ForeColor);
                     rtbx.SelectionFont = new Font(rtbx.SelectionFont, rtbx.SelectionFont.Style ^ wordRule.Style);
                 }
             }
@@ -355,16 +365,6 @@ namespace NLog.Targets
                 rtbx.Select(rtbx.TextLength, 0);
                 rtbx.ScrollToCaret();
             }
-        }
-
-        private Color GetColorFromString(string color, Color defaultColor)
-        {
-            if (color == "Empty")
-            {
-                return defaultColor;
-            }
-            
-            return Color.FromName(color);
         }
     }
 }

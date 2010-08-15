@@ -43,7 +43,8 @@ namespace NLog.Targets
     /// <summary>
     /// The row-coloring condition.
     /// </summary>
-    public class RichTextBoxRowColoringRule : INLogConfigurationItem
+    [NLogConfigurationItem]
+    public class RichTextBoxRowColoringRule
     {
         /// <summary>
         /// Initializes static members of the RichTextBoxRowColoringRule class.

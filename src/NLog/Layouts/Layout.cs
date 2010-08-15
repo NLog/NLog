@@ -33,22 +33,30 @@
 
 namespace NLog.Layouts
 {
+    using System.ComponentModel;
     using NLog.Config;
     using NLog.Internal;
 
     /// <summary>
     /// Abstract interface that layouts must implement.
     /// </summary>
-    public abstract class Layout : ISupportsInitialize, INLogConfigurationItem, IRenderable
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces", Justification = "Few people will see this conflict.")]
+    [NLogConfigurationItem]
+    public abstract class Layout : ISupportsInitialize, IRenderable
     {
         private bool isInitialized;
+
+        /// <summary>
+        /// Gets the logging configuration this target is part of.
+        /// </summary>
+        protected LoggingConfiguration LoggingConfiguration { get; private set; }
 
         /// <summary>
         /// Converts a given text to a <see cref="Layout" />.
         /// </summary>
         /// <param name="text">Text to be converted.</param>
         /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
-        public static implicit operator Layout(string text)
+        public static implicit operator Layout([Localizable(false)] string text)
         {
             return FromString(text);
         }
@@ -56,22 +64,22 @@ namespace NLog.Layouts
         /// <summary>
         /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
         /// </summary>
-        /// <param name="layoutString">The layout string.</param>
+        /// <param name="layoutText">The layout string.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
-        public static Layout FromString(string layoutString)
+        public static Layout FromString(string layoutText)
         {
-            return FromString(layoutString, NLogFactories.Default);
+            return FromString(layoutText, ConfigurationItemFactory.Default);
         }
 
         /// <summary>
         /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
         /// </summary>
-        /// <param name="layoutString">The layout string.</param>
-        /// <param name="nlogFactories">The NLog factories to use when resolving layout renderers.</param>
+        /// <param name="layoutText">The layout string.</param>
+        /// <param name="configurationItemFactory">The NLog factories to use when resolving layout renderers.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
-        public static Layout FromString(string layoutString, NLogFactories nlogFactories)
+        public static Layout FromString(string layoutText, ConfigurationItemFactory configurationItemFactory)
         {
-            return new SimpleLayout(layoutString, nlogFactories);
+            return new SimpleLayout(layoutText, configurationItemFactory);
         }
 
         /// <summary>
@@ -92,9 +100,9 @@ namespace NLog.Layouts
         /// <summary>
         /// Renders the event info in layout.
         /// </summary>
-        /// <param name="eventInfo">The event info.</param>
+        /// <param name="logEvent">The event info.</param>
         /// <returns>String representing log event.</returns>
-        public string Render(LogEventInfo eventInfo)
+        public string Render(LogEventInfo logEvent)
         {
             if (!this.isInitialized)
             {
@@ -102,7 +110,7 @@ namespace NLog.Layouts
                 this.InitializeLayout();
             }
 
-            return this.GetFormattedMessage(eventInfo);
+            return this.GetFormattedMessage(logEvent);
         }
 
         /// <summary>
@@ -130,6 +138,7 @@ namespace NLog.Layouts
         {
             if (!this.isInitialized)
             {
+                this.LoggingConfiguration = configuration;
                 this.isInitialized = true;
                 this.InitializeLayout();
             }
@@ -142,6 +151,7 @@ namespace NLog.Layouts
         {
             if (this.isInitialized)
             {
+                this.LoggingConfiguration = null;
                 this.isInitialized = false;
                 this.CloseLayout();
             }

@@ -330,18 +330,18 @@ namespace NLog.UnitTests.Conditions
         }
 #endif
 
-        private static NLogFactories SetupConditionMethods()
+        private static ConfigurationItemFactory SetupConditionMethods()
         {
-            var factories = new NLogFactories();
-            factories.ConditionMethodFactory.RegisterDefinition("GetGuid", typeof(MyConditionMethods).GetMethod("GetGuid"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToInt16", typeof(MyConditionMethods).GetMethod("ToInt16"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToInt32", typeof(MyConditionMethods).GetMethod("ToInt32"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToInt64", typeof(MyConditionMethods).GetMethod("ToInt64"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToDouble", typeof(MyConditionMethods).GetMethod("ToDouble"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToSingle", typeof(MyConditionMethods).GetMethod("ToSingle"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToDateTime", typeof(MyConditionMethods).GetMethod("ToDateTime"));
-            factories.ConditionMethodFactory.RegisterDefinition("ToDecimal", typeof(MyConditionMethods).GetMethod("ToDecimal"));
-            factories.ConditionMethodFactory.RegisterDefinition("IsValid", typeof(MyConditionMethods).GetMethod("IsValid"));
+            var factories = new ConfigurationItemFactory();
+            factories.ConditionMethods.RegisterDefinition("GetGuid", typeof(MyConditionMethods).GetMethod("GetGuid"));
+            factories.ConditionMethods.RegisterDefinition("ToInt16", typeof(MyConditionMethods).GetMethod("ToInt16"));
+            factories.ConditionMethods.RegisterDefinition("ToInt32", typeof(MyConditionMethods).GetMethod("ToInt32"));
+            factories.ConditionMethods.RegisterDefinition("ToInt64", typeof(MyConditionMethods).GetMethod("ToInt64"));
+            factories.ConditionMethods.RegisterDefinition("ToDouble", typeof(MyConditionMethods).GetMethod("ToDouble"));
+            factories.ConditionMethods.RegisterDefinition("ToSingle", typeof(MyConditionMethods).GetMethod("ToSingle"));
+            factories.ConditionMethods.RegisterDefinition("ToDateTime", typeof(MyConditionMethods).GetMethod("ToDateTime"));
+            factories.ConditionMethods.RegisterDefinition("ToDecimal", typeof(MyConditionMethods).GetMethod("ToDecimal"));
+            factories.ConditionMethods.RegisterDefinition("IsValid", typeof(MyConditionMethods).GetMethod("IsValid"));
             return factories;
         }
 

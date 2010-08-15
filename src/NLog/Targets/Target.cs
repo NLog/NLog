@@ -45,7 +45,8 @@ namespace NLog.Targets
     /// <summary>
     /// Represents logging target.
     /// </summary>
-    public abstract class Target : ISupportsInitialize, INLogConfigurationItem, IDisposable
+    [NLogConfigurationItem]
+    public abstract class Target : ISupportsInitialize, IDisposable
     {
         private object lockObject = new object();
         private List<Layout> allLayouts;
@@ -94,10 +95,10 @@ namespace NLog.Targets
         /// <summary>
         /// Closes the target.
         /// </summary>
-        void IDisposable.Dispose()
+        public void Dispose()
         {
-            this.CloseTarget();
-            GC.SuppressFinalize(true);
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -106,6 +107,11 @@ namespace NLog.Targets
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void Flush(AsyncContinuation asyncContinuation)
         {
+            if (asyncContinuation == null)
+            {
+                throw new ArgumentNullException("asyncContinuation");
+            }
+
             lock (this.SyncRoot)
             {
                 if (!this.IsInitialized)
@@ -120,9 +126,14 @@ namespace NLog.Targets
                 {
                     this.FlushAsync(asyncContinuation);
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    asyncContinuation(ex);
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
+                    asyncContinuation(exception);
                 }
             }
         }
@@ -185,9 +196,14 @@ namespace NLog.Targets
                 {
                     this.Write(logEvent.LogEvent.WithContinuation(wrappedContinuation));
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    wrappedContinuation(ex);
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
+                    wrappedContinuation(exception);
                 }
             }
         }
@@ -220,12 +236,17 @@ namespace NLog.Targets
                 {
                     this.Write(wrappedEvents);
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
                     // in case of synchronous failure, assume that nothing is running asynchronously
                     foreach (var ev in wrappedEvents)
                     {
-                        ev.Continuation(ex);
+                        ev.Continuation(exception);
                     }
                 }
             }
@@ -251,6 +272,11 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
+                        if (exception.MustBeRethrown())
+                        {
+                            throw;
+                        }
+
                         InternalLogger.Error("Error initializing target {0} {1}.", this, exception);
                         throw;
                     }
@@ -276,6 +302,11 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
+                        if (exception.MustBeRethrown())
+                        {
+                            throw;
+                        }
+
                         InternalLogger.Error("Error closing target {0} {1}.", this, exception);
                         throw;
                     }
@@ -309,6 +340,18 @@ namespace NLog.Targets
                 }
 
                 this.WriteAsyncLogEvents(wrappedLogEventInfos);
+            }
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing">True to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.CloseTarget();
             }
         }
 
@@ -361,9 +404,14 @@ namespace NLog.Targets
                 this.Write(logEvent.LogEvent);
                 logEvent.Continuation(null);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                logEvent.Continuation(ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                logEvent.Continuation(exception);
             }
         }
 

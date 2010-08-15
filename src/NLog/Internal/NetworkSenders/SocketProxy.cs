@@ -40,9 +40,9 @@ namespace NLog.Internal.NetworkSenders
     /// <summary>
     /// Socket proxy for mocking Socket code.
     /// </summary>
-    internal class SocketProxy : ISocket
+    internal sealed class SocketProxy : ISocket, IDisposable
     {
-        private Socket socket;
+        private readonly Socket socket;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SocketProxy"/> class.
@@ -132,5 +132,13 @@ namespace NLog.Internal.NetworkSenders
 #endif
 
 #endif
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            ((IDisposable)this.socket).Dispose();
+        }
     }
 }

@@ -45,32 +45,32 @@ namespace NLog.Config
     /// <summary>
     /// Provides registration information for named items (targets, layouts, layout renderers, etc.) managed by NLog.
     /// </summary>
-    public class NLogFactories
+    public class ConfigurationItemFactory
     {
         private readonly IList<object> allFactories;
 
         /// <summary>
-        /// Initializes static members of the NLogFactories class.
+        /// Initializes static members of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
-        static NLogFactories()
+        static ConfigurationItemFactory()
         {
-            Default = new NLogFactories(typeof(Logger).Assembly);
+            Default = new ConfigurationItemFactory(typeof(Logger).Assembly);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NLogFactories"/> class.
+        /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
         /// <param name="assemblies">The assemblies to scan for named items.</param>
-        public NLogFactories(params Assembly[] assemblies)
+        public ConfigurationItemFactory(params Assembly[] assemblies)
         {
             this.allFactories = new List<object>();
 
-            this.allFactories.Add(this.TargetFactory = new Factory<Target, TargetAttribute>());
-            this.allFactories.Add(this.FilterFactory = new Factory<Filter, FilterAttribute>());
-            this.allFactories.Add(this.LayoutRendererFactory = new Factory<LayoutRenderer, LayoutRendererAttribute>());
-            this.allFactories.Add(this.LayoutFactory = new Factory<Layout, LayoutAttribute>());
-            this.allFactories.Add(this.ConditionMethodFactory = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>());
-            this.allFactories.Add(this.AmbientPropertyFactory = new Factory<LayoutRenderer, AmbientPropertyAttribute>());
+            this.allFactories.Add(this.Targets = new Factory<Target, TargetAttribute>());
+            this.allFactories.Add(this.Filters = new Factory<Filter, FilterAttribute>());
+            this.allFactories.Add(this.LayoutRenderers = new Factory<LayoutRenderer, LayoutRendererAttribute>());
+            this.allFactories.Add(this.Layouts = new Factory<Layout, LayoutAttribute>());
+            this.allFactories.Add(this.ConditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>());
+            this.allFactories.Add(this.AmbientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>());
 
             foreach (var asm in assemblies)
             {
@@ -79,45 +79,45 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Gets or sets default singleton instance of <see cref="NLogFactories"/>.
+        /// Gets or sets default singleton instance of <see cref="ConfigurationItemFactory"/>.
         /// </summary>
-        public static NLogFactories Default { get; set; }
+        public static ConfigurationItemFactory Default { get; set; }
 
         /// <summary>
         /// Gets the <see cref="Target"/> factory.
         /// </summary>
         /// <value>The target factory.</value>
-        public INamedItemFactory<Target, Type> TargetFactory { get; private set; }
+        public INamedItemFactory<Target, Type> Targets { get; private set; }
 
         /// <summary>
         /// Gets the <see cref="Filter"/> factory.
         /// </summary>
         /// <value>The filter factory.</value>
-        public INamedItemFactory<Filter, Type> FilterFactory { get; private set; }
+        public INamedItemFactory<Filter, Type> Filters { get; private set; }
 
         /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
         /// <value>The layout renderer factory.</value>
-        public INamedItemFactory<LayoutRenderer, Type> LayoutRendererFactory { get; private set; }
+        public INamedItemFactory<LayoutRenderer, Type> LayoutRenderers { get; private set; }
 
         /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
         /// <value>The layout factory.</value>
-        public INamedItemFactory<Layout, Type> LayoutFactory { get; private set; }
+        public INamedItemFactory<Layout, Type> Layouts { get; private set; }
 
         /// <summary>
         /// Gets the ambient property factory.
         /// </summary>
         /// <value>The ambient property factory.</value>
-        public INamedItemFactory<LayoutRenderer, Type> AmbientPropertyFactory { get; private set; }
+        public INamedItemFactory<LayoutRenderer, Type> AmbientProperties { get; private set; }
 
         /// <summary>
         /// Gets the condition method factory.
         /// </summary>
         /// <value>The condition method factory.</value>
-        public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethodFactory { get; private set; }
+        public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethods { get; private set; }
 
         /// <summary>
         /// Registers named items from the assembly.

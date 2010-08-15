@@ -51,7 +51,7 @@ namespace NLog
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>
-    public class LogFactory
+    public class LogFactory : IDisposable
     {
 #if !NET_CF && !SILVERLIGHT
         private readonly MultiFileWatcher watcher;
@@ -181,9 +181,14 @@ namespace NLog
                 {
                     this.watcher.StopWatching();
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    InternalLogger.Error("Cannot stop file watching: {0}", ex);
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
+                    InternalLogger.Error("Cannot stop file watching: {0}", exception);
                 }
 #endif
 
@@ -213,9 +218,14 @@ namespace NLog
                         {
                             this.watcher.Watch(this.config.FileNamesToWatch);
                         }
-                        catch (Exception ex)
+                        catch (Exception exception)
                         {
-                            InternalLogger.Warn("Cannot start file watching: {0}", ex);
+                            if (exception.MustBeRethrown())
+                            {
+                                throw;
+                            }
+
+                            InternalLogger.Warn("Cannot start file watching: {0}", exception);
                         }
 #endif
                     }
@@ -248,6 +258,15 @@ namespace NLog
                     this.ReconfigExistingLoggers();
                 }
             }
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -474,14 +493,19 @@ namespace NLog
                         throw new NLogConfigurationException("Configuration.Reload() returned null. Not reloading.");
                     }
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
                     this.watcher.Watch(configurationToReload.FileNamesToWatch);
 
                     var configurationReloadedDelegate = this.ConfigurationReloaded;
                     if (configurationReloadedDelegate != null)
                     {
-                        configurationReloadedDelegate(this, new LoggingConfigurationReloadedEventArgs(false, ex));
+                        configurationReloadedDelegate(this, new LoggingConfigurationReloadedEventArgs(false, exception));
                     }
                 }
             }
@@ -579,6 +603,26 @@ namespace NLog
             }
 
             return new LoggerConfiguration(targetsByLevel);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing">True to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+#if !NET_CF && !SILVERLIGHT
+                this.watcher.Dispose();
+
+                if (this.reloadTimer != null)
+                {
+                    this.reloadTimer.Dispose();
+                    this.reloadTimer = null;
+                }
+#endif
+            }
         }
 
         private static IEnumerable<string> GetCandidateFileNames()

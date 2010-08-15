@@ -48,13 +48,13 @@ namespace NLog
         /// Writes the diagnostic message at the specified level.
         /// </summary>
         /// <param name="level">The log level.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Log(LogLevel level, object obj)
+        public void Log(LogLevel level, object value)
         {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, "{0}", new object[] { obj });
+                this.WriteToTargets(level, "{0}", new object[] { value });
             }
         }
 
@@ -63,13 +63,13 @@ namespace NLog
         /// </summary>
         /// <param name="level">The log level.</param>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Log(LogLevel level, IFormatProvider formatProvider, object obj) 
+        public void Log(LogLevel level, IFormatProvider formatProvider, object value) 
         {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, "{0}", new[] { obj });
+                this.WriteToTargets(level, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -522,13 +522,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Trace(object obj)
+        public void Trace(object value)
         {
             if (this.IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, "{0}", new object[] { obj });
+                this.WriteToTargets(LogLevel.Trace, "{0}", new object[] { value });
             }
         }
 
@@ -536,13 +536,13 @@ namespace NLog
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Trace(IFormatProvider formatProvider, object obj) 
+        public void Trace(IFormatProvider formatProvider, object value) 
         {
             if (this.IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, "{0}", new[] { obj });
+                this.WriteToTargets(LogLevel.Trace, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -967,13 +967,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
         /// </summary>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Debug(object obj)
+        public void Debug(object value)
         {
             if (this.IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, "{0}", new object[] { obj });
+                this.WriteToTargets(LogLevel.Debug, "{0}", new object[] { value });
             }
         }
 
@@ -981,13 +981,13 @@ namespace NLog
         /// Writes the diagnostic message at the <c>Debug</c> level.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Debug(IFormatProvider formatProvider, object obj) 
+        public void Debug(IFormatProvider formatProvider, object value) 
         {
             if (this.IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, "{0}", new[] { obj });
+                this.WriteToTargets(LogLevel.Debug, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -1412,13 +1412,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level.
         /// </summary>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Info(object obj)
+        public void Info(object value)
         {
             if (this.IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, "{0}", new object[] { obj });
+                this.WriteToTargets(LogLevel.Info, "{0}", new object[] { value });
             }
         }
 
@@ -1426,13 +1426,13 @@ namespace NLog
         /// Writes the diagnostic message at the <c>Info</c> level.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Info(IFormatProvider formatProvider, object obj) 
+        public void Info(IFormatProvider formatProvider, object value) 
         {
             if (this.IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, "{0}", new[] { obj });
+                this.WriteToTargets(LogLevel.Info, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -1857,13 +1857,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level.
         /// </summary>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Warn(object obj)
+        public void Warn(object value)
         {
             if (this.IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, "{0}", new object[] { obj });
+                this.WriteToTargets(LogLevel.Warn, "{0}", new object[] { value });
             }
         }
 
@@ -1871,13 +1871,13 @@ namespace NLog
         /// Writes the diagnostic message at the <c>Warn</c> level.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Warn(IFormatProvider formatProvider, object obj) 
+        public void Warn(IFormatProvider formatProvider, object value) 
         {
             if (this.IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, "{0}", new[] { obj });
+                this.WriteToTargets(LogLevel.Warn, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -2302,13 +2302,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level.
         /// </summary>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Error(object obj)
+        public void Error(object value)
         {
             if (this.IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, "{0}", new object[] { obj });
+                this.WriteToTargets(LogLevel.Error, "{0}", new object[] { value });
             }
         }
 
@@ -2316,13 +2316,13 @@ namespace NLog
         /// Writes the diagnostic message at the <c>Error</c> level.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Error(IFormatProvider formatProvider, object obj) 
+        public void Error(IFormatProvider formatProvider, object value) 
         {
             if (this.IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, "{0}", new[] { obj });
+                this.WriteToTargets(LogLevel.Error, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -2747,13 +2747,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level.
         /// </summary>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Fatal(object obj)
+        public void Fatal(object value)
         {
             if (this.IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, "{0}", new object[] { obj });
+                this.WriteToTargets(LogLevel.Fatal, "{0}", new object[] { value });
             }
         }
 
@@ -2761,13 +2761,13 @@ namespace NLog
         /// Writes the diagnostic message at the <c>Fatal</c> level.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Fatal(IFormatProvider formatProvider, object obj) 
+        public void Fatal(IFormatProvider formatProvider, object value) 
         {
             if (this.IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, "{0}", new[] { obj });
+                this.WriteToTargets(LogLevel.Fatal, formatProvider, "{0}", new[] { value });
             }
         }
 

@@ -34,35 +34,23 @@
 namespace NLog.Internal
 {
     using System;
-    using System.Threading;
+    using System.Text;
 
     /// <summary>
-    /// Optimized methods to get current time.
+    /// Parameter validation utilities.
     /// </summary>
-    internal class CurrentTimeGetter
+    internal static class ParameterUtils
     {
-        private static int lastTicks = -1;
-        private static DateTime lastDateTime = DateTime.MinValue;
-
         /// <summary>
-        /// Gets the current time in an optimized fashion.
+        /// Asserts that the value is not null and throws <see cref="ArgumentNullException"/> otherwise.
         /// </summary>
-        /// <value>Current time.</value>
-        public static DateTime Now
+        /// <param name="value">The value to check.</param>
+        /// <param name="parameterName">Name of the parameter.</param>
+        public static void AssertNotNull(object value, string parameterName)
         {
-            get
+            if (value == null)
             {
-                int tickCount = Environment.TickCount;
-                if (tickCount == lastTicks)
-                {
-                    return lastDateTime;
-                }
-
-                DateTime dt = DateTime.Now;
-
-                lastTicks = tickCount;
-                lastDateTime = dt;
-                return dt;
+                throw new ArgumentNullException(parameterName);
             }
         }
     }

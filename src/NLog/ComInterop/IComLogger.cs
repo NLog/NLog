@@ -81,6 +81,7 @@ namespace NLog.ComInterop
         /// Writes the diagnostic message at the Error level.
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Error", Justification = "That's NLog API.")]
         void Error(string message);
 
         /// <summary>

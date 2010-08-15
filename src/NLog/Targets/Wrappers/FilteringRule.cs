@@ -39,7 +39,8 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Filtering rule for <see cref="PostFilteringTargetWrapper"/>.
     /// </summary>
-    public class FilteringRule : INLogConfigurationItem
+    [NLogConfigurationItem]
+    public class FilteringRule
     {
         /// <summary>
         /// Initializes a new instance of the FilteringRule class.

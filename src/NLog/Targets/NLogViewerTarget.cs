@@ -131,8 +131,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdc
         {
-            get { return this.Renderer.IncludeMDC; }
-            set { this.Renderer.IncludeMDC = value; }
+            get { return this.Renderer.IncludeMdc; }
+            set { this.Renderer.IncludeMdc = value; }
         }
 
         /// <summary>
@@ -141,8 +141,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeNdc
         {
-            get { return this.Renderer.IncludeNDC; }
-            set { this.Renderer.IncludeNDC = value; }
+            get { return this.Renderer.IncludeNdc; }
+            set { this.Renderer.IncludeNdc = value; }
         }
 
         /// <summary>

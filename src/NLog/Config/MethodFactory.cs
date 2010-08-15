@@ -37,6 +37,7 @@ namespace NLog.Config
     using System.Collections.Generic;
     using System.Reflection;
     using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Factory for locating methods.
@@ -79,9 +80,14 @@ namespace NLog.Config
                     this.RegisterType(t, prefix);
                 }
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                InternalLogger.Error("Failed to add targets from '" + theAssembly.FullName + "': {0}", ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                InternalLogger.Error("Failed to add targets from '" + theAssembly.FullName + "': {0}", exception);
             }
         }
 

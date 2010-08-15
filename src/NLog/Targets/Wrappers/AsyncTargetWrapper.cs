@@ -156,7 +156,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets the queue of lazy writer thread requests.
         /// </summary>
-        protected AsyncRequestQueue RequestQueue { get; private set; }
+        internal AsyncRequestQueue RequestQueue { get; private set; }
 
         /// <summary>
         /// Waits for the lazy writer thread to finish writing messages.
@@ -244,9 +244,7 @@ namespace NLog.Targets.Wrappers
                     InternalLogger.Trace("Flushing {0} events.", count);
                 }
 
-                AsyncLogEventInfo[] logEventInfos;
-
-                this.RequestQueue.DequeueBatch(count, out logEventInfos);
+                AsyncLogEventInfo[] logEventInfos = this.RequestQueue.DequeueBatch(count);
 
                 if (continuation != null)
                 {
@@ -259,9 +257,14 @@ namespace NLog.Targets.Wrappers
                     this.WrappedTarget.WriteAsyncLogEvents(logEventInfos);
                 }
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                InternalLogger.Error("Error in lazy writer timer procedure: {0}", ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                InternalLogger.Error("Error in lazy writer timer procedure: {0}", exception);
             }
             finally
             {

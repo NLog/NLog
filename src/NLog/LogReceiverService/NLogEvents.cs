@@ -85,7 +85,7 @@ namespace NLog.LogReceiverService
 #endif
         [XmlArray("lts", Order = 100)]
         [XmlArrayItem("l")]
-        public ListOfStrings LayoutNames { get; set; }
+        public StringCollection LayoutNames { get; set; }
 
         /// <summary>
         /// Gets or sets the collection of logger names.
@@ -96,7 +96,7 @@ namespace NLog.LogReceiverService
 #endif
         [XmlArray("str", Order = 200)]
         [XmlArrayItem("l")]
-        public ListOfStrings Strings { get; set; }
+        public StringCollection Strings { get; set; }
 
         /// <summary>
         /// Gets or sets the list of events.

@@ -41,23 +41,24 @@ namespace NLog.Internal
 
     /// <summary>
     /// Scans (breadth-first) the object graph following all the edges whose are 
-    /// instances implement <see cref="INLogConfigurationItem"/> and returns all objects implementing a specified interfaces.
+    /// instances have <see cref="NLogConfigurationItemAttribute"/> attached and returns 
+    /// all objects implementing a specified interfaces.
     /// </summary>
     internal class ObjectGraphScanner
     {
         /// <summary>
-        /// Finds the objects which implement <see cref="INLogConfigurationItem"/> which are reachable
+        /// Finds the objects which have attached <see cref="NLogConfigurationItemAttribute"/> which are reachable
         /// from any of the given root objects when traversing the object graph over public properties.
         /// </summary>
         /// <typeparam name="T">Type of the objects to return.</typeparam>
         /// <param name="rootObjects">The root objects.</param>
         /// <returns>Ordered list of objects implementing T.</returns>
-        public static T[] FindReachableObjects<T>(params INLogConfigurationItem[] rootObjects)
+        public static T[] FindReachableObjects<T>(params object[] rootObjects)
             where T : class
         {
             InternalLogger.Trace("FindReachableObject<{0}>:", typeof(T));
             var result = new List<T>();
-            var visitedObjects = new Dictionary<INLogConfigurationItem, int>();
+            var visitedObjects = new Dictionary<object, int>();
 
             foreach (var rootObject in rootObjects)
             {
@@ -67,10 +68,15 @@ namespace NLog.Internal
             return result.ToArray();
         }
 
-        private static void ScanProperties<T>(List<T> result, INLogConfigurationItem o, int level, Dictionary<INLogConfigurationItem, int> visitedObjects)
+        private static void ScanProperties<T>(List<T> result, object o, int level, Dictionary<object, int> visitedObjects)
             where T : class
         {
             if (o == null)
+            {
+                return;
+            }
+
+            if (!o.GetType().IsDefined(typeof(NLogConfigurationItemAttribute), true))
             {
                 return;
             }
@@ -111,12 +117,12 @@ namespace NLog.Internal
                 {
                     foreach (object element in enumerable)
                     {
-                        ScanProperties(result, element as INLogConfigurationItem, level + 1, visitedObjects);
+                        ScanProperties(result, element, level + 1, visitedObjects);
                     }
                 }
                 else
                 {
-                    ScanProperties(result, value as INLogConfigurationItem, level + 1, visitedObjects);
+                    ScanProperties(result, value, level + 1, visitedObjects);
                 }
             }
         }

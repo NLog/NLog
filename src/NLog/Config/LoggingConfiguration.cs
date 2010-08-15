@@ -51,7 +51,7 @@ namespace NLog.Config
         private readonly IDictionary<string, Target> targets =
             new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
 
-        private INLogConfigurationItem[] configItems;
+        private object[] configItems;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
@@ -185,6 +185,11 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
                     installationContext.Error("'{0}' installation failed: {1}.", installable, exception);
                 }
             }
@@ -217,6 +222,11 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
                     installationContext.Error("Uninstallation of '{0}' failed: {1}.", installable, exception);
                 }
             }
@@ -235,9 +245,14 @@ namespace NLog.Config
                 {
                     initialize.Close();
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    InternalLogger.Warn("Exception while closing {0}", ex);
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
+                    InternalLogger.Warn("Exception while closing {0}", exception);
                 }
             }
 
@@ -288,7 +303,7 @@ namespace NLog.Config
         /// </summary>
         internal void ValidateConfig()
         {
-            var roots = new List<INLogConfigurationItem>();
+            var roots = new List<object>();
             foreach (LoggingRule r in this.LoggingRules)
             {
                 roots.Add(r);
@@ -299,13 +314,13 @@ namespace NLog.Config
                 roots.Add(target);
             }
 
-            this.configItems = ObjectGraphScanner.FindReachableObjects<INLogConfigurationItem>(roots.ToArray());
+            this.configItems = ObjectGraphScanner.FindReachableObjects<object>(roots.ToArray());
 
             // initialize all config items starting from most nested first
             // so that whenever the container is initialized its children have already been
             InternalLogger.Info("Found {0} configuration items", this.configItems.Length);
 
-            foreach (INLogConfigurationItem o in this.configItems)
+            foreach (object o in this.configItems)
             {
                 PropertyHelper.CheckRequiredParameters(o);
             }
@@ -323,9 +338,14 @@ namespace NLog.Config
                 {
                     initialize.Initialize(this);
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    throw new NLogConfigurationException("Error during initialization of " + initialize, ex);
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
+                    throw new NLogConfigurationException("Error during initialization of " + initialize, exception);
                 }
             }
         }

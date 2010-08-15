@@ -37,6 +37,7 @@ namespace NLog.Targets
 {
     using System;
     using System.ComponentModel;
+    using System.Globalization;
     using System.IO;
     using System.Net;
     using System.Text;
@@ -85,7 +86,7 @@ namespace NLog.Targets
         /// Gets or sets the web service URL.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public string Url { get; set; }
+        public Uri Url { get; set; }
 
         /// <summary>
         /// Gets or sets the Web service method name.
@@ -134,13 +135,13 @@ namespace NLog.Targets
 
         private void InvokeSoap11(object[] parameters)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(new Uri(this.Url));
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.Url);
             request.Method = "POST";
             request.ContentType = "text/xml; charset=utf-8";
 
             string soapAction;
 
-            if (this.Namespace.EndsWith("/"))
+            if (this.Namespace.EndsWith("/", StringComparison.Ordinal))
             {
                 soapAction = "SOAPAction: " + this.Namespace + this.MethodName;
             }
@@ -153,23 +154,23 @@ namespace NLog.Targets
 
             using (Stream s = request.GetRequestStream())
             {
-                using (XmlWriter xtw = XmlWriter.Create(s, new XmlWriterSettings { Encoding = Encoding.UTF8 }))
+                XmlWriter xtw = XmlWriter.Create(s, new XmlWriterSettings { Encoding = Encoding.UTF8 });
+
+                xtw.WriteStartElement("soap", "Envelope", SoapEnvelopeNamespace);
+                xtw.WriteStartElement("Body", SoapEnvelopeNamespace);
+                xtw.WriteStartElement(this.MethodName, this.Namespace);
+                int i = 0;
+
+                foreach (MethodCallParameter par in this.Parameters)
                 {
-                    xtw.WriteStartElement("soap", "Envelope", SoapEnvelopeNamespace);
-                    xtw.WriteStartElement("Body", SoapEnvelopeNamespace);
-                    xtw.WriteStartElement(this.MethodName, this.Namespace);
-                    int i = 0;
-
-                    foreach (MethodCallParameter par in this.Parameters)
-                    {
-                        xtw.WriteElementString(par.Name, Convert.ToString(parameters[i]));
-                        i++;
-                    }
-
-                    xtw.WriteEndElement(); // methodname
-                    xtw.WriteEndElement(); // Body
-                    xtw.WriteEndElement(); // soap:Envelope
+                    xtw.WriteElementString(par.Name, Convert.ToString(parameters[i], CultureInfo.InvariantCulture));
+                    i++;
                 }
+
+                xtw.WriteEndElement(); // methodname
+                xtw.WriteEndElement(); // Body
+                xtw.WriteEndElement(); // soap:Envelope
+                xtw.Flush();
             }
 
             WebResponse response = request.GetResponse();
@@ -192,7 +193,7 @@ namespace NLog.Targets
                 int i = 0;
                 foreach (MethodCallParameter par in this.Parameters)
                 {
-                    xtw.WriteElementString(par.Name, Convert.ToString(parameterValues[i]));
+                    xtw.WriteElementString(par.Name, Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture));
                     i++;
                 }
 
@@ -210,7 +211,7 @@ namespace NLog.Targets
         {
             string completeUrl;
 
-            if (this.MethodName.EndsWith("/"))
+            if (this.MethodName.EndsWith("/", StringComparison.Ordinal))
             {
                 completeUrl = this.Url + this.MethodName;
             }
@@ -226,20 +227,18 @@ namespace NLog.Targets
             string separator = string.Empty;
             using (Stream s = request.GetRequestStream())
             {
-                using (StreamWriter sw = new StreamWriter(s))
+                var sw = new StreamWriter(s);
+                int i = 0;
+                foreach (MethodCallParameter parameter in this.Parameters)
                 {
-                    int i = 0;
-                    foreach (MethodCallParameter parameter in this.Parameters)
-                    {
-                        sw.Write(separator);
-                        sw.Write(parameter.Name);
-                        sw.Write("=");
-                        sw.Write(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i]), true));
-                        separator = "&";
-                    }
-
-                    sw.Flush();
+                    sw.Write(separator);
+                    sw.Write(parameter.Name);
+                    sw.Write("=");
+                    sw.Write(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), true));
+                    separator = "&";
                 }
+
+                sw.Flush();
             }
 
             WebResponse response = request.GetResponse();

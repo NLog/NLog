@@ -67,8 +67,8 @@ namespace NLog.Targets.Wrappers
         public ImpersonatingTargetWrapper(Target wrappedTarget)
         {
             this.Domain = ".";
-            this.LogonType = SecurityLogonType.Interactive;
-            this.LogonProvider = LogonProviderType.Default;
+            this.LogOnType = SecurityLogOnType.Interactive;
+            this.LogOnProvider = LogOnProviderType.Default;
             this.ImpersonationLevel = SecurityImpersonationLevel.Impersonation;
             this.WrappedTarget = wrappedTarget;
         }
@@ -96,13 +96,13 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the Logon Type.
         /// </summary>
         /// <docgen category='Impersonation Options' order='10' />
-        public SecurityLogonType LogonType { get; set; }
+        public SecurityLogOnType LogOnType { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the logon provider.
         /// </summary>
         /// <docgen category='Impersonation Options' order='10' />
-        public LogonProviderType LogonProvider { get; set; }
+        public LogOnProviderType LogOnProvider { get; set; }
 
         /// <summary>
         /// Gets or sets the required impersonation level.
@@ -217,8 +217,8 @@ namespace NLog.Targets.Wrappers
                 this.UserName,
                 this.Domain,
                 this.Password,
-                (int)this.LogonType,
-                (int)this.LogonProvider,
+                (int)this.LogOnType,
+                (int)this.LogOnProvider,
                 out logonHandle))
             {
                 throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());

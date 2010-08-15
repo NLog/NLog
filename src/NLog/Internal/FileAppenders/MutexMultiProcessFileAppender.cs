@@ -68,7 +68,7 @@ namespace NLog.Internal.FileAppenders
         {
             try
             {
-                this.mutex = new Mutex(false, this.GetMutexName(fileName));
+                this.mutex = new Mutex(false, GetMutexName(fileName));
                 this.file = CreateFileStream(true);
             }
             catch
@@ -151,14 +151,15 @@ namespace NLog.Internal.FileAppenders
         /// <returns>
         /// True if the operation succeeded, false otherwise.
         /// </returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle", Justification = "Optimization")]
         public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
             return FileInfoHelper.Helper.GetFileInfo(FileName, this.file.SafeFileHandle.DangerousGetHandle(), out lastWriteTime, out fileLength);
         }
 
-        private string GetMutexName(string fileName)
+        private static string GetMutexName(string fileName)
         {
-            string canonicalName = Path.GetFullPath(fileName).ToLower(CultureInfo.InvariantCulture);
+            string canonicalName = Path.GetFullPath(fileName).ToUpper(CultureInfo.InvariantCulture);
 
             canonicalName = canonicalName.Replace('\\', '_');
             canonicalName = canonicalName.Replace('/', '_');

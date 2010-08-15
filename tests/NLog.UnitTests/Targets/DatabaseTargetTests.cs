@@ -53,7 +53,7 @@ namespace NLog.UnitTests.Targets
         public static void SetupMockProvider(TestContext context)
         {
             var data = (DataSet)ConfigurationManager.GetSection("system.data");
-            var providerFactories = data.Tables["DbProviderFactories"];
+            var providerFactories = data.Tables["DBProviderFactories"];
             providerFactories.Rows.Add("MockDb Provider", "MockDb Provider", "MockDb", typeof(MockDbFactory).AssemblyQualifiedName);
             providerFactories.AcceptChanges();
         }
@@ -67,7 +67,7 @@ namespace NLog.UnitTests.Targets
             {
                 CommandText = "INSERT INTO FooBar VALUES('${message}')",
                 ConnectionString = "FooBar",
-                DbProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
             };
 
             dt.Initialize(null);
@@ -104,7 +104,7 @@ Close()
             {
                 CommandText = "INSERT INTO FooBar VALUES('${message}')",
                 ConnectionString = "FooBar",
-                DbProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
             };
 
             dt.Initialize(null);
@@ -142,7 +142,7 @@ Close()
             {
                 CommandText = "INSERT INTO FooBar VALUES('${message}')",
                 ConnectionString = "FooBar",
-                DbProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
                 KeepConnection = true,
             };
 
@@ -182,7 +182,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             {
                 CommandText = "INSERT INTO FooBar VALUES('${message}')",
                 ConnectionString = "FooBar",
-                DbProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
                 KeepConnection = true,
             };
 
@@ -227,7 +227,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             {
                 CommandText = "INSERT INTO FooBar VALUES('${message}')",
                 ConnectionString = "Database=${logger}",
-                DbProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
                 KeepConnection = true,
             };
 
@@ -273,7 +273,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg4')
             {
                 CommandText = "INSERT INTO FooBar VALUES('${message}')",
                 ConnectionString = "Database=${logger}",
-                DbProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
                 KeepConnection = true,
             };
 
@@ -328,7 +328,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             DatabaseTarget dt = new DatabaseTarget()
             {
                 CommandText = "INSERT INTO FooBar VALUES(@msg, @lvl, @lg)",
-                DbProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
                 KeepConnection = true,
                 Parameters =
                 {
@@ -414,7 +414,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
             DatabaseTarget dt = new DatabaseTarget()
             {
                 CommandText = "INSERT INTO FooBar VALUES(@msg, @lvl, @lg)",
-                DbProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
                 KeepConnection = true,
                 Parameters =
                     {
@@ -514,27 +514,27 @@ Close()
             Assert.AreEqual("Server=.;Trusted_Connection=SSPI;", this.GetConnectionString(dt));
 
             dt = new DatabaseTarget();
-            dt.DbHost = "${logger}";
+            dt.DBHost = "${logger}";
             Assert.AreEqual("Server=Logger1;Trusted_Connection=SSPI;", this.GetConnectionString(dt));
 
             dt = new DatabaseTarget();
-            dt.DbHost = "HOST1";
-            dt.DbDatabase= "${logger}";
+            dt.DBHost = "HOST1";
+            dt.DBDatabase= "${logger}";
             Assert.AreEqual("Server=HOST1;Trusted_Connection=SSPI;Database=Logger1", this.GetConnectionString(dt));
 
             dt = new DatabaseTarget();
-            dt.DbHost = "HOST1";
-            dt.DbDatabase = "${logger}";
-            dt.DbUserName = "user1";
-            dt.DbPassword = "password1";
+            dt.DBHost = "HOST1";
+            dt.DBDatabase = "${logger}";
+            dt.DBUserName = "user1";
+            dt.DBPassword = "password1";
             Assert.AreEqual("Server=HOST1;User id=user1;Password=password1;Database=Logger1", this.GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.ConnectionString = "customConnectionString42";
-            dt.DbHost = "HOST1";
-            dt.DbDatabase = "${logger}";
-            dt.DbUserName = "user1";
-            dt.DbPassword = "password1";
+            dt.DBHost = "HOST1";
+            dt.DBDatabase = "${logger}";
+            dt.DBUserName = "user1";
+            dt.DBPassword = "password1";
             Assert.AreEqual("customConnectionString42", this.GetConnectionString(dt));
         }
 
@@ -547,7 +547,7 @@ Close()
             var db = new DatabaseTarget();
             db.CommandText = "not important";
             db.ConnectionString = "cannotconnect";
-            db.DbProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
             db.Initialize(null);
             db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             db.Close();
@@ -568,7 +568,7 @@ Close()
             db.CommandText = "not important";
             db.ConnectionString = "cannotexecute";
             db.KeepConnection = true;
-            db.DbProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
             db.Initialize(null);
             db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
@@ -606,7 +606,7 @@ Close()
             db.CommandText = "not important";
             db.ConnectionString = "cannotexecute";
             db.KeepConnection = true;
-            db.DbProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
             db.Initialize(null);
             db.WriteAsyncLogEvents(
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
@@ -681,7 +681,7 @@ Close()
         public void ProviderFactoryInitTest()
         {
             var dt = new DatabaseTarget();
-            dt.DbProvider = "MockDb";
+            dt.DBProvider = "MockDb";
             dt.CommandText = "Notimportant";
             dt.Initialize(null);
             Assert.AreSame(MockDbFactory.Instance, dt.ProviderFactory);
@@ -698,7 +698,7 @@ Close()
                 var dt = new DatabaseTarget()
                 {
                     Name = "myTarget",
-                    DbProvider = provName,
+                    DBProvider = provName,
                     ConnectionString = "notimportant",
                     CommandText = "notimportant",
                 };
@@ -714,7 +714,7 @@ Close()
             var dt = new DatabaseTarget()
             {
                 Name = "myTarget",
-                DbProvider = "oledb",
+                DBProvider = "oledb",
                 ConnectionString = "notimportant",
                 CommandText = "notimportant",
             };
@@ -729,7 +729,7 @@ Close()
             var dt = new DatabaseTarget()
             {
                 Name = "myTarget",
-                DbProvider = "odbc",
+                DBProvider = "odbc",
                 ConnectionString = "notimportant",
                 CommandText = "notimportant",
             };
@@ -742,7 +742,7 @@ Close()
         private string GetConnectionString(DatabaseTarget dt)
         {
             MockDbConnection.ClearLog();
-            dt.DbProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            dt.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
             dt.CommandText = "NotImportant";
 
             var exceptions = new List<Exception>();

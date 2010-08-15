@@ -212,7 +212,7 @@ namespace NLog.UnitTests.Layouts
         {
             SimpleLayout l = "${message:uppercase=true:padding=10}";
             Assert.AreEqual(1, l.Renderers.Count);
-            var upperCase = l.Renderers[0] as UpperCaseLayoutRendererWrapper;
+            var upperCase = l.Renderers[0] as UppercaseLayoutRendererWrapper;
             Assert.IsNotNull(upperCase);
             var pad = ((SimpleLayout)upperCase.Inner).Renderers[0] as PaddingLayoutRendererWrapper;
             Assert.IsNotNull(pad);
@@ -227,7 +227,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual(1, l.Renderers.Count);
             var pad = ((SimpleLayout)l).Renderers[0] as PaddingLayoutRendererWrapper;
             Assert.IsNotNull(pad);
-            var upperCase = ((SimpleLayout)pad.Inner).Renderers[0] as UpperCaseLayoutRendererWrapper;
+            var upperCase = ((SimpleLayout)pad.Inner).Renderers[0] as UppercaseLayoutRendererWrapper;
             Assert.IsNotNull(upperCase);
             var message = ((SimpleLayout)upperCase.Inner).Renderers[0] as MessageLayoutRenderer;
             Assert.IsNotNull(message);

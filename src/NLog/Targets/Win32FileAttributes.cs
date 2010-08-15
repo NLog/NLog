@@ -49,7 +49,7 @@ namespace NLog.Targets
         /// <summary>
         /// Read-only file.
         /// </summary>
-        Readonly = 0x00000001,
+        ReadOnly = 0x00000001,
 
         /// <summary>
         /// Hidden file.

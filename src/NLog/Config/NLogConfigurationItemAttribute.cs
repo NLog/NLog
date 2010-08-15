@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,39 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog.Config
 {
     using System;
-    using System.Threading;
 
     /// <summary>
-    /// Optimized methods to get current time.
+    /// Marks the object as configuration item for NLog.
     /// </summary>
-    internal class CurrentTimeGetter
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class NLogConfigurationItemAttribute : Attribute
     {
-        private static int lastTicks = -1;
-        private static DateTime lastDateTime = DateTime.MinValue;
-
         /// <summary>
-        /// Gets the current time in an optimized fashion.
+        /// Initializes a new instance of the <see cref="NLogConfigurationItemAttribute"/> class.
         /// </summary>
-        /// <value>Current time.</value>
-        public static DateTime Now
+        public NLogConfigurationItemAttribute()
         {
-            get
-            {
-                int tickCount = Environment.TickCount;
-                if (tickCount == lastTicks)
-                {
-                    return lastDateTime;
-                }
-
-                DateTime dt = DateTime.Now;
-
-                lastTicks = tickCount;
-                lastDateTime = dt;
-                return dt;
-            }
         }
     }
 }

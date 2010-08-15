@@ -204,21 +204,21 @@ namespace NLog.UnitTests.Conditions
         [TestMethod]
         public void CustomNLogFactoriesTest()
         {
-            var nlogFactories = new NLogFactories();
-            nlogFactories.LayoutRendererFactory.RegisterDefinition("foo", typeof(FooLayoutRenderer));
-            nlogFactories.ConditionMethodFactory.RegisterDefinition("check", typeof(MyConditionMethods).GetMethod("CheckIt"));
+            var configurationItemFactory = new ConfigurationItemFactory();
+            configurationItemFactory.LayoutRenderers.RegisterDefinition("foo", typeof(FooLayoutRenderer));
+            configurationItemFactory.ConditionMethods.RegisterDefinition("check", typeof(MyConditionMethods).GetMethod("CheckIt"));
 
-            ConditionParser.ParseExpression("check('${foo}')", nlogFactories);
+            ConditionParser.ParseExpression("check('${foo}')", configurationItemFactory);
         }
 
         [TestMethod]
         public void MethodNameWithUnderscores()
         {
-            var nlogFactories = new NLogFactories();
-            nlogFactories.LayoutRendererFactory.RegisterDefinition("foo", typeof(FooLayoutRenderer));
-            nlogFactories.ConditionMethodFactory.RegisterDefinition("__check__", typeof(MyConditionMethods).GetMethod("CheckIt"));
+            var configurationItemFactory = new ConfigurationItemFactory();
+            configurationItemFactory.LayoutRenderers.RegisterDefinition("foo", typeof(FooLayoutRenderer));
+            configurationItemFactory.ConditionMethods.RegisterDefinition("__check__", typeof(MyConditionMethods).GetMethod("CheckIt"));
 
-            ConditionParser.ParseExpression("__check__('${foo}')", nlogFactories);
+            ConditionParser.ParseExpression("__check__('${foo}')", configurationItemFactory);
         }
 
         [TestMethod]

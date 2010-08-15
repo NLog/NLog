@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("processid")]
     [AppDomainFixedOutput]
-    public class ProcessIDLayoutRenderer : LayoutRenderer
+    public class ProcessIdLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Renders the current process ID.

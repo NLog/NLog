@@ -58,7 +58,7 @@ namespace NLog.Layouts
 
         private string fixedText;
         private string layoutText;
-        private NLogFactories nlogFactories;
+        private ConfigurationItemFactory configurationItemFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleLayout" /> class.
@@ -73,7 +73,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="txt">The layout string to parse.</param>
         public SimpleLayout(string txt)
-            : this(txt, NLogFactories.Default)
+            : this(txt, ConfigurationItemFactory.Default)
         {
         }
 
@@ -81,16 +81,16 @@ namespace NLog.Layouts
         /// Initializes a new instance of the <see cref="SimpleLayout"/> class.
         /// </summary>
         /// <param name="txt">The layout string to parse.</param>
-        /// <param name="nlogFactories">The NLog factories to use when creating references to layout renderers.</param>
-        public SimpleLayout(string txt, NLogFactories nlogFactories)
+        /// <param name="configurationItemFactory">The NLog factories to use when creating references to layout renderers.</param>
+        public SimpleLayout(string txt, ConfigurationItemFactory configurationItemFactory)
         {
-            this.nlogFactories = nlogFactories;
+            this.configurationItemFactory = configurationItemFactory;
             this.Text = txt;
         }
 
-        internal SimpleLayout(LayoutRenderer[] renderers, string text, NLogFactories nlogFactories)
+        internal SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
         {
-            this.nlogFactories = nlogFactories;
+            this.configurationItemFactory = configurationItemFactory;
             this.SetRenderers(renderers, text);
         }
 
@@ -111,7 +111,7 @@ namespace NLog.Layouts
                 string txt;
 
                 renderers = LayoutParser.CompileLayout(
-                    this.nlogFactories,
+                    this.configurationItemFactory,
                     new LayoutParser.Tokenizer(value),
                     false,
                     out txt);
@@ -237,11 +237,16 @@ namespace NLog.Layouts
                 {
                     renderer.Render(builder, logEvent);
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
                     if (InternalLogger.IsWarnEnabled)
                     {
-                        InternalLogger.Warn("Exception in {0}.Append(): {1}.", renderer.GetType().FullName, ex);
+                        InternalLogger.Warn("Exception in {0}.Append(): {1}.", renderer.GetType().FullName, exception);
                     }
                 }
             }

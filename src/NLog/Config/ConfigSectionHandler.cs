@@ -39,6 +39,7 @@ namespace NLog.Config
     using System.Configuration;
     using System.Xml;
     using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// NLog configuration section handler class for configuring NLog from App.config.
@@ -60,9 +61,14 @@ namespace NLog.Config
 
                 return new XmlLoggingConfiguration(configFileName);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                InternalLogger.Error("ConfigSectionHandler error: {0}", ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                InternalLogger.Error("ConfigSectionHandler error: {0}", exception);
                 throw;
             }
         }

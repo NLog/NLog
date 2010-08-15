@@ -438,9 +438,14 @@ namespace NLog.Targets
 
                 asyncContinuation(null);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                asyncContinuation(ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                asyncContinuation(exception);
             }
         }
 
@@ -598,32 +603,34 @@ namespace NLog.Targets
         /// </remarks>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            var buckets = SortHelpers.BucketSort(logEvents, c => this.FileName.Render(c.LogEvent));
-            var ms = new MemoryStream();
-            var pendingContinuations = new List<AsyncContinuation>();
-
-            foreach (var bucket in buckets)
+            var buckets = logEvents.BucketSort(c => this.FileName.Render(c.LogEvent));
+            using (var ms = new MemoryStream())
             {
-                string fileName = bucket.Key;
+                var pendingContinuations = new List<AsyncContinuation>();
 
-                ms.SetLength(0);
-                ms.Position = 0;
-
-                LogEventInfo firstLogEvent = null;
-
-                foreach (AsyncLogEventInfo ev in bucket.Value)
+                foreach (var bucket in buckets)
                 {
-                    if (firstLogEvent == null)
+                    string fileName = bucket.Key;
+
+                    ms.SetLength(0);
+                    ms.Position = 0;
+
+                    LogEventInfo firstLogEvent = null;
+
+                    foreach (AsyncLogEventInfo ev in bucket.Value)
                     {
-                        firstLogEvent = ev.LogEvent;
+                        if (firstLogEvent == null)
+                        {
+                            firstLogEvent = ev.LogEvent;
+                        }
+
+                        byte[] bytes = this.GetBytesToWrite(ev.LogEvent);
+                        ms.Write(bytes, 0, bytes.Length);
+                        pendingContinuations.Add(ev.Continuation);
                     }
 
-                    byte[] bytes = this.GetBytesToWrite(ev.LogEvent);
-                    ms.Write(bytes, 0, bytes.Length);
-                    pendingContinuations.Add(ev.Continuation);
+                    this.FlushCurrentFileWrites(fileName, firstLogEvent, ms, pendingContinuations);
                 }
-
-                this.FlushCurrentFileWrites(fileName, firstLogEvent, ms, pendingContinuations);
             }
         }
 
@@ -651,11 +658,20 @@ namespace NLog.Targets
         /// <summary>
         /// Modifies the specified byte array before it gets sent to a file.
         /// </summary>
-        /// <param name="bytes">The byte array.</param>
+        /// <param name="value">The byte array.</param>
         /// <returns>The modified byte array. The function can do the modification in-place.</returns>
-        protected virtual byte[] TransformBytes(byte[] bytes)
+        protected virtual byte[] TransformBytes(byte[] value)
         {
-            return bytes;
+            return value;
+        }
+
+        private static string ReplaceNumber(string pattern, int value)
+        {
+            int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
+            int lastPart = pattern.IndexOf("#}", StringComparison.Ordinal) + 2;
+            int numDigits = lastPart - firstPart - 2;
+
+            return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') + pattern.Substring(lastPart);
         }
 
         private void FlushCurrentFileWrites(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms, List<AsyncContinuation> pendingContinuations)
@@ -676,9 +692,14 @@ namespace NLog.Targets
                     this.WriteToFile(currentFileName, ms.ToArray(), false);
                 }
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                lastException = ex;
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                lastException = exception;
             }
 
             foreach (AsyncContinuation cont in pendingContinuations)
@@ -702,7 +723,7 @@ namespace NLog.Targets
                 return;
             }
 
-            string newFileName = this.ReplaceNumber(pattern, archiveNumber);
+            string newFileName = ReplaceNumber(pattern, archiveNumber);
             if (File.Exists(fileName))
             {
                 this.RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
@@ -726,21 +747,12 @@ namespace NLog.Targets
             }
         }
 
-        private string ReplaceNumber(string pattern, int value)
-        {
-            int firstPart = pattern.IndexOf("{#");
-            int lastPart = pattern.IndexOf("#}") + 2;
-            int numDigits = lastPart - firstPart - 2;
-
-            return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') + pattern.Substring(lastPart);
-        }
-
         private void SequentialArchive(string fileName, string pattern)
         {
             string baseNamePattern = Path.GetFileName(pattern);
 
-            int firstPart = baseNamePattern.IndexOf("{#");
-            int lastPart = baseNamePattern.IndexOf("#}") + 2;
+            int firstPart = baseNamePattern.IndexOf("{#", StringComparison.Ordinal);
+            int lastPart = baseNamePattern.IndexOf("#}", StringComparison.Ordinal) + 2;
             int trailerLength = baseNamePattern.Length - lastPart;
 
             string fileNameMask = baseNamePattern.Substring(0, firstPart) + "*" + baseNamePattern.Substring(lastPart);
@@ -765,7 +777,7 @@ namespace NLog.Targets
 
                     try
                     {
-                        num = Convert.ToInt32(number);
+                        num = Convert.ToInt32(number, CultureInfo.InvariantCulture);
                     }
                     catch (FormatException)
                     {
@@ -807,7 +819,7 @@ namespace NLog.Targets
                 }
             }
 
-            string newFileName = this.ReplaceNumber(pattern, nextNumber);
+            string newFileName = ReplaceNumber(pattern, nextNumber);
             File.Move(fileName, newFileName);
         }
 
@@ -943,9 +955,14 @@ namespace NLog.Targets
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    InternalLogger.Warn("Exception in AutoClosingTimerCallback: {0}", ex);
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
+                    InternalLogger.Warn("Exception in AutoClosingTimerCallback: {0}", exception);
                 }
             }
         }
@@ -986,9 +1003,14 @@ namespace NLog.Targets
                         {
                             File.Delete(fileName);
                         }
-                        catch (Exception ex)
+                        catch (Exception exception)
                         {
-                            InternalLogger.Warn("Unable to delete old log file '{0}': {1}", fileName, ex);
+                            if (exception.MustBeRethrown())
+                            {
+                                throw;
+                            }
+
+                            InternalLogger.Warn("Unable to delete old log file '{0}': {1}", fileName, exception);
                         }
                     }
 

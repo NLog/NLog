@@ -41,7 +41,8 @@ namespace NLog.Targets
     /// <summary>
     /// A parameter to MethodCall.
     /// </summary>
-    public class MethodCallParameter : INLogConfigurationItem
+    [NLogConfigurationItem]
+    public class MethodCallParameter
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MethodCallParameter" /> class.
@@ -96,6 +97,7 @@ namespace NLog.Targets
         /// Gets or sets the type of the parameter.
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Backwards compatibility")]
         public Type Type { get; set; }
 
         /// <summary>

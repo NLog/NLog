@@ -38,6 +38,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -106,9 +107,14 @@ namespace NLog.LayoutRenderers
                     return reader.ReadToEnd();
                 }
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                InternalLogger.Error("Cannot read file contents: {0} {1}", fileName, ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                InternalLogger.Error("Cannot read file contents: {0} {1}", fileName, exception);
                 return string.Empty;
             }
         }

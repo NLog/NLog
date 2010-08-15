@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     /// The identifier of the current thread.
     /// </summary>
     [LayoutRenderer("threadid")]
-    public class ThreadIDLayoutRenderer : LayoutRenderer
+    public class ThreadIdLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Renders the current thread identifier and appends it to the specified <see cref="StringBuilder" />.

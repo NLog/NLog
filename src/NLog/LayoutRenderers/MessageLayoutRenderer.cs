@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System.Diagnostics;
     using System.Text;
 
     using NLog.Config;

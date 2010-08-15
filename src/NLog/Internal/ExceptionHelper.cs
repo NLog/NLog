@@ -37,33 +37,33 @@ namespace NLog.Internal
     using System.Threading;
 
     /// <summary>
-    /// Optimized methods to get current time.
+    /// Helper class for dealing with exceptions.
     /// </summary>
-    internal class CurrentTimeGetter
+    internal static class ExceptionHelper
     {
-        private static int lastTicks = -1;
-        private static DateTime lastDateTime = DateTime.MinValue;
-
         /// <summary>
-        /// Gets the current time in an optimized fashion.
+        /// Determines whether the exception must be rethrown.
         /// </summary>
-        /// <value>Current time.</value>
-        public static DateTime Now
+        /// <param name="exception">The exception.</param>
+        /// <returns>True if the exception must be rethrown, false otherwise.</returns>
+        public static bool MustBeRethrown(this Exception exception)
         {
-            get
+            if (exception is StackOverflowException)
             {
-                int tickCount = Environment.TickCount;
-                if (tickCount == lastTicks)
-                {
-                    return lastDateTime;
-                }
-
-                DateTime dt = DateTime.Now;
-
-                lastTicks = tickCount;
-                lastDateTime = dt;
-                return dt;
+                return true;
             }
+
+            if (exception is ThreadAbortException)
+            {
+                return true;
+            }
+
+            if (exception is OutOfMemoryException)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

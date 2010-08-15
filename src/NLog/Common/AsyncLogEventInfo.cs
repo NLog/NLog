@@ -33,8 +33,6 @@
 
 namespace NLog.Common
 {
-    using NLog.Internal;
-
     /// <summary>
     /// Represents the logging event with asynchronous continuation.
     /// </summary>

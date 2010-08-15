@@ -43,7 +43,8 @@ namespace NLog.Config
     /// <summary>
     /// Represents a logging rule. An equivalent of &lt;logger /&gt; configuration element.
     /// </summary>
-    public class LoggingRule : INLogConfigurationItem
+    [NLogConfigurationItem]
+    public class LoggingRule
     {
         private readonly bool[] logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
@@ -297,16 +298,16 @@ namespace NLog.Config
                     return false;
 
                 case MatchMode.Equals:
-                    return String.CompareOrdinal(loggerName, this.loggerNameMatchArgument) == 0;
+                    return loggerName.Equals(this.loggerNameMatchArgument, StringComparison.Ordinal);
 
                 case MatchMode.StartsWith:
-                    return loggerName.StartsWith(this.loggerNameMatchArgument);
+                    return loggerName.StartsWith(this.loggerNameMatchArgument, StringComparison.Ordinal);
 
                 case MatchMode.EndsWith:
-                    return loggerName.EndsWith(this.loggerNameMatchArgument);
+                    return loggerName.EndsWith(this.loggerNameMatchArgument, StringComparison.Ordinal);
 
                 case MatchMode.Contains:
-                    return loggerName.IndexOf(this.loggerNameMatchArgument) >= 0;
+                    return loggerName.IndexOf(this.loggerNameMatchArgument, StringComparison.Ordinal) >= 0;
             }
         }
     }

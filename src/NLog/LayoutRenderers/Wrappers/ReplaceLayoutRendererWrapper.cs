@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>A value of <c>true</c> if regular expressions should be used otherwise, <c>false</c>.</value>
         /// <docgen category='Search/Replace Options' order='10' />
-        public bool RegEx { get; set; }
+        public bool Regex { get; set; }
 
         /// <summary>
         /// Gets or sets the replacement string.
@@ -86,9 +86,9 @@ namespace NLog.LayoutRenderers.Wrappers
             base.InitializeLayoutRenderer();
             string regexString = this.SearchFor;
 
-            if (!this.RegEx)
+            if (!this.Regex)
             {
-                regexString = Regex.Escape(regexString);
+                regexString = System.Text.RegularExpressions.Regex.Escape(regexString);
             }
 
 #if SILVERLIGHT

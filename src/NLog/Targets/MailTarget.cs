@@ -181,7 +181,7 @@ namespace NLog.Targets
         /// Gets or sets the username used to connect to SMTP server (used when SmtpAuthentication is set to "basic").
         /// </summary>
         /// <docgen category='SMTP Options' order='12' />
-        public Layout SmtpUsername { get; set; }
+        public Layout SmtpUserName { get; set; }
 
         /// <summary>
         /// Gets or sets the password used to authenticate against SMTP server (used when SmtpAuthentication is set to "basic").
@@ -220,10 +220,10 @@ namespace NLog.Targets
         /// <summary>
         /// Renders an array logging events.
         /// </summary>
-        /// <param name="events">Array of logging events.</param>
-        protected override void Write(AsyncLogEventInfo[] events)
+        /// <param name="logEvents">Array of logging events.</param>
+        protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            foreach (var bucket in SortHelpers.BucketSort(events, c => this.GetSmtpSettingsKey(c.LogEvent)))
+            foreach (var bucket in logEvents.BucketSort(c => this.GetSmtpSettingsKey(c.LogEvent)))
             {
                 var eventInfos = bucket.Value;
                 this.ProcessSingleMailMessage(eventInfos);
@@ -279,7 +279,7 @@ namespace NLog.Targets
                 }
                 else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
                 {
-                    client.Credentials = new NetworkCredential(this.SmtpUsername.Render(lastEvent), this.SmtpPassword.Render(lastEvent));
+                    client.Credentials = new NetworkCredential(this.SmtpUserName.Render(lastEvent), this.SmtpPassword.Render(lastEvent));
                 }
 
                 client.EnableSsl = this.EnableSsl;
@@ -293,6 +293,11 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
                 foreach (var ev in events)
                 {
                     ev.Continuation(exception);
@@ -329,9 +334,9 @@ namespace NLog.Targets
             }
 
             sb.Append("|");
-            if (this.SmtpUsername != null)
+            if (this.SmtpUserName != null)
             {
-                sb.Append(this.SmtpUsername.Render(logEvent));
+                sb.Append(this.SmtpUserName.Render(logEvent));
             }
 
             return sb.ToString();

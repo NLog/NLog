@@ -54,8 +54,8 @@ namespace NLog.UnitTests.LogReceiverService
             {
                 BaseTimeUtc = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).Ticks,
                 ClientName = "foo",
-                LayoutNames = new ListOfStrings { "foo", "bar", "baz" },
-                Strings = new ListOfStrings { "logger1", "logger2", "logger3", "zzz", "message1" },
+                LayoutNames = new StringCollection { "foo", "bar", "baz" },
+                Strings = new StringCollection { "logger1", "logger2", "logger3", "zzz", "message1" },
                 Events =
                     new[]
                     {
@@ -116,8 +116,8 @@ namespace NLog.UnitTests.LogReceiverService
             {
                 BaseTimeUtc = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).Ticks,
                 ClientName = "foo",
-                LayoutNames = new ListOfStrings(),
-                Strings = new ListOfStrings { "logger1", "logger2", "logger3", "zzz", "message1" },
+                LayoutNames = new StringCollection(),
+                Strings = new StringCollection { "logger1", "logger2", "logger3", "zzz", "message1" },
                 Events =
                     new[]
                     {
@@ -170,8 +170,8 @@ namespace NLog.UnitTests.LogReceiverService
             {
                 BaseTimeUtc = DateTime.UtcNow.Ticks,
                 ClientName = "foo",
-                LayoutNames = new ListOfStrings { "foo", "bar", "baz" },
-                Strings = new ListOfStrings { "logger1", "logger2", "logger3" },
+                LayoutNames = new StringCollection { "foo", "bar", "baz" },
+                Strings = new StringCollection { "logger1", "logger2", "logger3" },
                 Events =
                     new[]
                     {

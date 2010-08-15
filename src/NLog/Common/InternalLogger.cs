@@ -34,6 +34,7 @@
 namespace NLog.Common
 {
     using System;
+    using System.ComponentModel;
     using System.Configuration;
     using System.Globalization;
     using System.IO;
@@ -45,9 +46,12 @@ namespace NLog.Common
     /// </summary>
     public static class InternalLogger
     {
+        private static object lockObject = new object();
+
         /// <summary>
         /// Initializes static members of the InternalLogger class.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static InternalLogger()
         {
 #if !NET_CF && !SILVERLIGHT
@@ -157,7 +161,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="level">Log level.</param>
         /// <param name="message">Log message.</param>
-        public static void Log(LogLevel level, string message)
+        public static void Log(LogLevel level, [Localizable(false)] string message)
         {
             Write(level, message, null);
         }
@@ -167,7 +171,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        public static void Trace(string message, params object[] args)
+        public static void Trace([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Trace, message, args);
         }
@@ -176,7 +180,7 @@ namespace NLog.Common
         /// Logs the specified message at the Trace level.
         /// </summary>
         /// <param name="message">Log message.</param>
-        public static void Trace(string message)
+        public static void Trace([Localizable(false)] string message)
         {
             Write(LogLevel.Trace, message, null);
         }
@@ -186,7 +190,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        public static void Debug(string message, params object[] args)
+        public static void Debug([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Debug, message, args);
         }
@@ -195,7 +199,7 @@ namespace NLog.Common
         /// Logs the specified message at the Debug level.
         /// </summary>
         /// <param name="message">Log message.</param>
-        public static void Debug(string message)
+        public static void Debug([Localizable(false)] string message)
         {
             Write(LogLevel.Debug, message, null);
         }
@@ -205,7 +209,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        public static void Info(string message, params object[] args)
+        public static void Info([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Info, message, args);
         }
@@ -214,7 +218,7 @@ namespace NLog.Common
         /// Logs the specified message at the Info level.
         /// </summary>
         /// <param name="message">Log message.</param>
-        public static void Info(string message)
+        public static void Info([Localizable(false)] string message)
         {
             Write(LogLevel.Info, message, null);
         }
@@ -224,7 +228,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        public static void Warn(string message, params object[] args)
+        public static void Warn([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Warn, message, args);
         }
@@ -233,7 +237,7 @@ namespace NLog.Common
         /// Logs the specified message at the Warn level.
         /// </summary>
         /// <param name="message">Log message.</param>
-        public static void Warn(string message)
+        public static void Warn([Localizable(false)] string message)
         {
             Write(LogLevel.Warn, message, null);
         }
@@ -243,7 +247,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        public static void Error(string message, params object[] args)
+        public static void Error([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Error, message, args);
         }
@@ -252,7 +256,7 @@ namespace NLog.Common
         /// Logs the specified message at the Error level.
         /// </summary>
         /// <param name="message">Log message.</param>
-        public static void Error(string message)
+        public static void Error([Localizable(false)] string message)
         {
             Write(LogLevel.Error, message, null);
         }
@@ -262,7 +266,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        public static void Fatal(string message, params object[] args)
+        public static void Fatal([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Fatal, message, args);
         }
@@ -271,7 +275,7 @@ namespace NLog.Common
         /// Logs the specified message at the Fatal level.
         /// </summary>
         /// <param name="message">Log message.</param>
-        public static void Fatal(string message)
+        public static void Fatal([Localizable(false)] string message)
         {
             Write(LogLevel.Fatal, message, null);
         }
@@ -322,7 +326,7 @@ namespace NLog.Common
                 var writer = LogWriter;
                 if (writer != null)
                 {
-                    lock (writer)
+                    lock (lockObject)
                     {
                         writer.WriteLine(msg);
                     }
@@ -340,8 +344,13 @@ namespace NLog.Common
                     Console.Error.WriteLine(msg);
                 }
             }
-            catch
+            catch (Exception exception)
             {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
                 // we have no place to log the message to so we ignore it
             }
         }
@@ -356,8 +365,12 @@ namespace NLog.Common
                 {
                     settingValue = Environment.GetEnvironmentVariable(envName);
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
                 }
             }
 
@@ -376,8 +389,13 @@ namespace NLog.Common
             {
                 return LogLevel.FromString(value);
             }
-            catch
+            catch (Exception exception)
             {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
                 return defaultValue;
             }
         }
@@ -394,8 +412,13 @@ namespace NLog.Common
             {
                 return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
             }
-            catch
+            catch (Exception exception)
             {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
                 return defaultValue;
             }
         }

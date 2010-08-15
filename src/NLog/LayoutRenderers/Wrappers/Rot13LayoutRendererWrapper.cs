@@ -61,11 +61,16 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Encodes/Decodes ROT-13-encoded string.
         /// </summary>
-        /// <param name="s">The string to be encoded/decoded.</param>
+        /// <param name="encodedValue">The string to be encoded/decoded.</param>
         /// <returns>Encoded/Decoded text.</returns>
-        public static string DecodeRot13(string s)
+        public static string DecodeRot13(string encodedValue)
         {
-            char[] chars = s.ToCharArray();
+            if (encodedValue == null)
+            {
+                return null;
+            }
+
+            char[] chars = encodedValue.ToCharArray();
             for (int i = 0; i < chars.Length; ++i)
             {
                 chars[i] = DecodeRot13Char(chars[i]);

@@ -42,7 +42,8 @@ namespace NLog.Targets
     /// <summary>
     /// Represents a parameter to a Database target.
     /// </summary>
-    public class DatabaseParameterInfo : INLogConfigurationItem
+    [NLogConfigurationItem]
+    public class DatabaseParameterInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseParameterInfo" /> class.

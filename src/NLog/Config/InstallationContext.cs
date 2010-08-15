@@ -36,13 +36,14 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
+    using System.ComponentModel;
     using System.Globalization;
     using System.IO;
 
     /// <summary>
     /// Provides context for install/uninstall operations.
     /// </summary>
-    public class InstallationContext : IDisposable
+    public sealed class InstallationContext : IDisposable
     {
 #if !SILVERLIGHT && !NET_CF
         /// <summary>
@@ -103,7 +104,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="arguments">The arguments.</param>
-        public void Trace(string message, params object[] arguments)
+        public void Trace([Localizable(false)] string message, params object[] arguments)
         {
             this.Log(LogLevel.Trace, message, arguments);
         }
@@ -113,7 +114,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="arguments">The arguments.</param>
-        public void Debug(string message, params object[] arguments)
+        public void Debug([Localizable(false)] string message, params object[] arguments)
         {
             this.Log(LogLevel.Debug, message, arguments);
         }
@@ -123,7 +124,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="arguments">The arguments.</param>
-        public void Info(string message, params object[] arguments)
+        public void Info([Localizable(false)] string message, params object[] arguments)
         {
             this.Log(LogLevel.Info, message, arguments);
         }
@@ -133,7 +134,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="arguments">The arguments.</param>
-        public void Warning(string message, params object[] arguments)
+        public void Warning([Localizable(false)] string message, params object[] arguments)
         {
             this.Log(LogLevel.Warn, message, arguments);
         }
@@ -143,7 +144,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="arguments">The arguments.</param>
-        public void Error(string message, params object[] arguments)
+        public void Error([Localizable(false)] string message, params object[] arguments)
         {
             this.Log(LogLevel.Error, message, arguments);
         }
@@ -177,7 +178,7 @@ namespace NLog.Config
             return eventInfo;
         }
 
-        private void Log(LogLevel logLevel, string message, object[] arguments)
+        private void Log(LogLevel logLevel, [Localizable(false)] string message, object[] arguments)
         {
             if (logLevel >= this.LogLevel)
             {

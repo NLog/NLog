@@ -126,7 +126,7 @@ namespace NLog.UnitTests.Targets
                     To = "bar@foo.com",
                     SmtpServer = "server1",
                     SmtpAuthentication = SmtpAuthenticationMode.Basic,
-                    SmtpUsername = "${mdc:username}",
+                    SmtpUserName = "${mdc:username}",
                     SmtpPassword = "${mdc:password}",
                 };
 

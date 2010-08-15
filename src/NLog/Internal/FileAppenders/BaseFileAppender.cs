@@ -172,6 +172,7 @@ namespace NLog.Internal.FileAppenders
         }
 
 #if !NET_CF && !SILVERLIGHT
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowConcurrentWrite)
         {
             int fileShare = Win32FileNativeMethods.FILE_SHARE_READ;
@@ -201,7 +202,7 @@ namespace NLog.Internal.FileAppenders
             }
 
             var safeHandle = new Microsoft.Win32.SafeHandles.SafeFileHandle(handle, true);
-            FileStream returnValue = new FileStream(safeHandle, FileAccess.Write, this.CreateFileParameters.BufferSize);
+            var returnValue = new FileStream(safeHandle, FileAccess.Write, this.CreateFileParameters.BufferSize);
             returnValue.Seek(0, SeekOrigin.End);
             return returnValue;
         }

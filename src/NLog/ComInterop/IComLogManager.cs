@@ -72,9 +72,9 @@ namespace NLog.ComInterop
         /// <summary>
         /// Creates the specified logger object and assigns a LoggerName to it.
         /// </summary>
-        /// <param name="name">Logger name.</param>
+        /// <param name="loggerName">Logger name.</param>
         /// <returns>The new logger instance.</returns>
-        IComLogger GetLogger(string name);
+        IComLogger GetLogger(string loggerName);
     }
 }
 

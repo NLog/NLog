@@ -44,7 +44,8 @@ namespace NLog.Targets
     /// <summary>
     /// Information about database command + parameters.
     /// </summary>
-    public class DatabaseCommandInfo : INLogConfigurationItem
+    [NLogConfigurationItem]
+    public class DatabaseCommandInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseCommandInfo"/> class.

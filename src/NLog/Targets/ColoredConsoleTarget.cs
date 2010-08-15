@@ -222,6 +222,25 @@ namespace NLog.Targets
             this.Output(logEvent, this.Layout.Render(logEvent));
         }
 
+        private static ushort ColorFromForegroundAndBackground(ushort current, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
+        {
+            ushort newColor = current;
+
+            if (foregroundColor != ConsoleOutputColor.NoChange)
+            {
+                newColor = (ushort)(newColor & ~0xF);
+                newColor |= (ushort)foregroundColor;
+            }
+
+            if (backgroundColor != ConsoleOutputColor.NoChange)
+            {
+                newColor = (ushort)(newColor & ~0xF0);
+                newColor |= (ushort)(((int)backgroundColor) << 4);
+            }
+
+            return newColor;
+        }
+
         private void Output(LogEventInfo logEvent, string message)
         {
             IntPtr consoleHandle = NativeMethods.GetStdHandle(this.ErrorStream ? NativeMethods.STD_ERROR_HANDLE : NativeMethods.STD_OUTPUT_HANDLE);
@@ -257,7 +276,7 @@ namespace NLog.Targets
                 matchingRule = ConsoleRowHighlightingRule.Default;
             }
 
-            ushort newColor = this.ColorFromForegroundAndBackground(csbi.wAttributes, matchingRule.ForegroundColor, matchingRule.BackgroundColor);
+            ushort newColor = ColorFromForegroundAndBackground(csbi.wAttributes, matchingRule.ForegroundColor, matchingRule.BackgroundColor);
 
             message = message.Replace("\a", "\a\a");
 
@@ -361,7 +380,7 @@ namespace NLog.Targets
                     {
                         ConsoleOutputColor foreground = (ConsoleOutputColor)(int)(c2 - 'A');
                         ConsoleOutputColor background = (ConsoleOutputColor)(int)(message[p1 + 2] - 'A');
-                        ushort newColor = this.ColorFromForegroundAndBackground(
+                        ushort newColor = ColorFromForegroundAndBackground(
                             this.colorStack[colorStackLength - 1],
                             foreground,
                             background);
@@ -381,25 +400,6 @@ namespace NLog.Targets
             {
                 output.Write(message.Substring(p0));
             }
-        }
-
-        private ushort ColorFromForegroundAndBackground(ushort current, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
-        {
-            ushort newColor = current;
-
-            if (foregroundColor != ConsoleOutputColor.NoChange)
-            {
-                newColor = (ushort)(newColor & ~0xF);
-                newColor |= (ushort)foregroundColor;
-            }
-
-            if (backgroundColor != ConsoleOutputColor.NoChange)
-            {
-                newColor = (ushort)(newColor & ~0xF0);
-                newColor |= (ushort)(((int)backgroundColor) << 4);
-            }
-
-            return newColor;
         }
     }
 }

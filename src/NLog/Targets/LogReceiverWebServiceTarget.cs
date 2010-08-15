@@ -98,7 +98,7 @@ namespace NLog.Targets
         /// </summary>
         /// <value>The client ID.</value>
         /// <docgen category='Payload Options' order='10' />
-        public Layout ClientID { get; set; }
+        public Layout ClientId { get; set; }
 
         /// <summary>
         /// Gets the list of parameters.
@@ -142,19 +142,33 @@ namespace NLog.Targets
             this.Send(networkLogEvents, logEvents);
         }
 
+        private static int GetStringOrdinal(NLogEvents context, Dictionary<string, int> stringTable, string value)
+        {
+            int stringIndex;
+
+            if (!stringTable.TryGetValue(value, out stringIndex))
+            {
+                stringIndex = context.Strings.Count;
+                stringTable.Add(value, stringIndex);
+                context.Strings.Add(value);
+            }
+
+            return stringIndex;
+        }
+
         private NLogEvents TranslateLogEvents(AsyncLogEventInfo[] logEvents)
         {
             string clientID = string.Empty;
-            if (this.ClientID != null)
+            if (this.ClientId != null)
             {
-                clientID = this.ClientID.Render(logEvents[0].LogEvent);
+                clientID = this.ClientId.Render(logEvents[0].LogEvent);
             }
 
             var networkLogEvents = new NLogEvents
             {
                 ClientName = clientID,
-                LayoutNames = new ListOfStrings(),
-                Strings = new ListOfStrings(),
+                LayoutNames = new StringCollection(),
+                Strings = new StringCollection(),
                 BaseTimeUtc = logEvents[0].LogEvent.TimeStamp.ToUniversalTime().Ticks
             };
 
@@ -242,6 +256,11 @@ namespace NLog.Targets
                         }
                         catch (Exception ex)
                         {
+                            if (ex.MustBeRethrown())
+                            {
+                                throw;
+                            }
+
                             exception = ex;
                         }
 
@@ -283,9 +302,9 @@ namespace NLog.Targets
         {
             var nlogEvent = new NLogEvent();
             nlogEvent.Id = eventInfo.SequenceID;
-            nlogEvent.MessageOrdinal = this.GetStringOrdinal(context, stringTable, eventInfo.FormattedMessage);
+            nlogEvent.MessageOrdinal = GetStringOrdinal(context, stringTable, eventInfo.FormattedMessage);
             nlogEvent.LevelOrdinal = eventInfo.Level.Ordinal;
-            nlogEvent.LoggerOrdinal = this.GetStringOrdinal(context, stringTable, eventInfo.LoggerName);
+            nlogEvent.LoggerOrdinal = GetStringOrdinal(context, stringTable, eventInfo.LoggerName);
             nlogEvent.TimeDelta = eventInfo.TimeStamp.ToUniversalTime().Ticks - context.BaseTimeUtc;
             nlogEvent.ValueIndexes = new List<int>();   
 
@@ -293,26 +312,12 @@ namespace NLog.Targets
             {
                 var param = this.Parameters[i];
                 var value = param.Layout.Render(eventInfo);
-                int stringIndex = this.GetStringOrdinal(context, stringTable, value);
+                int stringIndex = GetStringOrdinal(context, stringTable, value);
 
                 nlogEvent.ValueIndexes.Add(stringIndex);
             }
 
             return nlogEvent;
-        }
-
-        private int GetStringOrdinal(NLogEvents context, Dictionary<string, int> stringTable, string value)
-        {
-            int stringIndex;
-
-            if (!stringTable.TryGetValue(value, out stringIndex))
-            {
-                stringIndex = context.Strings.Count;
-                stringTable.Add(value, stringIndex);
-                context.Strings.Add(value);
-            }
-
-            return stringIndex;
         }
     }
 }

@@ -246,6 +246,11 @@ namespace NLog.UnitTests
                 return true;
             }
 
+            if (baseName == "LocalizableAttribute.cs")
+            {
+                return true;
+            }
+
             return false;
         }
 

@@ -39,6 +39,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The machine name that the process is running on.
@@ -59,9 +60,14 @@ namespace NLog.LayoutRenderers
             {
                 this.MachineName = Environment.MachineName;
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                InternalLogger.Error("Error getting machine name {0}", ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                InternalLogger.Error("Error getting machine name {0}", exception);
                 this.MachineName = string.Empty;
             }
         }

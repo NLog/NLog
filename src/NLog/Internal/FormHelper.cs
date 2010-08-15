@@ -50,9 +50,10 @@ namespace NLog.Internal
         /// <param name="name">Name of RichTextBox.</param>
         /// <param name="parentForm">Form to dock RichTextBox.</param>
         /// <returns>Created RichTextBox.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         internal static RichTextBox CreateRichTextBox(string name, Form parentForm)
         {
-            RichTextBox rtb = new RichTextBox();
+            var rtb = new RichTextBox();
             rtb.Dock = System.Windows.Forms.DockStyle.Fill;
             rtb.Location = new System.Drawing.Point(0, 0);
             rtb.Name = name;
@@ -130,9 +131,10 @@ namespace NLog.Internal
         /// <param name="showMinimized">If set to <c>true</c> the form will be minimized.</param>
         /// <param name="toolWindow">If set to <c>true</c> the form will be created as tool window.</param>
         /// <returns>Created form.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         internal static Form CreateForm(string name, int width, int height, bool show, bool showMinimized, bool toolWindow)
         {
-            Form f = new Form();
+            var f = new Form();
             f.Name = name;
             f.Text = "NLog";
             f.Icon = GetNLogIcon();

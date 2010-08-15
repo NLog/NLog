@@ -42,11 +42,17 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Render environmental information related to logging events.
     /// </summary>
-    public abstract class LayoutRenderer : INLogConfigurationItem, ISupportsInitialize, IRenderable
+    [NLogConfigurationItem]
+    public abstract class LayoutRenderer : ISupportsInitialize, IRenderable
     {
         private const int MaxInitialRenderBufferLength = 16384;
         private int maxRenderedLength;
         private bool isInitialized;
+
+        /// <summary>
+        /// Gets the logging configuration this target is part of.
+        /// </summary>
+        protected LoggingConfiguration LoggingConfiguration { get; private set; }
 
         /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.
@@ -114,6 +120,7 @@ namespace NLog.LayoutRenderers
         {
             if (!this.isInitialized)
             {
+                this.LoggingConfiguration = configuration;
                 this.isInitialized = true;
                 this.InitializeLayoutRenderer();
             }
@@ -126,6 +133,7 @@ namespace NLog.LayoutRenderers
         {
             if (this.isInitialized)
             {
+                this.LoggingConfiguration = null;
                 this.isInitialized = false;
                 this.CloseLayoutRenderer();
             }
@@ -143,9 +151,14 @@ namespace NLog.LayoutRenderers
             {
                 this.Append(builder, logEvent);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                InternalLogger.Warn("Exception in layout renderer: {0}", ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                InternalLogger.Warn("Exception in layout renderer: {0}", exception);
             }
         }
 

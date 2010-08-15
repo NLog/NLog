@@ -40,7 +40,7 @@ namespace NLog.LayoutRenderers
     /// Designates a property of the class as an ambient property.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class AmbientPropertyAttribute : NameBaseAttribute
+    public sealed class AmbientPropertyAttribute : NameBaseAttribute
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AmbientPropertyAttribute" /> class.

@@ -63,8 +63,8 @@ namespace NLog.Targets
     /// <code lang="XML" source="examples/targets/Configuration File/Database/MSSQL/NLog.config" height="450" />
     /// <para>Oracle using System.Data.OracleClient:</para>
     /// <code lang="XML" source="examples/targets/Configuration File/Database/Oracle.Native/NLog.config" height="350" />
-    /// <para>Oracle using System.Data.OleDbClient:</para>
-    /// <code lang="XML" source="examples/targets/Configuration File/Database/Oracle.OleDb/NLog.config" height="350" />
+    /// <para>Oracle using System.Data.OleDBClient:</para>
+    /// <code lang="XML" source="examples/targets/Configuration File/Database/Oracle.OleDB/NLog.config" height="350" />
     /// <para>To set up the log target programmatically use code like this (an equivalent of MSSQL configuration):</para>
     /// <code lang="C#" source="examples/targets/Configuration API/Database/MSSQL/Example.cs" height="630" />
     /// </example>
@@ -84,8 +84,8 @@ namespace NLog.Targets
             this.Parameters = new List<DatabaseParameterInfo>();
             this.InstallDdlCommands = new List<DatabaseCommandInfo>();
             this.UninstallDdlCommands = new List<DatabaseCommandInfo>();
-            this.DbProvider = "sqlserver";
-            this.DbHost = ".";
+            this.DBProvider = "sqlserver";
+            this.DBHost = ".";
 #if !NET_CF
             this.ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
 #endif
@@ -121,7 +121,7 @@ namespace NLog.Targets
         /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
         [DefaultValue("sqlserver")]
-        public string DbProvider { get; set; }
+        public string DBProvider { get; set; }
 
 #if !NET_CF
         /// <summary>
@@ -133,7 +133,7 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets the connection string. When provided, it overrides the values
-        /// specified in DbHost, DbUserName, DbPassword, DbDatabase.
+        /// specified in DBHost, DBUserName, DBPassword, DBDatabase.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public Layout ConnectionString { get; set; }
@@ -180,7 +180,7 @@ namespace NLog.Targets
         /// connection string.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        public Layout DbHost { get; set; }
+        public Layout DBHost { get; set; }
 
         /// <summary>
         /// Gets or sets the database user name. If the ConnectionString is not provided
@@ -188,7 +188,7 @@ namespace NLog.Targets
         /// connection string.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        public Layout DbUserName { get; set; }
+        public Layout DBUserName { get; set; }
 
         /// <summary>
         /// Gets or sets the database password. If the ConnectionString is not provided
@@ -196,7 +196,7 @@ namespace NLog.Targets
         /// connection string.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        public Layout DbPassword { get; set; }
+        public Layout DBPassword { get; set; }
 
         /// <summary>
         /// Gets or sets the database name. If the ConnectionString is not provided
@@ -204,7 +204,7 @@ namespace NLog.Targets
         /// connection string.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        public Layout DbDatabase { get; set; }
+        public Layout DBDatabase { get; set; }
 
         /// <summary>
         /// Gets or sets the text of the SQL command to be run on each log level.
@@ -244,7 +244,7 @@ namespace NLog.Targets
         /// <param name="installationContext">The installation context.</param>
         public void Install(InstallationContext installationContext)
         {
-            this.RunInstallCommands(installationContext, this.InstallDdlCommands, false);
+            this.RunInstallCommands(installationContext, this.InstallDdlCommands);
         }
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace NLog.Targets
         /// <param name="installationContext">The installation context.</param>
         public void Uninstall(InstallationContext installationContext)
         {
-            this.RunInstallCommands(installationContext, this.UninstallDdlCommands, true);
+            this.RunInstallCommands(installationContext, this.UninstallDdlCommands);
         }
 
         /// <summary>
@@ -317,9 +317,9 @@ namespace NLog.Targets
             {
                 foreach (DataRow row in DbProviderFactories.GetFactoryClasses().Rows)
                 {
-                    if ((string)row["InvariantName"] == this.DbProvider)
+                    if ((string)row["InvariantName"] == this.DBProvider)
                     {
-                        this.ProviderFactory = DbProviderFactories.GetFactory(this.DbProvider);
+                        this.ProviderFactory = DbProviderFactories.GetFactory(this.DBProvider);
                         foundProvider = true;
                     }
                 }
@@ -328,7 +328,7 @@ namespace NLog.Targets
 
             if (!foundProvider)
             {
-                switch (this.DbProvider.ToUpper(CultureInfo.InvariantCulture))
+                switch (this.DBProvider.ToUpper(CultureInfo.InvariantCulture))
                 {
                     case "SQLSERVER":
                     case "MSSQL":
@@ -346,7 +346,7 @@ namespace NLog.Targets
                         break;
 
                     default:
-                        this.ConnectionType = Type.GetType(this.DbProvider, true);
+                        this.ConnectionType = Type.GetType(this.DBProvider, true);
                         break;
                 }
             }
@@ -372,12 +372,16 @@ namespace NLog.Targets
         {
             try
             {
-                string connectionString = this.BuildConnectionString(logEvent);
-                this.WriteEventToDatabase(logEvent, connectionString);
+                this.WriteEventToDatabase(logEvent);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                InternalLogger.Error("Error when writing to database {0}", ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                InternalLogger.Error("Error when writing to database {0}", exception);
                 this.CloseConnection();
                 throw;
             }
@@ -404,20 +408,24 @@ namespace NLog.Targets
             {
                 foreach (var kvp in buckets)
                 {
-                    string connectionString = kvp.Key;
                     foreach (AsyncLogEventInfo ev in kvp.Value)
                     {
                         try
                         {
-                            this.WriteEventToDatabase(ev.LogEvent, connectionString);
+                            this.WriteEventToDatabase(ev.LogEvent);
                             ev.Continuation(null);
                         }
-                        catch (Exception ex)
+                        catch (Exception exception)
                         {
+                            if (exception.MustBeRethrown())
+                            {
+                                throw;
+                            }
+
                             // in case of exception, close the connection and report it
-                            InternalLogger.Error("Error when writing to database {0}", ex);
+                            InternalLogger.Error("Error when writing to database {0}", exception);
                             this.CloseConnection();
-                            ev.Continuation(ex);
+                            ev.Continuation(exception);
                         }
                     }
                 }
@@ -431,7 +439,7 @@ namespace NLog.Targets
             }
         }
 
-        private void WriteEventToDatabase(LogEventInfo logEvent, string connectionString)
+        private void WriteEventToDatabase(LogEventInfo logEvent)
         {
             this.EnsureConnectionOpen(this.BuildConnectionString(logEvent));
 
@@ -481,25 +489,25 @@ namespace NLog.Targets
             var sb = new StringBuilder();
 
             sb.Append("Server=");
-            sb.Append(this.DbHost.Render(logEvent));
+            sb.Append(this.DBHost.Render(logEvent));
             sb.Append(";");
-            if (this.DbUserName == null)
+            if (this.DBUserName == null)
             {
                 sb.Append("Trusted_Connection=SSPI;");
             }
             else
             {
                 sb.Append("User id=");
-                sb.Append(this.DbUserName.Render(logEvent));
+                sb.Append(this.DBUserName.Render(logEvent));
                 sb.Append(";Password=");
-                sb.Append(this.DbPassword.Render(logEvent));
+                sb.Append(this.DBPassword.Render(logEvent));
                 sb.Append(";");
             }
 
-            if (this.DbDatabase != null)
+            if (this.DBDatabase != null)
             {
                 sb.Append("Database=");
-                sb.Append(this.DbDatabase.Render(logEvent));
+                sb.Append(this.DBDatabase.Render(logEvent));
             }
 
             return sb.ToString();
@@ -534,7 +542,7 @@ namespace NLog.Targets
             }
         }
 
-        private void RunInstallCommands(InstallationContext installationContext, IEnumerable<DatabaseCommandInfo> commands, bool isUninstall)
+        private void RunInstallCommands(InstallationContext installationContext, IEnumerable<DatabaseCommandInfo> commands)
         {
             // create log event that will be used to render all layouts
             LogEventInfo logEvent = installationContext.CreateLogEvent();
@@ -574,6 +582,11 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
+                        if (exception.MustBeRethrown())
+                        {
+                            throw;
+                        }
+
                         if (commandInfo.IgnoreFailures || installationContext.IgnoreFailures)
                         {
                             installationContext.Warning(exception.Message);

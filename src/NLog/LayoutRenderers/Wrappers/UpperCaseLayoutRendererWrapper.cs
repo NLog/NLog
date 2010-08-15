@@ -40,12 +40,12 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("uppercase")]
     [AmbientProperty("UpperCase")]
-    public sealed class UpperCaseLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class UppercaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpperCaseLayoutRendererWrapper" /> class.
+        /// Initializes a new instance of the <see cref="UppercaseLayoutRendererWrapper" /> class.
         /// </summary>
-        public UpperCaseLayoutRendererWrapper()
+        public UppercaseLayoutRendererWrapper()
         {
             this.Culture = CultureInfo.InvariantCulture;
         }
@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>A value of <c>true</c> if upper case conversion should be applied otherwise, <c>false</c>.</value>
         /// <docgen category='Transformation Options' order='10' />
-        public bool UpperCase { get; set; }
+        public bool Uppercase { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering. 
@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Padded and trimmed string.</returns>
         protected override string Transform(string text)
         {
-            return this.UpperCase ? text.ToUpper(this.Culture) : text;
+            return this.Uppercase ? text.ToUpper(this.Culture) : text;
         }
     }
 }

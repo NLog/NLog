@@ -36,6 +36,7 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.Globalization;
     using System.Runtime.InteropServices;
     using System.Text;
     using NLog.Config;
@@ -69,7 +70,7 @@ namespace NLog.LayoutRenderers
                 {
                     object variableValue = app.GetValue(this.Variable);
 
-                    builder.Append(Convert.ToString(variableValue));
+                    builder.Append(Convert.ToString(variableValue, CultureInfo.InvariantCulture));
                 }
 
                 Marshal.ReleaseComObject(app);

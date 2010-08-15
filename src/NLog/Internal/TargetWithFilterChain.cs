@@ -42,7 +42,8 @@ namespace NLog.Internal
     /// Represents target with a chain of filters which determine
     /// whether logging should happen.
     /// </summary>
-    internal class TargetWithFilterChain : INLogConfigurationItem
+    [NLogConfigurationItem]
+    internal class TargetWithFilterChain
     {
         private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
 

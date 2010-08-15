@@ -43,15 +43,15 @@ namespace NLog.Conditions
     public static class ConditionMethods
     {
         /// <summary>
-        /// Compares two objects for equality.
+        /// Compares two values for equality.
         /// </summary>
-        /// <param name="firstObject">The first object.</param>
-        /// <param name="secondObject">The second object.</param>
+        /// <param name="firstValue">The first value.</param>
+        /// <param name="secondValue">The second value.</param>
         /// <returns><b>true</b> when two objects are equal, <b>false</b> otherwise.</returns>
         [ConditionMethod("equals")]
-        public static bool Equals2(object firstObject, object secondObject)
+        public static bool Equals2(object firstValue, object secondValue)
         {
-            return firstObject.Equals(secondObject);
+            return firstValue.Equals(secondValue);
         }
 
         /// <summary>

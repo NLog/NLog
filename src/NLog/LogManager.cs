@@ -51,15 +51,21 @@ namespace NLog
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static LogManager()
         {
             try
             {
                 SetupTerminationEvents();
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                InternalLogger.Warn("Error setting up termiation events: {0}", ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                InternalLogger.Warn("Error setting up termiation events: {0}", exception);
             }
         }
 #endif

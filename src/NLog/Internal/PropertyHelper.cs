@@ -91,9 +91,14 @@ namespace NLog.Internal
             {
                 throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + o, ex.InnerException);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + o, ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + o, exception);
             }
         }
 

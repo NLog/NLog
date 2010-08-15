@@ -40,9 +40,9 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Asynchronous request queue.
     /// </summary>
-    public class AsyncRequestQueue
+    internal class AsyncRequestQueue
     {
-        private Queue<AsyncLogEventInfo> logEventInfoQueue = new Queue<AsyncLogEventInfo>();
+        private readonly Queue<AsyncLogEventInfo> logEventInfoQueue = new Queue<AsyncLogEventInfo>();
 
         /// <summary>
         /// Initializes a new instance of the AsyncRequestQueue class.
@@ -119,9 +119,8 @@ namespace NLog.Targets.Wrappers
         /// and adds returns the list containing them.
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued.</param>
-        /// <param name="logEventInfos">The array of log events.</param>
-        /// <returns>Number of dequeued items.</returns>
-        public int DequeueBatch(int count, out AsyncLogEventInfo[] logEventInfos)
+        /// <returns>The array of log events.</returns>
+        public AsyncLogEventInfo[] DequeueBatch(int count)
         {
             var resultEvents = new List<AsyncLogEventInfo>();
 
@@ -144,9 +143,7 @@ namespace NLog.Targets.Wrappers
 #endif
             }
 
-            logEventInfos = resultEvents.ToArray();
-
-            return logEventInfos.Length;
+            return resultEvents.ToArray();
         }
 
         /// <summary>

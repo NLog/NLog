@@ -80,11 +80,11 @@ namespace NLog.UnitTests.Contexts
                                 Assert.IsTrue(MappedDiagnosticsContext.Contains("foo2"));
                                 Assert.AreEqual("bar2", MappedDiagnosticsContext.Get("foo2"));
                             }
-                            catch (Exception ex)
+                            catch (Exception exception)
                             {
                                 lock (exceptions)
                                 {
-                                    exceptions.Add(ex);
+                                    exceptions.Add(exception);
                                 }
                             }
                             finally

@@ -164,6 +164,11 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
                 if (installationContext.IgnoreFailures)
                 {
                     installationContext.Warning("Error creating category '{0}': {1}", categoryName, exception.Message);
@@ -277,8 +282,10 @@ namespace NLog.Targets
 
                 if (this.AutoCreate)
                 {
-                    var context = new InstallationContext();
-                    this.Install(context);
+                    using (var context = new InstallationContext())
+                    {
+                        this.Install(context);
+                    }
                 }
 
                 try
@@ -287,6 +294,11 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
                     InternalLogger.Error("Cannot open performance counter {0}/{1}/{2}: {3}", this.CategoryName, this.CounterName, this.InstanceName, exception);
                 }
             }

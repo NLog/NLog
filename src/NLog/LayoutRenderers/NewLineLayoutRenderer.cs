@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.Diagnostics;
     using System.Text;
 
     /// <summary>

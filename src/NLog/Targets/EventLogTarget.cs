@@ -41,6 +41,7 @@ namespace NLog.Targets
     using System.Globalization;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -250,9 +251,14 @@ namespace NLog.Targets
                     EventLog.CreateEventSource(escd);
                 }
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                InternalLogger.Error("Error when connecting to EventLog: {0}", ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                InternalLogger.Error("Error when connecting to EventLog: {0}", exception);
                 throw;
             }
         }

@@ -98,9 +98,12 @@ namespace NLog.Internal.NetworkSenders
                         this.socket.Close();
                     }
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
-                    // ignore errors
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
                 }
 
                 this.socket = null;
@@ -115,6 +118,7 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="length">Number of bytes to send.</param>
         /// <param name="asyncContinuation">The async continuation to be invoked after the buffer has been sent.</param>
         /// <remarks>To be overridden in inheriting classes.</remarks>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Dispose() is called in the event handler.")]
         protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
             lock (this)

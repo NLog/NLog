@@ -149,33 +149,33 @@ namespace NLog.LayoutRenderers
         private void CompileFormat(string format)
         {
             string[] parts = format.Replace(" ", string.Empty).Split(',');
-            List<ExceptionDataTarget> dataTargets = new List<ExceptionDataTarget>();
+            var dataTargets = new List<ExceptionDataTarget>();
 
             foreach (string s in parts)
             {
-                switch (s.ToLower(CultureInfo.InvariantCulture))
+                switch (s.ToUpper(CultureInfo.InvariantCulture))
                 {
-                    case "message":
+                    case "MESSAGE":
                         dataTargets.Add(this.AppendMessage);
                         break;
 
-                    case "type":
+                    case "TYPE":
                         dataTargets.Add(this.AppendType);
                         break;
 
-                    case "shorttype":
+                    case "SHORTTYPE":
                         dataTargets.Add(this.AppendShortType);
                         break;
 
-                    case "tostring":
+                    case "TOSTRING":
                         dataTargets.Add(this.AppendToString);
                         break;
 
-                    case "method":
+                    case "METHOD":
                         dataTargets.Add(this.AppendMethod);
                         break;
 
-                    case "stacktrace":
+                    case "STACKTRACE":
                         dataTargets.Add(this.AppendStackTrace);
                         break;
 

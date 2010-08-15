@@ -39,7 +39,7 @@ namespace NLog
     /// <summary>
     /// Global Diagnostics Context - a dictionary structure to hold per-application-instance values.
     /// </summary>
-    public class GlobalDiagnosticsContext
+    public static class GlobalDiagnosticsContext
     {
         private static Dictionary<string, string> dict = new Dictionary<string, string>();
 

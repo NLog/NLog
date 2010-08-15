@@ -36,6 +36,7 @@ namespace NLog
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Globalization;
     using System.Threading;
@@ -73,7 +74,7 @@ namespace NLog
         /// <param name="level">Log level.</param>
         /// <param name="loggerName">Logger name.</param>
         /// <param name="message">Log message including parameter placeholders.</param>
-        public LogEventInfo(LogLevel level, string loggerName, string message)
+        public LogEventInfo(LogLevel level, string loggerName, [Localizable(false)] string message)
             : this(level, loggerName, null, message, null, null)
         {
         }
@@ -86,7 +87,7 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">Log message including parameter placeholders.</param>
         /// <param name="parameters">Parameter array.</param>
-        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters) 
+        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters) 
             : this(level, loggerName, formatProvider, message, parameters, null)
         {
         }
@@ -100,7 +101,7 @@ namespace NLog
         /// <param name="message">Log message including parameter placeholders.</param>
         /// <param name="parameters">Parameter array.</param>
         /// <param name="exception">Exception information.</param>
-        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, string message, object[] parameters, Exception exception)
+        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception)
         {
             this.TimeStamp = CurrentTimeGetter.Now;
             this.Level = level;
@@ -121,11 +122,13 @@ namespace NLog
         /// Gets the unique identifier of log event which is automatically generated
         /// and monotonously increasing.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "ID", Justification = "Backwards compatibility")]
         public int SequenceID { get; private set; }
 
         /// <summary>
         /// Gets or sets the timestamp of the logging event.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeStamp", Justification = "Backwards compatibility.")]
         public DateTime TimeStamp { get; set; }
 
         /// <summary>
@@ -198,6 +201,7 @@ namespace NLog
         /// <summary>
         /// Gets or sets the parameter values or null if no parameters have been specified.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "For backwards compatibility.")]
         public object[] Parameters { get; set; }
 
         /// <summary>
@@ -271,7 +275,7 @@ namespace NLog
         /// <param name="loggerName">Name of the logger.</param>
         /// <param name="message">The message.</param>
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
-        public static LogEventInfo Create(LogLevel logLevel, string loggerName, string message)
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, [Localizable(false)] string message)
         {
             return new LogEventInfo(logLevel, loggerName, null, message, null);
         }
@@ -285,7 +289,7 @@ namespace NLog
         /// <param name="message">The message.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
-        public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, string message, object[] parameters)
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters)
         {
             return new LogEventInfo(logLevel, loggerName, formatProvider, message, parameters);
         }
@@ -311,7 +315,7 @@ namespace NLog
         /// <param name="message">The message.</param>
         /// <param name="exception">The exception.</param>
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
-        public static LogEventInfo Create(LogLevel logLevel, string loggerName, string message, Exception exception)
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, [Localizable(false)] string message, Exception exception)
         {
             return new LogEventInfo(logLevel, loggerName, null, message, null, exception);
         }

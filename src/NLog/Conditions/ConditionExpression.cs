@@ -35,20 +35,22 @@ namespace NLog.Conditions
 {
     using System;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Base class for representing nodes in condition expression trees.
     /// </summary>
-    public abstract class ConditionExpression : INLogConfigurationItem
+    [NLogConfigurationItem]
+    public abstract class ConditionExpression
     {
         /// <summary>
         /// Converts condition text to a condition expression tree.
         /// </summary>
-        /// <param name="text">Condition text to be converted.</param>
+        /// <param name="conditionExpressionText">Condition text to be converted.</param>
         /// <returns>Condition expression tree.</returns>
-        public static implicit operator ConditionExpression(string text)
+        public static implicit operator ConditionExpression(string conditionExpressionText)
         {
-            return ConditionParser.ParseExpression(text);
+            return ConditionParser.ParseExpression(conditionExpressionText);
         }
 
         /// <summary>
@@ -62,9 +64,14 @@ namespace NLog.Conditions
             {
                 return this.EvaluateNode(context);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                throw new ConditionEvaluationException("Exception occurred when evaluating condition", ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                throw new ConditionEvaluationException("Exception occurred when evaluating condition", exception);
             }
         }
 

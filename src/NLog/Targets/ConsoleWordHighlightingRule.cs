@@ -43,7 +43,8 @@ namespace NLog.Targets
     /// <summary>
     /// Highlighting rule for Win32 colorful console.
     /// </summary>
-    public class ConsoleWordHighlightingRule : INLogConfigurationItem
+    [NLogConfigurationItem]
+    public class ConsoleWordHighlightingRule
     {
         private Regex compiledRegex;
 

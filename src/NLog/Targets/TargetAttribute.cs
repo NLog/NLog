@@ -45,9 +45,9 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetAttribute" /> class.
         /// </summary>
-        /// <param name="targetName">Name of the target.</param>
-        public TargetAttribute(string targetName)
-            : base(targetName)
+        /// <param name="name">Name of the target.</param>
+        public TargetAttribute(string name)
+            : base(name)
         {
         }
 

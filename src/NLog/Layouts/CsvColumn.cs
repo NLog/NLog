@@ -38,7 +38,8 @@ namespace NLog.Layouts
     /// <summary>
     /// A column in the CSV.
     /// </summary>
-    public class CsvColumn : INLogConfigurationItem
+    [NLogConfigurationItem]
+    public class CsvColumn 
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvColumn" /> class.

@@ -36,7 +36,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Logon provider.
     /// </summary>
-    public enum LogonProviderType : int
+    public enum LogOnProviderType : int
     {
         /// <summary>
         /// Use the standard logon provider for the system.

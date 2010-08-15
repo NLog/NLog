@@ -34,6 +34,7 @@
 namespace NLog.LogReceiverService
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 #if WCF_SUPPORTED
     using System.Runtime.Serialization;
 #endif
@@ -44,12 +45,12 @@ namespace NLog.LogReceiverService
 #if WCF_SUPPORTED
     [CollectionDataContract(ItemName = "l", Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
 #endif
-    public class ListOfStrings : List<string>
+    public class StringCollection : Collection<string>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListOfStrings"/> class.
+        /// Initializes a new instance of the <see cref="StringCollection"/> class.
         /// </summary>
-        public ListOfStrings()
+        public StringCollection()
         {
         }
     }

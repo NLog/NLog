@@ -40,7 +40,7 @@ namespace NLog.Internal
     /// <summary>
     /// Wraps <see cref="AsyncContinuation"/> with a timeout.
     /// </summary>
-    internal class TimeoutContinuation
+    internal class TimeoutContinuation : IDisposable
     {
         private AsyncContinuation asyncContinuation;
         private Timer timeoutTimer;
@@ -74,8 +74,22 @@ namespace NLog.Internal
             }
             catch (Exception ex)
             {
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+
                 ReportExceptionInHandler(ex);
             }
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.StopTimer();
+            GC.SuppressFinalize(this);
         }
 
         private static void ReportExceptionInHandler(Exception exception)

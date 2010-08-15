@@ -40,12 +40,12 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("lowercase")]
     [AmbientProperty("LowerCase")]
-    public sealed class LowerCaseLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class LowercaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LowerCaseLayoutRendererWrapper" /> class.
+        /// Initializes a new instance of the <see cref="LowercaseLayoutRendererWrapper" /> class.
         /// </summary>
-        public LowerCaseLayoutRendererWrapper()
+        public LowercaseLayoutRendererWrapper()
         {
             this.Culture = CultureInfo.InvariantCulture;
         }
@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>A value of <c>true</c> if lower case conversion should be applied; otherwise, <c>false</c>.</value>
         /// <docgen category='Transformation Options' order='10' />
-        public bool LowerCase { get; set; }
+        public bool Lowercase { get; set; }
 
         /// <summary>
         /// Gets or sets the culture used for rendering. 
@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Padded and trimmed string.</returns>
         protected override string Transform(string text)
         {
-            return this.LowerCase ? text.ToLower(this.Culture) : text;
+            return this.Lowercase ? text.ToLower(this.Culture) : text;
         }
     }
 }

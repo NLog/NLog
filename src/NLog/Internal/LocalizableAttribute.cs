@@ -1,4 +1,4 @@
-﻿// 
+// 
 // Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,12 +31,31 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Config
+#if SILVERLIGHT || NET_CF
+
+namespace System.ComponentModel
 {
+    using System;
+
     /// <summary>
-    /// Marks the object as configuration item for NLog.
+    /// Define Localizable attribute for platforms that don't have it.
     /// </summary>
-    public interface INLogConfigurationItem
+    internal class LocalizableAttribute : Attribute
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LocalizableAttribute"/> class.
+        /// </summary>
+        /// <param name="isLocalizable">Determines whether the target is localizable.</param>
+        public LocalizableAttribute(bool isLocalizable)
+        {
+            IsLocalizable = isLocalizable;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the target is localizable.
+        /// </summary>
+        public bool IsLocalizable { get; set; }
     }
 }
+
+#endif

@@ -253,9 +253,14 @@ namespace NLog.Common
                 {
                     action(cont);
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    cont(ex);
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
+                    cont(exception);
                 }
             };
         }
@@ -268,9 +273,14 @@ namespace NLog.Common
                 {
                     action(argument, cont);
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    cont(ex);
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
+                    cont(exception);
                 }
             };
         }

@@ -49,7 +49,7 @@ namespace NLog.Layouts
     /// </summary>
     internal sealed class LayoutParser
     {
-        internal static LayoutRenderer[] CompileLayout(NLogFactories nlogFactories, Tokenizer sr, bool isNested, out string text)
+        internal static LayoutRenderer[] CompileLayout(ConfigurationItemFactory configurationItemFactory, Tokenizer sr, bool isNested, out string text)
         {
             var result = new List<LayoutRenderer>();
             var literalBuf = new StringBuilder();
@@ -75,7 +75,7 @@ namespace NLog.Layouts
                         literalBuf.Length = 0;
                     }
 
-                    LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(nlogFactories, sr);
+                    LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(configurationItemFactory, sr);
                     if (CanBeConvertedToLiteral(newLayoutRenderer))
                     {
                         newLayoutRenderer = ConvertToLiteral(newLayoutRenderer);
@@ -201,13 +201,13 @@ namespace NLog.Layouts
             return nameBuf.ToString();
         }
 
-        private static LayoutRenderer ParseLayoutRenderer(NLogFactories nlogFactories, Tokenizer sr)
+        private static LayoutRenderer ParseLayoutRenderer(ConfigurationItemFactory configurationItemFactory, Tokenizer sr)
         {
             int ch = sr.Read();
             Debug.Assert(ch == '{', "'{' expected in layout specification");
 
             string name = ParseLayoutRendererName(sr);
-            LayoutRenderer lr = nlogFactories.LayoutRendererFactory.CreateInstance(name);
+            LayoutRenderer lr = configurationItemFactory.LayoutRenderers.CreateInstance(name);
 
             var wrappers = new Dictionary<Type, LayoutRenderer>();
             var orderedWrappers = new List<LayoutRenderer>();
@@ -226,13 +226,13 @@ namespace NLog.Layouts
                     {
                         Type wrapperType;
 
-                        if (nlogFactories.AmbientPropertyFactory.TryGetDefinition(parameterName, out wrapperType))
+                        if (configurationItemFactory.AmbientProperties.TryGetDefinition(parameterName, out wrapperType))
                         {
                             LayoutRenderer wrapperRenderer;
 
                             if (!wrappers.TryGetValue(wrapperType, out wrapperRenderer))
                             {
-                                wrapperRenderer = nlogFactories.AmbientPropertyFactory.CreateInstance(parameterName);
+                                wrapperRenderer = configurationItemFactory.AmbientProperties.CreateInstance(parameterName);
                                 wrappers[wrapperType] = wrapperRenderer;
                                 orderedWrappers.Add(wrapperRenderer);
                             }
@@ -258,7 +258,7 @@ namespace NLog.Layouts
                         {
                             var nestedLayout = new SimpleLayout();
                             string txt;
-                            LayoutRenderer[] renderers = CompileLayout(nlogFactories, sr, true, out txt);
+                            LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, sr, true, out txt);
 
                             nestedLayout.SetRenderers(renderers, txt);
                             pi.SetValue(parameterTarget, nestedLayout, null);
@@ -297,12 +297,12 @@ namespace NLog.Layouts
                 ch = sr.Read();
             }
 
-            lr = ApplyWrappers(nlogFactories, lr, orderedWrappers);
+            lr = ApplyWrappers(configurationItemFactory, lr, orderedWrappers);
 
             return lr;
         }
 
-        private static LayoutRenderer ApplyWrappers(NLogFactories nlogFactories, LayoutRenderer lr, List<LayoutRenderer> orderedWrappers)
+        private static LayoutRenderer ApplyWrappers(ConfigurationItemFactory configurationItemFactory, LayoutRenderer lr, List<LayoutRenderer> orderedWrappers)
         {
             for (int i = orderedWrappers.Count - 1; i >= 0; --i)
             {
@@ -313,7 +313,7 @@ namespace NLog.Layouts
                     lr = ConvertToLiteral(lr);
                 }
 
-                newRenderer.Inner = new SimpleLayout(new[] { lr }, string.Empty, nlogFactories);
+                newRenderer.Inner = new SimpleLayout(new[] { lr }, string.Empty, configurationItemFactory);
                 lr = newRenderer;
             }
 

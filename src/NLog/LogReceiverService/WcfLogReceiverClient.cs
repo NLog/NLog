@@ -44,7 +44,7 @@ namespace NLog.LogReceiverService
     /// <summary>
     /// Log Receiver Client using WCF.
     /// </summary>
-    public class WcfLogReceiverClient : ClientBase<ILogReceiverClient>, ILogReceiverClient
+    public sealed class WcfLogReceiverClient : ClientBase<ILogReceiverClient>, ILogReceiverClient
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WcfLogReceiverClient"/> class.

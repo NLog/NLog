@@ -62,10 +62,10 @@ namespace NLog.UnitTests.Layouts
         [TestMethod]
         public void LayoutRendererThrows()
         {
-            NLogFactories nlogFactories = new NLogFactories();
-            nlogFactories.LayoutRendererFactory.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
+            ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
+            configurationItemFactory.LayoutRenderers.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
             
-            SimpleLayout l = new SimpleLayout("xx${throwsException}yy", nlogFactories);
+            SimpleLayout l = new SimpleLayout("xx${throwsException}yy", configurationItemFactory);
             string output = l.Render(LogEventInfo.CreateNullEvent());
             Assert.AreEqual("xxyy", output);
         }
@@ -86,7 +86,7 @@ namespace NLog.UnitTests.Layouts
             var l = new SimpleLayout("xx${level}yy");
             Assert.AreEqual("'xx${level}yy'", l.ToString());
 
-            var l2 = new SimpleLayout(new LayoutRenderer[0], "someFakeText", NLogFactories.Default);
+            var l2 = new SimpleLayout(new LayoutRenderer[0], "someFakeText", ConfigurationItemFactory.Default);
             Assert.AreEqual("'someFakeText'", l2.ToString());
         }
 
@@ -96,10 +96,10 @@ namespace NLog.UnitTests.Layouts
             string internalLogOutput = RunAndCaptureInternalLog(
                 () => 
                     {
-                        NLogFactories nlogFactories = new NLogFactories();
-                        nlogFactories.LayoutRendererFactory.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
+                        ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
+                        configurationItemFactory.LayoutRenderers.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
 
-                        SimpleLayout l = new SimpleLayout("xx${throwsException:msg1}yy${throwsException:msg2}zz", nlogFactories);
+                        SimpleLayout l = new SimpleLayout("xx${throwsException:msg1}yy${throwsException:msg2}zz", configurationItemFactory);
                         string output = l.Render(LogEventInfo.CreateNullEvent());
                         Assert.AreEqual("xxyyzz", output);
                     }, 

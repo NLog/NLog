@@ -99,7 +99,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             try
             {
-                var id = this.CreateWindowsIdentity(NLogTestUser, Environment.MachineName, NLogTestUserPassword, SecurityLogonType.Interactive, LogonProviderType.Default, SecurityImpersonationLevel.Identification);
+                var id = this.CreateWindowsIdentity(NLogTestUser, Environment.MachineName, NLogTestUserPassword, SecurityLogOnType.Interactive, LogOnProviderType.Default, SecurityImpersonationLevel.Identification);
                 id.Impersonate();
 
                 WindowsIdentity changedIdentity = WindowsIdentity.GetCurrent();
@@ -198,7 +198,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Close(); // will not fail because Initialize() failed
         }
 
-        private WindowsIdentity CreateWindowsIdentity(string username, string domain, string password, SecurityLogonType logonType, LogonProviderType logonProviderType, SecurityImpersonationLevel impersonationLevel)
+        private WindowsIdentity CreateWindowsIdentity(string username, string domain, string password, SecurityLogOnType logonType, LogOnProviderType logonProviderType, SecurityImpersonationLevel impersonationLevel)
         {
             // initialize tokens
             var existingTokenHandle = IntPtr.Zero;

@@ -41,7 +41,7 @@ namespace NLog
     /// of strings and provides methods to output them in layouts. 
     /// Mostly for compatibility with log4net.
     /// </summary>
-    public class MappedDiagnosticsContext
+    public static class MappedDiagnosticsContext
     {
 #if !SILVERLIGHT
         private static LocalDataStoreSlot dataSlot = System.Threading.Thread.AllocateDataSlot();

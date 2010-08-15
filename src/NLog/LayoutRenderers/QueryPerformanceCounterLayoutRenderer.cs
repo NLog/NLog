@@ -45,18 +45,17 @@ namespace NLog.LayoutRenderers
     /// High precision timer, based on the value returned from QueryPerformanceCounter() optionally converted to seconds.
     /// </summary>
     [LayoutRenderer("qpc")]
-    public class QpcLayoutRenderer : LayoutRenderer
+    public class QueryPerformanceCounterLayoutRenderer : LayoutRenderer
     {
         private bool raw;
         private ulong firstQpcValue;
         private ulong lastQpcValue;
-        private bool first = true;
         private double frequency = 1;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="QpcLayoutRenderer" /> class.
+        /// Initializes a new instance of the <see cref="QueryPerformanceCounterLayoutRenderer" /> class.
         /// </summary>
-        public QpcLayoutRenderer()
+        public QueryPerformanceCounterLayoutRenderer()
         {
             this.Normalize = true;
             this.Difference = false;
@@ -107,6 +106,32 @@ namespace NLog.LayoutRenderers
         public bool AlignDecimalPoint { get; set; }
 
         /// <summary>
+        /// Initializes the layout renderer.
+        /// </summary>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+
+            ulong performanceFrequency;
+
+            if (!NativeMethods.QueryPerformanceFrequency(out performanceFrequency))
+            {
+                throw new InvalidOperationException("Cannot determine high-perfrormance counter frequency.");
+            }
+
+            ulong qpcValue;
+
+            if (!NativeMethods.QueryPerformanceCounter(out qpcValue))
+            {
+                throw new InvalidOperationException("Cannot determine high-perfrormance counter value.");
+            }
+
+            this.frequency = performanceFrequency;
+            this.firstQpcValue = qpcValue;
+            this.lastQpcValue = qpcValue;
+        }
+
+        /// <summary>
         /// Renders the ticks value of current time and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -118,23 +143,6 @@ namespace NLog.LayoutRenderers
             if (!NativeMethods.QueryPerformanceCounter(out qpcValue))
             {
                 return;
-            }
-
-            if (this.first)
-            {
-                lock (this)
-                {
-                    if (this.first)
-                    {
-                        ulong frequency;
-
-                        NativeMethods.QueryPerformanceFrequency(out frequency);
-                        this.frequency = (double)frequency;
-                        this.firstQpcValue = qpcValue;
-                        this.lastQpcValue = qpcValue;
-                        this.first = false;
-                    }
-                }
             }
 
             ulong v = qpcValue;
@@ -154,7 +162,7 @@ namespace NLog.LayoutRenderers
 
             if (this.Seconds)
             {
-                double val = Math.Round((double)qpcValue / this.frequency, this.Precision);
+                double val = Math.Round(qpcValue / this.frequency, this.Precision);
 
                 stringValue = Convert.ToString(val, CultureInfo.InvariantCulture);
                 if (this.AlignDecimalPoint)
@@ -172,7 +180,7 @@ namespace NLog.LayoutRenderers
             }
             else
             {
-                stringValue = Convert.ToString(qpcValue);
+                stringValue = Convert.ToString(qpcValue, CultureInfo.InvariantCulture);
             }
 
             builder.Append(stringValue);

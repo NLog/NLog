@@ -41,46 +41,10 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionTokenizer
     {
-        private static readonly ConditionTokenType[] charIndexToTokenType = new ConditionTokenType[128];
-        private static readonly CharToTokenType[] charToTokenType =
-        {
-            new CharToTokenType('<', ConditionTokenType.LessThan),
-            new CharToTokenType('>', ConditionTokenType.GreaterThan),
-            new CharToTokenType('=', ConditionTokenType.EqualTo),
-            new CharToTokenType('(', ConditionTokenType.LeftParen),
-            new CharToTokenType(')', ConditionTokenType.RightParen),
-            new CharToTokenType('.', ConditionTokenType.Dot),
-            new CharToTokenType(',', ConditionTokenType.Comma),
-            new CharToTokenType('!', ConditionTokenType.Not),
-            new CharToTokenType('-', ConditionTokenType.Minus),
-        };
+        private static readonly ConditionTokenType[] charIndexToTokenType = BuildCharIndexToTokenType();
 
         private string inputString;
         private int position;
-
-        /// <summary>
-        /// Initializes static members of the ConditionTokenizer class.
-        /// </summary>
-        static ConditionTokenizer()
-        {
-            for (int i = 0; i < 128; ++i)
-            {
-                charIndexToTokenType[i] = ConditionTokenType.Invalid;
-            }
-
-            foreach (CharToTokenType cht in charToTokenType)
-            {
-                // Console.WriteLine("Setting up {0} to {1}", cht.ch, cht.tokenType);
-                charIndexToTokenType[(int)cht.Character] = cht.TokenType;
-            }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ConditionTokenizer" /> class.
-        /// </summary>
-        public ConditionTokenizer()
-        {
-        }
 
         /// <summary>
         /// Gets the token position.
@@ -336,6 +300,37 @@ namespace NLog.Conditions
             }
 
             throw new ConditionParseException("Invalid token: " + ch);
+        }
+
+        private static ConditionTokenType[] BuildCharIndexToTokenType()
+        {
+            CharToTokenType[] charToTokenType =
+            {
+                new CharToTokenType('<', ConditionTokenType.LessThan),
+                new CharToTokenType('>', ConditionTokenType.GreaterThan),
+                new CharToTokenType('=', ConditionTokenType.EqualTo),
+                new CharToTokenType('(', ConditionTokenType.LeftParen),
+                new CharToTokenType(')', ConditionTokenType.RightParen),
+                new CharToTokenType('.', ConditionTokenType.Dot),
+                new CharToTokenType(',', ConditionTokenType.Comma),
+                new CharToTokenType('!', ConditionTokenType.Not),
+                new CharToTokenType('-', ConditionTokenType.Minus),
+            };
+
+            var result = new ConditionTokenType[128];
+
+            for (int i = 0; i < 128; ++i)
+            {
+                result[i] = ConditionTokenType.Invalid;
+            }
+
+            foreach (CharToTokenType cht in charToTokenType)
+            {
+                // Console.WriteLine("Setting up {0} to {1}", cht.ch, cht.tokenType);
+                result[(int)cht.Character] = cht.TokenType;
+            }
+
+            return result;
         }
 
         private void ParseSingleQuotedString(char ch)

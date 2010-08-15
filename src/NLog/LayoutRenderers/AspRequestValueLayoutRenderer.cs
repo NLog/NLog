@@ -91,20 +91,20 @@ namespace NLog.LayoutRenderers
             {
                 if (this.QueryString != null)
                 {
-                    builder.Append(this.GetItem(request.GetQueryString(), this.QueryString));
+                    builder.Append(GetItem(request.GetQueryString(), this.QueryString));
                 }
                 else if (this.Form != null)
                 {
-                    builder.Append(this.GetItem(request.GetForm(), this.Form));
+                    builder.Append(GetItem(request.GetForm(), this.Form));
                 }
                 else if (this.Cookie != null)
                 {
                     object cookie = request.GetCookies().GetItem(this.Cookie);
-                    builder.Append(Convert.ToString(AspHelper.GetComDefaultProperty(cookie)));
+                    builder.Append(Convert.ToString(AspHelper.GetComDefaultProperty(cookie), CultureInfo.InvariantCulture));
                 }
                 else if (this.ServerVariable != null)
                 {
-                    builder.Append(this.GetItem(request.GetServerVariables(), this.ServerVariable));
+                    builder.Append(GetItem(request.GetServerVariables(), this.ServerVariable));
                 }
                 else if (this.Item != null)
                 {
@@ -125,7 +125,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private string GetItem(AspHelper.IRequestDictionary dict, string key)
+        private static string GetItem(AspHelper.IRequestDictionary dict, string key)
         {
             object retVal = null;
             object o = dict.GetItem(key);

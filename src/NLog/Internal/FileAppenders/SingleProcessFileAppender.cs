@@ -110,7 +110,7 @@ namespace NLog.Internal.FileAppenders
         /// </returns>
         public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
-            throw new NotSupportedException("SimpleProcessFileAppender doesn't support GetFileInfo");
+            throw new NotSupportedException();
         }
 
         /// <summary>

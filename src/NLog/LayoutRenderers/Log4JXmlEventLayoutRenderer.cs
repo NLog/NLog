@@ -110,13 +110,13 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMDC { get; set; }
+        public bool IncludeMdc { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNDC { get; set; }
+        public bool IncludeNdc { get; set; }
 
         /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
@@ -175,11 +175,11 @@ namespace NLog.LayoutRenderers
             xtw.WriteStartElement("log4j", "event", dummyNamespace);
             xtw.WriteAttributeString("logger", logEvent.LoggerName);
             xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpper(CultureInfo.InvariantCulture));
-            xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds));
-            xtw.WriteAttributeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString());
+            xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
+            xtw.WriteAttributeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture));
 
             xtw.WriteElementString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
-            if (this.IncludeNDC)
+            if (this.IncludeNdc)
             {
                 xtw.WriteElementString("log4j", "NDC", dummyNamespace, string.Join(" ", NestedDiagnosticsContext.GetAllMessages()));
             }
@@ -222,13 +222,13 @@ namespace NLog.LayoutRenderers
 #endif
 
             xtw.WriteStartElement("log4j", "properties", dummyNamespace);
-            if (this.IncludeMDC)
+            if (this.IncludeMdc)
             {
                 foreach (KeyValuePair<string, string> entry in MappedDiagnosticsContext.ThreadDictionary)
                 {
                     xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                    xtw.WriteAttributeString("name", Convert.ToString(entry.Key));
-                    xtw.WriteAttributeString("value", Convert.ToString(entry.Value));
+                    xtw.WriteAttributeString("name", entry.Key);
+                    xtw.WriteAttributeString("value", entry.Value);
                     xtw.WriteEndElement();
                 }
             }

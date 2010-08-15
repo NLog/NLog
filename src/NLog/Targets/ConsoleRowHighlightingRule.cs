@@ -42,7 +42,8 @@ namespace NLog.Targets
     /// <summary>
     /// The row-highlighting condition.
     /// </summary>
-    public class ConsoleRowHighlightingRule : INLogConfigurationItem
+    [NLogConfigurationItem]
+    public class ConsoleRowHighlightingRule
     {
         /// <summary>
         /// Initializes static members of the ConsoleRowHighlightingRule class.

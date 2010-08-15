@@ -2,7 +2,7 @@
 @clitypes = ('bool','char','byte','string','int','long','float','double','decimal','object');
 @nonclstypes = ('sbyte','uint','ulong');
 
-$loggercs = "../src/NLog/Logger.v1.cs";
+$loggercs = "../src/NLog/Logger-V1Compat.cs";
 
 open(IN, "<$loggercs");
 open(OUT, ">$loggercs.tmp");
@@ -35,13 +35,13 @@ for $level (@levels) {
         /// <summary>
         /// Writes the diagnostic message at the $level3 level.
         /// </summary>$param0
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void $level(${arg0}object obj)
+        public void $level(${arg0}object value)
         {
             if ($isenabled)
             {
-                this.WriteToTargets($level2, "{0}", new object[] { obj });
+                this.WriteToTargets($level2, "{0}", new object[] { value });
             }
         }
 
@@ -49,13 +49,13 @@ for $level (@levels) {
         /// Writes the diagnostic message at the $level3 level.
         /// </summary>$param0
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
-        /// <param name="obj">A <see langword="object" /> to be written.</param>
+        /// <param name="value">A <see langword="object" /> to be written.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void $level(${arg0}IFormatProvider formatProvider, object obj) 
+        public void $level(${arg0}IFormatProvider formatProvider, object value) 
         {
             if ($isenabled)
             {
-                this.WriteToTargets($level2, formatProvider, "{0}", new[] { obj });
+                this.WriteToTargets($level2, formatProvider, "{0}", new[] { value });
             }
         }
 

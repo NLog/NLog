@@ -37,6 +37,7 @@ namespace NLog.Conditions
     using System.Collections.Generic;
     using System.Globalization;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -46,16 +47,16 @@ namespace NLog.Conditions
     public class ConditionParser
     {
         private readonly ConditionTokenizer tokenizer = new ConditionTokenizer();
-        private NLogFactories nlogFactories;
+        private ConfigurationItemFactory configurationItemFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionParser" /> class.
         /// </summary>
         /// <param name="expressionText">The expression text.</param>
-        /// <param name="nlogFactories">Instance of <see cref="NLogFactories"/> used to resolve references to condition methods and layout renderers.</param>
-        private ConditionParser(string expressionText, NLogFactories nlogFactories)
+        /// <param name="configurationItemFactory">Instance of <see cref="ConfigurationItemFactory"/> used to resolve references to condition methods and layout renderers.</param>
+        private ConditionParser(string expressionText, ConfigurationItemFactory configurationItemFactory)
         {
-            this.nlogFactories = nlogFactories;
+            this.configurationItemFactory = configurationItemFactory;
             this.tokenizer.InitTokenizer(expressionText ?? string.Empty);
         }
 
@@ -67,7 +68,7 @@ namespace NLog.Conditions
         /// <returns>The root of the expression syntax tree which can be used to get the value of the condition in a specified context.</returns>
         public static ConditionExpression ParseExpression(string expressionText)
         {
-            return ParseExpression(expressionText, NLogFactories.Default);
+            return ParseExpression(expressionText, ConfigurationItemFactory.Default);
         }
 
         /// <summary>
@@ -75,16 +76,16 @@ namespace NLog.Conditions
         /// <see cref="ConditionExpression"/> tree.
         /// </summary>
         /// <param name="expressionText">The expression to be parsed.</param>
-        /// <param name="nlogFactories">Instance of <see cref="NLogFactories"/> used to resolve references to condition methods and layout renderers.</param>
+        /// <param name="configurationItemFactories">Instance of <see cref="ConfigurationItemFactory"/> used to resolve references to condition methods and layout renderers.</param>
         /// <returns>The root of the expression syntax tree which can be used to get the value of the condition in a specified context.</returns>
-        public static ConditionExpression ParseExpression(string expressionText, NLogFactories nlogFactories)
+        public static ConditionExpression ParseExpression(string expressionText, ConfigurationItemFactory configurationItemFactories)
         {
             if (expressionText == null)
             {
                 return null;
             }
 
-            ConditionParser parser = new ConditionParser(expressionText, nlogFactories);
+            ConditionParser parser = new ConditionParser(expressionText, configurationItemFactories);
             ConditionExpression expression = parser.ParseExpression();
             if (!parser.tokenizer.IsEOF())
             {
@@ -113,12 +114,17 @@ namespace NLog.Conditions
 
             try
             {
-                var methodInfo = this.nlogFactories.ConditionMethodFactory.CreateInstance(functionName);
+                var methodInfo = this.configurationItemFactory.ConditionMethods.CreateInstance(functionName);
                 return new ConditionMethodExpression(functionName, methodInfo, par);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                throw new ConditionParseException("Cannot resolve function '" + functionName + "'", ex);
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                throw new ConditionParseException("Cannot resolve function '" + functionName + "'", exception);
             }
         }
 
@@ -164,7 +170,7 @@ namespace NLog.Conditions
 
             if (this.tokenizer.TokenType == ConditionTokenType.String)
             {
-                ConditionExpression e = new ConditionLayoutExpression(Layout.FromString(this.tokenizer.StringTokenValue, this.nlogFactories));
+                ConditionExpression e = new ConditionLayoutExpression(Layout.FromString(this.tokenizer.StringTokenValue, this.configurationItemFactory));
                 this.tokenizer.GetNextToken();
                 return e;
             }

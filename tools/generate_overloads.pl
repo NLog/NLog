@@ -70,6 +70,11 @@ for $level (@levels) {
         {
             if ($isenabled)
             {
+                if (messageFunc == null)
+                {
+                    throw new ArgumentNullException("messageFunc");
+                }
+
                 this.WriteToTargets($level2, null, messageFunc());
             }
         }
@@ -79,7 +84,7 @@ for $level (@levels) {
         /// </summary>$param0
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        public void ${level}Exception(${arg0}string message, Exception exception)
+        public void ${level}Exception(${arg0}[Localizable(false)] string message, Exception exception)
         {
             if ($isenabled)
             {
@@ -93,7 +98,7 @@ for $level (@levels) {
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
-        public void $level(${arg0}IFormatProvider formatProvider, string message, params object[] args)
+        public void $level(${arg0}IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         { 
             if ($isenabled)
             {
@@ -105,7 +110,7 @@ for $level (@levels) {
         /// Writes the diagnostic message at the $level3 level.
         /// </summary>$param0
         /// <param name="message">Log message.</param>
-        public void $level(${arg0}string message) 
+        public void $level(${arg0}[Localizable(false)] string message) 
         { 
             if ($isenabled)
             {
@@ -118,7 +123,7 @@ for $level (@levels) {
         /// </summary>$param0
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
-        public void $level(${arg0}string message, params object[] args) 
+        public void $level(${arg0}[Localizable(false)] string message, params object[] args) 
         { 
             if ($isenabled)
             {
@@ -133,7 +138,7 @@ for $level (@levels) {
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
-        public void $level<TArgument>(${arg0}IFormatProvider formatProvider, string message, TArgument argument)
+        public void $level<TArgument>(${arg0}IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
         { 
             if ($isenabled)
             {
@@ -147,7 +152,7 @@ for $level (@levels) {
         /// <typeparam name="TArgument">The type of the argument.</typeparam>$param0
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
-        public void $level<TArgument>(${arg0}string message, TArgument argument)
+        public void $level<TArgument>(${arg0}[Localizable(false)] string message, TArgument argument)
         { 
             if ($isenabled)
             {
@@ -164,7 +169,7 @@ for $level (@levels) {
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void $level<TArgument1, TArgument2>(${arg0}IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2) 
+        public void $level<TArgument1, TArgument2>(${arg0}IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if ($isenabled)
             {
@@ -180,7 +185,7 @@ for $level (@levels) {
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void $level<TArgument1, TArgument2>(${arg0}string message, TArgument1 argument1, TArgument2 argument2)
+        public void $level<TArgument1, TArgument2>(${arg0}[Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
         { 
             if ($isenabled)
             {
@@ -199,7 +204,7 @@ for $level (@levels) {
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void $level<TArgument1, TArgument2, TArgument3>(${arg0}IFormatProvider formatProvider, string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
+        public void $level<TArgument1, TArgument2, TArgument3>(${arg0}IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if ($isenabled)
             {
@@ -217,7 +222,7 @@ for $level (@levels) {
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void $level<TArgument1, TArgument2, TArgument3>(${arg0}string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        public void $level<TArgument1, TArgument2, TArgument3>(${arg0}[Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
             if ($isenabled)
             {

@@ -64,12 +64,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             queue.Enqueue(ev4);
             Assert.AreEqual(3, queue.RequestCount);
 
-            AsyncLogEventInfo[] logEventInfos;
-
-            int result = queue.DequeueBatch(10, out logEventInfos);
-            Assert.AreEqual(result, logEventInfos.Length);
-
-            Assert.AreEqual(3, result);
+            AsyncLogEventInfo[] logEventInfos = queue.DequeueBatch(10);
             Assert.AreEqual(0, queue.RequestCount);
 
             // ev1 is lost
@@ -102,10 +97,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             queue.Enqueue(ev4);
             Assert.AreEqual(4, queue.RequestCount);
 
-            AsyncLogEventInfo[] logEventInfos;
-
-            int result = queue.DequeueBatch(10, out logEventInfos);
-            Assert.AreEqual(result, logEventInfos.Length);
+            AsyncLogEventInfo[] logEventInfos = queue.DequeueBatch(10);
+            int result = logEventInfos.Length;
 
             Assert.AreEqual(4, result);
             Assert.AreEqual(0, queue.RequestCount);
@@ -156,7 +149,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 int left = 500 - total;
 
-                int got = queue.DequeueBatch(left, out logEventInfos);
+                logEventInfos = queue.DequeueBatch(left);
+                int got = logEventInfos.Length;
                 Assert.IsTrue(got <= queue.RequestLimit);
                 total += got;
             }
@@ -165,7 +159,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             // producer is blocked on trying to push event #510
             Assert.AreEqual(510, pushingEvent);
-            queue.DequeueBatch(1, out logEventInfos);
+            queue.DequeueBatch(1);
             total++;
             Thread.Sleep(500);
 
@@ -176,7 +170,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 int left = 1000 - total;
 
-                int got = queue.DequeueBatch(left, out logEventInfos);
+                logEventInfos = queue.DequeueBatch(left);
+                int got = logEventInfos.Length;
                 Assert.IsTrue(got <= queue.RequestLimit);
                 total += got;
             }
@@ -211,9 +206,8 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             AsyncLogEventInfo[] logEventInfos;
 
-            int result = queue.DequeueBatch(10, out logEventInfos);
-            Assert.AreEqual(result, logEventInfos.Length);
-
+            logEventInfos = queue.DequeueBatch(10);
+            int result = logEventInfos.Length;
             Assert.AreEqual(0, result);
             Assert.AreEqual(0, queue.RequestCount);
         }
