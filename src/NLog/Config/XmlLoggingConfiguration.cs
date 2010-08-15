@@ -66,7 +66,6 @@ namespace NLog.Config
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
         public XmlLoggingConfiguration(string fileName)
-            : this(fileName, false)
         {
             using (XmlReader reader = XmlReader.Create(fileName))
             {
