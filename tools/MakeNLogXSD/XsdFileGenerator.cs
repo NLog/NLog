@@ -308,6 +308,9 @@ namespace MakeNLogXSD
                 case "System.Type":
                     return "xs:string";
 
+                case "System.Uri":
+                    return "xs:anyURI";
+
                 default:
                     throw new NotSupportedException("Unknown API type '" + apiTypeName + "'.");
             }
