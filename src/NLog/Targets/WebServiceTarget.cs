@@ -124,8 +124,7 @@ namespace NLog.Targets
                     break;
 
                 case WebServiceProtocol.HttpGet:
-                    this.InvokeHttpGet(parameters);
-                    break;
+                    throw new NotSupportedException();
 
                 case WebServiceProtocol.HttpPost:
                     this.InvokeHttpPost(parameters);
@@ -243,11 +242,6 @@ namespace NLog.Targets
 
             WebResponse response = request.GetResponse();
             response.Close();
-        }
-
-        private void InvokeHttpGet(object[] parameters)
-        {
-            throw new NotSupportedException();
         }
     }
 }

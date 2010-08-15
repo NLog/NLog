@@ -43,6 +43,7 @@ namespace NLog.Targets
     /// <remarks>
     /// For more information see <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/fileio/fs/createfile.asp">http://msdn.microsoft.com/library/default.asp?url=/library/en-us/fileio/fs/createfile.asp</a>.
     /// </remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2217:DoNotMarkEnumsWithFlags", Justification = "This set of flags matches Win32 API")]
     [Flags]
     public enum Win32FileAttributes
     {

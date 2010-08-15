@@ -35,6 +35,7 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Text;
     using NLog.Filters;
@@ -189,10 +190,9 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Gets or sets the collection of log levels enabled by this rule.
+        /// Gets the collection of log levels enabled by this rule.
         /// </summary>
-        /// <value>The log levels.</value>
-        public IList<LogLevel> Levels
+        public ReadOnlyCollection<LogLevel> Levels
         {
             get
             {
@@ -207,19 +207,6 @@ namespace NLog.Config
                 }
 
                 return levels.AsReadOnly();
-            }
-
-            set
-            {
-                for (int i = 0; i <= this.logLevels.Length; ++i)
-                {
-                    this.logLevels[i] = false;
-                }
-
-                foreach (LogLevel ll in value)
-                {
-                    this.logLevels[ll.Ordinal] = true;
-                }
             }
         }
 

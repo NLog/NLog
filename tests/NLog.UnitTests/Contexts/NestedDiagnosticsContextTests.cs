@@ -59,28 +59,28 @@ namespace NLog.UnitTests.Contexts
                             try
                             {
                                 NestedDiagnosticsContext.Clear();
-                                Assert.AreEqual(string.Empty, NestedDiagnosticsContext.GetTopMessage());
+                                Assert.AreEqual(string.Empty, NestedDiagnosticsContext.TopMessage);
                                 Assert.AreEqual(string.Empty, NestedDiagnosticsContext.Pop());
                                 AssertContents(NestedDiagnosticsContext.GetAllMessages());
                                 using (NestedDiagnosticsContext.Push("foo"))
                                 {
-                                    Assert.AreEqual("foo", NestedDiagnosticsContext.GetTopMessage());
+                                    Assert.AreEqual("foo", NestedDiagnosticsContext.TopMessage);
                                     AssertContents(NestedDiagnosticsContext.GetAllMessages(), "foo");
                                     using (NestedDiagnosticsContext.Push("bar"))
                                     {
                                         AssertContents(NestedDiagnosticsContext.GetAllMessages(), "bar", "foo");
-                                        Assert.AreEqual("bar", NestedDiagnosticsContext.GetTopMessage());
+                                        Assert.AreEqual("bar", NestedDiagnosticsContext.TopMessage);
                                         NestedDiagnosticsContext.Push("baz");
                                         AssertContents(NestedDiagnosticsContext.GetAllMessages(), "baz", "bar", "foo");
-                                        Assert.AreEqual("baz", NestedDiagnosticsContext.GetTopMessage());
+                                        Assert.AreEqual("baz", NestedDiagnosticsContext.TopMessage);
                                         Assert.AreEqual("baz", NestedDiagnosticsContext.Pop());
 
                                         AssertContents(NestedDiagnosticsContext.GetAllMessages(), "bar", "foo");
-                                        Assert.AreEqual("bar", NestedDiagnosticsContext.GetTopMessage());
+                                        Assert.AreEqual("bar", NestedDiagnosticsContext.TopMessage);
                                     }
 
                                     AssertContents(NestedDiagnosticsContext.GetAllMessages(), "foo");
-                                    Assert.AreEqual("foo", NestedDiagnosticsContext.GetTopMessage());
+                                    Assert.AreEqual("foo", NestedDiagnosticsContext.TopMessage);
                                 }
 
                                 AssertContents(NestedDiagnosticsContext.GetAllMessages());
@@ -123,28 +123,28 @@ namespace NLog.UnitTests.Contexts
                         try
                         {
                             NDC.Clear();
-                            Assert.AreEqual(string.Empty, NDC.GetTopMessage());
+                            Assert.AreEqual(string.Empty, NDC.TopMessage);
                             Assert.AreEqual(string.Empty, NDC.Pop());
                             AssertContents(NDC.GetAllMessages());
                             using (NDC.Push("foo"))
                             {
-                                Assert.AreEqual("foo", NDC.GetTopMessage());
+                                Assert.AreEqual("foo", NDC.TopMessage);
                                 AssertContents(NDC.GetAllMessages(), "foo");
                                 using (NDC.Push("bar"))
                                 {
                                     AssertContents(NDC.GetAllMessages(), "bar", "foo");
-                                    Assert.AreEqual("bar", NDC.GetTopMessage());
+                                    Assert.AreEqual("bar", NDC.TopMessage);
                                     NDC.Push("baz");
                                     AssertContents(NDC.GetAllMessages(), "baz", "bar", "foo");
-                                    Assert.AreEqual("baz", NDC.GetTopMessage());
+                                    Assert.AreEqual("baz", NDC.TopMessage);
                                     Assert.AreEqual("baz", NDC.Pop());
 
                                     AssertContents(NDC.GetAllMessages(), "bar", "foo");
-                                    Assert.AreEqual("bar", NDC.GetTopMessage());
+                                    Assert.AreEqual("bar", NDC.TopMessage);
                                 }
 
                                 AssertContents(NDC.GetAllMessages(), "foo");
-                                Assert.AreEqual("foo", NDC.GetTopMessage());
+                                Assert.AreEqual("foo", NDC.TopMessage);
                             }
 
                             AssertContents(NDC.GetAllMessages());

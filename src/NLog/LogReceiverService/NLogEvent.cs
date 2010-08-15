@@ -56,6 +56,14 @@ namespace NLog.LogReceiverService
     public class NLogEvent
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="NLogEvent"/> class.
+        /// </summary>
+        public NLogEvent()
+        {
+            this.ValueIndexes = new List<int>();
+        }
+
+        /// <summary>
         /// Gets or sets the client-generated identifier of the event.
         /// </summary>
 #if WCF_SUPPORTED
@@ -113,13 +121,12 @@ namespace NLog.LogReceiverService
             get
             {
                 var sb = new StringBuilder();
-                var indexes = this.ValueIndexes ?? new int[0];
                 string separator = string.Empty;
 
-                for (int i = 0; i < indexes.Count; ++i)
+                foreach (int index in this.ValueIndexes)
                 {
                     sb.Append(separator);
-                    sb.Append(indexes[i]);
+                    sb.Append(index);
                     separator = "|";
                 }
 
@@ -128,33 +135,27 @@ namespace NLog.LogReceiverService
 
             set
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    this.ValueIndexes = new int[0];
-                }
-                else
+                this.ValueIndexes.Clear();
+                if (!string.IsNullOrEmpty(value))
                 {
                     string[] chunks = value.Split('|');
-                    var indexes = new int[chunks.Length];
 
-                    for (int i = 0; i < indexes.Length; ++i)
+                    foreach (string chunk in chunks)
                     {
-                        indexes[i] = Convert.ToInt32(chunks[i], CultureInfo.InvariantCulture);
+                        this.ValueIndexes.Add(Convert.ToInt32(chunk, CultureInfo.InvariantCulture));
                     }
-
-                    this.ValueIndexes = indexes;
                 }
             }
         }
 
         /// <summary>
-        /// Gets or sets the indexes into <see cref="NLogEvents.Strings"/> array for each layout value.
+        /// Gets the collection of indexes into <see cref="NLogEvents.Strings"/> array for each layout value.
         /// </summary>
 #if WCF_SUPPORTED
         [IgnoreDataMember]
 #endif
         [XmlIgnore]
-        public IList<int> ValueIndexes { get; set; }
+        internal IList<int> ValueIndexes { get; private set; }
 
         /// <summary>
         /// Converts the <see cref="NLogEvent"/> to <see cref="LogEventInfo"/>.

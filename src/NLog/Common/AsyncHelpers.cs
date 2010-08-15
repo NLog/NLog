@@ -73,7 +73,7 @@ namespace NLog.Common
                     return;
                 }
 
-                action(enumerator.Current, OneTimeOnly(invokeNext));
+                action(enumerator.Current, PreventMultipleCalls(invokeNext));
             };
 
             invokeNext(null);
@@ -105,7 +105,7 @@ namespace NLog.Common
                         return;
                     }
 
-                    action(OneTimeOnly(invokeNext));
+                    action(PreventMultipleCalls(invokeNext));
                 };
 
             invokeNext(null);
@@ -132,7 +132,7 @@ namespace NLog.Common
                     }
 
                     // call the action and continue
-                    action(OneTimeOnly(asyncContinuation));
+                    action(PreventMultipleCalls(asyncContinuation));
                 };
 
             return continuation;
@@ -145,6 +145,7 @@ namespace NLog.Common
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <param name="timeout">The timeout.</param>
         /// <returns>Wrapped continuation.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Continuation will be disposed of elsewhere.")]
         public static AsyncContinuation WithTimeout(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
             return new TimeoutContinuation(asyncContinuation, timeout).Function;
@@ -201,7 +202,7 @@ namespace NLog.Common
             {
                 T itemCopy = item;
 
-                ThreadPool.QueueUserWorkItem(s => action(itemCopy, OneTimeOnly(continuation)));
+                ThreadPool.QueueUserWorkItem(s => action(itemCopy, PreventMultipleCalls(continuation)));
             }
         }
 
@@ -218,7 +219,7 @@ namespace NLog.Common
             var ev = new ManualResetEvent(false);
             Exception lastException = null;
 
-            action(OneTimeOnly(ex => { lastException = ex; ev.Set(); }));
+            action(PreventMultipleCalls(ex => { lastException = ex; ev.Set(); }));
             ev.WaitOne();
             if (lastException != null)
             {
@@ -232,7 +233,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <returns>Wrapped asynchronous continuation.</returns>
-        public static AsyncContinuation OneTimeOnly(AsyncContinuation asyncContinuation)
+        public static AsyncContinuation PreventMultipleCalls(AsyncContinuation asyncContinuation)
         {
 #if !NETCF2_0
             // target is not available on .NET CF 2.0

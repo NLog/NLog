@@ -162,106 +162,107 @@ namespace NLog.LayoutRenderers
             };
 
             var sb = new StringBuilder();
-            XmlWriter xtw = XmlWriter.Create(sb, settings);
-
-            string dummyNamespace = "http://nlog-project.org/dummynamespace";
-
-            xtw.WriteStartElement("log4j", "wrapper", dummyNamespace);
-            xtw.WriteStartElement("nlog", "wrapper", dummyNamespace);
-            xtw.WriteRaw(string.Empty);
-            xtw.Flush();
-            sb.Length = 0;
-
-            xtw.WriteStartElement("log4j", "event", dummyNamespace);
-            xtw.WriteAttributeString("logger", logEvent.LoggerName);
-            xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpper(CultureInfo.InvariantCulture));
-            xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
-            xtw.WriteAttributeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture));
-
-            xtw.WriteElementString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
-            if (this.IncludeNdc)
+            using (XmlWriter xtw = XmlWriter.Create(sb, settings))
             {
-                xtw.WriteElementString("log4j", "NDC", dummyNamespace, string.Join(" ", NestedDiagnosticsContext.GetAllMessages()));
-            }
+                string dummyNamespace = "http://nlog-project.org/dummynamespace";
+
+                xtw.WriteStartElement("log4j", "wrapper", dummyNamespace);
+                xtw.WriteStartElement("nlog", "wrapper", dummyNamespace);
+                xtw.WriteRaw(string.Empty);
+                xtw.Flush();
+                sb.Length = 0;
+
+                xtw.WriteStartElement("log4j", "event", dummyNamespace);
+                xtw.WriteAttributeString("logger", logEvent.LoggerName);
+                xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpper(CultureInfo.InvariantCulture));
+                xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
+                xtw.WriteAttributeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture));
+
+                xtw.WriteElementString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
+                if (this.IncludeNdc)
+                {
+                    xtw.WriteElementString("log4j", "NDC", dummyNamespace, string.Join(" ", NestedDiagnosticsContext.GetAllMessages()));
+                }
 
 #if !NET_CF
-            if (this.IncludeCallSite || this.IncludeSourceInfo)
-            {
-                System.Diagnostics.StackFrame frame = logEvent.UserStackFrame;
-                MethodBase methodBase = frame.GetMethod();
-                Type type = methodBase.DeclaringType;
-
-                xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
-                if (type != null)
+                if (this.IncludeCallSite || this.IncludeSourceInfo)
                 {
-                    xtw.WriteAttributeString("class", type.FullName);
-                }
+                    System.Diagnostics.StackFrame frame = logEvent.UserStackFrame;
+                    MethodBase methodBase = frame.GetMethod();
+                    Type type = methodBase.DeclaringType;
 
-                xtw.WriteAttributeString("method", methodBase.ToString());
-#if !SILVERLIGHT
-                if (this.IncludeSourceInfo)
-                {
-                    xtw.WriteAttributeString("file", frame.GetFileName());
-                    xtw.WriteAttributeString("line", frame.GetFileLineNumber().ToString(CultureInfo.InvariantCulture));
-                }
-#endif
-                xtw.WriteEndElement();
-
-                if (this.IncludeNLogData)
-                {
-                    xtw.WriteElementString("nlog", "eventSequenceNumber", dummyNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
-                    xtw.WriteStartElement("nlog", "locationInfo", dummyNamespace);
+                    xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
                     if (type != null)
                     {
-                        xtw.WriteAttributeString("assembly", type.Assembly.FullName);
+                        xtw.WriteAttributeString("class", type.FullName);
                     }
 
+                    xtw.WriteAttributeString("method", methodBase.ToString());
+#if !SILVERLIGHT
+                    if (this.IncludeSourceInfo)
+                    {
+                        xtw.WriteAttributeString("file", frame.GetFileName());
+                        xtw.WriteAttributeString("line", frame.GetFileLineNumber().ToString(CultureInfo.InvariantCulture));
+                    }
+#endif
                     xtw.WriteEndElement();
+
+                    if (this.IncludeNLogData)
+                    {
+                        xtw.WriteElementString("nlog", "eventSequenceNumber", dummyNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
+                        xtw.WriteStartElement("nlog", "locationInfo", dummyNamespace);
+                        if (type != null)
+                        {
+                            xtw.WriteAttributeString("assembly", type.Assembly.FullName);
+                        }
+
+                        xtw.WriteEndElement();
+                    }
                 }
-            }
 #endif
 
-            xtw.WriteStartElement("log4j", "properties", dummyNamespace);
-            if (this.IncludeMdc)
-            {
-                foreach (KeyValuePair<string, string> entry in MappedDiagnosticsContext.ThreadDictionary)
+                xtw.WriteStartElement("log4j", "properties", dummyNamespace);
+                if (this.IncludeMdc)
+                {
+                    foreach (KeyValuePair<string, string> entry in MappedDiagnosticsContext.ThreadDictionary)
+                    {
+                        xtw.WriteStartElement("log4j", "data", dummyNamespace);
+                        xtw.WriteAttributeString("name", entry.Key);
+                        xtw.WriteAttributeString("value", entry.Value);
+                        xtw.WriteEndElement();
+                    }
+                }
+
+                foreach (NLogViewerParameterInfo parameter in this.Parameters)
                 {
                     xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                    xtw.WriteAttributeString("name", entry.Key);
-                    xtw.WriteAttributeString("value", entry.Value);
+                    xtw.WriteAttributeString("name", parameter.Name);
+                    xtw.WriteAttributeString("value", parameter.Layout.Render(logEvent));
                     xtw.WriteEndElement();
                 }
-            }
 
-            foreach (NLogViewerParameterInfo parameter in this.Parameters)
-            {
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                xtw.WriteAttributeString("name", parameter.Name);
-                xtw.WriteAttributeString("value", parameter.Layout.Render(logEvent));
+                xtw.WriteAttributeString("name", "log4japp");
+                xtw.WriteAttributeString("value", this.AppInfo);
                 xtw.WriteEndElement();
-            }
 
-            xtw.WriteStartElement("log4j", "data", dummyNamespace);
-            xtw.WriteAttributeString("name", "log4japp");
-            xtw.WriteAttributeString("value", this.AppInfo);
-            xtw.WriteEndElement();
-
-            xtw.WriteStartElement("log4j", "data", dummyNamespace);
-            xtw.WriteAttributeString("name", "log4jmachinename");
+                xtw.WriteStartElement("log4j", "data", dummyNamespace);
+                xtw.WriteAttributeString("name", "log4jmachinename");
 #if NET_CF
             xtw.WriteAttributeString("value", "netcf");
 #elif SILVERLIGHT
             xtw.WriteAttributeString("value", "silverlight");
 #else
-            xtw.WriteAttributeString("value", Environment.MachineName);
+                xtw.WriteAttributeString("value", Environment.MachineName);
 #endif
-            xtw.WriteEndElement();
-            xtw.WriteEndElement();
+                xtw.WriteEndElement();
+                xtw.WriteEndElement();
 
-            xtw.WriteEndElement();
-            xtw.Flush();
+                xtw.WriteEndElement();
+                xtw.Flush();
 
-            builder.Append(sb.ToString());
+                builder.Append(sb.ToString());
+            }
         }
     }
 }

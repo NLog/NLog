@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     /// Render environmental information related to logging events.
     /// </summary>
     [NLogConfigurationItem]
-    public abstract class LayoutRenderer : ISupportsInitialize, IRenderable
+    public abstract class LayoutRenderer : ISupportsInitialize, IRenderable, IDisposable
     {
         private const int MaxInitialRenderBufferLength = 16384;
         private int maxRenderedLength;
@@ -69,6 +69,15 @@ namespace NLog.LayoutRenderers
             }
 
             return this.GetType().Name;
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -181,6 +190,18 @@ namespace NLog.LayoutRenderers
         /// </summary>      
         protected virtual void CloseLayoutRenderer()
         {
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing">True to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.Close();
+            }
         }
     }
 }

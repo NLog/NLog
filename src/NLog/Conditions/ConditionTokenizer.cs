@@ -42,9 +42,22 @@ namespace NLog.Conditions
     internal sealed class ConditionTokenizer
     {
         private static readonly ConditionTokenType[] charIndexToTokenType = BuildCharIndexToTokenType();
+        private readonly string inputString;
 
-        private string inputString;
         private int position;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConditionTokenizer"/> class.
+        /// </summary>
+        /// <param name="expressionText">The expression text.</param>
+        public ConditionTokenizer(string expressionText)
+        {
+            this.inputString = expressionText;
+            this.position = 0;
+            this.TokenType = ConditionTokenType.BeginningOfInput;
+
+            this.GetNextToken();
+        }
 
         /// <summary>
         /// Gets the token position.
@@ -76,19 +89,6 @@ namespace NLog.Conditions
 
                 return s.Substring(1, s.Length - 2).Replace("''", "'");
             }
-        }
-
-        /// <summary>
-        /// Initializes the tokenizer with a given input string.
-        /// </summary>
-        /// <param name="inputString">The input string.</param>
-        public void InitTokenizer(string inputString)
-        {
-            this.inputString = inputString;
-            this.position = 0;
-            this.TokenType = ConditionTokenType.BeginningOfInput;
-
-            this.GetNextToken();
         }
 
         /// <summary>

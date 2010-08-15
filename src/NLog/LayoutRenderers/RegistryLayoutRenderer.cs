@@ -125,9 +125,9 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event. Ignored.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            using (RegistryKey key = this.rootKey.OpenSubKey(this.subKey))
+            using (RegistryKey registryKey = this.rootKey.OpenSubKey(this.subKey))
             {
-                builder.Append(key.GetValue(this.Value, this.DefaultValue));
+                builder.Append(registryKey.GetValue(this.Value, this.DefaultValue));
             }
         }
     }

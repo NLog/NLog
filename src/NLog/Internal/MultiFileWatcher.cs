@@ -97,12 +97,16 @@ namespace NLog.Internal
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Watcher is released in Dispose()")]
         internal void Watch(string fileName)
         {
-            var watcher = new FileSystemWatcher();
-            watcher.Path = Path.GetDirectoryName(fileName);
-            watcher.Filter = Path.GetFileName(fileName);
-            watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes;
+            var watcher = new FileSystemWatcher
+            {
+                Path = Path.GetDirectoryName(fileName),
+                Filter = Path.GetFileName(fileName),
+                NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes
+            };
+
             watcher.Created += this.OnWatcherChanged;
             watcher.Changed += this.OnWatcherChanged;
             watcher.Deleted += this.OnWatcherChanged;

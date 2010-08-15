@@ -64,7 +64,7 @@ namespace NLog.Internal
             TruncateExisting = 5,
         }
 
-        [DllImport("kernel32.dll", SetLastError = true)]
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr CreateFile(
             string lpFileName,
             FileAccess dwDesiredAccess,
@@ -75,6 +75,7 @@ namespace NLog.Internal
             IntPtr hTemplateFile);
 
         [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetFileInformationByHandle(IntPtr hFile, out BY_HANDLE_FILE_INFORMATION lpFileInformation);
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]

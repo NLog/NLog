@@ -116,14 +116,14 @@ namespace NLog.LayoutRenderers
 
             if (!NativeMethods.QueryPerformanceFrequency(out performanceFrequency))
             {
-                throw new InvalidOperationException("Cannot determine high-perfrormance counter frequency.");
+                throw new InvalidOperationException("Cannot determine high-performance counter frequency.");
             }
 
             ulong qpcValue;
 
             if (!NativeMethods.QueryPerformanceCounter(out qpcValue))
             {
-                throw new InvalidOperationException("Cannot determine high-perfrormance counter value.");
+                throw new InvalidOperationException("Cannot determine high-performance counter value.");
             }
 
             this.frequency = performanceFrequency;

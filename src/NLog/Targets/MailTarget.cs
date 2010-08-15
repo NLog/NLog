@@ -87,6 +87,7 @@ namespace NLog.Targets
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
         /// </remarks>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "This one is safe.")]
         public MailTarget()
         {
             this.Body = "${message}${newline}";
@@ -203,6 +204,7 @@ namespace NLog.Targets
         [DefaultValue(25)]
         public int SmtpPort { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method.")]
         internal virtual ISmtpClient CreateSmtpClient()
         {
             return new MySmtpClient();
@@ -248,9 +250,9 @@ namespace NLog.Targets
                     }
                 }
 
-                for (int i = 0; i < events.Count; ++i)
+                foreach (AsyncLogEventInfo eventInfo in events)
                 {
-                    bodyBuffer.Append(this.Layout.Render(events[i].LogEvent));
+                    bodyBuffer.Append(this.Layout.Render(eventInfo.LogEvent));
                     if (this.AddNewLines)
                     {
                         bodyBuffer.Append("\n");
@@ -266,29 +268,33 @@ namespace NLog.Targets
                     }
                 }
 
-                var msg = new MailMessage();
-                this.SetupMailMessage(msg, lastEvent);
-                msg.Body = bodyBuffer.ToString();
-
-                ISmtpClient client = this.CreateSmtpClient();
-                client.Host = this.SmtpServer.Render(lastEvent);
-                client.Port = this.SmtpPort;
-                if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
+                using (var msg = new MailMessage())
                 {
-                    client.Credentials = CredentialCache.DefaultNetworkCredentials;
-                }
-                else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
-                {
-                    client.Credentials = new NetworkCredential(this.SmtpUserName.Render(lastEvent), this.SmtpPassword.Render(lastEvent));
-                }
+                    this.SetupMailMessage(msg, lastEvent);
+                    msg.Body = bodyBuffer.ToString();
 
-                client.EnableSsl = this.EnableSsl;
-                InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, this.SmtpServer);
-                client.Send(msg);
+                    using (ISmtpClient client = this.CreateSmtpClient())
+                    {
+                        client.Host = this.SmtpServer.Render(lastEvent);
+                        client.Port = this.SmtpPort;
+                        if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
+                        {
+                            client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                        }
+                        else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
+                        {
+                            client.Credentials = new NetworkCredential(this.SmtpUserName.Render(lastEvent), this.SmtpPassword.Render(lastEvent));
+                        }
 
-                foreach (var ev in events)
-                {
-                    ev.Continuation(null);
+                        client.EnableSsl = this.EnableSsl;
+                        InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, this.SmtpServer);
+                        client.Send(msg);
+
+                        foreach (var ev in events)
+                        {
+                            ev.Continuation(null);
+                        }
+                    }
                 }
             }
             catch (Exception exception)

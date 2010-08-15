@@ -46,14 +46,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("performancecounter")]
     public class PerformanceCounterLayoutRenderer : LayoutRenderer
     {
-        private PerformanceCounter perfCounter = null;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PerformanceCounterLayoutRenderer" /> class.
-        /// </summary>
-        public PerformanceCounterLayoutRenderer()
-        {
-        }
+        private PerformanceCounter perfCounter;
 
         /// <summary>
         /// Gets or sets the name of the counter category.

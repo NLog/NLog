@@ -43,7 +43,7 @@ namespace NLog.Internal.FileAppenders
     /// <summary>
     /// Base class for optimized file appenders.
     /// </summary>
-    internal abstract class BaseFileAppender
+    internal abstract class BaseFileAppender : IDisposable
     {
         private readonly Random random = new Random();
 
@@ -107,6 +107,27 @@ namespace NLog.Internal.FileAppenders
         /// <param name="fileLength">Length of the file.</param>
         /// <returns>True if the operation succeeded, false otherwise.</returns>
         public abstract bool GetFileInfo(out DateTime lastWriteTime, out long fileLength);
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing">True to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.Close();
+            }
+        }
 
         /// <summary>
         /// Records the last write time for a file.

@@ -131,13 +131,17 @@ namespace NLog.Internal
         /// <param name="showMinimized">If set to <c>true</c> the form will be minimized.</param>
         /// <param name="toolWindow">If set to <c>true</c> the form will be created as tool window.</param>
         /// <returns>Created form.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "System.Windows.Forms.Control.set_Text(System.String)", Justification = "Does not need to be localized.")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using property names in message.")]
         internal static Form CreateForm(string name, int width, int height, bool show, bool showMinimized, bool toolWindow)
         {
-            var f = new Form();
-            f.Name = name;
-            f.Text = "NLog";
-            f.Icon = GetNLogIcon();
+            var f = new Form
+            {
+                Name = name,
+                Text = "NLog",
+                Icon = GetNLogIcon()
+            };
 
 #if !Smartphone
             if (toolWindow)

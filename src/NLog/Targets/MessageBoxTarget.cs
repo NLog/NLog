@@ -94,6 +94,7 @@ namespace NLog.Targets
         /// parameter.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "This is just debugging output.")]
         protected override void Write(LogEventInfo logEvent)
         {
 #if SILVERLIGHT
@@ -108,6 +109,7 @@ namespace NLog.Targets
         /// parameter.
         /// </summary>
         /// <param name="logEvents">The array of logging events.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "This is just debugging output.")]
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
             if (logEvents.Length == 0)

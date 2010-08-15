@@ -52,6 +52,7 @@ namespace NLog
         private const int StackTraceSkipMethods = 0;
         private static readonly Assembly nlogAssembly = typeof(LoggerImpl).Assembly;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
         internal static void Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
         {
             if (targets == null)

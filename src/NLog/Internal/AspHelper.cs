@@ -160,9 +160,6 @@ namespace NLog.Internal
             object GetKey(object key);
         }
 
-        [DllImport("ole32.dll")]
-        static extern int CoGetObjectContext(ref Guid iid, out IObjectContext g);
-
         static Guid IID_IObjectContext = new Guid("51372ae0-cae7-11cf-be81-00aa00a2fa25");
 
         public static ISessionObject GetSessionObject()
@@ -170,7 +167,7 @@ namespace NLog.Internal
             ISessionObject session = null;
 
             IObjectContext obj;
-            if (0 == CoGetObjectContext(ref IID_IObjectContext, out obj))
+            if (0 == NativeMethods.CoGetObjectContext(ref IID_IObjectContext, out obj))
             {
                 IGetContextProperties prop = (IGetContextProperties)obj;
                 if (prop != null)
@@ -188,7 +185,7 @@ namespace NLog.Internal
             IApplicationObject app = null;
 
             IObjectContext obj;
-            if (0 == CoGetObjectContext(ref IID_IObjectContext, out obj))
+            if (0 == NativeMethods.CoGetObjectContext(ref IID_IObjectContext, out obj))
             {
                 IGetContextProperties prop = (IGetContextProperties)obj;
                 if (prop != null)
@@ -206,7 +203,7 @@ namespace NLog.Internal
             IRequest request = null;
 
             IObjectContext obj;
-            if (0 == CoGetObjectContext(ref IID_IObjectContext, out obj))
+            if (0 == NativeMethods.CoGetObjectContext(ref IID_IObjectContext, out obj))
             {
                 IGetContextProperties prop = (IGetContextProperties)obj;
                 if (prop != null)
@@ -224,7 +221,7 @@ namespace NLog.Internal
             IResponse Response = null;
 
             IObjectContext obj;
-            if (0 == CoGetObjectContext(ref IID_IObjectContext, out obj))
+            if (0 == NativeMethods.CoGetObjectContext(ref IID_IObjectContext, out obj))
             {
                 IGetContextProperties prop = (IGetContextProperties)obj;
                 if (prop != null)
@@ -244,7 +241,6 @@ namespace NLog.Internal
                 return null;
             return o.GetType().InvokeMember(string.Empty, BindingFlags.GetProperty, null, o, new object[] { }, CultureInfo.InvariantCulture);
         }
-
     }
 }
 

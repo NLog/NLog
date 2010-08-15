@@ -146,9 +146,9 @@ namespace NLog.LayoutRenderers
             sb.Append(ex.GetType().Name);
         }
 
-        private void CompileFormat(string format)
+        private void CompileFormat(string formatSpecifier)
         {
-            string[] parts = format.Replace(" ", string.Empty).Split(',');
+            string[] parts = formatSpecifier.Replace(" ", string.Empty).Split(',');
             var dataTargets = new List<ExceptionDataTarget>();
 
             foreach (string s in parts)

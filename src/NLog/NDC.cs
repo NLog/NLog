@@ -42,6 +42,15 @@ namespace NLog
     public static class NDC
     {
         /// <summary>
+        /// Gets the top NDC message but doesn't remove it.
+        /// </summary>
+        /// <returns>The top message. .</returns>
+        public static string TopMessage
+        {
+            get { return NestedDiagnosticsContext.TopMessage; }
+        }
+
+        /// <summary>
         /// Pushes the specified text on current thread NDC.
         /// </summary>
         /// <param name="text">The text to be pushed.</param>
@@ -58,15 +67,6 @@ namespace NLog
         public static string Pop()
         {
             return NestedDiagnosticsContext.Pop();
-        }
-
-        /// <summary>
-        /// Gets the top NDC message but doesn't remove it.
-        /// </summary>
-        /// <returns>The top message. .</returns>
-        public static string GetTopMessage()
-        {
-            return NestedDiagnosticsContext.GetTopMessage();
         }
 
         /// <summary>

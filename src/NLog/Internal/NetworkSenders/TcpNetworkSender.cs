@@ -44,10 +44,11 @@ namespace NLog.Internal.NetworkSenders
     /// </summary>
     internal class TcpNetworkSender : NetworkSender
     {
+        private readonly Queue<SocketAsyncEventArgs> pendingRequests = new Queue<SocketAsyncEventArgs>();
+
         private ISocket socket;
         private Exception pendingError;
         private bool asyncOperationInProgress;
-        private Queue<SocketAsyncEventArgs> pendingRequests = new Queue<SocketAsyncEventArgs>();
         private AsyncContinuation closeContinuation;
         private AsyncContinuation flushContinuation;
 
@@ -71,6 +72,7 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="socketType">Type of the socket.</param>
         /// <param name="protocolType">Type of the protocol.</param>
         /// <returns>Instance of <see cref="ISocket" /> which represents the socket.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method")]
         protected internal virtual ISocket CreateSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
         {
             return new SocketProxy(addressFamily, socketType, protocolType);
@@ -79,6 +81,7 @@ namespace NLog.Internal.NetworkSenders
         /// <summary>
         /// Performs sender-specific initialization.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Object is disposed in the event handler.")]
         protected override void DoInitialize()
         {
             var args = new MySocketAsyncEventArgs();
@@ -141,6 +144,7 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="length">Number of bytes to send.</param>
         /// <param name="asyncContinuation">The async continuation to be invoked after the buffer has been sent.</param>
         /// <remarks>To be overridden in inheriting classes.</remarks>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Object is disposed in the event handler.")]
         protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
             var args = new MySocketAsyncEventArgs();

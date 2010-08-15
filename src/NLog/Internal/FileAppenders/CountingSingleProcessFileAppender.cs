@@ -46,7 +46,7 @@ namespace NLog.Internal.FileAppenders
 
         private FileStream file;
 
-        private long fileLength;
+        private long currentFileLength;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CountingSingleProcessFileAppender" /> class.
@@ -60,12 +60,12 @@ namespace NLog.Internal.FileAppenders
             if (fi.Exists)
             {
                 this.FileTouched(fi.LastWriteTime);
-                this.fileLength = fi.Length;
+                this.currentFileLength = fi.Length;
             }
             else
             {
                 this.FileTouched();
-                this.fileLength = 0;
+                this.currentFileLength = 0;
             }
 
             this.file = this.CreateFileStream(false);
@@ -106,7 +106,7 @@ namespace NLog.Internal.FileAppenders
         public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
             lastWriteTime = this.LastWriteTime;
-            fileLength = this.fileLength;
+            fileLength = this.currentFileLength;
             return true;
         }
 
@@ -121,7 +121,7 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            this.fileLength += bytes.Length;
+            this.currentFileLength += bytes.Length;
             this.file.Write(bytes, 0, bytes.Length);
             this.FileTouched();
         }

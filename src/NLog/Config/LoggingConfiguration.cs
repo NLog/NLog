@@ -62,6 +62,20 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Gets a collection of named targets specified in the configuration.
+        /// </summary>
+        /// <returns>
+        /// A list of named targets.
+        /// </returns>
+        /// <remarks>
+        /// Unnamed targets (such as those wrapped by other targets) are not returned.
+        /// </remarks>
+        public ReadOnlyCollection<Target> ConfiguredNamedTargets
+        {
+            get { return new List<Target>(this.targets.Values).AsReadOnly(); }
+        }
+
+        /// <summary>
         /// Gets the collection of file names which should be watched for changes by NLog.
         /// </summary>
         public virtual IEnumerable<string> FileNamesToWatch
@@ -121,20 +135,6 @@ namespace NLog.Config
             }
 
             return value;
-        }
-
-        /// <summary>
-        /// Returns a collection of named targets specified in the configuration.
-        /// </summary>
-        /// <returns>
-        /// A list of named targets.
-        /// </returns>
-        /// <remarks>
-        /// Unnamed targets (such as those wrapped by other targets) are not returned.
-        /// </remarks>
-        public IList<Target> GetConfiguredNamedTargets()
-        {
-            return new List<Target>(this.targets.Values);
         }
 
         /// <summary>
@@ -283,19 +283,19 @@ namespace NLog.Config
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         internal void FlushAllTargets(AsyncContinuation asyncContinuation)
         {
-            var targets = new List<Target>();
+            var uniqueTargets = new List<Target>();
             foreach (var rule in this.LoggingRules)
             {
                 foreach (var t in rule.Targets)
                 {
-                    if (!targets.Contains(t))
+                    if (!uniqueTargets.Contains(t))
                     {
-                        targets.Add(t);
+                        uniqueTargets.Add(t);
                     }
                 }
             }
 
-            AsyncHelpers.ForEachItemInParallel(targets, asyncContinuation, (target, cont) => target.Flush(cont));
+            AsyncHelpers.ForEachItemInParallel(uniqueTargets, asyncContinuation, (target, cont) => target.Flush(cont));
         }
 
         /// <summary>

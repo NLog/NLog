@@ -47,23 +47,26 @@ namespace NLog.Internal
     /// </summary>
     internal class Win32ThreadIDHelper : ThreadIDHelper
     {
-        private int currentProcessID;
+        private readonly int currentProcessID;
 
-        private string currentProcessName;
+        private readonly string currentProcessName;
 
-        private string currentProcessBaseName;
+        private readonly string currentProcessBaseName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Win32ThreadIDHelper" /> class.
         /// </summary>
         public Win32ThreadIDHelper()
         {
-            this.currentProcessID = GetCurrentProcessId();
+            this.currentProcessID = NativeMethods.GetCurrentProcessId();
 
             var sb = new StringBuilder(512);
-            GetModuleFileName(IntPtr.Zero, sb, sb.Capacity);
-            this.currentProcessName = sb.ToString();
+            if (0 == NativeMethods.GetModuleFileName(IntPtr.Zero, sb, sb.Capacity))
+            {
+                throw new InvalidOperationException("Cannot determine program name.");
+            }
 
+            this.currentProcessName = sb.ToString();
             this.currentProcessBaseName = Path.GetFileNameWithoutExtension(this.currentProcessName);
         }
 
@@ -102,23 +105,6 @@ namespace NLog.Internal
         {
             get { return this.currentProcessBaseName; }
         }
-
-#if !NET_CF
-        [DllImport("kernel32.dll")]
-        private static extern int GetCurrentProcessId();
-
-        [SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation",
-            Justification = "Reviewed. Suppression is OK here.")]
-        [DllImport("kernel32.dll", SetLastError = true, PreserveSig = true)]
-        private static extern uint GetModuleFileName(
-            [In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] [MarshalAs(UnmanagedType.U4)] int nSize);
-#else
-        [DllImport("coredll.dll")]
-        private static extern int GetCurrentProcessId();
-
-        [DllImport("coredll.dll", SetLastError=true)]
-        private static extern uint GetModuleFileName([In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] int nSize);
-#endif
     }
 }
 

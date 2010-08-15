@@ -55,9 +55,9 @@ namespace NLog.Config
     /// </summary>
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
-        private ConfigurationItemFactory configurationItemFactory = ConfigurationItemFactory.Default;
-        private Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
-        private Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private readonly ConfigurationItemFactory configurationItemFactory = ConfigurationItemFactory.Default;
+        private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
 
@@ -72,42 +72,6 @@ namespace NLog.Config
                 this.Initialize(reader, fileName, false);
             }
         }
-
-#if !SILVERLIGHT
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
-        /// </summary>
-        /// <param name="element">The XML element.</param>
-        /// <param name="fileName">Name of the XML file.</param>
-        public XmlLoggingConfiguration(XmlElement element, string fileName)
-        {
-            using (var stringReader = new StringReader(element.OuterXml))
-            {
-                using (XmlReader reader = XmlReader.Create(stringReader))
-                {
-                    this.Initialize(reader, fileName, false);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
-        /// </summary>
-        /// <param name="element">The XML element.</param>
-        /// <param name="fileName">Name of the XML file.</param>
-        /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
-        public XmlLoggingConfiguration(XmlElement element, string fileName, bool ignoreErrors)
-        {
-            using (var stringReader = new StringReader(element.OuterXml))
-            {
-                using (XmlReader reader = XmlReader.Create(stringReader))
-                {
-                    this.Initialize(reader, fileName, ignoreErrors);
-                }
-            }
-        }
-#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
@@ -142,6 +106,39 @@ namespace NLog.Config
         {
             this.Initialize(reader, fileName, ignoreErrors);
         }
+
+#if !SILVERLIGHT
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
+        /// </summary>
+        /// <param name="element">The XML element.</param>
+        /// <param name="fileName">Name of the XML file.</param>
+        internal XmlLoggingConfiguration(XmlElement element, string fileName)
+        {
+            using (var stringReader = new StringReader(element.OuterXml))
+            {
+                XmlReader reader = XmlReader.Create(stringReader);
+
+                this.Initialize(reader, fileName, false);
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
+        /// </summary>
+        /// <param name="element">The XML element.</param>
+        /// <param name="fileName">Name of the XML file.</param>
+        /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
+        internal XmlLoggingConfiguration(XmlElement element, string fileName, bool ignoreErrors)
+        {
+            using (var stringReader = new StringReader(element.OuterXml))
+            {
+                XmlReader reader = XmlReader.Create(stringReader);
+
+                this.Initialize(reader, fileName, ignoreErrors);
+            }
+        }
+#endif
 
 #if !NET_CF && !SILVERLIGHT
         /// <summary>
@@ -203,6 +200,18 @@ namespace NLog.Config
         {
             s = s.Replace(" ", string.Empty); // get rid of the whitespace
             return s;
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Target is disposed elsewhere.")]
+        private static Target WrapWithAsyncTargetWrapper(Target target)
+        {
+            var asyncTargetWrapper = new AsyncTargetWrapper();
+            asyncTargetWrapper.WrappedTarget = target;
+            asyncTargetWrapper.Name = target.Name;
+            target.Name = target.Name + "_wrapped";
+            InternalLogger.Debug("Wrapping target '{0}' with AsyncTargetWrapper and renaming to '{1}", asyncTargetWrapper.Name, target.Name);
+            target = asyncTargetWrapper;
+            return target;
         }
 
         /// <summary>
@@ -521,12 +530,7 @@ namespace NLog.Config
 
                         if (asyncWrap)
                         {
-                            var atw = new AsyncTargetWrapper();
-                            atw.WrappedTarget = newTarget;
-                            atw.Name = newTarget.Name;
-                            newTarget.Name = newTarget.Name + "_wrapped";
-                            InternalLogger.Debug("Wrapping target '{0}' with AsyncTargetWrapper and renaming to '{1}", atw.Name, newTarget.Name);
-                            newTarget = atw;
+                            newTarget = WrapWithAsyncTargetWrapper(newTarget);
                         }
 
                         if (defaultWrapperElement != null)

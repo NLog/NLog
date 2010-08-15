@@ -35,13 +35,14 @@
 
 namespace NLog.Internal
 {
+    using System;
     using System.Net;
     using System.Net.Mail;
 
     /// <summary>
     /// Supports mocking of SMTP Client code.
     /// </summary>
-    internal interface ISmtpClient
+    internal interface ISmtpClient : IDisposable
     {
         string Host { get; set; }
 

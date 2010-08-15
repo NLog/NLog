@@ -309,8 +309,7 @@ namespace NLog.UnitTests.Conditions
         [ExpectedException(typeof(ConditionParseException))]
         public void TokenizerEOFTest()
         {
-            var tokenizer = new ConditionTokenizer();
-            tokenizer.InitTokenizer(string.Empty);
+            var tokenizer = new ConditionTokenizer(string.Empty);
             tokenizer.GetNextToken();
         }
 

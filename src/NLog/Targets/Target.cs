@@ -120,7 +120,7 @@ namespace NLog.Targets
                     return;
                 }
 
-                asyncContinuation = AsyncHelpers.OneTimeOnly(asyncContinuation);
+                asyncContinuation = AsyncHelpers.PreventMultipleCalls(asyncContinuation);
 
                 try
                 {
@@ -190,7 +190,7 @@ namespace NLog.Targets
                     return;
                 }
 
-                var wrappedContinuation = AsyncHelpers.OneTimeOnly(logEvent.Continuation);
+                var wrappedContinuation = AsyncHelpers.PreventMultipleCalls(logEvent.Continuation);
 
                 try
                 {
@@ -229,7 +229,7 @@ namespace NLog.Targets
                 var wrappedEvents = new AsyncLogEventInfo[logEvents.Length];
                 for (int i = 0; i < logEvents.Length; ++i)
                 {
-                    wrappedEvents[i] = logEvents[i].LogEvent.WithContinuation(AsyncHelpers.OneTimeOnly(logEvents[i].Continuation));
+                    wrappedEvents[i] = logEvents[i].LogEvent.WithContinuation(AsyncHelpers.PreventMultipleCalls(logEvents[i].Continuation));
                 }
 
                 try

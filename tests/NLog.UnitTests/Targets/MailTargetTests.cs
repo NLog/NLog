@@ -385,6 +385,10 @@ namespace NLog.UnitTests.Targets
                     throw new InvalidOperationException("Some SMTP error.");
                 }
             }
+
+            public void Dispose()
+            {
+            }
         }
 
         public class MockMailTarget : MailTarget

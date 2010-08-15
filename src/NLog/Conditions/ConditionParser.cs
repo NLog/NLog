@@ -46,8 +46,8 @@ namespace NLog.Conditions
     /// </summary>
     public class ConditionParser
     {
-        private readonly ConditionTokenizer tokenizer = new ConditionTokenizer();
-        private ConfigurationItemFactory configurationItemFactory;
+        private readonly ConditionTokenizer tokenizer;
+        private readonly ConfigurationItemFactory configurationItemFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionParser" /> class.
@@ -57,7 +57,7 @@ namespace NLog.Conditions
         private ConditionParser(string expressionText, ConfigurationItemFactory configurationItemFactory)
         {
             this.configurationItemFactory = configurationItemFactory;
-            this.tokenizer.InitTokenizer(expressionText ?? string.Empty);
+            this.tokenizer = new ConditionTokenizer(expressionText ?? string.Empty);
         }
 
         /// <summary>

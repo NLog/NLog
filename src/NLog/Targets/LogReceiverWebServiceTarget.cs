@@ -188,7 +188,8 @@ namespace NLog.Targets
             return networkLogEvents;
         }
 
-        private void Send(NLogEvents events, AsyncLogEventInfo[] asyncContinuations)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Client is disposed asynchronously.")]
+        private void Send(NLogEvents events, IEnumerable<AsyncLogEventInfo> asyncContinuations)
         {
 #if WCF_SUPPORTED
             WcfLogReceiverClient client;
@@ -306,7 +307,6 @@ namespace NLog.Targets
             nlogEvent.LevelOrdinal = eventInfo.Level.Ordinal;
             nlogEvent.LoggerOrdinal = GetStringOrdinal(context, stringTable, eventInfo.LoggerName);
             nlogEvent.TimeDelta = eventInfo.TimeStamp.ToUniversalTime().Ticks - context.BaseTimeUtc;
-            nlogEvent.ValueIndexes = new List<int>();   
 
             for (int i = 0; i < this.Parameters.Count; ++i)
             {

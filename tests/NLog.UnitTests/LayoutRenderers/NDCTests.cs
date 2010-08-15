@@ -176,12 +176,12 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
             Assert.AreEqual(String.Empty, NestedDiagnosticsContext.Pop());
-            Assert.AreEqual(String.Empty, NestedDiagnosticsContext.GetTopMessage());
+            Assert.AreEqual(String.Empty, NestedDiagnosticsContext.TopMessage);
             NestedDiagnosticsContext.Push("zzz");
-            Assert.AreEqual("zzz", NestedDiagnosticsContext.GetTopMessage());
+            Assert.AreEqual("zzz", NestedDiagnosticsContext.TopMessage);
             NestedDiagnosticsContext.Clear();
             Assert.AreEqual(String.Empty, NestedDiagnosticsContext.Pop());
-            Assert.AreEqual(String.Empty, NestedDiagnosticsContext.GetTopMessage());
+            Assert.AreEqual(String.Empty, NestedDiagnosticsContext.TopMessage);
         }
 
         [TestMethod]

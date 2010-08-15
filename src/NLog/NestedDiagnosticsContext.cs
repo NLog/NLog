@@ -50,6 +50,26 @@ namespace NLog
         private static Stack<string> threadStack;
 #endif
 
+        /// <summary>
+        /// Gets the top NDC message but doesn't remove it.
+        /// </summary>
+        /// <returns>The top message. .</returns>
+        public static string TopMessage
+        {
+            get
+            {
+                Stack<string> stack = ThreadStack;
+                if (stack.Count > 0)
+                {
+                    return stack.Peek();
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            }
+        }
+
 #if SILVERLIGHT
         private static Stack<string> ThreadStack
         {
@@ -104,23 +124,6 @@ namespace NLog
             if (stack.Count > 0)
             {
                 return stack.Pop();
-            }
-            else
-            {
-                return String.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Gets the top NDC message but doesn't remove it.
-        /// </summary>
-        /// <returns>The top message. .</returns>
-        public static string GetTopMessage()
-        {
-            Stack<string> stack = ThreadStack;
-            if (stack.Count > 0)
-            {
-                return stack.Peek();
             }
             else
             {

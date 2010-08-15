@@ -36,8 +36,10 @@
 namespace NLog.Internal
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
     using System.Security;
+    using System.Text;
 
     internal static class NativeMethods
     {
@@ -86,7 +88,7 @@ namespace NLog.Internal
         }
 
         // obtains user token
-        [DllImport("advapi32.dll", SetLastError = true)]
+        [DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool LogonUser(string pszUsername, string pszDomain, string pszPassword, int dwLogonType, int dwLogonProvider, out IntPtr phToken);
 
@@ -100,11 +102,12 @@ namespace NLog.Internal
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool DuplicateToken(IntPtr existingTokenHandle, int impersonationLevel, out IntPtr duplicateTokenHandle);
 
-        [DllImport("kernel32.dll")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2205:UseManagedEquivalentsOfWin32Api", Justification = "We specifically need this API")]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         internal static extern void OutputDebugString(string message);
 
 #if !NET_CF
-        [DllImport("kernel32.dll"), SuppressUnmanagedCodeSecurity]
+        [DllImport("kernel32.dll")]
 #else
         [DllImport("coredll.dll")]
 #endif
@@ -112,12 +115,33 @@ namespace NLog.Internal
         internal static extern bool QueryPerformanceCounter(out ulong lpPerformanceCount);
 
 #if !NET_CF
-        [DllImport("kernel32.dll"), SuppressUnmanagedCodeSecurity]
+        [DllImport("kernel32.dll")]
 #else
         [DllImport("coredll.dll")]
 #endif
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool QueryPerformanceFrequency(out ulong lpPerformanceFrequency);
+
+#if !NET_CF
+        [DllImport("kernel32.dll")]
+#else
+        [DllImport("coredll.dll")]
+#endif
+        internal static extern int GetCurrentProcessId();
+
+        [SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation",
+            Justification = "Reviewed. Suppression is OK here.")]
+#if !NET_CF
+        [DllImport("kernel32.dll", SetLastError = true, PreserveSig = true, CharSet = CharSet.Unicode)]
+#else
+        [DllImport("coredll.dll", SetLastError = true, PreserveSig = true, CharSet = CharSet.Unicode)]
+#endif
+        internal static extern uint GetModuleFileName([In] IntPtr hModule, [Out] StringBuilder lpFilename, [In] [MarshalAs(UnmanagedType.U4)] int nSize);
+
+#if !NET_CF
+        [DllImport("ole32.dll")]
+        internal static extern int CoGetObjectContext(ref Guid iid, out AspHelper.IObjectContext g);
+#endif
     }
 }
 
