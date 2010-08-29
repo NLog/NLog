@@ -35,14 +35,20 @@
 
 namespace NLog.Internal
 {
+    using System;
+    using System.Diagnostics;
     using System.IO;
+    using System.Threading;
 
     /// <summary>
     /// Portable implementation of <see cref="ThreadIDHelper"/>.
     /// </summary>
     internal class PortableThreadIDHelper : ThreadIDHelper
     {
-        private int currentProcessID;
+        private const string UnknownProcessName = "<unknown>";
+
+        private readonly int currentProcessID;
+
         private string currentProcessName;
         private string currentProcessBaseName;
 
@@ -51,9 +57,7 @@ namespace NLog.Internal
         /// </summary>
         public PortableThreadIDHelper()
         {
-            this.currentProcessID = System.Diagnostics.Process.GetCurrentProcess().Id;
-            this.currentProcessName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-            this.currentProcessBaseName = Path.GetFileNameWithoutExtension(this.currentProcessName);
+            this.currentProcessID = Process.GetCurrentProcess().Id;
         }
 
         /// <summary>
@@ -62,10 +66,7 @@ namespace NLog.Internal
         /// <value></value>
         public override int CurrentThreadID
         {
-            get
-            {
-                return System.Threading.Thread.CurrentThread.ManagedThreadId;
-            }
+            get { return Thread.CurrentThread.ManagedThreadId; }
         }
 
         /// <summary>
@@ -83,7 +84,11 @@ namespace NLog.Internal
         /// <value></value>
         public override string CurrentProcessName
         {
-            get { return this.currentProcessName; }
+            get
+            {
+                this.GetProcessName();
+                return this.currentProcessName;
+            }
         }
 
         /// <summary>
@@ -92,7 +97,36 @@ namespace NLog.Internal
         /// <value></value>
         public override string CurrentProcessBaseName
         {
-            get { return this.currentProcessBaseName; }
+            get
+            {
+                this.GetProcessName();
+                return this.currentProcessBaseName;
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of the process.
+        /// </summary>
+        private void GetProcessName()
+        {
+            if (this.currentProcessName == null)
+            {
+                try
+                {
+                    this.currentProcessName = Process.GetCurrentProcess().MainModule.FileName;
+                }
+                catch (Exception exception)
+                {
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
+                    this.currentProcessName = UnknownProcessName;
+                }
+
+                this.currentProcessBaseName = Path.GetFileNameWithoutExtension(this.currentProcessName);
+            }
         }
     }
 }

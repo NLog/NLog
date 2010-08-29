@@ -51,7 +51,11 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("log4jxmlevent")]
     public class Log4JXmlEventLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
-        private static DateTime log4jDateBase = new DateTime(1970, 1, 1);
+        private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);
+
+        private static readonly string dummyNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
+
+        private static readonly string dummyNLogNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
@@ -159,20 +163,14 @@ namespace NLog.LayoutRenderers
             {
                 Indent = this.IndentXml,
                 ConformanceLevel = ConformanceLevel.Fragment,
+                IndentChars = "  ",
             };
 
             var sb = new StringBuilder();
             using (XmlWriter xtw = XmlWriter.Create(sb, settings))
             {
-                string dummyNamespace = "http://nlog-project.org/dummynamespace";
-
-                xtw.WriteStartElement("log4j", "wrapper", dummyNamespace);
-                xtw.WriteStartElement("nlog", "wrapper", dummyNamespace);
-                xtw.WriteRaw(string.Empty);
-                xtw.Flush();
-                sb.Length = 0;
-
                 xtw.WriteStartElement("log4j", "event", dummyNamespace);
+                xtw.WriteAttributeString("xmlns", "nlog", null, dummyNLogNamespace);
                 xtw.WriteAttributeString("logger", logEvent.LoggerName);
                 xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpper(CultureInfo.InvariantCulture));
                 xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
@@ -209,8 +207,8 @@ namespace NLog.LayoutRenderers
 
                     if (this.IncludeNLogData)
                     {
-                        xtw.WriteElementString("nlog", "eventSequenceNumber", dummyNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
-                        xtw.WriteStartElement("nlog", "locationInfo", dummyNamespace);
+                        xtw.WriteElementString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
+                        xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
                         if (type != null)
                         {
                             xtw.WriteAttributeString("assembly", type.Assembly.FullName);
@@ -260,6 +258,10 @@ namespace NLog.LayoutRenderers
 
                 xtw.WriteEndElement();
                 xtw.Flush();
+
+                // get rid of 'nlog' and 'log4j' namespace declarations
+                sb.Replace(" xmlns:log4j=\"" + dummyNamespace + "\"", string.Empty);
+                sb.Replace(" xmlns:nlog=\"" + dummyNLogNamespace + "\"", string.Empty);
 
                 builder.Append(sb.ToString());
             }
