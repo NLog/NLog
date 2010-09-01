@@ -51,6 +51,8 @@ namespace NLog
     {
         private const int StackTraceSkipMethods = 0;
         private static readonly Assembly nlogAssembly = typeof(LoggerImpl).Assembly;
+        private static readonly Assembly mscorlibAssembly = typeof(string).Assembly;
+        private static readonly Assembly systemAssembly = typeof(Debug).Assembly;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
         internal static void Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
@@ -114,7 +116,7 @@ namespace NLog
                     methodAssembly = mb.DeclaringType.Assembly;
                 }
 
-                if (methodAssembly == nlogAssembly || mb.DeclaringType == loggerType)
+                if (SkipAssembly(methodAssembly) || mb.DeclaringType == loggerType)
                 {
                     firstUserFrame = i + 1;
                 }
@@ -128,6 +130,26 @@ namespace NLog
             }
 
             return firstUserFrame;
+        }
+
+        private static bool SkipAssembly(Assembly assembly)
+        {
+            if (assembly == nlogAssembly)
+            {
+                return true;
+            }
+
+            if (assembly == mscorlibAssembly)
+            {
+                return true;
+            }
+
+            if (assembly == systemAssembly)
+            {
+                return true;
+            }
+
+            return false;
         }
 #endif
 
