@@ -198,7 +198,7 @@
     <Copy SourceFiles="NLogC\NLogC.h;NLogC\NLogger.h" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\include" />
   </Target>
 
-  <Target Name="BuildNLogCTests" DependsOnTargets="BuildNLogC">
+  <Target Name="BuildNLogCTests" DependsOnTargets="BuildNLogC" Condition=" '$(BuildNetFX40)'=='true' ">
     <MSBuild Projects="..\tests\NLogC.UnitTests\NLogC.UnitTests.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=Win32" />
     <MSBuild Projects="..\tests\NLogC.UnitTests\NLogC.UnitTests.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=x64" />
   </Target>
