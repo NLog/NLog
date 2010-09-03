@@ -118,6 +118,19 @@ namespace NLog.UnitTests
 
 #if !NET_CF
         [TestMethod]
+        public void TraceConfiguration()
+        {
+            var listener = new NLogTraceListener();
+            listener.Attributes.Add("defaultLogLevel", "Warn");
+            listener.Attributes.Add("forceLogLevel", "Error");
+            listener.Attributes.Add("autoLoggerName", "1");
+
+            Assert.AreEqual(LogLevel.Warn, listener.DefaultLogLevel);
+            Assert.AreEqual(LogLevel.Error, listener.ForceLogLevel);
+            Assert.IsTrue(listener.AutoLoggerName);
+        }
+
+        [TestMethod]
         public void TraceFailTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -236,6 +249,29 @@ namespace NLog.UnitTests
             ts.TraceEvent(TraceEventType.Critical, 145, "Foo");
             AssertDebugLastMessage("debug", "MySource1 Fatal Foo 145");
         }
+
+        [TestMethod]
+        public void ForceLogLevelTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message} ${event-context:EventID}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Trace' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            TraceSource ts = new TraceSource("MySource1", SourceLevels.All);
+            ts.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace, ForceLogLevel = LogLevel.Warn });
+
+            // force all logs to be Warn, DefaultLogLevel has no effect on TraceSource
+            ts.TraceInformation("Quick brown fox");
+            AssertDebugLastMessage("debug", "MySource1 Warn Quick brown fox 0");
+
+            ts.TraceInformation("Mary had {0} lamb", "a little");
+            AssertDebugLastMessage("debug", "MySource1 Warn Mary had a little lamb 0");
+        }
+
 #endif
     }
 }

@@ -36,10 +36,13 @@
 namespace NLog
 {
     using System;
+    using System.Collections;
     using System.ComponentModel;
     using System.Diagnostics;
+    using System.Globalization;
     using System.Reflection;
     using System.Text;
+    using System.Xml;
     using NLog.Internal;
 
     /// <summary>
@@ -48,24 +51,74 @@ namespace NLog
     public class NLogTraceListener : TraceListener
     {
         private static readonly Assembly systemAssembly = typeof(Trace).Assembly;
+        private LogFactory logFactory;
+        private LogLevel defaultLogLevel = LogLevel.Debug;
+        private bool attributesLoaded;
+#if !NET_CF
+        private bool autoLoggerName;
+#endif
+        private LogLevel forceLogLevel;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogTraceListener"/> class.
         /// </summary>
         public NLogTraceListener()
         {
-            this.DefaultLogLevel = LogLevel.Debug;
         }
 
         /// <summary>
         /// Gets or sets the log factory to use when outputting messages (null - use LogManager).
         /// </summary>
-        public LogFactory LogFactory { get; set; }
+        public LogFactory LogFactory
+        {
+            get
+            {
+                this.InitAttributes();
+                return this.logFactory;
+            }
+
+            set
+            {
+                this.attributesLoaded = true;
+                this.logFactory = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the default log level.
         /// </summary>
-        public LogLevel DefaultLogLevel { get; set; }
+        public LogLevel DefaultLogLevel
+        {
+            get
+            {
+                this.InitAttributes();
+                return this.defaultLogLevel;
+            }
+
+            set
+            {
+                this.attributesLoaded = true;
+                this.defaultLogLevel = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the log which should be always used regardless of source level.
+        /// </summary>
+        public LogLevel ForceLogLevel
+        {
+            get
+            {
+                this.InitAttributes();
+                return this.forceLogLevel;
+            }
+
+            set
+            {
+                this.attributesLoaded = true;
+                this.forceLogLevel = value;
+            }
+        }
 
 #if !NET_CF
         /// <summary>
@@ -81,7 +134,20 @@ namespace NLog
         /// <summary>
         /// Gets or sets a value indicating whether to use auto logger name detected from the stack trace.
         /// </summary>
-        public bool AutoLoggerName { get; set; }
+        public bool AutoLoggerName
+        {
+            get
+            {
+                this.InitAttributes();
+                return this.autoLoggerName;
+            }
+
+            set
+            {
+                this.attributesLoaded = true;
+                this.autoLoggerName = value;
+            }
+        }
 #endif
 
         /// <summary>
@@ -236,6 +302,17 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets the custom attributes supported by the trace listener.
+        /// </summary>
+        /// <returns>
+        /// A string array naming the custom attributes supported by the trace listener, or null if there are no custom attributes.
+        /// </returns>
+        protected override string[] GetSupportedAttributes()
+        {
+            return new[] { "defaultLogLevel", "autoLoggerName", "forceLogLevel" };
+        }
+
+        /// <summary>
         /// Translates the event type to level from <see cref="TraceEventType"/>.
         /// </summary>
         /// <param name="eventType">Type of the event.</param>
@@ -270,7 +347,6 @@ namespace NLog
             var ev = new LogEventInfo();
 
             ev.LoggerName = (loggerName ?? this.Name) ?? string.Empty;
-            ev.Level = logLevel;
             
 #if !NET_CF
             if (this.AutoLoggerName)
@@ -315,7 +391,7 @@ namespace NLog
             ev.TimeStamp = CurrentTimeGetter.Now;
             ev.Message = message;
             ev.Parameters = arguments;
-            ev.Level = logLevel;
+            ev.Level = this.forceLogLevel ?? logLevel;
 
             if (eventId.HasValue)
             {
@@ -324,6 +400,36 @@ namespace NLog
 
             Logger logger = LogManager.GetLogger(ev.LoggerName);
             logger.Log(ev);
+        }
+
+        private void InitAttributes()
+        {
+            if (!this.attributesLoaded)
+            {
+                this.attributesLoaded = true;
+#if !NET_CF
+                foreach (DictionaryEntry de in this.Attributes)
+                {
+                    var key = (string)de.Key;
+                    var value = (string)de.Value;
+
+                    switch (key.ToUpperInvariant())
+                    {
+                        case "DEFAULTLOGLEVEL":
+                            this.defaultLogLevel = LogLevel.FromString(value);
+                            break;
+
+                        case "FORCELOGLEVEL":
+                            this.forceLogLevel = LogLevel.FromString(value);
+                            break;
+
+                        case "AUTOLOGGERNAME":
+                            this.AutoLoggerName = XmlConvert.ToBoolean(value);
+                            break;
+                    }
+                }
+#endif
+            }
         }
     }
 }
