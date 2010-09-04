@@ -40,55 +40,11 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.IO;
     using NLog.Config;
-    using NLog.Internal;
 
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
     /// </summary>
     /// <seealso href="http://nlog-project.org/wiki/ColoredConsole_target">Documentation on NLog Wiki</seealso>
-    /// <example>
-    /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
-    /// use the following syntax:
-    /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/ColoredConsole/Simple/NLog.config" />
-    /// <p>
-    /// This assumes just one target and a single rule. More configuration
-    /// options are described <a href="config.html">here</a>.
-    /// </p>
-    /// <p>
-    /// To set up the log target programmatically use code like this:
-    /// </p>
-    /// <code lang="C#" source="examples/targets/Configuration API/ColoredConsole/Simple/Example.cs" />
-    /// <p>
-    /// The result is a colorful console, where each color represents a single log level.
-    /// </p>
-    /// <img src="examples/targets/Screenshots/ColoredConsole/Simple.gif" />
-    /// <p>
-    /// In addition you can configure your own word highlighting rules so that 
-    /// particular words or regular expressions will be marked with 
-    /// a distinguished color:
-    /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/ColoredConsole/Word Highlighting/NLog.config" />
-    /// <p>Programmatic equivalent of the above configuration:</p>
-    /// <code lang="C#" source="examples/targets/Configuration API/ColoredConsole/Word Highlighting/Example.cs" />
-    /// <p>
-    /// Here's the result:
-    /// </p>
-    /// <img src="examples/targets/Screenshots/ColoredConsole/Word Highlighting.gif" />
-    /// <p>
-    /// Custom row highlighting lets you colorize the output by any <a href="conditions.html">condition</a>.
-    /// This example shows how to mark all entries containing the word "serious" with white color on red background
-    /// and mark all entries coming from a particular logger with yellow on blue.
-    /// </p>
-    /// <code lang="XML" source="examples/targets/Configuration File/ColoredConsole/Row Highlighting/NLog.config" />
-    /// <p>Programmatic equivalent of the above configuration:</p>
-    /// <code lang="C#" source="examples/targets/Configuration API/ColoredConsole/Row Highlighting/Example.cs" />
-    /// <p>
-    /// Here's the result:
-    /// </p>
-    /// <img src="examples/targets/Screenshots/ColoredConsole/Row Highlighting.gif" />
-    /// </example>
     [Target("ColoredConsole")]
     public sealed class ColoredConsoleTarget : TargetWithLayoutHeaderAndFooter
     {
@@ -101,8 +57,6 @@ namespace NLog.Targets
             new ConsoleRowHighlightingRule("level == LogLevel.Debug", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange),
             new ConsoleRowHighlightingRule("level == LogLevel.Trace", ConsoleOutputColor.DarkGray, ConsoleOutputColor.NoChange),
         };
-
-        private readonly ushort[] colorStack = new ushort[10];
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ColoredConsoleTarget" /> class.
@@ -222,103 +176,15 @@ namespace NLog.Targets
             this.Output(logEvent, this.Layout.Render(logEvent));
         }
 
-        private static ushort ColorFromForegroundAndBackground(ushort current, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
+        private static void ColorizeEscapeSequences(
+            TextWriter output,
+            string message,
+            ColorPair startingColor,
+            ColorPair defaultColor)
         {
-            ushort newColor = current;
+            var colorStack = new Stack<ColorPair>();
 
-            if (foregroundColor != ConsoleOutputColor.NoChange)
-            {
-                newColor = (ushort)(newColor & ~0xF);
-                newColor |= (ushort)foregroundColor;
-            }
-
-            if (backgroundColor != ConsoleOutputColor.NoChange)
-            {
-                newColor = (ushort)(newColor & ~0xF0);
-                newColor |= (ushort)(((int)backgroundColor) << 4);
-            }
-
-            return newColor;
-        }
-
-        private void Output(LogEventInfo logEvent, string message)
-        {
-            IntPtr consoleHandle = NativeMethods.GetStdHandle(this.ErrorStream ? NativeMethods.STD_ERROR_HANDLE : NativeMethods.STD_OUTPUT_HANDLE);
-
-            NativeMethods.CONSOLE_BUFFER_INFO csbi;
-            NativeMethods.GetConsoleScreenBufferInfo(consoleHandle, out csbi);
-
-            ConsoleRowHighlightingRule matchingRule = null;
-
-            foreach (ConsoleRowHighlightingRule cr in this.RowHighlightingRules)
-            {
-                if (cr.CheckCondition(logEvent))
-                {
-                    matchingRule = cr;
-                    break;
-                }
-            }
-
-            if (this.UseDefaultRowHighlightingRules && matchingRule == null)
-            {
-                foreach (ConsoleRowHighlightingRule cr in defaultConsoleRowHighlightingRules)
-                {
-                    if (cr.CheckCondition(logEvent))
-                    {
-                        matchingRule = cr;
-                        break;
-                    }
-                }
-            }
-
-            if (matchingRule == null)
-            {
-                matchingRule = ConsoleRowHighlightingRule.Default;
-            }
-
-            ushort newColor = ColorFromForegroundAndBackground(csbi.wAttributes, matchingRule.ForegroundColor, matchingRule.BackgroundColor);
-
-            message = message.Replace("\a", "\a\a");
-
-            foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
-            {
-                message = hl.ReplaceWithEscapeSequences(message);
-            }
-
-            if (this.ErrorStream)
-            {
-                this.ColorizeEscapeSequences(Console.Error, consoleHandle, message, newColor, csbi.wAttributes);
-            }
-            else
-            {
-                this.ColorizeEscapeSequences(Console.Out, consoleHandle, message, newColor, csbi.wAttributes);
-            }
-
-            NativeMethods.CONSOLE_BUFFER_INFO csbi2;
-            NativeMethods.GetConsoleScreenBufferInfo(consoleHandle, out csbi2);
-            NativeMethods.SetConsoleTextAttribute(consoleHandle, csbi.wAttributes);
-
-            int xsize = csbi2.dwSize.x;
-            int xpos = csbi2.dwCursorPosition.x;
-            uint written = 0;
-            NativeMethods.FillConsoleOutputAttribute(consoleHandle, newColor, xsize - xpos, csbi2.dwCursorPosition, out written);
-            NativeMethods.SetConsoleTextAttribute(consoleHandle, csbi.wAttributes);
-            if (this.ErrorStream)
-            {
-                Console.Error.WriteLine();
-            }
-            else
-            {
-                Console.WriteLine();
-            }
-        }
-
-        private void ColorizeEscapeSequences(TextWriter output, IntPtr consoleHandle, string message, ushort startingAttribute, ushort defaultAttribute)
-        {
-            int colorStackLength = 0;
-            this.colorStack[colorStackLength++] = startingAttribute;
-
-            NativeMethods.SetConsoleTextAttribute(consoleHandle, startingAttribute);
+            colorStack.Push(startingColor);
 
             int p0 = 0;
 
@@ -360,9 +226,11 @@ namespace NLog.Targets
 
                 if (c1 == '\r' || c1 == '\n')
                 {
-                    NativeMethods.SetConsoleTextAttribute(consoleHandle, defaultAttribute);
+                    Console.ForegroundColor = defaultColor.ForegroundColor;
+                    Console.BackgroundColor = defaultColor.BackgroundColor;
                     output.Write(c1);
-                    NativeMethods.SetConsoleTextAttribute(consoleHandle, this.colorStack[colorStackLength - 1]);
+                    Console.ForegroundColor = colorStack.Peek().ForegroundColor;
+                    Console.BackgroundColor = colorStack.Peek().BackgroundColor;
                     p0 = p1 + 1;
                     continue;
                 }
@@ -371,25 +239,29 @@ namespace NLog.Targets
                 {
                     if (c2 == 'X')
                     {
-                        colorStackLength--;
-                        NativeMethods.SetConsoleTextAttribute(consoleHandle, this.colorStack[colorStackLength - 1]);
+                        colorStack.Pop();
+                        Console.ForegroundColor = colorStack.Peek().ForegroundColor;
+                        Console.BackgroundColor = colorStack.Peek().BackgroundColor;
                         p0 = p1 + 2;
                         continue;
                     }
-                    else
-                    {
-                        ConsoleOutputColor foreground = (ConsoleOutputColor)(int)(c2 - 'A');
-                        ConsoleOutputColor background = (ConsoleOutputColor)(int)(message[p1 + 2] - 'A');
-                        ushort newColor = ColorFromForegroundAndBackground(
-                            this.colorStack[colorStackLength - 1],
-                            foreground,
-                            background);
 
-                        this.colorStack[colorStackLength++] = newColor;
-                        NativeMethods.SetConsoleTextAttribute(consoleHandle, newColor);
-                        p0 = p1 + 3;
-                        continue;
+                    var foreground = (ConsoleOutputColor)(c2 - 'A');
+                    var background = (ConsoleOutputColor)(message[p1 + 2] - 'A');
+
+                    if (foreground != ConsoleOutputColor.NoChange)
+                    {
+                        Console.ForegroundColor = (ConsoleColor)foreground;
                     }
+
+                    if (background != ConsoleOutputColor.NoChange)
+                    {
+                        Console.BackgroundColor = (ConsoleColor)background;
+                    }
+
+                    colorStack.Push(new ColorPair(Console.ForegroundColor, Console.BackgroundColor));
+                    p0 = p1 + 3;
+                    continue;
                 }
 
                 output.Write(c1);
@@ -399,6 +271,101 @@ namespace NLog.Targets
             if (p0 < message.Length)
             {
                 output.Write(message.Substring(p0));
+            }
+        }
+
+        private void Output(LogEventInfo logEvent, string message)
+        {
+            ConsoleColor oldForegroundColor = Console.ForegroundColor;
+            ConsoleColor oldBackgroundColor = Console.BackgroundColor;
+
+            try
+            {
+                ConsoleRowHighlightingRule matchingRule = null;
+
+                foreach (ConsoleRowHighlightingRule cr in this.RowHighlightingRules)
+                {
+                    if (cr.CheckCondition(logEvent))
+                    {
+                        matchingRule = cr;
+                        break;
+                    }
+                }
+
+                if (this.UseDefaultRowHighlightingRules && matchingRule == null)
+                {
+                    foreach (ConsoleRowHighlightingRule cr in defaultConsoleRowHighlightingRules)
+                    {
+                        if (cr.CheckCondition(logEvent))
+                        {
+                            matchingRule = cr;
+                            break;
+                        }
+                    }
+                }
+
+                if (matchingRule == null)
+                {
+                    matchingRule = ConsoleRowHighlightingRule.Default;
+                }
+
+                if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
+                {
+                    Console.ForegroundColor = (ConsoleColor)matchingRule.ForegroundColor;
+                }
+
+                if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
+                {
+                    Console.BackgroundColor = (ConsoleColor)matchingRule.BackgroundColor;
+                }
+
+                message = message.Replace("\a", "\a\a");
+
+                foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
+                {
+                    message = hl.ReplaceWithEscapeSequences(message);
+                }
+
+                ColorizeEscapeSequences(this.ErrorStream ? Console.Error : Console.Out, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
+            }
+            finally
+            {
+                Console.ForegroundColor = oldForegroundColor;
+                Console.BackgroundColor = oldBackgroundColor;
+            }
+
+            if (this.ErrorStream)
+            {
+                Console.Error.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine();
+            }
+        }
+
+        /// <summary>
+        /// Color pair (foreground and background).
+        /// </summary>
+        internal struct ColorPair
+        {
+            private readonly ConsoleColor foregroundColor;
+            private readonly ConsoleColor backgroundColor;
+
+            internal ColorPair(ConsoleColor foregroundColor, ConsoleColor backgroundColor)
+            {
+                this.foregroundColor = foregroundColor;
+                this.backgroundColor = backgroundColor;
+            }
+
+            internal ConsoleColor BackgroundColor
+            {
+                get { return this.backgroundColor; }
+            }
+
+            internal ConsoleColor ForegroundColor
+            {
+                get { return this.foregroundColor; }
             }
         }
     }
