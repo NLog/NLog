@@ -39,6 +39,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Globalization;
+    using System.Security;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -173,7 +174,17 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
 
-            this.CreateEventSourceIfNeeded();
+            try
+            {
+                this.CreateEventSourceIfNeeded();
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+            }
         }
 
         /// <summary>

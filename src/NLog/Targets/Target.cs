@@ -50,6 +50,7 @@ namespace NLog.Targets
     {
         private object lockObject = new object();
         private List<Layout> allLayouts;
+        private Exception initializeException;
 
         /// <summary>
         /// Gets or sets the name of the target.
@@ -190,6 +191,12 @@ namespace NLog.Targets
                     return;
                 }
 
+                if (this.initializeException != null)
+                {
+                    logEvent.Continuation(this.CreateInitException());
+                    return;
+                }
+
                 var wrappedContinuation = AsyncHelpers.PreventMultipleCalls(logEvent.Continuation);
 
                 try
@@ -221,6 +228,16 @@ namespace NLog.Targets
                     foreach (var ev in logEvents)
                     {
                         ev.Continuation(null);
+                    }
+
+                    return;
+                }
+
+                if (this.initializeException != null)
+                {
+                    foreach (var ev in logEvents)
+                    {
+                        ev.Continuation(this.CreateInitException());
                     }
 
                     return;
@@ -265,10 +282,11 @@ namespace NLog.Targets
                 if (!this.IsInitialized)
                 {
                     PropertyHelper.CheckRequiredParameters(this);
+                    this.IsInitialized = true;
                     try
                     {
                         this.InitializeTarget();
-                        this.IsInitialized = true;
+                        this.initializeException = null;
                     }
                     catch (Exception exception)
                     {
@@ -277,6 +295,7 @@ namespace NLog.Targets
                             throw;
                         }
 
+                        this.initializeException = exception;
                         InternalLogger.Error("Error initializing target {0} {1}.", this, exception);
                         throw;
                     }
@@ -295,10 +314,15 @@ namespace NLog.Targets
 
                 if (this.IsInitialized)
                 {
+                    this.IsInitialized = false;
+
                     try
                     {
-                        this.CloseTarget();
-                        this.IsInitialized = false;
+                        if (this.initializeException == null)
+                        {
+                            // if Init succeeded, call Close()
+                            this.CloseTarget();
+                        }
                     }
                     catch (Exception exception)
                     {
@@ -427,6 +451,11 @@ namespace NLog.Targets
             {
                 this.Write(logEvents[i]);
             }
+        }
+
+        private Exception CreateInitException()
+        {
+            return new NLogRuntimeException("Target " + this + " failed to initialize.", this.initializeException);
         }
 
         private void GetAllLayouts()

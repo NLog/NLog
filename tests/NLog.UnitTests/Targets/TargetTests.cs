@@ -56,6 +56,30 @@ namespace NLog.UnitTests.Targets
         }
 
         [TestMethod]
+        public void InitializeFailedTest()
+        {
+            var target = new MyTarget();
+            target.ThrowOnInitialize = true;
+            try
+            {
+                target.Initialize(null);
+                Assert.Fail("Expected exception.");
+            }
+            catch (InvalidOperationException)
+            {
+            }
+
+            // after exception in Initialize(), the target becomes non-functional and all Write() operations
+            var exceptions = new List<Exception>();
+            target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+            Assert.AreEqual(0, target.WriteCount);
+            Assert.AreEqual(1, exceptions.Count);
+            Assert.IsNotNull(exceptions[0]);
+            Assert.AreEqual("Target " + target + " failed to initialize.", exceptions[0].Message);
+            Assert.AreEqual("Init error.", exceptions[0].InnerException.Message);
+        }
+
+        [TestMethod]
         public void DoubleInitializeTest()
         {
             var target = new MyTarget();
@@ -241,10 +265,16 @@ namespace NLog.UnitTests.Targets
             public int FlushCount { get; set; }
             public int WriteCount { get; set; }
             public int WriteCount2 { get; set; }
+            public bool ThrowOnInitialize { get; set; }
             public int WriteCount3 { get; set; }
 
             protected override void InitializeTarget()
             {
+                if (this.ThrowOnInitialize)
+                {
+                    throw new InvalidOperationException("Init error.");
+                }
+
                 Assert.AreEqual(0, this.inBlockingOperation);
                 this.InitializeCount++;
                 base.InitializeTarget();
