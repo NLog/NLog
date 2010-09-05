@@ -227,7 +227,7 @@
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="Layout" abstract="true">
+  <xs:complexType name="Layout">
   </xs:complexType>
 
   <xs:complexType name="Filter" abstract="true">
