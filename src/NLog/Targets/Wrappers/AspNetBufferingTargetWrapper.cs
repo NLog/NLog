@@ -173,6 +173,13 @@ namespace NLog.Targets.Wrappers
 
             NLogHttpModule.BeginRequest += this.OnBeginRequest;
             NLogHttpModule.EndRequest += this.OnEndRequest;
+
+            if (HttpContext.Current != null)
+            {
+                // we are in the context already, it's too late for OnBeginRequest to be called, so let's 
+                // just call it ourselves
+                this.OnBeginRequest(null, null);
+            }
         }
 
         /// <summary>
@@ -191,12 +198,18 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.WrappedTarget.PrecalculateVolatileLayouts(logEvent.LogEvent);
-
             LogEventInfoBuffer buffer = this.GetRequestBuffer();
             if (buffer != null)
             {
+                this.WrappedTarget.PrecalculateVolatileLayouts(logEvent.LogEvent);
+
                 buffer.Append(logEvent);
+                InternalLogger.Trace("Appending log event {0} to ASP.NET request buffer.", logEvent.LogEvent.SequenceID);
+            }
+            else
+            {
+                InternalLogger.Trace("ASP.NET request buffer does not exist. Passing to wrapped target.");
+                this.WrappedTarget.WriteAsyncLogEvent(logEvent);
             }
         }
 
@@ -213,6 +226,7 @@ namespace NLog.Targets.Wrappers
 
         private void OnBeginRequest(object sender, EventArgs args)
         {
+            InternalLogger.Trace("Setting up ASP.NET request buffer.");
             HttpContext context = HttpContext.Current;
             context.Items[this.dataSlot] = new LogEventInfoBuffer(this.BufferSize, this.GrowBufferAsNeeded, this.BufferGrowLimit);
         }
@@ -222,6 +236,7 @@ namespace NLog.Targets.Wrappers
             LogEventInfoBuffer buffer = this.GetRequestBuffer();
             if (buffer != null)
             {
+                InternalLogger.Trace("Sending buffered events to wrapped target: {0}.", this.WrappedTarget);
                 AsyncLogEventInfo[] events;
 
                 buffer.GetEventsAndClear(out events);
