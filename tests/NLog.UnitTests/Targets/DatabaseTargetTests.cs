@@ -929,6 +929,9 @@ Close()
         {
             private readonly MockDbCommand mockDbCommand;
             private readonly int paramId;
+            private string parameterName;
+            private object parameterValue;
+            private DbType parameterType;
 
             public MockDbParameter(MockDbCommand mockDbCommand, int paramId)
             {
@@ -938,8 +941,8 @@ Close()
 
             public DbType DbType
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                get { return this.parameterType; }
+                set { this.parameterType = value; }
             }
 
             public ParameterDirection Direction
@@ -955,8 +958,12 @@ Close()
 
             public string ParameterName
             {
-                get { throw new NotImplementedException(); }
-                set { ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Name={1}", paramId, value); }
+                get { return this.parameterName; }
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Name={1}", paramId, value);
+                    this.parameterName = value;
+                }
             }
 
             public string SourceColumn
@@ -973,8 +980,12 @@ Close()
 
             public object Value
             {
-                get { throw new NotImplementedException(); }
-                set { ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Value={1}", paramId, value); }
+                get { return this.parameterValue; }
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Value={1}", paramId, value);
+                    this.parameterValue = value;
+                }
             }
 
             public byte Precision

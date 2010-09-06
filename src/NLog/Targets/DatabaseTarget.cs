@@ -448,6 +448,8 @@ namespace NLog.Targets
             IDbCommand command = this.activeConnection.CreateCommand();
             command.CommandText = this.CommandText.Render(logEvent);
 
+            InternalLogger.Trace("Executing {0}: {1}", command.CommandType, command.CommandText);
+
             foreach (DatabaseParameterInfo par in this.Parameters)
             {
                 IDbDataParameter p = command.CreateParameter();
@@ -476,9 +478,12 @@ namespace NLog.Targets
 
                 p.Value = stringValue;
                 command.Parameters.Add(p);
+
+                InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
             }
 
-            command.ExecuteNonQuery();
+            int result = command.ExecuteNonQuery();
+            InternalLogger.Trace("Finished execution, result = {0}", result);
         }
 
         private string BuildConnectionString(LogEventInfo logEvent)
