@@ -106,10 +106,7 @@ namespace NLog.Targets.Wrappers
         {
             ConditionExpression resultFilter = null;
 
-            if (InternalLogger.IsTraceEnabled)
-            {
-                InternalLogger.Trace("Input: {0} events", logEvents.Length);
-            }
+            InternalLogger.Trace("Running {0} on {1} events", this, logEvents.Length);
 
             // evaluate all the rules to get the filtering condition
             for (int i = 0; i < logEvents.Length; ++i)
@@ -120,10 +117,7 @@ namespace NLog.Targets.Wrappers
 
                     if (boxedTrue.Equals(v))
                     {
-                        if (InternalLogger.IsTraceEnabled)
-                        {
-                            InternalLogger.Trace("Rule matched: {0}", rule.Exists);
-                        }
+                        InternalLogger.Trace("Rule matched: {0}", rule.Exists);
 
                         resultFilter = rule.Filter;
                         break;
@@ -147,10 +141,7 @@ namespace NLog.Targets.Wrappers
             }
             else
             {
-                if (InternalLogger.IsTraceEnabled)
-                {
-                    InternalLogger.Trace("Filter to apply: {0}", resultFilter);
-                }
+                InternalLogger.Trace("Filter to apply: {0}", resultFilter);
 
                 // apply the condition to the buffer
                 var resultBuffer = new List<AsyncLogEventInfo>();
@@ -169,12 +160,12 @@ namespace NLog.Targets.Wrappers
                     }
                 }
 
-                if (InternalLogger.IsTraceEnabled)
+                InternalLogger.Trace("After filtering: {0} events.", resultBuffer.Count);
+                if (resultBuffer.Count > 0)
                 {
-                    InternalLogger.Trace("After filtering: {0} events", resultBuffer.Count);
+                    InternalLogger.Trace("Sending to {0}", this.WrappedTarget);
+                    this.WrappedTarget.WriteAsyncLogEvents(resultBuffer.ToArray());
                 }
-
-                this.WrappedTarget.WriteAsyncLogEvents(resultBuffer.ToArray());
             }
         }
     }
