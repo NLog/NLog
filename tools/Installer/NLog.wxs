@@ -314,6 +314,8 @@
       <Component Id="Mono2_Binaries" Guid="53066b9f-9a03-3684-9aeb-6d044b77328d">
         <File Id="Mono2_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="Mono2_NLog.xml" Name="NLog.xml" />
+        
+        <File Id="Mono2_InstallNLogConfig.exe" Name="InstallNLogConfig.exe" />
                         
         <File Id="Mono2_NLog.Extended.dll" Name="NLog.Extended.dll" Vital="yes" />
         <File Id="Mono2_NLog.Extended.xml" Name="NLog.Extended.xml" />
@@ -325,6 +327,8 @@
                 
         <File Id="Mono2_NLog.NLog.Extended.dll.mdb" Name="NLog.Extended.dll.mdb" />
          
+                
+        <File Id="Mono2_InstallNLogConfig.pdb" Name="InstallNLogConfig.exe.mdb" />
          
       </Component>
 

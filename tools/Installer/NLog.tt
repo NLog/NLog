@@ -33,6 +33,7 @@ var supportedFrameworks = new []
         ShortName = "Mono2",
         FullName = "Mono 2.x",
         HasExtendedProfile = true,
+        HasConfigInstaller = true,
     },
     new FrameworkInfo
     {
@@ -350,7 +351,7 @@ foreach (var vs in visualStudioVersions) {
         <# } #> 
         <# if (framework.HasConfigInstaller) { #>
         
-        <File Id="<#= framework.ShortName #>_InstallNLogConfig.pdb" Name="InstallNLogConfig.pdb" />
+        <File Id="<#= framework.ShortName #>_InstallNLogConfig.pdb" Name="<#= framework.GetDebugInfo("InstallNLogConfig.exe") #>" />
         <# } #> 
       </Component>
 
