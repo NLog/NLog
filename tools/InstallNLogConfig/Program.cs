@@ -155,6 +155,7 @@ namespace InstallNLogConfig
             Console.WriteLine("  -q                quiet (do not write a log)");
             Console.WriteLine("  -i                ignore failures");
             Console.WriteLine("  -consolelog       write installation log to the console");
+            Console.WriteLine("  -loglevel level   set log level (Trace, Debug, Info, Warn, Error or Fatal)");
             Console.WriteLine("  -p NAME=VALUE     set installation parameter value");
             Console.WriteLine();
             Console.WriteLine("Parameters can be referenced in NLog.config using ${install-context:NAME}");
