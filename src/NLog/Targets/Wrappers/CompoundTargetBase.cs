@@ -35,6 +35,7 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using NLog.Common;
     using NLog.Internal;
 
@@ -57,6 +58,28 @@ namespace NLog.Targets.Wrappers
         /// Gets the collection of targets managed by this compound target.
         /// </summary>
         public IList<Target> Targets { get; private set; }
+
+        /// <summary>
+        /// Returns the text representation of the object. Used for diagnostics.
+        /// </summary>
+        /// <returns>A string that describes the target.</returns>
+        public override string ToString()
+        {
+            string separator = string.Empty;
+            var sb = new StringBuilder();
+            sb.Append(base.ToString());
+            sb.Append("(");
+
+            foreach (var t in this.Targets)
+            {
+                sb.Append(separator);
+                sb.Append(t.ToString());
+                separator = ", ";
+            }
+
+            sb.Append(")");
+            return sb.ToString();
+        }
 
         /// <summary>
         /// Writes logging event to the log target.
