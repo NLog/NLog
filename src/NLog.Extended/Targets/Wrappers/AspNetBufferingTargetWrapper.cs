@@ -237,9 +237,7 @@ namespace NLog.Targets.Wrappers
             if (buffer != null)
             {
                 InternalLogger.Trace("Sending buffered events to wrapped target: {0}.", this.WrappedTarget);
-                AsyncLogEventInfo[] events;
-
-                buffer.GetEventsAndClear(out events);
+                AsyncLogEventInfo[] events= buffer.GetEventsAndClear();
                 this.WrappedTarget.WriteAsyncLogEvents(events);
             }
         }

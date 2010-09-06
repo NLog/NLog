@@ -77,6 +77,7 @@
     <Compile Include="Common\AsynchronousAction.cs" />
     <Compile Include="Common\AsyncLogEventInfo.cs" />
     <Compile Include="Common\InternalLogger.cs" />
+    <Compile Include="Common\LogEventInfoBuffer.cs" />
     <Compile Include="Conditions\ConditionAndExpression.cs" />
     <Compile Include="Conditions\ConditionEvaluationException.cs" />
     <Compile Include="Conditions\ConditionExpression.cs" />
@@ -160,7 +161,6 @@
     <Compile Include="Internal\ISupportsInitialize.cs" />
     <Compile Include="Internal\IUsesStackTrace.cs" />
     <Compile Include="Internal\LocalizableAttribute.cs" />
-    <Compile Include="Internal\LogEventInfoBuffer.cs" />
     <Compile Include="Internal\LoggerConfiguration.cs" />
     <Compile Include="Internal\MultiFileWatcher.cs" />
     <Compile Include="Internal\MySmtpClient.cs" />
@@ -196,12 +196,6 @@
     <Compile Include="Internal\Win32ThreadIDHelper.cs" />
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
     <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetRequestValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetSessionIDLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetSessionValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetUserAuthTypeLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetUserIdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspRequestValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspSessionValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs" />
@@ -298,7 +292,6 @@
     <Compile Include="NLogTraceListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Targets\ArchiveNumberingMode.cs" />
-    <Compile Include="Targets\AspNetTraceTarget.cs" />
     <Compile Include="Targets\AspResponseTarget.cs" />
     <Compile Include="Targets\ChainsawTarget.cs" />
     <Compile Include="Targets\ColoredConsoleTarget.cs" />
@@ -320,7 +313,6 @@
     <Compile Include="Targets\MailTarget.cs" />
     <Compile Include="Targets\MemoryTarget.cs" />
     <Compile Include="Targets\MessageBoxTarget.cs" />
-    <Compile Include="Targets\MessageQueueTarget.cs" />
     <Compile Include="Targets\MethodCallParameter.cs" />
     <Compile Include="Targets\MethodCallTarget.cs" />
     <Compile Include="Targets\MethodCallTargetBase.cs" />
@@ -343,7 +335,6 @@
     <Compile Include="Targets\WebServiceProtocol.cs" />
     <Compile Include="Targets\WebServiceTarget.cs" />
     <Compile Include="Targets\Win32FileAttributes.cs" />
-    <Compile Include="Targets\Wrappers\AspNetBufferingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\AsyncRequestQueue-T.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapperOverflowAction.cs" />
@@ -364,7 +355,6 @@
     <Compile Include="Targets\Wrappers\SecurityLogOnType.cs" />
     <Compile Include="Targets\Wrappers\SplitGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
-    <Compile Include="Web\NLogHttpModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />

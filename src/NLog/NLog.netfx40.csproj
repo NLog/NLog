@@ -73,6 +73,7 @@
     <Compile Include="Common\AsynchronousAction.cs" />
     <Compile Include="Common\AsyncLogEventInfo.cs" />
     <Compile Include="Common\InternalLogger.cs" />
+    <Compile Include="Common\LogEventInfoBuffer.cs" />
     <Compile Include="Conditions\ConditionAndExpression.cs" />
     <Compile Include="Conditions\ConditionEvaluationException.cs" />
     <Compile Include="Conditions\ConditionExpression.cs" />
@@ -156,7 +157,6 @@
     <Compile Include="Internal\ISupportsInitialize.cs" />
     <Compile Include="Internal\IUsesStackTrace.cs" />
     <Compile Include="Internal\LocalizableAttribute.cs" />
-    <Compile Include="Internal\LogEventInfoBuffer.cs" />
     <Compile Include="Internal\LoggerConfiguration.cs" />
     <Compile Include="Internal\MultiFileWatcher.cs" />
     <Compile Include="Internal\MySmtpClient.cs" />

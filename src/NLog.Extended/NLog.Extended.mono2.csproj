@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NLog</RootNamespace>
     <AssemblyName>NLog.Extended</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
@@ -20,46 +20,45 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworkName>.NET Framework 3.5</TargetFrameworkName>
-    <DefineConstants>NET3_5;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
-    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
-    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName) Extended</IntermediateOutputPath>
-    <DocumentationFile>$(OutputPath)\NLog.Extended.xml</DocumentationFile>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <DefineConstants>MONO;WCF_SUPPORTED;MONO_2_0;$(DefineConstants)</DefineConstants>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
+    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Messaging" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyBuildInfo.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Internal\LogEventInfoBuffer.cs" />
     <Compile Include="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspNetRequestValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspNetSessionIDLayoutRenderer.cs" />
@@ -73,20 +72,13 @@
     <Compile Include="Web\NLogHttpModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="NLog.netfx35.csproj">
-      <Project>{C124B63D-1658-4311-9BA8-9C3CFAF9B32E}</Project>
-      <Name>NLog.netfx35</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <ProjectReference Include="..\NLog\NLog.mono2.csproj">
+      <Project>{B71A9EF1-2493-4B7B-AB82-8C7A83C10952}</Project>
+      <Name>NLog.netfx20</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="..\Mono.targets" />
 </Project>

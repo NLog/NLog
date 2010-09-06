@@ -32,12 +32,14 @@ var supportedFrameworks = new []
     {
         ShortName = "Mono2",
         FullName = "Mono 2.x",
+        HasExtendedProfile = true,
     },
     new FrameworkInfo
     {
         ShortName = "NetFx20",
         FullName = ".NET Framework 2.0",
         HasConfigInstaller = true,
+        HasExtendedProfile = true,
         AssemblyInfoRegistryKeys = 
         {
             @"SOFTWARE\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog2",

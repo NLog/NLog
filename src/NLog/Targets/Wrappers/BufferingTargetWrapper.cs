@@ -122,9 +122,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            AsyncLogEventInfo[] events;
-
-            this.buffer.GetEventsAndClear(out events);
+            AsyncLogEventInfo[] events = this.buffer.GetEventsAndClear();
 
             if (events.Length == 0)
             {
@@ -171,9 +169,7 @@ namespace NLog.Targets.Wrappers
             int count = this.buffer.Append(logEvent);
             if (count >= this.BufferSize)
             {
-                AsyncLogEventInfo[] events;
-
-                this.buffer.GetEventsAndClear(out events);
+                AsyncLogEventInfo[] events = this.buffer.GetEventsAndClear();
                 this.WrappedTarget.WriteAsyncLogEvents(events);
             }
             else
@@ -195,9 +191,7 @@ namespace NLog.Targets.Wrappers
             {
                 if (this.IsInitialized)
                 {
-                    AsyncLogEventInfo[] events;
-                    
-                    this.buffer.GetEventsAndClear(out events);
+                    AsyncLogEventInfo[] events = this.buffer.GetEventsAndClear();
                     if (events.Length > 0)
                     {
                         this.WrappedTarget.WriteAsyncLogEvents(events);

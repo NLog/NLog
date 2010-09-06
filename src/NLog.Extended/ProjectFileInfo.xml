@@ -1,0 +1,53 @@
+<ProjectFiles>
+   <!--
+     this file contains information necessary to regenerate Compile items in all NLog project files 
+     based on contents of this directory
+
+     The file is processed by SyncProjectItems.exe in tools directory.
+   -->
+
+   <FileSet Name="AllFilesToCompile">
+     <Include File="*.cs" />
+   </FileSet>
+
+   <FileSet Name="AllResources">
+     <Include File="*.ico" />
+   </FileSet>
+
+   <FileSet Name="ExcludedFromStyleCop">
+    <Include File="ComInterop\IComLogManager.cs" />
+    <Include File="ComInterop\IComLogger.cs" />
+    <Include File="Internal\AspHelper.cs" />
+    <Include File="Internal\NativeMethods.cs" />
+    <Include File="Internal\Win32FileNativeMethods.cs" />
+    <Include File="Logger-V1Compat.cs" />
+   </FileSet>
+
+   <Customize FileSet="ExcludedFromStyleCop" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+   </Customize>
+ 
+   <Project File="NLog.Extended.netfx20.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.Extended.netfx35.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.Extended.netfx40.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
+   <Project File="NLog.Extended.doc.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+</ProjectFiles>

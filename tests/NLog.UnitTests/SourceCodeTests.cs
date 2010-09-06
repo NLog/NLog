@@ -127,8 +127,8 @@ namespace NLog.UnitTests
 
             GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLog/"), "*.cs", "");
 
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx35.csproj", "src/NLog/NLog.Extended.netfx35.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx40.csproj", "src/NLog/NLog.Extended.netfx40.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx35.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx40.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx20.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netcf20.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netcf35.csproj");
@@ -136,6 +136,14 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl3.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl4.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.mono2.csproj");
+
+            filesToCompile.Clear();
+            GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLog.Extended/"), "*.cs", "");
+
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx35.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx40.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx20.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.mono2.csproj");
 
             filesToCompile.Clear();
             GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "tests/NLog.UnitTests/"), "*.cs", "");

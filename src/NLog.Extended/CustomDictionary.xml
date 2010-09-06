@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>configurator</Word>
+      <Word>Renderer</Word>
+      <Word>Reconfig</Word>
+      <Word>Precalculate</Word>
+      <Word>Renderers</Word>
+      <Word>Ddl</Word>
+      <Word>gdc</Word>
+      <Word>ndc</Word>
+      <Word>mdc</Word>
+      <Word>ddl</Word>
+      <Word>xap</Word>
+    </Recognized>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>NLog</Acronym>
+      <Acronym>CRLF</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>

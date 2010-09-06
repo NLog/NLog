@@ -250,7 +250,7 @@ namespace NLog.Common
         /// Gets the combined exception from all exceptions in the list.
         /// </summary>
         /// <param name="exceptions">The exceptions.</param>
-        /// <returns>Combined exception or null if no exception was thrown</returns>
+        /// <returns>Combined exception or null if no exception was thrown.</returns>
         public static Exception GetCombinedException(IList<Exception> exceptions)
         {
             if (exceptions.Count == 0)

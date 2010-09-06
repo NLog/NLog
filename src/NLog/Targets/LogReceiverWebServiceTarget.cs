@@ -283,9 +283,7 @@ namespace NLog.Targets
             lock (this.SyncRoot)
             {
                 // clear inCall flag
-                AsyncLogEventInfo[] bufferedEvents;
-
-                this.buffer.GetEventsAndClear(out bufferedEvents);
+                AsyncLogEventInfo[] bufferedEvents = this.buffer.GetEventsAndClear();
                 if (bufferedEvents.Length > 0)
                 {
                     var networkLogEvents = this.TranslateLogEvents(bufferedEvents);

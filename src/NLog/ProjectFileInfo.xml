@@ -14,19 +14,6 @@
      <Include File="*.ico" />
    </FileSet>
 
-   <FileSet Name="ExtendedProfileOnly">
-    <Include File="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs" />
-    <Include File="LayoutRenderers\AspNetRequestValueLayoutRenderer.cs" />
-    <Include File="LayoutRenderers\AspNetSessionIDLayoutRenderer.cs" />
-    <Include File="LayoutRenderers\AspNetSessionValueLayoutRenderer.cs" />
-    <Include File="LayoutRenderers\AspNetUserAuthTypeLayoutRenderer.cs" />
-    <Include File="LayoutRenderers\AspNetUserIdentityLayoutRenderer.cs" />
-    <Include File="Targets\AspNetTraceTarget.cs" />
-    <Include File="Targets\MessageQueueTarget.cs" />
-    <Include File="Targets\Wrappers\AspNetBufferingTargetWrapper.cs" />
-    <Include File="Web\NLogHttpModule.cs" />
-   </FileSet>
-
    <FileSet Name="CommonFiles">
     <Include File="AssemblyBuildInfo.cs" />
     <Include File="GlobalSuppressions.cs" />
@@ -113,7 +100,6 @@
    <Project File="NLog.netfx35.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
-        <FileSet Exclude="ExtendedProfileOnly" />
      </ItemGroup>
      <ItemGroup Name="EmbeddedResource">
         <FileSet Include="AllResources" />
@@ -123,7 +109,6 @@
    <Project File="NLog.netfx40.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
-        <FileSet Exclude="ExtendedProfileOnly" />
      </ItemGroup>
      <ItemGroup Name="EmbeddedResource">
         <FileSet Include="AllResources" />
@@ -133,31 +118,10 @@
    <Project File="NLog.doc.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
-        <FileSet Exclude="ExtendedProfileOnly" />
      </ItemGroup>
      <ItemGroup Name="EmbeddedResource">
         <FileSet Include="AllResources" />
      </ItemGroup>
    </Project>
 
-   <Project File="NLog.Extended.netfx35.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="ExtendedProfileOnly" />
-        <FileSet Include="CommonFiles" />
-     </ItemGroup>
-   </Project>
-
-   <Project File="NLog.Extended.netfx40.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="ExtendedProfileOnly" />
-        <FileSet Include="CommonFiles" />
-     </ItemGroup>
-   </Project>
-
-   <Project File="NLog.Extended.doc.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="ExtendedProfileOnly" />
-        <FileSet Include="CommonFiles" />
-     </ItemGroup>
-   </Project>
 </ProjectFiles>

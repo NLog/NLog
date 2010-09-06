@@ -10,11 +10,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.netfx40", "NLog\NLog.n
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.netfx40", "..\tests\NLog.UnitTests\NLog.UnitTests.netfx40.csproj", "{FE067913-E9A8-41F0-89FA-C1126F8FB6A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.netfx40", "NLog\NLog.Extended.netfx40.csproj", "{A961A1F9-1024-4446-BF9E-A923137340B8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.netfx40", "..\tests\SampleExtensions\SampleExtensions.netfx40.csproj", "{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallNLogConfig.netfx40", "..\tools\InstallNLogConfig\InstallNLogConfig.netfx40.csproj", "{0CF95BE4-0546-4CE9-AB49-B9E4DA599EAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.netfx40", "NLog.Extended\NLog.Extended.netfx40.csproj", "{A961A1F9-1024-4446-BF9E-A923137340B8}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -49,16 +49,6 @@ Global
 		{FE067913-E9A8-41F0-89FA-C1126F8FB6A8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FE067913-E9A8-41F0-89FA-C1126F8FB6A8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FE067913-E9A8-41F0-89FA-C1126F8FB6A8}.Release|x86.ActiveCfg = Release|Any CPU
-		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|x86.ActiveCfg = Release|Any CPU
 		{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -79,6 +69,16 @@ Global
 		{0CF95BE4-0546-4CE9-AB49-B9E4DA599EAA}.Release|Mixed Platforms.Build.0 = Release|x86
 		{0CF95BE4-0546-4CE9-AB49-B9E4DA599EAA}.Release|x86.ActiveCfg = Release|x86
 		{0CF95BE4-0546-4CE9-AB49-B9E4DA599EAA}.Release|x86.Build.0 = Release|x86
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

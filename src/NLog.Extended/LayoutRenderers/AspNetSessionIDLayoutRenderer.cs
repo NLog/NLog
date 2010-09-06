@@ -31,21 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF && !SILVERLIGHT
-
 namespace NLog.LayoutRenderers
 {
     using System.Text;
     using System.Web;
 
     /// <summary>
-    /// ASP.NET User variable.
-    /// </summary>
-    [LayoutRenderer("aspnet-user-authtype")]
-    public class AspNetUserAuthTypeLayoutRenderer : LayoutRenderer
+    /// ASP.NET Session ID.
+    /// </summary>                 
+    [LayoutRenderer("aspnet-sessionid")]
+    public class AspNetSessionIDLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Renders the specified ASP.NET User.Identity.AuthenticationType variable and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders the ASP.NET Session ID appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
@@ -57,24 +55,12 @@ namespace NLog.LayoutRenderers
                 return;
             }
 
-            if (context.User == null)
+            if (context.Session == null)
             {
                 return;
             }
 
-            if (context.User.Identity == null)
-            {
-                return;
-            }
-
-            if (!context.User.Identity.IsAuthenticated)
-            {
-                return;
-            }
-            
-            builder.Append(context.User.Identity.AuthenticationType);
+            builder.Append(context.Session.SessionID);
         }
     }
 }
-
-#endif

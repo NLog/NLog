@@ -314,11 +314,16 @@
       <Component Id="Mono2_Binaries" Guid="53066b9f-9a03-3684-9aeb-6d044b77328d">
         <File Id="Mono2_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="Mono2_NLog.xml" Name="NLog.xml" />
-                                
+                        
+        <File Id="Mono2_NLog.Extended.dll" Name="NLog.Extended.dll" Vital="yes" />
+        <File Id="Mono2_NLog.Extended.xml" Name="NLog.Extended.xml" />
+                        
       </Component>
 
       <Component Id="Mono2_DebugInfo" Guid="b04ec0aa-04ca-35d3-edaa-f95f9743dd95">
         <File Id="Mono2_NLog.NLog.dll.mdb" Name="NLog.dll.mdb" />
+                
+        <File Id="Mono2_NLog.NLog.Extended.dll.mdb" Name="NLog.Extended.dll.mdb" />
          
          
       </Component>
@@ -336,7 +341,10 @@
         <File Id="NetFx20_NLog.xml" Name="NLog.xml" />
         
         <File Id="NetFx20_InstallNLogConfig.exe" Name="InstallNLogConfig.exe" />
-                              
+                        
+        <File Id="NetFx20_NLog.Extended.dll" Name="NLog.Extended.dll" Vital="yes" />
+        <File Id="NetFx20_NLog.Extended.xml" Name="NLog.Extended.xml" />
+                      
         <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\.NETFramework\v2.0.50727\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
           <RegistryValue Type="string" Value="[NETFX20_DIR]"></RegistryValue>
         </RegistryKey>
@@ -345,6 +353,8 @@
 
       <Component Id="NetFx20_DebugInfo" Guid="da6cd4ae-acca-3786-41d8-c12857bceaa9">
         <File Id="NetFx20_NLog.NLog.pdb" Name="NLog.pdb" />
+                
+        <File Id="NetFx20_NLog.NLog.Extended.pdb" Name="NLog.Extended.pdb" />
          
                 
         <File Id="NetFx20_InstallNLogConfig.pdb" Name="InstallNLogConfig.pdb" />

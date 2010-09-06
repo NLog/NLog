@@ -37,23 +37,13 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 #if NET2_0
-    [assembly: AssemblyTitle("NLog for .NET Framework 2.0")]
+    [assembly: AssemblyTitle("NLog for .NET Framework 2.0 Extended Profile")]
 #elif NET3_5
-    [assembly: AssemblyTitle("NLog for .NET Framework 3.5")]
+    [assembly: AssemblyTitle("NLog for .NET Framework 3.5 Extended Profile")]
 #elif NET4_0
-    [assembly: AssemblyTitle("NLog for .NET Framework 4")]
+    [assembly: AssemblyTitle("NLog for .NET Framework 4 Extended Profile")]
 #elif MONO_2_0
-    [assembly: AssemblyTitle("NLog for Mono 2.0")]
-#elif NETCF2_0
-    [assembly: AssemblyTitle("NLog for .NET Compact Framework 2.0")]
-#elif NETCF3_5
-    [assembly: AssemblyTitle("NLog for .NET Compact Framework 3.5")]
-#elif SILVERLIGHT2
-    [assembly: AssemblyTitle("NLog for Silverlight 2.0")]
-#elif SILVERLIGHT3
-    [assembly: AssemblyTitle("NLog for Silverlight 3.0")]
-#elif SILVERLIGHT4
-    [assembly: AssemblyTitle("NLog for Silverlight 4.0")]
+    [assembly: AssemblyTitle("NLog for Mono 2.0 Extended Profile")]
 #elif DOCUMENTATION
     [assembly: AssemblyTitle("NLog Documentation")]
 #else

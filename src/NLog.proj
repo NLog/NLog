@@ -174,13 +174,13 @@
              ToolsVersion="%(TargetFramework.ToolsVersion)" 
              ContinueOnError="$(BuildAllFrameworks)" 
              StopOnFirstFailure="false" />
-    <MSBuild Projects="NLog\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj" 
+    <MSBuild Projects="NLog.Extended\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj" 
              Targets="Build" 
              Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
              ToolsVersion="%(TargetFramework.ToolsVersion)" 
              ContinueOnError="$(BuildAllFrameworks)" 
              StopOnFirstFailure="false"
-             Condition="Exists('NLog\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj')" />
+             Condition="Exists('NLog.Extended\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj')" />
     <MSBuild Projects="..\tools\InstallNLogConfig\InstallNLogConfig%(TargetFramework.ProjectFileSuffix).csproj" 
              Targets="Build" 
              Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
@@ -353,7 +353,7 @@
   </Target>
 
   <Target Name="BuildMergedDocumentation">
-    <MSBuild Projects="NLog\NLog.Extended.doc.csproj" 
+    <MSBuild Projects="NLog.Extended\NLog.Extended.doc.csproj" 
              Targets="Build" 
              Properties="$(StyleCopProperties);BaseOutputDirectory=$(BaseOutputDirectory)" 
              ContinueOnError="$(BuildAllFrameworks)" 
@@ -420,6 +420,7 @@
 
   <Target Name="SyncProjectItems" DependsOnTargets="BuildSyncProjectItemsTool">
     <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="NLog" />
+    <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="NLog.Extended" />
     <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="..\Tests\NLog.UnitTests" />
     <Exec Command='"$(SyncProjectItems)" ProjectFileInfo.xml' WorkingDirectory="..\Tests\SampleExtensions" />
   </Target>

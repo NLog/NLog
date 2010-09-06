@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog.Common
 {
     using System;
     using NLog.Common;
@@ -39,7 +39,7 @@ namespace NLog.Internal
     /// <summary>
     /// A cyclic buffer of <see cref="LogEventInfo"/> object.
     /// </summary>
-    internal class LogEventInfoBuffer
+    public class LogEventInfoBuffer
     {
         private readonly bool growAsNeeded;
         private readonly int growLimit;
@@ -122,16 +122,13 @@ namespace NLog.Internal
         /// <summary>
         /// Gets the array of events accumulated in the buffer and clears the buffer as one atomic operation.
         /// </summary>
-        /// <param name="returnValue">The return value.</param>
-        /// <remarks>
-        /// In case there are no items in the buffer, the function returns an empty array.
-        /// </remarks>
-        public void GetEventsAndClear(out AsyncLogEventInfo[] returnValue)
+        /// <returns>Events in the buffer.</returns>
+        public AsyncLogEventInfo[] GetEventsAndClear()
         {
             lock (this)
             {
                 int cnt = this.count;
-                returnValue = new AsyncLogEventInfo[cnt];
+                var returnValue = new AsyncLogEventInfo[cnt];
 
                 // InternalLogger.Trace("GetEventsAndClear({0},{1},{2})", this.getPointer, this.putPointer, this.count);
                 for (int i = 0; i < cnt; ++i)
@@ -145,6 +142,8 @@ namespace NLog.Internal
                 this.count = 0;
                 this.getPointer = 0;
                 this.putPointer = 0;
+
+                return returnValue;
             }
         }
     }
