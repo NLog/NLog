@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.ComponentModel;
     using System.Globalization;
 
     /// <summary>
@@ -48,6 +49,7 @@ namespace NLog.LayoutRenderers.Wrappers
         public UppercaseLayoutRendererWrapper()
         {
             this.Culture = CultureInfo.InvariantCulture;
+            this.Uppercase = true;
         }
 
         /// <summary>
@@ -55,6 +57,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <value>A value of <c>true</c> if upper case conversion should be applied otherwise, <c>false</c>.</value>
         /// <docgen category='Transformation Options' order='10' />
+        [DefaultValue(true)]
         public bool Uppercase { get; set; }
 
         /// <summary>

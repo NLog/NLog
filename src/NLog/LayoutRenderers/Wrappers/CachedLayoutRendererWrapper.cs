@@ -33,6 +33,8 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.ComponentModel;
+
     /// <summary>
     /// Applies caching to another layout output.
     /// </summary>
@@ -57,6 +59,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Gets or sets a value indicating whether this <see cref="CachedLayoutRendererWrapper"/> is enabled.
         /// </summary>
         /// <docgen category='Caching Options' order='10' />
+        [DefaultValue(true)]
         public bool Cached { get; set; }
 
         /// <summary>
