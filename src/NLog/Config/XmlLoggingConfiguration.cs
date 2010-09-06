@@ -196,6 +196,13 @@ namespace NLog.Config
                    || name.Equals("compound-target", StringComparison.OrdinalIgnoreCase);
         }
 
+        private static bool IsTargetRefElement(string name)
+        {
+            return name.Equals("target-ref", StringComparison.OrdinalIgnoreCase)
+                   || name.Equals("wrapper-target-ref", StringComparison.OrdinalIgnoreCase)
+                   || name.Equals("compound-target-ref", StringComparison.OrdinalIgnoreCase);
+        }
+
         private static string CleanWhitespace(string s)
         {
             s = s.Replace(" ", string.Empty); // get rid of the whitespace
@@ -558,6 +565,19 @@ namespace NLog.Config
 
                 if (compound != null)
                 {
+                    if (IsTargetRefElement(name))
+                    {
+                        string targetName = childElement.GetRequiredAttribute("name");
+                        Target newTarget = this.FindTargetByName(targetName);
+                        if (newTarget == null)
+                        {
+                            throw new NLogConfigurationException("Referenced target '" + targetName + "' not found.");
+                        }
+
+                        compound.Targets.Add(newTarget);
+                        continue;
+                    }
+
                     if (IsTargetElement(name))
                     {
                         string type = childElement.GetRequiredAttribute("type");
@@ -581,6 +601,19 @@ namespace NLog.Config
 
                 if (wrapper != null)
                 {
+                    if (IsTargetRefElement(name))
+                    {
+                        string targetName = childElement.GetRequiredAttribute("name");
+                        Target newTarget = this.FindTargetByName(targetName);
+                        if (newTarget == null)
+                        {
+                            throw new NLogConfigurationException("Referenced target '" + targetName + "' not found.");
+                        }
+
+                        wrapper.WrappedTarget = newTarget;
+                        continue;
+                    }
+
                     if (IsTargetElement(name))
                     {
                         string type = childElement.GetRequiredAttribute("type");

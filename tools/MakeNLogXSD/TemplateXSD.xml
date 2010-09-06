@@ -203,6 +203,10 @@
   <xs:complexType name="Target" abstract="true">
   </xs:complexType>
 
+  <xs:complexType name="TargetRef">
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+
   <xs:complexType name="WrapperTargetBase" abstract="true">
     <xs:complexContent>
       <xs:extension base="Target">
@@ -210,6 +214,9 @@
           <xs:element name="target" type="Target" minOccurs="1" maxOccurs="1" />
           <xs:element name="wrapper-target" type="WrapperTargetBase" minOccurs="1" maxOccurs="1" />
           <xs:element name="compound-target" type="CompoundTargetBase" minOccurs="1" maxOccurs="1" />
+          <xs:element name="target-ref" type="TargetRef" minOccurs="1" maxOccurs="1" />
+          <xs:element name="wrapper-target-ref" type="TargetRef" minOccurs="1" maxOccurs="1" />
+          <xs:element name="compound-target-ref" type="TargetRef" minOccurs="1" maxOccurs="1" />
         </xs:choice>
       </xs:extension>
     </xs:complexContent>
@@ -222,6 +229,9 @@
           <xs:element name="target" type="Target" minOccurs="1" maxOccurs="unbounded" />
           <xs:element name="wrapper-target" type="WrapperTargetBase" minOccurs="1" maxOccurs="1" />
           <xs:element name="compound-target" type="CompoundTargetBase" minOccurs="1" maxOccurs="1" />
+          <xs:element name="target-ref" type="TargetRef" minOccurs="1" maxOccurs="1" />
+          <xs:element name="wrapper-target-ref" type="TargetRef" minOccurs="1" maxOccurs="1" />
+          <xs:element name="compound-target-ref" type="TargetRef" minOccurs="1" maxOccurs="1" />
         </xs:choice>
       </xs:extension>
     </xs:complexContent>

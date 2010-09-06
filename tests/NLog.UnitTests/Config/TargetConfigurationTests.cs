@@ -215,6 +215,41 @@ namespace NLog.UnitTests.Config
         }
 
         [TestMethod]
+        public void WrapperRefTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='c' type='Debug' layout='${message}' />
+
+                    <wrapper name='a' type='AsyncWrapper'>
+                        <target-ref name='c' />
+                    </wrapper>
+
+                    <wrapper-target name='b' type='BufferingWrapper' bufferSize='19'>
+                        <wrapper-target-ref name='a' />
+                    </wrapper-target>
+                </targets>
+            </nlog>");
+
+            Assert.IsNotNull(c.FindTargetByName("a"));
+            Assert.IsNotNull(c.FindTargetByName("b"));
+            Assert.IsNotNull(c.FindTargetByName("c"));
+
+            Assert.IsInstanceOfType(c.FindTargetByName("b"), typeof(BufferingTargetWrapper));
+            Assert.IsInstanceOfType(c.FindTargetByName("a"), typeof(AsyncTargetWrapper));
+            Assert.IsInstanceOfType(c.FindTargetByName("c"), typeof(DebugTarget));
+
+            BufferingTargetWrapper btw = c.FindTargetByName("b") as BufferingTargetWrapper;
+            AsyncTargetWrapper atw = c.FindTargetByName("a") as AsyncTargetWrapper;
+            DebugTarget dt = c.FindTargetByName("c") as DebugTarget;
+
+            Assert.AreSame(atw, btw.WrappedTarget);
+            Assert.AreSame(dt, atw.WrappedTarget);
+            Assert.AreEqual(19, btw.BufferSize);
+        }
+
+        [TestMethod]
         public void CompoundTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -225,6 +260,56 @@ namespace NLog.UnitTests.Config
                         <target name='d2' type='Debug' layout='${message}2' />
                         <target name='d3' type='Debug' layout='${message}3' />
                         <target name='d4' type='Debug' layout='${message}4' />
+                    </compound-target>
+                </targets>
+            </nlog>");
+
+            Assert.IsNotNull(c.FindTargetByName("rr"));
+            Assert.IsNotNull(c.FindTargetByName("d1"));
+            Assert.IsNotNull(c.FindTargetByName("d2"));
+            Assert.IsNotNull(c.FindTargetByName("d3"));
+            Assert.IsNotNull(c.FindTargetByName("d4"));
+
+            Assert.IsInstanceOfType(c.FindTargetByName("rr"), typeof(RoundRobinGroupTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("d1"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("d2"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("d3"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(c.FindTargetByName("d4"), typeof(DebugTarget));
+
+            RoundRobinGroupTarget rr = c.FindTargetByName("rr") as RoundRobinGroupTarget;
+            DebugTarget d1 = c.FindTargetByName("d1") as DebugTarget;
+            DebugTarget d2 = c.FindTargetByName("d2") as DebugTarget;
+            DebugTarget d3 = c.FindTargetByName("d3") as DebugTarget;
+            DebugTarget d4 = c.FindTargetByName("d4") as DebugTarget;
+
+            Assert.AreEqual(4, rr.Targets.Count);
+            Assert.AreSame(d1, rr.Targets[0]);
+            Assert.AreSame(d2, rr.Targets[1]);
+            Assert.AreSame(d3, rr.Targets[2]);
+            Assert.AreSame(d4, rr.Targets[3]);
+
+            Assert.AreEqual(((SimpleLayout)d1.Layout).Text, "${message}1");
+            Assert.AreEqual(((SimpleLayout)d2.Layout).Text, "${message}2");
+            Assert.AreEqual(((SimpleLayout)d3.Layout).Text, "${message}3");
+            Assert.AreEqual(((SimpleLayout)d4.Layout).Text, "${message}4");
+        }
+
+        [TestMethod]
+        public void CompoundRefTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Debug' layout='${message}1' />
+                    <target name='d2' type='Debug' layout='${message}2' />
+                    <target name='d3' type='Debug' layout='${message}3' />
+                    <target name='d4' type='Debug' layout='${message}4' />
+
+                    <compound-target name='rr' type='RoundRobinGroup'>
+                        <target-ref name='d1' />
+                        <target-ref name='d2' />
+                        <target-ref name='d3' />
+                        <target-ref name='d4' />
                     </compound-target>
                 </targets>
             </nlog>");
