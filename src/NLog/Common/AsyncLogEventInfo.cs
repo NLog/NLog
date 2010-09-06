@@ -58,7 +58,7 @@ namespace NLog.Common
         /// <summary>
         /// Gets the continuation.
         /// </summary>
-        public AsyncContinuation Continuation { get; private set; }
+        public AsyncContinuation Continuation { get; internal set; }
 
         /// <summary>
         /// Implements the operator ==.

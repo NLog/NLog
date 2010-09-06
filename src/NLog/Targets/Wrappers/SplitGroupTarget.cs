@@ -34,6 +34,7 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using NLog.Common;
     using NLog.Internal;
@@ -83,6 +84,65 @@ namespace NLog.Targets.Wrappers
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             AsyncHelpers.ForEachItemSequentially(this.Targets, logEvent.Continuation, (t, cont) => t.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
+        }
+
+        /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected override void Write(AsyncLogEventInfo[] logEvents)
+        {
+            InternalLogger.Trace("Writing {0} events", logEvents.Length);
+
+            for (int i = 0; i < logEvents.Length; ++i)
+            {
+                logEvents[i].Continuation = CountedWrap(logEvents[i].Continuation, this.Targets.Count);
+            }
+
+            foreach (var t in this.Targets)
+            {
+                InternalLogger.Trace("Sending {0} events to {1}", logEvents.Length, t);
+                t.WriteAsyncLogEvents(logEvents);
+            }
+        }
+
+        private static AsyncContinuation CountedWrap(AsyncContinuation originalContinuation, int counter)
+        {
+            if (counter == 1)
+            {
+                return originalContinuation;
+            }
+
+            var exceptions = new List<Exception>();
+
+            AsyncContinuation wrapper =
+                ex =>
+                    {
+                        if (ex != null)
+                        {
+                            lock (exceptions)
+                            {
+                                exceptions.Add(ex);
+                            }
+                        }
+
+                        int c = Interlocked.Decrement(ref counter);
+
+                        if (c == 0)
+                        {
+                            var combinedException = AsyncHelpers.GetCombinedException(exceptions);
+                            InternalLogger.Trace("Combined exception: {0}", combinedException);
+                            originalContinuation(combinedException);
+                        }
+                        else
+                        {
+                            InternalLogger.Trace("{0} remaining.", c);
+                        }
+                    };
+
+            return wrapper;
         }
     }
 }

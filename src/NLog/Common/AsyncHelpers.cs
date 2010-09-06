@@ -246,6 +246,41 @@ namespace NLog.Common
             return new SingleCallContinuation(asyncContinuation).Function;
         }
 
+        /// <summary>
+        /// Gets the combined exception from all exceptions in the list.
+        /// </summary>
+        /// <param name="exceptions">The exceptions.</param>
+        /// <returns>Combined exception or null if no exception was thrown</returns>
+        public static Exception GetCombinedException(IList<Exception> exceptions)
+        {
+            if (exceptions.Count == 0)
+            {
+                return null;
+            }
+
+            if (exceptions.Count == 1)
+            {
+                return exceptions[0];
+            }
+
+            var sb = new StringBuilder();
+            string separator = string.Empty;
+#if !SILVERLIGHT && !NET_CF
+            string newline = Environment.NewLine;
+#else
+            string newline = "\r\n";
+#endif
+            foreach (var ex in exceptions)
+            {
+                sb.Append(separator);
+                sb.Append(ex.ToString());
+                sb.Append(newline);
+                separator = newline;
+            }
+
+            return new NLogRuntimeException("Got multiple exceptions:\r\n" + sb);
+        }
+
         private static AsynchronousAction ExceptionGuard(AsynchronousAction action)
         {
             return cont =>
@@ -284,36 +319,6 @@ namespace NLog.Common
                     cont(exception);
                 }
             };
-        }
-
-        private static Exception GetCombinedException(List<Exception> exceptions)
-        {
-            if (exceptions.Count == 0)
-            {
-                return null;
-            }
-
-            if (exceptions.Count == 1)
-            {
-                return exceptions[0];
-            }
-
-            var sb = new StringBuilder();
-            string separator = string.Empty;
-#if !SILVERLIGHT && !NET_CF
-            string newline = Environment.NewLine;
-#else
-            string newline = "\r\n";
-#endif
-            foreach (var ex in exceptions)
-            {
-                sb.Append(separator);
-                sb.Append(ex.ToString());
-                sb.Append(newline);
-                separator = newline;
-            }
-
-            return new NLogRuntimeException("Got multiple exceptions:\r\n" + sb);
         }
     }
 }
