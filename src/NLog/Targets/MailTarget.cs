@@ -277,17 +277,25 @@ namespace NLog.Targets
                     {
                         client.Host = this.SmtpServer.Render(lastEvent);
                         client.Port = this.SmtpPort;
+                        client.EnableSsl = this.EnableSsl;
+
+                        InternalLogger.Debug("Sending mail to {0} using {1}:{2} (ssl={3})", msg.To, client.Host, client.Port, client.EnableSsl);
+                        InternalLogger.Trace("  Subject: '{0}'", msg.Subject);
+                        InternalLogger.Trace("  From: '{0}'", msg.From.ToString());
                         if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
                         {
+                            InternalLogger.Trace("  Using NTLM authentication.");
                             client.Credentials = CredentialCache.DefaultNetworkCredentials;
                         }
                         else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
                         {
-                            client.Credentials = new NetworkCredential(this.SmtpUserName.Render(lastEvent), this.SmtpPassword.Render(lastEvent));
+                            string username = this.SmtpUserName.Render(lastEvent);
+                            string password = this.SmtpPassword.Render(lastEvent);
+
+                            InternalLogger.Trace("  Using basic authentication: Username='{0}' Password='{1}'", username, new string('*', password.Length));
+                            client.Credentials = new NetworkCredential(username, password);
                         }
 
-                        client.EnableSsl = this.EnableSsl;
-                        InternalLogger.Debug("Sending mail to {0} using {1}", msg.To, this.SmtpServer);
                         client.Send(msg);
 
                         foreach (var ev in events)
