@@ -174,16 +174,10 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
 
-            try
+            var s = EventLog.LogNameFromSourceName(this.Source, this.MachineName);
+            if (s != this.Log)
             {
                 this.CreateEventSourceIfNeeded();
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
             }
         }
 
