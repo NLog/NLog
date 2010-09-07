@@ -240,6 +240,7 @@
     <Compile Include="LayoutRenderers\Wrappers\PaddingLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\ReplaceLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\Rot13LayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\UppercaseLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\UrlEncodeLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
