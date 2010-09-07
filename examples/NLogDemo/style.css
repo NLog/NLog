@@ -1,0 +1,17 @@
+﻿body 
+{
+    font-family: Segoe UI;
+    font-size: 10pt;
+}
+
+h1
+{
+    font-weight: normal;
+}
+
+pre
+{
+    border: 1px dotted orange;
+    padding: 10px;
+    background-color: #ffffe0;
+}

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogDemo", "NLogDemo.csproj", "{8F952123-BADC-46A5-A204-A161F0711A39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.netfx40", "..\..\src\NLog\NLog.netfx40.csproj", "{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.netfx40", "..\..\src\NLog.Extended\NLog.Extended.netfx40.csproj", "{A961A1F9-1024-4446-BF9E-A923137340B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F952123-BADC-46A5-A204-A161F0711A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F952123-BADC-46A5-A204-A161F0711A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F952123-BADC-46A5-A204-A161F0711A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F952123-BADC-46A5-A204-A161F0711A39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A961A1F9-1024-4446-BF9E-A923137340B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

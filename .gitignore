@@ -21,4 +21,5 @@ UpgradeLog*.XML
 ipch/
 *.sdf
 *.opensdf
-
+examples/NLogDemo/logs/
+examples/NLogDemo/gmail*.txt
