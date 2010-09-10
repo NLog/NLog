@@ -335,7 +335,7 @@ namespace NLog.Targets
             }
 
             sb.Append("|");
-            if (this.CC != null)
+            if (this.Bcc != null)
             {
                 sb.Append(this.Bcc.Render(logEvent));
             }
