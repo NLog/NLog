@@ -41,7 +41,7 @@ namespace NLog.UnitTests
     using NLog.Internal;
 
     [TestClass]
-    public class AsyncHelperTests
+    public class AsyncHelperTests : NLogTestBase
     {
         [TestMethod]
         public void OneTimeOnlyTest1()
@@ -406,43 +406,46 @@ namespace NLog.UnitTests
         [TestMethod]
         public void ForEachItemInParallelSingleFailureTest()
         {
-            InternalLogger.LogLevel = LogLevel.Trace;
-            InternalLogger.LogToConsole = true;
-
-            var finalContinuationInvoked = new ManualResetEvent(false);
-            Exception lastException = null;
-
-            AsyncContinuation finalContinuation = ex =>
+            using (new InternalLoggerScope())
             {
-                lastException = ex;
-                finalContinuationInvoked.Set();
-            };
+                InternalLogger.LogLevel = LogLevel.Trace;
+                InternalLogger.LogToConsole = true;
 
-            int sum = 0;
-            var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
+                var finalContinuationInvoked = new ManualResetEvent(false);
+                Exception lastException = null;
 
-            AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
-                (i, cont) =>
-                {
-                    Console.WriteLine("Callback on {0}", Thread.CurrentThread.ManagedThreadId);
-                    lock (input)
+                AsyncContinuation finalContinuation = ex =>
                     {
-                        sum += i;
-                    }
+                        lastException = ex;
+                        finalContinuationInvoked.Set();
+                    };
 
-                    if (i == 7)
-                    {
-                        throw new InvalidOperationException("Some failure.");
-                    }
+                int sum = 0;
+                var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
 
-                    cont(null);
-                });
+                AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
+                    (i, cont) =>
+                        {
+                            Console.WriteLine("Callback on {0}", Thread.CurrentThread.ManagedThreadId);
+                            lock (input)
+                            {
+                                sum += i;
+                            }
 
-            finalContinuationInvoked.WaitOne();
-            Assert.AreEqual(55, sum);
-            Assert.IsNotNull(lastException);
-            Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));
-            Assert.AreEqual("Some failure.", lastException.Message);
+                            if (i == 7)
+                            {
+                                throw new InvalidOperationException("Some failure.");
+                            }
+
+                            cont(null);
+                        });
+
+                finalContinuationInvoked.WaitOne();
+                Assert.AreEqual(55, sum);
+                Assert.IsNotNull(lastException);
+                Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));
+                Assert.AreEqual("Some failure.", lastException.Message);
+            }
         }
 
         [TestMethod]

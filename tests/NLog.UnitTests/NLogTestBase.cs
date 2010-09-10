@@ -153,5 +153,42 @@ namespace NLog.UnitTests
         }
 
         public delegate void SyncAction();
+
+        public class InternalLoggerScope : IDisposable
+        {
+            private readonly string logFile;
+            private readonly LogLevel logLevel;
+            private readonly bool logToConsole;
+            private readonly bool includeTimestamp;
+            private readonly bool logToConsoleError;
+            private readonly LogLevel globalThreshold;
+            private readonly bool throwExceptions;
+
+            public InternalLoggerScope()
+            {
+                this.logFile = InternalLogger.LogFile;
+                this.logLevel = InternalLogger.LogLevel;
+                this.logToConsole = InternalLogger.LogToConsole;
+                this.includeTimestamp = InternalLogger.IncludeTimestamp;
+#if !NET_CF
+                this.logToConsoleError = InternalLogger.LogToConsoleError;
+#endif
+                this.globalThreshold = LogManager.GlobalThreshold;
+                this.throwExceptions = LogManager.ThrowExceptions;
+            }
+
+            public void Dispose()
+            {
+                InternalLogger.LogFile = this.logFile;
+                InternalLogger.LogLevel = this.logLevel;
+                InternalLogger.LogToConsole = this.logToConsole;
+                InternalLogger.IncludeTimestamp = this.includeTimestamp;
+#if !NET_CF
+                InternalLogger.LogToConsoleError = this.logToConsoleError;
+#endif
+                LogManager.GlobalThreshold = this.globalThreshold;
+                LogManager.ThrowExceptions = this.throwExceptions;
+            }
+        }
     }
 }
