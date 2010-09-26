@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public TrimWhiteSpaceLayoutRendererWrapper()
         {
-            this.TrimWhitespace = true;
+            this.TrimWhiteSpace = true;
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <value>A value of <c>true</c> if lower case conversion should be applied; otherwise, <c>false</c>.</value>
         /// <docgen category='Transformation Options' order='10' />
         [DefaultValue(true)]
-        public bool TrimWhitespace { get; set; }
+        public bool TrimWhiteSpace { get; set; }
 
         /// <summary>
         /// Post-processes the rendered message. 
@@ -66,7 +66,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Trimmed string.</returns>
         protected override string Transform(string text)
         {
-            return this.TrimWhitespace ? text.Trim() : text;
+            return this.TrimWhiteSpace ? text.Trim() : text;
         }
     }
 }

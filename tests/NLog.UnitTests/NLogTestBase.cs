@@ -160,7 +160,9 @@ namespace NLog.UnitTests
             private readonly LogLevel logLevel;
             private readonly bool logToConsole;
             private readonly bool includeTimestamp;
+#if !NET_CF
             private readonly bool logToConsoleError;
+#endif
             private readonly LogLevel globalThreshold;
             private readonly bool throwExceptions;
 
