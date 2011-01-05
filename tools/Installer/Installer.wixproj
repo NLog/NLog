@@ -37,6 +37,9 @@
   <ItemGroup>
      <MonoInclude Include="Include_Mono2" />
   </ItemGroup>
+  <ItemGroup>
+     <WPInclude Include="Include_WP7" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
@@ -59,8 +62,12 @@
     <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0195;ProductName=NLog 2.0 for Compact Framework;@(NetCFInclude)</DefineConstants>
     <OutputName>$(BaseOutputName)-NetCF</OutputName>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Flavor)' == 'WP'">
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0197;ProductName=NLog 2.0 for Windows Phone;@(WPInclude)</DefineConstants>
+    <OutputName>$(BaseOutputName)-WP</OutputName>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Flavor)' == 'All'">
-    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0196;ProductName=NLog 2.0;@(NetFxInclude);@(SLInclude);@(NetCFInclude);@(MonoInclude)</DefineConstants>
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0196;ProductName=NLog 2.0;@(NetFxInclude);@(SLInclude);@(NetCFInclude);@(MonoInclude);@(WPInclude)</DefineConstants>
     <OutputName>$(BaseOutputName)-All</OutputName>
   </PropertyGroup>
   <PropertyGroup>

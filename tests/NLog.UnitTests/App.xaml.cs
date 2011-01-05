@@ -35,10 +35,14 @@
 
 using System;
 using System.Windows;
+
+#if !WINDOWS_PHONE
 using System.Windows.Browser;
+using Microsoft.Silverlight.Testing.UnitTesting.Harness;
+#endif
+
 using Microsoft.Silverlight.Testing;
 using Microsoft.Silverlight.Testing.Harness;
-using Microsoft.Silverlight.Testing.UnitTesting.Harness;
 
 namespace NLog.UnitTests
 {
@@ -125,14 +129,19 @@ namespace NLog.UnitTests
                 Deployment.Current.Dispatcher.BeginInvoke(delegate { ReportErrorToDOM(e); });
             }
         }
+
         private void ReportErrorToDOM(ApplicationUnhandledExceptionEventArgs e)
         {
             try
             {
                 string errorMsg = e.ExceptionObject.Message + e.ExceptionObject.StackTrace;
+#if WINDOWS_PHONE
+                MessageBox.Show(errorMsg);
+#else
                 errorMsg = errorMsg.Replace('"', '\'').Replace("\r\n", @"\n");
 
                 System.Windows.Browser.HtmlPage.Window.Eval("throw new Error(\"Unhandled Error in Silverlight Application " + errorMsg + "\");");
+#endif
             }
             catch (Exception)
             {
@@ -143,7 +152,9 @@ namespace NLog.UnitTests
         {
             try
             {
+#if !WINDOWS_PHONE
                 HtmlPage.Window.Invoke(methodName, arguments);
+#endif
             }
             catch
             {

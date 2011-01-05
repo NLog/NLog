@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !WINDOWS_PHONE_7
+
 namespace NLog.Internal.NetworkSenders
 {
     using System.Net.Sockets;
@@ -51,3 +53,5 @@ namespace NLog.Internal.NetworkSenders
 #endif
     }
 }
+
+#endif

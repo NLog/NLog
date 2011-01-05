@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET_CF && !SILVERLIGHT
+
 namespace NLog.Targets.Wrappers
 {
     /// <summary>
@@ -49,3 +51,5 @@ namespace NLog.Targets.Wrappers
         Default = 0,
     }
 }
+
+#endif

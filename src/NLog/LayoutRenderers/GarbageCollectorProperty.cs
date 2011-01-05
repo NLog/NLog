@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET_CF && !MONO
+
 namespace NLog.LayoutRenderers
 {
     /// <summary>
@@ -69,3 +71,5 @@ namespace NLog.LayoutRenderers
         MaxGeneration,
     }
 }
+
+#endif

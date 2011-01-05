@@ -43,6 +43,7 @@ namespace NLog.UnitTests
     [TestClass]
     public class RegressionTests : NLogTestBase
     {
+#if !WINDOWS_PHONE
         [TestMethod]
         public void Bug3990StackOverflowWhenUsingNLogViewerTarget()
         {
@@ -61,6 +62,7 @@ namespace NLog.UnitTests
             var target = config.LoggingRules[0].Targets[0] as NLogViewerTarget;
             Assert.IsNotNull(target);
         }
+#endif
 
         [TestMethod]
         public void Bug4655UnableToReconfigureExistingLoggers()

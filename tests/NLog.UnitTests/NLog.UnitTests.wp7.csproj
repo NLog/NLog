@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{810F23D3-6E7E-45B0-A360-218F7E98743D}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NLog.UnitTests</RootNamespace>
+    <AssemblyName>NLog.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>true</SilverlightApplication>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>NLog.UnitTests.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>NLog.UnitTests.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkName>Silverlight for Windows Phone 7</TargetFrameworkName>
+    <DefineConstants>SILVERLIGHT;WCF_SUPPORTED;WINDOWS_PHONE;WINDOWS_PHONE_7;$(DefineConstants)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
+    <IntermediateOutputPath Condition=" '$(BuildingInsideVisualStudio)' != 'true' ">$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Silverlight.Testing, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\external\SilverlightUnitTestFramework\WP7\Microsoft.Silverlight.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\external\SilverlightUnitTestFramework\WP7\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="mscorlib" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiTests.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AsyncHelperTests.cs" />
+    <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
+    <Compile Include="Conditions\ConditionParserTests.cs" />
+    <Compile Include="Config\CaseSensitivityTests.cs" />
+    <Compile Include="Config\ExtensionTests.cs" />
+    <Compile Include="Config\IncludeTests.cs" />
+    <Compile Include="Config\InternalLoggingTests.cs" />
+    <Compile Include="Config\RuleConfigurationTests.cs" />
+    <Compile Include="Config\TargetConfigurationTests.cs" />
+    <Compile Include="Config\VariableTests.cs" />
+    <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
+    <Compile Include="Filters\APITests.cs" />
+    <Compile Include="Filters\ConditionBasedFilterTests.cs" />
+    <Compile Include="Filters\WhenContainsTests.cs" />
+    <Compile Include="Filters\WhenEqualTests.cs" />
+    <Compile Include="Filters\WhenNotContainsTests.cs" />
+    <Compile Include="Filters\WhenNotEqualTests.cs" />
+    <Compile Include="GetLoggerTests.cs" />
+    <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
+    <Compile Include="LayoutRenderers\BaseDirTests.cs" />
+    <Compile Include="LayoutRenderers\CallSiteTests.cs" />
+    <Compile Include="LayoutRenderers\CounterTests.cs" />
+    <Compile Include="LayoutRenderers\DateTests.cs" />
+    <Compile Include="LayoutRenderers\EnvironmentTests.cs" />
+    <Compile Include="LayoutRenderers\EventContextTests.cs" />
+    <Compile Include="LayoutRenderers\ExceptionTests.cs" />
+    <Compile Include="LayoutRenderers\FileContentsTests.cs" />
+    <Compile Include="LayoutRenderers\GDCTests.cs" />
+    <Compile Include="LayoutRenderers\IdentityTests.cs" />
+    <Compile Include="LayoutRenderers\LiteralTests.cs" />
+    <Compile Include="LayoutRenderers\Log4JXmlTests.cs" />
+    <Compile Include="LayoutRenderers\LoggerNameTests.cs" />
+    <Compile Include="LayoutRenderers\LogLevelTests.cs" />
+    <Compile Include="LayoutRenderers\LongDateTests.cs" />
+    <Compile Include="LayoutRenderers\MDCTests.cs" />
+    <Compile Include="LayoutRenderers\MessageTests.cs" />
+    <Compile Include="LayoutRenderers\NDCTests.cs" />
+    <Compile Include="LayoutRenderers\Rot13Tests.cs" />
+    <Compile Include="LayoutRenderers\ShortDateTests.cs" />
+    <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\CachedTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceTests.cs" />
+    <Compile Include="Layouts\CsvLayoutTests.cs" />
+    <Compile Include="Layouts\SimpleLayoutOutputTests.cs" />
+    <Compile Include="Layouts\SimpleLayoutParserTests.cs" />
+    <Compile Include="LoggerTests.cs" />
+    <Compile Include="LogLevelTests.cs" />
+    <Compile Include="LogManagerTests.cs" />
+    <Compile Include="LogReceiverService\LogReceiverServiceTests.cs" />
+    <Compile Include="NLogTestBase.cs" />
+    <Compile Include="NLogTraceListenerTests.cs" />
+    <Compile Include="ProcessRunner.cs" />
+    <Compile Include="RegressionTests.cs" />
+    <Compile Include="RoutingTests.cs" />
+    <Compile Include="SourceCodeTests.cs" />
+    <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
+    <Compile Include="Targets\ConsoleTargetTests.cs" />
+    <Compile Include="Targets\DatabaseTargetTests.cs" />
+    <Compile Include="Targets\EventLogTests.cs" />
+    <Compile Include="Targets\FileTargetTests.cs" />
+    <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
+    <Compile Include="Targets\MailTargetTests.cs" />
+    <Compile Include="Targets\NetworkTargetTests.cs" />
+    <Compile Include="Targets\RichTextBoxTargetTests.cs" />
+    <Compile Include="Targets\TargetTests.cs" />
+    <Compile Include="Targets\Wrappers\AsyncRequestQueueTests.cs" />
+    <Compile Include="Targets\Wrappers\AsyncTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\AutoFlushTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\BufferingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\FallbackGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\FilteringTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\PostFilteringTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\RandomizeGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\RepeatingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\RetryingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\RoundRobinGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\SplitGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ConfigFiles\included.nlog" />
+    <Content Include="ConfigFiles\main.nlog" />
+    <Content Include="ConfigFiles\referencemissingfile.nlog" />
+    <Content Include="ConfigFiles\referencemissingfileignored.nlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ConfigFiles\included.nlog" />
+    <Content Include="ConfigFiles\main.nlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\OutOfBrowserSettings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NLog\NLog.wp7.csproj">
+      <Project>{8A0E38D3-6E7E-45B0-A360-218F7E98743D}</Project>
+      <Name>NLog.wp7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleExtensions\SampleExtensions.wp7.csproj">
+      <Project>{8A0E38D3-1512-45B0-A360-218F7E98743D}</Project>
+      <Name>SampleExtensions.wp7</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

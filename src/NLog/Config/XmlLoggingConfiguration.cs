@@ -664,6 +664,7 @@ namespace NLog.Config
                     this.configurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
                 }
 
+#if !WINDOWS_PHONE
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {
@@ -731,6 +732,7 @@ namespace NLog.Config
 
                     continue;
                 }
+#endif
             }
         }
 

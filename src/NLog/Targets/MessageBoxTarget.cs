@@ -36,12 +36,6 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.Text;
-#if SILVERLIGHT
-    using System.Windows;
-    using System.Windows.Browser;
-#else
-    using System.Windows.Forms;
-#endif
     using NLog.Common;
     using NLog.Internal;
     using NLog.Layouts;
@@ -97,11 +91,7 @@ namespace NLog.Targets
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "This is just debugging output.")]
         protected override void Write(LogEventInfo logEvent)
         {
-#if SILVERLIGHT
-            HtmlPage.Window.Alert(this.Caption.Render(logEvent) + "\r\n\r\n" + this.Layout.Render(logEvent));
-#else
-            MessageBox.Show(this.Layout.Render(logEvent), this.Caption.Render(logEvent));
-#endif
+            MessageBoxHelper.Show(this.Layout.Render(logEvent), this.Caption.Render(logEvent));
         }
 
         /// <summary>
@@ -125,20 +115,7 @@ namespace NLog.Targets
                 sb.Append("\n");
             }
 
-#if SILVERLIGHT
-            Action action = () => HtmlPage.Window.Alert(this.Caption.Render(lastLogEvent.LogEvent) + "\r\n\r\n" + sb.ToString());
-
-            if (!Deployment.Current.Dispatcher.CheckAccess())
-            {
-                Deployment.Current.Dispatcher.BeginInvoke(action);
-            }
-            else
-            {
-                action();
-            }
-#else
-            MessageBox.Show(sb.ToString(), this.Caption.Render(lastLogEvent.LogEvent));
-#endif
+            MessageBoxHelper.Show(sb.ToString(), this.Caption.Render(lastLogEvent.LogEvent));
 
             for (int i = 0; i < logEvents.Length; ++i)
             {

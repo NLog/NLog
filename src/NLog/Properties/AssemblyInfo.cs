@@ -54,6 +54,8 @@ using System.Runtime.InteropServices;
     [assembly: AssemblyTitle("NLog for Silverlight 3.0")]
 #elif SILVERLIGHT4
     [assembly: AssemblyTitle("NLog for Silverlight 4.0")]
+#elif WINDOWS_PHONE_7
+    [assembly: AssemblyTitle("NLog for Windows Phone 7")]
 #elif DOCUMENTATION
     [assembly: AssemblyTitle("NLog Documentation")]
 #else

@@ -31,10 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Config
+namespace NLog.Internal
 {
-    using NLog.Internal;
-
     /// <summary>
     /// Supported operating systems.
     /// </summary>
@@ -42,7 +40,7 @@ namespace NLog.Config
     /// If you add anything here, make sure to add the appropriate detection
     /// code to <see cref="PlatformDetector"/>
     /// </remarks>
-    public enum RuntimeOS
+    internal enum RuntimeOS
     {
         /// <summary>
         /// Any operating system.

@@ -123,11 +123,14 @@ namespace NLog.LogReceiverService
                 var sb = new StringBuilder();
                 string separator = string.Empty;
 
-                foreach (int index in this.ValueIndexes)
+                if (this.ValueIndexes != null)
                 {
-                    sb.Append(separator);
-                    sb.Append(index);
-                    separator = "|";
+                    foreach (int index in this.ValueIndexes)
+                    {
+                        sb.Append(separator);
+                        sb.Append(index);
+                        separator = "|";
+                    }
                 }
 
                 return sb.ToString();
@@ -135,7 +138,15 @@ namespace NLog.LogReceiverService
 
             set
             {
-                this.ValueIndexes.Clear();
+                if (this.ValueIndexes != null)
+                {
+                    this.ValueIndexes.Clear();
+                }
+                else
+                {
+                    this.ValueIndexes = new List<int>();
+                }
+
                 if (!string.IsNullOrEmpty(value))
                 {
                     string[] chunks = value.Split('|');

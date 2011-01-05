@@ -37,17 +37,15 @@
     <CustomActionRef Id="VCSHARP2005InstallVSTemplates" />
     <CustomActionRef Id="VB2005InstallVSTemplates" />
     <CustomActionRef Id="VWD2005InstallVSTemplates" />
-
     <CustomActionRef Id="VS90InstallVSTemplates" />
     <CustomActionRef Id="VCSHARP90InstallVSTemplates" />
     <CustomActionRef Id="VB90InstallVSTemplates" />
     <CustomActionRef Id="VWD90InstallVSTemplates" />
-
     <CustomActionRef Id="VS2010InstallVSTemplates" />
     <CustomActionRef Id="VCSHARP2010InstallVSTemplates" />
     <CustomActionRef Id="VB2010InstallVSTemplates" />
     <CustomActionRef Id="VWD2010InstallVSTemplates" />
-
+		<CustomActionRef Id="VPD2010InstallVSTemplates" />
     <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="TopBanner.bmp" />
     <WixVariable Id="WixUIDialogBmp" Value="Background.bmp" />
@@ -71,6 +69,7 @@
       <Custom Action="VCSHARP2010InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VCSHARP2010 = -1)</Custom>
       <Custom Action="VB2010InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VB2010 = -1)</Custom>
       <Custom Action="VWD2010InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VWD2010 = -1)</Custom>
+      <Custom Action="VPD2010InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VPD2010 = -1)</Custom>
  
     </InstallExecuteSequence>
 
@@ -87,6 +86,8 @@
       <ProgressText Action="VCSHARP2010InstallVSTemplates" Template="[1]">Registering Visual C# 2010 Express Templates</ProgressText>
       <ProgressText Action="VB2010InstallVSTemplates" Template="[1]">Registering Visual Basic 2010 Express Templates</ProgressText>
       <ProgressText Action="VWD2010InstallVSTemplates" Template="[1]">Registering Visual Web Developer 2010 Express Templates</ProgressText>
+	      
+      <ProgressText Action="VPD2010InstallVSTemplates" Template="[1]">Registering Visual Studio 2010 Express for Windows Phone Templates</ProgressText>
       
     </UI>
 
@@ -111,6 +112,7 @@
           <Directory Id="SL2_DIR" Name="Silverlight 2.0" />
           <Directory Id="SL3_DIR" Name="Silverlight 3.0" />
           <Directory Id="SL4_DIR" Name="Silverlight 4.0" />
+          <Directory Id="WP7_DIR" Name="Silverlight for Windows Phone 7" />
  
         </Directory>
 
@@ -236,6 +238,17 @@
                   <Directory Id="VS2010_VWDWebItemTemplates" Name="Web">
                     <Directory Id="VS2010_VWDWebCSharpItemTemplates" Name="CSharp" />
                     <Directory Id="VS2010_VWDWebVBItemTemplates" Name="VisualBasic" />
+                  </Directory>
+                </Directory>
+              </Directory>
+              
+              <Directory Id="VS2010_VPDExpress" Name="VPDExpress">
+                <Directory Id="VS2010_VPDExpressItemTemplates" Name="ItemTemplates">
+                  <Directory Id="VS2010_VPDCSharpItemTemplates" Name="CSharp" />
+                  <Directory Id="VS2010_VPDVBItemTemplates" Name="VisualBasic" />
+                  <Directory Id="VS2010_VPDWebItemTemplates" Name="Web">
+                    <Directory Id="VS2010_VPDWebCSharpItemTemplates" Name="CSharp" />
+                    <Directory Id="VS2010_VPDWebVBItemTemplates" Name="VisualBasic" />
                   </Directory>
                 </Directory>
               </Directory>
@@ -595,6 +608,30 @@
     </DirectoryRef>
     <?endif ?>
 
+    <!-- Silverlight for Windows Phone 7 support -->
+
+    <?ifdef Include_WP7 ?>
+    <DirectoryRef Id="WP7_DIR" FileSource="$(var.NLogBuildPath)\Silverlight for Windows Phone 7">
+    
+      <Component Id="WP7_Binaries" Guid="3b8fa363-fe6b-3234-f0c9-7ca5c970fcef">
+        <File Id="WP7_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
+        <File Id="WP7_NLog.xml" Name="NLog.xml" />
+                              
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight for Phone\v4.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+          <RegistryValue Type="string" Value="[WP7_DIR]"></RegistryValue>
+        </RegistryKey>
+                
+      </Component>
+
+      <Component Id="WP7_DebugInfo" Guid="1a588a2d-7ade-3864-ed8f-ed5c7b83adc5">
+        <File Id="WP7_NLog.NLog.pdb" Name="NLog.pdb" />
+         
+         
+      </Component>
+
+    </DirectoryRef>
+    <?endif ?>
+
 
     <!-- Visual Studio 2005 -->
     
@@ -670,7 +707,6 @@
       </Directory>
     </DirectoryRef>
     
-    
     <!-- VWD C# -->
 
     <DirectoryRef Id="VS2005_VWDCSharpItemTemplates">
@@ -719,6 +755,7 @@
       </Directory>
     </DirectoryRef>
     
+
     <!-- C# code snippets -->
 
     <DirectoryRef Id="VS2005_VisualCSharpSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
@@ -764,6 +801,9 @@
       <?endif ?>
       <?ifdef Include_SL4 ?>
         <File Id="VS2005_NLog.SL4.xsd" Name="NLog.SL4.xsd" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.SL4.xsd" />
+      <?endif ?>
+      <?ifdef Include_WP7 ?>
+        <File Id="VS2005_NLog.WP7.xsd" Name="NLog.WP7.xsd" Source="$(var.NLogBuildPath)\Silverlight for Windows Phone 7\NLog.WP7.xsd" />
       <?endif ?>
  
       </Component>
@@ -843,7 +883,6 @@
       </Directory>
     </DirectoryRef>
     
-    
     <!-- VWD C# -->
 
     <DirectoryRef Id="VS2008_VWDCSharpItemTemplates">
@@ -892,6 +931,7 @@
       </Directory>
     </DirectoryRef>
     
+
     <!-- C# code snippets -->
 
     <DirectoryRef Id="VS2008_VisualCSharpSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
@@ -937,6 +977,9 @@
       <?endif ?>
       <?ifdef Include_SL4 ?>
         <File Id="VS2008_NLog.SL4.xsd" Name="NLog.SL4.xsd" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.SL4.xsd" />
+      <?endif ?>
+      <?ifdef Include_WP7 ?>
+        <File Id="VS2008_NLog.WP7.xsd" Name="NLog.WP7.xsd" Source="$(var.NLogBuildPath)\Silverlight for Windows Phone 7\NLog.WP7.xsd" />
       <?endif ?>
  
       </Component>
@@ -1016,7 +1059,6 @@
       </Directory>
     </DirectoryRef>
     
-    
     <!-- VWD C# -->
 
     <DirectoryRef Id="VS2010_VWDCSharpItemTemplates">
@@ -1065,6 +1107,33 @@
       </Directory>
     </DirectoryRef>
     
+              
+
+    <!-- VPD C# -->
+
+    <DirectoryRef Id="VS2010_VPDCSharpItemTemplates">
+      <Directory Id="VS2010_VPDCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2010_VPDCSharpItemTemplates" Guid="2cf5d6bf-7d65-31c2-b9d5-81ee685ba26f">
+          <File Id="VS2010_VPDCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_VPDCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS2010_VPDCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VPD VB -->
+
+    <DirectoryRef Id="VS2010_VPDVBItemTemplates">
+      <Directory Id="VS2010_VPDVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS2010_VPDVBItemTemplates" Guid="dc28df88-3a54-3168-40f4-a5381890654d">
+          <File Id="VS2010_VPDVBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS2010_VPDVBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS2010_VPDVBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+
     <!-- C# code snippets -->
 
     <DirectoryRef Id="VS2010_VisualCSharpSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
@@ -1110,6 +1179,9 @@
       <?endif ?>
       <?ifdef Include_SL4 ?>
         <File Id="VS2010_NLog.SL4.xsd" Name="NLog.SL4.xsd" Source="$(var.NLogBuildPath)\Silverlight 4.0\NLog.SL4.xsd" />
+      <?endif ?>
+      <?ifdef Include_WP7 ?>
+        <File Id="VS2010_NLog.WP7.xsd" Name="NLog.WP7.xsd" Source="$(var.NLogBuildPath)\Silverlight for Windows Phone 7\NLog.WP7.xsd" />
       <?endif ?>
  
       </Component>
@@ -1178,6 +1250,12 @@
       </Feature>
       <?endif?>
       
+      <?ifdef Include_WP7 ?>
+      <Feature Id="WP7_Binaries" Title="Silverlight for Windows Phone 7" Level="1">
+        <ComponentRef Id="WP7_Binaries" />
+      </Feature>
+      <?endif?>
+      
     </Feature>
 
     <Feature Id="Feature_Help" Title="Help" Level="1">
@@ -1240,6 +1318,12 @@
       </Feature>
       <?endif?>
       
+      <?ifdef Include_WP7 ?>
+      <Feature Id="WP7_DebugInfo" Title="Silverlight for Windows Phone 7" Level="1">
+        <ComponentRef Id="WP7_DebugInfo" />
+      </Feature>
+      <?endif?>
+      
     </Feature>
 
     <Feature Id="Feature_NLogC" Title="NLogC" Level="1">
@@ -1294,6 +1378,7 @@
         <ComponentRef Id="VS2005_VWDWebVBItemTemplates" />
       </Feature>
       
+      
       <Feature Id="Feature_VB2005" Title="Visual Basic 2005 Express" Level="0">
         <Condition Level="1">VB2005EXPRESS_IDE</Condition>
         <ComponentRef Id="VS2005_XmlSchemas"/>
@@ -1338,6 +1423,7 @@
         <ComponentRef Id="VS2008_VWDWebVBItemTemplates" />
       </Feature>
       
+      
       <Feature Id="Feature_VB2008" Title="Visual Basic 2008 Express" Level="0">
         <Condition Level="1">VB90EXPRESS_IDE</Condition>
         <ComponentRef Id="VS2008_XmlSchemas"/>
@@ -1380,6 +1466,15 @@
         <ComponentRef Id="VS2010_VWDVBItemTemplates" />
         <ComponentRef Id="VS2010_VWDWebCSharpItemTemplates" />
         <ComponentRef Id="VS2010_VWDWebVBItemTemplates" />
+      </Feature>
+      
+      <Feature Id="Feature_VPD2010" Title="Visual Studio 2010 Express for Windows Phone" Level="0">
+        <Condition Level="1">VPD2010EXPRESS_IDE</Condition>
+        <ComponentRef Id="VS2010_XmlSchemas"/>
+        <ComponentRef Id="VS2010_CSharpCodeSnippets" />
+        <ComponentRef Id="VS2010_VBCodeSnippets" />
+        <ComponentRef Id="VS2010_VPDCSharpItemTemplates" />
+        <ComponentRef Id="VS2010_VPDVBItemTemplates" />
       </Feature>
       
       <Feature Id="Feature_VB2010" Title="Visual Basic 2010 Express" Level="0">

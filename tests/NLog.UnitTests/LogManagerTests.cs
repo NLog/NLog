@@ -64,7 +64,7 @@ namespace NLog.UnitTests
             Assert.AreEqual("", l.Name);
         }
 
-#if !SILVERLIGHT2 && !SILVERLIGHT3 
+#if !SILVERLIGHT2 && !SILVERLIGHT3 && !WINDOWS_PHONE
         [TestMethod]
         public void ThrowExceptionsTest()
         {

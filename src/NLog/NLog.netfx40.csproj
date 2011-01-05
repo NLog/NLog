@@ -114,7 +114,6 @@
     <Compile Include="Config\NLogConfigurationItemAttribute.cs" />
     <Compile Include="Config\NLogXmlElement.cs" />
     <Compile Include="Config\RequiredParameterAttribute.cs" />
-    <Compile Include="Config\RuntimeOS.cs" />
     <Compile Include="Config\SimpleConfigurator.cs" />
     <Compile Include="Config\StackTraceUsage.cs" />
     <Compile Include="Config\ThreadAgnosticAttribute.cs" />
@@ -158,6 +157,7 @@
     <Compile Include="Internal\IUsesStackTrace.cs" />
     <Compile Include="Internal\LocalizableAttribute.cs" />
     <Compile Include="Internal\LoggerConfiguration.cs" />
+    <Compile Include="Internal\MessageBoxHelper.cs" />
     <Compile Include="Internal\MultiFileWatcher.cs" />
     <Compile Include="Internal\MySmtpClient.cs" />
     <Compile Include="Internal\NativeMethods.cs">
@@ -178,6 +178,7 @@
     <Compile Include="Internal\PortableFileInfoHelper.cs" />
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
     <Compile Include="Internal\PropertyHelper.cs" />
+    <Compile Include="Internal\RuntimeOS.cs" />
     <Compile Include="Internal\SingleCallContinuation.cs" />
     <Compile Include="Internal\SortHelpers.cs" />
     <Compile Include="Internal\StackTraceUsageUtils.cs" />
@@ -272,8 +273,8 @@
     <Compile Include="LogManager.cs" />
     <Compile Include="LogMessageGenerator.cs" />
     <Compile Include="LogReceiverService\ILogReceiverClient.cs" />
-    <Compile Include="LogReceiverService\ILogReceiverClientChannel.cs" />
     <Compile Include="LogReceiverService\ILogReceiverServer.cs" />
+    <Compile Include="LogReceiverService\LogReceiverForwardingService.cs" />
     <Compile Include="LogReceiverService\LogReceiverServiceConfig.cs" />
     <Compile Include="LogReceiverService\NLogEvent.cs" />
     <Compile Include="LogReceiverService\NLogEvents.cs" />

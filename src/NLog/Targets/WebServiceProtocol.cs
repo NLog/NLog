@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT
+
 namespace NLog.Targets
 {
     /// <summary>
@@ -59,3 +61,5 @@ namespace NLog.Targets
         HttpGet,
     }
 }
+
+#endif

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if (SILVERLIGHT || DOCUMENTATION) && !WINDOWS_PHONE
+
 namespace NLog.LayoutRenderers
 {
     /// <summary>
@@ -64,3 +66,5 @@ namespace NLog.LayoutRenderers
 #endif
     }
 }
+
+#endif

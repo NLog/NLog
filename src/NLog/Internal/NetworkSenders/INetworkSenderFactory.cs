@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !WINDOWS_PHONE
+
 namespace NLog.Internal.NetworkSenders
 {
     /// <summary>
@@ -50,3 +52,5 @@ namespace NLog.Internal.NetworkSenders
         NetworkSender Create(string url);
     }
 }
+
+#endif

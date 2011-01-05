@@ -23,6 +23,7 @@ var visualStudioVersions = new []
         ReleaseName = "2010",
         WixPrefix = "2010",
         DirectoryName = "Visual Studio 10.0",
+        SupportsWindowsPhone = true,
     },
 };
 
@@ -118,6 +119,15 @@ var supportedFrameworks = new []
             @"SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v4.0\AssemblyFoldersEx\NLog2",
         }
     },
+    new FrameworkInfo
+    {
+        ShortName = "WP7",
+        FullName = "Silverlight for Windows Phone 7",
+        AssemblyInfoRegistryKeys =
+        {
+            @"SOFTWARE\Microsoft\Microsoft SDKs\Silverlight for Phone\v4.0\AssemblyFoldersEx\NLog2",
+        }
+    },
 };
 
 #><Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
@@ -152,8 +162,10 @@ foreach (var vs in visualStudioVersions) {
     <CustomActionRef Id="VCSHARP<#= vs.WixPrefix #>InstallVSTemplates" />
     <CustomActionRef Id="VB<#= vs.WixPrefix #>InstallVSTemplates" />
     <CustomActionRef Id="VWD<#= vs.WixPrefix #>InstallVSTemplates" />
-
+<# if (vs.SupportsWindowsPhone) { #>
+		<CustomActionRef Id="VPD<#= vs.WixPrefix #>InstallVSTemplates" />
 <#
+	}
 }
 #>
     <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
@@ -172,7 +184,13 @@ foreach (var vs in visualStudioVersions) {
       <Custom Action="VCSHARP<#= vs.WixPrefix #>InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VCSHARP<#= vs.ReleaseName #> = -1)</Custom>
       <Custom Action="VB<#= vs.WixPrefix #>InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VB<#= vs.ReleaseName #> = -1)</Custom>
       <Custom Action="VWD<#= vs.WixPrefix #>InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VWD<#= vs.ReleaseName #> = -1)</Custom>
-<# } #> 
+<#
+	if (vs.SupportsWindowsPhone) {
+#>
+      <Custom Action="VPD<#= vs.WixPrefix #>InstallVSTemplates" Before="InstallFinalize">NOT (&amp;Feature_VPD<#= vs.ReleaseName #> = -1)</Custom>
+<#      
+	}
+ } #> 
     </InstallExecuteSequence>
 
     <UI>
@@ -181,7 +199,14 @@ foreach (var vs in visualStudioVersions) {
       <ProgressText Action="VCSHARP<#= vs.WixPrefix #>InstallVSTemplates" Template="[1]">Registering Visual C# <#= vs.ReleaseName #> Express Templates</ProgressText>
       <ProgressText Action="VB<#= vs.WixPrefix #>InstallVSTemplates" Template="[1]">Registering Visual Basic <#= vs.ReleaseName #> Express Templates</ProgressText>
       <ProgressText Action="VWD<#= vs.WixPrefix #>InstallVSTemplates" Template="[1]">Registering Visual Web Developer <#= vs.ReleaseName #> Express Templates</ProgressText>
-<# } #>      
+<#
+		if (vs.SupportsWindowsPhone) {
+#>	      
+      <ProgressText Action="VPD<#= vs.WixPrefix #>InstallVSTemplates" Template="[1]">Registering Visual Studio <#= vs.ReleaseName #> Express for Windows Phone Templates</ProgressText>
+<#  
+		}
+	}
+ #>      
     </UI>
 
     <!-- directories -->
@@ -223,6 +248,18 @@ foreach (var vs in visualStudioVersions) {
                   </Directory>
                 </Directory>
               </Directory>
+<# if (vs.SupportsWindowsPhone) { #>              
+              <Directory Id="VS<#= vs.ReleaseName #>_VPDExpress" Name="VPDExpress">
+                <Directory Id="VS<#= vs.ReleaseName #>_VPDExpressItemTemplates" Name="ItemTemplates">
+                  <Directory Id="VS<#= vs.ReleaseName #>_VPDCSharpItemTemplates" Name="CSharp" />
+                  <Directory Id="VS<#= vs.ReleaseName #>_VPDVBItemTemplates" Name="VisualBasic" />
+                  <Directory Id="VS<#= vs.ReleaseName #>_VPDWebItemTemplates" Name="Web">
+                    <Directory Id="VS<#= vs.ReleaseName #>_VPDWebCSharpItemTemplates" Name="CSharp" />
+                    <Directory Id="VS<#= vs.ReleaseName #>_VPDWebVBItemTemplates" Name="VisualBasic" />
+                  </Directory>
+                </Directory>
+              </Directory>
+<# } #>
               <Directory Id="VS<#= vs.WixPrefix #>_ITEMTEMPLATES_DIR" Name="ItemTemplates">
                 <Directory Id="VS<#= vs.ReleaseName #>_CSharpItemTemplates" Name="CSharp" />
                 <Directory Id="VS<#= vs.ReleaseName #>_VBItemTemplates" Name="VisualBasic" />
@@ -435,7 +472,6 @@ foreach (var vs in visualStudioVersions) {
       </Directory>
     </DirectoryRef>
     
-    
     <!-- VWD C# -->
 
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VWDCSharpItemTemplates">
@@ -484,6 +520,34 @@ foreach (var vs in visualStudioVersions) {
       </Directory>
     </DirectoryRef>
     
+<# if (vs.SupportsWindowsPhone) { #>              
+
+    <!-- VPD C# -->
+
+    <DirectoryRef Id="VS<#= vs.ReleaseName #>_VPDCSharpItemTemplates">
+      <Directory Id="VS<#= vs.ReleaseName #>_VPDCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS<#= vs.ReleaseName #>_VPDCSharpItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VPDCSharpItemTemplates") #>">
+          <File Id="VS<#= vs.ReleaseName #>_VPDCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
+          <File Id="VS<#= vs.ReleaseName #>_VPDCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
+          <File Id="VS<#= vs.ReleaseName #>_VPDCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+    <!-- VPD VB -->
+
+    <DirectoryRef Id="VS<#= vs.ReleaseName #>_VPDVBItemTemplates">
+      <Directory Id="VS<#= vs.ReleaseName #>_VPDVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
+        <Component Id="VS<#= vs.ReleaseName #>_VPDVBItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VPDVBItemTemplates") #>">
+          <File Id="VS<#= vs.ReleaseName #>_VPDVBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
+          <File Id="VS<#= vs.ReleaseName #>_VPDVBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
+          <File Id="VS<#= vs.ReleaseName #>_VPDVBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+
+<# } #>
+
     <!-- C# code snippets -->
 
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VisualCSharpSnippets" FileSource="$(var.NLogSourcePath)\src\VSIntegration\Snippets">
@@ -601,6 +665,17 @@ foreach (var vs in visualStudioVersions) {
         <ComponentRef Id="VS<#= vs.ReleaseName #>_VWDWebVBItemTemplates" />
       </Feature>
       
+<# if (vs.SupportsWindowsPhone) { #>
+      <Feature Id="Feature_VPD<#= vs.ReleaseName #>" Title="Visual Studio <#= vs.ReleaseName #> Express for Windows Phone" Level="0">
+        <Condition Level="1">VPD<#= vs.WixPrefix #>EXPRESS_IDE</Condition>
+        <ComponentRef Id="VS<#= vs.ReleaseName #>_XmlSchemas"/>
+        <ComponentRef Id="VS<#= vs.ReleaseName #>_CSharpCodeSnippets" />
+        <ComponentRef Id="VS<#= vs.ReleaseName #>_VBCodeSnippets" />
+        <ComponentRef Id="VS<#= vs.ReleaseName #>_VPDCSharpItemTemplates" />
+        <ComponentRef Id="VS<#= vs.ReleaseName #>_VPDVBItemTemplates" />
+      </Feature>
+<# } #>
+      
       <Feature Id="Feature_VB<#= vs.ReleaseName #>" Title="Visual Basic <#= vs.ReleaseName #> Express" Level="0">
         <Condition Level="1">VB<#= vs.WixPrefix #>EXPRESS_IDE</Condition>
         <ComponentRef Id="VS<#= vs.ReleaseName #>_XmlSchemas"/>
@@ -631,6 +706,8 @@ public class VisualStudioVersion
     public string ReleaseName { get; set; }
     public string WixPrefix { get; set; }
     public string DirectoryName { get; set; }
+    
+    public bool SupportsWindowsPhone { get; set; }
 };
 
 public class FrameworkInfo
