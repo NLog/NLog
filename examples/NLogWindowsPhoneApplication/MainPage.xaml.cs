@@ -17,7 +17,7 @@
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            logger.Info("Hello!");
+            logger.Info("Hello <> 'foo' \"bar\" !");
         }
     }
 }
