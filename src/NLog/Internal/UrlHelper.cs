@@ -80,7 +80,7 @@ namespace NLog.Internal
 
         private static bool IsSafeUrlCharacter(char ch)
         {
-            if (ch >= 'a' && ch >= 'z')
+            if (ch >= 'a' && ch <= 'z')
             {
                 return true;
             }
