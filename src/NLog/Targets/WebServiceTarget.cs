@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.Targets
 {
     using System;
@@ -42,7 +40,9 @@ namespace NLog.Targets
     using System.Net;
     using System.Text;
     using System.Xml;
+    using NLog.Common;
     using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Calls the specified web service on each log message.
@@ -80,6 +80,7 @@ namespace NLog.Targets
         public WebServiceTarget()
         {
             this.Protocol = WebServiceProtocol.Soap11;
+            this.Encoding = Encoding.UTF8;
         }
 
         /// <summary>
@@ -108,52 +109,130 @@ namespace NLog.Targets
         public WebServiceProtocol Protocol { get; set; }
 
         /// <summary>
+        /// Gets or sets the encoding.
+        /// </summary>
+        public Encoding Encoding { get; set; }
+
+        /// <summary>
+        /// Calls the target method. Must be implemented in concrete classes.
+        /// </summary>
+        /// <param name="parameters">Method call parameters.</param>
+        protected override void DoInvoke(object[] parameters)
+        {
+            // method is not used, instead asynchronous overload will be used
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Invokes the web service method.
         /// </summary>
         /// <param name="parameters">Parameters to be passed.</param>
-        protected override void DoInvoke(object[] parameters)
+        /// <param name="continuation">The continuation.</param>
+        protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
         {
+            var request = (HttpWebRequest)WebRequest.Create(this.Url);
+            byte[] postPayload = null;
+
             switch (this.Protocol)
             {
                 case WebServiceProtocol.Soap11:
-                    this.InvokeSoap11(parameters);
+                    postPayload = this.PrepareSoap11Request(request, parameters);
                     break;
 
                 case WebServiceProtocol.Soap12:
-                    this.InvokeSoap12(parameters);
+                    postPayload = this.PrepareSoap12Request(request, parameters);
                     break;
 
                 case WebServiceProtocol.HttpGet:
                     throw new NotSupportedException();
 
                 case WebServiceProtocol.HttpPost:
-                    this.InvokeHttpPost(parameters);
+                    postPayload = this.PreparePostRequest(request, parameters);
                     break;
             }
-        }
 
-        private void InvokeSoap11(object[] parameters)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.Url);
-            request.Method = "POST";
-            request.ContentType = "text/xml; charset=utf-8";
+            AsyncContinuation sendContinuation =
+                ex =>
+                    {
+                        if (ex != null)
+                        {
+                            continuation(ex);
+                            return;
+                        }
 
-            string soapAction;
+                        request.BeginGetResponse(
+                            r =>
+                            {
+                                try
+                                {
+                                    using (var response = request.EndGetResponse(r))
+                                    {
+                                    }
 
-            if (this.Namespace.EndsWith("/", StringComparison.Ordinal))
+                                    continuation(null);
+                                }
+                                catch (Exception ex2)
+                                {
+                                    if (ex2.MustBeRethrown())
+                                    {
+                                        throw;
+                                    }
+
+                                    continuation(ex2);
+                                }
+                            }, 
+                            null);
+                    };
+
+            if (postPayload != null && postPayload.Length > 0)
             {
-                soapAction = "SOAPAction: " + this.Namespace + this.MethodName;
+                request.BeginGetRequestStream(
+                    r =>
+                        {
+                            try
+                            {
+                                using (Stream stream = request.EndGetRequestStream(r))
+                                {
+                                    stream.Write(postPayload, 0, postPayload.Length);
+                                }
+
+                                sendContinuation(null);
+                            }
+                            catch (Exception ex)
+                            {
+                                if (ex.MustBeRethrown())
+                                {
+                                    throw;
+                                }
+
+                                continuation(ex);
+                            }
+                        },
+                    null);
             }
             else
             {
-                soapAction = "SOAPAction: " + this.Namespace + "/" + this.MethodName;
+                sendContinuation(null);
+            }
+        }
+
+        private byte[] PrepareSoap11Request(HttpWebRequest request, object[] parameters)
+        {
+            request.Method = "POST";
+            request.ContentType = "text/xml; charset=" + this.Encoding.WebName;
+
+            if (this.Namespace.EndsWith("/", StringComparison.Ordinal))
+            {
+                request.Headers["SOAPAction"] = this.Namespace + this.MethodName;
+            }
+            else
+            {
+                request.Headers["SOAPAction"] = this.Namespace + "/" + this.MethodName;
             }
 
-            request.Headers.Add(soapAction);
-
-            using (Stream s = request.GetRequestStream())
+            using (var ms = new MemoryStream())
             {
-                XmlWriter xtw = XmlWriter.Create(s, new XmlWriterSettings { Encoding = Encoding.UTF8 });
+                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.Encoding });
 
                 xtw.WriteStartElement("soap", "Envelope", SoapEnvelopeNamespace);
                 xtw.WriteStartElement("Body", SoapEnvelopeNamespace);
@@ -170,21 +249,19 @@ namespace NLog.Targets
                 xtw.WriteEndElement(); // Body
                 xtw.WriteEndElement(); // soap:Envelope
                 xtw.Flush();
-            }
 
-            WebResponse response = request.GetResponse();
-            response.Close();
+                return ms.ToArray();
+            }
         }
 
-        private void InvokeSoap12(object[] parameterValues)
+        private byte[] PrepareSoap12Request(HttpWebRequest request, object[] parameterValues)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.Url);
             request.Method = "POST";
-            request.ContentType = "text/xml; charset=utf-8";
+            request.ContentType = "text/xml; charset=" + this.Encoding.WebName;
 
-            using (Stream s = request.GetRequestStream())
+            using (var ms = new MemoryStream())
             {
-                XmlTextWriter xtw = new XmlTextWriter(s, System.Text.Encoding.UTF8);
+                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.Encoding });
 
                 xtw.WriteStartElement("soap12", "Envelope", Soap12EnvelopeNamespace);
                 xtw.WriteStartElement("Body", Soap12EnvelopeNamespace);
@@ -200,33 +277,21 @@ namespace NLog.Targets
                 xtw.WriteEndElement();
                 xtw.WriteEndElement();
                 xtw.Flush();
-            }
 
-            WebResponse response = request.GetResponse();
-            response.Close();
+                return ms.ToArray();
+            }
         }
 
-        private void InvokeHttpPost(object[] parameterValues)
+        private byte[] PreparePostRequest(HttpWebRequest request, object[] parameterValues)
         {
-            string completeUrl;
-
-            if (this.MethodName.EndsWith("/", StringComparison.Ordinal))
-            {
-                completeUrl = this.Url + this.MethodName;
-            }
-            else
-            {
-                completeUrl = this.Url + "/" + this.MethodName;
-            }
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(completeUrl);
             request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentType = "application/x-www-form-urlencoded; charset=" + this.Encoding.WebName;
 
             string separator = string.Empty;
-            using (Stream s = request.GetRequestStream())
+            using (var ms = new MemoryStream())
             {
-                var sw = new StreamWriter(s);
+                var sw = new StreamWriter(ms, this.Encoding);
+                sw.Write(string.Empty);
                 int i = 0;
                 foreach (MethodCallParameter parameter in this.Parameters)
                 {
@@ -235,15 +300,12 @@ namespace NLog.Targets
                     sw.Write("=");
                     sw.Write(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), true));
                     separator = "&";
+                    i++;
                 }
 
                 sw.Flush();
+                return ms.ToArray();
             }
-
-            WebResponse response = request.GetResponse();
-            response.Close();
         }
     }
 }
-
-#endif
