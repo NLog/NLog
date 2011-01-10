@@ -51,7 +51,7 @@ namespace NLog.Layouts
     [Layout("SimpleLayout")]
     [ThreadAgnostic]
     [AppDomainFixedOutput]
-    public sealed class SimpleLayout : Layout
+    public class SimpleLayout : Layout
     {
         private const int MaxInitialRenderBufferLength = 16384;
         private int maxRenderedLength;

@@ -157,6 +157,7 @@
     <Compile Include="Internal\NativeMethods.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Internal\NetworkSenders\HttpNetworkSender.cs" />
     <Compile Include="Internal\NetworkSenders\INetworkSenderFactory.cs" />
     <Compile Include="Internal\NetworkSenders\ISocket.cs" />
     <Compile Include="Internal\NetworkSenders\NetworkSender.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="LayoutRenderers\Wrappers\UppercaseLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\UrlEncodeLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\XmlEncodeLayoutRendererWrapper.cs" />
     <Compile Include="Layouts\CsvColumn.cs" />
     <Compile Include="Layouts\CsvColumnDelimiterMode.cs" />
     <Compile Include="Layouts\CsvLayout.cs" />

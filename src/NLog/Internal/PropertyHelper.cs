@@ -39,6 +39,7 @@ namespace NLog.Internal
     using System.Reflection;
     using System.Text;
     using NLog.Common;
+    using NLog.Conditions;
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
@@ -50,7 +51,7 @@ namespace NLog.Internal
     {
         private static Dictionary<Type, Dictionary<string, PropertyInfo>> parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
 
-        internal static void SetPropertyFromString(object o, string name, string value)
+        internal static void SetPropertyFromString(object o, string name, string value, ConfigurationItemFactory configurationItemFactory)
         {
             InternalLogger.Debug("Setting '{0}.{1}' to '{2}'", o.GetType().Name, name, value);
 
@@ -74,13 +75,16 @@ namespace NLog.Internal
 
                 propertyType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
 
-                if (!TryGetEnumValue(propertyType, value, out newValue))
+                if (!TryNLogSpecificConversion(propertyType, value, out newValue, configurationItemFactory))
                 {
-                    if (!TryImplicitConversion(propertyType, value, out newValue))
+                    if (!TryGetEnumValue(propertyType, value, out newValue))
                     {
-                        if (!TrySpecialConversion(propertyType, value, out newValue))
+                        if (!TryImplicitConversion(propertyType, value, out newValue))
                         {
-                            newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
+                            if (!TrySpecialConversion(propertyType, value, out newValue))
+                            {
+                                newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
+                            }
                         }
                     }
                 }
@@ -201,6 +205,24 @@ namespace NLog.Internal
             return true;
         }
 
+        private static bool TryNLogSpecificConversion(Type propertyType, string value, out object newValue, ConfigurationItemFactory configurationItemFactory)
+        {
+            if (propertyType == typeof(Layout) || propertyType == typeof(SimpleLayout))
+            {
+                newValue = new SimpleLayout(value, configurationItemFactory);
+                return true;
+            }
+
+            if (propertyType == typeof(ConditionExpression))
+            {
+                newValue = ConditionParser.ParseExpression(value, configurationItemFactory);
+                return true;
+            }
+
+            newValue = null;
+            return false;
+        }
+
         private static bool TryGetEnumValue(Type resultType, string value, out object result)
         {
             if (!resultType.IsEnum)
@@ -244,6 +266,12 @@ namespace NLog.Internal
 
         private static bool TrySpecialConversion(Type type, string value, out object newValue)
         {
+            if (type == typeof(Uri))
+            {
+                newValue = new Uri(value, UriKind.RelativeOrAbsolute);
+                return true;
+            }
+
             if (type == typeof(Encoding))
             {
                 newValue = Encoding.GetEncoding(value);

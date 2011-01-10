@@ -796,7 +796,7 @@ namespace NLog.Config
                 return;
             }
 
-            PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandVariables(element.Value));
+            PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandVariables(element.Value), this.configurationItemFactory);
         }
 
         private bool AddArrayItemFromElement(object o, NLogXmlElement element)
@@ -835,7 +835,7 @@ namespace NLog.Config
                     continue;
                 }
 
-                PropertyHelper.SetPropertyFromString(targetObject, childName, this.ExpandVariables(childValue));
+                PropertyHelper.SetPropertyFromString(targetObject, childName, this.ExpandVariables(childValue), this.configurationItemFactory);
             }
         }
 
