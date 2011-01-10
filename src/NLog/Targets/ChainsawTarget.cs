@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !WINDOWS_PHONE
-
 namespace NLog.Targets
 {
     /// <summary>
@@ -72,5 +70,3 @@ namespace NLog.Targets
         }
     }
 }
-
-#endif
