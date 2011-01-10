@@ -153,7 +153,10 @@ namespace NLog.UnitTests.Contexts
             }
 
             mre.WaitOne();
-            Assert.AreEqual(0, exceptions.Count);
+            if (exceptions.Count != 0)
+            {
+                Assert.Fail(exceptions[0].ToString());
+            }
         }
     }
 }

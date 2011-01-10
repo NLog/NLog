@@ -156,10 +156,17 @@
     <None Include="NLogTests.snk" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ApplicationIcon.png" />
+    <Content Include="Background.png" />
     <Content Include="ConfigFiles\included.nlog" />
     <Content Include="ConfigFiles\main.nlog" />
     <Content Include="ConfigFiles\referencemissingfile.nlog" />
     <Content Include="ConfigFiles\referencemissingfileignored.nlog" />
+    <Content Include="ProjectFileInfo.xml" />
+    <Content Include="Properties\AppManifest.xml" />
+    <Content Include="Properties\OutOfBrowserSettings.xml" />
+    <Content Include="Properties\WMAppManifest.xml" />
+    <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLog\NLog.netcf20.csproj">

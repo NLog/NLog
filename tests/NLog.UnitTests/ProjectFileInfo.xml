@@ -13,6 +13,9 @@
 
    <FileSet Name="AllContentFiles">
      <Include File="*.nlog" />
+     <Include File="*.png" />
+     <Include File="*.xml" />
+     <Include File="*.jpg" />
    </FileSet>
 
    <Project File="NLog.UnitTests.sl2.csproj">
