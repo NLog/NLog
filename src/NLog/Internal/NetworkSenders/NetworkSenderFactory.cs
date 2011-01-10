@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !WINDOWS_PHONE
-
 namespace NLog.Internal.NetworkSenders
 {
     using System;
@@ -59,6 +57,16 @@ namespace NLog.Internal.NetworkSenders
         /// </returns>
         public NetworkSender Create(string url)
         {
+            if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new HttpNetworkSender(url);
+            }
+
+            if (url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new HttpNetworkSender(url);
+            }
+
 #if !WINDOWS_PHONE_7
             if (url.StartsWith("tcp://", StringComparison.OrdinalIgnoreCase))
             {
@@ -97,5 +105,3 @@ namespace NLog.Internal.NetworkSenders
         }
     }
 }
-
-#endif
