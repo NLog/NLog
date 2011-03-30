@@ -128,7 +128,7 @@ namespace NLog.UnitTests
 
             var target = LogManager.Configuration.FindTargetByName("file") as AsyncTargetWrapper;
 
-            var log = LogManager.GetCurrentClassLogger();
+            var log = LogManager.GetLogger("x");
             log.Fatal("Test");
 
             LogManager.Configuration = null;

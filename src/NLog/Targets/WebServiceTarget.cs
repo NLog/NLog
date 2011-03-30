@@ -111,6 +111,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the encoding.
         /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
         public Encoding Encoding { get; set; }
 
         /// <summary>
