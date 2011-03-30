@@ -87,6 +87,10 @@ namespace NLog.LayoutRenderers.Wrappers
                         sb.Append("&gt;");
                         break;
 
+                    case '&':
+                        sb.Append("&amp;");
+                        break;
+
                     case '\'':
                         sb.Append("&apos;");
                         break;
