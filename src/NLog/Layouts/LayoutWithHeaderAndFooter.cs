@@ -62,30 +62,6 @@ namespace NLog.Layouts
         public Layout Footer { get; set; }
 
         /// <summary>
-        /// Precalculates the layout for the specified log event and stores the result
-        /// in per-log event cache.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <remarks>
-        /// Calling this method enables you to store the log event in a buffer
-        /// and/or potentially evaluate it in another thread even though the
-        /// layout may contain thread-dependent renderer.
-        /// </remarks>
-        public override void Precalculate(LogEventInfo logEvent)
-        {
-            Layout.Precalculate(logEvent);
-            if (this.Header != null)
-            {
-                this.Header.Precalculate(logEvent);
-            }
-
-            if (this.Footer != null)
-            {
-                this.Footer.Precalculate(logEvent);
-            }
-        }
-
-        /// <summary>
         /// Renders the layout for the specified logging event by invoking layout renderers.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>

@@ -38,7 +38,10 @@ using NLog.Config;
 namespace NLog.UnitTests
 {
     using System;
+    using System.IO;
+    using NLog.Layouts;
     using NLog.Targets;
+    using NLog.Targets.Wrappers;
 
     [TestClass]
     public class RegressionTests : NLogTestBase
@@ -87,6 +90,48 @@ namespace NLog.UnitTests
 
             Assert.AreEqual(2, debugTarget1.Counter);
             Assert.AreEqual(1, debugTarget2.Counter);
+        }
+
+        [TestMethod]
+        public void Bug5965StackOverflow()
+        {
+            LogManager.Configuration = this.CreateConfigurationFromString(@"
+<nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+      xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+  
+  <targets>
+    <target name='file'  xsi:type='AsyncWrapper' queueLimit='5000' overflowAction='Discard'  >
+      <target xsi:type='Debug'>
+        <layout xsi:type='CSVLayout'>
+          <column name='processId' layout='${processid}' />
+          <column name='counter' layout='${counter}' />
+          <column name='time' layout='${longdate}' />
+          <column name='threadId' layout='${threadid}' />
+          <column name='threadName' layout='${threadname}' />
+          <column name='callsite' layout='${callsite}'/>
+          <column name='message' layout='${message}' />
+          <column name='logger' layout='${logger}'/>
+          <column name='level' layout='${level}'/>
+          <column name='exception' layout='${exception}'/>
+        </layout>
+      </target>
+    </target>
+  </targets>
+
+  <rules>
+    <logger name='*' minlevel='Trace' writeTo='file' />
+  </rules>
+
+
+</nlog>
+");
+
+            var target = LogManager.Configuration.FindTargetByName("file") as AsyncTargetWrapper;
+
+            var log = LogManager.GetCurrentClassLogger();
+            log.Fatal("Test");
+
+            LogManager.Configuration = null;
         }
     }
 }
