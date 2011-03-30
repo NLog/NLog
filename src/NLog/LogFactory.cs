@@ -519,7 +519,7 @@ namespace NLog
                 configuration.EnsureInitialized();
             }
 
-            foreach (Logger logger in this.loggerCache.Values)
+            foreach (Logger logger in this.loggerCache.Values.ToList())
             {
                 logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, configuration));
             }
