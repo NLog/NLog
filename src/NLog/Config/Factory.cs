@@ -48,18 +48,9 @@ namespace NLog.Config
         where TBaseType : class 
         where TAttributeType : NameBaseAttribute
     {
-        private readonly Dictionary<string, Type> items = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, GetTypeDelegate> items = new Dictionary<string, GetTypeDelegate>(StringComparer.OrdinalIgnoreCase);
 
-        /// <summary>
-        /// Gets a collection of all registered items in the factory.
-        /// </summary>
-        /// <returns>Sequence of key/value pairs where each key represents the name 
-        /// of the item and value is the <see cref="Type"/> of
-        /// the item.</returns>
-        public IDictionary<string, Type> AllRegisteredItems
-        {
-            get { return this.items; }
-        }
+        private delegate Type GetTypeDelegate();
 
         /// <summary>
         /// Scans the assembly.
@@ -105,6 +96,16 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Registers the item based on a type name.
+        /// </summary>
+        /// <param name="itemName">Name of the item.</param>
+        /// <param name="typeName">Name of the type.</param>
+        public void RegisterNamedType(string itemName, string typeName)
+        {
+            this.items[itemName] = () => Type.GetType(typeName, false);
+        }
+
+        /// <summary>
         /// Clears the contents of the factory.
         /// </summary>
         public void Clear()
@@ -119,7 +120,7 @@ namespace NLog.Config
         /// <param name="type">The type of the item.</param>
         public void RegisterDefinition(string name, Type type)
         {
-            this.items[name] = type;
+            this.items[name] = () => type;
         }
 
         /// <summary>
@@ -130,7 +131,30 @@ namespace NLog.Config
         /// <returns>Item definition.</returns>
         public bool TryGetDefinition(string itemName, out Type result)
         {
-            return this.items.TryGetValue(itemName, out result);
+            GetTypeDelegate del;
+
+            if (!this.items.TryGetValue(itemName, out del))
+            {
+                result = null;
+                return false;
+            }
+
+            try
+            {
+                result = del();
+                return result != null;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                // delegate invocation failed - type is not available
+                result = null;
+                return false;
+            }
         }
 
         /// <summary>
@@ -143,7 +167,7 @@ namespace NLog.Config
         {
             Type type;
 
-            if (!this.items.TryGetValue(itemName, out type))
+            if (!this.TryGetDefinition(itemName, out type))
             {
                 result = null;
                 return false;

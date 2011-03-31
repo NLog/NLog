@@ -45,14 +45,6 @@ namespace NLog.Config
         where TInstanceType : class
     {
         /// <summary>
-        /// Gets a collection of all registered items in the factory.
-        /// </summary>
-        /// <returns>Sequence of key/value pairs where each key represents the name 
-        /// of the item and value is the <typeparamref name="TDefinitionType"/> of
-        /// the item.</returns>
-        IDictionary<string, TDefinitionType> AllRegisteredItems { get; }
-
-        /// <summary>
         /// Registers new item definition.
         /// </summary>
         /// <param name="itemName">Name of the item.</param>

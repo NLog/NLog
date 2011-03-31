@@ -81,6 +81,7 @@
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
     <Compile Include="Config\CaseSensitivityTests.cs" />
+    <Compile Include="Config\ConfigurationItemFactoryTests.cs" />
     <Compile Include="Config\ExtensionTests.cs" />
     <Compile Include="Config\IncludeTests.cs" />
     <Compile Include="Config\InternalLoggingTests.cs" />

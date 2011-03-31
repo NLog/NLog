@@ -48,13 +48,19 @@ namespace NLog.Config
     public class ConfigurationItemFactory
     {
         private readonly IList<object> allFactories;
+        private readonly Factory<Target, TargetAttribute> targets = new Factory<Target, TargetAttribute>();
+        private readonly Factory<Filter, FilterAttribute> filters = new Factory<Filter, FilterAttribute>();
+        private readonly Factory<LayoutRenderer, LayoutRendererAttribute> layoutRenderers = new Factory<LayoutRenderer, LayoutRendererAttribute>();
+        private readonly Factory<Layout, LayoutAttribute> layouts = new Factory<Layout, LayoutAttribute>();
+        private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>();
+        private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>();
 
         /// <summary>
         /// Initializes static members of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
         static ConfigurationItemFactory()
         {
-            Default = new ConfigurationItemFactory(typeof(Logger).Assembly);
+            Default = BuildDefaultFactory();
         }
 
         /// <summary>
@@ -63,14 +69,15 @@ namespace NLog.Config
         /// <param name="assemblies">The assemblies to scan for named items.</param>
         public ConfigurationItemFactory(params Assembly[] assemblies)
         {
-            this.allFactories = new List<object>();
-
-            this.allFactories.Add(this.Targets = new Factory<Target, TargetAttribute>());
-            this.allFactories.Add(this.Filters = new Factory<Filter, FilterAttribute>());
-            this.allFactories.Add(this.LayoutRenderers = new Factory<LayoutRenderer, LayoutRendererAttribute>());
-            this.allFactories.Add(this.Layouts = new Factory<Layout, LayoutAttribute>());
-            this.allFactories.Add(this.ConditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>());
-            this.allFactories.Add(this.AmbientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>());
+            this.allFactories = new List<object>
+            {
+                this.targets,
+                this.filters,
+                this.layoutRenderers,
+                this.layouts,
+                this.conditionMethods,
+                this.ambientProperties,
+            };
 
             foreach (var asm in assemblies)
             {
@@ -87,37 +94,55 @@ namespace NLog.Config
         /// Gets the <see cref="Target"/> factory.
         /// </summary>
         /// <value>The target factory.</value>
-        public INamedItemFactory<Target, Type> Targets { get; private set; }
+        public INamedItemFactory<Target, Type> Targets
+        {
+            get { return this.targets; }
+        }
 
         /// <summary>
         /// Gets the <see cref="Filter"/> factory.
         /// </summary>
         /// <value>The filter factory.</value>
-        public INamedItemFactory<Filter, Type> Filters { get; private set; }
+        public INamedItemFactory<Filter, Type> Filters
+        {
+            get { return this.filters; }
+        }
 
         /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
         /// <value>The layout renderer factory.</value>
-        public INamedItemFactory<LayoutRenderer, Type> LayoutRenderers { get; private set; }
+        public INamedItemFactory<LayoutRenderer, Type> LayoutRenderers
+        {
+            get { return this.layoutRenderers; }
+        }
 
         /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
         /// <value>The layout factory.</value>
-        public INamedItemFactory<Layout, Type> Layouts { get; private set; }
+        public INamedItemFactory<Layout, Type> Layouts
+        {
+            get { return this.layouts; }
+        }
 
         /// <summary>
         /// Gets the ambient property factory.
         /// </summary>
         /// <value>The ambient property factory.</value>
-        public INamedItemFactory<LayoutRenderer, Type> AmbientProperties { get; private set; }
+        public INamedItemFactory<LayoutRenderer, Type> AmbientProperties
+        {
+            get { return this.ambientProperties; }
+        }
 
         /// <summary>
         /// Gets the condition method factory.
         /// </summary>
         /// <value>The condition method factory.</value>
-        public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethods { get; private set; }
+        public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethods
+        {
+            get { return this.conditionMethods; }
+        }
 
         /// <summary>
         /// Registers named items from the assembly.
@@ -162,6 +187,48 @@ namespace NLog.Config
             foreach (IFactory f in this.allFactories)
             {
                 f.RegisterType(type, itemNamePrefix);
+            }
+        }
+
+        /// <summary>
+        /// Builds the default configuration item factory.
+        /// </summary>
+        /// <returns>Default factory.</returns>
+        private static ConfigurationItemFactory BuildDefaultFactory()
+        {
+            var factory = new ConfigurationItemFactory(typeof(Logger).Assembly);
+            factory.RegisterExtendedItems();
+
+            return factory;
+        }
+
+        /// <summary>
+        /// Registers items in NLog.Extended.dll using late-bound types, so that we don't need a reference to NLog.Extended.dll.
+        /// </summary>
+        private void RegisterExtendedItems()
+        {
+            string suffix = typeof(Logger).AssemblyQualifiedName;
+            string myAssemblyName = "NLog,";
+            string extendedAssemblyName = "NLog.Extended,";
+            int p = suffix.IndexOf(myAssemblyName, StringComparison.OrdinalIgnoreCase);
+            if (p >= 0)
+            {
+                suffix = ", " + extendedAssemblyName + suffix.Substring(p + myAssemblyName.Length);
+
+                // register types
+                string targetsNamespace = typeof(DebugTarget).Namespace;
+                this.targets.RegisterNamedType("AspNetTrace", targetsNamespace + ".AspNetTraceTarget" + suffix);
+                this.targets.RegisterNamedType("MSMQ", targetsNamespace + ".MessageQueueTarget" + suffix);
+                this.targets.RegisterNamedType("AspNetBufferingWrapper", targetsNamespace + ".Wrappers.AspNetBufferingTargetWrapper" + suffix);
+
+                // register layout renderers
+                string layoutRenderersNamespace = typeof(MessageLayoutRenderer).Namespace;
+                this.layoutRenderers.RegisterNamedType("aspnet-application", layoutRenderersNamespace + ".AspNetApplicationValueLayoutRenderer" + suffix);
+                this.layoutRenderers.RegisterNamedType("aspnet-request", layoutRenderersNamespace + ".AspNetRequestValueLayoutRenderer" + suffix);
+                this.layoutRenderers.RegisterNamedType("aspnet-sessionid", layoutRenderersNamespace + ".AspNetSessionIDLayoutRenderer" + suffix);
+                this.layoutRenderers.RegisterNamedType("aspnet-session", layoutRenderersNamespace + ".AspNetSessionValueLayoutRenderer" + suffix);
+                this.layoutRenderers.RegisterNamedType("aspnet-user-authtype", layoutRenderersNamespace + ".AspNetUserAuthTypeLayoutRenderer" + suffix);
+                this.layoutRenderers.RegisterNamedType("aspnet-user-identity", layoutRenderersNamespace + ".AspNetUserIdentityLayoutRenderer" + suffix);
             }
         }
     }
