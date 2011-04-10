@@ -176,6 +176,7 @@
     <Compile Include="Internal\PortableFileInfoHelper.cs" />
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
     <Compile Include="Internal\PropertyHelper.cs" />
+    <Compile Include="Internal\ReflectionHelpers.cs" />
     <Compile Include="Internal\RuntimeOS.cs" />
     <Compile Include="Internal\SingleCallContinuation.cs" />
     <Compile Include="Internal\SortHelpers.cs" />

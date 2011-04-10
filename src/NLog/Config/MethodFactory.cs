@@ -75,7 +75,7 @@ namespace NLog.Config
             try
             {
                 InternalLogger.Debug("ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TClassAttributeType), typeof(TMethodAttributeType));
-                foreach (Type t in theAssembly.GetTypes())
+                foreach (Type t in theAssembly.SafeGetTypes())
                 {
                     this.RegisterType(t, prefix);
                 }
