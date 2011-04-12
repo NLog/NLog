@@ -33,8 +33,8 @@
 
 OUTPUT_DIR=build/bin/mono2
 NUNIT_TEMP_TESTS=$(OUTPUT_DIR)/NLog.UnitTests.NUnit
-REFERENCE_ASSEMBLIES=-r:System.Web.Services.dll -r:System.Drawing.dll -r:System.Web.dll -r:System.Data.dll -r:System.Windows.Forms.dll -r:System.Messaging.dll -r:System.Configuration.dll
-DEFINES=-define:MONO_2_0
+REFERENCE_ASSEMBLIES=-r:System.Web.Services.dll -r:System.Drawing.dll -r:System.Web.dll -r:System.Data.dll -r:System.Windows.Forms.dll -r:System.Messaging.dll -r:System.Configuration.dll -r:Mono.Posix.dll -r:System.Runtime.Serialization.dll -r:System.ServiceModel.dll
+DEFINES=-define:MONO_2_0 -define:MONO -define:WCF_SUPPORTED
 MCS=gmcs
 PERL=perl
 MCS_OPTIONS= -debug+
@@ -62,12 +62,16 @@ help:
 
 build: prepareoutputdir
 	$(MCS) -t:library -out:$(OUTPUT_DIR)/NLog.dll $(DEFINES) $(MCS_OPTIONS) -recurse:src/NLog/*.cs $(REFERENCE_ASSEMBLIES) -keyfile:src/NLog.snk
+	$(MCS) -t:library -out:$(OUTPUT_DIR)/NLog.Extended.dll $(DEFINES) $(MCS_OPTIONS) -recurse:src/NLog.Extended/*.cs -r:$(OUTPUT_DIR)/NLog.dll $(REFERENCE_ASSEMBLIES) -keyfile:src/NLog.snk
 
-buildtests:
+buildtests: sampleextensions
 	rm -rf $(NUNIT_TEMP_TESTS)
 	$(PERL) tools/mstest2nunit.pl tests/NLog.UnitTests $(NUNIT_TEMP_TESTS)
-	$(MCS) -t:library -out:$(OUTPUT_DIR)/NLog.UnitTests.dll $(DEFINES) $(MCS_OPTIONS) -recurse:$(NUNIT_TEMP_TESTS)/*.cs $(REFERENCE_ASSEMBLIES) -r:nunit.framework.dll  -keyfile:tests/NLog.UnitTests/NLogTests.snk -r:$(OUTPUT_DIR)/NLog.dll -r:System.Xml.Linq.dll -r:System.Runtime.Serialization.dll
+	$(MCS) -t:library -out:$(OUTPUT_DIR)/NLog.UnitTests.dll $(DEFINES) $(MCS_OPTIONS) -recurse:$(NUNIT_TEMP_TESTS)/*.cs $(REFERENCE_ASSEMBLIES) -r:nunit.framework.dll  -keyfile:tests/NLog.UnitTests/NLogTests.snk -r:$(OUTPUT_DIR)/NLog.dll -r:$(OUTPUT_DIR)/NLog.Extended.dll -r:$(OUTPUT_DIR)/SampleExtensions.dll -r:System.Xml.Linq.dll -r:System.Runtime.Serialization.dll -r:System.ServiceModel.dll
 
+sampleextensions: build
+	$(MCS) -t:library -out:$(OUTPUT_DIR)/SampleExtensions.dll $(DEFINES) $(MCS_OPTIONS) -recurse:tests/SampleExtensions/*.cs -r:$(OUTPUT_DIR)/NLog.dll -keyfile:tests/NLog.UnitTests/NLogTests.snk -r:System.Xml.Linq.dll -r:System.Runtime.Serialization.dll
+	
 runtests:
 	(cd $(OUTPUT_DIR) && $(NUNIT_CONSOLE) $(NUNIT_OPTIONS) NLog.UnitTests.dll)
 

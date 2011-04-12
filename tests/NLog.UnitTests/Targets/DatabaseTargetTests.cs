@@ -48,7 +48,7 @@ namespace NLog.UnitTests.Targets
     [TestClass]
     public class DatabaseTargetTests : NLogTestBase
     {
-#if !NET_CF
+#if !NET_CF && !MONO
         [AssemblyInitialize]
         public static void SetupMockProvider(TestContext context)
         {
