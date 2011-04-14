@@ -5,6 +5,8 @@ msbuild.log
 LastTestRunSummary.cmd
 src/Docs/Working/
 *.chw
+*.pidb
+*.userprefs
 log.txt
 *.suo
 _ReSharper.*
