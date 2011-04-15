@@ -114,6 +114,11 @@ namespace NLog.Layouts
         protected override void InitializeLayout()
         {
             base.InitializeLayout();
+            if (!this.WithHeader)
+            {
+                this.Header = null;
+            }
+
             switch (this.Delimiter)
             {
                 case CsvColumnDelimiterMode.Auto:

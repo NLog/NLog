@@ -83,6 +83,38 @@ namespace NLog.UnitTests.Layouts
                 Assert.AreEqual("Warn,\"Message with, a comma\",3", sr.ReadLine());
             }
         }
+
+        [Test]
+        public void NoHeadersTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                  <target name='f' type='File' fileName='CSVLayoutEndToEnd1.txt'>
+                    <layout type='CSVLayout' withHeader='false'>
+                      <column name='level' layout='${level}' />
+                      <column name='message' layout='${message}' />
+                      <column name='counter' layout='${counter}' />
+                    </layout>
+                  </target>
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='f' />
+                </rules>
+            </nlog>");
+
+            Logger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            logger.Info("msg2");
+            logger.Warn("Message with, a comma");
+
+            using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd1.txt"))
+            {
+                Assert.AreEqual("Debug,msg,1", sr.ReadLine());
+                Assert.AreEqual("Info,msg2,2", sr.ReadLine());
+                Assert.AreEqual("Warn,\"Message with, a comma\",3", sr.ReadLine());
+            }
+        }
 #endif
 
         [Test]
