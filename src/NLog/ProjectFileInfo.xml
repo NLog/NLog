@@ -70,6 +70,15 @@
      </ItemGroup>
    </Project>
 
+   <Project File="NLog.monodevelop.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+     <ItemGroup Name="EmbeddedResource">
+        <FileSet Include="AllResources" />
+     </ItemGroup>
+   </Project>
+
    <Project File="NLog.netfx20.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
