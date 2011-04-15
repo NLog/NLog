@@ -39,14 +39,21 @@ using System.IO;
 using NLog;
 using NLog.Config;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
 namespace NLog.UnitTests.Filters
 {
-    [TestClass]
+    [TestFixture]
     public class WhenContainsTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void WhenContainsTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -70,7 +77,7 @@ namespace NLog.UnitTests.Filters
             AssertDebugCounter("debug", 2);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenContainsInsensitiveTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

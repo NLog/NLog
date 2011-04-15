@@ -34,16 +34,23 @@
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
 
-    [TestClass]
+    [TestFixture]
     public class WrapperTargetBaseTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void WrapperTargetToStringTest()
         {
             var wrapper = new MyWrapper
@@ -59,7 +66,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual("MyWrapper(MyWrapper(Debug Target[foo]))", wrapper2.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void WrapperTargetFlushTest()
         {
             var wrapped = new MyWrappedTarget();
@@ -76,7 +83,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(1, wrapped.FlushCount);
         }
 
-        [TestMethod]
+        [Test]
         public void WrapperTargetDefaultWriteTest()
         {
             Exception lastException = null;
@@ -85,7 +92,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Initialize(null);
             wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => lastException = ex));
             Assert.IsNotNull(lastException);
-            Assert.IsInstanceOfType(lastException, typeof(NotSupportedException));
+            Assert.IsInstanceOfType(typeof(NotSupportedException), lastException);
         }
 
         public class MyWrapper : WrapperTargetBase

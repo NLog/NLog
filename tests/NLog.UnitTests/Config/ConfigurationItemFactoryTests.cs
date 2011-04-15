@@ -34,18 +34,25 @@
 namespace NLog.UnitTests.Config
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Config;
     using NLog.Targets;
 
-    [TestClass]
+    [TestFixture]
     public class ConfigurationItemFactoryTests : NLogTestBase
     {
 #if !SILVERLIGHT && !NET_CF
         // this is just to force reference to NLog.Extended.dll
         public Type ForceExtendedReference = typeof(MessageQueueTarget).DeclaringType;
 
-        [TestMethod]
+        [Test]
         public void ExtendedTargetTest()
         {
             var targets = ConfigurationItemFactory.Default.Targets;
@@ -55,7 +62,7 @@ namespace NLog.UnitTests.Config
             AssertInstance(targets, "AspNetBufferingWrapper", "AspNetBufferingTargetWrapper");
         }
 
-        [TestMethod]
+        [Test]
         public void ExtendedLayoutRendererTest()
         {
             var layoutRenderers = ConfigurationItemFactory.Default.LayoutRenderers;

@@ -36,16 +36,23 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
 
-    [TestClass]
+    [TestFixture]
     public class PostFilteringTargetWrapperTests : NLogTestBase
 	{
-        [TestMethod]
+        [Test]
         public void PostFilteringTargetWrapperUsingDefaultFilterTest()
         {
             var target = new MyTarget();
@@ -95,7 +102,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
         }
 
-        [TestMethod]
+        [Test]
         public void PostFilteringTargetWrapperUsingDefaultNonFilterTest()
         {
             var target = new MyTarget();
@@ -152,7 +159,7 @@ Trace Sending to MyTarget
             Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
         }
 
-        [TestMethod]
+        [Test]
         public void PostFilteringTargetWrapperUsingDefaultNonFilterTest2()
         {
             // in this case both rules would match, but first one is picked
@@ -212,7 +219,7 @@ Trace Sending to MyTarget
             Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
         }
 
-        [TestMethod]
+        [Test]
         public void PostFilteringTargetWrapperNoFiltersDefined()
         {
             var target = new MyTarget();

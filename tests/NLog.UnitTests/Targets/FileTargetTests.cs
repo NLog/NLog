@@ -41,7 +41,14 @@ namespace NLog.UnitTests.Targets
     using System.IO;
     using System.Text;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
     using NLog.Common;
     using NLog.Config;
@@ -53,12 +60,12 @@ namespace NLog.UnitTests.Targets
     using NLog.Internal;
     using System.Collections.Generic;
 
-    [TestClass]
+    [TestFixture]
     public class FileTargetTests : NLogTestBase
     {
         private Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 
-        [TestMethod]
+        [Test]
         public void SimpleFileTest1()
         {
             string tempFile = Path.GetTempFileName();
@@ -85,7 +92,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteFileOnStartTest()
         {
             string tempFile = Path.GetTempFileName();
@@ -148,7 +155,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CreateDirsTest()
         {
             // create the file in a not-existent
@@ -180,7 +187,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [TestMethod]
+        [Test]
         public void SequentialArchiveTest1()
         {
             // create the file in a not-existent
@@ -257,7 +264,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [TestMethod]
+        [Test]
         public void RollingArchiveTest1()
         {
             // create the file in a not-existent
@@ -333,7 +340,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [TestMethod]
+        [Test]
         public void MultiFileWrite()
         {
             // create the file in a not-existent
@@ -387,7 +394,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [TestMethod]
+        [Test]
         public void BufferedMultiFileWrite()
         {
             // create the file in a not-existent
@@ -441,7 +448,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AsyncMultiFileWrite()
         {
             //InternalLogger.LogToConsole = true;
@@ -506,7 +513,7 @@ namespace NLog.UnitTests.Targets
         }
 
 
-        [TestMethod]
+        [Test]
         public void BatchErrorHandlingTest()
         {
             var fileTarget = new FileTarget();

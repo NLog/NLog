@@ -39,18 +39,25 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System.Collections.Generic;
     using System.Runtime.InteropServices;
     using System.Security.Principal;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
 
-    [TestClass]
+    [TestFixture]
     public class ImpersonatingTargetWrapperTests : NLogTestBase
 	{
         private const string NLogTestUser = "NLogTestUser";
         private const string NLogTestUserPassword = "BC@57acasd123";
 
-        [TestMethod]
+        [Test]
         public void ImpersonatingWrapperTest()
         {
             var wrapped = new MyTarget()
@@ -87,7 +94,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Close();
         }
 
-        [TestMethod]
+        [Test]
         public void RevertToSelfTest()
         {
             var wrapped = new MyTarget()
@@ -141,7 +148,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ImpersonatingWrapperNegativeTest()
         {
             var wrapped = new MyTarget()
@@ -169,7 +176,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Close(); // will not fail because Initialize() failed
         }
 
-        [TestMethod]
+        [Test]
         public void ImpersonatingWrapperNegativeTest2()
         {
             var wrapped = new MyTarget()

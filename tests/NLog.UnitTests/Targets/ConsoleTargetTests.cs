@@ -37,14 +37,21 @@ namespace NLog.UnitTests.Targets
 {
     using System;
     using System.IO;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Targets;
     using System.Collections.Generic;
 
-    [TestClass]
+    [TestFixture]
     public class ConsoleTargetTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void ConsoleOutTest()
         {
             var target = new ConsoleTarget()
@@ -90,7 +97,7 @@ Logger1 message6
         }
 
 #if !NET_CF
-        [TestMethod]
+        [Test]
         public void ConsoleErrorTest()
         {
             var target = new ConsoleTarget()

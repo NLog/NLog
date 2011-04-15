@@ -34,7 +34,14 @@
 using System;
 using System.IO;
 using System.Xml;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 using NLog.Common;
 using NLog.Config;
 using NLog.Targets;
@@ -43,10 +50,10 @@ using System.Threading;
 
 namespace NLog.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class LogManagerTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void GetLoggerTest()
         {
             Logger loggerA = LogManager.GetLogger("A");
@@ -58,7 +65,7 @@ namespace NLog.UnitTests
             Assert.AreEqual("B", loggerB.Name);
         }
 
-        [TestMethod]
+        [Test]
         public void NullLoggerTest()
         {
             Logger l = LogManager.CreateNullLogger();
@@ -66,7 +73,7 @@ namespace NLog.UnitTests
         }
 
 #if !SILVERLIGHT2 && !SILVERLIGHT3 && !WINDOWS_PHONE
-        [TestMethod]
+        [Test]
         public void ThrowExceptionsTest()
         {
             FileTarget ft = new FileTarget();
@@ -150,7 +157,7 @@ namespace NLog.UnitTests
             return false;
         }
 
-        [TestMethod]
+        [Test]
         public void AutoReloadTest()
         {
             if (IsMacOsX())

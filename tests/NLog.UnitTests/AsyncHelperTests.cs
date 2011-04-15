@@ -36,14 +36,21 @@ namespace NLog.UnitTests
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
     using NLog.Internal;
 
-    [TestClass]
+    [TestFixture]
     public class AsyncHelperTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void OneTimeOnlyTest1()
         {
             var exceptions = new List<Exception>();
@@ -69,7 +76,7 @@ namespace NLog.UnitTests
             Assert.IsNull(exceptions[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void OneTimeOnlyTest2()
         {
             var exceptions = new List<Exception>();
@@ -87,7 +94,7 @@ namespace NLog.UnitTests
             Assert.AreSame(sampleException, exceptions[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void OneTimeOnlyExceptionInHandlerTest()
         {
             var exceptions = new List<Exception>();
@@ -103,7 +110,7 @@ namespace NLog.UnitTests
             Assert.IsNull(exceptions[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void ContinuationTimeoutTest()
         {
             var exceptions = new List<Exception>();
@@ -116,7 +123,7 @@ namespace NLog.UnitTests
 
             // make sure we got timeout exception
             Assert.AreEqual(1, exceptions.Count);
-            Assert.IsInstanceOfType(exceptions[0], typeof(TimeoutException));
+            Assert.IsInstanceOfType(typeof(TimeoutException), exceptions[0]);
             Assert.AreEqual("Timeout.", exceptions[0].Message);
 
             // those will be ignored
@@ -128,7 +135,7 @@ namespace NLog.UnitTests
             Assert.AreEqual(1, exceptions.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void ContinuationTimeoutNotHitTest()
         {
             var exceptions = new List<Exception>();
@@ -156,7 +163,7 @@ namespace NLog.UnitTests
             Assert.IsNull(exceptions[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void ContinuationErrorTimeoutNotHitTest()
         {
             var exceptions = new List<Exception>();
@@ -187,7 +194,7 @@ namespace NLog.UnitTests
             Assert.IsNotNull(exceptions[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void RepeatTest1()
         {
             bool finalContinuationInvoked = false;
@@ -213,7 +220,7 @@ namespace NLog.UnitTests
             Assert.AreEqual(10, callCount);
         }
 
-        [TestMethod]
+        [Test]
         public void RepeatTest2()
         {
             bool finalContinuationInvoked = false;
@@ -241,7 +248,7 @@ namespace NLog.UnitTests
             Assert.AreEqual(1, callCount);
         }
 
-        [TestMethod]
+        [Test]
         public void RepeatTest3()
         {
             bool finalContinuationInvoked = false;
@@ -268,7 +275,7 @@ namespace NLog.UnitTests
             Assert.AreEqual(1, callCount);
         }
 
-        [TestMethod]
+        [Test]
         public void ForEachItemSequentiallyTest1()
         {
             bool finalContinuationInvoked = false;
@@ -296,7 +303,7 @@ namespace NLog.UnitTests
             Assert.AreEqual(55, sum);
         }
 
-        [TestMethod]
+        [Test]
         public void ForEachItemSequentiallyTest2()
         {
             bool finalContinuationInvoked = false;
@@ -325,7 +332,7 @@ namespace NLog.UnitTests
             Assert.AreEqual(1, sum);
         }
 
-        [TestMethod]
+        [Test]
         public void ForEachItemSequentiallyTest3()
         {
             bool finalContinuationInvoked = false;
@@ -353,7 +360,7 @@ namespace NLog.UnitTests
             Assert.AreEqual(1, sum);
         }
 
-        [TestMethod]
+        [Test]
         public void ForEachItemInParallelEmptyTest()
         {
             int[] items = new int[0];
@@ -371,7 +378,7 @@ namespace NLog.UnitTests
             Assert.IsNull(lastException);
         }
 
-        [TestMethod]
+        [Test]
         public void ForEachItemInParallelTest()
         {
             var finalContinuationInvoked = new ManualResetEvent(false);
@@ -403,7 +410,7 @@ namespace NLog.UnitTests
             Assert.AreEqual(55, sum);
         }
 
-        [TestMethod]
+        [Test]
         public void ForEachItemInParallelSingleFailureTest()
         {
             using (new InternalLoggerScope())
@@ -443,12 +450,12 @@ namespace NLog.UnitTests
                 finalContinuationInvoked.WaitOne();
                 Assert.AreEqual(55, sum);
                 Assert.IsNotNull(lastException);
-                Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));
+                Assert.IsInstanceOfType(typeof(InvalidOperationException), lastException);
                 Assert.AreEqual("Some failure.", lastException.Message);
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ForEachItemInParallelMultipleFailuresTest()
         {
             var finalContinuationInvoked = new ManualResetEvent(false);
@@ -477,11 +484,11 @@ namespace NLog.UnitTests
             finalContinuationInvoked.WaitOne();
             Assert.AreEqual(55, sum);
             Assert.IsNotNull(lastException);
-            Assert.IsInstanceOfType(lastException, typeof(NLogRuntimeException));
+            Assert.IsInstanceOfType(typeof(NLogRuntimeException), lastException);
             Assert.IsTrue(lastException.Message.StartsWith("Got multiple exceptions:\r\n"));
         }
 
-        [TestMethod]
+        [Test]
         public void PrecededByTest1()
         {
             int invokedCount1 = 0;
@@ -515,7 +522,7 @@ namespace NLog.UnitTests
             Assert.AreEqual(1, invokedCount2);
         }
 
-        [TestMethod]
+        [Test]
         public void PrecededByTest2()
         {
             int invokedCount1 = 0;

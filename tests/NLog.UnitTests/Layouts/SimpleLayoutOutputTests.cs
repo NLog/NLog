@@ -36,17 +36,24 @@ namespace NLog.UnitTests.Layouts
     using System;
     using System.IO;
     using System.Text;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
 
-    [TestClass]
+    [TestFixture]
     public class SimpleLayoutOutputTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void VeryLongRendererOutput()
         {
             int stringLength = 100000;
@@ -59,7 +66,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreNotSame(output, output2);
         }
 
-        [TestMethod]
+        [Test]
         public void LayoutRendererThrows()
         {
             ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
@@ -70,7 +77,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("xxyy", output);
         }
 
-        [TestMethod]
+        [Test]
         public void SimpleLayoutCachingTest()
         {
             var l = new SimpleLayout("xx${level}yy");
@@ -80,7 +87,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreSame(output1, output2);
         }
 
-        [TestMethod]
+        [Test]
         public void SimpleLayoutToStringTest()
         {
             var l = new SimpleLayout("xx${level}yy");
@@ -90,7 +97,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("'someFakeText'", l2.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void LayoutRendererThrows2()
         {
             string internalLogOutput = RunAndCaptureInternalLog(
@@ -109,7 +116,7 @@ namespace NLog.UnitTests.Layouts
             Assert.IsTrue(internalLogOutput.IndexOf("msg2") >= 0, internalLogOutput);
         }
 
-        [TestMethod]
+        [Test]
         public void LayoutInitTest1()
         {
             var lr = new MockLayout();
@@ -131,7 +138,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual(1, lr.CloseCount);
         }
 
-        [TestMethod]
+        [Test]
         public void LayoutInitTest2()
         {
             var lr = new MockLayout();

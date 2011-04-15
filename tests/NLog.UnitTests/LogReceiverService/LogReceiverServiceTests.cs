@@ -40,14 +40,21 @@ namespace NLog.UnitTests.LogReceiverService
 #endif
     using System.Xml;
     using System.Xml.Serialization;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Layouts;
     using NLog.LogReceiverService;
 
-    [TestClass]
+    [TestFixture]
     public class LogReceiverServiceTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void ToLogEventInfoTest()
         {
             var events = new NLogEvents
@@ -109,7 +116,7 @@ namespace NLog.UnitTests.LogReceiverService
             Assert.AreEqual("zzz", bazLayout.Render(converted[1]));
         }
 
-        [TestMethod]
+        [Test]
         public void NoLayoutsTest()
         {
             var events = new NLogEvents
@@ -163,7 +170,7 @@ namespace NLog.UnitTests.LogReceiverService
         /// Ensures that serialization formats of DataContractSerializer and XmlSerializer are the same
         /// on the same <see cref="NLogEvents"/> object.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CompareSerializationFormats()
         {
             var events = new NLogEvents

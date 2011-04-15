@@ -34,13 +34,20 @@
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Layouts;
 
-    [TestClass]
+    [TestFixture]
     public class XmlEncodeTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void XmlEncodeTest1()
         {
             MappedDiagnosticsContext.Clear();

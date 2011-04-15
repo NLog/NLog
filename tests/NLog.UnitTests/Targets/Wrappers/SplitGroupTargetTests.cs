@@ -36,16 +36,23 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
 
-    [TestClass]
+    [TestFixture]
     public class SplitGroupTargetTests : NLogTestBase
 	{
-        [TestMethod]
+        [Test]
         public void SplitGroupSyncTest1()
         {
             var myTarget1 = new MyTarget();
@@ -123,7 +130,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(1, myTarget3.FlushCount);
         }
 
-        [TestMethod]
+        [Test]
         public void SplitGroupSyncTest2()
         {
             var wrapper = new SplitGroupTarget()

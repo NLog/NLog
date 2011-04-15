@@ -38,14 +38,21 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestClass]
+    [TestFixture]
     public class NDCTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void NDCTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -89,7 +96,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " 0");
         }
 
-        [TestMethod]
+        [Test]
         public void NDCTopTestTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -134,7 +141,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
-        [TestMethod]
+        [Test]
         public void NDCTop1TestTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -184,7 +191,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.AreEqual(String.Empty, NestedDiagnosticsContext.TopMessage);
         }
 
-        [TestMethod]
+        [Test]
         public void NDCBottomTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -228,7 +235,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " 0");
         }
 
-        [TestMethod]
+        [Test]
         public void NDCSeparatorTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

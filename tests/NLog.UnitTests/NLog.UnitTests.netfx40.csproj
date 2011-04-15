@@ -124,6 +124,7 @@
     <Compile Include="LogReceiverService\LogReceiverServiceTests.cs" />
     <Compile Include="NLogTestBase.cs" />
     <Compile Include="NLogTraceListenerTests.cs" />
+    <Compile Include="NUnitAdapter.cs" />
     <Compile Include="ProcessRunner.cs" />
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />
@@ -165,6 +166,7 @@
     <Content Include="Properties\OutOfBrowserSettings.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
     <Content Include="SplashScreenImage.jpg" />
+    <Content Include="test-results\NLog.UnitTests.monodevelop.csproj-Debug-2011-04-14.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NLogTests.snk" />

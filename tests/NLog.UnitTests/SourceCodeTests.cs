@@ -43,14 +43,21 @@ using System.Text.RegularExpressions;
 #if !NET2_0
 using System.Xml.Linq;
 #endif
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
 namespace NLog.UnitTests
 {
     /// <summary>
     /// Source code tests.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class SourceCodeTests
     {
         private static Regex classNameRegex = new Regex(@"^    (public |abstract |sealed |static |partial |internal )*(class|interface|struct|enum) (?<className>\w+)\b", RegexOptions.Compiled);
@@ -73,7 +80,7 @@ namespace NLog.UnitTests
         private string licenseFile;
         private string[] licenseLines;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             this.sourceCodeDirectory = Directory.GetCurrentDirectory();
@@ -91,7 +98,7 @@ namespace NLog.UnitTests
             this.licenseLines = File.ReadAllLines(this.licenseFile);
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyFileHeaders()
         {
             int failedFiles = 0;
@@ -119,7 +126,7 @@ namespace NLog.UnitTests
 #if !NET2_0
         private static XNamespace MSBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
 
-        [TestMethod]
+        [Test]
         public void VerifyProjectsInSync()
         {
             int failures = 0;
@@ -135,7 +142,8 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl2.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl3.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl4.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.mono2.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.wp7.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.monodevelop.csproj");
 
             filesToCompile.Clear();
             GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLog.Extended/"), "*.cs", "");
@@ -144,6 +152,7 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx40.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx20.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.mono2.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.monodevelop.csproj");
 
             filesToCompile.Clear();
             GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "tests/NLog.UnitTests/"), "*.cs", "");
@@ -157,6 +166,7 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl3.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl4.csproj");
             //failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.mono2.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.monodevelop.csproj");
 
             Assert.AreEqual(0, failures, "Failures found.");
         }
@@ -218,7 +228,7 @@ namespace NLog.UnitTests
         }
 #endif
 
-        [TestMethod]
+        [Test]
         public void VerifyNamespacesAndClassNames()
         {
             int failedFiles = 0;
@@ -250,6 +260,11 @@ namespace NLog.UnitTests
             }
 
             if (baseName == "ExtensionAttribute.cs")
+            {
+                return true;
+            }
+
+            if (baseName == "NUnitAdapter.cs")
             {
                 return true;
             }

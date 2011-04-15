@@ -41,29 +41,36 @@ using System.IO;
 using NLog;
 using NLog.Config;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestClass]
+    [TestFixture]
     public class BaseDirTests : NLogTestBase
     {
         private string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 
-        [TestMethod]
+        [Test]
         public void BaseDirTest()
         {
             AssertLayoutRendererOutput("${basedir}", baseDir);
         }
 
-        [TestMethod]
+        [Test]
         public void BaseDirCombineTest()
         {
             AssertLayoutRendererOutput("${basedir:dir=aaa}", Path.Combine(baseDir, "aaa"));
         }
 
-        [TestMethod]
+        [Test]
         public void BaseDirFileCombineTest()
         {
             AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));

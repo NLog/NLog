@@ -37,14 +37,21 @@ namespace NLog.UnitTests.Layouts
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Layouts;
 
-    [TestClass]
+    [TestFixture]
     public class CsvLayoutTests : NLogTestBase
     {
 #if !SILVERLIGHT
-        [TestMethod]
+        [Test]
         public void EndToEndTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -78,7 +85,7 @@ namespace NLog.UnitTests.Layouts
         }
 #endif
 
-        [TestMethod]
+        [Test]
         public void CsvLayoutRenderingNoQuoting()
         {
             var delimiters = new Dictionary<CsvColumnDelimiterMode, string>
@@ -118,7 +125,7 @@ namespace NLog.UnitTests.Layouts
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CsvLayoutRenderingFullQuoting()
         {
             var delimiters = new Dictionary<CsvColumnDelimiterMode, string>
@@ -159,7 +166,7 @@ namespace NLog.UnitTests.Layouts
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CsvLayoutRenderingAutoQuoting()
         {
             var csvLayout = new CsvLayout()
@@ -218,7 +225,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("date;level;'message;text'", csvLayout.Header.Render(LogEventInfo.CreateNullEvent()));
         }
 
-        [TestMethod]
+        [Test]
         public void CsvLayoutCachingTest()
         {
             var csvLayout = new CsvLayout()

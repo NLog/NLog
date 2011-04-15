@@ -33,14 +33,21 @@
 
 using System;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
 namespace NLog.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class LogLevelTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void OrdinalTest()
         {
             Assert.IsTrue(LogLevel.Trace < LogLevel.Debug);
@@ -72,7 +79,7 @@ namespace NLog.UnitTests
             Assert.IsFalse(LogLevel.Fatal >= LogLevel.Off);
         }
 
-        [TestMethod]
+        [Test]
         public void FromStringTest()
         {
             Assert.AreSame(LogLevel.FromString("trace"), LogLevel.Trace);
@@ -106,14 +113,14 @@ namespace NLog.UnitTests
             Assert.AreSame(LogLevel.FromString("FATAL"), LogLevel.Fatal);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void FromStringFailingTest()
         {
             LogLevel.FromString("zzz");
         }
 
-        [TestMethod]
+        [Test]
         public void LogLevelNullComparison()
         {
             LogLevel level = LogLevel.Info;
@@ -129,7 +136,7 @@ namespace NLog.UnitTests
             Assert.IsFalse(null != level);
         }
 
-        [TestMethod]
+        [Test]
         public void ToStringTest()
         {
             Assert.AreEqual(LogLevel.Trace.ToString(), "Trace");

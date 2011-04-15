@@ -22,7 +22,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
-    <DefineConstants>DEBUG;TRACE;MONO;MONO_2_0;WCF_SUPPORTED</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;MONO;MONO_2_0;WCF_SUPPORTED;NUNIT</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <Optimize>false</Optimize>
@@ -35,7 +35,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
-    <DefineConstants>TRACE;MONO;MONO_2_0;WCF_SUPPORTED</DefineConstants>
+    <DefineConstants>TRACE;MONO;MONO_2_0;WCF_SUPPORTED;NUNIT</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <Optimize>true</Optimize>
@@ -60,15 +60,20 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiTests.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
     <Compile Include="Config\CaseSensitivityTests.cs" />
+    <Compile Include="Config\ConfigurationItemFactoryTests.cs" />
     <Compile Include="Config\ExtensionTests.cs" />
     <Compile Include="Config\IncludeTests.cs" />
+    <Compile Include="Config\InternalLoggingTests.cs" />
+    <Compile Include="Config\RuleConfigurationTests.cs" />
     <Compile Include="Config\TargetConfigurationTests.cs" />
     <Compile Include="Config\VariableTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
@@ -104,6 +109,8 @@
     <Compile Include="LayoutRenderers\ShortDateTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\XmlEncodeTests.cs" />
     <Compile Include="Layouts\CsvLayoutTests.cs" />
     <Compile Include="Layouts\SimpleLayoutOutputTests.cs" />
     <Compile Include="Layouts\SimpleLayoutParserTests.cs" />
@@ -112,6 +119,8 @@
     <Compile Include="LogManagerTests.cs" />
     <Compile Include="LogReceiverService\LogReceiverServiceTests.cs" />
     <Compile Include="NLogTestBase.cs" />
+    <Compile Include="NLogTraceListenerTests.cs" />
+    <Compile Include="NUnitAdapter.cs" />
     <Compile Include="ProcessRunner.cs" />
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />
@@ -142,10 +151,18 @@
     <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ApplicationIcon.png" />
+    <Content Include="Background.png" />
     <Content Include="ConfigFiles\included.nlog" />
     <Content Include="ConfigFiles\main.nlog" />
     <Content Include="ConfigFiles\referencemissingfile.nlog" />
     <Content Include="ConfigFiles\referencemissingfileignored.nlog" />
+    <Content Include="ProjectFileInfo.xml" />
+    <Content Include="Properties\AppManifest.xml" />
+    <Content Include="Properties\OutOfBrowserSettings.xml" />
+    <Content Include="Properties\WMAppManifest.xml" />
+    <Content Include="SplashScreenImage.jpg" />
+    <Content Include="test-results\NLog.UnitTests.monodevelop.csproj-Debug-2011-04-14.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NLogTests.snk" />
@@ -163,10 +180,6 @@
     <ProjectReference Include="..\SampleExtensions\SampleExtensions.monodevelop.csproj">
       <Project>{C480452F-7E14-443D-906D-7E021ABAA107A}</Project>
       <Name>SampleExtensions.monodevelop</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\tools\UnitTestFrameworkStub\UnitTestFrameworkStub.monodevelop.csproj">
-      <Project>{FE0A3713-E9A8-41F0-89FA-C1128214B6A8}</Project>
-      <Name>UnitTestFrameworkStub.monodevelop</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

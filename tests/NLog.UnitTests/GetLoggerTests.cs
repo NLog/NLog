@@ -31,15 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
 namespace NLog.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class GetLoggerTests : NLogTestBase
     {
 #if !NET_CF
-        [TestMethod]
+        [Test]
         public void GetCurrentClassLoggerTest()
         {
             Logger logger = LogManager.GetCurrentClassLogger();
@@ -48,7 +55,7 @@ namespace NLog.UnitTests
         }
 #endif
 
-        [TestMethod]
+        [Test]
         public void TypedGetLoggerTest()
         {
             LogFactory lf = new LogFactory();
@@ -72,7 +79,7 @@ namespace NLog.UnitTests
         }
 
 #if !NET_CF
-        [TestMethod]
+        [Test]
         public void TypedGetCurrentClassLoggerTest()
         {
             LogFactory lf = new LogFactory();
@@ -96,7 +103,7 @@ namespace NLog.UnitTests
         }
 #endif
 
-        [TestMethod]
+        [Test]
         public void GenericGetLoggerTest()
         {
             LogFactory<MyLogger> lf = new LogFactory<MyLogger>();
@@ -113,7 +120,7 @@ namespace NLog.UnitTests
         }
 
 #if !NET_CF
-        [TestMethod]
+        [Test]
         public void GenericGetCurrentClassLoggerTest()
         {
             LogFactory<MyLogger> lf = new LogFactory<MyLogger>();

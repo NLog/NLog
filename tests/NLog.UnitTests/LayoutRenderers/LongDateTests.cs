@@ -38,14 +38,21 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestClass]
+    [TestFixture]
     public class LongDateTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void LongDateTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -67,7 +74,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.AreEqual(date[19], '.');
         }
 
-        [TestMethod]
+        [Test]
         public void LongDateWithPadding()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

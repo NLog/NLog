@@ -35,13 +35,20 @@ namespace NLog.UnitTests.Config
 {
     using System;
     using System.IO;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Config;
 
-    [TestClass]
+    [TestFixture]
     public class IncludeTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void IncludeTest()
         {
 #if SILVERLIGHT
@@ -88,7 +95,7 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(NLogConfigurationException))]
         public void IncludeNotExistingTest()
         {
@@ -121,7 +128,7 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [TestMethod]
+        [Test]
         public void IncludeNotExistingIgnoredTest()
         {
 #if SILVERLIGHT

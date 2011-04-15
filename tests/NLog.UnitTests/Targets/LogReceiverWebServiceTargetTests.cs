@@ -33,18 +33,25 @@
 
 namespace NLog.UnitTests.Targets
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
     using NLog.Config;
     using NLog.Targets;
 
-    [TestClass]
+    [TestFixture]
     public class LogReceiverWebServiceTargetTests : NLogTestBase
     {
         /// <summary>
         /// The test 1.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void Test1()
         {
             var logger = LogManager.GetLogger("Aaa");

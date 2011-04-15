@@ -33,14 +33,21 @@
 
 namespace NLog.UnitTests.Filters
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Layouts;
     using NLog.Filters;
 
-    [TestClass]
+    [TestFixture]
     public class APITests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void APITest()
         {
             // this is mostly to make Clover happy
@@ -59,7 +66,7 @@ namespace NLog.UnitTests.Filters
 
             Assert.IsTrue(LogManager.Configuration.LoggingRules[0].Filters[0] is WhenContainsFilter);
             var wcf = (WhenContainsFilter)LogManager.Configuration.LoggingRules[0].Filters[0];
-            Assert.IsInstanceOfType(wcf.Layout, typeof(SimpleLayout));
+            Assert.IsInstanceOfType(typeof(SimpleLayout), wcf.Layout);
             Assert.AreEqual(((SimpleLayout)wcf.Layout).Text, "${message}");
             Assert.AreEqual(wcf.Substring, "zzz");
             Assert.AreEqual(FilterResult.Ignore, wcf.Action);

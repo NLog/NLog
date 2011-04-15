@@ -35,25 +35,32 @@ namespace NLog.UnitTests
 {
     using System;
     using System.Text;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using System.Collections.Generic;
     using System.Reflection;
     using NLog.Config;
 
-    [TestClass]
+    [TestFixture]
     public class ApiTests : NLogTestBase
     {
         private Type[] allTypes;
         private Assembly nlogAssembly = typeof(LogManager).Assembly;
         private readonly Dictionary<Type, int> typeUsageCount = new Dictionary<Type, int>();
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             allTypes = typeof(LogManager).Assembly.GetTypes();
         }
 
-        [TestMethod]
+        [Test]
         public void PublicEnumsTest()
         {
             foreach (Type type in allTypes)

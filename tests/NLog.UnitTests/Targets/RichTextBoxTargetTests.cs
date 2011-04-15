@@ -41,7 +41,14 @@ namespace NLog.UnitTests.Targets
     using System.IO;
     using System.Text;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
     using NLog.Common;
     using NLog.Config;
@@ -54,12 +61,12 @@ namespace NLog.UnitTests.Targets
     using System.Drawing;
     using NLog.Internal;
 
-    [TestClass]
+    [TestFixture]
     public class RichTextBoxTargetTests : NLogTestBase
     {
         private Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.RichTextBoxTargetTests");
 
-        [TestMethod]
+        [Test]
         public void SimpleRichTextBoxTargetTest()
         {
             RichTextBoxTarget target = new RichTextBoxTarget()
@@ -114,7 +121,7 @@ namespace NLog.UnitTests.Targets
             Assert.IsTrue(form.IsDisposed);
         }
 
-        [TestMethod]
+        [Test]
         public void NoColoringTest()
         {
             try
@@ -162,7 +169,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CustomRowColoringTest()
         {
             try
@@ -214,7 +221,7 @@ Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CustomWordRowColoringTest()
         {
             try
@@ -269,7 +276,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
             }
         }
 
-        [TestMethod]
+        [Test]
         public void RichTextBoxTargetDefaultsTest()
         {
             var target = new RichTextBoxTarget();
@@ -280,7 +287,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
             Assert.IsNull(target.ControlName);
         }
 
-        [TestMethod]
+        [Test]
         public void AutoScrollTest()
         {
             try
@@ -310,7 +317,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
             }
         }
 
-        [TestMethod]
+        [Test]
         public void MaxLinesTest()
         {
             try
@@ -345,7 +352,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ColoringRuleDefaults()
         {
             var expectedRules = new[]
@@ -369,7 +376,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ActiveFormTest()
         {
             RichTextBoxTarget target = new RichTextBoxTarget()
@@ -407,7 +414,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ActiveFormTest2()
         {
             RichTextBoxTarget target = new RichTextBoxTarget()
@@ -448,7 +455,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ActiveFormNegativeTest1()
         {
             RichTextBoxTarget target = new RichTextBoxTarget()
@@ -484,7 +491,7 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ActiveFormNegativeTest2()
         {
             RichTextBoxTarget target = new RichTextBoxTarget()

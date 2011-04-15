@@ -42,16 +42,23 @@ namespace NLog.UnitTests.Targets
     using System.Net.Sockets;
     using System.Text;
     using System.Threading;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal.NetworkSenders;
     using NLog.Targets;
 
-    [TestClass]
+    [TestFixture]
     public class NetworkTargetTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void NetworkTargetHappyPathTest()
         {
             var senderFactory = new MySenderFactory();
@@ -109,7 +116,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(expectedLog, senderFactory.Log.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void NetworkTargetMultipleConnectionsTest()
         {
             var senderFactory = new MySenderFactory();
@@ -174,7 +181,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(expectedLog, senderFactory.Log.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void NothingToFlushTest()
         {
             var senderFactory = new MySenderFactory();
@@ -200,7 +207,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(expectedLog, senderFactory.Log.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void NetworkTargetMultipleConnectionsWithCacheOverflowTest()
         {
             var senderFactory = new MySenderFactory();
@@ -264,7 +271,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(expectedLog, senderFactory.Log.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void NetworkTargetMultipleConnectionsWithoutKeepAliveTest()
         {
             var senderFactory = new MySenderFactory();
@@ -330,7 +337,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(expectedLog, senderFactory.Log.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void NetworkTargetMultipleConnectionsWithMessageSplitTest()
         {
             var senderFactory = new MySenderFactory();
@@ -390,7 +397,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(expectedLog, senderFactory.Log.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void NetworkTargetMultipleConnectionsWithMessageDiscardTest()
         {
             var senderFactory = new MySenderFactory();
@@ -443,7 +450,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(expectedLog, senderFactory.Log.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void NetworkTargetMultipleConnectionsWithMessageErrorTest()
         {
             var senderFactory = new MySenderFactory();
@@ -493,7 +500,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(expectedLog, senderFactory.Log.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void NetworkTargetSendFailureTests()
         {
             var senderFactory = new MySenderFactory()
@@ -560,7 +567,7 @@ namespace NLog.UnitTests.Targets
         }
 
 #if !SILVERLIGHT
-        [TestMethod]
+        [Test]
         public void NetworkTargetTcpTest()
         {
             NetworkTarget target;
@@ -650,7 +657,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [TestMethod]
+        [Test]
         public void NetworkTargetUdpTest()
         {
             var target = new NetworkTarget()
@@ -742,7 +749,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [TestMethod]
+        [Test]
         public void NetworkTargetNotConnectedTest()
         {
             var target = new NetworkTarget()
@@ -798,7 +805,7 @@ namespace NLog.UnitTests.Targets
         }
 #endif
 
-        [TestMethod]
+        [Test]
         public void NetworkTargetSendFailureWithoutKeepAliveTests()
         {
             var senderFactory = new MySenderFactory()

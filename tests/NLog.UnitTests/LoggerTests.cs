@@ -34,15 +34,22 @@
 using System;
 using System.Globalization;
 using System.Xml;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 using NLog.Config;
 
 namespace NLog.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class LoggerTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void TraceTest()
         {
             // test all possible overloads of the Trace() method
@@ -204,7 +211,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void DebugTest()
         {
             // test all possible overloads of the Debug() method
@@ -365,7 +372,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void InfoTest()
         {
             // test all possible overloads of the Info() method
@@ -527,7 +534,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void WarnTest()
         {
             // test all possible overloads of the Warn() method
@@ -689,7 +696,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ErrorTest()
         {
             // test all possible overloads of the Error() method
@@ -848,7 +855,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void FatalTest()
         {
             // test all possible overloads of the Fatal() method
@@ -1008,7 +1015,7 @@ namespace NLog.UnitTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void LogTest()
         {
             // test all possible overloads of the Log(level) method

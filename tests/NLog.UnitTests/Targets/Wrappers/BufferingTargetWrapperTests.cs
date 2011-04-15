@@ -35,16 +35,23 @@ namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Threading;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
 
-    [TestClass]
+    [TestFixture]
     public class BufferingTargetWrapperTests : NLogTestBase
 	{
-        [TestMethod]
+        [Test]
         public void BufferingTargetWrapperSyncTest1()
         {
             var myTarget = new MyTarget();
@@ -158,7 +165,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             myTarget.Close();
         }
 
-        [TestMethod]
+        [Test]
         public void BufferingTargetWrapperSyncWithTimedFlushTest()
         {
             var myTarget = new MyTarget();
@@ -231,7 +238,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(20, myTarget.WriteCount);
         }
 
-        [TestMethod]
+        [Test]
         public void BufferingTargetWrapperAsyncTest1()
         {
             var myTarget = new MyAsyncTarget();
@@ -344,7 +351,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             myTarget.Close();
         }
 
-        [TestMethod]
+        [Test]
         public void BufferingTargetWrapperSyncWithTimedFlushNonSlidingTest()
         {
             var myTarget = new MyTarget();
@@ -390,7 +397,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myTarget.WriteCount);
         }
 
-        [TestMethod]
+        [Test]
         public void BufferingTargetWrapperSyncWithTimedFlushSlidingTest()
         {
             var myTarget = new MyTarget();

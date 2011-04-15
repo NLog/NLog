@@ -40,15 +40,22 @@ namespace NLog.UnitTests.Targets
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Mail;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
 
-    [TestClass]
+    [TestFixture]
     public class MailTargetTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void SimpleEmailTest()
         {
             var mmt = new MockMailTarget
@@ -92,7 +99,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(msg.Body, "Info MyLogger log message 1");
         }
 
-        [TestMethod]
+        [Test]
         public void NtlmEmailTest()
         {
             var mmt = new MockMailTarget
@@ -115,7 +122,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(CredentialCache.DefaultNetworkCredentials, mock.Credentials);
         }
 
-        [TestMethod]
+        [Test]
         public void BasicAuthEmailTest()
         {
             try
@@ -153,7 +160,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CsvLayoutTest()
         {
             var layout = new CsvLayout()
@@ -197,7 +204,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(expectedBody, msg.Body);
         }
 
-        [TestMethod]
+        [Test]
         public void PerMessageServer()
         {
             var mmt = new MockMailTarget
@@ -236,7 +243,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual("log message 2\n", msg2.Body);
         }
 
-        [TestMethod]
+        [Test]
         public void ErrorHandlingTest()
         {
             var mmt = new MockMailTarget
@@ -285,7 +292,7 @@ namespace NLog.UnitTests.Targets
         /// Tests that it is possible to user different email address for each log message,
         /// for example by using ${logger}, ${event-context} or any other layout renderer.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void PerMessageAddress()
         {
             var mmt = new MockMailTarget
@@ -324,7 +331,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual("log message 2\n", msg2.Body);
         }
 
-        [TestMethod]
+        [Test]
         public void CustomHeaderAndFooter()
         {
             var mmt = new MockMailTarget
@@ -356,12 +363,12 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(expectedBody, msg.Body);
         }
 
-        [TestMethod]
+        [Test]
         public void DefaultSmtpClientTest()
         {
             var mailTarget = new MailTarget();
             var client = mailTarget.CreateSmtpClient();
-            Assert.IsInstanceOfType(client, typeof(MySmtpClient));
+            Assert.IsInstanceOfType(typeof(MySmtpClient), client);
         }
 
         public class MockSmtpClient : ISmtpClient

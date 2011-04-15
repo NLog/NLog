@@ -38,15 +38,22 @@ namespace NLog.UnitTests.Contexts
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
+
+    [TestFixture]
     public class MappedDiagnosticsContextTests
     {
         /// <summary>
         /// Same as <see cref="MappedDiagnosticsContext" />, but there is one <see cref="MappedDiagnosticsContext"/> per each thread.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MDCTest1()
         {
             List<Exception> exceptions = new List<Exception>();
@@ -101,7 +108,7 @@ namespace NLog.UnitTests.Contexts
             Assert.AreEqual(0, exceptions.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void MDCTest2()
         {
             List<Exception> exceptions = new List<Exception>();

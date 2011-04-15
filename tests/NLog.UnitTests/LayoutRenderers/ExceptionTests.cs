@@ -38,18 +38,25 @@ using System.Globalization;
 using NLog;
 using NLog.Config;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Collections.Generic;
 
-    [TestClass]
+    [TestFixture]
     public class ExceptionTests : NLogTestBase
     {
         private Logger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionTests");
 
-        [TestMethod]
+        [Test]
         public void Test1()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

@@ -34,29 +34,36 @@
 namespace NLog.UnitTests.Layouts
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.LayoutRenderers;
     using NLog.LayoutRenderers.Wrappers;
     using NLog.Layouts;
 
-    [TestClass]
+    [TestFixture]
     public class SimpleLayoutParserTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void SimpleTest()
         {
             SimpleLayout l = "${message}";
             Assert.AreEqual(1, l.Renderers.Count);
-            Assert.IsInstanceOfType(l.Renderers[0], typeof(MessageLayoutRenderer));
+            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void UnclosedTest()
         {
             new SimpleLayout("${message");
         }
 
-        [TestMethod]
+        [Test]
         public void SingleParamTest()
         {
             SimpleLayout l = "${mdc:item=AAA}";
@@ -66,7 +73,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("AAA", mdc.Item);
         }
 
-        [TestMethod]
+        [Test]
         public void ValueWithColonTest()
         {
             SimpleLayout l = "${mdc:item=AAA\\:}";
@@ -76,7 +83,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("AAA:", mdc.Item);
         }
 
-        [TestMethod]
+        [Test]
         public void ValueWithBracketTest()
         {
             SimpleLayout l = "${mdc:item=AAA\\}\\:}";
@@ -87,7 +94,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("AAA}:", mdc.Item);
         }
 
-        [TestMethod]
+        [Test]
         public void DefaultValueTest()
         {
             SimpleLayout l = "${mdc:BBB}";
@@ -97,7 +104,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("BBB", mdc.Item);
         }
 
-        [TestMethod]
+        [Test]
         public void DefaultValueWithBracketTest()
         {
             SimpleLayout l = "${mdc:AAA\\}\\:}";
@@ -108,7 +115,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("AAA}:", mdc.Item);
         }
 
-        [TestMethod]
+        [Test]
         public void DefaultValueWithOtherParametersTest()
         {
             SimpleLayout l = "${exception:message,type:separator=x}";
@@ -119,7 +126,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("x", elr.Separator);
         }
 
-        [TestMethod]
+        [Test]
         public void EmptyValueTest()
         {
             SimpleLayout l = "${mdc:item=}";
@@ -129,7 +136,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("", mdc.Item);
         }
 
-        [TestMethod]
+        [Test]
         public void NestedLayoutTest()
         {
             SimpleLayout l = "${rot13:inner=${ndc:topFrames=3:separator=x}}";
@@ -146,7 +153,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("x", ndcLayoutRenderer.Separator);
         }
 
-        [TestMethod]
+        [Test]
         public void DoubleNestedLayoutTest()
         {
             SimpleLayout l = "${rot13:inner=${rot13:inner=${ndc:topFrames=3:separator=x}}}";
@@ -167,7 +174,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("x", ndcLayoutRenderer.Separator);
         }
 
-        [TestMethod]
+        [Test]
         public void DoubleNestedLayoutWithDefaultLayoutParametersTest()
         {
             SimpleLayout l = "${rot13:${rot13:${ndc:topFrames=3:separator=x}}}";
@@ -188,7 +195,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("x", ndcLayoutRenderer.Separator);
         }
 
-        [TestMethod]
+        [Test]
         public void AmbientPropertyTest()
         {
             SimpleLayout l = "${message:padding=10}";
@@ -199,7 +206,7 @@ namespace NLog.UnitTests.Layouts
             Assert.IsNotNull(message);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(NLogConfigurationException))]
         public void MissingLayoutRendererTest()
         {
@@ -207,7 +214,7 @@ namespace NLog.UnitTests.Layouts
             Assert.IsNull(l);
         }
 
-        [TestMethod]
+        [Test]
         public void DoubleAmbientPropertyTest()
         {
             SimpleLayout l = "${message:uppercase=true:padding=10}";
@@ -220,7 +227,7 @@ namespace NLog.UnitTests.Layouts
             Assert.IsNotNull(message);
         }
 
-        [TestMethod]
+        [Test]
         public void ReverseDoubleAmbientPropertyTest()
         {
             SimpleLayout l = "${message:padding=10:uppercase=true}";
@@ -233,7 +240,7 @@ namespace NLog.UnitTests.Layouts
             Assert.IsNotNull(message);
         }
 
-        [TestMethod]
+        [Test]
         public void EscapeTest()
         {
             AssertEscapeRoundTrips(string.Empty);
@@ -246,7 +253,7 @@ namespace NLog.UnitTests.Layouts
             AssertEscapeRoundTrips("hello ${${level}${message}}");
         }
 
-        [TestMethod]
+        [Test]
         public void EvaluateTest()
         {
             var logEventInfo = LogEventInfo.CreateNullEvent();
@@ -254,7 +261,7 @@ namespace NLog.UnitTests.Layouts
             Assert.AreEqual("Warn", SimpleLayout.Evaluate("${level}", logEventInfo));
         }
 
-        [TestMethod]
+        [Test]
         public void EvaluateTest2()
         {
             Assert.AreEqual("Off", SimpleLayout.Evaluate("${level}"));

@@ -42,13 +42,20 @@ namespace NLog.UnitTests.Internal.NetworkSenders
     using System.Net.Sockets;
     using System.Text;
     using System.Threading;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Internal.NetworkSenders;
 
-    [TestClass]
+    [TestFixture]
     public class TcpNetworkSenderTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void TcpHappyPathTest()
         {
             foreach (bool async in new[] { false, true })
@@ -136,15 +143,15 @@ close
             }
         }
 
-        [TestMethod]
+        [Test]
         public void TcpProxyTest()
         {
             var sender = new TcpNetworkSender("tcp://foo:1234", AddressFamily.Unspecified);
             var socket = sender.CreateSocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            Assert.IsInstanceOfType(socket, typeof(SocketProxy));
+            Assert.IsInstanceOfType(typeof(SocketProxy), socket);
         }
 
-        [TestMethod]
+        [Test]
         public void TcpConnectFailureTest()
         {
             var sender = new MyTcpNetworkSender("tcp://hostname:123", AddressFamily.Unspecified)
@@ -201,7 +208,7 @@ failed
             }
         }
 
-        [TestMethod]
+        [Test]
         public void TcpSendFailureTest()
         {
             var sender = new MyTcpNetworkSender("tcp://hostname:123", AddressFamily.Unspecified)

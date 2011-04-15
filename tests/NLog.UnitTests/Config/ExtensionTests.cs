@@ -35,13 +35,20 @@ namespace NLog.UnitTests.Config
 {
     using System;
     using System.IO;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using MyExtensionNamespace;
     using NLog.Filters;
     using NLog.Layouts;
     using NLog.Targets;
 
-    [TestClass]
+    [TestFixture]
     public class ExtensionTests : NLogTestBase
     {
 #if !WINDOWS_PHONE
@@ -52,7 +59,7 @@ namespace NLog.UnitTests.Config
         private string extensionAssemblyFullPath1 = Path.GetFullPath("SampleExtensions.dll");
 #endif
         
-        [TestMethod]
+        [Test]
         public void ExtensionTest1()
         {
             Assert.IsNotNull(typeof(FooLayout));
@@ -97,7 +104,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 
-        [TestMethod]
+        [Test]
         public void ExtensionTest2()
         {
             var configuration = CreateConfigurationFromString(@"
@@ -144,7 +151,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("(myrandom(10) == 3)", cbf.Condition.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void ExtensionWithPrefixTest()
         {
             var configuration = CreateConfigurationFromString(@"
@@ -188,7 +195,7 @@ namespace NLog.UnitTests.Config
         }
 #endif
 
-        [TestMethod]
+        [Test]
         public void ExtensionTest4()
         {
             Assert.IsNotNull(typeof(FooLayout));

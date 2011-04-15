@@ -33,14 +33,21 @@
 
 namespace NLog.UnitTests.Config
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Config;
     using NLog.Filters;
 
-    [TestClass]
+    [TestFixture]
     public class RuleConfigurationTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void NoRulesTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -56,7 +63,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual(0, c.LoggingRules.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void SimpleRuleTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -84,7 +91,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual(0, rule.Filters.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void SingleLevelTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -104,7 +111,7 @@ namespace NLog.UnitTests.Config
             Assert.IsTrue(rule.Levels.Contains(LogLevel.Warn));
         }
 
-        [TestMethod]
+        [Test]
         public void MinMaxLevelTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -125,7 +132,7 @@ namespace NLog.UnitTests.Config
             Assert.IsTrue(rule.Levels.Contains(LogLevel.Warn));
         }
 
-        [TestMethod]
+        [Test]
         public void NoLevelsTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -150,7 +157,7 @@ namespace NLog.UnitTests.Config
             Assert.IsTrue(rule.Levels.Contains(LogLevel.Fatal));
         }
 
-        [TestMethod]
+        [Test]
         public void ExplicitLevelsTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -172,7 +179,7 @@ namespace NLog.UnitTests.Config
             Assert.IsTrue(rule.Levels.Contains(LogLevel.Warn));
         }
 
-        [TestMethod]
+        [Test]
         public void MultipleTargetsTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -197,7 +204,7 @@ namespace NLog.UnitTests.Config
             Assert.AreSame(c.FindTargetByName("d3"), rule.Targets[2]);
         }
 
-        [TestMethod]
+        [Test]
         public void ChildRulesTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -224,7 +231,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("Bar*", rule.ChildRules[1].LoggerNamePattern);
         }
 
-        [TestMethod]
+        [Test]
         public void FiltersTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"

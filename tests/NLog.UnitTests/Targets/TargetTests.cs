@@ -36,15 +36,22 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
 
-    [TestClass]
+    [TestFixture]
     public class TargetTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void InitializeTest()
         {
             var target = new MyTarget();
@@ -55,7 +62,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(1, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        [TestMethod]
+        [Test]
         public void InitializeFailedTest()
         {
             var target = new MyTarget();
@@ -79,7 +86,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual("Init error.", exceptions[0].InnerException.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void DoubleInitializeTest()
         {
             var target = new MyTarget();
@@ -91,7 +98,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(1, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        [TestMethod]
+        [Test]
         public void DoubleCloseTest()
         {
             var target = new MyTarget();
@@ -105,7 +112,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        [TestMethod]
+        [Test]
         public void CloseWithoutInitializeTest()
         {
             var target = new MyTarget();
@@ -115,7 +122,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(0, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        [TestMethod]
+        [Test]
         public void WriteWithoutInitializeTest()
         {
             var target = new MyTarget();
@@ -134,7 +141,7 @@ namespace NLog.UnitTests.Targets
             exceptions.ForEach(Assert.IsNull);
         }
 
-        [TestMethod]
+        [Test]
         public void WriteOnClosedTargetTest()
         {
             var target = new MyTarget();
@@ -159,7 +166,7 @@ namespace NLog.UnitTests.Targets
             exceptions.ForEach(Assert.IsNull);
         }
 
-        [TestMethod]
+        [Test]
         public void FlushTest()
         {
             var target = new MyTarget();
@@ -174,7 +181,7 @@ namespace NLog.UnitTests.Targets
             exceptions.ForEach(Assert.IsNull);
         }
 
-        [TestMethod]
+        [Test]
         public void FlushWithoutInitializeTest()
         {
             var target = new MyTarget();
@@ -188,7 +195,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(0, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        [TestMethod]
+        [Test]
         public void FlushOnClosedTargetTest()
         {
             var target = new MyTarget();
@@ -207,7 +214,7 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        [TestMethod]
+        [Test]
         public void LockingTest()
         {
             var target = new MyTarget();

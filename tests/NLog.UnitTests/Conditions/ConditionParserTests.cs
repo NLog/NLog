@@ -33,43 +33,50 @@
 
 namespace NLog.UnitTests.Conditions
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Conditions;
     using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
 
-    [TestClass]
+    [TestFixture]
     public class ConditionParserTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void ParseNullText()
         {
             Assert.IsNull(ConditionParser.ParseExpression(null));
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void ParseEmptyText()
         {
             ConditionParser.ParseExpression("");
         }
 
-        [TestMethod]
+        [Test]
         public void ImplicitOperatorTest()
         {
             ConditionExpression cond = "true and true";
 
-            Assert.IsInstanceOfType(cond, typeof(ConditionAndExpression));
+            Assert.IsInstanceOfType(typeof(ConditionAndExpression), cond);
         }
 
-        [TestMethod]
+        [Test]
         public void NullLiteralTest()
         {
             Assert.AreEqual("null", ConditionParser.ParseExpression("null").ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void BooleanLiteralTest()
         {
             Assert.AreEqual("True", ConditionParser.ParseExpression("true").ToString());
@@ -78,7 +85,7 @@ namespace NLog.UnitTests.Conditions
             Assert.AreEqual("False", ConditionParser.ParseExpression("fAlSe").ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void AndTest()
         {
             Assert.AreEqual("(True and True)", ConditionParser.ParseExpression("true and true").ToString());
@@ -89,7 +96,7 @@ namespace NLog.UnitTests.Conditions
             Assert.AreEqual("((True and True) and True)", ConditionParser.ParseExpression("tRuE && true AND true").ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void OrTest()
         {
             Assert.AreEqual("(True or True)", ConditionParser.ParseExpression("true or true").ToString());
@@ -100,7 +107,7 @@ namespace NLog.UnitTests.Conditions
             Assert.AreEqual("((True or True) or True)", ConditionParser.ParseExpression("tRuE || true OR true").ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void NotTest()
         {
             Assert.AreEqual("(not True)", ConditionParser.ParseExpression("not true").ToString());
@@ -108,7 +115,7 @@ namespace NLog.UnitTests.Conditions
             Assert.AreEqual("(not (not (not True)))", ConditionParser.ParseExpression("not not not true").ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void StringTest()
         {
             Assert.AreEqual("''", ConditionParser.ParseExpression("''").ToString());
@@ -121,13 +128,13 @@ namespace NLog.UnitTests.Conditions
             SimpleLayout sl = cle.Layout as SimpleLayout;
             Assert.IsNotNull(sl);
             Assert.AreEqual(3, sl.Renderers.Count);
-            Assert.IsInstanceOfType(sl.Renderers[0], typeof(MessageLayoutRenderer));
-            Assert.IsInstanceOfType(sl.Renderers[1], typeof(LiteralLayoutRenderer));
-            Assert.IsInstanceOfType(sl.Renderers[2], typeof(LevelLayoutRenderer));
+            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), sl.Renderers[0]);
+            Assert.IsInstanceOfType(typeof(LiteralLayoutRenderer), sl.Renderers[1]);
+            Assert.IsInstanceOfType(typeof(LevelLayoutRenderer), sl.Renderers[2]);
 
         }
 
-        [TestMethod]
+        [Test]
         public void LogLevelTest()
         {
             var result = ConditionParser.ParseExpression("LogLevel.Info") as ConditionLiteralExpression;
@@ -139,7 +146,7 @@ namespace NLog.UnitTests.Conditions
             Assert.AreSame(LogLevel.Trace, result.LiteralValue);
         }
 
-        [TestMethod]
+        [Test]
         public void RelationalOperatorTest()
         {
             RelationalOperatorTest("=", "==");
@@ -152,7 +159,7 @@ namespace NLog.UnitTests.Conditions
             RelationalOperatorTest(">=", ">=");
         }
 
-        [TestMethod]
+        [Test]
         public void NumberTest()
         {
             Assert.AreEqual("3.141592", ConditionParser.ParseExpression("3.141592").ToString());
@@ -161,37 +168,37 @@ namespace NLog.UnitTests.Conditions
             Assert.AreEqual("-3.141592", ConditionParser.ParseExpression("-3.141592").ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void ExtraParenthesisTest()
         {
             Assert.AreEqual("3.141592", ConditionParser.ParseExpression("(((3.141592)))").ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void MessageTest()
         {
             var result = ConditionParser.ParseExpression("message");
-            Assert.IsInstanceOfType(result, typeof(ConditionMessageExpression));
+            Assert.IsInstanceOfType(typeof(ConditionMessageExpression), result);
             Assert.AreEqual("message", result.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void LevelTest()
         {
             var result = ConditionParser.ParseExpression("level");
-            Assert.IsInstanceOfType(result, typeof(ConditionLevelExpression));
+            Assert.IsInstanceOfType(typeof(ConditionLevelExpression), result);
             Assert.AreEqual("level", result.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void LoggerTest()
         {
             var result = ConditionParser.ParseExpression("logger");
-            Assert.IsInstanceOfType(result, typeof(ConditionLoggerNameExpression));
+            Assert.IsInstanceOfType(typeof(ConditionLoggerNameExpression), result);
             Assert.AreEqual("logger", result.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void ConditionFunctionTests()
         {
             var result = ConditionParser.ParseExpression("starts-with(logger, 'x${message}')") as ConditionMethodExpression;
@@ -201,7 +208,7 @@ namespace NLog.UnitTests.Conditions
             Assert.AreEqual(typeof(ConditionMethods), result.MethodInfo.DeclaringType);
         }
 
-        [TestMethod]
+        [Test]
         public void CustomNLogFactoriesTest()
         {
             var configurationItemFactory = new ConfigurationItemFactory();
@@ -211,7 +218,7 @@ namespace NLog.UnitTests.Conditions
             ConditionParser.ParseExpression("check('${foo}')", configurationItemFactory);
         }
 
-        [TestMethod]
+        [Test]
         public void MethodNameWithUnderscores()
         {
             var configurationItemFactory = new ConfigurationItemFactory();
@@ -221,91 +228,91 @@ namespace NLog.UnitTests.Conditions
             ConditionParser.ParseExpression("__check__('${foo}')", configurationItemFactory);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void UnbalancedParenthesis1Test()
         {
             ConditionParser.ParseExpression("check(");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void UnbalancedParenthesis2Test()
         {
             ConditionParser.ParseExpression("((1)");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void UnbalancedParenthesis3Test()
         {
             ConditionParser.ParseExpression("(1))");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void LogLevelWithoutAName()
         {
             ConditionParser.ParseExpression("LogLevel.'somestring'");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void InvalidNumberWithUnaryMinusTest()
         {
             ConditionParser.ParseExpression("-a31");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void InvalidNumberTest()
         {
             ConditionParser.ParseExpression("-123.4a");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void UnclosedString()
         {
             ConditionParser.ParseExpression("'Hello world");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void UnrecognizedToken()
         {
             ConditionParser.ParseExpression("somecompletelyunrecognizedtoken");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void UnrecognizedPunctuation()
         {
             ConditionParser.ParseExpression("#");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void UnrecognizedUnicodeChar()
         {
             ConditionParser.ParseExpression("\u0090");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void UnrecognizedUnicodeChar2()
         {
             ConditionParser.ParseExpression("\u0015");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void UnrecognizedMethod()
         {
             ConditionParser.ParseExpression("unrecognized-method()");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionParseException))]
         public void TokenizerEOFTest()
         {

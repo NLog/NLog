@@ -38,14 +38,21 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestClass]
+    [TestFixture]
     public class DateTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void DefaultDateTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -63,7 +70,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.IsTrue(Math.Abs((dt - now).TotalSeconds) < 5);
         }
 
-        [TestMethod]
+        [Test]
         public void FormattedDateTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

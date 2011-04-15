@@ -40,14 +40,21 @@ using System.IO;
 using NLog;
 using NLog.Config;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestClass]
+    [TestFixture]
     public class MessageTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void MessageWithoutPaddingTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -69,7 +76,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
         }
 
-        [TestMethod]
+        [Test]
         public void MessageRightPaddingTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -92,7 +99,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
-        [TestMethod]
+        [Test]
         public void MessageFixedLengthRightPaddingTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -114,7 +121,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a01");
         }
 
-        [TestMethod]
+        [Test]
         public void MessageLeftPaddingTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -136,7 +143,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
         }
 
-        [TestMethod]
+        [Test]
         public void MessageFixedLengthLeftPaddingTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

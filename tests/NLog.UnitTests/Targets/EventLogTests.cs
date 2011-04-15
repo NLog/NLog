@@ -34,26 +34,33 @@
 #if !SILVERLIGHT && !NET_CF
 
 using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 using NLog.Config;
 using NLog.Targets;
 
 namespace NLog.UnitTests.Targets
 {
-    [TestClass]
+    [TestFixture]
     public class EventLogTests : NLogTestBase
     {
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TearDown()
         {
         }
 
-        [TestMethod]
+        [Test]
         public void Test1()
         {
 #if TODO

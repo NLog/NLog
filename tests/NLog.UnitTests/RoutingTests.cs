@@ -31,14 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
 namespace NLog.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class RoutingTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void LogThresholdTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -66,7 +73,7 @@ namespace NLog.UnitTests
             AssertDebugCounter("debug", 4);
         }
 
-        [TestMethod]
+        [Test]
         public void LogThresholdTest2()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -108,7 +115,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug5", "messageE");
         }
 
-        [TestMethod]
+        [Test]
         public void LoggerNameMatchTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -138,7 +145,7 @@ namespace NLog.UnitTests
             AssertDebugCounter("debug4", 2);
         }
 
-        [TestMethod]
+        [Test]
         public void MultiAppenderTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

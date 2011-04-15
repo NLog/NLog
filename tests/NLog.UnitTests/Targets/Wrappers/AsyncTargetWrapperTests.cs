@@ -35,17 +35,24 @@ namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Threading;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using System.Collections.Generic;
 
-    [TestClass]
+    [TestFixture]
     public class AsyncTargetWrapperTests : NLogTestBase
 	{
-        [TestMethod]
+        [Test]
         public void AsyncTargetWrapperInitTest()
         {
             var myTarget = new MyTarget();
@@ -56,7 +63,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(100, targetWrapper.BatchSize);
         }
 
-        [TestMethod]
+        [Test]
         public void AsyncTargetWrapperInitTest2()
         {
             var myTarget = new MyTarget();
@@ -71,7 +78,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(100, targetWrapper.BatchSize);
         }
 
-        [TestMethod]
+        [Test]
         public void AsyncTargetWrapperSyncTest1()
         {
             var myTarget = new MyTarget();
@@ -110,7 +117,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myTarget.WriteCount);
         }
 
-        [TestMethod]
+        [Test]
         public void AsyncTargetWrapperAsyncTest1()
         {
             var myTarget = new MyAsyncTarget();
@@ -140,7 +147,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myTarget.WriteCount);
         }
 
-        [TestMethod]
+        [Test]
         public void AsyncTargetWrapperAsyncWithExceptionTest1()
         {
             var myTarget = new MyAsyncTarget
@@ -165,7 +172,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             continuationHit.WaitOne();
             Assert.IsNotNull(lastException);
-            Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));
+            Assert.IsInstanceOfType(typeof(InvalidOperationException), lastException);
 
             // no flush on exception
             Assert.AreEqual(0, myTarget.FlushCount);
@@ -176,12 +183,12 @@ namespace NLog.UnitTests.Targets.Wrappers
             targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
             Assert.IsNotNull(lastException);
-            Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));
+            Assert.IsInstanceOfType(typeof(InvalidOperationException), lastException);
             Assert.AreEqual(0, myTarget.FlushCount);
             Assert.AreEqual(2, myTarget.WriteCount);
         }
 
-        [TestMethod]
+        [Test]
         public void AsyncTargetWrapperFlushTest()
         {
             var myTarget = new MyAsyncTarget
@@ -253,7 +260,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AsyncTargetWrapperCloseTest()
         {
             var myTarget = new MyAsyncTarget
@@ -283,7 +290,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.IsFalse(continuationHit);
         }
 
-        [TestMethod]
+        [Test]
         public void AsyncTargetWrapperExceptionTest()
         {
             var targetWrapper = new AsyncTargetWrapper

@@ -38,7 +38,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 using NLog.Config;
 using NLog.Targets;
 using NLog.Targets.Wrappers;
@@ -46,7 +53,7 @@ using NLog.Common;
 
 namespace NLog.UnitTests.Targets
 {
-    [TestClass]
+    [TestFixture]
     public class ConcurrentFileTargetTests : NLogTestBase
 	{
         private Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.ConcurrentFileTargetTests");
@@ -153,25 +160,25 @@ namespace NLog.UnitTests.Targets
             DoConcurrentTest(10, 2000, mode);
         }
 
-        [TestMethod]
+        [Test]
         public void SimpleConcurrentTest()
         {
             DoConcurrentTest("");
         }
 
-        [TestMethod]
+        [Test]
         public void AsyncConcurrentTest()
         {
             DoConcurrentTest(2, 100, "async");
         }
 
-        [TestMethod]
+        [Test]
         public void BufferedConcurrentTest()
         {
             DoConcurrentTest(2, 100, "buffered");
         }
 
-        [TestMethod]
+        [Test]
         public void BufferedTimedFlushConcurrentTest()
         {
             DoConcurrentTest(2, 100, "buffered_timed_flush");

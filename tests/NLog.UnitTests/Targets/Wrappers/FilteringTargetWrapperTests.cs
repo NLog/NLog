@@ -35,17 +35,24 @@ namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Threading;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
     using NLog.Conditions;
     using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
 
-    [TestClass]
+    [TestFixture]
     public class FilteringTargetWrapperTests : NLogTestBase
 	{
-        [TestMethod]
+        [Test]
         public void FilteringTargetWrapperSyncTest1()
         {
             var myMockCondition = new MyMockCondition(true);
@@ -84,7 +91,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myMockCondition.CallCount);
         }
 
-        [TestMethod]
+        [Test]
         public void FilteringTargetWrapperAsyncTest1()
         {
             var myMockCondition = new MyMockCondition(true);
@@ -117,7 +124,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myMockCondition.CallCount);
         }
 
-        [TestMethod]
+        [Test]
         public void FilteringTargetWrapperAsyncWithExceptionTest1()
         {
             var myMockCondition = new MyMockCondition(true);
@@ -143,7 +150,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             continuationHit.WaitOne();
             Assert.IsNotNull(lastException);
-            Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));
+            Assert.IsInstanceOfType(typeof(InvalidOperationException), lastException);
 
             Assert.AreEqual(1, myTarget.WriteCount);
             Assert.AreEqual(1, myMockCondition.CallCount);
@@ -153,12 +160,12 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
             Assert.IsNotNull(lastException);
-            Assert.IsInstanceOfType(lastException, typeof(InvalidOperationException));
+            Assert.IsInstanceOfType(typeof(InvalidOperationException), lastException);
             Assert.AreEqual(2, myTarget.WriteCount);
             Assert.AreEqual(2, myMockCondition.CallCount);
         }
 
-        [TestMethod]
+        [Test]
         public void FilteringTargetWrapperSyncTest2()
         {
             var myMockCondition = new MyMockCondition(false);
@@ -198,7 +205,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myMockCondition.CallCount);
         }
 
-        [TestMethod]
+        [Test]
         public void FilteringTargetWrapperAsyncTest2()
         {
             var myMockCondition = new MyMockCondition(false);
@@ -231,7 +238,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myMockCondition.CallCount);
         }
 
-        [TestMethod]
+        [Test]
         public void FilteringTargetWrapperAsyncWithExceptionTest2()
         {
             var myMockCondition = new MyMockCondition(false);

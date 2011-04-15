@@ -36,16 +36,23 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
 
-    [TestClass]
+    [TestFixture]
     public class FallbackGroupTargetTests : NLogTestBase
 	{
-        [TestMethod]
+        [Test]
         public void FallbackGroupTargetSyncTest1()
         {
             var myTarget1 = new MyTarget();
@@ -91,7 +98,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        [TestMethod]
+        [Test]
         public void FallbackGroupTargetSyncTest2()
         {
             // fail once
@@ -138,7 +145,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        [TestMethod]
+        [Test]
         public void FallbackGroupTargetSyncTest3()
         {
             // fail once
@@ -185,7 +192,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        [TestMethod]
+        [Test]
         public void FallbackGroupTargetSyncTest4()
         {
             // fail once
@@ -235,7 +242,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        [TestMethod]
+        [Test]
         public void FallbackGroupTargetSyncTest5()
         {
             // fail once
@@ -290,7 +297,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        [TestMethod]
+        [Test]
         public void FallbackGroupTargetSyncTest6()
         {
             // fail once
@@ -324,7 +331,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     // for the first 3 rounds, no target is available
                     Assert.IsNotNull(exceptions[i]);
-                    Assert.IsInstanceOfType(exceptions[i], typeof(InvalidOperationException));
+                    Assert.IsInstanceOfType(typeof(InvalidOperationException), exceptions[i]);
                     Assert.AreEqual("Some failure.", exceptions[i].Message);
                 }
                 else

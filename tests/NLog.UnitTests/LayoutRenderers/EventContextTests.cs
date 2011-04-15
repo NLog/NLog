@@ -38,16 +38,23 @@ using System.Reflection;
 using NLog;
 using NLog.Config;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 using NLog.Internal;
 using NLog.Layouts;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestClass]
+    [TestFixture]
     public class EventContextTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void Test1()
         {
             Layout l = "${event-context:aaa}";
@@ -57,7 +64,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.AreEqual("", l.Render(lei));
         }
 
-        [TestMethod]
+        [Test]
         public void Test2()
         {
             Layout l = "${event-context:aaa}";

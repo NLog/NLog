@@ -34,13 +34,20 @@
 namespace NLog.UnitTests.Config
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Common;
 
-    [TestClass]
+    [TestFixture]
     public class InternalLoggingTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void InternalLoggingConfigTest1()
         {
             using (var scope = new InternalLoggerScope())
@@ -59,7 +66,7 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [TestMethod]
+        [Test]
         public void InternalLoggingConfigTest2()
         {
             using (new InternalLoggerScope())

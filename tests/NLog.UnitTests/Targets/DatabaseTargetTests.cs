@@ -42,10 +42,17 @@ namespace NLog.UnitTests.Targets
     using System.Data;
     using System.Data.Common;
     using System.Globalization;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Targets;
 
-    [TestClass]
+    [TestFixture]
     public class DatabaseTargetTests : NLogTestBase
     {
 #if !NET_CF && !MONO
@@ -59,7 +66,7 @@ namespace NLog.UnitTests.Targets
         }
 #endif
 
-        [TestMethod]
+        [Test]
         public void SimpleDatabaseTest()
         {
             MockDbConnection.ClearLog();
@@ -96,7 +103,7 @@ Close()
             Assert.AreEqual(expectedLog, MockDbConnection.Log);
         }
 
-        [TestMethod]
+        [Test]
         public void SimpleBatchedDatabaseTest()
         {
             MockDbConnection.ClearLog();
@@ -134,7 +141,7 @@ Close()
             Assert.AreEqual(expectedLog, MockDbConnection.Log);
         }
 
-        [TestMethod]
+        [Test]
         public void KeepConnectionOpenTest()
         {
             MockDbConnection.ClearLog();
@@ -174,7 +181,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             Assert.AreEqual(expectedLog, MockDbConnection.Log);
         }
 
-        [TestMethod]
+        [Test]
         public void KeepConnectionOpenBatchedTest()
         {
             MockDbConnection.ClearLog();
@@ -219,7 +226,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             Assert.AreEqual(expectedLog, MockDbConnection.Log);
         }
 
-        [TestMethod]
+        [Test]
         public void KeepConnectionOpenTest2()
         {
             MockDbConnection.ClearLog();
@@ -265,7 +272,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg4')
             Assert.AreEqual(expectedLog, MockDbConnection.Log);
         }
 
-        [TestMethod]
+        [Test]
         public void KeepConnectionOpenBatchedTest2()
         {
             MockDbConnection.ClearLog();
@@ -321,7 +328,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             Assert.AreEqual(expectedLog, MockDbConnection.Log);
         }
 
-        [TestMethod]
+        [Test]
         public void ParameterTest()
         {
             MockDbConnection.ClearLog();
@@ -407,7 +414,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
             Assert.AreEqual(expectedLog, MockDbConnection.Log);
         }
 
-        [TestMethod]
+        [Test]
         public void ParameterFacetTest()
         {
             MockDbConnection.ClearLog();
@@ -505,7 +512,7 @@ Close()
             Assert.AreEqual(expectedLog, MockDbConnection.Log);
         }
 
-        [TestMethod]
+        [Test]
         public void ConnectionStringBuilderTest1()
         {
             DatabaseTarget dt;
@@ -538,7 +545,7 @@ Close()
             Assert.AreEqual("customConnectionString42", this.GetConnectionString(dt));
         }
 
-        [TestMethod]
+        [Test]
         public void DatabaseExceptionTest1()
         {
             MockDbConnection.ClearLog();
@@ -558,7 +565,7 @@ Close()
             Assert.AreEqual("Open('cannotconnect').\r\n", MockDbConnection.Log);
         }
 
-        [TestMethod]
+        [Test]
         public void DatabaseExceptionTest2()
         {
             MockDbConnection.ClearLog();
@@ -596,7 +603,7 @@ Close()
             Assert.AreEqual(expectedLog, MockDbConnection.Log);
         }
 
-        [TestMethod]
+        [Test]
         public void DatabaseExceptionTest3()
         {
             MockDbConnection.ClearLog();
@@ -636,7 +643,7 @@ Close()
         }
 
 #if !NET_CF
-        [TestMethod]
+        [Test]
         public void ConnectionStringNameInitTest()
         {
             var dt = new DatabaseTarget
@@ -656,7 +663,7 @@ Close()
             Assert.AreEqual("cs1", dt.ConnectionString.Render(LogEventInfo.CreateNullEvent()));
         }
 
-        [TestMethod]
+        [Test]
         public void ConnectionStringNameNegativeTest()
         {
             var dt = new DatabaseTarget
@@ -677,7 +684,7 @@ Close()
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ProviderFactoryInitTest()
         {
             var dt = new DatabaseTarget();
@@ -690,7 +697,7 @@ Close()
             Assert.AreEqual("myConnectionString", MockDbConnection2.LastOpenConnectionString);
         }
 
-        [TestMethod]
+        [Test]
         public void SqlServerShorthandNotationTest()
         {
             foreach (string provName in new[] { "microsoft", "msde", "mssql", "sqlserver" })
@@ -708,7 +715,7 @@ Close()
             }
         }
 
-        [TestMethod]
+        [Test]
         public void OleDbShorthandNotationTest()
         {
             var dt = new DatabaseTarget()
@@ -723,7 +730,7 @@ Close()
             Assert.AreEqual(typeof(System.Data.OleDb.OleDbConnection), dt.ConnectionType);
         }
 
-        [TestMethod]
+        [Test]
         public void OdbcShorthandNotationTest()
         {
             var dt = new DatabaseTarget()

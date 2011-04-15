@@ -32,7 +32,14 @@
 // 
 
 using System.Xml;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 using NLog.Config;
 
 namespace NLog.UnitTests
@@ -43,11 +50,11 @@ namespace NLog.UnitTests
     using NLog.Targets;
     using NLog.Targets.Wrappers;
 
-    [TestClass]
+    [TestFixture]
     public class RegressionTests : NLogTestBase
     {
 #if !WINDOWS_PHONE
-        [TestMethod]
+        [Test]
         public void Bug3990StackOverflowWhenUsingNLogViewerTarget()
         {
             // this would fail because of stack overflow in the 
@@ -67,7 +74,7 @@ namespace NLog.UnitTests
         }
 #endif
 
-        [TestMethod]
+        [Test]
         public void Bug4655UnableToReconfigureExistingLoggers()
         {
             var debugTarget1 = new DebugTarget();
@@ -92,7 +99,7 @@ namespace NLog.UnitTests
             Assert.AreEqual(1, debugTarget2.Counter);
         }
 
-        [TestMethod]
+        [Test]
         public void Bug5965StackOverflow()
         {
             LogManager.Configuration = this.CreateConfigurationFromString(@"

@@ -35,12 +35,19 @@
 
 namespace NLog.UnitTests.Contexts
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
+
+    [TestFixture]
     public class GlobalDiagnosticsContextTests
     {
-        [TestMethod]
+        [Test]
         public void GDCTest1()
         {
             GlobalDiagnosticsContext.Clear();
@@ -63,7 +70,7 @@ namespace NLog.UnitTests.Contexts
             Assert.AreEqual("bar2", GlobalDiagnosticsContext.Get("foo2"));
         }
 
-        [TestMethod]
+        [Test]
         public void GDCTest2()
         {
             GDC.Clear();

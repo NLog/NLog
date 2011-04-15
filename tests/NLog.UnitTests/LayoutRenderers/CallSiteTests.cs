@@ -42,15 +42,22 @@ using System.Diagnostics;
 using NLog;
 using NLog.Config;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestClass]
+    [TestFixture]
     public class CallSiteTests : NLogTestBase
     {
 #if !SILVERLIGHT
-        [TestMethod]
+        [Test]
         public void LineNumberTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -72,7 +79,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 #endif
 
-        [TestMethod]
+        [Test]
         public void MethodNameTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -89,7 +96,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
         }
 
-        [TestMethod]
+        [Test]
         public void ClassNameTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -106,7 +113,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + " msg");
         }
 
-        [TestMethod]
+        [Test]
         public void ClassNameWithPaddingTestTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -123,7 +130,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
 
-        [TestMethod]
+        [Test]
         public void MethodNameWithPaddingTestTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

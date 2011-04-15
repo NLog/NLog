@@ -36,7 +36,14 @@ namespace NLog.UnitTests.Config
     using System;
     using System.Globalization;
     using System.Text;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Conditions;
     using NLog.Config;
     using NLog.LayoutRenderers;
@@ -44,10 +51,10 @@ namespace NLog.UnitTests.Config
     using NLog.Targets;
     using NLog.Targets.Wrappers;
 
-    [TestClass]
+    [TestFixture]
     public class TargetConfigurationTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void SimpleTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -64,10 +71,10 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("${message}", l.Text);
             Assert.IsNotNull(t.Layout);
             Assert.AreEqual(1, l.Renderers.Count);
-            Assert.IsInstanceOfType(l.Renderers[0], typeof(MessageLayoutRenderer));
+            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void SimpleElementSyntaxTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -87,10 +94,10 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("${message}", l.Text);
             Assert.IsNotNull(t.Layout);
             Assert.AreEqual(1, l.Renderers.Count);
-            Assert.IsInstanceOfType(l.Renderers[0], typeof(MessageLayoutRenderer));
+            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void ArrayParameterTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -117,7 +124,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("'${logger}'", t.Parameters[2].Layout.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void ArrayElementParameterTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -160,7 +167,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("'${logger}'", t.Parameters[2].Layout.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void SimpleTest2()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -177,13 +184,13 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("${message} ${level}", l.Text);
             Assert.IsNotNull(l);
             Assert.AreEqual(3, l.Renderers.Count);
-            Assert.IsInstanceOfType(l.Renderers[0], typeof(MessageLayoutRenderer));
-            Assert.IsInstanceOfType(l.Renderers[1], typeof(LiteralLayoutRenderer));
-            Assert.IsInstanceOfType(l.Renderers[2], typeof(LevelLayoutRenderer));
+            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
+            Assert.IsInstanceOfType(typeof(LiteralLayoutRenderer), l.Renderers[1]);
+            Assert.IsInstanceOfType(typeof(LevelLayoutRenderer), l.Renderers[2]);
             Assert.AreEqual(" ", ((LiteralLayoutRenderer)l.Renderers[1]).Text);
         }
 
-        [TestMethod]
+        [Test]
         public void WrapperTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -201,9 +208,9 @@ namespace NLog.UnitTests.Config
             Assert.IsNotNull(c.FindTargetByName("b"));
             Assert.IsNotNull(c.FindTargetByName("c"));
 
-            Assert.IsInstanceOfType(c.FindTargetByName("b"), typeof(BufferingTargetWrapper));
-            Assert.IsInstanceOfType(c.FindTargetByName("a"), typeof(AsyncTargetWrapper));
-            Assert.IsInstanceOfType(c.FindTargetByName("c"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(typeof(BufferingTargetWrapper), c.FindTargetByName("b"));
+            Assert.IsInstanceOfType(typeof(AsyncTargetWrapper), c.FindTargetByName("a"));
+            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("c"));
 
             BufferingTargetWrapper btw = c.FindTargetByName("b") as BufferingTargetWrapper;
             AsyncTargetWrapper atw = c.FindTargetByName("a") as AsyncTargetWrapper;
@@ -214,7 +221,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual(19, btw.BufferSize);
         }
 
-        [TestMethod]
+        [Test]
         public void WrapperRefTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -236,9 +243,9 @@ namespace NLog.UnitTests.Config
             Assert.IsNotNull(c.FindTargetByName("b"));
             Assert.IsNotNull(c.FindTargetByName("c"));
 
-            Assert.IsInstanceOfType(c.FindTargetByName("b"), typeof(BufferingTargetWrapper));
-            Assert.IsInstanceOfType(c.FindTargetByName("a"), typeof(AsyncTargetWrapper));
-            Assert.IsInstanceOfType(c.FindTargetByName("c"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(typeof(BufferingTargetWrapper), c.FindTargetByName("b"));
+            Assert.IsInstanceOfType(typeof(AsyncTargetWrapper), c.FindTargetByName("a"));
+            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("c"));
 
             BufferingTargetWrapper btw = c.FindTargetByName("b") as BufferingTargetWrapper;
             AsyncTargetWrapper atw = c.FindTargetByName("a") as AsyncTargetWrapper;
@@ -249,7 +256,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual(19, btw.BufferSize);
         }
 
-        [TestMethod]
+        [Test]
         public void CompoundTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -270,11 +277,11 @@ namespace NLog.UnitTests.Config
             Assert.IsNotNull(c.FindTargetByName("d3"));
             Assert.IsNotNull(c.FindTargetByName("d4"));
 
-            Assert.IsInstanceOfType(c.FindTargetByName("rr"), typeof(RoundRobinGroupTarget));
-            Assert.IsInstanceOfType(c.FindTargetByName("d1"), typeof(DebugTarget));
-            Assert.IsInstanceOfType(c.FindTargetByName("d2"), typeof(DebugTarget));
-            Assert.IsInstanceOfType(c.FindTargetByName("d3"), typeof(DebugTarget));
-            Assert.IsInstanceOfType(c.FindTargetByName("d4"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(typeof(RoundRobinGroupTarget), c.FindTargetByName("rr"));
+            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d1"));
+            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d2"));
+            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d3"));
+            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d4"));
 
             RoundRobinGroupTarget rr = c.FindTargetByName("rr") as RoundRobinGroupTarget;
             DebugTarget d1 = c.FindTargetByName("d1") as DebugTarget;
@@ -294,7 +301,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual(((SimpleLayout)d4.Layout).Text, "${message}4");
         }
 
-        [TestMethod]
+        [Test]
         public void CompoundRefTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -320,11 +327,11 @@ namespace NLog.UnitTests.Config
             Assert.IsNotNull(c.FindTargetByName("d3"));
             Assert.IsNotNull(c.FindTargetByName("d4"));
 
-            Assert.IsInstanceOfType(c.FindTargetByName("rr"), typeof(RoundRobinGroupTarget));
-            Assert.IsInstanceOfType(c.FindTargetByName("d1"), typeof(DebugTarget));
-            Assert.IsInstanceOfType(c.FindTargetByName("d2"), typeof(DebugTarget));
-            Assert.IsInstanceOfType(c.FindTargetByName("d3"), typeof(DebugTarget));
-            Assert.IsInstanceOfType(c.FindTargetByName("d4"), typeof(DebugTarget));
+            Assert.IsInstanceOfType(typeof(RoundRobinGroupTarget), c.FindTargetByName("rr"));
+            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d1"));
+            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d2"));
+            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d3"));
+            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d4"));
 
             RoundRobinGroupTarget rr = c.FindTargetByName("rr") as RoundRobinGroupTarget;
             DebugTarget d1 = c.FindTargetByName("d1") as DebugTarget;
@@ -344,7 +351,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual(((SimpleLayout)d4.Layout).Text, "${message}4");
         }
 
-        [TestMethod]
+        [Test]
         public void AsyncWrappersTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -372,7 +379,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("d2_wrapped", wrappedTarget.Name);
         }
 
-        [TestMethod]
+        [Test]
         public void DefaultTargetParametersTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -393,7 +400,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("'x${message}x'", t.Layout.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void DefaultWrapperTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -420,7 +427,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("'${level}'", debugTarget.Layout.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void DataTypesTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -469,7 +476,7 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void NullableDataTypesTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"

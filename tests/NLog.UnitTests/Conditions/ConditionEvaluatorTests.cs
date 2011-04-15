@@ -39,14 +39,21 @@ namespace NLog.UnitTests.Conditions
 #if !NET_CF && !SILVERLIGHT
     using System.Runtime.Serialization.Formatters.Binary;
 #endif
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
+
+#if !NUNIT
+    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+#endif
     using NLog.Conditions;
     using NLog.Config;
 
-    [TestClass]
+    [TestFixture]
     public class ConditionEvaluatorTests : NLogTestBase
     {
-        [TestMethod]
+        [Test]
         public void BooleanOperatorTest()
         {
             AssertEvaluationResult(false, "false or false");
@@ -63,7 +70,7 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult(true, "not not true");
         }
 
-        [TestMethod]
+        [Test]
         public void ConditionMethodsTest()
         {
             AssertEvaluationResult(true, "starts-with('foobar','foo')");
@@ -80,7 +87,7 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult(true, "contains('foo','')");
         }
 
-        [TestMethod]
+        [Test]
         public void ConditionMethodNegativeTest1()
         {
             try
@@ -96,7 +103,7 @@ namespace NLog.UnitTests.Conditions
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ConditionMethodNegativeTest2()
         {
             try
@@ -112,7 +119,7 @@ namespace NLog.UnitTests.Conditions
             }
         }
 
-        [TestMethod]
+        [Test]
         public void LiteralTest()
         {
             AssertEvaluationResult(null, "null");
@@ -128,7 +135,7 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult("d'Artagnan", "'d''Artagnan'");
         }
 
-        [TestMethod]
+        [Test]
         public void LogEventInfoPropertiesTest()
         {
             AssertEvaluationResult(LogLevel.Warn, "level");
@@ -136,7 +143,7 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult("MyCompany.Product.Class", "logger");
         }
 
-        [TestMethod]
+        [Test]
         public void RelationalOperatorTest()
         {
             AssertEvaluationResult(true, "1 < 2");
@@ -173,7 +180,7 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult(true, "1 != null");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionEvaluationException))]
         public void UnsupportedRelationalOperatorTest()
         {
@@ -181,7 +188,7 @@ namespace NLog.UnitTests.Conditions
             cond.Evaluate(LogEventInfo.CreateNullEvent());
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(NotSupportedException))]
         public void UnsupportedRelationalOperatorTest2()
         {
@@ -189,14 +196,14 @@ namespace NLog.UnitTests.Conditions
             cond.ToString();
         }
 
-        [TestMethod]
+        [Test]
         public void MethodWithLogEventInfoTest()
         {
             var factories = SetupConditionMethods();
             Assert.AreEqual(true, ConditionParser.ParseExpression("IsValid()", factories).Evaluate(CreateWellKnownContext()));
         }
 
-        [TestMethod]
+        [Test]
         public void TypePromotionTest()
         {
             var factories = SetupConditionMethods();
@@ -232,7 +239,7 @@ namespace NLog.UnitTests.Conditions
             Assert.AreEqual(false, ConditionParser.ParseExpression("ToInt16(1) == false", factories).Evaluate(CreateWellKnownContext()));
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionEvaluationException))]
         public void TypePromotionNegativeTest1()
         {
@@ -241,7 +248,7 @@ namespace NLog.UnitTests.Conditions
             Assert.AreEqual(true, ConditionParser.ParseExpression("ToDateTime('2010/01/01') == '20xx/01/01'", factories).Evaluate(CreateWellKnownContext()));
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ConditionEvaluationException))]
         public void TypePromotionNegativeTest2()
         {
@@ -250,21 +257,21 @@ namespace NLog.UnitTests.Conditions
             Assert.AreEqual(true, ConditionParser.ParseExpression("GetGuid() == ToInt16(1)", factories).Evaluate(CreateWellKnownContext()));
         }
 
-        [TestMethod]
+        [Test]
         public void ExceptionTest1()
         {
             var ex1 = new ConditionEvaluationException();
             Assert.IsNotNull(ex1.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void ExceptionTest2()
         {
             var ex1 = new ConditionEvaluationException("msg");
             Assert.AreEqual("msg", ex1.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void ExceptionTest3()
         {
             var inner = new InvalidOperationException("f");
@@ -274,7 +281,7 @@ namespace NLog.UnitTests.Conditions
         }
 
 #if !SILVERLIGHT && !NET_CF
-        [TestMethod]
+        [Test]
         public void ExceptionTest4()
         {
             var inner = new InvalidOperationException("f");
@@ -290,21 +297,21 @@ namespace NLog.UnitTests.Conditions
         }
 #endif
 
-        [TestMethod]
+        [Test]
         public void ExceptionTest11()
         {
             var ex1 = new ConditionParseException();
             Assert.IsNotNull(ex1.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void ExceptionTest12()
         {
             var ex1 = new ConditionParseException("msg");
             Assert.AreEqual("msg", ex1.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void ExceptionTest13()
         {
             var inner = new InvalidOperationException("f");
@@ -314,7 +321,7 @@ namespace NLog.UnitTests.Conditions
         }
 
 #if !SILVERLIGHT && !NET_CF
-        [TestMethod]
+        [Test]
         public void ExceptionTest14()
         {
             var inner = new InvalidOperationException("f");
