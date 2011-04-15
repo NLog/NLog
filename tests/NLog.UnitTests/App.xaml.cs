@@ -70,8 +70,8 @@ namespace NLog.UnitTests
                     InvokeDomMethod("scenarioResult",
                                            result.Started.Ticks,
                                            result.Finished.Ticks,
-                                           (result.TestFixture != null) ? result.TestFixture.Type.FullName : null,
-                                           (result.Test != null) ? result.Test.Name : null,
+                                           (result.TestClass != null) ? result.TestClass.Type.FullName : null,
+                                           (result.TestMethod != null) ? result.TestMethod.Name : null,
                                            result.Result.ToString(),
                                            (result.Exception != null) ? result.Exception.ToString() : null);
                 }

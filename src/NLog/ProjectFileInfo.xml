@@ -38,26 +38,17 @@
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
      </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
-     </ItemGroup>
    </Project>
 
    <Project File="NLog.sl3.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
      </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
-     </ItemGroup>
    </Project>
 
    <Project File="NLog.sl4.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
      </ItemGroup>
    </Project>
 
@@ -127,9 +118,6 @@
    <Project File="NLog.wp7.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
      </ItemGroup>
    </Project>
 
