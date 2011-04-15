@@ -15,8 +15,7 @@
     <OSVersion>4.20</OSVersion>
     <DeployDirSuffix>TestProject1</DeployDirSuffix>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FormFactorID>
-    </FormFactorID>
+    <FormFactorID></FormFactorID>
     <WarningLevel>4</WarningLevel>
     <ProjectTypeGuids>{73A5A715-AF05-47af-9C33-47A864AF9AE7};{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <NativePlatformName>Pocket PC 2003</NativePlatformName>
@@ -166,7 +165,6 @@
     <Content Include="Properties\OutOfBrowserSettings.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
     <Content Include="SplashScreenImage.jpg" />
-    <Content Include="test-results\NLog.UnitTests.monodevelop.csproj-Debug-2011-04-14.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NLogTests.snk" />

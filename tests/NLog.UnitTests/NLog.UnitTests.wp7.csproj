@@ -187,7 +187,6 @@
     <Content Include="Properties\OutOfBrowserSettings.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
     <Content Include="SplashScreenImage.jpg" />
-    <Content Include="test-results\NLog.UnitTests.monodevelop.csproj-Debug-2011-04-14.xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigFiles\included.nlog" />
