@@ -127,6 +127,25 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
         }
 
+        [Test]
+        public void ExceptionNewLineSeparatorTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=message,shorttype:separator=&#13;&#10;}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            logger.ErrorException("msg", ex);
+            AssertDebugLastMessage("debug1", "Test exception\r\n" + typeof(InvalidOperationException).Name);
+        }
+
         private Exception GetExceptionWithStackTrace(string exceptionMessage)
         {
             try
