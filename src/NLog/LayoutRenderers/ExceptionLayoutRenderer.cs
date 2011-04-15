@@ -122,7 +122,10 @@ namespace NLog.LayoutRenderers
 #if SILVERLIGHT || NET_CF
             sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
 #else
-            sb.Append(ex.TargetSite.ToString());
+            if (ex.TargetSite != null)
+            {
+                sb.Append(ex.TargetSite.ToString());
+            }
 #endif
         }
 

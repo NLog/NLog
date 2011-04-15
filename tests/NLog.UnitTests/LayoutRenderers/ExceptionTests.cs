@@ -57,7 +57,7 @@ namespace NLog.UnitTests.LayoutRenderers
         private Logger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionTests");
 
         [Test]
-        public void Test1()
+        public void ExceptionWithStackTraceTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -94,6 +94,39 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
         }
 
+        [Test]
+        public void ExceptionWithoutStackTraceTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception}' />
+                    <target name='debug2' type='Debug' layout='${exception:format=stacktrace}' />
+                    <target name='debug3' type='Debug' layout='${exception:format=type}' />
+                    <target name='debug4' type='Debug' layout='${exception:format=shorttype}' />
+                    <target name='debug5' type='Debug' layout='${exception:format=tostring}' />
+                    <target name='debug6' type='Debug' layout='${exception:format=message}' />
+                    <target name='debug7' type='Debug' layout='${exception:format=method}' />
+                    <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8' />
+                </rules>
+            </nlog>");
+
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
+            logger.ErrorException("msg", ex);
+            AssertDebugLastMessage("debug1", exceptionMessage);
+            AssertDebugLastMessage("debug2", "");
+            AssertDebugLastMessage("debug3", typeof(InvalidOperationException).FullName);
+            AssertDebugLastMessage("debug4", typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug5", ex.ToString());
+            AssertDebugLastMessage("debug6", exceptionMessage);
+            AssertDebugLastMessage("debug7", "");
+            AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
+        }
+
         private Exception GetExceptionWithStackTrace(string exceptionMessage)
         {
             try
@@ -105,6 +138,11 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 return exception;
             }
+        }
+
+        private Exception GetExceptionWithoutStackTrace(string exceptionMessage)
+        {
+            return new InvalidOperationException(exceptionMessage);
         }
 
         private class GenericClass<TA, TB, TC>
