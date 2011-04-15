@@ -31,6 +31,100 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace Microsoft.VisualStudio.Tools.UnitTests
+#if !NUNIT
+
+namespace NUnit.Framework
 {
+    using System;
+    using MSAssert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+
+    internal class Assert
+    {
+        public static void AreSame(object o1, object o2)
+        {
+            MSAssert.AreSame(o1, o2);
+        }
+
+        public static void AreSame(object o1, object o2, string message)
+        {
+            MSAssert.AreSame(o1, o2, message);
+        }
+
+        public static void AreNotSame(object o1, object o2)
+        {
+            MSAssert.AreNotSame(o1, o2);
+        }
+
+        public static void AreNotSame(object o1, object o2, string message)
+        {
+            MSAssert.AreNotSame(o1, o2, message);
+        }
+
+        public static void AreEqual(object o1, object o2)
+        {
+            MSAssert.AreEqual(o1, o2);          
+        }
+
+        public static void AreEqual(object o1, object o2, string message)
+        {
+            MSAssert.AreEqual(o1, o2, message);
+        }
+
+        public static void AreNotEqual(object o1, object o2)
+        {
+            MSAssert.AreNotEqual(o1, o2);
+        }
+
+        public static void AreNotEqual(object o1, object o2, string message)
+        {
+            MSAssert.AreNotEqual(o1, o2, message);
+        }
+
+        public static void IsNull(object o)
+        {
+            MSAssert.IsNull(o);
+        }
+
+        public static void IsNull(object o, string message)
+        {
+            MSAssert.IsNull(o, message);
+        }
+
+        public static void IsNotNull(object o)
+        {
+            MSAssert.IsNotNull(o);
+        }
+
+        public static void IsNotNull(object o, string message)
+        {
+            MSAssert.IsNotNull(o, message);
+        }
+
+        public static void IsTrue(bool value)
+        {
+            MSAssert.IsTrue(value);
+        }
+
+        public static void IsTrue(bool value, string message)
+        {
+            MSAssert.IsTrue(value, message);
+        }
+
+        public static void IsInstanceOfType(Type type, object o)
+        {
+            MSAssert.IsInstanceOfType(o, type);
+        }
+
+        public static void Fail(string errorMessage)
+        {
+            MSAssert.Fail(errorMessage);
+        }
+
+        public static void IsFalse(bool value)
+        {
+            MSAssert.IsFalse(value);
+        }
+    }
 }
+
+#endif

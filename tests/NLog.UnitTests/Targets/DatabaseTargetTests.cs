@@ -46,8 +46,8 @@ namespace NLog.UnitTests.Targets
 
 #if !NUNIT
     using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.SetUp.TestMethodAttribute;
+    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
+    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
     using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
 #endif
     using NLog.Targets;
@@ -56,8 +56,7 @@ namespace NLog.UnitTests.Targets
     public class DatabaseTargetTests : NLogTestBase
     {
 #if !NET_CF && !MONO
-        [AssemblyInitialize]
-        public static void SetupMockProvider(TestContext context)
+        static DatabaseTargetTests()
         {
             var data = (DataSet)ConfigurationManager.GetSection("system.data");
             var providerFactories = data.Tables["DBProviderFactories"];

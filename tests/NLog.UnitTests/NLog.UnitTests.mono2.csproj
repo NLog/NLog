@@ -49,7 +49,7 @@
   <PropertyGroup>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
-    <DefineConstants>MONO;MONO_2_0;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
+    <DefineConstants>NUNIT;MONO;MONO_2_0;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
   </PropertyGroup>
@@ -60,6 +60,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Configuration" />
+    <Reference Include="nunit.framework" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -153,7 +154,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLog\NLog.mono2.csproj" />
     <ProjectReference Include="..\SampleExtensions\SampleExtensions.mono2.csproj" />
-    <ProjectReference Include="..\..\tools\UnitTestFrameworkStub\UnitTestFrameworkStub.mono2.csproj" />
   </ItemGroup>
   <Import Project="..\..\src\Mono.targets" />
 </Project>
