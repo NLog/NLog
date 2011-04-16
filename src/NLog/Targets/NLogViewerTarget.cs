@@ -67,6 +67,8 @@ namespace NLog.Targets
     [Target("NLogViewer")]
     public class NLogViewerTarget : NetworkTarget
     {
+        private readonly Log4JXmlEventLayout layout = new Log4JXmlEventLayout();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogViewerTarget" /> class.
         /// </summary>
@@ -76,7 +78,6 @@ namespace NLog.Targets
         public NLogViewerTarget()
         {
             this.Parameters = new List<NLogViewerParameterInfo>();
-            this.Layout = new Log4JXmlEventLayout();
             this.Renderer.Parameters = this.Parameters;
             NewLine = false;
         }
@@ -159,7 +160,7 @@ namespace NLog.Targets
         /// </summary>
         public Log4JXmlEventLayoutRenderer Renderer
         {
-            get { return ((Log4JXmlEventLayout)this.Layout).Renderer; }
+            get { return this.layout.Renderer; }
         }
 
         /// <summary>
@@ -167,13 +168,13 @@ namespace NLog.Targets
         /// </summary>
         public override Layout Layout
         {
-            get { return base.Layout; }
+            get
+            {
+                return this.layout;
+            }
+
             set
             {
-                if (value is Log4JXmlEventLayout)
-                {
-                    base.Layout = value;
-                }
             }
         }
     }

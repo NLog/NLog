@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers
     public class ShortDateLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Gets or sets the value indicating whether to output UTC time instead of local time.
+        /// Gets or sets a value indicating whether to output UTC time instead of local time.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(false)]
