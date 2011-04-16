@@ -90,7 +90,7 @@ namespace NLog.UnitTests.Layouts
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='CSVLayoutEndToEnd1.txt'>
+                  <target name='f' type='File' fileName='CSVLayoutEndToEnd2.txt'>
                     <layout type='CSVLayout' withHeader='false'>
                       <column name='level' layout='${level}' />
                       <column name='message' layout='${message}' />
@@ -108,7 +108,7 @@ namespace NLog.UnitTests.Layouts
             logger.Info("msg2");
             logger.Warn("Message with, a comma");
 
-            using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd1.txt"))
+            using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd2.txt"))
             {
                 Assert.AreEqual("Debug,msg,1", sr.ReadLine());
                 Assert.AreEqual("Info,msg2,2", sr.ReadLine());
