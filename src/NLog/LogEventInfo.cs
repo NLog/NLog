@@ -52,7 +52,7 @@ namespace NLog
         /// <summary>
         /// Gets the date of the first log event created.
         /// </summary>
-        public static readonly DateTime ZeroDate = DateTime.Now;
+        public static readonly DateTime ZeroDate = DateTime.UtcNow;
 
         private static int globalSequenceId;
 

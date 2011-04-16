@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            TimeSpan ts = logEvent.TimeStamp - LogEventInfo.ZeroDate;
+            TimeSpan ts = logEvent.TimeStamp.ToUniversalTime() - LogEventInfo.ZeroDate;
             if (ts.Hours < 10)
             {
                 builder.Append('0');

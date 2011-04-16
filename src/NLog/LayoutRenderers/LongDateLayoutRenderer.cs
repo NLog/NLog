@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Text;
 
@@ -47,6 +48,13 @@ namespace NLog.LayoutRenderers
     public class LongDateLayoutRenderer : LayoutRenderer
     {
         /// <summary>
+        /// Gets or sets the value indicating whether to output UTC time instead of local time.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(false)]
+        public bool UniversalTime { get; set; }
+
+        /// <summary>
         /// Renders the date in the long format (yyyy-MM-dd HH:mm:ss.mmm) and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -54,6 +62,10 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             DateTime dt = logEvent.TimeStamp;
+            if (this.UniversalTime)
+            {
+                dt = dt.ToUniversalTime();
+            }
 
             builder.Append(dt.Year);
             builder.Append('-');

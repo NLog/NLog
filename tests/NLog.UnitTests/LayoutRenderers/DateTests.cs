@@ -49,6 +49,8 @@ using NUnit.Framework;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using NLog.LayoutRenderers;
+
     [TestFixture]
     public class DateTests : NLogTestBase
     {
@@ -68,6 +70,28 @@ namespace NLog.UnitTests.LayoutRenderers
             DateTime now = DateTime.Now;
 
             Assert.IsTrue(Math.Abs((dt - now).TotalSeconds) < 5);
+        }
+
+        [Test]
+        public void UniversalTimeTest()
+        {
+            var dt = new DateLayoutRenderer();
+            dt.UniversalTime = true;
+            dt.Format = "R";
+
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            Assert.AreEqual(ei.TimeStamp.ToUniversalTime().ToString("R"), dt.Render(ei));
+        }
+
+        [Test]
+        public void LocalTimeTest()
+        {
+            var dt = new DateLayoutRenderer();
+            dt.UniversalTime = false;
+            dt.Format = "R";
+
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            Assert.AreEqual(ei.TimeStamp.ToString("R"), dt.Render(ei));
         }
 
         [Test]

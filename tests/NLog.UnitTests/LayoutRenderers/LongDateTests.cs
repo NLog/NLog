@@ -49,6 +49,8 @@ using NUnit.Framework;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using NLog.LayoutRenderers;
+
     [TestFixture]
     public class LongDateTests : NLogTestBase
     {
@@ -72,6 +74,26 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.AreEqual(date[13], ':');
             Assert.AreEqual(date[16], ':');
             Assert.AreEqual(date[19], '.');
+        }
+
+        [Test]
+        public void UniversalTimeTest()
+        {
+            var dt = new LongDateLayoutRenderer();
+            dt.UniversalTime = true;
+            
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            Assert.AreEqual(ei.TimeStamp.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss.ffff"), dt.Render(ei));
+        }
+
+        [Test]
+        public void LocalTimeTest()
+        {
+            var dt = new LongDateLayoutRenderer();
+            dt.UniversalTime = false;
+            
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            Assert.AreEqual(ei.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss.ffff"), dt.Render(ei));
         }
 
         [Test]

@@ -49,9 +49,31 @@ using NUnit.Framework;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using NLog.LayoutRenderers;
+
     [TestFixture]
     public class TimeTests : NLogTestBase
     {
+        [Test]
+        public void UniversalTimeTest()
+        {
+            var dt = new TimeLayoutRenderer();
+            dt.UniversalTime = true;
+
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            Assert.AreEqual(ei.TimeStamp.ToUniversalTime().ToString("HH:mm:ss.ffff"), dt.Render(ei));
+        }
+
+        [Test]
+        public void LocalTimeTest()
+        {
+            var dt = new TimeLayoutRenderer();
+            dt.UniversalTime = false;
+
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            Assert.AreEqual(ei.TimeStamp.ToString("HH:mm:ss.ffff"), dt.Render(ei));
+        }
+        
         [Test]
         public void TimeTest()
         {

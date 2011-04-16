@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using NLog.Config;
@@ -67,13 +68,26 @@ namespace NLog.LayoutRenderers
         public string Format { get; set; }
 
         /// <summary>
+        /// Gets or sets the value indicating whether to output UTC time instead of local time.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(false)]
+        public bool UniversalTime { get; set; }
+
+        /// <summary>
         /// Renders the current date and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(logEvent.TimeStamp.ToString(this.Format, this.Culture));
+            var ts = logEvent.TimeStamp;
+            if (this.UniversalTime)
+            {
+                ts = ts.ToUniversalTime();
+            }
+
+            builder.Append(ts.ToString(this.Format, this.Culture));
         }
     }
 }

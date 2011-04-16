@@ -49,9 +49,31 @@ using NUnit.Framework;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using NLog.LayoutRenderers;
+
     [TestFixture]
     public class ShortDateTests : NLogTestBase
     {
+        [Test]
+        public void UniversalTimeTest()
+        {
+            var dt = new ShortDateLayoutRenderer();
+            dt.UniversalTime = true;
+
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            Assert.AreEqual(ei.TimeStamp.ToUniversalTime().ToString("yyyy-MM-dd"), dt.Render(ei));
+        }
+
+        [Test]
+        public void LocalTimeTest()
+        {
+            var dt = new ShortDateLayoutRenderer();
+            dt.UniversalTime = false;
+
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            Assert.AreEqual(ei.TimeStamp.ToString("yyyy-MM-dd"), dt.Render(ei));
+        }
+        
         [Test]
         public void ShortDateTest()
         {
