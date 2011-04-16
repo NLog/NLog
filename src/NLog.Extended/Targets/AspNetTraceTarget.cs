@@ -50,8 +50,8 @@ namespace NLog.Targets
         /// <summary>
         /// Writes the specified logging event to the ASP.NET Trace facility. 
         /// If the log level is greater than or equal to <see cref="LogLevel.Warn"/> it uses the
-        /// <see cref="System.Web.TraceContext.Warn(string,string)"/> method, otherwise it uses
-        /// <see cref="System.Web.TraceContext.Write(string,string)" /> method.
+        /// System.Web.TraceContext.Warn method, otherwise it uses
+        /// System.Web.TraceContext.Write method.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
