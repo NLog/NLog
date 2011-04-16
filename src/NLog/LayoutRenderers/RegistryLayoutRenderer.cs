@@ -40,6 +40,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using Microsoft.Win32;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// A value from the Registry.
@@ -125,10 +126,26 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event. Ignored.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            using (RegistryKey registryKey = this.rootKey.OpenSubKey(this.subKey))
+            string value;
+
+            try
             {
-                builder.Append(registryKey.GetValue(this.Value, this.DefaultValue));
+                using (RegistryKey registryKey = this.rootKey.OpenSubKey(this.subKey))
+                {
+                    value = Convert.ToString(registryKey.GetValue(this.Value, this.DefaultValue), CultureInfo.InvariantCulture);
+                }
             }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                value = this.DefaultValue;
+            }
+
+            builder.Append(value);
         }
     }
 }

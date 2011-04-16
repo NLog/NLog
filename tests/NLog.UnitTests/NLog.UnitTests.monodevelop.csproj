@@ -104,6 +104,7 @@
     <Compile Include="LayoutRenderers\MDCTests.cs" />
     <Compile Include="LayoutRenderers\MessageTests.cs" />
     <Compile Include="LayoutRenderers\NDCTests.cs" />
+    <Compile Include="LayoutRenderers\RegistryTests.cs" />
     <Compile Include="LayoutRenderers\Rot13Tests.cs" />
     <Compile Include="LayoutRenderers\ShortDateTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
