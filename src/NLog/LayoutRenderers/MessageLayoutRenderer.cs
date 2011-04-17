@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
     using System.Diagnostics;
     using System.Text;
 
@@ -46,6 +47,30 @@ namespace NLog.LayoutRenderers
     public class MessageLayoutRenderer : LayoutRenderer
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="MessageLayoutRenderer" /> class.
+        /// </summary>
+        public MessageLayoutRenderer()
+        {
+#if !SILVERLIGHT && !NET_CF
+            string newline = Environment.NewLine;
+#else
+            string newline = "\r\n";
+#endif
+
+            this.ExceptionSeparator = newline;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to log exception along with message.
+        /// </summary>
+        public bool WithException { get; set; }
+
+        /// <summary>
+        /// Gets or sets the string that separates message from the exception.
+        /// </summary>
+        public string ExceptionSeparator { get; set; }
+
+        /// <summary>
         /// Renders the log message including any positional parameters and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -53,6 +78,11 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.Append(logEvent.FormattedMessage);
+            if (this.WithException && logEvent.Exception != null)
+            {
+                builder.Append(this.ExceptionSeparator);
+                builder.Append(logEvent.Exception.ToString());
+            }
         }
     }
 }

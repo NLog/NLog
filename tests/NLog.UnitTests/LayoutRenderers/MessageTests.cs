@@ -164,5 +164,57 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", "a01");
         }
+
+        [Test]
+        public void MessageWithExceptionTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message:withException=true}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            Logger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "a");
+
+            var ex = new InvalidOperationException("Exception message.");
+            logger.DebugException("Foo", ex);
+#if !SILVERLIGHT && !NET_CF
+            string newline = Environment.NewLine;
+#else
+            string newline = "\r\n";
+#endif
+
+            AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
+        }
+
+        [Test]
+        public void MessageWithExceptionAndCustomSeparatorTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message:withException=true:exceptionSeparator=,}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            Logger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "a");
+
+            var ex = new InvalidOperationException("Exception message.");
+            logger.DebugException("Foo", ex);
+#if !SILVERLIGHT && !NET_CF
+            string newline = Environment.NewLine;
+#else
+            string newline = "\r\n";
+#endif
+
+            AssertDebugLastMessage("debug", "Foo," + ex.ToString());
+        }
     }
 }
