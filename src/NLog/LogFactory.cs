@@ -407,7 +407,16 @@ namespace NLog
         public void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
             InternalLogger.Trace("LogFactory.Flush({0})", timeout);
-            this.Configuration.FlushAllTargets(AsyncHelpers.WithTimeout(asyncContinuation, timeout));
+            
+            var loggingConfiguration = this.Configuration;
+            if (loggingConfiguration != null)
+            {
+                loggingConfiguration.FlushAllTargets(AsyncHelpers.WithTimeout(asyncContinuation, timeout));
+            }
+            else
+            {
+                asyncContinuation(null);
+            }
         }
 
         /// <summary>Decreases the log enable counter and if it reaches -1 
