@@ -46,6 +46,7 @@
         <MonoCommandLine Condition="'$(WarningLevel)' != ''">$(MonoCommandLine) /warn:$(WarningLevel)</MonoCommandLine>
         <MonoCommandLine Condition="'$(OutputType)' == 'Exe'">$(MonoCommandLine) /target:exe</MonoCommandLine>
         <MonoCommandLine Condition="'$(OutputType)' == 'Library'">$(MonoCommandLine) /target:library</MonoCommandLine>
+        <MonoCommandLine Condition="'$(NoWarn)' != ''">$(MonoCommandLine) /nowarn:$(NoWarn)</MonoCommandLine>
         <MonoCommandLine>$(MonoCommandLine) /out:"$(OutputAssemblyPath)"</MonoCommandLine>
         <MonoCommandLine>$(MonoCommandLine)@(Reference ->' /reference:"%(Identity)"', '')</MonoCommandLine>
         <MonoCommandLine>$(MonoCommandLine)@(FileReference ->' /reference:"%(Identity)"', '')</MonoCommandLine>
