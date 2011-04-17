@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7638C35C-A8AC-437C-94FD-9DABD9D5839C}"
 	ProjectSection(SolutionItems) = preProject
 		LocalTestRun.vs2008.testrunconfig = LocalTestRun.vs2008.testrunconfig

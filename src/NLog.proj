@@ -272,15 +272,15 @@
   </Target>
 
   <Target Name="NetFx20Test">
-    <Exec Command='"$(MSTest9)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx' 
+    <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx' 
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 2.0" 
-          Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
+          Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
   </Target>                
 
   <Target Name="NetFx35Test">
-    <Exec Command='"$(MSTest9)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx' 
+    <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx' 
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5" 
-          Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
+          Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="NetFx40Test">
