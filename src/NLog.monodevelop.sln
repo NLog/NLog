@@ -7,16 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.monodevelop",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.monodevelop", "..\tests\SampleExtensions\SampleExtensions.monodevelop.csproj", "{C480452F-7E14-443D-906D-7E021ABAA107A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestFrameworkStub.monodevelop", "..\tools\UnitTestFrameworkStub\UnitTestFrameworkStub.monodevelop.csproj", "{FE0A3713-E9A8-41F0-89FA-C1128214B6A8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.monodevelop", "..\tests\NLog.UnitTests\NLog.UnitTests.monodevelop.csproj", "{FE0A3713-E9A8-41F0-89FA-C1126F8FB6A8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunUnitTests.monodevelop", "..\tools\RunUnitTests\RunUnitTests.monodevelop.csproj", "{FE0A3713-F151-41F0-89FA-C1128214B6A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Default|Any CPU = Default|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C480452F-7E14-443D-906D-7E021ABAA107A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -35,17 +32,9 @@ Global
 		{FE0A3713-E9A8-41F0-89FA-C1126F8FB6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE0A3713-E9A8-41F0-89FA-C1126F8FB6A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE0A3713-E9A8-41F0-89FA-C1126F8FB6A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE0A3713-E9A8-41F0-89FA-C1128214B6A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE0A3713-E9A8-41F0-89FA-C1128214B6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE0A3713-E9A8-41F0-89FA-C1128214B6A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE0A3713-E9A8-41F0-89FA-C1128214B6A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE0A3713-F151-41F0-89FA-C1128214B6A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE0A3713-F151-41F0-89FA-C1128214B6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE0A3713-F151-41F0-89FA-C1128214B6A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE0A3713-F151-41F0-89FA-C1128214B6A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ..\tools\RunUnitTests\RunUnitTests.monodevelop.csproj
+		StartupItem = NLog\NLog.monodevelop.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.inheritsSet = null

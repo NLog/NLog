@@ -31,55 +31,26 @@
 # THE POSSIBILITY OF SUCH DAMAGE.
 # 
 
-OUTPUT_DIR=build/bin/mono2
-NUNIT_TEMP_TESTS=$(OUTPUT_DIR)/NLog.UnitTests.NUnit
-REFERENCE_ASSEMBLIES=-r:System.Web.Services.dll -r:System.Drawing.dll -r:System.Web.dll -r:System.Data.dll -r:System.Windows.Forms.dll -r:System.Messaging.dll -r:System.Configuration.dll -r:Mono.Posix.dll -r:System.Runtime.Serialization.dll -r:System.ServiceModel.dll
-DEFINES=-define:MONO_2_0 -define:MONO -define:WCF_SUPPORTED
-MCS=gmcs
-PERL=perl
-MCS_OPTIONS= -debug+
-NUNIT_CONSOLE=nunit-console2
-NUNIT_OPTIONS=-nodots -labels -nologo
+CONFIG=Debug
+TOOLS=build/bin/Tools
+OUTPUT_DIR=build/bin/$(CONFIG)/Mono\ 2.x
+MONO_LIB_DIR=$(shell pkg-config --variable=libdir mono)/mono/4.0
+XBUILD=xbuild /nologo
 
-help:
-	@echo Supported targets are:
-	@echo""
-	@echo "  help - displays this help"
-	@echo "  build - builds NLog.dll to $(OUTPUT_DIR)"
-	@echo "  buildtests - builds NLog.UnitTests.dll to $(OUTPUT_DIR)"
-	@echo "  clean - removes $(OUTPUT_DIR)"
-	@echo "  all - rebuilds everything and runs tests"
-	@echo ""
-	@echo "The following parameters can be overridden:"
-	@echo""
-	@echo "  OUTPUT_DIR - output directory - default '$(OUTPUT_DIR)'"
-	@echo "  MCS - location of Mono gmcs compiler - default '$(MCS)'"
-	@echo "  PERL - location of perl interpreter - default '$(PERL)'"
-	@echo "  NUNIT_CONSOLE - location of nunit-console - default '$(NUNIT_CONSOLE)'"
-	@echo "  NUNIT_OPTIONS - options to nunit-console - default '$(NUNIT_OPTIONS)'"
-	@echo ""
-	@echo "See the 'Makefile' for more options."
+buildnlog:
+	$(XBUILD) src/NLog.Extended/NLog.Extended.monodevelop.csproj /p:Configuration=$(CONFIG)
 
-build: prepareoutputdir
-	$(MCS) -t:library -out:$(OUTPUT_DIR)/NLog.dll $(DEFINES) $(MCS_OPTIONS) -recurse:src/NLog/*.cs $(REFERENCE_ASSEMBLIES) -keyfile:src/NLog.snk
-	$(MCS) -t:library -out:$(OUTPUT_DIR)/NLog.Extended.dll $(DEFINES) $(MCS_OPTIONS) -recurse:src/NLog.Extended/*.cs -r:$(OUTPUT_DIR)/NLog.dll $(REFERENCE_ASSEMBLIES) -keyfile:src/NLog.snk
+buildtests:
+	$(XBUILD) tests/NLog.UnitTests/NLog.UnitTests.monodevelop.csproj /p:Configuration=$(CONFIG)  
 
-buildtests: sampleextensions
-	rm -rf $(NUNIT_TEMP_TESTS)
-	$(PERL) tools/mstest2nunit.pl tests/NLog.UnitTests $(NUNIT_TEMP_TESTS)
-	$(MCS) -t:library -out:$(OUTPUT_DIR)/NLog.UnitTests.dll $(DEFINES) $(MCS_OPTIONS) -recurse:$(NUNIT_TEMP_TESTS)/*.cs $(REFERENCE_ASSEMBLIES) -r:nunit.framework.dll  -keyfile:tests/NLog.UnitTests/NLogTests.snk -r:$(OUTPUT_DIR)/NLog.dll -r:$(OUTPUT_DIR)/NLog.Extended.dll -r:$(OUTPUT_DIR)/SampleExtensions.dll -r:System.Xml.Linq.dll -r:System.Runtime.Serialization.dll -r:System.ServiceModel.dll
+makexsdtool:
+	$(XBUILD) tools/MakeNLogXSD/MakeNLogXSD.csproj /p:Configuration=$(CONFIG)  
 
-sampleextensions: build
-	$(MCS) -t:library -out:$(OUTPUT_DIR)/SampleExtensions.dll $(DEFINES) $(MCS_OPTIONS) -recurse:tests/SampleExtensions/*.cs -r:$(OUTPUT_DIR)/NLog.dll -keyfile:tests/NLog.UnitTests/NLogTests.snk -r:System.Xml.Linq.dll -r:System.Runtime.Serialization.dll
-	
-runtests:
-	(cd $(OUTPUT_DIR) && $(NUNIT_CONSOLE) $(NUNIT_OPTIONS) NLog.UnitTests.dll)
+dumpapitool:
+	$(XBUILD) tools/DumpApiXml/DumpApiXml.csproj /p:Configuration=$(CONFIG)  
 
-clean:
-	rm -rf $(OUTPUT_DIR)
+dumpapi: dumpapitool buildnlog
+	(cd $(OUTPUT_DIR) && mono ../../Tools/DumpApiXml.exe -comments NLog.xml -assembly NLog.dll -assembly NLog.Extended.dll -ref $(MONO_LIB_DIR) -output API/NLog.api)
 
-all: clean build buildtests runtests
-
-prepareoutputdir:
-	mkdir -p $(OUTPUT_DIR)
-
+xsd: makexsdtool
+	(cd $(OUTPUT_DIR) && mono ../../Tools/MakeNLogXSD.exe -api API/NLog.api -out NLog.mono2.xsd -xmlns http://www.nlog-project.org/schemas/NLog.mono2.xsd)

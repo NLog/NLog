@@ -4,6 +4,7 @@ Bin/
 msbuild.log
 LastTestRunSummary.cmd
 src/Docs/Working/
+test-results/
 *.chw
 *.pidb
 *.userprefs
