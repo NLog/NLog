@@ -63,6 +63,7 @@ namespace NLog.LayoutRenderers
         public Log4JXmlEventLayoutRenderer()
         {
             this.IncludeNLogData = true;
+            this.NdcItemSeparator = " ";
 #if NET_CF
             this.AppInfo = ".NET CF Application";
 #elif SILVERLIGHT
@@ -123,6 +124,13 @@ namespace NLog.LayoutRenderers
         public bool IncludeNdc { get; set; }
 
         /// <summary>
+        /// Gets or sets the NDC item separator.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        [DefaultValue(" ")]
+        public string NdcItemSeparator { get; set; }
+
+        /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
         StackTraceUsage IUsesStackTrace.StackTraceUsage
@@ -179,7 +187,7 @@ namespace NLog.LayoutRenderers
                 xtw.WriteElementString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
                 if (this.IncludeNdc)
                 {
-                    xtw.WriteElementString("log4j", "NDC", dummyNamespace, string.Join(" ", NestedDiagnosticsContext.GetAllMessages()));
+                    xtw.WriteElementString("log4j", "NDC", dummyNamespace, string.Join(this.NdcItemSeparator, NestedDiagnosticsContext.GetAllMessages()));
                 }
 
 #if !NET_CF

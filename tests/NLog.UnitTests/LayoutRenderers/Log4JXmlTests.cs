@@ -58,12 +58,12 @@ namespace NLog.UnitTests.LayoutRenderers
     public class Log4JXmlTests : NLogTestBase
     {
         [Test]
-        public void Test1()
+        public void Log4JXmlTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog throwExceptions='true'>
                 <targets>
-        <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeMdc=true:includendc=true:includenlogdata=true}' />
+        <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeMdc=true:includendc=true:ndcItemSeparator=\:\::includenlogdata=true}' />
        </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
@@ -119,7 +119,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
                             case "NDC":
                                 reader.Read();
-                                Assert.AreEqual("baz3 baz2 baz1", reader.Value);
+                                Assert.AreEqual("baz3::baz2::baz1", reader.Value);
                                 break;
 
 #if !NET_CF

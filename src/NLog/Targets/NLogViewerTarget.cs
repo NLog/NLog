@@ -148,6 +148,16 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Gets or sets the NDC item separator.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public string NdcItemSeparator
+        {
+            get { return this.Renderer.NdcItemSeparator; }
+            set { this.Renderer.NdcItemSeparator = value; }
+        }
+
+        /// <summary>
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a named parameter.
         /// </summary>
