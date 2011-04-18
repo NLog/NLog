@@ -652,6 +652,13 @@ namespace NLog
             {
                 yield return Path.ChangeExtension(cf, ".nlog");
             }
+
+            // get path to NLog.dll.nlog only if the assembly is not in the GAC
+            var nlogAssembly = typeof(LogFactory).Assembly;
+            if (!nlogAssembly.GlobalAssemblyCache)
+            {
+                yield return nlogAssembly.GetName().CodeBase + ".nlog";
+            }
 #endif
         }
 
