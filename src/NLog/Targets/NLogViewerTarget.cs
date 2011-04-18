@@ -176,6 +176,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the instance of <see cref="Log4JXmlEventLayout"/> that is used to format log messages.
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         public override Layout Layout
         {
             get

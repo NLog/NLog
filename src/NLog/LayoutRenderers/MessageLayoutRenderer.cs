@@ -63,11 +63,13 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating whether to log exception along with message.
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         public bool WithException { get; set; }
 
         /// <summary>
         /// Gets or sets the string that separates message from the exception.
         /// </summary>
+        /// <docgen category='Layout Options' order='10' />
         public string ExceptionSeparator { get; set; }
 
         /// <summary>
