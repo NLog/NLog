@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
 #if WCF_SUPPORTED
     using System.ServiceModel;
     using System.ServiceModel.Channels;
@@ -55,7 +56,7 @@ namespace NLog.Targets
     /// </summary>
     /// <seealso href="http://nlog-project.org/wiki/LogReceiverService_target">Documentation on NLog Wiki</seealso>
     [Target("LogReceiverService")]
-    public sealed class LogReceiverWebServiceTarget : Target
+    public class LogReceiverWebServiceTarget : Target
     {
         private LogEventInfoBuffer buffer = new LogEventInfoBuffer(10000, false, 10000);
         private bool inCall;
@@ -107,6 +108,23 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         [ArrayParameter(typeof(MethodCallParameter), "parameter")]
         public IList<MethodCallParameter> Parameters { get; private set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include per-event properties in the payload sent to the server.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeEventProperties { get; set; }
+
+        /// <summary>
+        /// Called when log events are being sent (test hook).
+        /// </summary>
+        /// <param name="events">The events.</param>
+        /// <param name="asyncContinuations">The async continuations.</param>
+        /// <returns>True if events should be sent, false to stop processing them.</returns>
+        protected internal virtual bool OnSend(NLogEvents events, IEnumerable<AsyncLogEventInfo> asyncContinuations)
+        {
+            return true;
+        }
 
         /// <summary>
         /// Writes logging event to the log target. Must be overridden in inheriting
@@ -179,6 +197,27 @@ namespace NLog.Targets
                 networkLogEvents.LayoutNames.Add(this.Parameters[i].Name);
             }
 
+            if (this.IncludeEventProperties)
+            {
+                for (int i = 0; i < logEvents.Length; ++i)
+                {
+                    var ev = logEvents[i].LogEvent;
+
+                    // add all event-level property names in 'LayoutNames' collection.
+                    foreach (var prop in ev.Properties)
+                    {
+                        string propName = prop.Key as string;
+                        if (propName != null)
+                        {
+                            if (!networkLogEvents.LayoutNames.Contains(propName))
+                            {
+                                networkLogEvents.LayoutNames.Add(propName);
+                            }
+                        }
+                    }
+                }
+            }
+
             networkLogEvents.Events = new NLogEvent[logEvents.Length];
             for (int i = 0; i < logEvents.Length; ++i)
             {
@@ -191,6 +230,11 @@ namespace NLog.Targets
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Client is disposed asynchronously.")]
         private void Send(NLogEvents events, IEnumerable<AsyncLogEventInfo> asyncContinuations)
         {
+            if (!this.OnSend(events, asyncContinuations))
+            {
+                return;
+            }
+
 #if WCF_SUPPORTED
             WcfLogReceiverClient client;
 
@@ -312,6 +356,25 @@ namespace NLog.Targets
                 var value = param.Layout.Render(eventInfo);
                 int stringIndex = GetStringOrdinal(context, stringTable, value);
 
+                nlogEvent.ValueIndexes.Add(stringIndex);
+            }
+
+            // layout names beyond Parameters.Count are per-event property names.
+            for (int i = this.Parameters.Count; i < context.LayoutNames.Count; ++i)
+            {
+                string value;
+                object propertyValue;
+                
+                if (eventInfo.Properties.TryGetValue(context.LayoutNames[i], out propertyValue))
+                {
+                    value = Convert.ToString(propertyValue, CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    value = string.Empty;
+                }
+
+                int stringIndex = GetStringOrdinal(context, stringTable, value);
                 nlogEvent.ValueIndexes.Add(stringIndex);
             }
 
