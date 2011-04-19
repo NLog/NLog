@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF && !SILVERLIGHT
-
 namespace NLog.Internal
 {
     using System;
@@ -43,6 +41,21 @@ namespace NLog.Internal
     /// </summary>
     internal static class EnvironmentHelper
     {
+        internal static string NewLine
+        {
+            get
+            {
+#if !SILVERLIGHT && !NET_CF
+                string newline = Environment.NewLine;
+#else
+                string newline = "\r\n";
+#endif
+
+                return newline;
+            }
+        }
+
+#if !NET_CF && !SILVERLIGHT
         internal static string GetSafeEnvironmentVariable(string name)
         {
             try
@@ -61,6 +74,6 @@ namespace NLog.Internal
                 return string.Empty;
             }
         }
+#endif
     }
 }
-#endif

@@ -38,6 +38,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
 
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The formatted log message.
@@ -51,13 +52,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public MessageLayoutRenderer()
         {
-#if !SILVERLIGHT && !NET_CF
-            string newline = Environment.NewLine;
-#else
-            string newline = "\r\n";
-#endif
-
-            this.ExceptionSeparator = newline;
+            this.ExceptionSeparator = EnvironmentHelper.NewLine;
         }
 
         /// <summary>

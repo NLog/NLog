@@ -88,10 +88,8 @@ namespace NLog.Targets
             this.AutoFlush = true;
 #if !SILVERLIGHT && !NET_CF
             this.FileAttributes = Win32FileAttributes.Normal;
-            this.NewLineChars = Environment.NewLine;
-#else
-            this.NewLineChars = "\r\n";
 #endif
+            this.NewLineChars = EnvironmentHelper.NewLine;
             this.EnableFileDelete = true;
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
@@ -202,11 +200,7 @@ namespace NLog.Targets
                         break;
 
                     case LineEndingMode.Default:
-#if NET_CF
-                        this.NewLineChars = "\r\n";
-#else
-                        this.NewLineChars = Environment.NewLine;
-#endif
+                        this.NewLineChars = EnvironmentHelper.NewLine;
                         break;
 
                     case LineEndingMode.None:

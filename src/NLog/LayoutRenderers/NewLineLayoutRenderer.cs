@@ -36,6 +36,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Diagnostics;
     using System.Text;
+    using NLog.Internal;
 
     /// <summary>
     /// A newline literal.
@@ -50,11 +51,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-#if NET_CF
-            builder.Append("\n");
-#else
-            builder.Append(Environment.NewLine);
-#endif
+            builder.Append(EnvironmentHelper.NewLine);
         }
     }
 }

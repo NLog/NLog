@@ -35,10 +35,12 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Exception information provided through 
@@ -49,8 +51,10 @@ namespace NLog.LayoutRenderers
     public class ExceptionLayoutRenderer : LayoutRenderer
     {
         private string format;
-        private ExceptionDataTarget[] exceptionDataTargets = null;
-
+        private string innerFormat = string.Empty;
+        private ExceptionDataTarget[] exceptionDataTargets;
+        private ExceptionDataTarget[] innerExceptionDataTargets;
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ExceptionLayoutRenderer" /> class.
         /// </summary>
@@ -58,6 +62,8 @@ namespace NLog.LayoutRenderers
         {
             this.Format = "message";
             this.Separator = " ";
+            this.InnerExceptionSeparator = EnvironmentHelper.NewLine;
+            this.MaxInnerExceptionLevel = 0;
         }
 
         private delegate void ExceptionDataTarget(StringBuilder sb, Exception ex);
@@ -79,7 +85,27 @@ namespace NLog.LayoutRenderers
             set
             {
                 this.format = value;
-                this.CompileFormat(value);
+                this.exceptionDataTargets = CompileFormat(value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the format of the output of inner exceptions. Must be a comma-separated list of exception
+        /// properties: Message, Type, ShortType, ToString, Method, StackTrace.
+        /// This parameter value is case-insensitive.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        public string InnerFormat
+        {
+            get
+            {
+                return this.innerFormat;
+            }
+
+            set
+            {
+                this.innerFormat = value;
+                this.innerExceptionDataTargets = CompileFormat(value);
             }
         }
 
@@ -87,7 +113,22 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the separator used to concatenate parts specified in the Format.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(" ")]
         public string Separator { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum number of inner exceptions to include in the output.
+        /// By default inner exceptions are not enabled for compatibility with NLog 1.0.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(0)]
+        public int MaxInnerExceptionLevel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the separator between inner exceptions.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        public string InnerExceptionSeparator { get; set; }
 
         /// <summary>
         /// Renders the specified exception information and appends it to the specified <see cref="StringBuilder" />.
@@ -108,16 +149,35 @@ namespace NLog.LayoutRenderers
                     separator = this.Separator;
                 }
 
+                Exception currentException = logEvent.Exception.InnerException;
+                int currentLevel = 0;
+                while (currentException != null && currentLevel < this.MaxInnerExceptionLevel)
+                {
+                    // separate inner exceptions
+                    sb2.Append(this.InnerExceptionSeparator);
+
+                    separator = string.Empty;
+                    foreach (ExceptionDataTarget targetRenderFunc in this.innerExceptionDataTargets ?? this.exceptionDataTargets)
+                    {
+                        sb2.Append(separator);
+                        targetRenderFunc(sb2, currentException);
+                        separator = this.Separator;
+                    }
+
+                    currentException = currentException.InnerException;
+                    currentLevel++;
+                }
+
                 builder.Append(sb2.ToString());
             }
         }
 
-        private void AppendMessage(StringBuilder sb, Exception ex)
+        private static void AppendMessage(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.Message);
         }
 
-        private void AppendMethod(StringBuilder sb, Exception ex)
+        private static void AppendMethod(StringBuilder sb, Exception ex)
         {
 #if SILVERLIGHT || NET_CF
             sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
@@ -129,27 +189,27 @@ namespace NLog.LayoutRenderers
 #endif
         }
 
-        private void AppendStackTrace(StringBuilder sb, Exception ex)
+        private static void AppendStackTrace(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.StackTrace);
         }
 
-        private void AppendToString(StringBuilder sb, Exception ex)
+        private static void AppendToString(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.ToString());
         }
 
-        private void AppendType(StringBuilder sb, Exception ex)
+        private static void AppendType(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.GetType().FullName);
         }
 
-        private void AppendShortType(StringBuilder sb, Exception ex)
+        private static void AppendShortType(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.GetType().Name);
         }
 
-        private void CompileFormat(string formatSpecifier)
+        private static ExceptionDataTarget[] CompileFormat(string formatSpecifier)
         {
             string[] parts = formatSpecifier.Replace(" ", string.Empty).Split(',');
             var dataTargets = new List<ExceptionDataTarget>();
@@ -159,27 +219,27 @@ namespace NLog.LayoutRenderers
                 switch (s.ToUpper(CultureInfo.InvariantCulture))
                 {
                     case "MESSAGE":
-                        dataTargets.Add(this.AppendMessage);
+                        dataTargets.Add(AppendMessage);
                         break;
 
                     case "TYPE":
-                        dataTargets.Add(this.AppendType);
+                        dataTargets.Add(AppendType);
                         break;
 
                     case "SHORTTYPE":
-                        dataTargets.Add(this.AppendShortType);
+                        dataTargets.Add(AppendShortType);
                         break;
 
                     case "TOSTRING":
-                        dataTargets.Add(this.AppendToString);
+                        dataTargets.Add(AppendToString);
                         break;
 
                     case "METHOD":
-                        dataTargets.Add(this.AppendMethod);
+                        dataTargets.Add(AppendMethod);
                         break;
 
                     case "STACKTRACE":
-                        dataTargets.Add(this.AppendStackTrace);
+                        dataTargets.Add(AppendStackTrace);
                         break;
 
                     default:
@@ -188,11 +248,11 @@ namespace NLog.LayoutRenderers
                 }
             }
 
-            this.exceptionDataTargets = dataTargets.ToArray();
+            return dataTargets.ToArray();
         }
 
 #if SILVERLIGHT || NET_CF
-        private string ParseMethodNameFromStackTrace(string stackTrace)
+        private static string ParseMethodNameFromStackTrace(string stackTrace)
         {
             // get the first line of the stack trace
             string stackFrameLine;

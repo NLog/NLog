@@ -50,6 +50,7 @@ using NUnit.Framework;
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Collections.Generic;
+    using NLog.Internal;
 
     [TestFixture]
     public class ExceptionTests : NLogTestBase
@@ -146,6 +147,48 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug1", "Test exception\r\n" + typeof(InvalidOperationException).Name);
         }
 
+        [Test]
+        public void InnerExceptionTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=3}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            string exceptionMessage = "Test exception";
+            Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
+            logger.ErrorException("msg", ex);
+            AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine + 
+"InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+"InvalidOperationException Test exception");
+        }
+
+        [Test]
+        public void CustomInnerExceptionTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=" + "\r\n----INNER----\r\n" + @":innerFormat=type,message}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            string exceptionMessage = "Test exception";
+            Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
+            logger.ErrorException("msg", ex);
+            AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + 
+"\r\n----INNER----\r\n" +
+"System.InvalidOperationException Wrapper1");
+        }
+
         private Exception GetExceptionWithStackTrace(string exceptionMessage)
         {
             try
@@ -156,6 +199,34 @@ namespace NLog.UnitTests.LayoutRenderers
             catch (Exception exception)
             {
                 return exception;
+            }
+        }
+
+        private Exception GetNestedExceptionWithStackTrace(string exceptionMessage)
+        {
+            try
+            {
+                try
+                {
+                    try
+                    {
+                        GenericClass<int, string, bool>.Method1("aaa", true, null, 42, DateTime.Now);
+                    }
+                    catch (Exception exception)
+                    {
+                        throw new InvalidOperationException("Wrapper1", exception);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    throw new InvalidOperationException("Wrapper2", exception);
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex;
             }
         }
 

@@ -265,11 +265,7 @@ namespace NLog.Common
 
             var sb = new StringBuilder();
             string separator = string.Empty;
-#if !SILVERLIGHT && !NET_CF
-            string newline = Environment.NewLine;
-#else
-            string newline = "\r\n";
-#endif
+            string newline = EnvironmentHelper.NewLine;
             foreach (var ex in exceptions)
             {
                 sb.Append(separator);
