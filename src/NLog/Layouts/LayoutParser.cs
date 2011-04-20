@@ -39,6 +39,7 @@ namespace NLog.Layouts
     using System.Reflection;
     using System.Text;
     using NLog.Common;
+    using NLog.Conditions;
     using NLog.Config;
     using NLog.Internal;
     using NLog.LayoutRenderers;
@@ -49,7 +50,7 @@ namespace NLog.Layouts
     /// </summary>
     internal sealed class LayoutParser
     {
-        internal static LayoutRenderer[] CompileLayout(ConfigurationItemFactory configurationItemFactory, Tokenizer sr, bool isNested, out string text)
+        internal static LayoutRenderer[] CompileLayout(ConfigurationItemFactory configurationItemFactory, SimpleStringReader sr, bool isNested, out string text)
         {
             var result = new List<LayoutRenderer>();
             var literalBuf = new StringBuilder();
@@ -104,7 +105,7 @@ namespace NLog.Layouts
             return result.ToArray();
         }
 
-        private static string ParseLayoutRendererName(Tokenizer sr)
+        private static string ParseLayoutRendererName(SimpleStringReader sr)
         {
             int ch;
 
@@ -123,7 +124,7 @@ namespace NLog.Layouts
             return nameBuf.ToString();
         }
 
-        private static string ParseParameterName(Tokenizer sr)
+        private static string ParseParameterName(SimpleStringReader sr)
         {
             int ch;
             int nestLevel = 0;
@@ -172,7 +173,7 @@ namespace NLog.Layouts
             return nameBuf.ToString();
         }
 
-        private static string ParseParameterValue(Tokenizer sr)
+        private static string ParseParameterValue(SimpleStringReader sr)
         {
             int ch;
 
@@ -201,7 +202,7 @@ namespace NLog.Layouts
             return nameBuf.ToString();
         }
 
-        private static LayoutRenderer ParseLayoutRenderer(ConfigurationItemFactory configurationItemFactory, Tokenizer sr)
+        private static LayoutRenderer ParseLayoutRenderer(ConfigurationItemFactory configurationItemFactory, SimpleStringReader sr)
         {
             int ch = sr.Read();
             Debug.Assert(ch == '{', "'{' expected in layout specification");
@@ -262,6 +263,11 @@ namespace NLog.Layouts
 
                             nestedLayout.SetRenderers(renderers, txt);
                             pi.SetValue(parameterTarget, nestedLayout, null);
+                        }
+                        else if (typeof(ConditionExpression).IsAssignableFrom(pi.PropertyType))
+                        {
+                            var conditionExpression = ConditionParser.ParseExpression(sr, configurationItemFactory);
+                            pi.SetValue(parameterTarget, conditionExpression, null);
                         }
                         else
                         {
@@ -359,51 +365,6 @@ namespace NLog.Layouts
         private static LayoutRenderer ConvertToLiteral(LayoutRenderer renderer)
         {
             return new LiteralLayoutRenderer(renderer.Render(LogEventInfo.CreateNullEvent()));
-        }
-
-        /// <summary>
-        /// Simple character tokenizer.
-        /// </summary>
-        internal class Tokenizer
-        {
-            private readonly string text;
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="Tokenizer" /> class.
-            /// </summary>
-            /// <param name="text">The text to be tokenized.</param>
-            public Tokenizer(string text)
-            {
-                this.text = text;
-                this.Position = 0;
-            }
-
-            internal int Position { get; private set; }
-
-            internal int Peek()
-            {
-                if (this.Position < this.text.Length)
-                {
-                    return this.text[this.Position];
-                }
-
-                return -1;
-            }
-
-            internal int Read()
-            {
-                if (this.Position < this.text.Length)
-                {
-                    return this.text[this.Position++];
-                }
-
-                return -1;
-            }
-
-            internal string Substring(int p0, int p1)
-            {
-                return this.text.Substring(p0, p1 - p0);
-            }
         }
     }
 }

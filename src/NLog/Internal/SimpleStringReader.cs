@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2010 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,67 +31,55 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Conditions
+namespace NLog.Internal
 {
     /// <summary>
-    /// Token types for condition expressions.
+    /// Simple character tokenizer.
     /// </summary>
-    internal enum ConditionTokenType
+    internal class SimpleStringReader
     {
-        EndOfInput,
+        private readonly string text;
 
-        BeginningOfInput,
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleStringReader" /> class.
+        /// </summary>
+        /// <param name="text">The text to be tokenized.</param>
+        public SimpleStringReader(string text)
+        {
+            this.text = text;
+            this.Position = 0;
+        }
 
-        Number,
+        internal int Position { get; set; }
 
-        String,
+        internal string Text
+        {
+            get { return this.text; }
+        }
 
-        Keyword,
+        internal int Peek()
+        {
+            if (this.Position < this.text.Length)
+            {
+                return this.text[this.Position];
+            }
 
-        Whitespace,
+            return -1;
+        }
 
-        FirstPunct,
+        internal int Read()
+        {
+            if (this.Position < this.text.Length)
+            {
+                return this.text[this.Position++];
+            }
 
-        LessThan,
+            return -1;
+        }
 
-        GreaterThan,
-
-        LessThanOrEqualTo,
-
-        GreaterThanOrEqualTo,
-
-        EqualTo,
-
-        NotEqual,
-
-        LeftParen,
-
-        RightParen,
-
-        Dot,
-
-        Comma,
-
-        Not,
-
-        And,
-
-        Or,
-
-        Minus,
-
-        LastPunct,
-
-        Invalid,
-
-        ClosingCurlyBrace,
-
-        Colon,
-
-        Exclamation,
-
-        Ampersand,
-
-        Pipe,
+        internal string Substring(int p0, int p1)
+        {
+            return this.text.Substring(p0, p1 - p0);
+        }
     }
 }

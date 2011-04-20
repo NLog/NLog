@@ -112,7 +112,7 @@ namespace NLog.Layouts
 
                 renderers = LayoutParser.CompileLayout(
                     this.configurationItemFactory,
-                    new LayoutParser.Tokenizer(value),
+                    new SimpleStringReader(value),
                     false,
                     out txt);
 

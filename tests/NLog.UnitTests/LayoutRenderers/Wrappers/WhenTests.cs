@@ -35,6 +35,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using System;
     using NLog;
+    using NLog.Layouts;
     using NUnit.Framework;
 
 #if !NUNIT
@@ -43,7 +44,6 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
     using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
     using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
 #endif
-    using NLog.Layouts;
 
     [TestFixture]
     public class WhenTests : NLogTestBase
@@ -64,6 +64,28 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger2", "message");
             Assert.AreEqual("", l.Render(le));
+        }
+
+        [Test]
+        public void ComplexWhenTest()
+        {
+            // condition is pretty complex here and includes nested layout renderers
+            // we are testing here that layout parsers property invokes Condition parser to consume the right number of characters
+            SimpleLayout l = @"${message:when='${pad:${logger}:padding=10:padCharacter=X}'=='XXXXlogger':padding=-10:padCharacter=Y}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.AreEqual("messageYYY", l.Render(le));
+        }
+
+        [Test]
+        public void ComplexWhenTest2()
+        {
+            // condition is pretty complex here and includes nested layout renderers
+            // we are testing here that layout parsers property invokes Condition parser to consume the right number of characters
+            SimpleLayout l = @"${message:padding=-10:padCharacter=Y:when='${pad:${logger}:padding=10:padCharacter=X}'=='XXXXlogger'}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.AreEqual("messageYYY", l.Render(le));
         }
     }
 }

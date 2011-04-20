@@ -50,14 +50,14 @@ namespace NLog.Conditions
         private readonly ConfigurationItemFactory configurationItemFactory;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConditionParser" /> class.
+        /// Initializes a new instance of the <see cref="ConditionParser"/> class.
         /// </summary>
-        /// <param name="expressionText">The expression text.</param>
+        /// <param name="stringReader">The string reader.</param>
         /// <param name="configurationItemFactory">Instance of <see cref="ConfigurationItemFactory"/> used to resolve references to condition methods and layout renderers.</param>
-        private ConditionParser(string expressionText, ConfigurationItemFactory configurationItemFactory)
+        private ConditionParser(SimpleStringReader stringReader, ConfigurationItemFactory configurationItemFactory)
         {
             this.configurationItemFactory = configurationItemFactory;
-            this.tokenizer = new ConditionTokenizer(expressionText ?? string.Empty);
+            this.tokenizer = new ConditionTokenizer(stringReader);
         }
 
         /// <summary>
@@ -85,13 +85,30 @@ namespace NLog.Conditions
                 return null;
             }
 
-            ConditionParser parser = new ConditionParser(expressionText, configurationItemFactories);
+            var parser = new ConditionParser(new SimpleStringReader(expressionText), configurationItemFactories);
             ConditionExpression expression = parser.ParseExpression();
             if (!parser.tokenizer.IsEOF())
             {
                 throw new ConditionParseException("Unexpected token: " + parser.tokenizer.TokenValue);
             }
 
+            return expression;
+        }
+
+        /// <summary>
+        /// Parses the specified condition string and turns it into
+        /// <see cref="ConditionExpression"/> tree.
+        /// </summary>
+        /// <param name="stringReader">The string reader.</param>
+        /// <param name="configurationItemFactories">Instance of <see cref="ConfigurationItemFactory"/> used to resolve references to condition methods and layout renderers.</param>
+        /// <returns>
+        /// The root of the expression syntax tree which can be used to get the value of the condition in a specified context.
+        /// </returns>
+        internal static ConditionExpression ParseExpression(SimpleStringReader stringReader, ConfigurationItemFactory configurationItemFactories)
+        {
+            var parser = new ConditionParser(stringReader, configurationItemFactories);
+            ConditionExpression expression = parser.ParseExpression();
+        
             return expression;
         }
 

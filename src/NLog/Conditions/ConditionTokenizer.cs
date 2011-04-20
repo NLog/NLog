@@ -35,6 +35,7 @@ namespace NLog.Conditions
 {
     using System;
     using System.Text;
+    using NLog.Internal;
 
     /// <summary>
     /// Hand-written tokenizer for conditions.
@@ -42,20 +43,16 @@ namespace NLog.Conditions
     internal sealed class ConditionTokenizer
     {
         private static readonly ConditionTokenType[] charIndexToTokenType = BuildCharIndexToTokenType();
-        private readonly string inputString;
-
-        private int position;
+        private readonly SimpleStringReader stringReader;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionTokenizer"/> class.
         /// </summary>
-        /// <param name="expressionText">The expression text.</param>
-        public ConditionTokenizer(string expressionText)
+        /// <param name="stringReader">The string reader.</param>
+        public ConditionTokenizer(SimpleStringReader stringReader)
         {
-            this.inputString = expressionText;
-            this.position = 0;
+            this.stringReader = stringReader;
             this.TokenType = ConditionTokenType.BeginningOfInput;
-
             this.GetNextToken();
         }
 
@@ -195,7 +192,7 @@ namespace NLog.Conditions
 
             this.SkipWhitespace();
 
-            this.TokenPosition = this.position;
+            this.TokenPosition = this.TokenPosition;
 
             int i = this.PeekChar();
             if (i == -1)
@@ -224,64 +221,122 @@ namespace NLog.Conditions
                 return;
             }
 
-            this.ReadChar();
+            if (ch == '}' || ch == ':')
+            {
+                // when condition is embedded
+                this.TokenType = ConditionTokenType.EndOfInput;
+                return;
+            }
+
             this.TokenValue = ch.ToString();
 
-            int nextChar = this.PeekChar();
-
-            if (ch == '<' && nextChar == '>')
+            if (ch == '<')
             {
-                this.TokenType = ConditionTokenType.NotEqual;
-                this.TokenValue = "<>";
                 this.ReadChar();
+                int nextChar = this.PeekChar();
+
+                if (nextChar == '>')
+                {
+                    this.TokenType = ConditionTokenType.NotEqual;
+                    this.TokenValue = "<>";
+                    this.ReadChar();
+                    return;
+                }
+
+                if (nextChar == '=')
+                {
+                    this.TokenType = ConditionTokenType.LessThanOrEqualTo;
+                    this.TokenValue = "<=";
+                    this.ReadChar();
+                    return;
+                }
+
+                this.TokenType = ConditionTokenType.LessThan;
+                this.TokenValue = "<";
                 return;
             }
 
-            if (ch == '!' && nextChar == '=')
+            if (ch == '>')
             {
-                this.TokenType = ConditionTokenType.NotEqual;
-                this.TokenValue = "!=";
                 this.ReadChar();
+                int nextChar = this.PeekChar();
+
+                if (nextChar == '=')
+                {
+                    this.TokenType = ConditionTokenType.GreaterThanOrEqualTo;
+                    this.TokenValue = ">=";
+                    this.ReadChar();
+                    return;
+                }
+
+                this.TokenType = ConditionTokenType.GreaterThan;
+                this.TokenValue = ">";
                 return;
             }
 
-            if (ch == '&' && nextChar == '&')
+            if (ch == '!')
             {
-                this.TokenType = ConditionTokenType.And;
-                this.TokenValue = "&&";
                 this.ReadChar();
+                int nextChar = this.PeekChar();
+
+                if (nextChar == '=')
+                {
+                    this.TokenType = ConditionTokenType.NotEqual;
+                    this.TokenValue = "!=";
+                    this.ReadChar();
+                    return;
+                }
+
+                this.TokenType = ConditionTokenType.Not;
+                this.TokenValue = "!";
                 return;
             }
 
-            if (ch == '|' && nextChar == '|')
+            if (ch == '&')
             {
-                this.TokenType = ConditionTokenType.Or;
-                this.TokenValue = "||";
                 this.ReadChar();
-                return;
+                int nextChar = this.PeekChar();
+                if (nextChar == '&')
+                {
+                    this.TokenType = ConditionTokenType.And;
+                    this.TokenValue = "&&";
+                    this.ReadChar();
+                    return;
+                }
+
+                throw new ConditionParseException("Expected '&&' but got '&'");
             }
 
-            if (ch == '<' && nextChar == '=')
+            if (ch == '|')
             {
-                this.TokenType = ConditionTokenType.LessThanOrEqualTo;
-                this.TokenValue = "<=";
                 this.ReadChar();
-                return;
+                int nextChar = this.PeekChar();
+                if (nextChar == '|')
+                {
+                    this.TokenType = ConditionTokenType.Or;
+                    this.TokenValue = "||";
+                    this.ReadChar();
+                    return;
+                }
+
+                throw new ConditionParseException("Expected '||' but got '|'");
             }
 
-            if (ch == '>' && nextChar == '=')
+            if (ch == '=')
             {
-                this.TokenType = ConditionTokenType.GreaterThanOrEqualTo;
-                this.TokenValue = ">=";
                 this.ReadChar();
-                return;
-            }
+                int nextChar = this.PeekChar();
 
-            if (ch == '=' && nextChar == '=')
-            {
+                if (nextChar == '=')
+                {
+                    this.TokenType = ConditionTokenType.EqualTo;
+                    this.TokenValue = "==";
+                    this.ReadChar();
+                    return;
+                }
+
                 this.TokenType = ConditionTokenType.EqualTo;
-                this.TokenValue = "==";
-                this.ReadChar();
+                this.TokenValue = "=";
                 return;
             }
 
@@ -293,6 +348,7 @@ namespace NLog.Conditions
                 {
                     this.TokenType = tt;
                     this.TokenValue = new string(ch, 1);
+                    this.ReadChar();
                     return;
                 }
 
@@ -306,9 +362,6 @@ namespace NLog.Conditions
         {
             CharToTokenType[] charToTokenType =
             {
-                new CharToTokenType('<', ConditionTokenType.LessThan),
-                new CharToTokenType('>', ConditionTokenType.GreaterThan),
-                new CharToTokenType('=', ConditionTokenType.EqualTo),
                 new CharToTokenType('(', ConditionTokenType.LeftParen),
                 new CharToTokenType(')', ConditionTokenType.RightParen),
                 new CharToTokenType('.', ConditionTokenType.Dot),
@@ -440,19 +493,12 @@ namespace NLog.Conditions
 
         private int PeekChar()
         {
-            if (this.position < this.inputString.Length)
-            {
-                return (int)this.inputString[this.position];
-            }
-            else
-            {
-                return -1;
-            }
+            return this.stringReader.Peek();
         }
 
         private int ReadChar()
         {
-            return this.inputString[this.position++];
+            return this.stringReader.Read();
         }
 
         /// <summary>

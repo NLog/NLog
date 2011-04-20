@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.Conditions
 {
+    using NLog.Internal;
     using NUnit.Framework;
 
 #if !NUNIT
@@ -317,7 +318,7 @@ namespace NLog.UnitTests.Conditions
         [ExpectedException(typeof(ConditionParseException))]
         public void TokenizerEOFTest()
         {
-            var tokenizer = new ConditionTokenizer(string.Empty);
+            var tokenizer = new ConditionTokenizer(new SimpleStringReader(string.Empty));
             tokenizer.GetNextToken();
         }
 
