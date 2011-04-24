@@ -349,7 +349,7 @@ namespace NLog
         /// </summary>
         public void ReconfigExistingLoggers()
         {
-            this.ReconfigExistingLoggers(this.Configuration);
+            this.ReconfigExistingLoggers(this.config);
         }
 
 #if !SILVERLIGHT
@@ -657,7 +657,15 @@ namespace NLog
             var nlogAssembly = typeof(LogFactory).Assembly;
             if (!nlogAssembly.GlobalAssemblyCache)
             {
-                yield return nlogAssembly.GetName().CodeBase + ".nlog";
+                var codeBase = nlogAssembly.GetName().CodeBase;
+                if (!string.IsNullOrEmpty(codeBase))
+                {
+                    var uri = new Uri(codeBase, UriKind.RelativeOrAbsolute);
+                    if (uri.Scheme == "file")
+                    {
+                        yield return uri.AbsolutePath + ".nlog";
+                    }
+                }
             }
 #endif
         }
