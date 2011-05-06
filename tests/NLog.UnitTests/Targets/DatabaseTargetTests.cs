@@ -99,7 +99,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
 Close()
 ";
 
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
         }
 
         [Test]
@@ -137,7 +137,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
 Close()
 ";
 
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
         }
 
         [Test]
@@ -170,14 +170,14 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg2')
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
 ";
 
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
 
             MockDbConnection.ClearLog();
             dt.Close();
             expectedLog = @"Close()
 ";
 
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
         }
 
         [Test]
@@ -215,14 +215,14 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg2')
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
 ";
 
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
 
             MockDbConnection.ClearLog();
             dt.Close();
             expectedLog = @"Close()
 ";
 
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
         }
 
         [Test]
@@ -261,14 +261,14 @@ Open('Database=MyLogger').
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg4')
 ";
 
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
 
             MockDbConnection.ClearLog();
             dt.Close();
             expectedLog = @"Close()
 ";
 
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
         }
 
         [Test]
@@ -317,14 +317,14 @@ Open('Database=MyLogger2').
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
 ";
 
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
 
             MockDbConnection.ClearLog();
             dt.Close();
             expectedLog = @"Close()
 ";
 
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
         }
 
         [Test]
@@ -403,14 +403,14 @@ Add Parameter Parameter #2
 ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
 ";
 
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
 
             MockDbConnection.ClearLog();
             dt.Close();
             expectedLog = @"Close()
 ";
 
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
         }
 
         [Test]
@@ -508,7 +508,7 @@ Add Parameter Parameter #2
 ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
 Close()
 ";
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
         }
 
         [Test]
@@ -599,7 +599,7 @@ Open('cannotexecute').
 ExecuteNonQuery: not important
 Close()
 ";
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
         }
 
         [Test]
@@ -638,7 +638,7 @@ Open('cannotexecute').
 ExecuteNonQuery: not important
 Close()
 ";
-            Assert.AreEqual(expectedLog, MockDbConnection.Log);
+            AssertLog(expectedLog);
         }
 
 #if !NET_CF
@@ -744,6 +744,11 @@ Close()
             Assert.AreEqual(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
         }
 #endif
+        
+        private static void AssertLog(string expectedLog)
+        {
+            Assert.AreEqual(expectedLog.Replace("\r", ""), MockDbConnection.Log.Replace("\r", ""));
+        }
 
         private string GetConnectionString(DatabaseTarget dt)
         {

@@ -594,18 +594,17 @@ namespace NLog.UnitTests.Targets
                     {
                         try
                         {
-                            Console.WriteLine("Accepting...");
+                            // Console.WriteLine("Accepting...");
                             byte[] buffer = new byte[4096];
                             using (Socket connectedSocket = listener.EndAccept(result))
                             {
-                                Console.WriteLine("Accepted...");
+                                // Console.WriteLine("Accepted...");
                                 int got;
                                 while ((got = connectedSocket.Receive(buffer, 0, buffer.Length, SocketFlags.None)) > 0)
                                 {
-                                    Console.WriteLine("Got {0} bytes", got);
                                     resultStream.Write(buffer, 0, got);
                                 }
-                                Console.WriteLine("Closing connection...");
+                                // Console.WriteLine("Closing connection...");
                             }
                         }
                         catch (Exception ex)
@@ -736,9 +735,9 @@ namespace NLog.UnitTests.Targets
                     expectedResult += "message" + i + "\n";
                 }
 
-                Assert.IsTrue(writeCompleted.WaitOne(30000, false));
+                Assert.IsTrue(writeCompleted.WaitOne(10000, false));
                 target.Close();
-                Assert.IsTrue(receiveFinished.WaitOne(30000, false));
+                Assert.IsTrue(receiveFinished.WaitOne(10000, false));
                 Assert.AreEqual(toWrite, receivedMessages.Count);
                 for (int i = 0; i < toWrite; ++i)
                 {

@@ -187,7 +187,7 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            TraceSource ts = new TraceSource("MySource1", SourceLevels.All);
+            TraceSource ts = CreateTraceSource();
             ts.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
 
             ts.TraceData(TraceEventType.Critical, 123, 42);
@@ -196,7 +196,7 @@ namespace NLog.UnitTests
             ts.TraceData(TraceEventType.Critical, 145, 42, 3.14, "foo");
             AssertDebugLastMessage("debug", "MySource1 Fatal 42, 3.14, foo 145");
         }
-
+        
         [Test]
         public void LogInformationTest()
         {
@@ -208,9 +208,9 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            TraceSource ts = new TraceSource("MySource1", SourceLevels.All);
+            TraceSource ts = CreateTraceSource();
             ts.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
-
+            
             ts.TraceInformation("Quick brown fox");
             AssertDebugLastMessage("debug", "MySource1 Info Quick brown fox 0");
 
@@ -229,7 +229,7 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            TraceSource ts = new TraceSource("MySource1", SourceLevels.All);
+            TraceSource ts = CreateTraceSource();
             ts.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
 
             ts.TraceEvent(TraceEventType.Information, 123, "Quick brown {0} jumps over the lazy {1}.", "fox", "dog");
@@ -268,7 +268,7 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            TraceSource ts = new TraceSource("MySource1", SourceLevels.All);
+            TraceSource ts = CreateTraceSource();
             ts.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace, ForceLogLevel = LogLevel.Warn });
 
             // force all logs to be Warn, DefaultLogLevel has no effect on TraceSource
@@ -277,6 +277,18 @@ namespace NLog.UnitTests
 
             ts.TraceInformation("Mary had {0} lamb", "a little");
             AssertDebugLastMessage("debug", "MySource1 Warn Mary had a little lamb 0");
+        }
+
+        
+        private static TraceSource CreateTraceSource()
+        {
+            var ts = new TraceSource("MySource1", SourceLevels.All);
+#if MONO
+            // for some reason needed on Mono
+            ts.Switch = new SourceSwitch("MySource1", "Verbose");
+            ts.Switch.Level = SourceLevels.All;
+#endif
+            return ts;
         }
 
 #endif

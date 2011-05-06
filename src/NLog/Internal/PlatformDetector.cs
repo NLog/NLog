@@ -40,16 +40,31 @@ namespace NLog.Internal
     /// <summary>
     /// Detects the platform the NLog is running on.
     /// </summary>
-    internal class PlatformDetector
+    internal static class PlatformDetector
     {
-        private static IDictionary<RuntimeOS, bool> currentOSCompatibleWith = new Dictionary<RuntimeOS, bool>();
-
-        internal static bool IsCurrentOSCompatibleWith(RuntimeOS os)
+        private static RuntimeOS currentOS = GetCurrentRuntimeOS();
+        
+        public static RuntimeOS CurrentOS
         {
-            return currentOSCompatibleWith.ContainsKey(os);
+            get { return currentOS; }
         }
-
-        internal static RuntimeOS GetCurrentRuntimeOS()
+        
+        public static bool IsDesktopWin32
+        {
+            get { return currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT; }
+        }
+        
+        public static bool IsWin32
+        {
+            get { return currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT || currentOS == RuntimeOS.WindowsCE; }
+        }
+        
+        public static bool IsUnix
+        {
+            get { return currentOS == RuntimeOS.Unix; }
+        }
+        
+        private static RuntimeOS GetCurrentRuntimeOS()
         {
             PlatformID platformID = Environment.OSVersion.Platform;
             if ((int)platformID == 4 || (int)platformID == 128)

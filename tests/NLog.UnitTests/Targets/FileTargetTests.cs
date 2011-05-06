@@ -517,7 +517,7 @@ namespace NLog.UnitTests.Targets
         public void BatchErrorHandlingTest()
         {
             var fileTarget = new FileTarget();
-            fileTarget.FileName = "${logger}.txt";
+            fileTarget.FileName = "${logger}";
             fileTarget.Layout = "${message}";
             fileTarget.Initialize(null);
 
@@ -526,9 +526,9 @@ namespace NLog.UnitTests.Targets
             var events = new[]
             {
                 new LogEventInfo(LogLevel.Info, "file99.txt", "msg1").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "d:::::\\aa\\aa\\badfile:name", "msg1").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "e:::::\\aa\\aa\\badfile:name", "msg2").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "f:::::\\aa\\aa\\badfile:name", "msg3").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "a/", "msg1").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "a/", "msg2").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "a/", "msg3").WithContinuation(exceptions.Add),
             };
 
             fileTarget.WriteAsyncLogEvents(events);

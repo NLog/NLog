@@ -170,6 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="NLogTests.snk" />
+    <None Include="NLog.UnitTests.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

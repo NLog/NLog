@@ -50,9 +50,7 @@ namespace NLog.Internal
 #if NET_CF
             Instance = new Win32ThreadIDHelper();
 #else
-            if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows)
-             || PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsCE)
-             || PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsNT))
+            if (PlatformDetector.IsWin32)
             {
                 Instance = new Win32ThreadIDHelper();
             }

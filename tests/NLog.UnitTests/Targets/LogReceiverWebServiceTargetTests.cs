@@ -78,7 +78,6 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void LogReceiverWebServiceTargetMultipleEventTest()
         {
-            var logger = LogManager.GetLogger("loggerName");
             var target = new MyLogReceiverWebServiceTarget();
             target.EndpointAddress = "http://notimportant:9999/";
             target.Parameters.Add(new MethodCallParameter("message", "${message}"));
@@ -126,7 +125,6 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void LogReceiverWebServiceTargetMultipleEventWithPerEventPropertiesTest()
         {
-            var logger = LogManager.GetLogger("loggerName");
             var target = new MyLogReceiverWebServiceTarget();
             target.IncludeEventProperties = true;
             target.EndpointAddress = "http://notimportant:9999/";

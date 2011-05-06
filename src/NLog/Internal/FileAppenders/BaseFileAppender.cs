@@ -203,7 +203,7 @@ namespace NLog.Internal.FileAppenders
                 fileShare |= Win32FileNativeMethods.FILE_SHARE_WRITE;
             }
 
-            if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() != RuntimeOS.Windows)
+            if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows)
             {
                 fileShare |= Win32FileNativeMethods.FILE_SHARE_DELETE;
             }
@@ -239,15 +239,14 @@ namespace NLog.Internal.FileAppenders
             }
 
 #if !NET_CF
-            if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.GetCurrentRuntimeOS() != RuntimeOS.Windows)
+            if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows)
             {
                 fileShare |= FileShare.Delete;
             }
 #endif
 
 #if !NET_CF && !SILVERLIGHT
-            if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsNT) ||
-                PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows))
+            if (PlatformDetector.IsDesktopWin32)
             {
                 return this.WindowsCreateFile(this.FileName, allowConcurrentWrite);
             }

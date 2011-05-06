@@ -54,3 +54,6 @@ dumpapi: dumpapitool buildnlog
 
 xsd: makexsdtool
 	(cd $(OUTPUT_DIR) && mono ../../Tools/MakeNLogXSD.exe -api API/NLog.api -out NLog.mono2.xsd -xmlns http://www.nlog-project.org/schemas/NLog.mono2.xsd)
+
+runtests: buildtests
+	(cd $(OUTPUT_DIR) && nunit-console -labels NLog.UnitTests.dll)

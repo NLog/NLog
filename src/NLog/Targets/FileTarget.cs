@@ -468,10 +468,10 @@ namespace NLog.Targets
 #if NET_CF || SILVERLIGHT
                         this.appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
-    //
-    // mono on Windows uses mutexes, on Unix - special appender
-    //
-                        if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Unix))
+                        //
+                        // mono on Windows uses mutexes, on Unix - special appender
+                        //
+                        if (PlatformDetector.IsUnix)
                         {
                             this.appenderFactory = UnixMultiProcessFileAppender.TheFactory;
                         }
@@ -499,10 +499,10 @@ namespace NLog.Targets
 #if NET_CF || SILVERLIGHT
                         this.appenderFactory = RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
-    //
-    // mono on Windows uses mutexes, on Unix - special appender
-    //
-                        if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Unix))
+                        //
+                        // mono on Windows uses mutexes, on Unix - special appender
+                        //
+                        if (PlatformDetector.IsUnix)
                         {
                             this.appenderFactory = UnixMultiProcessFileAppender.TheFactory;
                         }
@@ -520,7 +520,7 @@ namespace NLog.Targets
                     }
                 }
             }
-
+            
             this.recentAppenders = new BaseFileAppender[this.OpenFileCacheSize];
 
             if ((this.OpenFileCacheSize > 0 || this.EnableFileDelete) && this.OpenFileCacheTimeout > 0)

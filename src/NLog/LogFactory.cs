@@ -411,6 +411,7 @@ namespace NLog
             var loggingConfiguration = this.Configuration;
             if (loggingConfiguration != null)
             {
+                InternalLogger.Trace("Flushing all targets...");
                 loggingConfiguration.FlushAllTargets(AsyncHelpers.WithTimeout(asyncContinuation, timeout));
             }
             else

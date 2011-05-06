@@ -103,6 +103,8 @@ namespace NLog.UnitTests.Targets
             {
                 logger.Debug("{0}", i);
             }
+            
+            LogManager.Configuration = null;
         }
 
         private void DoConcurrentTest(int numProcesses, int numLogs, string mode)
@@ -118,9 +120,10 @@ namespace NLog.UnitTests.Targets
             {
                 processes[i] = ProcessRunner.SpawnMethod(this.GetType(), "Process", i.ToString(), numLogs.ToString(), mode);
             }
+            
             for (int i = 0; i < numProcesses; ++i)
             {
-                // processes[i].WaitForExit();
+                processes[i].WaitForExit();
                 string output = processes[i].StandardOutput.ReadToEnd();
                 Assert.AreEqual(0, processes[i].ExitCode, "Runner returned with an error. Standard output: " + output);
                 processes[i].Dispose();
@@ -128,7 +131,8 @@ namespace NLog.UnitTests.Targets
             }
 
             int[] maxNumber = new int[numProcesses];
-
+   
+            Console.WriteLine("Verifying output file {0}", logFile);
             using (StreamReader sr = File.OpenText(logFile))
             {
                 string line;
@@ -163,7 +167,7 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void SimpleConcurrentTest()
         {
-            DoConcurrentTest("");
+            DoConcurrentTest("none");
         }
 
         [Test]

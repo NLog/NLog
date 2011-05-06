@@ -49,8 +49,7 @@ namespace NLog.Internal
 #if NET_CF || SILVERLIGHT
             Helper = new PortableFileInfoHelper();
 #else
-            if (PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.Windows) ||
-                PlatformDetector.IsCurrentOSCompatibleWith(RuntimeOS.WindowsNT))
+            if (PlatformDetector.IsDesktopWin32)
             {
                 Helper = new Win32FileInfoHelper();
             }
