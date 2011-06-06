@@ -49,9 +49,19 @@ makexsdtool:
 dumpapitool:
 	$(XBUILD) tools/DumpApiXml/DumpApiXml.csproj /p:Configuration=$(CONFIG)  
 
-dumpapi: dumpapitool buildnlog
-	(cd $(OUTPUT_DIR) && mono ../../Tools/DumpApiXml.exe -comments NLog.xml -assembly NLog.dll -assembly NLog.Extended.dll -ref $(MONO_LIB_DIR) -output API/NLog.api)
+mergeapitool:
+	$(XBUILD) tools/MergeApiXml/MergeApiXml.csproj /p:Configuration=$(CONFIG)  
 
+builddocpagestool:
+	$(XBUILD) tools/BuildDocPages/BuildDocPages.csproj /p:Configuration=$(CONFIG)  
+
+dumpapi: dumpapitool mergeapitool buildnlog
+	(cd $(OUTPUT_DIR) && mono ../../Tools/DumpApiXml.exe -comments NLog.xml -assembly NLog.dll -assembly NLog.Extended.dll -ref $(MONO_LIB_DIR) -output API/NLog.api)
+	(mono build/bin/Tools/MergeApiXml.exe "build/bin/$(CONFIG)")
+
+builddocpages: builddocpagestool
+	(cd build/bin/$(CONFIG) && mono ../Tools/BuildDocPages.exe "NLogMerged.api.xml" "../../../tools/WebsiteFiles/style.xsl" "Website/generated" "../../.." html web)
+ 
 xsd: makexsdtool
 	(cd $(OUTPUT_DIR) && mono ../../Tools/MakeNLogXSD.exe -api API/NLog.api -out NLog.mono2.xsd -xmlns http://www.nlog-project.org/schemas/NLog.mono2.xsd)
 

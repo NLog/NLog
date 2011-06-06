@@ -252,6 +252,26 @@
       </span>
       </xsl:for-each><xsl:text>}</xsl:text>
     </div>
+
+	<xsl:variable name="ambientPropertyName" select="@ambientProperty" />
+	<xsl:if test="$ambientPropertyName != ''">
+	<p>or by using ambient property:</p>
+    <div class="usage-example">
+      <xsl:variable name="spacing" select="substring('&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;',1,string-length(@name)+2)" />
+      <xsl:text>${other</xsl:text>
+      <xsl:variable name="lineBreaks" select="count(property) > 3" />
+      <xsl:for-each select="property">
+	  	<xsl:if test="@name=$ambientPropertyName">
+        <span>
+        <xsl:if test="@required='1'">
+          <xsl:attribute name="class">requiredparameter</xsl:attribute>
+        </xsl:if>
+        <xsl:text>:</xsl:text><xsl:call-template name="property-link" />=<span class="typeplaceholder"><xsl:value-of select="@type"/></span>
+      </span>
+	  </xsl:if>
+      </xsl:for-each><xsl:text>}</xsl:text>
+    </div>
+	</xsl:if>
   </xsl:template>
   
   <xsl:template match="type[@kind='target']" mode="usage-example">

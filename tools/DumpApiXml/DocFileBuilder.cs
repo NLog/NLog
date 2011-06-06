@@ -300,6 +300,12 @@
                     writer.WriteAttributeString("iswrapper", "1");
                 }
 
+                string ambientPropName;
+                if (TryGetTypeNameFromNameAttribute(type, "NLog.LayoutRenderers.AmbientPropertyAttribute", out ambientPropName))
+                {
+                    writer.WriteAttributeString("ambientProperty", ambientPropName);
+                }
+
                 this.DumpTypeMembers(writer, type);
 
                 writer.WriteEndElement();
