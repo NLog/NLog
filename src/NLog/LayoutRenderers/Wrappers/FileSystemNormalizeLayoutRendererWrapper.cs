@@ -56,7 +56,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// (illegal characters are replaced with '_').
         /// </summary>
         /// <docgen category='Advanced Options' order='10' />
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool FSNormalize { get; set; }
 
         /// <summary>
