@@ -255,7 +255,7 @@
 
 	<xsl:variable name="ambientPropertyName" select="@ambientProperty" />
 	<xsl:if test="$ambientPropertyName != ''">
-	<p>or by using ambient property:</p>
+	<p>or by using ambient property to modify output of other layout renderer:</p>
     <div class="usage-example">
       <xsl:variable name="spacing" select="substring('&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;',1,string-length(@name)+2)" />
       <xsl:text>${other</xsl:text>
