@@ -58,7 +58,7 @@ namespace NLog
         private const int ReconfigAfterFileChangedTimeout = 1000;
 #endif
 
-        private readonly Dictionary<LoggerCacheKey, Logger> loggerCache = new Dictionary<LoggerCacheKey, Logger>();
+        private readonly Dictionary<LoggerCacheKey, WeakReference> loggerCache = new Dictionary<LoggerCacheKey, WeakReference>();
 
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
 
@@ -529,9 +529,13 @@ namespace NLog
                 configuration.EnsureInitialized();
             }
 
-            foreach (Logger logger in this.loggerCache.Values.ToList())
+            foreach (var loggerWrapper in this.loggerCache.Values.ToList())
             {
-                logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, configuration));
+                Logger logger = loggerWrapper.Target as Logger;
+                if (logger != null)
+                {
+                    logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, configuration));
+                }
             }
         }
 
@@ -685,11 +689,16 @@ namespace NLog
         {
             lock (this)
             {
-                Logger l;
+                WeakReference l;
 
                 if (this.loggerCache.TryGetValue(cacheKey, out l))
                 {
-                    return l;
+                    Logger existingLogger = l.Target as Logger;
+                    if (existingLogger != null)
+                    {
+                        // logger in the cache and still referenced
+                        return existingLogger;
+                    }
                 }
 
                 // Activator.CreateInstance(cacheKey.ConcreteType);
@@ -709,7 +718,7 @@ namespace NLog
                     newLogger.Initialize(cacheKey.Name, this.GetConfigurationForLogger(cacheKey.Name, this.Configuration), this);
                 }
 
-                this.loggerCache[cacheKey] = newLogger;
+                this.loggerCache[cacheKey] = new WeakReference(newLogger);
                 return newLogger;
             }
         }

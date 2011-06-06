@@ -110,7 +110,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 id.Impersonate();
 
                 WindowsIdentity changedIdentity = WindowsIdentity.GetCurrent();
-                Assert.AreEqual(Environment.MachineName + "\\" + NLogTestUser, changedIdentity.Name);
+                Assert.AreEqual((Environment.MachineName + "\\" + NLogTestUser).ToLowerInvariant(), changedIdentity.Name.ToLowerInvariant());
 
                 var wrapper = new ImpersonatingTargetWrapper()
                 {
@@ -144,7 +144,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 NativeMethods.RevertToSelf();
 
                 WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
-                Assert.AreEqual(originalIdentity.Name, currentIdentity.Name);
+                Assert.AreEqual(originalIdentity.Name.ToLowerInvariant(), currentIdentity.Name.ToLowerInvariant());
             }
         }
 
