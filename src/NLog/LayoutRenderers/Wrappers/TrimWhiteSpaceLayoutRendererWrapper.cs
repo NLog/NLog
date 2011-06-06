@@ -40,7 +40,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Trims the whitespace from the result of another layout renderer.
     /// </summary>
     [LayoutRenderer("trim-whitespace")]
-    [AmbientProperty("trimWhitespace")]
+    [AmbientProperty("TrimWhiteSpace")]
     public sealed class TrimWhiteSpaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

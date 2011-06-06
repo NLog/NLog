@@ -40,7 +40,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Converts the result of another layout output to lower case.
     /// </summary>
     [LayoutRenderer("lowercase")]
-    [AmbientProperty("LowerCase")]
+    [AmbientProperty("Lowercase")]
     public sealed class LowercaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
