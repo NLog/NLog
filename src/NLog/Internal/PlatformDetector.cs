@@ -44,21 +44,33 @@ namespace NLog.Internal
     {
         private static RuntimeOS currentOS = GetCurrentRuntimeOS();
         
+        /// <summary>
+        /// Gets the current runtime OS.
+        /// </summary>
         public static RuntimeOS CurrentOS
         {
             get { return currentOS; }
         }
         
+        /// <summary>
+        /// Gets a value indicating whether current OS is a desktop version of Windows.
+        /// </summary>
         public static bool IsDesktopWin32
         {
             get { return currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT; }
         }
         
+        /// <summary>
+        /// Gets a value indicating whether current OS is Win32-based (desktop or mobile).
+        /// </summary>
         public static bool IsWin32
         {
             get { return currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT || currentOS == RuntimeOS.WindowsCE; }
         }
         
+        /// <summary>
+        /// Gets a value indicating whether current OS is Unix-based.
+        /// </summary>
         public static bool IsUnix
         {
             get { return currentOS == RuntimeOS.Unix; }
