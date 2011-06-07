@@ -240,6 +240,7 @@ echo  sl2                Silverlight 2.0
 echo  sl3                Silverlight 3.0
 echo  sl4                Silverlight 4.0
 echo  wp7                Silverlight for Windows Phone 7
+echo  wp71               Silverlight for Windows Phone 7.1
 echo  mono2              Mono 2.x
 echo.
 echo Configurations are: 

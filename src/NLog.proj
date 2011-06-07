@@ -15,6 +15,7 @@
     <BuildAllFrameworks Condition="'$(BuildSL3)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL4)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildWP7)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildWP71)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
@@ -46,6 +47,7 @@
     <SL3RefPath Condition="'$(SL3RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v3.0</SL3RefPath>
     <SL4RefPath Condition="'$(SL4RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0</SL4RefPath>
     <WP7RefPath Condition="'$(WP7RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0\Profile\WindowsPhone</WP7RefPath>
+    <WP71RefPath Condition="'$(WP71RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0\Profile\WindowsPhone71</WP71RefPath>
     <NetCF20InstallRoot>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\InstallRoot)</NetCF20InstallRoot>
     <NetCF35InstallRoot>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\InstallRoot)</NetCF35InstallRoot>
 
@@ -69,6 +71,7 @@
     <BuildSL3>true</BuildSL3>
     <BuildSL4>true</BuildSL4>
     <BuildWP7>true</BuildWP7>
+    <BuildWP71>true</BuildWP71>
     <BuildNetFX20>true</BuildNetFX20>
     <BuildNetFX35>true</BuildNetFX35>
     <BuildNetFX40>true</BuildNetFX40>
@@ -81,6 +84,7 @@
     <BuildSL3 Condition="'$(SL3RefPath)' == ''">false</BuildSL3>
     <BuildSL4 Condition="'$(SL4RefPath)' == ''">false</BuildSL4>
     <BuildWP7 Condition="!Exists('$(WP7RefPath)')">false</BuildWP7>
+    <BuildWP71 Condition="!Exists('$(WP71RefPath)')">false</BuildWP71>
     <BuildNetCF20 Condition="'$(NetCF20InstallRoot)' == ''">false</BuildNetCF20>
     <BuildNetCF35 Condition="'$(NetCF35InstallRoot)' == ''">false</BuildNetCF35>
     <BuildNetFX20 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v2.0.50727') == ''">false</BuildNetFX20>
@@ -90,6 +94,7 @@
     <!-- don't build 4.0 if we're using MSBuild 3.5 -->
     <BuildSL4 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildSL4>
     <BuildWP7 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildWP7>
+    <BuildWP71 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildWP71>
     <BuildNetFX40 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX40>
   </PropertyGroup>
 
