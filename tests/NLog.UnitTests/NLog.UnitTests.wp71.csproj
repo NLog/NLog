@@ -17,7 +17,7 @@
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
-    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
     <XapOutputs>true</XapOutputs>
@@ -50,8 +50,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworkName>Silverlight for Windows Phone 7</TargetFrameworkName>
-    <DefineConstants>SILVERLIGHT;WCF_SUPPORTED;WINDOWS_PHONE;WINDOWS_PHONE_7;$(DefineConstants)</DefineConstants>
+    <TargetFrameworkName>Silverlight for Windows Phone 7.1</TargetFrameworkName>
+    <DefineConstants>SILVERLIGHT;WCF_SUPPORTED;WINDOWS_PHONE;WINDOWS_PHONE_7_1;$(DefineConstants)</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
@@ -202,7 +202,7 @@
     <None Include="Properties\OutOfBrowserSettings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.wp7.csproj">
+    <ProjectReference Include="..\..\src\NLog\NLog.wp71.csproj">
       <Project>{8A0E38D3-6E7E-45B0-A360-218F7E98743D}</Project>
       <Name>NLog.wp7</Name>
     </ProjectReference>
@@ -215,7 +215,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions />
   <Target Name="BeforeBuild">
-    <XmlPoke XmlInputPath="Properties\WMAppManifest.xml" Query="/x:Deployment/@AppPlatformVersion" Value="7.0" Namespaces="&lt;Namespace Prefix='x' Uri='http://schemas.microsoft.com/windowsphone/2009/deployment' /&gt;" />
+    <XmlPoke XmlInputPath="Properties\WMAppManifest.xml" Query="/x:Deployment/@AppPlatformVersion" Value="7.1" Namespaces="&lt;Namespace Prefix='x' Uri='http://schemas.microsoft.com/windowsphone/2009/deployment' /&gt;" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -102,6 +102,7 @@
      <DocReferencesSL3>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v3.0"</DocReferencesSL3>
      <DocReferencesSL4>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0"</DocReferencesSL4>
      <DocReferencesWP7>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0\Profile\WindowsPhone"</DocReferencesWP7>
+     <DocReferencesWP71>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0\Profile\WindowsPhone71"</DocReferencesWP71>
      <DocReferencesNetCF20>-ref "$(ProgramFiles)\Microsoft.NET\SDK\CompactFramework\v2.0\WindowsCE"</DocReferencesNetCF20>
      <DocReferencesNetCF35>-ref "$(ProgramFiles)\Microsoft.NET\SDK\CompactFramework\v3.5\WindowsCE"</DocReferencesNetCF35>
      <DocReferencesMono2>-ref "$(MonoInstallLocation)\lib\mono\2.0"</DocReferencesMono2>
@@ -128,6 +129,10 @@
     <TargetFramework Include="Silverlight for Windows Phone 7" Condition="'$(BuildWP7)'=='true'">
         <ProjectFileSuffix>.wp7</ProjectFileSuffix>
         <DocReferences>$(DocReferencesWP7)</DocReferences>
+    </TargetFramework>
+    <TargetFramework Include="Silverlight for Windows Phone 7.1" Condition="'$(BuildWP71)'=='true'">
+        <ProjectFileSuffix>.wp71</ProjectFileSuffix>
+        <DocReferences>$(DocReferencesWP71)</DocReferences>
     </TargetFramework>
     <TargetFramework Include=".NET Compact Framework 2.0" Condition="'$(BuildNetCF20)'=='true'">
         <ProjectFileSuffix>.netcf20</ProjectFileSuffix>

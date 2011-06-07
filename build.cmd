@@ -78,6 +78,12 @@ if (%1)==(wp7) (
 	goto next
 )
 
+if (%1)==(wp71) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildWP71=true
+	shift
+	goto next
+)
+
 if (%1)==(debug) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:Configuration=Debug
 	shift

@@ -113,6 +113,7 @@
           <Directory Id="SL3_DIR" Name="Silverlight 3.0" />
           <Directory Id="SL4_DIR" Name="Silverlight 4.0" />
           <Directory Id="WP7_DIR" Name="Silverlight for Windows Phone 7" />
+          <Directory Id="WP71_DIR" Name="Silverlight for Windows Phone 7.1" />
  
         </Directory>
 
@@ -632,6 +633,30 @@
     </DirectoryRef>
     <?endif ?>
 
+    <!-- Silverlight for Windows Phone 7.1 support -->
+
+    <?ifdef Include_WP71 ?>
+    <DirectoryRef Id="WP71_DIR" FileSource="$(var.NLogBuildPath)\Silverlight for Windows Phone 7.1">
+    
+      <Component Id="WP71_Binaries" Guid="71e84f58-8dea-3eca-ca54-a5f1c3b56c72">
+        <File Id="WP71_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
+        <File Id="WP71_NLog.xml" Name="NLog.xml" />
+                              
+        <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight for WindowsPhone\v4.0\AssemblyFoldersEx\NLog2" Action="createAndRemoveOnUninstall">
+          <RegistryValue Type="string" Value="[WP71_DIR]"></RegistryValue>
+        </RegistryKey>
+                
+      </Component>
+
+      <Component Id="WP71_DebugInfo" Guid="ac12789c-5461-3b79-d442-95a2c390e948">
+        <File Id="WP71_NLog.NLog.pdb" Name="NLog.pdb" />
+         
+         
+      </Component>
+
+    </DirectoryRef>
+    <?endif ?>
+
 
     <!-- Visual Studio 2005 -->
     
@@ -804,6 +829,9 @@
       <?endif ?>
       <?ifdef Include_WP7 ?>
         <File Id="VS2005_NLog.WP7.xsd" Name="NLog.WP7.xsd" Source="$(var.NLogBuildPath)\Silverlight for Windows Phone 7\NLog.WP7.xsd" />
+      <?endif ?>
+      <?ifdef Include_WP71 ?>
+        <File Id="VS2005_NLog.WP71.xsd" Name="NLog.WP71.xsd" Source="$(var.NLogBuildPath)\Silverlight for Windows Phone 7.1\NLog.WP71.xsd" />
       <?endif ?>
  
       </Component>
@@ -980,6 +1008,9 @@
       <?endif ?>
       <?ifdef Include_WP7 ?>
         <File Id="VS2008_NLog.WP7.xsd" Name="NLog.WP7.xsd" Source="$(var.NLogBuildPath)\Silverlight for Windows Phone 7\NLog.WP7.xsd" />
+      <?endif ?>
+      <?ifdef Include_WP71 ?>
+        <File Id="VS2008_NLog.WP71.xsd" Name="NLog.WP71.xsd" Source="$(var.NLogBuildPath)\Silverlight for Windows Phone 7.1\NLog.WP71.xsd" />
       <?endif ?>
  
       </Component>
@@ -1183,6 +1214,9 @@
       <?ifdef Include_WP7 ?>
         <File Id="VS2010_NLog.WP7.xsd" Name="NLog.WP7.xsd" Source="$(var.NLogBuildPath)\Silverlight for Windows Phone 7\NLog.WP7.xsd" />
       <?endif ?>
+      <?ifdef Include_WP71 ?>
+        <File Id="VS2010_NLog.WP71.xsd" Name="NLog.WP71.xsd" Source="$(var.NLogBuildPath)\Silverlight for Windows Phone 7.1\NLog.WP71.xsd" />
+      <?endif ?>
  
       </Component>
     </DirectoryRef>
@@ -1256,6 +1290,12 @@
       </Feature>
       <?endif?>
       
+      <?ifdef Include_WP71 ?>
+      <Feature Id="WP71_Binaries" Title="Silverlight for Windows Phone 7.1" Level="1">
+        <ComponentRef Id="WP71_Binaries" />
+      </Feature>
+      <?endif?>
+      
     </Feature>
 
     <Feature Id="Feature_Help" Title="Help" Level="1">
@@ -1321,6 +1361,12 @@
       <?ifdef Include_WP7 ?>
       <Feature Id="WP7_DebugInfo" Title="Silverlight for Windows Phone 7" Level="1">
         <ComponentRef Id="WP7_DebugInfo" />
+      </Feature>
+      <?endif?>
+      
+      <?ifdef Include_WP71 ?>
+      <Feature Id="WP71_DebugInfo" Title="Silverlight for Windows Phone 7.1" Level="1">
+        <ComponentRef Id="WP71_DebugInfo" />
       </Feature>
       <?endif?>
       

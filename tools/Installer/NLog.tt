@@ -1,4 +1,4 @@
-﻿<#@ Template debug="true" hostspecific="false" language="C#v3.5" #>
+﻿<#@ Template debug="true" hostspecific="false" language="C#" #>
 <#@ Import Namespace="System.Security.Cryptography" #>
 <#@ Import Namespace="System.Text" #>
 <#@ Import Namespace="System.IO" #>
@@ -126,6 +126,15 @@ var supportedFrameworks = new []
         AssemblyInfoRegistryKeys =
         {
             @"SOFTWARE\Microsoft\Microsoft SDKs\Silverlight for Phone\v4.0\AssemblyFoldersEx\NLog2",
+        }
+    },
+    new FrameworkInfo
+    {
+        ShortName = "WP71",
+        FullName = "Silverlight for Windows Phone 7.1",
+        AssemblyInfoRegistryKeys =
+        {
+            @"SOFTWARE\Microsoft\Microsoft SDKs\Silverlight for WindowsPhone\v4.0\AssemblyFoldersEx\NLog2",
         }
     },
 };

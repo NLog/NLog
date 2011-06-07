@@ -120,6 +120,12 @@
         <FileSet Include="AllFilesToCompile" />
      </ItemGroup>
    </Project>
+                          
+   <Project File="NLog.wp71.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
 
    <Project File="NLog.doc.csproj">
      <ItemGroup Name="Compile">
