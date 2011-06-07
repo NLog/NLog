@@ -205,6 +205,44 @@ namespace NLog.UnitTests.Config
         }
 
         [Test]
+        public void MultipleRulesSameTargetTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                    <target name='d2' type='Debug' layout='${message}' />
+                    <target name='d3' type='Debug' layout='${message}' />
+                    <target name='d4' type='Debug' layout='${message}' />
+                </targets>
+
+                <rules>
+                    <logger name='*' level='Warn' writeTo='d1' />
+                    <logger name='*' level='Warn' writeTo='d2' />
+                    <logger name='*' level='Warn' writeTo='d3' />
+                </rules>
+            </nlog>");
+
+            LogFactory factory = new LogFactory(c);
+            var loggerConfig = factory.GetConfigurationForLogger("AAA", c);
+            var targets = loggerConfig.GetTargetsForLevel(LogLevel.Warn);
+            Assert.AreEqual("d1", targets.Target.Name);
+            Assert.AreEqual("d2", targets.NextInChain.Target.Name);
+            Assert.AreEqual("d3", targets.NextInChain.NextInChain.Target.Name);
+            Assert.IsNull(targets.NextInChain.NextInChain.NextInChain);
+
+            LogManager.Configuration = c;
+
+            var logger = LogManager.GetLogger("BBB");
+            logger.Warn("test1234");
+
+            this.AssertDebugLastMessage("d1", "test1234");
+            this.AssertDebugLastMessage("d2", "test1234");
+            this.AssertDebugLastMessage("d3", "test1234");
+            this.AssertDebugLastMessage("d4", string.Empty);
+        }
+
+        [Test]
         public void ChildRulesTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
