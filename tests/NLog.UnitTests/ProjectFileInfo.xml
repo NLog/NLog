@@ -13,11 +13,18 @@
 
    <FileSet Name="AllContentFiles">
      <Include File="*.nlog" />
-     <Include File="*.png" />
      <Include File="*.xml" />
+   </FileSet>
+
+   <FileSet Name="ContentFilesCopyToOutput">
+     <Include File="*.png" />
      <Include File="*.jpg" />
    </FileSet>
 
+   <Customize FileSet="ContentFilesCopyToOutput" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Customize>
+ 
    <Project File="NLog.UnitTests.sl2.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
@@ -96,6 +103,7 @@
      </ItemGroup>
      <ItemGroup Name="Content">
         <FileSet Include="AllContentFiles" />
+        <FileSet Include="ContentFilesCopyToOutput" />
      </ItemGroup>
    </Project>
 
@@ -105,6 +113,7 @@
      </ItemGroup>
      <ItemGroup Name="Content">
         <FileSet Include="AllContentFiles" />
+        <FileSet Include="ContentFilesCopyToOutput" />
      </ItemGroup>
    </Project>
 

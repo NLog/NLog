@@ -160,8 +160,6 @@
     <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationIcon.png" />
-    <Content Include="Background.png" />
     <Content Include="ConfigFiles\included.nlog" />
     <Content Include="ConfigFiles\main.nlog" />
     <Content Include="ConfigFiles\referencemissingfile.nlog" />
@@ -170,7 +168,6 @@
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\OutOfBrowserSettings.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
-    <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NLogTests.snk" />

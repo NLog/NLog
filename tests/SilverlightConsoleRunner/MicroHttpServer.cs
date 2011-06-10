@@ -10,11 +10,9 @@ namespace SilverlightConsoleRunner
 {
     public class MicroHttpServer : IDisposable
     {
-        private Socket socket;
-        private readonly Dictionary<string, Func<byte[]>> handlers = new Dictionary<string, Func<byte[]>>();
-        private readonly Dictionary<string, string> contentTypes = new Dictionary<string, string>();
-        private readonly Regex getRegex = new Regex("^GET (?<url>.*) HTTP/1", RegexOptions.Compiled);
-
+        private HttpListener httpListener;
+        private readonly Dictionary<Regex, Action<HttpListenerContext>> handlers = new Dictionary<Regex, Action<HttpListenerContext>>();
+        
         public MicroHttpServer()
         {
             this.ListenPort = 17788;
@@ -26,98 +24,87 @@ namespace SilverlightConsoleRunner
 
         public void Start()
         {
-            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            socket.Bind(new IPEndPoint(IPAddress.Loopback, this.ListenPort));
-            socket.Listen(10);
-            socket.BeginAccept(OnAccept, null);
+            httpListener = new HttpListener();
+            httpListener.Prefixes.Add("http://localhost:" + this.ListenPort + "/");
+            httpListener.Start();
+            httpListener.BeginGetContext(this.OnNewRequest, null);
         }
 
-        private void OnAccept(IAsyncResult ar)
+        private void OnNewRequest(IAsyncResult ar)
         {
-            using (Socket acceptedSocket = this.socket.EndAccept(ar))
+            var context = httpListener.EndGetContext(ar);
+            httpListener.BeginGetContext(this.OnNewRequest, null);
+            foreach (var d in handlers)
             {
-                socket.BeginAccept(OnAccept, null);
-                HandleConnection(acceptedSocket);
-            }
-        }
-
-        private void HandleConnection(Socket socket)
-        {
-            NetworkStream ns = new NetworkStream(socket, false);
-            StreamReader sr = new StreamReader(ns, Encoding.ASCII);
-            StreamWriter sw = new StreamWriter(ns, Encoding.UTF8);
-            string url = "";
-
-            try
-            {
-                string line;
-                List<string> lines = new List<string>();
-                while ((line = sr.ReadLine()) != null && line.Length > 0)
+                var m = d.Key.Match(context.Request.Url.LocalPath);
+                if (m.Success)
                 {
-                    lines.Add(line);
+                    try
+                    {
+                        d.Value(context);
+                        context.Response.OutputStream.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        context.Response.StatusCode = 500;
+                        context.Response.ContentType = "text/plain";
+                        using (var sw = new StreamWriter(context.Response.OutputStream))
+                        {
+                            sw.WriteLine("ERROR: {0}", ex);
+                        }
+                    }
+                    return;
                 }
-
-                var match = getRegex.Match(lines[0]);
-                if (!match.Success)
-                {
-                    throw new NotSupportedException("Not supported request format.");
-                }
-
-                url = match.Groups["url"].Value;
-                byte[] data = this.handlers[url]();
-
-                // Console.WriteLine("Serving: {0} {1} bytes {2}", url, data.Length, contentTypes[url]);
-                sw.WriteLine("HTTP/1.0 200 OK");
-                sw.WriteLine("Content-Type: {0}", contentTypes[url]);
-                sw.WriteLine("Content-Length: {0}", data.Length);
-                sw.WriteLine();
-                sw.Flush();
-                sw.BaseStream.Write(data, 0, data.Length);
             }
-            catch (Exception ex)
+
+            context.Response.StatusCode = 404;
+            context.Response.ContentType = "text/plain";
+            using (var sw = new StreamWriter(context.Response.OutputStream))
             {
-                Console.WriteLine("ERROR: {0} {1}", url, ex.Message);
-                byte[] exceptionData = sw.Encoding.GetBytes(ex.ToString());
-                sw.WriteLine("HTTP/1.0 500 Internal eror");
-                sw.WriteLine("Content-Type: text/plain");
-                sw.WriteLine("Content-Length: {0}", exceptionData.Length);
-                sw.WriteLine();
-                sw.Flush();
-                sw.BaseStream.Write(exceptionData, 0, exceptionData.Length);
+                sw.WriteLine("Not found.");
             }
+
         }
 
         public void Stop()
         {
-            if (this.socket != null)
+            if (this.httpListener != null)
             {
-                this.socket.Close();
-                this.socket = null;
+                this.httpListener.Abort();
+                this.httpListener.Close();
+                this.httpListener = null;
             }
         }
 
-        public void AddHandler(string url, string contentType, Func<byte[]> handler)
+        public void AddHandler(string url, Action<HttpListenerContext> handler)
         {
-            this.handlers.Add(url, handler);
-            this.contentTypes[url] = contentType;
+            this.handlers.Add(new Regex(url), handler);
         }
 
         public void AddFileHandler(string url, string contentType, string fileName)
         {
-            this.AddHandler(url, contentType, 
-                () => File.ReadAllBytes(fileName));
+            this.AddHandler(url,
+                context =>
+                    {
+                        byte[] data = File.ReadAllBytes(fileName);
+                        context.Response.ContentType = contentType;
+                        context.Response.OutputStream.Write(data, 0, data.Length);
+                        context.Response.OutputStream.Close();
+                    });
         }
 
 
         public void AddResourceHandler(string url, string contentType, Type typeScope, string resourceName)
         {
-            this.AddHandler(url, contentType,
-                            () =>
+            this.AddHandler(url,
+                            context =>
                                 {
                                     Stream s = typeScope.Assembly.GetManifestResourceStream(typeScope, resourceName);
                                     byte[] data = new byte[s.Length];
                                     s.Read(data, 0, data.Length);
-                                    return data;
+                                    context.Response.ContentType = contentType;
+                                    context.Response.OutputStream.Write(data, 0, data.Length);
+                                    context.Response.OutputStream.Close();
                                 });
         }
 

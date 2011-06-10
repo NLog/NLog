@@ -46,9 +46,15 @@ using Microsoft.Silverlight.Testing.Harness;
 
 namespace NLog.UnitTests
 {
+    using System.Net;
+    using System.Text;
+    using System.Xml.Linq;
+    using Microsoft.Silverlight.Testing.UnitTesting.Metadata.VisualStudio;
+
     public partial class App : Application
     {
         private VisualStudioLogProvider vsProvider = new VisualStudioLogProvider();
+        private static Uri baseUrl = new Uri("http://localhost:17788");
 
         public App()
         {
@@ -63,17 +69,41 @@ namespace NLog.UnitTests
         {
             public override void Process(LogMessage logMessage)
             {
+                if (logMessage.HasDecorator(LogDecorator.TestStage))
+                {
+                    var stage = (TestStage)logMessage[LogDecorator.TestStage];
+                    if (stage == TestStage.Starting)
+                    {
+                        if (logMessage.HasDecorator(UnitTestLogDecorator.TestMethodMetadata))
+                        {
+                            var methodInfo = (TestMethod)logMessage[UnitTestLogDecorator.TestMethodMetadata];
+                            var wc = new WebClient();
+                            wc.UploadStringAsync(new Uri(baseUrl, "/TestMethodStarting?method=" + methodInfo.Name), "");
+                        }
+                        else if (logMessage.HasDecorator(UnitTestLogDecorator.TestClassMetadata))
+                        {
+                            var classInfo = (TestClass)logMessage[UnitTestLogDecorator.TestClassMetadata];
+                            var wc = new WebClient();
+                            wc.UploadStringAsync(new Uri(baseUrl, "/TestClassStarting?class=" + classInfo.Type.FullName), "");
+                        }
+                    }
+                }
+
                 if (logMessage.HasDecorator(UnitTestLogDecorator.ScenarioResult))
                 {
                     var result = (ScenarioResult)logMessage[UnitTestLogDecorator.ScenarioResult];
-
-                    InvokeDomMethod("scenarioResult",
-                                           result.Started.Ticks,
-                                           result.Finished.Ticks,
-                                           (result.TestClass != null) ? result.TestClass.Type.FullName : null,
-                                           (result.TestMethod != null) ? result.TestMethod.Name : null,
-                                           result.Result.ToString(),
-                                           (result.Exception != null) ? result.Exception.ToString() : null);
+                    var wc = new WebClient();
+                    StringBuilder uri = new StringBuilder();
+                    uri.Append("/TestMethodCompleted?result=" + result.Result);
+                    if (result.TestClass != null)
+                    {
+                        uri.Append("&class=").Append(result.TestClass.Type.FullName);
+                    }
+                    if (result.TestMethod != null)
+                    {
+                        uri.Append("&method=").Append(result.TestMethod.Name);
+                    }
+                    wc.UploadStringAsync(new Uri(baseUrl, uri.ToString()), "");
                 }
             }
         }
@@ -106,7 +136,9 @@ namespace NLog.UnitTests
             var harness = new MyHarness();
 
             vsProvider.WriteLogFile(harness);
-            InvokeDomMethod("testCompleted", harness.TrxContent);
+
+            var wc = new WebClient();
+            wc.UploadStringAsync(new Uri(baseUrl, "/Completed"), harness.TrxContent);
         }
 
         private void Application_Exit(object sender, EventArgs e)
@@ -115,6 +147,7 @@ namespace NLog.UnitTests
 
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
+            MessageBox.Show(e.ExceptionObject.ToString());
             // If the app is running outside of the debugger then report the exception using
             // the browser's exception mechanism. On IE this will display it a yellow alert 
             // icon in the status bar and Firefox will display a script error.
@@ -144,19 +177,6 @@ namespace NLog.UnitTests
 #endif
             }
             catch (Exception)
-            {
-            }
-        }
-
-        private static void InvokeDomMethod(string methodName, params object[] arguments)
-        {
-            try
-            {
-#if !WINDOWS_PHONE
-                HtmlPage.Window.Invoke(methodName, arguments);
-#endif
-            }
-            catch
             {
             }
         }

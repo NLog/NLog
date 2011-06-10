@@ -1,14 +1,25 @@
 ﻿namespace SilverlightConsoleRunner
 {
     using System;
+    using System.Diagnostics;
     using System.Globalization;
     using System.IO;
+    using System.Net;
+    using System.Threading;
+    using System.Windows.Forms;
+    using RunXap;
 
     public class ConsoleRunner
     {
         public int FailedCount = 0;
         public int OtherCount = 0;
         public int PassedCount = 0;
+        private Form currentForm;
+        private ManualResetEvent finished = new ManualResetEvent(false);
+        private string DevicePlatformName = "Windows Phone 7";
+        private string DeviceName = "Windows Phone Emulator";
+        public string IconFile { get; set; }
+        public Guid AppGuid { get; set; }
         public string XapFile { get; set; }
 
         public TextWriter LogWriter { get; set; }
@@ -26,6 +37,9 @@
         {
             using (var httpServer = new MicroHttpServer())
             {
+                httpServer.AddHandler("/Completed", OnTestCompleted);
+                httpServer.AddHandler("/TestMethodCompleted", OnTestMethodCompleted);
+                
                 switch (SilverlightVersion)
                 {
                     case "SL2":
@@ -43,6 +57,10 @@
                         httpServer.AddResourceHandler("/XapHost.html", "text/html", typeof(ConsoleRunner), "XapHost4.html");
                         break;
 
+                    case "WP7":
+                    case "WP71":
+                        break;
+
                     default:
                         throw new NotSupportedException("Unsupported silverlight version: '" + SilverlightVersion + "'"); 
                 }
@@ -50,13 +68,26 @@
                 httpServer.AddFileHandler("/xapfile.xap", "application/x-silverlight-app", this.XapFile);
                 httpServer.Start();
 
-                using (var form = new RunnerForm())
+                if (this.SilverlightVersion.StartsWith("SL"))
                 {
-                    form.OnLogEvent += this.OnLogEvent;
-                    form.OnCompleted += this.OnCompleted;
-                    form.Url = "http://localhost:" + httpServer.ListenPort + "/XapHost.html";
-                    form.ShowDialog();
+                    using (var form = new RunnerForm())
+                    {
+                        form.Url = "http://localhost:" + httpServer.ListenPort + "/XapHost.html";
+                        this.currentForm = form;
+                        form.ShowDialog();
+                        this.currentForm = null;
+                    }
                 }
+                else if (this.SilverlightVersion.StartsWith("WP"))
+                {
+                    XapRunner.RunXap(this.XapFile, this.IconFile, this.AppGuid, this.DevicePlatformName, this.DeviceName);
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+
+                this.finished.WaitOne();
 
                 this.Log(
                     string.Format(
@@ -68,16 +99,13 @@
             }
         }
 
-        private void OnCompleted(object sender, TestCompletedEventArgs e)
-        {
-            File.WriteAllText("TestResults.trx", e.TrxFileContents);
-        }
-
-        private void OnLogEvent(object sender, LogEventArgs e)
+        private void OnTestMethodCompleted(HttpListenerContext context)
         {
             ConsoleColor oldColor = Console.ForegroundColor;
-
-            switch (e.Result)
+            string result = context.Request.QueryString["result"];
+            string methodName = context.Request.QueryString["method"];
+            string className = context.Request.QueryString["class"];
+            switch (result)
             {
                 case "Passed":
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -95,18 +123,33 @@
                     break;
             }
 
-            this.Log(e.Result.PadRight(20));
+            this.Log(result.PadRight(10));
             Console.ForegroundColor = oldColor;
-            this.Log(e.ClassName + "." + e.MethodName);
+            this.Log(className + "." + methodName);
             this.Log(Environment.NewLine);
-            if (e.Exception != null && e.Result != "Passed")
+            Console.ForegroundColor = oldColor;
+        }
+
+        private void OnTestCompleted(HttpListenerContext context)
+        {
+            byte[] data = new byte[16384];
+            int got;
+
+            using (var fos = File.Create("TestResults.trx"))
             {
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                this.Log(e.Exception);
-                this.Log(Environment.NewLine);
+                while ((got = context.Request.InputStream.Read(data, 0, data.Length)) > 0)
+                {
+                    fos.Write(data, 0, got);
+                }
+            }
+            
+            context.Response.OutputStream.Close();
+            if (this.currentForm != null)
+            {
+                this.currentForm.Close();
             }
 
-            Console.ForegroundColor = oldColor;
+            this.finished.Set();
         }
     }
 }

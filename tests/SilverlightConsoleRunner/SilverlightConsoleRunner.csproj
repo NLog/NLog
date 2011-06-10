@@ -37,6 +37,11 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RunXap, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <ExecutableExtension>.exe</ExecutableExtension>
+      <HintPath>..\..\tools\RunXap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -54,7 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleRunner.cs" />
-    <Compile Include="LogEventArgs.cs" />
     <Compile Include="MicroHttpServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,7 +68,6 @@
     <Compile Include="RunnerForm.Designer.cs">
       <DependentUpon>RunnerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestCompletedEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="RunnerForm.resx">

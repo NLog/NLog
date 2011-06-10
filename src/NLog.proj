@@ -271,6 +271,8 @@
     <CallTarget Targets="SL2Test" Condition="'$(BuildSL2)'=='true'"/>
     <CallTarget Targets="SL3Test" Condition="'$(BuildSL3)'=='true'"/>
     <CallTarget Targets="SL4Test" Condition="'$(BuildSL4)'=='true'"/>
+    <CallTarget Targets="WP7Test" Condition="'$(BuildWP7)'=='true'"/>
+    <CallTarget Targets="WP71Test" Condition="'$(BuildWP71)'=='true'"/>
     <CallTarget Targets="RunComApiTests" />
     <Exec Command="..\tests\DeleteTestUsers.cmd" IgnoreExitCode="true" />
   </Target>
@@ -332,6 +334,16 @@
   <Target Name="SL4Test" DependsOnTargets="BuildSLTestRunner">
     <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap SL4'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 4.0" IgnoreExitCode="true" />
+  </Target>
+
+  <Target Name="WP7Test" DependsOnTargets="BuildSLTestRunner">
+    <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap WP7 -guid 3cf9fab9-588c-49c8-8a45-ef071442304f -icon ApplicationIcon.png'
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight for Windows Phone 7" IgnoreExitCode="true" />
+  </Target>
+
+  <Target Name="WP71Test" DependsOnTargets="BuildSLTestRunner">
+    <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap WP71 -guid 3cf9fab9-588c-49c8-8a45-ef071442304f -icon ApplicationIcon.png'
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight for Windows Phone 7.1" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="CheckinSuite">
