@@ -36,6 +36,8 @@ namespace NLog
     using System;
     using System.Collections.Generic;
 
+    using NLog.Internal;
+
     /// <summary>
     /// Nested Diagnostics Context - a thread-local structure that keeps a stack
     /// of strings and provides methods to output them in layouts
@@ -43,12 +45,7 @@ namespace NLog
     /// </summary>
     public static class NestedDiagnosticsContext
     {
-#if !SILVERLIGHT
-        private static LocalDataStoreSlot dataSlot = System.Threading.Thread.AllocateDataSlot();
-#else
-        [ThreadStatic]
-        private static Stack<string> threadStack;
-#endif
+        private static readonly object dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
 
         /// <summary>
         /// Gets the top NDC message but doesn't remove it.
@@ -70,36 +67,10 @@ namespace NLog
             }
         }
 
-#if SILVERLIGHT
         private static Stack<string> ThreadStack
         {
-            get
-            {
-                if (threadStack == null)
-                {
-                    threadStack = new Stack<string>();
-                }
-
-                return threadStack;
-            }
+            get { return ThreadLocalStorageHelper.GetDataForSlot<Stack<string>>(dataSlot); }
         }
-#else
-        private static Stack<string> ThreadStack
-        {
-            get
-            {
-                Stack<string> threadStack = (Stack<string>)System.Threading.Thread.GetData(dataSlot);
-
-                if (threadStack == null)
-                {
-                    threadStack = new Stack<string>();
-                    System.Threading.Thread.SetData(dataSlot, threadStack);
-                }
-
-                return threadStack;
-            }
-        }
-#endif
 
         /// <summary>
         /// Pushes the specified text on current thread NDC.

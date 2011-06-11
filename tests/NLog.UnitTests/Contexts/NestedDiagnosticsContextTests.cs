@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Text;
+
 #pragma warning disable 0618
 
 namespace NLog.UnitTests.Contexts
@@ -111,7 +113,18 @@ namespace NLog.UnitTests.Contexts
             }
 
             mre.WaitOne();
-            Assert.AreEqual(0, exceptions.Count);
+            StringBuilder exceptionsMessage = new StringBuilder();
+            foreach (var ex in exceptions)
+            {
+                if (exceptionsMessage.Length > 0)
+                {
+                    exceptionsMessage.Append("\r\n");
+                }
+
+                exceptionsMessage.Append(ex.ToString());
+            }
+
+            Assert.AreEqual(0, exceptions.Count, exceptionsMessage.ToString());
         }
 
         [Test]
@@ -175,7 +188,18 @@ namespace NLog.UnitTests.Contexts
             }
 
             mre.WaitOne();
-            Assert.AreEqual(0, exceptions.Count);
+            StringBuilder exceptionsMessage = new StringBuilder();
+            foreach (var ex in exceptions)
+            {
+                if (exceptionsMessage.Length > 0)
+                {
+                    exceptionsMessage.Append("\r\n");
+                }
+
+                exceptionsMessage.Append(ex.ToString());
+            }
+
+            Assert.AreEqual(0, exceptions.Count, exceptionsMessage.ToString());
         }
 
         private static void AssertContents(string[] actual, params string[] expected)

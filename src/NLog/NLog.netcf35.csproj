@@ -192,6 +192,7 @@
     <Compile Include="Internal\StackTraceUsageUtils.cs" />
     <Compile Include="Internal\TargetWithFilterChain.cs" />
     <Compile Include="Internal\ThreadIDHelper.cs" />
+    <Compile Include="Internal\ThreadLocalStorageHelper.cs" />
     <Compile Include="Internal\TimeoutContinuation.cs" />
     <Compile Include="Internal\UrlHelper.cs" />
     <Compile Include="Internal\Win32FileInfoHelper.cs" />

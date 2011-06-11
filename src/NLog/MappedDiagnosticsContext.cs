@@ -36,6 +36,8 @@ namespace NLog
     using System;
     using System.Collections.Generic;
 
+    using NLog.Internal;
+
     /// <summary>
     /// Mapped Diagnostics Context - a thread-local structure that keeps a dictionary
     /// of strings and provides methods to output them in layouts. 
@@ -43,44 +45,12 @@ namespace NLog
     /// </summary>
     public static class MappedDiagnosticsContext
     {
-#if !SILVERLIGHT
-        private static LocalDataStoreSlot dataSlot = System.Threading.Thread.AllocateDataSlot();
-#else
-        [ThreadStatic]
-        private static IDictionary<string, string> threadDictionary;
-#endif
+        private static readonly object dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
 
-#if SILVERLIGHT
         internal static IDictionary<string, string> ThreadDictionary
         {
-            get
-            {
-                if (threadDictionary == null)
-                {
-                    threadDictionary = new Dictionary<string, string>();
-                }
-
-                return threadDictionary;
-            }
+            get { return ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, string>>(dataSlot); }
         }
-
-#else
-        internal static IDictionary<string, string> ThreadDictionary
-        {
-            get
-            {
-                IDictionary<string, string> threadDictionary = (IDictionary<string, string>)System.Threading.Thread.GetData(dataSlot);
-
-                if (threadDictionary == null)
-                {
-                    threadDictionary = new Dictionary<string, string>();
-                    System.Threading.Thread.SetData(dataSlot, threadDictionary);
-                }
-
-                return threadDictionary;
-            }
-        }
-#endif
 
         /// <summary>
         /// Sets the current thread MDC item to the specified value.

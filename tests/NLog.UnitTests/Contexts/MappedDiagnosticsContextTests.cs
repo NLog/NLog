@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Text;
+
 #pragma warning disable 0618
 
 namespace NLog.UnitTests.Contexts
@@ -69,10 +71,10 @@ namespace NLog.UnitTests.Contexts
                             try
                             {
                                 MappedDiagnosticsContext.Clear();
-                                Assert.IsFalse(MappedDiagnosticsContext.Contains("foo"));
-                                Assert.AreEqual(string.Empty, MappedDiagnosticsContext.Get("foo"));
-                                Assert.IsFalse(MappedDiagnosticsContext.Contains("foo2"));
-                                Assert.AreEqual(string.Empty, MappedDiagnosticsContext.Get("foo2"));
+                                Assert.IsFalse(MappedDiagnosticsContext.Contains("foo"), "#1");
+                                Assert.AreEqual(string.Empty, MappedDiagnosticsContext.Get("foo"), "#2");
+                                Assert.IsFalse(MappedDiagnosticsContext.Contains("foo2"), "#3");
+                                Assert.AreEqual(string.Empty, MappedDiagnosticsContext.Get("foo2"), "#4");
 
                                 MappedDiagnosticsContext.Set("foo", "bar");
                                 MappedDiagnosticsContext.Set("foo2", "bar2");
@@ -105,7 +107,18 @@ namespace NLog.UnitTests.Contexts
             }
 
             mre.WaitOne();
-            Assert.AreEqual(0, exceptions.Count);
+            StringBuilder exceptionsMessage = new StringBuilder();
+            foreach (var ex in exceptions)
+            {
+                if (exceptionsMessage.Length > 0)
+                {
+                    exceptionsMessage.Append("\r\n");
+                }
+
+                exceptionsMessage.Append(ex.ToString());
+            }
+
+            Assert.AreEqual(0, exceptions.Count, exceptionsMessage.ToString());
         }
 
         [Test]
@@ -160,10 +173,18 @@ namespace NLog.UnitTests.Contexts
             }
 
             mre.WaitOne();
-            if (exceptions.Count != 0)
+            StringBuilder exceptionsMessage = new StringBuilder();
+            foreach (var ex in exceptions)
             {
-                Assert.Fail(exceptions[0].ToString());
+                if (exceptionsMessage.Length > 0)
+                {
+                    exceptionsMessage.Append("\r\n");
+                }
+
+                exceptionsMessage.Append(ex.ToString());
             }
+
+            Assert.AreEqual(0, exceptions.Count, exceptionsMessage.ToString());
         }
     }
 }
