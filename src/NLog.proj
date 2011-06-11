@@ -365,7 +365,7 @@
     <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='echo ---------------------' />
     <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='echo Test run summary:' />
     <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='echo ---------------------' />
-    <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='"$(DumpTestResultSummary)" "%(TargetFramework.Identity)" "$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\TestResults.trx"' />
+    <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='"$(DumpTestResultSummary)" "%(TargetFramework.Identity)" "$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\TestResults.trx" %*' />
   </Target>
 
   <Target Name="BuildMergedDocumentation">
