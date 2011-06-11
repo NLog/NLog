@@ -15,7 +15,8 @@
     <OSVersion>4.20</OSVersion>
     <DeployDirSuffix>TestProject1</DeployDirSuffix>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FormFactorID></FormFactorID>
+    <FormFactorID>
+    </FormFactorID>
     <WarningLevel>4</WarningLevel>
     <ProjectTypeGuids>{73A5A715-AF05-47af-9C33-47A864AF9AE7};{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <NativePlatformName>Pocket PC 2003</NativePlatformName>
@@ -170,6 +171,10 @@
     <Content Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\src\SmartDeviceTestRun.testrunConfig">
+      <Link>SmartDeviceTestRun.testrunConfig</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="NLogTests.snk" />
   </ItemGroup>
   <ItemGroup>
@@ -181,9 +186,6 @@
       <Project>{2A1AFF0C-0C26-4B2E-95C5-BCFBBE343031}</Project>
       <Name>SampleExtensions.netcf35</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <PropertyGroup>

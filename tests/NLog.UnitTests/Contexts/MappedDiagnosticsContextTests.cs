@@ -60,7 +60,7 @@ namespace NLog.UnitTests.Contexts
         {
             List<Exception> exceptions = new List<Exception>();
             ManualResetEvent mre = new ManualResetEvent(false);
-            int counter = 500;
+            int counter = 100;
             int remaining = counter;
 
             for (int i = 0; i < counter; ++i)
@@ -126,7 +126,7 @@ namespace NLog.UnitTests.Contexts
         {
             List<Exception> exceptions = new List<Exception>();
             ManualResetEvent mre = new ManualResetEvent(false);
-            int counter = 500;
+            int counter = 100;
             int remaining = counter;
 
             for (int i = 0; i < counter; ++i)

@@ -140,7 +140,7 @@ if (%1)==(buildtests) (
 
 if (%1)==(runtests) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:RunTests
-	set POST_BUILD_COMMAND="%~dp0src\LastTestRunSummary.cmd"
+	set POST_BUILD_COMMAND="%~dp0build\bin\LastTestRunSummary.cmd"
 	shift
 	goto next
 )

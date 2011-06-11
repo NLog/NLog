@@ -162,6 +162,10 @@
     <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\src\SmartDeviceTestRun.testrunConfig">
+      <Link>SmartDeviceTestRun.testrunConfig</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="NLogTests.snk" />
   </ItemGroup>
   <ItemGroup>

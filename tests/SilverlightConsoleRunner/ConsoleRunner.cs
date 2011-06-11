@@ -23,8 +23,20 @@
         public string XapFile { get; set; }
 
         public TextWriter LogWriter { get; set; }
+        public System.Threading.Timer timer;
 
         public string SilverlightVersion { get; set; }
+
+        public ConsoleRunner()
+        {
+            this.timer = new System.Threading.Timer(this.OnTimerElapsed);
+        }
+
+        private void OnTimerElapsed(object state)
+        {
+            Console.WriteLine("Timeout!");
+            this.StopRunner();
+        }
 
         public void Log(string message)
         {
@@ -74,6 +86,7 @@
                     {
                         form.Url = "http://localhost:" + httpServer.ListenPort + "/XapHost.html";
                         this.currentForm = form;
+                        this.ResetTimer();
                         form.ShowDialog();
                         this.currentForm = null;
                     }
@@ -81,6 +94,7 @@
                 else if (this.SilverlightVersion.StartsWith("WP"))
                 {
                     XapRunner.RunXap(this.XapFile, this.IconFile, this.AppGuid, this.DevicePlatformName, this.DeviceName);
+                    this.ResetTimer();
                 }
                 else
                 {
@@ -99,8 +113,15 @@
             }
         }
 
+        private void ResetTimer()
+        {
+            // 90 second timeout
+            this.timer.Change(90000, Timeout.Infinite);
+        }
+
         private void OnTestMethodCompleted(HttpListenerContext context)
         {
+            this.ResetTimer();
             ConsoleColor oldColor = Console.ForegroundColor;
             string result = context.Request.QueryString["result"];
             string methodName = context.Request.QueryString["method"];
@@ -132,6 +153,7 @@
 
         private void OnTestCompleted(HttpListenerContext context)
         {
+            this.ResetTimer();
             byte[] data = new byte[16384];
             int got;
 
@@ -144,6 +166,11 @@
             }
             
             context.Response.OutputStream.Close();
+            StopRunner();
+        }
+
+        private void StopRunner()
+        {
             if (this.currentForm != null)
             {
                 this.currentForm.Close();

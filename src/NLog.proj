@@ -38,6 +38,7 @@
     <ArchiveOutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Packages</ArchiveOutputPath>
     <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
     <WebsiteDir Condition="'$(WebsiteDir)' == ''">$(BaseOutputDirectory)\bin\$(Configuration)\Website</WebsiteDir>
+    <LastTestRunSummary>$(BaseOutputDirectory)\bin\LastTestRunSummary.cmd</LastTestRunSummary>
   </PropertyGroup>
 
   <!-- detect location of various SDKs and tools-->
@@ -235,7 +236,8 @@
              ContinueOnError="$(BuildAllFrameworks)" 
              Condition="Exists('..\tests\NLog.BinaryCompatTests\NLog.BinaryCompatTests%(TargetFramework.ProjectFileSuffix).csproj')" 
              StopOnFirstFailure="false" />
-
+    <CallTarget Targets="BuildTestResultSummaryTool" />
+    <CallTarget Targets="BuildSLTestRunner" />
     <CallTarget Targets="BuildNLogCTests" />
     <CallTarget Targets="BuildComApiTests" />
   </Target>
@@ -321,27 +323,27 @@
     <Exec Command="TaskKill /f /im DeviceEmulator.exe 2&gt; nul" IgnoreExitCode="true" />
   </Target>
 
-  <Target Name="SL2Test" DependsOnTargets="BuildSLTestRunner">
+  <Target Name="SL2Test">
     <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap SL2'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 2.0" IgnoreExitCode="true" />
   </Target>
 
-  <Target Name="SL3Test" DependsOnTargets="BuildSLTestRunner">
+  <Target Name="SL3Test">
     <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap SL3'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 3.0" IgnoreExitCode="true" />
   </Target>
 
-  <Target Name="SL4Test" DependsOnTargets="BuildSLTestRunner">
+  <Target Name="SL4Test">
     <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap SL4'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 4.0" IgnoreExitCode="true" />
   </Target>
 
-  <Target Name="WP7Test" DependsOnTargets="BuildSLTestRunner">
+  <Target Name="WP7Test">
     <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap WP7 -guid 3cf9fab9-588c-49c8-8a45-ef071442304f -icon ApplicationIcon.png'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight for Windows Phone 7" IgnoreExitCode="true" />
   </Target>
 
-  <Target Name="WP71Test" DependsOnTargets="BuildSLTestRunner">
+  <Target Name="WP71Test">
     <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap WP71 -guid 3cf9fab9-588c-49c8-8a45-ef071442304f -icon ApplicationIcon.png'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight for Windows Phone 7.1" IgnoreExitCode="true" />
   </Target>
@@ -360,12 +362,12 @@
     <Delete Files='$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\TestResults.trx' />
   </Target>
 
-  <Target Name="PrepareTestResultSummary" DependsOnTargets="BuildTestResultSummaryTool">
-    <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='@echo off' Overwrite="true" />
-    <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='echo ---------------------' />
-    <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='echo Test run summary:' />
-    <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='echo ---------------------' />
-    <WriteLinesToFile File="LastTestRunSummary.cmd" Lines='"$(DumpTestResultSummary)" "%(TargetFramework.Identity)" "$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\TestResults.trx" %*' />
+  <Target Name="PrepareTestResultSummary">
+    <WriteLinesToFile File="$(LastTestRunSummary)" Lines='@echo off' Overwrite="true" />
+    <WriteLinesToFile File="$(LastTestRunSummary)" Lines='echo ---------------------' />
+    <WriteLinesToFile File="$(LastTestRunSummary)" Lines='echo Test run summary:' />
+    <WriteLinesToFile File="$(LastTestRunSummary)" Lines='echo ---------------------' />
+    <WriteLinesToFile File="$(LastTestRunSummary)" Lines='"$(DumpTestResultSummary)" "%(TargetFramework.Identity)" "%~dp0$(Configuration)\%(TargetFramework.Identity)\TestResults.trx" %*' />
   </Target>
 
   <Target Name="BuildMergedDocumentation">
