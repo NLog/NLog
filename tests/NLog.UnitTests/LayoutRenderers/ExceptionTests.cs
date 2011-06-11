@@ -37,7 +37,9 @@ using System.Globalization;
 
 using NLog;
 using NLog.Config;
-
+using NLog.LayoutRenderers;
+using NLog.Layouts;
+using NLog.Targets;
 using NUnit.Framework;
 
 #if !NUNIT
@@ -174,12 +176,16 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=" + "\r\n----INNER----\r\n" + @":innerFormat=type,message}' />
+                    <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
                 </targets>
                 <rules>
                     <logger minlevel='Info' writeTo='debug1' />
                 </rules>
             </nlog>");
+
+            var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
+            var elr = ((SimpleLayout) t.Layout).Renderers[0] as ExceptionLayoutRenderer;
+            Assert.AreEqual("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
 
             string exceptionMessage = "Test exception";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
