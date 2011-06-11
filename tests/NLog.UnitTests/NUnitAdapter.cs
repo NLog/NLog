@@ -40,64 +40,64 @@ namespace NUnit.Framework
 
     internal class Assert
     {
-        public static void AreSame(object o1, object o2)
+        public static void AreSame(object expected, object actual)
         {
-            MSAssert.AreSame(o1, o2);
+            MSAssert.AreSame(expected, actual);
         }
 
-        public static void AreSame(object o1, object o2, string message)
+        public static void AreSame(object expected, object actual, string message)
         {
-            MSAssert.AreSame(o1, o2, message);
+            MSAssert.AreSame(expected, actual, message);
         }
 
-        public static void AreNotSame(object o1, object o2)
+        public static void AreNotSame(object expected, object actual)
         {
-            MSAssert.AreNotSame(o1, o2);
+            MSAssert.AreNotSame(expected, actual);
         }
 
-        public static void AreNotSame(object o1, object o2, string message)
+        public static void AreNotSame(object expected, object actual, string message)
         {
-            MSAssert.AreNotSame(o1, o2, message);
+            MSAssert.AreNotSame(expected, actual, message);
         }
 
-        public static void AreEqual(object o1, object o2)
+        public static void AreEqual(object expected, object actual)
         {
-            MSAssert.AreEqual(o1, o2);          
+            MSAssert.AreEqual(expected, actual);          
         }
 
-        public static void AreEqual(object o1, object o2, string message)
+        public static void AreEqual(object expected, object actual, string message)
         {
-            MSAssert.AreEqual(o1, o2, message);
+            MSAssert.AreEqual(expected, actual, message);
         }
 
-        public static void AreNotEqual(object o1, object o2)
+        public static void AreNotEqual(object expected, object actual)
         {
-            MSAssert.AreNotEqual(o1, o2);
+            MSAssert.AreNotEqual(expected, actual);
         }
 
-        public static void AreNotEqual(object o1, object o2, string message)
+        public static void AreNotEqual(object expected, object actual, string message)
         {
-            MSAssert.AreNotEqual(o1, o2, message);
+            MSAssert.AreNotEqual(expected, actual, message);
         }
 
-        public static void IsNull(object o)
+        public static void IsNull(object value)
         {
-            MSAssert.IsNull(o);
+            MSAssert.IsNull(value);
         }
 
-        public static void IsNull(object o, string message)
+        public static void IsNull(object value, string message)
         {
-            MSAssert.IsNull(o, message);
+            MSAssert.IsNull(value, message);
         }
 
-        public static void IsNotNull(object o)
+        public static void IsNotNull(object value)
         {
-            MSAssert.IsNotNull(o);
+            MSAssert.IsNotNull(value);
         }
 
-        public static void IsNotNull(object o, string message)
+        public static void IsNotNull(object value, string message)
         {
-            MSAssert.IsNotNull(o, message);
+            MSAssert.IsNotNull(value, message);
         }
 
         public static void IsTrue(bool value)
@@ -110,9 +110,9 @@ namespace NUnit.Framework
             MSAssert.IsTrue(value, message);
         }
 
-        public static void IsInstanceOfType(Type type, object o)
+        public static void IsInstanceOfType(Type type, object value)
         {
-            MSAssert.IsInstanceOfType(o, type);
+            MSAssert.IsInstanceOfType(value, type);
         }
 
         public static void Fail(string errorMessage)
@@ -123,6 +123,11 @@ namespace NUnit.Framework
         public static void IsFalse(bool value)
         {
             MSAssert.IsFalse(value);
+        }
+
+        public static void IsFalse(bool value, string message)
+        {
+            MSAssert.IsFalse(value, message);
         }
     }
 }
