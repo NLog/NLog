@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.netfx20", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.netfx20", "..\tests\SampleExtensions\SampleExtensions.netfx20.csproj", "{1653EE05-2720-4A85-BF14-74C4593787B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallNLogConfig.netfx20", "..\tools\InstallNLogConfig\InstallNLogConfig.netfx20.csproj", "{0CF95BE4-0546-4CE9-AB49-B9E5DA599EAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallNLogConfig.netfx20", "InstallNLogConfig\InstallNLogConfig.netfx20.csproj", "{0CF95BE4-0546-4CE9-AB49-B9E5DA599EAA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.netfx20", "NLog.Extended\NLog.Extended.netfx20.csproj", "{F801A1F9-1024-4446-BF9E-A923137340B8}"
 EndProject

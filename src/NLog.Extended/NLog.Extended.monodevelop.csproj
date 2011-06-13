@@ -83,4 +83,9 @@
       <Name>NLog.monodevelop</Name>
     </ProjectReference>
   </ItemGroup>
+  <Target Name="BeforeBuild">
+    <ItemGroup Condition="Exists('$(BuildInfoFile)')">
+      <Compile Include="$(BuildInfoFile)" />
+    </ItemGroup>
+  </Target>
 </Project>

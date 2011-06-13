@@ -2,13 +2,20 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
 
   <PropertyGroup>
+    <BuildLabel>PrivateBuild</BuildLabel>
+    <BuildLabel Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildLabel>
+    <BuildVersion>2.0.0.9999</BuildVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(CCNetLabel)' != '' and '$(MSBuildToolsVersion)'!='3.5'">
+    <BuildVersion>2.0.$(CCNetLabel.Substring(3,1))$(CCNetLabel.Substring(5,2))$(CCNetLabel.Substring(8,2)).$(CCNetLabel.Substring(11,3))</BuildVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
     <BaseOutputDirectory>$(MSBuildProjectDirectory)\..\build\</BaseOutputDirectory>
     <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
     <FrameworksPath>$(MSBuildProjectDirectory)\Frameworks</FrameworksPath>    
-    <BuildLabel>PrivateBuild</BuildLabel>
-    <BuildLabel Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildLabel>
-    <BuildVersion>0.0.0.0</BuildVersion>
     <BuildAllFrameworks>true</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildMono2)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL2)' == 'true'">false</BuildAllFrameworks>
@@ -38,6 +45,7 @@
     <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
     <WebsiteDir Condition="'$(WebsiteDir)' == ''">$(BaseOutputDirectory)\bin\$(Configuration)\Website</WebsiteDir>
     <LastTestRunSummary>$(BaseOutputDirectory)\bin\LastTestRunSummary.cmd</LastTestRunSummary>
+    <BuildInfoFile>$(BaseOutputDirectory)\obj\BuildInfo.cs</BuildInfoFile>
   </PropertyGroup>
 
   <!-- detect location of various SDKs and tools-->
@@ -188,22 +196,44 @@
   </Target>
 
   <Target Name="Build">
+    <PropertyGroup>
+        <BuildInfoFileContent>
+#if !NET_CF
+
+// automatically generated
+[assembly: System.Reflection.AssemblyFileVersion("$(BuildVersion)")]
+
+#endif
+
+</BuildInfoFileContent>
+    </PropertyGroup>
+
+    <MakeDir Directories="$(BaseOutputDirectory)\obj" />
+
+    <ReadLinesFromFile File="$(BuildInfoFile)" Condition="Exists('$(BuildInfoFile)')">
+        <Output TaskParameter="Lines" ItemName="CurrentBuildInfoFileContent" />
+    </ReadLinesFromFile>
+
+    <WriteLinesToFile File="$(BuildInfoFile)" 
+            Lines='$(BuildInfoFileContent)'
+            Overwrite="true" 
+            Condition="'$(BuildInfoFileContent)' != '@(CurrentBuildInfoFileContent)' " />
     <MSBuild Projects="NLog\NLog%(TargetFramework.ProjectFileSuffix).csproj" 
              Targets="Build" 
-             Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
+             Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory);BuildInfoFile=$(BuildInfoFile)" 
              ToolsVersion="%(TargetFramework.ToolsVersion)" 
              ContinueOnError="$(BuildAllFrameworks)" 
              StopOnFirstFailure="false" />
     <MSBuild Projects="NLog.Extended\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj" 
              Targets="Build" 
-             Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
+             Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory);BuildInfoFile=$(BuildInfoFile)" 
              ToolsVersion="%(TargetFramework.ToolsVersion)" 
              ContinueOnError="$(BuildAllFrameworks)" 
              StopOnFirstFailure="false"
              Condition="Exists('NLog.Extended\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj')" />
-    <MSBuild Projects="..\tools\InstallNLogConfig\InstallNLogConfig%(TargetFramework.ProjectFileSuffix).csproj" 
+    <MSBuild Projects="InstallNLogConfig\InstallNLogConfig%(TargetFramework.ProjectFileSuffix).csproj" 
              Targets="Build" 
-             Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
+             Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory);BuildInfoFile=$(BuildInfoFile)" 
              ToolsVersion="%(TargetFramework.ToolsVersion)" 
              ContinueOnError="$(BuildAllFrameworks)" 
              StopOnFirstFailure="false"
