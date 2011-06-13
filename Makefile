@@ -55,6 +55,15 @@ mergeapitool:
 builddocpagestool:
 	$(XBUILD) tools/BuildDocPages/BuildDocPages.csproj /p:Configuration=$(CONFIG)  
 
+syncprojectitemstool:
+	$(XBUILD) tools/SyncProjectItems/SyncProjectItems.csproj /p:Configuration=$(CONFIG)  
+
+syncprojectitems: syncprojectitemstool
+	(cd src/NLog && mono ../../build/bin/Tools/SyncProjectItems.exe ProjectFileInfo.xml)
+	(cd src/NLog.Extended && mono ../../build/bin/Tools/SyncProjectItems.exe ProjectFileInfo.xml)
+	(cd tests/NLog.UnitTests && mono ../../build/bin/Tools/SyncProjectItems.exe ProjectFileInfo.xml)
+	(cd tests/SampleExtensions && mono ../../build/bin/Tools/SyncProjectItems.exe ProjectFileInfo.xml)
+
 dumpapi: dumpapitool mergeapitool buildnlog
 	(cd $(OUTPUT_DIR) && mono ../../Tools/DumpApiXml.exe -comments NLog.xml -assembly NLog.dll -assembly NLog.Extended.dll -ref $(MONO_LIB_DIR) -output API/NLog.api)
 	(mono build/bin/Tools/MergeApiXml.exe "build/bin/$(CONFIG)")
