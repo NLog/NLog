@@ -435,9 +435,15 @@ namespace NLog
                 {
                     this.formattedMessage = string.Format(this.FormatProvider ?? CultureInfo.CurrentCulture, this.Message, this.Parameters);
                 }
-                catch
+                catch (Exception exception)
                 {
                     this.formattedMessage = this.Message;
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+
+                    InternalLogger.Warn("Error when formatting a message: {0}", exception);
                 }
             }
         }
