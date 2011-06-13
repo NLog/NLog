@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !WINDOWS_PHONE
+#if !WINDOWS_PHONE_7
 
 namespace NLog.UnitTests.Targets
 {

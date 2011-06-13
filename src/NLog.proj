@@ -22,8 +22,7 @@
     <BuildAllFrameworks Condition="'$(BuildNetCF20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
     <ToolsDir>$(MSBuildProjectDirectory)\..\build\bin\Tools</ToolsDir>
-    <SLTestRunner>$(MSBuildProjectDirectory)\..\build\bin\Tools\SilverlightConsoleRunner.exe</SLTestRunner>
-    <DumpTestResultSummary>$(ToolsDir)\DumpTestResultSummary.exe</DumpTestResultSummary>
+    <SLTestRunner>$(BaseOutputDirectory)\bin\Tools\SilverlightConsoleRunner.exe</SLTestRunner>
     <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
     <DumpApiXml>$(ToolsDir)\DumpApiXml.exe</DumpApiXml>
     <MergeApiXml>$(ToolsDir)\MergeApiXml.exe</MergeApiXml>
@@ -367,7 +366,7 @@
     <WriteLinesToFile File="$(LastTestRunSummary)" Lines='echo ---------------------' />
     <WriteLinesToFile File="$(LastTestRunSummary)" Lines='echo Test run summary:' />
     <WriteLinesToFile File="$(LastTestRunSummary)" Lines='echo ---------------------' />
-    <WriteLinesToFile File="$(LastTestRunSummary)" Lines='"$(DumpTestResultSummary)" "%(TargetFramework.Identity)" "%~dp0$(Configuration)\%(TargetFramework.Identity)\TestResults.trx" %*' />
+    <WriteLinesToFile File="$(LastTestRunSummary)" Lines='%~dp0Tools\DumpTestResultSummary.exe "%(TargetFramework.Identity)" "%~dp0$(Configuration)\%(TargetFramework.Identity)\TestResults.trx" %*' />
   </Target>
 
   <Target Name="BuildMergedDocumentation">

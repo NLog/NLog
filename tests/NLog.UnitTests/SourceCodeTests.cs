@@ -84,7 +84,7 @@ namespace NLog.UnitTests
         public void Initialize()
         {
             this.sourceCodeDirectory = Directory.GetCurrentDirectory();
-            while (true)
+            while (this.sourceCodeDirectory != null)
             {
                 this.licenseFile = Path.Combine(sourceCodeDirectory, "LICENSE.txt");
                 if (File.Exists(licenseFile))
@@ -95,12 +95,20 @@ namespace NLog.UnitTests
                 this.sourceCodeDirectory = Path.GetDirectoryName(this.sourceCodeDirectory);
             }
 
-            this.licenseLines = File.ReadAllLines(this.licenseFile);
+            if (this.sourceCodeDirectory != null)
+            {
+                this.licenseLines = File.ReadAllLines(this.licenseFile);
+            }
         }
 
         [Test]
         public void VerifyFileHeaders()
         {
+            if (this.sourceCodeDirectory == null)
+            {
+                return;
+            }
+
             int failedFiles = 0;
 
             foreach (string dir in directoriesToVerify)
@@ -129,6 +137,11 @@ namespace NLog.UnitTests
         [Test]
         public void VerifyProjectsInSync()
         {
+            if (this.sourceCodeDirectory == null)
+            {
+                return;
+            }
+
             int failures = 0;
             var filesToCompile = new List<string>();
 
@@ -231,6 +244,11 @@ namespace NLog.UnitTests
         [Test]
         public void VerifyNamespacesAndClassNames()
         {
+            if (this.sourceCodeDirectory == null)
+            {
+                return;
+            }
+
             int failedFiles = 0;
 
             foreach (string dir in directoriesToVerify)

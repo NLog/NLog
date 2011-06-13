@@ -201,6 +201,13 @@ if (%1)==(label) (
 	goto next
 )
 
+if (%1)==(buildpath) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BaseOutputDirectory=%2
+	shift
+	shift
+	goto next
+)
+
 if (%1)==(websitedir) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:WebsiteDir=%2
 	shift
@@ -266,6 +273,7 @@ echo  xsd                NLog.xsd Intellisense files
 echo  installer          Installer
 echo  tools              Tools
 echo  label {suffix}     Define build label (defaults to 'PrivateBuild')
+echo  buildpath {dir}    Set build directory.
 exit /b 1
 
 :build

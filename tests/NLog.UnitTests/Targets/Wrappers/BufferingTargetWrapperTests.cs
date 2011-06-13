@@ -207,7 +207,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(0, myTarget.WriteCount);
 
             // sleep 2 seconds, this will trigger the timer and flush all events
-            Thread.Sleep(2000);
+            Thread.Sleep(4000);
             Assert.AreEqual(9, hitCount);
             Assert.AreEqual(1, myTarget.BufferedWriteCount);
             Assert.AreEqual(9, myTarget.BufferedTotalEvents);

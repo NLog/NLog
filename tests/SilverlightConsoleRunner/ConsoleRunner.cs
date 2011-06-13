@@ -115,8 +115,7 @@
 
         private void ResetTimer()
         {
-            // 90 second timeout
-            this.timer.Change(90000, Timeout.Infinite);
+            this.timer.Change(180000, Timeout.Infinite);
         }
 
         private void OnTestMethodCompleted(HttpListenerContext context)
