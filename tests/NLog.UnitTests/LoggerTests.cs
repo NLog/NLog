@@ -1181,6 +1181,24 @@ namespace NLog.UnitTests
             }
         }
 
+        [Test]
+        public void StringFormatWillNotCauseExceptions()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                    <nlog throwExceptions='true'>
+                        <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                        <rules>
+                            <logger name='*' minLevel='Info' writeTo='debug' />
+                        </rules>
+                    </nlog>");
+
+            Logger l = LogManager.GetLogger("StringFormatWillNotCauseExceptions");
+
+            // invalid format string
+            l.Info("aaaa {0");
+            AssertDebugLastMessage("debug", "aaaa {0");
+        }
+
         public override string ToString()
         {
             return "object-to-string";

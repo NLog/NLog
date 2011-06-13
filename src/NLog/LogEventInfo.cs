@@ -431,7 +431,14 @@ namespace NLog
             }
             else
             {
-                this.formattedMessage = string.Format(this.FormatProvider ?? CultureInfo.CurrentCulture, this.Message, this.Parameters);
+                try
+                {
+                    this.formattedMessage = string.Format(this.FormatProvider ?? CultureInfo.CurrentCulture, this.Message, this.Parameters);
+                }
+                catch
+                {
+                    this.formattedMessage = this.Message;
+                }
             }
         }
 
