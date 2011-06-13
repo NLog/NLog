@@ -2,13 +2,11 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
 
   <PropertyGroup>
-    <BuildLabel>PrivateBuild</BuildLabel>
+    <MajorMinorVersion>2.0</MajorMinorVersion>
+    <BuildLabel Condition=" '$(BuildLabel)'=='' ">PrivateBuild</BuildLabel>
     <BuildLabel Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildLabel>
-    <BuildVersion>2.0.0.9999</BuildVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(CCNetLabel)' != '' and '$(MSBuildToolsVersion)'!='3.5'">
-    <BuildVersion>2.0.$(CCNetLabel.Substring(3,1))$(CCNetLabel.Substring(5,2))$(CCNetLabel.Substring(8,2)).$(CCNetLabel.Substring(11,3))</BuildVersion>
+    <BuildVersion>2.0.0.0</BuildVersion>
+    <BuildProductName>NLog v$(MajorMinorVersion) ($(BuildLabel))</BuildProductName>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -198,13 +196,8 @@
   <Target Name="Build">
     <PropertyGroup>
         <BuildInfoFileContent>
-#if !NET_CF
-
 // automatically generated
-[assembly: System.Reflection.AssemblyFileVersion("$(BuildVersion)")]
-
-#endif
-
+[assembly: System.Reflection.AssemblyProduct("$(BuildProductName)")]
 </BuildInfoFileContent>
     </PropertyGroup>
 
@@ -237,7 +230,7 @@
              ToolsVersion="%(TargetFramework.ToolsVersion)" 
              ContinueOnError="$(BuildAllFrameworks)" 
              StopOnFirstFailure="false"
-             Condition="Exists('..\tools\InstallNLogConfig\InstallNLogConfig%(TargetFramework.ProjectFileSuffix).csproj')" />
+             Condition="Exists('InstallNLogConfig\InstallNLogConfig%(TargetFramework.ProjectFileSuffix).csproj')" />
 
     <CallTarget Targets="BuildNLogC" />
   </Target>

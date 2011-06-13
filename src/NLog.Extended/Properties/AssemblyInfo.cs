@@ -53,7 +53,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("NLog")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NLog")]
-[assembly: AssemblyProduct("NLog - Advanced .NET Logging")]
 [assembly: AssemblyCopyright("Copyright (c) 2004-2010 by Jaroslaw Kowalski")]
 [assembly: AssemblyCulture("")]
 
