@@ -448,7 +448,7 @@
   </Target>
 
   <Target Name="BuildSLTestRunner">
-    <MSBuild Projects="..\tests\SilverlightConsoleRunner\SilverlightConsoleRunner.csproj" />
+    <MSBuild Projects="..\tools\SilverlightConsoleRunner\SilverlightConsoleRunner.csproj" />
   </Target>
 
   <Target Name="BuildTestResultSummaryTool">
@@ -557,7 +557,7 @@
     <ProjectsToCleanup Include="..\tests\NLog.UnitTests.Web" />
     <ProjectsToCleanup Include="..\tests\NLog.VBTest" />
     <ProjectsToCleanup Include="..\tests\NLogC.Tests" />
-    <ProjectsToCleanup Include="..\tests\SilverlightConsoleRunner" />
+    <ProjectsToCleanup Include="..\tools\SilverlightConsoleRunner" />
     <ProjectsToCleanup Include="..\tools\MakeNLogXSD" />
     <ProjectsToCleanup Include="..\tools\DeployNetCF" />
     <ProjectsToCleanup Include="..\tools\DumpTestResultSummary" />
