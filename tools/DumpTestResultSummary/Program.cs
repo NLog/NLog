@@ -52,15 +52,8 @@ namespace DumpTestResultSummary
                     return 1;
                 }
 
+                string label = args[0];
                 string trxFileName = args[1];
-                if (!File.Exists(trxFileName))
-                {
-                    Console.Write(args[0].PadRight(35));
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("TRX file not found!");
-                    return 0;
-                }
-
                 if (args.Length >= 3)
                 {
                     if (!Enum.TryParse(args[2], true, out mode))
@@ -70,11 +63,14 @@ namespace DumpTestResultSummary
                     }
                 }
 
-                XElement element = XElement.Load(trxFileName);
-                var analyzer = new MSTestResultsFileAnalyzer(element.Name.Namespace);
-                analyzer.Label = args[0];
-                analyzer.Mode = mode;
-                analyzer.DumpSummary(element);
+                if (label == "all")
+                {
+                    ProcessDirectory(trxFileName, mode);
+                }
+                else
+                {
+                    ProcessSingleTrxFile(trxFileName, label, mode);
+                }
 
                 return 0;
             }
@@ -83,6 +79,44 @@ namespace DumpTestResultSummary
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("ERROR: {0}", ex);
                 return 1;
+            }
+            finally
+            {
+                Console.ForegroundColor = oldColor;
+            }
+        }
+
+        private static void ProcessDirectory(string parentDirectory, AnalysisMode mode)
+        {
+            foreach (string subDir in Directory.GetDirectories(parentDirectory))
+            {
+                if (Directory.GetFiles(subDir, "*.UnitTests.dll").Length > 0)
+                {
+                    string trxFile = Path.Combine(subDir, "TestResults.trx");
+                    ProcessSingleTrxFile(trxFile, Path.GetFileName(subDir), mode);
+                }
+            }
+        }
+
+        private static void ProcessSingleTrxFile(string trxFileName, string label, AnalysisMode mode)
+        {
+            var oldColor = Console.ForegroundColor;
+            try
+            {
+                if (!File.Exists(trxFileName))
+                {
+                    Console.Write(label.PadRight(35));
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("TRX file not found!");
+                }
+                else
+                {
+                    XElement element = XElement.Load(trxFileName);
+                    var analyzer = new MSTestResultsFileAnalyzer(element.Name.Namespace);
+                    analyzer.Label = label;
+                    analyzer.Mode = mode;
+                    analyzer.DumpSummary(element);
+                }
             }
             finally
             {
