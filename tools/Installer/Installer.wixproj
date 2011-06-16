@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
      <WPInclude Include="Include_WP7" />
+     <WPInclude Include="Include_WP71" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
