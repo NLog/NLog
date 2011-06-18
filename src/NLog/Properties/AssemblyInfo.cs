@@ -67,7 +67,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("NLog")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NLog")]
-[assembly: AssemblyCopyright("Copyright (c) 2004-2010 by Jaroslaw Kowalski")]
+[assembly: AssemblyCopyright("Copyright (c) 2004-2011 by Jaroslaw Kowalski")]
 [assembly: AssemblyCulture("")]
 
 [assembly: CLSCompliant(true)]
