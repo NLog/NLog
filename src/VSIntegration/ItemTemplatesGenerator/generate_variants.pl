@@ -27,7 +27,7 @@ sub replace_in_file
     rename("$file.tmp", $file);
 }
 
-@projectTypes = ('Empty','Typical','Console');
+@projectTypes = ('Empty','File','Console','LogReceiver','NLogViewer');
 @languages = ('CSharp', 'VisualBasic');
 
 for $projectType (@projectTypes)

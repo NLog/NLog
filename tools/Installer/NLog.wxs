@@ -667,7 +667,9 @@
         <Component Id="VS2005_CSharpItemTemplates" Guid="bec2a07e-1955-34cf-65df-adfe91d15f86">
           <File Id="VS2005_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2005_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2005_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2005_CSharpFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2005_CSharpLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2005_CSharpNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -679,7 +681,9 @@
         <Component Id="VS2005_VBItemTemplates" Guid="4ba4d24e-b7e7-3c39-82cf-b91261266665">
           <File Id="VS2005_VBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2005_VBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2005_VBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2005_VBFileNLogConfig.zip" Name="VisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2005_VBLogReceiverNLogConfig.zip" Name="VisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2005_VBNLogViewerNLogConfig.zip" Name="VisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -691,7 +695,9 @@
         <Component Id="VS2005_WebCSharpItemTemplates" Guid="bd7eb0d9-352c-3a14-5114-a9b09a5c630a">
           <File Id="VS2005_WebCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
           <File Id="VS2005_WebCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
-          <File Id="VS2005_WebCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+          <File Id="VS2005_WebCSharpFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="WebNLog3.zip" />
+          <File Id="VS2005_WebCSharpLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="WebNLog4.zip" />
+          <File Id="VS2005_WebCSharpNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="WebNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -703,7 +709,9 @@
         <Component Id="VS2005_WebVBItemTemplates" Guid="bce3a5d0-8289-3521-444e-1561db6e7632">
           <File Id="VS2005_WebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2005_WebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2005_WebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2005_WebVBFileNLogConfig.zip" Name="WebVisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2005_WebVBLogReceiverNLogConfig.zip" Name="WebVisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2005_WebVBNLogViewerNLogConfig.zip" Name="WebVisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -715,7 +723,9 @@
         <Component Id="VS2005_CSharpExpressItemTemplates" Guid="fcc8ecab-eb0f-3fd1-907a-dd20f10674aa">
           <File Id="VS2005_CSharpExpressConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2005_CSharpExpressEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2005_CSharpExpressTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2005_CSharpExpressFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2005_CSharpExpressLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2005_CSharpExpressNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -727,7 +737,9 @@
         <Component Id="VS2005_VBExpressItemTemplates" Guid="616566a3-41bf-3146-c577-9ef2d971be3f">
           <File Id="VS2005_VBExpressConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2005_VBExpressEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2005_VBExpressTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2005_VBExpressFileNLogConfig.zip" Name="VisualBasicFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2005_VBExpressLogReceiverNLogConfig.zip" Name="VisualBasicLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2005_VBExpressNLogViewerNLogConfig.zip" Name="VisualBasicNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -739,7 +751,9 @@
         <Component Id="VS2005_VWDCSharpItemTemplates" Guid="9c231e77-7f4c-3cd7-fd67-9685e7221b1d">
           <File Id="VS2005_VWDCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2005_VWDCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2005_VWDCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2005_VWDCSharpFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2005_VWDCSharpLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2005_VWDCSharpNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -751,7 +765,9 @@
         <Component Id="VS2005_VWDVBItemTemplates" Guid="73379237-052f-3021-2f74-6e13e286c1f3">
           <File Id="VS2005_VWDVBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2005_VWDVBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2005_VWDVBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2005_VWDVBFileNLogConfig.zip" Name="VisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2005_VWDVBLogReceiverNLogConfig.zip" Name="VisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2005_VWDVBNLogViewerNLogConfig.zip" Name="VisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -763,7 +779,9 @@
         <Component Id="VS2005_VWDWebCSharpItemTemplates" Guid="44879518-8128-3870-ec90-8d729a2f0267">
           <File Id="VS2005_VWDWebCSharpConsoleNLogConfig.zip" Name="WebCSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
           <File Id="VS2005_VWDWebCSharpEmptyNLogConfig.zip" Name="WebCSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
-          <File Id="VS2005_VWDWebCSharpTypicalNLogConfig.zip" Name="WebCSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+          <File Id="VS2005_VWDWebCSharpFileNLogConfig.zip" Name="WebCSharpFileNLogConfig.zip" ShortName="WebNLog3.zip" />
+          <File Id="VS2005_VWDWebCSharpLogReceiverNLogConfig.zip" Name="WebCSharpLogReceiverNLogConfig.zip" ShortName="WebNLog4.zip" />
+          <File Id="VS2005_VWDWebCSharpNLogViewerNLogConfig.zip" Name="WebCSharpNLogViewerNLogConfig.zip" ShortName="WebNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -775,7 +793,9 @@
         <Component Id="VS2005_VWDWebVBItemTemplates" Guid="ee7127b9-b7b5-31e7-3d93-8286711ee07f">
           <File Id="VS2005_VWDWebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2005_VWDWebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2005_VWDWebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2005_VWDWebVBFileNLogConfig.zip" Name="WebVisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2005_VWDWebVBLogReceiverNLogConfig.zip" Name="WebVisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2005_VWDWebVBNLogViewerNLogConfig.zip" Name="WebVisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -846,7 +866,9 @@
         <Component Id="VS2008_CSharpItemTemplates" Guid="698095ee-b1a7-3801-e429-b0896d6b82a3">
           <File Id="VS2008_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2008_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2008_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2008_CSharpFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2008_CSharpLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2008_CSharpNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -858,7 +880,9 @@
         <Component Id="VS2008_VBItemTemplates" Guid="5475ef1e-d8b5-385d-4977-0d25d2a3a49b">
           <File Id="VS2008_VBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2008_VBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2008_VBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2008_VBFileNLogConfig.zip" Name="VisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2008_VBLogReceiverNLogConfig.zip" Name="VisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2008_VBNLogViewerNLogConfig.zip" Name="VisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -870,7 +894,9 @@
         <Component Id="VS2008_WebCSharpItemTemplates" Guid="7e28b39b-37d8-357f-eee3-934ff5457c8b">
           <File Id="VS2008_WebCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
           <File Id="VS2008_WebCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
-          <File Id="VS2008_WebCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+          <File Id="VS2008_WebCSharpFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="WebNLog3.zip" />
+          <File Id="VS2008_WebCSharpLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="WebNLog4.zip" />
+          <File Id="VS2008_WebCSharpNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="WebNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -882,7 +908,9 @@
         <Component Id="VS2008_WebVBItemTemplates" Guid="e01d37e8-778e-3498-7204-f03f494d343e">
           <File Id="VS2008_WebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2008_WebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2008_WebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2008_WebVBFileNLogConfig.zip" Name="WebVisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2008_WebVBLogReceiverNLogConfig.zip" Name="WebVisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2008_WebVBNLogViewerNLogConfig.zip" Name="WebVisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -894,7 +922,9 @@
         <Component Id="VS2008_CSharpExpressItemTemplates" Guid="e18f787f-f70a-393e-59e6-70b4c8a5a489">
           <File Id="VS2008_CSharpExpressConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2008_CSharpExpressEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2008_CSharpExpressTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2008_CSharpExpressFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2008_CSharpExpressLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2008_CSharpExpressNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -906,7 +936,9 @@
         <Component Id="VS2008_VBExpressItemTemplates" Guid="403fdc7d-344c-315d-0013-8e1098bce94b">
           <File Id="VS2008_VBExpressConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2008_VBExpressEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2008_VBExpressTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2008_VBExpressFileNLogConfig.zip" Name="VisualBasicFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2008_VBExpressLogReceiverNLogConfig.zip" Name="VisualBasicLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2008_VBExpressNLogViewerNLogConfig.zip" Name="VisualBasicNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -918,7 +950,9 @@
         <Component Id="VS2008_VWDCSharpItemTemplates" Guid="34594a86-7202-3c5a-667d-81511345b855">
           <File Id="VS2008_VWDCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2008_VWDCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2008_VWDCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2008_VWDCSharpFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2008_VWDCSharpLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2008_VWDCSharpNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -930,7 +964,9 @@
         <Component Id="VS2008_VWDVBItemTemplates" Guid="d3138234-2f93-3acf-e956-0370947ba131">
           <File Id="VS2008_VWDVBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2008_VWDVBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2008_VWDVBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2008_VWDVBFileNLogConfig.zip" Name="VisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2008_VWDVBLogReceiverNLogConfig.zip" Name="VisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2008_VWDVBNLogViewerNLogConfig.zip" Name="VisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -942,7 +978,9 @@
         <Component Id="VS2008_VWDWebCSharpItemTemplates" Guid="20f7e565-6ce7-3088-6943-b8d3a528d878">
           <File Id="VS2008_VWDWebCSharpConsoleNLogConfig.zip" Name="WebCSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
           <File Id="VS2008_VWDWebCSharpEmptyNLogConfig.zip" Name="WebCSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
-          <File Id="VS2008_VWDWebCSharpTypicalNLogConfig.zip" Name="WebCSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+          <File Id="VS2008_VWDWebCSharpFileNLogConfig.zip" Name="WebCSharpFileNLogConfig.zip" ShortName="WebNLog3.zip" />
+          <File Id="VS2008_VWDWebCSharpLogReceiverNLogConfig.zip" Name="WebCSharpLogReceiverNLogConfig.zip" ShortName="WebNLog4.zip" />
+          <File Id="VS2008_VWDWebCSharpNLogViewerNLogConfig.zip" Name="WebCSharpNLogViewerNLogConfig.zip" ShortName="WebNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -954,7 +992,9 @@
         <Component Id="VS2008_VWDWebVBItemTemplates" Guid="cce8be35-02ab-38b8-5196-28889584443e">
           <File Id="VS2008_VWDWebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2008_VWDWebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2008_VWDWebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2008_VWDWebVBFileNLogConfig.zip" Name="WebVisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2008_VWDWebVBLogReceiverNLogConfig.zip" Name="WebVisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2008_VWDWebVBNLogViewerNLogConfig.zip" Name="WebVisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -1025,7 +1065,9 @@
         <Component Id="VS2010_CSharpItemTemplates" Guid="7eeb1c47-bcd8-3f4a-043b-ab91ed2f9462">
           <File Id="VS2010_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2010_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2010_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2010_CSharpFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2010_CSharpLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2010_CSharpNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -1037,7 +1079,9 @@
         <Component Id="VS2010_VBItemTemplates" Guid="538dd73c-e055-3550-0b96-98a9ac663993">
           <File Id="VS2010_VBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2010_VBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2010_VBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2010_VBFileNLogConfig.zip" Name="VisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2010_VBLogReceiverNLogConfig.zip" Name="VisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2010_VBNLogViewerNLogConfig.zip" Name="VisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -1049,7 +1093,9 @@
         <Component Id="VS2010_WebCSharpItemTemplates" Guid="ea1abf0f-a324-3888-a854-41dccf43cd18">
           <File Id="VS2010_WebCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
           <File Id="VS2010_WebCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
-          <File Id="VS2010_WebCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+          <File Id="VS2010_WebCSharpFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="WebNLog3.zip" />
+          <File Id="VS2010_WebCSharpLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="WebNLog4.zip" />
+          <File Id="VS2010_WebCSharpNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="WebNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -1061,7 +1107,9 @@
         <Component Id="VS2010_WebVBItemTemplates" Guid="c59449fc-2dc3-3cbc-1a62-f4cf5b38d61d">
           <File Id="VS2010_WebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2010_WebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2010_WebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2010_WebVBFileNLogConfig.zip" Name="WebVisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2010_WebVBLogReceiverNLogConfig.zip" Name="WebVisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2010_WebVBNLogViewerNLogConfig.zip" Name="WebVisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -1073,7 +1121,9 @@
         <Component Id="VS2010_CSharpExpressItemTemplates" Guid="9871772a-72b4-34df-c00c-33291f8f1c8e">
           <File Id="VS2010_CSharpExpressConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2010_CSharpExpressEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2010_CSharpExpressTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2010_CSharpExpressFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2010_CSharpExpressLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2010_CSharpExpressNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -1085,7 +1135,9 @@
         <Component Id="VS2010_VBExpressItemTemplates" Guid="64316816-82f4-3f6b-1db2-1f8cce29f0b3">
           <File Id="VS2010_VBExpressConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2010_VBExpressEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2010_VBExpressTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2010_VBExpressFileNLogConfig.zip" Name="VisualBasicFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2010_VBExpressLogReceiverNLogConfig.zip" Name="VisualBasicLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2010_VBExpressNLogViewerNLogConfig.zip" Name="VisualBasicNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -1097,7 +1149,9 @@
         <Component Id="VS2010_VWDCSharpItemTemplates" Guid="1e3e334a-2174-3ccc-a149-2270f21efd59">
           <File Id="VS2010_VWDCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2010_VWDCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2010_VWDCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2010_VWDCSharpFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2010_VWDCSharpLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2010_VWDCSharpNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -1109,7 +1163,9 @@
         <Component Id="VS2010_VWDVBItemTemplates" Guid="f389e076-8c52-3db7-a3f8-b56fc69cffc0">
           <File Id="VS2010_VWDVBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2010_VWDVBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2010_VWDVBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2010_VWDVBFileNLogConfig.zip" Name="VisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2010_VWDVBLogReceiverNLogConfig.zip" Name="VisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2010_VWDVBNLogViewerNLogConfig.zip" Name="VisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -1121,7 +1177,9 @@
         <Component Id="VS2010_VWDWebCSharpItemTemplates" Guid="88592ed0-7409-30eb-de4e-325c320bb5ae">
           <File Id="VS2010_VWDWebCSharpConsoleNLogConfig.zip" Name="WebCSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
           <File Id="VS2010_VWDWebCSharpEmptyNLogConfig.zip" Name="WebCSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
-          <File Id="VS2010_VWDWebCSharpTypicalNLogConfig.zip" Name="WebCSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+          <File Id="VS2010_VWDWebCSharpFileNLogConfig.zip" Name="WebCSharpFileNLogConfig.zip" ShortName="WebNLog3.zip" />
+          <File Id="VS2010_VWDWebCSharpLogReceiverNLogConfig.zip" Name="WebCSharpLogReceiverNLogConfig.zip" ShortName="WebNLog4.zip" />
+          <File Id="VS2010_VWDWebCSharpNLogViewerNLogConfig.zip" Name="WebCSharpNLogViewerNLogConfig.zip" ShortName="WebNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -1133,7 +1191,9 @@
         <Component Id="VS2010_VWDWebVBItemTemplates" Guid="b7da3196-df4c-3824-dee3-8842021f2e07">
           <File Id="VS2010_VWDWebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2010_VWDWebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2010_VWDWebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2010_VWDWebVBFileNLogConfig.zip" Name="WebVisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2010_VWDWebVBLogReceiverNLogConfig.zip" Name="WebVisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2010_VWDWebVBNLogViewerNLogConfig.zip" Name="WebVisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -1147,7 +1207,9 @@
         <Component Id="VS2010_VPDCSharpItemTemplates" Guid="2cf5d6bf-7d65-31c2-b9d5-81ee685ba26f">
           <File Id="VS2010_VPDCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
           <File Id="VS2010_VPDCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS2010_VPDCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2010_VPDCSharpFileNLogConfig.zip" Name="CSharpFileNLogConfig.zip" ShortName="NLog3.zip" />
+          <File Id="VS2010_VPDCSharpLogReceiverNLogConfig.zip" Name="CSharpLogReceiverNLogConfig.zip" ShortName="NLog4.zip" />
+          <File Id="VS2010_VPDCSharpNLogViewerNLogConfig.zip" Name="CSharpNLogViewerNLogConfig.zip" ShortName="NLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>
@@ -1159,7 +1221,9 @@
         <Component Id="VS2010_VPDVBItemTemplates" Guid="dc28df88-3a54-3168-40f4-a5381890654d">
           <File Id="VS2010_VPDVBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
           <File Id="VS2010_VPDVBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS2010_VPDVBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2010_VPDVBFileNLogConfig.zip" Name="VisualBasicFileNLogConfig.zip" ShortName="VBNLog3.zip" />
+          <File Id="VS2010_VPDVBLogReceiverNLogConfig.zip" Name="VisualBasicLogReceiverNLogConfig.zip" ShortName="VBNLog4.zip" />
+          <File Id="VS2010_VPDVBNLogViewerNLogConfig.zip" Name="VisualBasicNLogViewerNLogConfig.zip" ShortName="VBNLog5.zip" />
         </Component>
       </Directory>
     </DirectoryRef>

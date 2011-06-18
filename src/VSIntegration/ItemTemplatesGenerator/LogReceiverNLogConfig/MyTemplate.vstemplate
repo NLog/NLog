@@ -1,8 +1,8 @@
 <VSTemplate Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
   <TemplateData>
     <DefaultName>NLog.config</DefaultName>
-    <Name>Typical NLog Configuration File</Name>
-    <Description>Typical NLog configuration file</Description>
+    <Name>NLog Configuration - LogReceiverService</Name>
+    <Description>NLog configuration file for sending logs to LogReceiverService</Description>
     <ProjectType>$projecttype$</ProjectType>
     <ProjectSubType>$projectsubtype$</ProjectSubType>
     <SortOrder>10</SortOrder>

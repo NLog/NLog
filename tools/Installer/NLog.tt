@@ -414,9 +414,7 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_CSharpItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_CSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_CSharpItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "CSharpItemTemplates") #>">
-          <File Id="VS<#= vs.ReleaseName #>_CSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
-          <File Id="VS<#= vs.ReleaseName #>_CSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS<#= vs.ReleaseName #>_CSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+<# PrintTemplates(vs.ReleaseName, "CSharp", "CSharp", ""); #>
         </Component>
       </Directory>
     </DirectoryRef>
@@ -426,9 +424,7 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VBItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_VBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_VBItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VBItemTemplates") #>">
-          <File Id="VS<#= vs.ReleaseName #>_VBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
-          <File Id="VS<#= vs.ReleaseName #>_VBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS<#= vs.ReleaseName #>_VBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+<# PrintTemplates(vs.ReleaseName, "VisualBasic", "VB", "VB"); #>
         </Component>
       </Directory>
     </DirectoryRef>
@@ -438,9 +434,7 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_WebCSharpItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_WebCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_WebCSharpItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "WebCSharpItemTemplates") #>">
-          <File Id="VS<#= vs.ReleaseName #>_WebCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
-          <File Id="VS<#= vs.ReleaseName #>_WebCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
-          <File Id="VS<#= vs.ReleaseName #>_WebCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+<# PrintTemplates(vs.ReleaseName, "CSharp", "WebCSharp", "Web"); #>
         </Component>
       </Directory>
     </DirectoryRef>
@@ -450,9 +444,7 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_WebVBItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_WebVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_WebVBItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "WebVBItemTemplates") #>">
-          <File Id="VS<#= vs.ReleaseName #>_WebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
-          <File Id="VS<#= vs.ReleaseName #>_WebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS<#= vs.ReleaseName #>_WebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+<# PrintTemplates(vs.ReleaseName, "WebVisualBasic", "WebVB", "VB"); #>
         </Component>
       </Directory>
     </DirectoryRef>
@@ -462,9 +454,7 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_CSharpExpressItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_CSharpExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_CSharpExpressItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "CSharpExpressItemTemplates") #>">
-          <File Id="VS<#= vs.ReleaseName #>_CSharpExpressConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
-          <File Id="VS<#= vs.ReleaseName #>_CSharpExpressEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS<#= vs.ReleaseName #>_CSharpExpressTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+<# PrintTemplates(vs.ReleaseName, "CSharp", "CSharpExpress", ""); #>
         </Component>
       </Directory>
     </DirectoryRef>
@@ -474,9 +464,7 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VBExpressItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_VBExpressItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_VBExpressItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VBExpressItemTemplates") #>">
-          <File Id="VS<#= vs.ReleaseName #>_VBExpressConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
-          <File Id="VS<#= vs.ReleaseName #>_VBExpressEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS<#= vs.ReleaseName #>_VBExpressTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+<# PrintTemplates(vs.ReleaseName, "VisualBasic", "VBExpress", ""); #>
         </Component>
       </Directory>
     </DirectoryRef>
@@ -486,9 +474,7 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VWDCSharpItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_VWDCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_VWDCSharpItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VWDCSharpItemTemplates") #>">
-          <File Id="VS<#= vs.ReleaseName #>_VWDCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
-          <File Id="VS<#= vs.ReleaseName #>_VWDCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS<#= vs.ReleaseName #>_VWDCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+<# PrintTemplates(vs.ReleaseName, "CSharp", "VWDCSharp", ""); #>
         </Component>
       </Directory>
     </DirectoryRef>
@@ -498,9 +484,7 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VWDVBItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_VWDVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_VWDVBItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VWDVBItemTemplates") #>">
-          <File Id="VS<#= vs.ReleaseName #>_VWDVBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
-          <File Id="VS<#= vs.ReleaseName #>_VWDVBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS<#= vs.ReleaseName #>_VWDVBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+<# PrintTemplates(vs.ReleaseName, "VisualBasic", "VWDVB", "VB"); #>
         </Component>
       </Directory>
     </DirectoryRef>
@@ -510,9 +494,7 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VWDWebCSharpItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_VWDWebCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_VWDWebCSharpItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VWDWebCSharpItemTemplates") #>">
-          <File Id="VS<#= vs.ReleaseName #>_VWDWebCSharpConsoleNLogConfig.zip" Name="WebCSharpConsoleNLogConfig.zip" ShortName="WebNLog1.zip" KeyPath="yes" />
-          <File Id="VS<#= vs.ReleaseName #>_VWDWebCSharpEmptyNLogConfig.zip" Name="WebCSharpEmptyNLogConfig.zip" ShortName="WebNLog2.zip" />
-          <File Id="VS<#= vs.ReleaseName #>_VWDWebCSharpTypicalNLogConfig.zip" Name="WebCSharpTypicalNLogConfig.zip" ShortName="WebNLog3.zip" />
+<# PrintTemplates(vs.ReleaseName, "WebCSharp", "VWDWebCSharp", "Web"); #>
         </Component>
       </Directory>
     </DirectoryRef>
@@ -522,9 +504,7 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VWDWebVBItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_VWDWebVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_VWDWebVBItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VWDWebVBItemTemplates") #>">
-          <File Id="VS<#= vs.ReleaseName #>_VWDWebVBConsoleNLogConfig.zip" Name="WebVisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
-          <File Id="VS<#= vs.ReleaseName #>_VWDWebVBEmptyNLogConfig.zip" Name="WebVisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS<#= vs.ReleaseName #>_VWDWebVBTypicalNLogConfig.zip" Name="WebVisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+<# PrintTemplates(vs.ReleaseName, "WebVisualBasic", "VWDWebVB", "VB"); #>
         </Component>
       </Directory>
     </DirectoryRef>
@@ -536,9 +516,7 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VPDCSharpItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_VPDCSharpItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_VPDCSharpItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VPDCSharpItemTemplates") #>">
-          <File Id="VS<#= vs.ReleaseName #>_VPDCSharpConsoleNLogConfig.zip" Name="CSharpConsoleNLogConfig.zip" ShortName="NLog1.zip" KeyPath="yes" />
-          <File Id="VS<#= vs.ReleaseName #>_VPDCSharpEmptyNLogConfig.zip" Name="CSharpEmptyNLogConfig.zip" ShortName="NLog2.zip" />
-          <File Id="VS<#= vs.ReleaseName #>_VPDCSharpTypicalNLogConfig.zip" Name="CSharpTypicalNLogConfig.zip" ShortName="NLog3.zip" />
+<# PrintTemplates(vs.ReleaseName, "CSharp", "VPDCSharp", ""); #>
         </Component>
       </Directory>
     </DirectoryRef>
@@ -548,9 +526,7 @@ foreach (var vs in visualStudioVersions) {
     <DirectoryRef Id="VS<#= vs.ReleaseName #>_VPDVBItemTemplates">
       <Directory Id="VS<#= vs.ReleaseName #>_VPDVBItemTemplates_NLog" Name="NLog" FileSource="$(var.NLogSourcePath)\src\VSIntegration\ItemTemplates">
         <Component Id="VS<#= vs.ReleaseName #>_VPDVBItemTemplates" Guid="<#= GetGuid(vs.ReleaseName, "VPDVBItemTemplates") #>">
-          <File Id="VS<#= vs.ReleaseName #>_VPDVBConsoleNLogConfig.zip" Name="VisualBasicConsoleNLogConfig.zip" ShortName="VBNLog1.zip" KeyPath="yes" />
-          <File Id="VS<#= vs.ReleaseName #>_VPDVBEmptyNLogConfig.zip" Name="VisualBasicEmptyNLogConfig.zip" ShortName="VBNLog2.zip" />
-          <File Id="VS<#= vs.ReleaseName #>_VPDVBTypicalNLogConfig.zip" Name="VisualBasicTypicalNLogConfig.zip" ShortName="VBNLog3.zip" />
+<# PrintTemplates(vs.ReleaseName, "VisualBasic", "VPDVB", "VB"); #>
         </Component>
       </Directory>
     </DirectoryRef>
@@ -697,7 +673,25 @@ foreach (var vs in visualStudioVersions) {
     <UIRef Id="WixUI_Mondo" />
   </Product>
 </Wix>
-<#+  
+<#+
+
+void PrintTemplates(string releaseName, string language, string shortLanguage, string specifier)
+{
+	var itemTemplateNames = new []
+	{
+		"Console",
+		"Empty",
+		"File",
+		"LogReceiver",
+		"NLogViewer",
+	};
+
+	for (int i = 0; i < itemTemplateNames.Length; i++) { 
+		string templateName = itemTemplateNames[i];
+#>
+          <File Id="VS<#= releaseName #>_<#= shortLanguage #><#= templateName #>NLogConfig.zip" Name="<#= language #><#= templateName #>NLogConfig.zip" ShortName="<#= specifier #>NLog<#= (i + 1) #>.zip" <#= (i == 0) ? "KeyPath=\"yes\" " : "" #>/>
+<#+ }
+}
 
 string GuidNamespace = "{417548C6-D8AB-4f95-9BAE-B0D60D9C8529}";
 
