@@ -241,6 +241,12 @@ if (%1)==(installer) (
 	goto next
 )
 
+if (%1)==(nuget) (
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /t:NuGetPackage
+	shift
+	goto next
+)
+
 echo Usage: %0 [configuration] [platform]... [target]...
 echo.
 echo Where platform is one or more of the following:
@@ -278,6 +284,7 @@ echo  nightlybuild       Nightly build
 echo  web                Website files
 echo  xsd                NLog.xsd Intellisense files
 echo  installer          Installer
+echo  nuget              NuGet package
 echo  tools              Tools
 echo  label {suffix}     Define build label (defaults to 'PrivateBuild')
 echo  ccnetlabel {label} Override CCNetLabel

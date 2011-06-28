@@ -40,10 +40,13 @@
     <BZip2>$(MSBuildProjectDirectory)\..\tools\bzip2.exe</BZip2>
     <Git Condition=" '$(Git)' == '' ">git</Git>
     <ArchiveOutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Packages</ArchiveOutputPath>
+    <NuGetOutputPath>$(BaseOutputDirectory)bin\$(Configuration)\NuGetPackages</NuGetOutputPath>
     <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
     <WebsiteDir Condition="'$(WebsiteDir)' == ''">$(BaseOutputDirectory)\bin\$(Configuration)\Website</WebsiteDir>
     <LastTestRunSummary>$(BaseOutputDirectory)\bin\LastTestRunSummary.cmd</LastTestRunSummary>
     <BuildInfoFile>$(BaseOutputDirectory)\obj\BuildInfo.cs</BuildInfoFile>
+    <NuGetTool>c:\apps\nuget\NuGet.exe</NuGetTool>
+    <NuGetBuildPath>$(BaseOutputDirectory)\obj\$(Configuration)\NuGet</NuGetBuildPath>
   </PropertyGroup>
 
   <!-- detect location of various SDKs and tools-->
@@ -128,22 +131,27 @@
     <TargetFramework Include="Silverlight 2.0" Condition="'$(BuildSL2)'=='true'">
         <ProjectFileSuffix>.sl2</ProjectFileSuffix>
         <DocReferences>$(DocReferencesSL2)</DocReferences>
+        <NuGetDir>sl2</NuGetDir>
     </TargetFramework>
     <TargetFramework Include="Silverlight 3.0" Condition="'$(BuildSL3)'=='true'">
         <ProjectFileSuffix>.sl3</ProjectFileSuffix>
         <DocReferences>$(DocReferencesSL3)</DocReferences>
+        <NuGetDir>sl3</NuGetDir>
     </TargetFramework>
     <TargetFramework Include="Silverlight 4.0" Condition="'$(BuildSL4)'=='true'">
         <ProjectFileSuffix>.sl4</ProjectFileSuffix>
         <DocReferences>$(DocReferencesSL4)</DocReferences>
+        <NuGetDir>sl4</NuGetDir>
     </TargetFramework>
     <TargetFramework Include="Silverlight for Windows Phone 7" Condition="'$(BuildWP7)'=='true'">
         <ProjectFileSuffix>.wp7</ProjectFileSuffix>
         <DocReferences>$(DocReferencesWP7)</DocReferences>
+        <NuGetDir>sl3-wp</NuGetDir>
     </TargetFramework>
     <TargetFramework Include="Silverlight for Windows Phone 7.1" Condition="'$(BuildWP71)'=='true'">
         <ProjectFileSuffix>.wp71</ProjectFileSuffix>
         <DocReferences>$(DocReferencesWP71)</DocReferences>
+        <NuGetDir>sl4-wp</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Compact Framework 2.0" Condition="'$(BuildNetCF20)'=='true'">
         <ProjectFileSuffix>.netcf20</ProjectFileSuffix>
@@ -159,16 +167,19 @@
         <ProjectFileSuffix>.netfx20</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
         <DocReferences>$(DocReferencesNetFX20)</DocReferences>
+        <NuGetDir>net20</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildNetFX35)'=='true'">
         <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
         <DocReferences>$(DocReferencesNetFX20) $(DocReferencesNetFX30) $(DocReferencesNetFX35)</DocReferences>
+        <NuGetDir>net35</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
         <ProjectFileSuffix>.netfx40</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
         <DocReferences>$(DocReferencesNetFX40)</DocReferences>
+        <NuGetDir>net40</NuGetDir>
     </TargetFramework>
   </ItemGroup>
 
@@ -425,6 +436,66 @@
 
   <Target Name="Documentation" DependsOnTargets="BuildMergedDocumentation">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="PostProcessSingleDoc" Properties="DocBuildDir=$(BaseOutputDirectory)\bin\$(Configuration)\Documentation" />
+  </Target>
+
+  <Target Name="NuGetPackage" DependsOnTargets="NuGetBasePackage;NuGetExtendedPackage;NuGetConfigPackage">
+  </Target>
+
+  <Target Name="NuGetBasePackage">
+    <ItemGroup>
+	   <NuGetFiles Include="NuGet/NLog/**" />
+	</ItemGroup>
+	
+	<!-- prepare static files -->
+	<RemoveDir Directories="$(NuGetBuildPath)\NLog" />
+	<Copy SourceFiles="@(NuGetFiles)" DestinationFolder="$(NuGetBuildPath)\NLog\%(RecursiveDir)" />
+	
+	<!-- copy binaries -->
+    <MakeDir Directories="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" />
+    <Copy DestinationFolder="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.dll" Condition=" '%(TargetFramework.NuGetDir)' != '' "  />
+    <Copy DestinationFolder="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.pdb"  Condition=" '%(TargetFramework.NuGetDir)' != '' " />
+    
+	<!-- package -->
+	<MakeDir Directories="$(NuGetOutputPath)" />
+    <Exec Command='"$(NuGetTool)" pack NLog.nuspec -Symbols -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog" />
+  </Target>
+
+  <Target Name="NuGetExtendedPackage">
+    <ItemGroup>
+	   <NuGetExtendedFiles Include="NuGet/NLog.Extended/**" />
+	</ItemGroup>
+	
+	<!-- prepare static files -->
+	<RemoveDir Directories="$(NuGetBuildPath)\NLog.Extended" />
+	<Copy SourceFiles="@(NuGetExtendedFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\%(RecursiveDir)" />
+	
+	<!-- copy binaries -->
+	<MakeDir Directories="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
+          Condition=" '%(TargetFramework.NuGetDir)' != '' and Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.pdb')" />
+	<Copy DestinationFolder="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
+          SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.dll" 
+          Condition=" '%(TargetFramework.NuGetDir)' != '' and Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.dll')" />
+    <Copy DestinationFolder="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
+          SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.pdb"
+          Condition=" '%(TargetFramework.NuGetDir)' != '' and Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.pdb')" />
+		  
+	<!-- package -->	  
+    <MakeDir Directories="$(NuGetOutputPath)" />
+    <Exec Command='"$(NuGetTool)" pack NLog.Extended.nuspec -Symbols -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog.Extended" />
+  </Target>
+
+  <Target Name="NuGetConfigPackage">
+    <ItemGroup>
+	   <NuGetConfigFiles Include="NuGet/NLog.Config/**" />
+	</ItemGroup>
+	
+	<!-- prepare static files -->
+	<RemoveDir Directories="$(NuGetBuildPath)\NLog.Config" />
+	<Copy SourceFiles="@(NuGetConfigFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Config\%(RecursiveDir)" />
+	
+	<!-- package -->	  
+    <MakeDir Directories="$(NuGetOutputPath)" />
+    <Exec Command='"$(NuGetTool)" pack NLog.Config.nuspec -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog.Config" />
   </Target>
 
   <Target Name="Installer">
