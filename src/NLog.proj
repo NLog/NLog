@@ -218,7 +218,7 @@
 </BuildInfoFileContent>
     </PropertyGroup>
 
-    <MakeDir Directories="$(BaseOutputDirectory)\obj" />
+    <MakeDir Directories="$(BaseOutputDirectory)\bin" />
 
     <ReadLinesFromFile File="$(BuildInfoFile)" Condition="Exists('$(BuildInfoFile)')">
         <Output TaskParameter="Lines" ItemName="CurrentBuildInfoFileContent" />
