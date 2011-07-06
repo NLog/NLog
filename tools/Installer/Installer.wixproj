@@ -48,27 +48,27 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Flavor)' == 'Mono'">
-    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0192;ProductName=NLog 2.0 for Mono;@(MonoInclude)</DefineConstants>
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0192;ProductName=NLog for Mono;@(MonoInclude)</DefineConstants>
     <OutputName>$(BaseOutputName)-Mono</OutputName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Flavor)' == 'NetFx'">
-    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0193;ProductName=NLog 2.0 for .NET Framework;@(NetFxInclude)</DefineConstants>
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0193;ProductName=NLog for .NET Framework;@(NetFxInclude)</DefineConstants>
     <OutputName>$(BaseOutputName)-NetFX</OutputName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Flavor)' == 'SL'">
-    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0194;ProductName=NLog 2.0 for Silverlight;@(SLInclude)</DefineConstants>
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0194;ProductName=NLog for Silverlight;@(SLInclude)</DefineConstants>
     <OutputName>$(BaseOutputName)-SL</OutputName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Flavor)' == 'NetCf'">
-    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0195;ProductName=NLog 2.0 for Compact Framework;@(NetCFInclude)</DefineConstants>
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0195;ProductName=NLog for Compact Framework;@(NetCFInclude)</DefineConstants>
     <OutputName>$(BaseOutputName)-NetCF</OutputName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Flavor)' == 'WP'">
-    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0197;ProductName=NLog 2.0 for Windows Phone;@(WPInclude)</DefineConstants>
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0197;ProductName=NLog for Windows Phone;@(WPInclude)</DefineConstants>
     <OutputName>$(BaseOutputName)-WP</OutputName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Flavor)' == 'All'">
-    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0196;ProductName=NLog 2.0;@(NetFxInclude);@(SLInclude);@(NetCFInclude);@(MonoInclude);@(WPInclude)</DefineConstants>
+    <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0196;ProductName=NLog;@(NetFxInclude);@(SLInclude);@(NetCFInclude);@(MonoInclude);@(WPInclude)</DefineConstants>
     <OutputName>$(BaseOutputName)-All</OutputName>
   </PropertyGroup>
   <PropertyGroup>
