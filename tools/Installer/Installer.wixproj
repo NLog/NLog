@@ -6,10 +6,10 @@
     <ProjectGuid>{4667dc1d-0462-4ccc-a210-0490331e09b4}</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputType>Package</OutputType>
-    <BuildVersion Condition="'$(BuildVersion)'==''">0.0.0.0</BuildVersion>
-    <BuildLabel Condition="'$(BuildLabel)'==''">PrivateBuild</BuildLabel>
+    <BuildVersion Condition="'$(BuildVersion)'==''">2.0.0.0</BuildVersion>
+    <BuildLabel Condition="'$(BuildLabel)'==''"> (PrivateBuild)</BuildLabel>
     <NLogBuildPath Condition="'$(NLogBuildPath)'==''">$(MSBuildProjectDirectory)\..\..\build\bin\$(Configuration)</NLogBuildPath>
-    <BaseOutputName>NLog2</BaseOutputName>
+    <BaseOutputName>NLog</BaseOutputName>
     <WixBasePath>..\Wix</WixBasePath>
     <WixToolPath>$(WixBasePath)</WixToolPath>
     <WixTargetsPath>$(WixBasePath)\Wix.targets</WixTargetsPath>
@@ -72,7 +72,7 @@
     <OutputName>$(BaseOutputName)-All</OutputName>
   </PropertyGroup>
   <PropertyGroup>
-     <OutputName Condition=" '$(BuildLabel)' != '' ">$(OutputName)-$(BuildLabel)</OutputName>
+     <OutputName>$(OutputName)-v$(BuildVersion)$(BuildLabelDash)</OutputName>
      <OutputName Condition=" '$(Configuration)' == 'Debug' ">$(OutputName)-Debug</OutputName>
   </PropertyGroup>
   <ItemGroup>

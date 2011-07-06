@@ -3,10 +3,15 @@
 
   <PropertyGroup>
     <MajorMinorVersion>2.0</MajorMinorVersion>
-    <BuildLabel Condition=" '$(BuildLabel)'=='' ">PrivateBuild</BuildLabel>
-    <BuildLabel Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildLabel>
-    <BuildVersion>2.0.0.0</BuildVersion>
-    <BuildProductName>NLog v$(MajorMinorVersion) ($(BuildLabel))</BuildProductName>
+    <BuildLabel Condition=" '$(BuildLabelOverride)' == '' "> (PrivateBuild)</BuildLabel>
+    <BuildLabel Condition=" '$(BuildLabelOverride)' == 'NONE' "></BuildLabel>
+    <BuildLabel Condition=" '$(BuildLabelOverride)' != '' and '$(BuildLabelOverride)' != 'NONE' "> ($(BuildLabelOverride))</BuildLabel>
+    <BuildLabelDash Condition=" '$(BuildLabelOverride)' == '' ">-PrivateBuild</BuildLabelDash>
+    <BuildLabelDash Condition=" '$(BuildLabelOverride)' == 'NONE' "></BuildLabelDash>
+    <BuildLabelDash Condition=" '$(BuildLabelOverride)' != '' and '$(BuildLabelOverride)' != 'NONE' ">-$(BuildLabelOverride)</BuildLabelDash>
+    <BuildVersion Condition=" '$(BuildVersion)' == '' " >2.0.0.0</BuildVersion>
+    <BuildVersion Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildVersion>
+    <BuildProductName>NLog v$(BuildVersion)$(BuildLabel)</BuildProductName>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -519,7 +524,7 @@
 
   <Target Name="Installer">
      <PropertyGroup>
-       <CommonInstallerProperties>Configuration=$(Configuration);BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion)</CommonInstallerProperties>
+       <CommonInstallerProperties>Configuration=$(Configuration);BuildLabelDash=$(BuildLabelDash);BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion)</CommonInstallerProperties>
      </PropertyGroup>
      <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=NetFx;$(CommonInstallerProperties)" />
      <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=SL;$(CommonInstallerProperties)" />
@@ -611,7 +616,7 @@
   <Target Name="BeforeArchive">
     <PropertyGroup>
       <ArchiveSuffix></ArchiveSuffix>
-      <ArchiveSuffix Condition=" '$(BuildLabel)' != '' ">-$(BuildLabel)</ArchiveSuffix>
+      <ArchiveSuffix Condition=" '$(BuildLabelDash)' != '' ">$(BuildLabelDash)</ArchiveSuffix>
     </PropertyGroup>
     <MakeDir Directories="$(ArchiveOutputPath)" />
   </Target>

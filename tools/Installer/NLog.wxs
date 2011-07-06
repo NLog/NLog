@@ -1,6 +1,6 @@
 ﻿<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Product Id="$(var.ProductId)"
-           Name="$(var.ProductName) $(var.BuildLabel)"
+           Name="$(var.ProductName) v$(var.BuildVersion)$(var.BuildLabel)"
            Language="1033"
            Version="$(var.BuildVersion)"
            Manufacturer="NLog Project"
@@ -96,7 +96,7 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
 
       <Directory Id="ProgramMenuFolder">
-        <Directory Id="ApplicationProgramsFolder" Name="NLog $(var.BuildLabel)" />
+        <Directory Id="ApplicationProgramsFolder" Name="NLog v$(var.BuildVersion)$(var.BuildLabel)" />
       </Directory>
 
       <Directory Id="ProgramFilesFolder">
@@ -298,7 +298,7 @@
         <Shortcut Id="Help_Shortcut"
                   Directory="ApplicationProgramsFolder"
                   Name="NLog Documentation"
-                  Description="Documentation for NLog $(var.BuildLabel)"
+                  Description="Documentation for NLog v$(var.BuildVersion)$(var.BuildLabel)"
                   Icon="Help.ico"
                   Advertise="yes">
         </Shortcut>

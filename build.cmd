@@ -195,7 +195,7 @@ if (%1)==(sourcearchive) (
 )
 
 if (%1)==(label) (
-	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildLabel=%2
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildLabelOverride=%2
 	shift
 	shift
 	goto next
