@@ -49,7 +49,7 @@
     <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
     <WebsiteDir Condition="'$(WebsiteDir)' == ''">$(BaseOutputDirectory)\bin\$(Configuration)\Website</WebsiteDir>
     <LastTestRunSummary>$(BaseOutputDirectory)\bin\LastTestRunSummary.cmd</LastTestRunSummary>
-    <BuildInfoFile>$(BaseOutputDirectory)\obj\BuildInfo.cs</BuildInfoFile>
+    <BuildInfoFile>$(BaseOutputDirectory)\bin\BuildInfo.cs</BuildInfoFile>
     <NuGetTool>NuGet.exe</NuGetTool>
     <NuGetBuildPath>$(BaseOutputDirectory)\obj\$(Configuration)\NuGet</NuGetBuildPath>
     <NuGetProperties>BuildVersion=$(BuildVersion)</NuGetProperties>
@@ -451,6 +451,10 @@
     <ItemGroup>
       <NuGetFiles Include="NuGet/NLog/**" />
     </ItemGroup>
+
+    <ItemGroup>
+      <NuGetSourceFiles Include="NLog/**/*.cs" />
+    </ItemGroup>
 	
     <!-- prepare static files -->
     <RemoveDir Directories="$(NuGetBuildPath)\NLog" />
@@ -460,6 +464,11 @@
     <MakeDir Directories="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" />
     <Copy DestinationFolder="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.dll" Condition=" '%(TargetFramework.NuGetDir)' != '' "  />
     <Copy DestinationFolder="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.pdb"  Condition=" '%(TargetFramework.NuGetDir)' != '' " />
+    <Copy DestinationFolder="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.xml"  Condition=" '%(TargetFramework.NuGetDir)' != '' " />
+
+    <!-- copy sources -->
+    <Copy SourceFiles="@(NuGetSourceFiles)" DestinationFolder="$(NuGetBuildPath)\NLog\src\src\NLog\%(RecursiveDir)" />
+    <Copy SourceFiles="$(BuildInfoFile)" DestinationFolder="$(NuGetBuildPath)\NLog\src\build\bin" />
 
     <TokenReplace Path="$(NuGetBuildPath)\NLog\NLog.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
     
@@ -470,12 +479,15 @@
 
   <Target Name="NuGetExtendedPackage">
     <ItemGroup>
-	   <NuGetExtendedFiles Include="NuGet/NLog.Extended/**" />
-	</ItemGroup>
+      <NuGetExtendedFiles Include="NuGet/NLog.Extended/**" />
+    </ItemGroup>
+    <ItemGroup>
+      <NuGetExtendedSourceFiles Include="NuGet/NLog.Extended/**" />
+    </ItemGroup>
 	
-	<!-- prepare static files -->
-	<RemoveDir Directories="$(NuGetBuildPath)\NLog.Extended" />
-	<Copy SourceFiles="@(NuGetExtendedFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\%(RecursiveDir)" />
+    <!-- prepare static files -->
+    <RemoveDir Directories="$(NuGetBuildPath)\NLog.Extended" />
+    <Copy SourceFiles="@(NuGetExtendedFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\%(RecursiveDir)" />
 	
     <!-- copy binaries -->
     <MakeDir Directories="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
@@ -486,7 +498,14 @@
     <Copy DestinationFolder="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
           SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.pdb"
           Condition=" '%(TargetFramework.NuGetDir)' != '' and Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.pdb')" />
+    <Copy DestinationFolder="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
+          SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.xml"
+          Condition=" '%(TargetFramework.NuGetDir)' != '' and Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.xml')" />
 		  
+    <!-- copy sources -->
+    <Copy SourceFiles="@(NuGetExtendedSourceFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\src\src\NLog.Extended\%(RecursiveDir)" />
+    <Copy SourceFiles="$(BuildInfoFile)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\src\build\bin" />
+
     <TokenReplace Path="$(NuGetBuildPath)\NLog.Extended\NLog.Extended.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
 
     <!-- package -->	  
