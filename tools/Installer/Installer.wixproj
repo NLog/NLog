@@ -69,7 +69,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Flavor)' == 'All'">
     <DefineConstants>$(CommonConstants);ProductId=a93e5783-ae19-41cb-a99d-4b04de0b0196;ProductName=NLog;@(NetFxInclude);@(SLInclude);@(NetCFInclude);@(MonoInclude);@(WPInclude)</DefineConstants>
-    <OutputName>$(BaseOutputName)-All</OutputName>
+    <OutputName>$(BaseOutputName)</OutputName>
   </PropertyGroup>
   <PropertyGroup>
      <OutputName>$(OutputName)-v$(BuildVersion)$(BuildLabelDash)</OutputName>
