@@ -45,7 +45,7 @@
     <WebsiteDir Condition="'$(WebsiteDir)' == ''">$(BaseOutputDirectory)\bin\$(Configuration)\Website</WebsiteDir>
     <LastTestRunSummary>$(BaseOutputDirectory)\bin\LastTestRunSummary.cmd</LastTestRunSummary>
     <BuildInfoFile>$(BaseOutputDirectory)\obj\BuildInfo.cs</BuildInfoFile>
-    <NuGetTool>c:\apps\nuget\NuGet.exe</NuGetTool>
+    <NuGetTool>NuGet.exe</NuGetTool>
     <NuGetBuildPath>$(BaseOutputDirectory)\obj\$(Configuration)\NuGet</NuGetBuildPath>
   </PropertyGroup>
 
@@ -438,7 +438,7 @@
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="PostProcessSingleDoc" Properties="DocBuildDir=$(BaseOutputDirectory)\bin\$(Configuration)\Documentation" />
   </Target>
 
-  <Target Name="NuGetPackage" DependsOnTargets="NuGetBasePackage;NuGetExtendedPackage;NuGetConfigPackage">
+  <Target Name="NuGetPackage" DependsOnTargets="NuGetBasePackage;NuGetExtendedPackage;NuGetConfigPackage;NuGetSchemaPackage">
   </Target>
 
   <Target Name="NuGetBasePackage">
@@ -486,17 +486,36 @@
 
   <Target Name="NuGetConfigPackage">
     <ItemGroup>
-	   <NuGetConfigFiles Include="NuGet/NLog.Config/**" />
-	</ItemGroup>
+      <NuGetConfigFiles Include="NuGet/NLog.Config/**" />
+    </ItemGroup>
 	
-	<!-- prepare static files -->
-	<RemoveDir Directories="$(NuGetBuildPath)\NLog.Config" />
-	<Copy SourceFiles="@(NuGetConfigFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Config\%(RecursiveDir)" />
+    <!-- prepare static files -->
+    <RemoveDir Directories="$(NuGetBuildPath)\NLog.Config" />
+    <Copy SourceFiles="@(NuGetConfigFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Config\%(RecursiveDir)" />
+    <Copy SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\NLog.xsd"
+          DestinationFolder="$(NuGetBuildPath)\NLog.Config\content" />
 	
-	<!-- package -->	  
+    <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
     <Exec Command='"$(NuGetTool)" pack NLog.Config.nuspec -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog.Config" />
   </Target>
+
+  <Target Name="NuGetSchemaPackage">
+    <ItemGroup>
+      <NuGetSchemaFiles Include="NuGet/NLog.Schema/**" />
+    </ItemGroup>
+	
+    <!-- prepare static files -->
+    <RemoveDir Directories="$(NuGetBuildPath)\NLog.Schema" />
+    <Copy SourceFiles="@(NuGetSchemaFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Schema\%(RecursiveDir)" />
+    <Copy SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\NLog.xsd"
+          DestinationFolder="$(NuGetBuildPath)\NLog.Schema\content" />
+	
+    <!-- package -->	  
+    <MakeDir Directories="$(NuGetOutputPath)" />
+    <Exec Command='"$(NuGetTool)" pack NLog.Schema.nuspec -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog.Schema" />
+  </Target>
+
 
   <Target Name="Installer">
      <PropertyGroup>
