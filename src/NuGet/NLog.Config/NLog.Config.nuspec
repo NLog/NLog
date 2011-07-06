@@ -3,7 +3,7 @@
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>NLog.Config</id>
     <title>NLog Configuration</title>
-    <version>2.0.0.0</version>
+    <version>$BuildVersion$</version>
     <authors>Jaroslaw Kowalski</authors>
     <owners>Jaroslaw Kowalski</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -14,7 +14,7 @@
     <projectUrl>http://nlog-project.org/</projectUrl>
     <licenseUrl>https://raw.github.com/jkowalski/NLog/master/LICENSE.txt</licenseUrl>
     <dependencies>
-      <dependency id="NLog" version="2.0.0.0" />
+      <dependency id="NLog" version="$BuildVersion$" />
     </dependencies>
   </metadata>
 </package>

@@ -52,6 +52,7 @@
     <BuildInfoFile>$(BaseOutputDirectory)\obj\BuildInfo.cs</BuildInfoFile>
     <NuGetTool>NuGet.exe</NuGetTool>
     <NuGetBuildPath>$(BaseOutputDirectory)\obj\$(Configuration)\NuGet</NuGetBuildPath>
+    <NuGetProperties>BuildVersion=$(BuildVersion)</NuGetProperties>
   </PropertyGroup>
 
   <!-- detect location of various SDKs and tools-->
@@ -156,7 +157,7 @@
     <TargetFramework Include="Silverlight for Windows Phone 7.1" Condition="'$(BuildWP71)'=='true'">
         <ProjectFileSuffix>.wp71</ProjectFileSuffix>
         <DocReferences>$(DocReferencesWP71)</DocReferences>
-        <NuGetDir>sl4-wp</NuGetDir>
+        <NuGetDir>sl4-windowsphone71</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Compact Framework 2.0" Condition="'$(BuildNetCF20)'=='true'">
         <ProjectFileSuffix>.netcf20</ProjectFileSuffix>
@@ -201,8 +202,8 @@
      <PropertyGroup>
        <CommonProperties>BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion)</CommonProperties>
      </PropertyGroup>
-     <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;DumpApi;XSD;Documentation;Archive;Installer;BuildTests;Web" Properties="Configuration=Release;$(CommonProperties)" />
-     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;DumpApi;XSD;Documentation;Archive;Installer;BuildTests" Properties="Configuration=Debug;$(CommonProperties)" />
+     <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;DumpApi;XSD;Documentation;Archive;Installer;NuGet;BuildTests;Web" Properties="Configuration=Release;$(CommonProperties)" />
+     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;DumpApi;XSD;Documentation;Archive;Installer;NuGet;BuildTests" Properties="Configuration=Debug;$(CommonProperties)" />
      <CallTarget Targets="SourceArchive" />
   </Target>
 
@@ -448,20 +449,22 @@
 
   <Target Name="NuGetBasePackage">
     <ItemGroup>
-	   <NuGetFiles Include="NuGet/NLog/**" />
-	</ItemGroup>
+      <NuGetFiles Include="NuGet/NLog/**" />
+    </ItemGroup>
 	
-	<!-- prepare static files -->
-	<RemoveDir Directories="$(NuGetBuildPath)\NLog" />
-	<Copy SourceFiles="@(NuGetFiles)" DestinationFolder="$(NuGetBuildPath)\NLog\%(RecursiveDir)" />
+    <!-- prepare static files -->
+    <RemoveDir Directories="$(NuGetBuildPath)\NLog" />
+    <Copy SourceFiles="@(NuGetFiles)" DestinationFolder="$(NuGetBuildPath)\NLog\%(RecursiveDir)" />
 	
-	<!-- copy binaries -->
+    <!-- copy binaries -->
     <MakeDir Directories="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" />
     <Copy DestinationFolder="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.dll" Condition=" '%(TargetFramework.NuGetDir)' != '' "  />
     <Copy DestinationFolder="$(NuGetBuildPath)\NLog\lib\%(TargetFramework.NuGetDir)" SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.pdb"  Condition=" '%(TargetFramework.NuGetDir)' != '' " />
+
+    <TokenReplace Path="$(NuGetBuildPath)\NLog\NLog.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
     
-	<!-- package -->
-	<MakeDir Directories="$(NuGetOutputPath)" />
+    <!-- package -->
+    <MakeDir Directories="$(NuGetOutputPath)" />
     <Exec Command='"$(NuGetTool)" pack NLog.nuspec -Symbols -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog" />
   </Target>
 
@@ -474,17 +477,19 @@
 	<RemoveDir Directories="$(NuGetBuildPath)\NLog.Extended" />
 	<Copy SourceFiles="@(NuGetExtendedFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\%(RecursiveDir)" />
 	
-	<!-- copy binaries -->
-	<MakeDir Directories="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
+    <!-- copy binaries -->
+    <MakeDir Directories="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
           Condition=" '%(TargetFramework.NuGetDir)' != '' and Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.pdb')" />
-	<Copy DestinationFolder="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
+    <Copy DestinationFolder="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
           SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.dll" 
           Condition=" '%(TargetFramework.NuGetDir)' != '' and Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.dll')" />
     <Copy DestinationFolder="$(NuGetBuildPath)\NLog.Extended\lib\%(TargetFramework.NuGetDir)-full" 
           SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.pdb"
           Condition=" '%(TargetFramework.NuGetDir)' != '' and Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.Extended.pdb')" />
 		  
-	<!-- package -->	  
+    <TokenReplace Path="$(NuGetBuildPath)\NLog.Extended\NLog.Extended.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+
+    <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
     <Exec Command='"$(NuGetTool)" pack NLog.Extended.nuspec -Symbols -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog.Extended" />
   </Target>
@@ -500,6 +505,8 @@
     <Copy SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\NLog.xsd"
           DestinationFolder="$(NuGetBuildPath)\NLog.Config\content" />
 	
+    <TokenReplace Path="$(NuGetBuildPath)\NLog.Config\NLog.Config.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
     <Exec Command='"$(NuGetTool)" pack NLog.Config.nuspec -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog.Config" />
@@ -516,10 +523,12 @@
     <Copy SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\NLog.xsd"
           DestinationFolder="$(NuGetBuildPath)\NLog.Schema\content" />
 	
+    <TokenReplace Path="$(NuGetBuildPath)\NLog.Schema\NLog.Schema.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
-    <Exec Command='"$(NuGetTool)" pack NLog.Schema.nuspec -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog.Schema" />
-  </Target>
+    <Exec Command='"$(NuGetTool)" pack NLog.Schema.nuspec -OutputDirectory "$(NuGetOutputPath)" -Properties $(NuGetProperties)' WorkingDirectory="$(NuGetBuildPath)\NLog.Schema" />
+  </Target>                                                                                       
 
 
   <Target Name="Installer">
@@ -631,6 +640,22 @@
   <Target Name="SourceArchive" DependsOnTargets="BeforeArchive">
     <Exec Command='"$(Git)" archive --format=zip --worktree-attributes -9 head -o build/bin/Release/Packages/NLog2.source$(ArchiveSuffix).zip' WorkingDirectory=".." />
   </Target>
+
+  <UsingTask TaskName="TokenReplace" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <Path ParameterType="System.String" Required="true" />
+      <Token ParameterType="System.String" Required="true" />
+      <Replacement ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs"><![CDATA[
+string content = File.ReadAllText(Path);
+content = content.Replace(Token, Replacement);
+File.WriteAllText(Path, content);
+
+]]></Code>
+    </Task>
+  </UsingTask>
 
   <ItemGroup>
     <FilesToCleanup Include="..\**\*.suo" />
