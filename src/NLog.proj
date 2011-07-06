@@ -482,7 +482,7 @@
       <NuGetExtendedFiles Include="NuGet/NLog.Extended/**" />
     </ItemGroup>
     <ItemGroup>
-      <NuGetExtendedSourceFiles Include="NuGet/NLog.Extended/**" />
+      <NuGetExtendedSourceFiles Include="NLog.Extended/**/*.cs" />
     </ItemGroup>
 	
     <!-- prepare static files -->
