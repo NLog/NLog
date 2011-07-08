@@ -210,11 +210,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLog\NLog.wp71.csproj">
       <Project>{8A0E38D3-6E7E-45B0-A360-218F7E98743D}</Project>
-      <Name>NLog.wp7</Name>
+      <Name>NLog.wp71</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SampleExtensions\SampleExtensions.wp7.csproj">
+    <ProjectReference Include="..\SampleExtensions\SampleExtensions.wp71.csproj">
       <Project>{8A0E38D3-1512-45B0-A360-218F7E98743D}</Project>
-      <Name>SampleExtensions.wp7</Name>
+      <Name>SampleExtensions.wp71</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

@@ -84,7 +84,7 @@ namespace NLog.Internal.NetworkSenders
             }
 #endif
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT || (WINDOWS_PHONE && !WINDOWS_PHONE_7)
             if (url.StartsWith("udp://", StringComparison.OrdinalIgnoreCase))
             {
                 return new UdpNetworkSender(url, AddressFamily.Unspecified);

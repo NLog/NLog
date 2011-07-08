@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT || (WINDOWS_PHONE && !WINDOWS_PHONE_7)
 
 namespace NLog.Internal.NetworkSenders
 {

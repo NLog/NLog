@@ -48,7 +48,7 @@ namespace NLog.Internal.NetworkSenders
 
         bool SendAsync(SocketAsyncEventArgs args);
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT || (WINDOWS_PHONE && !WINDOWS_PHONE_7)
         bool SendToAsync(SocketAsyncEventArgs args);
 #endif
     }

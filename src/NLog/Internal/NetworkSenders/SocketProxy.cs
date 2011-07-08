@@ -121,7 +121,7 @@ namespace NLog.Internal.NetworkSenders
             return this.socket.SendAsync(args);
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT || (WINDOWS_PHONE && !WINDOWS_PHONE_7)
         /// <summary>
         /// Invokes SendToAsync method on the wrapped socket.
         /// </summary>
