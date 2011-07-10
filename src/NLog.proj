@@ -33,7 +33,7 @@
     <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
     <ToolsDir>$(MSBuildProjectDirectory)\..\build\bin\Tools</ToolsDir>
     <SLTestRunner>$(BaseOutputDirectory)\bin\Tools\SilverlightConsoleRunner.exe</SLTestRunner>
-    <DeployNetCF>..\tools\DeployNetCF.exe</DeployNetCF>
+    <DeployNetCF>$(ToolsDir)\DeployNetCF.exe</DeployNetCF>
     <DumpApiXml>$(ToolsDir)\DumpApiXml.exe</DumpApiXml>
     <MergeApiXml>$(ToolsDir)\MergeApiXml.exe</MergeApiXml>
     <MakeNLogXSD>$(ToolsDir)\MakeNLogXSD.exe</MakeNLogXSD>
@@ -263,7 +263,9 @@
     <MSBuild Projects="..\tests\NLogC.UnitTests\NLogC.UnitTests.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=x64" />
   </Target>
 
-  <Target Name="BuildTests" DependsOnTargets="Build">
+  <Target Name="BuildTests">
+    <Copy DestinationFolder="$(ToolsDir)" SourceFiles="..\tools\DeployNetCF.exe" />
+    <Copy DestinationFolder="$(BaseOutputDirectory)\bin" SourceFiles="$(MSBuildProjectFile);..\tests\CreateTestUsers.cmd;..\tests\DeleteTestUsers.cmd" />
     <MSBuild Projects="..\tests\NLog.UnitTests\NLog.UnitTests%(TargetFramework.ProjectFileSuffix).csproj" 
              Targets="Build" 
              Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
@@ -279,7 +281,6 @@
     <CallTarget Targets="BuildSLTestRunner" />
     <CallTarget Targets="BuildNLogCTests" />
     <CallTarget Targets="BuildComApiTests" />
-    <Copy DestinationFolder="$(BaseOutputDirectory)\bin" SourceFiles="$(MSBuildProjectFile);..\tests\CreateTestUsers.cmd;..\tests\DeleteTestUsers.cmd" />
   </Target>
  
   <Target Name="BuildComApiTests">
