@@ -279,6 +279,7 @@
     <CallTarget Targets="BuildSLTestRunner" />
     <CallTarget Targets="BuildNLogCTests" />
     <CallTarget Targets="BuildComApiTests" />
+    <Copy DestinationFolder="$(BaseOutputDirectory)\bin" SourceFiles="$(MSBuildProjectFile)" />
   </Target>
  
   <Target Name="BuildComApiTests">
