@@ -38,6 +38,7 @@ namespace NLog.Config
     using System.Reflection;
     using NLog.Conditions;
     using NLog.Filters;
+    using NLog.Internal;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
@@ -48,12 +49,12 @@ namespace NLog.Config
     public class ConfigurationItemFactory
     {
         private readonly IList<object> allFactories;
-        private readonly Factory<Target, TargetAttribute> targets = new Factory<Target, TargetAttribute>();
-        private readonly Factory<Filter, FilterAttribute> filters = new Factory<Filter, FilterAttribute>();
-        private readonly Factory<LayoutRenderer, LayoutRendererAttribute> layoutRenderers = new Factory<LayoutRenderer, LayoutRendererAttribute>();
-        private readonly Factory<Layout, LayoutAttribute> layouts = new Factory<Layout, LayoutAttribute>();
-        private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>();
-        private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>();
+        private readonly Factory<Target, TargetAttribute> targets;
+        private readonly Factory<Filter, FilterAttribute> filters;
+        private readonly Factory<LayoutRenderer, LayoutRendererAttribute> layoutRenderers;
+        private readonly Factory<Layout, LayoutAttribute> layouts;
+        private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> conditionMethods;
+        private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties;
 
         /// <summary>
         /// Initializes static members of the <see cref="ConfigurationItemFactory"/> class.
@@ -69,6 +70,13 @@ namespace NLog.Config
         /// <param name="assemblies">The assemblies to scan for named items.</param>
         public ConfigurationItemFactory(params Assembly[] assemblies)
         {
+            this.CreateInstance = FactoryHelper.CreateInstance;
+            this.targets = new Factory<Target, TargetAttribute>(this);
+            this.filters = new Factory<Filter, FilterAttribute>(this);
+            this.layoutRenderers = new Factory<LayoutRenderer, LayoutRendererAttribute>(this);
+            this.layouts = new Factory<Layout, LayoutAttribute>(this);
+            this.conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>();
+            this.ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
             this.allFactories = new List<object>
             {
                 this.targets,
@@ -89,6 +97,14 @@ namespace NLog.Config
         /// Gets or sets default singleton instance of <see cref="ConfigurationItemFactory"/>.
         /// </summary>
         public static ConfigurationItemFactory Default { get; set; }
+
+        /// <summary>
+        /// Gets or sets the creator delegate used to instantiate configuration objects.
+        /// </summary>
+        /// <remarks>
+        /// By overriding this property, one can enable dependency injection or interception for created objects.
+        /// </remarks>
+        public ConfigurationItemCreator CreateInstance { get; set; }
 
         /// <summary>
         /// Gets the <see cref="Target"/> factory.

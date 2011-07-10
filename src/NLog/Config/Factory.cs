@@ -49,6 +49,12 @@ namespace NLog.Config
         where TAttributeType : NameBaseAttribute
     {
         private readonly Dictionary<string, GetTypeDelegate> items = new Dictionary<string, GetTypeDelegate>(StringComparer.OrdinalIgnoreCase);
+        private ConfigurationItemFactory parentFactory;
+
+        internal Factory(ConfigurationItemFactory parentFactory)
+        {
+            this.parentFactory = parentFactory;
+        }
 
         private delegate Type GetTypeDelegate();
 
@@ -173,7 +179,7 @@ namespace NLog.Config
                 return false;
             }
 
-            result = (TBaseType)Activator.CreateInstance(type);
+            result = (TBaseType)this.parentFactory.CreateInstance(type);
             return true;
         }
 

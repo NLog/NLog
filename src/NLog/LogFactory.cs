@@ -701,7 +701,6 @@ namespace NLog
                     }
                 }
 
-                // Activator.CreateInstance(cacheKey.ConcreteType);
                 Logger newLogger;
 
                 if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
