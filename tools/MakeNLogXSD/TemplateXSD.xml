@@ -245,7 +245,7 @@
 
   <xs:simpleType name="SimpleLayoutAttribute">
     <xs:restriction base="xs:string">
-      <xs:pattern value="((\$\{[a-zA-Z][a-zA-Z0-9\-]*(\:[a-zA-Z][a-zA-Z0-9\-]*\=([^\\\:]|\\.)*)*\})|([^\$])|(\$[^\{]))*" />
+      <xs:pattern value=".*" />
     </xs:restriction>
   </xs:simpleType>
 
