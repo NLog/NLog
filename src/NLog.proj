@@ -279,7 +279,7 @@
     <CallTarget Targets="BuildSLTestRunner" />
     <CallTarget Targets="BuildNLogCTests" />
     <CallTarget Targets="BuildComApiTests" />
-    <Copy DestinationFolder="$(BaseOutputDirectory)\bin" SourceFiles="$(MSBuildProjectFile)" />
+    <Copy DestinationFolder="$(BaseOutputDirectory)\bin" SourceFiles="$(MSBuildProjectFile);..\tests\CreateTestUsers.cmd;..\tests\DeleteTestUsers.cmd" />
   </Target>
  
   <Target Name="BuildComApiTests">
@@ -301,7 +301,7 @@
   </Target>
 
   <Target Name="RunTests">
-    <Exec Command="..\tests\CreateTestUsers.cmd" IgnoreExitCode="true" />
+    <Exec Command="$(BaseOutputDirectory)\bin\CreateTestUsers.cmd" IgnoreExitCode="true" />
     <CallTarget Targets="DeleteTrxFiles" />
     <CallTarget Targets="PrepareTestResultSummary" />
     <!-- <CallTarget Targets="Mono2Test" Condition="'$(BuildMono2)'=='true'"/> -->
@@ -316,7 +316,7 @@
     <CallTarget Targets="WP7Test" Condition="'$(BuildWP7)'=='true'"/>
     <CallTarget Targets="WP71Test" Condition="'$(BuildWP71)'=='true'"/>
     <CallTarget Targets="RunComApiTests" />
-    <Exec Command="..\tests\DeleteTestUsers.cmd" IgnoreExitCode="true" />
+    <Exec Command="$(BaseOutputDirectory)\bin\DeleteTestUsers.cmd" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="RunComApiTests">
