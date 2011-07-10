@@ -31,8 +31,8 @@
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
-    <ToolsDir>$(MSBuildProjectDirectory)\..\build\bin\Tools</ToolsDir>
-    <SLTestRunner>$(BaseOutputDirectory)\bin\Tools\SilverlightConsoleRunner.exe</SLTestRunner>
+    <ToolsDir>$(BaseOutputDirectory)\bin\Tools</ToolsDir>
+    <SLTestRunner>$(ToolsDir)\SilverlightConsoleRunner.exe</SLTestRunner>
     <DeployNetCF>$(ToolsDir)\DeployNetCF.exe</DeployNetCF>
     <DumpApiXml>$(ToolsDir)\DumpApiXml.exe</DumpApiXml>
     <MergeApiXml>$(ToolsDir)\MergeApiXml.exe</MergeApiXml>
@@ -349,7 +349,6 @@
   </Target>
 
   <Target Name="NetCf20Test" DependsOnTargets="DeployNetCf20ToEmulator">
-    <Copy SourceFiles="SmartDeviceTestRun.testrunConfig" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 2.0" />
     <Exec Command='"$(MSTest9)" /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 2.0"
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
@@ -357,7 +356,6 @@
   </Target>
 
   <Target Name="NetCf35Test" DependsOnTargets="DeployNetCf35ToEmulator">
-    <Copy SourceFiles="SmartDeviceTestRun.testrunConfig" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 3.5" />
     <Exec Command='"$(MSTest9)" /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 3.5"
           Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
