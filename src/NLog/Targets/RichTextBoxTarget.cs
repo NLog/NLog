@@ -268,7 +268,7 @@ namespace NLog.Targets
         {
             if (this.CreatedForm)
             {
-                this.TargetForm.Invoke((FormCloseDelegate)this.TargetForm.Close);
+                this.TargetForm.BeginInvoke((FormCloseDelegate)this.TargetForm.Close);
                 this.TargetForm = null;
             }
         }
@@ -309,7 +309,7 @@ namespace NLog.Targets
             
             string logMessage = this.Layout.Render(logEvent);
 
-            this.TargetRichTextBox.Invoke(new DelSendTheMessageToRichTextBox(this.SendTheMessageToRichTextBox), new object[] { logMessage, matchingRule });
+            this.TargetRichTextBox.BeginInvoke(new DelSendTheMessageToRichTextBox(this.SendTheMessageToRichTextBox), new object[] { logMessage, matchingRule });
         }
 
         private static Color GetColorFromString(string color, Color defaultColor)
