@@ -381,12 +381,14 @@
     <Exec Command="TaskKill /f /im XDE.exe 2&gt; nul" IgnoreExitCode="true" />
     <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap WP7 -guid 3cf9fab9-588c-49c8-8a45-ef071442304f -icon ApplicationIcon.png'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight for Windows Phone 7" IgnoreExitCode="true" />
+    <Exec Command="TaskKill /f /im XDE.exe 2&gt; nul" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="WP71Test">
     <Exec Command="TaskKill /f /im XDE.exe 2&gt; nul" IgnoreExitCode="true" />
     <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap WP71 -guid 3cf9fab9-588c-49c8-8a45-ef071442304f -icon ApplicationIcon.png'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight for Windows Phone 7.1" IgnoreExitCode="true" />
+    <Exec Command="TaskKill /f /im XDE.exe 2&gt; nul" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="CheckinSuite">
