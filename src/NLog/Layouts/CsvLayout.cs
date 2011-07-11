@@ -298,6 +298,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Header for CSV layout.
         /// </summary>
+        [ThreadAgnostic]
         private class CsvHeaderLayout : Layout
         {
             private CsvLayout parent;

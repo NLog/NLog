@@ -149,5 +149,39 @@ namespace NLog.UnitTests.Layouts
             l.Initialize(null);
             Assert.IsFalse(l.IsThreadAgnostic);
         }
+
+        [Test]
+        public void CsvThreadAgnostic()
+        {
+            CsvLayout l = new CsvLayout()
+            {
+                Columns =
+                {
+                    new CsvColumn("name1", "${message}"),
+                    new CsvColumn("name2", "${level}"),
+                    new CsvColumn("name3", "${longdate}"),
+                },
+            };
+
+            l.Initialize(null);
+            Assert.IsTrue(l.IsThreadAgnostic);
+        }
+
+        [Test]
+        public void CsvNonAgnostic()
+        {
+            CsvLayout l = new CsvLayout()
+            {
+                Columns =
+                {
+                    new CsvColumn("name1", "${message}"),
+                    new CsvColumn("name2", "${threadname}"),
+                    new CsvColumn("name3", "${longdate}"),
+                },
+            };
+
+            l.Initialize(null);
+            Assert.IsFalse(l.IsThreadAgnostic);
+        }
     }
 }

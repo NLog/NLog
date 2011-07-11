@@ -39,6 +39,7 @@ namespace NLog.Layouts
     /// A column in the CSV.
     /// </summary>
     [NLogConfigurationItem]
+    [ThreadAgnostic]
     public class CsvColumn 
     {
         /// <summary>
