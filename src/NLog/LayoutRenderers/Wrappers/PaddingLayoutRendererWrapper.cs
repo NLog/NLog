@@ -35,6 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
     using System.ComponentModel;
+    using NLog.Config;
 
     /// <summary>
     /// Applies padding to another layout output.
@@ -43,6 +44,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("Padding")]
     [AmbientProperty("PadCharacter")]
     [AmbientProperty("FixedLength")]
+    [ThreadAgnostic]
     public sealed class PaddingLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

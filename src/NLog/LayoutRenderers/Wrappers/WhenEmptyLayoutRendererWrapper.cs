@@ -41,6 +41,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("whenEmpty")]
     [AmbientProperty("WhenEmpty")]
+    [ThreadAgnostic]
     public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

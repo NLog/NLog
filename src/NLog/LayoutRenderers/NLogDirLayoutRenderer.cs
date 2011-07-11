@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("nlogdir")]
     [AppDomainFixedOutput]
+    [ThreadAgnostic]
     public class NLogDirLayoutRenderer : LayoutRenderer
     {
         /// <summary>

@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("processname")]
     [AppDomainFixedOutput]
+    [ThreadAgnostic]
     public class ProcessNameLayoutRenderer : LayoutRenderer
     {
         /// <summary>

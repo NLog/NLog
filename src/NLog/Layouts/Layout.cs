@@ -45,6 +45,20 @@ namespace NLog.Layouts
     public abstract class Layout : ISupportsInitialize, IRenderable
     {
         private bool isInitialized;
+        private bool threadAgnostic;
+
+        /// <summary>
+        /// Gets a value indicating whether this layout is thread-agnostic (can be rendered on any thread).
+        /// </summary>
+        /// <remarks>
+        /// Layout is thread-agnostic if it has been marked with [ThreadAgnostic] attribute and all its children are
+        /// like that as well.
+        /// Thread-agnostic layouts only use contents of <see cref="LogEventInfo"/> for its output.
+        /// </remarks>
+        internal bool IsThreadAgnostic
+        {
+            get { return this.threadAgnostic; }
+        }
 
         /// <summary>
         /// Gets the logging configuration this target is part of.
@@ -94,7 +108,10 @@ namespace NLog.Layouts
         /// </remarks>
         public virtual void Precalculate(LogEventInfo logEvent)
         {
-            this.Render(logEvent);
+            if (!this.threadAgnostic)
+            {
+                this.Render(logEvent);
+            }
         }
 
         /// <summary>
@@ -140,6 +157,20 @@ namespace NLog.Layouts
             {
                 this.LoggingConfiguration = configuration;
                 this.isInitialized = true;
+
+                // determine whether the layout is thread-agnostic
+                // layout is thread agnostic if it is thread-agnostic and 
+                // all its nested objects are thread-agnostic.
+                this.threadAgnostic = true;
+                foreach (object item in ObjectGraphScanner.FindReachableObjects<object>(this))
+                {
+                    if (!item.GetType().IsDefined(typeof(ThreadAgnosticAttribute), true))
+                    {
+                        this.threadAgnostic = false;
+                        break;
+                    }
+                }
+
                 this.InitializeLayout();
             }
         }

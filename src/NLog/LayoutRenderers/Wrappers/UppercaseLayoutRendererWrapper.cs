@@ -35,12 +35,14 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
     using System.Globalization;
+    using NLog.Config;
 
     /// <summary>
     /// Converts the result of another layout output to upper case.
     /// </summary>
     [LayoutRenderer("uppercase")]
     [AmbientProperty("Uppercase")]
+    [ThreadAgnostic]
     public sealed class UppercaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

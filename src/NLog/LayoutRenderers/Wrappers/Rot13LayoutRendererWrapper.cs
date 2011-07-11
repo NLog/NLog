@@ -44,6 +44,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </remarks>
     [LayoutRenderer("rot13")]
     [AppDomainFixedOutput]
+    [ThreadAgnostic]
     public sealed class Rot13LayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

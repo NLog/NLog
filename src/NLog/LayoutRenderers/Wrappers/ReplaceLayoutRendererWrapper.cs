@@ -34,11 +34,13 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text.RegularExpressions;
+    using NLog.Config;
 
     /// <summary>
     /// Replaces a string in the output of another layout with another string.
     /// </summary>
     [LayoutRenderer("replace")]
+    [ThreadAgnostic]
     public sealed class ReplaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         private Regex regex;

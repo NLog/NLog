@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
+    using NLog.Config;
 
     /// <summary>
     /// Applies caching to another layout output.
@@ -43,6 +44,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </remarks>
     [LayoutRenderer("cached")]
     [AmbientProperty("Cached")]
+    [ThreadAgnostic]
     public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         private string cachedValue;

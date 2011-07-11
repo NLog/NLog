@@ -35,12 +35,14 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
     using System.Globalization;
+    using NLog.Config;
 
     /// <summary>
     /// Trims the whitespace from the result of another layout renderer.
     /// </summary>
     [LayoutRenderer("trim-whitespace")]
     [AmbientProperty("TrimWhiteSpace")]
+    [ThreadAgnostic]
     public sealed class TrimWhiteSpaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
