@@ -669,7 +669,8 @@
           <xsl:if test="release[@framework='Silverlight 2.0']">2.0; </xsl:if>
           <xsl:if test="release[@framework='Silverlight 3.0']">3.0; </xsl:if>
           <xsl:if test="release[@framework='Silverlight 4.0']">4.0; </xsl:if>
-          <xsl:if test="release[@framework='Silverlight for Windows Phone 7']">Windows Phone 7; </xsl:if>
+          <xsl:if test="release[@framework='Silverlight for Windows Phone 7']">WP 7; </xsl:if>
+          <xsl:if test="release[@framework='Silverlight for Windows Phone 7.1']">WP 7.1; </xsl:if>
         </xsl:attribute>
       </img>
     </xsl:if>
