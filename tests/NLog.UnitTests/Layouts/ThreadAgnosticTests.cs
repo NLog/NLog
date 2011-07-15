@@ -47,6 +47,7 @@ namespace NLog.UnitTests.Layouts
     using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
     using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
     using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
+    using NLog.LayoutRenderers;
 #endif
 
     [TestFixture]
@@ -182,6 +183,49 @@ namespace NLog.UnitTests.Layouts
 
             l.Initialize(null);
             Assert.IsFalse(l.IsThreadAgnostic);
+        }
+
+        [Test]
+        public void CustomNotAgnosticTests()
+        {
+            var cif = new ConfigurationItemFactory();
+            cif.RegisterType(typeof(CustomRendererNonAgnostic), string.Empty);
+
+            Layout l = new SimpleLayout("${customNotAgnostic}", cif);
+
+            l.Initialize(null);
+            Assert.IsFalse(l.IsThreadAgnostic);
+        }
+
+        [Test]
+        public void CustomAgnosticTests()
+        {
+            var cif = new ConfigurationItemFactory();
+            cif.RegisterType(typeof(CustomRendererAgnostic), string.Empty);
+
+            Layout l = new SimpleLayout("${customAgnostic}", cif);
+
+            l.Initialize(null);
+            Assert.IsTrue(l.IsThreadAgnostic);
+        }
+
+        [LayoutRenderer("customNotAgnostic")]
+        public class CustomRendererNonAgnostic : LayoutRenderer
+        {
+            protected override void Append(System.Text.StringBuilder builder, LogEventInfo logEvent)
+            {
+                builder.Append("custom");
+            }
+        }
+
+        [LayoutRenderer("customAgnostic")]
+        [ThreadAgnostic]
+        public class CustomRendererAgnostic : LayoutRenderer
+        {
+            protected override void Append(System.Text.StringBuilder builder, LogEventInfo logEvent)
+            {
+                builder.Append("customAgnostic");
+            }
         }
     }
 }
