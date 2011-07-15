@@ -203,7 +203,7 @@
        <CommonProperties>BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion)</CommonProperties>
      </PropertyGroup>
      <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;DumpApi;XSD;Documentation;Archive;Installer;NuGetPackage;BuildTests;Web" Properties="Configuration=Release;$(CommonProperties)" />
-     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;DumpApi;XSD;Documentation;Archive;Installer;NuGetPackage;BuildTests" Properties="Configuration=Debug;$(CommonProperties)" />
+     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;DumpApi;XSD;Documentation;Archive;Installer;NuGetPackage;BuildTests;RunNightlyTests" Properties="Configuration=Debug;$(CommonProperties)" />
      <CallTarget Targets="SourceArchive" />
   </Target>
 
@@ -317,6 +317,16 @@
     <CallTarget Targets="WP7Test" Condition="'$(BuildWP7)'=='true'"/>
     <CallTarget Targets="WP71Test" Condition="'$(BuildWP71)'=='true'"/>
     <CallTarget Targets="RunComApiTests" />
+    <Exec Command="$(BaseOutputDirectory)\bin\DeleteTestUsers.cmd" IgnoreExitCode="true" />
+  </Target>
+
+  <Target Name="RunNightlyTests">
+    <Exec Command="$(BaseOutputDirectory)\bin\CreateTestUsers.cmd" IgnoreExitCode="true" />
+    <CallTarget Targets="DeleteTrxFiles" />
+    <Exec Command='NLogC.UnitTests.exe' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\x86" />
+    <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0" 
+          Condition="Exists('$(MSTest10)')" />
     <Exec Command="$(BaseOutputDirectory)\bin\DeleteTestUsers.cmd" IgnoreExitCode="true" />
   </Target>
 
