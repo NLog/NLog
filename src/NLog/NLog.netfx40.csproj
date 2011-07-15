@@ -251,6 +251,7 @@
     <Compile Include="LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\JsonEncodeLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\LowercaseLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\OnExceptionLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\PaddingLayoutRendererWrapper.cs" />
