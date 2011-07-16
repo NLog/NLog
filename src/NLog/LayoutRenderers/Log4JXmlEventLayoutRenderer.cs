@@ -69,7 +69,7 @@ namespace NLog.LayoutRenderers
 #elif SILVERLIGHT
             this.AppInfo = "Silverlight Application";
 #else
-            this.AppInfo = String.Format(
+            this.AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
                 "{0}({1})", 
                 AppDomain.CurrentDomain.FriendlyName, 

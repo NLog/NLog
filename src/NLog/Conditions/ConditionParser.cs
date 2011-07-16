@@ -167,10 +167,10 @@ namespace NLog.Conditions
                 this.tokenizer.GetNextToken();
                 if (numberString.IndexOf('.') >= 0)
                 {
-                    return new ConditionLiteralExpression(-Double.Parse(numberString, CultureInfo.InvariantCulture));
+                    return new ConditionLiteralExpression(-double.Parse(numberString, CultureInfo.InvariantCulture));
                 }
 
-                return new ConditionLiteralExpression(-Int32.Parse(numberString, CultureInfo.InvariantCulture));
+                return new ConditionLiteralExpression(-int.Parse(numberString, CultureInfo.InvariantCulture));
             }
 
             if (this.tokenizer.IsNumber())
@@ -179,10 +179,10 @@ namespace NLog.Conditions
                 this.tokenizer.GetNextToken();
                 if (numberString.IndexOf('.') >= 0)
                 {
-                    return new ConditionLiteralExpression(Double.Parse(numberString, CultureInfo.InvariantCulture));
+                    return new ConditionLiteralExpression(double.Parse(numberString, CultureInfo.InvariantCulture));
                 }
 
-                return new ConditionLiteralExpression(Int32.Parse(numberString, CultureInfo.InvariantCulture));
+                return new ConditionLiteralExpression(int.Parse(numberString, CultureInfo.InvariantCulture));
             }
 
             if (this.tokenizer.TokenType == ConditionTokenType.String)
@@ -196,38 +196,38 @@ namespace NLog.Conditions
             {
                 string keyword = this.tokenizer.EatKeyword();
 
-                if (0 == String.Compare(keyword, "level", StringComparison.OrdinalIgnoreCase))
+                if (0 == string.Compare(keyword, "level", StringComparison.OrdinalIgnoreCase))
                 {
                     return new ConditionLevelExpression();
                 }
 
-                if (0 == String.Compare(keyword, "logger", StringComparison.OrdinalIgnoreCase))
+                if (0 == string.Compare(keyword, "logger", StringComparison.OrdinalIgnoreCase))
                 {
                     return new ConditionLoggerNameExpression();
                 }
 
-                if (0 == String.Compare(keyword, "message", StringComparison.OrdinalIgnoreCase))
+                if (0 == string.Compare(keyword, "message", StringComparison.OrdinalIgnoreCase))
                 {
                     return new ConditionMessageExpression();
                 }
 
-                if (0 == String.Compare(keyword, "loglevel", StringComparison.OrdinalIgnoreCase))
+                if (0 == string.Compare(keyword, "loglevel", StringComparison.OrdinalIgnoreCase))
                 {
                     this.tokenizer.Expect(ConditionTokenType.Dot);
                     return new ConditionLiteralExpression(LogLevel.FromString(this.tokenizer.EatKeyword()));
                 }
 
-                if (0 == String.Compare(keyword, "true", StringComparison.OrdinalIgnoreCase))
+                if (0 == string.Compare(keyword, "true", StringComparison.OrdinalIgnoreCase))
                 {
                     return new ConditionLiteralExpression(true);
                 }
 
-                if (0 == String.Compare(keyword, "false", StringComparison.OrdinalIgnoreCase))
+                if (0 == string.Compare(keyword, "false", StringComparison.OrdinalIgnoreCase))
                 {
                     return new ConditionLiteralExpression(false);
                 }
 
-                if (0 == String.Compare(keyword, "null", StringComparison.OrdinalIgnoreCase))
+                if (0 == string.Compare(keyword, "null", StringComparison.OrdinalIgnoreCase))
                 {
                     return new ConditionLiteralExpression(null);
                 }

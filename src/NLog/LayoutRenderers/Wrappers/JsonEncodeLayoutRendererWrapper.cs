@@ -123,6 +123,7 @@ namespace NLog.LayoutRenderers.Wrappers
                         {
                             sb.Append(text[i]);
                         }
+
                         break;
                 }
             }
@@ -132,7 +133,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private static bool NeedsEscaping(char ch)
         {
-            return (ch < 32 || ch > 127);
+            return ch < 32 || ch > 127;
         }
     }
 }

@@ -185,7 +185,7 @@ namespace NLog.Config
                 }
 
                 this.loggerNameMatchMode = MatchMode.None;
-                this.loggerNameMatchArgument = String.Empty;
+                this.loggerNameMatchArgument = string.Empty;
             }
         }
 

@@ -140,7 +140,7 @@ namespace NLog.Internal
         /// Gets or sets the <see cref="System.Object"/> with the specified key.
         /// </summary>
         /// <param name="key">Dictionary key.</param>
-        /// <value>Value corresponding to key or null if not found</value>
+        /// <returns>Value corresponding to key or null if not found</returns>
         public object this[object key]
         {
             get

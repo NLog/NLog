@@ -203,7 +203,7 @@ namespace NLog.Conditions
 
             char ch = (char)i;
 
-            if (Char.IsDigit(ch))
+            if (char.IsDigit(ch))
             {
                 this.ParseNumber(ch);
                 return;
@@ -215,7 +215,7 @@ namespace NLog.Conditions
                 return;
             }
 
-            if (ch == '_' || Char.IsLetter(ch))
+            if (ch == '_' || char.IsLetter(ch))
             {
                 this.ParseKeyword(ch);
                 return;
@@ -437,7 +437,7 @@ namespace NLog.Conditions
 
             while ((i = this.PeekChar()) != -1)
             {
-                if ((char)i == '_' || (char)i == '-' || Char.IsLetterOrDigit((char)i))
+                if ((char)i == '_' || (char)i == '-' || char.IsLetterOrDigit((char)i))
                 {
                     sb.Append((char)this.ReadChar());
                 }
@@ -463,7 +463,7 @@ namespace NLog.Conditions
             {
                 ch = (char)i;
 
-                if (Char.IsDigit(ch) || (ch == '.'))
+                if (char.IsDigit(ch) || (ch == '.'))
                 {
                     sb.Append((char)this.ReadChar());
                 }
@@ -482,7 +482,7 @@ namespace NLog.Conditions
 
             while ((ch = this.PeekChar()) != -1)
             {
-                if (!Char.IsWhiteSpace((char)ch))
+                if (!char.IsWhiteSpace((char)ch))
                 {
                     break;
                 }

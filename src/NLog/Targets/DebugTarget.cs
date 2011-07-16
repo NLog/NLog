@@ -65,7 +65,7 @@ namespace NLog.Targets
         /// </remarks>
         public DebugTarget()
         {
-            this.LastMessage = String.Empty;
+            this.LastMessage = string.Empty;
             this.Counter = 0;
         }
 

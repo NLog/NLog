@@ -35,9 +35,9 @@
 
 namespace NLog.ComInterop
 {
-    using System.Runtime.InteropServices;
     using System.Diagnostics.CodeAnalysis;
-
+    using System.Runtime.InteropServices;
+    
     /// <summary>
     /// NLog COM Interop logger interface.
     /// </summary>

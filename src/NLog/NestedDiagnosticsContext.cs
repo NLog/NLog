@@ -62,7 +62,7 @@ namespace NLog
                 }
                 else
                 {
-                    return String.Empty;
+                    return string.Empty;
                 }
             }
         }
@@ -98,7 +98,7 @@ namespace NLog
             }
             else
             {
-                return String.Empty;
+                return string.Empty;
             }
         }
 

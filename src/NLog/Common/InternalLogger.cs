@@ -287,7 +287,7 @@ namespace NLog.Common
                 return;
             }
 
-            if (String.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null)
+            if (string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null)
             {
                 return;
             }

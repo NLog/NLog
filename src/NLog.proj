@@ -77,7 +77,7 @@
     <MSTest9>$(VS90COMNTOOLS)..\IDE\MSTest.exe</MSTest9>
     <MSTest10>$(VS100COMNTOOLS)..\IDE\MSTest.exe</MSTest10>
 
-    <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.5\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
+    <StyleCopTargetsFile>$(MSBuildExtensionsPath)\StyleCop\v4.5\StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopProperties Condition="'$(DisableStyleCop)' == 'false' and Exists('$(StyleCopTargetsFile)')">StyleCopTargetsFile=$(StyleCopTargetsFile)</StyleCopProperties>
   </PropertyGroup>
 

@@ -52,7 +52,7 @@ namespace NLog.ComInterop
         private static readonly Logger DefaultLogger = LogManager.CreateNullLogger();
 
         private Logger logger = DefaultLogger;
-        private string loggerName = String.Empty;
+        private string loggerName = string.Empty;
 
         /// <summary>
         /// Gets a value indicating whether the Trace level is enabled.

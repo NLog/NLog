@@ -66,14 +66,14 @@ namespace NLog
         /// Gets the current thread MDC named item.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>The item value of String.Empty if the value is not present.</returns>
+        /// <returns>The item value of string.Empty if the value is not present.</returns>
         public static string Get(string item)
         {
             string s;
 
             if (!ThreadDictionary.TryGetValue(item, out s))
             {
-                s = String.Empty;
+                s = string.Empty;
             }
 
             return s;

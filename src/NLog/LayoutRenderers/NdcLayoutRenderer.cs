@@ -99,7 +99,7 @@ namespace NLog.LayoutRenderers
                 separatorLength = this.Separator.Length;
             }
 
-            string separator = String.Empty;
+            string separator = string.Empty;
 
             StringBuilder sb = new StringBuilder();
             for (int i = endPos - 1; i >= startPos; --i)

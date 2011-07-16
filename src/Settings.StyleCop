@@ -37,11 +37,6 @@
             <BooleanProperty Name="Enabled">True</BooleanProperty>
           </RuleSettings>
         </Rule>
-        <Rule Name="DocumentationTextMustEndWithAPeriod">
-          <RuleSettings>
-            <BooleanProperty Name="Enabled">True</BooleanProperty>
-          </RuleSettings>
-        </Rule>
       </Rules>
       <AnalyzerSettings>
         <BooleanProperty Name="IgnorePrivates">True</BooleanProperty>

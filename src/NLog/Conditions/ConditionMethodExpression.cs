@@ -74,7 +74,7 @@ namespace NLog.Conditions
 
             if (formalParameters.Length != actualParameterCount)
             {
-                string message = String.Format(
+                string message = string.Format(
                     CultureInfo.InvariantCulture,
                     "Condition method '{0}' expects {1} parameters, but passed {2}.",
                     conditionMethodName,

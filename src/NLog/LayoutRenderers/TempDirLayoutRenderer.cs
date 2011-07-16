@@ -83,4 +83,3 @@ namespace NLog.LayoutRenderers
         }
     }
 }
-

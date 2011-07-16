@@ -122,16 +122,19 @@ namespace NLog.Internal
             {
                 oldThreadData = threadData;
                 wtr.Next = oldThreadData;
-            } while (Interlocked.CompareExchange(ref threadData, wtr, oldThreadData) != oldThreadData);
+            }
+            while (Interlocked.CompareExchange(ref threadData, wtr, oldThreadData) != oldThreadData);
 
             return data;
         }
 
-        class WeakThreadReferenceWithData
+        internal class WeakThreadReferenceWithData
         {
-            public WeakReference ThreadReference;
-            public IDictionary<int, object> Data;
-            public WeakThreadReferenceWithData Next;
+            internal WeakReference ThreadReference { get; set; }
+
+            internal IDictionary<int, object> Data { get; set; }
+
+            internal WeakThreadReferenceWithData Next { get; set; }
         }
 #endif
     }

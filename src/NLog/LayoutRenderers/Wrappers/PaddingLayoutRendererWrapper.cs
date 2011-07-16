@@ -87,7 +87,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Transformed text.</returns>
         protected override string Transform(string text)
         {
-            string s = text ?? String.Empty;
+            string s = text ?? string.Empty;
 
             if (this.Padding != 0)
             {
