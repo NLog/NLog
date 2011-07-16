@@ -31,6 +31,9 @@
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
+    <IgnoreBuildFailures>false</IgnoreBuildFailures>
+    <IgnoreBuildFailures Condition=" '$(BuildAllFrameworks)'=='true' ">true</IgnoreBuildFailures>
+    <IgnoreBuildFailures Condition=" '$(IsNightlyBuild)'=='true' ">false</IgnoreBuildFailures>
     <ToolsDir>$(BaseOutputDirectory)\bin\Tools</ToolsDir>
     <SLTestRunner>$(ToolsDir)\SilverlightConsoleRunner.exe</SLTestRunner>
     <DeployNetCF>$(ToolsDir)\DeployNetCF.exe</DeployNetCF>
@@ -200,7 +203,7 @@
 
   <Target Name="NightlyBuild">
      <PropertyGroup>
-       <CommonProperties>BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion)</CommonProperties>
+       <CommonProperties>BuildLabel=$(BuildLabel);BuildVersion=$(BuildVersion);IsNightlyBuild=true</CommonProperties>
      </PropertyGroup>
      <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;DumpApi;XSD;Documentation;Archive;Installer;NuGetPackage;BuildTests;Web" Properties="Configuration=Release;$(CommonProperties)" />
      <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;DumpApi;XSD;Documentation;Archive;Installer;NuGetPackage;BuildTests;RunNightlyTests" Properties="Configuration=Debug;$(CommonProperties)" />
@@ -232,20 +235,20 @@
              Targets="Build" 
              Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory);BuildInfoFile=$(BuildInfoFile)" 
              ToolsVersion="%(TargetFramework.ToolsVersion)" 
-             ContinueOnError="$(BuildAllFrameworks)" 
+             ContinueOnError="$(IgnoreBuildFailures)" 
              StopOnFirstFailure="false" />
     <MSBuild Projects="NLog.Extended\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj" 
              Targets="Build" 
              Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory);BuildInfoFile=$(BuildInfoFile)" 
              ToolsVersion="%(TargetFramework.ToolsVersion)" 
-             ContinueOnError="$(BuildAllFrameworks)" 
+             ContinueOnError="$(IgnoreBuildFailures)" 
              StopOnFirstFailure="false"
              Condition="Exists('NLog.Extended\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj')" />
     <MSBuild Projects="InstallNLogConfig\InstallNLogConfig%(TargetFramework.ProjectFileSuffix).csproj" 
              Targets="Build" 
              Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory);BuildInfoFile=$(BuildInfoFile)" 
              ToolsVersion="%(TargetFramework.ToolsVersion)" 
-             ContinueOnError="$(BuildAllFrameworks)" 
+             ContinueOnError="$(IgnoreBuildFailures)" 
              StopOnFirstFailure="false"
              Condition="Exists('InstallNLogConfig\InstallNLogConfig%(TargetFramework.ProjectFileSuffix).csproj')" />
 
@@ -269,12 +272,12 @@
     <MSBuild Projects="..\tests\NLog.UnitTests\NLog.UnitTests%(TargetFramework.ProjectFileSuffix).csproj" 
              Targets="Build" 
              Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
-             ContinueOnError="$(BuildAllFrameworks)" 
+             ContinueOnError="$(IgnoreBuildFailures)" 
              StopOnFirstFailure="false" />
     <MSBuild Projects="..\tests\NLog.BinaryCompatTests\NLog.BinaryCompatTests%(TargetFramework.ProjectFileSuffix).csproj" 
              Targets="Build" 
              Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
-             ContinueOnError="$(BuildAllFrameworks)" 
+             ContinueOnError="$(IgnoreBuildFailures)" 
              Condition="Exists('..\tests\NLog.BinaryCompatTests\NLog.BinaryCompatTests%(TargetFramework.ProjectFileSuffix).csproj')" 
              StopOnFirstFailure="false" />
     <CallTarget Targets="BuildTestResultSummaryTool" />

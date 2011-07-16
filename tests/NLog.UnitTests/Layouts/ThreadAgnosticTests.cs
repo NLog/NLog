@@ -37,6 +37,8 @@ namespace NLog.UnitTests.Layouts
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
+    using NLog.LayoutRenderers;
+    using NLog.Internal;
     using NLog.Config;
     using NLog.LayoutRenderers.Wrappers;
     using NLog.Layouts;
@@ -47,7 +49,6 @@ namespace NLog.UnitTests.Layouts
     using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
     using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
     using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-    using NLog.LayoutRenderers;
 #endif
 
     [TestFixture]
@@ -56,7 +57,7 @@ namespace NLog.UnitTests.Layouts
         [Test]
         public void ThreadAgnosticAttributeTest()
         {
-            foreach (var t in typeof(Layout).Assembly.GetExportedTypes())
+            foreach (var t in ReflectionHelpers.SafeGetTypes(typeof(Layout).Assembly))
             {
                 if (t.Namespace == typeof(WrapperLayoutRendererBase).Namespace)
                 {
