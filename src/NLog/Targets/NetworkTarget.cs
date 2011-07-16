@@ -69,7 +69,7 @@ namespace NLog.Targets
     /// <img src="examples/targets/Screenshots/Network/Output.gif" />
     /// <p>
     /// NOTE: If your receiver application is ever likely to be off-line, don't use TCP protocol
-    /// or you'll get TCP timeouts and your application will crawl. 
+    /// or you'll get TCP timeouts and your application will be very slow. 
     /// Either switch to UDP transport or use <a href="target.AsyncWrapper.html">AsyncWrapper</a> target
     /// so that your application threads will not be blocked by the timing-out connection attempts.
     /// </p>
@@ -107,14 +107,16 @@ namespace NLog.Targets
         /// <remarks>
         /// The network address can be:
         /// <ul>
-        /// <li>tcp://host:port - TCP (auto select IPv4/IPv6)</li>
-        /// <li>tcp4://host:port - force TCP/IPv4</li>
-        /// <li>tcp6://host:port - force TCP/IPv6</li>
-        /// <li>udp://host:port - UDP (auto select IPv4/IPv6, not supported on Silverlight)</li>
-        /// <li>udp4://host:port - force UDP/IPv4 (not supported on Silverlight)</li>
-        /// <li>udp6://host:port - force UDP/IPv6  (not supported on Silverlight)</li>
+        /// <li>tcp://host:port - TCP (auto select IPv4/IPv6) (not supported on Windows Phone 7.0)</li>
+        /// <li>tcp4://host:port - force TCP/IPv4 (not supported on Windows Phone 7.0)</li>
+        /// <li>tcp6://host:port - force TCP/IPv6 (not supported on Windows Phone 7.0)</li>
+        /// <li>udp://host:port - UDP (auto select IPv4/IPv6, not supported on Silverlight and on Windows Phone 7.0)</li>
+        /// <li>udp4://host:port - force UDP/IPv4 (not supported on Silverlight and on Windows Phone 7.0)</li>
+        /// <li>udp6://host:port - force UDP/IPv6  (not supported on Silverlight and on Windows Phone 7.0)</li>
+        /// <li>http://host:port/pageName - HTTP using POST verb</li>
+        /// <li>https://host:port/pageName - HTTPS using POST verb</li>
         /// </ul>
-        /// For HTTP Support use WebService target.
+        /// For SOAP-based webservice support over HTTP use WebService target.
         /// </remarks>
         /// <docgen category='Connection Options' order='10' />
         public Layout Address { get; set; }
