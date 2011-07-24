@@ -100,7 +100,17 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            this.mutex.WaitOne();
+            try
+            {
+                this.mutex.WaitOne();
+            }
+            catch (AbandonedMutexException)
+            {
+                // ignore the exception, another process was killed without properly releasing the mutex
+                // the mutex has been acquired, so proceed to writing
+                // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
+            }
+
             try
             {
                 this.file.Seek(0, SeekOrigin.End);
