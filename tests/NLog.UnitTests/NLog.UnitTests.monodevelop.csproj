@@ -75,6 +75,7 @@
     <Compile Include="Config\RuleConfigurationTests.cs" />
     <Compile Include="Config\TargetConfigurationTests.cs" />
     <Compile Include="Config\VariableTests.cs" />
+    <Compile Include="ConfigFileLocatorTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />

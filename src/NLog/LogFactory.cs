@@ -146,6 +146,7 @@ namespace NLog
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);
                                 this.config = new XmlLoggingConfiguration(configFile);
+                                break;
                             }
 #else
                             Uri configFileUri = new Uri(configFile, UriKind.Relative);
@@ -153,6 +154,7 @@ namespace NLog
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);
                                 this.config = new XmlLoggingConfiguration(configFile);
+                                break;
                             }
 #endif
                         }
@@ -662,14 +664,9 @@ namespace NLog
             var nlogAssembly = typeof(LogFactory).Assembly;
             if (!nlogAssembly.GlobalAssemblyCache)
             {
-                var codeBase = nlogAssembly.GetName().CodeBase;
-                if (!string.IsNullOrEmpty(codeBase))
+                if (!string.IsNullOrEmpty(nlogAssembly.Location))
                 {
-                    var uri = new Uri(codeBase, UriKind.RelativeOrAbsolute);
-                    if (uri.Scheme == "file")
-                    {
-                        yield return uri.AbsolutePath + ".nlog";
-                    }
+                    yield return nlogAssembly.Location + ".nlog";
                 }
             }
 #endif
