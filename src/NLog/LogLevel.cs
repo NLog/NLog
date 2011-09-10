@@ -233,7 +233,7 @@ namespace NLog
         /// Gets the <see cref="LogLevel"/> that corresponds to the specified ordinal.
         /// </summary>
         /// <param name="ordinal">The ordinal.</param>
-        /// <returns>The <see cref="LogLevel"/> instance. For 0 it returns <see cref="LogLevel.Debug"/>, 1 gives <see cref="LogLevel.Info"/> and so on.</returns>
+        /// <returns>The <see cref="LogLevel"/> instance. For 0 it returns <see cref="LogLevel.Trace"/>, 1 gives <see cref="LogLevel.Debug"/> and so on.</returns>
         public static LogLevel FromOrdinal(int ordinal)
         {
             switch (ordinal)
