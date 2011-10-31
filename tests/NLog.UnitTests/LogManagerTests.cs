@@ -75,11 +75,16 @@ namespace NLog.UnitTests
             Assert.AreSame(loggerA1, loggerA2);
         }
 
+        static WeakReference GetWeakReferenceToTemporaryLogger()
+        {
+            string uniqueLoggerName = Guid.NewGuid ().ToString();
+            return new WeakReference (LogManager.GetLogger(uniqueLoggerName));
+        }
+
         [Test]
         public void GarbageCollection2Test()
         {
-            string uniqueLoggerName = Guid.NewGuid().ToString();
-            WeakReference wr = new WeakReference(LogManager.GetLogger(uniqueLoggerName));
+            WeakReference wr = GetWeakReferenceToTemporaryLogger();
 
             // nobody's holding a reference to this Logger anymore, so GC.Collect(2) should free it
             GC.Collect();
@@ -165,11 +170,10 @@ namespace NLog.UnitTests
             _reloadCounter++;
         }
 
-        private bool IsMacOsX()
+        private bool IsMacOsX ()
         {
 #if MONO
-            // just an approximation, to detect Mac OS X
-            if (Environment.OSVersion.Platform == PlatformID.Unix && Environment.OSVersion.Version.Major == 10)
+            if (Directory.Exists("/Library/Frameworks/Mono.framework/"))
             {
                 return true;
             }
