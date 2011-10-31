@@ -34,7 +34,7 @@ Global
 		{FE0A3713-E9A8-41F0-89FA-C1126F8FB6A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = NLog\NLog.monodevelop.csproj
+		StartupItem = ..\tests\NLog.UnitTests\NLog.UnitTests.monodevelop.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.inheritsSet = null
