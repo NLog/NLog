@@ -47,7 +47,7 @@ namespace NLog
     {
         private static readonly LogFactory globalFactory = new LogFactory();
 
-#if !NET_CF && !SILVERLIGHT
+#if !NET_CF && !SILVERLIGHT && !MONO
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
@@ -290,7 +290,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
             return globalFactory.IsLoggingEnabled();
         }
 
-#if !NET_CF && !SILVERLIGHT
+#if !NET_CF && !SILVERLIGHT && !MONO
         private static void SetupTerminationEvents()
         {
             AppDomain.CurrentDomain.ProcessExit += TurnOffLogging;
