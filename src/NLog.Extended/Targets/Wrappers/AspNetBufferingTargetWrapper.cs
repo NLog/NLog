@@ -63,7 +63,7 @@ namespace NLog.Targets.Wrappers
     /// <configuration>
     ///   <system.web>
     ///     <httpModules>
-    ///       <add name="NLog" type="NLog.Web.NLogHttpModule, NLog"/>
+    ///       <add name="NLog" type="NLog.Web.NLogHttpModule, NLog.Extended"/>
     ///     </httpModules>
     ///   </system.web>
     /// </configuration>
