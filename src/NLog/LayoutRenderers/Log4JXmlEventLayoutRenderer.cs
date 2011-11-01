@@ -190,6 +190,13 @@ namespace NLog.LayoutRenderers
                     xtw.WriteElementString("log4j", "NDC", dummyNamespace, string.Join(this.NdcItemSeparator, NestedDiagnosticsContext.GetAllMessages()));
                 }
 
+                if (logEvent.Exception != null)
+                {
+                    xtw.WriteStartElement("log4j", "throwable", dummyNamespace);
+                    xtw.WriteCData(logEvent.Exception.ToString());
+                    xtw.WriteEndElement();
+                }
+
 #if !NET_CF
                 if (this.IncludeCallSite || this.IncludeSourceInfo)
                 {
