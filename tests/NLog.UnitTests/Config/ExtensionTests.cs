@@ -243,5 +243,18 @@ namespace NLog.UnitTests.Config
             Assert.AreEqual("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 
+        [Test]
+        public void CustomXmlNamespaceTest()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true' xmlns:foo='http://bar'>
+    <targets>
+        <target name='d' type='foo:Debug' />
+    </targets>
+</nlog>");
+
+            var d1Target = (DebugTarget)configuration.FindTargetByName("d");
+            Assert.IsNotNull(d1Target);
+        }
     }
 }

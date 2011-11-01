@@ -209,6 +209,22 @@ namespace NLog.Config
             return s;
         }
 
+        private static string StripOptionalNamespacePrefix(string attributeValue)
+        {
+            if (attributeValue == null)
+            {
+                return null;
+            }
+
+            int p = attributeValue.IndexOf(':');
+            if (p < 0)
+            {
+                return attributeValue;
+            }
+
+            return attributeValue.Substring(p + 1);
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Target is disposed elsewhere.")]
         private static Target WrapWithAsyncTargetWrapper(Target target)
         {
@@ -498,7 +514,7 @@ namespace NLog.Config
             foreach (var targetElement in targetsElement.Children)
             {
                 string name = targetElement.LocalName;
-                string type = targetElement.GetOptionalAttribute("type", null);
+                string type = StripOptionalNamespacePrefix(targetElement.GetOptionalAttribute("type", null));
 
                 switch (name.ToUpper(CultureInfo.InvariantCulture))
                 {
@@ -580,7 +596,7 @@ namespace NLog.Config
 
                     if (IsTargetElement(name))
                     {
-                        string type = childElement.GetRequiredAttribute("type");
+                        string type = StripOptionalNamespacePrefix(childElement.GetRequiredAttribute("type"));
 
                         Target newTarget = this.configurationItemFactory.Targets.CreateInstance(type);
                         if (newTarget != null)
@@ -616,7 +632,7 @@ namespace NLog.Config
 
                     if (IsTargetElement(name))
                     {
-                        string type = childElement.GetRequiredAttribute("type");
+                        string type = StripOptionalNamespacePrefix(childElement.GetRequiredAttribute("type"));
 
                         Target newTarget = this.configurationItemFactory.Targets.CreateInstance(type);
                         if (newTarget != null)
@@ -658,7 +674,7 @@ namespace NLog.Config
                     prefix = prefix + ".";
                 }
 
-                string type = addElement.GetOptionalAttribute("type", null);
+                string type = StripOptionalNamespacePrefix(addElement.GetOptionalAttribute("type", null));
                 if (type != null)
                 {
                     this.configurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
@@ -850,7 +866,7 @@ namespace NLog.Config
                 // and is a Layout
                 if (typeof(Layout).IsAssignableFrom(targetPropertyInfo.PropertyType))
                 {
-                    string layoutTypeName = layoutElement.GetOptionalAttribute("type", null);
+                    string layoutTypeName = StripOptionalNamespacePrefix(layoutElement.GetOptionalAttribute("type", null));
 
                     // and 'type' attribute has been specified
                     if (layoutTypeName != null)
@@ -878,7 +894,7 @@ namespace NLog.Config
 
         private Target WrapWithDefaultWrapper(Target t, NLogXmlElement defaultParameters)
         {
-            string wrapperType = defaultParameters.GetRequiredAttribute("type");
+            string wrapperType = StripOptionalNamespacePrefix(defaultParameters.GetRequiredAttribute("type"));
 
             Target wrapperTargetInstance = this.configurationItemFactory.Targets.CreateInstance(wrapperType);
             WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
