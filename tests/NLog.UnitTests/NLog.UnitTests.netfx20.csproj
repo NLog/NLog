@@ -129,6 +129,7 @@
     <Compile Include="LoggerTests.cs" />
     <Compile Include="LogLevelTests.cs" />
     <Compile Include="LogManagerTests.cs" />
+    <Compile Include="LogReceiverService\LogReceiverForwardingServiceTests.cs" />
     <Compile Include="LogReceiverService\LogReceiverServiceTests.cs" />
     <Compile Include="NLogTestBase.cs" />
     <Compile Include="NLogTraceListenerTests.cs" />

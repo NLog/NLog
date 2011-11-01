@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED
+#if WCF_SUPPORTED && !SILVERLIGHT && !NET_CF
 
 namespace NLog.LogReceiverService
 {

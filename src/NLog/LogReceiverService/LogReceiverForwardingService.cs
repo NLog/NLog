@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED
+#if WCF_SUPPORTED && !SILVERLIGHT && !NET_CF
 
 namespace NLog.LogReceiverService
 {
@@ -86,7 +86,7 @@ namespace NLog.LogReceiverService
                 logEventInfo.Properties.Add("ClientName", events.ClientName);
                 for (int i = 0; i < events.LayoutNames.Count; ++i)
                 {
-                    logEventInfo.Properties.Add(events.LayoutNames[i], ev.Values[i]);
+                    logEventInfo.Properties.Add(events.LayoutNames[i], events.Strings[ev.ValueIndexes[i]]);
                 }
 
                 logEvents[j] = logEventInfo;
