@@ -363,6 +363,7 @@ namespace NLog
             {
                 this.layoutCache[layout] = value;
             }
+
             return value;
         }
 
