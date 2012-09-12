@@ -26,3 +26,4 @@ ipch/
 *.opensdf
 examples/NLogDemo/logs/
 examples/NLogDemo/gmail*.txt
+*.ncrunchsolution
