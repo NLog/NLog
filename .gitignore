@@ -27,3 +27,4 @@ ipch/
 examples/NLogDemo/logs/
 examples/NLogDemo/gmail*.txt
 *.ncrunchsolution
+*.user
