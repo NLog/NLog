@@ -15,6 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -125,6 +127,7 @@
     <Compile Include="GDC.cs" />
     <Compile Include="GlobalDiagnosticsContext.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Internal\AppDomainHelper.cs" />
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
@@ -284,7 +287,9 @@
     <Compile Include="LogReceiverService\LogReceiverServiceConfig.cs" />
     <Compile Include="LogReceiverService\NLogEvent.cs" />
     <Compile Include="LogReceiverService\NLogEvents.cs" />
-    <Compile Include="LogReceiverService\SoapLogReceiverClient.cs" />
+    <Compile Include="LogReceiverService\SoapLogReceiverClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="LogReceiverService\StringCollection.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
     <Compile Include="MappedDiagnosticsContext.cs" />

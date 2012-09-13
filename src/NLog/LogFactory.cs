@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 namespace NLog
 {
     using System;
@@ -38,15 +39,22 @@ namespace NLog
     using System.Diagnostics;
     using System.Globalization;
     using System.IO;
-    using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Text;
     using System.Threading;
-    using System.Windows;
+
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Targets;
+
+#if SILVERLIGHT
+    using System.Windows;
+#endif
+
+#if !SILVERLIGHT && !NET2_0
+    using System.IO.Abstractions;
+#endif
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
@@ -61,6 +69,10 @@ namespace NLog
         private readonly Dictionary<LoggerCacheKey, WeakReference> loggerCache = new Dictionary<LoggerCacheKey, WeakReference>();
 
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
+
+#if !SILVERLIGHT && !NET2_0
+        private IFileSystem fileSystem = new FileSystem();
+#endif
 
 #if !NET_CF && !SILVERLIGHT
         private Timer reloadTimer;
@@ -81,6 +93,19 @@ namespace NLog
             this.watcher.OnChange += this.ConfigFileChanged;
 #endif
         }
+
+#if !SILVERLIGHT && !NET2_0
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogFactory"/> class.
+        /// This constructor should only be used for testing purposes.
+        /// </summary>
+        /// <param name="fileSystem">The filesystem abstraction to inject.</param>
+        internal LogFactory(IFileSystem fileSystem)
+            : this()
+        {
+            this.fileSystem = fileSystem;
+        }
+#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
@@ -141,16 +166,23 @@ namespace NLog
                     {
                         foreach (string configFile in GetCandidateFileNames())
                         {
-#if !SILVERLIGHT
-                            if (File.Exists(configFile))
+#if !SILVERLIGHT && !NET2_0
+                            if (fileSystem.File.Exists(configFile))
+                            {
+                                InternalLogger.Debug("Attempting to load config from {0}", configFile);
+                                this.config = new XmlLoggingConfiguration(configFile);
+                                break;
+                            }
+#elif SILVERLIGHT
+                            Uri configFileUri = new Uri(configFile, UriKind.Relative);
+                            if (Application.GetResourceStream(configFileUri) != null)
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);
                                 this.config = new XmlLoggingConfiguration(configFile);
                                 break;
                             }
 #else
-                            Uri configFileUri = new Uri(configFile, UriKind.Relative);
-                            if (Application.GetResourceStream(configFileUri) != null)
+                            if (File.Exists(configFile))
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);
                                 this.config = new XmlLoggingConfiguration(configFile);
@@ -651,13 +683,21 @@ namespace NLog
             yield return "NLog.config";
 #else
             // NLog.config from application directory
-            yield return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NLog.config");
+            yield return Path.Combine(AppDomainHelper.BaseDirectory(), "NLog.config");
 
             // current config file with .config renamed to .nlog
-            string cf = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+            string cf = AppDomainHelper.ConfigurationFile();
             if (cf != null)
             {
                 yield return Path.ChangeExtension(cf, ".nlog");
+                string privateBinPaths = AppDomainHelper.PrivateBinPath();
+                if (privateBinPaths != null)
+                {
+                    foreach (var path in privateBinPaths.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        yield return Path.Combine(path, "NLog.config");
+                    }
+                }
             }
 
             // get path to NLog.dll.nlog only if the assembly is not in the GAC
