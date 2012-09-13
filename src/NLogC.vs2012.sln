@@ -14,9 +14,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.netfx40", "NL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.netfx40", "..\tests\SampleExtensions\SampleExtensions.netfx40.csproj", "{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC.netfx40", "NLogC\NLogC.netfx40.vcxproj", "{A4FC63EE-BA25-4779-B75E-92C8702495BE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC.netfx40", "NLogC\NLogC.netfx40.vs2012.vcxproj", "{A4FC63EE-BA25-4779-B75E-92C8702495BE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC.UnitTests.netfx40", "..\tests\NLogC.UnitTests\NLogC.UnitTests.netfx40.vcxproj", "{7723EA48-51E8-423F-824E-4D1C0AAE2783}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NLogC.UnitTests.netfx40", "..\tests\NLogC.UnitTests\NLogC.UnitTests.netfx40.vs2012.vcxproj", "{7723EA48-51E8-423F-824E-4D1C0AAE2783}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
