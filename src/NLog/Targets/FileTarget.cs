@@ -1081,10 +1081,17 @@ namespace NLog.Targets
 
             if (writeHeader && !justData)
             {
-                byte[] headerBytes = this.GetHeaderBytes();
-                if (headerBytes != null)
+                long fileLength = 0;
+                DateTime lastWriteTime;
+
+                // Only write header on empty files or if file info cannot be obtained
+                if (!appenderToWrite.GetFileInfo(out lastWriteTime, out fileLength) || fileLength == 0)
                 {
-                    appenderToWrite.Write(headerBytes);
+                    byte[] headerBytes = this.GetHeaderBytes();
+                    if (headerBytes != null)
+                    {
+                        appenderToWrite.Write(headerBytes);
+                    }
                 }
             }
 
