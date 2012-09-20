@@ -76,7 +76,7 @@ namespace NLog.UnitTests.Targets
                 ft.LineEnding = LineEndingMode.LF;
                 ft.Layout = "${level} ${message}";
                 ft.OpenFileCacheTimeout = 0;
-
+                
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
                 logger.Debug("aaa");
@@ -84,6 +84,53 @@ namespace NLog.UnitTests.Targets
                 logger.Warn("ccc");
                 LogManager.Configuration = null;
                 AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+            }
+        }
+
+        [Test]
+        public void CsvHeaderTest()
+        {
+            // test for the following changes 
+            // https://github.com/NLog/NLog/commit/e1ed0d4857dddc95d5db09ee95e9a0c85afc7810
+            // codeplex ticket 6370
+
+            string tempFile = Path.GetTempFileName();
+            try
+            {
+
+                for (int i = 0; i < 2; i++)
+                {
+                    var layout = new CsvLayout()
+                    {
+                        Delimiter = CsvColumnDelimiterMode.Semicolon,
+                        WithHeader = true,
+                        Columns =
+                        {
+                            new CsvColumn("name", "${logger}"),
+                            new CsvColumn("level", "${level}"),
+                            new CsvColumn("message", "${message}"),
+                        }
+                    };
+
+                    FileTarget ft = new FileTarget
+                        {
+                            FileName = SimpleLayout.Escape(tempFile),
+                            LineEnding = LineEndingMode.LF,
+                            Layout = layout,
+                            OpenFileCacheTimeout = 0,
+                            ReplaceFileContentsOnEachWrite = false
+                        };
+                    SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                    logger.Debug("aaa");
+                    LogManager.Configuration = null;
+                }
+                AssertFileContents(tempFile, "name;level;message\nNLog.UnitTests.Targets.FileTargetTests;Debug;aaa\nNLog.UnitTests.Targets.FileTargetTests;Debug;aaa\n", Encoding.UTF8);
             }
             finally
             {
