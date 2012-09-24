@@ -33,19 +33,19 @@
 
 using System;
 using System.Globalization;
-using System.Xml;
 using NUnit.Framework;
 
 #if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
+using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
     using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
 #endif
 using NLog.Config;
 
 namespace NLog.UnitTests
 {
+    using System.Reflection;
+    using NLog.Targets;
+
     [TestFixture]
     public class LoggerTests : NLogTestBase
     {
@@ -100,10 +100,10 @@ namespace NLog.UnitTests
                 logger.Trace(CultureInfo.InvariantCulture, "message{0}", (uint)2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
 
-                logger.Trace("message{0}", (int)1);
+                logger.Trace("message{0}", 1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
 
-                logger.Trace(CultureInfo.InvariantCulture, "message{0}", (int)2);
+                logger.Trace(CultureInfo.InvariantCulture, "message{0}", 2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
 
                 logger.Trace("message{0}", (ushort)1);
@@ -172,7 +172,7 @@ namespace NLog.UnitTests
                 logger.Trace(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
-                logger.Trace(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+                logger.Trace(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
 #if !NET_CF
@@ -182,13 +182,13 @@ namespace NLog.UnitTests
                 logger.Trace("message{0}", (float)1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
 
-                logger.Trace((double)1.5);
+                logger.Trace(1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "1,5");
 
-                logger.Trace(CultureInfo.InvariantCulture, (double)1.5);
+                logger.Trace(CultureInfo.InvariantCulture, 1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "1.5");
 
-                logger.Trace("message{0}", (double)1.5);
+                logger.Trace("message{0}", 1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
 
                 logger.Trace("message{0}", (decimal)1.5);
@@ -262,10 +262,10 @@ namespace NLog.UnitTests
                 logger.Debug(CultureInfo.InvariantCulture, "message{0}", (uint)2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
 
-                logger.Debug("message{0}", (int)1);
+                logger.Debug("message{0}", 1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
 
-                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (int)2);
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", 2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
 
                 logger.Debug("message{0}", (ushort)1);
@@ -334,7 +334,7 @@ namespace NLog.UnitTests
                 logger.Debug(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
-                logger.Debug(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+                logger.Debug(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
 #if !NET_CF
@@ -344,13 +344,13 @@ namespace NLog.UnitTests
                 logger.Debug("message{0}", (float)1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
 
-                logger.Debug((double)1.5);
+                logger.Debug(1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "1,5");
 
-                logger.Debug(CultureInfo.InvariantCulture, (double)1.5);
+                logger.Debug(CultureInfo.InvariantCulture, 1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "1.5");
 
-                logger.Debug("message{0}", (double)1.5);
+                logger.Debug("message{0}", 1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
 
                 logger.Debug("message{0}", (decimal)1.5);
@@ -423,10 +423,10 @@ namespace NLog.UnitTests
                 logger.Info(CultureInfo.InvariantCulture, "message{0}", (uint)2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
 
-                logger.Info("message{0}", (int)1);
+                logger.Info("message{0}", 1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
 
-                logger.Info(CultureInfo.InvariantCulture, "message{0}", (int)2);
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", 2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
 
                 logger.Info("message{0}", (ushort)1);
@@ -495,7 +495,7 @@ namespace NLog.UnitTests
                 logger.Info(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
-                logger.Info(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+                logger.Info(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
 #if !NET_CF
@@ -505,13 +505,13 @@ namespace NLog.UnitTests
                 logger.Info("message{0}", (float)1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
 
-                logger.Info((double)1.5);
+                logger.Info(1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "1,5");
 
-                logger.Info(CultureInfo.InvariantCulture, (double)1.5);
+                logger.Info(CultureInfo.InvariantCulture, 1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "1.5");
 
-                logger.Info("message{0}", (double)1.5);
+                logger.Info("message{0}", 1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
 
                 logger.Info("message{0}", (decimal)1.5);
@@ -585,10 +585,10 @@ namespace NLog.UnitTests
                 logger.Warn(CultureInfo.InvariantCulture, "message{0}", (uint)2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
 
-                logger.Warn("message{0}", (int)1);
+                logger.Warn("message{0}", 1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
 
-                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (int)2);
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", 2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
 
                 logger.Warn("message{0}", (ushort)1);
@@ -657,7 +657,7 @@ namespace NLog.UnitTests
                 logger.Warn(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
-                logger.Warn(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+                logger.Warn(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
 #if !NET_CF
@@ -667,13 +667,13 @@ namespace NLog.UnitTests
                 logger.Warn("message{0}", (float)1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
 
-                logger.Warn((double)1.5);
+                logger.Warn(1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "1,5");
 
-                logger.Warn(CultureInfo.InvariantCulture, (double)1.5);
+                logger.Warn(CultureInfo.InvariantCulture, 1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "1.5");
 
-                logger.Warn("message{0}", (double)1.5);
+                logger.Warn("message{0}", 1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
 
                 logger.Warn("message{0}", (decimal)1.5);
@@ -747,10 +747,10 @@ namespace NLog.UnitTests
                 logger.Error(CultureInfo.InvariantCulture, "message{0}", (uint)2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
 
-                logger.Error("message{0}", (int)1);
+                logger.Error("message{0}", 1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
 
-                logger.Error(CultureInfo.InvariantCulture, "message{0}", (int)2);
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", 2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
 
                 logger.Error("message{0}", (ushort)1);
@@ -819,7 +819,7 @@ namespace NLog.UnitTests
                 logger.Error(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
-                logger.Error(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+                logger.Error(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
 #if !NET_CF
@@ -829,13 +829,13 @@ namespace NLog.UnitTests
                 logger.Error("message{0}", (float)1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
 
-                logger.Error((double)1.5);
+                logger.Error(1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "1,5");
 
-                logger.Error(CultureInfo.InvariantCulture, (double)1.5);
+                logger.Error(CultureInfo.InvariantCulture, 1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "1.5");
 
-                logger.Error("message{0}", (double)1.5);
+                logger.Error("message{0}", 1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
 
                 System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
@@ -906,10 +906,10 @@ namespace NLog.UnitTests
                 logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (uint)2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
 
-                logger.Fatal("message{0}", (int)1);
+                logger.Fatal("message{0}", 1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1");
 
-                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (int)2);
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", 2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2");
 
                 logger.Fatal("message{0}", (ushort)1);
@@ -978,7 +978,7 @@ namespace NLog.UnitTests
                 logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
-                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (double)2.5);
+                logger.Fatal(CultureInfo.InvariantCulture, "message{0}", 2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
 #if !NET_CF
@@ -988,13 +988,13 @@ namespace NLog.UnitTests
                 logger.Fatal("message{0}", (float)1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
 
-                logger.Fatal((double)1.5);
+                logger.Fatal(1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "1,5");
 
-                logger.Fatal(CultureInfo.InvariantCulture, (double)1.5);
+                logger.Fatal(CultureInfo.InvariantCulture, 1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "1.5");
 
-                logger.Fatal("message{0}", (double)1.5);
+                logger.Fatal("message{0}", 1.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message1,5");
 
                 System.Threading.Thread.CurrentThread.CurrentCulture = oldCulture;
@@ -1198,6 +1198,70 @@ namespace NLog.UnitTests
             l.Info("aaaa {0");
             AssertDebugLastMessage("debug", "aaaa {0");
         }
+
+        public abstract class BaseWrapper
+        {
+            public void Log(string what)
+            {
+                InternalLog(what);
+            }
+
+            protected abstract void InternalLog(string what);
+        }
+
+#if !NET_CF
+        [Test]
+        public void Log_LoggerWrappedAndStackTraceEnabled_UserStackFrameIsCurrentMethod()
+        {
+            LoggingConfiguration config = new LoggingConfiguration();
+            MyTarget target = new MyTarget();
+            config.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, target));
+            LogManager.Configuration = config;
+
+            MyWrapper wrapper = new MyWrapper();
+            wrapper.Log("test");
+
+
+            Assert.AreEqual(MethodBase.GetCurrentMethod(), target.LastEvent.UserStackFrame.GetMethod());
+        }
+
+        public class MyWrapper : BaseWrapper
+        {
+            private readonly Logger wrapperLogger;
+
+            public MyWrapper()
+            {
+                wrapperLogger = LogManager.GetLogger("WrappedLogger");
+            }
+
+            protected override void InternalLog(string what)
+            {
+                LogEventInfo info = new LogEventInfo(LogLevel.Warn, wrapperLogger.Name, what);
+
+                // Provide BaseWrapper as wrapper type.
+                // Expected: UserStackFrame should point to the method that calls a 
+                // method of BaseWrapper.
+                wrapperLogger.Log(typeof(BaseWrapper), info);
+            }
+        }
+
+        public class MyTarget : TargetWithLayout
+        {
+            public MyTarget()
+            {
+                // enforce creation of stack trace
+                Layout = "${stacktrace}";
+            }
+
+            public LogEventInfo LastEvent { get; private set; }
+
+            protected override void Write(LogEventInfo logEvent)
+            {
+                LastEvent = logEvent;
+                base.Write(logEvent);
+            }
+        }
+#endif
 
         public override string ToString()
         {
