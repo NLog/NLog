@@ -48,9 +48,11 @@ using TearDown = Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribu
 
 namespace NLog.UnitTests
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.IO.Abstractions;
+    using System.Threading;
 
     [TestFixture]
     public class LogFactoryTest : NLogTestBase
@@ -94,5 +96,44 @@ namespace NLog.UnitTests
             A.CallTo(() => fakeFileSystem.File.Exists(Path.Combine(SomethingDirectory, "NLog.config"))).MustHaveHappened();
         }
 #endif
+
+        [Test]
+        public void Flush_DoNotThrowExceptionsAndTimeout_DoesNotThrow()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTest, NLog.UnitTests.netfx40' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeto='test'></logger>
+                </rules>
+            </nlog>");
+
+            Logger logger = LogManager.GetCurrentClassLogger();
+            logger.Factory.Flush(TimeSpan.FromMilliseconds(1));
+        }
+        
+        [Test]
+        public void Flush_DoNotThrowExceptionsAndTimeout_WritesToInternalLog()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog internalLogToConsole='true'>
+                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTest, NLog.UnitTests.netfx40' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeto='test'></logger>
+                </rules>
+            </nlog>");
+
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+            Logger logger = LogManager.GetCurrentClassLogger();
+            logger.Factory.Flush(TimeSpan.FromMilliseconds(1));
+
+            Assert.IsTrue(writer.ToString().Contains("Error"));
+        }
+
+        public static void Throws()
+        {
+            throw new Exception();
+        }
     }
 }

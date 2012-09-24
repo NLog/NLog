@@ -401,7 +401,19 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public void Flush(TimeSpan timeout)
         {
-            AsyncHelpers.RunSynchronously(cb => this.Flush(cb, timeout));
+            try
+            {
+                AsyncHelpers.RunSynchronously(cb => this.Flush(cb, timeout));
+            }
+            catch (Exception e)
+            {
+                if (ThrowExceptions)
+                {
+                    throw;
+                }
+
+                InternalLogger.Error(e.ToString());
+            }
         }
 
         /// <summary>
