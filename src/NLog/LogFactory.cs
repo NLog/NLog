@@ -754,7 +754,29 @@ namespace NLog
 
                 if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
                 {
-                    newLogger = (Logger)FactoryHelper.CreateInstance(cacheKey.ConcreteType);
+                    //Issue # 7031 Invalid configuration throws exception
+                    //if the instance of new type is not created 
+                    //Possible reasons : Default constructor is not defined or not accessible
+                    //Workaround : Guarding the method with try catch block. And creating default
+                    //Instance of logger.
+                    try
+                    {
+                        newLogger = (Logger)FactoryHelper.CreateInstance(cacheKey.ConcreteType);
+                    }
+                    catch(Exception exception)
+                    {
+                        if(exception.MustBeRethrown())
+                        {
+                            throw;
+                        }
+                        
+                        InternalLogger.Error("Cannot create instance of specified type. Proceeding with default type instance. Exception : {0}",exception);
+                        
+                        cacheKey = new LoggerCacheKey(cacheKey.Name,typeof(Logger));
+                        
+                        newLogger = typeof(Logger);
+                    }
+                    
                 }
                 else
                 {
