@@ -755,7 +755,7 @@ namespace NLog
                 if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
                 {
                     //Issue # 7031 Invalid configuration throws exception
-                    //if the instance of new type is not created 
+                    //if the instance of specified type is not created 
                     //Possible reasons : Default constructor is not defined or not accessible
                     //Workaround : Guarding the method with try catch block. And creating default
                     //Instance of logger.
