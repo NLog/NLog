@@ -133,6 +133,48 @@ namespace NLog.UnitTests
         }
 #endif
 
+        public class InvalidLogger
+        {
+           private InvalidLogger()
+           {
+	       }
+        }
+        
+        
+        [Test]
+        public void InvalidLoggerConfiguration_DoesNotThrowConfigurationException_IfFlagIsSet()
+        {
+            Boolean ExceptionThrown = false;
+            try 
+            {
+                LogManager.ThrowExceptions = false;
+                LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
+            }
+            catch(Exception exception)
+            {
+                ExceptionThrown = true;
+            }
+            Assert.IsFalse(ExceptionThrown);
+        }
+        
+        [Test]
+        public void InvalidLoggerConfiguration_ThrowsConfigurationException_IfFlagIsNotSet()
+        {
+            Boolean ExceptionThrown = false;
+            try 
+            {
+                LogManager.ThrowExceptions = true;
+                LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
+            }
+            catch(Exception exception)
+            {
+                ExceptionThrown = true;
+            }
+            
+            Assert.IsTrue(ExceptionThrown);
+            
+        }
+
         public class MyLogger : Logger
         {
             public MyLogger()
