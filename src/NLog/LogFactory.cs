@@ -766,6 +766,11 @@ namespace NLog
                             throw;
                         }
                         
+                        if(ThrowExceptions)
+                        {
+                            throw;
+                        }
+                        
                         InternalLogger.Error("Cannot create instance of specified type. Proceeding with default type instance. Exception : {0}",exception);
                         
                         //Creating default instance of logger if instance of specified type cannot be created.
