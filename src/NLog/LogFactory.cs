@@ -754,7 +754,31 @@ namespace NLog
 
                 if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
                 {
-                    newLogger = (Logger)FactoryHelper.CreateInstance(cacheKey.ConcreteType);
+                    
+                    try
+                    {
+                        newLogger = (Logger)FactoryHelper.CreateInstance(cacheKey.ConcreteType);
+                    }
+                    catch(Exception exception)
+                    {
+                        if(exception.MustBeRethrown())
+                        {
+                            throw;
+                        }
+                        
+                        if(ThrowExceptions)
+                        {
+                            throw;
+                        }
+                        
+                        InternalLogger.Error("Cannot create instance of specified type. Proceeding with default type instance. Exception : {0}",exception);
+                        
+                        //Creating default instance of logger if instance of specified type cannot be created.
+                        cacheKey = new LoggerCacheKey(typeof(Logger),cacheKey.Name);
+                        
+                        newLogger = new Logger();
+                    }
+                    
                 }
                 else
                 {
