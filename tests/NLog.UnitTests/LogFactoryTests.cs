@@ -130,6 +130,57 @@ namespace NLog.UnitTests
 
             Assert.IsTrue(writer.ToString().Contains("Error"));
         }
+        
+        [Test]
+        public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()
+        {
+            Boolean ExceptionThrown = false;
+            try
+            {
+                LogManager.ThrowExceptions = false;
+                
+                LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog internalLogToConsole='IamNotBooleanValue'>
+                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTest, NLog.UnitTests.netfx40' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeto='test'></logger>
+                </rules>
+            </nlog>");
+            }
+            catch(Exception e)
+            {
+                ExceptionThrown = true;
+            }
+            
+            Assert.IsFalse(ExceptionThrown);
+            
+        }
+        
+        [Test]
+        public void InvalidXMLConfiguration_ThrowErrorWhen_ThrowExceptionFlagIsSet()
+        {
+            Boolean ExceptionThrown = false;
+            try
+            {
+                LogManager.ThrowExceptions = true;
+                
+                LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog internalLogToConsole='IamNotBooleanValue'>
+                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTest, NLog.UnitTests.netfx40' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeto='test'></logger>
+                </rules>
+            </nlog>");
+            }
+            catch(Exception e)
+            {
+                ExceptionThrown = true;
+            }
+            
+            Assert.IsTrue(ExceptionThrown);
+            
+        }
+        
 
         public static void Throws()
         {
