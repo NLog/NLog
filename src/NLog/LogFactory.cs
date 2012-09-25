@@ -774,7 +774,7 @@ namespace NLog
                         InternalLogger.Error("Cannot create instance of specified type. Proceeding with default type instance. Exception : {0}",exception);
                         
                         //Creating default instance of logger if instance of specified type cannot be created.
-                        cacheKey = new LoggerCacheKey(cacheKey.Name,typeof(Logger));
+                        cacheKey = new LoggerCacheKey(typeof(Logger),cacheKey.Name);
                         
                         newLogger = new Logger();
                     }
