@@ -659,6 +659,14 @@ namespace NLog.Targets
             return value;
         }
 
+        private static Boolean IsContainValidNumberPatternForReplacement(string pattern)
+        {
+            int StartingIndex = pattern.IndexOf("{#", StringComparison.Ordinal);
+            int EndingIndex = pattern.IndexOf("#}", StringComparison.Ordinal);
+
+            return (StartingIndex != -1 && EndingIndex != -1 && StartingIndex < EndingIndex);
+        }
+        
         private static string ReplaceNumber(string pattern, int value)
         {
             int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
@@ -835,7 +843,18 @@ namespace NLog.Targets
             }
             else
             {
+                //The archive file name is given. There are two possibiliy 
+                //(1) User supplied the Filename with pattern
+                //(2) User supplied the normal filename
                 fileNamePattern = this.ArchiveFileName.Render(ev);
+
+                if (!IsContainValidNumberPatternForReplacement(fileNamePattern))
+                {
+                    //ArchiveFileName doesn't contain valid File Name Pattern For Archiving.
+                    //Note that In both cases either the archiving done at certain time or it is done because of size of file , it is necessary to number the files.
+                    //So , We have to Put pattern in default place. Otherwise archiving will not be done.
+                    fileNamePattern = Path.ChangeExtension(fileNamePattern, ".{#}" + Path.GetExtension(fileNamePattern));
+                }
             }
 
             switch (this.ArchiveNumbering)
