@@ -63,6 +63,119 @@ namespace NLog.Targets
         private BaseFileAppender[] recentAppenders;
         private Timer autoClosingTimer;
         private int initializedFilesCounter;
+        
+        private int _MaxArchiveFilesField;
+
+        private DynamicArchiveFileHandlerClass DynamicArchiveFileHandler;
+
+        private class DynamicArchiveFileHandlerClass
+        {
+            private Queue<string> ArchiveFileEntryQueue;
+
+            private int MaxArchivedFiles;
+
+            public DynamicArchiveFileHandlerClass(int MaxArchivedFiles) : this()
+            {
+                this.MaxArchivedFiles = MaxArchivedFiles;
+            }
+
+            public DynamicArchiveFileHandlerClass()
+            {
+                this.MaxArchivedFiles = -1;
+
+                ArchiveFileEntryQueue = new Queue<string>();
+            }
+
+            public int MaxArchiveFileToKeep
+            {
+                get
+                {
+                    return MaxArchivedFiles;
+                }
+                set
+                {
+                    MaxArchivedFiles = value;
+                }
+            }
+
+            public Boolean AddToArchive(string ArchiveFileName, string FileName)
+            {
+                if (MaxArchivedFiles < 1)
+                {
+                    InternalLogger.Warn("AddToArchive is called, Even though the MaxArchiveFiles is set to less than 1");
+
+                    return false;
+                }
+
+                if (!File.Exists(FileName))
+                {
+                    InternalLogger.Error("Error while trying to archive, Source File : {0} Not found.", FileName);
+
+                    return false;
+                }
+
+                while (ArchiveFileEntryQueue.Count >= MaxArchivedFiles)
+                {
+                    string OldestArchivedFileName = ArchiveFileEntryQueue.Dequeue();
+
+                    try
+                    {
+                        File.Delete(OldestArchivedFileName);
+                    }
+                    catch (Exception ExceptionThrown)
+                    {
+                        InternalLogger.Warn("Can't Delete Old Archive File : {0} , Exception : {1}", OldestArchivedFileName, ExceptionThrown);
+                    }
+                }
+
+                
+                String ArchiveFileNamePattern = ArchiveFileName;
+
+                if(ArchiveFileEntryQueue.Contains(ArchiveFileName))
+                {
+                    InternalLogger.Trace("Archive File {0} seems to be already exist. Trying with Different File Name..", ArchiveFileName);
+
+                    int NumberToStartWith = 1;
+
+                    ArchiveFileNamePattern = Path.GetFileNameWithoutExtension(ArchiveFileName) + ".{#}" + Path.GetExtension(ArchiveFileName);
+
+                    while(File.Exists(ReplaceNumber(ArchiveFileNamePattern,NumberToStartWith)))
+                    {
+                        InternalLogger.Trace("Archive File {0} seems to be already exist, too. Trying with Different File Name..", ArchiveFileName);
+                        NumberToStartWith++;
+                    }
+
+                }
+
+                try
+                {
+                    File.Move(FileName,ArchiveFileNamePattern);
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    InternalLogger.Trace("Directory For Archive File is not created. Creating it..");
+
+                    try
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(ArchiveFileName));
+
+                        File.Move(FileName,ArchiveFileNamePattern);
+                    }
+                    catch (Exception ExceptionThrown)
+                    {
+                        InternalLogger.Error("Can't create Archive File Directory , Exception : {0}", ExceptionThrown);
+                        throw;   
+                    }
+                   
+                }
+
+                ArchiveFileEntryQueue.Enqueue(ArchiveFileName);
+
+                return true;
+
+            }
+
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -73,7 +186,7 @@ namespace NLog.Targets
         public FileTarget()
         {
             this.ArchiveNumbering = ArchiveNumberingMode.Sequence;
-            this.MaxArchiveFiles = 9;
+            this._MaxArchiveFilesField = 9;
             this.ConcurrentWriteAttemptDelay = 1;
             this.ArchiveEvery = FileArchivePeriod.None;
             this.ArchiveAboveSize = -1;
@@ -94,6 +207,7 @@ namespace NLog.Targets
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
             this.CreateDirs = true;
+            this.DynamicArchiveFileHandler = new DynamicArchiveFileHandlerClass(MaxArchiveFiles);
         }
 
         /// <summary>
@@ -354,7 +468,19 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
         [DefaultValue(9)]
-        public int MaxArchiveFiles { get; set; }
+        public int MaxArchiveFiles
+        {
+            get
+            {
+                return _MaxArchiveFilesField;
+            }
+            set
+            {
+                _MaxArchiveFilesField = value;
+
+                DynamicArchiveFileHandler.MaxArchiveFileToKeep = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the way file archives are numbered. 
@@ -848,24 +974,24 @@ namespace NLog.Targets
                 //(2) User supplied the normal filename
                 fileNamePattern = this.ArchiveFileName.Render(ev);
 
-                if (!IsContainValidNumberPatternForReplacement(fileNamePattern))
-                {
-                    //ArchiveFileName doesn't contain valid File Name Pattern For Archiving.
-                    //Note that In both cases either the archiving done at certain time or it is done because of size of file , it is necessary to number the files.
-                    //So , We have to Put pattern in default place. Otherwise archiving will not be done.
-                    fileNamePattern = Path.ChangeExtension(fileNamePattern, ".{#}" + Path.GetExtension(fileNamePattern));
-                }
             }
-
-            switch (this.ArchiveNumbering)
+            
+            if (!IsContainValidNumberPatternForReplacement(fileNamePattern))
             {
-                case ArchiveNumberingMode.Rolling:
-                    this.RecursiveRollingRename(fi.FullName, fileNamePattern, 0);
-                    break;
+                DynamicArchiveFileHandler.AddToArchive(fileNamePattern, fi.FullName);
+            }
+            else
+            {
+                  switch (this.ArchiveNumbering)
+                  {
+                       case ArchiveNumberingMode.Rolling:
+                           this.RecursiveRollingRename(fi.FullName, fileNamePattern, 0);
+                           break;
 
-                case ArchiveNumberingMode.Sequence:
-                    this.SequentialArchive(fi.FullName, fileNamePattern);
-                    break;
+                       case ArchiveNumberingMode.Sequence:
+                           this.SequentialArchive(fi.FullName, fileNamePattern);
+                           break;
+                  }
             }
         }
 
