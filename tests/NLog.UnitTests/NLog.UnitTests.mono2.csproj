@@ -21,6 +21,8 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <SignAssembly>true</SignAssembly>
     <NoWarn>1591</NoWarn>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\src\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
@@ -156,4 +158,5 @@
     <ProjectReference Include="..\SampleExtensions\SampleExtensions.mono2.csproj" />
   </ItemGroup>
   <Import Project="..\..\src\Mono.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
 </Project>
