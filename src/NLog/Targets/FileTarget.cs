@@ -39,6 +39,7 @@ namespace NLog.Targets
     using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
     using System.Text;
@@ -72,16 +73,16 @@ namespace NLog.Targets
         {
             private Queue<string> ArchiveFileEntryQueue;
 
-            private int MaxArchivedFiles;
+            private int maxArchivedFiles;
 
             public DynamicArchiveFileHandlerClass(int MaxArchivedFiles) : this()
             {
-                this.MaxArchivedFiles = MaxArchivedFiles;
+                this.maxArchivedFiles = MaxArchivedFiles;
             }
 
             public DynamicArchiveFileHandlerClass()
             {
-                this.MaxArchivedFiles = -1;
+                this.maxArchivedFiles = -1;
 
                 ArchiveFileEntryQueue = new Queue<string>();
             }
@@ -90,47 +91,47 @@ namespace NLog.Targets
             {
                 get
                 {
-                    return MaxArchivedFiles;
+                    return maxArchivedFiles;
                 }
                 set
                 {
-                    MaxArchivedFiles = value;
+                    maxArchivedFiles = value;
                 }
             }
-            
-            
-            public Boolean AddToArchive(string ArchiveFileName, string FileName,Boolean CreateDirectoryIfNotExists)
+
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+            public void AddToArchive(string ArchiveFileName, string FileName, bool CreateDirectoryIfNotExists)
             {
-                if (MaxArchivedFiles < 1)
+                if (MaxArchiveFileToKeep < 1)
                 {
                     InternalLogger.Warn("AddToArchive is called. Even though the MaxArchiveFiles is set to less than 1");
 
-                    return false;
+                    return;
                 }
 
                 if (!File.Exists(FileName))
                 {
                     InternalLogger.Error("Error while trying to archive, Source File : {0} Not found.", FileName);
 
-                    return false;
+                    return;
                 }
 
-                while (ArchiveFileEntryQueue.Count >= MaxArchivedFiles)
+                while (ArchiveFileEntryQueue.Count >= MaxArchiveFileToKeep)
                 {
-                    string OldestArchivedFileName = ArchiveFileEntryQueue.Dequeue();
+                    string oldestArchivedFileName = ArchiveFileEntryQueue.Dequeue();
 
                     try
                     {
-                        File.Delete(OldestArchivedFileName);
+                        File.Delete(oldestArchivedFileName);
                     }
-                    catch (Exception ExceptionThrown)
+                    catch (Exception exceptionThrown)
                     {
-                        InternalLogger.Warn("Can't Delete Old Archive File : {0} , Exception : {1}", OldestArchivedFileName, ExceptionThrown);
+                        InternalLogger.Warn("Can't Delete Old Archive File : {0} , Exception : {1}", oldestArchivedFileName, exceptionThrown);
                     }
                 }
 
                 
-                String ArchiveFileNamePattern = ArchiveFileName;
+                String archiveFileNamePattern = ArchiveFileName;
 
                 if(ArchiveFileEntryQueue.Contains(ArchiveFileName))
                 {
@@ -138,9 +139,9 @@ namespace NLog.Targets
 
                     int NumberToStartWith = 1;
 
-                    ArchiveFileNamePattern = Path.GetFileNameWithoutExtension(ArchiveFileName) + ".{#}" + Path.GetExtension(ArchiveFileName);
+                    archiveFileNamePattern = Path.GetFileNameWithoutExtension(ArchiveFileName) + ".{#}" + Path.GetExtension(ArchiveFileName);
 
-                    while(File.Exists(ReplaceNumber(ArchiveFileNamePattern,NumberToStartWith)))
+                    while(File.Exists(ReplaceNumber(archiveFileNamePattern,NumberToStartWith)))
                     {
                         InternalLogger.Trace("Archive File {0} seems to be already exist, too. Trying with Different File Name..", ArchiveFileName);
                         NumberToStartWith++;
@@ -150,7 +151,7 @@ namespace NLog.Targets
 
                 try
                 {
-                    File.Move(FileName, ArchiveFileNamePattern);
+                    File.Move(FileName, archiveFileNamePattern);
                 }
                 catch (DirectoryNotFoundException)
                 {
@@ -162,7 +163,7 @@ namespace NLog.Targets
                         {
                             Directory.CreateDirectory(Path.GetDirectoryName(ArchiveFileName));
 
-                            File.Move(FileName, ArchiveFileNamePattern);
+                            File.Move(FileName, archiveFileNamePattern);
                         }
                         catch (Exception ExceptionThrown)
                         {
@@ -184,8 +185,7 @@ namespace NLog.Targets
 
                 ArchiveFileEntryQueue.Enqueue(ArchiveFileName);
 
-                return true;
-
+                return;
             }
             
          }
