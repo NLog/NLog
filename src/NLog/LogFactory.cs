@@ -70,7 +70,7 @@ namespace NLog
 
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
 
-#if !SILVERLIGHT && !NET2_0
+#if !SILVERLIGHT && !NET2_0 && !MONO
         private IFileSystem fileSystem = new FileSystem();
 #endif
 
