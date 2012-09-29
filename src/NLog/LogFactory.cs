@@ -70,7 +70,7 @@ namespace NLog
 
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
 
-#if !SILVERLIGHT && !NET2_0 && !MONO
+#if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
         private IFileSystem fileSystem = new FileSystem();
 #endif
 
@@ -94,7 +94,7 @@ namespace NLog
 #endif
         }
 
-#if !SILVERLIGHT && !NET2_0 && !MONO
+#if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
         /// <summary>
         /// Initializes a new instance of the <see cref="LogFactory"/> class.
         /// This constructor should only be used for testing purposes.
@@ -166,7 +166,7 @@ namespace NLog
                     {
                         foreach (string configFile in GetCandidateFileNames())
                         {
-#if !SILVERLIGHT && !NET2_0 && !MONO
+#if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
                             if (fileSystem.File.Exists(configFile))
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);
