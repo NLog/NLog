@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.doc", "NLog\NLog.doc.csproj", "{A0BFF0DB-ED9A-4639-AE86-88709A1EFC66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.doc", "NLog\NLog.Extended.doc.csproj", "{A961A1F9-1024-4446-BF9E-A923139340B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.doc", "NLog.Extended\NLog.Extended.doc.csproj", "{A961A1F9-1024-4446-BF9E-A923139340B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
