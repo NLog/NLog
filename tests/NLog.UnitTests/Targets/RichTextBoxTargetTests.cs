@@ -104,16 +104,16 @@ namespace NLog.UnitTests.Targets
 
             Assert.IsTrue(target.CreatedForm);
 
-            string expectedRtf = @"{\colortbl ;\red255\green255\blue255;\red255\green0\blue0;\red255\green165\blue0;\red0\green0\blue0;\red128\green128\blue128;\red169\green169\blue169;}
-\viewkind4\uc1\pard\cf1\highlight2\b\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par
-\cf2\highlight1\i Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
-\cf3\ul\b0\i0 Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par
-\cf4\ulnone Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par
-\cf5 Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
-\cf6\i Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par
-\cf0\highlight0\i0\f1\par
-}";
-            Assert.IsTrue(rtfText.Contains(expectedRtf), "Invalid RTF: " + rtfText);
+            var result = rtfText;
+            Assert.IsTrue(result.Contains(@"{\colortbl ;\red255\green255\blue255;\red255\green0\blue0;\red255\green165\blue0;\red0\green0\blue0;\red128\green128\blue128;\red169\green169\blue169;}"));
+            Assert.IsTrue(result.Contains(@"\viewkind4\uc1\pard\cf1\highlight2\b\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
+            Assert.IsTrue(result.Contains(@"\cf2\highlight1\i Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
+            Assert.IsTrue(result.Contains(@"\cf3\ul\b0\i0 Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
+            Assert.IsTrue(result.Contains(@"\cf4\ulnone Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
+            Assert.IsTrue(result.Contains(@"\cf5 Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
+            Assert.IsTrue(result.Contains(@"\cf6\i Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
+            Assert.IsTrue(result.Contains(@"\cf0\highlight0\i0\f1\par"));
+            Assert.IsTrue(result.Contains(@"}"));
 
             LogManager.Configuration = null;
             Assert.IsNull(target.TargetForm);
@@ -152,16 +152,16 @@ namespace NLog.UnitTests.Targets
 
                 Assert.IsTrue(target.CreatedForm);
 
-                string expectedRtf = @"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;}
-\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par
-Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
-Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par
-Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par
-Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
-Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par
-\cf0\highlight0\f1\par
-}";
-                Assert.IsTrue(rtfText.Contains(expectedRtf), "Invalid RTF: " + rtfText);
+                var result = rtfText;
+                Assert.IsTrue(result.Contains(@"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;}"));
+                Assert.IsTrue(result.Contains(@"\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
+                Assert.IsTrue(result.Contains(@"Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
+                Assert.IsTrue(result.Contains(@"Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
+                Assert.IsTrue(result.Contains(@"Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
+                Assert.IsTrue(result.Contains(@"Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
+                Assert.IsTrue(result.Contains(@"Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
+                Assert.IsTrue(result.Contains(@"\cf0\highlight0\f1\par"));
+                Assert.IsTrue(result.Contains(@"}"));
             }
             finally
             {
@@ -204,16 +204,16 @@ Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par
 
                 Assert.IsTrue(target.CreatedForm);
 
-                string expectedRtf = @"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;}
-\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par
-Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
-\cf3 Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par
-\cf1 Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par
-Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
-\cf3 Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par
-\cf0\highlight0\f1\par
-}";
-                Assert.IsTrue(rtfText.Contains(expectedRtf), "Invalid RTF: " + rtfText);
+                var result = rtfText;
+                Assert.IsTrue(result.Contains(@"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;}"));
+                Assert.IsTrue(result.Contains(@"\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
+                Assert.IsTrue(result.Contains(@"Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
+                Assert.IsTrue(result.Contains(@"\cf3 Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
+                Assert.IsTrue(result.Contains(@"\cf1 Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
+                Assert.IsTrue(result.Contains(@"Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
+                Assert.IsTrue(result.Contains(@"\cf3 Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
+                Assert.IsTrue(result.Contains(@"\cf0\highlight0\f1\par"));
+                Assert.IsTrue(result.Contains(@"}"));
             }
             finally
             {
@@ -259,16 +259,16 @@ Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par
 
                 // "zzz" string will be highlighted
 
-                string expectedRtf = @"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red255\green0\blue0;\red0\green128\blue0;}
-\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test \cf3\f1 zzz\cf1\f0\par
-Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo xxx\par
-Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar yyy\par
-Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test \cf4\f1 aaa\cf1\f0\par
-Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo \cf3\f1 zzz\cf1\f0\par
-Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par
-\cf0\highlight0\f1\par
-}";
-                Assert.IsTrue(rtfText.Contains(expectedRtf), "Invalid RTF: " + rtfText);
+                var result = rtfText;
+                Assert.IsTrue(result.Contains(@"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red255\green0\blue0;\red0\green128\blue0;}"));
+                Assert.IsTrue(result.Contains(@"\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test \cf3\f1 zzz\cf1\f0\par"));
+                Assert.IsTrue(result.Contains(@"Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo xxx\par"));
+                Assert.IsTrue(result.Contains(@"Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar yyy\par"));
+                Assert.IsTrue(result.Contains(@"Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test \cf4\f1 aaa\cf1\f0\par"));
+                Assert.IsTrue(result.Contains(@"Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo \cf3\f1 zzz\cf1\f0\par"));
+                Assert.IsTrue(result.Contains(@"Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par"));
+                Assert.IsTrue(result.Contains(@"\cf0\highlight0\f1\par"));
+                Assert.IsTrue(result.Contains(@"}"));
             }
             finally
             {

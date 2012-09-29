@@ -58,7 +58,7 @@ namespace NLog.UnitTests
 #endif
 
     [TestFixture]
-    public class LogFactoryTest : NLogTestBase
+    public class LogFactoryTests : NLogTestBase
     {
 #if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
         [Test]
@@ -104,8 +104,8 @@ namespace NLog.UnitTests
         public void Flush_DoNotThrowExceptionsAndTimeout_DoesNotThrow()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog>
-                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTest, NLog.UnitTests.netfx40' /></targets>
+            <nlog throwExceptions='false'>
+                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
@@ -119,8 +119,8 @@ namespace NLog.UnitTests
         public void Flush_DoNotThrowExceptionsAndTimeout_WritesToInternalLog()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog internalLogToConsole='true'>
-                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTest, NLog.UnitTests.netfx40' /></targets>
+            <nlog internalLogToConsole='true' throwExceptions='false'>
+                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
@@ -144,7 +144,7 @@ namespace NLog.UnitTests
                 
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog internalLogToConsole='IamNotBooleanValue'>
-                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTest, NLog.UnitTests.netfx40' /></targets>
+                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
@@ -169,7 +169,7 @@ namespace NLog.UnitTests
                 
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog internalLogToConsole='IamNotBooleanValue'>
-                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTest, NLog.UnitTests.netfx40' /></targets>
+                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>

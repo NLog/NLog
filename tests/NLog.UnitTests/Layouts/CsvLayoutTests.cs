@@ -77,10 +77,10 @@ namespace NLog.UnitTests.Layouts
 
             using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd1.txt"))
             {
-                Assert.AreEqual("level,message,counter", sr.ReadLine());
-                Assert.AreEqual("Debug,msg,1", sr.ReadLine());
-                Assert.AreEqual("Info,msg2,2", sr.ReadLine());
-                Assert.AreEqual("Warn,\"Message with, a comma\",3", sr.ReadLine());
+                Assert.AreEqual("level;message;counter", sr.ReadLine());
+                Assert.AreEqual("Debug;msg;1", sr.ReadLine());
+                Assert.AreEqual("Info;msg2;2", sr.ReadLine());
+                Assert.AreEqual("Warn;Message with, a comma;3", sr.ReadLine());
             }
         }
 
@@ -110,9 +110,9 @@ namespace NLog.UnitTests.Layouts
 
             using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd2.txt"))
             {
-                Assert.AreEqual("Debug,msg,1", sr.ReadLine());
-                Assert.AreEqual("Info,msg2,2", sr.ReadLine());
-                Assert.AreEqual("Warn,\"Message with, a comma\",3", sr.ReadLine());
+                Assert.AreEqual("Debug;msg;1", sr.ReadLine());
+                Assert.AreEqual("Info;msg2;2", sr.ReadLine());
+                Assert.AreEqual("Warn;Message with, a comma;3", sr.ReadLine());
             }
         }
 #endif

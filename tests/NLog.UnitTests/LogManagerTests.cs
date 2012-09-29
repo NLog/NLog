@@ -237,7 +237,7 @@ namespace NLog.UnitTests
                     using (StreamWriter fs = File.CreateText(fileName))
                     {
                         fs.Write(@"<nlog autoReload='true'>
-                    <targets><tar get name='debug' type='Debug' layout='xxx ${message}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='xxx ${message}' /></targets>
                     <rules>
                         <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>

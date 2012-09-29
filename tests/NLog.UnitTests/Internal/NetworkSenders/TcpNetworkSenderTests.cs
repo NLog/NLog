@@ -92,13 +92,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                     });
 
                 mre.WaitOne();
-                string expectedLog = @"Parse endpoint address tcp://hostname:123/ Unspecified
-create socket 10000 Stream Tcp
-connect async to {mock end point: tcp://hostname:123/}
-send async 0 1 'q'
-send async 0 2 'qu'
-send async 0 4 'quic'
-";
+                string expectedLog = string.Format("Parse endpoint address tcp://hostname:123/ Unspecified{0}create socket 10000 Stream Tcp{0}connect async to {{mock end point: tcp://hostname:123/}}{0}send async 0 1 'q'{0}send async 0 2 'qu'{0}send async 0 4 'quic'{0}", Environment.NewLine);
 
                 Assert.AreEqual(expectedLog, sender.Log.ToString());
 
@@ -123,17 +117,7 @@ send async 0 4 'quic'
                     });
 
                 mre.WaitOne();
-                expectedLog = @"Parse endpoint address tcp://hostname:123/ Unspecified
-create socket 10000 Stream Tcp
-connect async to {mock end point: tcp://hostname:123/}
-send async 0 1 'q'
-send async 0 2 'qu'
-send async 0 4 'quic'
-send async 0 1 'q'
-send async 0 2 'qu'
-send async 0 4 'quic'
-close
-";
+                expectedLog = string.Format("Parse endpoint address tcp://hostname:123/ Unspecified{0}create socket 10000 Stream Tcp{0}connect async to {{mock end point: tcp://hostname:123/}}{0}send async 0 1 'q'{0}send async 0 2 'qu'{0}send async 0 4 'quic'{0}send async 0 1 'q'{0}send async 0 2 'qu'{0}send async 0 4 'quic'{0}close{0}", Environment.NewLine);
 
                 Assert.AreEqual(expectedLog, sender.Log.ToString());
                 foreach (var ex in exceptions)
@@ -195,11 +179,7 @@ close
 #else
             mre.WaitOne(3000, false);
 #endif
-            string expectedLog = @"Parse endpoint address tcp://hostname:123/ Unspecified
-create socket 10000 Stream Tcp
-connect async to {mock end point: tcp://hostname:123/}
-failed
-";
+            string expectedLog = string.Format("Parse endpoint address tcp://hostname:123/ Unspecified{0}create socket 10000 Stream Tcp{0}connect async to {{mock end point: tcp://hostname:123/}}{0}failed{0}", Environment.NewLine);
 
             Assert.AreEqual(expectedLog, sender.Log.ToString());
             foreach (var ex in exceptions)

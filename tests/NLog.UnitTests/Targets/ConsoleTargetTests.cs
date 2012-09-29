@@ -84,15 +84,7 @@ namespace NLog.UnitTests.Targets
                 Console.SetOut(oldConsoleOutWriter);
             }
 
-            string expectedResult = @"-- header --
-Logger1 message1
-Logger1 message2
-Logger1 message3
-Logger2 message4
-Logger2 message5
-Logger1 message6
--- footer --
-";
+            string expectedResult = string.Format("-- header --{0}Logger1 message1{0}Logger1 message2{0}Logger1 message3{0}Logger2 message4{0}Logger2 message5{0}Logger1 message6{0}-- footer --{0}", Environment.NewLine);
             Assert.AreEqual(expectedResult, consoleOutWriter.ToString());
         }
 
@@ -131,15 +123,7 @@ Logger1 message6
                 Console.SetError(oldConsoleErrorWriter);
             }
 
-            string expectedResult = @"-- header --
-Logger1 message1
-Logger1 message2
-Logger1 message3
-Logger2 message4
-Logger2 message5
-Logger1 message6
--- footer --
-";
+            string expectedResult = string.Format("-- header --{0}Logger1 message1{0}Logger1 message2{0}Logger1 message3{0}Logger2 message4{0}Logger2 message5{0}Logger1 message6{0}-- footer --{0}", Environment.NewLine);
             Assert.AreEqual(expectedResult, consoleErrorWriter.ToString());
         }
 #endif

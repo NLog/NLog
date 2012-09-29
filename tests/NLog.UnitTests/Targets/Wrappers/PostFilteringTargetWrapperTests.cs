@@ -138,14 +138,12 @@ namespace NLog.UnitTests.Targets.Wrappers
                 new LogEventInfo(LogLevel.Warn, "Logger1", "Hello").WithContinuation(exceptions.Add),
             };
 
-            string internalLogOutput = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            string expectedLogOutput = @"Trace Running PostFilteringWrapper Target[(unnamed)](MyTarget) on 7 events
-Trace Rule matched: (level >= Warn)
-Trace Filter to apply: (level >= Debug)
-Trace After filtering: 6 events.
-Trace Sending to MyTarget
-";
-            Assert.AreEqual(expectedLogOutput, internalLogOutput);
+            string result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
+            Assert.IsTrue(result.Contains("Trace Running PostFilteringWrapper Target[(unnamed)](MyTarget) on 7 events"));
+            Assert.IsTrue(result.Contains("Trace Rule matched: (level >= Warn)"));
+            Assert.IsTrue(result.Contains("Trace Filter to apply: (level >= Debug)"));
+            Assert.IsTrue(result.Contains("Trace After filtering: 6 events."));
+            Assert.IsTrue(result.Contains("Trace Sending to MyTarget"));
 
             // make sure all Debug,Info,Warn events went through
             Assert.AreEqual(6, target.Events.Count);
@@ -196,15 +194,12 @@ Trace Sending to MyTarget
                 new LogEventInfo(LogLevel.Error, "Logger1", "Hello").WithContinuation(exceptions.Add),
             };
 
-            var internalLogOutput = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            string expectedLogOutput = @"Trace Running PostFilteringWrapper Target[(unnamed)](MyTarget) on 7 events
-Trace Rule matched: (level >= Error)
-Trace Filter to apply: True
-Trace After filtering: 7 events.
-Trace Sending to MyTarget
-";
-
-            Assert.AreEqual(expectedLogOutput, internalLogOutput);
+            var result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
+            Assert.IsTrue(result.Contains("Trace Running PostFilteringWrapper Target[(unnamed)](MyTarget) on 7 events"));
+            Assert.IsTrue(result.Contains("Trace Rule matched: (level >= Error)"));
+            Assert.IsTrue(result.Contains("Trace Filter to apply: True"));
+            Assert.IsTrue(result.Contains("Trace After filtering: 7 events."));
+            Assert.IsTrue(result.Contains("Trace Sending to MyTarget"));
 
             // make sure all events went through
             Assert.AreEqual(7, target.Events.Count);
