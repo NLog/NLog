@@ -42,6 +42,8 @@ using NUnit.Framework;
 
 namespace NLog.UnitTests
 {
+    using System;
+
     [TestFixture]
     public class GetLoggerTests : NLogTestBase
     {
@@ -144,7 +146,7 @@ namespace NLog.UnitTests
         [Test]
         public void InvalidLoggerConfiguration_DoesNotThrowConfigurationException_IfThrowExceptionsFlagIsSet()
         {
-            Boolean ExceptionThrown = false;
+            bool ExceptionThrown = false;
             try 
             {
                 LogManager.ThrowExceptions = false;
@@ -160,7 +162,7 @@ namespace NLog.UnitTests
         [Test]
         public void InvalidLoggerConfiguration_ThrowsConfigurationException_IfThrowExceptionsFlagIsNotSet()
         {
-            Boolean ExceptionThrown = false;
+            bool ExceptionThrown = false;
             try 
             {
                 LogManager.ThrowExceptions = true;

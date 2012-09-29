@@ -51,13 +51,15 @@ namespace NLog.UnitTests
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.IO.Abstractions;
     using System.Threading;
+
+#if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
+    using System.IO.Abstractions;
 
     [TestFixture]
     public class LogFactoryTest : NLogTestBase
     {
-#if !NET_CF
+#if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
         [Test]
         public void Configuration_PrivateBinPathIsNull_DoesNotThrowWhen()
         {
