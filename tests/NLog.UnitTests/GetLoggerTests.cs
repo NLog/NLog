@@ -133,7 +133,6 @@ namespace NLog.UnitTests
             Assert.AreSame(l1, l2);
             Assert.AreEqual("NLog.UnitTests.GetLoggerTests", l1.Name);
         }
-#endif
 
         public class InvalidLogger
         {
@@ -141,7 +140,6 @@ namespace NLog.UnitTests
            {
 	       }
         }
-        
         
         [Test]
         public void InvalidLoggerConfiguration_DoesNotThrowConfigurationException_IfThrowExceptionsFlagIsSet()
@@ -176,6 +174,7 @@ namespace NLog.UnitTests
             Assert.IsTrue(ExceptionThrown);
             
         }
+#endif
 
         public class MyLogger : Logger
         {
