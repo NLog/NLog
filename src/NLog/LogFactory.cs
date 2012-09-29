@@ -52,7 +52,7 @@ namespace NLog
     using System.Windows;
 #endif
 
-#if !SILVERLIGHT && !NET2_0
+#if !SILVERLIGHT && !NET2_0 && !MONO
     using System.IO.Abstractions;
 #endif
 
@@ -94,7 +94,7 @@ namespace NLog
 #endif
         }
 
-#if !SILVERLIGHT && !NET2_0
+#if !SILVERLIGHT && !NET2_0 && !MONO
         /// <summary>
         /// Initializes a new instance of the <see cref="LogFactory"/> class.
         /// This constructor should only be used for testing purposes.
