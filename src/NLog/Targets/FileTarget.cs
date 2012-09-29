@@ -97,12 +97,13 @@ namespace NLog.Targets
                     MaxArchivedFiles = value;
                 }
             }
-
-            public Boolean AddToArchive(string ArchiveFileName, string FileName)
+            
+            
+            public Boolean AddToArchive(string ArchiveFileName, string FileName,Boolean CreateDirectoryIfNotExists)
             {
                 if (MaxArchivedFiles < 1)
                 {
-                    InternalLogger.Warn("AddToArchive is called, Even though the MaxArchiveFiles is set to less than 1");
+                    InternalLogger.Warn("AddToArchive is called. Even though the MaxArchiveFiles is set to less than 1");
 
                     return false;
                 }
@@ -149,24 +150,36 @@ namespace NLog.Targets
 
                 try
                 {
-                    File.Move(FileName,ArchiveFileNamePattern);
+                    File.Move(FileName, ArchiveFileNamePattern);
                 }
                 catch (DirectoryNotFoundException)
                 {
-                    InternalLogger.Trace("Directory For Archive File is not created. Creating it..");
-
-                    try
+                    if (CreateDirectoryIfNotExists)
                     {
-                        Directory.CreateDirectory(Path.GetDirectoryName(ArchiveFileName));
+                        InternalLogger.Trace("Directory For Archive File is not created. Creating it..");
 
-                        File.Move(FileName,ArchiveFileNamePattern);
+                        try
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(ArchiveFileName));
+
+                            File.Move(FileName, ArchiveFileNamePattern);
+                        }
+                        catch (Exception ExceptionThrown)
+                        {
+                            InternalLogger.Error("Can't create Archive File Directory , Exception : {0}", ExceptionThrown);
+                            throw;
+                        }
                     }
-                    catch (Exception ExceptionThrown)
+                    else
                     {
-                        InternalLogger.Error("Can't create Archive File Directory , Exception : {0}", ExceptionThrown);
-                        throw;   
+                        throw;
                     }
-                   
+                }
+                catch (Exception ExceptionThrown)
+                {
+                    InternalLogger.Error("Can't Archive File : {0} , Exception : {1}", FileName, ExceptionThrown);
+
+                    throw;
                 }
 
                 ArchiveFileEntryQueue.Enqueue(ArchiveFileName);
@@ -174,8 +187,11 @@ namespace NLog.Targets
                 return true;
 
             }
+            
+         }
+          
 
-        }
+            
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -978,7 +994,7 @@ namespace NLog.Targets
             
             if (!IsContainValidNumberPatternForReplacement(fileNamePattern))
             {
-                DynamicArchiveFileHandler.AddToArchive(fileNamePattern, fi.FullName);
+                DynamicArchiveFileHandler.AddToArchive(fileNamePattern, fi.FullName,CreateDirs);
             }
             else
             {
