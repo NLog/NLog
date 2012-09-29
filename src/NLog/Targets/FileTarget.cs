@@ -63,6 +63,135 @@ namespace NLog.Targets
         private BaseFileAppender[] recentAppenders;
         private Timer autoClosingTimer;
         private int initializedFilesCounter;
+        
+        private int _MaxArchiveFilesField;
+
+        private DynamicArchiveFileHandlerClass DynamicArchiveFileHandler;
+
+        private class DynamicArchiveFileHandlerClass
+        {
+            private Queue<string> ArchiveFileEntryQueue;
+
+            private int MaxArchivedFiles;
+
+            public DynamicArchiveFileHandlerClass(int MaxArchivedFiles) : this()
+            {
+                this.MaxArchivedFiles = MaxArchivedFiles;
+            }
+
+            public DynamicArchiveFileHandlerClass()
+            {
+                this.MaxArchivedFiles = -1;
+
+                ArchiveFileEntryQueue = new Queue<string>();
+            }
+
+            public int MaxArchiveFileToKeep
+            {
+                get
+                {
+                    return MaxArchivedFiles;
+                }
+                set
+                {
+                    MaxArchivedFiles = value;
+                }
+            }
+            
+            
+            public Boolean AddToArchive(string ArchiveFileName, string FileName,Boolean CreateDirectoryIfNotExists)
+            {
+                if (MaxArchivedFiles < 1)
+                {
+                    InternalLogger.Warn("AddToArchive is called. Even though the MaxArchiveFiles is set to less than 1");
+
+                    return false;
+                }
+
+                if (!File.Exists(FileName))
+                {
+                    InternalLogger.Error("Error while trying to archive, Source File : {0} Not found.", FileName);
+
+                    return false;
+                }
+
+                while (ArchiveFileEntryQueue.Count >= MaxArchivedFiles)
+                {
+                    string OldestArchivedFileName = ArchiveFileEntryQueue.Dequeue();
+
+                    try
+                    {
+                        File.Delete(OldestArchivedFileName);
+                    }
+                    catch (Exception ExceptionThrown)
+                    {
+                        InternalLogger.Warn("Can't Delete Old Archive File : {0} , Exception : {1}", OldestArchivedFileName, ExceptionThrown);
+                    }
+                }
+
+                
+                String ArchiveFileNamePattern = ArchiveFileName;
+
+                if(ArchiveFileEntryQueue.Contains(ArchiveFileName))
+                {
+                    InternalLogger.Trace("Archive File {0} seems to be already exist. Trying with Different File Name..", ArchiveFileName);
+
+                    int NumberToStartWith = 1;
+
+                    ArchiveFileNamePattern = Path.GetFileNameWithoutExtension(ArchiveFileName) + ".{#}" + Path.GetExtension(ArchiveFileName);
+
+                    while(File.Exists(ReplaceNumber(ArchiveFileNamePattern,NumberToStartWith)))
+                    {
+                        InternalLogger.Trace("Archive File {0} seems to be already exist, too. Trying with Different File Name..", ArchiveFileName);
+                        NumberToStartWith++;
+                    }
+
+                }
+
+                try
+                {
+                    File.Move(FileName, ArchiveFileNamePattern);
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    if (CreateDirectoryIfNotExists)
+                    {
+                        InternalLogger.Trace("Directory For Archive File is not created. Creating it..");
+
+                        try
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(ArchiveFileName));
+
+                            File.Move(FileName, ArchiveFileNamePattern);
+                        }
+                        catch (Exception ExceptionThrown)
+                        {
+                            InternalLogger.Error("Can't create Archive File Directory , Exception : {0}", ExceptionThrown);
+                            throw;
+                        }
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                catch (Exception ExceptionThrown)
+                {
+                    InternalLogger.Error("Can't Archive File : {0} , Exception : {1}", FileName, ExceptionThrown);
+
+                    throw;
+                }
+
+                ArchiveFileEntryQueue.Enqueue(ArchiveFileName);
+
+                return true;
+
+            }
+            
+         }
+          
+
+            
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -73,7 +202,7 @@ namespace NLog.Targets
         public FileTarget()
         {
             this.ArchiveNumbering = ArchiveNumberingMode.Sequence;
-            this.MaxArchiveFiles = 9;
+            this._MaxArchiveFilesField = 9;
             this.ConcurrentWriteAttemptDelay = 1;
             this.ArchiveEvery = FileArchivePeriod.None;
             this.ArchiveAboveSize = -1;
@@ -94,6 +223,7 @@ namespace NLog.Targets
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
             this.CreateDirs = true;
+            this.DynamicArchiveFileHandler = new DynamicArchiveFileHandlerClass(MaxArchiveFiles);
         }
 
         /// <summary>
@@ -354,7 +484,19 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
         [DefaultValue(9)]
-        public int MaxArchiveFiles { get; set; }
+        public int MaxArchiveFiles
+        {
+            get
+            {
+                return _MaxArchiveFilesField;
+            }
+            set
+            {
+                _MaxArchiveFilesField = value;
+
+                DynamicArchiveFileHandler.MaxArchiveFileToKeep = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the way file archives are numbered. 
@@ -659,6 +801,14 @@ namespace NLog.Targets
             return value;
         }
 
+        private static Boolean IsContainValidNumberPatternForReplacement(string pattern)
+        {
+            int StartingIndex = pattern.IndexOf("{#", StringComparison.Ordinal);
+            int EndingIndex = pattern.IndexOf("#}", StringComparison.Ordinal);
+
+            return (StartingIndex != -1 && EndingIndex != -1 && StartingIndex < EndingIndex);
+        }
+        
         private static string ReplaceNumber(string pattern, int value)
         {
             int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
@@ -835,18 +985,29 @@ namespace NLog.Targets
             }
             else
             {
+                //The archive file name is given. There are two possibiliy 
+                //(1) User supplied the Filename with pattern
+                //(2) User supplied the normal filename
                 fileNamePattern = this.ArchiveFileName.Render(ev);
+
             }
-
-            switch (this.ArchiveNumbering)
+            
+            if (!IsContainValidNumberPatternForReplacement(fileNamePattern))
             {
-                case ArchiveNumberingMode.Rolling:
-                    this.RecursiveRollingRename(fi.FullName, fileNamePattern, 0);
-                    break;
+                DynamicArchiveFileHandler.AddToArchive(fileNamePattern, fi.FullName,CreateDirs);
+            }
+            else
+            {
+                  switch (this.ArchiveNumbering)
+                  {
+                       case ArchiveNumberingMode.Rolling:
+                           this.RecursiveRollingRename(fi.FullName, fileNamePattern, 0);
+                           break;
 
-                case ArchiveNumberingMode.Sequence:
-                    this.SequentialArchive(fi.FullName, fileNamePattern);
-                    break;
+                       case ArchiveNumberingMode.Sequence:
+                           this.SequentialArchive(fi.FullName, fileNamePattern);
+                           break;
+                  }
             }
         }
 
