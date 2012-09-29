@@ -28,4 +28,3 @@ examples/NLogDemo/logs/
 examples/NLogDemo/gmail*.txt
 *.ncrunchsolution
 *.user
-src/packages/
