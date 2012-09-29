@@ -52,7 +52,7 @@ namespace NLog
     using System.Windows;
 #endif
 
-#if !SILVERLIGHT && !NET2_0 && !MONO
+#if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
     using System.IO.Abstractions;
 #endif
 
