@@ -55,6 +55,7 @@ namespace NLog.UnitTests
 
 #if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
     using System.IO.Abstractions;
+#endif
 
     [TestFixture]
     public class LogFactoryTest : NLogTestBase
