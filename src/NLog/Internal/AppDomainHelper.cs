@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
 namespace NLog.Internal
 {
     using System;
@@ -42,6 +41,7 @@ namespace NLog.Internal
         internal delegate T Func<T>();
 #endif
 
+#if !SILVERLIGHT
         private static Func<string> _baseDirectory = () => AppDomain.CurrentDomain.BaseDirectory;
         private static Func<string> _configurationFile = () => AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
         private static Func<string> _privateBinPath = () => AppDomain.CurrentDomain.SetupInformation.PrivateBinPath;
@@ -63,5 +63,6 @@ namespace NLog.Internal
             get { return _privateBinPath; }
             set { _privateBinPath = value; }
         }
+#endif
     }
 }
