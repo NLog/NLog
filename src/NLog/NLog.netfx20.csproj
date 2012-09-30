@@ -270,7 +270,6 @@
     <Compile Include="Layouts\LayoutWithHeaderAndFooter.cs" />
     <Compile Include="Layouts\Log4JXmlEventLayout.cs" />
     <Compile Include="Layouts\SimpleLayout.cs" />
-    <Compile Include="LogFactoryTests.cs" />
     <Compile Include="LogEventInfo.cs" />
     <Compile Include="LogFactory.cs" />
     <Compile Include="LogFactory-T.cs" />
