@@ -48,7 +48,6 @@ namespace NLog.UnitTests
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading;
 
 #if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
