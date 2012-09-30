@@ -33,8 +33,6 @@
 
 using System.IO;
 
-using FakeItEasy;
-
 using NLog.Internal;
 
 using NUnit.Framework;
@@ -55,6 +53,7 @@ namespace NLog.UnitTests
 
 #if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
     using System.IO.Abstractions;
+    using FakeItEasy;
 #endif
 
     [TestFixture]
