@@ -37,11 +37,11 @@ namespace NLog.Internal
 
     internal static class AppDomainHelper
     {
-#if NET2_0 || NETCF2_0
+#if NET2_0
         internal delegate T Func<T>();
 #endif
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT || NET_CF
         private static Func<string> _baseDirectory = () => AppDomain.CurrentDomain.BaseDirectory;
         private static Func<string> _configurationFile = () => AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
         private static Func<string> _privateBinPath = () => AppDomain.CurrentDomain.SetupInformation.PrivateBinPath;
