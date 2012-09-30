@@ -41,7 +41,7 @@ namespace NLog.Internal
         internal delegate T Func<T>();
 #endif
 
-#if !SILVERLIGHT || !NET_CF
+#if !SILVERLIGHT && !NET_CF
         private static Func<string> _baseDirectory = () => AppDomain.CurrentDomain.BaseDirectory;
         private static Func<string> _configurationFile = () => AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
         private static Func<string> _privateBinPath = () => AppDomain.CurrentDomain.SetupInformation.PrivateBinPath;
