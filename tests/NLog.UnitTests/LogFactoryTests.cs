@@ -111,7 +111,7 @@ namespace NLog.UnitTests
             </nlog>");
 
             Logger logger = LogManager.GetCurrentClassLogger();
-            logger.Factory.Flush(TimeSpan.FromMilliseconds(1));
+            logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
         }
         
         [Test]
@@ -128,7 +128,7 @@ namespace NLog.UnitTests
             var writer = new StringWriter();
             Console.SetOut(writer);
             Logger logger = LogManager.GetCurrentClassLogger();
-            logger.Factory.Flush(TimeSpan.FromMilliseconds(1));
+            logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
 
             Assert.IsTrue(writer.ToString().Contains("Error"));
         }
