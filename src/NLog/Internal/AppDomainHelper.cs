@@ -37,7 +37,7 @@ namespace NLog.Internal
 
     internal static class AppDomainHelper
     {
-#if NET2_0
+#if NET2_0 || NETCF2_0
         internal delegate T Func<T>();
 #endif
 
