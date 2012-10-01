@@ -113,25 +113,6 @@ namespace NLog.UnitTests
             Logger logger = LogManager.GetCurrentClassLogger();
             logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
         }
-        
-        [Test]
-        public void Flush_DoNotThrowExceptionsAndTimeout_WritesToInternalLog()
-        {
-            LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog internalLogToConsole='true' throwExceptions='false'>
-                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeto='test'></logger>
-                </rules>
-            </nlog>");
-
-            var writer = new StringWriter();
-            Console.SetOut(writer);
-            Logger logger = LogManager.GetCurrentClassLogger();
-            logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
-
-            Assert.IsTrue(writer.ToString().Contains("Error"));
-        }
 #endif
         
         [Test]

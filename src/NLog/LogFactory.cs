@@ -452,17 +452,29 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
-            InternalLogger.Trace("LogFactory.Flush({0})", timeout);
-            
-            var loggingConfiguration = this.Configuration;
-            if (loggingConfiguration != null)
+            try
             {
-                InternalLogger.Trace("Flushing all targets...");
-                loggingConfiguration.FlushAllTargets(AsyncHelpers.WithTimeout(asyncContinuation, timeout));
+                InternalLogger.Trace("LogFactory.Flush({0})", timeout);
+
+                var loggingConfiguration = this.Configuration;
+                if (loggingConfiguration != null)
+                {
+                    InternalLogger.Trace("Flushing all targets...");
+                    loggingConfiguration.FlushAllTargets(AsyncHelpers.WithTimeout(asyncContinuation, timeout));
+                }
+                else
+                {
+                    asyncContinuation(null);
+                }
             }
-            else
+            catch (Exception e)
             {
-                asyncContinuation(null);
+                if (ThrowExceptions)
+                {
+                    throw;
+                }
+
+                InternalLogger.Error(e.ToString());
             }
         }
 
