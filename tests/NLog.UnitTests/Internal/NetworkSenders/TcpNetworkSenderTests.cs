@@ -195,9 +195,14 @@ namespace NLog.UnitTests.Internal.NetworkSenders
 #else
             mre.WaitOne(3000, false);
 #endif
-            string expectedLog = string.Format("Parse endpoint address tcp://hostname:123/ Unspecified{0}create socket 10000 Stream Tcp{0}connect async to {{mock end point: tcp://hostname:123/}}{0}failed{0}", Environment.NewLine);
 
-            Assert.AreEqual(expectedLog, sender.Log.ToString());
+            var actual = sender.Log.ToString();
+
+            Assert.IsTrue(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
+            Assert.IsTrue(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
+            Assert.IsTrue(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
+            Assert.IsTrue(actual.IndexOf("failed") != -1);
+
             foreach (var ex in exceptions)
             {
                 Assert.IsNotNull(ex);
