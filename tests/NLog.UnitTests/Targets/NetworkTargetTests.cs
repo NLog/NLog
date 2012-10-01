@@ -107,8 +107,13 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual("msg1\r\nmsg2\r\nmsg3\r\n", target.Encoding.GetString(sender.MemoryStream.GetBuffer(), 0, (int)sender.MemoryStream.Length));
 
             // we invoke the sender 3 times, each time sending 4 bytes
-            string expectedLog = string.Format("1: connect tcp://someaddress/{0}1: send 0 6{0}1: send 0 6{0}1: send 0 6{0}1: close{0}", Environment.NewLine);
-            Assert.AreEqual(expectedLog, senderFactory.Log.ToString());
+            var actual = senderFactory.Log.ToString();
+
+            Assert.IsTrue(actual.IndexOf("1: connect tcp://someaddress/") != -1);
+            Assert.IsTrue(actual.IndexOf("1: send 0 6") != -1);
+            Assert.IsTrue(actual.IndexOf("1: send 0 6") != -1);
+            Assert.IsTrue(actual.IndexOf("1: send 0 6") != -1);
+            Assert.IsTrue(actual.IndexOf("1: close") != -1);
         }
 
         [Test]
@@ -160,8 +165,19 @@ namespace NLog.UnitTests.Targets
             mre.WaitOne();
             target.Close();
 
-            string expectedLog = string.Format("1: connect tcp://logger1.company.lan/{0}1: send 0 4{0}2: connect tcp://logger2.company.lan/{0}2: send 0 4{0}3: connect tcp://logger3.company.lan/{0}3: send 0 4{0}1: flush{0}2: flush{0}3: flush{0}1: close{0}2: close{0}3: close{0}", Environment.NewLine);
-            Assert.AreEqual(expectedLog, senderFactory.Log.ToString());
+            var actual = senderFactory.Log.ToString();
+            Assert.IsTrue(actual.IndexOf("1: connect tcp://logger1.company.lan/") != -1);
+            Assert.IsTrue(actual.IndexOf("1: send 0 4") != -1);
+            Assert.IsTrue(actual.IndexOf("2: connect tcp://logger2.company.lan/") != -1);
+            Assert.IsTrue(actual.IndexOf("2: send 0 4") != -1);
+            Assert.IsTrue(actual.IndexOf("3: connect tcp://logger3.company.lan/") != -1);
+            Assert.IsTrue(actual.IndexOf("3: send 0 4") != -1);
+            Assert.IsTrue(actual.IndexOf("1: flush") != -1);
+            Assert.IsTrue(actual.IndexOf("2: flush") != -1);
+            Assert.IsTrue(actual.IndexOf("3: flush") != -1);
+            Assert.IsTrue(actual.IndexOf("1: close") != -1);
+            Assert.IsTrue(actual.IndexOf("2: close") != -1);
+            Assert.IsTrue(actual.IndexOf("3: close") != -1);
         }
 
         [Test]
@@ -237,20 +253,20 @@ namespace NLog.UnitTests.Targets
             target.Close();
 
             string result = senderFactory.Log.ToString();
-            Assert.IsTrue(result.Contains("1: connect tcp://logger1.company.lan/"));
-            Assert.IsTrue(result.Contains("1: send 0 4"));
-            Assert.IsTrue(result.Contains("2: connect tcp://logger2.company.lan/"));
-            Assert.IsTrue(result.Contains("2: send 0 4"));
-            Assert.IsTrue(result.Contains("1: send 0 4"));
-            Assert.IsTrue(result.Contains("2: close"));
-            Assert.IsTrue(result.Contains("3: connect tcp://logger3.company.lan/"));
-            Assert.IsTrue(result.Contains("3: send 0 4"));
-            Assert.IsTrue(result.Contains("1: send 0 4"));
-            Assert.IsTrue(result.Contains("3: close"));
-            Assert.IsTrue(result.Contains("4: connect tcp://logger2.company.lan/"));
-            Assert.IsTrue(result.Contains("4: send 0 4"));
-            Assert.IsTrue(result.Contains("1: close"));
-            Assert.IsTrue(result.Contains("4: close"));
+            Assert.IsTrue(result.IndexOf("1: connect tcp://logger1.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 0 4") != -1);
+            Assert.IsTrue(result.IndexOf("2: connect tcp://logger2.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("2: send 0 4") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 0 4") != -1);
+            Assert.IsTrue(result.IndexOf("2: close") != -1);
+            Assert.IsTrue(result.IndexOf("3: connect tcp://logger3.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("3: send 0 4") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 0 4") != -1);
+            Assert.IsTrue(result.IndexOf("3: close") != -1);
+            Assert.IsTrue(result.IndexOf("4: connect tcp://logger2.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("4: send 0 4") != -1);
+            Assert.IsTrue(result.IndexOf("1: close") != -1);
+            Assert.IsTrue(result.IndexOf("4: close") != -1);
         }
 
         [Test]
@@ -298,24 +314,24 @@ namespace NLog.UnitTests.Targets
             target.Close();
 
             string result = senderFactory.Log.ToString();
-            Assert.IsTrue(result.Contains("1: connect tcp://logger1.company.lan/"));
-            Assert.IsTrue(result.Contains("1: send 0 4"));
-            Assert.IsTrue(result.Contains("1: close"));
-            Assert.IsTrue(result.Contains("2: connect tcp://logger2.company.lan/"));
-            Assert.IsTrue(result.Contains("2: send 0 4"));
-            Assert.IsTrue(result.Contains("2: close"));
-            Assert.IsTrue(result.Contains("3: connect tcp://logger1.company.lan/"));
-            Assert.IsTrue(result.Contains("3: send 0 4"));
-            Assert.IsTrue(result.Contains("3: close"));
-            Assert.IsTrue(result.Contains("4: connect tcp://logger3.company.lan/"));
-            Assert.IsTrue(result.Contains("4: send 0 4"));
-            Assert.IsTrue(result.Contains("4: close"));
-            Assert.IsTrue(result.Contains("5: connect tcp://logger1.company.lan/"));
-            Assert.IsTrue(result.Contains("5: send 0 4"));
-            Assert.IsTrue(result.Contains("5: close"));
-            Assert.IsTrue(result.Contains("6: connect tcp://logger2.company.lan/"));
-            Assert.IsTrue(result.Contains("6: send 0 4"));
-            Assert.IsTrue(result.Contains("6: close"));
+            Assert.IsTrue(result.IndexOf("1: connect tcp://logger1.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 0 4") != -1);
+            Assert.IsTrue(result.IndexOf("1: close") != -1);
+            Assert.IsTrue(result.IndexOf("2: connect tcp://logger2.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("2: send 0 4") != -1);
+            Assert.IsTrue(result.IndexOf("2: close") != -1);
+            Assert.IsTrue(result.IndexOf("3: connect tcp://logger1.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("3: send 0 4") != -1);
+            Assert.IsTrue(result.IndexOf("3: close") != -1);
+            Assert.IsTrue(result.IndexOf("4: connect tcp://logger3.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("4: send 0 4") != -1);
+            Assert.IsTrue(result.IndexOf("4: close") != -1);
+            Assert.IsTrue(result.IndexOf("5: connect tcp://logger1.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("5: send 0 4") != -1);
+            Assert.IsTrue(result.IndexOf("5: close") != -1);
+            Assert.IsTrue(result.IndexOf("6: connect tcp://logger2.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("6: send 0 4") != -1);
+            Assert.IsTrue(result.IndexOf("6: close") != -1);
         }
 
         [Test]
@@ -362,19 +378,19 @@ namespace NLog.UnitTests.Targets
             target.Close();
 
             var result = senderFactory.Log.ToString();
-            Assert.IsTrue(result.Contains("1: connect tcp://logger1.company.lan/"));
-            Assert.IsTrue(result.Contains("1: send 0 9"));
-            Assert.IsTrue(result.Contains("1: send 9 9"));
-            Assert.IsTrue(result.Contains("1: send 18 9"));
-            Assert.IsTrue(result.Contains("1: send 27 3"));
-            Assert.IsTrue(result.Contains("1: send 0 9"));
-            Assert.IsTrue(result.Contains("1: send 9 6"));
-            Assert.IsTrue(result.Contains("2: connect tcp://logger2.company.lan/"));
-            Assert.IsTrue(result.Contains("2: send 0 9"));
-            Assert.IsTrue(result.Contains("2: send 9 9"));
-            Assert.IsTrue(result.Contains("2: send 18 6"));
-            Assert.IsTrue(result.Contains("1: close"));
-            Assert.IsTrue(result.Contains("2: close"));
+            Assert.IsTrue(result.IndexOf("1: connect tcp://logger1.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 0 9") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 9 9") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 18 9") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 27 3") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 0 9") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 9 6") != -1);
+            Assert.IsTrue(result.IndexOf("2: connect tcp://logger2.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("2: send 0 9") != -1);
+            Assert.IsTrue(result.IndexOf("2: send 9 9") != -1);
+            Assert.IsTrue(result.IndexOf("2: send 18 6") != -1);
+            Assert.IsTrue(result.IndexOf("1: close") != -1);
+            Assert.IsTrue(result.IndexOf("2: close") != -1);
         }
 
         [Test]
@@ -421,12 +437,12 @@ namespace NLog.UnitTests.Targets
             target.Close();
 
             string result = senderFactory.Log.ToString();
-            Assert.IsTrue(result.Contains("1: connect tcp://logger1.company.lan/"));
-            Assert.IsTrue(result.Contains("1: send 0 7"));
-            Assert.IsTrue(result.Contains("2: connect tcp://logger2.company.lan/"));
-            Assert.IsTrue(result.Contains("2: send 0 5"));
-            Assert.IsTrue(result.Contains("1: close"));
-            Assert.IsTrue(result.Contains("2: close"));
+            Assert.IsTrue(result.IndexOf("1: connect tcp://logger1.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 0 7") != -1);
+            Assert.IsTrue(result.IndexOf("2: connect tcp://logger2.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("2: send 0 5") != -1);
+            Assert.IsTrue(result.IndexOf("1: close") != -1);
+            Assert.IsTrue(result.IndexOf("2: close") != -1);
         }
 
         [Test]
@@ -470,12 +486,12 @@ namespace NLog.UnitTests.Targets
             target.Close();
 
             string result = senderFactory.Log.ToString();
-            Assert.IsTrue(result.Contains("1: connect tcp://logger1.company.lan/"));
-            Assert.IsTrue(result.Contains("1: send 0 7"));
-            Assert.IsTrue(result.Contains("1: close"));
-            Assert.IsTrue(result.Contains("2: connect tcp://logger2.company.lan/"));
-            Assert.IsTrue(result.Contains("2: send 0 5"));
-            Assert.IsTrue(result.Contains("2: close"));
+            Assert.IsTrue(result.IndexOf("1: connect tcp://logger1.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 0 7") != -1);
+            Assert.IsTrue(result.IndexOf("1: close") != -1);
+            Assert.IsTrue(result.IndexOf("2: connect tcp://logger2.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("2: send 0 5") != -1);
+            Assert.IsTrue(result.IndexOf("2: close") != -1);
         }
 
         [Test]
@@ -525,22 +541,22 @@ namespace NLog.UnitTests.Targets
             target.Close();
 
             var result = senderFactory.Log.ToString();
-            Assert.IsTrue(result.Contains("1: connect tcp://logger1.company.lan/"));
-            Assert.IsTrue(result.Contains("1: send 0 7"));
-            Assert.IsTrue(result.Contains("1: failed"));
-            Assert.IsTrue(result.Contains("1: close"));
-            Assert.IsTrue(result.Contains("2: connect tcp://logger1.company.lan/"));
-            Assert.IsTrue(result.Contains("2: send 0 7"));
-            Assert.IsTrue(result.Contains("2: failed"));
-            Assert.IsTrue(result.Contains("2: close"));
-            Assert.IsTrue(result.Contains("3: connect tcp://logger1.company.lan/"));
-            Assert.IsTrue(result.Contains("3: send 0 7"));
-            Assert.IsTrue(result.Contains("3: failed"));
-            Assert.IsTrue(result.Contains("3: close"));
-            Assert.IsTrue(result.Contains("4: connect tcp://logger1.company.lan/"));
-            Assert.IsTrue(result.Contains("4: send 0 7"));
-            Assert.IsTrue(result.Contains("4: send 0 5"));
-            Assert.IsTrue(result.Contains("4: close"));
+            Assert.IsTrue(result.IndexOf("1: connect tcp://logger1.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("1: send 0 7") != -1);
+            Assert.IsTrue(result.IndexOf("1: failed") != -1);
+            Assert.IsTrue(result.IndexOf("1: close") != -1);
+            Assert.IsTrue(result.IndexOf("2: connect tcp://logger1.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("2: send 0 7") != -1);
+            Assert.IsTrue(result.IndexOf("2: failed") != -1);
+            Assert.IsTrue(result.IndexOf("2: close") != -1);
+            Assert.IsTrue(result.IndexOf("3: connect tcp://logger1.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("3: send 0 7") != -1);
+            Assert.IsTrue(result.IndexOf("3: failed") != -1);
+            Assert.IsTrue(result.IndexOf("3: close") != -1);
+            Assert.IsTrue(result.IndexOf("4: connect tcp://logger1.company.lan/") != -1);
+            Assert.IsTrue(result.IndexOf("4: send 0 7") != -1);
+            Assert.IsTrue(result.IndexOf("4: send 0 5") != -1);
+            Assert.IsTrue(result.IndexOf("4: close") != -1);
         }
 
 #if !SILVERLIGHT

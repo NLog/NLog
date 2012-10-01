@@ -98,6 +98,7 @@ namespace NLog.UnitTests
         }
 #endif
 
+#if !NET_CF
         [Test]
         public void Flush_DoNotThrowExceptionsAndTimeout_DoesNotThrow()
         {
@@ -131,6 +132,7 @@ namespace NLog.UnitTests
 
             Assert.IsTrue(writer.ToString().Contains("Error"));
         }
+#endif
         
         [Test]
         public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()

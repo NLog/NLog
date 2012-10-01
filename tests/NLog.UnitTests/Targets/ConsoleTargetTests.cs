@@ -84,8 +84,16 @@ namespace NLog.UnitTests.Targets
                 Console.SetOut(oldConsoleOutWriter);
             }
 
-            string expectedResult = string.Format("-- header --{0}Logger1 message1{0}Logger1 message2{0}Logger1 message3{0}Logger2 message4{0}Logger2 message5{0}Logger1 message6{0}-- footer --{0}", Environment.NewLine);
-            Assert.AreEqual(expectedResult, consoleOutWriter.ToString());
+            var actual = consoleOutWriter.ToString();
+
+            Assert.IsTrue(actual.IndexOf("-- header --") != -1);
+            Assert.IsTrue(actual.IndexOf("Logger1 message1") != -1);
+            Assert.IsTrue(actual.IndexOf("Logger1 message2") != -1);
+            Assert.IsTrue(actual.IndexOf("Logger1 message3") != -1);
+            Assert.IsTrue(actual.IndexOf("Logger2 message4") != -1);
+            Assert.IsTrue(actual.IndexOf("Logger2 message5") != -1);
+            Assert.IsTrue(actual.IndexOf("Logger1 message6") != -1);
+            Assert.IsTrue(actual.IndexOf("-- footer --") != -1);
         }
 
 #if !NET_CF
