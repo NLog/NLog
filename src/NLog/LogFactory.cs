@@ -42,7 +42,7 @@ namespace NLog
     using System.Runtime.CompilerServices;
     using System.Text;
     using System.Threading;
-
+    using Internal.Fakeables;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -66,6 +66,7 @@ namespace NLog
         private const int ReconfigAfterFileChangedTimeout = 1000;
 #endif
 
+        private static IAppDomain currentAppDomain;
         private readonly Dictionary<LoggerCacheKey, WeakReference> loggerCache = new Dictionary<LoggerCacheKey, WeakReference>();
 
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
@@ -128,6 +129,15 @@ namespace NLog
         /// </summary>
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
 #endif
+
+        /// <summary>
+        /// Gets the current <see cref="IAppDomain"/>.
+        /// </summary>
+        public static IAppDomain CurrentAppDomain
+        {
+            get { return currentAppDomain ?? (currentAppDomain = new AppDomainWrapper(AppDomain.CurrentDomain)); }
+            set { currentAppDomain = value; }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether exceptions should be thrown.
@@ -707,17 +717,17 @@ namespace NLog
             yield return "NLog.config";
 #else
             // NLog.config from application directory
-            yield return Path.Combine(AppDomainHelper.BaseDirectory(), "NLog.config");
+            yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
 
             // current config file with .config renamed to .nlog
-            string cf = AppDomainHelper.ConfigurationFile();
+            string cf = CurrentAppDomain.ConfigurationFile;
             if (cf != null)
             {
                 yield return Path.ChangeExtension(cf, ".nlog");
-                string privateBinPaths = AppDomainHelper.PrivateBinPath();
+                IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
                 if (privateBinPaths != null)
                 {
-                    foreach (var path in privateBinPaths.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+                    foreach (var path in privateBinPaths)
                     {
                         yield return Path.Combine(path, "NLog.config");
                     }
