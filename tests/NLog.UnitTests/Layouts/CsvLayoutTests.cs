@@ -54,7 +54,9 @@ namespace NLog.UnitTests.Layouts
         [Test]
         public void EndToEndTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            try
+            {
+                LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                   <target name='f' type='File' fileName='CSVLayoutEndToEnd1.txt'>
@@ -70,28 +72,39 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("msg");
-            logger.Info("msg2");
-            logger.Warn("Message with, a comma");
+                Logger logger = LogManager.GetLogger("A");
+                logger.Debug("msg");
+                logger.Info("msg2");
+                logger.Warn("Message with, a comma");
 
-            using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd1.txt"))
+                using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd1.txt"))
+                {
+                    Assert.AreEqual("level;message;counter", sr.ReadLine());
+                    Assert.AreEqual("Debug;msg;1", sr.ReadLine());
+                    Assert.AreEqual("Info;msg2;2", sr.ReadLine());
+                    Assert.AreEqual("Warn;Message with, a comma;3", sr.ReadLine());
+                }
+            }
+            finally
             {
-                Assert.AreEqual("level;message;counter", sr.ReadLine());
-                Assert.AreEqual("Debug;msg;1", sr.ReadLine());
-                Assert.AreEqual("Info;msg2;2", sr.ReadLine());
-                Assert.AreEqual("Warn;Message with, a comma;3", sr.ReadLine());
+                if (File.Exists("CSVLayoutEndToEnd1.txt"))
+                {
+                    File.Delete("CSVLayoutEndToEnd1.txt");
+                }
             }
         }
 
         [Test]
         public void NoHeadersTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            try
+            {
+                LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
                   <target name='f' type='File' fileName='CSVLayoutEndToEnd2.txt'>
                     <layout type='CSVLayout' withHeader='false'>
+                      <delimiter>Comma</delimiter>
                       <column name='level' layout='${level}' />
                       <column name='message' layout='${message}' />
                       <column name='counter' layout='${counter}' />
@@ -103,16 +116,24 @@ namespace NLog.UnitTests.Layouts
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
-            logger.Debug("msg");
-            logger.Info("msg2");
-            logger.Warn("Message with, a comma");
+                Logger logger = LogManager.GetLogger("A");
+                logger.Debug("msg");
+                logger.Info("msg2");
+                logger.Warn("Message with, a comma");
 
-            using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd2.txt"))
+                using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd2.txt"))
+                {
+                    Assert.AreEqual("Debug,msg,1", sr.ReadLine());
+                    Assert.AreEqual("Info,msg2,2", sr.ReadLine());
+                    Assert.AreEqual("Warn,\"Message with, a comma\",3", sr.ReadLine());
+                }
+            }
+            finally
             {
-                Assert.AreEqual("Debug;msg;1", sr.ReadLine());
-                Assert.AreEqual("Info;msg2;2", sr.ReadLine());
-                Assert.AreEqual("Warn;Message with, a comma;3", sr.ReadLine());
+                if (File.Exists("CSVLayoutEndToEnd2.txt"))
+                {
+                    File.Delete("CSVLayoutEndToEnd2.txt");
+                }
             }
         }
 #endif
