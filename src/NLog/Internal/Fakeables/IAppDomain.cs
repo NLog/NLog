@@ -22,5 +22,10 @@ namespace NLog.Internal.Fakeables
         /// Gets or sets the list of directories under the application base directory that are probed for private assemblies.
         /// </summary>
         IEnumerable<string> PrivateBinPath { get; set; }
+
+        /// <summary>
+        /// Gets or set the friendly name.
+        /// </summary>
+        string FriendlyName { get; set; }
     }
 }

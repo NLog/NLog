@@ -41,6 +41,7 @@ namespace NLog.LayoutRenderers
     using System.Reflection;
     using System.Text;
     using System.Xml;
+    using Internal.Fakeables;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Targets;
@@ -60,7 +61,14 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer()
+        public Log4JXmlEventLayoutRenderer() : this(new AppDomainWrapper(AppDomain.CurrentDomain))
+        {
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
+        /// </summary>
+        public Log4JXmlEventLayoutRenderer(IAppDomain appDomain)
         {
             this.IncludeNLogData = true;
             this.NdcItemSeparator = " ";
@@ -72,7 +80,7 @@ namespace NLog.LayoutRenderers
             this.AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
                 "{0}({1})", 
-                AppDomain.CurrentDomain.FriendlyName, 
+                appDomain.FriendlyName, 
                 ThreadIDHelper.Instance.CurrentProcessID);
 #endif
             this.Parameters = new List<NLogViewerParameterInfo>();

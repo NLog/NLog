@@ -23,6 +23,7 @@ namespace NLog.Internal.Fakeables
                                  ? new string[] {}
                                  : appDomain.SetupInformation.PrivateBinPath.Split(new[] {';'},
                                                                                    StringSplitOptions.RemoveEmptyEntries);
+            FriendlyName = appDomain.FriendlyName;
 #endif
         }
 
@@ -40,5 +41,10 @@ namespace NLog.Internal.Fakeables
         /// Gets or sets the list of directories under the application base directory that are probed for private assemblies.
         /// </summary>
         public IEnumerable<string> PrivateBinPath { get; set; }
+
+        /// <summary>
+        /// Gets or set the friendly name.
+        /// </summary>
+        public string FriendlyName { get; set; }
     }
 }
