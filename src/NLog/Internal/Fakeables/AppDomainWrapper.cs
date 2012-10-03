@@ -66,7 +66,7 @@ namespace NLog.Internal.Fakeables
 
         private void OnDomainUnload(object sender, EventArgs e)
         {
-            var handler = ProcessExit;
+            var handler = DomainUnload;
             if (handler != null) handler(sender, e);
         }
 
