@@ -25,8 +25,13 @@ namespace NLog.Internal.Fakeables
                                                                                    StringSplitOptions.RemoveEmptyEntries);
             FriendlyName = appDomain.FriendlyName;
 #endif
+#if !NET_CF && !SILVERLIGHT && !MONO
+            appDomain.ProcessExit += OnProcessExit;
+            appDomain.DomainUnload += OnDomainUnload;
+#endif
         }
 
+#if !SILVERLIGHT && !NET_CF
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
         /// </summary>
@@ -46,5 +51,30 @@ namespace NLog.Internal.Fakeables
         /// Gets or set the friendly name.
         /// </summary>
         public string FriendlyName { get; set; }
+#endif
+
+#if !NET_CF && !SILVERLIGHT && !MONO
+        /// <summary>
+        /// Process exit event.
+        /// </summary>
+        public event EventHandler<EventArgs> ProcessExit;
+
+        /// <summary>
+        /// Domain unloaded event.
+        /// </summary>
+        public event EventHandler<EventArgs> DomainUnload;
+
+        private void OnDomainUnload(object sender, EventArgs e)
+        {
+            var handler = ProcessExit;
+            if (handler != null) handler(sender, e);
+        }
+
+        private void OnProcessExit(object sender, EventArgs eventArgs)
+        {
+            var handler = ProcessExit;
+            if (handler != null) handler(sender, eventArgs);
+        }
+#endif
     }
 }

@@ -27,5 +27,15 @@ namespace NLog.Internal.Fakeables
         /// Gets or set the friendly name.
         /// </summary>
         string FriendlyName { get; set; }
+
+        /// <summary>
+        /// Process exit event.
+        /// </summary>
+        event EventHandler<EventArgs> ProcessExit;
+        
+        /// <summary>
+        /// Domain unloaded event.
+        /// </summary>
+        event EventHandler<EventArgs> DomainUnload;
     }
 }
