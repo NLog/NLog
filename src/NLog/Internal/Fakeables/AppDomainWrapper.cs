@@ -31,29 +31,26 @@ namespace NLog.Internal.Fakeables
 #endif
         }
 
-#if !SILVERLIGHT && !NET_CF
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
         /// </summary>
-        public string BaseDirectory { get; set; }
+        public string BaseDirectory { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the configuration file for an application domain.
         /// </summary>
-        public string ConfigurationFile { get; set; }
+        public string ConfigurationFile { get; private set; }
 
         /// <summary>
         /// Gets or sets the list of directories under the application base directory that are probed for private assemblies.
         /// </summary>
-        public IEnumerable<string> PrivateBinPath { get; set; }
+        public IEnumerable<string> PrivateBinPath { get; private set; }
 
         /// <summary>
         /// Gets or set the friendly name.
         /// </summary>
-        public string FriendlyName { get; set; }
-#endif
+        public string FriendlyName { get; private set; }
 
-#if !NET_CF && !SILVERLIGHT && !MONO
         /// <summary>
         /// Process exit event.
         /// </summary>
@@ -63,6 +60,8 @@ namespace NLog.Internal.Fakeables
         /// Domain unloaded event.
         /// </summary>
         public event EventHandler<EventArgs> DomainUnload;
+
+#if !NET_CF && !SILVERLIGHT && !MONO
 
         private void OnDomainUnload(object sender, EventArgs e)
         {

@@ -11,22 +11,22 @@ namespace NLog.Internal.Fakeables
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
         /// </summary>
-        string BaseDirectory { get; set; }
+        string BaseDirectory { get; }
 
         /// <summary>
         /// Gets or sets the name of the configuration file for an application domain.
         /// </summary>
-        string ConfigurationFile { get; set; }
+        string ConfigurationFile { get; }
 
         /// <summary>
         /// Gets or sets the list of directories under the application base directory that are probed for private assemblies.
         /// </summary>
-        IEnumerable<string> PrivateBinPath { get; set; }
+        IEnumerable<string> PrivateBinPath { get; }
 
         /// <summary>
         /// Gets or set the friendly name.
         /// </summary>
-        string FriendlyName { get; set; }
+        string FriendlyName { get; }
 
         /// <summary>
         /// Process exit event.
