@@ -274,11 +274,10 @@ namespace NLog.Config
                     throw;
                 }
 
-                InternalLogger.Error("Error {0}...", exception);
+                NLogConfigurationException ConfigException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
+                
                 if (!ignoreErrors)
                 {
-                    NLogConfigurationException ConfigException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
-
                     if (LogManager.ThrowExceptions)
                     {
                         throw ConfigException;
@@ -287,6 +286,10 @@ namespace NLog.Config
                     {
                         InternalLogger.Error("Error in Parsing Configuration File. Exception : {0}", ConfigException);
                     }
+                }
+                else
+                {
+                    InternalLogger.Error("Error in Parsing Configuration File. Exception : {0}", ConfigException);
                 }
             }
         }
