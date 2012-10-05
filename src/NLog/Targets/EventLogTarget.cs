@@ -71,7 +71,7 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
-        public EventLogTarget() : this(new AppDomainWrapper(AppDomain.CurrentDomain))
+        public EventLogTarget() : this(AppDomainWrapper.CurrentDomain)
         {
         }
 

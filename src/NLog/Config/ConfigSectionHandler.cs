@@ -76,7 +76,7 @@ namespace NLog.Config
         /// <returns>The created section handler object.</returns>
         object IConfigurationSectionHandler.Create(object parent, object configContext, XmlNode section)
         {
-            return Create(section, new AppDomainWrapper(AppDomain.CurrentDomain));
+            return Create(section, AppDomainWrapper.CurrentDomain);
         }
     }
 }

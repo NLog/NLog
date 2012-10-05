@@ -36,6 +36,7 @@ namespace NLog.Internal.Fakeables
         /// </summary>
         public static AppDomainWrapper CurrentDomain { get { return new AppDomainWrapper(AppDomain.CurrentDomain); } }
 
+#if !SILVERLIGHT && !NET_CF
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
         /// </summary>
@@ -55,7 +56,9 @@ namespace NLog.Internal.Fakeables
         /// Gets or set the friendly name.
         /// </summary>
         public string FriendlyName { get; private set; }
+#endif
 
+#if !NET_CF && !SILVERLIGHT && !MONO
         /// <summary>
         /// Process exit event.
         /// </summary>
@@ -65,8 +68,6 @@ namespace NLog.Internal.Fakeables
         /// Domain unloaded event.
         /// </summary>
         public event EventHandler<EventArgs> DomainUnload;
-
-#if !NET_CF && !SILVERLIGHT && !MONO
 
         private void OnDomainUnload(object sender, EventArgs e)
         {

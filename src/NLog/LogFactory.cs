@@ -135,7 +135,7 @@ namespace NLog
         /// </summary>
         public static IAppDomain CurrentAppDomain
         {
-            get { return currentAppDomain ?? (currentAppDomain = new AppDomainWrapper(AppDomain.CurrentDomain)); }
+            get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
             set { currentAppDomain = value; }
         }
 
