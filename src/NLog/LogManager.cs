@@ -36,6 +36,7 @@ namespace NLog
     using System;
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
+    using Internal.Fakeables;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -46,6 +47,7 @@ namespace NLog
     public sealed class LogManager
     {
         private static readonly LogFactory globalFactory = new LogFactory();
+        private static IAppDomain _currentAppDomain;
 
 #if !NET_CF && !SILVERLIGHT && !MONO
         /// <summary>
@@ -104,6 +106,12 @@ namespace NLog
         {
             get { return globalFactory.ThrowExceptions; }
             set { globalFactory.ThrowExceptions = value; }
+        }
+
+        internal static IAppDomain CurrentAppDomain
+        {
+            get { return _currentAppDomain ?? (_currentAppDomain = AppDomainWrapper.CurrentDomain); }
+            set { _currentAppDomain = value; }
         }
 
         /// <summary>
@@ -293,8 +301,8 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
 #if !NET_CF && !SILVERLIGHT && !MONO
         private static void SetupTerminationEvents()
         {
-            AppDomain.CurrentDomain.ProcessExit += TurnOffLogging;
-            AppDomain.CurrentDomain.DomainUnload += TurnOffLogging;
+            CurrentAppDomain.ProcessExit += TurnOffLogging;
+            CurrentAppDomain.DomainUnload += TurnOffLogging;
         }
 
         private static void TurnOffLogging(object sender, EventArgs args)

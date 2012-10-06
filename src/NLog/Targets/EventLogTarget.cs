@@ -40,6 +40,7 @@ namespace NLog.Targets
     using System.Diagnostics;
     using System.Globalization;
     using System.Security;
+    using Internal.Fakeables;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -70,9 +71,16 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
-        public EventLogTarget()
+        public EventLogTarget() : this(AppDomainWrapper.CurrentDomain)
         {
-            this.Source = AppDomain.CurrentDomain.FriendlyName;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
+        /// </summary>
+        public EventLogTarget(IAppDomain appDomain)
+        {
+            this.Source = appDomain.FriendlyName;
             this.Log = "Application";
             this.MachineName = ".";
         }

@@ -38,7 +38,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.IO;
     using System.Text;
-
+    using Internal.Fakeables;
     using NLog.Config;
 
     /// <summary>
@@ -53,10 +53,17 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
-        public BaseDirLayoutRenderer()
+        public BaseDirLayoutRenderer() : this(AppDomainWrapper.CurrentDomain)
+        {
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
+        /// </summary>
+        public BaseDirLayoutRenderer(IAppDomain appDomain)
         {
 #if !NET_CF
-            this.baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            this.baseDir = appDomain.BaseDirectory;
 #else
             this.baseDir = NLog.Internal.CompactFrameworkHelper.GetExeBaseDir();
 #endif
