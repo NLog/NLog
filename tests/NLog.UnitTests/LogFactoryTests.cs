@@ -53,6 +53,8 @@ namespace NLog.UnitTests
 #if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
     using System.IO.Abstractions;
     using FakeItEasy;
+    using NLog.Internal.Fakeables;
+
 #endif
 
     [TestFixture]
@@ -60,24 +62,30 @@ namespace NLog.UnitTests
     {
 #if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
         [Test]
-        public void Configuration_PrivateBinPathIsNull_DoesNotThrowWhen()
+        public void Configuration_PrivateBinPathIsNull_DoesNotThrow()
         {
-            AppDomainHelper.PrivateBinPath = () => null;
+            var fakeAppDomain = A.Fake<IAppDomain>();
+            A.CallTo(() => fakeAppDomain.PrivateBinPath).Returns(null);
+            LogFactory.CurrentAppDomain = fakeAppDomain;
+
             var fakeFileSystem = A.Fake<IFileSystem>();
             var factory = new LogFactory(fakeFileSystem);
 
-            var loggingConfiguration = factory.Configuration;
+            var dummy = factory.Configuration;
         }
         
         [Test]
         public void Configuration_WithPrivateBinPath_CheckIfConfigFileExistsInPrivateBinPath()
         {
             const string AnyDirectory = "C:\\any\\";
-            AppDomainHelper.PrivateBinPath = () => AnyDirectory;
+            var fakeAppDomain = A.Fake<IAppDomain>();
+            A.CallTo(() => fakeAppDomain.PrivateBinPath).Returns(new[] { AnyDirectory });
+            LogFactory.CurrentAppDomain = fakeAppDomain;
+
             var fakeFileSystem = A.Fake<IFileSystem>();
             var factory = new LogFactory(fakeFileSystem);
 
-            var loggingConfiguration = factory.Configuration;
+            var dummy = factory.Configuration;
 
             A.CallTo(() => fakeFileSystem.File.Exists(Path.Combine(AnyDirectory, "NLog.config"))).MustHaveHappened();
         }
@@ -87,7 +95,10 @@ namespace NLog.UnitTests
         {
             const string AnyDirectory = "C:\\any\\";
             const string SomethingDirectory = "C:\\something\\";
-            AppDomainHelper.PrivateBinPath = () => string.Join(";", new[] { AnyDirectory, SomethingDirectory });
+            var fakeAppDomain = A.Fake<IAppDomain>();
+            A.CallTo(() => fakeAppDomain.PrivateBinPath).Returns(new[] { AnyDirectory, SomethingDirectory });
+            LogFactory.CurrentAppDomain = fakeAppDomain;
+
             var fakeFileSystem = A.Fake<IFileSystem>();
             var factory = new LogFactory(fakeFileSystem);
 

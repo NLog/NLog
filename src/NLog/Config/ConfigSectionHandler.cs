@@ -38,6 +38,7 @@ namespace NLog.Config
     using System;
     using System.Configuration;
     using System.Xml;
+    using Internal.Fakeables;
     using NLog.Common;
     using NLog.Internal;
 
@@ -46,18 +47,11 @@ namespace NLog.Config
     /// </summary>
     public sealed class ConfigSectionHandler : IConfigurationSectionHandler
     {
-        /// <summary>
-        /// Creates a configuration section handler.
-        /// </summary>
-        /// <param name="parent">Parent object.</param>
-        /// <param name="configContext">Configuration context object.</param>
-        /// <param name="section">Section XML node.</param>
-        /// <returns>The created section handler object.</returns>
-        object IConfigurationSectionHandler.Create(object parent, object configContext, XmlNode section)
+        object Create(XmlNode section, IAppDomain appDomain)
         {
             try
             {
-                string configFileName = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+                string configFileName = appDomain.ConfigurationFile;
 
                 return new XmlLoggingConfiguration((XmlElement)section, configFileName);
             }
@@ -71,6 +65,18 @@ namespace NLog.Config
                 InternalLogger.Error("ConfigSectionHandler error: {0}", exception);
                 throw;
             }
+        }
+
+        /// <summary>
+        /// Creates a configuration section handler.
+        /// </summary>
+        /// <param name="parent">Parent object.</param>
+        /// <param name="configContext">Configuration context object.</param>
+        /// <param name="section">Section XML node.</param>
+        /// <returns>The created section handler object.</returns>
+        object IConfigurationSectionHandler.Create(object parent, object configContext, XmlNode section)
+        {
+            return Create(section, AppDomainWrapper.CurrentDomain);
         }
     }
 }
