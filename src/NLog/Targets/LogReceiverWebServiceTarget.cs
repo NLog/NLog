@@ -176,6 +176,12 @@ namespace NLog.Targets
 
         private NLogEvents TranslateLogEvents(AsyncLogEventInfo[] logEvents)
         {
+            if (logEvents.Length == 0 && !LogManager.ThrowExceptions)
+            {
+                InternalLogger.Error("LogEvents array is empty, sending empty event...");
+                return new NLogEvents();
+            }
+
             string clientID = string.Empty;
             if (this.ClientId != null)
             {
