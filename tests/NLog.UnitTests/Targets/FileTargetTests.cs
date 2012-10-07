@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Diagnostics;
 
 #if !SILVERLIGHT
 
@@ -44,26 +43,21 @@ namespace NLog.UnitTests.Targets
     using NUnit.Framework;
 
 #if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
     using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
     using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
 #endif
-
-    using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
 
     using System.Threading;
-    using NLog.Internal;
     using System.Collections.Generic;
 
     [TestFixture]
     public class FileTargetTests : NLogTestBase
     {
-        private Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
+        private readonly Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 
         [Test]
         public void SimpleFileTest1()
@@ -71,12 +65,14 @@ namespace NLog.UnitTests.Targets
             string tempFile = Path.GetTempFileName();
             try
             {
-                FileTarget ft = new FileTarget();
-                ft.FileName = SimpleLayout.Escape(tempFile);
-                ft.LineEnding = LineEndingMode.LF;
-                ft.Layout = "${level} ${message}";
-                ft.OpenFileCacheTimeout = 0;
-                
+                FileTarget ft = new FileTarget
+                                    {
+                                        FileName = SimpleLayout.Escape(tempFile),
+                                        LineEnding = LineEndingMode.LF,
+                                        Layout = "${level} ${message}",
+                                        OpenFileCacheTimeout = 0
+                                    };
+
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
                 logger.Debug("aaa");
@@ -105,7 +101,7 @@ namespace NLog.UnitTests.Targets
 
                 for (int i = 0; i < 2; i++)
                 {
-                    var layout = new CsvLayout()
+                    var layout = new CsvLayout
                     {
                         Delimiter = CsvColumnDelimiterMode.Semicolon,
                         WithHeader = true,
@@ -145,10 +141,12 @@ namespace NLog.UnitTests.Targets
             string tempFile = Path.GetTempFileName();
             try
             {
-                FileTarget ft = new FileTarget();
-                ft.FileName = SimpleLayout.Escape(tempFile);
-                ft.LineEnding = LineEndingMode.LF;
-                ft.Layout = "${level} ${message}";
+                FileTarget ft = new FileTarget
+                                    {
+                                        FileName = SimpleLayout.Escape(tempFile),
+                                        LineEnding = LineEndingMode.LF,
+                                        Layout = "${level} ${message}"
+                                    };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
@@ -163,10 +161,12 @@ namespace NLog.UnitTests.Targets
                 // configure again, without
                 // DeleteOldFileOnStartup
 
-                ft = new FileTarget();
-                ft.FileName = SimpleLayout.Escape(tempFile);
-                ft.LineEnding = LineEndingMode.LF;
-                ft.Layout = "${level} ${message}";
+                ft = new FileTarget
+                         {
+                             FileName = SimpleLayout.Escape(tempFile),
+                             LineEnding = LineEndingMode.LF,
+                             Layout = "${level} ${message}"
+                         };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
@@ -180,11 +180,13 @@ namespace NLog.UnitTests.Targets
                 // configure again, this time with
                 // DeleteOldFileOnStartup
 
-                ft = new FileTarget();
-                ft.FileName = SimpleLayout.Escape(tempFile);
-                ft.LineEnding = LineEndingMode.LF;
-                ft.Layout = "${level} ${message}";
-                ft.DeleteOldFileOnStartup = true;
+                ft = new FileTarget
+                         {
+                             FileName = SimpleLayout.Escape(tempFile),
+                             LineEnding = LineEndingMode.LF,
+                             Layout = "${level} ${message}",
+                             DeleteOldFileOnStartup = true
+                         };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
                 logger.Debug("aaa");
@@ -211,10 +213,12 @@ namespace NLog.UnitTests.Targets
             string tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
-                FileTarget ft = new FileTarget();
-                ft.FileName = tempFile;
-                ft.LineEnding = LineEndingMode.LF;
-                ft.Layout = "${level} ${message}";
+                FileTarget ft = new FileTarget
+                                    {
+                                        FileName = tempFile,
+                                        LineEnding = LineEndingMode.LF,
+                                        Layout = "${level} ${message}"
+                                    };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
@@ -243,14 +247,16 @@ namespace NLog.UnitTests.Targets
             string tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
-                FileTarget ft = new FileTarget();
-                ft.FileName = tempFile;
-                ft.ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt");
-                ft.ArchiveAboveSize = 1000;
-                ft.LineEnding = LineEndingMode.LF;
-                ft.Layout = "${message}";
-                ft.MaxArchiveFiles = 3;
-                ft.ArchiveNumbering = ArchiveNumberingMode.Sequence;
+                FileTarget ft = new FileTarget
+                                    {
+                                        FileName = tempFile,
+                                        ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
+                                        ArchiveAboveSize = 1000,
+                                        LineEnding = LineEndingMode.LF,
+                                        Layout = "${message}",
+                                        MaxArchiveFiles = 3,
+                                        ArchiveNumbering = ArchiveNumberingMode.Sequence
+                                    };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
@@ -320,14 +326,16 @@ namespace NLog.UnitTests.Targets
             string tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
-                FileTarget ft = new FileTarget();
-                ft.FileName = tempFile;
-                ft.ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt");
-                ft.ArchiveAboveSize = 1000;
-                ft.LineEnding = LineEndingMode.LF;
-                ft.ArchiveNumbering = ArchiveNumberingMode.Rolling;
-                ft.Layout = "${message}";
-                ft.MaxArchiveFiles = 3;
+                FileTarget ft = new FileTarget
+                                    {
+                                        FileName = tempFile,
+                                        ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
+                                        ArchiveAboveSize = 1000,
+                                        LineEnding = LineEndingMode.LF,
+                                        ArchiveNumbering = ArchiveNumberingMode.Rolling,
+                                        Layout = "${message}",
+                                        MaxArchiveFiles = 3
+                                    };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
@@ -395,10 +403,12 @@ namespace NLog.UnitTests.Targets
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             try
             {
-                FileTarget ft = new FileTarget();
-                ft.FileName = Path.Combine(tempPath, "${level}.txt");
-                ft.LineEnding = LineEndingMode.LF;
-                ft.Layout = "${message}";
+                FileTarget ft = new FileTarget
+                                    {
+                                        FileName = Path.Combine(tempPath, "${level}.txt"),
+                                        LineEnding = LineEndingMode.LF,
+                                        Layout = "${message}"
+                                    };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
@@ -449,10 +459,12 @@ namespace NLog.UnitTests.Targets
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             try
             {
-                FileTarget ft = new FileTarget();
-                ft.FileName = Path.Combine(tempPath, "${level}.txt");
-                ft.LineEnding = LineEndingMode.LF;
-                ft.Layout = "${message}";
+                FileTarget ft = new FileTarget
+                                    {
+                                        FileName = Path.Combine(tempPath, "${level}.txt"),
+                                        LineEnding = LineEndingMode.LF,
+                                        Layout = "${message}"
+                                    };
 
                 SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft, 10), LogLevel.Debug);
 
@@ -504,10 +516,12 @@ namespace NLog.UnitTests.Targets
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             try
             {
-                FileTarget ft = new FileTarget();
-                ft.FileName = Path.Combine(tempPath, "${level}.txt");
-                ft.LineEnding = LineEndingMode.LF;
-                ft.Layout = "${message} ${threadid}";
+                FileTarget ft = new FileTarget
+                                    {
+                                        FileName = Path.Combine(tempPath, "${level}.txt"),
+                                        LineEnding = LineEndingMode.LF,
+                                        Layout = "${message} ${threadid}"
+                                    };
 
                 // this also checks that thread-volatile layouts
                 // such as ${threadid} are properly cached and not recalculated
@@ -563,9 +577,7 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void BatchErrorHandlingTest()
         {
-            var fileTarget = new FileTarget();
-            fileTarget.FileName = "${logger}";
-            fileTarget.Layout = "${message}";
+            var fileTarget = new FileTarget {FileName = "${logger}", Layout = "${message}"};
             fileTarget.Initialize(null);
 
             // make sure that when file names get sorted, the asynchronous continuations are sorted with them as well
@@ -575,7 +587,7 @@ namespace NLog.UnitTests.Targets
                 new LogEventInfo(LogLevel.Info, "file99.txt", "msg1").WithContinuation(exceptions.Add),
                 new LogEventInfo(LogLevel.Info, "a/", "msg1").WithContinuation(exceptions.Add),
                 new LogEventInfo(LogLevel.Info, "a/", "msg2").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "a/", "msg3").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "a/", "msg3").WithContinuation(exceptions.Add)
             };
 
             fileTarget.WriteAsyncLogEvents(events);
