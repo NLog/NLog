@@ -127,7 +127,6 @@
     <Compile Include="GDC.cs" />
     <Compile Include="GlobalDiagnosticsContext.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Internal\AppDomainHelper.cs" />
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
@@ -139,6 +138,8 @@
     <Compile Include="Internal\EnvironmentHelper.cs" />
     <Compile Include="Internal\ExceptionHelper.cs" />
     <Compile Include="Internal\FactoryHelper.cs" />
+    <Compile Include="Internal\Fakeables\AppDomainWrapper.cs" />
+    <Compile Include="Internal\Fakeables\IAppDomain.cs" />
     <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
