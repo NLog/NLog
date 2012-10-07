@@ -64,6 +64,7 @@ namespace NLog.UnitTests.Layouts
                       <column name='level' layout='${level}' />
                       <column name='message' layout='${message}' />
                       <column name='counter' layout='${counter}' />
+                      <delimiter>Comma</delimiter>
                     </layout>
                   </target>
                 </targets>
