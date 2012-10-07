@@ -145,7 +145,8 @@ namespace NLog.Targets
                     break;
 
                 case WebServiceProtocol.HttpGet:
-                    throw new NotSupportedException();
+                    postPayload = this.PrepareGetRequest(request, parameters);
+                    break;
 
                 case WebServiceProtocol.HttpPost:
                     postPayload = this.PreparePostRequest(request, parameters);
@@ -286,6 +287,17 @@ namespace NLog.Targets
         private byte[] PreparePostRequest(HttpWebRequest request, object[] parameterValues)
         {
             request.Method = "POST";
+            return PrepareHttpRequest(request, parameterValues);
+        }
+
+        private byte[] PrepareGetRequest(HttpWebRequest request, object[] parameterValues)
+        {
+            request.Method = "GET";
+            return PrepareHttpRequest(request, parameterValues);
+        }
+
+        private byte[] PrepareHttpRequest(HttpWebRequest request, object[] parameterValues)
+        {
             request.ContentType = "application/x-www-form-urlencoded; charset=" + this.Encoding.WebName;
 
             string separator = string.Empty;
