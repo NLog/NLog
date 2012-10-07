@@ -36,6 +36,7 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
+    using Layouts;
     using NLog.Config;
     using NLog.Internal;
 
@@ -62,7 +63,8 @@ namespace NLog.LayoutRenderers
         {
             if (this.Variable != null)
             {
-                builder.Append(EnvironmentHelper.GetSafeEnvironmentVariable(this.Variable));
+                var layout = new SimpleLayout(EnvironmentHelper.GetSafeEnvironmentVariable(this.Variable));
+                builder.Append(layout.Render(logEvent));
             }
         }
     }

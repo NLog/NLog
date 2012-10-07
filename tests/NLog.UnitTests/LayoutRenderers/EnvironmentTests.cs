@@ -65,6 +65,13 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             AssertLayoutRendererOutput("${environment:PATH}", System.Environment.GetEnvironmentVariable("PATH"));
         }
+
+        [Test]
+        public void Environment_WhenVariableIsLayout_ShouldBeWrittenAsLayout()
+        {
+            Environment.SetEnvironmentVariable("NLOGTEST", "${level}");
+            AssertLayoutRendererOutput("${environment:NLOGTEST}", "Info");
+        }
     }
 }
 
