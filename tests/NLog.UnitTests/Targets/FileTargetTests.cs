@@ -573,7 +573,6 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-
         [Test]
         public void BatchErrorHandlingTest()
         {
@@ -597,6 +596,24 @@ namespace NLog.UnitTests.Targets
             Assert.IsNotNull(exceptions[1]);
             Assert.IsNotNull(exceptions[2]);
             Assert.IsNotNull(exceptions[3]);
+        }
+
+        [Test]
+        public void DisposingFileTarget_WhenNotIntialized_ShouldNotThrow()
+        {
+            bool exceptionThrown = false;
+            var fileTarget = new FileTarget();
+
+            try
+            {
+                fileTarget.Dispose();
+            }
+            catch
+            {
+                exceptionThrown = true;
+            }
+
+            Assert.IsFalse(exceptionThrown);
         }
     }
 }

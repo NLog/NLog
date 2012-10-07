@@ -696,15 +696,18 @@ namespace NLog.Targets
                 this.autoClosingTimer = null;
             }
 
-            for (int i = 0; i < this.recentAppenders.Length; ++i)
+            if (this.recentAppenders != null)
             {
-                if (this.recentAppenders[i] == null)
+                for (int i = 0; i < this.recentAppenders.Length; ++i)
                 {
-                    break;
-                }
+                    if (this.recentAppenders[i] == null)
+                    {
+                        break;
+                    }
 
-                this.recentAppenders[i].Close();
-                this.recentAppenders[i] = null;
+                    this.recentAppenders[i].Close();
+                    this.recentAppenders[i] = null;
+                }
             }
         }
 
