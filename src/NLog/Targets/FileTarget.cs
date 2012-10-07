@@ -36,19 +36,17 @@
 namespace NLog.Targets
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
     using System.Text;
     using System.Threading;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Internal.FileAppenders;
-    using NLog.Layouts;
+    using Common;
+    using Config;
+    using Internal;
+    using Internal.FileAppenders;
+    using Layouts;
 
     /// <summary>
     /// Writes log messages to one or more files.
@@ -67,40 +65,28 @@ namespace NLog.Targets
         
         private int _MaxArchiveFilesField;
 
-        private DynamicArchiveFileHandlerClass DynamicArchiveFileHandler;
+        private readonly DynamicArchiveFileHandlerClass dynamicArchiveFileHandler;
 
         private class DynamicArchiveFileHandlerClass
         {
-            private Queue<string> ArchiveFileEntryQueue;
-
-            private int maxArchivedFiles;
+            private readonly Queue<string> archiveFileEntryQueue;
 
             public DynamicArchiveFileHandlerClass(int MaxArchivedFiles) : this()
             {
-                this.maxArchivedFiles = MaxArchivedFiles;
+                this.MaxArchiveFileToKeep = MaxArchivedFiles;
             }
 
             public DynamicArchiveFileHandlerClass()
             {
-                this.maxArchivedFiles = -1;
+                this.MaxArchiveFileToKeep = -1;
 
-                ArchiveFileEntryQueue = new Queue<string>();
+                archiveFileEntryQueue = new Queue<string>();
             }
 
-            public int MaxArchiveFileToKeep
-            {
-                get
-                {
-                    return maxArchivedFiles;
-                }
-                set
-                {
-                    maxArchivedFiles = value;
-                }
-            }
+            public int MaxArchiveFileToKeep { get; set; }
 
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-            public void AddToArchive(string ArchiveFileName, string FileName, bool CreateDirectoryIfNotExists)
+            public void AddToArchive(string archiveFileName, string fileName, bool createDirectoryIfNotExists)
             {
                 if (MaxArchiveFileToKeep < 1)
                 {
@@ -109,16 +95,16 @@ namespace NLog.Targets
                     return;
                 }
 
-                if (!File.Exists(FileName))
+                if (!File.Exists(fileName))
                 {
-                    InternalLogger.Error("Error while trying to archive, Source File : {0} Not found.", FileName);
+                    InternalLogger.Error("Error while trying to archive, Source File : {0} Not found.", fileName);
 
                     return;
                 }
 
-                while (ArchiveFileEntryQueue.Count >= MaxArchiveFileToKeep)
+                while (archiveFileEntryQueue.Count >= MaxArchiveFileToKeep)
                 {
-                    string oldestArchivedFileName = ArchiveFileEntryQueue.Dequeue();
+                    string oldestArchivedFileName = archiveFileEntryQueue.Dequeue();
 
                     try
                     {
@@ -131,19 +117,19 @@ namespace NLog.Targets
                 }
 
                 
-                String archiveFileNamePattern = ArchiveFileName;
+                String archiveFileNamePattern = archiveFileName;
 
-                if(ArchiveFileEntryQueue.Contains(ArchiveFileName))
+                if(archiveFileEntryQueue.Contains(archiveFileName))
                 {
-                    InternalLogger.Trace("Archive File {0} seems to be already exist. Trying with Different File Name..", ArchiveFileName);
+                    InternalLogger.Trace("Archive File {0} seems to be already exist. Trying with Different File Name..", archiveFileName);
 
                     int NumberToStartWith = 1;
 
-                    archiveFileNamePattern = Path.GetFileNameWithoutExtension(ArchiveFileName) + ".{#}" + Path.GetExtension(ArchiveFileName);
+                    archiveFileNamePattern = Path.GetFileNameWithoutExtension(archiveFileName) + ".{#}" + Path.GetExtension(archiveFileName);
 
                     while(File.Exists(ReplaceNumber(archiveFileNamePattern,NumberToStartWith)))
                     {
-                        InternalLogger.Trace("Archive File {0} seems to be already exist, too. Trying with Different File Name..", ArchiveFileName);
+                        InternalLogger.Trace("Archive File {0} seems to be already exist, too. Trying with Different File Name..", archiveFileName);
                         NumberToStartWith++;
                     }
 
@@ -151,19 +137,19 @@ namespace NLog.Targets
 
                 try
                 {
-                    File.Move(FileName, archiveFileNamePattern);
+                    File.Move(fileName, archiveFileNamePattern);
                 }
                 catch (DirectoryNotFoundException)
                 {
-                    if (CreateDirectoryIfNotExists)
+                    if (createDirectoryIfNotExists)
                     {
                         InternalLogger.Trace("Directory For Archive File is not created. Creating it..");
 
                         try
                         {
-                            Directory.CreateDirectory(Path.GetDirectoryName(ArchiveFileName));
+                            Directory.CreateDirectory(Path.GetDirectoryName(archiveFileName));
 
-                            File.Move(FileName, archiveFileNamePattern);
+                            File.Move(fileName, archiveFileNamePattern);
                         }
                         catch (Exception ExceptionThrown)
                         {
@@ -178,20 +164,14 @@ namespace NLog.Targets
                 }
                 catch (Exception ExceptionThrown)
                 {
-                    InternalLogger.Error("Can't Archive File : {0} , Exception : {1}", FileName, ExceptionThrown);
+                    InternalLogger.Error("Can't Archive File : {0} , Exception : {1}", fileName, ExceptionThrown);
 
                     throw;
                 }
 
-                ArchiveFileEntryQueue.Enqueue(ArchiveFileName);
-
-                return;
-            }
-            
+                archiveFileEntryQueue.Enqueue(archiveFileName);
+            }            
          }
-          
-
-            
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -223,7 +203,7 @@ namespace NLog.Targets
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
             this.CreateDirs = true;
-            this.DynamicArchiveFileHandler = new DynamicArchiveFileHandlerClass(MaxArchiveFiles);
+            this.dynamicArchiveFileHandler = new DynamicArchiveFileHandlerClass(MaxArchiveFiles);
         }
 
         /// <summary>
@@ -494,7 +474,7 @@ namespace NLog.Targets
             {
                 _MaxArchiveFilesField = value;
 
-                DynamicArchiveFileHandler.MaxArchiveFileToKeep = value;
+                dynamicArchiveFileHandler.MaxArchiveFileToKeep = value;
             }
         }
 
@@ -562,14 +542,14 @@ namespace NLog.Targets
         {
             try
             {
-                for (int i = 0; i < this.recentAppenders.Length; ++i)
+                foreach (BaseFileAppender t in this.recentAppenders)
                 {
-                    if (this.recentAppenders[i] == null)
+                    if (t == null)
                     {
                         break;
                     }
 
-                    this.recentAppenders[i].Flush();
+                    t.Flush();
                 }
 
                 asyncContinuation(null);
@@ -932,14 +912,7 @@ namespace NLog.Targets
                     }
 
                     nextNumber = Math.Max(nextNumber, num);
-                    if (minNumber != -1)
-                    {
-                        minNumber = Math.Min(minNumber, num);
-                    }
-                    else
-                    {
-                        minNumber = num;
-                    }
+                    minNumber = minNumber != -1 ? Math.Min(minNumber, num) : num;
 
                     number2name[num] = s;
                 }
@@ -997,7 +970,7 @@ namespace NLog.Targets
             
             if (!IsContainValidNumberPatternForReplacement(fileNamePattern))
             {
-                DynamicArchiveFileHandler.AddToArchive(fileNamePattern, fi.FullName,CreateDirs);
+                dynamicArchiveFileHandler.AddToArchive(fileNamePattern, fi.FullName,CreateDirs);
             }
             else
             {
@@ -1052,7 +1025,6 @@ namespace NLog.Targets
                         break;
 
                     default:
-                    case FileArchivePeriod.Day:
                         formatString = "yyyyMMdd";
                         break;
 
@@ -1243,9 +1215,9 @@ namespace NLog.Targets
                 appenderToWrite = newAppender;
             }
 
-            if (writeHeader && !justData)
+            if (writeHeader)
             {
-                long fileLength = 0;
+                long fileLength;
                 DateTime lastWriteTime;
 
                 // Only write header on empty files or if file info cannot be obtained
@@ -1300,16 +1272,16 @@ namespace NLog.Targets
 
         private bool GetFileInfo(string fileName, out DateTime lastWriteTime, out long fileLength)
         {
-            for (int i = 0; i < this.recentAppenders.Length; ++i)
+            foreach (BaseFileAppender t in this.recentAppenders)
             {
-                if (this.recentAppenders[i] == null)
+                if (t == null)
                 {
                     break;
                 }
 
-                if (this.recentAppenders[i].FileName == fileName)
+                if (t.FileName == fileName)
                 {
-                    this.recentAppenders[i].GetFileInfo(out lastWriteTime, out fileLength);
+                    t.GetFileInfo(out lastWriteTime, out fileLength);
                     return true;
                 }
             }
@@ -1321,12 +1293,10 @@ namespace NLog.Targets
                 lastWriteTime = fi.LastWriteTime;
                 return true;
             }
-            else
-            {
-                fileLength = -1;
-                lastWriteTime = DateTime.MinValue;
-                return false;
-            }
+            
+            fileLength = -1;
+            lastWriteTime = DateTime.MinValue;
+            return false;
         }
 
         private void InvalidateCacheItem(string fileName)
