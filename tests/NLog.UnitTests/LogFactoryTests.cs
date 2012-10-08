@@ -107,6 +107,18 @@ namespace NLog.UnitTests
             A.CallTo(() => fakeFileSystem.File.Exists(Path.Combine(AnyDirectory, "NLog.config"))).MustHaveHappened();
             A.CallTo(() => fakeFileSystem.File.Exists(Path.Combine(SomethingDirectory, "NLog.config"))).MustHaveHappened();
         }
+
+        [Test]
+        public void Configuration_WhenNLogAssemblyNotInGac_CheckIfConfigFileExistsNextToNLogAssembly()
+        {
+            var fakeFileSystem = A.Fake<IFileSystem>();
+            var factory = new LogFactory(fakeFileSystem);
+
+            var loggingConfiguration = factory.Configuration;
+
+            var expectedConfigurationPath = typeof (LogFactory).Assembly.Location + ".nlog";
+            A.CallTo(() => fakeFileSystem.File.Exists(expectedConfigurationPath)).MustHaveHappened();
+        }
 #endif
 
 #if !NET_CF
