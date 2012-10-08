@@ -615,6 +615,43 @@ namespace NLog.UnitTests.Targets
 
             Assert.IsFalse(exceptionThrown);
         }
+
+        [Test]
+        public void FileTarget_WithArchiveFileNameEndingInNumberPlaceholder_ShouldArchiveFile()
+        {
+            // create the file in a not-existent
+            // directory which forces creation
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                FileTarget ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/test.log.{####}"),
+                    ArchiveAboveSize = 1000
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                for (int i = 0; i < 100; ++i)
+                {
+                    logger.Debug("a");
+                }
+
+                LogManager.Configuration = null;
+                Assert.IsTrue(File.Exists(tempFile));
+                Assert.IsTrue(File.Exists(Path.Combine(tempPath, "archive/test.log.0000")));
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
     }
 }
 
