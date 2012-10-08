@@ -81,7 +81,7 @@ namespace NLog.LogReceiverService
                 var logEventInfo = new LogEventInfo();
                 logEventInfo.Level = level;
                 logEventInfo.LoggerName = loggerName;
-                logEventInfo.TimeStamp = baseTimeUtc.AddTicks(ev.TimeDelta);
+                logEventInfo.TimeStamp = baseTimeUtc.AddTicks(ev.TimeDelta).ToLocalTime();
                 logEventInfo.Message = events.Strings[ev.MessageOrdinal];
                 logEventInfo.Properties.Add("ClientName", events.ClientName);
                 for (int i = 0; i < events.LayoutNames.Count; ++i)
