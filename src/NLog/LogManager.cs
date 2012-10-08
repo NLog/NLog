@@ -298,6 +298,17 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
             return globalFactory.IsLoggingEnabled();
         }
 
+        /// <summary>
+        /// Dispose all targets, and shutdown logging.
+        /// </summary>
+        public static void Shutdown()
+        {
+            foreach (var target in Configuration.AllTargets)
+            {
+                target.Dispose();
+            }
+        }
+
 #if !NET_CF && !SILVERLIGHT && !MONO
         private static void SetupTerminationEvents()
         {
