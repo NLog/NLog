@@ -98,6 +98,34 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual("bar@yourserver.com", msg.Bcc[1].Address);
             Assert.AreEqual(msg.Body, "Info MyLogger log message 1");
         }
+        
+        [Test]
+        public void MailTarget_WithNewlineInSubject_SendsMail()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@foo.com",
+                CC = "me@myserver.com;you@yourserver.com",
+                Bcc = "foo@myserver.com;bar@yourserver.com",
+                Subject = "Hello from NLog\n",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}"
+            };
+
+            mmt.Initialize(null);
+
+            var exceptions = new List<Exception>();
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+            Assert.IsNull(exceptions[0], Convert.ToString(exceptions[0]));
+
+            Assert.AreEqual(1, mmt.CreatedMocks.Count);
+
+            var mock = mmt.CreatedMocks[0];
+            Assert.AreEqual(1, mock.MessagesSent.Count);
+            var msg = mock.MessagesSent[0];
+        }
 
         [Test]
         public void NtlmEmailTest()
