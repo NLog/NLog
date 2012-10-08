@@ -380,7 +380,7 @@ namespace NLog.Targets
                 }
             }
 
-            msg.Subject = this.Subject.Render(logEvent);
+            msg.Subject = this.Subject.Render(logEvent).Trim();
             msg.BodyEncoding = this.Encoding;
             msg.IsBodyHtml = this.Html;
             msg.Priority = MailPriority.Normal;
