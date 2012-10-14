@@ -159,7 +159,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Logger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
-            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenSkipFrameNotDefined_ThenLogging_ShouldLogFirstUserStackFrame msg");
+            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame msg");
         }
         
         [Test]
