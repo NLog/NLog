@@ -142,13 +142,20 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger()
         {
+            Type declaringType;
+            int framesToSkip = 1;
+            do
+            {
 #if SILVERLIGHT
-            StackFrame frame = new StackTrace().GetFrame(1);
+                StackFrame frame = new StackTrace().GetFrame(framesToSkip);
 #else
-            StackFrame frame = new StackFrame(1, false);
+                StackFrame frame = new StackFrame(framesToSkip, false);
 #endif
+                declaringType = frame.GetMethod().DeclaringType;
+                framesToSkip++;
+            } while (declaringType.Module.Name.Equals("mscorlib.dll", StringComparison.OrdinalIgnoreCase));
 
-            return globalFactory.GetLogger(frame.GetMethod().DeclaringType.FullName);
+            return globalFactory.GetLogger(declaringType.FullName);
         }
 
         /// <summary>
@@ -161,12 +168,20 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger(Type loggerType)
         {
+            Type declaringType;
+            int framesToSkip = 1;
+            do
+            {
 #if SILVERLIGHT
-            StackFrame frame = new StackTrace().GetFrame(1);
+                StackFrame frame = new StackTrace().GetFrame(framesToSkip);
 #else
-            StackFrame frame = new StackFrame(1, false);
+                StackFrame frame = new StackFrame(framesToSkip, false);
 #endif
-            return globalFactory.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
+                declaringType = frame.GetMethod().DeclaringType;
+                framesToSkip++;
+            } while (declaringType.Module.Name.Equals("mscorlib.dll", StringComparison.OrdinalIgnoreCase));
+            
+            return globalFactory.GetLogger(declaringType.FullName, loggerType);
         }
 #endif
 
