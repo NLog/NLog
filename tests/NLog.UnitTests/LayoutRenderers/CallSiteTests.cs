@@ -145,6 +145,39 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "MethodNameWithPa msg");
         }
+        
+        [Test]
+        public void GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            Logger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenSkipFrameNotDefined_ThenLogging_ShouldLogFirstUserStackFrame msg");
+        }
+        
+        [Test]
+        public void GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:skipframes=1} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            Logger logger = LogManager.GetLogger("A");
+            Action action = () => logger.Debug("msg");
+            action.Invoke();
+            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
+        }
     }
 }
 

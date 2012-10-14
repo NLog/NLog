@@ -76,6 +76,12 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool MethodName { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the number of frames to skip.
+        /// </summary>
+        [DefaultValue(0)]
+        public int SkipFrames { get; set; }
 
 #if !SILVERLIGHT
         /// <summary>
@@ -118,7 +124,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            StackFrame frame = logEvent.UserStackFrame;
+            StackFrame frame = logEvent.StackTrace != null ? logEvent.StackTrace.GetFrame(logEvent.UserStackFrameNumber + SkipFrames) : null;
             if (frame != null)
             {
                 MethodBase method = frame.GetMethod();
