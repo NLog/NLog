@@ -273,5 +273,23 @@ namespace NLog.UnitTests
             }
         }
 #endif
+
+#if !NET_CF
+        [Test]
+        public void GivenCurrentClass_WhenGetCurrentClassLogger_ThenLoggerShouldBeCurrentClass()
+        {
+            var logger = LogManager.GetCurrentClassLogger();
+
+            Assert.AreEqual(this.GetType().FullName, logger.Name);
+        }
+
+        [Test]
+        public void GivenLazyClass_WhenGetCurrentClassLogger_ThenLoggerNameShouldBeCurrentClass()
+        {
+            var logger = new Lazy<Logger>(LogManager.GetCurrentClassLogger);
+
+            Assert.AreEqual(this.GetType().FullName, logger.Value.Name);
+        }
+#endif
     }
 }
