@@ -283,6 +283,7 @@ namespace NLog.UnitTests
             Assert.AreEqual(this.GetType().FullName, logger.Name);
         }
 
+#if NET4_0
         [Test]
         public void GivenLazyClass_WhenGetCurrentClassLogger_ThenLoggerNameShouldBeCurrentClass()
         {
@@ -290,6 +291,7 @@ namespace NLog.UnitTests
 
             Assert.AreEqual(this.GetType().FullName, logger.Value.Name);
         }
+#endif
 #endif
     }
 }
