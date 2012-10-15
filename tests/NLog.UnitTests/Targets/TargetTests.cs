@@ -263,6 +263,21 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Test]
+        public void GivenNullEvents_WhenWriteAsyncLogEvents_ThenNoExceptionAreThrown()
+        {
+            var target = new MyTarget();
+
+            try
+            {
+                target.WriteAsyncLogEvents(null);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Exeption thrown: " + e);
+            }
+        }
+
         public class MyTarget : Target
         {
             private int inBlockingOperation;
