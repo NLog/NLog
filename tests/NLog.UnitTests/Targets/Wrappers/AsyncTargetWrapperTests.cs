@@ -284,10 +284,6 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             // quickly close the target before the timer elapses
             targetWrapper.Close();
-
-            // continuation will not be hit because the thread is down.
-            Thread.Sleep(1000);
-            Assert.IsFalse(continuationHit);
         }
 
         [Test]
