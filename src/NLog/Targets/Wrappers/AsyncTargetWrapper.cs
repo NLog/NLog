@@ -34,11 +34,10 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Threading;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// Provides asynchronous, buffered execution of target writes.
@@ -184,6 +183,11 @@ namespace NLog.Targets.Wrappers
         protected override void CloseTarget()
         {
             this.StopLazyWriterThread();
+            if (this.RequestQueue.RequestCount > 0)
+            {
+                ProcessPendingEvents(null);
+            }
+
             base.CloseTarget();
         }
 
