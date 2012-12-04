@@ -308,7 +308,7 @@ namespace NLog.UnitTests.Conditions
         }
 
         [Test]
-        [ExpectedException(typeof(ConditionParseException))]
+        [ExpectedException(typeof(NLogConfigurationException))]
         public void UnrecognizedMethod()
         {
             ConditionParser.ParseExpression("unrecognized-method()");
