@@ -251,7 +251,6 @@ namespace NLog.Config
                 var content = new NLogXmlElement(reader);
                 if (fileName != null)
                 {
-                    InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
 #if SILVERLIGHT
                     string key = fileName;
 #else
@@ -261,6 +260,8 @@ namespace NLog.Config
 
                     this.originalFileName = fileName;
                     this.ParseTopLevel(content, Path.GetDirectoryName(fileName));
+
+                    InternalLogger.Info("Configured from an XML element in {0}...", fileName);
                 }
                 else
                 {
