@@ -97,6 +97,8 @@ namespace NLog.UnitTests
         [Test]
         public void OneTimeOnlyExceptionInHandlerTest()
         {
+            LogManager.ThrowExceptions = false;
+
             var exceptions = new List<Exception>();
             var sampleException = new InvalidOperationException("some message");
             AsyncContinuation cont = ex => { exceptions.Add(ex); throw sampleException; };
@@ -105,6 +107,40 @@ namespace NLog.UnitTests
             cont(null);
             cont(null);
             cont(null);
+
+            Assert.AreEqual(1, exceptions.Count);
+            Assert.IsNull(exceptions[0]);
+        }
+
+        [Test]
+        public void OneTimeOnlyExceptionInHandlerTest_RethrowExceptionEnabled()
+        {
+            LogManager.ThrowExceptions = true;
+
+            var exceptions = new List<Exception>();
+            var sampleException = new InvalidOperationException("some message");
+            AsyncContinuation cont = ex => { exceptions.Add(ex); throw sampleException; };
+            cont = AsyncHelpers.PreventMultipleCalls(cont);
+
+            try
+            {
+                cont(null);
+            }
+            catch{}
+
+            try
+            {
+                cont(null);
+            }
+            catch { }
+            try
+            {
+                cont(null);
+            }
+            catch { }
+
+            // cleanup
+            LogManager.ThrowExceptions = false;
 
             Assert.AreEqual(1, exceptions.Count);
             Assert.IsNull(exceptions[0]);

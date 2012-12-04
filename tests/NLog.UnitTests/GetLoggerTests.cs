@@ -142,7 +142,7 @@ namespace NLog.UnitTests
         }
         
         [Test]
-        public void InvalidLoggerConfiguration_DoesNotThrowConfigurationException_IfThrowExceptionsFlagIsSet()
+        public void InvalidLoggerConfiguration_ThrowsConfigurationException_IfThrowExceptionsFlagIsSet()
         {
             bool ExceptionThrown = false;
             try 
@@ -154,7 +154,7 @@ namespace NLog.UnitTests
             {
                 ExceptionThrown = true;
             }
-            Assert.IsFalse(ExceptionThrown);
+            Assert.IsTrue(ExceptionThrown);
         }
         
         [Test]
