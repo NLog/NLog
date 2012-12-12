@@ -306,6 +306,13 @@ namespace NLog.Targets
         }
 
 #if WCF_SUPPORTED
+		/// <summary>
+		/// Creating a new instance of WcfLogReceiverClient
+		/// 
+		/// Inheritors can override this method and provide their own 
+		/// service configuration - binding and endpoint address
+		/// </summary>
+		/// <returns></returns>
         protected virtual WcfLogReceiverClient CreateWcfLogReceiverClient()
         {
             WcfLogReceiverClient client;
