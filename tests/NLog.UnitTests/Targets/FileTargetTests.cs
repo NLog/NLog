@@ -570,6 +570,9 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
+
+                // Clean up configuration change, breaks onetimeonlyexceptioninhandlertest
+                LogManager.ThrowExceptions = true;
             }
         }
 

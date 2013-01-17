@@ -63,6 +63,11 @@ namespace NLog.Internal
                 return true;
             }
 
+            if (exception is NLogConfigurationException)
+            {
+                return true;
+            }
+
             return false;
         }
     }

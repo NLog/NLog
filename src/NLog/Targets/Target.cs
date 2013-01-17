@@ -210,6 +210,11 @@ namespace NLog.Targets
                         throw;
                     }
 
+                    if (LogManager.ThrowExceptions)
+                    {
+                        throw;
+                    }
+
                     wrappedContinuation(exception);
                 }
             }
