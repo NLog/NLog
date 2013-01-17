@@ -68,6 +68,8 @@ namespace NLog.Targets
     [Target("EventLog")]
     public class EventLogTarget : TargetWithLayout, IInstallable
     {
+        private EventLog eventLogInstance;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
@@ -231,7 +233,13 @@ namespace NLog.Targets
                 category = Convert.ToInt16(this.Category.Render(logEvent), CultureInfo.InvariantCulture);
             }
 
-            EventLog.WriteEntry(this.Source, message, entryType, eventId, category);
+            var eventLog = GetEventLog();
+            eventLog.WriteEntry(message, entryType, eventId, category);
+        }
+
+        private EventLog GetEventLog()
+        {
+            return eventLogInstance ?? (eventLogInstance = new EventLog(this.Log, this.MachineName, this.Source));
         }
 
         private void CreateEventSourceIfNeeded()
