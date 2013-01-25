@@ -168,7 +168,6 @@ namespace NLog.Targets
         /// Gets or sets SMTP Server to be used for sending.
         /// </summary>
         /// <docgen category='SMTP Options' order='10' />
-        [RequiredParameter]
         public Layout SmtpServer { get; set; }
 
         /// <summary>
@@ -203,6 +202,13 @@ namespace NLog.Targets
         /// <docgen category='SMTP Options' order='15' />
         [DefaultValue(25)]
         public int SmtpPort { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the default Settings from System.Net.MailSettings should be used.
+        /// </summary>
+        /// <docgen category='SMTP Options' order='16' />
+        [DefaultValue( false )]
+        public bool UseSystemNetMailSettings { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method.")]
         internal virtual ISmtpClient CreateSmtpClient()
@@ -275,27 +281,13 @@ namespace NLog.Targets
 
                     using (ISmtpClient client = this.CreateSmtpClient())
                     {
-                        client.Host = this.SmtpServer.Render(lastEvent);
-                        client.Port = this.SmtpPort;
-                        client.EnableSsl = this.EnableSsl;
-
-                        InternalLogger.Debug("Sending mail to {0} using {1}:{2} (ssl={3})", msg.To, client.Host, client.Port, client.EnableSsl);
-                        InternalLogger.Trace("  Subject: '{0}'", msg.Subject);
-                        InternalLogger.Trace("  From: '{0}'", msg.From.ToString());
-                        if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
-                        {
-                            InternalLogger.Trace("  Using NTLM authentication.");
-                            client.Credentials = CredentialCache.DefaultNetworkCredentials;
-                        }
-                        else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
-                        {
-                            string username = this.SmtpUserName.Render(lastEvent);
-                            string password = this.SmtpPassword.Render(lastEvent);
-
-                            InternalLogger.Trace("  Using basic authentication: Username='{0}' Password='{1}'", username, new string('*', password.Length));
-                            client.Credentials = new NetworkCredential(username, password);
-                        }
-
+                        InternalLogger.Debug( "Sending mail to {0} using {1}:{2} (ssl={3})", msg.To, client.Host, client.Port, client.EnableSsl );
+                        InternalLogger.Trace( "  Subject: '{0}'", msg.Subject );
+                        InternalLogger.Trace( "  From: '{0}'", msg.From.ToString() );
+                        
+                        if (!UseSystemNetMailSettings)
+                            ConfigureMailClient( lastEvent, client );
+                        
                         client.Send(msg);
 
                         foreach (var ev in events)
@@ -319,7 +311,27 @@ namespace NLog.Targets
             }
         }
 
-        private string GetSmtpSettingsKey(LogEventInfo logEvent)
+        private void ConfigureMailClient( LogEventInfo lastEvent, ISmtpClient client )
+        {
+            client.Host = this.SmtpServer.Render( lastEvent );
+            client.Port = this.SmtpPort;
+            client.EnableSsl = this.EnableSsl;
+
+            if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
+            {
+                InternalLogger.Trace( "  Using NTLM authentication." );
+                client.Credentials = CredentialCache.DefaultNetworkCredentials;
+            }
+            else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
+            {
+                string username = this.SmtpUserName.Render( lastEvent );
+                string password = this.SmtpPassword.Render( lastEvent );
+
+                InternalLogger.Trace( "  Using basic authentication: Username='{0}' Password='{1}'", username, new string( '*', password.Length ) );
+                client.Credentials = new NetworkCredential( username, password );
+            }
+        }
+        private string GetSmtpSettingsKey( LogEventInfo logEvent )
         {
             var sb = new StringBuilder();
 
@@ -341,7 +353,11 @@ namespace NLog.Targets
             }
 
             sb.Append("|");
-            sb.Append(this.SmtpServer.Render(logEvent));
+            if (this.SmtpServer != null)
+            {
+                sb.Append( this.SmtpServer.Render( logEvent ) );
+            }
+
             if (this.SmtpPassword != null)
             {
                 sb.Append(this.SmtpPassword.Render(logEvent));
