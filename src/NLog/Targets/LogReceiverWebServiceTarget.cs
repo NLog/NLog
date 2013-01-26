@@ -242,30 +242,7 @@ namespace NLog.Targets
             }
 
 #if WCF_SUPPORTED
-            WcfLogReceiverClient client;
-
-            if (string.IsNullOrEmpty(this.EndpointConfigurationName))
-            {
-                // endpoint not specified - use BasicHttpBinding
-                Binding binding;
-
-#if !SILVERLIGHT2
-                if (this.UseBinaryEncoding)
-                {
-                    binding = new CustomBinding(new BinaryMessageEncodingBindingElement(), new HttpTransportBindingElement());
-                }
-                else
-#endif
-                {
-                    binding = new BasicHttpBinding();
-                 }
-
-                client = new WcfLogReceiverClient(binding, new EndpointAddress(this.EndpointAddress));
-            }
-            else
-            {
-                client = new WcfLogReceiverClient(this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
-            }
+            var client = CreateWcfLogReceiverClient();
 
             client.ProcessLogMessagesCompleted += (sender, e) =>
                 {
@@ -328,7 +305,45 @@ namespace NLog.Targets
 #endif
         }
 
-        private void SendBufferedEvents()
+#if WCF_SUPPORTED
+		/// <summary>
+		/// Creating a new instance of WcfLogReceiverClient
+		/// 
+		/// Inheritors can override this method and provide their own 
+		/// service configuration - binding and endpoint address
+		/// </summary>
+		/// <returns></returns>
+        protected virtual WcfLogReceiverClient CreateWcfLogReceiverClient()
+        {
+            WcfLogReceiverClient client;
+
+            if (string.IsNullOrEmpty(this.EndpointConfigurationName))
+            {
+                // endpoint not specified - use BasicHttpBinding
+                Binding binding;
+
+#if !SILVERLIGHT2
+                if (this.UseBinaryEncoding)
+                {
+                    binding = new CustomBinding(new BinaryMessageEncodingBindingElement(), new HttpTransportBindingElement());
+                }
+                else
+#endif
+                {
+                    binding = new BasicHttpBinding();
+                }
+
+                client = new WcfLogReceiverClient(binding, new EndpointAddress(this.EndpointAddress));
+            }
+            else
+            {
+                client = new WcfLogReceiverClient(this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
+            }
+            return client;
+        }
+#endif
+
+	    private void SendBufferedEvents()
         {
             lock (this.SyncRoot)
             {
