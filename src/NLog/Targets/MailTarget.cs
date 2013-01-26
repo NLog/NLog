@@ -207,7 +207,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether the default Settings from System.Net.MailSettings should be used.
         /// </summary>
         /// <docgen category='SMTP Options' order='16' />
-        [DefaultValue( false )]
+        [DefaultValue(false)]
         public bool UseSystemNetMailSettings { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method.")]
@@ -331,6 +331,7 @@ namespace NLog.Targets
                 client.Credentials = new NetworkCredential( username, password );
             }
         }
+
         private string GetSmtpSettingsKey( LogEventInfo logEvent )
         {
             var sb = new StringBuilder();
