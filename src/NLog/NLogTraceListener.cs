@@ -398,7 +398,16 @@ namespace NLog
                 ev.Properties.Add("EventID", eventId.Value);
             }
 
-            Logger logger = LogManager.GetLogger(ev.LoggerName);
+            Logger logger;
+            if (this.LogFactory != null)
+            {
+                logger = this.LogFactory.GetLogger(ev.LoggerName);
+            }
+            else
+            {
+                logger = LogManager.GetLogger(ev.LoggerName);
+            }
+
             logger.Log(ev);
         }
 
