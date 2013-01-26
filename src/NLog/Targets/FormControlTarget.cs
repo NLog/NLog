@@ -132,7 +132,7 @@ namespace NLog.Targets
                 return;
             }
 
-            ctrl.Invoke(new DelSendTheMessageToFormControl(this.SendTheMessageToFormControl), new object[] { ctrl, logMessage });
+            ctrl.BeginInvoke(new DelSendTheMessageToFormControl(this.SendTheMessageToFormControl), new object[] { ctrl, logMessage });
         }
 
         private void SendTheMessageToFormControl(Control ctrl, string logMessage)
