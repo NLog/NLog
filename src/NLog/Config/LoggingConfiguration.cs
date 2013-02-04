@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Globalization;
+
 namespace NLog.Config
 {
     using System;
@@ -59,6 +61,7 @@ namespace NLog.Config
         public LoggingConfiguration()
         {
             this.LoggingRules = new List<LoggingRule>();
+            this.DefaultCultureInfo = CultureInfo.CurrentCulture;
         }
 
         /// <summary>
@@ -87,6 +90,15 @@ namespace NLog.Config
         /// Gets the collection of logging rules.
         /// </summary>
         public IList<LoggingRule> LoggingRules { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the default culture info use.
+        /// </summary>
+        public CultureInfo DefaultCultureInfo
+        {
+            get { return LogManager.DefaultCultureInfo; }
+            set { LogManager.DefaultCultureInfo = value; }
+        }
 
         /// <summary>
         /// Gets all targets.

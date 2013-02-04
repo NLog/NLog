@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Globalization;
+
 namespace NLog
 {
     using System;
@@ -48,6 +50,7 @@ namespace NLog
     {
         private static readonly LogFactory globalFactory = new LogFactory();
         private static IAppDomain _currentAppDomain;
+        private static CultureInfo _defaultCultureInfo = CultureInfo.CurrentCulture;
 
 #if !NET_CF && !SILVERLIGHT && !MONO
         /// <summary>
@@ -130,6 +133,15 @@ namespace NLog
         {
             get { return globalFactory.GlobalThreshold; }
             set { globalFactory.GlobalThreshold = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the default culture to use.
+        /// </summary>
+        public static CultureInfo DefaultCultureInfo
+        {
+            get { return _defaultCultureInfo; }
+            set { _defaultCultureInfo = value; }
         }
 
 #if !NET_CF
