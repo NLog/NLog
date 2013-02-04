@@ -67,6 +67,8 @@ namespace NLog.Internal.NetworkSenders
 
         internal AddressFamily AddressFamily { get; set; }
 
+        internal int MaxQueueSize { get; set; }
+
         /// <summary>
         /// Creates the socket with given parameters. 
         /// </summary>
@@ -156,6 +158,11 @@ namespace NLog.Internal.NetworkSenders
 
             lock (this)
             {
+                if (this.MaxQueueSize != 0 && this.pendingRequests.Count >= this.MaxQueueSize)
+                {
+                    this.pendingRequests.Dequeue();
+                }
+
                 this.pendingRequests.Enqueue(args);
             }
 

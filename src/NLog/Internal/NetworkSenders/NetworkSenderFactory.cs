@@ -52,10 +52,13 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="url">
         /// URL that determines the network sender to be created.
         /// </param>
-        /// <returns>
+        /// <param name="maxQueueSize">
+        /// The maximum queue size.
+        /// </param>
+        /// /// <returns>
         /// A newly created network sender.
         /// </returns>
-        public NetworkSender Create(string url)
+        public NetworkSender Create(string url, int maxQueueSize)
         {
             if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
             {
@@ -70,17 +73,26 @@ namespace NLog.Internal.NetworkSenders
 #if !WINDOWS_PHONE_7
             if (url.StartsWith("tcp://", StringComparison.OrdinalIgnoreCase))
             {
-                return new TcpNetworkSender(url, AddressFamily.Unspecified);
+                return new TcpNetworkSender(url, AddressFamily.Unspecified)
+                           {
+                               MaxQueueSize = maxQueueSize
+                           };
             }
 
             if (url.StartsWith("tcp4://", StringComparison.OrdinalIgnoreCase))
             {
-                return new TcpNetworkSender(url, AddressFamily.InterNetwork);
+                return new TcpNetworkSender(url, AddressFamily.InterNetwork)
+                           {
+                               MaxQueueSize = maxQueueSize
+                           };
             }
 
             if (url.StartsWith("tcp6://", StringComparison.OrdinalIgnoreCase))
             {
-                return new TcpNetworkSender(url, AddressFamily.InterNetworkV6);
+                return new TcpNetworkSender(url, AddressFamily.InterNetworkV6)
+                           {
+                               MaxQueueSize = maxQueueSize
+                           };
             }
 #endif
 

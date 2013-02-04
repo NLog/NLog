@@ -44,9 +44,12 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="url">
         /// URL that determines the network sender to be created.
         /// </param>
+        /// <param name="maxQueueSize">
+        /// The maximum queue size.
+        /// </param>
         /// <returns>
         /// A newly created network sender.
         /// </returns>
-        NetworkSender Create(string url);
+        NetworkSender Create(string url, int maxQueueSize);
     }
 }

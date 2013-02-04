@@ -870,7 +870,7 @@ namespace NLog.UnitTests.Targets
             internal StringWriter Log = new StringWriter();
             private int idCounter;
 
-            public NetworkSender Create(string url)
+            public NetworkSender Create(string url, int maximumQueueSize)
             {
                 var sender = new MyNetworkSender(url, ++this.idCounter, this.Log, this);
                 this.Senders.Add(sender);

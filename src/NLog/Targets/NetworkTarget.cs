@@ -150,6 +150,12 @@ namespace NLog.Targets
         public int ConnectionCacheSize { get; set; }
 
         /// <summary>
+        /// Gets or sets the maximum queue size.
+        /// </summary>
+        [DefaultValue(0)]
+        public int MaxQueueSize { get; set; }
+
+        /// <summary>
         /// Gets or sets the action that should be taken if the message is larger than
         /// maxMessageSize.
         /// </summary>
@@ -251,7 +257,7 @@ namespace NLog.Targets
             }
             else
             {
-                var sender = this.SenderFactory.Create(address);
+                var sender = this.SenderFactory.Create(address, MaxQueueSize);
                 sender.Initialize();
 
                 lock (this.openNetworkSenders)
@@ -333,7 +339,7 @@ namespace NLog.Targets
                     }
                 }
 
-                sender = this.SenderFactory.Create(address);
+                sender = this.SenderFactory.Create(address, MaxQueueSize);
                 sender.Initialize();
                 lock (this.openNetworkSenders)
                 {
