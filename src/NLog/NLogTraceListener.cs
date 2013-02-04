@@ -342,7 +342,11 @@ namespace NLog
         }
 #endif
 
+#if !NET_CF
         private void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActiviyId)
+#else
+        private void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId)
+#endif
         {
             var ev = new LogEventInfo();
 
@@ -386,6 +390,16 @@ namespace NLog
                     }
                 }
             }
+
+            if (eventType.HasValue)
+            {
+                ev.Properties.Add("EventType", eventType.Value);
+            }
+
+            if (relatedActiviyId.HasValue)
+            {
+                ev.Properties.Add("RelatedActivityID", relatedActiviyId.Value);
+            }
 #endif
 
             ev.TimeStamp = CurrentTimeGetter.Now;
@@ -396,16 +410,6 @@ namespace NLog
             if (eventId.HasValue)
             {
                 ev.Properties.Add("EventID", eventId.Value);
-            }
-
-            if (eventType.HasValue)
-            {
-                ev.Properties.Add("EventType", eventType.Value);
-            }
-
-            if (relatedActiviyId.HasValue)
-            {
-                ev.Properties.Add("RelatedActivityID", relatedActiviyId.Value);
             }
 
             Logger logger;
