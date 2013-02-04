@@ -156,7 +156,11 @@ namespace NLog
         /// <param name="message">A message to write.</param>
         public override void Write(string message)
         {
+#if !NET_CF
+            this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
+#else
             this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, null, null);
+#endif
         }
 
         /// <summary>
@@ -165,7 +169,11 @@ namespace NLog
         /// <param name="message">A message to write.</param>
         public override void WriteLine(string message)
         {
+#if !NET_CF
+            this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
+#else
             this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, null, null);
+#endif
         }
 
         /// <summary>
@@ -181,7 +189,11 @@ namespace NLog
         /// <param name="message">A message to emit.</param>
         public override void Fail(string message)
         {
+#if !NET_CF
+            this.ProcessLogEventInfo(LogLevel.Error, null, message, null, null, TraceEventType.Error, null);
+#else
             this.ProcessLogEventInfo(LogLevel.Error, null, message, null, null, null, null);
+#endif
         }
 
         /// <summary>
@@ -191,7 +203,11 @@ namespace NLog
         /// <param name="detailMessage">A detailed message to emit.</param>
         public override void Fail(string message, string detailMessage)
         {
+#if !NET_CF
+            this.ProcessLogEventInfo(LogLevel.Error, null, message + " " + detailMessage, null, null, TraceEventType.Error, null);
+#else
             this.ProcessLogEventInfo(LogLevel.Error, null, message + " " + detailMessage, null, null, null, null);
+#endif
         }
 
         /// <summary>
@@ -298,7 +314,7 @@ namespace NLog
         /// <param name="relatedActivityId">A <see cref="T:System.Guid"/>  object identifying a related activity.</param>
         public override void TraceTransfer(TraceEventCache eventCache, string source, int id, string message, Guid relatedActivityId)
         {
-            this.ProcessLogEventInfo(LogLevel.Debug, source, message, null, id, null, relatedActivityId);
+            this.ProcessLogEventInfo(LogLevel.Debug, source, message, null, id, TraceEventType.Transfer, relatedActivityId);
         }
 
         /// <summary>
