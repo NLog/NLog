@@ -57,6 +57,7 @@ namespace NLog.LayoutRenderers
         {
             this.ClassName = true;
             this.MethodName = true;
+            this.CleanNamesOfAnonymousDelegates = false;
 #if !SILVERLIGHT
             this.FileName = false;
             this.IncludeSourcePath = true;
@@ -76,7 +77,14 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
         public bool MethodName { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the method name will be cleaned up if it is detected as an anonymous delegate.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(false)]
+        public bool CleanNamesOfAnonymousDelegates { get; set; }
+
         /// <summary>
         /// Gets or sets the number of frames to skip.
         /// </summary>
@@ -132,7 +140,19 @@ namespace NLog.LayoutRenderers
                 {
                     if (method.DeclaringType != null)
                     {
-                        builder.Append(method.DeclaringType.FullName);
+                        string className = method.DeclaringType.FullName;
+
+                        if (this.CleanNamesOfAnonymousDelegates)
+                        {
+                            // NLog.UnitTests.LayoutRenderers.CallSiteTests+<>c__DisplayClassa
+                            if (className.Contains("+<>"))
+                            {
+                                int index = className.IndexOf("+<>");
+                                className = className.Substring(0, index);
+                            }
+                        }
+
+                        builder.Append(className);
                     }
                     else
                     {
@@ -149,7 +169,23 @@ namespace NLog.LayoutRenderers
 
                     if (method != null)
                     {
-                        builder.Append(method.Name);
+                        string methodName = method.Name;
+
+                        if (this.CleanNamesOfAnonymousDelegates)
+                        {
+                            // Clean up the function name if it is an anonymous delegate
+                            // <.ctor>b__0
+                            // <Main>b__2
+                            if (methodName.Contains("__") == true && methodName.StartsWith("<") == true && methodName.Contains(">") == true)
+                            {
+                                int startIndex = methodName.IndexOf('<') + 1;
+                                int endIndex = methodName.IndexOf('>');
+
+                                methodName = methodName.Substring(startIndex, endIndex - startIndex);
+                            }
+                        }
+
+                        builder.Append(methodName);
                     }
                     else
                     {
