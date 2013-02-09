@@ -38,6 +38,7 @@ using System.Globalization;
 using System.Xml;
 using System.Reflection;
 using System.Diagnostics;
+using System.Threading;
 
 using NLog;
 using NLog.Config;
@@ -177,6 +178,140 @@ namespace NLog.UnitTests.LayoutRenderers
             Action action = () => logger.Debug("msg");
             action.Invoke();
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
+        }
+
+        [Test]
+        public void CleanMethodNamesOfAnonymousDelegatesTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:ClassName=false:CleanNamesOfAnonymousDelegates=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Fatal' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            Logger logger = LogManager.GetLogger("A");
+
+            bool done = false;
+            ThreadPool.QueueUserWorkItem(
+                state =>
+                {
+                    logger.Fatal("message");
+                    done = true;
+                },
+                null);
+
+            while (done == false)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (done == true)
+            {
+                AssertDebugLastMessage("debug", "CleanMethodNamesOfAnonymousDelegatesTest");
+            }
+        }
+
+        [Test]
+        public void DontCleanMethodNamesOfAnonymousDelegatesTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:ClassName=false:CleanNamesOfAnonymousDelegates=false}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Fatal' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            Logger logger = LogManager.GetLogger("A");
+
+            bool done = false;
+            ThreadPool.QueueUserWorkItem(
+                state =>
+                {
+                    logger.Fatal("message");
+                    done = true;
+                },
+                null);
+
+            while (done == false)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (done == true)
+            {
+                string lastMessage = GetDebugLastMessage("debug");
+                Assert.IsTrue(lastMessage.StartsWith("<DontCleanMethodNamesOfAnonymousDelegatesTest>"));
+            }
+        }
+
+        [Test]
+        public void CleanClassNamesOfAnonymousDelegatesTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:ClassName=true:MethodName=false:CleanNamesOfAnonymousDelegates=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Fatal' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            Logger logger = LogManager.GetLogger("A");
+
+            bool done = false;
+            ThreadPool.QueueUserWorkItem(
+                state =>
+                {
+                    logger.Fatal("message");
+                    done = true;
+                },
+                null);
+
+            while (done == false)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (done == true)
+            {
+                AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests");
+            }
+        }
+
+        [Test]
+        public void DontCleanClassNamesOfAnonymousDelegatesTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:ClassName=true:MethodName=false:CleanNamesOfAnonymousDelegates=false}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Fatal' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            Logger logger = LogManager.GetLogger("A");
+
+            bool done = false;
+            ThreadPool.QueueUserWorkItem(
+                state =>
+                {
+                    logger.Fatal("message");
+                    done = true;
+                },
+                null);
+
+            while (done == false)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (done == true)
+            {
+                string lastMessage = GetDebugLastMessage("debug");
+                Assert.IsTrue(lastMessage.Contains("+<>"));
+            }
         }
     }
 }
