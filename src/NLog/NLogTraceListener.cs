@@ -159,7 +159,7 @@ namespace NLog
 #if !NET_CF
             this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
 #else
-            this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, null, null);
+            this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, null);
 #endif
         }
 
@@ -172,7 +172,7 @@ namespace NLog
 #if !NET_CF
             this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
 #else
-            this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, null, null);
+            this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, null);
 #endif
         }
 
@@ -192,7 +192,7 @@ namespace NLog
 #if !NET_CF
             this.ProcessLogEventInfo(LogLevel.Error, null, message, null, null, TraceEventType.Error, null);
 #else
-            this.ProcessLogEventInfo(LogLevel.Error, null, message, null, null, null, null);
+            this.ProcessLogEventInfo(LogLevel.Error, null, message, null, null, null);
 #endif
         }
 
@@ -206,7 +206,7 @@ namespace NLog
 #if !NET_CF
             this.ProcessLogEventInfo(LogLevel.Error, null, message + " " + detailMessage, null, null, TraceEventType.Error, null);
 #else
-            this.ProcessLogEventInfo(LogLevel.Error, null, message + " " + detailMessage, null, null, null, null);
+            this.ProcessLogEventInfo(LogLevel.Error, null, message + " " + detailMessage, null, null, null);
 #endif
         }
 
