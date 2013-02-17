@@ -345,7 +345,10 @@ namespace NLog.Config
             InternalLogger.Trace("ParseNLogElement");
             nlogElement.AssertName("nlog");
 
-            this.DefaultCultureInfo = nlogElement.GetOptionalBooleanAttribute("useInvariantCulture", false) ? CultureInfo.InvariantCulture : CultureInfo.CurrentCulture;
+            if (nlogElement.GetOptionalBooleanAttribute("useInvariantCulture", false))
+            {
+                this.DefaultCultureInfo = CultureInfo.InvariantCulture;
+            }
             this.AutoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", false);
             LogManager.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", LogManager.ThrowExceptions);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);

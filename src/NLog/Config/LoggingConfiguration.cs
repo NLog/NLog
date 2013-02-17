@@ -61,7 +61,6 @@ namespace NLog.Config
         public LoggingConfiguration()
         {
             this.LoggingRules = new List<LoggingRule>();
-            this.DefaultCultureInfo = CultureInfo.CurrentCulture;
         }
 
         /// <summary>
