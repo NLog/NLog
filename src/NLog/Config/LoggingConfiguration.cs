@@ -96,8 +96,8 @@ namespace NLog.Config
         /// </summary>
         public CultureInfo DefaultCultureInfo
         {
-            get { return LogManager.DefaultCultureInfo; }
-            set { LogManager.DefaultCultureInfo = value; }
+            get { return LogManager.DefaultCultureInfo(); }
+            set { LogManager.DefaultCultureInfo = () => value; }
         }
 
         /// <summary>
