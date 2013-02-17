@@ -278,6 +278,10 @@ namespace NLog.Targets
                 {
                     this.SetupMailMessage(msg, lastEvent);
                     msg.Body = bodyBuffer.ToString();
+                    if (msg.IsBodyHtml)
+                    {
+                        msg.Body = msg.Body.Replace(EnvironmentHelper.NewLine, "<br/>");
+                    }
 
                     using (ISmtpClient client = this.CreateSmtpClient())
                     {

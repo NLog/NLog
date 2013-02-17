@@ -399,6 +399,30 @@ namespace NLog.UnitTests.Targets
             Assert.IsInstanceOfType(typeof(MySmtpClient), client);
         }
 
+        [Test]
+        public void ReplaceNewlinesWithBreakInHtmlMail()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@foo.com",
+                Subject = "Hello from NLog",
+                SmtpServer = "server1",
+                Body = "${level}${newline}${logger}${newline}${message}",
+                Html = true
+            };
+
+            mmt.Initialize(null);
+
+            var exceptions = new List<Exception>();
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+
+            var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
+            Assert.IsTrue(messageSent.IsBodyHtml);
+            var lines = messageSent.Body.Split(new[] { "<br/>" }, StringSplitOptions.RemoveEmptyEntries);
+            Assert.IsTrue(lines.Length == 3);
+        }
+
         public class MockSmtpClient : ISmtpClient
         {
             public MockSmtpClient()
