@@ -50,7 +50,13 @@ namespace NLog
     {
         private static readonly LogFactory globalFactory = new LogFactory();
         private static IAppDomain _currentAppDomain;
-        private static Func<CultureInfo> _defaultCultureInfo = () => CultureInfo.CurrentCulture;
+        private static GetCultureInfo _defaultCultureInfo = () => CultureInfo.CurrentCulture;
+
+        /// <summary>
+        /// Delegate used to the the culture to use.
+        /// </summary>
+        /// <returns></returns>
+        public delegate CultureInfo GetCultureInfo();
 
 #if !NET_CF && !SILVERLIGHT && !MONO
         /// <summary>
@@ -138,7 +144,7 @@ namespace NLog
         /// <summary>
         /// Gets or sets the default culture to use.
         /// </summary>
-        public static Func<CultureInfo> DefaultCultureInfo
+        public static GetCultureInfo DefaultCultureInfo
         {
             get { return _defaultCultureInfo; }
             set { _defaultCultureInfo = value; }
