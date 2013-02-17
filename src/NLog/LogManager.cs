@@ -32,6 +32,7 @@
 // 
 
 using System.Globalization;
+using System.Threading;
 
 namespace NLog
 {
@@ -50,7 +51,7 @@ namespace NLog
     {
         private static readonly LogFactory globalFactory = new LogFactory();
         private static IAppDomain _currentAppDomain;
-        private static GetCultureInfo _defaultCultureInfo = () => CultureInfo.CurrentCulture;
+        private static GetCultureInfo _defaultCultureInfo = () => Thread.CurrentThread.CurrentCulture;
 
         /// <summary>
         /// Delegate used to the the culture to use.
