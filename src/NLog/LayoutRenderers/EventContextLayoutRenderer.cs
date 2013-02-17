@@ -42,6 +42,7 @@ namespace NLog.LayoutRenderers
     /// Log event context data.
     /// </summary>
     [LayoutRenderer("event-context")]
+    [Obsolete("Use EventPropertiesLayoutRenderer instead.")]
     public class EventContextLayoutRenderer : LayoutRenderer
     {
         /// <summary>
