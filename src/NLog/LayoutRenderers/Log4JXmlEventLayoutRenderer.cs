@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("log4jxmlevent")]
     public class Log4JXmlEventLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
-        private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1).ToUniversalTime();
+        private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);
 
         private static readonly string dummyNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
 
