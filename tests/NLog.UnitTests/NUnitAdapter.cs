@@ -42,7 +42,7 @@ namespace NUnit.Framework
     {
         public static void AreSame(object expected, object actual)
         {
-            MSAssert.AreSame(expected, actual);
+            MSAssert.AreSame(expected, actual, string.Format("Expected\n{0}\nto be the same as:\n{1}", expected, actual));
         }
 
         public static void AreSame(object expected, object actual, string message)
@@ -52,7 +52,7 @@ namespace NUnit.Framework
 
         public static void AreNotSame(object expected, object actual)
         {
-            MSAssert.AreNotSame(expected, actual);
+            MSAssert.AreNotSame(expected, actual, string.Format("Expected\n{0}\nto differ from\n{1}", expected, actual));
         }
 
         public static void AreNotSame(object expected, object actual, string message)
@@ -62,7 +62,7 @@ namespace NUnit.Framework
 
         public static void AreEqual(object expected, object actual)
         {
-            MSAssert.AreEqual(expected, actual);          
+            MSAssert.AreEqual(expected, actual, string.Format("Expected\n{0}\nto be equal to\n{1}", expected, actual));
         }
 
         public static void AreEqual(object expected, object actual, string message)
@@ -72,7 +72,7 @@ namespace NUnit.Framework
 
         public static void AreNotEqual(object expected, object actual)
         {
-            MSAssert.AreNotEqual(expected, actual);
+            MSAssert.AreNotEqual(expected, actual, string.Format("Expected\n{0}\nto not be equal to\n{1}", expected, actual));
         }
 
         public static void AreNotEqual(object expected, object actual, string message)
@@ -82,7 +82,7 @@ namespace NUnit.Framework
 
         public static void IsNull(object value)
         {
-            MSAssert.IsNull(value);
+            MSAssert.IsNull(value, string.Format("Expected\n{0}\nto be null", value));
         }
 
         public static void IsNull(object value, string message)
@@ -92,7 +92,7 @@ namespace NUnit.Framework
 
         public static void IsNotNull(object value)
         {
-            MSAssert.IsNotNull(value);
+            MSAssert.IsNotNull(value, string.Format("Did not expect\n{0}\nto be null", value));
         }
 
         public static void IsNotNull(object value, string message)
