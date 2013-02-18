@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
@@ -446,6 +448,28 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreEqual(2, myTarget.WriteCount);
         }
 
+        [Test]
+        public void WhenWrappedTargetThrowsExceptionThisIsHandled()
+        {
+            var myTarget = new MyTarget { ThrowException = true };
+            var bufferingTargetWrapper = new BufferingTargetWrapper
+                                             {
+                                                 WrappedTarget = myTarget,
+                                                 FlushTimeout = -1
+                                             };
+
+            myTarget.Initialize(null);
+            bufferingTargetWrapper.Initialize(null);
+
+            bufferingTargetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => { }));
+
+            var flushHit = new ManualResetEvent(false);
+            bufferingTargetWrapper.Flush(ex => flushHit.Set());
+            flushHit.WaitOne();
+
+            Assert.AreEqual(1, myTarget.FlushCount);
+        }
+
         class MyAsyncTarget : Target
         {
             public int BufferedWriteCount { get; set; }
@@ -497,6 +521,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             public int WriteCount { get; set; }
             public int BufferedWriteCount { get; set; }
             public int BufferedTotalEvents { get; set; }
+            public bool ThrowException { get; set; }
 
             protected override void Write(AsyncLogEventInfo[] logEvents)
             {
@@ -509,6 +534,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 Assert.IsTrue(this.FlushCount <= this.WriteCount);
                 this.WriteCount++;
+                if (ThrowException)
+                {
+                    throw new Exception("Target exception");
+                }
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
