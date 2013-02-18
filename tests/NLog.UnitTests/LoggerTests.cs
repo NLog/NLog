@@ -1052,6 +1052,28 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "aaaa {0");
         }
 
+        [Test]
+        public void MultipleLoggersWithSameNameShouldBothReceiveMessages()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets>
+                        <target name='first' type='Debug' layout='${message}' />
+                        <target name='second' type='Debug' layout='${message}' />
+                    </targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='first' />
+                        <logger name='*' minlevel='Debug' writeTo='second' />
+                    </rules>
+                </nlog>");
+            var logger = LogManager.GetLogger("A");
+
+            const string logMessage = "Anything";
+            logger.Debug(logMessage);
+            AssertDebugLastMessage("first", logMessage);
+            AssertDebugLastMessage("second", logMessage);
+        }
+
         public abstract class BaseWrapper
         {
             public void Log(string what)
