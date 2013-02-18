@@ -56,6 +56,8 @@ namespace NLog
 
         private static int globalSequenceId;
 
+        private readonly object layoutCacheLock = new object();
+
         private string formattedMessage;
         private IDictionary<Layout, string> layoutCache;
         private IDictionary<object, object> properties;
@@ -354,13 +356,13 @@ namespace NLog
 
         internal string AddCachedLayoutValue(Layout layout, string value)
         {
-            if (this.layoutCache == null)
+            lock (this.layoutCacheLock)
             {
-                this.layoutCache = new Dictionary<Layout, string>();
-            }
+                if (this.layoutCache == null)
+                {
+                    this.layoutCache = new Dictionary<Layout, string>();
+                }
 
-            lock (this.layoutCache)
-            {
                 this.layoutCache[layout] = value;
             }
 
@@ -369,14 +371,14 @@ namespace NLog
 
         internal bool TryGetCachedLayoutValue(Layout layout, out string value)
         {
-            if (this.layoutCache == null)
+            lock (this.layoutCacheLock)
             {
-                value = null;
-                return false;
-            }
+                if (this.layoutCache == null)
+                {
+                    value = null;
+                    return false;
+                }
 
-            lock (this.layoutCache)
-            {
                 return this.layoutCache.TryGetValue(layout, out value);
             }
         }
