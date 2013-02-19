@@ -81,7 +81,9 @@ namespace NLog.UnitTests.LayoutRenderers
             NestedDiagnosticsContext.Push("baz3");
 
             Logger logger = LogManager.GetLogger("A");
-            logger.Debug("some message");
+            var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", "some message");
+            logEventInfo.Properties["nlogPropertyKey"] = "nlogPropertyValue";
+            logger.Log(logEventInfo);
             string result = GetDebugLastMessage("debug");
             string wrappedResult = "<log4j:dummyRoot xmlns:log4j='http://log4j' xmlns:nlog='http://nlog'>" + result + "</log4j:dummyRoot>";
 
@@ -187,6 +189,16 @@ namespace NLog.UnitTests.LayoutRenderers
 
                             case "locationInfo":
                                 Assert.AreEqual(this.GetType().Assembly.FullName, reader.GetAttribute("assembly"));
+                                break;
+
+                            case "properties":
+                                break;
+
+                            case "data":
+                                var name = reader.GetAttribute("name");
+                                var value = reader.GetAttribute("value");
+                                Assert.AreEqual("nlogPropertyKey", name);
+                                Assert.AreEqual("nlogPropertyValue", value);
                                 break;
 
                             default:
