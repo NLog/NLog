@@ -51,6 +51,8 @@ using NUnit.Framework;
 #endif
 using NLog.Layouts;
 
+#if !SILVERLIGHT2
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     [TestFixture]
@@ -69,5 +71,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
+
+#endif
 
 #endif
