@@ -201,6 +201,7 @@
     <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspRequestValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspSessionValueLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\AssemblyVersionLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CounterLayoutRenderer.cs" />

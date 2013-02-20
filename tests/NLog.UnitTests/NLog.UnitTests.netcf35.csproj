@@ -94,6 +94,7 @@
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="LayoutRenderers\BaseDirTests.cs" />
     <Compile Include="LayoutRenderers\CallSiteTests.cs" />
+    <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
     <Compile Include="LayoutRenderers\CounterTests.cs" />
     <Compile Include="LayoutRenderers\DateTests.cs" />
     <Compile Include="LayoutRenderers\EnvironmentTests.cs" />
