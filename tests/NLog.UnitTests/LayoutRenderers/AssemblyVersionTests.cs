@@ -59,7 +59,11 @@ namespace NLog.UnitTests.LayoutRenderers
         [Test]
         public void BaseDirTest()
         {
-	        var assembly = Assembly.GetEntryAssembly();
+#if SILVERLIGHT
+			var assembly = Application.Current.GetType().Assembly;
+#else
+			var assembly = Assembly.GetEntryAssembly();
+#endif
 			var assemblyVersion = assembly == null ? "Could not find entry assembly" : assembly.GetName().Version.ToString();
             AssertLayoutRendererOutput("${assembly-version}", assemblyVersion);
         }

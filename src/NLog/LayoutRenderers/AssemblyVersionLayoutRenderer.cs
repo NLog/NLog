@@ -54,8 +54,12 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+#if SILVERLIGHT
+			var assembly = Application.Current.GetType().Assembly;
+#else
             var assembly = Assembly.GetEntryAssembly();
-            var assemblyVersion = assembly == null ? "Could not find entry assembly" : assembly.GetName().Version.ToString();
+#endif
+			var assemblyVersion = assembly == null ? "Could not find entry assembly" : assembly.GetName().Version.ToString();
             builder.Append(assemblyVersion);
         }
     }
