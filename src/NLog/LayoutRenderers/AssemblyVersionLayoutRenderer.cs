@@ -38,12 +38,16 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Globalization;
     using System.Runtime.InteropServices;
-    using System.Reflection;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
+#if SILVERLIGHT
+	using System.Windows.Application;
+#else
+	using System.Reflection;
+#endif
 
-    /// <summary>
+	/// <summary>
     /// Assembly version.
     /// </summary>
     [LayoutRenderer("assembly-version")]
