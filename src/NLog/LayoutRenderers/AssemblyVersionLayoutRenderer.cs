@@ -42,7 +42,7 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
     using NLog.Internal;
 #if SILVERLIGHT
-	using System.Windows.Application;
+	using System.Windows;
 #else
 	using System.Reflection;
 #endif
