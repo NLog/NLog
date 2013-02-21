@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT2
+#if !SILVERLIGHT2 && !_NET_CF
 
 namespace NLog.LayoutRenderers
 {

@@ -51,7 +51,7 @@ using NUnit.Framework;
 #endif
 using NLog.Layouts;
 
-#if !SILVERLIGHT2
+#if !SILVERLIGHT2 && !NET_CF
 
 namespace NLog.UnitTests.LayoutRenderers
 {
