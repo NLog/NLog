@@ -94,6 +94,11 @@ namespace NLog.Targets
         public string FormName { get; set; }
 
         /// <summary>
+        /// Gets or sets whether new log entry are added to the start or the end of the control
+        /// </summary>
+        public bool ReverseOrder { get; set; }
+
+        /// <summary>
         /// Log message to control.
         /// </summary>
         /// <param name="logEvent">
@@ -139,7 +144,10 @@ namespace NLog.Targets
         {
             if (this.Append)
             {
-                ctrl.Text += logMessage;
+                if (ReverseOrder)
+                    ctrl.Text = logMessage + ctrl.Text;
+                else
+                    ctrl.Text += logMessage;
             }
             else
             {
