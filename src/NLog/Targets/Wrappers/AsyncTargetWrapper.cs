@@ -240,17 +240,22 @@ namespace NLog.Targets.Wrappers
         {
             try
             {
-                if (this.RequestQueue.RequestCount == 0)
-                {
-                    return;
-                }
-
                 int count = this.BatchSize;
                 var continuation = Interlocked.Exchange(ref this.flushAllContinuation, null);
                 if (continuation != null)
                 {
                     count = this.RequestQueue.RequestCount;
                     InternalLogger.Trace("Flushing {0} events.", count);
+                }
+
+                if (this.RequestQueue.RequestCount == 0)
+                {
+                    if (continuation != null)
+                    {
+                        continuation(null);
+                    }
+
+                    return;
                 }
 
                 AsyncLogEventInfo[] logEventInfos = this.RequestQueue.DequeueBatch(count);
