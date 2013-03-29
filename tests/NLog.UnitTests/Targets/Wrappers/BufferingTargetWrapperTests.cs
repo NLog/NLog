@@ -163,6 +163,53 @@ namespace NLog.UnitTests.Targets.Wrappers
             targetWrapper.Close();
             myTarget.Close();
         }
+        
+        [Test]
+        public void BufferingTargetWithFallbackGroupAndFirstTargetFails_Write_SecondTargetWritesEvents()
+        {
+            var myTarget = new MyTarget { FailCounter = 1 };
+            var myTarget2 = new MyTarget();
+            var fallbackGroup = new FallbackGroupTarget(myTarget, myTarget2);
+            var targetWrapper = new BufferingTargetWrapper
+            {
+                WrappedTarget = fallbackGroup,
+                BufferSize = 10,
+            };
+
+            InitializeTargets(myTarget, targetWrapper, myTarget2, fallbackGroup);
+
+            const int totalEvents = 100;
+
+            var continuationHit = new bool[totalEvents];
+            var lastException = new Exception[totalEvents];
+            var continuationThread = new Thread[totalEvents];
+
+            CreateContinuationFunc createAsyncContinuation = 
+                eventNumber =>
+                    ex =>
+                    {
+                        lastException[eventNumber] = ex;
+                        continuationThread[eventNumber] = Thread.CurrentThread;
+                        continuationHit[eventNumber] = true;
+                    };
+
+            // write 9 events - they will all be buffered and no final continuation will be reached
+            var eventCounter = 0;
+            for (var i = 0; i < 9; ++i)
+            {
+                targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
+            }
+
+            Assert.AreEqual(0, myTarget.WriteCount);
+
+            // write one more event - everything will be flushed
+            targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
+            Assert.AreEqual(1, myTarget.WriteCount);
+            Assert.AreEqual(10, myTarget2.WriteCount);
+
+            targetWrapper.Close();
+            myTarget.Close();
+        }
 
         [Test]
         public void BufferingTargetWrapperSyncWithTimedFlushTest()
