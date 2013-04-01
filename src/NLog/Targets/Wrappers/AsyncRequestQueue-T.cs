@@ -85,21 +85,23 @@ namespace NLog.Targets.Wrappers
             {
                 if (this.logEventInfoQueue.Count >= this.RequestLimit)
                 {
+                    InternalLogger.Debug("Async queue is full");
                     switch (this.OnOverflow)
                     {
                         case AsyncTargetWrapperOverflowAction.Discard:
-                            // dequeue and discard one element
+                            InternalLogger.Debug("Discarding one element from queue");
                             this.logEventInfoQueue.Dequeue();
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Grow:
+                            InternalLogger.Debug("The overflow action is Grow, adding element anyway");
                             break;
 
 #if !NET_CF
                         case AsyncTargetWrapperOverflowAction.Block:
                             while (this.logEventInfoQueue.Count >= this.RequestLimit)
                             {
-                                InternalLogger.Trace("Blocking...");
+                                InternalLogger.Debug("Blocking because the overflow action is Block...");
                                 System.Threading.Monitor.Wait(this);
                                 InternalLogger.Trace("Entered critical section.");
                             }
