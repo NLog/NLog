@@ -62,10 +62,10 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void SimpleFileTest1()
         {
-            string tempFile = Path.GetTempFileName();
+            var tempFile = Path.GetTempFileName();
             try
             {
-                FileTarget ft = new FileTarget
+                var ft = new FileTarget
                                     {
                                         FileName = SimpleLayout.Escape(tempFile),
                                         LineEnding = LineEndingMode.LF,
@@ -91,15 +91,11 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void CsvHeaderTest()
         {
-            // test for the following changes 
-            // https://github.com/NLog/NLog/commit/e1ed0d4857dddc95d5db09ee95e9a0c85afc7810
-            // codeplex ticket 6370
-
-            string tempFile = Path.GetTempFileName();
+            var tempFile = Path.GetTempFileName();
             try
             {
 
-                for (int i = 0; i < 2; i++)
+                for (var i = 0; i < 2; i++)
                 {
                     var layout = new CsvLayout
                     {
@@ -113,7 +109,7 @@ namespace NLog.UnitTests.Targets
                         }
                     };
 
-                    FileTarget ft = new FileTarget
+                    var ft = new FileTarget
                         {
                             FileName = SimpleLayout.Escape(tempFile),
                             LineEnding = LineEndingMode.LF,
@@ -138,10 +134,10 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void DeleteFileOnStartTest()
         {
-            string tempFile = Path.GetTempFileName();
+            var tempFile = Path.GetTempFileName();
             try
             {
-                FileTarget ft = new FileTarget
+                var ft = new FileTarget
                                     {
                                         FileName = SimpleLayout.Escape(tempFile),
                                         LineEnding = LineEndingMode.LF,
@@ -207,13 +203,11 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void CreateDirsTest()
         {
-            // create the file in a not-existent
-            // directory which forces creation
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string tempFile = Path.Combine(tempPath, "file.txt");
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
-                FileTarget ft = new FileTarget
+                var ft = new FileTarget
                                     {
                                         FileName = tempFile,
                                         LineEnding = LineEndingMode.LF,
@@ -241,13 +235,11 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void SequentialArchiveTest1()
         {
-            // create the file in a not-existent
-            // directory which forces creation
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string tempFile = Path.Combine(tempPath, "file.txt");
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
-                FileTarget ft = new FileTarget
+                var ft = new FileTarget
                                     {
                                         FileName = tempFile,
                                         ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
@@ -262,23 +254,23 @@ namespace NLog.UnitTests.Targets
 
                 // we emit 5 * 250 *(3 x aaa + \n) bytes
                 // so that we should get a full file + 3 archives
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Debug("aaa");
                 }
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Debug("bbb");
                 }
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Debug("ccc");
                 }
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Debug("ddd");
                 }
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Debug("eee");
                 }
@@ -320,13 +312,11 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void RollingArchiveTest1()
         {
-            // create the file in a not-existent
-            // directory which forces creation
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string tempFile = Path.Combine(tempPath, "file.txt");
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
-                FileTarget ft = new FileTarget
+                var ft = new FileTarget
                                     {
                                         FileName = tempFile,
                                         ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
@@ -341,23 +331,23 @@ namespace NLog.UnitTests.Targets
 
                 // we emit 5 * 250 * (3 x aaa + \n) bytes
                 // so that we should get a full file + 3 archives
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Debug("aaa");
                 }
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Debug("bbb");
                 }
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Debug("ccc");
                 }
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Debug("ddd");
                 }
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Debug("eee");
                 }
@@ -398,12 +388,10 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void MultiFileWrite()
         {
-            // create the file in a not-existent
-            // directory which forces creation
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             try
             {
-                FileTarget ft = new FileTarget
+                var ft = new FileTarget
                                     {
                                         FileName = Path.Combine(tempPath, "${level}.txt"),
                                         LineEnding = LineEndingMode.LF,
@@ -412,7 +400,7 @@ namespace NLog.UnitTests.Targets
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Trace("@@@");
                     logger.Debug("aaa");
@@ -454,12 +442,10 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void BufferedMultiFileWrite()
         {
-            // create the file in a not-existent
-            // directory which forces creation
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             try
             {
-                FileTarget ft = new FileTarget
+                var ft = new FileTarget
                                     {
                                         FileName = Path.Combine(tempPath, "${level}.txt"),
                                         LineEnding = LineEndingMode.LF,
@@ -468,7 +454,7 @@ namespace NLog.UnitTests.Targets
 
                 SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft, 10), LogLevel.Debug);
 
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Trace("@@@");
                     logger.Debug("aaa");
@@ -510,13 +496,10 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void AsyncMultiFileWrite()
         {
-            //InternalLogger.LogToConsole = true;
-            //InternalLogger.LogLevel = LogLevel.Trace;
-
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             try
             {
-                FileTarget ft = new FileTarget
+                var ft = new FileTarget
                                     {
                                         FileName = Path.Combine(tempPath, "${level}.txt"),
                                         LineEnding = LineEndingMode.LF,
@@ -527,14 +510,12 @@ namespace NLog.UnitTests.Targets
                 // such as ${threadid} are properly cached and not recalculated
                 // in logging threads.
 
-                string threadID = Thread.CurrentThread.ManagedThreadId.ToString();
+                var threadID = Thread.CurrentThread.ManagedThreadId.ToString();
 
-                //InternalLogger.LogToConsole = true;
-                //InternalLogger.LogLevel = LogLevel.Trace;
                 SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 1000, AsyncTargetWrapperOverflowAction.Grow), LogLevel.Debug);
                 LogManager.ThrowExceptions = true;
 
-                for (int i = 0; i < 250; ++i)
+                for (var i = 0; i < 250; ++i)
                 {
                     logger.Trace("@@@");
                     logger.Debug("aaa");
@@ -604,7 +585,7 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void DisposingFileTarget_WhenNotIntialized_ShouldNotThrow()
         {
-            bool exceptionThrown = false;
+            var exceptionThrown = false;
             var fileTarget = new FileTarget();
 
             try
@@ -622,13 +603,11 @@ namespace NLog.UnitTests.Targets
         [Test]
         public void FileTarget_WithArchiveFileNameEndingInNumberPlaceholder_ShouldArchiveFile()
         {
-            // create the file in a not-existent
-            // directory which forces creation
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string tempFile = Path.Combine(tempPath, "file.txt");
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
-                FileTarget ft = new FileTarget
+                var ft = new FileTarget
                 {
                     FileName = tempFile,
                     ArchiveFileName = Path.Combine(tempPath, "archive/test.log.{####}"),
@@ -637,7 +616,7 @@ namespace NLog.UnitTests.Targets
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
-                for (int i = 0; i < 100; ++i)
+                for (var i = 0; i < 100; ++i)
                 {
                     logger.Debug("a");
                 }
