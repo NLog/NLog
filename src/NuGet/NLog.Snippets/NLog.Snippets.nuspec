@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>NLog.Snippets</id>
+    <title>NLog Snippets</title>
+    <version>$BuildVersion$</version>
+    <authors>Kim Christensen</authors>
+    <owners>Kim Christensen</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>Installs a NLog snippet.</summary>
+    <description>Installs NLog snippets.</description>
+    <language>en-US</language>
+    <iconUrl>http://nlog-project.org/N.png</iconUrl>
+    <projectUrl>http://github.com/NLog/NLog/</projectUrl>
+    <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
+  </metadata>
+</package>

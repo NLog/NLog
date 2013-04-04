@@ -459,7 +459,7 @@
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="PostProcessSingleDoc" Properties="DocBuildDir=$(BaseOutputDirectory)\bin\$(Configuration)\Documentation" />
   </Target>
 
-  <Target Name="NuGetPackage" DependsOnTargets="NuGetBasePackage;NuGetExtendedPackage;NuGetConfigPackage;NuGetSchemaPackage">
+  <Target Name="NuGetPackage" DependsOnTargets="NuGetBasePackage;NuGetExtendedPackage;NuGetConfigPackage;NuGetSchemaPackage;NuGetSnippetsPackage">
   </Target>
 
   <Target Name="NuGetBasePackage">
@@ -563,8 +563,28 @@
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
     <Exec Command='"$(NuGetTool)" pack NLog.Schema.nuspec -OutputDirectory "$(NuGetOutputPath)" -Properties $(NuGetProperties)' WorkingDirectory="$(NuGetBuildPath)\NLog.Schema" />
-  </Target>                                                                                       
+  </Target>
 
+                                                                                 
+  <Target Name="NuGetSnippetsPackage">
+    <ItemGroup>
+      <NuGetSnippetsFiles Include="NuGet/NLog.Snippets/**" />
+    </ItemGroup>
+  
+    <!-- prepare static files -->
+    <RemoveDir Directories="$(NuGetBuildPath)\NLog.Snippets" />
+    <Copy SourceFiles="@(NuGetSnippetsFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Snippets\%(RecursiveDir)" />
+    <Copy SourceFiles="$(BaseOutputDirectory)..\src\VSIntegration\Snippets\CSharpLogger.snippet"
+          DestinationFolder="$(NuGetBuildPath)\NLog.Snippets\tools\Snippets" />
+    <Copy SourceFiles="$(BaseOutputDirectory)..\src\VSIntegration\Snippets\VBLogger.snippet"
+          DestinationFolder="$(NuGetBuildPath)\NLog.Snippets\tools\Snippets" />
+  
+    <TokenReplace Path="$(NuGetBuildPath)\NLog.Snippets\NLog.Snippets.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+
+    <!-- package -->    
+    <MakeDir Directories="$(NuGetOutputPath)" />
+    <Exec Command='"$(NuGetTool)" pack NLog.Snippets.nuspec -OutputDirectory "$(NuGetOutputPath)" -Properties $(NuGetProperties)' WorkingDirectory="$(NuGetBuildPath)\NLog.Snippets" />
+  </Target> 
 
   <Target Name="Installer">
      <PropertyGroup>
