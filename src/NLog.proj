@@ -53,7 +53,7 @@
     <WebsiteDir Condition="'$(WebsiteDir)' == ''">$(BaseOutputDirectory)\bin\$(Configuration)\Website</WebsiteDir>
     <LastTestRunSummary>$(BaseOutputDirectory)\bin\LastTestRunSummary.cmd</LastTestRunSummary>
     <BuildInfoFile>$(BaseOutputDirectory)\bin\BuildInfo.cs</BuildInfoFile>
-    <NuGetTool>NuGet.exe</NuGetTool>
+    <NuGetTool>$(BaseOutputDirectory)\..\tools\NuGet.exe</NuGetTool>
     <NuGetBuildPath>$(BaseOutputDirectory)\obj\$(Configuration)\NuGet</NuGetBuildPath>
     <NuGetProperties>BuildVersion=$(BuildVersion)</NuGetProperties>
   </PropertyGroup>
