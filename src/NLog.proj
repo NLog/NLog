@@ -98,9 +98,9 @@
 
     <!-- now disable those that we know cannot be built -->
     <BuildMono2 Condition="'$(MonoInstallLocation)'==''">false</BuildMono2>
-    <BuildSL2 Condition="'$(SL2RefPath)' == ''">false</BuildSL2>
-    <BuildSL3 Condition="'$(SL3RefPath)' == ''">false</BuildSL3>
-    <BuildSL4 Condition="'$(SL4RefPath)' == ''">false</BuildSL4>
+    <BuildSL2 Condition="!Exists('$(SL2RefPath)'>false</BuildSL2>
+    <BuildSL3 Condition="!Exists('$(SL3RefPath)')">false</BuildSL3>
+    <BuildSL4 Condition="!Exists('$(SL4RefPath)'>false</BuildSL4>
     <BuildWP7 Condition="!Exists('$(WP7RefPath)')">false</BuildWP7>
     <BuildWP71 Condition="!Exists('$(WP71RefPath)')">false</BuildWP71>
     <BuildNetCF20 Condition="'$(NetCF20InstallRoot)' == ''">false</BuildNetCF20>
