@@ -4,15 +4,15 @@
     <id>NLog.Schema</id>
     <title>NLog Schema for Intellisense(TM)</title>
     <version>$BuildVersion$</version>
-    <authors>Jaroslaw Kowalski</authors>
-    <owners>Jaroslaw Kowalski</owners>
+    <authors>Kim Christensen</authors>
+    <owners>Kim Christensen</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Enables Intellisense(TM) when editing NLog.config.</summary>
     <description>Enables Intellisense(TM) when editing NLog configuration file.</description>
     <language>en-US</language>
     <iconUrl>http://nlog-project.org/NConfig.png</iconUrl>
-    <projectUrl>http://nlog-project.org/</projectUrl>
-    <licenseUrl>https://raw.github.com/jkowalski/NLog/master/LICENSE.txt</licenseUrl>
+    <projectUrl>http://github.com/NLog/NLog/</projectUrl>
+    <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
     <dependencies>
       <dependency id="NLog.Config" version="2.0.0.0" />
     </dependencies>

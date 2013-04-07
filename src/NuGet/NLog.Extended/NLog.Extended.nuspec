@@ -4,15 +4,15 @@
     <id>NLog.Extended</id>
     <title>NLog for Extended Profile</title>
     <version>$BuildVersion$</version>
-    <authors>Jaroslaw Kowalski</authors>
-    <owners>Jaroslaw Kowalski</owners>
+    <authors>Kim Christensen</authors>
+    <owners>Kim Christensen</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>NLog - Advanced .NET and Silverlight logging</summary>
     <description>NLog.Extended.dll for use with .NET Framework Extended profile. Supports server-specific targets and other extensions.</description>
     <language>en-US</language>
     <iconUrl>http://nlog-project.org/N.png</iconUrl>
-    <projectUrl>http://nlog-project.org/</projectUrl>
-    <licenseUrl>https://raw.github.com/jkowalski/NLog/master/LICENSE.txt</licenseUrl>
+    <projectUrl>http://github.com/NLog/NLog/</projectUrl>
+    <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
     <dependencies>
       <dependency id="NLog" version="[$BuildVersion$]" />
     </dependencies>
