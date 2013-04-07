@@ -62,19 +62,29 @@ if (%1)==(mono2) (
 )
 
 if (%1)==(sl2) (
+	set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildSL2=true
 	shift
 	goto next
 )
 
 if (%1)==(sl3) (
+	set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildSL3=true
 	shift
 	goto next
 )
 
 if (%1)==(sl4) (
+	set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildSL4=true
+	shift
+	goto next
+)
+
+if (%1)==(sl5) (
+	set MSBUILD=%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe
+	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildSL5=true
 	shift
 	goto next
 )

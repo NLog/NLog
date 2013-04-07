@@ -43,11 +43,14 @@ namespace NLog.LayoutRenderers
     using NLog.Internal;
 #if SILVERLIGHT
 	using System.Windows;
+#if SILVERLIGHT5
+	using System.Reflection;
+#endif
 #else
 	using System.Reflection;
 #endif
 
-	/// <summary>
+    /// <summary>
     /// Assembly version.
     /// </summary>
     [LayoutRenderer("assembly-version")]
@@ -65,7 +68,11 @@ namespace NLog.LayoutRenderers
 #else
             var assembly = Assembly.GetEntryAssembly();
 #endif
+#if !SILVERLIGHT5
 			var assemblyVersion = assembly == null ? "Could not find entry assembly" : assembly.GetName().Version.ToString();
+#else
+            var assemblyVersion = assembly == null ? "Could not find entry assembly" : new AssemblyName(assembly.FullName).Version.ToString();
+#endif
             builder.Append(assemblyVersion);
         }
     }
