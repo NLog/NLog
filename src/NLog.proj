@@ -29,6 +29,7 @@
     <BuildAllFrameworks Condition="'$(BuildNetFX20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildNetFX45)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
     <IgnoreBuildFailures>false</IgnoreBuildFailures>
@@ -93,6 +94,7 @@
     <BuildNetFX20>true</BuildNetFX20>
     <BuildNetFX35>true</BuildNetFX35>
     <BuildNetFX40>true</BuildNetFX40>
+    <BuildNetFX45>true</BuildNetFX45>
     <BuildNetCF20>true</BuildNetCF20>
     <BuildNetCF35>true</BuildNetCF35>
 
@@ -108,12 +110,14 @@
     <BuildNetFX20 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v2.0.50727') == ''">false</BuildNetFX20>
     <BuildNetFX35 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v3.5') == ''">false</BuildNetFX35>
     <BuildNetFX40 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\$(DotNet4Version)') == ''">false</BuildNetFX40>
+    <BuildNetFX45 Condition="$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full@Release) == ''">false</BuildNetFX45>
 
-    <!-- don't build 4.0 if we're using MSBuild 3.5 -->
+    <!-- don't build 4.0 or above if we're using MSBuild 3.5 -->
     <BuildSL4 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildSL4>
     <BuildWP7 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildWP7>
     <BuildWP71 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildWP71>
     <BuildNetFX40 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX40>
+    <BuildNetFX45 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX45>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -121,6 +125,7 @@
      <DocReferencesNetFX30>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\v3.0"</DocReferencesNetFX30>
      <DocReferencesNetFX35>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\v3.5"</DocReferencesNetFX35>
      <DocReferencesNetFX40>-ref "$(WinDir)\Microsoft.NET\Framework\$(DotNet4Version)"</DocReferencesNetFX40>
+     <DocReferencesNetFX45>-ref "$(WinDir)\Microsoft.NET\Framework\$(DotNet4Version)"</DocReferencesNetFX45>
      <DocReferencesSL2>-ref "$(ProgramFiles)\Microsoft SDKs\Silverlight\v2.0\Reference Assemblies"</DocReferencesSL2>
      <DocReferencesSL3>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v3.0"</DocReferencesSL3>
      <DocReferencesSL4>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0"</DocReferencesSL4>
@@ -189,6 +194,12 @@
         <ToolsVersion>4.0</ToolsVersion>
         <DocReferences>$(DocReferencesNetFX40)</DocReferences>
         <NuGetDir>net40</NuGetDir>
+    </TargetFramework>
+    <TargetFramework Include=".NET Framework 4.5" Condition="'$(BuildNetFX45)'=='true'">
+        <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
+        <ToolsVersion>4.0</ToolsVersion>
+        <DocReferences>$(DocReferencesNetFX45)</DocReferences>
+        <NuGetDir>net45</NuGetDir>
     </TargetFramework>
   </ItemGroup>
 
@@ -312,6 +323,7 @@
     <CallTarget Targets="NetFx20Test" Condition="'$(BuildNetFX20)'=='true'"/>
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
+    <CallTarget Targets="NetFx45Test" Condition="'$(BuildNetFX45)'=='true'"/>
     <CallTarget Targets="NetCF20Test" Condition="'$(BuildNetCF20)'=='true'"/>
     <CallTarget Targets="NetCF35Test" Condition="'$(BuildNetCF35)'=='true'"/>
     <CallTarget Targets="SL2Test" Condition="'$(BuildSL2)'=='true'"/>
@@ -358,6 +370,12 @@
     <Exec Command='NLogC.UnitTests.exe' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\x86" />
     <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0" 
+          Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
+  </Target>
+
+  <Target Name="NetFx45Test">
+    <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5" 
           Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
   </Target>
 

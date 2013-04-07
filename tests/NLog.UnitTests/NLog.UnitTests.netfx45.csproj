@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FE067913-E9A8-41F0-89FA-C1126F8FB6A8}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>NLog.UnitTests</AssemblyName>
+    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NLog.UnitTests</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <SignAssembly>true</SignAssembly>
+    <NoWarn>1591</NoWarn>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\src\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <BaseAddress>285212672</BaseAddress>
+    <DefineConstants>TRACE;DEBUG;NET4_5;WCF_SUPPORTED</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <OutputPath>..\..\build\bin\Debug\.NET Framework 4.5\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <BaseAddress>285212672</BaseAddress>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkName>.NET Framework 4.5</TargetFrameworkName>
+    <DefineConstants>NET4_5;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\src\packages\Castle.Core.3.1.0\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FakeItEasy">
+      <HintPath>..\..\src\packages\FakeItEasy.1.7.4626.65\lib\NET40\FakeItEasy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Abstractions">
+      <HintPath>..\..\src\packages\System.IO.Abstractions.1.4.0.32\lib\net35\System.IO.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiTests.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AsyncHelperTests.cs" />
+    <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
+    <Compile Include="Conditions\ConditionParserTests.cs" />
+    <Compile Include="Config\CaseSensitivityTests.cs" />
+    <Compile Include="Config\ConfigurationItemFactoryTests.cs" />
+    <Compile Include="Config\CultureInfoTests.cs" />
+    <Compile Include="Config\ExtensionTests.cs" />
+    <Compile Include="Config\IncludeTests.cs" />
+    <Compile Include="Config\InternalLoggingTests.cs" />
+    <Compile Include="Config\RuleConfigurationTests.cs" />
+    <Compile Include="Config\TargetConfigurationTests.cs" />
+    <Compile Include="Config\VariableTests.cs" />
+    <Compile Include="ConfigFileLocatorTests.cs" />
+    <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
+    <Compile Include="Filters\APITests.cs" />
+    <Compile Include="Filters\ConditionBasedFilterTests.cs" />
+    <Compile Include="Filters\WhenContainsTests.cs" />
+    <Compile Include="Filters\WhenEqualTests.cs" />
+    <Compile Include="Filters\WhenNotContainsTests.cs" />
+    <Compile Include="Filters\WhenNotEqualTests.cs" />
+    <Compile Include="GetLoggerTests.cs" />
+    <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
+    <Compile Include="LayoutRenderers\BaseDirTests.cs" />
+    <Compile Include="LayoutRenderers\CallSiteTests.cs" />
+    <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
+    <Compile Include="LayoutRenderers\CounterTests.cs" />
+    <Compile Include="LayoutRenderers\DateTests.cs" />
+    <Compile Include="LayoutRenderers\EnvironmentTests.cs" />
+    <Compile Include="LayoutRenderers\EventContextTests.cs" />
+    <Compile Include="LayoutRenderers\EventPropertiesTests.cs" />
+    <Compile Include="LayoutRenderers\ExceptionTests.cs" />
+    <Compile Include="LayoutRenderers\FileContentsTests.cs" />
+    <Compile Include="LayoutRenderers\GDCTests.cs" />
+    <Compile Include="LayoutRenderers\IdentityTests.cs" />
+    <Compile Include="LayoutRenderers\LiteralTests.cs" />
+    <Compile Include="LayoutRenderers\Log4JXmlTests.cs" />
+    <Compile Include="LayoutRenderers\LoggerNameTests.cs" />
+    <Compile Include="LayoutRenderers\LogLevelTests.cs" />
+    <Compile Include="LayoutRenderers\LongDateTests.cs" />
+    <Compile Include="LayoutRenderers\MDCTests.cs" />
+    <Compile Include="LayoutRenderers\MessageTests.cs" />
+    <Compile Include="LayoutRenderers\NDCTests.cs" />
+    <Compile Include="LayoutRenderers\RegistryTests.cs" />
+    <Compile Include="LayoutRenderers\Rot13Tests.cs" />
+    <Compile Include="LayoutRenderers\ShortDateTests.cs" />
+    <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
+    <Compile Include="LayoutRenderers\TimeTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\CachedTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\JsonEncodeTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\OnExceptionTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\WhenEmptyTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\WhenTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\XmlEncodeTests.cs" />
+    <Compile Include="Layouts\CsvLayoutTests.cs" />
+    <Compile Include="Layouts\SimpleLayoutOutputTests.cs" />
+    <Compile Include="Layouts\SimpleLayoutParserTests.cs" />
+    <Compile Include="Layouts\ThreadAgnosticTests.cs" />
+    <Compile Include="LogFactoryTests.cs" />
+    <Compile Include="LoggerTests.cs" />
+    <Compile Include="LogLevelTests.cs" />
+    <Compile Include="LogManagerTests.cs" />
+    <Compile Include="LogReceiverService\LogReceiverForwardingServiceTests.cs" />
+    <Compile Include="LogReceiverService\LogReceiverServiceTests.cs" />
+    <Compile Include="NLogTestBase.cs" />
+    <Compile Include="NLogTraceListenerTests.cs" />
+    <Compile Include="NUnitAdapter.cs" />
+    <Compile Include="ProcessRunner.cs" />
+    <Compile Include="RegressionTests.cs" />
+    <Compile Include="RoutingTests.cs" />
+    <Compile Include="SourceCodeTests.cs" />
+    <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
+    <Compile Include="Targets\ConsoleTargetTests.cs" />
+    <Compile Include="Targets\DatabaseTargetTests.cs" />
+    <Compile Include="Targets\EventLogTests.cs" />
+    <Compile Include="Targets\FileTargetTests.cs" />
+    <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
+    <Compile Include="Targets\MailTargetTests.cs" />
+    <Compile Include="Targets\NetworkTargetTests.cs" />
+    <Compile Include="Targets\RichTextBoxTargetTests.cs" />
+    <Compile Include="Targets\TargetTests.cs" />
+    <Compile Include="Targets\Wrappers\AsyncRequestQueueTests.cs" />
+    <Compile Include="Targets\Wrappers\AsyncTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\AutoFlushTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\BufferingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\FallbackGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\FilteringTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\PostFilteringTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\RandomizeGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\RepeatingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\RetryingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\RoundRobinGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\SplitGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ConfigFiles\included.nlog" />
+    <Content Include="ConfigFiles\main.nlog" />
+    <Content Include="ConfigFiles\referencemissingfile.nlog" />
+    <Content Include="ConfigFiles\referencemissingfileignored.nlog" />
+    <Content Include="ProjectFileInfo.xml" />
+    <Content Include="Properties\AppManifest.xml" />
+    <Content Include="Properties\OutOfBrowserSettings.xml" />
+    <Content Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NLogTests.snk" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.netfx45.csproj">
+      <Project>{A961A1F9-1024-4446-BF9E-A923137340B8}</Project>
+      <Name>NLog.Extended.netfx45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NLog\NLog.netfx45.csproj">
+      <Project>{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}</Project>
+      <Name>NLog.netfx45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleExtensions\SampleExtensions.netfx45.csproj">
+      <Project>{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}</Project>
+      <Name>SampleExtensions.netfx45</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+</Project>
