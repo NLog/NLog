@@ -51,7 +51,6 @@ namespace NLog.UnitTests
     using System.Threading;
 
 #if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
-    using System.IO.Abstractions;
     using FakeItEasy;
     using NLog.Internal.Fakeables;
 
@@ -60,67 +59,6 @@ namespace NLog.UnitTests
     [TestFixture]
     public class LogFactoryTests : NLogTestBase
     {
-#if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
-        [Test]
-        public void Configuration_PrivateBinPathIsNull_DoesNotThrow()
-        {
-            var fakeAppDomain = A.Fake<IAppDomain>();
-            A.CallTo(() => fakeAppDomain.PrivateBinPath).Returns(null);
-            LogFactory.CurrentAppDomain = fakeAppDomain;
-
-            var fakeFileSystem = A.Fake<IFileSystem>();
-            var factory = new LogFactory(fakeFileSystem);
-
-            var dummy = factory.Configuration;
-        }
-        
-        [Test]
-        public void Configuration_WithPrivateBinPath_CheckIfConfigFileExistsInPrivateBinPath()
-        {
-            const string AnyDirectory = "C:\\any\\";
-            var fakeAppDomain = A.Fake<IAppDomain>();
-            A.CallTo(() => fakeAppDomain.PrivateBinPath).Returns(new[] { AnyDirectory });
-            LogFactory.CurrentAppDomain = fakeAppDomain;
-
-            var fakeFileSystem = A.Fake<IFileSystem>();
-            var factory = new LogFactory(fakeFileSystem);
-
-            var dummy = factory.Configuration;
-
-            A.CallTo(() => fakeFileSystem.File.Exists(Path.Combine(AnyDirectory, "NLog.config"))).MustHaveHappened();
-        }
-        
-        [Test]
-        public void Configuration_WithMultiplePrivateBinPath_CheckIfConfigFileExistsInPrivateBinPaths()
-        {
-            const string AnyDirectory = "C:\\any\\";
-            const string SomethingDirectory = "C:\\something\\";
-            var fakeAppDomain = A.Fake<IAppDomain>();
-            A.CallTo(() => fakeAppDomain.PrivateBinPath).Returns(new[] { AnyDirectory, SomethingDirectory });
-            LogFactory.CurrentAppDomain = fakeAppDomain;
-
-            var fakeFileSystem = A.Fake<IFileSystem>();
-            var factory = new LogFactory(fakeFileSystem);
-
-            var loggingConfiguration = factory.Configuration;
-
-            A.CallTo(() => fakeFileSystem.File.Exists(Path.Combine(AnyDirectory, "NLog.config"))).MustHaveHappened();
-            A.CallTo(() => fakeFileSystem.File.Exists(Path.Combine(SomethingDirectory, "NLog.config"))).MustHaveHappened();
-        }
-
-        [Test]
-        public void Configuration_WhenNLogAssemblyNotInGac_CheckIfConfigFileExistsNextToNLogAssembly()
-        {
-            var fakeFileSystem = A.Fake<IFileSystem>();
-            var factory = new LogFactory(fakeFileSystem);
-
-            var loggingConfiguration = factory.Configuration;
-
-            var expectedConfigurationPath = typeof (LogFactory).Assembly.Location + ".nlog";
-            A.CallTo(() => fakeFileSystem.File.Exists(expectedConfigurationPath)).MustHaveHappened();
-        }
-#endif
-
 #if !NET_CF
         [Test]
         public void Flush_DoNotThrowExceptionsAndTimeout_DoesNotThrow()

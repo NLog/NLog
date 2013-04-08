@@ -50,10 +50,6 @@ using NUnit.Framework;
 
 namespace NLog.UnitTests
 {
-#if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
-    using System.IO.Abstractions;
-#endif
-
     [TestFixture]
     public class ConfigFileLocatorTests
     {
@@ -317,9 +313,6 @@ class C1
                 Assert.IsFalse(results.Errors.HasWarnings);
                 Assert.IsFalse(results.Errors.HasErrors);
                 File.Copy(typeof (Logger).Assembly.Location, Path.Combine(directory, "NLog.dll"));
-#if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
-                File.Copy(typeof(IFileSystem).Assembly.Location, Path.Combine(directory, typeof(IFileSystem).Assembly.GetName().Name + ".dll"));
-#endif
             }
 
             return RunAndRedirectOutput(options.OutputAssembly);
