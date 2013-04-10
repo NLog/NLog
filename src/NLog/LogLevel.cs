@@ -118,7 +118,7 @@ namespace NLog
         /// <summary>
         /// Gets the ordinal of the log level.
         /// </summary>
-        internal int Ordinal
+        public int Ordinal
         {
             get { return this.ordinal; }
         }
