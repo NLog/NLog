@@ -210,6 +210,11 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool UseSystemNetMailSettings { get; set; }
 
+        /// <summary>
+        /// Gets or sets the priority used for sending mails.
+        /// </summary>
+        public Layout Priority { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method.")]
         internal virtual ISmtpClient CreateSmtpClient()
         {
@@ -404,7 +409,16 @@ namespace NLog.Targets
             msg.Subject = this.Subject.Render(logEvent).Trim();
             msg.BodyEncoding = this.Encoding;
             msg.IsBodyHtml = this.Html;
-            msg.Priority = MailPriority.Normal;
+
+            if (this.Priority != null)
+            {
+                var renderedPriority = this.Priority.Render(logEvent);
+                MailPriority mailPriority;
+                if (Enum.TryParse(renderedPriority, true, out mailPriority))
+                {
+                    msg.Priority = mailPriority;
+                }
+            }
         }
     }
 }
