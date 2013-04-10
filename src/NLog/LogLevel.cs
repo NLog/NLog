@@ -86,8 +86,12 @@ namespace NLog
         private readonly int ordinal;
         private readonly string name;
 
-        // to be changed into public in the future.
-        private LogLevel(string name, int ordinal)
+        /// <summary>
+        /// Initializes a new instance of <see cref="LogLevel"/>.
+        /// </summary>
+        /// <param name="name">The log level name.</param>
+        /// <param name="ordinal">The log level ordinal number.</param>
+        public LogLevel(string name, int ordinal)
         {
             this.name = name;
             this.ordinal = ordinal;
