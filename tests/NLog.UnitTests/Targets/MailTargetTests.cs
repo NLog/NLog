@@ -423,6 +423,62 @@ namespace NLog.UnitTests.Targets
             Assert.IsTrue(lines.Length == 3);
         }
 
+        [Test]
+        public void MailTarget_WithPriority_SendsMailWithPrioritySet()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@foo.com",
+                Subject = "Hello from NLog",
+                SmtpServer = "server1",
+                Priority = "high"
+            };
+            mmt.Initialize(null);
+            
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
+
+            var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
+            Assert.AreEqual(MailPriority.High, messageSent.Priority);
+        }
+        
+        [Test]
+        public void MailTarget_WithoutPriority_SendsMailWithNormalPriority()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@foo.com",
+                Subject = "Hello from NLog",
+                SmtpServer = "server1",
+            };
+            mmt.Initialize(null);
+            
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
+
+            var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
+            Assert.AreEqual(MailPriority.Normal, messageSent.Priority);
+        }
+        
+        [Test]
+        public void MailTarget_WithInvalidPriority_SendsMailWithNormalPriority()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@foo.com",
+                Subject = "Hello from NLog",
+                SmtpServer = "server1",
+                Priority = "invalidPriority"
+            };
+            mmt.Initialize(null);
+            
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
+
+            var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
+            Assert.AreEqual(MailPriority.Normal, messageSent.Priority);
+        }
+
         public class MockSmtpClient : ISmtpClient
         {
             public MockSmtpClient()
