@@ -234,6 +234,7 @@ namespace NLog.Internal.NetworkSenders
                     {
                         args = this.pendingRequests.Dequeue();
                         var asyncContinuation = (AsyncContinuation)args.UserToken;
+                        args.Dispose();
                         asyncContinuation(this.pendingError);
                     }
                 }
