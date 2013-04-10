@@ -413,10 +413,14 @@ namespace NLog.Targets
             if (this.Priority != null)
             {
                 var renderedPriority = this.Priority.Render(logEvent);
-                MailPriority mailPriority;
-                if (Enum.TryParse(renderedPriority, true, out mailPriority))
+                try
                 {
-                    msg.Priority = mailPriority;
+                    msg.Priority = (MailPriority)Enum.Parse(typeof(MailPriority), renderedPriority, true);
+                }
+                catch
+                {
+                    InternalLogger.Warn("Could not convert '{0}' to MailPriority, valid values are Low, Normal and High. Using normal priority as fallback.");
+                    msg.Priority = MailPriority.Normal;
                 }
             }
         }
