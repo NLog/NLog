@@ -248,20 +248,17 @@ namespace NLog.Internal.FileAppenders
 #endif
 
 #if !NET_CF && !SILVERLIGHT
-            if (AppDomain.CurrentDomain.IsFullyTrusted)
+            try
             {
-                try
+                if (PlatformDetector.IsDesktopWin32)
                 {
-                    if (PlatformDetector.IsDesktopWin32)
-                    {
-                        return this.WindowsCreateFile(this.FileName, allowConcurrentWrite);
-                    }
+                    return this.WindowsCreateFile(this.FileName, allowConcurrentWrite);
                 }
-                catch (SecurityException)
-                {
-                    InternalLogger.Debug("Could not use native Windows create file, falling back to managed filestream");
-                } 
             }
+            catch (SecurityException)
+            {
+                InternalLogger.Debug("Could not use native Windows create file, falling back to managed filestream");
+            } 
 #endif
 
             return new FileStream(
