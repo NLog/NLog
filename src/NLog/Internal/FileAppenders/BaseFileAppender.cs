@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Security;
+
 namespace NLog.Internal.FileAppenders
 {
     using System;
@@ -246,9 +248,19 @@ namespace NLog.Internal.FileAppenders
 #endif
 
 #if !NET_CF && !SILVERLIGHT
-            if (PlatformDetector.IsDesktopWin32)
+            if (AppDomain.CurrentDomain.IsFullyTrusted)
             {
-                return this.WindowsCreateFile(this.FileName, allowConcurrentWrite);
+                try
+                {
+                    if (PlatformDetector.IsDesktopWin32)
+                    {
+                        return this.WindowsCreateFile(this.FileName, allowConcurrentWrite);
+                    }
+                }
+                catch (SecurityException)
+                {
+                    InternalLogger.Debug("Could not use native Windows create file, falling back to managed filestream");
+                } 
             }
 #endif
 
