@@ -185,7 +185,14 @@ namespace NLog
                     if (this.config != null)
                     {
                         Dump(this.config);
-                        this.watcher.Watch(this.config.FileNamesToWatch);
+                        try
+                        {
+                            this.watcher.Watch(this.config.FileNamesToWatch);
+                        }
+                        catch (Exception exception)
+                        {
+                            InternalLogger.Warn("Cannot start file watching: {0}. File watching is disabled", exception);
+                        }
                     }
 #endif
                     if (this.config != null)
