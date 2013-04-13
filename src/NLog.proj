@@ -273,19 +273,6 @@
              ContinueOnError="$(IgnoreBuildFailures)" 
              StopOnFirstFailure="false"
              Condition="Exists('InstallNLogConfig\InstallNLogConfig%(TargetFramework.ProjectFileSuffix).csproj')" />
-
-    <CallTarget Targets="BuildNLogC" />
-  </Target>
-
-  <Target Name="BuildNLogC" Condition=" '$(BuildNetFX40)'=='true' ">
-    <MSBuild Projects="NLogC\NLogC.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=Win32" />
-    <MSBuild Projects="NLogC\NLogC.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=x64" />
-    <Copy SourceFiles="NLogC\NLogC.h;NLogC\NLogger.h" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\include" />
-  </Target>
-
-  <Target Name="BuildNLogCTests" DependsOnTargets="BuildNLogC" Condition=" '$(BuildNetFX40)'=='true' ">
-    <MSBuild Projects="..\tests\NLogC.UnitTests\NLogC.UnitTests.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=Win32" />
-    <MSBuild Projects="..\tests\NLogC.UnitTests\NLogC.UnitTests.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=x64" />
   </Target>
 
   <Target Name="BuildTests">
@@ -304,7 +291,6 @@
              StopOnFirstFailure="false" />
     <CallTarget Targets="BuildTestResultSummaryTool" />
     <CallTarget Targets="BuildSLTestRunner" />
-    <CallTarget Targets="BuildNLogCTests" />
     <CallTarget Targets="BuildComApiTests" />
   </Target>
  
@@ -349,7 +335,6 @@
   <Target Name="RunNightlyTests">
     <Exec Command="$(BaseOutputDirectory)\bin\CreateTestUsers.cmd" IgnoreExitCode="true" />
     <CallTarget Targets="DeleteTrxFiles" />
-    <Exec Command='NLogC.UnitTests.exe' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\x86" />
     <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0" 
           Condition="Exists('$(MSTest10)')" />
@@ -375,10 +360,6 @@
   </Target>
 
   <Target Name="NetFx40Test">
-    <!-- run both 32 and 64 bit versions of NLogC unit tests -->
-
-    <!-- <Exec Command='NLogC.UnitTests.exe' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\amd64" /> -->
-    <Exec Command='NLogC.UnitTests.exe' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\x86" />
     <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0" 
           Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
@@ -758,7 +739,6 @@ File.WriteAllText(Path, content);
     <DirectoriesToCleanup Include="Docs\Working" />
     <DirectoriesToCleanup Include="TestResults" />
     <ProjectsToCleanup Include="NLog" />
-    <ProjectsToCleanup Include="NLogC" />
     <ProjectsToCleanup Include="Doc" />
     <ProjectsToCleanup Include="..\tests\NLog.AsyncBenchmark" />
     <ProjectsToCleanup Include="..\tests\NLog.Benchmark" />
@@ -767,7 +747,6 @@ File.WriteAllText(Path, content);
     <ProjectsToCleanup Include="..\tests\NLog.UnitTests" />
     <ProjectsToCleanup Include="..\tests\NLog.UnitTests.Web" />
     <ProjectsToCleanup Include="..\tests\NLog.VBTest" />
-    <ProjectsToCleanup Include="..\tests\NLogC.Tests" />
     <ProjectsToCleanup Include="..\tools\SilverlightConsoleRunner" />
     <ProjectsToCleanup Include="..\tools\MakeNLogXSD" />
     <ProjectsToCleanup Include="..\tools\DeployNetCF" />
