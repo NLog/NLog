@@ -41,6 +41,9 @@ namespace NLog.Internal
     using System.Security;
     using System.Text;
 
+#if !NET2_0 && !NETCF2_0 && !NETCF3_5 && !SILVERLIGHT2
+    [SecuritySafeCritical]
+#endif
     internal static class NativeMethods
     {
         // obtains user token
