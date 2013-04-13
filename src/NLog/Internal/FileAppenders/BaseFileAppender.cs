@@ -45,6 +45,7 @@ namespace NLog.Internal.FileAppenders
     /// <summary>
     /// Base class for optimized file appenders.
     /// </summary>
+    [SecuritySafeCritical]
     internal abstract class BaseFileAppender : IDisposable
     {
         private readonly Random random = new Random();

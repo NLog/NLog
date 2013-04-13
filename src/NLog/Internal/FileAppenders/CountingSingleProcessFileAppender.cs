@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Security;
+
 namespace NLog.Internal.FileAppenders
 {
     using System;
@@ -40,6 +42,7 @@ namespace NLog.Internal.FileAppenders
     /// Implementation of <see cref="BaseFileAppender"/> which caches 
     /// file information.
     /// </summary>
+    [SecuritySafeCritical]
     internal class CountingSingleProcessFileAppender : BaseFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();

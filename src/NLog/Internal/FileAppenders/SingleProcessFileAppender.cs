@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Security;
+
 namespace NLog.Internal.FileAppenders
 {
     using System;
@@ -40,6 +42,7 @@ namespace NLog.Internal.FileAppenders
     /// <summary>
     /// Optimized single-process file appender which keeps the file open for exclusive write.
     /// </summary>
+    [SecuritySafeCritical]    
     internal class SingleProcessFileAppender : BaseFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();

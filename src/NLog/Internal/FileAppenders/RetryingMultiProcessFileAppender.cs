@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Security;
+
 namespace NLog.Internal.FileAppenders
 {
     using System;
@@ -40,6 +42,7 @@ namespace NLog.Internal.FileAppenders
     /// Multi-process and multi-host file appender which attempts
     /// to get exclusive write access and retries if it's not available.
     /// </summary>
+    [SecuritySafeCritical]
     internal class RetryingMultiProcessFileAppender : BaseFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
