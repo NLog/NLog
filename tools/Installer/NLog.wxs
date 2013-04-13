@@ -420,31 +420,6 @@
     <?ifdef Include_NetFx40 ?>
     <DirectoryRef Id="NETFX40_DIR" FileSource="$(var.NLogBuildPath)\.NET Framework 4.0">
     
-      <Directory Id="NETFX40_NLOGC_DIR" Name="NLogC" FileSource="$(var.NLogBuildPath)\.NET Framework 4.0\NLogC">
-         <Directory Id="NetFx40_NLogC_x86_Dir" Name="x86" FileSource="$(var.NLogBuildPath)\.NET Framework 4.0\NLogC\x86">
-            <Component Id="NetFx40_NLogC_x86" Guid="bb6e831b-236e-380b-d8d9-c2acaf0f8cf4">
-              <File Id="NetFx40_NLogC_x86.dll" Name="NLogC.dll" Vital="yes" KeyPath="yes" />
-              <File Id="NetFx40_NLogC_x86.pdb" Name="NLogC.pdb" />
-              <File Id="NetFx40_NLogC_x86.lib" Name="NLogC.lib" />
-              <File Id="NetFx40_NLogC_x86.exp" Name="NLogC.exp" />
-            </Component>
-         </Directory>
-         <Directory Id="NetFx40_NLogC_x64_Dir" Name="x64" FileSource="$(var.NLogBuildPath)\.NET Framework 4.0\NLogC\amd64">
-            <Component Id="NetFx40_NLogC_x64" Guid="36ffcaa7-3160-3da8-482b-a600ba0dce2c">
-              <File Id="NetFx40_NLogC_x64.dll" Name="NLogC.dll" Vital="yes" KeyPath="yes" />
-              <File Id="NetFx40_NLogC_x64.pdb" Name="NLogC.pdb" />
-              <File Id="NetFx40_NLogC_x64.lib" Name="NLogC.lib" />
-              <File Id="NetFx40_NLogC_x64.exp" Name="NLogC.exp" />
-            </Component>
-         </Directory>
-         <Directory Id="NetFx40_NLogC_Include_Dir" Name="include">
-            <Component Id="NetFx40_NLogC_Include" Guid="d56afa97-cd74-3a8a-b085-546576d60758">
-              <File Id="NetFx40_NLogC.h" Name="NLogC.h" Vital="yes" KeyPath="yes" />
-              <File Id="NetFx40_NLogger.h" Name="NLogger.h" />
-            </Component>
-         </Directory>
-      </Directory>
-    
       <Component Id="NetFx40_Binaries" Guid="952d0e68-0411-3dab-5475-b62268911bd8">
         <File Id="NetFx40_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
         <File Id="NetFx40_NLog.xml" Name="NLog.xml" />
