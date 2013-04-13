@@ -42,7 +42,9 @@ namespace NLog.Internal.FileAppenders
     /// Implementation of <see cref="BaseFileAppender"/> which caches 
     /// file information.
     /// </summary>
+#if !NET2_0 && !NETCF2_0 && !NETCF3_5 && !SILVERLIGHT2
     [SecuritySafeCritical]
+#endif
     internal class CountingSingleProcessFileAppender : BaseFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();

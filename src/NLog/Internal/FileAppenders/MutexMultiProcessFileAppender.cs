@@ -53,7 +53,9 @@ namespace NLog.Internal.FileAppenders
     /// On Win32 we need to maintain some synchronization between processes
     /// (global named mutex is used for this)
     /// </remarks>
+#if !NET2_0 && !NETCF2_0 && !NETCF3_5 && !SILVERLIGHT2
     [SecuritySafeCritical]
+#endif
     internal class MutexMultiProcessFileAppender : BaseFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
