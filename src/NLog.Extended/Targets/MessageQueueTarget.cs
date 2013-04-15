@@ -38,8 +38,8 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Messaging;
     using System.Text;
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// Writes log message to the specified message queue handled by MSMQ.
@@ -77,8 +77,10 @@ namespace NLog.Targets
         /// </remarks>
         public MessageQueueTarget()
         {
+            this.MessageQueueProxy = new MessageQueueProxy();
             this.Label = "NLog";
-            this.Encoding = System.Text.Encoding.UTF8;
+            this.Encoding = Encoding.UTF8;
+            this.CheckIfQueueExists = true;
         }
 
         /// <summary>
@@ -124,10 +126,20 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets a value indicating whether to use the XML format when serializing message.
+        /// This will also disable creating queues.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultValue(false)]
         public bool UseXmlEncoding { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to check if a queue exists before writing to it.
+        /// </summary>
+        /// <docgen category='Layout Options' order='11' />
+        [DefaultValue(true)]
+        public bool CheckIfQueueExists { get; set; }
+        
+        internal MessageQueueProxy MessageQueueProxy { get; set; }
 
         /// <summary>
         /// Writes the specified logging event to a queue specified in the Queue 
@@ -141,28 +153,25 @@ namespace NLog.Targets
                 return;
             }
 
-            string queue = this.Queue.Render(logEvent);
+            var queue = this.Queue.Render(logEvent);
 
-            if (!MessageQueue.Exists(queue))
+            if (this.CheckIfQueueExists)
             {
-                if (this.CreateQueueIfNotExists)
+                if (!IsFormatNameSyntax(queue) && !this.MessageQueueProxy.Exists(queue))
                 {
-                    MessageQueue.Create(queue);
-                }
-                else
-                {
-                    return;
+                    if (this.CreateQueueIfNotExists)
+                    {
+                        this.MessageQueueProxy.Create(queue);
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
 
-            using (MessageQueue mq = new MessageQueue(queue))
-            {
-                Message msg = this.PrepareMessage(logEvent);
-                if (msg != null)
-                {
-                    mq.Send(msg);
-                }
-            }
+            var msg = this.PrepareMessage(logEvent);
+            this.MessageQueueProxy.Send(queue, msg);
         }
 
         /// <summary>
@@ -177,7 +186,7 @@ namespace NLog.Targets
         /// </remarks>
         protected virtual Message PrepareMessage(LogEventInfo logEvent)
         {
-            Message msg = new Message();
+            var msg = new Message();
             if (this.Label != null)
             {
                 msg.Label = this.Label.Render(logEvent);
@@ -192,12 +201,43 @@ namespace NLog.Targets
             }
             else
             {
-                byte[] dataBytes = this.Encoding.GetBytes(this.Layout.Render(logEvent));
+                var dataBytes = this.Encoding.GetBytes(this.Layout.Render(logEvent));
 
                 msg.BodyStream.Write(dataBytes, 0, dataBytes.Length);
             }
 
             return msg;
+        }
+
+        private static bool IsFormatNameSyntax(string queue)
+        {
+            return queue.ToLowerInvariant().IndexOf('=') != -1;
+        }
+    }
+
+    internal class MessageQueueProxy
+    {
+        public virtual bool Exists(string queue)
+        {
+            return MessageQueue.Exists(queue);
+        }
+
+        public virtual void Create(string queue)
+        {
+            MessageQueue.Create(queue);
+        }
+
+        public virtual void Send(string queue, Message message)
+        {
+            if (message == null)
+            {
+                return;
+            }
+
+            using (var mq = new MessageQueue(queue))
+            {
+                mq.Send(message);
+            }
         }
     }
 }
