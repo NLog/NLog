@@ -193,6 +193,11 @@ namespace NLog.LayoutRenderers
                 xtw.WriteAttributeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture));
 
                 xtw.WriteElementString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
+                if (logEvent.Exception != null)
+                {
+                    xtw.WriteElementString("log4j", "throwable", dummyNamespace, logEvent.Exception.ToString());
+                }
+
                 if (this.IncludeNdc)
                 {
                     xtw.WriteElementString("log4j", "NDC", dummyNamespace, string.Join(this.NdcItemSeparator, NestedDiagnosticsContext.GetAllMessages()));
