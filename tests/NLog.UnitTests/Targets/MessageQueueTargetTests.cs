@@ -140,37 +140,37 @@ namespace NLog.UnitTests.Targets
             target.Initialize(null);
             return target;
         }
-    }
 
-    internal class MessageQueueTestProxy : MessageQueueProxy
-    {
-        public IList<Message> SentMessages { get; private set; }
-
-        public bool QueueExists { get; set; }
-
-        public bool QueueCreated { get; private set; }
-
-        public bool QueueExistsCalled { get; private set; }
-
-        public MessageQueueTestProxy()
+        internal class MessageQueueTestProxy : MessageQueueProxy
         {
-            this.SentMessages = new List<Message>();
-        }
+            public IList<Message> SentMessages { get; private set; }
 
-        public override bool Exists(string queue)
-        {
-            this.QueueExistsCalled = true;
-            return this.QueueExists;
-        }
+            public bool QueueExists { get; set; }
 
-        public override void Create(string queue)
-        {
-            this.QueueCreated = true;
-        }
+            public bool QueueCreated { get; private set; }
 
-        public override void Send(string queue, Message message)
-        {
-            SentMessages.Add(message);
+            public bool QueueExistsCalled { get; private set; }
+
+            public MessageQueueTestProxy()
+            {
+                this.SentMessages = new List<Message>();
+            }
+
+            public override bool Exists(string queue)
+            {
+                this.QueueExistsCalled = true;
+                return this.QueueExists;
+            }
+
+            public override void Create(string queue)
+            {
+                this.QueueCreated = true;
+            }
+
+            public override void Send(string queue, Message message)
+            {
+                SentMessages.Add(message);
+            }
         }
     }
 }
