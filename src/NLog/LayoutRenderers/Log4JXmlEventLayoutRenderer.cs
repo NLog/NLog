@@ -214,35 +214,39 @@ namespace NLog.LayoutRenderers
                 if (this.IncludeCallSite || this.IncludeSourceInfo)
                 {
                     System.Diagnostics.StackFrame frame = logEvent.UserStackFrame;
-                    MethodBase methodBase = frame.GetMethod();
-                    Type type = methodBase.DeclaringType;
-
-                    xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
-                    if (type != null)
+                    if (frame != null)
                     {
-                        xtw.WriteAttributeString("class", type.FullName);
-                    }
+                        MethodBase methodBase = frame.GetMethod();
+                        Type type = methodBase.DeclaringType;
 
-                    xtw.WriteAttributeString("method", methodBase.ToString());
-#if !SILVERLIGHT
-                    if (this.IncludeSourceInfo)
-                    {
-                        xtw.WriteAttributeString("file", frame.GetFileName());
-                        xtw.WriteAttributeString("line", frame.GetFileLineNumber().ToString(CultureInfo.InvariantCulture));
-                    }
-#endif
-                    xtw.WriteEndElement();
-
-                    if (this.IncludeNLogData)
-                    {
-                        xtw.WriteElementString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
-                        xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
+                        xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
                         if (type != null)
                         {
-                            xtw.WriteAttributeString("assembly", type.Assembly.FullName);
+                            xtw.WriteAttributeString("class", type.FullName);
                         }
 
+                        xtw.WriteAttributeString("method", methodBase.ToString());
+#if !SILVERLIGHT
+                        if (this.IncludeSourceInfo)
+                        {
+                            xtw.WriteAttributeString("file", frame.GetFileName());
+                            xtw.WriteAttributeString("line", frame.GetFileLineNumber().ToString(CultureInfo.InvariantCulture));
+                        }
+#endif
                         xtw.WriteEndElement();
+
+                        if (this.IncludeNLogData)
+                        {
+                            xtw.WriteElementString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
+                            xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
+                            if (type != null)
+                            {
+                                xtw.WriteAttributeString("assembly", type.Assembly.FullName);
+                            }
+
+                            xtw.WriteEndElement();
+                        }
+                        
                     }
                 }
 #endif
