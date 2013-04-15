@@ -106,12 +106,23 @@ namespace NLog.UnitTests.Targets
             Assert.AreEqual(1, messageQueueTestProxy.SentMessages.Count);
         }
 
-        private static MessageQueueTarget CreateTarget(MessageQueueProxy messageQueueTestProxy, bool createQueue)
+        [Test]
+        public void FormatQueueName_Write_DoesNotCheckIfQueueExists()
+        {
+            var messageQueueTestProxy = new MessageQueueTestProxy();
+            var target = CreateTarget(messageQueueTestProxy, false, "DIRECT=http://test.com/MSMQ/queue");
+            
+            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
+
+            Assert.IsFalse(messageQueueTestProxy.QueueExistsCalled);
+        }
+
+        private static MessageQueueTarget CreateTarget(MessageQueueProxy messageQueueTestProxy, bool createQueue, string queueName = "Test")
         {
             var target = new MessageQueueTarget
                          {
                              MessageQueueProxy = messageQueueTestProxy,
-                             Queue = "Test",
+                             Queue = queueName,
                              CreateQueueIfNotExists = createQueue,
                          };
             target.Initialize(null);
@@ -127,6 +138,8 @@ namespace NLog.UnitTests.Targets
 
         public bool QueueCreated { get; private set; }
 
+        public bool QueueExistsCalled { get; private set; }
+
         public MessageQueueTestProxy()
         {
             this.SentMessages = new List<Message>();
@@ -134,6 +147,7 @@ namespace NLog.UnitTests.Targets
 
         public override bool Exists(string queue)
         {
+            this.QueueExistsCalled = true;
             return this.QueueExists;
         }
 

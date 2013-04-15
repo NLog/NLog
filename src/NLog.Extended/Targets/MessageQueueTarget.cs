@@ -146,7 +146,7 @@ namespace NLog.Targets
 
             var queue = this.Queue.Render(logEvent);
 
-            if (!this.MessageQueueProxy.Exists(queue))
+            if (!IsFormatNameSyntax(queue) && !this.MessageQueueProxy.Exists(queue))
             {
                 if (this.CreateQueueIfNotExists)
                 {
@@ -196,6 +196,11 @@ namespace NLog.Targets
 
             return msg;
         }
+
+        private static bool IsFormatNameSyntax(string queue)
+        {
+            return queue.ToLowerInvariant().IndexOf('=') != -1;
+        }
     }
 
     internal class MessageQueueProxy
@@ -212,12 +217,14 @@ namespace NLog.Targets
 
         public virtual void Send(string queue, Message message)
         {
+            if (message == null)
+            {
+                return;
+            }
+
             using (var mq = new MessageQueue(queue))
             {
-                if (message != null)
-                {
-                    mq.Send(message);
-                }
+                mq.Send(message);
             }
         }
     }
