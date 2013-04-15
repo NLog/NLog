@@ -78,7 +78,7 @@ namespace NLog.Targets
         public MessageQueueTarget()
         {
             this.Label = "NLog";
-            this.Encoding = System.Text.Encoding.UTF8;
+            this.Encoding = Encoding.UTF8;
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace NLog.Targets
                 return;
             }
 
-            string queue = this.Queue.Render(logEvent);
+            var queue = this.Queue.Render(logEvent);
 
             if (!MessageQueue.Exists(queue))
             {
@@ -155,9 +155,9 @@ namespace NLog.Targets
                 }
             }
 
-            using (MessageQueue mq = new MessageQueue(queue))
+            using (var mq = new MessageQueue(queue))
             {
-                Message msg = this.PrepareMessage(logEvent);
+                var msg = this.PrepareMessage(logEvent);
                 if (msg != null)
                 {
                     mq.Send(msg);
@@ -177,7 +177,7 @@ namespace NLog.Targets
         /// </remarks>
         protected virtual Message PrepareMessage(LogEventInfo logEvent)
         {
-            Message msg = new Message();
+            var msg = new Message();
             if (this.Label != null)
             {
                 msg.Label = this.Label.Render(logEvent);
@@ -192,7 +192,7 @@ namespace NLog.Targets
             }
             else
             {
-                byte[] dataBytes = this.Encoding.GetBytes(this.Layout.Render(logEvent));
+                var dataBytes = this.Encoding.GetBytes(this.Layout.Render(logEvent));
 
                 msg.BodyStream.Write(dataBytes, 0, dataBytes.Length);
             }
