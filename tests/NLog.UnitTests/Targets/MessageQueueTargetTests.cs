@@ -117,13 +117,25 @@ namespace NLog.UnitTests.Targets
             Assert.IsFalse(messageQueueTestProxy.QueueExistsCalled);
         }
 
-        private static MessageQueueTarget CreateTarget(MessageQueueProxy messageQueueTestProxy, bool createQueue, string queueName = "Test")
+        [Test]
+        public void DoNotCheckIfQueueExists_Write_DoesNotCheckIfQueueExists()
+        {
+            var messageQueueTestProxy = new MessageQueueTestProxy();
+            var target = CreateTarget(messageQueueTestProxy, false, checkIfQueueExists: false);
+
+            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
+
+            Assert.IsFalse(messageQueueTestProxy.QueueExistsCalled);
+        }
+
+        private static MessageQueueTarget CreateTarget(MessageQueueProxy messageQueueTestProxy, bool createQueue, string queueName = "Test", bool checkIfQueueExists = true)
         {
             var target = new MessageQueueTarget
                          {
                              MessageQueueProxy = messageQueueTestProxy,
                              Queue = queueName,
                              CreateQueueIfNotExists = createQueue,
+                             CheckIfQueueExists = checkIfQueueExists,
                          };
             target.Initialize(null);
             return target;

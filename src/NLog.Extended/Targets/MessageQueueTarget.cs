@@ -80,6 +80,7 @@ namespace NLog.Targets
             this.MessageQueueProxy = new MessageQueueProxy();
             this.Label = "NLog";
             this.Encoding = Encoding.UTF8;
+            this.CheckIfQueueExists = true;
         }
 
         /// <summary>
@@ -125,11 +126,19 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets a value indicating whether to use the XML format when serializing message.
+        /// This will also disable creating queues.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [DefaultValue(false)]
         public bool UseXmlEncoding { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to check if a queue exists before writing to it.
+        /// </summary>
+        /// <docgen category='Layout Options' order='11' />
+        [DefaultValue(true)]
+        public bool CheckIfQueueExists { get; set; }
+        
         internal MessageQueueProxy MessageQueueProxy { get; set; }
 
         /// <summary>
@@ -146,15 +155,18 @@ namespace NLog.Targets
 
             var queue = this.Queue.Render(logEvent);
 
-            if (!IsFormatNameSyntax(queue) && !this.MessageQueueProxy.Exists(queue))
+            if (this.CheckIfQueueExists)
             {
-                if (this.CreateQueueIfNotExists)
+                if (!IsFormatNameSyntax(queue) && !this.MessageQueueProxy.Exists(queue))
                 {
-                    this.MessageQueueProxy.Create(queue);
-                }
-                else
-                {
-                    return;
+                    if (this.CreateQueueIfNotExists)
+                    {
+                        this.MessageQueueProxy.Create(queue);
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
 
