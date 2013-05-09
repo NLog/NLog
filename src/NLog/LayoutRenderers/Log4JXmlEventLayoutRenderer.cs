@@ -245,24 +245,21 @@ namespace NLog.LayoutRenderers
                             }
 
                             xtw.WriteEndElement();
+
+                            xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
+                            foreach (var contextProperty in logEvent.Properties)
+                            {
+                                xtw.WriteStartElement("nlog", "data", dummyNLogNamespace);
+                                xtw.WriteAttributeString("name", Convert.ToString(contextProperty.Key, CultureInfo.InvariantCulture));
+                                xtw.WriteAttributeString("value", Convert.ToString(contextProperty.Value, CultureInfo.InvariantCulture));
+                                xtw.WriteEndElement();
+                            }
+                            xtw.WriteEndElement();
                         }
                         
                     }
                 }
 #endif
-                if (this.IncludeNLogData)
-                {
-                    xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
-                    foreach (var contextProperty in logEvent.Properties)
-                    {
-                        xtw.WriteStartElement("nlog", "data", dummyNLogNamespace);
-                        xtw.WriteAttributeString("name", Convert.ToString(contextProperty.Key, CultureInfo.InvariantCulture));
-                        xtw.WriteAttributeString("value", Convert.ToString(contextProperty.Value, CultureInfo.InvariantCulture));
-                        xtw.WriteEndElement();
-                    }
-
-                    xtw.WriteEndElement();
-                }
 
                 xtw.WriteStartElement("log4j", "properties", dummyNamespace);
                 if (this.IncludeMdc)
