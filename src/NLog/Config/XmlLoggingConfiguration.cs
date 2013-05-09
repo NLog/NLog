@@ -406,8 +406,15 @@ namespace NLog.Config
         {
             loggerElement.AssertName("logger");
 
+            var namePattern = loggerElement.GetOptionalAttribute("name", "*");
+            var enabled = loggerElement.GetOptionalBooleanAttribute("enabled", true);
+            if (!enabled)
+            {
+                InternalLogger.Debug("The logger named '{0}' are disabled");
+                return;
+            }
+
             var rule = new LoggingRule();
-            string namePattern = loggerElement.GetOptionalAttribute("name", "*");
             string appendTo = loggerElement.GetOptionalAttribute("appendTo", null);
             if (appendTo == null)
             {
