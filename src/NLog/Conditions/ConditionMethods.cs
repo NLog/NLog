@@ -1,5 +1,6 @@
 // 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2011 Zany Ants Limited <opensource@zanyants.com>
 // 
 // All rights reserved.
 // 
@@ -49,9 +50,23 @@ namespace NLog.Conditions
         /// <param name="secondValue">The second value.</param>
         /// <returns><b>true</b> when two objects are equal, <b>false</b> otherwise.</returns>
         [ConditionMethod("equals")]
-        public static bool Equals2(object firstValue, object secondValue)
+        public static bool Equals2(object firstValue, object secondValue )
         {
             return firstValue.Equals(secondValue);
+        }
+
+        /// <summary>
+        /// Compares two strings for equality.
+        /// </summary>
+        /// <param name="firstValue">The first string.</param>
+        /// <param name="secondValue">The second string.</param>
+        /// <param name="ignoreCase">Optional. If <c>true</c>, case is ignored; if <c>false</c> (default), case is significant.</param>
+        /// <returns><b>true</b> when two strings are equal, <b>false</b> otherwise.</returns>
+        [ConditionMethod( "strequals" )]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not intended or expected to be called from an incompatible language." )]
+        public static bool Equals2(string firstValue, string secondValue, bool ignoreCase = false)
+        {
+            return firstValue.Equals( secondValue, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal );
         }
 
         /// <summary>
@@ -59,11 +74,13 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="haystack">The first string.</param>
         /// <param name="needle">The second string.</param>
+        /// <param name="ignoreCase">Optional. If <c>true</c> (default), case is ignored; if <c>false</c>, case is significant.</param>
         /// <returns><b>true</b> when the second string is a substring of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("contains")]
-        public static bool Contains(string haystack, string needle)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not intended or expected to be called from an incompatible language." )]
+        public static bool Contains( string haystack, string needle, bool ignoreCase = true )
         {
-            return haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase) >= 0;
+            return haystack.IndexOf( needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal ) >= 0;
         }
 
         /// <summary>
@@ -71,11 +88,13 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="haystack">The first string.</param>
         /// <param name="needle">The second string.</param>
+        /// <param name="ignoreCase">Optional. If <c>true</c> (default), case is ignored; if <c>false</c>, case is significant.</param>
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("starts-with")]
-        public static bool StartsWith(string haystack, string needle)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not intended or expected to be called from an incompatible language." )]
+        public static bool StartsWith( string haystack, string needle, bool ignoreCase = true )
         {
-            return haystack.StartsWith(needle, StringComparison.OrdinalIgnoreCase);
+            return haystack.StartsWith( needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal );
         }
 
         /// <summary>
@@ -83,11 +102,13 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="haystack">The first string.</param>
         /// <param name="needle">The second string.</param>
+        /// <param name="ignoreCase">Optional. If <c>true</c> (default), case is ignored; if <c>false</c>, case is significant.</param>
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("ends-with")]
-        public static bool EndsWith(string haystack, string needle)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not intended or expected to be called from an incompatible language." )]
+        public static bool EndsWith( string haystack, string needle, bool ignoreCase = true )
         {
-            return haystack.EndsWith(needle, StringComparison.OrdinalIgnoreCase);
+            return haystack.EndsWith( needle, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal );
         }
 
         /// <summary>
