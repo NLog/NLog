@@ -1,5 +1,6 @@
 // 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2011 Zany Ants Limited <opensource@zanyants.com>
 // 
 // All rights reserved.
 // 
@@ -72,15 +73,41 @@ namespace NLog.Conditions
                 actualParameterCount++;
             }
 
-            if (formalParameters.Length != actualParameterCount)
-            {
-                string message = string.Format(
-                    CultureInfo.InvariantCulture,
-                    "Condition method '{0}' expects {1} parameters, but passed {2}.",
-                    conditionMethodName,
-                    formalParameters.Length,
-                    actualParameterCount);
+            // Count the number of required and optional parameters
+            int requiredParametersCount = 0;
+            int optionalParametersCount = 0;
 
+            foreach ( var param in formalParameters )
+            {
+                if ( param.IsOptional )
+                    ++optionalParametersCount;
+                else
+                    ++requiredParametersCount;
+            }
+
+            if ( !( ( actualParameterCount >= requiredParametersCount ) && ( actualParameterCount <= formalParameters.Length ) ) )
+            {
+                string message;
+
+                if ( optionalParametersCount > 0 )
+                {
+                    message = string.Format(
+                        CultureInfo.InvariantCulture,
+                        "Condition method '{0}' requires between {1} and {2} parameters, but passed {3}.",
+                        conditionMethodName,
+                        requiredParametersCount,
+                        formalParameters.Length,
+                        actualParameterCount );
+                }
+                else
+                {
+                    message = string.Format(
+                        CultureInfo.InvariantCulture,
+                        "Condition method '{0}' requires {1} parameters, but passed {2}.",
+                        conditionMethodName,
+                        requiredParametersCount,
+                        actualParameterCount );
+                }
                 InternalLogger.Error(message);
                 throw new ConditionParseException(message);
             }
@@ -142,7 +169,13 @@ namespace NLog.Conditions
                 callParameters[0] = context;
             }
 
-            return this.MethodInfo.Invoke(null, callParameters);
+            return this.MethodInfo.DeclaringType.InvokeMember( 
+                MethodInfo.Name, 
+                BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding, 
+                null, 
+                null, 
+                callParameters,
+                CultureInfo.InvariantCulture );
         }
     }
 }
