@@ -174,8 +174,11 @@ namespace NLog.Conditions
                 BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding, 
                 null, 
                 null, 
-                callParameters,
-                CultureInfo.InvariantCulture );
+                callParameters
+#if !SILVERLIGHT
+                , CultureInfo.InvariantCulture
+#endif
+                );
         }
     }
 }
