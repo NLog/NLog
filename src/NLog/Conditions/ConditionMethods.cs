@@ -1,6 +1,5 @@
 // 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
-// Copyright (c) 2011 Zany Ants Limited <opensource@zanyants.com>
 // 
 // All rights reserved.
 // 
