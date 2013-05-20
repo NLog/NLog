@@ -215,6 +215,13 @@ namespace NLog.Targets
         /// </summary>
         public Layout Priority { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether NewLine characters in the body should be replaced with <br/> tags.
+        /// </summary>
+        /// <remarks>Only happens when <see cref="Html"/> is set to true.</remarks>
+        [DefaultValue(false)]
+        public bool ReplaceNewlineWithBrTagInHtml { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method.")]
         internal virtual ISmtpClient CreateSmtpClient()
         {
@@ -283,7 +290,7 @@ namespace NLog.Targets
                 {
                     this.SetupMailMessage(msg, lastEvent);
                     msg.Body = bodyBuffer.ToString();
-                    if (msg.IsBodyHtml)
+                    if (msg.IsBodyHtml && ReplaceNewlineWithBrTagInHtml)
                     {
                         msg.Body = msg.Body.Replace(EnvironmentHelper.NewLine, "<br/>");
                     }
