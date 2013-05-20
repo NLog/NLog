@@ -409,7 +409,8 @@ namespace NLog.UnitTests.Targets
                 Subject = "Hello from NLog",
                 SmtpServer = "server1",
                 Body = "${level}${newline}${logger}${newline}${message}",
-                Html = true
+                Html = true,
+                ReplaceNewlineWithBrTagInHtml = true
             };
 
             mmt.Initialize(null);
