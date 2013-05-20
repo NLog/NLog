@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Runtime.InteropServices.ComTypes;
+
 namespace NLog.Conditions
 {
     using System;
@@ -65,7 +67,9 @@ namespace NLog.Conditions
         /// <returns><b>true</b> when two strings are equal, <b>false</b> otherwise.</returns>
         [ConditionMethod( "strequals" )]
         [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked." )]
-        public static bool Equals2( string firstValue, string secondValue, [Optional
+        public static bool Equals2( string firstValue, string secondValue,
+#if !WINDOWS_PHONE
+            [Optional
 #if !SILVERLIGHT
             , DefaultParameterValue( false )] bool ignoreCase )
 #else
@@ -80,6 +84,9 @@ namespace NLog.Conditions
             bool ic = ignoreCase;
 #endif
             return firstValue.Equals( secondValue, ic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal );
+#else
+            return firstValue.Equals(secondValue, StringComparison.Ordinal);
+#endif
         }
 
         /// <summary>
@@ -91,7 +98,9 @@ namespace NLog.Conditions
         /// <returns><b>true</b> when the second string is a substring of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("contains")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked." )]
-        public static bool Contains( string haystack, string needle, [Optional
+        public static bool Contains( string haystack, string needle,
+#if !WINDOWS_PHONE            
+            [Optional
 #if !SILVERLIGHT
             , DefaultParameterValue( true )] bool ignoreCase )
 #else
@@ -106,6 +115,9 @@ namespace NLog.Conditions
             bool ic = ignoreCase;
 #endif
             return haystack.IndexOf( needle, ic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal ) >= 0;
+#else
+            return haystack.IndexOf(needle, StringComparison.Ordinal) >= 0;
+#endif
         }
 
         /// <summary>
@@ -117,7 +129,9 @@ namespace NLog.Conditions
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("starts-with")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked." )]
-        public static bool StartsWith( string haystack, string needle, [Optional
+        public static bool StartsWith( string haystack, string needle,
+#if !WINDOWS_PHONE
+            [Optional
 #if !SILVERLIGHT
             , DefaultParameterValue( true )] bool ignoreCase )
 #else
@@ -132,6 +146,9 @@ namespace NLog.Conditions
             bool ic = ignoreCase;
 #endif
             return haystack.StartsWith( needle, ic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal );
+#else
+            return haystack.StartsWith(needle, StringComparison.Ordinal);
+#endif
         }
 
         /// <summary>
@@ -143,7 +160,9 @@ namespace NLog.Conditions
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("ends-with")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked." )]
-        public static bool EndsWith( string haystack, string needle, [Optional
+        public static bool EndsWith( string haystack, string needle, 
+#if !WINDOWS_PHONE
+            [Optional
 #if !SILVERLIGHT
             , DefaultParameterValue( true )] bool ignoreCase )
 #else
@@ -158,6 +177,9 @@ namespace NLog.Conditions
             bool ic = ignoreCase;
 #endif
             return haystack.EndsWith( needle, ic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal );
+#else
+            return haystack.EndsWith(needle, StringComparison.Ordinal);
+#endif
         }
 
         /// <summary>
