@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Runtime.InteropServices.ComTypes;
-
 namespace NLog.Conditions
 {
     using System;
