@@ -65,26 +65,24 @@ namespace NLog.Conditions
         /// <returns><b>true</b> when two strings are equal, <b>false</b> otherwise.</returns>
         [ConditionMethod( "strequals" )]
         [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked." )]
-        public static bool Equals2( string firstValue, string secondValue,
-#if !WINDOWS_PHONE
-            [Optional
-#if !SILVERLIGHT
-            , DefaultParameterValue( false )] bool ignoreCase )
+#if SILVERLIGHT
+        public static bool Equals2( string firstValue, string secondValue, [Optional] object ignoreCase)
+#elif WINDOWS_PHONE
+        public static bool Equals2( string firstValue, string secondValue)
 #else
-            ] object ignoreCase )
+        public static bool Equals2( string firstValue, string secondValue, [Optional, DefaultParameterValue(false)] bool ignoreCase)
 #endif
         {
 #if SILVERLIGHT
             bool ic = false;
             if ( ignoreCase != null && ignoreCase is bool )
                 ic = ( bool ) ignoreCase;
+#elif WINDOWS_PHONE
+            bool ic = false;
 #else
             bool ic = ignoreCase;
 #endif
             return firstValue.Equals( secondValue, ic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal );
-#else
-            return firstValue.Equals(secondValue, StringComparison.Ordinal);
-#endif
         }
 
         /// <summary>
@@ -96,26 +94,24 @@ namespace NLog.Conditions
         /// <returns><b>true</b> when the second string is a substring of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("contains")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked." )]
-        public static bool Contains( string haystack, string needle,
-#if !WINDOWS_PHONE            
-            [Optional
-#if !SILVERLIGHT
-            , DefaultParameterValue( true )] bool ignoreCase )
+#if SILVERLIGHT
+        public static bool Contains( string haystack, string needle, [Optional] object ignoreCase)
+#elif WINDOWS_PHONE
+        public static bool Contains( string haystack, string needle)
 #else
-            ] object ignoreCase )
+        public static bool Contains( string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
 #endif
         {
 #if SILVERLIGHT
             bool ic = true;
             if ( ignoreCase != null && ignoreCase is bool )
                 ic = ( bool ) ignoreCase;
+#elif WINDOWS_PHONE
+            bool ic = true;
 #else
             bool ic = ignoreCase;
 #endif
             return haystack.IndexOf( needle, ic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal ) >= 0;
-#else
-            return haystack.IndexOf(needle, StringComparison.Ordinal) >= 0;
-#endif
         }
 
         /// <summary>
@@ -127,26 +123,24 @@ namespace NLog.Conditions
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("starts-with")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked." )]
-        public static bool StartsWith( string haystack, string needle,
-#if !WINDOWS_PHONE
-            [Optional
-#if !SILVERLIGHT
-            , DefaultParameterValue( true )] bool ignoreCase )
+#if SILVERLIGHT
+        public static bool StartsWith( string haystack, string needle, [Optional] object ignoreCase)
+#elif WINDOWS_PHONE
+        public static bool StartsWith( string haystack, string needle)
 #else
-            ] object ignoreCase )
+        public static bool StartsWith( string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
 #endif
         {
 #if SILVERLIGHT
             bool ic = true;
             if ( ignoreCase != null && ignoreCase is bool )
                 ic = ( bool ) ignoreCase;
+#elif WINDOWS_PHONE
+            bool ic = true;
 #else
             bool ic = ignoreCase;
 #endif
             return haystack.StartsWith( needle, ic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal );
-#else
-            return haystack.StartsWith(needle, StringComparison.Ordinal);
-#endif
         }
 
         /// <summary>
@@ -158,26 +152,24 @@ namespace NLog.Conditions
         /// <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         [ConditionMethod("ends-with")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked." )]
-        public static bool EndsWith( string haystack, string needle, 
-#if !WINDOWS_PHONE
-            [Optional
-#if !SILVERLIGHT
-            , DefaultParameterValue( true )] bool ignoreCase )
+#if SILVERLIGHT
+        public static bool EndsWith( string haystack, string needle, [Optional] object ignoreCase)
+#elif WINDOWS_PHONE
+        public static bool EndsWith( string haystack, string needle)
 #else
-            ] object ignoreCase )
+        public static bool EndsWith( string haystack, string needle, [Optional, DefaultParameterValue(true)] bool ignoreCase)
 #endif
         {
 #if SILVERLIGHT
             bool ic = true;
             if ( ignoreCase != null && ignoreCase is bool )
                 ic = ( bool ) ignoreCase;
+#elif WINDOWS_PHONE
+            bool ic = true;
 #else
             bool ic = ignoreCase;
 #endif
             return haystack.EndsWith( needle, ic ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal );
-#else
-            return haystack.EndsWith(needle, StringComparison.Ordinal);
-#endif
         }
 
         /// <summary>
