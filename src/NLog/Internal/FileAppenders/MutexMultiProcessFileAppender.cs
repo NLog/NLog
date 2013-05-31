@@ -36,9 +36,12 @@
 namespace NLog.Internal.FileAppenders
 {
     using System;
-    using System.Globalization;
     using System.IO;
     using System.Security;
+    using System.Security.AccessControl;
+    using System.Security.Cryptography;
+    using System.Security.Principal;
+    using System.Text;
     using System.Threading;
     using NLog.Common;
 
@@ -72,7 +75,7 @@ namespace NLog.Internal.FileAppenders
         {
             try
             {
-                this.mutex = new Mutex(false, GetMutexName(fileName));
+                this.mutex = CreateSharableMutex(GetMutexName(fileName));
                 this.file = CreateFileStream(true);
             }
             catch
@@ -171,15 +174,51 @@ namespace NLog.Internal.FileAppenders
             return FileInfoHelper.Helper.GetFileInfo(FileName, this.file.SafeFileHandle.DangerousGetHandle(), out lastWriteTime, out fileLength);
         }
 
+        private static Mutex CreateSharableMutex(string name)
+        {
+            // Creates a mutex sharable by more than one process
+            var mutexSecurity = new MutexSecurity();
+            var everyoneSid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
+            mutexSecurity.AddAccessRule(new MutexAccessRule(everyoneSid, MutexRights.FullControl, AccessControlType.Allow));
+
+            // The constructor will either create new mutex or open
+            // an existing one, in a thread-safe manner
+            bool createdNew;
+            return new Mutex(false, name, out createdNew, mutexSecurity);
+        }
+
         private static string GetMutexName(string fileName)
         {
-            string canonicalName = Path.GetFullPath(fileName).ToUpper(CultureInfo.InvariantCulture);
+            // The global kernel object namespace is used so the mutex
+            // can be shared among processes in all sessions
+            const string mutexNamePrefix = @"Global\NLog-FileLock-";
+            const int maxMutexNameLength = 260;
 
-            canonicalName = canonicalName.Replace('\\', '_');
-            canonicalName = canonicalName.Replace('/', '_');
-            canonicalName = canonicalName.Replace(':', '_');
+            string canonicalName = Path.GetFullPath(fileName).ToLowerInvariant();
 
-            return "filelock-mutex-" + canonicalName;
+            // Mutex names must not contain a backslash, it's the namespace separator,
+            // but all other are OK
+            canonicalName = canonicalName.Replace('\\', '/');
+
+            // A mutex name must not exceed MAX_PATH (260) characters
+            if (mutexNamePrefix.Length + canonicalName.Length <= maxMutexNameLength)
+            {
+                return mutexNamePrefix + canonicalName;
+            }
+
+            // The unusual case of the path being too long; let's hash the canonical name,
+            // so it can be safely shortened and still remain unique
+            string hash;
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] bytes = md5.ComputeHash(Encoding.UTF8.GetBytes(canonicalName));
+                hash = Convert.ToBase64String(bytes);
+            }
+
+            // The hash makes the name unique, but also add the end of the path,
+            // so the end of the name tells us which file it is (for debugging)
+            int cutOffIndex = canonicalName.Length - (maxMutexNameLength - mutexNamePrefix.Length - hash.Length);
+            return mutexNamePrefix + hash + canonicalName.Substring(cutOffIndex);
         }
 
         /// <summary>
