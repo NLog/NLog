@@ -204,6 +204,7 @@ namespace NLog.Targets
             this.OpenFileCacheSize = 5;
             this.CreateDirs = true;
             this.dynamicArchiveFileHandler = new DynamicArchiveFileHandlerClass(MaxArchiveFiles);
+            this.ForceManaged = false;
         }
 
         /// <summary>
@@ -477,6 +478,12 @@ namespace NLog.Targets
                 dynamicArchiveFileHandler.MaxArchiveFileToKeep = value;
             }
         }
+
+        /// <summary>
+        /// Gets ors set a value indicating whether a managed file stream is forced, instead of used the native implementation.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool ForceManaged { get; set; }
 
         /// <summary>
         /// Gets or sets the way file archives are numbered. 
