@@ -253,7 +253,7 @@ namespace NLog.Internal.FileAppenders
 #if !NET_CF && !SILVERLIGHT && !MONO
             try
             {
-                if (PlatformDetector.IsDesktopWin32)
+                if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)
                 {
                     return this.WindowsCreateFile(this.FileName, allowConcurrentWrite);
                 }
