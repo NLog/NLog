@@ -52,6 +52,8 @@ namespace NLog.Internal.FileAppenders
 
         int BufferSize { get; }
 
+        bool ForceManaged { get; }
+
 #if !NET_CF && !SILVERLIGHT
         Win32FileAttributes FileAttributes { get; }
 #endif
