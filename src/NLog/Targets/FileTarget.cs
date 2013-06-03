@@ -1038,7 +1038,7 @@ namespace NLog.Targets
                 }
 
                 string ts = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
-                string ts2 = ev.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
+                string ts2 = ev.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
 
                 if (ts != ts2)
                 {
