@@ -373,6 +373,12 @@
     <Compile Include="Targets\Wrappers\SecurityLogOnType.cs" />
     <Compile Include="Targets\Wrappers\SplitGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
+    <Compile Include="Time\CachedNowTimeSource.cs" />
+    <Compile Include="Time\CachedTimeSource.cs" />
+    <Compile Include="Time\CachedUtcNowTimeSource.cs" />
+    <Compile Include="Time\NowTimeSource.cs" />
+    <Compile Include="Time\TimeSource.cs" />
+    <Compile Include="Time\UtcNowTimeSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
