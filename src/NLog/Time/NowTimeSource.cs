@@ -38,8 +38,14 @@ namespace NLog.Time
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// Current local time retrieved directly from DateTime.Now.
+    /// </summary>
     public class NowTimeSource : TimeSource
     {
+        /// <summary>
+        /// Gets current local time directly from DateTime.Now.
+        /// </summary>
         public override DateTime Time { get { return DateTime.Now; } }
     }
 }

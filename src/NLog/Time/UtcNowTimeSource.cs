@@ -38,8 +38,14 @@ namespace NLog.Time
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// Current UTC time retrieved directly from DateTime.UtcNow.
+    /// </summary>
     public class UtcNowTimeSource : TimeSource
     {
+        /// <summary>
+        /// Gets current UTC time directly from DateTime.UtcNow.
+        /// </summary>
         public override DateTime Time { get { return DateTime.UtcNow; } }
     }
 }

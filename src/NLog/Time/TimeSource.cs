@@ -38,12 +38,24 @@ namespace NLog.Time
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// Defines source of current time.
+    /// </summary>
     public abstract class TimeSource
     {
         private static TimeSource currentSource = new CachedNowTimeSource();
 
+        /// <summary>
+        /// Gets current time.
+        /// </summary>
         public abstract DateTime Time { get; }
 
+        /// <summary>
+        /// Gets or sets current global time source used in all log events.
+        /// </summary>
+        /// <remarks>
+        /// Default time source is <see cref="CachedNowTimeSource"/>.
+        /// </remarks>
         public static TimeSource Current
         {
             get { return currentSource; }

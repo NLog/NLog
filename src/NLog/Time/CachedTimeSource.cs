@@ -38,13 +38,22 @@ namespace NLog.Time
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// Fast time source that updates current time only once per tick (15.6 milliseconds).
+    /// </summary>
     public abstract class CachedTimeSource : TimeSource
     {
         private int lastTicks = -1;
         private DateTime lastTime = DateTime.MinValue;
 
+        /// <summary>
+        /// Gets raw uncached time from derived time source.
+        /// </summary>
         protected abstract DateTime FreshTime { get; }
 
+        /// <summary>
+        /// Gets current time cached for one system tick (15.6 milliseconds).
+        /// </summary>
         public override DateTime Time
         {
             get

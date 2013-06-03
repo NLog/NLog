@@ -38,8 +38,14 @@ namespace NLog.Time
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// Fast UTC time source that is updated once per tick (15.6 milliseconds).
+    /// </summary>
     public class CachedUtcNowTimeSource : CachedTimeSource
     {
+        /// <summary>
+        /// Gets uncached UTC time directly from DateTime.UtcNow.
+        /// </summary>
         protected override DateTime FreshTime { get { return DateTime.UtcNow; } }
     }
 }

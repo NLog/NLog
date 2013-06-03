@@ -38,8 +38,14 @@ namespace NLog.Time
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// Fast local time source that is updated once per tick (15.6 milliseconds).
+    /// </summary>
     public class CachedNowTimeSource : CachedTimeSource
     {
+        /// <summary>
+        /// Gets uncached local time directly from DateTime.Now.
+        /// </summary>
         protected override DateTime FreshTime { get { return DateTime.Now; } }
     }
 }
