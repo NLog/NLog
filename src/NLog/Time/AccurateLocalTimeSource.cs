@@ -39,14 +39,14 @@ namespace NLog.Time
     using System.Text;
 
     /// <summary>
-    /// Fast UTC time source that is updated once per tick (15.6 milliseconds).
+    /// Current local time retrieved directly from DateTime.Now.
     /// </summary>
-    [TimeSource("FastUTC")]
-    public class CachedUtcNowTimeSource : CachedTimeSource
+    [TimeSource("AccurateLocal")]
+    public class AccurateLocalTimeSource : TimeSource
     {
         /// <summary>
-        /// Gets uncached UTC time directly from DateTime.UtcNow.
+        /// Gets current local time directly from DateTime.Now.
         /// </summary>
-        protected override DateTime FreshTime { get { return DateTime.UtcNow; } }
+        public override DateTime Time { get { return DateTime.Now; } }
     }
 }

@@ -45,7 +45,7 @@ namespace NLog.Time
     [NLogConfigurationItem]
     public abstract class TimeSource
     {
-        private static TimeSource currentSource = new CachedNowTimeSource();
+        private static TimeSource currentSource = new FastLocalTimeSource();
 
         /// <summary>
         /// Gets current time.
@@ -56,7 +56,7 @@ namespace NLog.Time
         /// Gets or sets current global time source used in all log events.
         /// </summary>
         /// <remarks>
-        /// Default time source is <see cref="CachedNowTimeSource"/>.
+        /// Default time source is <see cref="FastLocalTimeSource"/>.
         /// </remarks>
         public static TimeSource Current
         {

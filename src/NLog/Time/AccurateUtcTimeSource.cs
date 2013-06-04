@@ -39,14 +39,14 @@ namespace NLog.Time
     using System.Text;
 
     /// <summary>
-    /// Current local time retrieved directly from DateTime.Now.
+    /// Current UTC time retrieved directly from DateTime.UtcNow.
     /// </summary>
-    [TimeSource("AccurateLocal")]
-    public class NowTimeSource : TimeSource
+    [TimeSource("AccurateUTC")]
+    public class AccurateUtcTimeSource : TimeSource
     {
         /// <summary>
-        /// Gets current local time directly from DateTime.Now.
+        /// Gets current UTC time directly from DateTime.UtcNow.
         /// </summary>
-        public override DateTime Time { get { return DateTime.Now; } }
+        public override DateTime Time { get { return DateTime.UtcNow; } }
     }
 }

@@ -53,31 +53,31 @@ namespace NLog.UnitTests
         [TearDown]
         public void TearDown()
         {
-            TimeSource.Current = new CachedNowTimeSource();
+            TimeSource.Current = new FastLocalTimeSource();
         }
 
         [Test]
         public void NowTest()
         {
-            TestTimeSource(new NowTimeSource(), DateTime.Now, DateTimeKind.Local);
+            TestTimeSource(new AccurateLocalTimeSource(), DateTime.Now, DateTimeKind.Local);
         }
 
         [Test]
         public void UtcNowTest()
         {
-            TestTimeSource(new UtcNowTimeSource(), DateTime.UtcNow, DateTimeKind.Utc);
+            TestTimeSource(new AccurateUtcTimeSource(), DateTime.UtcNow, DateTimeKind.Utc);
         }
 
         [Test]
         public void CachedNowTest()
         {
-            TestTimeSource(new CachedNowTimeSource(), DateTime.Now, DateTimeKind.Local);
+            TestTimeSource(new FastLocalTimeSource(), DateTime.Now, DateTimeKind.Local);
         }
 
         [Test]
         public void CachedUtcNowTest()
         {
-            TestTimeSource(new CachedUtcNowTimeSource(), DateTime.UtcNow, DateTimeKind.Utc);
+            TestTimeSource(new FastUtcTimeSource(), DateTime.UtcNow, DateTimeKind.Utc);
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace NLog.UnitTests
 
         void TestTimeSource(TimeSource source, DateTime expected, DateTimeKind kind)
         {
-            Assert.IsInstanceOfType(typeof(CachedNowTimeSource), TimeSource.Current);
+            Assert.IsInstanceOfType(typeof(FastLocalTimeSource), TimeSource.Current);
             TimeSource.Current = source;
             Assert.AreSame(source, TimeSource.Current);
             var evt = new LogEventInfo(LogLevel.Info, "logger", "msg");
