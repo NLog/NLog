@@ -96,6 +96,7 @@
     <Compile Include="Config\InternalLoggingTests.cs" />
     <Compile Include="Config\RuleConfigurationTests.cs" />
     <Compile Include="Config\TargetConfigurationTests.cs" />
+    <Compile Include="Config\TimeConfigurationTests.cs" />
     <Compile Include="Config\VariableTests.cs" />
     <Compile Include="ConfigFileLocatorTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Targets\Wrappers\RoundRobinGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\SplitGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
+    <Compile Include="TimeSourceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

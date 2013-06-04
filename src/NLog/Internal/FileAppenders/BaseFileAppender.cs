@@ -41,6 +41,7 @@ namespace NLog.Internal.FileAppenders
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Time;
 
     /// <summary>
     /// Base class for optimized file appenders.
@@ -61,7 +62,7 @@ namespace NLog.Internal.FileAppenders
         {
             this.CreateFileParameters = createParameters;
             this.FileName = fileName;
-            this.OpenTime = CurrentTimeGetter.Now;
+            this.OpenTime = TimeSource.Current.Time.ToLocalTime();
             this.LastWriteTime = DateTime.MinValue;
         }
 
@@ -139,7 +140,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         protected void FileTouched()
         {
-            this.LastWriteTime = CurrentTimeGetter.Now;
+            this.LastWriteTime = TimeSource.Current.Time.ToLocalTime();
         }
 
         /// <summary>

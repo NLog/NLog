@@ -42,6 +42,7 @@ namespace NLog.Config
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
+    using NLog.Time;
 
     /// <summary>
     /// Provides registration information for named items (targets, layouts, layout renderers, etc.) managed by NLog.
@@ -55,6 +56,7 @@ namespace NLog.Config
         private readonly Factory<Layout, LayoutAttribute> layouts;
         private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> conditionMethods;
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties;
+        private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
 
         /// <summary>
         /// Initializes static members of the <see cref="ConfigurationItemFactory"/> class.
@@ -77,6 +79,7 @@ namespace NLog.Config
             this.layouts = new Factory<Layout, LayoutAttribute>(this);
             this.conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>();
             this.ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
+            this.timeSources = new Factory<TimeSource, TimeSourceAttribute>(this);
             this.allFactories = new List<object>
             {
                 this.targets,
@@ -85,6 +88,7 @@ namespace NLog.Config
                 this.layouts,
                 this.conditionMethods,
                 this.ambientProperties,
+                this.timeSources,
             };
 
             foreach (var asm in assemblies)
@@ -149,6 +153,15 @@ namespace NLog.Config
         public INamedItemFactory<LayoutRenderer, Type> AmbientProperties
         {
             get { return this.ambientProperties; }
+        }
+
+        /// <summary>
+        /// Gets the time source factory.
+        /// </summary>
+        /// <value>The time source factory.</value>
+        public INamedItemFactory<TimeSource, Type> TimeSources
+        {
+            get { return this.timeSources; }
         }
 
         /// <summary>

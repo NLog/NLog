@@ -367,6 +367,13 @@
     <Compile Include="Targets\Wrappers\SecurityLogOnType.cs" />
     <Compile Include="Targets\Wrappers\SplitGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
+    <Compile Include="Time\AccurateLocalTimeSource.cs" />
+    <Compile Include="Time\AccurateUtcTimeSource.cs" />
+    <Compile Include="Time\CachedTimeSource.cs" />
+    <Compile Include="Time\FastLocalTimeSource.cs" />
+    <Compile Include="Time\FastUtcTimeSource.cs" />
+    <Compile Include="Time\TimeSource.cs" />
+    <Compile Include="Time\TimeSourceAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\NLog.ico" />

@@ -40,6 +40,7 @@ namespace NLog.Common
     using System.IO;
     using System.Text;
     using NLog.Internal;
+    using NLog.Time;
 
     /// <summary>
     /// NLog internal logger.
@@ -303,7 +304,7 @@ namespace NLog.Common
                 var builder = new StringBuilder(message.Length + 32);
                 if (IncludeTimestamp)
                 {
-                    builder.Append(CurrentTimeGetter.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
+                    builder.Append(TimeSource.Current.Time.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
                     builder.Append(" ");
                 }
 

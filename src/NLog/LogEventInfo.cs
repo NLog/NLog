@@ -43,6 +43,7 @@ namespace NLog
     using NLog.Common;
     using NLog.Internal;
     using NLog.Layouts;
+    using NLog.Time;
 
     /// <summary>
     /// Represents the logging event.
@@ -105,7 +106,7 @@ namespace NLog
         /// <param name="exception">Exception information.</param>
         public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception)
         {
-            this.TimeStamp = CurrentTimeGetter.Now;
+            this.TimeStamp = TimeSource.Current.Time;
             this.Level = level;
             this.LoggerName = loggerName;
             this.Message = message;

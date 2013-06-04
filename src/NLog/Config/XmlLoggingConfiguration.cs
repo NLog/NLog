@@ -48,6 +48,7 @@ namespace NLog.Config
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using NLog.Time;
 
     /// <summary>
     /// A class for configuring NLog through an XML configuration file 
@@ -382,6 +383,10 @@ namespace NLog.Config
 
                     case "RULES":
                         this.ParseRulesElement(el, this.LoggingRules);
+                        break;
+
+                    case "TIME":
+                        this.ParseTimeElement(el);
                         break;
 
                     default:
@@ -822,6 +827,20 @@ namespace NLog.Config
 
                 throw new NLogConfigurationException("Error when including: " + newFileName, exception);
             }
+        }
+
+        private void ParseTimeElement(NLogXmlElement timeElement)
+        {
+            timeElement.AssertName("time");
+            
+            string type = timeElement.GetRequiredAttribute("type");
+            
+            TimeSource newTimeSource = this.configurationItemFactory.TimeSources.CreateInstance(type);
+            
+            this.ConfigureObjectFromAttributes(newTimeSource, timeElement, true);
+        
+            InternalLogger.Info("Selecting time source {0}", newTimeSource);
+            TimeSource.Current = newTimeSource;
         }
 
         private void SetPropertyFromElement(object o, NLogXmlElement element)
