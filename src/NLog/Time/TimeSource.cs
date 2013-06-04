@@ -37,10 +37,12 @@ namespace NLog.Time
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// Defines source of current time.
     /// </summary>
+    [NLogConfigurationItem]
     public abstract class TimeSource
     {
         private static TimeSource currentSource = new CachedNowTimeSource();
@@ -60,6 +62,23 @@ namespace NLog.Time
         {
             get { return currentSource; }
             set { currentSource = value; }
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            var targetAttribute = (TimeSourceAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(TimeSourceAttribute));
+            if (targetAttribute != null)
+            {
+                return targetAttribute.Name + " (time source)";
+            }
+
+            return this.GetType().Name;
         }
     }
 }

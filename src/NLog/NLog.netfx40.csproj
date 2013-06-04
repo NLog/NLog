@@ -377,6 +377,7 @@
     <Compile Include="Time\CachedUtcNowTimeSource.cs" />
     <Compile Include="Time\NowTimeSource.cs" />
     <Compile Include="Time\TimeSource.cs" />
+    <Compile Include="Time\TimeSourceAttribute.cs" />
     <Compile Include="Time\UtcNowTimeSource.cs" />
   </ItemGroup>
   <ItemGroup>

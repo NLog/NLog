@@ -37,16 +37,21 @@ namespace NLog.Time
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
-    /// Fast UTC time source that is updated once per tick (15.6 milliseconds).
+    /// Marks class as a time source and assigns a name to it.
     /// </summary>
-    [TimeSource("FastUTC")]
-    public class CachedUtcNowTimeSource : CachedTimeSource
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class TimeSourceAttribute : NameBaseAttribute
     {
         /// <summary>
-        /// Gets uncached UTC time directly from DateTime.UtcNow.
+        /// Initializes a new instance of the <see cref="TimeSourceAttribute" /> class.
         /// </summary>
-        protected override DateTime FreshTime { get { return DateTime.UtcNow; } }
+        /// <param name="name">Name of the time source.</param>
+        public TimeSourceAttribute(string name)
+            : base(name)
+        {
+        }
     }
 }
