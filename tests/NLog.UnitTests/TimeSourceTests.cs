@@ -57,25 +57,25 @@ namespace NLog.UnitTests
         }
 
         [Test]
-        public void NowTest()
+        public void AccurateLocalTest()
         {
             TestTimeSource(new AccurateLocalTimeSource(), DateTime.Now, DateTimeKind.Local);
         }
 
         [Test]
-        public void UtcNowTest()
+        public void AccurateUtcTest()
         {
             TestTimeSource(new AccurateUtcTimeSource(), DateTime.UtcNow, DateTimeKind.Utc);
         }
 
         [Test]
-        public void CachedNowTest()
+        public void FastLocalTest()
         {
             TestTimeSource(new FastLocalTimeSource(), DateTime.Now, DateTimeKind.Local);
         }
 
         [Test]
-        public void CachedUtcNowTest()
+        public void FastUtcTest()
         {
             TestTimeSource(new FastUtcTimeSource(), DateTime.UtcNow, DateTimeKind.Utc);
         }
