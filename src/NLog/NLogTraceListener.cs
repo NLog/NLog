@@ -44,6 +44,7 @@ namespace NLog
     using System.Text;
     using System.Xml;
     using NLog.Internal;
+    using NLog.Time;
 
     /// <summary>
     /// TraceListener which routes all messages through NLog.
@@ -418,7 +419,7 @@ namespace NLog
             }
 #endif
 
-            ev.TimeStamp = CurrentTimeGetter.Now;
+            ev.TimeStamp = TimeSource.Current.Time;
             ev.Message = message;
             ev.Parameters = arguments;
             ev.Level = this.forceLogLevel ?? logLevel;
