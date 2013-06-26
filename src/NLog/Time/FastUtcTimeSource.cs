@@ -34,9 +34,6 @@
 namespace NLog.Time
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// Fast UTC time source that is updated once per tick (15.6 milliseconds).

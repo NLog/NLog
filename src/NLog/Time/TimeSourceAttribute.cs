@@ -34,9 +34,6 @@
 namespace NLog.Time
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using NLog.Config;
 
     /// <summary>
