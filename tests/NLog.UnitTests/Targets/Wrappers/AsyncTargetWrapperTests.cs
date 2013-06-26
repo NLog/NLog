@@ -313,6 +313,39 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.IsTrue(internalLog.StartsWith("Error Error in lazy writer timer procedure: System.NullReferenceException", StringComparison.Ordinal), internalLog);
         }
 
+        [Test]
+        public void FlushingMultipleTimesSimultaneous()
+        {
+            var asyncTarget = new AsyncTargetWrapper
+            {
+                TimeToSleepBetweenBatches = 2000,
+                WrappedTarget = new DebugTarget(),
+            };
+            asyncTarget.Initialize(null);
+
+            asyncTarget.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+
+            var firstContinuationCalled = false;
+            var secondContinuationCalled = false;
+            var firstContinuationResetEvent = new ManualResetEvent(false);
+            var secondContinuationResetEvent = new ManualResetEvent(false);
+            asyncTarget.Flush(ex =>
+            {
+                firstContinuationCalled = true;
+                firstContinuationResetEvent.Set();
+            });
+            asyncTarget.Flush(ex =>
+            {
+                secondContinuationResetEvent.Set();
+                secondContinuationCalled = true;
+            });
+
+            firstContinuationResetEvent.WaitOne(3000);
+            secondContinuationResetEvent.WaitOne(3000);
+            Assert.IsTrue(firstContinuationCalled);
+            Assert.IsTrue(secondContinuationCalled);
+        }
+
         class MyAsyncTarget : Target
         {
             public int FlushCount;
