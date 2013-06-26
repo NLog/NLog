@@ -38,6 +38,7 @@ namespace NLog.Targets.Wrappers
     using System.Threading;
     using Common;
     using Internal;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Provides asynchronous, buffered execution of target writes.
@@ -79,7 +80,8 @@ namespace NLog.Targets.Wrappers
     {
         private readonly object lockObject = new object();
         private Timer lazyWriterTimer;
-        private AsyncContinuation flushAllContinuation;
+        private readonly Queue<AsyncContinuation> flushAllContinuations = new Queue<AsyncContinuation>();
+        private readonly object continuationQueueLock = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
@@ -163,7 +165,10 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            this.flushAllContinuation = asyncContinuation;
+            lock (continuationQueueLock)
+            {
+                this.flushAllContinuations.Enqueue(asyncContinuation);
+            }
         }
 
         /// <summary>
@@ -238,37 +243,45 @@ namespace NLog.Targets.Wrappers
 
         private void ProcessPendingEvents(object state)
         {
+            AsyncContinuation[] continuations;
+            lock (this.continuationQueueLock)
+            {
+                continuations = this.flushAllContinuations.ToArray();
+            }
+
             try
             {
-                int count = this.BatchSize;
-                var continuation = Interlocked.Exchange(ref this.flushAllContinuation, null);
-                if (continuation != null)
+                foreach (var continuation in continuations)
                 {
-                    count = this.RequestQueue.RequestCount;
-                    InternalLogger.Trace("Flushing {0} events.", count);
-                }
-
-                if (this.RequestQueue.RequestCount == 0)
-                {
+                    int count = this.BatchSize;
                     if (continuation != null)
                     {
-                        continuation(null);
+                        count = this.RequestQueue.RequestCount;
+                        InternalLogger.Trace("Flushing {0} events.", count);
                     }
 
-                    return;
-                }
+                    if (this.RequestQueue.RequestCount == 0)
+                    {
+                        if (continuation != null)
+                        {
+                            continuation(null);
+                        }
 
-                AsyncLogEventInfo[] logEventInfos = this.RequestQueue.DequeueBatch(count);
+                        return;
+                    }
 
-                if (continuation != null)
-                {
-                    // write all events, then flush, then call the continuation
-                    this.WrappedTarget.WriteAsyncLogEvents(logEventInfos, ex => this.WrappedTarget.Flush(continuation));
-                }
-                else
-                {
-                    // just write all events
-                    this.WrappedTarget.WriteAsyncLogEvents(logEventInfos);
+                    AsyncLogEventInfo[] logEventInfos = this.RequestQueue.DequeueBatch(count);
+
+                    if (continuation != null)
+                    {
+                        // write all events, then flush, then call the continuation
+                        this.WrappedTarget.WriteAsyncLogEvents(logEventInfos, ex => this.WrappedTarget.Flush(continuation));
+                    }
+                    else
+                    {
+                        // just write all events
+                        this.WrappedTarget.WriteAsyncLogEvents(logEventInfos);
+                    }
                 }
             }
             catch (Exception exception)
