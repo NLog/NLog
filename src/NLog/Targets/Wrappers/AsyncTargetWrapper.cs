@@ -267,8 +267,6 @@ namespace NLog.Targets.Wrappers
                         {
                             continuation(null);
                         }
-
-                        return;
                     }
 
                     AsyncLogEventInfo[] logEventInfos = this.RequestQueue.DequeueBatch(count);
