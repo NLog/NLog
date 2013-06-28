@@ -111,6 +111,7 @@
     <BuildWP71 Condition="!Exists('$(WP71RefPath)')">false</BuildWP71>
     <BuildNetCF20 Condition="'$(NetCF20InstallRoot)' == ''">false</BuildNetCF20>
     <BuildNetCF35 Condition="'$(NetCF35InstallRoot)' == ''">false</BuildNetCF35>
+    <BuildNetCF35 Condition="!Exists('$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets')">false</BuildNetCF35>
     <BuildNetFX20 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v2.0.50727') == ''">false</BuildNetFX20>
     <BuildNetFX35 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v3.5') == ''">false</BuildNetFX35>
     <BuildNetFX40 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\$(DotNet4Version)') == ''">false</BuildNetFX40>
