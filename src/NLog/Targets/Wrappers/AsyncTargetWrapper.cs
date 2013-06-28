@@ -247,6 +247,7 @@ namespace NLog.Targets.Wrappers
             lock (this.continuationQueueLock)
             {
                 continuations = this.flushAllContinuations.ToArray();
+                this.flushAllContinuations.Clear();
             }
 
             try
