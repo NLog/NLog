@@ -55,7 +55,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkName>.NET Framework 4.5</TargetFrameworkName>
-    <DefineConstants>NET4_5;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
+    <DefineConstants>NET4_5;WCF_SUPPORTED;NUNIT;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
   </PropertyGroup>

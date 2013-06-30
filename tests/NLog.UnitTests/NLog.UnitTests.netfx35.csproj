@@ -50,7 +50,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkName>.NET Framework 3.5</TargetFrameworkName>
-    <DefineConstants>NET3_5;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
+    <DefineConstants>NET3_5;WCF_SUPPORTED;NUNIT;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
   </PropertyGroup>
