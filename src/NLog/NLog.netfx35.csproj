@@ -38,7 +38,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkName>.NET Framework 3.5</TargetFrameworkName>
-    <DefineConstants>NET3_5;WCF_SUPPORTED;CLIENT_SKU;NUNIT;$(DefineConstants)</DefineConstants>
+    <DefineConstants>NET3_5;WCF_SUPPORTED;CLIENT_SKU;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
     <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
