@@ -31,29 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-using System.Text;
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-using NLog.Layouts;
-using NLog.Config;
-#if SILVERLIGHT
-using System.Xml.Linq;
-#else
-using System.Xml;
-#endif
-
 namespace NLog.UnitTests
 {
     using System;
     using NLog.Internal;
     using NLog.Common;
+    using System.IO;
+    using System.Text;
+
+    using NLog.Layouts;
+    using NLog.Config;
+    using Xunit;
+#if SILVERLIGHT
+using System.Xml.Linq;
+#else
+    using System.Xml;
+#endif
 
     public abstract class NLogTestBase
     {
@@ -61,18 +54,16 @@ namespace NLog.UnitTests
         {
             var debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
 
-            Assert.IsNotNull(debugTarget, "Debug target '" + targetName + "' not found");
-            Assert.AreEqual(val, debugTarget.Counter, "Unexpected counter value on '" + targetName + "'");
+            Assert.NotNull(debugTarget);
+            Assert.Equal(val, debugTarget.Counter);
         }
 
         public void AssertDebugLastMessage(string targetName, string msg)
         {
             NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
 
-            // Console.WriteLine("lastmsg: {0}", debugTarget.LastMessage);
-
-            Assert.IsNotNull(debugTarget, "Debug target '" + targetName + "' not found");
-            Assert.AreEqual(msg, debugTarget.LastMessage, "Unexpected last message value on '" + targetName + "'");
+            Assert.NotNull(debugTarget);
+            Assert.Equal(msg, debugTarget.LastMessage);
         }
 
         public string GetDebugLastMessage(string targetName)
@@ -85,10 +76,10 @@ namespace NLog.UnitTests
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.Fail("File '" + fileName + "' doesn't exist.");
+                Assert.True(true, "File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
-            Assert.AreEqual((long)encodedBuf.Length, fi.Length, "File length is incorrect.");
+            Assert.Equal(encodedBuf.Length, fi.Length);
             byte[] buf = new byte[(int)fi.Length];
             using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {
@@ -97,7 +88,7 @@ namespace NLog.UnitTests
 
             for (int i = 0; i < buf.Length; ++i)
             {
-                Assert.AreEqual(encodedBuf[i], buf[i], "File contents are different at position: #" + i);
+                Assert.Equal(encodedBuf[i], buf[i]);
             }
         }
 
@@ -114,7 +105,7 @@ namespace NLog.UnitTests
             l.Initialize(null);
             string actual = l.Render(LogEventInfo.Create(LogLevel.Info, "loggername", "message"));
             l.Close();
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)

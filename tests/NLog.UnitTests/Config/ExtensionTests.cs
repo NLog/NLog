@@ -33,22 +33,13 @@
 
 namespace NLog.UnitTests.Config
 {
-    using System;
     using System.IO;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using MyExtensionNamespace;
     using NLog.Filters;
     using NLog.Layouts;
     using NLog.Targets;
+    using Xunit;
 
-    [TestFixture]
     public class ExtensionTests : NLogTestBase
     {
 #if !WINDOWS_PHONE
@@ -59,10 +50,10 @@ namespace NLog.UnitTests.Config
         private string extensionAssemblyFullPath1 = Path.GetFullPath("SampleExtensions.dll");
 #endif
         
-        [Test]
+        [Fact]
         public void ExtensionTest1()
         {
-            Assert.IsNotNull(typeof(FooLayout));
+            Assert.NotNull(typeof(FooLayout));
 
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
@@ -89,22 +80,22 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
             Target myTarget = configuration.FindTargetByName("t");
-            Assert.AreEqual("MyExtensionNamespace.MyTarget", myTarget.GetType().FullName);
+            Assert.Equal("MyExtensionNamespace.MyTarget", myTarget.GetType().FullName);
             
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
-            Assert.IsNotNull(layout);
-            Assert.AreEqual(1, layout.Renderers.Count);
-            Assert.AreEqual("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
+            Assert.NotNull(layout);
+            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
-            Assert.AreEqual("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
+            Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
 
-            Assert.AreEqual(1, configuration.LoggingRules[0].Filters.Count);
-            Assert.AreEqual("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
+            Assert.Equal(1, configuration.LoggingRules[0].Filters.Count);
+            Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 
-        [Test]
+        [Fact]
         public void ExtensionTest2()
         {
             var configuration = CreateConfigurationFromString(@"
@@ -133,25 +124,25 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
             Target myTarget = configuration.FindTargetByName("t");
-            Assert.AreEqual("MyExtensionNamespace.MyTarget", myTarget.GetType().FullName);
+            Assert.Equal("MyExtensionNamespace.MyTarget", myTarget.GetType().FullName);
 
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
-            Assert.IsNotNull(layout);
-            Assert.AreEqual(1, layout.Renderers.Count);
-            Assert.AreEqual("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
+            Assert.NotNull(layout);
+            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
-            Assert.AreEqual("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
+            Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
 
-            Assert.AreEqual(2, configuration.LoggingRules[0].Filters.Count);
-            Assert.AreEqual("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
+            Assert.Equal(2, configuration.LoggingRules[0].Filters.Count);
+            Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
             var cbf = configuration.LoggingRules[0].Filters[1] as ConditionBasedFilter;
-            Assert.IsNotNull(cbf);
-            Assert.AreEqual("(myrandom(10) == 3)", cbf.Condition.ToString());
+            Assert.NotNull(cbf);
+            Assert.Equal("(myrandom(10) == 3)", cbf.Condition.ToString());
         }
 
-        [Test]
+        [Fact]
         public void ExtensionWithPrefixTest()
         {
             var configuration = CreateConfigurationFromString(@"
@@ -179,26 +170,26 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
             Target myTarget = configuration.FindTargetByName("t");
-            Assert.AreEqual("MyExtensionNamespace.MyTarget", myTarget.GetType().FullName);
+            Assert.Equal("MyExtensionNamespace.MyTarget", myTarget.GetType().FullName);
 
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
-            Assert.IsNotNull(layout);
-            Assert.AreEqual(1, layout.Renderers.Count);
-            Assert.AreEqual("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
+            Assert.NotNull(layout);
+            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
-            Assert.AreEqual("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
+            Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
 
-            Assert.AreEqual(1, configuration.LoggingRules[0].Filters.Count);
-            Assert.AreEqual("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
+            Assert.Equal(1, configuration.LoggingRules[0].Filters.Count);
+            Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 #endif
 
-        [Test]
+        [Fact]
         public void ExtensionTest4()
         {
-            Assert.IsNotNull(typeof(FooLayout));
+            Assert.NotNull(typeof(FooLayout));
 
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
@@ -228,22 +219,22 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
             Target myTarget = configuration.FindTargetByName("t");
-            Assert.AreEqual("MyExtensionNamespace.MyTarget", myTarget.GetType().FullName);
+            Assert.Equal("MyExtensionNamespace.MyTarget", myTarget.GetType().FullName);
 
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
-            Assert.IsNotNull(layout);
-            Assert.AreEqual(1, layout.Renderers.Count);
-            Assert.AreEqual("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
+            Assert.NotNull(layout);
+            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
-            Assert.AreEqual("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
+            Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
 
-            Assert.AreEqual(1, configuration.LoggingRules[0].Filters.Count);
-            Assert.AreEqual("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
+            Assert.Equal(1, configuration.LoggingRules[0].Filters.Count);
+            Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 
-        [Test]
+        [Fact]
         public void CustomXmlNamespaceTest()
         {
             var configuration = CreateConfigurationFromString(@"
@@ -254,7 +245,7 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
             var d1Target = (DebugTarget)configuration.FindTargetByName("d");
-            Assert.IsNotNull(d1Target);
+            Assert.NotNull(d1Target);
         }
     }
 }

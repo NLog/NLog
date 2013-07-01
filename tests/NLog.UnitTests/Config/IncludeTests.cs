@@ -35,21 +35,12 @@ namespace NLog.UnitTests.Config
 {
     using System;
     using System.IO;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-    using ExpectedException = Microsoft.VisualStudio.TestTools.UnitTesting.ExpectedExceptionAttribute;
-#endif
     using NLog.Config;
+    using Xunit;
 
-    [TestFixture]
     public class IncludeTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void IncludeTest()
         {
 #if SILVERLIGHT
@@ -96,8 +87,7 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [Test]
-        [ExpectedException(typeof(NLogConfigurationException))]
+        [Fact]
         public void IncludeNotExistingTest()
         {
 #if SILVERLIGHT
@@ -118,7 +108,7 @@ namespace NLog.UnitTests.Config
 #endif
             try
             {
-                new XmlLoggingConfiguration(fileToLoad);
+                Assert.Throws<NLogConfigurationException>(() => new XmlLoggingConfiguration(fileToLoad));
             }
             finally
             {
@@ -129,7 +119,7 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [Test]
+        [Fact]
         public void IncludeNotExistingIgnoredTest()
         {
 #if SILVERLIGHT

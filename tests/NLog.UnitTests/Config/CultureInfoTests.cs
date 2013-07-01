@@ -34,34 +34,25 @@
 #if !NET_CF
 namespace NLog.UnitTests.Config
 {
-
-    using NUnit.Framework;
     using System.Globalization;
+    using Xunit;
 
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown = Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
-    [TestFixture]
     public class CultureInfoTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void DefaultCultureInfoIsCurrentCulture()
         {
             var configuration = CreateConfigurationFromString("<nlog></nlog>");
 
-            Assert.AreEqual(CultureInfo.CurrentCulture, configuration.DefaultCultureInfo);
+            Assert.Equal(CultureInfo.CurrentCulture, configuration.DefaultCultureInfo);
         }
         
-        [Test]
+        [Fact]
         public void WhenInvariantCultureDefinedThenDefaultCultureIsInvariantCulture()
         {
             var configuration = CreateConfigurationFromString("<nlog useInvariantCulture='true'></nlog>");
 
-            Assert.AreEqual(CultureInfo.InvariantCulture, configuration.DefaultCultureInfo);
+            Assert.Equal(CultureInfo.InvariantCulture, configuration.DefaultCultureInfo);
         }
     }
 }

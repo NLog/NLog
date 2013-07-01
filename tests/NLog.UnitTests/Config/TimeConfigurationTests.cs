@@ -34,55 +34,43 @@
 namespace NLog.UnitTests.Config
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using NLog.Time;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown = Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
+    using Xunit;
     
-    [TestFixture]
-    public class TimeConfigurationTests : NLogTestBase
+    public class TimeConfigurationTests : NLogTestBase, IDisposable
     {
-        [TearDown]
-        public void TearDown()
+        public void Dispose()
         {
             TimeSource.Current = new FastLocalTimeSource();
         }
 
-        [Test]
+        [Fact]
         public void DefaultTimeSourceTest()
         {
-            Assert.IsInstanceOfType(typeof(FastLocalTimeSource), TimeSource.Current);
+            Assert.IsType(typeof(FastLocalTimeSource), TimeSource.Current);
             CreateConfigurationFromString("<nlog />");
-            Assert.IsInstanceOfType(typeof(FastLocalTimeSource), TimeSource.Current);
+            Assert.IsType(typeof(FastLocalTimeSource), TimeSource.Current);
         }
 
-        [Test]
+        [Fact]
         public void AccurateLocalTest()
         {
             TestTimeSourceConfiguration<AccurateLocalTimeSource>("AccurateLocal");
         }
 
-        [Test]
+        [Fact]
         public void AccurateUtcTest()
         {
             TestTimeSourceConfiguration<AccurateUtcTimeSource>("AccurateUTC");
         }
 
-        [Test]
+        [Fact]
         public void FastLocalTest()
         {
             TestTimeSourceConfiguration<FastLocalTimeSource>("FastLocal");
         }
 
-        [Test]
+        [Fact]
         public void FastUtcTest()
         {
             TestTimeSourceConfiguration<FastUtcTimeSource>("FastUTC");
@@ -91,12 +79,12 @@ namespace NLog.UnitTests.Config
         void TestTimeSourceConfiguration<T>(string type)
             where T : TimeSource
         {
-            Assert.IsInstanceOfType(typeof(FastLocalTimeSource), TimeSource.Current);
+            Assert.IsType(typeof(FastLocalTimeSource), TimeSource.Current);
             CreateConfigurationFromString(@"
                 <nlog>
                     <time type='" + type + @"' />
                 </nlog>");
-            Assert.IsInstanceOfType(typeof(T), TimeSource.Current);
+            Assert.IsType(typeof(T), TimeSource.Current);
         }
     }
 }

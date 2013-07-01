@@ -33,19 +33,11 @@
 
 namespace NLog.UnitTests.Config
 {
-    using NUnit.Framework;
+    using Xunit;
 
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
-    [TestFixture]
     public class CaseSensitivityTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void LowerCaseTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -82,7 +74,7 @@ namespace NLog.UnitTests.Config
             AssertDebugCounter("debug", 4);
         }
 
-        [Test]
+        [Fact]
         public void UpperCaseTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
