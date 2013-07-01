@@ -53,7 +53,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkName>.NET Framework 2.0</TargetFrameworkName>
-    <DefineConstants>NET2_0;NUNIT;$(DefineConstants)</DefineConstants>
+    <DefineConstants>NET2_0;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
   </PropertyGroup>

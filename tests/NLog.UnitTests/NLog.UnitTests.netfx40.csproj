@@ -49,7 +49,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkName>.NET Framework 4.0</TargetFrameworkName>
-    <DefineConstants>NET4_0;WCF_SUPPORTED;NUNIT;$(DefineConstants)</DefineConstants>
+    <DefineConstants>NET4_0;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
   </PropertyGroup>

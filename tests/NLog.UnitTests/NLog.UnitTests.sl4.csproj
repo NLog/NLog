@@ -58,7 +58,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkName>Silverlight 4.0</TargetFrameworkName>
-    <DefineConstants>SILVERLIGHT;SILVERLIGHT4;WCF_SUPPORTED;NUNIT;$(DefineConstants)</DefineConstants>
+    <DefineConstants>SILVERLIGHT;SILVERLIGHT4;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
