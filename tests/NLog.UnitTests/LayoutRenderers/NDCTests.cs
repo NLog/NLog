@@ -31,28 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Reflection;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    using Xunit;
+
     public class NDCTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void NDCTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -96,7 +81,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " 0");
         }
 
-        [Test]
+        [Fact]
         public void NDCTopTestTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -141,7 +126,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
-        [Test]
+        [Fact]
         public void NDCTop1TestTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -170,7 +155,7 @@ namespace NLog.UnitTests.LayoutRenderers
                         NestedDiagnosticsContext.Push("kopytko");
                         LogManager.GetLogger("A").Debug("d");
                         AssertDebugLastMessage("debug", "kopytko d");
-                        Assert.AreEqual("kopytko", NestedDiagnosticsContext.Pop()); // manual pop
+                        Assert.Equal("kopytko", NestedDiagnosticsContext.Pop()); // manual pop
                         LogManager.GetLogger("A").Debug("c");
                         AssertDebugLastMessage("debug", "kota c");
                     }
@@ -182,16 +167,16 @@ namespace NLog.UnitTests.LayoutRenderers
             }
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
-            Assert.AreEqual(string.Empty, NestedDiagnosticsContext.Pop());
-            Assert.AreEqual(string.Empty, NestedDiagnosticsContext.TopMessage);
+            Assert.Equal(string.Empty, NestedDiagnosticsContext.Pop());
+            Assert.Equal(string.Empty, NestedDiagnosticsContext.TopMessage);
             NestedDiagnosticsContext.Push("zzz");
-            Assert.AreEqual("zzz", NestedDiagnosticsContext.TopMessage);
+            Assert.Equal("zzz", NestedDiagnosticsContext.TopMessage);
             NestedDiagnosticsContext.Clear();
-            Assert.AreEqual(string.Empty, NestedDiagnosticsContext.Pop());
-            Assert.AreEqual(string.Empty, NestedDiagnosticsContext.TopMessage);
+            Assert.Equal(string.Empty, NestedDiagnosticsContext.Pop());
+            Assert.Equal(string.Empty, NestedDiagnosticsContext.TopMessage);
         }
 
-        [Test]
+        [Fact]
         public void NDCBottomTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -235,7 +220,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " 0");
         }
 
-        [Test]
+        [Fact]
         public void NDCSeparatorTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

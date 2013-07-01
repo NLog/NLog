@@ -33,32 +33,17 @@
 
 #if !NET_CF
 
-using System;
-using System.Globalization;
-using System.Xml;
-using System.Reflection;
-using System.Diagnostics;
-using System.Threading;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    using System;
+    using System.Reflection;
+    using System.Threading;
+    using Xunit;
+
     public class CallSiteTests : NLogTestBase
     {
 #if !SILVERLIGHT
-        [Test]
+        [Fact]
         public void LineNumberTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -75,12 +60,12 @@ namespace NLog.UnitTests.LayoutRenderers
             string lastMessage = GetDebugLastMessage("debug");
             // There's a difference in handling line numbers between .NET and Mono
             // We're just interested in checking if it's above 100000
-            Assert.IsTrue(lastMessage.IndexOf("callsitetests.cs:10000", StringComparison.OrdinalIgnoreCase) >= 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
+            Assert.True(lastMessage.IndexOf("callsitetests.cs:10000", StringComparison.OrdinalIgnoreCase) >= 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
 #line default
         }
 #endif
 
-        [Test]
+        [Fact]
         public void MethodNameTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -97,7 +82,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
         }
 
-        [Test]
+        [Fact]
         public void ClassNameTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -114,7 +99,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + " msg");
         }
 
-        [Test]
+        [Fact]
         public void ClassNameWithPaddingTestTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -131,7 +116,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
 
-        [Test]
+        [Fact]
         public void MethodNameWithPaddingTestTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -147,7 +132,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "MethodNameWithPa msg");
         }
         
-        [Test]
+        [Fact]
         public void GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -163,7 +148,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame msg");
         }
         
-        [Test]
+        [Fact]
         public void GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -180,7 +165,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
         }
 
-        [Test]
+        [Fact]
         public void CleanMethodNamesOfAnonymousDelegatesTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -213,7 +198,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        [Test]
+        [Fact]
         public void DontCleanMethodNamesOfAnonymousDelegatesTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -243,11 +228,11 @@ namespace NLog.UnitTests.LayoutRenderers
             if (done == true)
             {
                 string lastMessage = GetDebugLastMessage("debug");
-                Assert.IsTrue(lastMessage.StartsWith("<DontCleanMethodNamesOfAnonymousDelegatesTest>"));
+                Assert.True(lastMessage.StartsWith("<DontCleanMethodNamesOfAnonymousDelegatesTest>"));
             }
         }
 
-        [Test]
+        [Fact]
         public void CleanClassNamesOfAnonymousDelegatesTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -280,7 +265,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        [Test]
+        [Fact]
         public void DontCleanClassNamesOfAnonymousDelegatesTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -310,7 +295,7 @@ namespace NLog.UnitTests.LayoutRenderers
             if (done == true)
             {
                 string lastMessage = GetDebugLastMessage("debug");
-                Assert.IsTrue(lastMessage.Contains("+<>"));
+                Assert.True(lastMessage.Contains("+<>"));
             }
         }
     }

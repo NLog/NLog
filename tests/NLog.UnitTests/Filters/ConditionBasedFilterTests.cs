@@ -33,27 +33,12 @@
 
 namespace NLog.UnitTests.Filters
 {
-    using System;
-    using System.Xml;
-    using System.Reflection;
-    using System.IO;
-
     using NLog;
-    using NLog.Config;
+    using Xunit;
 
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
-    [TestFixture]
     public class ConditionBasedFilterTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void WhenTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

@@ -42,20 +42,12 @@ namespace NLog.UnitTests.Internal.NetworkSenders
     using System.Net.Sockets;
     using System.Text;
     using System.Threading;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Internal.NetworkSenders;
+    using Xunit;
 
-    [TestFixture]
     public class TcpNetworkSenderTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void TcpHappyPathTest()
         {
             foreach (bool async in new[] { false, true })
@@ -94,12 +86,12 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                 mre.WaitOne();
 
                 var actual = sender.Log.ToString();
-                Assert.IsTrue(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
-                Assert.IsTrue(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
-                Assert.IsTrue(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
-                Assert.IsTrue(actual.IndexOf("send async 0 1 'q'") != -1);
-                Assert.IsTrue(actual.IndexOf("send async 0 2 'qu'") != -1);
-                Assert.IsTrue(actual.IndexOf("send async 0 4 'quic'") != -1);
+                Assert.True(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
+                Assert.True(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
+                Assert.True(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
+                Assert.True(actual.IndexOf("send async 0 1 'q'") != -1);
+                Assert.True(actual.IndexOf("send async 0 2 'qu'") != -1);
+                Assert.True(actual.IndexOf("send async 0 4 'quic'") != -1);
 
                 mre.Reset();
                 for (int i = 1; i < 8; i *= 2)
@@ -125,33 +117,33 @@ namespace NLog.UnitTests.Internal.NetworkSenders
 
                 actual = sender.Log.ToString();
                 
-                Assert.IsTrue(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
-                Assert.IsTrue(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
-                Assert.IsTrue(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
-                Assert.IsTrue(actual.IndexOf("send async 0 1 'q'") != -1);
-                Assert.IsTrue(actual.IndexOf("send async 0 2 'qu'") != -1);
-                Assert.IsTrue(actual.IndexOf("send async 0 4 'quic'") != -1);
-                Assert.IsTrue(actual.IndexOf("send async 0 1 'q'") != -1);
-                Assert.IsTrue(actual.IndexOf("send async 0 2 'qu'") != -1);
-                Assert.IsTrue(actual.IndexOf("send async 0 4 'quic'") != -1);
-                Assert.IsTrue(actual.IndexOf("close") != -1);
+                Assert.True(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
+                Assert.True(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
+                Assert.True(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
+                Assert.True(actual.IndexOf("send async 0 1 'q'") != -1);
+                Assert.True(actual.IndexOf("send async 0 2 'qu'") != -1);
+                Assert.True(actual.IndexOf("send async 0 4 'quic'") != -1);
+                Assert.True(actual.IndexOf("send async 0 1 'q'") != -1);
+                Assert.True(actual.IndexOf("send async 0 2 'qu'") != -1);
+                Assert.True(actual.IndexOf("send async 0 4 'quic'") != -1);
+                Assert.True(actual.IndexOf("close") != -1);
 
                 foreach (var ex in exceptions)
                 {
-                    Assert.IsNull(ex);
+                    Assert.Null(ex);
                 }
             }
         }
 
-        [Test]
+        [Fact]
         public void TcpProxyTest()
         {
             var sender = new TcpNetworkSender("tcp://foo:1234", AddressFamily.Unspecified);
             var socket = sender.CreateSocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            Assert.IsInstanceOfType(typeof(SocketProxy), socket);
+            Assert.IsType(typeof(SocketProxy), socket);
         }
 
-        [Test]
+        [Fact]
         public void TcpConnectFailureTest()
         {
             var sender = new MyTcpNetworkSender("tcp://hostname:123", AddressFamily.Unspecified)
@@ -183,9 +175,9 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             }
 
 #if SILVERLIGHT
-            Assert.IsTrue(allSent.WaitOne(3000));
+            Assert.True(allSent.WaitOne(3000));
 #else
-            Assert.IsTrue(allSent.WaitOne(3000, false));
+            Assert.True(allSent.WaitOne(3000, false));
 #endif
 
             var mre = new ManualResetEvent(false);
@@ -198,18 +190,18 @@ namespace NLog.UnitTests.Internal.NetworkSenders
 
             var actual = sender.Log.ToString();
 
-            Assert.IsTrue(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
-            Assert.IsTrue(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
-            Assert.IsTrue(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
-            Assert.IsTrue(actual.IndexOf("failed") != -1);
+            Assert.True(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
+            Assert.True(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
+            Assert.True(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
+            Assert.True(actual.IndexOf("failed") != -1);
 
             foreach (var ex in exceptions)
             {
-                Assert.IsNotNull(ex);
+                Assert.NotNull(ex);
             }
         }
 
-        [Test]
+        [Fact]
         public void TcpSendFailureTest()
         {
             var sender = new MyTcpNetworkSender("tcp://hostname:123", AddressFamily.Unspecified)
@@ -250,24 +242,24 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             mre.WaitOne();
 
             var actual = sender.Log.ToString();
-            Assert.IsTrue(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
-            Assert.IsTrue(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
-            Assert.IsTrue(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
-            Assert.IsTrue(actual.IndexOf("send async 0 1 'q'") != -1);
-            Assert.IsTrue(actual.IndexOf("send async 0 2 'qu'") != -1);
-            Assert.IsTrue(actual.IndexOf("send async 0 3 'qui'") != -1);
-            Assert.IsTrue(actual.IndexOf("failed") != -1);
-            Assert.IsTrue(actual.IndexOf("close") != -1);
+            Assert.True(actual.IndexOf("Parse endpoint address tcp://hostname:123/ Unspecified") != -1);
+            Assert.True(actual.IndexOf("create socket 10000 Stream Tcp") != -1);
+            Assert.True(actual.IndexOf("connect async to {mock end point: tcp://hostname:123/}") != -1);
+            Assert.True(actual.IndexOf("send async 0 1 'q'") != -1);
+            Assert.True(actual.IndexOf("send async 0 2 'qu'") != -1);
+            Assert.True(actual.IndexOf("send async 0 3 'qui'") != -1);
+            Assert.True(actual.IndexOf("failed") != -1);
+            Assert.True(actual.IndexOf("close") != -1);
 
             for (int i = 0; i < exceptions.Length; ++i)
             {
                 if (i < 2)
                 {
-                    Assert.IsNull(exceptions[i], "EXCEPTION: " + exceptions[i]);
+                    Assert.Null(exceptions[i]);
                 }
                 else
                 {
-                    Assert.IsNotNull(exceptions[i]);
+                    Assert.NotNull(exceptions[i]);
                 }
             }
         }

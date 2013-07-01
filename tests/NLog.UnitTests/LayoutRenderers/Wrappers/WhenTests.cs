@@ -33,40 +33,31 @@
 
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
-    using System;
     using NLog;
     using NLog.Layouts;
-    using NUnit.Framework;
+    using Xunit;
 
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
-    [TestFixture]
     public class WhenTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void PositiveWhenTest()
         {
             SimpleLayout l = @"${message:when=logger=='logger'}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
-            Assert.AreEqual("message", l.Render(le));
+            Assert.Equal("message", l.Render(le));
         }
 
-        [Test]
+        [Fact]
         public void NegativeWhenTest()
         {
             SimpleLayout l = @"${message:when=logger=='logger'}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger2", "message");
-            Assert.AreEqual("", l.Render(le));
+            Assert.Equal("", l.Render(le));
         }
 
-        [Test]
+        [Fact]
         public void ComplexWhenTest()
         {
             // condition is pretty complex here and includes nested layout renderers
@@ -74,10 +65,10 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             SimpleLayout l = @"${message:when='${pad:${logger}:padding=10:padCharacter=X}'=='XXXXlogger':padding=-10:padCharacter=Y}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
-            Assert.AreEqual("messageYYY", l.Render(le));
+            Assert.Equal("messageYYY", l.Render(le));
         }
 
-        [Test]
+        [Fact]
         public void ComplexWhenTest2()
         {
             // condition is pretty complex here and includes nested layout renderers
@@ -85,7 +76,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             SimpleLayout l = @"${message:padding=-10:padCharacter=Y:when='${pad:${logger}:padding=10:padCharacter=X}'=='XXXXlogger'}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
-            Assert.AreEqual("messageYYY", l.Render(le));
+            Assert.Equal("messageYYY", l.Render(le));
         }
     }
 }

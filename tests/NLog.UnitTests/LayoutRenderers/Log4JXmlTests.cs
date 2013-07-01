@@ -31,33 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Reflection;
-using System.IO;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Threading;
-    using NLog.Internal;
     using System.Diagnostics;
+    using System;
+    using System.Xml;
+    using System.Reflection;
+    using System.IO;
+    using Xunit;
 
-    [TestFixture]
     public class Log4JXmlTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void Log4JXmlTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -87,7 +73,7 @@ namespace NLog.UnitTests.LayoutRenderers
             string result = GetDebugLastMessage("debug");
             string wrappedResult = "<log4j:dummyRoot xmlns:log4j='http://log4j' xmlns:nlog='http://nlog'>" + result + "</log4j:dummyRoot>";
 
-            Assert.AreNotEqual("", result);
+            Assert.NotEqual("", result);
             // make sure the XML can be read back and verify some fields
             StringReader stringReader = new StringReader(wrappedResult);
             using (XmlReader reader = XmlReader.Create(stringReader))
@@ -102,32 +88,32 @@ namespace NLog.UnitTests.LayoutRenderers
                                 break;
 
                             case "event":
-                                Assert.AreEqual("DEBUG", reader.GetAttribute("level"));
-                                Assert.AreEqual("A", reader.GetAttribute("logger"));
+                                Assert.Equal("DEBUG", reader.GetAttribute("level"));
+                                Assert.Equal("A", reader.GetAttribute("logger"));
 
                                 var epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
                                 long timestamp = Convert.ToInt64(reader.GetAttribute("timestamp"));
                                 var time = epochStart.AddMilliseconds(timestamp);
                                 var now = DateTime.UtcNow;
-                                Assert.IsTrue(now.Ticks - time.Ticks < TimeSpan.FromSeconds(3).Ticks);
+                                Assert.True(now.Ticks - time.Ticks < TimeSpan.FromSeconds(3).Ticks);
 
-                                Assert.AreEqual(Thread.CurrentThread.ManagedThreadId.ToString(), reader.GetAttribute("thread"));
+                                Assert.Equal(Thread.CurrentThread.ManagedThreadId.ToString(), reader.GetAttribute("thread"));
                                 break;
 
                             case "message":
                                 reader.Read();
-                                Assert.AreEqual("some message", reader.Value);
+                                Assert.Equal("some message", reader.Value);
                                 break;
 
                             case "NDC":
                                 reader.Read();
-                                Assert.AreEqual("baz3::baz2::baz1", reader.Value);
+                                Assert.Equal("baz3::baz2::baz1", reader.Value);
                                 break;
 
 #if !NET_CF
                             case "locationInfo":
-                                Assert.AreEqual(MethodBase.GetCurrentMethod().DeclaringType.FullName, reader.GetAttribute("class"));
-                                Assert.AreEqual(MethodBase.GetCurrentMethod().ToString(), reader.GetAttribute("method"));
+                                Assert.Equal(MethodBase.GetCurrentMethod().DeclaringType.FullName, reader.GetAttribute("class"));
+                                Assert.Equal(MethodBase.GetCurrentMethod().ToString(), reader.GetAttribute("method"));
                                 break;
 #endif
 
@@ -142,34 +128,34 @@ namespace NLog.UnitTests.LayoutRenderers
                                 {
                                     case "log4japp":
 #if SILVERLIGHT
-                                        Assert.AreEqual("Silverlight Application", value);
+                                        Assert.Equal("Silverlight Application", value);
 #elif NET_CF
-                                        Assert.AreEqual(".NET CF Application", value);
+                                        Assert.Equal(".NET CF Application", value);
 #else
-                                        Assert.AreEqual(AppDomain.CurrentDomain.FriendlyName + "(" + Process.GetCurrentProcess().Id + ")", value);
+                                        Assert.Equal(AppDomain.CurrentDomain.FriendlyName + "(" + Process.GetCurrentProcess().Id + ")", value);
 #endif
                                         break;
 
                                     case "log4jmachinename":
 #if NET_CF
-                                        Assert.AreEqual("netcf", value);
+                                        Assert.Equal("netcf", value);
 #elif SILVERLIGHT
-                                        Assert.AreEqual("silverlight", value);
+                                        Assert.Equal("silverlight", value);
 #else
-                                        Assert.AreEqual(Environment.MachineName, value);
+                                        Assert.Equal(Environment.MachineName, value);
 #endif
                                         break;
 
                                     case "foo1":
-                                        Assert.AreEqual("bar1", value);
+                                        Assert.Equal("bar1", value);
                                         break;
 
                                     case "foo2":
-                                        Assert.AreEqual("bar2", value);
+                                        Assert.Equal("bar2", value);
                                         break;
 
                                     default:
-                                        Assert.Fail("Unknown <log4j:data>: " + name);
+                                        Assert.True(false, "Unknown <log4j:data>: " + name);
                                         break;
                                 }
                                 break;
@@ -188,7 +174,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                 break;
 
                             case "locationInfo":
-                                Assert.AreEqual(this.GetType().Assembly.FullName, reader.GetAttribute("assembly"));
+                                Assert.Equal(this.GetType().Assembly.FullName, reader.GetAttribute("assembly"));
                                 break;
 
                             case "properties":
@@ -197,8 +183,8 @@ namespace NLog.UnitTests.LayoutRenderers
                             case "data":
                                 var name = reader.GetAttribute("name");
                                 var value = reader.GetAttribute("value");
-                                Assert.AreEqual("nlogPropertyKey", name);
-                                Assert.AreEqual("nlogPropertyValue", value);
+                                Assert.Equal("nlogPropertyKey", name);
+                                Assert.Equal("nlogPropertyValue", value);
                                 break;
 
                             default:

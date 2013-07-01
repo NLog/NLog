@@ -31,48 +31,31 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Reflection;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
 #if !SILVERLIGHT && !NET_CF
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
     using Microsoft.Win32;
+    using Xunit;
 
-    [TestFixture]
-    public class RegistryTests : NLogTestBase
+    public class RegistryTests : NLogTestBase, IDisposable
     {
         private const string TestKey = @"Software\NLogTest";
 
-        [SetUp]
-        public void Setup()
+        public RegistryTests()
         {
             var key = Registry.CurrentUser.CreateSubKey(TestKey);
             key.SetValue("Foo", "FooValue");
             key.SetValue(null, "UnnamedValue");
         }
 
-        [TearDown]
-        public void TearDown()
+        public void Dispose()
         {
             Registry.CurrentUser.DeleteSubKey(TestKey);
         }
 
-        [Test]
+        [Fact]
         public void RegistryNamedValueTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -87,7 +70,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "FooValue");
         }
 
-        [Test]
+        [Fact]
         public void RegistryUnnamedValueTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -103,7 +86,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
-        [Test]
+        [Fact]
         public void RegistryKeyNotFoundTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -118,7 +101,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "xyz");
         }
 
-        [Test]
+        [Fact]
         public void RegistryValueNotFoundTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

@@ -31,31 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Reflection;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
     using System.Globalization;
     using NLog.LayoutRenderers;
+    using Xunit;
 
-    [TestFixture]
     public class DateTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void DefaultDateTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -70,10 +55,10 @@ namespace NLog.UnitTests.LayoutRenderers
             DateTime dt = DateTime.ParseExact(GetDebugLastMessage("debug"), "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
             DateTime now = DateTime.Now;
 
-            Assert.IsTrue(Math.Abs((dt - now).TotalSeconds) < 5);
+            Assert.True(Math.Abs((dt - now).TotalSeconds) < 5);
         }
 
-        [Test]
+        [Fact]
         public void UniversalTimeTest()
         {
             var dt = new DateLayoutRenderer();
@@ -81,10 +66,10 @@ namespace NLog.UnitTests.LayoutRenderers
             dt.Format = "R";
 
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.AreEqual(ei.TimeStamp.ToUniversalTime().ToString("R"), dt.Render(ei));
+            Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("R"), dt.Render(ei));
         }
 
-        [Test]
+        [Fact]
         public void LocalTimeTest()
         {
             var dt = new DateLayoutRenderer();
@@ -92,10 +77,10 @@ namespace NLog.UnitTests.LayoutRenderers
             dt.Format = "R";
 
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.AreEqual(ei.TimeStamp.ToString("R"), dt.Render(ei));
+            Assert.Equal(ei.TimeStamp.ToString("R"), dt.Render(ei));
         }
 
-        [Test]
+        [Fact]
         public void FormattedDateTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

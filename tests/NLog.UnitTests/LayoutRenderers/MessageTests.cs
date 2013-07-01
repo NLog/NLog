@@ -31,30 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Reflection;
-using System.Globalization;
-using System.IO;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    using System;
+    using System.Globalization;
+    using Xunit;
+
     public class MessageTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void MessageWithoutPaddingTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -76,7 +61,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
         }
 
-        [Test]
+        [Fact]
         public void MessageRightPaddingTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -99,7 +84,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
-        [Test]
+        [Fact]
         public void MessageFixedLengthRightPaddingTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -121,7 +106,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a01");
         }
 
-        [Test]
+        [Fact]
         public void MessageLeftPaddingTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -143,7 +128,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a01/01/2005 00:00:00");
         }
 
-        [Test]
+        [Fact]
         public void MessageFixedLengthLeftPaddingTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -165,7 +150,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a01");
         }
 
-        [Test]
+        [Fact]
         public void MessageWithExceptionTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -191,7 +176,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
         }
 
-        [Test]
+        [Fact]
         public void MessageWithExceptionAndCustomSeparatorTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
