@@ -145,7 +145,6 @@
     <Compile Include="LogReceiverService\LogReceiverServiceTests.cs" />
     <Compile Include="NLogTestBase.cs" />
     <Compile Include="NLogTraceListenerTests.cs" />
-    <Compile Include="NUnitAdapter.cs" />
     <Compile Include="ProcessRunner.cs" />
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />
@@ -153,7 +152,6 @@
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
     <Compile Include="Targets\ConsoleTargetTests.cs" />
     <Compile Include="Targets\DatabaseTargetTests.cs" />
-    <Compile Include="Targets\EventLogTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
     <Compile Include="Targets\MailTargetTests.cs" />
