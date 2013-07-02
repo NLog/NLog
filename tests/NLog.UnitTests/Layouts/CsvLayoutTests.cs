@@ -37,21 +37,13 @@ namespace NLog.UnitTests.Layouts
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Layouts;
+    using Xunit;
 
-    [TestFixture]
     public class CsvLayoutTests : NLogTestBase
     {
 #if !SILVERLIGHT
-        [Test]
+        [Fact]
         public void EndToEndTest()
         {
             try
@@ -80,10 +72,10 @@ namespace NLog.UnitTests.Layouts
 
                 using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd1.txt"))
                 {
-                    Assert.AreEqual("level,message,counter", sr.ReadLine());
-                    Assert.AreEqual("Debug,msg,1", sr.ReadLine());
-                    Assert.AreEqual("Info,msg2,2", sr.ReadLine());
-                    Assert.AreEqual("Warn,\"Message with, a comma\",3", sr.ReadLine());
+                    Assert.Equal("level,message,counter", sr.ReadLine());
+                    Assert.Equal("Debug,msg,1", sr.ReadLine());
+                    Assert.Equal("Info,msg2,2", sr.ReadLine());
+                    Assert.Equal("Warn,\"Message with, a comma\",3", sr.ReadLine());
                 }
             }
             finally
@@ -95,7 +87,7 @@ namespace NLog.UnitTests.Layouts
             }
         }
 
-        [Test]
+        [Fact]
         public void NoHeadersTest()
         {
             try
@@ -124,9 +116,9 @@ namespace NLog.UnitTests.Layouts
 
                 using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd2.txt"))
                 {
-                    Assert.AreEqual("Debug,msg,1", sr.ReadLine());
-                    Assert.AreEqual("Info,msg2,2", sr.ReadLine());
-                    Assert.AreEqual("Warn,\"Message with, a comma\",3", sr.ReadLine());
+                    Assert.Equal("Debug,msg,1", sr.ReadLine());
+                    Assert.Equal("Info,msg2,2", sr.ReadLine());
+                    Assert.Equal("Warn,\"Message with, a comma\",3", sr.ReadLine());
                 }
             }
             finally
@@ -139,7 +131,7 @@ namespace NLog.UnitTests.Layouts
         }
 #endif
 
-        [Test]
+        [Fact]
         public void CsvLayoutRenderingNoQuoting()
         {
             var delimiters = new Dictionary<CsvColumnDelimiterMode, string>
@@ -174,12 +166,12 @@ namespace NLog.UnitTests.Layouts
                 ev.Message = "hello, world";
 
                 string sep = delim.Value;
-                Assert.AreEqual("2010-01-01 12:34:56.0000" + sep + "Info" + sep + "hello, world", csvLayout.Render(ev));
-                Assert.AreEqual("date" + sep + "level" + sep + "message;text", csvLayout.Header.Render(ev));
+                Assert.Equal("2010-01-01 12:34:56.0000" + sep + "Info" + sep + "hello, world", csvLayout.Render(ev));
+                Assert.Equal("date" + sep + "level" + sep + "message;text", csvLayout.Header.Render(ev));
             }
         }
 
-        [Test]
+        [Fact]
         public void CsvLayoutRenderingFullQuoting()
         {
             var delimiters = new Dictionary<CsvColumnDelimiterMode, string>
@@ -215,12 +207,12 @@ namespace NLog.UnitTests.Layouts
                 ev.Message = "hello, world";
 
                 string sep = delim.Value;
-                Assert.AreEqual("'2010-01-01 12:34:56.0000'" + sep + "'Info'" + sep + "'hello, world'", csvLayout.Render(ev));
-                Assert.AreEqual("'date'" + sep + "'level'" + sep + "'message;text'", csvLayout.Header.Render(ev));
+                Assert.Equal("'2010-01-01 12:34:56.0000'" + sep + "'Info'" + sep + "'hello, world'", csvLayout.Render(ev));
+                Assert.Equal("'date'" + sep + "'level'" + sep + "'message;text'", csvLayout.Header.Render(ev));
             }
         }
 
-        [Test]
+        [Fact]
         public void CsvLayoutRenderingAutoQuoting()
         {
             var csvLayout = new CsvLayout()
@@ -237,7 +229,7 @@ namespace NLog.UnitTests.Layouts
             };
 
             // no quoting
-            Assert.AreEqual(
+            Assert.Equal(
                 "2010-01-01 12:34:56.0000;Info;hello, world",
                 csvLayout.Render(new LogEventInfo
                 {
@@ -247,7 +239,7 @@ namespace NLog.UnitTests.Layouts
                 }));
 
             // multi-line string - requires quoting
-            Assert.AreEqual(
+            Assert.Equal(
                 "2010-01-01 12:34:56.0000;Info;'hello\rworld'",
                 csvLayout.Render(new LogEventInfo
                 {
@@ -257,7 +249,7 @@ namespace NLog.UnitTests.Layouts
                 }));
 
             // multi-line string - requires quoting
-            Assert.AreEqual(
+            Assert.Equal(
                 "2010-01-01 12:34:56.0000;Info;'hello\nworld'",
                 csvLayout.Render(new LogEventInfo
                 {
@@ -267,7 +259,7 @@ namespace NLog.UnitTests.Layouts
                 }));
 
             // quote character used in string, will be quoted and doubled
-            Assert.AreEqual(
+            Assert.Equal(
                 "2010-01-01 12:34:56.0000;Info;'hello''world'",
                 csvLayout.Render(new LogEventInfo
                 {
@@ -276,10 +268,10 @@ namespace NLog.UnitTests.Layouts
                     Message = "hello'world"
                 }));
 
-            Assert.AreEqual("date;level;'message;text'", csvLayout.Header.Render(LogEventInfo.CreateNullEvent()));
+            Assert.Equal("date;level;'message;text'", csvLayout.Header.Render(LogEventInfo.CreateNullEvent()));
         }
 
-        [Test]
+        [Fact]
         public void CsvLayoutCachingTest()
         {
             var csvLayout = new CsvLayout()
@@ -319,17 +311,17 @@ namespace NLog.UnitTests.Layouts
             var h21 = csvLayout.Header.Render(e2);
             var h22 = csvLayout.Header.Render(e2);
 
-            Assert.AreSame(r11, r12);
-            Assert.AreSame(r21, r22);
+            Assert.Same(r11, r12);
+            Assert.Same(r21, r22);
 
-            Assert.AreNotSame(r11, r21);
-            Assert.AreNotSame(r12, r22);
+            Assert.NotSame(r11, r21);
+            Assert.NotSame(r12, r22);
 
-            Assert.AreSame(h11, h12);
-            Assert.AreSame(h21, h22);
+            Assert.Same(h11, h12);
+            Assert.Same(h21, h22);
 
-            Assert.AreNotSame(h11, h21);
-            Assert.AreNotSame(h12, h22);
+            Assert.NotSame(h11, h21);
+            Assert.NotSame(h12, h22);
         }
     }
 }

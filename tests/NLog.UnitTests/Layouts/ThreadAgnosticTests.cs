@@ -33,28 +33,16 @@
 
 namespace NLog.UnitTests.Layouts
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
     using NLog.LayoutRenderers;
     using NLog.Internal;
     using NLog.Config;
     using NLog.LayoutRenderers.Wrappers;
     using NLog.Layouts;
-    using NUnit.Framework;
+    using Xunit;
 
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
-    [TestFixture]
     public class ThreadAgnosticTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void ThreadAgnosticAttributeTest()
         {
             foreach (var t in ReflectionHelpers.SafeGetTypes(typeof(Layout).Assembly))
@@ -67,92 +55,92 @@ namespace NLog.UnitTests.Layouts
                         continue;
                     }
 
-                    Assert.IsTrue(t.IsDefined(typeof(ThreadAgnosticAttribute), true), "Type " + t + " is missing [ThreadAgnostic] attribute.");
+                    Assert.True(t.IsDefined(typeof(ThreadAgnosticAttribute), true), "Type " + t + " is missing [ThreadAgnostic] attribute.");
                 }
             }
         }
 
-        [Test]
+        [Fact]
         public void ThreadAgnosticTest()
         {
             Layout l = new SimpleLayout("${message}");
             l.Initialize(null);
-            Assert.IsTrue(l.IsThreadAgnostic);
+            Assert.True(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void NonThreadAgnosticTest()
         {
             Layout l = new SimpleLayout("${threadname}");
             l.Initialize(null);
-            Assert.IsFalse(l.IsThreadAgnostic);
+            Assert.False(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void AgnosticPlusNonAgnostic()
         {
             Layout l = new SimpleLayout("${message}${threadname}");
             l.Initialize(null);
-            Assert.IsFalse(l.IsThreadAgnostic);
+            Assert.False(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void AgnosticPlusAgnostic()
         {
             Layout l = new SimpleLayout("${message}${level}${logger}");
             l.Initialize(null);
-            Assert.IsTrue(l.IsThreadAgnostic);
+            Assert.True(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void WrapperOverAgnostic()
         {
             Layout l = new SimpleLayout("${rot13:${message}}");
             l.Initialize(null);
-            Assert.IsTrue(l.IsThreadAgnostic);
+            Assert.True(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void DoubleWrapperOverAgnostic()
         {
             Layout l = new SimpleLayout("${lowercase:${rot13:${message}}}");
             l.Initialize(null);
-            Assert.IsTrue(l.IsThreadAgnostic);
+            Assert.True(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void TripleWrapperOverAgnostic()
         {
             Layout l = new SimpleLayout("${uppercase:${lowercase:${rot13:${message}}}}");
             l.Initialize(null);
-            Assert.IsTrue(l.IsThreadAgnostic);
+            Assert.True(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void TripleWrapperOverNonAgnostic()
         {
             Layout l = new SimpleLayout("${uppercase:${lowercase:${rot13:${message}${threadname}}}}");
             l.Initialize(null);
-            Assert.IsFalse(l.IsThreadAgnostic);
+            Assert.False(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void ComplexAgnosticWithCondition()
         {
             Layout l = @"${message:padding=-10:padCharacter=Y:when='${pad:${logger}:padding=10:padCharacter=X}'=='XXXXlogger'}";
             l.Initialize(null);
-            Assert.IsTrue(l.IsThreadAgnostic);
+            Assert.True(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void ComplexNonAgnosticWithCondition()
         {
             Layout l = @"${message:padding=-10:padCharacter=Y:when='${pad:${threadname}:padding=10:padCharacter=X}'=='XXXXlogger'}";
             l.Initialize(null);
-            Assert.IsFalse(l.IsThreadAgnostic);
+            Assert.False(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void CsvThreadAgnostic()
         {
             CsvLayout l = new CsvLayout()
@@ -166,10 +154,10 @@ namespace NLog.UnitTests.Layouts
             };
 
             l.Initialize(null);
-            Assert.IsTrue(l.IsThreadAgnostic);
+            Assert.True(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void CsvNonAgnostic()
         {
             CsvLayout l = new CsvLayout()
@@ -183,10 +171,10 @@ namespace NLog.UnitTests.Layouts
             };
 
             l.Initialize(null);
-            Assert.IsFalse(l.IsThreadAgnostic);
+            Assert.False(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void CustomNotAgnosticTests()
         {
             var cif = new ConfigurationItemFactory();
@@ -195,10 +183,10 @@ namespace NLog.UnitTests.Layouts
             Layout l = new SimpleLayout("${customNotAgnostic}", cif);
 
             l.Initialize(null);
-            Assert.IsFalse(l.IsThreadAgnostic);
+            Assert.False(l.IsThreadAgnostic);
         }
 
-        [Test]
+        [Fact]
         public void CustomAgnosticTests()
         {
             var cif = new ConfigurationItemFactory();
@@ -207,7 +195,7 @@ namespace NLog.UnitTests.Layouts
             Layout l = new SimpleLayout("${customAgnostic}", cif);
 
             l.Initialize(null);
-            Assert.IsTrue(l.IsThreadAgnostic);
+            Assert.True(l.IsThreadAgnostic);
         }
 
         [LayoutRenderer("customNotAgnostic")]

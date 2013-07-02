@@ -33,215 +33,206 @@
 
 namespace NLog.UnitTests.Layouts
 {
-    using System;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-    using ExpectedException = Microsoft.VisualStudio.TestTools.UnitTesting.ExpectedExceptionAttribute;
-#endif
     using NLog.LayoutRenderers;
     using NLog.LayoutRenderers.Wrappers;
     using NLog.Layouts;
+    using Xunit;
 
-    [TestFixture]
     public class SimpleLayoutParserTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void SimpleTest()
         {
             SimpleLayout l = "${message}";
-            Assert.AreEqual(1, l.Renderers.Count);
-            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
+            Assert.Equal(1, l.Renderers.Count);
+            Assert.IsType(typeof(MessageLayoutRenderer), l.Renderers[0]);
         }
 
-        [Test]
+        [Fact]
         public void UnclosedTest()
         {
             new SimpleLayout("${message");
         }
 
-        [Test]
+        [Fact]
         public void SingleParamTest()
         {
             SimpleLayout l = "${mdc:item=AAA}";
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
-            Assert.IsNotNull(mdc);
-            Assert.AreEqual("AAA", mdc.Item);
+            Assert.NotNull(mdc);
+            Assert.Equal("AAA", mdc.Item);
         }
 
-        [Test]
+        [Fact]
         public void ValueWithColonTest()
         {
             SimpleLayout l = "${mdc:item=AAA\\:}";
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
-            Assert.IsNotNull(mdc);
-            Assert.AreEqual("AAA:", mdc.Item);
+            Assert.NotNull(mdc);
+            Assert.Equal("AAA:", mdc.Item);
         }
 
-        [Test]
+        [Fact]
         public void ValueWithBracketTest()
         {
             SimpleLayout l = "${mdc:item=AAA\\}\\:}";
-            Assert.AreEqual("${mdc:item=AAA\\}\\:}", l.Text);
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal("${mdc:item=AAA\\}\\:}", l.Text);
+            Assert.Equal(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
-            Assert.IsNotNull(mdc);
-            Assert.AreEqual("AAA}:", mdc.Item);
+            Assert.NotNull(mdc);
+            Assert.Equal("AAA}:", mdc.Item);
         }
 
-        [Test]
+        [Fact]
         public void DefaultValueTest()
         {
             SimpleLayout l = "${mdc:BBB}";
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
-            Assert.IsNotNull(mdc);
-            Assert.AreEqual("BBB", mdc.Item);
+            Assert.NotNull(mdc);
+            Assert.Equal("BBB", mdc.Item);
         }
 
-        [Test]
+        [Fact]
         public void DefaultValueWithBracketTest()
         {
             SimpleLayout l = "${mdc:AAA\\}\\:}";
-            Assert.AreEqual(l.Text, "${mdc:AAA\\}\\:}");
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal(l.Text, "${mdc:AAA\\}\\:}");
+            Assert.Equal(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
-            Assert.IsNotNull(mdc);
-            Assert.AreEqual("AAA}:", mdc.Item);
+            Assert.NotNull(mdc);
+            Assert.Equal("AAA}:", mdc.Item);
         }
 
-        [Test]
+        [Fact]
         public void DefaultValueWithOtherParametersTest()
         {
             SimpleLayout l = "${exception:message,type:separator=x}";
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal(1, l.Renderers.Count);
             ExceptionLayoutRenderer elr = l.Renderers[0] as ExceptionLayoutRenderer;
-            Assert.IsNotNull(elr);
-            Assert.AreEqual("message,type", elr.Format);
-            Assert.AreEqual("x", elr.Separator);
+            Assert.NotNull(elr);
+            Assert.Equal("message,type", elr.Format);
+            Assert.Equal("x", elr.Separator);
         }
 
-        [Test]
+        [Fact]
         public void EmptyValueTest()
         {
             SimpleLayout l = "${mdc:item=}";
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal(1, l.Renderers.Count);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
-            Assert.IsNotNull(mdc);
-            Assert.AreEqual("", mdc.Item);
+            Assert.NotNull(mdc);
+            Assert.Equal("", mdc.Item);
         }
 
-        [Test]
+        [Fact]
         public void NestedLayoutTest()
         {
             SimpleLayout l = "${rot13:inner=${ndc:topFrames=3:separator=x}}";
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal(1, l.Renderers.Count);
             var lr = l.Renderers[0] as Rot13LayoutRendererWrapper;
-            Assert.IsNotNull(lr);
+            Assert.NotNull(lr);
             var nestedLayout = lr.Inner as SimpleLayout;
-            Assert.IsNotNull(nestedLayout);
-            Assert.AreEqual("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
-            Assert.AreEqual(1, nestedLayout.Renderers.Count);
+            Assert.NotNull(nestedLayout);
+            Assert.Equal("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
+            Assert.Equal(1, nestedLayout.Renderers.Count);
             var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
-            Assert.IsNotNull(ndcLayoutRenderer);
-            Assert.AreEqual(3, ndcLayoutRenderer.TopFrames);
-            Assert.AreEqual("x", ndcLayoutRenderer.Separator);
+            Assert.NotNull(ndcLayoutRenderer);
+            Assert.Equal(3, ndcLayoutRenderer.TopFrames);
+            Assert.Equal("x", ndcLayoutRenderer.Separator);
         }
 
-        [Test]
+        [Fact]
         public void DoubleNestedLayoutTest()
         {
             SimpleLayout l = "${rot13:inner=${rot13:inner=${ndc:topFrames=3:separator=x}}}";
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal(1, l.Renderers.Count);
             var lr = l.Renderers[0] as Rot13LayoutRendererWrapper;
-            Assert.IsNotNull(lr);
+            Assert.NotNull(lr);
             var nestedLayout0 = lr.Inner as SimpleLayout;
-            Assert.IsNotNull(nestedLayout0);
-            Assert.AreEqual("${rot13:inner=${ndc:topFrames=3:separator=x}}", nestedLayout0.Text);
+            Assert.NotNull(nestedLayout0);
+            Assert.Equal("${rot13:inner=${ndc:topFrames=3:separator=x}}", nestedLayout0.Text);
             var innerRot13 = nestedLayout0.Renderers[0] as Rot13LayoutRendererWrapper;
             var nestedLayout = innerRot13.Inner as SimpleLayout;
-            Assert.IsNotNull(nestedLayout);
-            Assert.AreEqual("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
-            Assert.AreEqual(1, nestedLayout.Renderers.Count);
+            Assert.NotNull(nestedLayout);
+            Assert.Equal("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
+            Assert.Equal(1, nestedLayout.Renderers.Count);
             var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
-            Assert.IsNotNull(ndcLayoutRenderer);
-            Assert.AreEqual(3, ndcLayoutRenderer.TopFrames);
-            Assert.AreEqual("x", ndcLayoutRenderer.Separator);
+            Assert.NotNull(ndcLayoutRenderer);
+            Assert.Equal(3, ndcLayoutRenderer.TopFrames);
+            Assert.Equal("x", ndcLayoutRenderer.Separator);
         }
 
-        [Test]
+        [Fact]
         public void DoubleNestedLayoutWithDefaultLayoutParametersTest()
         {
             SimpleLayout l = "${rot13:${rot13:${ndc:topFrames=3:separator=x}}}";
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal(1, l.Renderers.Count);
             var lr = l.Renderers[0] as Rot13LayoutRendererWrapper;
-            Assert.IsNotNull(lr);
+            Assert.NotNull(lr);
             var nestedLayout0 = lr.Inner as SimpleLayout;
-            Assert.IsNotNull(nestedLayout0);
-            Assert.AreEqual("${rot13:${ndc:topFrames=3:separator=x}}", nestedLayout0.Text);
+            Assert.NotNull(nestedLayout0);
+            Assert.Equal("${rot13:${ndc:topFrames=3:separator=x}}", nestedLayout0.Text);
             var innerRot13 = nestedLayout0.Renderers[0] as Rot13LayoutRendererWrapper;
             var nestedLayout = innerRot13.Inner as SimpleLayout;
-            Assert.IsNotNull(nestedLayout);
-            Assert.AreEqual("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
-            Assert.AreEqual(1, nestedLayout.Renderers.Count);
+            Assert.NotNull(nestedLayout);
+            Assert.Equal("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
+            Assert.Equal(1, nestedLayout.Renderers.Count);
             var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
-            Assert.IsNotNull(ndcLayoutRenderer);
-            Assert.AreEqual(3, ndcLayoutRenderer.TopFrames);
-            Assert.AreEqual("x", ndcLayoutRenderer.Separator);
+            Assert.NotNull(ndcLayoutRenderer);
+            Assert.Equal(3, ndcLayoutRenderer.TopFrames);
+            Assert.Equal("x", ndcLayoutRenderer.Separator);
         }
 
-        [Test]
+        [Fact]
         public void AmbientPropertyTest()
         {
             SimpleLayout l = "${message:padding=10}";
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal(1, l.Renderers.Count);
             var pad = l.Renderers[0] as PaddingLayoutRendererWrapper;
-            Assert.IsNotNull(pad);
+            Assert.NotNull(pad);
             var message = ((SimpleLayout)pad.Inner).Renderers[0] as MessageLayoutRenderer;
-            Assert.IsNotNull(message);
+            Assert.NotNull(message);
         }
 
-        [Test]
-        [ExpectedException(typeof(NLogConfigurationException))]
+        [Fact]
         public void MissingLayoutRendererTest()
         {
-            SimpleLayout l = "${rot13:${foobar}}";
-            Assert.IsNull(l);
+            Assert.Throws<NLogConfigurationException>(() =>
+            {
+                SimpleLayout l = "${rot13:${foobar}}";
+            });
         }
 
-        [Test]
+        [Fact]
         public void DoubleAmbientPropertyTest()
         {
             SimpleLayout l = "${message:uppercase=true:padding=10}";
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal(1, l.Renderers.Count);
             var upperCase = l.Renderers[0] as UppercaseLayoutRendererWrapper;
-            Assert.IsNotNull(upperCase);
+            Assert.NotNull(upperCase);
             var pad = ((SimpleLayout)upperCase.Inner).Renderers[0] as PaddingLayoutRendererWrapper;
-            Assert.IsNotNull(pad);
+            Assert.NotNull(pad);
             var message = ((SimpleLayout)pad.Inner).Renderers[0] as MessageLayoutRenderer;
-            Assert.IsNotNull(message);
+            Assert.NotNull(message);
         }
 
-        [Test]
+        [Fact]
         public void ReverseDoubleAmbientPropertyTest()
         {
             SimpleLayout l = "${message:padding=10:uppercase=true}";
-            Assert.AreEqual(1, l.Renderers.Count);
+            Assert.Equal(1, l.Renderers.Count);
             var pad = ((SimpleLayout)l).Renderers[0] as PaddingLayoutRendererWrapper;
-            Assert.IsNotNull(pad);
+            Assert.NotNull(pad);
             var upperCase = ((SimpleLayout)pad.Inner).Renderers[0] as UppercaseLayoutRendererWrapper;
-            Assert.IsNotNull(upperCase);
+            Assert.NotNull(upperCase);
             var message = ((SimpleLayout)upperCase.Inner).Renderers[0] as MessageLayoutRenderer;
-            Assert.IsNotNull(message);
+            Assert.NotNull(message);
         }
 
-        [Test]
+        [Fact]
         public void EscapeTest()
         {
             AssertEscapeRoundTrips(string.Empty);
@@ -254,20 +245,20 @@ namespace NLog.UnitTests.Layouts
             AssertEscapeRoundTrips("hello ${${level}${message}}");
         }
 
-        [Test]
+        [Fact]
         public void EvaluateTest()
         {
             var logEventInfo = LogEventInfo.CreateNullEvent();
             logEventInfo.Level = LogLevel.Warn;
-            Assert.AreEqual("Warn", SimpleLayout.Evaluate("${level}", logEventInfo));
+            Assert.Equal("Warn", SimpleLayout.Evaluate("${level}", logEventInfo));
         }
 
-        [Test]
+        [Fact]
         public void EvaluateTest2()
         {
-            Assert.AreEqual("Off", SimpleLayout.Evaluate("${level}"));
-            Assert.AreEqual(string.Empty, SimpleLayout.Evaluate("${message}"));
-            Assert.AreEqual(string.Empty, SimpleLayout.Evaluate("${logger}"));
+            Assert.Equal("Off", SimpleLayout.Evaluate("${level}"));
+            Assert.Equal(string.Empty, SimpleLayout.Evaluate("${message}"));
+            Assert.Equal(string.Empty, SimpleLayout.Evaluate("${logger}"));
         }
 
         private static void AssertEscapeRoundTrips(string originalString)
@@ -275,7 +266,7 @@ namespace NLog.UnitTests.Layouts
             string escapedString = SimpleLayout.Escape(originalString);
             SimpleLayout l = escapedString;
             string renderedString = l.Render(LogEventInfo.CreateNullEvent());
-            Assert.AreEqual(originalString, renderedString);
+            Assert.Equal(originalString, renderedString);
         }
     }
 }

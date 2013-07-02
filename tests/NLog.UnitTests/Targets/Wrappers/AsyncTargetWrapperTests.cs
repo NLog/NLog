@@ -35,35 +35,26 @@ namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Threading;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Common;
-    using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using System.Collections.Generic;
+    using Xunit;
 
-    [TestFixture]
     public class AsyncTargetWrapperTests : NLogTestBase
 	{
-        [Test]
+        [Fact]
         public void AsyncTargetWrapperInitTest()
         {
             var myTarget = new MyTarget();
             var targetWrapper = new AsyncTargetWrapper(myTarget, 300, AsyncTargetWrapperOverflowAction.Grow);
-            Assert.AreEqual(AsyncTargetWrapperOverflowAction.Grow, targetWrapper.OverflowAction);
-            Assert.AreEqual(300, targetWrapper.QueueLimit);
-            Assert.AreEqual(50, targetWrapper.TimeToSleepBetweenBatches);
-            Assert.AreEqual(100, targetWrapper.BatchSize);
+            Assert.Equal(AsyncTargetWrapperOverflowAction.Grow, targetWrapper.OverflowAction);
+            Assert.Equal(300, targetWrapper.QueueLimit);
+            Assert.Equal(50, targetWrapper.TimeToSleepBetweenBatches);
+            Assert.Equal(100, targetWrapper.BatchSize);
         }
 
-        [Test]
+        [Fact]
         public void AsyncTargetWrapperInitTest2()
         {
             var myTarget = new MyTarget();
@@ -72,13 +63,13 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = myTarget,
             };
 
-            Assert.AreEqual(AsyncTargetWrapperOverflowAction.Discard, targetWrapper.OverflowAction);
-            Assert.AreEqual(10000, targetWrapper.QueueLimit);
-            Assert.AreEqual(50, targetWrapper.TimeToSleepBetweenBatches);
-            Assert.AreEqual(100, targetWrapper.BatchSize);
+            Assert.Equal(AsyncTargetWrapperOverflowAction.Discard, targetWrapper.OverflowAction);
+            Assert.Equal(10000, targetWrapper.QueueLimit);
+            Assert.Equal(50, targetWrapper.TimeToSleepBetweenBatches);
+            Assert.Equal(100, targetWrapper.BatchSize);
         }
 
-        [Test]
+        [Fact]
         public void AsyncTargetWrapperSyncTest1()
         {
             var myTarget = new MyTarget();
@@ -104,20 +95,20 @@ namespace NLog.UnitTests.Targets.Wrappers
             targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
             // continuation was not hit 
-            continuationHit.WaitOne();
-            Assert.AreNotSame(continuationThread, Thread.CurrentThread);
-            Assert.IsNull(lastException);
-            Assert.AreEqual(1, myTarget.WriteCount);
+            Assert.True(continuationHit.WaitOne(2000));
+            Assert.NotSame(continuationThread, Thread.CurrentThread);
+            Assert.Null(lastException);
+            Assert.Equal(1, myTarget.WriteCount);
 
             continuationHit.Reset();
             targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
-            Assert.AreNotSame(continuationThread, Thread.CurrentThread);
-            Assert.IsNull(lastException);
-            Assert.AreEqual(2, myTarget.WriteCount);
+            Assert.NotSame(continuationThread, Thread.CurrentThread);
+            Assert.Null(lastException);
+            Assert.Equal(2, myTarget.WriteCount);
         }
 
-        [Test]
+        [Fact]
         public void AsyncTargetWrapperAsyncTest1()
         {
             var myTarget = new MyAsyncTarget();
@@ -136,18 +127,18 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
-            continuationHit.WaitOne();
-            Assert.IsNull(lastException);
-            Assert.AreEqual(1, myTarget.WriteCount);
+            Assert.True(continuationHit.WaitOne());
+            Assert.Null(lastException);
+            Assert.Equal(1, myTarget.WriteCount);
 
             continuationHit.Reset();
             targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
-            Assert.IsNull(lastException);
-            Assert.AreEqual(2, myTarget.WriteCount);
+            Assert.Null(lastException);
+            Assert.Equal(2, myTarget.WriteCount);
         }
 
-        [Test]
+        [Fact]
         public void AsyncTargetWrapperAsyncWithExceptionTest1()
         {
             var myTarget = new MyAsyncTarget
@@ -170,25 +161,25 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
-            continuationHit.WaitOne();
-            Assert.IsNotNull(lastException);
-            Assert.IsInstanceOfType(typeof(InvalidOperationException), lastException);
+            Assert.True(continuationHit.WaitOne());
+            Assert.NotNull(lastException);
+            Assert.IsType(typeof(InvalidOperationException), lastException);
 
             // no flush on exception
-            Assert.AreEqual(0, myTarget.FlushCount);
-            Assert.AreEqual(1, myTarget.WriteCount);
+            Assert.Equal(0, myTarget.FlushCount);
+            Assert.Equal(1, myTarget.WriteCount);
 
             continuationHit.Reset();
             lastException = null;
             targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
-            Assert.IsNotNull(lastException);
-            Assert.IsInstanceOfType(typeof(InvalidOperationException), lastException);
-            Assert.AreEqual(0, myTarget.FlushCount);
-            Assert.AreEqual(2, myTarget.WriteCount);
+            Assert.NotNull(lastException);
+            Assert.IsType(typeof(InvalidOperationException), lastException);
+            Assert.Equal(0, myTarget.FlushCount);
+            Assert.Equal(2, myTarget.WriteCount);
         }
 
-        [Test]
+        [Fact]
         public void AsyncTargetWrapperFlushTest()
         {
             var myTarget = new MyAsyncTarget
@@ -233,13 +224,13 @@ namespace NLog.UnitTests.Targets.Wrappers
                             try
                             {
                                 // by this time all continuations should be completed
-                                Assert.AreEqual(eventCount, exceptions.Count);
+                                Assert.Equal(eventCount, exceptions.Count);
 
                                 // with just 1 flush of the target
-                                Assert.AreEqual(1, myTarget.FlushCount);
+                                Assert.Equal(1, myTarget.FlushCount);
 
                                 // and all writes should be accounted for
-                                Assert.AreEqual(eventCount, myTarget.WriteCount);
+                                Assert.Equal(eventCount, myTarget.WriteCount);
                             }
                             catch (Exception ex)
                             {
@@ -250,17 +241,17 @@ namespace NLog.UnitTests.Targets.Wrappers
                                 mre.Set();
                             }
                         });
-                    mre.WaitOne();
+                    Assert.True(mre.WaitOne());
                 },
                 LogLevel.Trace);
 
             if (lastException != null)
             {
-                Assert.Fail(lastException.ToString() + "\r\n" + internalLog);
+                Assert.True(false, lastException.ToString() + "\r\n" + internalLog);
             }
         }
 
-        [Test]
+        [Fact]
         public void AsyncTargetWrapperCloseTest()
         {
             var myTarget = new MyAsyncTarget
@@ -286,7 +277,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             targetWrapper.Close();
         }
 
-        [Test]
+        [Fact]
         public void AsyncTargetWrapperExceptionTest()
         {
             var targetWrapper = new AsyncTargetWrapper
@@ -310,10 +301,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                 LogLevel.Trace);
 
             targetWrapper.Close();
-            Assert.IsTrue(internalLog.StartsWith("Error Error in lazy writer timer procedure: System.NullReferenceException", StringComparison.Ordinal), internalLog);
+            Assert.True(internalLog.StartsWith("Error Error in lazy writer timer procedure: System.NullReferenceException", StringComparison.Ordinal), internalLog);
         }
 
-        [Test]
+        [Fact]
         public void FlushingMultipleTimesSimultaneous()
         {
             var asyncTarget = new AsyncTargetWrapper
@@ -342,8 +333,8 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             firstContinuationResetEvent.WaitOne(3000);
             secondContinuationResetEvent.WaitOne(3000);
-            Assert.IsTrue(firstContinuationCalled);
-            Assert.IsTrue(secondContinuationCalled);
+            Assert.True(firstContinuationCalled);
+            Assert.True(secondContinuationCalled);
         }
 
         class MyAsyncTarget : Target
@@ -358,7 +349,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                Assert.IsTrue(this.FlushCount <= this.WriteCount);
+                Assert.True(this.FlushCount <= this.WriteCount);
                 Interlocked.Increment(ref this.WriteCount);
                 ThreadPool.QueueUserWorkItem(
                     s =>
@@ -393,7 +384,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.IsTrue(this.FlushCount <= this.WriteCount);
+                Assert.True(this.FlushCount <= this.WriteCount);
                 this.WriteCount++;
             }
 

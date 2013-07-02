@@ -33,24 +33,15 @@
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
-    using System;
     using System.Threading;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Common;
-    using NLog.Internal;
     using NLog.Targets.Wrappers;
+    using Xunit;
+    using Assert = NUnit.Framework.Assert;
 
-    [TestFixture]
     public class AsyncRequestQueueTests : NLogTestBase
 	{
-        [Test]
+        [Fact]
         public void AsyncRequestQueueWithDiscardBehaviorTest()
         {
             var ev1 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
@@ -83,7 +74,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.AreSame(logEventInfos[2].Continuation, ev4.Continuation);
         }
 
-        [Test]
+        [Fact]
         public void AsyncRequestQueueWithGrowBehaviorTest()
         {
             var ev1 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
@@ -122,7 +113,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
 #if !NET_CF
-        [Test]
+        [Fact]
         public void AsyncRequestQueueWithBlockBehavior()
         {
             var queue = new AsyncRequestQueue(10, AsyncTargetWrapperOverflowAction.Block);
@@ -188,7 +179,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 #endif
 
-        [Test]
+        [Fact]
         public void AsyncRequestQueueClearTest()
         {
             var ev1 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
