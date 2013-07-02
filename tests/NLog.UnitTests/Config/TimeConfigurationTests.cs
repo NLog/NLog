@@ -37,6 +37,7 @@ namespace NLog.UnitTests.Config
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using NLog.Time;
     using NUnit.Framework;
 
 #if !NUNIT
@@ -44,9 +45,8 @@ namespace NLog.UnitTests.Config
     using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
     using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
     using TearDown = Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-    using NLog.Time;
 #endif
-
+    
     [TestFixture]
     public class TimeConfigurationTests : NLogTestBase
     {
