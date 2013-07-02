@@ -35,7 +35,6 @@ namespace NLog.UnitTests.Config
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
     using NLog.Time;
     using NUnit.Framework;
