@@ -246,7 +246,9 @@ namespace NLog.Targets.Wrappers
             AsyncContinuation[] continuations;
             lock (this.continuationQueueLock)
             {
-                continuations = this.flushAllContinuations.ToArray();
+                continuations = this.flushAllContinuations.Count > 0
+                    ? this.flushAllContinuations.ToArray()
+                    : new AsyncContinuation[] { null };
                 this.flushAllContinuations.Clear();
             }
 
