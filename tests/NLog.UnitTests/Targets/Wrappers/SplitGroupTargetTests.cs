@@ -36,23 +36,14 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Common;
-    using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using Xunit;
 
-    [TestFixture]
     public class SplitGroupTargetTests : NLogTestBase
 	{
-        [Test]
+        [Fact]
         public void SplitGroupSyncTest1()
         {
             var myTarget1 = new MyTarget();
@@ -98,21 +89,21 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             allDone.WaitOne();
 
-            Assert.AreEqual(inputEvents.Count, exceptions.Count);
+            Assert.Equal(inputEvents.Count, exceptions.Count);
             foreach (var e in exceptions)
             {
-                Assert.IsNull(e);
+                Assert.Null(e);
             }
 
-            Assert.AreEqual(inputEvents.Count, myTarget1.WriteCount);
-            Assert.AreEqual(inputEvents.Count, myTarget2.WriteCount);
-            Assert.AreEqual(inputEvents.Count, myTarget3.WriteCount);
+            Assert.Equal(inputEvents.Count, myTarget1.WriteCount);
+            Assert.Equal(inputEvents.Count, myTarget2.WriteCount);
+            Assert.Equal(inputEvents.Count, myTarget3.WriteCount);
 
             for (int i = 0; i < inputEvents.Count; ++i)
             {
-                Assert.AreSame(inputEvents[i], myTarget1.WrittenEvents[i]);
-                Assert.AreSame(inputEvents[i], myTarget2.WrittenEvents[i]);
-                Assert.AreSame(inputEvents[i], myTarget3.WrittenEvents[i]);
+                Assert.Same(inputEvents[i], myTarget1.WrittenEvents[i]);
+                Assert.Same(inputEvents[i], myTarget2.WrittenEvents[i]);
+                Assert.Same(inputEvents[i], myTarget3.WrittenEvents[i]);
             }
 
             Exception flushException = null;
@@ -122,15 +113,15 @@ namespace NLog.UnitTests.Targets.Wrappers
             flushHit.WaitOne();
             if (flushException != null)
             {
-                Assert.Fail(flushException.ToString());
+                Assert.True(false, flushException.ToString());
             }
 
-            Assert.AreEqual(1, myTarget1.FlushCount);
-            Assert.AreEqual(1, myTarget2.FlushCount);
-            Assert.AreEqual(1, myTarget3.FlushCount);
+            Assert.Equal(1, myTarget1.FlushCount);
+            Assert.Equal(1, myTarget2.FlushCount);
+            Assert.Equal(1, myTarget3.FlushCount);
         }
 
-        [Test]
+        [Fact]
         public void SplitGroupSyncTest2()
         {
             var wrapper = new SplitGroupTarget()
@@ -148,10 +139,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                 wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             }
 
-            Assert.AreEqual(10, exceptions.Count);
+            Assert.Equal(10, exceptions.Count);
             foreach (var e in exceptions)
             {
-                Assert.IsNull(e);
+                Assert.Null(e);
             }
 
             Exception flushException = new Exception("Flush not hit synchronously.");
@@ -159,7 +150,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             if (flushException != null)
             {
-                Assert.Fail(flushException.ToString());
+                Assert.True(false, flushException.ToString());
             }
         }
 
@@ -175,7 +166,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                Assert.IsTrue(this.FlushCount <= this.WriteCount);
+                Assert.True(this.FlushCount <= this.WriteCount);
                 this.WriteCount++;
                 ThreadPool.QueueUserWorkItem(
                     s =>
@@ -217,7 +208,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.IsTrue(this.FlushCount <= this.WriteCount);
+                Assert.True(this.FlushCount <= this.WriteCount);
                 lock (this)
                 {
                     this.WriteCount++;

@@ -34,23 +34,14 @@
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Common;
-    using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using Xunit;
 
-    [TestFixture]
     public class WrapperTargetBaseTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void WrapperTargetToStringTest()
         {
             var wrapper = new MyWrapper
@@ -63,10 +54,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = wrapper,
             };
 
-            Assert.AreEqual("MyWrapper(MyWrapper(Debug Target[foo]))", wrapper2.ToString());
+            Assert.Equal("MyWrapper(MyWrapper(Debug Target[foo]))", wrapper2.ToString());
         }
 
-        [Test]
+        [Fact]
         public void WrapperTargetFlushTest()
         {
             var wrapped = new MyWrappedTarget();
@@ -80,10 +71,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapped.Initialize(null);
 
             wrapper.Flush(ex => { });
-            Assert.AreEqual(1, wrapped.FlushCount);
+            Assert.Equal(1, wrapped.FlushCount);
         }
 
-        [Test]
+        [Fact]
         public void WrapperTargetDefaultWriteTest()
         {
             Exception lastException = null;
@@ -91,8 +82,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.WrappedTarget = new MyWrappedTarget();
             wrapper.Initialize(null);
             wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => lastException = ex));
-            Assert.IsNotNull(lastException);
-            Assert.IsInstanceOfType(typeof(NotSupportedException), lastException);
+            Assert.NotNull(lastException);
+            Assert.IsType(typeof(NotSupportedException), lastException);
         }
 
         public class MyWrapper : WrapperTargetBase

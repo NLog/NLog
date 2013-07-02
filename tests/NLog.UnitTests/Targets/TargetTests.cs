@@ -36,33 +36,24 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Common;
-    using NLog.Internal;
     using NLog.Targets;
+    using Xunit;
 
-    [TestFixture]
     public class TargetTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void InitializeTest()
         {
             var target = new MyTarget();
             target.Initialize(null);
 
             // initialize was called once
-            Assert.AreEqual(1, target.InitializeCount);
-            Assert.AreEqual(1, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
+            Assert.Equal(1, target.InitializeCount);
+            Assert.Equal(1, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        [Test]
+        [Fact]
         public void InitializeFailedTest()
         {
             var target = new MyTarget();
@@ -70,7 +61,7 @@ namespace NLog.UnitTests.Targets
             try
             {
                 target.Initialize(null);
-                Assert.Fail("Expected exception.");
+                Assert.True(false, "Expected exception.");
             }
             catch (InvalidOperationException)
             {
@@ -79,14 +70,14 @@ namespace NLog.UnitTests.Targets
             // after exception in Initialize(), the target becomes non-functional and all Write() operations
             var exceptions = new List<Exception>();
             target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-            Assert.AreEqual(0, target.WriteCount);
-            Assert.AreEqual(1, exceptions.Count);
-            Assert.IsNotNull(exceptions[0]);
-            Assert.AreEqual("Target " + target + " failed to initialize.", exceptions[0].Message);
-            Assert.AreEqual("Init error.", exceptions[0].InnerException.Message);
+            Assert.Equal(0, target.WriteCount);
+            Assert.Equal(1, exceptions.Count);
+            Assert.NotNull(exceptions[0]);
+            Assert.Equal("Target " + target + " failed to initialize.", exceptions[0].Message);
+            Assert.Equal("Init error.", exceptions[0].InnerException.Message);
         }
 
-        [Test]
+        [Fact]
         public void DoubleInitializeTest()
         {
             var target = new MyTarget();
@@ -94,11 +85,11 @@ namespace NLog.UnitTests.Targets
             target.Initialize(null);
 
             // initialize was called once
-            Assert.AreEqual(1, target.InitializeCount);
-            Assert.AreEqual(1, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
+            Assert.Equal(1, target.InitializeCount);
+            Assert.Equal(1, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        [Test]
+        [Fact]
         public void DoubleCloseTest()
         {
             var target = new MyTarget();
@@ -107,22 +98,22 @@ namespace NLog.UnitTests.Targets
             target.Close();
 
             // initialize and close were called once each
-            Assert.AreEqual(1, target.InitializeCount);
-            Assert.AreEqual(1, target.CloseCount);
-            Assert.AreEqual(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
+            Assert.Equal(1, target.InitializeCount);
+            Assert.Equal(1, target.CloseCount);
+            Assert.Equal(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        [Test]
+        [Fact]
         public void CloseWithoutInitializeTest()
         {
             var target = new MyTarget();
             target.Close();
 
             // nothing was called
-            Assert.AreEqual(0, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
+            Assert.Equal(0, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        [Test]
+        [Fact]
         public void WriteWithoutInitializeTest()
         {
             var target = new MyTarget();
@@ -136,12 +127,12 @@ namespace NLog.UnitTests.Targets
             });
 
             // write was not called
-            Assert.AreEqual(0, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
-            Assert.AreEqual(4, exceptions.Count);
-            exceptions.ForEach(Assert.IsNull);
+            Assert.Equal(0, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
+            Assert.Equal(4, exceptions.Count);
+            exceptions.ForEach(Assert.Null);
         }
 
-        [Test]
+        [Fact]
         public void WriteOnClosedTargetTest()
         {
             var target = new MyTarget();
@@ -155,18 +146,18 @@ namespace NLog.UnitTests.Targets
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
 
-            Assert.AreEqual(1, target.InitializeCount);
-            Assert.AreEqual(1, target.CloseCount);
+            Assert.Equal(1, target.InitializeCount);
+            Assert.Equal(1, target.CloseCount);
 
             // write was not called
-            Assert.AreEqual(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
+            Assert.Equal(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
 
             // but all callbacks were invoked with null values
-            Assert.AreEqual(4, exceptions.Count);
-            exceptions.ForEach(Assert.IsNull);
+            Assert.Equal(4, exceptions.Count);
+            exceptions.ForEach(Assert.Null);
         }
 
-        [Test]
+        [Fact]
         public void FlushTest()
         {
             var target = new MyTarget();
@@ -175,46 +166,46 @@ namespace NLog.UnitTests.Targets
             target.Flush(exceptions.Add);
 
             // flush was called
-            Assert.AreEqual(1, target.FlushCount);
-            Assert.AreEqual(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
-            Assert.AreEqual(1, exceptions.Count);
-            exceptions.ForEach(Assert.IsNull);
+            Assert.Equal(1, target.FlushCount);
+            Assert.Equal(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
+            Assert.Equal(1, exceptions.Count);
+            exceptions.ForEach(Assert.Null);
         }
 
-        [Test]
+        [Fact]
         public void FlushWithoutInitializeTest()
         {
             var target = new MyTarget();
             List<Exception> exceptions = new List<Exception>();
             target.Flush(exceptions.Add);
 
-            Assert.AreEqual(1, exceptions.Count);
-            exceptions.ForEach(Assert.IsNull);
+            Assert.Equal(1, exceptions.Count);
+            exceptions.ForEach(Assert.Null);
 
             // flush was not called
-            Assert.AreEqual(0, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
+            Assert.Equal(0, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        [Test]
+        [Fact]
         public void FlushOnClosedTargetTest()
         {
             var target = new MyTarget();
             target.Initialize(null);
             target.Close();
-            Assert.AreEqual(1, target.InitializeCount);
-            Assert.AreEqual(1, target.CloseCount);
+            Assert.Equal(1, target.InitializeCount);
+            Assert.Equal(1, target.CloseCount);
 
             List<Exception> exceptions = new List<Exception>();
             target.Flush(exceptions.Add);
 
-            Assert.AreEqual(1, exceptions.Count);
-            exceptions.ForEach(Assert.IsNull);
+            Assert.Equal(1, exceptions.Count);
+            exceptions.ForEach(Assert.Null);
 
             // flush was not called
-            Assert.AreEqual(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
+            Assert.Equal(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-        [Test]
+        [Fact]
         public void LockingTest()
         {
             var target = new MyTarget();
@@ -254,16 +245,16 @@ namespace NLog.UnitTests.Targets
             target.Flush(exceptions.Add);
             target.Close();
 
-            exceptions.ForEach(Assert.IsNull);
+            exceptions.ForEach(Assert.Null);
 
             mre.WaitOne();
             if (backgroundThreadException != null)
             {
-                Assert.Fail(backgroundThreadException.ToString());
+                Assert.True(false, backgroundThreadException.ToString());
             }
         }
 
-        [Test]
+        [Fact]
         public void GivenNullEvents_WhenWriteAsyncLogEvents_ThenNoExceptionAreThrown()
         {
             var target = new MyTarget();
@@ -274,7 +265,7 @@ namespace NLog.UnitTests.Targets
             }
             catch (Exception e)
             {
-                Assert.Fail("Exeption thrown: " + e);
+                Assert.True(false, "Exeption thrown: " + e);
             }
         }
 
@@ -297,41 +288,41 @@ namespace NLog.UnitTests.Targets
                     throw new InvalidOperationException("Init error.");
                 }
 
-                Assert.AreEqual(0, this.inBlockingOperation);
+                Assert.Equal(0, this.inBlockingOperation);
                 this.InitializeCount++;
                 base.InitializeTarget();
             }
 
             protected override void CloseTarget()
             {
-                Assert.AreEqual(0, this.inBlockingOperation);
+                Assert.Equal(0, this.inBlockingOperation);
                 this.CloseCount++;
                 base.CloseTarget();
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                Assert.AreEqual(0, this.inBlockingOperation);
+                Assert.Equal(0, this.inBlockingOperation);
                 this.FlushCount++;
                 base.FlushAsync(asyncContinuation);
             }
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.AreEqual(0, this.inBlockingOperation);
+                Assert.Equal(0, this.inBlockingOperation);
                 this.WriteCount++;
             }
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                Assert.AreEqual(0, this.inBlockingOperation);
+                Assert.Equal(0, this.inBlockingOperation);
                 this.WriteCount2++;
                 base.Write(logEvent);
             }
 
             protected override void Write(AsyncLogEventInfo[] logEvents)
             {
-                Assert.AreEqual(0, this.inBlockingOperation);
+                Assert.Equal(0, this.inBlockingOperation);
                 this.WriteCount3++;
                 base.Write(logEvents);
             }

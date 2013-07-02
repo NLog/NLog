@@ -36,23 +36,14 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Common;
-    using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using Xunit;
 
-    [TestFixture]
     public class RandomizeGroupTargetTests : NLogTestBase
 	{
-        [Test]
+        [Fact]
         public void RandomizeGroupSyncTest1()
         {
             var myTarget1 = new MyTarget();
@@ -77,13 +68,13 @@ namespace NLog.UnitTests.Targets.Wrappers
                 wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             }
 
-            Assert.AreEqual(10, exceptions.Count);
+            Assert.Equal(10, exceptions.Count);
             foreach (var e in exceptions)
             {
-                Assert.IsNull(e);
+                Assert.Null(e);
             }
 
-            Assert.AreEqual(10, myTarget1.WriteCount + myTarget2.WriteCount + myTarget3.WriteCount);
+            Assert.Equal(10, myTarget1.WriteCount + myTarget2.WriteCount + myTarget3.WriteCount);
 
             Exception flushException = null;
             var flushHit = new ManualResetEvent(false);
@@ -92,15 +83,15 @@ namespace NLog.UnitTests.Targets.Wrappers
             flushHit.WaitOne();
             if (flushException != null)
             {
-                Assert.Fail(flushException.ToString());
+                Assert.True(false, flushException.ToString());
             }
 
-            Assert.AreEqual(1, myTarget1.FlushCount);
-            Assert.AreEqual(1, myTarget2.FlushCount);
-            Assert.AreEqual(1, myTarget3.FlushCount);
+            Assert.Equal(1, myTarget1.FlushCount);
+            Assert.Equal(1, myTarget2.FlushCount);
+            Assert.Equal(1, myTarget3.FlushCount);
         }
 
-        [Test]
+        [Fact]
         public void RandomizeGroupSyncTest2()
         {
             var wrapper = new RandomizeGroupTarget()
@@ -118,10 +109,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                 wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             }
 
-            Assert.AreEqual(10, exceptions.Count);
+            Assert.Equal(10, exceptions.Count);
             foreach (var e in exceptions)
             {
-                Assert.IsNull(e);
+                Assert.Null(e);
             }
 
             Exception flushException = new Exception("Flush not hit synchronously.");
@@ -129,7 +120,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             if (flushException != null)
             {
-                Assert.Fail(flushException.ToString());
+                Assert.True(false, flushException.ToString());
             }
         }
 
@@ -145,7 +136,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                Assert.IsTrue(this.FlushCount <= this.WriteCount);
+                Assert.True(this.FlushCount <= this.WriteCount);
                 this.WriteCount++;
                 ThreadPool.QueueUserWorkItem(
                     s =>
@@ -181,7 +172,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.IsTrue(this.FlushCount <= this.WriteCount);
+                Assert.True(this.FlushCount <= this.WriteCount);
                 this.WriteCount++;
 
                 if (this.FailCounter > 0)

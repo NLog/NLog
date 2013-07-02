@@ -31,56 +31,44 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown = Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-    using ExpectedException = Microsoft.VisualStudio.TestTools.UnitTesting.ExpectedExceptionAttribute;
-#endif
-
-using NLog.Time;
-
 namespace NLog.UnitTests
 {
-    [TestFixture]
-    public class TimeSourceTests : NLogTestBase
+    using System;
+    using NLog.Time;
+    using Xunit;
+
+    public class TimeSourceTests : NLogTestBase, IDisposable
     {
-        [TearDown]
-        public void TearDown()
+        public void Dispose()
         {
             TimeSource.Current = new FastLocalTimeSource();
         }
 
-        [Test]
+        [Fact]
         public void AccurateLocalTest()
         {
             TestTimeSource(new AccurateLocalTimeSource(), DateTime.Now, DateTimeKind.Local);
         }
 
-        [Test]
+        [Fact]
         public void AccurateUtcTest()
         {
             TestTimeSource(new AccurateUtcTimeSource(), DateTime.UtcNow, DateTimeKind.Utc);
         }
 
-        [Test]
+        [Fact]
         public void FastLocalTest()
         {
             TestTimeSource(new FastLocalTimeSource(), DateTime.Now, DateTimeKind.Local);
         }
 
-        [Test]
+        [Fact]
         public void FastUtcTest()
         {
             TestTimeSource(new FastUtcTimeSource(), DateTime.UtcNow, DateTimeKind.Utc);
         }
 
-        [Test]
+        [Fact]
         public void CustomTimeSourceTest()
         {
             TestTimeSource(new CustomTimeSource(), DateTime.UtcNow.AddHours(1), DateTimeKind.Unspecified);
@@ -99,20 +87,20 @@ namespace NLog.UnitTests
 
         void TestTimeSource(TimeSource source, DateTime expected, DateTimeKind kind)
         {
-            Assert.IsInstanceOfType(typeof(FastLocalTimeSource), TimeSource.Current);
+            Assert.IsType(typeof(FastLocalTimeSource), TimeSource.Current);
             TimeSource.Current = source;
-            Assert.AreSame(source, TimeSource.Current);
+            Assert.Same(source, TimeSource.Current);
             var evt = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.AreEqual(kind, evt.TimeStamp.Kind);
-            Assert.IsTrue(expected.AddSeconds(-5) < evt.TimeStamp && evt.TimeStamp < expected.AddSeconds(5));
+            Assert.Equal(kind, evt.TimeStamp.Kind);
+            Assert.True(expected.AddSeconds(-5) < evt.TimeStamp && evt.TimeStamp < expected.AddSeconds(5));
             LogEventInfo evt2;
             do
             {
                 evt2 = new LogEventInfo(LogLevel.Info, "logger", "msg");
             } while (evt.TimeStamp == evt2.TimeStamp);
-            Assert.AreEqual(kind, evt2.TimeStamp.Kind);
-            Assert.IsTrue(evt2.TimeStamp > evt.TimeStamp);
-            Assert.IsTrue(evt2.TimeStamp - evt.TimeStamp <= TimeSpan.FromSeconds(1));
+            Assert.Equal(kind, evt2.TimeStamp.Kind);
+            Assert.True(evt2.TimeStamp > evt.TimeStamp);
+            Assert.True(evt2.TimeStamp - evt.TimeStamp <= TimeSpan.FromSeconds(1));
         }
     }
 }

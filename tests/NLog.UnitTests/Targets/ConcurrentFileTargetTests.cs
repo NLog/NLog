@@ -33,27 +33,18 @@
 
 #if !SILVERLIGHT && !NET_CF
 
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Threading;
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-using NLog.Config;
-using NLog.Targets;
-using NLog.Targets.Wrappers;
-using NLog.Common;
-
 namespace NLog.UnitTests.Targets
 {
-    [TestFixture]
+    using System;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Threading;
+    using NLog.Config;
+    using NLog.Targets;
+    using NLog.Targets.Wrappers;
+    using NLog.Common;
+    using Xunit;
+
     public class ConcurrentFileTargetTests : NLogTestBase
 	{
         private Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.ConcurrentFileTargetTests");
@@ -125,7 +116,7 @@ namespace NLog.UnitTests.Targets
             {
                 processes[i].WaitForExit();
                 string output = processes[i].StandardOutput.ReadToEnd();
-                Assert.AreEqual(0, processes[i].ExitCode, "Runner returned with an error. Standard output: " + output);
+                Assert.Equal(0, processes[i].ExitCode);
                 processes[i].Dispose();
                 processes[i] = null;
             }
@@ -140,13 +131,13 @@ namespace NLog.UnitTests.Targets
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] tokens = line.Split(' ');
-                    Assert.AreEqual(2, tokens.Length, "invalid output line: '" + line + "' expected two numbers.");
+                    Assert.Equal(2, tokens.Length);
                     try
                     {
                         int thread = Convert.ToInt32(tokens[0]);
                         int number = Convert.ToInt32(tokens[1]);
 
-                        Assert.AreEqual(maxNumber[thread], number);
+                        Assert.Equal(maxNumber[thread], number);
                         maxNumber[thread]++;
                     }
                     catch (Exception ex)
@@ -164,25 +155,25 @@ namespace NLog.UnitTests.Targets
             DoConcurrentTest(10, 2000, mode);
         }
 
-        [Test]
+        [Fact]
         public void SimpleConcurrentTest()
         {
             DoConcurrentTest("none");
         }
 
-        [Test]
+        [Fact]
         public void AsyncConcurrentTest()
         {
             DoConcurrentTest(2, 100, "async");
         }
 
-        [Test]
+        [Fact]
         public void BufferedConcurrentTest()
         {
             DoConcurrentTest(2, 100, "buffered");
         }
 
-        [Test]
+        [Fact]
         public void BufferedTimedFlushConcurrentTest()
         {
             DoConcurrentTest(2, 100, "buffered_timed_flush");

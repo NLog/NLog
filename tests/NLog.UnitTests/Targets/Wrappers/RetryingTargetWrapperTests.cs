@@ -35,24 +35,14 @@ namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Common;
-    using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using Xunit;
 
-    [TestFixture]
     public class RetryingTargetWrapperTests : NLogTestBase
 	{
-        [Test]
+        [Fact]
         public void RetryingTargetWrapperTest1()
         {
             var target = new MyTarget();
@@ -78,21 +68,21 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.WriteAsyncLogEvents(events);
 
             // make sure all events went through
-            Assert.AreEqual(3, target.Events.Count);
-            Assert.AreSame(events[0].LogEvent, target.Events[0]);
-            Assert.AreSame(events[1].LogEvent, target.Events[1]);
-            Assert.AreSame(events[2].LogEvent, target.Events[2]);
+            Assert.Equal(3, target.Events.Count);
+            Assert.Same(events[0].LogEvent, target.Events[0]);
+            Assert.Same(events[1].LogEvent, target.Events[1]);
+            Assert.Same(events[2].LogEvent, target.Events[2]);
 
-            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.Equal(events.Length, exceptions.Count);
 
             // make sure there were no exception
             foreach (var ex in exceptions)
             {
-                Assert.IsNull(ex);
+                Assert.Null(ex);
             }
         }
 
-        [Test]
+        [Fact]
         public void RetryingTargetWrapperTest2()
         {
             var target = new MyTarget()
@@ -120,27 +110,27 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             var result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            Assert.IsTrue(result.IndexOf("Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 1/4") != -1);
-            Assert.IsTrue(result.IndexOf("Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 2/4") != -1);
-            Assert.IsTrue(result.IndexOf("Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 3/4") != -1);
-            Assert.IsTrue(result.IndexOf("Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 4/4") != -1);
-            Assert.IsTrue(result.IndexOf("Warn Too many retries. Aborting.") != -1);
-            Assert.IsTrue(result.IndexOf("Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 1/4") != -1);
-            Assert.IsTrue(result.IndexOf("Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 2/4") != -1);
+            Assert.True(result.IndexOf("Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 1/4") != -1);
+            Assert.True(result.IndexOf("Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 2/4") != -1);
+            Assert.True(result.IndexOf("Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 3/4") != -1);
+            Assert.True(result.IndexOf("Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 4/4") != -1);
+            Assert.True(result.IndexOf("Warn Too many retries. Aborting.") != -1);
+            Assert.True(result.IndexOf("Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 1/4") != -1);
+            Assert.True(result.IndexOf("Warn Error while writing to 'MyTarget': System.InvalidOperationException: Some exception has ocurred.. Try 2/4") != -1);
 
             // first event does not get to wrapped target because of too many attempts.
             // second event gets there in 3rd retry
             // and third event gets there immediately
-            Assert.AreEqual(2, target.Events.Count);
-            Assert.AreSame(events[1].LogEvent, target.Events[0]);
-            Assert.AreSame(events[2].LogEvent, target.Events[1]);
+            Assert.Equal(2, target.Events.Count);
+            Assert.Same(events[1].LogEvent, target.Events[0]);
+            Assert.Same(events[2].LogEvent, target.Events[1]);
 
-            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.Equal(events.Length, exceptions.Count);
 
-            Assert.IsNotNull(exceptions[0]);
-            Assert.AreEqual("Some exception has ocurred.", exceptions[0].Message);
-            Assert.IsNull(exceptions[1]);
-            Assert.IsNull(exceptions[2]);
+            Assert.NotNull(exceptions[0]);
+            Assert.Equal("Some exception has ocurred.", exceptions[0].Message);
+            Assert.Null(exceptions[1]);
+            Assert.Null(exceptions[2]);
         }
 
         public class MyTarget : Target

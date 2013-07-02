@@ -33,23 +33,17 @@
 
 #if !SILVERLIGHT && !NET_CF
 
-using System;
-using System.CodeDom.Compiler;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using Microsoft.CSharp;
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
 namespace NLog.UnitTests
 {
+
+    using System;
+    using System.CodeDom.Compiler;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Text;
+    using Microsoft.CSharp;
+    using Xunit;
+
     static class ProcessRunner
     {
         static ProcessRunner()
@@ -97,8 +91,8 @@ class C1
             options.GenerateExecutable = true;
             options.IncludeDebugInformation = true;
             var results = provider.CompileAssemblyFromSource(options, sourceCode);
-            Assert.IsFalse(results.Errors.HasWarnings);
-            Assert.IsFalse(results.Errors.HasErrors);
+            Assert.False(results.Errors.HasWarnings);
+            Assert.False(results.Errors.HasErrors);
         }
 
         public static Process SpawnMethod(Type type, string methodName, params string[] p)

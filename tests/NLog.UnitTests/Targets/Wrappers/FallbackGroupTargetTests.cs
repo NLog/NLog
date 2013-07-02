@@ -36,23 +36,14 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Common;
-    using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using Xunit;
 
-    [TestFixture]
     public class FallbackGroupTargetTests : NLogTestBase
 	{
-        [Test]
+        [Fact]
         public void FirstTargetWorks_Write_AllEventsAreWrittenToFirstTarget()
         {
             var myTarget1 = new MyTarget();
@@ -63,14 +54,14 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             WriteAndAssertNoExceptions(wrapper);
 
-            Assert.AreEqual(10, myTarget1.WriteCount);
-            Assert.AreEqual(0, myTarget2.WriteCount);
-            Assert.AreEqual(0, myTarget3.WriteCount);
+            Assert.Equal(10, myTarget1.WriteCount);
+            Assert.Equal(0, myTarget2.WriteCount);
+            Assert.Equal(0, myTarget3.WriteCount);
 
             AssertNoFlushException(wrapper);
         }
 
-        [Test]
+        [Fact]
         public void FirstTargetFails_Write_SecondTargetWritesAllEvents()
         {
             var myTarget1 = new MyTarget { FailCounter = 1 };
@@ -81,14 +72,14 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             WriteAndAssertNoExceptions(wrapper);
 
-            Assert.AreEqual(1, myTarget1.WriteCount);
-            Assert.AreEqual(10, myTarget2.WriteCount);
-            Assert.AreEqual(0, myTarget3.WriteCount);
+            Assert.Equal(1, myTarget1.WriteCount);
+            Assert.Equal(10, myTarget2.WriteCount);
+            Assert.Equal(0, myTarget3.WriteCount);
 
             AssertNoFlushException(wrapper);
         }
 
-        [Test]
+        [Fact]
         public void FirstTwoTargetsFails_Write_ThirdTargetWritesAllEvents()
         {
             var myTarget1 = new MyTarget { FailCounter = 1 };
@@ -99,14 +90,14 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             WriteAndAssertNoExceptions(wrapper);
 
-            Assert.AreEqual(1, myTarget1.WriteCount);
-            Assert.AreEqual(1, myTarget2.WriteCount);
-            Assert.AreEqual(10, myTarget3.WriteCount);
+            Assert.Equal(1, myTarget1.WriteCount);
+            Assert.Equal(1, myTarget2.WriteCount);
+            Assert.Equal(10, myTarget3.WriteCount);
 
             AssertNoFlushException(wrapper);
         }
 
-        [Test]
+        [Fact]
         public void ReturnToFirstOnSuccessAndSecondTargetSucceeds_Write_ReturnToFirstTargetOnSuccess()
         {
             var myTarget1 = new MyTarget { FailCounter = 1 };
@@ -117,14 +108,14 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             WriteAndAssertNoExceptions(wrapper);
 
-            Assert.AreEqual(10, myTarget1.WriteCount);
-            Assert.AreEqual(1, myTarget2.WriteCount);
-            Assert.AreEqual(0, myTarget3.WriteCount);
+            Assert.Equal(10, myTarget1.WriteCount);
+            Assert.Equal(1, myTarget2.WriteCount);
+            Assert.Equal(0, myTarget3.WriteCount);
 
             AssertNoFlushException(wrapper);
         }
 
-        [Test]
+        [Fact]
         public void FallbackGroupTargetSyncTest5()
         {
             // fail once
@@ -142,27 +133,27 @@ namespace NLog.UnitTests.Targets.Wrappers
                 wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             }
 
-            Assert.AreEqual(10, exceptions.Count);
+            Assert.Equal(10, exceptions.Count);
             for (var i = 0; i < 10; ++i)
             {
                 if (i < 3)
                 {
-                    Assert.IsNotNull(exceptions[i]);
+                    Assert.NotNull(exceptions[i]);
                 }
                 else
                 {
-                    Assert.IsNull(exceptions[i]);
+                    Assert.Null(exceptions[i]);
                 }
             }
 
-            Assert.AreEqual(10, myTarget1.WriteCount);
-            Assert.AreEqual(3, myTarget2.WriteCount);
-            Assert.AreEqual(3, myTarget3.WriteCount);
+            Assert.Equal(10, myTarget1.WriteCount);
+            Assert.Equal(3, myTarget2.WriteCount);
+            Assert.Equal(3, myTarget3.WriteCount);
 
             AssertNoFlushException(wrapper);
         }
 
-        [Test]
+        [Fact]
         public void FallbackGroupTargetSyncTest6()
         {
             // fail once
@@ -180,31 +171,31 @@ namespace NLog.UnitTests.Targets.Wrappers
                 wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             }
 
-            Assert.AreEqual(10, exceptions.Count);
+            Assert.Equal(10, exceptions.Count);
             for (var i = 0; i < 10; ++i)
             {
                 if (i < 3)
                 {
                     // for the first 3 rounds, no target is available
-                    Assert.IsNotNull(exceptions[i]);
-                    Assert.IsInstanceOfType(typeof(InvalidOperationException), exceptions[i]);
-                    Assert.AreEqual("Some failure.", exceptions[i].Message);
+                    Assert.NotNull(exceptions[i]);
+                    Assert.IsType(typeof(InvalidOperationException), exceptions[i]);
+                    Assert.Equal("Some failure.", exceptions[i].Message);
                 }
                 else
                 {
-                    Assert.IsNull(exceptions[i], Convert.ToString(exceptions[i]));
+                    Assert.Null(exceptions[i]);
                 }
             }
 
-            Assert.AreEqual(10, myTarget1.WriteCount);
-            Assert.AreEqual(10, myTarget2.WriteCount);
-            Assert.AreEqual(3, myTarget3.WriteCount);
+            Assert.Equal(10, myTarget1.WriteCount);
+            Assert.Equal(10, myTarget2.WriteCount);
+            Assert.Equal(3, myTarget3.WriteCount);
 
             AssertNoFlushException(wrapper);
 
-            Assert.AreEqual(1, myTarget1.FlushCount);
-            Assert.AreEqual(1, myTarget2.FlushCount);
-            Assert.AreEqual(1, myTarget3.FlushCount);
+            Assert.Equal(1, myTarget1.FlushCount);
+            Assert.Equal(1, myTarget2.FlushCount);
+            Assert.Equal(1, myTarget3.FlushCount);
         }
 
         private static FallbackGroupTarget CreateAndInitializeFallbackGroupTarget(bool returnToFirstOnSuccess, params Target[] targets)
@@ -232,10 +223,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                 wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             }
 
-            Assert.AreEqual(10, exceptions.Count);
+            Assert.Equal(10, exceptions.Count);
             foreach (var e in exceptions)
             {
-                Assert.IsNull(e);
+                Assert.Null(e);
             }
         }
 
@@ -251,7 +242,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             flushHit.WaitOne();
             if (flushException != null)
-                Assert.Fail(flushException.ToString());
+                Assert.True(false, flushException.ToString());
         }
 
         private class MyTarget : Target
@@ -262,7 +253,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.IsTrue(this.FlushCount <= this.WriteCount);
+                Assert.True(this.FlushCount <= this.WriteCount);
                 this.WriteCount++;
 
                 if (this.FailCounter > 0)

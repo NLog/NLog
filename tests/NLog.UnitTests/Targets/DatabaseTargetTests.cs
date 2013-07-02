@@ -42,17 +42,9 @@ namespace NLog.UnitTests.Targets
     using System.Data;
     using System.Data.Common;
     using System.Globalization;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Targets;
+    using Xunit;
 
-    [TestFixture]
     public class DatabaseTargetTests : NLogTestBase
     {
 #if !NET_CF && !MONO
@@ -65,7 +57,7 @@ namespace NLog.UnitTests.Targets
         }
 #endif
 
-        [Test]
+        [Fact]
         public void SimpleDatabaseTest()
         {
             MockDbConnection.ClearLog();
@@ -77,7 +69,7 @@ namespace NLog.UnitTests.Targets
             };
 
             dt.Initialize(null);
-            Assert.AreSame(typeof(MockDbConnection), dt.ConnectionType);
+            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
             List<Exception> exceptions = new List<Exception>();
             dt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add));
@@ -85,7 +77,7 @@ namespace NLog.UnitTests.Targets
             dt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "msg3").WithContinuation(exceptions.Add));
             foreach (var ex in exceptions)
             {
-                Assert.IsNull(ex, Convert.ToString(ex));
+                Assert.Null(ex);
             }
 
             string expectedLog = @"Open('FooBar').
@@ -102,7 +94,7 @@ Close()
             AssertLog(expectedLog);
         }
 
-        [Test]
+        [Fact]
         public void SimpleBatchedDatabaseTest()
         {
             MockDbConnection.ClearLog();
@@ -114,7 +106,7 @@ Close()
             };
 
             dt.Initialize(null);
-            Assert.AreSame(typeof(MockDbConnection), dt.ConnectionType);
+            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
             List<Exception> exceptions = new List<Exception>();
             var events = new[]
@@ -127,7 +119,7 @@ Close()
             dt.WriteAsyncLogEvents(events);
             foreach (var ex in exceptions)
             {
-                Assert.IsNull(ex, Convert.ToString(ex));
+                Assert.Null(ex);
             }
 
             string expectedLog = @"Open('FooBar').
@@ -140,7 +132,7 @@ Close()
             AssertLog(expectedLog);
         }
 
-        [Test]
+        [Fact]
         public void KeepConnectionOpenTest()
         {
             MockDbConnection.ClearLog();
@@ -153,7 +145,7 @@ Close()
             };
 
             dt.Initialize(null);
-            Assert.AreSame(typeof(MockDbConnection), dt.ConnectionType);
+            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
             List<Exception> exceptions = new List<Exception>();
             dt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add));
@@ -161,7 +153,7 @@ Close()
             dt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "msg3").WithContinuation(exceptions.Add));
             foreach (var ex in exceptions)
             {
-                Assert.IsNull(ex, Convert.ToString(ex));
+                Assert.Null(ex);
             }
 
             string expectedLog = @"Open('FooBar').
@@ -180,7 +172,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             AssertLog(expectedLog);
         }
 
-        [Test]
+        [Fact]
         public void KeepConnectionOpenBatchedTest()
         {
             MockDbConnection.ClearLog();
@@ -193,7 +185,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             };
 
             dt.Initialize(null);
-            Assert.AreSame(typeof(MockDbConnection), dt.ConnectionType);
+            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
             var exceptions = new List<Exception>();
 
             var events = new[]
@@ -206,7 +198,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             dt.WriteAsyncLogEvents(events);
             foreach (var ex in exceptions)
             {
-                Assert.IsNull(ex, Convert.ToString(ex));
+                Assert.Null(ex);
             }
 
             string expectedLog = @"Open('FooBar').
@@ -225,7 +217,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             AssertLog(expectedLog);
         }
 
-        [Test]
+        [Fact]
         public void KeepConnectionOpenTest2()
         {
             MockDbConnection.ClearLog();
@@ -238,7 +230,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             };
 
             dt.Initialize(null);
-            Assert.AreSame(typeof(MockDbConnection), dt.ConnectionType);
+            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
             List<Exception> exceptions = new List<Exception>();
             dt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add));
@@ -247,7 +239,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             dt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "msg4").WithContinuation(exceptions.Add));
             foreach (var ex in exceptions)
             {
-                Assert.IsNull(ex, Convert.ToString(ex));
+                Assert.Null(ex);
             }
 
             string expectedLog = @"Open('Database=MyLogger').
@@ -271,7 +263,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg4')
             AssertLog(expectedLog);
         }
 
-        [Test]
+        [Fact]
         public void KeepConnectionOpenBatchedTest2()
         {
             MockDbConnection.ClearLog();
@@ -285,7 +277,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg4')
 
             dt.Initialize(null);
 
-            Assert.AreSame(typeof(MockDbConnection), dt.ConnectionType);
+            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
             // when we pass multiple log events in an array, the target will bucket-sort them by
             // connection string and group all commands for the same connection string together
@@ -305,7 +297,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg4')
             dt.WriteAsyncLogEvents(events);
             foreach (var ex in exceptions)
             {
-                Assert.IsNull(ex, Convert.ToString(ex));
+                Assert.Null(ex);
             }
 
             string expectedLog = @"Open('Database=MyLogger').
@@ -327,7 +319,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             AssertLog(expectedLog);
         }
 
-        [Test]
+        [Fact]
         public void ParameterTest()
         {
             MockDbConnection.ClearLog();
@@ -347,7 +339,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
 
             dt.Initialize(null);
 
-            Assert.AreSame(typeof(MockDbConnection), dt.ConnectionType);
+            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
             // when we pass multiple log events in an array, the target will bucket-sort them by
             // connection string and group all commands for the same connection string together
@@ -365,7 +357,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             dt.WriteAsyncLogEvents(events);
             foreach (var ex in exceptions)
             {
-                Assert.IsNull(ex, Convert.ToString(ex));
+                Assert.Null(ex);
             }
 
             string expectedLog = @"Open('Server=.;Trusted_Connection=SSPI;').
@@ -413,7 +405,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
             AssertLog(expectedLog);
         }
 
-        [Test]
+        [Fact]
         public void ParameterFacetTest()
         {
             MockDbConnection.ClearLog();
@@ -443,7 +435,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
 
             dt.Initialize(null);
 
-            Assert.AreSame(typeof(MockDbConnection), dt.ConnectionType);
+            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
 
             // when we pass multiple log events in an array, the target will bucket-sort them by
             // connection string and group all commands for the same connection string together
@@ -462,7 +454,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
             dt.Close();
             foreach (var ex in exceptions)
             {
-                Assert.IsNull(ex, Convert.ToString(ex));
+                Assert.Null(ex);
             }
 
             string expectedLog = @"Open('Server=.;Trusted_Connection=SSPI;').
@@ -511,29 +503,29 @@ Close()
             AssertLog(expectedLog);
         }
 
-        [Test]
+        [Fact]
         public void ConnectionStringBuilderTest1()
         {
             DatabaseTarget dt;
 
             dt = new DatabaseTarget();
-            Assert.AreEqual("Server=.;Trusted_Connection=SSPI;", this.GetConnectionString(dt));
+            Assert.Equal("Server=.;Trusted_Connection=SSPI;", this.GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.DBHost = "${logger}";
-            Assert.AreEqual("Server=Logger1;Trusted_Connection=SSPI;", this.GetConnectionString(dt));
+            Assert.Equal("Server=Logger1;Trusted_Connection=SSPI;", this.GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.DBHost = "HOST1";
             dt.DBDatabase= "${logger}";
-            Assert.AreEqual("Server=HOST1;Trusted_Connection=SSPI;Database=Logger1", this.GetConnectionString(dt));
+            Assert.Equal("Server=HOST1;Trusted_Connection=SSPI;Database=Logger1", this.GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.DBHost = "HOST1";
             dt.DBDatabase = "${logger}";
             dt.DBUserName = "user1";
             dt.DBPassword = "password1";
-            Assert.AreEqual("Server=HOST1;User id=user1;Password=password1;Database=Logger1", this.GetConnectionString(dt));
+            Assert.Equal("Server=HOST1;User id=user1;Password=password1;Database=Logger1", this.GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.ConnectionString = "customConnectionString42";
@@ -541,10 +533,10 @@ Close()
             dt.DBDatabase = "${logger}";
             dt.DBUserName = "user1";
             dt.DBPassword = "password1";
-            Assert.AreEqual("customConnectionString42", this.GetConnectionString(dt));
+            Assert.Equal("customConnectionString42", this.GetConnectionString(dt));
         }
 
-        [Test]
+        [Fact]
         public void DatabaseExceptionTest1()
         {
             MockDbConnection.ClearLog();
@@ -558,13 +550,13 @@ Close()
             db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             db.Close();
 
-            Assert.AreEqual(1, exceptions.Count);
-            Assert.IsNotNull(exceptions[0]);
-            Assert.AreEqual("Cannot open fake database.", exceptions[0].Message);
-            Assert.AreEqual("Open('cannotconnect').\r\n", MockDbConnection.Log);
+            Assert.Equal(1, exceptions.Count);
+            Assert.NotNull(exceptions[0]);
+            Assert.Equal("Cannot open fake database.", exceptions[0].Message);
+            Assert.Equal("Open('cannotconnect').\r\n", MockDbConnection.Log);
         }
 
-        [Test]
+        [Fact]
         public void DatabaseExceptionTest2()
         {
             MockDbConnection.ClearLog();
@@ -581,13 +573,13 @@ Close()
             db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             db.Close();
 
-            Assert.AreEqual(3, exceptions.Count);
-            Assert.IsNotNull(exceptions[0]);
-            Assert.IsNotNull(exceptions[1]);
-            Assert.IsNotNull(exceptions[2]);
-            Assert.AreEqual("Failure during ExecuteNonQuery", exceptions[0].Message);
-            Assert.AreEqual("Failure during ExecuteNonQuery", exceptions[1].Message);
-            Assert.AreEqual("Failure during ExecuteNonQuery", exceptions[2].Message);
+            Assert.Equal(3, exceptions.Count);
+            Assert.NotNull(exceptions[0]);
+            Assert.NotNull(exceptions[1]);
+            Assert.NotNull(exceptions[2]);
+            Assert.Equal("Failure during ExecuteNonQuery", exceptions[0].Message);
+            Assert.Equal("Failure during ExecuteNonQuery", exceptions[1].Message);
+            Assert.Equal("Failure during ExecuteNonQuery", exceptions[2].Message);
 
             string expectedLog = @"Open('cannotexecute').
 ExecuteNonQuery: not important
@@ -602,7 +594,7 @@ Close()
             AssertLog(expectedLog);
         }
 
-        [Test]
+        [Fact]
         public void DatabaseExceptionTest3()
         {
             MockDbConnection.ClearLog();
@@ -620,13 +612,13 @@ Close()
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             db.Close();
 
-            Assert.AreEqual(3, exceptions.Count);
-            Assert.IsNotNull(exceptions[0]);
-            Assert.IsNotNull(exceptions[1]);
-            Assert.IsNotNull(exceptions[2]);
-            Assert.AreEqual("Failure during ExecuteNonQuery", exceptions[0].Message);
-            Assert.AreEqual("Failure during ExecuteNonQuery", exceptions[1].Message);
-            Assert.AreEqual("Failure during ExecuteNonQuery", exceptions[2].Message);
+            Assert.Equal(3, exceptions.Count);
+            Assert.NotNull(exceptions[0]);
+            Assert.NotNull(exceptions[1]);
+            Assert.NotNull(exceptions[2]);
+            Assert.Equal("Failure during ExecuteNonQuery", exceptions[0].Message);
+            Assert.Equal("Failure during ExecuteNonQuery", exceptions[1].Message);
+            Assert.Equal("Failure during ExecuteNonQuery", exceptions[2].Message);
 
             string expectedLog = @"Open('cannotexecute').
 ExecuteNonQuery: not important
@@ -642,7 +634,7 @@ Close()
         }
 
 #if !NET_CF
-        [Test]
+        [Fact]
         public void ConnectionStringNameInitTest()
         {
             var dt = new DatabaseTarget
@@ -651,18 +643,18 @@ Close()
                 CommandText = "notimportant",
             };
 
-            Assert.AreSame(ConfigurationManager.ConnectionStrings, dt.ConnectionStringsSettings);
+            Assert.Same(ConfigurationManager.ConnectionStrings, dt.ConnectionStringsSettings);
             dt.ConnectionStringsSettings = new ConnectionStringSettingsCollection()
             {
                 new ConnectionStringSettings("MyConnectionString", "cs1", "MockDb"),
             };
 
             dt.Initialize(null);
-            Assert.AreSame(MockDbFactory.Instance, dt.ProviderFactory);
-            Assert.AreEqual("cs1", dt.ConnectionString.Render(LogEventInfo.CreateNullEvent()));
+            Assert.Same(MockDbFactory.Instance, dt.ProviderFactory);
+            Assert.Equal("cs1", dt.ConnectionString.Render(LogEventInfo.CreateNullEvent()));
         }
 
-        [Test]
+        [Fact]
         public void ConnectionStringNameNegativeTest()
         {
             var dt = new DatabaseTarget
@@ -675,28 +667,28 @@ Close()
             try
             {
                 dt.Initialize(null);
-                Assert.Fail("Exception expected.");
+                Assert.True(false, "Exception expected.");
             }
             catch (NLogConfigurationException configurationException)
             {
-                Assert.AreEqual("Connection string 'MyConnectionString' is not declared in <connectionStrings /> section.", configurationException.Message);
+                Assert.Equal("Connection string 'MyConnectionString' is not declared in <connectionStrings /> section.", configurationException.Message);
             }
         }
 
-        [Test]
+        [Fact]
         public void ProviderFactoryInitTest()
         {
             var dt = new DatabaseTarget();
             dt.DBProvider = "MockDb";
             dt.CommandText = "Notimportant";
             dt.Initialize(null);
-            Assert.AreSame(MockDbFactory.Instance, dt.ProviderFactory);
+            Assert.Same(MockDbFactory.Instance, dt.ProviderFactory);
             dt.OpenConnection("myConnectionString");
-            Assert.AreEqual(1, MockDbConnection2.OpenCount);
-            Assert.AreEqual("myConnectionString", MockDbConnection2.LastOpenConnectionString);
+            Assert.Equal(1, MockDbConnection2.OpenCount);
+            Assert.Equal("myConnectionString", MockDbConnection2.LastOpenConnectionString);
         }
 
-        [Test]
+        [Fact]
         public void SqlServerShorthandNotationTest()
         {
             foreach (string provName in new[] { "microsoft", "msde", "mssql", "sqlserver" })
@@ -710,11 +702,11 @@ Close()
                 };
 
                 dt.Initialize(null);
-                Assert.AreEqual(typeof(System.Data.SqlClient.SqlConnection), dt.ConnectionType);
+                Assert.Equal(typeof(System.Data.SqlClient.SqlConnection), dt.ConnectionType);
             }
         }
 
-        [Test]
+        [Fact]
         public void OleDbShorthandNotationTest()
         {
             var dt = new DatabaseTarget()
@@ -726,10 +718,10 @@ Close()
             };
 
             dt.Initialize(null);
-            Assert.AreEqual(typeof(System.Data.OleDb.OleDbConnection), dt.ConnectionType);
+            Assert.Equal(typeof(System.Data.OleDb.OleDbConnection), dt.ConnectionType);
         }
 
-        [Test]
+        [Fact]
         public void OdbcShorthandNotationTest()
         {
             var dt = new DatabaseTarget()
@@ -741,13 +733,13 @@ Close()
             };
 
             dt.Initialize(null);
-            Assert.AreEqual(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
+            Assert.Equal(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
         }
 #endif
         
         private static void AssertLog(string expectedLog)
         {
-            Assert.AreEqual(expectedLog.Replace("\r", ""), MockDbConnection.Log.Replace("\r", ""));
+            Assert.Equal(expectedLog.Replace("\r", ""), MockDbConnection.Log.Replace("\r", ""));
         }
 
         private string GetConnectionString(DatabaseTarget dt)

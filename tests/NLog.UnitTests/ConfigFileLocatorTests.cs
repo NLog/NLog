@@ -33,24 +33,16 @@
 
 #if !SILVERLIGHT && !NET_CF
 
-using System;
-using System.CodeDom.Compiler;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using Microsoft.CSharp;
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
 namespace NLog.UnitTests
 {
-    [TestFixture]
+    using System;
+    using System.CodeDom.Compiler;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Text;
+    using Microsoft.CSharp;
+    using Xunit;
+
     public class ConfigFileLocatorTests
     {
         private string appConfigContents = @"
@@ -109,7 +101,7 @@ namespace NLog.UnitTests
         private string nlogDllNLogOutput = "--BEGIN--|NDN InfoMsg|NDN WarnMsg|NDN ErrorMsg|NDN FatalMsg|--END--|";
         private string missingConfigOutput = "--BEGIN--|--END--|";
 
-        [Test]
+        [Fact]
         public void MissingConfigFileTest()
         {
             string dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
@@ -118,7 +110,7 @@ namespace NLog.UnitTests
             try
             {
                 string output = RunTestIn(dir);
-                Assert.AreEqual(missingConfigOutput, output);
+                Assert.Equal(missingConfigOutput, output);
             }
             finally
             {
@@ -126,7 +118,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void NLogDotConfigTest()
         {
             string dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
@@ -136,7 +128,7 @@ namespace NLog.UnitTests
             {
                 File.WriteAllText(Path.Combine(dir, "NLog.config"), nlogConfigContents);
                 string output = RunTestIn(dir);
-                Assert.AreEqual(nlogConfigOutput, output);
+                Assert.Equal(nlogConfigOutput, output);
             }
             finally
             {
@@ -144,7 +136,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void NLogDotDllDotNLogTest()
         {
             string dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
@@ -154,7 +146,7 @@ namespace NLog.UnitTests
             {
                 File.WriteAllText(Path.Combine(dir, "NLog.dll.nlog"), nlogDllNLogContents);
                 string output = RunTestIn(dir);
-                Assert.AreEqual(nlogDllNLogOutput, output);
+                Assert.Equal(nlogDllNLogOutput, output);
             }
             finally
             {
@@ -162,7 +154,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void NLogDotDllDotNLogInDirectoryWithSpaces()
         {
             string dir = Path.Combine(Path.GetTempPath(), "abc " + Guid.NewGuid().ToString("N") + " def");
@@ -172,7 +164,7 @@ namespace NLog.UnitTests
             {
                 File.WriteAllText(Path.Combine(dir, "NLog.dll.nlog"), nlogDllNLogContents);
                 string output = RunTestIn(dir);
-                Assert.AreEqual(nlogDllNLogOutput, output);
+                Assert.Equal(nlogDllNLogOutput, output);
             }
             finally
             {
@@ -180,7 +172,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void AppDotConfigTest()
         {
             string dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
@@ -190,7 +182,7 @@ namespace NLog.UnitTests
             {
                 File.WriteAllText(Path.Combine(dir, "ConfigFileLocator.exe.config"), appConfigContents);
                 string output = RunTestIn(dir);
-                Assert.AreEqual(appConfigOutput, output);
+                Assert.Equal(appConfigOutput, output);
             }
             finally
             {
@@ -198,7 +190,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void AppDotNLogTest()
         {
             string dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
@@ -208,7 +200,7 @@ namespace NLog.UnitTests
             {
                 File.WriteAllText(Path.Combine(dir, "ConfigFileLocator.exe.nlog"), appNLogContents);
                 string output = RunTestIn(dir);
-                Assert.AreEqual(appNLogOutput, output);
+                Assert.Equal(appNLogOutput, output);
             }
             finally
             {
@@ -216,7 +208,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void PrecedenceTest()
         {
             var precedence = new[]
@@ -263,12 +255,12 @@ namespace NLog.UnitTests
                 foreach (var p in precedence)
                 {
                     output = RunTestIn(dir);
-                    Assert.AreEqual(p.Output, output);
+                    Assert.Equal(p.Output, output);
                     File.Delete(Path.Combine(dir, p.File));
                 }
 
                 output = RunTestIn(dir);
-                Assert.AreEqual(missingConfigOutput, output);
+                Assert.Equal(missingConfigOutput, output);
 
             }
             finally
@@ -310,8 +302,8 @@ class C1
             if (!File.Exists(options.OutputAssembly))
             {
                 var results = provider.CompileAssemblyFromSource(options, sourceCode);
-                Assert.IsFalse(results.Errors.HasWarnings);
-                Assert.IsFalse(results.Errors.HasErrors);
+                Assert.False(results.Errors.HasWarnings);
+                Assert.False(results.Errors.HasErrors);
                 File.Copy(typeof (Logger).Assembly.Location, Path.Combine(directory, "NLog.dll"));
             }
 
@@ -342,7 +334,7 @@ class C1
                 proc.StartInfo.CreateNoWindow = true;
                 proc.Start();
                 proc.WaitForExit();
-                Assert.AreEqual(string.Empty, proc.StandardError.ReadToEnd());
+                Assert.Equal(string.Empty, proc.StandardError.ReadToEnd());
                 return proc.StandardOutput.ReadToEnd().Replace("\r", "").Replace("\n", "|");
             }
         }

@@ -34,7 +34,6 @@
 namespace NLog.UnitTests
 {
     using System;
-    using NLog.Internal;
     using NLog.Common;
     using System.IO;
     using System.Text;

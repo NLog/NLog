@@ -35,24 +35,13 @@ namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-    using NLog.Common;
-    using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using Xunit;
 
-    [TestFixture]
     public class PostFilteringTargetWrapperTests : NLogTestBase
 	{
-        [Test]
+        [Fact]
         public void PostFilteringTargetWrapperUsingDefaultFilterTest()
         {
             var target = new MyTarget();
@@ -94,15 +83,15 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.WriteAsyncLogEvents(events);
 
             // make sure all Info events went through
-            Assert.AreEqual(3, target.Events.Count);
-            Assert.AreSame(events[1].LogEvent, target.Events[0]);
-            Assert.AreSame(events[2].LogEvent, target.Events[1]);
-            Assert.AreSame(events[5].LogEvent, target.Events[2]);
+            Assert.Equal(3, target.Events.Count);
+            Assert.Same(events[1].LogEvent, target.Events[0]);
+            Assert.Same(events[2].LogEvent, target.Events[1]);
+            Assert.Same(events[5].LogEvent, target.Events[2]);
 
-            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.Equal(events.Length, exceptions.Count);
         }
 
-        [Test]
+        [Fact]
         public void PostFilteringTargetWrapperUsingDefaultNonFilterTest()
         {
             var target = new MyTarget();
@@ -139,25 +128,25 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             string result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            Assert.IsTrue(result.IndexOf("Trace Running PostFilteringWrapper Target[(unnamed)](MyTarget) on 7 events") != -1);
-            Assert.IsTrue(result.IndexOf("Trace Rule matched: (level >= Warn)") != -1);
-            Assert.IsTrue(result.IndexOf("Trace Filter to apply: (level >= Debug)") != -1);
-            Assert.IsTrue(result.IndexOf("Trace After filtering: 6 events.") != -1);
-            Assert.IsTrue(result.IndexOf("Trace Sending to MyTarget") != -1);
+            Assert.True(result.IndexOf("Trace Running PostFilteringWrapper Target[(unnamed)](MyTarget) on 7 events") != -1);
+            Assert.True(result.IndexOf("Trace Rule matched: (level >= Warn)") != -1);
+            Assert.True(result.IndexOf("Trace Filter to apply: (level >= Debug)") != -1);
+            Assert.True(result.IndexOf("Trace After filtering: 6 events.") != -1);
+            Assert.True(result.IndexOf("Trace Sending to MyTarget") != -1);
 
             // make sure all Debug,Info,Warn events went through
-            Assert.AreEqual(6, target.Events.Count);
-            Assert.AreSame(events[0].LogEvent, target.Events[0]);
-            Assert.AreSame(events[1].LogEvent, target.Events[1]);
-            Assert.AreSame(events[2].LogEvent, target.Events[2]);
-            Assert.AreSame(events[3].LogEvent, target.Events[3]);
-            Assert.AreSame(events[5].LogEvent, target.Events[4]);
-            Assert.AreSame(events[6].LogEvent, target.Events[5]);
+            Assert.Equal(6, target.Events.Count);
+            Assert.Same(events[0].LogEvent, target.Events[0]);
+            Assert.Same(events[1].LogEvent, target.Events[1]);
+            Assert.Same(events[2].LogEvent, target.Events[2]);
+            Assert.Same(events[3].LogEvent, target.Events[3]);
+            Assert.Same(events[5].LogEvent, target.Events[4]);
+            Assert.Same(events[6].LogEvent, target.Events[5]);
 
-            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.Equal(events.Length, exceptions.Count);
         }
 
-        [Test]
+        [Fact]
         public void PostFilteringTargetWrapperUsingDefaultNonFilterTest2()
         {
             // in this case both rules would match, but first one is picked
@@ -195,26 +184,26 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             var result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            Assert.IsTrue(result.IndexOf("Trace Running PostFilteringWrapper Target[(unnamed)](MyTarget) on 7 events") != -1);
-            Assert.IsTrue(result.IndexOf("Trace Rule matched: (level >= Error)") != -1);
-            Assert.IsTrue(result.IndexOf("Trace Filter to apply: True") != -1);
-            Assert.IsTrue(result.IndexOf("Trace After filtering: 7 events.") != -1);
-            Assert.IsTrue(result.IndexOf("Trace Sending to MyTarget") != -1);
+            Assert.True(result.IndexOf("Trace Running PostFilteringWrapper Target[(unnamed)](MyTarget) on 7 events") != -1);
+            Assert.True(result.IndexOf("Trace Rule matched: (level >= Error)") != -1);
+            Assert.True(result.IndexOf("Trace Filter to apply: True") != -1);
+            Assert.True(result.IndexOf("Trace After filtering: 7 events.") != -1);
+            Assert.True(result.IndexOf("Trace Sending to MyTarget") != -1);
 
             // make sure all events went through
-            Assert.AreEqual(7, target.Events.Count);
-            Assert.AreSame(events[0].LogEvent, target.Events[0]);
-            Assert.AreSame(events[1].LogEvent, target.Events[1]);
-            Assert.AreSame(events[2].LogEvent, target.Events[2]);
-            Assert.AreSame(events[3].LogEvent, target.Events[3]);
-            Assert.AreSame(events[4].LogEvent, target.Events[4]);
-            Assert.AreSame(events[5].LogEvent, target.Events[5]);
-            Assert.AreSame(events[6].LogEvent, target.Events[6]);
+            Assert.Equal(7, target.Events.Count);
+            Assert.Same(events[0].LogEvent, target.Events[0]);
+            Assert.Same(events[1].LogEvent, target.Events[1]);
+            Assert.Same(events[2].LogEvent, target.Events[2]);
+            Assert.Same(events[3].LogEvent, target.Events[3]);
+            Assert.Same(events[4].LogEvent, target.Events[4]);
+            Assert.Same(events[5].LogEvent, target.Events[5]);
+            Assert.Same(events[6].LogEvent, target.Events[6]);
 
-            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.Equal(events.Length, exceptions.Count);
         }
 
-        [Test]
+        [Fact]
         public void PostFilteringTargetWrapperNoFiltersDefined()
         {
             var target = new MyTarget();
@@ -242,16 +231,16 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.WriteAsyncLogEvents(events);
 
             // make sure all events went through
-            Assert.AreEqual(7, target.Events.Count);
-            Assert.AreSame(events[0].LogEvent, target.Events[0]);
-            Assert.AreSame(events[1].LogEvent, target.Events[1]);
-            Assert.AreSame(events[2].LogEvent, target.Events[2]);
-            Assert.AreSame(events[3].LogEvent, target.Events[3]);
-            Assert.AreSame(events[4].LogEvent, target.Events[4]);
-            Assert.AreSame(events[5].LogEvent, target.Events[5]);
-            Assert.AreSame(events[6].LogEvent, target.Events[6]);
+            Assert.Equal(7, target.Events.Count);
+            Assert.Same(events[0].LogEvent, target.Events[0]);
+            Assert.Same(events[1].LogEvent, target.Events[1]);
+            Assert.Same(events[2].LogEvent, target.Events[2]);
+            Assert.Same(events[3].LogEvent, target.Events[3]);
+            Assert.Same(events[4].LogEvent, target.Events[4]);
+            Assert.Same(events[5].LogEvent, target.Events[5]);
+            Assert.Same(events[6].LogEvent, target.Events[6]);
 
-            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.Equal(events.Length, exceptions.Count);
         }
 
         public class MyTarget : Target

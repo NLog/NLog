@@ -31,30 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Xml;
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-using NLog.Config;
-
 namespace NLog.UnitTests
 {
     using System;
-    using System.IO;
-    using NLog.Layouts;
     using NLog.Targets;
-    using NLog.Targets.Wrappers;
+    using NLog.Config;
+    using Xunit;
 
-    [TestFixture]
     public class RegressionTests : NLogTestBase
     {
 #if !WINDOWS_PHONE
-        [Test]
+        [Fact]
         public void Bug3990StackOverflowWhenUsingNLogViewerTarget()
         {
             // this would fail because of stack overflow in the 
@@ -70,11 +57,11 @@ namespace NLog.UnitTests
 </nlog>");
 
             var target = config.LoggingRules[0].Targets[0] as NLogViewerTarget;
-            Assert.IsNotNull(target);
+            Assert.NotNull(target);
         }
 #endif
 
-        [Test]
+        [Fact]
         public void Bug4655UnableToReconfigureExistingLoggers()
         {
             var debugTarget1 = new DebugTarget();
@@ -86,8 +73,8 @@ namespace NLog.UnitTests
 
             logger.Info("foo");
 
-            Assert.AreEqual(1, debugTarget1.Counter);
-            Assert.AreEqual(0, debugTarget2.Counter);
+            Assert.Equal(1, debugTarget1.Counter);
+            Assert.Equal(0, debugTarget2.Counter);
 
             LogManager.Configuration.AddTarget("DesktopConsole", debugTarget2);
             LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, debugTarget2));
@@ -95,11 +82,11 @@ namespace NLog.UnitTests
 
             logger.Info("foo");
 
-            Assert.AreEqual(2, debugTarget1.Counter);
-            Assert.AreEqual(1, debugTarget2.Counter);
+            Assert.Equal(2, debugTarget1.Counter);
+            Assert.Equal(1, debugTarget2.Counter);
         }
 
-        [Test]
+        [Fact]
         public void Bug5965StackOverflow()
         {
             LogManager.Configuration = this.CreateConfigurationFromString(@"
