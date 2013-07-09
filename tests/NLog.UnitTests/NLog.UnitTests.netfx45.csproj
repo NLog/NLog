@@ -106,6 +106,7 @@
     <Compile Include="Filters\WhenNotEqualTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
+    <Compile Include="LayoutRenderers\AppSettingTests.cs" />
     <Compile Include="LayoutRenderers\BaseDirTests.cs" />
     <Compile Include="LayoutRenderers\CallSiteTests.cs" />
     <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
@@ -194,6 +195,7 @@
     <Content Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="NLogTests.snk" />
     <None Include="packages.config" />
   </ItemGroup>
