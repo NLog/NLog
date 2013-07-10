@@ -41,8 +41,9 @@ namespace NLog.Common
     using System.Text;
     using NLog.Internal;
     using NLog.Time;
+    using ConfigurationManager = System.Configuration.ConfigurationManager;
 
-    /// <summary>
+	/// <summary>
     /// NLog internal logger.
     /// </summary>
     public static class InternalLogger

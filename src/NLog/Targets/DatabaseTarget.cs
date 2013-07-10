@@ -48,8 +48,9 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
+    using ConfigurationManager = System.Configuration.ConfigurationManager;
 
-    /// <summary>
+	/// <summary>
     /// Writes log messages to the database using an ADO.NET provider.
     /// </summary>
     /// <seealso href="http://nlog-project.org/wiki/Database_target">Documentation on NLog Wiki</seealso>

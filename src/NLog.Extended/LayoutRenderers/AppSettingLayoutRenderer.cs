@@ -30,13 +30,13 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-using System.Configuration;
-using System.Text;
-
-using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
+	using System.Text;
+	using Config;
+	using Internal;
+
 	/// <summary>
 	/// Application setting.
 	/// </summary>
@@ -50,6 +50,8 @@ namespace NLog.LayoutRenderers
 	[LayoutRenderer("appsetting")]
 	public class AppSettingLayoutRenderer : LayoutRenderer
 	{
+		private IConfigurationManager configurationManager = new ConfigurationManager();
+
 		///<summary>
 		/// The AppSetting name.
 		///</summary>
@@ -61,6 +63,12 @@ namespace NLog.LayoutRenderers
 		/// The default value to render if the AppSetting value is null.
 		///</summary>
 		public string Default { get; set; }
+
+		internal IConfigurationManager ConfigurationManager
+		{
+			get { return configurationManager; }
+			set { configurationManager = value; }
+		}
 
 		/// <summary>
 		/// Renders the specified application setting or default value and appends it to the specified <see cref="StringBuilder" />.
@@ -82,6 +90,7 @@ namespace NLog.LayoutRenderers
 
 		private bool _cachedAppSettingValue = false;
 		private string _appSettingValue = null;
+		
 		private string AppSettingValue
 		{
 			get
