@@ -30,26 +30,19 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-#if !NUNIT
-using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-using TearDown = Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
 
 #if !SILVERLIGHT && !NET_CF && !WINDOWS_PHONE
 
 namespace NLog.UnitTests.LayoutRenderers
 {
 	using System.Collections.Specialized;
-	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using NLog.Internal;
 	using NLog.LayoutRenderers;
+	using Xunit;
 
-	[TestFixture]
 	public class AppSettingTests : NLogTestBase
 	{
-		[Test]
+		[Fact]
 		public void UseAppSettingTest()
 		{
 			var configurationManager = new MockConfigurationManager();
@@ -63,10 +56,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
 			var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
 
-			Assert.AreEqual(expected, rendered);
+			Assert.Equal(expected, rendered);
 		}
 
-		[Test]
+		[Fact]
 		public void AppSettingOverridesDefaultTest()
 		{
 			var configurationManager = new MockConfigurationManager();
@@ -81,10 +74,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
 			var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
 
-			Assert.AreEqual(expected, rendered);
+			Assert.Equal(expected, rendered);
 		}
 
-		[Test]
+		[Fact]
 		public void FallbackToDefaultTest()
 		{
 			var configurationManager = new MockConfigurationManager();
@@ -98,14 +91,13 @@ namespace NLog.UnitTests.LayoutRenderers
 
 			var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
 
-			Assert.AreEqual(expected, rendered);
+			Assert.Equal(expected, rendered);
 		}
 
-		[Test]
+		[Fact]
 		public void NoAppSettingTest()
 		{
 			var configurationManager = new MockConfigurationManager();
-			const string expected = "UseDefault";
 			var appSettingLayoutRenderer = new AppSettingLayoutRenderer
 			{
 				ConfigurationManager = configurationManager,
@@ -114,7 +106,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
 			var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
 
-			Assert.AreEqual(string.Empty, rendered);
+			Assert.Equal(string.Empty, rendered);
 		}
 
 		private class MockConfigurationManager : IConfigurationManager
