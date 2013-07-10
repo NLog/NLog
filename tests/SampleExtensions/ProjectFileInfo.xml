@@ -58,6 +58,12 @@
      </ItemGroup>
    </Project>
 
+   <Project File="SampleExtensions.netfx45.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
    <Project File="SampleExtensions.wp7.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />

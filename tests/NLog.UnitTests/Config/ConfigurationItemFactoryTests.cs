@@ -90,6 +90,7 @@ namespace NLog.UnitTests.Config
         {
             var layoutRenderers = ConfigurationItemFactory.Default.LayoutRenderers;
 
+            AssertInstance(layoutRenderers, "appsetting", "AppSettingLayoutRenderer");
             AssertInstance(layoutRenderers, "aspnet-application", "AspNetApplicationValueLayoutRenderer");
             AssertInstance(layoutRenderers, "aspnet-request", "AspNetRequestValueLayoutRenderer");
             AssertInstance(layoutRenderers, "aspnet-sessionid", "AspNetSessionIDLayoutRenderer");
