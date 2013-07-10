@@ -115,6 +115,15 @@
      </ItemGroup>
    </Project>
 
+   <Project File="NLog.netfx45.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+     <ItemGroup Name="EmbeddedResource">
+        <FileSet Include="AllResources" />
+     </ItemGroup>
+   </Project>
+
    <Project File="NLog.wp7.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />

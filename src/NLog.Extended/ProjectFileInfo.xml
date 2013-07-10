@@ -45,6 +45,12 @@
      </ItemGroup>
    </Project>
 
+   <Project File="NLog.Extended.netfx45.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
    <Project File="NLog.Extended.doc.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
