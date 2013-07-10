@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NET_CF && !WINDOWS_PHONE
+
 namespace NLog.Internal
 {
 	using System.Collections.Specialized;
@@ -54,3 +56,5 @@ namespace NLog.Internal
 		}
 	}
 }
+
+#endif
