@@ -41,7 +41,9 @@ namespace NLog.Common
     using System.Text;
     using NLog.Internal;
     using NLog.Time;
+#if !NET_CF && !SILVERLIGHT
     using ConfigurationManager = System.Configuration.ConfigurationManager;
+#endif
 
 	/// <summary>
     /// NLog internal logger.
