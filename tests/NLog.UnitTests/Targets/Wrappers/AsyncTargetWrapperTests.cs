@@ -64,7 +64,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Test]
-        public void AsyncTargetWrapperInitTest2()
+        public void AsyncTargetWrapperInitTest2()3
         {
             var myTarget = new MyTarget();
             var targetWrapper = new AsyncTargetWrapper()
@@ -340,8 +340,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 secondContinuationCalled = true;
             });
 
-            firstContinuationResetEvent.WaitOne(3000);
-            secondContinuationResetEvent.WaitOne(3000);
+            firstContinuationResetEvent.WaitOne();
+            secondContinuationResetEvent.WaitOne();
             Assert.IsTrue(firstContinuationCalled);
             Assert.IsTrue(secondContinuationCalled);
         }
