@@ -49,6 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -66,6 +67,7 @@
   <ItemGroup>
     <Compile Include="AssemblyBuildInfo.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="LayoutRenderers\AppSettingLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspNetRequestValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspNetSessionIDLayoutRenderer.cs" />
