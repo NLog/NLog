@@ -331,8 +331,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 secondContinuationCalled = true;
             });
 
-            firstContinuationResetEvent.WaitOne(3000);
-            secondContinuationResetEvent.WaitOne(3000);
+            firstContinuationResetEvent.WaitOne();
+            secondContinuationResetEvent.WaitOne();
             Assert.True(firstContinuationCalled);
             Assert.True(secondContinuationCalled);
         }
