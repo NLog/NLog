@@ -297,13 +297,13 @@ namespace NLog.Targets
 
                     using (ISmtpClient client = this.CreateSmtpClient())
                     {
+                        if (!UseSystemNetMailSettings)
+                            ConfigureMailClient( lastEvent, client );
+
                         InternalLogger.Debug( "Sending mail to {0} using {1}:{2} (ssl={3})", msg.To, client.Host, client.Port, client.EnableSsl );
                         InternalLogger.Trace( "  Subject: '{0}'", msg.Subject );
                         InternalLogger.Trace( "  From: '{0}'", msg.From.ToString() );
-                        
-                        if (!UseSystemNetMailSettings)
-                            ConfigureMailClient( lastEvent, client );
-                        
+
                         client.Send(msg);
 
                         foreach (var ev in events)
