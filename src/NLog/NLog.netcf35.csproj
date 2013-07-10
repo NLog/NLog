@@ -141,6 +141,7 @@
     </Compile>
     <Compile Include="Internal\CompactFrameworkHelper.cs" />
     <Compile Include="Internal\CompilerAttributes.cs" />
+    <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EnumerableHelpers.cs" />
     <Compile Include="Internal\EnvironmentHelper.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileInfoHelper.cs" />
     <Compile Include="Internal\FormHelper.cs" />
+    <Compile Include="Internal\IConfigurationManager.cs" />
     <Compile Include="Internal\IRenderable.cs" />
     <Compile Include="Internal\ISmtpClient.cs" />
     <Compile Include="Internal\ISupportsInitialize.cs" />
