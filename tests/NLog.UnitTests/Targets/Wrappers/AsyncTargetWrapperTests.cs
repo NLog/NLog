@@ -64,7 +64,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Test]
-        public void AsyncTargetWrapperInitTest2()3
+        public void AsyncTargetWrapperInitTest2()
         {
             var myTarget = new MyTarget();
             var targetWrapper = new AsyncTargetWrapper()
