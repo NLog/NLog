@@ -38,9 +38,7 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-#if !NET_CF
     using System.Configuration;
-#endif
     using System.Data;
     using System.Data.Common;
     using System.Globalization;
@@ -50,7 +48,9 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
-    using ConfigurationManager = System.Configuration.ConfigurationManager;
+#if !NET_CF
+	using ConfigurationManager = System.Configuration.ConfigurationManager;
+#endif
 
 	/// <summary>
     /// Writes log messages to the database using an ADO.NET provider.
