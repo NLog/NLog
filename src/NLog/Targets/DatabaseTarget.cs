@@ -38,7 +38,9 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+#if !NET_CF
     using System.Configuration;
+#endif
     using System.Data;
     using System.Data.Common;
     using System.Globalization;
