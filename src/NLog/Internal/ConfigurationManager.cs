@@ -35,26 +35,26 @@
 
 namespace NLog.Internal
 {
-	using System.Collections.Specialized;
+    using System.Collections.Specialized;
 
-	/// <summary>
-	/// Internal configuration manager used to read .NET configuration files.
-	/// Just a wrapper around the BCL ConfigurationManager, but used to enable
-	/// unit testing.
-	/// </summary>
-	public class ConfigurationManager : IConfigurationManager
-	{
-		/// <summary>
-		/// Gets the wrapper around ConfigurationManager.AppSettings.
-		/// </summary>
-		public NameValueCollection AppSettings
-		{
-			get
-			{
-				return System.Configuration.ConfigurationManager.AppSettings;
-			}
-		}
-	}
+    /// <summary>
+    /// Internal configuration manager used to read .NET configuration files.
+    /// Just a wrapper around the BCL ConfigurationManager, but used to enable
+    /// unit testing.
+    /// </summary>
+    public class ConfigurationManager : IConfigurationManager
+    {
+        /// <summary>
+        /// Gets the wrapper around ConfigurationManager.AppSettings.
+        /// </summary>
+        public NameValueCollection AppSettings
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings;
+            }
+        }
+    }
 }
 
 #endif

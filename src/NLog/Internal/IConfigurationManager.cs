@@ -35,18 +35,18 @@
 
 namespace NLog.Internal
 {
-	using System.Collections.Specialized;
+    using System.Collections.Specialized;
 
-	/// <summary>
-	/// Interface for the wrapper around System.Configuration.ConfigurationManager.
-	/// </summary>
-	public interface IConfigurationManager
-	{
-		/// <summary>
-		/// Gets the wrapper around ConfigurationManager.AppSettings.
-		/// </summary>
-		NameValueCollection AppSettings { get; }
-	}
+    /// <summary>
+    /// Interface for the wrapper around System.Configuration.ConfigurationManager.
+    /// </summary>
+    public interface IConfigurationManager
+    {
+        /// <summary>
+        /// Gets the wrapper around ConfigurationManager.AppSettings.
+        /// </summary>
+        NameValueCollection AppSettings { get; }
+    }
 }
 
 #endif

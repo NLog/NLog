@@ -35,90 +35,90 @@
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-	using System.Collections.Specialized;
-	using NLog.Internal;
-	using NLog.LayoutRenderers;
+    using System.Collections.Specialized;
+    using NLog.Internal;
+    using NLog.LayoutRenderers;
 	using Xunit;
 
-	public class AppSettingTests : NLogTestBase
-	{
-		[Fact]
-		public void UseAppSettingTest()
-		{
-			var configurationManager = new MockConfigurationManager();
-			const string expected = "appSettingTestValue";
-			configurationManager.AppSettings["appSettingTestKey"] = expected;
-			var appSettingLayoutRenderer = new AppSettingLayoutRenderer
-			{
-				ConfigurationManager = configurationManager,
-				Name = "appSettingTestKey",
-			};
+    public class AppSettingTests : NLogTestBase
+    {
+        [Fact]
+        public void UseAppSettingTest()
+        {
+            var configurationManager = new MockConfigurationManager();
+            const string expected = "appSettingTestValue";
+            configurationManager.AppSettings["appSettingTestKey"] = expected;
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
+            {
+                ConfigurationManager = configurationManager,
+                Name = "appSettingTestKey",
+            };
 
-			var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
+            var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
 
-			Assert.Equal(expected, rendered);
-		}
+            Assert.Equal(expected, rendered);
+        }
 
-		[Fact]
-		public void AppSettingOverridesDefaultTest()
-		{
-			var configurationManager = new MockConfigurationManager();
-			const string expected = "appSettingTestValue";
-			configurationManager.AppSettings["appSettingTestKey"] = expected;
-			var appSettingLayoutRenderer = new AppSettingLayoutRenderer
-			{
-				ConfigurationManager = configurationManager,
-				Name = "appSettingTestKey",
-				Default = "UseDefault",
-			};
+        [Fact]
+        public void AppSettingOverridesDefaultTest()
+        {
+            var configurationManager = new MockConfigurationManager();
+            const string expected = "appSettingTestValue";
+            configurationManager.AppSettings["appSettingTestKey"] = expected;
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
+            {
+                ConfigurationManager = configurationManager,
+                Name = "appSettingTestKey",
+                Default = "UseDefault",
+            };
 
-			var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
+            var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
 
-			Assert.Equal(expected, rendered);
-		}
+            Assert.Equal(expected, rendered);
+        }
 
-		[Fact]
-		public void FallbackToDefaultTest()
-		{
-			var configurationManager = new MockConfigurationManager();
-			const string expected = "UseDefault";
-			var appSettingLayoutRenderer = new AppSettingLayoutRenderer
-			{
-				ConfigurationManager = configurationManager,
-				Name = "notFound",
-				Default = "UseDefault",
-			};
+        [Fact]
+        public void FallbackToDefaultTest()
+        {
+            var configurationManager = new MockConfigurationManager();
+            const string expected = "UseDefault";
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
+            {
+                ConfigurationManager = configurationManager,
+                Name = "notFound",
+                Default = "UseDefault",
+            };
 
-			var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
+            var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
 
-			Assert.Equal(expected, rendered);
-		}
+            Assert.Equal(expected, rendered);
+        }
 
-		[Fact]
-		public void NoAppSettingTest()
-		{
-			var configurationManager = new MockConfigurationManager();
-			var appSettingLayoutRenderer = new AppSettingLayoutRenderer
-			{
-				ConfigurationManager = configurationManager,
-				Name = "notFound",
-			};
+        [Fact]
+        public void NoAppSettingTest()
+        {
+            var configurationManager = new MockConfigurationManager();
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
+            {
+                ConfigurationManager = configurationManager,
+                Name = "notFound",
+            };
 
-			var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
+            var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
 
-			Assert.Equal(string.Empty, rendered);
-		}
+            Assert.Equal(string.Empty, rendered);
+        }
 
-		private class MockConfigurationManager : IConfigurationManager
-		{
-			public MockConfigurationManager()
-			{
-				AppSettings = new NameValueCollection();
-			}
+        private class MockConfigurationManager : IConfigurationManager
+        {
+            public MockConfigurationManager()
+            {
+                AppSettings = new NameValueCollection();
+            }
 
-			public NameValueCollection AppSettings { get; private set; }
-		}
-	}
+            public NameValueCollection AppSettings { get; private set; }
+        }
+    }
 }
 
 #endif
