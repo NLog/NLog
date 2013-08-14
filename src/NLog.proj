@@ -346,7 +346,6 @@
     <CallTarget Targets="SL4Test" Condition="'$(BuildSL4)'=='true'"/>
     <CallTarget Targets="WP7Test" Condition="'$(BuildWP7)'=='true'"/>
     <CallTarget Targets="WP71Test" Condition="'$(BuildWP71)'=='true'"/>
-    <CallTarget Targets="RunComApiTests" />
     <Exec Command="$(BaseOutputDirectory)\bin\DeleteTestUsers.cmd" IgnoreExitCode="true" />
   </Target>
 
@@ -357,12 +356,6 @@
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0" 
           Condition="Exists('$(MSTest10)')" />
     <Exec Command="$(BaseOutputDirectory)\bin\DeleteTestUsers.cmd" IgnoreExitCode="true" />
-  </Target>
-
-  <Target Name="RunComApiTests">
-    <Exec Command="NLog.ComInteropTest.cmd"
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)"
-          Condition="Exists('$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\NLog.ComInteropTest.cmd')" />
   </Target>
 
   <Target Name="NetFx20Test">
