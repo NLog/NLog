@@ -51,11 +51,7 @@ namespace NLog
     {
         private static readonly LogFactory globalFactory = new LogFactory();
         private static IAppDomain _currentAppDomain;
-#if !NET_CF
-        private static GetCultureInfo _defaultCultureInfo = () => Thread.CurrentThread.CurrentCulture;
-#else
         private static GetCultureInfo _defaultCultureInfo = () => CultureInfo.CurrentCulture;
-#endif
 
         /// <summary>
         /// Delegate used to the the culture to use.
