@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
 
+  <UsingTask AssemblyFile="packages\xunit.1.9.1\lib\net20\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit"/>
+
   <PropertyGroup>
     <MajorMinorVersion>2.0</MajorMinorVersion>
     <BuildLabel Condition=" '$(BuildLabelOverride)' == '' "> (PrivateBuild)</BuildLabel>
@@ -351,7 +353,6 @@
   <Target Name="RunNightlyTests">
     <Exec Command="$(BaseOutputDirectory)\bin\CreateTestUsers.cmd" IgnoreExitCode="true" />
     <CallTarget Targets="DeleteTrxFiles" />
-    <Exec Command='NLogC.UnitTests.exe' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\x86" />
     <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0" 
           Condition="Exists('$(MSTest10)')" />
@@ -365,31 +366,19 @@
   </Target>
 
   <Target Name="NetFx20Test">
-    <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx' 
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 2.0" 
-          Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 2.0\NLog.UnitTests.dll" />
   </Target>                
 
   <Target Name="NetFx35Test">
-    <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx' 
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5" 
-          Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll" />
   </Target>
 
   <Target Name="NetFx40Test">
-    <!-- run both 32 and 64 bit versions of NLogC unit tests -->
-
-    <!-- <Exec Command='NLogC.UnitTests.exe' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\amd64" /> -->
-    <Exec Command='NLogC.UnitTests.exe' WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\x86" />
-    <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0" 
-          Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLog.UnitTests.dll" />
   </Target>
 
   <Target Name="NetFx45Test">
-    <Exec Command='"$(MSTest10)" /nologo /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5" 
-          Condition="Exists('$(MSTest10)')" IgnoreExitCode="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" />
   </Target>
 
   <Target Name="NetCf20Test" DependsOnTargets="DeployNetCf20ToEmulator">
