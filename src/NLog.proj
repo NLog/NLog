@@ -366,19 +366,19 @@
   </Target>
 
   <Target Name="NetFx20Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 2.0\NLog.UnitTests.dll" IgnoreExitCode="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 2.0\NLog.UnitTests.dll" ContinueOnError="true" />
   </Target>                
 
   <Target Name="NetFx35Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll" IgnoreExitCode="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll" ContinueOnError="true" />
   </Target>
 
   <Target Name="NetFx40Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLog.UnitTests.dll" IgnoreExitCode="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLog.UnitTests.dll" ContinueOnError="true" />
   </Target>
 
   <Target Name="NetFx45Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" IgnoreExitCode="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" ContinueOnError="true" />
   </Target>
 
   <Target Name="NetCf20Test" DependsOnTargets="DeployNetCf20ToEmulator">
