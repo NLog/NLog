@@ -102,7 +102,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 id.Impersonate();
 
                 WindowsIdentity changedIdentity = WindowsIdentity.GetCurrent();
-                Assert.Equal((Environment.MachineName + "\\" + NLogTestUser).ToLowerInvariant(), changedIdentity.Name.ToLowerInvariant());
+                Assert.Contains(NLogTestUser.ToLowerInvariant(), changedIdentity.Name.ToLowerInvariant(), StringComparison.InvariantCulture);
 
                 var wrapper = new ImpersonatingTargetWrapper()
                 {
