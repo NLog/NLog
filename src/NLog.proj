@@ -713,7 +713,6 @@ File.WriteAllText(Path, content);
     <ProjectsToCleanup Include="..\tests\NLog.Test" />
     <ProjectsToCleanup Include="..\tests\NLog.UnitTests" />
     <ProjectsToCleanup Include="..\tests\NLog.UnitTests.Web" />
-    <ProjectsToCleanup Include="..\tests\NLog.VBTest" />
     <ProjectsToCleanup Include="..\tools\SilverlightConsoleRunner" />
     <ProjectsToCleanup Include="..\tools\MakeNLogXSD" />
     <ProjectsToCleanup Include="..\tools\DeployNetCF" />
