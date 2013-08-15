@@ -19,12 +19,6 @@ if (%1)==(usemsbuild35) (
 	goto next
 )
 
-if (%1)==(netfx20) (
-	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildNetFX20=true
-	shift
-	goto next
-)
-
 if (%1)==(netfx35) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildNetFX35=true
 	shift
@@ -242,7 +236,6 @@ echo Usage: %0 [configuration] [platform]... [target]...
 echo.
 echo Where platform is one or more of the following:
 echo.
-echo  netfx20            .NET Framework 2.0
 echo  netfx35            .NET Framework 3.5
 echo  netfx40            .NET Framework 4.0
 echo  netfx45            .NET Framework 4.5

@@ -27,7 +27,6 @@
     <BuildAllFrameworks Condition="'$(BuildSL5)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildWP7)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildWP71)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildNetFX20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX45)' == 'true'">false</BuildAllFrameworks>
@@ -84,7 +83,6 @@
     <BuildSL5>true</BuildSL5>
     <BuildWP7>true</BuildWP7>
     <BuildWP71>true</BuildWP71>
-    <BuildNetFX20>true</BuildNetFX20>
     <BuildNetFX35>true</BuildNetFX35>
     <BuildNetFX40>true</BuildNetFX40>
     <BuildNetFX45>true</BuildNetFX45>
@@ -95,7 +93,6 @@
     <BuildSL5 Condition="!Exists('$(SL5RefPath)')">false</BuildSL5>
     <BuildWP7 Condition="!Exists('$(WP7RefPath)')">false</BuildWP7>
     <BuildWP71 Condition="!Exists('$(WP71RefPath)')">false</BuildWP71>
-    <BuildNetFX20 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v2.0.50727') == ''">false</BuildNetFX20>
     <BuildNetFX35 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v3.5') == ''">false</BuildNetFX35>
     <BuildNetFX40 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\$(DotNet4Version)') == ''">false</BuildNetFX40>
     <BuildNetFX45 Condition="$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full@Release) == ''">false</BuildNetFX45>
@@ -110,7 +107,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-     <DocReferencesNetFX20>-ref "$(WinDir)\Microsoft.NET\Framework\v2.0.50727"</DocReferencesNetFX20>
      <DocReferencesNetFX30>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\v3.0"</DocReferencesNetFX30>
      <DocReferencesNetFX35>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\v3.5"</DocReferencesNetFX35>
      <DocReferencesNetFX40>-ref "$(WinDir)\Microsoft.NET\Framework\$(DotNet4Version)"</DocReferencesNetFX40>
@@ -148,16 +144,10 @@
         <DocReferences>$(DocReferencesWP71)</DocReferences>
         <NuGetDir>sl4-windowsphone71</NuGetDir>
     </TargetFramework>
-    <TargetFramework Include=".NET Framework 2.0" Condition="'$(BuildNetFX20)'=='true'">
-        <ProjectFileSuffix>.netfx20</ProjectFileSuffix>
-        <ToolsVersion>3.5</ToolsVersion>
-        <DocReferences>$(DocReferencesNetFX20)</DocReferences>
-        <NuGetDir>net20</NuGetDir>
-    </TargetFramework>
     <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildNetFX35)'=='true'">
         <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
-        <DocReferences>$(DocReferencesNetFX20) $(DocReferencesNetFX30) $(DocReferencesNetFX35)</DocReferences>
+        <DocReferences>$(DocReferencesNetFX35) $(DocReferencesNetFX30) $(DocReferencesNetFX35)</DocReferences>
         <NuGetDir>net35</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
@@ -255,7 +245,6 @@
     <Exec Command="$(BaseOutputDirectory)\bin\CreateTestUsers.cmd" IgnoreExitCode="true" />
     <CallTarget Targets="DeleteTrxFiles" />
     <!-- <CallTarget Targets="Mono2Test" Condition="'$(BuildMono2)'=='true'"/> -->
-    <CallTarget Targets="NetFx20Test" Condition="'$(BuildNetFX20)'=='true'"/>
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
     <CallTarget Targets="NetFx45Test" Condition="'$(BuildNetFX45)'=='true'"/>
@@ -273,10 +262,6 @@
           Condition="Exists('$(MSTest10)')" />
     <Exec Command="$(BaseOutputDirectory)\bin\DeleteTestUsers.cmd" IgnoreExitCode="true" />
   </Target>
-
-  <Target Name="NetFx20Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 2.0\NLog.UnitTests.dll" ContinueOnError="true" />
-  </Target>                
 
   <Target Name="NetFx35Test">
     <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll" ContinueOnError="true" />
