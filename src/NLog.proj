@@ -249,6 +249,7 @@
     <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
     <CallTarget Targets="NetFx45Test" Condition="'$(BuildNetFX45)'=='true'"/>
     <CallTarget Targets="SL4Test" Condition="'$(BuildSL4)'=='true'"/>
+    <CallTarget Targets="SL5Test" Condition="'$(BuildSL5)'=='true'"/>
     <CallTarget Targets="WP7Test" Condition="'$(BuildWP7)'=='true'"/>
     <CallTarget Targets="WP71Test" Condition="'$(BuildWP71)'=='true'"/>
     <Exec Command="$(BaseOutputDirectory)\bin\DeleteTestUsers.cmd" IgnoreExitCode="true" />
