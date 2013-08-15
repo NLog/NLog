@@ -278,12 +278,6 @@
              Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
              ContinueOnError="$(IgnoreBuildFailures)" 
              StopOnFirstFailure="false" />
-    <MSBuild Projects="..\tests\NLog.BinaryCompatTests\NLog.BinaryCompatTests%(TargetFramework.ProjectFileSuffix).csproj" 
-             Targets="Build" 
-             Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
-             ContinueOnError="$(IgnoreBuildFailures)" 
-             Condition="Exists('..\tests\NLog.BinaryCompatTests\NLog.BinaryCompatTests%(TargetFramework.ProjectFileSuffix).csproj')" 
-             StopOnFirstFailure="false" />
     <CallTarget Targets="BuildTestResultSummaryTool" />
     <CallTarget Targets="BuildSLTestRunner" />
   </Target>
@@ -716,7 +710,6 @@ File.WriteAllText(Path, content);
     <ProjectsToCleanup Include="Doc" />
     <ProjectsToCleanup Include="..\tests\NLog.AsyncBenchmark" />
     <ProjectsToCleanup Include="..\tests\NLog.Benchmark" />
-    <ProjectsToCleanup Include="..\tests\NLog.BinaryCompatTests" />
     <ProjectsToCleanup Include="..\tests\NLog.Test" />
     <ProjectsToCleanup Include="..\tests\NLog.UnitTests" />
     <ProjectsToCleanup Include="..\tests\NLog.UnitTests.Web" />
