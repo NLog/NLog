@@ -47,9 +47,7 @@ namespace NLog.Targets.Wrappers
     /// Impersonates another user for the duration of the write.
     /// </summary>
     /// <seealso href="http://nlog-project.org/wiki/ImpersonatingWrapper_target">Documentation on NLog Wiki</seealso>
-#if !SILVERLIGHT2
     [SecuritySafeCritical]
-#endif
     [Target("ImpersonatingWrapper", IsWrapper = true)]
     public class ImpersonatingTargetWrapper : WrapperTargetBase
     {

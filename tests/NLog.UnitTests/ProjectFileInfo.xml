@@ -24,35 +24,8 @@
    <Customize FileSet="ContentFilesCopyToOutput" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
    </Customize>
- 
-   <Project File="NLog.UnitTests.sl2.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="Content">
-        <FileSet Include="AllContentFiles" />
-     </ItemGroup>
-   </Project>
-
-   <Project File="NLog.UnitTests.sl3.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="Content">
-        <FileSet Include="AllContentFiles" />
-     </ItemGroup>
-   </Project>
 
    <Project File="NLog.UnitTests.sl4.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="Content">
-        <FileSet Include="AllContentFiles" />
-     </ItemGroup>
-   </Project>
-
-   <Project File="NLog.UnitTests.netfx20.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
      </ItemGroup>

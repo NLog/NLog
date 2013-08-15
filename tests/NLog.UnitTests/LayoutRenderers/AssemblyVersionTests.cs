@@ -35,8 +35,6 @@
 
 using System.Reflection;
 
-#if !SILVERLIGHT2
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
@@ -56,7 +54,5 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
-
-#endif
 
 #endif

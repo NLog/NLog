@@ -42,9 +42,7 @@ namespace NLog.Internal.FileAppenders
     /// <summary>
     /// Optimized single-process file appender which keeps the file open for exclusive write.
     /// </summary>
-#if !SILVERLIGHT2
     [SecuritySafeCritical]
-#endif
     internal class SingleProcessFileAppender : BaseFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();

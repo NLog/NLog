@@ -136,9 +136,6 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx35.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx40.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx45.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx20.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl2.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl3.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl4.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.wp7.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.monodevelop.csproj");
@@ -149,7 +146,6 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx35.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx40.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx45.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx20.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.monodevelop.csproj");
 
             filesToCompile.Clear();
@@ -158,9 +154,6 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx35.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx40.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx45.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx20.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl2.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl3.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl4.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.monodevelop.csproj");
 

@@ -33,18 +33,6 @@
    <Customize FileSet="ExcludedFromStyleCop" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
    </Customize>
- 
-   <Project File="NLog.sl2.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-   </Project>
-
-   <Project File="NLog.sl3.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-   </Project>
 
    <Project File="NLog.sl4.csproj">
      <ItemGroup Name="Compile">
@@ -62,33 +50,6 @@
    </Project>
 
    <Project File="NLog.monodevelop.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
-     </ItemGroup>
-   </Project>
-
-   <Project File="NLog.netfx20.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
-     </ItemGroup>
-   </Project>
-
-   <Project File="NLog.netcf20.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
-     </ItemGroup>
-   </Project>
-
-   <Project File="NLog.netcf35.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
      </ItemGroup>
