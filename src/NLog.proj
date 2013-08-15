@@ -35,7 +35,6 @@
     <BuildAllFrameworks Condition="'$(BuildNetFX45)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF20)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildNLogC)' == 'true'">false</BuildAllFrameworks>
     <IgnoreBuildFailures>false</IgnoreBuildFailures>
     <IgnoreBuildFailures Condition=" '$(BuildAllFrameworks)'=='true' ">true</IgnoreBuildFailures>
     <IgnoreBuildFailures Condition=" '$(IsNightlyBuild)'=='true' ">false</IgnoreBuildFailures>
@@ -103,7 +102,6 @@
     <BuildNetFX45>true</BuildNetFX45>
     <BuildNetCF20>true</BuildNetCF20>
     <BuildNetCF35>true</BuildNetCF35>
-    <BuildNLogC>true</BuildNLogC>
 
     <!-- now disable those that we know cannot be built -->
     <BuildMono2 Condition="'$(MonoInstallLocation)'==''">false</BuildMono2>
@@ -270,26 +268,6 @@
              ContinueOnError="$(IgnoreBuildFailures)" 
              StopOnFirstFailure="false"
              Condition="Exists('NLog.Extended\NLog.Extended%(TargetFramework.ProjectFileSuffix).csproj')" />
-    <MSBuild Projects="InstallNLogConfig\InstallNLogConfig%(TargetFramework.ProjectFileSuffix).csproj" 
-             Targets="Build" 
-             Properties="$(StyleCopProperties);%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory);BuildInfoFile=$(BuildInfoFile)" 
-             ToolsVersion="%(TargetFramework.ToolsVersion)" 
-             ContinueOnError="$(IgnoreBuildFailures)" 
-             StopOnFirstFailure="false"
-             Condition="Exists('InstallNLogConfig\InstallNLogConfig%(TargetFramework.ProjectFileSuffix).csproj')" />
-
-    <CallTarget Targets="BuildNLogC" />
-  </Target>
-
-  <Target Name="BuildNLogC" Condition=" '$(BuildNLogC)'=='true'">
-    <MSBuild Projects="NLogC\NLogC.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=Win32" />
-    <MSBuild Projects="NLogC\NLogC.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=x64" />
-    <Copy SourceFiles="NLogC\NLogC.h;NLogC\NLogger.h" DestinationFolder="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLogC\include" />
-  </Target>
-
-  <Target Name="BuildNLogCTests" DependsOnTargets="BuildNLogC" Condition=" '$(BuildNLogC)'=='true' ">
-    <MSBuild Projects="..\tests\NLogC.UnitTests\NLogC.UnitTests.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=Win32" />
-    <MSBuild Projects="..\tests\NLogC.UnitTests\NLogC.UnitTests.netfx40.vcxproj" Properties="BaseOutputDirectory=$(BaseOutputDirectory);Configuration=$(Configuration);Platform=x64" />
   </Target>
 
   <Target Name="BuildTests">
@@ -308,7 +286,6 @@
              StopOnFirstFailure="false" />
     <CallTarget Targets="BuildTestResultSummaryTool" />
     <CallTarget Targets="BuildSLTestRunner" />
-    <CallTarget Targets="BuildNLogCTests" />
   </Target>
 
   <Target Name="Web" DependsOnTargets="DumpApi;BuildDocPagesTool"
@@ -736,7 +713,6 @@ File.WriteAllText(Path, content);
     <DirectoriesToCleanup Include="Docs\Working" />
     <DirectoriesToCleanup Include="TestResults" />
     <ProjectsToCleanup Include="NLog" />
-    <ProjectsToCleanup Include="NLogC" />
     <ProjectsToCleanup Include="Doc" />
     <ProjectsToCleanup Include="..\tests\NLog.AsyncBenchmark" />
     <ProjectsToCleanup Include="..\tests\NLog.Benchmark" />
@@ -745,7 +721,6 @@ File.WriteAllText(Path, content);
     <ProjectsToCleanup Include="..\tests\NLog.UnitTests" />
     <ProjectsToCleanup Include="..\tests\NLog.UnitTests.Web" />
     <ProjectsToCleanup Include="..\tests\NLog.VBTest" />
-    <ProjectsToCleanup Include="..\tests\NLogC.Tests" />
     <ProjectsToCleanup Include="..\tools\SilverlightConsoleRunner" />
     <ProjectsToCleanup Include="..\tools\MakeNLogXSD" />
     <ProjectsToCleanup Include="..\tools\DeployNetCF" />
