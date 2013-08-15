@@ -55,7 +55,6 @@
     <NuGetOutputPath>$(BaseOutputDirectory)bin\$(Configuration)\NuGetPackages</NuGetOutputPath>
     <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
     <WebsiteDir Condition="'$(WebsiteDir)' == ''">$(BaseOutputDirectory)\bin\$(Configuration)\Website</WebsiteDir>
-    <LastTestRunSummary>$(BaseOutputDirectory)\bin\LastTestRunSummary.cmd</LastTestRunSummary>
     <BuildInfoFile>$(BaseOutputDirectory)\bin\BuildInfo.cs</BuildInfoFile>
     <NuGetTool>$(BaseOutputDirectory)\..\tools\NuGet.exe</NuGetTool>
     <NuGetBuildPath>$(BaseOutputDirectory)\obj\$(Configuration)\NuGet</NuGetBuildPath>
@@ -278,7 +277,6 @@
              Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
              ContinueOnError="$(IgnoreBuildFailures)" 
              StopOnFirstFailure="false" />
-    <CallTarget Targets="BuildTestResultSummaryTool" />
     <CallTarget Targets="BuildSLTestRunner" />
   </Target>
 
@@ -298,7 +296,6 @@
   <Target Name="RunTests">
     <Exec Command="$(BaseOutputDirectory)\bin\CreateTestUsers.cmd" IgnoreExitCode="true" />
     <CallTarget Targets="DeleteTrxFiles" />
-    <CallTarget Targets="PrepareTestResultSummary" />
     <!-- <CallTarget Targets="Mono2Test" Condition="'$(BuildMono2)'=='true'"/> -->
     <CallTarget Targets="NetFx20Test" Condition="'$(BuildNetFX20)'=='true'"/>
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
@@ -394,19 +391,6 @@
     <CallTarget Targets="DumpApi" />
     <CallTarget Targets="BuildTests" />
     <CallTarget Targets="RunTests" />
-    <CallTarget Targets="PrepareTestResultSummary" />
-  </Target>
-
-  <Target Name="DeleteTrxFiles">
-    <Delete Files='$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)\TestResults.trx' />
-  </Target>
-
-  <Target Name="PrepareTestResultSummary">
-    <WriteLinesToFile File="$(LastTestRunSummary)" Lines='@echo off' Overwrite="true" />
-    <WriteLinesToFile File="$(LastTestRunSummary)" Lines='echo ---------------------' />
-    <WriteLinesToFile File="$(LastTestRunSummary)" Lines='echo Test run summary:' />
-    <WriteLinesToFile File="$(LastTestRunSummary)" Lines='echo ---------------------' />
-    <WriteLinesToFile File="$(LastTestRunSummary)" Lines='%~dp0Tools\DumpTestResultSummary.exe all %~dp0$(Configuration) %*' />
   </Target>
 
   <Target Name="BuildMergedDocumentation">
@@ -595,10 +579,6 @@
     <MSBuild Projects="..\tools\SilverlightConsoleRunner\SilverlightConsoleRunner.csproj" />
   </Target>
 
-  <Target Name="BuildTestResultSummaryTool">
-    <MSBuild Projects="..\tools\DumpTestResultSummary\DumpTestResultSummary.csproj" />
-  </Target>
-
   <Target Name="BuildSyncProjectItemsTool">
     <MSBuild Projects="..\tools\SyncProjectItems\SyncProjectItems.csproj" />
   </Target>
@@ -625,7 +605,7 @@
   <Target Name="BuildDocPages" DependsOnTargets="BuildDocPagesTool">
   </Target>
 
-  <Target Name="Tools" DependsOnTargets="BuildApiDumpTool;BuildDocPagesTool;BuildApiMergeTool;BuildSyncProjectItemsTool;BuildSLTestRunner;BuildTestResultSummaryTool;BuildMakeNLogXSDTool">
+  <Target Name="Tools" DependsOnTargets="BuildApiDumpTool;BuildDocPagesTool;BuildApiMergeTool;BuildSyncProjectItemsTool;BuildSLTestRunner;BuildMakeNLogXSDTool">
   </Target>
 
   <Target Name="DumpApi" DependsOnTargets="BuildApiDumpTool;BuildApiMergeTool"
@@ -700,7 +680,6 @@ File.WriteAllText(Path, content);
     <FilesToCleanup Include="..\**\*.ncb" />
     <FilesToCleanup Include="..\**\*.user" />
     <FilesToCleanup Include="..\**\*.cache" />
-    <FilesToCleanup Include="LastTestRunSummary.cmd" />
     <DirectoriesToCleanup Include="_ReSharper.*" />
     <DirectoriesToCleanup Include="..\build\bin" />
     <DirectoriesToCleanup Include="..\build\obj" />
@@ -716,7 +695,6 @@ File.WriteAllText(Path, content);
     <ProjectsToCleanup Include="..\tools\SilverlightConsoleRunner" />
     <ProjectsToCleanup Include="..\tools\MakeNLogXSD" />
     <ProjectsToCleanup Include="..\tools\DeployNetCF" />
-    <ProjectsToCleanup Include="..\tools\DumpTestResultSummary" />
     <ProjectsToCleanup Include="..\tools\DumpApiXml" />
     <SolutionFiles Include="..\**\*.sln" />
   </ItemGroup>
