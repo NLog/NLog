@@ -155,7 +155,7 @@ namespace NLog
                     {
                         foreach (string configFile in GetCandidateFileNames())
                         {
-#if !SILVERLIGHT && !NET2_0 && !MONO
+#if !SILVERLIGHT && !MONO
                             if (File.Exists(configFile))
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);

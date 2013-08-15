@@ -46,7 +46,7 @@ namespace NLog.Internal.FileAppenders
     /// <summary>
     /// Base class for optimized file appenders.
     /// </summary>
-#if !NET2_0 && !SILVERLIGHT2
+#if !SILVERLIGHT2
     [SecuritySafeCritical]
 #endif
     internal abstract class BaseFileAppender : IDisposable

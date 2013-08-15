@@ -42,7 +42,7 @@ namespace NLog.Internal.FileAppenders
     /// <summary>
     /// Optimized single-process file appender which keeps the file open for exclusive write.
     /// </summary>
-#if !NET2_0 && !SILVERLIGHT2
+#if !SILVERLIGHT2
     [SecuritySafeCritical]
 #endif
     internal class SingleProcessFileAppender : BaseFileAppender

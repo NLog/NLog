@@ -46,7 +46,7 @@ namespace NLog.Internal
     /// <summary>
     /// Win32-optimized implementation of <see cref="ThreadIDHelper"/>.
     /// </summary>
-#if !NET2_0 && !SILVERLIGHT2
+#if !SILVERLIGHT2
     [SecuritySafeCritical]
 #endif
     internal class Win32ThreadIDHelper : ThreadIDHelper

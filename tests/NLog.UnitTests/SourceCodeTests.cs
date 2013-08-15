@@ -39,13 +39,9 @@ namespace NLog.UnitTests
     using System.Collections.Generic;
     using System.IO;
     using Xunit;
-#if !NET2_0
     using System.Linq;
-#endif
     using System.Text.RegularExpressions;
-#if !NET2_0
     using System.Xml.Linq;
-#endif
 
     /// <summary>
     /// Source code tests.
@@ -122,7 +118,6 @@ namespace NLog.UnitTests
             Assert.Equal(0, failedFiles);
         }
 
-#if !NET2_0
         private static XNamespace MSBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
 
         [Fact]
@@ -227,7 +222,6 @@ namespace NLog.UnitTests
                 GetAllFilesToCompileInDirectory(output, dir, pattern, prefix + Path.GetFileName(dir) + "\\");
             }
         }
-#endif
 
         [Fact]
         public void VerifyNamespacesAndClassNames()
