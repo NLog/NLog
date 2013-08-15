@@ -64,14 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyBuildInfo.cs" />
-    <Compile Include="ComInterop\ComLogger.cs" />
-    <Compile Include="ComInterop\ComLogManager.cs" />
-    <Compile Include="ComInterop\IComLogger.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="ComInterop\IComLogManager.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
     <Compile Include="Common\AsyncContinuation.cs" />
     <Compile Include="Common\AsyncHelpers.cs" />
     <Compile Include="Common\AsynchronousAction.cs" />
