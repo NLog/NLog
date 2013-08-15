@@ -33,14 +33,11 @@
     <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX45)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildNetCF20)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildNetCF35)' == 'true'">false</BuildAllFrameworks>
     <IgnoreBuildFailures>false</IgnoreBuildFailures>
     <IgnoreBuildFailures Condition=" '$(BuildAllFrameworks)'=='true' ">true</IgnoreBuildFailures>
     <IgnoreBuildFailures Condition=" '$(IsNightlyBuild)'=='true' ">false</IgnoreBuildFailures>
     <ToolsDir>$(BaseOutputDirectory)\bin\Tools</ToolsDir>
     <SLTestRunner>$(ToolsDir)\SilverlightConsoleRunner.exe</SLTestRunner>
-    <DeployNetCF>$(ToolsDir)\DeployNetCF.exe</DeployNetCF>
     <DumpApiXml>$(ToolsDir)\DumpApiXml.exe</DumpApiXml>
     <MergeApiXml>$(ToolsDir)\MergeApiXml.exe</MergeApiXml>
     <MakeNLogXSD>$(ToolsDir)\MakeNLogXSD.exe</MakeNLogXSD>
@@ -70,8 +67,6 @@
     <SL5RefPath Condition="'$(SL5RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v5.0</SL5RefPath>
     <WP7RefPath Condition="'$(WP7RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0\Profile\WindowsPhone</WP7RefPath>
     <WP71RefPath Condition="'$(WP71RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0\Profile\WindowsPhone71</WP71RefPath>
-    <NetCF20InstallRoot>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETCompactFramework\v2.0.0.0\InstallRoot)</NetCF20InstallRoot>
-    <NetCF35InstallRoot>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETCompactFramework\v3.5.0.0\InstallRoot)</NetCF35InstallRoot>
 
     <!-- yes, this is broken but MSBuild does not support recursive registry access (where registry path is parameterized)
     so this will have to do. -->
@@ -99,8 +94,6 @@
     <BuildNetFX35>true</BuildNetFX35>
     <BuildNetFX40>true</BuildNetFX40>
     <BuildNetFX45>true</BuildNetFX45>
-    <BuildNetCF20>true</BuildNetCF20>
-    <BuildNetCF35>true</BuildNetCF35>
 
     <!-- now disable those that we know cannot be built -->
     <BuildMono2 Condition="'$(MonoInstallLocation)'==''">false</BuildMono2>
@@ -110,8 +103,6 @@
     <BuildSL5 Condition="!Exists('$(SL5RefPath)')">false</BuildSL5>
     <BuildWP7 Condition="!Exists('$(WP7RefPath)')">false</BuildWP7>
     <BuildWP71 Condition="!Exists('$(WP71RefPath)')">false</BuildWP71>
-    <BuildNetCF20 Condition="'$(NetCF20InstallRoot)' == ''">false</BuildNetCF20>
-    <BuildNetCF35 Condition="'$(NetCF35InstallRoot)' == ''">false</BuildNetCF35>
     <BuildNetFX20 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v2.0.50727') == ''">false</BuildNetFX20>
     <BuildNetFX35 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v3.5') == ''">false</BuildNetFX35>
     <BuildNetFX40 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\$(DotNet4Version)') == ''">false</BuildNetFX40>
@@ -138,8 +129,6 @@
      <DocReferencesSL5>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v5.0"</DocReferencesSL5>
      <DocReferencesWP7>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0\Profile\WindowsPhone"</DocReferencesWP7>
      <DocReferencesWP71>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0\Profile\WindowsPhone71"</DocReferencesWP71>
-     <DocReferencesNetCF20>-ref "$(ProgramFiles)\Microsoft.NET\SDK\CompactFramework\v2.0\WindowsCE"</DocReferencesNetCF20>
-     <DocReferencesNetCF35>-ref "$(ProgramFiles)\Microsoft.NET\SDK\CompactFramework\v3.5\WindowsCE"</DocReferencesNetCF35>
      <DocReferencesMono2>-ref "$(MonoInstallLocation)\lib\mono\2.0"</DocReferencesMono2>
   </PropertyGroup>
 
@@ -178,16 +167,6 @@
         <ProjectFileSuffix>.wp71</ProjectFileSuffix>
         <DocReferences>$(DocReferencesWP71)</DocReferences>
         <NuGetDir>sl4-windowsphone71</NuGetDir>
-    </TargetFramework>
-    <TargetFramework Include=".NET Compact Framework 2.0" Condition="'$(BuildNetCF20)'=='true'">
-        <ProjectFileSuffix>.netcf20</ProjectFileSuffix>
-        <ToolsVersion>3.5</ToolsVersion>
-        <DocReferences>$(DocReferencesNetCF20)</DocReferences>
-    </TargetFramework>
-    <TargetFramework Include=".NET Compact Framework 3.5" Condition="'$(BuildNetCF35)'=='true'">
-        <ProjectFileSuffix>.netcf35</ProjectFileSuffix>
-        <ToolsVersion>3.5</ToolsVersion>
-        <DocReferences>$(DocReferencesNetCF35)</DocReferences>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 2.0" Condition="'$(BuildNetFX20)'=='true'">
         <ProjectFileSuffix>.netfx20</ProjectFileSuffix>
@@ -270,7 +249,6 @@
   </Target>
 
   <Target Name="BuildTests">
-    <Copy DestinationFolder="$(ToolsDir)" SourceFiles="..\tools\DeployNetCF.exe" />
     <Copy DestinationFolder="$(BaseOutputDirectory)\bin" SourceFiles="$(MSBuildProjectFile);..\tests\CreateTestUsers.cmd;..\tests\DeleteTestUsers.cmd" />
     <MSBuild Projects="..\tests\NLog.UnitTests\NLog.UnitTests%(TargetFramework.ProjectFileSuffix).csproj" 
              Targets="Build" 
@@ -301,8 +279,6 @@
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
     <CallTarget Targets="NetFx45Test" Condition="'$(BuildNetFX45)'=='true'"/>
-    <CallTarget Targets="NetCF20Test" Condition="'$(BuildNetCF20)'=='true'"/>
-    <CallTarget Targets="NetCF35Test" Condition="'$(BuildNetCF35)'=='true'"/>
     <CallTarget Targets="SL2Test" Condition="'$(BuildSL2)'=='true'"/>
     <CallTarget Targets="SL3Test" Condition="'$(BuildSL3)'=='true'"/>
     <CallTarget Targets="SL4Test" Condition="'$(BuildSL4)'=='true'"/>
@@ -334,20 +310,6 @@
 
   <Target Name="NetFx45Test">
     <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" ContinueOnError="true" />
-  </Target>
-
-  <Target Name="NetCf20Test" DependsOnTargets="DeployNetCf20ToEmulator">
-    <Exec Command='"$(MSTest9)" /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 2.0"
-          Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
-    <Exec Command="TaskKill /f /im DeviceEmulator.exe 2&gt; nul" IgnoreExitCode="true" />
-  </Target>
-
-  <Target Name="NetCf35Test" DependsOnTargets="DeployNetCf35ToEmulator">
-    <Exec Command='"$(MSTest9)" /nologo /runconfig:SmartDeviceTestRun.testrunConfig /testcontainer:NLog.UnitTests.dll /resultsfile:TestResults.trx'
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Compact Framework 3.5"
-          Condition="Exists('$(MSTest9)')" IgnoreExitCode="true" />
-    <Exec Command="TaskKill /f /im DeviceEmulator.exe 2&gt; nul" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="SL2Test">
@@ -694,7 +656,6 @@ File.WriteAllText(Path, content);
     <ProjectsToCleanup Include="..\tests\NLog.UnitTests.Web" />
     <ProjectsToCleanup Include="..\tools\SilverlightConsoleRunner" />
     <ProjectsToCleanup Include="..\tools\MakeNLogXSD" />
-    <ProjectsToCleanup Include="..\tools\DeployNetCF" />
     <ProjectsToCleanup Include="..\tools\DumpApiXml" />
     <SolutionFiles Include="..\**\*.sln" />
   </ItemGroup>

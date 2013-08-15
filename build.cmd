@@ -43,18 +43,6 @@ if (%1)==(netfx45) (
 	goto next
 )
 
-if (%1)==(netcf20) (
-	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildNetCF20=true
-	shift
-	goto next
-)
-
-if (%1)==(netcf35) (
-	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildNetCF35=true
-	shift
-	goto next
-)
-
 if (%1)==(mono2) (
 	set MSBUILD_ARGUMENTS=%MSBUILD_ARGUMENTS% /p:BuildMono2=true
 	shift
