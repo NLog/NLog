@@ -46,7 +46,7 @@ namespace NLog.Internal.FileAppenders
     /// <summary>
     /// Base class for optimized file appenders.
     /// </summary>
-#if !NET2_0 && !NETCF2_0 && !NETCF3_5 && !SILVERLIGHT2
+#if !NET2_0 && !SILVERLIGHT2
     [SecuritySafeCritical]
 #endif
     internal abstract class BaseFileAppender : IDisposable
@@ -198,7 +198,7 @@ namespace NLog.Internal.FileAppenders
             throw new InvalidOperationException("Should not be reached.");
         }
 
-#if !NET_CF && !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowConcurrentWrite)
         {
@@ -244,14 +244,12 @@ namespace NLog.Internal.FileAppenders
                 fileShare = FileShare.ReadWrite;
             }
 
-#if !NET_CF
             if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows)
             {
                 fileShare |= FileShare.Delete;
             }
-#endif
 
-#if !NET_CF && !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO
             try
             {
                 if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)

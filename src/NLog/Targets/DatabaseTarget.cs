@@ -48,9 +48,7 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
-#if !NET_CF
 	using ConfigurationManager = System.Configuration.ConfigurationManager;
-#endif
 
 	/// <summary>
     /// Writes log messages to the database using an ADO.NET provider.
@@ -89,9 +87,7 @@ namespace NLog.Targets
             this.UninstallDdlCommands = new List<DatabaseCommandInfo>();
             this.DBProvider = "sqlserver";
             this.DBHost = ".";
-#if !NET_CF
             this.ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
-#endif
         }
 
         /// <summary>
@@ -126,13 +122,11 @@ namespace NLog.Targets
         [DefaultValue("sqlserver")]
         public string DBProvider { get; set; }
 
-#if !NET_CF
         /// <summary>
         /// Gets or sets the name of the connection string (as specified in <see href="http://msdn.microsoft.com/en-us/library/bf7sd233.aspx">&lt;connectionStrings&gt; configuration section</see>.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public string ConnectionStringName { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets the connection string. When provided, it overrides the values
@@ -232,12 +226,10 @@ namespace NLog.Targets
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public IList<DatabaseParameterInfo> Parameters { get; private set; }
 
-#if !NET_CF
         internal DbProviderFactory ProviderFactory { get; set; }
 
         // this is so we can mock the connection string without creating sub-processes
         internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set;  }
-#endif
 
         internal Type ConnectionType { get; set; }
 
@@ -275,13 +267,11 @@ namespace NLog.Targets
         {
             IDbConnection connection;
 
-#if !NET_CF
             if (this.ProviderFactory != null)
             {
                 connection = this.ProviderFactory.CreateConnection();
             }
             else
-#endif
             {
                 connection = (IDbConnection)Activator.CreateInstance(this.ConnectionType);
             }
@@ -302,7 +292,6 @@ namespace NLog.Targets
 
             bool foundProvider = false;
 
-#if !NET_CF
             if (!string.IsNullOrEmpty(this.ConnectionStringName))
             {
                 // read connection string and provider factory from the configuration file
@@ -328,7 +317,6 @@ namespace NLog.Targets
                     }
                 }
             }
-#endif
 
             if (!foundProvider)
             {

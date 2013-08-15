@@ -1077,7 +1077,6 @@ namespace NLog.UnitTests
             protected abstract void InternalLog(string what);
         }
 
-#if !NET_CF
         [Fact]
         public void Log_LoggerWrappedAndStackTraceEnabled_UserStackFrameIsCurrentMethod()
         {
@@ -1129,7 +1128,6 @@ namespace NLog.UnitTests
                 base.Write(logEvent);
             }
         }
-#endif
 
         public override string ToString()
         {

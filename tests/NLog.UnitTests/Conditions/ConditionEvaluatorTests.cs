@@ -36,7 +36,7 @@ namespace NLog.UnitTests.Conditions
     using System;
     using System.Globalization;
     using System.IO;
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
     using System.Runtime.Serialization.Formatters.Binary;
 #endif
     using NLog.Conditions;
@@ -91,7 +91,7 @@ namespace NLog.UnitTests.Conditions
             {
                 Assert.Equal("Cannot resolve function 'starts-with'", ex.Message);
                 Assert.NotNull(ex.InnerException);
-#if NET_CF || WINDOWS_PHONE
+#if WINDOWS_PHONE
                 Assert.Equal("Condition method 'starts-with' expects 2 parameters, but passed 1.", ex.InnerException.Message);
 #else
                 Assert.Equal("Condition method 'starts-with' requires between 2 and 3 parameters, but passed 1.", ex.InnerException.Message);
@@ -111,7 +111,7 @@ namespace NLog.UnitTests.Conditions
             {
                 Assert.Equal("Cannot resolve function 'starts-with'", ex.Message);
                 Assert.NotNull(ex.InnerException);
-#if NET_CF || WINDOWS_PHONE
+#if WINDOWS_PHONE
                 Assert.Equal("Condition method 'starts-with' expects 2 parameters, but passed 4.", ex.InnerException.Message);
 #else
                 Assert.Equal("Condition method 'starts-with' requires between 2 and 3 parameters, but passed 4.", ex.InnerException.Message);
@@ -276,7 +276,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
-#if !SILVERLIGHT && !NET_CF
+#if !SILVERLIGHT
         [Fact]
         public void ExceptionTest4()
         {
@@ -316,7 +316,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
-#if !SILVERLIGHT && !NET_CF
+#if !SILVERLIGHT
         [Fact]
         public void ExceptionTest14()
         {

@@ -38,7 +38,6 @@ namespace NLog.UnitTests
 
     public class GetLoggerTests : NLogTestBase
     {
-#if !NET_CF
         [Fact]
         public void GetCurrentClassLoggerTest()
         {
@@ -46,7 +45,6 @@ namespace NLog.UnitTests
 
             Assert.Equal("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
-#endif
 
         [Fact]
         public void TypedGetLoggerTest()
@@ -71,7 +69,6 @@ namespace NLog.UnitTests
             Assert.Equal("AAA", l3.Name);
         }
 
-#if !NET_CF
         [Fact]
         public void TypedGetCurrentClassLoggerTest()
         {
@@ -94,7 +91,6 @@ namespace NLog.UnitTests
             Assert.Equal("NLog.UnitTests.GetLoggerTests", l1.Name);
             Assert.Equal("NLog.UnitTests.GetLoggerTests", l3.Name);
         }
-#endif
 
         [Fact]
         public void GenericGetLoggerTest()
@@ -112,7 +108,6 @@ namespace NLog.UnitTests
             Assert.Equal("BBB", l3.Name);
         }
 
-#if !NET_CF
         [Fact]
         public void GenericGetCurrentClassLoggerTest()
         {
@@ -165,7 +160,6 @@ namespace NLog.UnitTests
             Assert.True(ExceptionThrown);
             
         }
-#endif
 
         public class MyLogger : Logger
         {

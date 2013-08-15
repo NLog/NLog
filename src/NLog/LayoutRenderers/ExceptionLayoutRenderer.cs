@@ -179,7 +179,7 @@ namespace NLog.LayoutRenderers
 
         private static void AppendMethod(StringBuilder sb, Exception ex)
         {
-#if SILVERLIGHT || NET_CF
+#if SILVERLIGHT
             sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
 #else
             if (ex.TargetSite != null)
@@ -251,7 +251,7 @@ namespace NLog.LayoutRenderers
             return dataTargets.ToArray();
         }
 
-#if SILVERLIGHT || NET_CF
+#if SILVERLIGHT
         private static string ParseMethodNameFromStackTrace(string stackTrace)
         {
             // get the first line of the stack trace

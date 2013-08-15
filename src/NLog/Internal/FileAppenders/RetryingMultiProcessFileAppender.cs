@@ -42,7 +42,7 @@ namespace NLog.Internal.FileAppenders
     /// Multi-process and multi-host file appender which attempts
     /// to get exclusive write access and retries if it's not available.
     /// </summary>
-#if !NET2_0 && !NETCF2_0 && !NETCF3_5 && !SILVERLIGHT2
+#if !NET2_0 && !SILVERLIGHT2
     [SecuritySafeCritical]
 #endif
     internal class RetryingMultiProcessFileAppender : BaseFileAppender

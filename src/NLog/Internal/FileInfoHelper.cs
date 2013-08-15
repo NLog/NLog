@@ -46,7 +46,7 @@ namespace NLog.Internal
         /// </summary>
         static FileInfoHelper()
         {
-#if NET_CF || SILVERLIGHT
+#if SILVERLIGHT
             Helper = new PortableFileInfoHelper();
 #else
             if (PlatformDetector.IsDesktopWin32)

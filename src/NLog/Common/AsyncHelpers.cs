@@ -235,13 +235,10 @@ namespace NLog.Common
         /// <returns>Wrapped asynchronous continuation.</returns>
         public static AsyncContinuation PreventMultipleCalls(AsyncContinuation asyncContinuation)
         {
-#if !NETCF2_0
-            // target is not available on .NET CF 2.0
             if (asyncContinuation.Target is SingleCallContinuation)
             {
                 return asyncContinuation;
             }
-#endif
 
             return new SingleCallContinuation(asyncContinuation).Function;
         }

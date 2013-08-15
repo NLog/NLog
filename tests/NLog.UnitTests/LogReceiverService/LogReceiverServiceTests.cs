@@ -157,7 +157,7 @@ namespace NLog.UnitTests.LogReceiverService
             Assert.Equal(LogLevel.Warn, converted[1].Level);
         }
 
-#if !SILVERLIGHT && !NET_CF && !NET2_0
+#if !SILVERLIGHT && !NET2_0
         /// <summary>
         /// Ensures that serialization formats of DataContractSerializer and XmlSerializer are the same
         /// on the same <see cref="NLogEvents"/> object.

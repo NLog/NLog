@@ -130,7 +130,6 @@
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Internal\CompactFrameworkHelper.cs" />
     <Compile Include="Internal\CompilerAttributes.cs" />
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />

@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
 namespace NLog.UnitTests.Config
 {
     using System.Globalization;
@@ -56,4 +55,3 @@ namespace NLog.UnitTests.Config
         }
     }
 }
-#endif

@@ -139,7 +139,6 @@ namespace NLog
         /// </summary>
         public LogLevel Level { get; set; }
 
-#if !NET_CF
         /// <summary>
         /// Gets a value indicating whether stack trace has been set for this event.
         /// </summary>
@@ -166,7 +165,6 @@ namespace NLog
         /// Gets the entire stack trace.
         /// </summary>
         public StackTrace StackTrace { get; private set; }
-#endif
 
         /// <summary>
         /// Gets or sets the exception information.
@@ -342,7 +340,6 @@ namespace NLog
             return "Log Event: Logger='" + this.LoggerName + "' Level=" + this.Level + " Message='" + this.FormattedMessage + "' SequenceID=" + this.SequenceID;
         }
 
-#if !NET_CF
         /// <summary>
         /// Sets the stack trace for the event info.
         /// </summary>
@@ -353,7 +350,6 @@ namespace NLog
             this.StackTrace = stackTrace;
             this.UserStackFrameNumber = userStackFrame;
         }
-#endif
 
         internal string AddCachedLayoutValue(Layout layout, string value)
         {

@@ -167,7 +167,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var ex = new InvalidOperationException("Exception message.");
             logger.DebugException("Foo", ex);
-#if !SILVERLIGHT && !NET_CF
+#if !SILVERLIGHT
             string newline = Environment.NewLine;
 #else
             string newline = "\r\n";

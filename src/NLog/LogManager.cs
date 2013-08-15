@@ -59,7 +59,7 @@ namespace NLog
         /// <returns></returns>
         public delegate CultureInfo GetCultureInfo();
 
-#if !NET_CF && !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
@@ -98,7 +98,7 @@ namespace NLog
             remove { globalFactory.ConfigurationChanged -= value; }
         }
 
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -151,7 +151,6 @@ namespace NLog
             set { _defaultCultureInfo = value; }
         }
 
-#if !NET_CF
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
@@ -211,7 +210,6 @@ namespace NLog
             
             return globalFactory.GetLogger(declaringType.FullName, loggerType);
         }
-#endif
 
         /// <summary>
         /// Creates a logger that discards all log messages.
@@ -352,7 +350,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
             }
         }
 
-#if !NET_CF && !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO
         private static void SetupTerminationEvents()
         {
             CurrentAppDomain.ProcessExit += TurnOffLogging;

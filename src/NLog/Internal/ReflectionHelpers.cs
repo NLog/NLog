@@ -52,7 +52,7 @@ namespace NLog.Internal
         /// <remarks>Types which cannot be loaded are skipped.</remarks>
         public static Type[] SafeGetTypes(this Assembly assembly)
         {
-#if NET_CF || SILVERLIGHT
+#if SILVERLIGHT
             return assembly.GetTypes();
 #else
             try

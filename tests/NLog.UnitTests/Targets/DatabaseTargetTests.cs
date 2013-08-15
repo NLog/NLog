@@ -47,7 +47,7 @@ namespace NLog.UnitTests.Targets
 
     public class DatabaseTargetTests : NLogTestBase
     {
-#if !NET_CF && !MONO
+#if !MONO
         static DatabaseTargetTests()
         {
             var data = (DataSet)ConfigurationManager.GetSection("system.data");
@@ -633,7 +633,6 @@ Close()
             AssertLog(expectedLog);
         }
 
-#if !NET_CF
         [Fact]
         public void ConnectionStringNameInitTest()
         {
@@ -735,8 +734,7 @@ Close()
             dt.Initialize(null);
             Assert.Equal(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
         }
-#endif
-        
+
         private static void AssertLog(string expectedLog)
         {
             Assert.Equal(expectedLog.Replace("\r", ""), MockDbConnection.Log.Replace("\r", ""));
@@ -1123,7 +1121,6 @@ Close()
             }
         }
 
-#if !NET_CF
         public class MockDbFactory : DbProviderFactory
         {
             public static readonly MockDbFactory Instance = new MockDbFactory();
@@ -1188,7 +1185,6 @@ Close()
                 get { throw new NotImplementedException(); }
             }
         }
-#endif
     }
 }
 

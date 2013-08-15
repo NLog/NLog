@@ -51,9 +51,7 @@ namespace NLog.LogReceiverService
 #endif
     [XmlType(Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
     [XmlRoot("events", Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
-#if !NET_CF
     [DebuggerDisplay("Count = {Events.Length}")]
-#endif
     public class NLogEvents
     {
         /// <summary>

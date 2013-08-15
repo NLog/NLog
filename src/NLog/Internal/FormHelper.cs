@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !MONO && !SILVERLIGHT && !NET_CF
+#if !MONO && !SILVERLIGHT
 
 namespace NLog.Internal
 {

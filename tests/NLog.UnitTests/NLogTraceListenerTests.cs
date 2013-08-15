@@ -114,7 +114,6 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "Logger1 Trace Hello");
         }
 
-#if !NET_CF
         [Fact]
         public void TraceConfiguration()
         {
@@ -281,8 +280,6 @@ namespace NLog.UnitTests
 #endif
             return ts;
         }
-
-#endif
     }
 }
 

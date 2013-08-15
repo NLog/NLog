@@ -39,7 +39,6 @@ namespace NLog.UnitTests
 
     public class LogFactoryTests : NLogTestBase
     {
-#if !NET_CF
         [Fact]
         public void Flush_DoNotThrowExceptionsAndTimeout_DoesNotThrow()
         {
@@ -54,7 +53,6 @@ namespace NLog.UnitTests
             Logger logger = LogManager.GetCurrentClassLogger();
             logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
         }
-#endif
         
         [Fact]
         public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()

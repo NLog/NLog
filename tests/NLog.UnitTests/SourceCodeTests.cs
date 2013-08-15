@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NET_CF
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests
 {
@@ -142,8 +142,6 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx40.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx45.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx20.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netcf20.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netcf35.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl2.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl3.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl4.csproj");
@@ -166,8 +164,6 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx40.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx45.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx20.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netcf20.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netcf35.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl2.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl3.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl4.csproj");

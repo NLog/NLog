@@ -65,7 +65,7 @@ namespace NLog.Internal.NetworkSenders
             this.socket.Close();
         }
 
-#if USE_LEGACY_ASYNC_API || NET_CF
+#if USE_LEGACY_ASYNC_API
         // emulate missing .NET CF behavior
 
         /// <summary>

@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NET_CF
+#if !SILVERLIGHT
 
 using System.Reflection;
 
-#if !SILVERLIGHT2 && !NET_CF
+#if !SILVERLIGHT2
 
 namespace NLog.UnitTests.LayoutRenderers
 {

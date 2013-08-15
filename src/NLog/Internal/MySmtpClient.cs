@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
 
 namespace NLog.Internal
 {
@@ -42,7 +42,7 @@ namespace NLog.Internal
     /// </summary>
     internal class MySmtpClient : SmtpClient, ISmtpClient
     {
-#if NET3_5 || NET2_0 || NETCF2_0 || NETCF3_5 || MONO
+#if NET3_5 || NET2_0 || MONO
         /// <summary>
         /// Sends a QUIT message to the SMTP server, gracefully ends the TCP connection, and releases all resources used by the current instance of the <see cref="T:System.Net.Mail.SmtpClient"/> class.
         /// </summary>

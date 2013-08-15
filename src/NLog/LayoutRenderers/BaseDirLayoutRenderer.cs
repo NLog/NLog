@@ -62,11 +62,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public BaseDirLayoutRenderer(IAppDomain appDomain)
         {
-#if !NET_CF
             this.baseDir = appDomain.BaseDirectory;
-#else
-            this.baseDir = NLog.Internal.CompactFrameworkHelper.GetExeBaseDir();
-#endif
         }
 
         /// <summary>

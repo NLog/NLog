@@ -50,11 +50,7 @@ namespace NLog.UnitTests
 
             // OneTimeOnly(OneTimeOnly(x)) == OneTimeOnly(x)
             var cont2 = AsyncHelpers.PreventMultipleCalls(cont);
-#if NETCF2_0
-            Assert.AreNotSame(cont, cont2);
-#else
             Assert.Same(cont, cont2);
-#endif
 
             var sampleException = new InvalidOperationException("some message");
 

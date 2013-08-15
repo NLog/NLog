@@ -49,9 +49,7 @@ namespace NLog.UnitTests.Config
 
                 Assert.Same(LogLevel.Trace, InternalLogger.LogLevel);
                 Assert.True(InternalLogger.LogToConsole);
-#if !NET_CF
                 Assert.True(InternalLogger.LogToConsoleError);
-#endif
                 Assert.Same(LogLevel.Warn, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
             }
@@ -64,9 +62,7 @@ namespace NLog.UnitTests.Config
             {
                 InternalLogger.LogLevel = LogLevel.Error;
                 InternalLogger.LogToConsole = true;
-#if !NET_CF
                 InternalLogger.LogToConsoleError = true;
-#endif
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
 
@@ -76,9 +72,7 @@ namespace NLog.UnitTests.Config
 
                 Assert.Same(LogLevel.Error, InternalLogger.LogLevel);
                 Assert.True(InternalLogger.LogToConsole);
-#if !NET_CF
                 Assert.True(InternalLogger.LogToConsoleError);
-#endif
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
             }

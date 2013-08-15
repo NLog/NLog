@@ -143,7 +143,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "yyy");
         }
 
-#if !SILVERLIGHT && !NET_CF
+#if !SILVERLIGHT
         private int _reloadCounter = 0;
 
         private void WaitForConfigReload(int counter)
@@ -264,7 +264,6 @@ namespace NLog.UnitTests
         }
 #endif
 
-#if !NET_CF
         [Fact]
         public void GivenCurrentClass_WhenGetCurrentClassLogger_ThenLoggerShouldBeCurrentClass()
         {
@@ -281,7 +280,6 @@ namespace NLog.UnitTests
 
             Assert.Equal(this.GetType().FullName, logger.Value.Name);
         }
-#endif
 #endif
     }
 }

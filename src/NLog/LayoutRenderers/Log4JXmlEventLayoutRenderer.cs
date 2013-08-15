@@ -72,17 +72,12 @@ namespace NLog.LayoutRenderers
         {
             this.IncludeNLogData = true;
             this.NdcItemSeparator = " ";
-#if NET_CF
-            this.AppInfo = ".NET CF Application";
-#elif SILVERLIGHT
-            this.AppInfo = "Silverlight Application";
-#else
+
             this.AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
                 "{0}({1})", 
                 appDomain.FriendlyName, 
                 ThreadIDHelper.Instance.CurrentProcessID);
-#endif
             this.Parameters = new List<NLogViewerParameterInfo>();
         }
 
@@ -105,7 +100,6 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Payload Options' order='10' />
         public string AppInfo { get; set; }
 
-#if !NET_CF
         /// <summary>
         /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.
         /// </summary>
@@ -117,7 +111,6 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeSourceInfo { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
@@ -145,7 +138,6 @@ namespace NLog.LayoutRenderers
         {
             get
             {
-#if !NET_CF
                 if (this.IncludeSourceInfo)
                 {
                     return StackTraceUsage.Max;
@@ -155,7 +147,6 @@ namespace NLog.LayoutRenderers
                 {
                     return StackTraceUsage.WithoutSource;
                 }
-#endif
 
                 return StackTraceUsage.None;
             }
@@ -210,7 +201,6 @@ namespace NLog.LayoutRenderers
                     xtw.WriteEndElement();
                 }
 
-#if !NET_CF
                 if (this.IncludeCallSite || this.IncludeSourceInfo)
                 {
                     System.Diagnostics.StackFrame frame = logEvent.UserStackFrame;
@@ -259,7 +249,6 @@ namespace NLog.LayoutRenderers
                         
                     }
                 }
-#endif
 
                 xtw.WriteStartElement("log4j", "properties", dummyNamespace);
                 if (this.IncludeMdc)
@@ -288,13 +277,8 @@ namespace NLog.LayoutRenderers
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
                 xtw.WriteAttributeString("name", "log4jmachinename");
-#if NET_CF
-            xtw.WriteAttributeString("value", "netcf");
-#elif SILVERLIGHT
-            xtw.WriteAttributeString("value", "silverlight");
-#else
+
                 xtw.WriteAttributeString("value", Environment.MachineName);
-#endif
                 xtw.WriteEndElement();
                 xtw.WriteEndElement();
 

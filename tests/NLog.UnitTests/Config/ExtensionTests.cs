@@ -44,7 +44,7 @@ namespace NLog.UnitTests.Config
     {
 #if !WINDOWS_PHONE
         private string extensionAssemblyName1 = "SampleExtensions";
-#if SILVERLIGHT || NET_CF
+#if SILVERLIGHT
         private string extensionAssemblyFullPath1 = "SampleExtensions.dll";
 #else
         private string extensionAssemblyFullPath1 = Path.GetFullPath("SampleExtensions.dll");

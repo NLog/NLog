@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if NET2_0 || NETCF2_0
+#if NET2_0
 
 namespace System.Runtime.CompilerServices
 {

@@ -62,7 +62,6 @@ namespace NLog
                 return;
             }
 
-#if !NET_CF
             StackTraceUsage stu = targets.GetStackTraceUsage();
 
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
@@ -78,7 +77,6 @@ namespace NLog
 
                 logEvent.SetStackTrace(stackTrace, firstUserFrame);
             }
-#endif
 
             int originalThreadId = Thread.CurrentThread.ManagedThreadId;
             AsyncContinuation exceptionHandler = ex =>
@@ -101,7 +99,6 @@ namespace NLog
             }
         }
 
-#if !NET_CF
         private static int FindCallingMethodOnStackTrace(StackTrace stackTrace, Type loggerType)
         {
             int firstUserFrame = 0;
@@ -151,7 +148,6 @@ namespace NLog
 
             return false;
         }
-#endif
 
         private static bool WriteToTargetWithFilterChain(TargetWithFilterChain targetListHead, LogEventInfo logEvent, AsyncContinuation onException)
         {

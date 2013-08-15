@@ -54,7 +54,7 @@ namespace NLog.Internal.FileAppenders
 
         bool ForceManaged { get; }
 
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
         Win32FileAttributes FileAttributes { get; }
 #endif
     }

@@ -88,7 +88,6 @@ namespace NLog.UnitTests.Targets
             Assert.True(actual.IndexOf("-- footer --") != -1);
         }
 
-#if !NET_CF
         [Fact]
         public void ConsoleErrorTest()
         {
@@ -126,7 +125,6 @@ namespace NLog.UnitTests.Targets
             string expectedResult = string.Format("-- header --{0}Logger1 message1{0}Logger1 message2{0}Logger1 message3{0}Logger2 message4{0}Logger2 message5{0}Logger1 message6{0}-- footer --{0}", Environment.NewLine);
             Assert.Equal(expectedResult, consoleErrorWriter.ToString());
         }
-#endif
     }
 }
 

@@ -110,12 +110,10 @@ namespace NLog.UnitTests.LayoutRenderers
                                 Assert.Equal("baz3::baz2::baz1", reader.Value);
                                 break;
 
-#if !NET_CF
                             case "locationInfo":
                                 Assert.Equal(MethodBase.GetCurrentMethod().DeclaringType.FullName, reader.GetAttribute("class"));
                                 Assert.Equal(MethodBase.GetCurrentMethod().ToString(), reader.GetAttribute("method"));
                                 break;
-#endif
 
                             case "properties":
                                 break;
@@ -129,21 +127,13 @@ namespace NLog.UnitTests.LayoutRenderers
                                     case "log4japp":
 #if SILVERLIGHT
                                         Assert.Equal("Silverlight Application", value);
-#elif NET_CF
-                                        Assert.Equal(".NET CF Application", value);
 #else
                                         Assert.Equal(AppDomain.CurrentDomain.FriendlyName + "(" + Process.GetCurrentProcess().Id + ")", value);
 #endif
                                         break;
 
                                     case "log4jmachinename":
-#if NET_CF
-                                        Assert.Equal("netcf", value);
-#elif SILVERLIGHT
-                                        Assert.Equal("silverlight", value);
-#else
                                         Assert.Equal(Environment.MachineName, value);
-#endif
                                         break;
 
                                     case "foo1":

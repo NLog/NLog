@@ -116,13 +116,7 @@ using System.Xml.Linq;
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(configXml);
 
-#if NET_CF
-            Console.WriteLine(CompactFrameworkHelper.GetExeBaseDir());
-            return new XmlLoggingConfiguration(doc.DocumentElement, ".");
-#else
             return new XmlLoggingConfiguration(doc.DocumentElement, Environment.CurrentDirectory);
-#endif
-
 #endif
         }
 
@@ -157,9 +151,7 @@ using System.Xml.Linq;
             private readonly LogLevel logLevel;
             private readonly bool logToConsole;
             private readonly bool includeTimestamp;
-#if !NET_CF
             private readonly bool logToConsoleError;
-#endif
             private readonly LogLevel globalThreshold;
             private readonly bool throwExceptions;
 
@@ -169,9 +161,7 @@ using System.Xml.Linq;
                 this.logLevel = InternalLogger.LogLevel;
                 this.logToConsole = InternalLogger.LogToConsole;
                 this.includeTimestamp = InternalLogger.IncludeTimestamp;
-#if !NET_CF
                 this.logToConsoleError = InternalLogger.LogToConsoleError;
-#endif
                 this.globalThreshold = LogManager.GlobalThreshold;
                 this.throwExceptions = LogManager.ThrowExceptions;
             }
@@ -182,9 +172,7 @@ using System.Xml.Linq;
                 InternalLogger.LogLevel = this.logLevel;
                 InternalLogger.LogToConsole = this.logToConsole;
                 InternalLogger.IncludeTimestamp = this.includeTimestamp;
-#if !NET_CF
                 InternalLogger.LogToConsoleError = this.logToConsoleError;
-#endif
                 LogManager.GlobalThreshold = this.globalThreshold;
                 LogManager.ThrowExceptions = this.throwExceptions;
             }

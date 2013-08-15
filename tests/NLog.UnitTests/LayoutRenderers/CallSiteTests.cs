@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -300,5 +298,3 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
-
-#endif

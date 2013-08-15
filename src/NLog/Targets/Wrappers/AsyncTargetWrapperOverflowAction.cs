@@ -48,11 +48,9 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         Discard,
 
-#if !NET_CF
         /// <summary>
         /// Block until there's more room in the queue.
         /// </summary>
         Block,
-#endif
     }
 }
