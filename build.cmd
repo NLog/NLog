@@ -245,10 +245,7 @@ echo.
 echo  netfx20            .NET Framework 2.0
 echo  netfx35            .NET Framework 3.5
 echo  netfx40            .NET Framework 4.0
-echo  netcf20            .NET Compact Framework 2.0
-echo  netcf35            .NET Compact Framework 3.5
-echo  sl2                Silverlight 2.0
-echo  sl3                Silverlight 3.0
+echo  netfx45            .NET Framework 4.5
 echo  sl4                Silverlight 4.0
 echo  wp7                Silverlight for Windows Phone 7
 echo  wp71               Silverlight for Windows Phone 7.1
