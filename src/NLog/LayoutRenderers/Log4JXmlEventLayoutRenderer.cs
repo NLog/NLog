@@ -73,7 +73,7 @@ namespace NLog.LayoutRenderers
             this.IncludeNLogData = true;
             this.NdcItemSeparator = " ";
 
-#elif SILVERLIGHT
+#if SILVERLIGHT
             this.AppInfo = "Silverlight Application";
 #else
             this.AppInfo = string.Format(
