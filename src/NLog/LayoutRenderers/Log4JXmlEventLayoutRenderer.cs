@@ -73,12 +73,15 @@ namespace NLog.LayoutRenderers
             this.IncludeNLogData = true;
             this.NdcItemSeparator = " ";
 
+#elif SILVERLIGHT
+            this.AppInfo = "Silverlight Application";
+#else
             this.AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
                 "{0}({1})", 
                 appDomain.FriendlyName, 
                 ThreadIDHelper.Instance.CurrentProcessID);
-            this.Parameters = new List<NLogViewerParameterInfo>();
+#endif
         }
 
         /// <summary>

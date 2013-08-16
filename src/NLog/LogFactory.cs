@@ -693,6 +693,9 @@ namespace NLog
 
         private static IEnumerable<string> GetCandidateFileNames()
         {
+#if SILVERLIGHT
+            yield return "NLog.config";
+#else
             // NLog.config from application directory
             yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
 
@@ -720,6 +723,7 @@ namespace NLog
                     yield return nlogAssembly.Location + ".nlog";
                 }
             }
+#endif
         }
 
         private static void Dump(LoggingConfiguration config)
