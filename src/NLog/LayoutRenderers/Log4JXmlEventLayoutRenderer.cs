@@ -281,7 +281,11 @@ namespace NLog.LayoutRenderers
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
                 xtw.WriteAttributeString("name", "log4jmachinename");
 
+#if SILVERLIGHT
+            xtw.WriteAttributeString("value", "silverlight");
+#else
                 xtw.WriteAttributeString("value", Environment.MachineName);
+#endif
                 xtw.WriteEndElement();
                 xtw.WriteEndElement();
 
