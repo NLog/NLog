@@ -48,7 +48,12 @@ namespace NLog.Targets
         /// <summary>
         /// Rolling style numbering (the most recent is always #0 then #1, ..., #N.
         /// </summary>
-        Rolling, 
+        Rolling,
+
+        /// <summary>
+        /// Date style numbering.  Archives will be stamped with the prior period (Year, Month, Day, Hour, Minute) datetime.
+        /// </summary>
+        Date, 
     }
 }
 
