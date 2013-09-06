@@ -1021,7 +1021,7 @@ namespace NLog.Targets
             File.Move(fileName, newFileName);
         }
 
-        private string GetDateFormatString(string defaultFormat = "")
+        private string GetDateFormatString(string defaultFormat)
         {
             // If archiveDateFormat is not set in the config file, use a default date format string based on the archive period
             string formatString = defaultFormat;
@@ -1158,7 +1158,7 @@ namespace NLog.Targets
 
             if (this.ArchiveEvery != FileArchivePeriod.None)
             {
-                string formatString = GetDateFormatString();
+                string formatString = GetDateFormatString(string.Empty);
                 string ts = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
                 string ts2 = ev.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
 
