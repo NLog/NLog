@@ -62,7 +62,7 @@ namespace NLog.Targets
         private BaseFileAppender[] recentAppenders;
         private Timer autoClosingTimer;
         private int initializedFilesCounter;
-        
+
         private int _MaxArchiveFilesField;
 
         private readonly DynamicArchiveFileHandlerClass dynamicArchiveFileHandler;
@@ -71,7 +71,8 @@ namespace NLog.Targets
         {
             private readonly Queue<string> archiveFileEntryQueue;
 
-            public DynamicArchiveFileHandlerClass(int MaxArchivedFiles) : this()
+            public DynamicArchiveFileHandlerClass(int MaxArchivedFiles)
+                : this()
             {
                 this.MaxArchiveFileToKeep = MaxArchivedFiles;
             }
@@ -116,10 +117,10 @@ namespace NLog.Targets
                     }
                 }
 
-                
+
                 String archiveFileNamePattern = archiveFileName;
 
-                if(archiveFileEntryQueue.Contains(archiveFileName))
+                if (archiveFileEntryQueue.Contains(archiveFileName))
                 {
                     InternalLogger.Trace("Archive File {0} seems to be already exist. Trying with Different File Name..", archiveFileName);
 
@@ -127,7 +128,7 @@ namespace NLog.Targets
 
                     archiveFileNamePattern = Path.GetFileNameWithoutExtension(archiveFileName) + ".{#}" + Path.GetExtension(archiveFileName);
 
-                    while(File.Exists(ReplaceNumber(archiveFileNamePattern,NumberToStartWith)))
+                    while (File.Exists(ReplaceNumber(archiveFileNamePattern, NumberToStartWith)))
                     {
                         InternalLogger.Trace("Archive File {0} seems to be already exist, too. Trying with Different File Name..", archiveFileName);
                         NumberToStartWith++;
@@ -170,8 +171,8 @@ namespace NLog.Targets
                 }
 
                 archiveFileEntryQueue.Enqueue(archiveFileName);
-            }            
-         }
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -205,6 +206,7 @@ namespace NLog.Targets
             this.CreateDirs = true;
             this.dynamicArchiveFileHandler = new DynamicArchiveFileHandlerClass(MaxArchiveFiles);
             this.ForceManaged = false;
+            this.ArchiveDateFormat = string.Empty;
         }
 
         /// <summary>
@@ -272,7 +274,16 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool EnableFileDelete { get; set; }
 
-#if !SILVERLIGHT
+        /// <summary>
+        /// Gets or sets a value specifying the date format to use when archving files.
+        /// </summary>
+        /// <remarks>
+        /// This option works only when the "ArchiveNumbering" parameter is set to Date.
+        /// </remarks>
+        /// <docgen category='Output Options' order='10' />
+        [DefaultValue("")]
+        public string ArchiveDateFormat { get; set; }
+
         /// <summary>
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
@@ -288,9 +299,9 @@ namespace NLog.Targets
         [Advanced]
         public LineEndingMode LineEnding
         {
-            get 
+            get
             {
-                return this.lineEndingMode; 
+                return this.lineEndingMode;
             }
 
             set
@@ -649,7 +660,7 @@ namespace NLog.Targets
                     }
                 }
             }
-            
+
             this.recentAppenders = new BaseFileAppender[this.OpenFileCacheSize];
 
             if ((this.OpenFileCacheSize > 0 || this.EnableFileDelete) && this.OpenFileCacheTimeout > 0)
@@ -798,7 +809,7 @@ namespace NLog.Targets
 
             return (StartingIndex != -1 && EndingIndex != -1 && StartingIndex < EndingIndex);
         }
-        
+
         private static string ReplaceNumber(string pattern, int value)
         {
             int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
@@ -950,6 +961,129 @@ namespace NLog.Targets
             File.Move(fileName, newFileName);
         }
 
+        private void DateArchive(string fileName, string pattern)
+        {
+            string baseNamePattern = Path.GetFileName(pattern);
+
+            int firstPart = baseNamePattern.IndexOf("{#", StringComparison.Ordinal);
+            int lastPart = baseNamePattern.IndexOf("#}", StringComparison.Ordinal) + 2;
+            string fileNameMask = baseNamePattern.Substring(0, firstPart) + "*" + baseNamePattern.Substring(lastPart);
+            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
+            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
+            int fileIndex = 0;
+
+            try
+            {
+
+#if SILVERLIGHT
+                List<string> files = Directory.EnumerateFiles(dirName, fileNameMask).ToList();
+
+                // TODO 
+                // Fixed compilation errors.
+                // missing SortedDictionary impl
+
+                Dictionary<DateTime, string> filesByDate = new Dictionary<DateTime, string>();
+#else
+                List<string> files = Directory.GetFiles(dirName, fileNameMask).ToList();
+                SortedDictionary<DateTime, string> filesByDate = new SortedDictionary<DateTime, string>();
+#endif
+
+                foreach (string file in files)
+                {
+                    string archiveFileName = Path.GetFileName(file);
+                    string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
+                    DateTime fileDate = DateTime.Now;
+                    if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
+                    {
+                        filesByDate.Add(fileDate, file);
+                    }
+                }
+
+
+                foreach (KeyValuePair<DateTime, string> file in filesByDate)
+                {
+                    if (fileIndex > files.Count - this.MaxArchiveFiles)
+                        break;
+
+                    File.Delete(file.Value);
+
+                    fileIndex++;
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Directory.CreateDirectory(dirName);
+            }
+
+            DateTime newFileDate = GetArchiveDate();
+            string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
+            File.Move(fileName, newFileName);
+        }
+
+        private string GetDateFormatString(string defaultFormat)
+        {
+            // If archiveDateFormat is not set in the config file, use a default date format string based on the archive period
+            string formatString = defaultFormat;
+            if (string.IsNullOrEmpty(formatString))
+            {
+                switch (this.ArchiveEvery)
+                {
+                    case FileArchivePeriod.Year:
+                        formatString = "yyyy";
+                        break;
+
+                    case FileArchivePeriod.Month:
+                        formatString = "yyyyMM";
+                        break;
+
+                    default:
+                        formatString = "yyyyMMdd";
+                        break;
+
+                    case FileArchivePeriod.Hour:
+                        formatString = "yyyyMMddHH";
+                        break;
+
+                    case FileArchivePeriod.Minute:
+                        formatString = "yyyyMMddHHmm";
+                        break;
+                }
+            }
+            return formatString;
+        }
+
+        private DateTime GetArchiveDate()
+        {
+            DateTime archiveDate = DateTime.Now;
+
+            // Because AutoArchive/DateArchive gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
+            // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
+            switch (this.ArchiveEvery)
+            {
+                case FileArchivePeriod.Day:
+                    archiveDate = archiveDate.AddDays(-1);
+                    break;
+
+                case FileArchivePeriod.Hour:
+                    archiveDate = archiveDate.AddHours(-1);
+                    break;
+
+                case FileArchivePeriod.Minute:
+                    archiveDate = archiveDate.AddMinutes(-1);
+                    break;
+
+                case FileArchivePeriod.Month:
+                    archiveDate = archiveDate.AddMonths(-1);
+                    break;
+
+                case FileArchivePeriod.Year:
+                    archiveDate = archiveDate.AddYears(-1);
+                    break;
+            }
+
+            return archiveDate;
+        }
+
         private void DoAutoArchive(string fileName, LogEventInfo ev)
         {
             var fi = new FileInfo(fileName);
@@ -974,23 +1108,27 @@ namespace NLog.Targets
                 fileNamePattern = this.ArchiveFileName.Render(ev);
 
             }
-            
+
             if (!IsContainValidNumberPatternForReplacement(fileNamePattern))
             {
-                dynamicArchiveFileHandler.AddToArchive(fileNamePattern, fi.FullName,CreateDirs);
+                dynamicArchiveFileHandler.AddToArchive(fileNamePattern, fi.FullName, CreateDirs);
             }
             else
             {
-                  switch (this.ArchiveNumbering)
-                  {
-                       case ArchiveNumberingMode.Rolling:
-                           this.RecursiveRollingRename(fi.FullName, fileNamePattern, 0);
-                           break;
+                switch (this.ArchiveNumbering)
+                {
+                    case ArchiveNumberingMode.Rolling:
+                        this.RecursiveRollingRename(fi.FullName, fileNamePattern, 0);
+                        break;
 
-                       case ArchiveNumberingMode.Sequence:
-                           this.SequentialArchive(fi.FullName, fileNamePattern);
-                           break;
-                  }
+                    case ArchiveNumberingMode.Sequence:
+                        this.SequentialArchive(fi.FullName, fileNamePattern);
+                        break;
+
+                    case ArchiveNumberingMode.Date:
+                        this.DateArchive(fi.FullName, fileNamePattern);
+                        break;
+                }
             }
         }
 
@@ -1019,31 +1157,7 @@ namespace NLog.Targets
 
             if (this.ArchiveEvery != FileArchivePeriod.None)
             {
-                string formatString;
-
-                switch (this.ArchiveEvery)
-                {
-                    case FileArchivePeriod.Year:
-                        formatString = "yyyy";
-                        break;
-
-                    case FileArchivePeriod.Month:
-                        formatString = "yyyyMM";
-                        break;
-
-                    default:
-                        formatString = "yyyyMMdd";
-                        break;
-
-                    case FileArchivePeriod.Hour:
-                        formatString = "yyyyMMddHH";
-                        break;
-
-                    case FileArchivePeriod.Minute:
-                        formatString = "yyyyMMddHHmm";
-                        break;
-                }
-
+                string formatString = GetDateFormatString(string.Empty);
                 string ts = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
                 string ts2 = ev.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
 
@@ -1300,7 +1414,7 @@ namespace NLog.Targets
                 lastWriteTime = fi.LastWriteTime;
                 return true;
             }
-            
+
             fileLength = -1;
             lastWriteTime = DateTime.MinValue;
             return false;

@@ -420,8 +420,6 @@
     <!-- prepare static files -->
     <RemoveDir Directories="$(NuGetBuildPath)\NLog.Config" />
     <Copy SourceFiles="@(NuGetConfigFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Config\%(RecursiveDir)" />
-    <Copy SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\NLog.xsd"
-          DestinationFolder="$(NuGetBuildPath)\NLog.Config\content" />
 	
     <TokenReplace Path="$(NuGetBuildPath)\NLog.Config\NLog.Config.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
 
