@@ -290,7 +290,6 @@ namespace NLog.Targets
         /// <docgen category='Output Options' order='10' />
         [Advanced]
         public Win32FileAttributes FileAttributes { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets the line ending mode.
