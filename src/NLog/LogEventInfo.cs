@@ -57,14 +57,14 @@ namespace NLog
 
         private static int globalSequenceId;
 
-        private readonly object layoutCacheLock = new object();
+        private static readonly object layoutCacheLock = new object();
 
         private string formattedMessage;
         private IDictionary<Layout, string> layoutCache;
         private IDictionary<object, object> properties;
         private IDictionary eventContextAdapter;
 
-        /// <summary>
+        /// <summary>layoutCacheLock
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
         /// </summary>
         public LogEventInfo()
