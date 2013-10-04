@@ -57,7 +57,7 @@ namespace NLog
 
         private static int globalSequenceId;
 
-        private readonly object layoutCacheLock = new object();
+        private static readonly object layoutCacheLock = new object();
 
         private string formattedMessage;
         private IDictionary<Layout, string> layoutCache;
