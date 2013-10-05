@@ -39,14 +39,6 @@ namespace NLog.UnitTests.Config
     public class CultureInfoTests : NLogTestBase
     {
         [Fact]
-        public void DefaultCultureInfoIsCurrentCulture()
-        {
-            var configuration = CreateConfigurationFromString("<nlog></nlog>");
-
-            Assert.Equal(CultureInfo.CurrentCulture, configuration.DefaultCultureInfo);
-        }
-        
-        [Fact]
         public void WhenInvariantCultureDefinedThenDefaultCultureIsInvariantCulture()
         {
             var configuration = CreateConfigurationFromString("<nlog useInvariantCulture='true'></nlog>");
