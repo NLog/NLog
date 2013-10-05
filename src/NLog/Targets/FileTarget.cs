@@ -284,12 +284,14 @@ namespace NLog.Targets
         [DefaultValue("")]
         public string ArchiveDateFormat { get; set; }
 
+#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
         /// <docgen category='Output Options' order='10' />
         [Advanced]
         public Win32FileAttributes FileAttributes { get; set; }
+#endif
 
         /// <summary>
         /// Gets or sets the line ending mode.
