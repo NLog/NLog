@@ -17,7 +17,6 @@
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkProfile></TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
-    <RunCodeAnalysis Condition=" '$(BuildingInsideVisualStudio)' != 'true' ">true</RunCodeAnalysis>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -31,7 +30,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>..\..\build\bin\Debug\.NET Framework 4.5\</OutputPath>
-    <CodeAnalysisRuleSet>NLog.netfx40.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>..\..\build\bin\Debug\.NET Framework 4.5\NLog.xml</DocumentationFile>
   </PropertyGroup>
@@ -42,7 +40,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Release</OutputPath>
-    <CodeAnalysisRuleSet>NLog.netfx45.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
@@ -374,9 +371,6 @@
     <Compile Include="Time\FastUtcTimeSource.cs" />
     <Compile Include="Time\TimeSource.cs" />
     <Compile Include="Time\TimeSourceAttribute.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\NLog.ico" />
