@@ -69,6 +69,11 @@
                         httpServer.AddResourceHandler("/XapHost.html", "text/html", typeof(ConsoleRunner), "XapHost4.html");
                         break;
 
+                    case "SL5":
+                        httpServer.AddResourceHandler("/Silverlight.js", "text/plain", typeof(ConsoleRunner), "Silverlight5.js");
+                        httpServer.AddResourceHandler("/XapHost.html", "text/html", typeof(ConsoleRunner), "XapHost5.html");
+                        break;
+
                     case "WP7":
                     case "WP71":
                         break;
