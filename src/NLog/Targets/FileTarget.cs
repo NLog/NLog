@@ -975,19 +975,8 @@ namespace NLog.Targets
 
             try
             {
-
-#if SILVERLIGHT
-                List<string> files = Directory.EnumerateFiles(dirName, fileNameMask).ToList();
-
-                // TODO 
-                // Fixed compilation errors.
-                // missing SortedDictionary impl
-
-                Dictionary<DateTime, string> filesByDate = new Dictionary<DateTime, string>();
-#else
                 List<string> files = Directory.GetFiles(dirName, fileNameMask).ToList();
-                SortedDictionary<DateTime, string> filesByDate = new SortedDictionary<DateTime, string>();
-#endif
+                Dictionary<DateTime, string> filesByDate = new Dictionary<DateTime, string>();
 
                 foreach (string file in files)
                 {
