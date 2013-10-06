@@ -240,4 +240,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
 </Project>
