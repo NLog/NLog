@@ -962,6 +962,7 @@ namespace NLog.Targets
             File.Move(fileName, newFileName);
         }
 
+#if !NET_CF
         private void DateArchive(string fileName, string pattern)
         {
             string baseNamePattern = Path.GetFileName(pattern);
@@ -1014,6 +1015,7 @@ namespace NLog.Targets
             string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
             File.Move(fileName, newFileName);
         }
+#endif
 
         private string GetDateFormatString(string defaultFormat)
         {
@@ -1120,9 +1122,11 @@ namespace NLog.Targets
                         this.SequentialArchive(fi.FullName, fileNamePattern);
                         break;
 
+#if !NET_CF
                     case ArchiveNumberingMode.Date:
                         this.DateArchive(fi.FullName, fileNamePattern);
                         break;
+#endif
                 }
             }
         }
