@@ -327,8 +327,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             });
             asyncTarget.Flush(ex =>
             {
-                secondContinuationResetEvent.Set();
                 secondContinuationCalled = true;
+                secondContinuationResetEvent.Set();
             });
 
             firstContinuationResetEvent.WaitOne();
