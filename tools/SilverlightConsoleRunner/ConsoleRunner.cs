@@ -92,7 +92,7 @@
                         form.Url = "http://localhost:" + httpServer.ListenPort + "/XapHost.html";
                         this.currentForm = form;
                         this.ResetTimer();
-                        form.ShowDialog();
+                        form.Show();
                         this.currentForm = null;
                     }
                 }
