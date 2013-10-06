@@ -463,18 +463,18 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             var eventCounter = 0;
             targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
-            Thread.Sleep(300);
+            Thread.Sleep(100);
 
             Assert.Equal(0, hitCount);
             Assert.Equal(0, myTarget.WriteCount);
 
             targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
-            Thread.Sleep(300);
+            Thread.Sleep(100);
 
             Assert.Equal(0, hitCount);
             Assert.Equal(0, myTarget.WriteCount);
 
-            Thread.Sleep(200);
+            Thread.Sleep(600);
             Assert.Equal(2, hitCount);
             Assert.Equal(2, myTarget.WriteCount);
         }
