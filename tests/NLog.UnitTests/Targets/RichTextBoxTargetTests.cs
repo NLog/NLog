@@ -392,7 +392,7 @@ namespace NLog.UnitTests.Targets
                         form.Close();
                     };
 
-                form.ShowDialog();
+                form.Show();
                 Application.DoEvents();
             }
         }
