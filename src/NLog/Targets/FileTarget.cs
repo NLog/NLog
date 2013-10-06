@@ -975,7 +975,12 @@ namespace NLog.Targets
 
             try
             {
+
+#if SILVERLIGHT
+                List<string> files = Directory.EnumerateFiles(dirName, fileNameMask).ToList();
+#else
                 List<string> files = Directory.GetFiles(dirName, fileNameMask).ToList();
+#endif
                 Dictionary<DateTime, string> filesByDate = new Dictionary<DateTime, string>();
 
                 foreach (string file in files)
