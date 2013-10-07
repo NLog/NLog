@@ -9,7 +9,7 @@
     <BuildLabelDash Condition=" '$(BuildLabelOverride)' == '' ">-PrivateBuild</BuildLabelDash>
     <BuildLabelDash Condition=" '$(BuildLabelOverride)' == 'NONE' "></BuildLabelDash>
     <BuildLabelDash Condition=" '$(BuildLabelOverride)' != '' and '$(BuildLabelOverride)' != 'NONE' ">-$(BuildLabelOverride)</BuildLabelDash>
-    <BuildVersion Condition=" '$(BuildVersion)' == '' " >2.0.1</BuildVersion>
+    <BuildVersion Condition=" '$(BuildVersion)' == '' " >2.1.0</BuildVersion>
     <BuildVersion Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildVersion>
     <BuildProductName>NLog v$(BuildVersion)$(BuildLabel)</BuildProductName>
   </PropertyGroup>
