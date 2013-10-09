@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>StatLight</id>
+    <version>1.6.4375</version>
+    <title>StatLight</title>
+    <authors>Jason Jarrett</authors>
+    <owners>Jason Jarrett</owners>
+    <licenseUrl>http://statlight.codeplex.com/license</licenseUrl>
+    <projectUrl>http://statlight.codeplex.com/</projectUrl>
+    <iconUrl>https://github.com/staxmanade/StatLight/raw/master/artifacts/Logo.NuGetIcon32x32.PNG</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>StatLight: Tool for executing Silverlight test xap packages or dll assemblies locally during development and in a continuous integration environment.</description>
+    <summary>StatLight: Tool for executing Silverlight test xap packages or dll assemblies locally during development and in a continuous integration environment.</summary>
+    <releaseNotes>http://statlight.codeplex.com/releases/view/73869</releaseNotes>
+    <copyright>MS-PL</copyright>
+    <language />
+    <tags>Silverlight UnitTesting Continuous Integration Testing TeamCity MSTest xUnit NUnit UnitDriven</tags>
+  </metadata>
+</package>
