@@ -53,93 +53,17 @@ namespace NLog.UnitTests
 
     public partial class App : Application
     {
-        private VisualStudioLogProvider vsProvider = new VisualStudioLogProvider();
-        private static Uri baseUrl = new Uri("http://localhost:17788");
-
         public App()
         {
             this.Startup += this.Application_Startup;
             this.Exit += this.Application_Exit;
             this.UnhandledException += this.Application_UnhandledException;
-
-            //InitializeComponent();
-        }
-
-        class MyLogProvider : LogProvider
-        {
-            public override void Process(LogMessage logMessage)
-            {
-                if (logMessage.HasDecorator(LogDecorator.TestStage))
-                {
-                    var stage = (TestStage)logMessage[LogDecorator.TestStage];
-                    if (stage == TestStage.Starting)
-                    {
-                        if (logMessage.HasDecorator(UnitTestLogDecorator.TestMethodMetadata))
-                        {
-                            var methodInfo = (ITestMethod)logMessage[UnitTestLogDecorator.TestMethodMetadata];
-                            var wc = new WebClient();
-                            wc.UploadStringAsync(new Uri(baseUrl, "/TestMethodStarting?method=" + methodInfo.Name), "");
-                        }
-                        else if (logMessage.HasDecorator(UnitTestLogDecorator.TestClassMetadata))
-                        {
-                            var classInfo = (ITestClass)logMessage[UnitTestLogDecorator.TestClassMetadata];
-                            var wc = new WebClient();
-                            wc.UploadStringAsync(new Uri(baseUrl, "/TestClassStarting?class=" + classInfo.Type.FullName), "");
-                        }
-                    }
-                }
-
-                if (logMessage.HasDecorator(UnitTestLogDecorator.ScenarioResult))
-                {
-                    var result = (ScenarioResult)logMessage[UnitTestLogDecorator.ScenarioResult];
-                    var wc = new WebClient();
-                    StringBuilder uri = new StringBuilder();
-                    uri.Append("/TestMethodCompleted?result=" + result.Result);
-                    if (result.TestClass != null)
-                    {
-                        uri.Append("&class=").Append(result.TestClass.Type.FullName);
-                    }
-                    if (result.TestMethod != null)
-                    {
-                        uri.Append("&method=").Append(result.TestMethod.Name);
-                    }
-                    wc.UploadStringAsync(new Uri(baseUrl, uri.ToString()), "");
-                }
-            }
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-			UnitTestSystem.RegisterUnitTestProvider(new XunitContrib.Runner.Silverlight.Toolkit.UnitTestProvider());
-            UnitTestSettings settings = UnitTestSystem.CreateDefaultSettings();
-            settings.LogProviders.Add(new MyLogProvider());
-
-            // uncomment this to reduce the number of test cases
-            // settings.TestClassesToRun.Add("IncludeTests");
-            vsProvider.TestRunId = Guid.NewGuid().ToString();
-            settings.LogProviders.Add(vsProvider);
-            settings.TestHarness.TestHarnessCompleted += new EventHandler<TestHarnessCompletedEventArgs>(TestHarness_TestHarnessCompleted);
-            this.RootVisual = UnitTestSystem.CreateTestPage(settings);
-        }
-
-        class MyHarness : UnitTestHarness
-        {
-            public string TrxContent { get; private set; }
-
-            public override void WriteLogFile(string logName, string fileContent)
-            {
-                this.TrxContent = fileContent;
-            }
-        }
-
-        void TestHarness_TestHarnessCompleted(object sender, TestHarnessCompletedEventArgs e)
-        {
-            var harness = new MyHarness();
-
-            vsProvider.WriteLogFile(harness);
-
-            var wc = new WebClient();
-            wc.UploadStringAsync(new Uri(baseUrl, "/Completed"), harness.TrxContent);
+            UnitTestSystem.RegisterUnitTestProvider(new XunitContrib.Runner.Silverlight.Toolkit.UnitTestProvider());
+            this.RootVisual = UnitTestSystem.CreateTestPage();
         }
 
         private void Application_Exit(object sender, EventArgs e)
