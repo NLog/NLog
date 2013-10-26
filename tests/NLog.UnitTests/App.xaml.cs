@@ -38,7 +38,6 @@ using System.Windows;
 
 #if !WINDOWS_PHONE
 using System.Windows.Browser;
-using Microsoft.Silverlight.Testing.UnitTesting.Harness;
 #endif
 
 using Microsoft.Silverlight.Testing;
@@ -50,6 +49,7 @@ namespace NLog.UnitTests
     using System.Text;
     using System.Xml.Linq;
     using Microsoft.Silverlight.Testing.UnitTesting.Metadata.VisualStudio;
+    using Microsoft.Silverlight.Testing.UnitTesting.Metadata;
 
     public partial class App : Application
     {
@@ -76,13 +76,13 @@ namespace NLog.UnitTests
                     {
                         if (logMessage.HasDecorator(UnitTestLogDecorator.TestMethodMetadata))
                         {
-                            var methodInfo = (TestMethod)logMessage[UnitTestLogDecorator.TestMethodMetadata];
+                            var methodInfo = (ITestMethod)logMessage[UnitTestLogDecorator.TestMethodMetadata];
                             var wc = new WebClient();
                             wc.UploadStringAsync(new Uri(baseUrl, "/TestMethodStarting?method=" + methodInfo.Name), "");
                         }
                         else if (logMessage.HasDecorator(UnitTestLogDecorator.TestClassMetadata))
                         {
-                            var classInfo = (TestClass)logMessage[UnitTestLogDecorator.TestClassMetadata];
+                            var classInfo = (ITestClass)logMessage[UnitTestLogDecorator.TestClassMetadata];
                             var wc = new WebClient();
                             wc.UploadStringAsync(new Uri(baseUrl, "/TestClassStarting?class=" + classInfo.Type.FullName), "");
                         }
@@ -110,6 +110,7 @@ namespace NLog.UnitTests
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+			UnitTestSystem.RegisterUnitTestProvider(new XunitContrib.Runner.Silverlight.Toolkit.UnitTestProvider());
             UnitTestSettings settings = UnitTestSystem.CreateDefaultSettings();
             settings.LogProviders.Add(new MyLogProvider());
 
