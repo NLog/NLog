@@ -17,11 +17,16 @@
     <SilverlightVersion Condition="'$(SilverlightVersion)' == ''">$(TargetFrameworkVersion)</SilverlightVersion>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,7 +35,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRules>-Microsoft.Design#CA1020</CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRuleSet>Migrated rules for NLog.sl4.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -372,7 +379,9 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Migrated rules for NLog.sl4.ruleset" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

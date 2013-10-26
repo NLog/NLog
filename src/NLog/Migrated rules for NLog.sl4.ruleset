@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Migrated rules for NLog.sl4.ruleset" Description="This rule set was created from the CodeAnalysisRules property for the &quot;Debug (Any CPU)&quot; configuration in project &quot;E:\NLog\src\NLog\NLog.sl4.csproj&quot;." ToolsVersion="12.0">
+  <IncludeAll Action="Warning" />
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1020" Action="None" />
+  </Rules>
+</RuleSet>
