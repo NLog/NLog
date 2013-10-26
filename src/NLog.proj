@@ -34,7 +34,7 @@
     <IgnoreBuildFailures Condition=" '$(BuildAllFrameworks)'=='true' ">true</IgnoreBuildFailures>
     <IgnoreBuildFailures Condition=" '$(IsNightlyBuild)'=='true' ">false</IgnoreBuildFailures>
     <ToolsDir>$(BaseOutputDirectory)\bin\Tools</ToolsDir>
-    <SLTestRunner>$(ToolsDir)\SilverlightConsoleRunner.exe</SLTestRunner>
+    <SLTestRunner>$(BaseOutputDirectory)\..\src\packages\StatLight.1.6.4375\tools\StatLight.exe</SLTestRunner>
     <DumpApiXml>$(ToolsDir)\DumpApiXml.exe</DumpApiXml>
     <MergeApiXml>$(ToolsDir)\MergeApiXml.exe</MergeApiXml>
     <MakeNLogXSD>$(ToolsDir)\MakeNLogXSD.exe</MakeNLogXSD>
@@ -225,7 +225,6 @@
              Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)" 
              ContinueOnError="$(IgnoreBuildFailures)" 
              StopOnFirstFailure="false" />
-    <CallTarget Targets="BuildSLTestRunner" />
   </Target>
 
   <Target Name="Web" DependsOnTargets="DumpApi;BuildDocPagesTool"
@@ -275,12 +274,12 @@
   </Target>
 
   <Target Name="SL4Test">
-    <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap SL4'
+    <Exec Command='"$(SLTestRunner)" -x=NLog.UnitTests.xap'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 4.0" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="SL5Test">
-    <Exec Command='"$(SLTestRunner)" NLog.UnitTests.xap SL5'
+    <Exec Command='"$(SLTestRunner)" -x=NLog.UnitTests.xap'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 5.0" IgnoreExitCode="true" />
   </Target>
 
@@ -476,10 +475,6 @@
      <MSBuild Projects="..\tools\Installer\Installer.wixproj" Properties="Flavor=WP;$(CommonInstallerProperties)" />
   </Target>
 
-  <Target Name="BuildSLTestRunner">
-    <MSBuild Projects="..\tools\SilverlightConsoleRunner\SilverlightConsoleRunner.csproj" />
-  </Target>
-
   <Target Name="BuildSyncProjectItemsTool">
     <MSBuild Projects="..\tools\SyncProjectItems\SyncProjectItems.csproj" />
   </Target>
@@ -506,7 +501,7 @@
   <Target Name="BuildDocPages" DependsOnTargets="BuildDocPagesTool">
   </Target>
 
-  <Target Name="Tools" DependsOnTargets="BuildApiDumpTool;BuildDocPagesTool;BuildApiMergeTool;BuildSyncProjectItemsTool;BuildSLTestRunner;BuildMakeNLogXSDTool">
+  <Target Name="Tools" DependsOnTargets="BuildApiDumpTool;BuildDocPagesTool;BuildApiMergeTool;BuildSyncProjectItemsTool;BuildMakeNLogXSDTool">
   </Target>
 
   <Target Name="DumpApi" DependsOnTargets="BuildApiDumpTool;BuildApiMergeTool"
