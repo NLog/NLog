@@ -136,7 +136,7 @@ namespace NLog.UnitTests
                 LogManager.ThrowExceptions = false;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             }
-            catch(Exception exception)
+            catch(Exception )
             {
                 ExceptionThrown = true;
             }
@@ -152,7 +152,7 @@ namespace NLog.UnitTests
                 LogManager.ThrowExceptions = true;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             }
-            catch(Exception exception)
+            catch(Exception)
             {
                 ExceptionThrown = true;
             }

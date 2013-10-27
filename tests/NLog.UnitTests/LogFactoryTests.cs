@@ -70,7 +70,7 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 ExceptionThrown = true;
             }
@@ -95,7 +95,7 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 ExceptionThrown = true;
             }

@@ -269,9 +269,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             targetWrapper.Initialize(null);
             myTarget.Initialize(null);
 
-            bool continuationHit = false;
-
-            targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { continuationHit = true; }));
+            targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
 
             // quickly close the target before the timer elapses
             targetWrapper.Close();
