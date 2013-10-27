@@ -73,13 +73,13 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="xunit-silverlight4, Version=1.6.1.0, Culture=neutral, PublicKeyToken=b793d3de60bec2b9, processorArchitecture=MSIL">
+    <Reference Include="xunit-silverlight-wp7, Version=1.6.1.0, Culture=neutral, PublicKeyToken=b793d3de60bec2b9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\external\xunitcontrib-silverlight.0.2\Silverlight4\xunit-silverlight4.dll</HintPath>
+      <HintPath>..\..\external\xunitcontrib-silverlight.0.2\WindowsPhone7\xunit-silverlight-wp7.dll</HintPath>
     </Reference>
-    <Reference Include="xunitcontrib.runner.silverlight.toolkit-sl4, Version=0.2.0.42091, Culture=neutral, PublicKeyToken=b793d3de60bec2b9, processorArchitecture=MSIL">
+    <Reference Include="xunitcontrib.runner.silverlight.toolkit-wp7, Version=0.2.0.42091, Culture=neutral, PublicKeyToken=b793d3de60bec2b9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\external\xunitcontrib-silverlight.0.2\Silverlight4\xunitcontrib.runner.silverlight.toolkit-sl4.dll</HintPath>
+      <HintPath>..\..\external\xunitcontrib-silverlight.0.2\WindowsPhone7\xunitcontrib.runner.silverlight.toolkit-wp7.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
