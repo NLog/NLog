@@ -274,12 +274,12 @@
   </Target>
 
   <Target Name="SL4Test">
-    <Exec Command='"$(SLTestRunner)" -x=NLog.UnitTests.xap'
+    <Exec Command='"$(SLTestRunner)" -x=NLog.UnitTests.xap --teamcity'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 4.0" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="SL5Test">
-    <Exec Command='"$(SLTestRunner)" -x=NLog.UnitTests.xap'
+    <Exec Command='"$(SLTestRunner)" -x=NLog.UnitTests.xap --teamcity'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 5.0" IgnoreExitCode="true" />
   </Target>
 
