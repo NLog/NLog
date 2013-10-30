@@ -1,9 +1,0 @@
-<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="StatLight.Client.Harness" EntryPointType="StatLight.Client.Harness.App" RuntimeVersion="4.0.50401.00">
-  <Deployment.Parts>
-    <AssemblyPart x:Name="StatLight.Client.Harness" Source="StatLight.Client.Harness.dll" />
-    <AssemblyPart x:Name="StatLight.Client.Harness.XUnit" Source="StatLight.Client.Harness.XUnit.dll" />
-    <AssemblyPart x:Name="System.Xml.Linq" Source="System.Xml.Linq.dll" />
-    <AssemblyPart x:Name="xunit-silverlight" Source="xunit-silverlight.dll" />
-    <AssemblyPart x:Name="xunit.runner.silverlight" Source="xunit.runner.silverlight.dll" />
-  </Deployment.Parts>
-</Deployment>
