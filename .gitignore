@@ -30,3 +30,4 @@ examples/NLogDemo/gmail*.txt
 *.user
 tools/FAKE/
 pacakages/
+build/
