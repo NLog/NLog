@@ -87,13 +87,17 @@ Target "BuildSL4" (fun _ ->
 )
 
 Target "BuildSL4Tests" (fun _ ->
-  MSBuildDebug (testDir + "Silverlight 4.0") "Build" ["./tests/NLog.UnitTests/NLog.UnitTests.netsl4.csproj"]
+  MSBuildDebug (testDir + "Silverlight 4.0") "Build" ["./tests/NLog.UnitTests/NLog.UnitTests.sl4.csproj"]
     |> Log "AppBuild-Output: "
 )
 
 Target "RunSL4Tests" (fun _ ->
-  !! (testDir + "/Silverlight 4.0/NLog.UnitTests.dll")
-    |> xUnit (fun p -> { p with OutputDir = testDir + "/Silverlight 4.0" })
+  ExecProcess (fun p ->
+      p.FileName <- "./src/packages/StatLight.1.6.4375/tools/StatLight.exe"
+      p.Arguments <- "-x=\"" + testDir + "Silverlight 4.0/NLog.UnitTests.xap\" --teamcity"
+    )
+    (TimeSpan.FromMinutes 15.)
+  |> ignore
 )
 
 Target "BuildSL5" (fun _ ->
@@ -102,13 +106,17 @@ Target "BuildSL5" (fun _ ->
 )
 
 Target "BuildSL5Tests" (fun _ ->
-  MSBuildDebug (testDir + "Silverlight 5.0") "Build" ["./tests/NLog.UnitTests/NLog.UnitTests.netsl5.csproj"]
+  MSBuildDebug (testDir + "Silverlight 5.0") "Build" ["./tests/NLog.UnitTests/NLog.UnitTests.sl5.csproj"]
     |> Log "AppBuild-Output: "
 )
 
 Target "RunSL5Tests" (fun _ ->
-  !! (testDir + "/Silverlight 5.0/NLog.UnitTests.dll")
-    |> xUnit (fun p -> { p with OutputDir = testDir + "/Silverlight 5.0" })
+  ExecProcess (fun p ->
+      p.FileName <- "./src/packages/StatLight.1.6.4375/tools/StatLight.exe"
+      p.Arguments <- "-x=\"" + testDir + "Silverlight 5.0/NLog.UnitTests.xap\" --teamcity"
+    )
+    (TimeSpan.FromMinutes 15.)
+  |> ignore
 )
 
 Target "BuildWP7" (fun _ ->
