@@ -6,6 +6,10 @@ open System
 
 let buildDir = "./build/"
 let testDir = buildDir + "tests/"
+let mutable testUserCreated = false
+
+let createTestUser =
+  ExecProcess (fun p -> p.FileName <- "./tests/CreateTestUsers.cmd") (TimeSpan.FromMinutes 1.) |> ignore
 
 Target "RestoreBuildPackages" (fun _ ->
   !! "./src/**/packages.config"
@@ -32,6 +36,7 @@ Target "BuildMono2Tests" (fun _ ->
 )
 
 Target "RunMono2Tests" (fun _ ->
+  createTestUser
   !! (testDir + "Mono 2.x/NLog.UnitTests.dll")
     |> xUnit (fun p -> { p with OutputDir = testDir + "Mono 2.x" })
 )
@@ -47,6 +52,7 @@ Target "BuildNETFX35Tests" (fun _ ->
 )
 
 Target "RunNETFX35Tests" (fun _ ->
+  createTestUser
   !! (testDir + "/.NET Framework 3.5/NLog.UnitTests.dll")
     |> xUnit (fun p -> { p with OutputDir = testDir + "/.NET Framework 3.5" })
 )
@@ -62,6 +68,7 @@ Target "BuildNETFX40Tests" (fun _ ->
 )
 
 Target "RunNETFX40Tests" (fun _ ->
+  createTestUser
   !! (testDir + "/.NET Framework 4.0/NLog.UnitTests.dll")
     |> xUnit (fun p -> { p with OutputDir = testDir + "/.NET Framework 4.0" })
 )
@@ -77,6 +84,7 @@ Target "BuildNETFX45Tests" (fun _ ->
 )
 
 Target "RunNETFX45Tests" (fun _ ->
+  createTestUser
   !! (testDir + "/.NET Framework 4.5/NLog.UnitTests.dll")
     |> xUnit (fun p -> { p with OutputDir = testDir + "/.NET Framework 4.5" })
 )
@@ -92,6 +100,7 @@ Target "BuildSL4Tests" (fun _ ->
 )
 
 Target "RunSL4Tests" (fun _ ->
+  createTestUser
   ExecProcess (fun p ->
       p.FileName <- "./src/packages/StatLight.1.6.4375/tools/StatLight.exe"
       p.Arguments <- "-x=\"" + testDir + "Silverlight 4.0/NLog.UnitTests.xap\" --teamcity"
@@ -111,6 +120,7 @@ Target "BuildSL5Tests" (fun _ ->
 )
 
 Target "RunSL5Tests" (fun _ ->
+  createTestUser
   ExecProcess (fun p ->
       p.FileName <- "./src/packages/StatLight.1.6.4375/tools/StatLight.exe"
       p.Arguments <- "-x=\"" + testDir + "Silverlight 5.0/NLog.UnitTests.xap\" --teamcity"
@@ -130,6 +140,7 @@ Target "BuildWP7Tests" (fun _ ->
 )
 
 Target "RunWP7Tests" (fun _ ->
+  createTestUser
   !! (testDir + "/Silverlight for Windows Phone 7/NLog.UnitTests.dll")
     |> xUnit (fun p -> { p with OutputDir = testDir + "/Silverlight for Windows Phone 7" })
 )
@@ -140,6 +151,7 @@ Target "BuildWP71" (fun _ ->
 )
 
 Target "BuildWP71Tests" (fun _ ->
+  createTestUser
   MSBuildDebug (testDir + "Silverlight for Windows Phone 7.1") "Build" ["./tests/NLog.UnitTests/NLog.UnitTests.wp71.csproj"]
     |> Log "AppBuild-Output: "
 )
@@ -147,6 +159,11 @@ Target "BuildWP71Tests" (fun _ ->
 Target "RunWP71Tests" (fun _ ->
   !! (testDir + "/Silverlight for Windows Phone 7.1/NLog.UnitTests.dll")
     |> xUnit (fun p -> { p with OutputDir = testDir + "/Silverlight for Windows Phone 7.1" })
+)
+
+FinalTarget "Cleanup" (fun _ ->
+  if testUserCreated = true then
+    ExecProcess (fun p -> p.FileName <- "./tests/DeleteTestUsers.cmd") (TimeSpan.FromMinutes 1.) |> ignore
 )
 
 Target "Default" (fun _ ->
