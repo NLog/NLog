@@ -10,6 +10,7 @@ let mutable testUserCreated = false
 
 let createTestUser =
   ExecProcess (fun p -> p.FileName <- "./tests/CreateTestUsers.cmd") (TimeSpan.FromMinutes 1.) |> ignore
+  testUserCreated <- true
 
 Target "RestoreBuildPackages" (fun _ ->
   !! "./src/**/packages.config"
@@ -70,7 +71,12 @@ Target "BuildNETFX40Tests" (fun _ ->
 Target "RunNETFX40Tests" (fun _ ->
   createTestUser
   !! (testDir + "/.NET Framework 4.0/NLog.UnitTests.dll")
-    |> xUnit (fun p -> { p with OutputDir = testDir + "/.NET Framework 4.0" })
+    |> xUnit (fun p -> 
+      {
+        p with
+          OutputDir = testDir + "/.NET Framework 4.0"
+          ToolPath = "./src/packages/xunit.runners.1.9.1/tools/xunit.console.clr4.exe"
+      })
 )
 
 Target "BuildNETFX45" (fun _ ->
@@ -86,7 +92,12 @@ Target "BuildNETFX45Tests" (fun _ ->
 Target "RunNETFX45Tests" (fun _ ->
   createTestUser
   !! (testDir + "/.NET Framework 4.5/NLog.UnitTests.dll")
-    |> xUnit (fun p -> { p with OutputDir = testDir + "/.NET Framework 4.5" })
+    |> xUnit (fun p -> 
+      {
+        p with
+          OutputDir = testDir + "/.NET Framework 4.5"
+          ToolPath = "./src/packages/xunit.runners.1.9.1/tools/xunit.console.clr4.exe"
+      })
 )
 
 Target "BuildSL4" (fun _ ->
