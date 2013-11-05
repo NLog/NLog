@@ -29,5 +29,5 @@ examples/NLogDemo/gmail*.txt
 *.ncrunchsolution
 *.user
 tools/FAKE/
-pacakages/
+packages/
 build/
