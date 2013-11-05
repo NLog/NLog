@@ -4,6 +4,8 @@ open Fake
 open Fake.FileUtils
 open System
 
+setEnvironVar "EnableNuGetPackageRestore" "true"
+
 let buildDir = "./build/"
 let testDir = buildDir + "tests/"
 let mutable testUserCreated = false
