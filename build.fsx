@@ -29,19 +29,25 @@ Target "Clean" (fun _ ->
 )
 
 Target "BuildMono2" (fun _ ->
-  MSBuildRelease (buildDir + "Mono 2.x") "Build" ["./src/NLog/NLog.mono2.csproj"]
-    |> Log "AppBuild-Output: "
+  if isUnix then
+    MSBuildRelease (buildDir + "Mono 2.x") "Build" ["./src/NLog/NLog.mono2.csproj"]
+      |> Log "AppBuild-Output: "
+  else printf "Not implemented\n"
 )
 
 Target "BuildMono2Tests" (fun _ ->
-  MSBuildDebug (testDir + "Mono 2.x") "Build" ["./tests/NLog.UnitTests/NLog.UnitTests.mono2.csproj"]
-    |> Log "AppBuild-Output: "
+  if isUnix then
+    MSBuildDebug (testDir + "Mono 2.x") "Build" ["./tests/NLog.UnitTests/NLog.UnitTests.mono2.csproj"]
+      |> Log "AppBuild-Output: "
+  else printf "Not implemented\n"
 )
 
 Target "RunMono2Tests" (fun _ ->
-  createTestUser
-  !! (testDir + "Mono 2.x/NLog.UnitTests.dll")
-    |> xUnit (fun p -> { p with OutputDir = testDir + "Mono 2.x" })
+  if isUnix then
+    createTestUser
+    !! (testDir + "Mono 2.x/NLog.UnitTests.dll")
+      |> xUnit (fun p -> { p with OutputDir = testDir + "Mono 2.x" })
+  else printf "Not implemented\n"
 )
 
 Target "BuildNETFX35" (fun _ ->
