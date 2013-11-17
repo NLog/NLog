@@ -292,6 +292,11 @@ namespace NLog.UnitTests
                 return true;
             }
 
+            if (baseName == "Annotations.cs")
+            {
+                return true;
+            }
+
             return false;
         }
 
