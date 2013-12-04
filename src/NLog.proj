@@ -106,60 +106,40 @@
     <BuildNetFX45 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX45>
   </PropertyGroup>
 
-  <PropertyGroup>
-     <DocReferencesNetFX30>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\v3.0"</DocReferencesNetFX30>
-     <DocReferencesNetFX35>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\v3.5"</DocReferencesNetFX35>
-     <DocReferencesNetFX40>-ref "$(WinDir)\Microsoft.NET\Framework\$(DotNet4Version)"</DocReferencesNetFX40>
-     <DocReferencesNetFX45>-ref "$(WinDir)\Microsoft.NET\Framework\$(DotNet4Version)"</DocReferencesNetFX45>
-     <DocReferencesSL4>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0"</DocReferencesSL4>
-     <DocReferencesSL5>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v5.0"</DocReferencesSL5>
-     <DocReferencesWP7>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0\Profile\WindowsPhone"</DocReferencesWP7>
-     <DocReferencesWP71>-ref "$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0\Profile\WindowsPhone71"</DocReferencesWP71>
-     <DocReferencesMono2>-ref "$(MonoInstallLocation)\lib\mono\2.0"</DocReferencesMono2>
-  </PropertyGroup>
-
   <ItemGroup>
     <TargetFramework Include="Mono 2.x" Condition="'$(BuildMono2)' == 'true'">
         <ProjectFileSuffix>.mono2</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
-        <DocReferences>$(DocReferencesMono2)</DocReferences>
     </TargetFramework>
     <TargetFramework Include="Silverlight 4.0" Condition="'$(BuildSL4)'=='true'">
         <ProjectFileSuffix>.sl4</ProjectFileSuffix>
-        <DocReferences>$(DocReferencesSL4)</DocReferences>
         <NuGetDir>sl4</NuGetDir>
     </TargetFramework>
     <TargetFramework Include="Silverlight 5.0" Condition="'$(BuildSL5)'=='true'">
         <ProjectFileSuffix>.sl5</ProjectFileSuffix>
-        <DocReferences>$(DocReferencesSL5)</DocReferences>
         <NuGetDir>sl5</NuGetDir>
     </TargetFramework>
     <TargetFramework Include="Silverlight for Windows Phone 7" Condition="'$(BuildWP7)'=='true'">
         <ProjectFileSuffix>.wp7</ProjectFileSuffix>
-        <DocReferences>$(DocReferencesWP7)</DocReferences>
         <NuGetDir>sl3-wp</NuGetDir>
     </TargetFramework>
     <TargetFramework Include="Silverlight for Windows Phone 7.1" Condition="'$(BuildWP71)'=='true'">
         <ProjectFileSuffix>.wp71</ProjectFileSuffix>
-        <DocReferences>$(DocReferencesWP71)</DocReferences>
         <NuGetDir>sl4-windowsphone71</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildNetFX35)'=='true'">
         <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
-        <DocReferences>$(DocReferencesNetFX35) $(DocReferencesNetFX30) $(DocReferencesNetFX35)</DocReferences>
         <NuGetDir>net35</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
         <ProjectFileSuffix>.netfx40</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
-        <DocReferences>$(DocReferencesNetFX40)</DocReferences>
         <NuGetDir>net40</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.5" Condition="'$(BuildNetFX45)'=='true'">
         <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
-        <DocReferences>$(DocReferencesNetFX45)</DocReferences>
         <NuGetDir>net45</NuGetDir>
     </TargetFramework>
   </ItemGroup>
@@ -508,7 +488,7 @@
     Inputs="@(TargetFramework -> '$(BaseOutputDirectory)\bin\$(Configuration)\%(Identity)\NLog.dll');$(DumpApiXml);$(MergeApiXml)"
     Outputs="$(BaseOutputDirectory)\bin\$(Configuration)\NLogMerged.api.xml"
     >
-    <Exec Command='"$(DumpApiXml)" -assembly NLog.dll -assembly NLog.Extended.dll -output API\NLog.api %(TargetFramework.DocReferences)'
+    <Exec Command='"$(DumpApiXml)" -assembly NLog.dll -assembly NLog.Extended.dll -output API\NLog.api'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\%(TargetFramework.Identity)"
           ContinueOnError="$(BuildAllFrameworks)" />
     <Exec Command='"$(MergeApiXml)" "$(BaseOutputDirectory)\bin\$(Configuration)"' />

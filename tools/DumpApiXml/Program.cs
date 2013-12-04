@@ -19,10 +19,6 @@
                             builder.LoadComments(args[++i]);
                             break;
 
-                        case "-ref":
-                            builder.AddReferenceDirectory(args[++i]);
-                            break;
-
                         case "-assembly":
                             {
                                 string assembly = args[++i];
@@ -78,7 +74,7 @@
 
         private static void Usage()
         {
-            Console.WriteLine("DumpApiXml [-comments commentFile.xml]+ [-ref referenceDirectory ] [-assembly assembly.dll] -output file.xml");
+            Console.WriteLine("DumpApiXml [-comments commentFile.xml]+ [-assembly assembly.dll] -output file.xml");
         }
     }
 }
