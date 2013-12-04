@@ -10,10 +10,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MergeApiXml</RootNamespace>
     <AssemblyName>MergeApiXml</AssemblyName>
-    <TargetFrameworkVersion>v$(MSBuildToolsVersion)</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <OutputPath>..\..\build\bin\Tools\</OutputPath>
     <IntermediateOutputPath>..\..\build\obj\Tools\</IntermediateOutputPath>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
