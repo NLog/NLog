@@ -268,7 +268,8 @@
   </Target>
 
   <Target Name="WP71Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight for Windows Phone 7.1\NLog.UnitTests.dll" ContinueOnError="true" />
+    <Exec Command='"$(SLTestRunner)" -x=NLog.UnitTests.xap --teamcity'
+          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight for Windows Phone 7.1" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="CheckinSuite">
