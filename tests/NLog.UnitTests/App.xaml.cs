@@ -47,7 +47,6 @@ namespace NLog.UnitTests
 {
     using System.Net;
     using System.Text;
-    using System.Xml.Linq;
     using Microsoft.Silverlight.Testing.UnitTesting.Metadata.VisualStudio;
     using Microsoft.Silverlight.Testing.UnitTesting.Metadata;
 
