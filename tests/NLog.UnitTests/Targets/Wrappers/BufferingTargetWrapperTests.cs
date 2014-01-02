@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Diagnostics;
+
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
@@ -41,7 +43,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using Xunit;
 
     public class BufferingTargetWrapperTests : NLogTestBase
-	{
+    {
         [Fact]
         public void BufferingTargetWrapperSyncTest1()
         {
@@ -61,7 +63,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var continuationThread = new Thread[totalEvents];
             var hitCount = 0;
 
-            CreateContinuationFunc createAsyncContinuation = 
+            CreateContinuationFunc createAsyncContinuation =
                 eventNumber =>
                     ex =>
                     {
@@ -110,10 +112,10 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             targetWrapper.Flush(
                 ex =>
-                    {
-                        flushException = ex;
-                        flushHit.Set();
-                    });
+                {
+                    flushException = ex;
+                    flushHit.Set();
+                });
 
             Thread.Sleep(1000);
 
@@ -154,7 +156,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             targetWrapper.Close();
             myTarget.Close();
         }
-        
+
         [Fact]
         public void BufferingTargetWithFallbackGroupAndFirstTargetFails_Write_SecondTargetWritesEvents()
         {
@@ -175,7 +177,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var lastException = new Exception[totalEvents];
             var continuationThread = new Thread[totalEvents];
 
-            CreateContinuationFunc createAsyncContinuation = 
+            CreateContinuationFunc createAsyncContinuation =
                 eventNumber =>
                     ex =>
                     {
@@ -407,6 +409,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var continuationThread = new Thread[totalEvents];
             var hitCount = 0;
 
+            var resetEvent = new ManualResetEvent(false);
             CreateContinuationFunc createAsyncContinuation =
                 eventNumber =>
                     ex =>
@@ -415,17 +418,17 @@ namespace NLog.UnitTests.Targets.Wrappers
                         continuationThread[eventNumber] = Thread.CurrentThread;
                         continuationHit[eventNumber] = true;
                         Interlocked.Increment(ref hitCount);
+                        resetEvent.Set();
                     };
 
             var eventCounter = 0;
             targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
-            Thread.Sleep(300);
 
             Assert.Equal(0, hitCount);
             Assert.Equal(0, myTarget.WriteCount);
 
             targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
-            Thread.Sleep(300);
+            Assert.True(resetEvent.WaitOne(5000));
 
             Assert.Equal(2, hitCount);
             Assert.Equal(2, myTarget.WriteCount);
@@ -528,18 +531,18 @@ namespace NLog.UnitTests.Targets.Wrappers
                     var @event = logEvent;
                     ThreadPool.QueueUserWorkItem(
                         s =>
+                        {
+                            if (this.ThrowExceptions)
                             {
-                                if (this.ThrowExceptions)
-                                {
-                                    @event.Continuation(new InvalidOperationException("Some problem!"));
-                                    @event.Continuation(new InvalidOperationException("Some problem!"));
-                                }
-                                else
-                                {
-                                    @event.Continuation(null);
-                                    @event.Continuation(null);
-                                }
-                            });
+                                @event.Continuation(new InvalidOperationException("Some problem!"));
+                                @event.Continuation(new InvalidOperationException("Some problem!"));
+                            }
+                            else
+                            {
+                                @event.Continuation(null);
+                                @event.Continuation(null);
+                            }
+                        });
                 }
             }
 
@@ -591,6 +594,6 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        private delegate AsyncContinuation CreateContinuationFunc(int eventNumber); 
+        private delegate AsyncContinuation CreateContinuationFunc(int eventNumber);
     }
 }
