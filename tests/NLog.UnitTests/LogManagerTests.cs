@@ -88,7 +88,6 @@ namespace NLog.UnitTests
             Assert.Equal("", l.Name);
         }
 
-#if !WINDOWS_PHONE
         [Fact]
         public void ThrowExceptionsTest()
         {
@@ -109,7 +108,6 @@ namespace NLog.UnitTests
             }
             LogManager.ThrowExceptions = false;
         }
-#endif
 
         public void GlobalThresholdTest()
         {

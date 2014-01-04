@@ -91,11 +91,7 @@ namespace NLog.UnitTests.Conditions
             {
                 Assert.Equal("Cannot resolve function 'starts-with'", ex.Message);
                 Assert.NotNull(ex.InnerException);
-#if WINDOWS_PHONE
-                Assert.Equal("Condition method 'starts-with' expects 2 parameters, but passed 1.", ex.InnerException.Message);
-#else
                 Assert.Equal("Condition method 'starts-with' requires between 2 and 3 parameters, but passed 1.", ex.InnerException.Message);
-#endif
             }
         }
 
@@ -111,11 +107,7 @@ namespace NLog.UnitTests.Conditions
             {
                 Assert.Equal("Cannot resolve function 'starts-with'", ex.Message);
                 Assert.NotNull(ex.InnerException);
-#if WINDOWS_PHONE
-                Assert.Equal("Condition method 'starts-with' expects 2 parameters, but passed 4.", ex.InnerException.Message);
-#else
                 Assert.Equal("Condition method 'starts-with' requires between 2 and 3 parameters, but passed 4.", ex.InnerException.Message);
-#endif
             }
         }
 

@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !WINDOWS_PHONE_7
 
 namespace NLog.Internal.NetworkSenders
 {
@@ -48,10 +47,8 @@ namespace NLog.Internal.NetworkSenders
 
         bool SendAsync(SocketAsyncEventArgs args);
 
-#if !SILVERLIGHT || (WINDOWS_PHONE && !WINDOWS_PHONE_7)
+#if !SILVERLIGHT
         bool SendToAsync(SocketAsyncEventArgs args);
 #endif
     }
 }
-
-#endif

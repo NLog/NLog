@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !WINDOWS_PHONE
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests.LayoutRenderers
 {

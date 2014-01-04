@@ -42,7 +42,6 @@ namespace NLog.UnitTests.Config
 
     public class ExtensionTests : NLogTestBase
     {
-#if !WINDOWS_PHONE
         private string extensionAssemblyName1 = "SampleExtensions";
 #if SILVERLIGHT
         private string extensionAssemblyFullPath1 = "SampleExtensions.dll";
@@ -184,7 +183,6 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, configuration.LoggingRules[0].Filters.Count);
             Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
-#endif
 
         [Fact]
         public void ExtensionTest4()

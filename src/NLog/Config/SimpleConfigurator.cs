@@ -89,7 +89,6 @@ namespace NLog.Config
             LogManager.Configuration = config;
         }
 
-#if !WINDOWS_PHONE
         /// <summary>
         /// Configures NLog for file logging so that all messages above and including
         /// the <see cref="LogLevel.Info"/> level are written to the specified file.
@@ -113,6 +112,5 @@ namespace NLog.Config
             target.FileName = fileName;
             ConfigureForTargetLogging(target, minLevel);
         }
-#endif
     }
 }

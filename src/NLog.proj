@@ -25,8 +25,6 @@
     <BuildAllFrameworks Condition="'$(BuildMono2)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL4)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL5)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildWP7)' == 'true'">false</BuildAllFrameworks>
-    <BuildAllFrameworks Condition="'$(BuildWP71)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX45)' == 'true'">false</BuildAllFrameworks>
@@ -60,8 +58,6 @@
     <DotNet4Version>v4.0.30319</DotNet4Version>
     <SL4RefPath Condition="'$(SL4RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0</SL4RefPath>
     <SL5RefPath Condition="'$(SL5RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v5.0</SL5RefPath>
-    <WP7RefPath Condition="'$(WP7RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0\Profile\WindowsPhone</WP7RefPath>
-    <WP71RefPath Condition="'$(WP71RefPath)' == ''">$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\Silverlight\v4.0\Profile\WindowsPhone71</WP71RefPath>
 
     <!-- yes, this is broken but MSBuild does not support recursive registry access (where registry path is parameterized)
     so this will have to do. -->
@@ -81,8 +77,6 @@
     <BuildMono2>true</BuildMono2>
     <BuildSL4>true</BuildSL4>
     <BuildSL5>true</BuildSL5>
-    <BuildWP7>true</BuildWP7>
-    <BuildWP71>true</BuildWP71>
     <BuildNetFX35>true</BuildNetFX35>
     <BuildNetFX40>true</BuildNetFX40>
     <BuildNetFX45>true</BuildNetFX45>
@@ -91,8 +85,6 @@
     <BuildMono2 Condition="'$(MonoInstallLocation)'==''">false</BuildMono2>
     <BuildSL4 Condition="!Exists('$(SL4RefPath)')">false</BuildSL4>
     <BuildSL5 Condition="!Exists('$(SL5RefPath)')">false</BuildSL5>
-    <BuildWP7 Condition="!Exists('$(WP7RefPath)')">false</BuildWP7>
-    <BuildWP71 Condition="!Exists('$(WP71RefPath)')">false</BuildWP71>
     <BuildNetFX35 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v3.5') == ''">false</BuildNetFX35>
     <BuildNetFX40 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\$(DotNet4Version)') == ''">false</BuildNetFX40>
     <BuildNetFX45 Condition="$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full@Release) == ''">false</BuildNetFX45>
@@ -100,8 +92,6 @@
     <!-- don't build 4.0 or above if we're using MSBuild 3.5 -->
     <BuildSL4 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildSL4>
     <BuildSL5 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildSL5>
-    <BuildWP7 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildWP7>
-    <BuildWP71 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildWP71>
     <BuildNetFX40 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX40>
     <BuildNetFX45 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX45>
   </PropertyGroup>
@@ -118,14 +108,6 @@
     <TargetFramework Include="Silverlight 5.0" Condition="'$(BuildSL5)'=='true'">
         <ProjectFileSuffix>.sl5</ProjectFileSuffix>
         <NuGetDir>sl5</NuGetDir>
-    </TargetFramework>
-    <TargetFramework Include="Silverlight for Windows Phone 7" Condition="'$(BuildWP7)'=='true'">
-        <ProjectFileSuffix>.wp7</ProjectFileSuffix>
-        <NuGetDir>sl3-wp</NuGetDir>
-    </TargetFramework>
-    <TargetFramework Include="Silverlight for Windows Phone 7.1" Condition="'$(BuildWP71)'=='true'">
-        <ProjectFileSuffix>.wp71</ProjectFileSuffix>
-        <NuGetDir>sl4-windowsphone71</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildNetFX35)'=='true'">
         <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
@@ -228,8 +210,6 @@
     <CallTarget Targets="NetFx45Test" Condition="'$(BuildNetFX45)'=='true'"/>
     <CallTarget Targets="SL4Test" Condition="'$(BuildSL4)'=='true'"/>
     <CallTarget Targets="SL5Test" Condition="'$(BuildSL5)'=='true'"/>
-    <CallTarget Targets="WP7Test" Condition="'$(BuildWP7)'=='true'"/>
-    <CallTarget Targets="WP71Test" Condition="'$(BuildWP71)'=='true'"/>
     <Exec Command="$(BaseOutputDirectory)\bin\DeleteTestUsers.cmd" IgnoreExitCode="true" />
   </Target>
 
@@ -261,15 +241,6 @@
   <Target Name="SL5Test">
     <Exec Command='"$(SLTestRunner)" -x=NLog.UnitTests.xap --teamcity'
           WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight 5.0" IgnoreExitCode="true" />
-  </Target>
-
-  <Target Name="WP7Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight for Windows Phone 7\NLog.UnitTests.dll" ContinueOnError="true" />
-  </Target>
-
-  <Target Name="WP71Test">
-    <Exec Command='"$(SLTestRunner)" -x=NLog.UnitTests.xap --teamcity'
-          WorkingDirectory="$(BaseOutputDirectory)\bin\$(Configuration)\Silverlight for Windows Phone 7.1" IgnoreExitCode="true" />
   </Target>
 
   <Target Name="CheckinSuite">
