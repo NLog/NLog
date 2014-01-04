@@ -60,14 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyBuildInfo.cs" />
-    <Compile Include="ComInterop\ComLogger.cs" />
-    <Compile Include="ComInterop\ComLogManager.cs" />
-    <Compile Include="ComInterop\IComLogger.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="ComInterop\IComLogManager.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
     <Compile Include="Common\AsyncContinuation.cs" />
     <Compile Include="Common\AsyncHelpers.cs" />
     <Compile Include="Common\AsynchronousAction.cs" />
@@ -135,8 +127,6 @@
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Internal\CompactFrameworkHelper.cs" />
-    <Compile Include="Internal\CompilerAttributes.cs" />
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EnumerableHelpers.cs" />

@@ -34,39 +34,31 @@
 namespace NLog.UnitTests.Config
 {
     using System;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Config;
     using NLog.Internal;
     using NLog.Targets;
-using System.Collections.Generic;
+    using System.Collections.Generic;
+    using Xunit;
 
-    [TestFixture]
     public class ConfigurationItemFactoryTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void ConfigurationItemFactoryDefaultTest()
         {
             var cif = new ConfigurationItemFactory();
-            Assert.IsInstanceOfType(typeof(DebugTarget), cif.CreateInstance(typeof(DebugTarget)));
+            Assert.IsType(typeof(DebugTarget), cif.CreateInstance(typeof(DebugTarget)));
         }
 
-        [Test]
+        [Fact]
         public void ConfigurationItemFactorySimpleTest()
         {
             var cif = new ConfigurationItemFactory();
             cif.RegisterType(typeof(DebugTarget), string.Empty);
             var target = cif.Targets.CreateInstance("Debug") as DebugTarget;
-            Assert.IsNotNull(target);
+            Assert.NotNull(target);
         }
 
-        [Test]
+        [Fact]
         public void ConfigurationItemFactoryUsesSuppliedDelegateToResolveObject()
         {
             var cif = new ConfigurationItemFactory();
@@ -74,16 +66,16 @@ using System.Collections.Generic;
             List<Type> resolvedTypes = new List<Type>();
             cif.CreateInstance = t => { resolvedTypes.Add(t); return FactoryHelper.CreateInstance(t); };
             Target target = cif.Targets.CreateInstance("Debug");
-            Assert.IsNotNull(target);
-            Assert.AreEqual(1, resolvedTypes.Count);
-            Assert.AreEqual(typeof(DebugTarget), resolvedTypes[0]);
+            Assert.NotNull(target);
+            Assert.Equal(1, resolvedTypes.Count);
+            Assert.Equal(typeof(DebugTarget), resolvedTypes[0]);
         }
 
-#if !SILVERLIGHT && !NET_CF
+#if !SILVERLIGHT
         // this is just to force reference to NLog.Extended.dll
         public Type ForceExtendedReference = typeof(MessageQueueTarget).DeclaringType;
 
-        [Test]
+        [Fact]
         public void ExtendedTargetTest()
         {
             var targets = ConfigurationItemFactory.Default.Targets;
@@ -93,7 +85,7 @@ using System.Collections.Generic;
             AssertInstance(targets, "AspNetBufferingWrapper", "AspNetBufferingTargetWrapper");
         }
 
-        [Test]
+        [Fact]
         public void ExtendedLayoutRendererTest()
         {
             var layoutRenderers = ConfigurationItemFactory.Default.LayoutRenderers;
@@ -110,7 +102,7 @@ using System.Collections.Generic;
         private static void AssertInstance<T1, T2>(INamedItemFactory<T1, T2> targets, string itemName, string expectedTypeName)
             where T1 : class
         {
-            Assert.AreEqual(expectedTypeName, targets.CreateInstance(itemName).GetType().Name);
+            Assert.Equal(expectedTypeName, targets.CreateInstance(itemName).GetType().Name);
         }
 #endif
     }

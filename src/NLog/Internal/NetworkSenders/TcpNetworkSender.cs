@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !WINDOWS_PHONE_7
-
 namespace NLog.Internal.NetworkSenders
 {
     using System;
@@ -283,5 +281,3 @@ namespace NLog.Internal.NetworkSenders
         }
     }
 }
-
-#endif

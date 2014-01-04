@@ -31,39 +31,24 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Reflection;
-
-using NLog;
-using NLog.Config;
-#if !NUNIT
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-using TearDown = Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-using NLog.Internal;
-using NLog.Layouts;
-using Assert = NUnit.Framework.Assert;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    using NLog.Layouts;
+    using Xunit;
+
     public class EventPropertiesTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void Test1()
         {
             Layout l = "${event-properties:aaa}";
             LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
 
             // empty
-            Assert.AreEqual("", l.Render(lei));
+            Assert.Equal("", l.Render(lei));
         }
 
-        [TestMethod]
+        [Fact]
         public void Test2()
         {
             Layout l = "${event-properties:aaa}";
@@ -71,7 +56,7 @@ namespace NLog.UnitTests.LayoutRenderers
             lei.Properties["aaa"] = "bbb";
 
             // empty
-            Assert.AreEqual("bbb", l.Render(lei));
+            Assert.Equal("bbb", l.Render(lei));
         }
     }
 }

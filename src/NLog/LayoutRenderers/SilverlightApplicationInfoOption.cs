@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if (SILVERLIGHT || DOCUMENTATION) && !WINDOWS_PHONE
+#if (SILVERLIGHT || DOCUMENTATION)
 
 namespace NLog.LayoutRenderers
 {
@@ -45,7 +45,6 @@ namespace NLog.LayoutRenderers
         /// </summary>
         XapUri,
 
-#if !SILVERLIGHT2
         /// <summary>
         /// Whether application is running out-of-browser.
         /// </summary>
@@ -56,14 +55,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         InstallState,
 
-#if !SILVERLIGHT3
         /// <summary>
         /// Whether application is running with elevated permissions.
         /// </summary>
         HasElevatedPermissions,
-#endif
-
-#endif
     }
 }
 

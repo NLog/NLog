@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
-
 namespace NLog.LayoutRenderers
 {
     /// <summary>
@@ -56,5 +54,3 @@ namespace NLog.LayoutRenderers
         DetailedFlat,
     }
 }
-
-#endif

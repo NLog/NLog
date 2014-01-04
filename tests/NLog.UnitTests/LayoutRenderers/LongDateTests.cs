@@ -31,30 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Reflection;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using NLog.LayoutRenderers;
+    using Xunit;
 
-    [TestFixture]
     public class LongDateTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void LongDateTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -67,36 +51,36 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.GetLogger("d").Debug("zzz");
             string date = GetDebugLastMessage("debug");
-            Assert.AreEqual(date.Length, 24);
-            Assert.AreEqual(date[4], '-');
-            Assert.AreEqual(date[7], '-');
-            Assert.AreEqual(date[10], ' ');
-            Assert.AreEqual(date[13], ':');
-            Assert.AreEqual(date[16], ':');
-            Assert.AreEqual(date[19], '.');
+            Assert.Equal(date.Length, 24);
+            Assert.Equal(date[4], '-');
+            Assert.Equal(date[7], '-');
+            Assert.Equal(date[10], ' ');
+            Assert.Equal(date[13], ':');
+            Assert.Equal(date[16], ':');
+            Assert.Equal(date[19], '.');
         }
 
-        [Test]
+        [Fact]
         public void UniversalTimeTest()
         {
             var dt = new LongDateLayoutRenderer();
             dt.UniversalTime = true;
             
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.AreEqual(ei.TimeStamp.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss.ffff"), dt.Render(ei));
+            Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss.ffff"), dt.Render(ei));
         }
 
-        [Test]
+        [Fact]
         public void LocalTimeTest()
         {
             var dt = new LongDateLayoutRenderer();
             dt.UniversalTime = false;
             
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.AreEqual(ei.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss.ffff"), dt.Render(ei));
+            Assert.Equal(ei.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss.ffff"), dt.Render(ei));
         }
 
-        [Test]
+        [Fact]
         public void LongDateWithPadding()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -109,8 +93,8 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.GetLogger("d").Debug("zzz");
             string date = GetDebugLastMessage("debug");
-            Assert.AreEqual(5, date.Length);
-            Assert.AreEqual(date[4], '-');
+            Assert.Equal(5, date.Length);
+            Assert.Equal(date[4], '-');
         }
     }
 }

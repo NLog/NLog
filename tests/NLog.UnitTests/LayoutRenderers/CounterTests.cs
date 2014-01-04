@@ -31,28 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Reflection;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    using Xunit;
+
     public class CounterTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void DefaultCounterTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -75,7 +60,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a 4 4");
         }
 
-        [Test]
+        [Fact]
         public void PresetCounterTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -98,7 +83,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a 10 4");
         }
 
-        [Test]
+        [Fact]
         public void NamedCounterTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

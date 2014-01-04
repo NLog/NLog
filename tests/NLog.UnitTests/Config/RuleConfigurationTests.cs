@@ -33,21 +33,13 @@
 
 namespace NLog.UnitTests.Config
 {
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Config;
     using NLog.Filters;
+    using Xunit;
 
-    [TestFixture]
     public class RuleConfigurationTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void NoRulesTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -60,10 +52,10 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.AreEqual(0, c.LoggingRules.Count);
+            Assert.Equal(0, c.LoggingRules.Count);
         }
 
-        [Test]
+        [Fact]
         public void SimpleRuleTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -77,21 +69,21 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.AreEqual(1, c.LoggingRules.Count);
+            Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
-            Assert.AreEqual("*", rule.LoggerNamePattern);
-            Assert.AreEqual(4, rule.Levels.Count);
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Info));
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Warn));
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Error));
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Fatal));
-            Assert.AreEqual(1, rule.Targets.Count);
-            Assert.AreSame(c.FindTargetByName("d1"), rule.Targets[0]);
-            Assert.IsFalse(rule.Final);
-            Assert.AreEqual(0, rule.Filters.Count);
+            Assert.Equal("*", rule.LoggerNamePattern);
+            Assert.Equal(4, rule.Levels.Count);
+            Assert.True(rule.Levels.Contains(LogLevel.Info));
+            Assert.True(rule.Levels.Contains(LogLevel.Warn));
+            Assert.True(rule.Levels.Contains(LogLevel.Error));
+            Assert.True(rule.Levels.Contains(LogLevel.Fatal));
+            Assert.Equal(1, rule.Targets.Count);
+            Assert.Same(c.FindTargetByName("d1"), rule.Targets[0]);
+            Assert.False(rule.Final);
+            Assert.Equal(0, rule.Filters.Count);
         }
 
-        [Test]
+        [Fact]
         public void SingleLevelTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -105,13 +97,13 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.AreEqual(1, c.LoggingRules.Count);
+            Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
-            Assert.AreEqual(1, rule.Levels.Count);
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Warn));
+            Assert.Equal(1, rule.Levels.Count);
+            Assert.True(rule.Levels.Contains(LogLevel.Warn));
         }
 
-        [Test]
+        [Fact]
         public void MinMaxLevelTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -125,14 +117,14 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.AreEqual(1, c.LoggingRules.Count);
+            Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
-            Assert.AreEqual(2, rule.Levels.Count);
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Info));
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Warn));
+            Assert.Equal(2, rule.Levels.Count);
+            Assert.True(rule.Levels.Contains(LogLevel.Info));
+            Assert.True(rule.Levels.Contains(LogLevel.Warn));
         }
 
-        [Test]
+        [Fact]
         public void NoLevelsTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -146,18 +138,18 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.AreEqual(1, c.LoggingRules.Count);
+            Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
-            Assert.AreEqual(6, rule.Levels.Count);
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Trace));
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Debug));
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Info));
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Warn));
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Error));
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Fatal));
+            Assert.Equal(6, rule.Levels.Count);
+            Assert.True(rule.Levels.Contains(LogLevel.Trace));
+            Assert.True(rule.Levels.Contains(LogLevel.Debug));
+            Assert.True(rule.Levels.Contains(LogLevel.Info));
+            Assert.True(rule.Levels.Contains(LogLevel.Warn));
+            Assert.True(rule.Levels.Contains(LogLevel.Error));
+            Assert.True(rule.Levels.Contains(LogLevel.Fatal));
         }
 
-        [Test]
+        [Fact]
         public void ExplicitLevelsTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -171,15 +163,15 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.AreEqual(1, c.LoggingRules.Count);
+            Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
-            Assert.AreEqual(3, rule.Levels.Count);
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Trace));
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Info));
-            Assert.IsTrue(rule.Levels.Contains(LogLevel.Warn));
+            Assert.Equal(3, rule.Levels.Count);
+            Assert.True(rule.Levels.Contains(LogLevel.Trace));
+            Assert.True(rule.Levels.Contains(LogLevel.Info));
+            Assert.True(rule.Levels.Contains(LogLevel.Warn));
         }
 
-        [Test]
+        [Fact]
         public void MultipleTargetsTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -196,15 +188,15 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.AreEqual(1, c.LoggingRules.Count);
+            Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
-            Assert.AreEqual(3, rule.Targets.Count);
-            Assert.AreSame(c.FindTargetByName("d1"), rule.Targets[0]);
-            Assert.AreSame(c.FindTargetByName("d2"), rule.Targets[1]);
-            Assert.AreSame(c.FindTargetByName("d3"), rule.Targets[2]);
+            Assert.Equal(3, rule.Targets.Count);
+            Assert.Same(c.FindTargetByName("d1"), rule.Targets[0]);
+            Assert.Same(c.FindTargetByName("d2"), rule.Targets[1]);
+            Assert.Same(c.FindTargetByName("d3"), rule.Targets[2]);
         }
 
-        [Test]
+        [Fact]
         public void MultipleRulesSameTargetTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -226,10 +218,10 @@ namespace NLog.UnitTests.Config
             LogFactory factory = new LogFactory(c);
             var loggerConfig = factory.GetConfigurationForLogger("AAA", c);
             var targets = loggerConfig.GetTargetsForLevel(LogLevel.Warn);
-            Assert.AreEqual("d1", targets.Target.Name);
-            Assert.AreEqual("d2", targets.NextInChain.Target.Name);
-            Assert.AreEqual("d3", targets.NextInChain.NextInChain.Target.Name);
-            Assert.IsNull(targets.NextInChain.NextInChain.NextInChain);
+            Assert.Equal("d1", targets.Target.Name);
+            Assert.Equal("d2", targets.NextInChain.Target.Name);
+            Assert.Equal("d3", targets.NextInChain.NextInChain.Target.Name);
+            Assert.Null(targets.NextInChain.NextInChain.NextInChain);
 
             LogManager.Configuration = c;
 
@@ -242,7 +234,7 @@ namespace NLog.UnitTests.Config
             this.AssertDebugLastMessage("d4", string.Empty);
         }
 
-        [Test]
+        [Fact]
         public void ChildRulesTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -262,14 +254,14 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.AreEqual(1, c.LoggingRules.Count);
+            Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
-            Assert.AreEqual(2, rule.ChildRules.Count);
-            Assert.AreEqual("Foo*", rule.ChildRules[0].LoggerNamePattern);
-            Assert.AreEqual("Bar*", rule.ChildRules[1].LoggerNamePattern);
+            Assert.Equal(2, rule.ChildRules.Count);
+            Assert.Equal("Foo*", rule.ChildRules[0].LoggerNamePattern);
+            Assert.Equal("Bar*", rule.ChildRules[1].LoggerNamePattern);
         }
 
-        [Test]
+        [Fact]
         public void FiltersTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -291,18 +283,18 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Assert.AreEqual(1, c.LoggingRules.Count);
+            Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
-            Assert.AreEqual(2, rule.Filters.Count);
+            Assert.Equal(2, rule.Filters.Count);
             var conditionBasedFilter = rule.Filters[0] as ConditionBasedFilter;
-            Assert.IsNotNull(conditionBasedFilter);
-            Assert.AreEqual("starts-with(message, 'x')", conditionBasedFilter.Condition.ToString());
-            Assert.AreEqual(FilterResult.Ignore, conditionBasedFilter.Action);
+            Assert.NotNull(conditionBasedFilter);
+            Assert.Equal("starts-with(message, 'x')", conditionBasedFilter.Condition.ToString());
+            Assert.Equal(FilterResult.Ignore, conditionBasedFilter.Action);
 
             conditionBasedFilter = rule.Filters[1] as ConditionBasedFilter;
-            Assert.IsNotNull(conditionBasedFilter);
-            Assert.AreEqual("starts-with(message, 'z')", conditionBasedFilter.Condition.ToString());
-            Assert.AreEqual(FilterResult.Ignore, conditionBasedFilter.Action);
+            Assert.NotNull(conditionBasedFilter);
+            Assert.Equal("starts-with(message, 'z')", conditionBasedFilter.Condition.ToString());
+            Assert.Equal(FilterResult.Ignore, conditionBasedFilter.Action);
         }
     }
 }

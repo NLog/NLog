@@ -78,11 +78,9 @@ namespace NLog.Conditions
 
             foreach ( var param in formalParameters )
             {
-#if !NET_CF
                 if ( param.IsOptional )
                     ++optionalParametersCount;
                 else
-#endif
                     ++requiredParametersCount;
             }
 
@@ -176,7 +174,7 @@ namespace NLog.Conditions
                 null, 
                 null, 
                 callParameters
-#if !SILVERLIGHT && !NET_CF
+#if !SILVERLIGHT
                 , CultureInfo.InvariantCulture
 #endif
                 );

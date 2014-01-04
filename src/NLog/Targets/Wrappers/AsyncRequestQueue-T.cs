@@ -97,7 +97,6 @@ namespace NLog.Targets.Wrappers
                             InternalLogger.Debug("The overflow action is Grow, adding element anyway");
                             break;
 
-#if !NET_CF
                         case AsyncTargetWrapperOverflowAction.Block:
                             while (this.logEventInfoQueue.Count >= this.RequestLimit)
                             {
@@ -108,7 +107,6 @@ namespace NLog.Targets.Wrappers
 
                             InternalLogger.Trace("Limit ok.");
                             break;
-#endif
                     }
                 }
 
@@ -137,12 +135,11 @@ namespace NLog.Targets.Wrappers
 
                     resultEvents.Add(this.logEventInfoQueue.Dequeue());
                 }
-#if !NET_CF
+
                 if (this.OnOverflow == AsyncTargetWrapperOverflowAction.Block)
                 {
                     System.Threading.Monitor.PulseAll(this);
                 }
-#endif
             }
 
             return resultEvents.ToArray();

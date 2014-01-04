@@ -57,7 +57,7 @@ namespace NLog
     /// </summary>
     public class LogFactory : IDisposable
     {
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
         private readonly MultiFileWatcher watcher;
         private const int ReconfigAfterFileChangedTimeout = 1000;
 #endif
@@ -67,7 +67,7 @@ namespace NLog
 
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
 
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
         private Timer reloadTimer;
 #endif
 
@@ -81,7 +81,7 @@ namespace NLog
         /// </summary>
         public LogFactory()
         {
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
 #endif
@@ -102,7 +102,7 @@ namespace NLog
         /// </summary>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -143,7 +143,7 @@ namespace NLog
 
                     this.configLoaded = true;
 
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
                     if (this.config == null)
                     {
                         // try to load default configuration
@@ -155,7 +155,7 @@ namespace NLog
                     {
                         foreach (string configFile in GetCandidateFileNames())
                         {
-#if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
+#if !SILVERLIGHT && !MONO
                             if (File.Exists(configFile))
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);
@@ -181,7 +181,7 @@ namespace NLog
                         }
                     }
 
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
                     if (this.config != null)
                     {
                         Dump(this.config);
@@ -206,7 +206,7 @@ namespace NLog
 
             set
             {
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
                 try
                 {
                     this.watcher.StopWatching();
@@ -243,7 +243,7 @@ namespace NLog
 
                         this.config.InitializeAll();
                         this.ReconfigExistingLoggers(this.config);
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
                         try
                         {
                             this.watcher.Watch(this.config.FileNamesToWatch);
@@ -311,7 +311,6 @@ namespace NLog
             return newLogger;
         }
 
-#if !NET_CF
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
@@ -348,7 +347,6 @@ namespace NLog
 
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
         }
-#endif
 
         /// <summary>
         /// Gets the specified named logger.
@@ -521,7 +519,7 @@ namespace NLog
             return this.logsEnabled >= 0;
         }
 
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
         internal void ReloadConfigOnTimer(object state)
         {
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
@@ -681,7 +679,7 @@ namespace NLog
         {
             if (disposing)
             {
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
                 this.watcher.Dispose();
 
                 if (this.reloadTimer != null)
@@ -695,11 +693,7 @@ namespace NLog
 
         private static IEnumerable<string> GetCandidateFileNames()
         {
-#if NET_CF
-            yield return CompactFrameworkHelper.GetExeFileName() + ".nlog";
-            yield return Path.Combine(Path.GetDirectoryName(CompactFrameworkHelper.GetExeFileName()), "NLog.config");
-            yield return typeof(LogFactory).Assembly.GetName().CodeBase + ".nlog";
-#elif SILVERLIGHT
+#if SILVERLIGHT
             yield return "NLog.config";
 #else
             // NLog.config from application directory
@@ -803,7 +797,7 @@ namespace NLog
             }
         }
 
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
         private void ConfigFileChanged(object sender, EventArgs args)
         {
             InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);

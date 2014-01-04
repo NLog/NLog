@@ -40,7 +40,6 @@ namespace NLog.Config
     /// </summary>
     public static class SimpleConfigurator
     {
-#if !NET_CF
         /// <summary>
         /// Configures NLog for console logging so that all messages above and including
         /// the <see cref="LogLevel.Info"/> level are output to the console.
@@ -65,7 +64,6 @@ namespace NLog.Config
             config.LoggingRules.Add(rule);
             LogManager.Configuration = config;
         }
-#endif
 
         /// <summary>
         /// Configures NLog for to log to the specified target so that all messages 
@@ -91,7 +89,6 @@ namespace NLog.Config
             LogManager.Configuration = config;
         }
 
-#if !SILVERLIGHT2 && !SILVERLIGHT3 && !WINDOWS_PHONE
         /// <summary>
         /// Configures NLog for file logging so that all messages above and including
         /// the <see cref="LogLevel.Info"/> level are written to the specified file.
@@ -115,6 +112,5 @@ namespace NLog.Config
             target.FileName = fileName;
             ConfigureForTargetLogging(target, minLevel);
         }
-#endif
     }
 }

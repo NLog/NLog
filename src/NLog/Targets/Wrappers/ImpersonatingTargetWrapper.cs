@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
 
 namespace NLog.Targets.Wrappers
 {
@@ -47,9 +47,7 @@ namespace NLog.Targets.Wrappers
     /// Impersonates another user for the duration of the write.
     /// </summary>
     /// <seealso href="http://nlog-project.org/wiki/ImpersonatingWrapper_target">Documentation on NLog Wiki</seealso>
-#if !NET2_0 && !NETCF2_0 && !NETCF3_5 && !SILVERLIGHT2
     [SecuritySafeCritical]
-#endif
     [Target("ImpersonatingWrapper", IsWrapper = true)]
     public class ImpersonatingTargetWrapper : WrapperTargetBase
     {

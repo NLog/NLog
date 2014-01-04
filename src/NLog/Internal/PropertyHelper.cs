@@ -155,25 +155,7 @@ namespace NLog.Internal
 
         internal static IEnumerable<PropertyInfo> GetAllReadableProperties(Type type)
         {
-#if NETCF2_0
-            // .NET Compact Framework 2.0 understands 'Public' differently
-            // it only returns properties where getter and setter are public
-
-            var allProperties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic);
-            var readableProperties = new List<PropertyInfo>();
-            foreach (var prop in allProperties)
-            {
-                if (prop.CanRead)
-                {
-                    readableProperties.Add(prop);
-                }
-            }
-
-            return readableProperties;
-#else
-            // other frameworks don't have this problem
             return type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-#endif
         }
 
         internal static void CheckRequiredParameters(object o)

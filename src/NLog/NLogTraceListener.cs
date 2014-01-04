@@ -55,9 +55,7 @@ namespace NLog
         private LogFactory logFactory;
         private LogLevel defaultLogLevel = LogLevel.Debug;
         private bool attributesLoaded;
-#if !NET_CF
         private bool autoLoggerName;
-#endif
         private LogLevel forceLogLevel;
 
         /// <summary>
@@ -121,7 +119,6 @@ namespace NLog
             }
         }
 
-#if !NET_CF
         /// <summary>
         /// Gets a value indicating whether the trace listener is thread safe.
         /// </summary>
@@ -149,7 +146,6 @@ namespace NLog
                 this.autoLoggerName = value;
             }
         }
-#endif
 
         /// <summary>
         /// When overridden in a derived class, writes the specified message to the listener you create in the derived class.
@@ -157,11 +153,7 @@ namespace NLog
         /// <param name="message">A message to write.</param>
         public override void Write(string message)
         {
-#if !NET_CF
             this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
-#else
-            this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null);
-#endif
         }
 
         /// <summary>
@@ -170,11 +162,7 @@ namespace NLog
         /// <param name="message">A message to write.</param>
         public override void WriteLine(string message)
         {
-#if !NET_CF
             this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
-#else
-            this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null);
-#endif
         }
 
         /// <summary>
@@ -190,11 +178,7 @@ namespace NLog
         /// <param name="message">A message to emit.</param>
         public override void Fail(string message)
         {
-#if !NET_CF
             this.ProcessLogEventInfo(LogLevel.Error, null, message, null, null, TraceEventType.Error, null);
-#else
-            this.ProcessLogEventInfo(LogLevel.Error, null, message, null, null);
-#endif
         }
 
         /// <summary>
@@ -204,11 +188,7 @@ namespace NLog
         /// <param name="detailMessage">A detailed message to emit.</param>
         public override void Fail(string message, string detailMessage)
         {
-#if !NET_CF
             this.ProcessLogEventInfo(LogLevel.Error, null, message + " " + detailMessage, null, null, TraceEventType.Error, null);
-#else
-            this.ProcessLogEventInfo(LogLevel.Error, null, message + " " + detailMessage, null, null);
-#endif
         }
 
         /// <summary>
@@ -226,7 +206,6 @@ namespace NLog
             }
         }
 
-#if !NET_CF
         /// <summary>
         /// Writes trace information, a data object and event information to the listener specific output.
         /// </summary>
@@ -357,19 +336,13 @@ namespace NLog
                     return LogLevel.Debug;
             }
         }
-#endif
 
-#if !NET_CF
         protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActiviyId)
-#else
-        protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId)
-#endif
         {
             var ev = new LogEventInfo();
 
             ev.LoggerName = (loggerName ?? this.Name) ?? string.Empty;
             
-#if !NET_CF
             if (this.AutoLoggerName)
             {
                 var stack = new StackTrace();
@@ -417,7 +390,6 @@ namespace NLog
             {
                 ev.Properties.Add("RelatedActivityID", relatedActiviyId.Value);
             }
-#endif
 
             ev.TimeStamp = TimeSource.Current.Time;
             ev.Message = message;
@@ -447,7 +419,6 @@ namespace NLog
             if (!this.attributesLoaded)
             {
                 this.attributesLoaded = true;
-#if !NET_CF
                 foreach (DictionaryEntry de in this.Attributes)
                 {
                     var key = (string)de.Key;
@@ -468,7 +439,6 @@ namespace NLog
                             break;
                     }
                 }
-#endif
             }
         }
     }

@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
-
 namespace NLog.Targets
 {
     using System.Diagnostics;
@@ -96,5 +94,3 @@ namespace NLog.Targets
         }
     }
 }
-
-#endif

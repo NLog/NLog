@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF && !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
@@ -39,25 +39,17 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System.Collections.Generic;
     using System.Runtime.InteropServices;
     using System.Security.Principal;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Common;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using Xunit;
 
-    [TestFixture]
     public class ImpersonatingTargetWrapperTests : NLogTestBase
 	{
         private const string NLogTestUser = "NLogTestUser";
         private const string NLogTestUserPassword = "BC@57acasd123";
 
-        [Test]
+        [Fact]
         public void ImpersonatingWrapperTest()
         {
             var wrapped = new MyTarget()
@@ -78,23 +70,23 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             var exceptions = new List<Exception>();
             wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-            Assert.AreEqual(1, exceptions.Count);
+            Assert.Equal(1, exceptions.Count);
             wrapper.WriteAsyncLogEvents(
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-            Assert.AreEqual(4, exceptions.Count);
+            Assert.Equal(4, exceptions.Count);
             wrapper.Flush(exceptions.Add);
-            Assert.AreEqual(5, exceptions.Count);
+            Assert.Equal(5, exceptions.Count);
             foreach (var ex in exceptions)
             {
-                Assert.IsNull(ex, Convert.ToString(ex));
+                Assert.Null(ex);
             }
 
             wrapper.Close();
         }
 
-        [Test]
+        [Fact]
         public void RevertToSelfTest()
         {
             var wrapped = new MyTarget()
@@ -110,7 +102,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 id.Impersonate();
 
                 WindowsIdentity changedIdentity = WindowsIdentity.GetCurrent();
-                Assert.AreEqual((Environment.MachineName + "\\" + NLogTestUser).ToLowerInvariant(), changedIdentity.Name.ToLowerInvariant());
+                Assert.Contains(NLogTestUser.ToLowerInvariant(), changedIdentity.Name.ToLowerInvariant(), StringComparison.InvariantCulture);
 
                 var wrapper = new ImpersonatingTargetWrapper()
                 {
@@ -123,17 +115,17 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 var exceptions = new List<Exception>();
                 wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-                Assert.AreEqual(1, exceptions.Count);
+                Assert.Equal(1, exceptions.Count);
                 wrapper.WriteAsyncLogEvents(
                     LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                     LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                     LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-                Assert.AreEqual(4, exceptions.Count);
+                Assert.Equal(4, exceptions.Count);
                 wrapper.Flush(exceptions.Add);
-                Assert.AreEqual(5, exceptions.Count);
+                Assert.Equal(5, exceptions.Count);
                 foreach (var ex in exceptions)
                 {
-                    Assert.IsNull(ex, Convert.ToString(ex));
+                    Assert.Null(ex);
                 }
 
                 wrapper.Close();
@@ -144,11 +136,11 @@ namespace NLog.UnitTests.Targets.Wrappers
                 NativeMethods.RevertToSelf();
 
                 WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
-                Assert.AreEqual(originalIdentity.Name.ToLowerInvariant(), currentIdentity.Name.ToLowerInvariant());
+                Assert.Equal(originalIdentity.Name.ToLowerInvariant(), currentIdentity.Name.ToLowerInvariant());
             }
         }
 
-        [Test]
+        [Fact]
         public void ImpersonatingWrapperNegativeTest()
         {
             var wrapped = new MyTarget()
@@ -167,7 +159,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             try
             {
                 wrapper.Initialize(null);
-                Assert.Fail("Expected exception");
+                Assert.True(false, "Expected exception");
             }
             catch (COMException)
             {
@@ -176,7 +168,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Close(); // will not fail because Initialize() failed
         }
 
-        [Test]
+        [Fact]
         public void ImpersonatingWrapperNegativeTest2()
         {
             var wrapped = new MyTarget()
@@ -196,7 +188,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             try
             {
                 wrapper.Initialize(null);
-                Assert.Fail("Expected exception");
+                Assert.True(false, "Expected exception");
             }
             catch (COMException)
             {
@@ -300,8 +292,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 if (this.ExpectedUser != null)
                 {
                     var windowsIdentity = WindowsIdentity.GetCurrent();
-                    Assert.IsTrue(windowsIdentity.IsAuthenticated);
-                    Assert.AreEqual(Environment.MachineName + "\\" + ExpectedUser, windowsIdentity.Name);
+                    Assert.True(windowsIdentity.IsAuthenticated);
+                    Assert.Equal(Environment.MachineName + "\\" + ExpectedUser, windowsIdentity.Name);
                 }
             }
         }

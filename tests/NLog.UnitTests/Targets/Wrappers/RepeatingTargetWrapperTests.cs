@@ -35,22 +35,13 @@ namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-    using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using Xunit;
 
-    [TestFixture]
     public class RepeatingTargetWrapperTests : NLogTestBase
 	{
-        [Test]
+        [Fact]
         public void RepeatingTargetWrapperTest1()
         {
             var target = new MyTarget();
@@ -74,21 +65,21 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.WriteAsyncLogEvents(events);
 
             // make sure all events went through and were replicated 3 times
-            Assert.AreEqual(9, target.Events.Count);
-            Assert.AreSame(events[0].LogEvent, target.Events[0]);
-            Assert.AreSame(events[0].LogEvent, target.Events[1]);
-            Assert.AreSame(events[0].LogEvent, target.Events[2]);
-            Assert.AreSame(events[1].LogEvent, target.Events[3]);
-            Assert.AreSame(events[1].LogEvent, target.Events[4]);
-            Assert.AreSame(events[1].LogEvent, target.Events[5]);
-            Assert.AreSame(events[2].LogEvent, target.Events[6]);
-            Assert.AreSame(events[2].LogEvent, target.Events[7]);
-            Assert.AreSame(events[2].LogEvent, target.Events[8]);
+            Assert.Equal(9, target.Events.Count);
+            Assert.Same(events[0].LogEvent, target.Events[0]);
+            Assert.Same(events[0].LogEvent, target.Events[1]);
+            Assert.Same(events[0].LogEvent, target.Events[2]);
+            Assert.Same(events[1].LogEvent, target.Events[3]);
+            Assert.Same(events[1].LogEvent, target.Events[4]);
+            Assert.Same(events[1].LogEvent, target.Events[5]);
+            Assert.Same(events[2].LogEvent, target.Events[6]);
+            Assert.Same(events[2].LogEvent, target.Events[7]);
+            Assert.Same(events[2].LogEvent, target.Events[8]);
 
-            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.Equal(events.Length, exceptions.Count);
         }
 
-        [Test]
+        [Fact]
         public void RepeatingTargetWrapperTest2()
         {
             var target = new MyTarget();
@@ -114,16 +105,16 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             // make sure all events went through but were registered only once
             // since repeating target wrapper will not repeat in case of exception.
-            Assert.AreEqual(3, target.Events.Count);
-            Assert.AreSame(events[0].LogEvent, target.Events[0]);
-            Assert.AreSame(events[1].LogEvent, target.Events[1]);
-            Assert.AreSame(events[2].LogEvent, target.Events[2]);
+            Assert.Equal(3, target.Events.Count);
+            Assert.Same(events[0].LogEvent, target.Events[0]);
+            Assert.Same(events[1].LogEvent, target.Events[1]);
+            Assert.Same(events[2].LogEvent, target.Events[2]);
 
-            Assert.AreEqual(events.Length, exceptions.Count, "Some continuations were not invoked.");
+            Assert.Equal(events.Length, exceptions.Count);
             foreach (var exception in exceptions)
             {
-                Assert.IsNotNull(exception);
-                Assert.AreEqual("Some exception has ocurred.", exception.Message);
+                Assert.NotNull(exception);
+                Assert.Equal("Some exception has ocurred.", exception.Message);
             }
         }
 

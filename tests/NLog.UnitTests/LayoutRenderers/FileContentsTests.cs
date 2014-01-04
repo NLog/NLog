@@ -38,19 +38,11 @@ namespace NLog.UnitTests.LayoutRenderers
     using System;
     using System.IO;
     using System.Text;
-    using NUnit.Framework;
+    using Xunit;
 
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
-    [TestFixture]
     public class FileContentsTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void FileContentUnicodeTest()
         {
             string content = "12345";
@@ -63,7 +55,7 @@ namespace NLog.UnitTests.LayoutRenderers
             this.AssertLayoutRendererOutput("${file-contents:" + fileName + ":encoding=utf-16}", content);
         }
 
-        [Test]
+        [Fact]
         public void FileContentUTF8Test()
         {
             string content = "12345";
@@ -76,7 +68,7 @@ namespace NLog.UnitTests.LayoutRenderers
             this.AssertLayoutRendererOutput("${file-contents:" + fileName + ":encoding=utf-8}", content);
         }
 
-        [Test]
+        [Fact]
         public void FileContentTest2()
         {
             this.AssertLayoutRendererOutput("${file-contents:nosuchfile.txt}", string.Empty);

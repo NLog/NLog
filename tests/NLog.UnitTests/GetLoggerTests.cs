@@ -31,33 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
 namespace NLog.UnitTests
 {
     using System;
+    using Xunit;
 
-    [TestFixture]
     public class GetLoggerTests : NLogTestBase
     {
-#if !NET_CF
-        [Test]
+        [Fact]
         public void GetCurrentClassLoggerTest()
         {
             Logger logger = LogManager.GetCurrentClassLogger();
 
-            Assert.AreEqual("NLog.UnitTests.GetLoggerTests", logger.Name);
+            Assert.Equal("NLog.UnitTests.GetLoggerTests", logger.Name);
         }
-#endif
 
-        [Test]
+        [Fact]
         public void TypedGetLoggerTest()
         {
             LogFactory lf = new LogFactory();
@@ -69,19 +58,18 @@ namespace NLog.UnitTests
             Logger l5 = lf.GetLogger("AAA");
             Logger l6 = lf.GetLogger("AAA");
 
-            Assert.AreSame(l1, l2);
-            Assert.AreSame(l3, l4);
-            Assert.AreSame(l5, l6);
-            Assert.AreSame(l3, l5);
+            Assert.Same(l1, l2);
+            Assert.Same(l3, l4);
+            Assert.Same(l5, l6);
+            Assert.Same(l3, l5);
 
-            Assert.AreNotSame(l1, l3);
+            Assert.NotSame(l1, l3);
 
-            Assert.AreEqual("AAA", l1.Name);
-            Assert.AreEqual("AAA", l3.Name);
+            Assert.Equal("AAA", l1.Name);
+            Assert.Equal("AAA", l3.Name);
         }
 
-#if !NET_CF
-        [Test]
+        [Fact]
         public void TypedGetCurrentClassLoggerTest()
         {
             LogFactory lf = new LogFactory();
@@ -93,19 +81,18 @@ namespace NLog.UnitTests
             Logger l5 = lf.GetCurrentClassLogger();
             Logger l6 = lf.GetCurrentClassLogger();
 
-            Assert.AreSame(l1, l2);
-            Assert.AreSame(l3, l4);
-            Assert.AreSame(l5, l6);
-            Assert.AreSame(l3, l5);
+            Assert.Same(l1, l2);
+            Assert.Same(l3, l4);
+            Assert.Same(l5, l6);
+            Assert.Same(l3, l5);
 
-            Assert.AreNotSame(l1, l3);
+            Assert.NotSame(l1, l3);
 
-            Assert.AreEqual("NLog.UnitTests.GetLoggerTests", l1.Name);
-            Assert.AreEqual("NLog.UnitTests.GetLoggerTests", l3.Name);
+            Assert.Equal("NLog.UnitTests.GetLoggerTests", l1.Name);
+            Assert.Equal("NLog.UnitTests.GetLoggerTests", l3.Name);
         }
-#endif
 
-        [Test]
+        [Fact]
         public void GenericGetLoggerTest()
         {
             LogFactory<MyLogger> lf = new LogFactory<MyLogger>();
@@ -114,15 +101,14 @@ namespace NLog.UnitTests
             MyLogger l2 = lf.GetLogger("AAA");
             MyLogger l3 = lf.GetLogger("BBB");
 
-            Assert.AreSame(l1, l2);
-            Assert.AreNotSame(l1, l3);
+            Assert.Same(l1, l2);
+            Assert.NotSame(l1, l3);
 
-            Assert.AreEqual("AAA", l1.Name);
-            Assert.AreEqual("BBB", l3.Name);
+            Assert.Equal("AAA", l1.Name);
+            Assert.Equal("BBB", l3.Name);
         }
 
-#if !NET_CF
-        [Test]
+        [Fact]
         public void GenericGetCurrentClassLoggerTest()
         {
             LogFactory<MyLogger> lf = new LogFactory<MyLogger>();
@@ -130,8 +116,8 @@ namespace NLog.UnitTests
             MyLogger l1 = lf.GetCurrentClassLogger();
             MyLogger l2 = lf.GetCurrentClassLogger();
 
-            Assert.AreSame(l1, l2);
-            Assert.AreEqual("NLog.UnitTests.GetLoggerTests", l1.Name);
+            Assert.Same(l1, l2);
+            Assert.Equal("NLog.UnitTests.GetLoggerTests", l1.Name);
         }
 
         public class InvalidLogger
@@ -141,7 +127,7 @@ namespace NLog.UnitTests
 	       }
         }
         
-        [Test]
+        [Fact]
         public void InvalidLoggerConfiguration_ThrowsConfigurationException_IfThrowExceptionsFlagIsSet()
         {
             bool ExceptionThrown = false;
@@ -150,14 +136,14 @@ namespace NLog.UnitTests
                 LogManager.ThrowExceptions = false;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             }
-            catch(Exception exception)
+            catch(Exception )
             {
                 ExceptionThrown = true;
             }
-            Assert.IsTrue(ExceptionThrown);
+            Assert.True(ExceptionThrown);
         }
         
-        [Test]
+        [Fact]
         public void InvalidLoggerConfiguration_ThrowsConfigurationException_IfThrowExceptionsFlagIsNotSet()
         {
             bool ExceptionThrown = false;
@@ -166,15 +152,14 @@ namespace NLog.UnitTests
                 LogManager.ThrowExceptions = true;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             }
-            catch(Exception exception)
+            catch(Exception)
             {
                 ExceptionThrown = true;
             }
             
-            Assert.IsTrue(ExceptionThrown);
+            Assert.True(ExceptionThrown);
             
         }
-#endif
 
         public class MyLogger : Logger
         {

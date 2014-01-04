@@ -47,9 +47,6 @@ namespace NLog.Internal
         /// </summary>
         static ThreadIDHelper()
         {
-#if NET_CF
-            Instance = new Win32ThreadIDHelper();
-#else
             if (PlatformDetector.IsWin32)
             {
                 Instance = new Win32ThreadIDHelper();
@@ -58,7 +55,6 @@ namespace NLog.Internal
             {
                 Instance = new PortableThreadIDHelper();
             }
-#endif
         }
 
         /// <summary>

@@ -37,21 +37,13 @@ namespace NLog.UnitTests.Targets
 {
     using System;
     using System.IO;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Targets;
     using System.Collections.Generic;
+    using Xunit;
 
-    [TestFixture]
     public class ConsoleTargetTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void ConsoleOutTest()
         {
             var target = new ConsoleTarget()
@@ -76,7 +68,7 @@ namespace NLog.UnitTests.Targets
                     new LogEventInfo(LogLevel.Info, "Logger2", "message4").WithContinuation(exceptions.Add),
                     new LogEventInfo(LogLevel.Info, "Logger2", "message5").WithContinuation(exceptions.Add),
                     new LogEventInfo(LogLevel.Info, "Logger1", "message6").WithContinuation(exceptions.Add));
-                Assert.AreEqual(6, exceptions.Count);
+                Assert.Equal(6, exceptions.Count);
                 target.Close();
             }
             finally 
@@ -86,18 +78,17 @@ namespace NLog.UnitTests.Targets
 
             var actual = consoleOutWriter.ToString();
 
-            Assert.IsTrue(actual.IndexOf("-- header --") != -1);
-            Assert.IsTrue(actual.IndexOf("Logger1 message1") != -1);
-            Assert.IsTrue(actual.IndexOf("Logger1 message2") != -1);
-            Assert.IsTrue(actual.IndexOf("Logger1 message3") != -1);
-            Assert.IsTrue(actual.IndexOf("Logger2 message4") != -1);
-            Assert.IsTrue(actual.IndexOf("Logger2 message5") != -1);
-            Assert.IsTrue(actual.IndexOf("Logger1 message6") != -1);
-            Assert.IsTrue(actual.IndexOf("-- footer --") != -1);
+            Assert.True(actual.IndexOf("-- header --") != -1);
+            Assert.True(actual.IndexOf("Logger1 message1") != -1);
+            Assert.True(actual.IndexOf("Logger1 message2") != -1);
+            Assert.True(actual.IndexOf("Logger1 message3") != -1);
+            Assert.True(actual.IndexOf("Logger2 message4") != -1);
+            Assert.True(actual.IndexOf("Logger2 message5") != -1);
+            Assert.True(actual.IndexOf("Logger1 message6") != -1);
+            Assert.True(actual.IndexOf("-- footer --") != -1);
         }
 
-#if !NET_CF
-        [Test]
+        [Fact]
         public void ConsoleErrorTest()
         {
             var target = new ConsoleTarget()
@@ -123,7 +114,7 @@ namespace NLog.UnitTests.Targets
                     new LogEventInfo(LogLevel.Info, "Logger2", "message4").WithContinuation(exceptions.Add),
                     new LogEventInfo(LogLevel.Info, "Logger2", "message5").WithContinuation(exceptions.Add),
                     new LogEventInfo(LogLevel.Info, "Logger1", "message6").WithContinuation(exceptions.Add));
-                Assert.AreEqual(6, exceptions.Count);
+                Assert.Equal(6, exceptions.Count);
                 target.Close();
             }
             finally
@@ -132,9 +123,8 @@ namespace NLog.UnitTests.Targets
             }
 
             string expectedResult = string.Format("-- header --{0}Logger1 message1{0}Logger1 message2{0}Logger1 message3{0}Logger2 message4{0}Logger2 message5{0}Logger1 message6{0}-- footer --{0}", Environment.NewLine);
-            Assert.AreEqual(expectedResult, consoleErrorWriter.ToString());
+            Assert.Equal(expectedResult, consoleErrorWriter.ToString());
         }
-#endif
     }
 }
 

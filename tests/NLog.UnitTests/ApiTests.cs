@@ -35,32 +35,23 @@ namespace NLog.UnitTests
 {
     using System;
     using System.Text;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using System.Collections.Generic;
     using System.Reflection;
     using NLog.Config;
+    using Xunit;
 
-    [TestFixture]
     public class ApiTests : NLogTestBase
     {
         private Type[] allTypes;
         private Assembly nlogAssembly = typeof(LogManager).Assembly;
         private readonly Dictionary<Type, int> typeUsageCount = new Dictionary<Type, int>();
 
-        [SetUp]
-        public void Initialize()
+        public ApiTests()
         {
             allTypes = typeof(LogManager).Assembly.GetTypes();
         }
 
-        [Test]
+        [Fact]
         public void PublicEnumsTest()
         {
             foreach (Type type in allTypes)
@@ -133,7 +124,7 @@ namespace NLog.UnitTests
                 }
             }
 
-            Assert.AreEqual(0, unusedTypes.Count, "There are unused public types. " + sb);
+            Assert.Equal(0, unusedTypes.Count);
         }
 
         private void IncrementUsageCount(Type type)

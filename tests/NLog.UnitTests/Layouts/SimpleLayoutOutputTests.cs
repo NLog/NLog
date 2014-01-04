@@ -34,39 +34,28 @@
 namespace NLog.UnitTests.Layouts
 {
     using System;
-    using System.IO;
     using System.Text;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-    using NLog.Common;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
+    using Xunit;
 
-    [TestFixture]
     public class SimpleLayoutOutputTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void VeryLongRendererOutput()
         {
             int stringLength = 100000;
 
             SimpleLayout l = new string('x', stringLength) + "${message}";
             string output = l.Render(LogEventInfo.CreateNullEvent());
-            Assert.AreEqual(new string('x', stringLength), output);
+            Assert.Equal(new string('x', stringLength), output);
             string output2 = l.Render(LogEventInfo.CreateNullEvent());
-            Assert.AreEqual(new string('x', stringLength), output);
-            Assert.AreNotSame(output, output2);
+            Assert.Equal(new string('x', stringLength), output);
+            Assert.NotSame(output, output2);
         }
 
-        [Test]
+        [Fact]
         public void LayoutRendererThrows()
         {
             ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
@@ -74,30 +63,30 @@ namespace NLog.UnitTests.Layouts
             
             SimpleLayout l = new SimpleLayout("xx${throwsException}yy", configurationItemFactory);
             string output = l.Render(LogEventInfo.CreateNullEvent());
-            Assert.AreEqual("xxyy", output);
+            Assert.Equal("xxyy", output);
         }
 
-        [Test]
+        [Fact]
         public void SimpleLayoutCachingTest()
         {
             var l = new SimpleLayout("xx${level}yy");
             var ev = LogEventInfo.CreateNullEvent();
             string output1 = l.Render(ev);
             string output2 = l.Render(ev);
-            Assert.AreSame(output1, output2);
+            Assert.Same(output1, output2);
         }
 
-        [Test]
+        [Fact]
         public void SimpleLayoutToStringTest()
         {
             var l = new SimpleLayout("xx${level}yy");
-            Assert.AreEqual("'xx${level}yy'", l.ToString());
+            Assert.Equal("'xx${level}yy'", l.ToString());
 
             var l2 = new SimpleLayout(new LayoutRenderer[0], "someFakeText", ConfigurationItemFactory.Default);
-            Assert.AreEqual("'someFakeText'", l2.ToString());
+            Assert.Equal("'someFakeText'", l2.ToString());
         }
 
-        [Test]
+        [Fact]
         public void LayoutRendererThrows2()
         {
             string internalLogOutput = RunAndCaptureInternalLog(
@@ -108,59 +97,59 @@ namespace NLog.UnitTests.Layouts
 
                         SimpleLayout l = new SimpleLayout("xx${throwsException:msg1}yy${throwsException:msg2}zz", configurationItemFactory);
                         string output = l.Render(LogEventInfo.CreateNullEvent());
-                        Assert.AreEqual("xxyyzz", output);
+                        Assert.Equal("xxyyzz", output);
                     }, 
                     LogLevel.Warn);
 
-            Assert.IsTrue(internalLogOutput.IndexOf("msg1") >= 0, internalLogOutput);
-            Assert.IsTrue(internalLogOutput.IndexOf("msg2") >= 0, internalLogOutput);
+            Assert.True(internalLogOutput.IndexOf("msg1") >= 0, internalLogOutput);
+            Assert.True(internalLogOutput.IndexOf("msg2") >= 0, internalLogOutput);
         }
 
-        [Test]
+        [Fact]
         public void LayoutInitTest1()
         {
             var lr = new MockLayout();
-            Assert.AreEqual(0, lr.InitCount);
-            Assert.AreEqual(0, lr.CloseCount);
+            Assert.Equal(0, lr.InitCount);
+            Assert.Equal(0, lr.CloseCount);
 
             // make sure render will call Init
             lr.Render(LogEventInfo.CreateNullEvent());
-            Assert.AreEqual(1, lr.InitCount);
-            Assert.AreEqual(0, lr.CloseCount);
+            Assert.Equal(1, lr.InitCount);
+            Assert.Equal(0, lr.CloseCount);
 
             lr.Close();
-            Assert.AreEqual(1, lr.InitCount);
-            Assert.AreEqual(1, lr.CloseCount);
+            Assert.Equal(1, lr.InitCount);
+            Assert.Equal(1, lr.CloseCount);
 
             // second call to Close() will be ignored
             lr.Close();
-            Assert.AreEqual(1, lr.InitCount);
-            Assert.AreEqual(1, lr.CloseCount);
+            Assert.Equal(1, lr.InitCount);
+            Assert.Equal(1, lr.CloseCount);
         }
 
-        [Test]
+        [Fact]
         public void LayoutInitTest2()
         {
             var lr = new MockLayout();
-            Assert.AreEqual(0, lr.InitCount);
-            Assert.AreEqual(0, lr.CloseCount);
+            Assert.Equal(0, lr.InitCount);
+            Assert.Equal(0, lr.CloseCount);
 
             // calls to Close() will be ignored because 
             lr.Close();
-            Assert.AreEqual(0, lr.InitCount);
-            Assert.AreEqual(0, lr.CloseCount);
+            Assert.Equal(0, lr.InitCount);
+            Assert.Equal(0, lr.CloseCount);
 
             lr.Initialize(null);
-            Assert.AreEqual(1, lr.InitCount);
+            Assert.Equal(1, lr.InitCount);
 
             // make sure render will not call another Init
             lr.Render(LogEventInfo.CreateNullEvent());
-            Assert.AreEqual(1, lr.InitCount);
-            Assert.AreEqual(0, lr.CloseCount);
+            Assert.Equal(1, lr.InitCount);
+            Assert.Equal(0, lr.CloseCount);
 
             lr.Close();
-            Assert.AreEqual(1, lr.InitCount);
-            Assert.AreEqual(1, lr.CloseCount);
+            Assert.Equal(1, lr.InitCount);
+            Assert.Equal(1, lr.CloseCount);
         }
 
         public class ThrowsExceptionRenderer : LayoutRenderer

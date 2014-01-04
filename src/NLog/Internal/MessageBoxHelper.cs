@@ -35,9 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Text;
-#if WINDOWS_PHONE
-    using System.Windows;
-#elif SILVERLIGHT
+#if SILVERLIGHT
     using System.Windows;
     using System.Windows.Browser;
 #else
@@ -57,9 +55,7 @@ namespace NLog.Internal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "Not important here.")]
         public static void Show(string message, string caption)
         {
-#if WINDOWS_PHONE
-            MessageBox.Show(message, caption, MessageBoxButton.OK);
-#elif SILVERLIGHT
+#if SILVERLIGHT
             Action action = () => HtmlPage.Window.Alert(caption + "\r\n\r\n" + message);
 
             if (!Deployment.Current.Dispatcher.CheckAccess())

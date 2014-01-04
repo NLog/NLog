@@ -33,40 +33,23 @@
 
 using System.Diagnostics;
 
-#if !NET_CF && !MONO && !SILVERLIGHT
+#if !MONO && !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
 {
-    using System;
     using System.IO;
     using System.Text;
-
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
-    using NLog.Common;
     using NLog.Config;
-    using NLog.Layouts;
     using NLog.Targets;
-    using NLog.Targets.Wrappers;
-
-    using System.Threading;
     using System.Windows.Forms;
     using System.Drawing;
-    using NLog.Internal;
+    using Xunit;
 
-    [TestFixture]
     public class RichTextBoxTargetTests : NLogTestBase
     {
         private Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.RichTextBoxTargetTests");
 
-        [Test]
+        [Fact]
         public void SimpleRichTextBoxTargetTest()
         {
             RichTextBoxTarget target = new RichTextBoxTarget()
@@ -91,37 +74,37 @@ namespace NLog.UnitTests.Targets
 
             var form = target.TargetForm;
 
-            Assert.IsTrue(target.CreatedForm);
-            Assert.IsTrue(form.Name.StartsWith("NLog"));
-            Assert.AreEqual(FormWindowState.Normal, form.WindowState);
-            Assert.AreEqual("NLog", form.Text);
-            Assert.AreEqual(300, form.Width);
-            Assert.AreEqual(200, form.Height);
+            Assert.True(target.CreatedForm);
+            Assert.True(form.Name.StartsWith("NLog"));
+            Assert.Equal(FormWindowState.Normal, form.WindowState);
+            Assert.Equal("NLog", form.Text);
+            Assert.Equal(300, form.Width);
+            Assert.Equal(200, form.Height);
 
             MemoryStream ms = new MemoryStream();
             target.TargetRichTextBox.SaveFile(ms, RichTextBoxStreamType.RichText);
             string rtfText = Encoding.UTF8.GetString(ms.GetBuffer());
 
-            Assert.IsTrue(target.CreatedForm);
+            Assert.True(target.CreatedForm);
 
             var result = rtfText;
-            Assert.IsTrue(result.Contains(@"{\colortbl ;\red255\green255\blue255;\red255\green0\blue0;\red255\green165\blue0;\red0\green0\blue0;\red128\green128\blue128;\red169\green169\blue169;}"));
-            Assert.IsTrue(result.Contains(@"\viewkind4\uc1\pard\cf1\highlight2\b\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
-            Assert.IsTrue(result.Contains(@"\cf2\highlight1\i Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
-            Assert.IsTrue(result.Contains(@"\cf3\ul\b0\i0 Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
-            Assert.IsTrue(result.Contains(@"\cf4\ulnone Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
-            Assert.IsTrue(result.Contains(@"\cf5 Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
-            Assert.IsTrue(result.Contains(@"\cf6\i Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
-            Assert.IsTrue(result.Contains(@"\cf0\highlight0\i0\f1\par"));
-            Assert.IsTrue(result.Contains(@"}"));
+            Assert.True(result.Contains(@"{\colortbl ;\red255\green255\blue255;\red255\green0\blue0;\red255\green165\blue0;\red0\green0\blue0;\red128\green128\blue128;\red169\green169\blue169;}"));
+            Assert.True(result.Contains(@"\viewkind4\uc1\pard\cf1\highlight2\b\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
+            Assert.True(result.Contains(@"\cf2\highlight1\i Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
+            Assert.True(result.Contains(@"\cf3\ul\b0\i0 Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
+            Assert.True(result.Contains(@"\cf4\ulnone Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
+            Assert.True(result.Contains(@"\cf5 Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
+            Assert.True(result.Contains(@"\cf6\i Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
+            Assert.True(result.Contains(@"\cf0\highlight0\i0\f1\par"));
+            Assert.True(result.Contains(@"}"));
 
             LogManager.Configuration = null;
-            Assert.IsNull(target.TargetForm);
+            Assert.Null(target.TargetForm);
             Application.DoEvents();
-            Assert.IsTrue(form.IsDisposed);
+            Assert.True(form.IsDisposed);
         }
 
-        [Test]
+        [Fact]
         public void NoColoringTest()
         {
             try
@@ -150,18 +133,18 @@ namespace NLog.UnitTests.Targets
                 target.TargetRichTextBox.SaveFile(ms, RichTextBoxStreamType.RichText);
                 string rtfText = Encoding.UTF8.GetString(ms.GetBuffer());
 
-                Assert.IsTrue(target.CreatedForm);
+                Assert.True(target.CreatedForm);
 
                 var result = rtfText;
-                Assert.IsTrue(result.Contains(@"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;}"));
-                Assert.IsTrue(result.Contains(@"\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
-                Assert.IsTrue(result.Contains(@"Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
-                Assert.IsTrue(result.Contains(@"Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
-                Assert.IsTrue(result.Contains(@"Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
-                Assert.IsTrue(result.Contains(@"Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
-                Assert.IsTrue(result.Contains(@"Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
-                Assert.IsTrue(result.Contains(@"\cf0\highlight0\f1\par"));
-                Assert.IsTrue(result.Contains(@"}"));
+                Assert.True(result.Contains(@"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;}"));
+                Assert.True(result.Contains(@"\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
+                Assert.True(result.Contains(@"Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
+                Assert.True(result.Contains(@"Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
+                Assert.True(result.Contains(@"Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
+                Assert.True(result.Contains(@"Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
+                Assert.True(result.Contains(@"Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
+                Assert.True(result.Contains(@"\cf0\highlight0\f1\par"));
+                Assert.True(result.Contains(@"}"));
             }
             finally
             {
@@ -169,7 +152,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void CustomRowColoringTest()
         {
             try
@@ -202,18 +185,18 @@ namespace NLog.UnitTests.Targets
                 target.TargetRichTextBox.SaveFile(ms, RichTextBoxStreamType.RichText);
                 string rtfText = Encoding.UTF8.GetString(ms.GetBuffer());
 
-                Assert.IsTrue(target.CreatedForm);
+                Assert.True(target.CreatedForm);
 
                 var result = rtfText;
-                Assert.IsTrue(result.Contains(@"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;}"));
-                Assert.IsTrue(result.Contains(@"\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
-                Assert.IsTrue(result.Contains(@"Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
-                Assert.IsTrue(result.Contains(@"\cf3 Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
-                Assert.IsTrue(result.Contains(@"\cf1 Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
-                Assert.IsTrue(result.Contains(@"Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
-                Assert.IsTrue(result.Contains(@"\cf3 Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
-                Assert.IsTrue(result.Contains(@"\cf0\highlight0\f1\par"));
-                Assert.IsTrue(result.Contains(@"}"));
+                Assert.True(result.Contains(@"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;}"));
+                Assert.True(result.Contains(@"\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
+                Assert.True(result.Contains(@"Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
+                Assert.True(result.Contains(@"\cf3 Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
+                Assert.True(result.Contains(@"\cf1 Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test\par"));
+                Assert.True(result.Contains(@"Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo\par"));
+                Assert.True(result.Contains(@"\cf3 Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar\par"));
+                Assert.True(result.Contains(@"\cf0\highlight0\f1\par"));
+                Assert.True(result.Contains(@"}"));
             }
             finally
             {
@@ -221,7 +204,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void CustomWordRowColoringTest()
         {
             try
@@ -255,20 +238,20 @@ namespace NLog.UnitTests.Targets
                 target.TargetRichTextBox.SaveFile(ms, RichTextBoxStreamType.RichText);
                 string rtfText = Encoding.UTF8.GetString(ms.GetBuffer());
 
-                Assert.IsTrue(target.CreatedForm);
+                Assert.True(target.CreatedForm);
 
                 // "zzz" string will be highlighted
 
                 var result = rtfText;
-                Assert.IsTrue(result.Contains(@"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red255\green0\blue0;\red0\green128\blue0;}"));
-                Assert.IsTrue(result.Contains(@"\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test \cf3\f1 zzz\cf1\f0\par"));
-                Assert.IsTrue(result.Contains(@"Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo xxx\par"));
-                Assert.IsTrue(result.Contains(@"Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar yyy\par"));
-                Assert.IsTrue(result.Contains(@"Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test \cf4\f1 aaa\cf1\f0\par"));
-                Assert.IsTrue(result.Contains(@"Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo \cf3\f1 zzz\cf1\f0\par"));
-                Assert.IsTrue(result.Contains(@"Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par"));
-                Assert.IsTrue(result.Contains(@"\cf0\highlight0\f1\par"));
-                Assert.IsTrue(result.Contains(@"}"));
+                Assert.True(result.Contains(@"{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red255\green0\blue0;\red0\green128\blue0;}"));
+                Assert.True(result.Contains(@"\viewkind4\uc1\pard\cf1\highlight2\f0\fs17 Fatal NLog.UnitTests.Targets.RichTextBoxTargetTests Test \cf3\f1 zzz\cf1\f0\par"));
+                Assert.True(result.Contains(@"Error NLog.UnitTests.Targets.RichTextBoxTargetTests Foo xxx\par"));
+                Assert.True(result.Contains(@"Warn NLog.UnitTests.Targets.RichTextBoxTargetTests Bar yyy\par"));
+                Assert.True(result.Contains(@"Info NLog.UnitTests.Targets.RichTextBoxTargetTests Test \cf4\f1 aaa\cf1\f0\par"));
+                Assert.True(result.Contains(@"Debug NLog.UnitTests.Targets.RichTextBoxTargetTests Foo \cf3\f1 zzz\cf1\f0\par"));
+                Assert.True(result.Contains(@"Trace NLog.UnitTests.Targets.RichTextBoxTargetTests Bar ccc\par"));
+                Assert.True(result.Contains(@"\cf0\highlight0\f1\par"));
+                Assert.True(result.Contains(@"}"));
             }
             finally
             {
@@ -276,18 +259,18 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void RichTextBoxTargetDefaultsTest()
         {
             var target = new RichTextBoxTarget();
-            Assert.IsFalse(target.UseDefaultRowColoringRules);
-            Assert.AreEqual(0, target.WordColoringRules.Count);
-            Assert.AreEqual(0, target.RowColoringRules.Count);
-            Assert.IsNull(target.FormName);
-            Assert.IsNull(target.ControlName);
+            Assert.False(target.UseDefaultRowColoringRules);
+            Assert.Equal(0, target.WordColoringRules.Count);
+            Assert.Equal(0, target.RowColoringRules.Count);
+            Assert.Null(target.FormName);
+            Assert.Null(target.ControlName);
         }
 
-        [Test]
+        [Fact]
         public void AutoScrollTest()
         {
             try
@@ -307,8 +290,8 @@ namespace NLog.UnitTests.Targets
                 {
                     logger.Info("Test");
                     Application.DoEvents();
-                    Assert.AreEqual(target.TargetRichTextBox.SelectionStart, target.TargetRichTextBox.TextLength);
-                    Assert.AreEqual(target.TargetRichTextBox.SelectionLength, 0);
+                    Assert.Equal(target.TargetRichTextBox.SelectionStart, target.TargetRichTextBox.TextLength);
+                    Assert.Equal(target.TargetRichTextBox.SelectionLength, 0);
                 }
             }
             finally
@@ -317,7 +300,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void MaxLinesTest()
         {
             try
@@ -331,7 +314,7 @@ namespace NLog.UnitTests.Targets
                     AutoScroll = true,
                 };
 
-                Assert.AreEqual(0, target.MaxLines);
+                Assert.Equal(0, target.MaxLines);
                 target.MaxLines = 7;
 
                 var form = target.TargetForm;
@@ -344,7 +327,7 @@ namespace NLog.UnitTests.Targets
                 Application.DoEvents();
                 string expectedText = "Test 93\nTest 94\nTest 95\nTest 96\nTest 97\nTest 98\nTest 99\n";
 
-                Assert.AreEqual(expectedText, target.TargetRichTextBox.Text);
+                Assert.Equal(expectedText, target.TargetRichTextBox.Text);
             }
             finally
             {
@@ -352,7 +335,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void ColoringRuleDefaults()
         {
             var expectedRules = new[]
@@ -366,17 +349,17 @@ namespace NLog.UnitTests.Targets
             };
 
             var actualRules = RichTextBoxTarget.DefaultRowColoringRules;
-            Assert.AreEqual(expectedRules.Length, actualRules.Count);
+            Assert.Equal(expectedRules.Length, actualRules.Count);
             for (int i = 0; i < expectedRules.Length; ++i)
             {
-                Assert.AreEqual(expectedRules[i].BackgroundColor, actualRules[i].BackgroundColor);
-                Assert.AreEqual(expectedRules[i].FontColor, actualRules[i].FontColor);
-                Assert.AreEqual(expectedRules[i].Condition.ToString(), actualRules[i].Condition.ToString());
-                Assert.AreEqual(expectedRules[i].Style, actualRules[i].Style);
+                Assert.Equal(expectedRules[i].BackgroundColor, actualRules[i].BackgroundColor);
+                Assert.Equal(expectedRules[i].FontColor, actualRules[i].FontColor);
+                Assert.Equal(expectedRules[i].Condition.ToString(), actualRules[i].Condition.ToString());
+                Assert.Equal(expectedRules[i].Style, actualRules[i].Style);
             }
         }
 
-        [Test]
+        [Fact]
         public void ActiveFormTest()
         {
             RichTextBoxTarget target = new RichTextBoxTarget()
@@ -404,17 +387,17 @@ namespace NLog.UnitTests.Targets
                         target.Initialize(null);
                         form.Activate();
                         Application.DoEvents();
-                        Assert.AreSame(form, target.TargetForm);
-                        Assert.AreSame(rtb, target.TargetRichTextBox);
+                        Assert.Same(form, target.TargetForm);
+                        Assert.Same(rtb, target.TargetRichTextBox);
                         form.Close();
                     };
 
-                form.ShowDialog();
+                form.Show();
                 Application.DoEvents();
             }
         }
 
-        [Test]
+        [Fact]
         public void ActiveFormTest2()
         {
             RichTextBoxTarget target = new RichTextBoxTarget()
@@ -449,13 +432,13 @@ namespace NLog.UnitTests.Targets
                     form1.Activate();
 
                     target.Initialize(null);
-                    Assert.AreSame(form1, target.TargetForm);
-                    Assert.AreSame(rtb2, target.TargetRichTextBox);
+                    Assert.Same(form1, target.TargetForm);
+                    Assert.Same(rtb2, target.TargetRichTextBox);
                 }
             }
         }
 
-        [Test]
+        [Fact]
         public void ActiveFormNegativeTest1()
         {
             RichTextBoxTarget target = new RichTextBoxTarget()
@@ -482,16 +465,16 @@ namespace NLog.UnitTests.Targets
                 try
                 {
                     target.Initialize(null);
-                    Assert.Fail("Expected exception.");
+                    Assert.True(false, "Expected exception.");
                 }
                 catch (NLogConfigurationException ex)
                 {
-                    Assert.AreEqual("Rich text box control 'Control1' cannot be found on form 'MyForm1'.", ex.Message);
+                    Assert.Equal("Rich text box control 'Control1' cannot be found on form 'MyForm1'.", ex.Message);
                 }
             }
         }
 
-        [Test]
+        [Fact]
         public void ActiveFormNegativeTest2()
         {
             RichTextBoxTarget target = new RichTextBoxTarget()
@@ -510,11 +493,11 @@ namespace NLog.UnitTests.Targets
                 try
                 {
                     target.Initialize(null);
-                    Assert.Fail("Expected exception.");
+                    Assert.True(false, "Expected exception.");
                 }
                 catch (NLogConfigurationException ex)
                 {
-                    Assert.AreEqual("Rich text box control name must be specified for RichTextBoxTarget.", ex.Message);
+                    Assert.Equal("Rich text box control name must be specified for RichTextBoxTarget.", ex.Message);
                 }
             }
         }

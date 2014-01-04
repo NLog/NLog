@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if (SILVERLIGHT || DOCUMENTATION) && !WINDOWS_PHONE
+#if (SILVERLIGHT || DOCUMENTATION)
 
 namespace NLog.LayoutRenderers
 {
@@ -81,7 +81,6 @@ namespace NLog.LayoutRenderers
                     builder.Append(Application.Current.Host.Source);
                     break;
 
-#if !SILVERLIGHT2
                 case SilverlightApplicationInfoOption.IsOutOfBrowser:
                     builder.Append(Application.Current.IsRunningOutOfBrowser ? "1" : "0");
                     break;
@@ -89,13 +88,9 @@ namespace NLog.LayoutRenderers
                 case SilverlightApplicationInfoOption.InstallState:
                     builder.Append(Application.Current.InstallState);
                     break;
-#if !SILVERLIGHT3
                 case SilverlightApplicationInfoOption.HasElevatedPermissions:
                     builder.Append(Application.Current.HasElevatedPermissions ? "1" : "0");
                     break;
-#endif
-
-#endif
             }
 #endif
         }

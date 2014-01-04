@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !WINDOWS_PHONE_7
-
 namespace NLog.Internal.NetworkSenders
 {
     using System;
@@ -65,7 +63,7 @@ namespace NLog.Internal.NetworkSenders
             this.socket.Close();
         }
 
-#if USE_LEGACY_ASYNC_API || NET_CF
+#if USE_LEGACY_ASYNC_API
         // emulate missing .NET CF behavior
 
         /// <summary>
@@ -121,7 +119,7 @@ namespace NLog.Internal.NetworkSenders
             return this.socket.SendAsync(args);
         }
 
-#if !SILVERLIGHT || (WINDOWS_PHONE && !WINDOWS_PHONE_7)
+#if !SILVERLIGHT
         /// <summary>
         /// Invokes SendToAsync method on the wrapped socket.
         /// </summary>
@@ -144,5 +142,3 @@ namespace NLog.Internal.NetworkSenders
         }
     }
 }
-
-#endif

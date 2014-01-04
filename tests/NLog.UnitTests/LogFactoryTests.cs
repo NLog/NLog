@@ -31,36 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-
-using NLog.Internal;
-
-using NUnit.Framework;
-
-#if !NUNIT
-using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-using TearDown = Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
 
 namespace NLog.UnitTests
 {
     using System;
-    using System.Collections.Generic;
-    using System.Threading;
+    using Xunit;
 
-#if !SILVERLIGHT && !NET2_0 && !MONO && !NET_CF
-    using FakeItEasy;
-    using NLog.Internal.Fakeables;
-
-#endif
-
-    [TestFixture]
     public class LogFactoryTests : NLogTestBase
     {
-#if !NET_CF
-        [Test]
+        [Fact]
         public void Flush_DoNotThrowExceptionsAndTimeout_DoesNotThrow()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -74,9 +53,8 @@ namespace NLog.UnitTests
             Logger logger = LogManager.GetCurrentClassLogger();
             logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
         }
-#endif
         
-        [Test]
+        [Fact]
         public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()
         {
             Boolean ExceptionThrown = false;
@@ -92,16 +70,16 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 ExceptionThrown = true;
             }
             
-            Assert.IsFalse(ExceptionThrown);
+            Assert.False(ExceptionThrown);
             
         }
         
-        [Test]
+        [Fact]
         public void InvalidXMLConfiguration_ThrowErrorWhen_ThrowExceptionFlagIsSet()
         {
             Boolean ExceptionThrown = false;
@@ -117,15 +95,14 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 ExceptionThrown = true;
             }
             
-            Assert.IsTrue(ExceptionThrown);
+            Assert.True(ExceptionThrown);
             
         }
-        
 
         public static void Throws()
         {

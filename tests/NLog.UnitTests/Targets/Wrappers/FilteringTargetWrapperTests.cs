@@ -35,24 +35,15 @@ namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Threading;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Common;
     using NLog.Conditions;
-    using NLog.Internal;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using Xunit;
 
-    [TestFixture]
     public class FilteringTargetWrapperTests : NLogTestBase
 	{
-        [Test]
+        [Fact]
         public void FilteringTargetWrapperSyncTest1()
         {
             var myMockCondition = new MyMockCondition(true);
@@ -77,21 +68,21 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
-            Assert.AreEqual(1, myMockCondition.CallCount);
+            Assert.Equal(1, myMockCondition.CallCount);
 
-            Assert.IsTrue(continuationHit);
-            Assert.IsNull(lastException);
-            Assert.AreEqual(1, myTarget.WriteCount);
+            Assert.True(continuationHit);
+            Assert.Null(lastException);
+            Assert.Equal(1, myTarget.WriteCount);
 
             continuationHit = false;
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
-            Assert.IsTrue(continuationHit);
-            Assert.IsNull(lastException);
-            Assert.AreEqual(2, myTarget.WriteCount);
-            Assert.AreEqual(2, myMockCondition.CallCount);
+            Assert.True(continuationHit);
+            Assert.Null(lastException);
+            Assert.Equal(2, myTarget.WriteCount);
+            Assert.Equal(2, myMockCondition.CallCount);
         }
 
-        [Test]
+        [Fact]
         public void FilteringTargetWrapperAsyncTest1()
         {
             var myMockCondition = new MyMockCondition(true);
@@ -112,19 +103,19 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
             continuationHit.WaitOne();
-            Assert.IsNull(lastException);
-            Assert.AreEqual(1, myTarget.WriteCount);
-            Assert.AreEqual(1, myMockCondition.CallCount);
+            Assert.Null(lastException);
+            Assert.Equal(1, myTarget.WriteCount);
+            Assert.Equal(1, myMockCondition.CallCount);
 
             continuationHit.Reset();
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
-            Assert.IsNull(lastException);
-            Assert.AreEqual(2, myTarget.WriteCount);
-            Assert.AreEqual(2, myMockCondition.CallCount);
+            Assert.Null(lastException);
+            Assert.Equal(2, myTarget.WriteCount);
+            Assert.Equal(2, myMockCondition.CallCount);
         }
 
-        [Test]
+        [Fact]
         public void FilteringTargetWrapperAsyncWithExceptionTest1()
         {
             var myMockCondition = new MyMockCondition(true);
@@ -149,23 +140,23 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
             continuationHit.WaitOne();
-            Assert.IsNotNull(lastException);
-            Assert.IsInstanceOfType(typeof(InvalidOperationException), lastException);
+            Assert.NotNull(lastException);
+            Assert.IsType(typeof(InvalidOperationException), lastException);
 
-            Assert.AreEqual(1, myTarget.WriteCount);
-            Assert.AreEqual(1, myMockCondition.CallCount);
+            Assert.Equal(1, myTarget.WriteCount);
+            Assert.Equal(1, myMockCondition.CallCount);
 
             continuationHit.Reset();
             lastException = null;
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
-            Assert.IsNotNull(lastException);
-            Assert.IsInstanceOfType(typeof(InvalidOperationException), lastException);
-            Assert.AreEqual(2, myTarget.WriteCount);
-            Assert.AreEqual(2, myMockCondition.CallCount);
+            Assert.NotNull(lastException);
+            Assert.IsType(typeof(InvalidOperationException), lastException);
+            Assert.Equal(2, myTarget.WriteCount);
+            Assert.Equal(2, myMockCondition.CallCount);
         }
 
-        [Test]
+        [Fact]
         public void FilteringTargetWrapperSyncTest2()
         {
             var myMockCondition = new MyMockCondition(false);
@@ -190,22 +181,22 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
-            Assert.AreEqual(1, myMockCondition.CallCount);
+            Assert.Equal(1, myMockCondition.CallCount);
 
-            Assert.IsTrue(continuationHit);
-            Assert.IsNull(lastException);
-            Assert.AreEqual(0, myTarget.WriteCount);
-            Assert.AreEqual(1, myMockCondition.CallCount);
+            Assert.True(continuationHit);
+            Assert.Null(lastException);
+            Assert.Equal(0, myTarget.WriteCount);
+            Assert.Equal(1, myMockCondition.CallCount);
 
             continuationHit = false;
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
-            Assert.IsTrue(continuationHit);
-            Assert.IsNull(lastException);
-            Assert.AreEqual(0, myTarget.WriteCount);
-            Assert.AreEqual(2, myMockCondition.CallCount);
+            Assert.True(continuationHit);
+            Assert.Null(lastException);
+            Assert.Equal(0, myTarget.WriteCount);
+            Assert.Equal(2, myMockCondition.CallCount);
         }
 
-        [Test]
+        [Fact]
         public void FilteringTargetWrapperAsyncTest2()
         {
             var myMockCondition = new MyMockCondition(false);
@@ -226,19 +217,19 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
             continuationHit.WaitOne();
-            Assert.IsNull(lastException);
-            Assert.AreEqual(0, myTarget.WriteCount);
-            Assert.AreEqual(1, myMockCondition.CallCount);
+            Assert.Null(lastException);
+            Assert.Equal(0, myTarget.WriteCount);
+            Assert.Equal(1, myMockCondition.CallCount);
 
             continuationHit.Reset();
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
-            Assert.IsNull(lastException);
-            Assert.AreEqual(0, myTarget.WriteCount);
-            Assert.AreEqual(2, myMockCondition.CallCount);
+            Assert.Null(lastException);
+            Assert.Equal(0, myTarget.WriteCount);
+            Assert.Equal(2, myMockCondition.CallCount);
         }
 
-        [Test]
+        [Fact]
         public void FilteringTargetWrapperAsyncWithExceptionTest2()
         {
             var myMockCondition = new MyMockCondition(false);
@@ -262,18 +253,18 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
 
             continuationHit.WaitOne();
-            Assert.IsNull(lastException);
+            Assert.Null(lastException);
 
-            Assert.AreEqual(0, myTarget.WriteCount);
-            Assert.AreEqual(1, myMockCondition.CallCount);
+            Assert.Equal(0, myTarget.WriteCount);
+            Assert.Equal(1, myMockCondition.CallCount);
 
             continuationHit.Reset();
             lastException = null;
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
-            Assert.IsNull(lastException);
-            Assert.AreEqual(0, myTarget.WriteCount);
-            Assert.AreEqual(2, myMockCondition.CallCount);
+            Assert.Null(lastException);
+            Assert.Equal(0, myTarget.WriteCount);
+            Assert.Equal(2, myMockCondition.CallCount);
         }
 
         class MyAsyncTarget : Target

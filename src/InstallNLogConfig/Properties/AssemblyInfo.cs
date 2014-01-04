@@ -36,9 +36,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-#if NET2_0
-    [assembly: AssemblyTitle("NLog configuration installer for .NET Framework 2.0")]
-#elif NET3_5
+#if NET3_5
     [assembly: AssemblyTitle("NLog configuration installer for .NET Framework 3.5")]
 #elif NET4_0
     [assembly: AssemblyTitle("NLog configuration installer for .NET Framework 4")]
@@ -46,14 +44,6 @@ using System.Runtime.InteropServices;
     [assembly: AssemblyTitle("NLog configuration installer for .NET Framework 5")]
 #elif MONO_2_0
     [assembly: AssemblyTitle("NLog configuration installer for Mono 2.0")]
-#elif NETCF2_0
-    [assembly: AssemblyTitle("NLog configuration installer for .NET Compact Framework 2.0")]
-#elif NETCF3_5
-    [assembly: AssemblyTitle("NLog configuration installer for .NET Compact Framework 3.5")]
-#elif SILVERLIGHT2
-    [assembly: AssemblyTitle("NLog configuration installer for Silverlight 2.0")]
-#elif SILVERLIGHT3
-    [assembly: AssemblyTitle("NLog configuration installer for Silverlight 3.0")]
 #elif SILVERLIGHT4
     [assembly: AssemblyTitle("NLog configuration installer for Silverlight 4.0")]
 #elif DOCUMENTATION

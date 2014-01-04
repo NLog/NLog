@@ -31,33 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NET_CF
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-#if !NET2_0
-using System.Linq;
-#endif
-using System.Text.RegularExpressions;
-#if !NET2_0
-using System.Xml.Linq;
-#endif
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using Xunit;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Xml.Linq;
+
     /// <summary>
     /// Source code tests.
     /// </summary>
-    [TestFixture]
     public class SourceCodeTests
     {
         private static Regex classNameRegex = new Regex(@"^    (public |abstract |sealed |static |partial |internal )*(class|interface|struct|enum) (?<className>\w+)\b", RegexOptions.Compiled);
@@ -80,8 +68,7 @@ namespace NLog.UnitTests
         private string licenseFile;
         private string[] licenseLines;
 
-        [SetUp]
-        public void Initialize()
+        public SourceCodeTests()
         {
             this.sourceCodeDirectory = Directory.GetCurrentDirectory();
             while (this.sourceCodeDirectory != null)
@@ -101,7 +88,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void VerifyFileHeaders()
         {
             if (this.sourceCodeDirectory == null)
@@ -128,13 +115,12 @@ namespace NLog.UnitTests
                 }
             }
 
-            Assert.AreEqual(0, failedFiles, "One or more files don't have valid license headers.");
+            Assert.Equal(0, failedFiles);
         }
 
-#if !NET2_0
         private static XNamespace MSBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
 
-        [Test]
+        [Fact]
         public void VerifyProjectsInSync()
         {
             if (this.sourceCodeDirectory == null)
@@ -149,11 +135,7 @@ namespace NLog.UnitTests
 
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx35.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx40.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx20.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netcf20.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netcf35.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl2.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl3.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx45.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl4.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.wp7.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.monodevelop.csproj");
@@ -163,8 +145,7 @@ namespace NLog.UnitTests
 
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx35.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx40.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx20.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.mono2.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx45.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.monodevelop.csproj");
 
             filesToCompile.Clear();
@@ -172,16 +153,11 @@ namespace NLog.UnitTests
 
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx35.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx40.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx20.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netcf20.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netcf35.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl2.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl3.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx45.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl4.csproj");
-            //failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.mono2.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.monodevelop.csproj");
 
-            Assert.AreEqual(0, failures, "Failures found.");
+            Assert.Equal(0, failures);
         }
 
         private int CompareDirectoryWithProjects(List<string> filesToCompile, params string[] projectFiles)
@@ -239,9 +215,8 @@ namespace NLog.UnitTests
                 GetAllFilesToCompileInDirectory(output, dir, pattern, prefix + Path.GetFileName(dir) + "\\");
             }
         }
-#endif
 
-        [Test]
+        [Fact]
         public void VerifyNamespacesAndClassNames()
         {
             if (this.sourceCodeDirectory == null)
@@ -256,7 +231,7 @@ namespace NLog.UnitTests
                 failedFiles += VerifyClassNames(Path.Combine(this.sourceCodeDirectory, dir), Path.GetFileName(dir));
             }
 
-            Assert.AreEqual(0, failedFiles, "One or more files don't have valid class names and/or namespaces.");
+            Assert.Equal(0, failedFiles);
         }
 
         bool IgnoreFile(string file)

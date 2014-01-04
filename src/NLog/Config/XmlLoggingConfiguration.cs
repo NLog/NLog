@@ -141,7 +141,7 @@ namespace NLog.Config
         }
 #endif
 
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -353,9 +353,7 @@ namespace NLog.Config
             this.AutoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", false);
             LogManager.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", LogManager.ThrowExceptions);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
-#if !NET_CF
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
-#endif
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
             InternalLogger.LogLevel = LogLevel.FromString(nlogElement.GetOptionalAttribute("internalLogLevel", InternalLogger.LogLevel.Name));
             LogManager.GlobalThreshold = LogLevel.FromString(nlogElement.GetOptionalAttribute("globalThreshold", LogManager.GlobalThreshold.Name));
@@ -709,7 +707,6 @@ namespace NLog.Config
                     this.configurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
                 }
 
-#if !WINDOWS_PHONE
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {
@@ -777,7 +774,6 @@ namespace NLog.Config
 
                     continue;
                 }
-#endif
             }
         }
 

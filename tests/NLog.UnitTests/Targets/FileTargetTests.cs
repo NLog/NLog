@@ -39,13 +39,6 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.IO;
     using System.Text;
-
-    using NUnit.Framework;
-
-#if !NUNIT
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-#endif
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
@@ -53,13 +46,13 @@ namespace NLog.UnitTests.Targets
 
     using System.Threading;
     using System.Collections.Generic;
+    using Xunit;
 
-    [TestFixture]
     public class FileTargetTests : NLogTestBase
     {
         private readonly Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 
-        [Test]
+        [Fact]
         public void SimpleFileTest1()
         {
             var tempFile = Path.GetTempFileName();
@@ -88,7 +81,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void CsvHeaderTest()
         {
             var tempFile = Path.GetTempFileName();
@@ -131,7 +124,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void DeleteFileOnStartTest()
         {
             var tempFile = Path.GetTempFileName();
@@ -200,7 +193,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void CreateDirsTest()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -232,7 +225,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void SequentialArchiveTest1()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -296,8 +289,8 @@ namespace NLog.UnitTests.Targets
                     StringRepeat(250, "ddd\n"),
                     Encoding.UTF8);
 
-                Assert.IsTrue(!File.Exists(Path.Combine(tempPath, "archive/0000.txt")));
-                Assert.IsTrue(!File.Exists(Path.Combine(tempPath, "archive/0004.txt")));
+                Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0000.txt")));
+                Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0004.txt")));
             }
             finally
             {
@@ -309,7 +302,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void RollingArchiveTest1()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -373,7 +366,7 @@ namespace NLog.UnitTests.Targets
                     StringRepeat(250, "bbb\n"),
                     Encoding.UTF8);
 
-                Assert.IsTrue(!File.Exists(Path.Combine(tempPath, "archive/0003.txt")));
+                Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0003.txt")));
             }
             finally
             {
@@ -385,7 +378,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void MultiFileWrite()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -412,7 +405,7 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
 
-                Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));
+                Assert.False(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
                 AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
                     StringRepeat(250, "aaa\n"), Encoding.UTF8);
@@ -439,7 +432,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void BufferedMultiFileWrite()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -466,7 +459,7 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
 
-                Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));
+                Assert.False(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
                 AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
                     StringRepeat(250, "aaa\n"), Encoding.UTF8);
@@ -493,7 +486,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void AsyncMultiFileWrite()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -527,7 +520,7 @@ namespace NLog.UnitTests.Targets
                 LogManager.Flush();
                 LogManager.Configuration = null;
 
-                Assert.IsFalse(File.Exists(Path.Combine(tempPath, "Trace.txt")));
+                Assert.False(File.Exists(Path.Combine(tempPath, "Trace.txt")));
 
                 AssertFileContents(Path.Combine(tempPath, "Debug.txt"),
                     StringRepeat(250, "aaa " + threadID + "\n"), Encoding.UTF8);
@@ -557,7 +550,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Test]
+        [Fact]
         public void BatchErrorHandlingTest()
         {
             var fileTarget = new FileTarget {FileName = "${logger}", Layout = "${message}"};
@@ -575,14 +568,14 @@ namespace NLog.UnitTests.Targets
 
             fileTarget.WriteAsyncLogEvents(events);
 
-            Assert.AreEqual(4, exceptions.Count);
-            Assert.IsNull(exceptions[0]);
-            Assert.IsNotNull(exceptions[1]);
-            Assert.IsNotNull(exceptions[2]);
-            Assert.IsNotNull(exceptions[3]);
+            Assert.Equal(4, exceptions.Count);
+            Assert.Null(exceptions[0]);
+            Assert.NotNull(exceptions[1]);
+            Assert.NotNull(exceptions[2]);
+            Assert.NotNull(exceptions[3]);
         }
 
-        [Test]
+        [Fact]
         public void DisposingFileTarget_WhenNotIntialized_ShouldNotThrow()
         {
             var exceptionThrown = false;
@@ -597,10 +590,10 @@ namespace NLog.UnitTests.Targets
                 exceptionThrown = true;
             }
 
-            Assert.IsFalse(exceptionThrown);
+            Assert.False(exceptionThrown);
         }
 
-        [Test]
+        [Fact]
         public void FileTarget_WithArchiveFileNameEndingInNumberPlaceholder_ShouldArchiveFile()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -622,8 +615,8 @@ namespace NLog.UnitTests.Targets
                 }
 
                 LogManager.Configuration = null;
-                Assert.IsTrue(File.Exists(tempFile));
-                Assert.IsTrue(File.Exists(Path.Combine(tempPath, "archive/test.log.0000")));
+                Assert.True(File.Exists(tempFile));
+                Assert.True(File.Exists(Path.Combine(tempPath, "archive/test.log.0000")));
             }
             finally
             {

@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF
-
 namespace NLog.LayoutRenderers
 {
     using System.ComponentModel;
@@ -161,5 +159,3 @@ namespace NLog.LayoutRenderers
         }
     }
 }
-
-#endif

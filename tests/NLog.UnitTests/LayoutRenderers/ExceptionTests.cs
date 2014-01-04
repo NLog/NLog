@@ -31,35 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Xml;
-using System.Globalization;
-
-using NLog;
-using NLog.Config;
-using NLog.LayoutRenderers;
-using NLog.Layouts;
-using NLog.Targets;
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
     using System.Collections.Generic;
+    using NLog.LayoutRenderers;
+    using NLog.Layouts;
+    using NLog.Targets;
     using NLog.Internal;
+    using Xunit;
 
-    [TestFixture]
     public class ExceptionTests : NLogTestBase
     {
         private Logger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionTests");
 
-        [Test]
+        [Fact]
         public void ExceptionWithStackTraceTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -92,12 +78,12 @@ namespace NLog.UnitTests.LayoutRenderers
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
             var debug7Target = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
-            Assert.IsFalse(string.IsNullOrEmpty(debug7Target.LastMessage));
+            Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
 
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
         }
 
-        [Test]
+        [Fact]
         public void ExceptionWithoutStackTraceTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -130,7 +116,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
         }
 
-        [Test]
+        [Fact]
         public void ExceptionNewLineSeparatorTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -149,7 +135,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug1", "Test exception\r\n" + typeof(InvalidOperationException).Name);
         }
 
-        [Test]
+        [Fact]
         public void InnerExceptionTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -170,7 +156,7 @@ namespace NLog.UnitTests.LayoutRenderers
 "InvalidOperationException Test exception");
         }
 
-        [Test]
+        [Fact]
         public void CustomInnerExceptionTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -185,7 +171,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
             var elr = ((SimpleLayout) t.Layout).Renderers[0] as ExceptionLayoutRenderer;
-            Assert.AreEqual("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
+            Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
 
             string exceptionMessage = "Test exception";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);

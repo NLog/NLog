@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if NET_CF || USE_LEGACY_ASYNC_API
+#if USE_LEGACY_ASYNC_API
 
 namespace NLog.Internal.NetworkSenders
 {

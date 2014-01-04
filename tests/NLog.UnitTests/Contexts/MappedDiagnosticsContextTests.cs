@@ -40,22 +40,14 @@ namespace NLog.UnitTests.Contexts
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using NUnit.Framework;
+    using Xunit;
 
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
-    [TestFixture]
     public class MappedDiagnosticsContextTests
     {
         /// <summary>
         /// Same as <see cref="MappedDiagnosticsContext" />, but there is one <see cref="MappedDiagnosticsContext"/> per each thread.
         /// </summary>
-        [Test]
+        [Fact]
         public void MDCTest1()
         {
             List<Exception> exceptions = new List<Exception>();
@@ -71,23 +63,23 @@ namespace NLog.UnitTests.Contexts
                             try
                             {
                                 MappedDiagnosticsContext.Clear();
-                                Assert.IsFalse(MappedDiagnosticsContext.Contains("foo"), "#1");
-                                Assert.AreEqual(string.Empty, MappedDiagnosticsContext.Get("foo"), "#2");
-                                Assert.IsFalse(MappedDiagnosticsContext.Contains("foo2"), "#3");
-                                Assert.AreEqual(string.Empty, MappedDiagnosticsContext.Get("foo2"), "#4");
+                                Assert.False(MappedDiagnosticsContext.Contains("foo"));
+                                Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo"));
+                                Assert.False(MappedDiagnosticsContext.Contains("foo2"));
+                                Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo2"));
 
                                 MappedDiagnosticsContext.Set("foo", "bar");
                                 MappedDiagnosticsContext.Set("foo2", "bar2");
 
-                                Assert.IsTrue(MappedDiagnosticsContext.Contains("foo"));
-                                Assert.AreEqual("bar", MappedDiagnosticsContext.Get("foo"));
+                                Assert.True(MappedDiagnosticsContext.Contains("foo"));
+                                Assert.Equal("bar", MappedDiagnosticsContext.Get("foo"));
 
                                 MappedDiagnosticsContext.Remove("foo");
-                                Assert.IsFalse(MappedDiagnosticsContext.Contains("foo"));
-                                Assert.AreEqual(string.Empty, MappedDiagnosticsContext.Get("foo"));
+                                Assert.False(MappedDiagnosticsContext.Contains("foo"));
+                                Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo"));
 
-                                Assert.IsTrue(MappedDiagnosticsContext.Contains("foo2"));
-                                Assert.AreEqual("bar2", MappedDiagnosticsContext.Get("foo2"));
+                                Assert.True(MappedDiagnosticsContext.Contains("foo2"));
+                                Assert.Equal("bar2", MappedDiagnosticsContext.Get("foo2"));
                             }
                             catch (Exception exception)
                             {
@@ -118,10 +110,10 @@ namespace NLog.UnitTests.Contexts
                 exceptionsMessage.Append(ex.ToString());
             }
 
-            Assert.AreEqual(0, exceptions.Count, exceptionsMessage.ToString());
+            Assert.True(exceptions.Count == 0, exceptionsMessage.ToString());
         }
 
-        [Test]
+        [Fact]
         public void MDCTest2()
         {
             List<Exception> exceptions = new List<Exception>();
@@ -137,23 +129,23 @@ namespace NLog.UnitTests.Contexts
                         try
                         {
                             MDC.Clear();
-                            Assert.IsFalse(MDC.Contains("foo"));
-                            Assert.AreEqual(string.Empty, MDC.Get("foo"));
-                            Assert.IsFalse(MDC.Contains("foo2"));
-                            Assert.AreEqual(string.Empty, MDC.Get("foo2"));
+                            Assert.False(MDC.Contains("foo"));
+                            Assert.Equal(string.Empty, MDC.Get("foo"));
+                            Assert.False(MDC.Contains("foo2"));
+                            Assert.Equal(string.Empty, MDC.Get("foo2"));
 
                             MDC.Set("foo", "bar");
                             MDC.Set("foo2", "bar2");
 
-                            Assert.IsTrue(MDC.Contains("foo"));
-                            Assert.AreEqual("bar", MDC.Get("foo"));
+                            Assert.True(MDC.Contains("foo"));
+                            Assert.Equal("bar", MDC.Get("foo"));
 
                             MDC.Remove("foo");
-                            Assert.IsFalse(MDC.Contains("foo"));
-                            Assert.AreEqual(string.Empty, MDC.Get("foo"));
+                            Assert.False(MDC.Contains("foo"));
+                            Assert.Equal(string.Empty, MDC.Get("foo"));
 
-                            Assert.IsTrue(MDC.Contains("foo2"));
-                            Assert.AreEqual("bar2", MDC.Get("foo2"));
+                            Assert.True(MDC.Contains("foo2"));
+                            Assert.Equal("bar2", MDC.Get("foo2"));
                         }
                         catch (Exception ex)
                         {
@@ -184,7 +176,7 @@ namespace NLog.UnitTests.Contexts
                 exceptionsMessage.Append(ex.ToString());
             }
 
-            Assert.AreEqual(0, exceptions.Count, exceptionsMessage.ToString());
+            Assert.True(exceptions.Count == 0, exceptionsMessage.ToString());
         }
     }
 }

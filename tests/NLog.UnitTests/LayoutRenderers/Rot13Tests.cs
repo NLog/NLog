@@ -31,70 +31,52 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Diagnostics;
-using System.Xml;
-using System.Reflection;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-using NLog.LayoutRenderers;
-using NLog.Targets;
-using NLog.Layouts;
-using NLog.LayoutRenderers.Wrappers;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    using NLog.Layouts;
+    using NLog.LayoutRenderers.Wrappers;
+    using Xunit;
+
     public class Rot13Tests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void Test1()
         {
-            Assert.AreEqual("NOPQRSTUVWXYZABCDEFGHIJKLM",
+            Assert.Equal("NOPQRSTUVWXYZABCDEFGHIJKLM",
                     Rot13LayoutRendererWrapper.DecodeRot13("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
-            Assert.AreEqual("nopqrstuvwxyzabcdefghijklm0123456789",
+            Assert.Equal("nopqrstuvwxyzabcdefghijklm0123456789",
                     Rot13LayoutRendererWrapper.DecodeRot13("abcdefghijklmnopqrstuvwxyz0123456789"));
-            Assert.AreEqual("How can you tell an extrovert from an introvert at NSA? Va gur ryringbef, gur rkgebiregf ybbx ng gur BGURE thl'f fubrf.",
+            Assert.Equal("How can you tell an extrovert from an introvert at NSA? Va gur ryringbef, gur rkgebiregf ybbx ng gur BGURE thl'f fubrf.",
             Rot13LayoutRendererWrapper.DecodeRot13(
                             "Ubj pna lbh gryy na rkgebireg sebz na vagebireg ng AFN? In the elevators, the extroverts look at the OTHER guy's shoes."));
         }
 
-        [Test]
+        [Fact]
         public void Test2()
         {
             Layout l = "${rot13:HELLO}";
             LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
-            Assert.AreEqual("URYYB", l.Render(lei));
+            Assert.Equal("URYYB", l.Render(lei));
         }
 
-        [Test]
+        [Fact]
         public void Test3()
         {
             Layout l = "${rot13:text=HELLO}";
             LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
-            Assert.AreEqual("URYYB", l.Render(lei));
+            Assert.Equal("URYYB", l.Render(lei));
         }
 
-        [Test]
+        [Fact]
         public void Test4()
         {
             Layout l = "${rot13:${event-context:aaa}}";
             LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
             lei.Properties["aaa"] = "HELLO";
-            Assert.AreEqual("URYYB", l.Render(lei));
+            Assert.Equal("URYYB", l.Render(lei));
         }
 
-        [Test]
+        [Fact]
         public void Test5()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

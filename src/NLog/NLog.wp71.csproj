@@ -61,14 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyBuildInfo.cs" />
-    <Compile Include="ComInterop\ComLogger.cs" />
-    <Compile Include="ComInterop\ComLogManager.cs" />
-    <Compile Include="ComInterop\IComLogger.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="ComInterop\IComLogManager.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
     <Compile Include="Common\AsyncContinuation.cs" />
     <Compile Include="Common\AsyncHelpers.cs" />
     <Compile Include="Common\AsynchronousAction.cs" />
@@ -136,9 +128,6 @@
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Internal\CompactFrameworkHelper.cs" />
-    <Compile Include="Internal\CompilerAttributes.cs" />
-    <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EnumerableHelpers.cs" />
     <Compile Include="Internal\EnvironmentHelper.cs" />
@@ -156,7 +145,6 @@
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileInfoHelper.cs" />
     <Compile Include="Internal\FormHelper.cs" />
-    <Compile Include="Internal\IConfigurationManager.cs" />
     <Compile Include="Internal\IRenderable.cs" />
     <Compile Include="Internal\ISmtpClient.cs" />
     <Compile Include="Internal\ISupportsInitialize.cs" />
@@ -205,7 +193,6 @@
     <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspRequestValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspSessionValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AssemblyVersionLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CounterLayoutRenderer.cs" />
@@ -213,7 +200,6 @@
     <Compile Include="LayoutRenderers\DocumentUriLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\EnvironmentLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\EventContextLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\EventPropertiesLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\ExceptionLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\FileContentsLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GarbageCollectorInfoLayoutRenderer.cs" />
@@ -257,7 +243,6 @@
     <Compile Include="LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeLayoutRendererWrapper.cs" />
-    <Compile Include="LayoutRenderers\Wrappers\JsonEncodeLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\LowercaseLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\OnExceptionLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\PaddingLayoutRendererWrapper.cs" />
@@ -384,11 +369,6 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions />
-  <Target Name="BeforeBuild">
-    <ItemGroup Condition="Exists('$(BuildInfoFile)')">
-      <Compile Include="$(BuildInfoFile)" />
-    </ItemGroup>
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

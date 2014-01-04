@@ -70,7 +70,6 @@ namespace NLog.Internal.NetworkSenders
                 return new HttpNetworkSender(url);
             }
 
-#if !WINDOWS_PHONE_7
             if (url.StartsWith("tcp://", StringComparison.OrdinalIgnoreCase))
             {
                 return new TcpNetworkSender(url, AddressFamily.Unspecified)
@@ -94,9 +93,8 @@ namespace NLog.Internal.NetworkSenders
                                MaxQueueSize = maxQueueSize
                            };
             }
-#endif
 
-#if !SILVERLIGHT || (WINDOWS_PHONE && !WINDOWS_PHONE_7)
+#if !SILVERLIGHT
             if (url.StartsWith("udp://", StringComparison.OrdinalIgnoreCase))
             {
                 return new UdpNetworkSender(url, AddressFamily.Unspecified);

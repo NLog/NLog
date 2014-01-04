@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT2 && !SILVERLIGHT3 && !WINDOWS_PHONE
-
 namespace NLog.Targets
 {
     /// <summary>
@@ -66,5 +64,3 @@ namespace NLog.Targets
         None,
     }
 }
-
-#endif

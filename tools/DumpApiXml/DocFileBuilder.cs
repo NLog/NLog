@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.IO;
     using System.Linq;
     using System.Reflection;
     using System.Text;
@@ -45,12 +44,6 @@
 
         private List<Assembly> assemblies = new List<Assembly>();
         private List<XmlDocument> comments = new List<XmlDocument>();
-        private List<string> referenceAssemblyDirectories = new List<string>();
-
-        public void AddReferenceDirectory(string dir)
-        {
-            this.referenceAssemblyDirectories.Add(dir);
-        }
 
         public void Build(string outputFile)
         {
@@ -86,15 +79,7 @@
 
         public void LoadAssembly(string fileName)
         {
-            AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += new ResolveEventHandler(this.CurrentDomain_ReflectionOnlyAssemblyResolve);
-            try
-            {
-                this.assemblies.Add(Assembly.ReflectionOnlyLoadFrom(fileName));
-            }
-            finally
-            {
-                //AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve -= new ResolveEventHandler(CurrentDomain_ReflectionOnlyAssemblyResolve);
-            }
+            this.assemblies.Add(Assembly.LoadFrom(fileName));
         }
 
         public void LoadComments(string commentsFile)
@@ -233,33 +218,7 @@
             return p.Substring(0, 1).ToUpper() + p.Substring(1);
         }
 
-        private Assembly CurrentDomain_ReflectionOnlyAssemblyResolve(object sender, ResolveEventArgs args)
-        {
-            //Console.WriteLine("Resolving '{0}' {1}", args.Name, string.Join(";", this.assemblies.Select(c => c.ToString()).ToArray()));
-            var asmName = new AssemblyName(args.Name);
-            var assembly = this.assemblies.Where(c => c.GetName().Name == asmName.Name).FirstOrDefault();
-            if (assembly != null)
-            {
-                Console.WriteLine("Resolved '{0}' from pre-loaded assembly '{1}'.", asmName, assembly.FullName);
-                return assembly;
-            }
-
-            string assemblyFileName = asmName.Name + ".dll";
-            foreach (string refDir in this.referenceAssemblyDirectories)
-            {
-                string fileName = Path.Combine(refDir, assemblyFileName);
-                if (File.Exists(fileName))
-                {
-                    Console.WriteLine("Resolved '{0}' from file '{1}'.", asmName.Name, fileName);
-                    return Assembly.ReflectionOnlyLoadFrom(fileName);
-                }
-            }
-
-            Console.WriteLine("Could not resolve: {0}", assemblyFileName);
-            throw new FileNotFoundException(assemblyFileName + " not found in reference assembly.");
-        }
-
-        private void DumpApiDocs(XmlWriter writer, string kind, string attributeTypeName, string titlePrefix, string titleSuffix)
+	    private void DumpApiDocs(XmlWriter writer, string kind, string attributeTypeName, string titlePrefix, string titleSuffix)
         {
             foreach (Type type in this.GetTypesWithAttribute(attributeTypeName).OrderBy(t => t.Name))
             {

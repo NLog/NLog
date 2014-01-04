@@ -46,9 +46,7 @@ namespace NLog.Internal
     /// <summary>
     /// Win32-optimized implementation of <see cref="ThreadIDHelper"/>.
     /// </summary>
-#if !NET2_0 && !NETCF2_0 && !NETCF3_5 && !SILVERLIGHT2
     [SecuritySafeCritical]
-#endif
     internal class Win32ThreadIDHelper : ThreadIDHelper
     {
         private readonly int currentProcessID;

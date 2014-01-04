@@ -37,21 +37,12 @@
 
 namespace NLog.UnitTests
 {
-    using System;
     using System.Diagnostics;
-    using NUnit.Framework;
+    using Xunit;
 
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
-    [TestFixture]
     public class NLogTraceListenerTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void TraceWriteTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -78,7 +69,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", string.Format("Logger1 Debug Cat2: {0}", 3.1415));
         }
 
-        [Test]
+        [Fact]
         public void TraceWriteLineTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -105,7 +96,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", string.Format("Logger1 Debug Cat2: {0}", 3.1415));
         }
 
-        [Test]
+        [Fact]
         public void TraceWriteNonDefaultLevelTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -123,8 +114,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "Logger1 Trace Hello");
         }
 
-#if !NET_CF
-        [Test]
+        [Fact]
         public void TraceConfiguration()
         {
             var listener = new NLogTraceListener();
@@ -132,12 +122,12 @@ namespace NLog.UnitTests
             listener.Attributes.Add("forceLogLevel", "Error");
             listener.Attributes.Add("autoLoggerName", "1");
 
-            Assert.AreEqual(LogLevel.Warn, listener.DefaultLogLevel);
-            Assert.AreEqual(LogLevel.Error, listener.ForceLogLevel);
-            Assert.IsTrue(listener.AutoLoggerName);
+            Assert.Equal(LogLevel.Warn, listener.DefaultLogLevel);
+            Assert.Equal(LogLevel.Error, listener.ForceLogLevel);
+            Assert.True(listener.AutoLoggerName);
         }
 
-        [Test]
+        [Fact]
         public void TraceFailTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -158,7 +148,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "Logger1 Error Message Detailed Message");
         }
 
-        [Test]
+        [Fact]
         public void AutoLoggerNameTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -176,7 +166,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", this.GetType().FullName + " Debug Hello");
         }
 
-        [Test]
+        [Fact]
         public void TraceDataTests()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -197,7 +187,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", string.Format("MySource1 Fatal 42, {0}, foo 145", 3.14));
         }
         
-        [Test]
+        [Fact]
         public void LogInformationTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -218,7 +208,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Info Mary had a little lamb 0");
         }
 
-        [Test]
+        [Fact]
         public void TraceEventTests()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -257,7 +247,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Fatal Foo 145");
         }
 
-        [Test]
+        [Fact]
         public void ForceLogLevelTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -290,8 +280,6 @@ namespace NLog.UnitTests
 #endif
             return ts;
         }
-
-#endif
     }
 }
 

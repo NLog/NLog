@@ -50,9 +50,7 @@ namespace NLog.LogReceiverService
     [DataContract(Name = "e", Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
 #endif
     [XmlType(Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
-#if !NET_CF
     [DebuggerDisplay("Event ID = {Id} Level={LevelName} Values={Values.Count}")]
-#endif
     public class NLogEvent
     {
         /// <summary>

@@ -85,13 +85,11 @@ namespace NLog.Targets
         /// <docgen category='Connection Options' order='10' />
         public string EndpointConfigurationName { get; set; }
 
-#if !SILVERLIGHT2
         /// <summary>
         /// Gets or sets a value indicating whether to use binary message encoding.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         public bool UseBinaryEncoding { get; set; }
-#endif
 #endif
 
         /// <summary>
@@ -322,13 +320,11 @@ namespace NLog.Targets
                 // endpoint not specified - use BasicHttpBinding
                 Binding binding;
 
-#if !SILVERLIGHT2
                 if (this.UseBinaryEncoding)
                 {
                     binding = new CustomBinding(new BinaryMessageEncodingBindingElement(), new HttpTransportBindingElement());
                 }
                 else
-#endif
                 {
                     binding = new BasicHttpBinding();
                 }

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF && !MONO
+#if !MONO
 
 namespace NLog.LayoutRenderers
 {

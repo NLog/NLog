@@ -31,48 +31,38 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.IO;
-using System.Xml;
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-using NLog.Common;
-using NLog.Config;
-using NLog.Targets;
-using System.Diagnostics;
-using System.Threading;
-
 namespace NLog.UnitTests
 {
-    [TestFixture]
+    using System;
+    using System.IO;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Targets;
+    using System.Diagnostics;
+    using Xunit;
+
     public class LogManagerTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void GetLoggerTest()
         {
             Logger loggerA = LogManager.GetLogger("A");
             Logger loggerA2 = LogManager.GetLogger("A");
             Logger loggerB = LogManager.GetLogger("B");
-            Assert.AreSame(loggerA, loggerA2);
-            Assert.AreNotSame(loggerA, loggerB);
-            Assert.AreEqual("A", loggerA.Name);
-            Assert.AreEqual("B", loggerB.Name);
+            Assert.Same(loggerA, loggerA2);
+            Assert.NotSame(loggerA, loggerB);
+            Assert.Equal("A", loggerA.Name);
+            Assert.Equal("B", loggerB.Name);
         }
 
-        [Test]
+        [Fact]
         public void GarbageCollectionTest()
         {
             string uniqueLoggerName = Guid.NewGuid().ToString();
             Logger loggerA1 = LogManager.GetLogger(uniqueLoggerName);
             GC.Collect();
             Logger loggerA2 = LogManager.GetLogger(uniqueLoggerName);
-            Assert.AreSame(loggerA1, loggerA2);
+            Assert.Same(loggerA1, loggerA2);
         }
 
         static WeakReference GetWeakReferenceToTemporaryLogger()
@@ -81,25 +71,24 @@ namespace NLog.UnitTests
             return new WeakReference (LogManager.GetLogger(uniqueLoggerName));
         }
 
-        [Test]
+        [Fact]
         public void GarbageCollection2Test()
         {
             WeakReference wr = GetWeakReferenceToTemporaryLogger();
 
             // nobody's holding a reference to this Logger anymore, so GC.Collect(2) should free it
             GC.Collect();
-            Assert.IsFalse(wr.IsAlive);
+            Assert.False(wr.IsAlive);
         }
 
-        [Test]
+        [Fact]
         public void NullLoggerTest()
         {
             Logger l = LogManager.CreateNullLogger();
-            Assert.AreEqual("", l.Name);
+            Assert.Equal("", l.Name);
         }
 
-#if !SILVERLIGHT2 && !SILVERLIGHT3 && !WINDOWS_PHONE
-        [Test]
+        [Fact]
         public void ThrowExceptionsTest()
         {
             FileTarget ft = new FileTarget();
@@ -111,15 +100,14 @@ namespace NLog.UnitTests
             try
             {
                 LogManager.GetLogger("A").Info("a");
-                Assert.Fail("Should not be reached.");
+                Assert.True(false, "Should not be reached.");
             }
             catch
             {
-                Assert.IsTrue(true);
+                Assert.True(true);
             }
             LogManager.ThrowExceptions = false;
         }
-#endif
 
         public void GlobalThresholdTest()
         {
@@ -131,7 +119,7 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            Assert.AreEqual(LogLevel.Info, LogManager.GlobalThreshold);
+            Assert.Equal(LogLevel.Info, LogManager.GlobalThreshold);
 
             // nothing gets logged because of globalThreshold
             LogManager.GetLogger("A").Debug("xxx");
@@ -153,7 +141,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "yyy");
         }
 
-#if !SILVERLIGHT && !NET_CF
+#if !SILVERLIGHT
         private int _reloadCounter = 0;
 
         private void WaitForConfigReload(int counter)
@@ -182,7 +170,7 @@ namespace NLog.UnitTests
             return false;
         }
 
-        [Test]
+        [Fact]
         public void AutoReloadTest()
         {
             if (IsMacOsX())
@@ -274,24 +262,22 @@ namespace NLog.UnitTests
         }
 #endif
 
-#if !NET_CF
-        [Test]
+        [Fact]
         public void GivenCurrentClass_WhenGetCurrentClassLogger_ThenLoggerShouldBeCurrentClass()
         {
             var logger = LogManager.GetCurrentClassLogger();
 
-            Assert.AreEqual(this.GetType().FullName, logger.Name);
+            Assert.Equal(this.GetType().FullName, logger.Name);
         }
 
 #if NET4_0
-        [Test]
+        [Fact]
         public void GivenLazyClass_WhenGetCurrentClassLogger_ThenLoggerNameShouldBeCurrentClass()
         {
             var logger = new Lazy<Logger>(LogManager.GetCurrentClassLogger);
 
-            Assert.AreEqual(this.GetType().FullName, logger.Value.Name);
+            Assert.Equal(this.GetType().FullName, logger.Value.Name);
         }
-#endif
 #endif
     }
 }

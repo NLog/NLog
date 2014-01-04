@@ -159,7 +159,6 @@ namespace NLog.Internal.NetworkSenders
         /// <remarks>To be overridden in inheriting classes.</remarks>
         protected abstract void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation);
 
-#if !WINDOWS_PHONE_7
         /// <summary>
         /// Parses the URI into an endpoint address.
         /// </summary>
@@ -193,7 +192,6 @@ namespace NLog.Internal.NetworkSenders
             }
 #endif
         }
-#endif
 
         private void Dispose(bool disposing)
         {

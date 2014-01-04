@@ -31,25 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Globalization;
-using NUnit.Framework;
-
-#if !NUNIT
-using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-#endif
-using NLog.Config;
-
 namespace NLog.UnitTests
 {
     using System.Reflection;
     using NLog.Targets;
+    using System;
+    using System.Globalization;
+    using NLog.Config;
+    using Xunit;
 
-    [TestFixture]
     public class LoggerTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void TraceTest()
         {
             // test all possible overloads of the Trace() method
@@ -189,7 +182,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void DebugTest()
         {
             // test all possible overloads of the Debug() method
@@ -329,7 +322,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void InfoTest()
         {
             // test all possible overloads of the Info() method
@@ -469,7 +462,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void WarnTest()
         {
             // test all possible overloads of the Warn() method
@@ -609,7 +602,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void ErrorTest()
         {
             // test all possible overloads of the Error() method
@@ -749,7 +742,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void FatalTest()
         {
             // test all possible overloads of the Fatal() method
@@ -890,7 +883,7 @@ namespace NLog.UnitTests
         }
 
 
-        [Test]
+        [Fact]
         public void LogTest()
         {
             // test all possible overloads of the Log(level) method
@@ -1034,7 +1027,7 @@ namespace NLog.UnitTests
             }
         }
 
-        [Test]
+        [Fact]
         public void StringFormatWillNotCauseExceptions()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -1052,7 +1045,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "aaaa {0");
         }
 
-        [Test]
+        [Fact]
         public void MultipleLoggersWithSameNameShouldBothReceiveMessages()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -1084,8 +1077,7 @@ namespace NLog.UnitTests
             protected abstract void InternalLog(string what);
         }
 
-#if !NET_CF
-        [Test]
+        [Fact]
         public void Log_LoggerWrappedAndStackTraceEnabled_UserStackFrameIsCurrentMethod()
         {
             LoggingConfiguration config = new LoggingConfiguration();
@@ -1097,7 +1089,7 @@ namespace NLog.UnitTests
             wrapper.Log("test");
 
 
-            Assert.AreEqual(MethodBase.GetCurrentMethod(), target.LastEvent.UserStackFrame.GetMethod());
+            Assert.Equal(MethodBase.GetCurrentMethod(), target.LastEvent.UserStackFrame.GetMethod());
         }
 
         public class MyWrapper : BaseWrapper
@@ -1136,7 +1128,6 @@ namespace NLog.UnitTests
                 base.Write(logEvent);
             }
         }
-#endif
 
         public override string ToString()
         {

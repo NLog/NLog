@@ -31,26 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NET_CF && !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO
 
 namespace NLog.UnitTests.Targets
 {
     using System.Collections.Generic;
     using System.Messaging;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Targets;
+    using Xunit;
 
-    [TestFixture]
     public class MessageQueueTargetTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void QueueExists_Write_MessageIsWritten()
         {
             var messageQueueTestProxy = new MessageQueueTestProxy
@@ -61,10 +53,10 @@ namespace NLog.UnitTests.Targets
 
             target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
 
-            Assert.AreEqual(1, messageQueueTestProxy.SentMessages.Count);
+            Assert.Equal(1, messageQueueTestProxy.SentMessages.Count);
         }
 
-        [Test]
+        [Fact]
         public void QueueDoesNotExistsAndDoNotCreate_Write_NothingIsWritten()
         {
             var messageQueueTestProxy = new MessageQueueTestProxy
@@ -75,10 +67,10 @@ namespace NLog.UnitTests.Targets
 
             target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
 
-            Assert.AreEqual(0, messageQueueTestProxy.SentMessages.Count);
+            Assert.Equal(0, messageQueueTestProxy.SentMessages.Count);
         }
 
-        [Test]
+        [Fact]
         public void QueueDoesNotExistsAndCreatedQueue_Write_QueueIsCreated()
         {
             var messageQueueTestProxy = new MessageQueueTestProxy
@@ -89,10 +81,10 @@ namespace NLog.UnitTests.Targets
 
             target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
 
-            Assert.IsTrue(messageQueueTestProxy.QueueCreated);
+            Assert.True(messageQueueTestProxy.QueueCreated);
         }
 
-        [Test]
+        [Fact]
         public void QueueDoesNotExistsAndCreatedQueue_Write_MessageIsWritten()
         {
             var messageQueueTestProxy = new MessageQueueTestProxy
@@ -103,10 +95,10 @@ namespace NLog.UnitTests.Targets
 
             target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
 
-            Assert.AreEqual(1, messageQueueTestProxy.SentMessages.Count);
+            Assert.Equal(1, messageQueueTestProxy.SentMessages.Count);
         }
 
-        [Test]
+        [Fact]
         public void FormatQueueName_Write_DoesNotCheckIfQueueExists()
         {
             var messageQueueTestProxy = new MessageQueueTestProxy();
@@ -114,10 +106,10 @@ namespace NLog.UnitTests.Targets
             
             target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
 
-            Assert.IsFalse(messageQueueTestProxy.QueueExistsCalled);
+            Assert.False(messageQueueTestProxy.QueueExistsCalled);
         }
 
-        [Test]
+        [Fact]
         public void DoNotCheckIfQueueExists_Write_DoesNotCheckIfQueueExists()
         {
             var messageQueueTestProxy = new MessageQueueTestProxy();
@@ -125,7 +117,7 @@ namespace NLog.UnitTests.Targets
 
             target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
 
-            Assert.IsFalse(messageQueueTestProxy.QueueExistsCalled);
+            Assert.False(messageQueueTestProxy.QueueExistsCalled);
         }
 
         private static MessageQueueTarget CreateTarget(MessageQueueProxy messageQueueTestProxy, bool createQueue, string queueName = "Test", bool checkIfQueueExists = true)

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.0">
   <App xmlns="" ProductID="{3cf9fab9-588c-49c8-8a45-ef071442304f}" Title="NLog.UnitTests" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Jarek Kowalski" Description="Sample description" Publisher="NLog.UnitTests">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>

@@ -102,7 +102,6 @@ namespace NLog.Targets
             set { this.Renderer.AppInfo = value; }
         }
 
-#if !NET_CF
         /// <summary>
         /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.
         /// </summary>
@@ -123,8 +122,6 @@ namespace NLog.Targets
             get { return this.Renderer.IncludeSourceInfo; }
             set { this.Renderer.IncludeSourceInfo = value; }
         }
-#endif
-
 #endif
 
         /// <summary>

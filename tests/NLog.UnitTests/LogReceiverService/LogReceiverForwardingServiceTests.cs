@@ -31,25 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED && !SILVERLIGHT && !NET_CF
+#if WCF_SUPPORTED && !SILVERLIGHT
 
 namespace NLog.UnitTests.LogReceiverService
 {
     using System;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.LogReceiverService;
+    using Xunit;
 
-    [TestFixture]
     public class LogReceiverForwardingServiceTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void ToLogEventInfoTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

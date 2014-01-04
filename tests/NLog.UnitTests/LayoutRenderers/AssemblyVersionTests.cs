@@ -31,34 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NET_CF
+#if !SILVERLIGHT
 
-using System;
-using System.Xml;
 using System.Reflection;
-using System.IO;
-
-using NLog;
-using NLog.Config;
-
-using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-using NLog.Layouts;
-
-#if !SILVERLIGHT2 && !NET_CF
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    [TestFixture]
+    using Xunit;
+
     public class AssemblyVersionTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void BaseDirTest()
         {
 #if SILVERLIGHT
@@ -71,7 +54,5 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
-
-#endif
 
 #endif

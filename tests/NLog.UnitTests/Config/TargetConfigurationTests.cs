@@ -36,25 +36,17 @@ namespace NLog.UnitTests.Config
     using System;
     using System.Globalization;
     using System.Text;
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
     using NLog.Conditions;
     using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using Xunit;
 
-    [TestFixture]
     public class TargetConfigurationTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void SimpleTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -65,16 +57,16 @@ namespace NLog.UnitTests.Config
             </nlog>");
 
             DebugTarget t = c.FindTargetByName("d") as DebugTarget;
-            Assert.IsNotNull(t);
-            Assert.AreEqual(t.Name, "d");
+            Assert.NotNull(t);
+            Assert.Equal(t.Name, "d");
             SimpleLayout l = t.Layout as SimpleLayout;
-            Assert.AreEqual("${message}", l.Text);
-            Assert.IsNotNull(t.Layout);
-            Assert.AreEqual(1, l.Renderers.Count);
-            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
+            Assert.Equal("${message}", l.Text);
+            Assert.NotNull(t.Layout);
+            Assert.Equal(1, l.Renderers.Count);
+            Assert.IsType(typeof(MessageLayoutRenderer), l.Renderers[0]);
         }
 
-        [Test]
+        [Fact]
         public void SimpleElementSyntaxTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -88,16 +80,16 @@ namespace NLog.UnitTests.Config
             </nlog>");
 
             DebugTarget t = c.FindTargetByName("d") as DebugTarget;
-            Assert.IsNotNull(t);
-            Assert.AreEqual(t.Name, "d");
+            Assert.NotNull(t);
+            Assert.Equal(t.Name, "d");
             SimpleLayout l = t.Layout as SimpleLayout;
-            Assert.AreEqual("${message}", l.Text);
-            Assert.IsNotNull(t.Layout);
-            Assert.AreEqual(1, l.Renderers.Count);
-            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
+            Assert.Equal("${message}", l.Text);
+            Assert.NotNull(t.Layout);
+            Assert.Equal(1, l.Renderers.Count);
+            Assert.IsType(typeof(MessageLayoutRenderer), l.Renderers[0]);
         }
 
-        [Test]
+        [Fact]
         public void ArrayParameterTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -112,19 +104,19 @@ namespace NLog.UnitTests.Config
             </nlog>");
 
             var t = c.FindTargetByName("mct") as MethodCallTarget;
-            Assert.IsNotNull(t);
-            Assert.AreEqual(3, t.Parameters.Count);
-            Assert.AreEqual("p1", t.Parameters[0].Name);
-            Assert.AreEqual("'${message}'", t.Parameters[0].Layout.ToString());
+            Assert.NotNull(t);
+            Assert.Equal(3, t.Parameters.Count);
+            Assert.Equal("p1", t.Parameters[0].Name);
+            Assert.Equal("'${message}'", t.Parameters[0].Layout.ToString());
 
-            Assert.AreEqual("p2", t.Parameters[1].Name);
-            Assert.AreEqual("'${level}'", t.Parameters[1].Layout.ToString());
+            Assert.Equal("p2", t.Parameters[1].Name);
+            Assert.Equal("'${level}'", t.Parameters[1].Layout.ToString());
             
-            Assert.AreEqual("p3", t.Parameters[2].Name);
-            Assert.AreEqual("'${logger}'", t.Parameters[2].Layout.ToString());
+            Assert.Equal("p3", t.Parameters[2].Name);
+            Assert.Equal("'${logger}'", t.Parameters[2].Layout.ToString());
         }
 
-        [Test]
+        [Fact]
         public void ArrayElementParameterTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -151,23 +143,23 @@ namespace NLog.UnitTests.Config
             </nlog>");
 
             var t = c.FindTargetByName("mct") as MethodCallTarget;
-            Assert.IsNotNull(t);
-            Assert.AreEqual(3, t.Parameters.Count);
-            Assert.AreEqual("p1", t.Parameters[0].Name);
-            Assert.AreEqual("'${message}'", t.Parameters[0].Layout.ToString());
+            Assert.NotNull(t);
+            Assert.Equal(3, t.Parameters.Count);
+            Assert.Equal("p1", t.Parameters[0].Name);
+            Assert.Equal("'${message}'", t.Parameters[0].Layout.ToString());
 
-            Assert.AreEqual("p2", t.Parameters[1].Name);
+            Assert.Equal("p2", t.Parameters[1].Name);
             CsvLayout csvLayout = t.Parameters[1].Layout as CsvLayout;
-            Assert.IsNotNull(csvLayout);
-            Assert.AreEqual(2, csvLayout.Columns.Count);
-            Assert.AreEqual("x", csvLayout.Columns[0].Name);
-            Assert.AreEqual("y", csvLayout.Columns[1].Name);
+            Assert.NotNull(csvLayout);
+            Assert.Equal(2, csvLayout.Columns.Count);
+            Assert.Equal("x", csvLayout.Columns[0].Name);
+            Assert.Equal("y", csvLayout.Columns[1].Name);
 
-            Assert.AreEqual("p3", t.Parameters[2].Name);
-            Assert.AreEqual("'${logger}'", t.Parameters[2].Layout.ToString());
+            Assert.Equal("p3", t.Parameters[2].Name);
+            Assert.Equal("'${logger}'", t.Parameters[2].Layout.ToString());
         }
 
-        [Test]
+        [Fact]
         public void SimpleTest2()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -178,19 +170,19 @@ namespace NLog.UnitTests.Config
             </nlog>");
 
             DebugTarget t = c.FindTargetByName("d") as DebugTarget;
-            Assert.IsNotNull(t);
-            Assert.AreEqual(t.Name, "d");
+            Assert.NotNull(t);
+            Assert.Equal(t.Name, "d");
             SimpleLayout l = t.Layout as SimpleLayout;
-            Assert.AreEqual("${message} ${level}", l.Text);
-            Assert.IsNotNull(l);
-            Assert.AreEqual(3, l.Renderers.Count);
-            Assert.IsInstanceOfType(typeof(MessageLayoutRenderer), l.Renderers[0]);
-            Assert.IsInstanceOfType(typeof(LiteralLayoutRenderer), l.Renderers[1]);
-            Assert.IsInstanceOfType(typeof(LevelLayoutRenderer), l.Renderers[2]);
-            Assert.AreEqual(" ", ((LiteralLayoutRenderer)l.Renderers[1]).Text);
+            Assert.Equal("${message} ${level}", l.Text);
+            Assert.NotNull(l);
+            Assert.Equal(3, l.Renderers.Count);
+            Assert.IsType(typeof(MessageLayoutRenderer), l.Renderers[0]);
+            Assert.IsType(typeof(LiteralLayoutRenderer), l.Renderers[1]);
+            Assert.IsType(typeof(LevelLayoutRenderer), l.Renderers[2]);
+            Assert.Equal(" ", ((LiteralLayoutRenderer)l.Renderers[1]).Text);
         }
 
-        [Test]
+        [Fact]
         public void WrapperTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -204,24 +196,24 @@ namespace NLog.UnitTests.Config
                 </targets>
             </nlog>");
 
-            Assert.IsNotNull(c.FindTargetByName("a"));
-            Assert.IsNotNull(c.FindTargetByName("b"));
-            Assert.IsNotNull(c.FindTargetByName("c"));
+            Assert.NotNull(c.FindTargetByName("a"));
+            Assert.NotNull(c.FindTargetByName("b"));
+            Assert.NotNull(c.FindTargetByName("c"));
 
-            Assert.IsInstanceOfType(typeof(BufferingTargetWrapper), c.FindTargetByName("b"));
-            Assert.IsInstanceOfType(typeof(AsyncTargetWrapper), c.FindTargetByName("a"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("c"));
+            Assert.IsType(typeof(BufferingTargetWrapper), c.FindTargetByName("b"));
+            Assert.IsType(typeof(AsyncTargetWrapper), c.FindTargetByName("a"));
+            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("c"));
 
             BufferingTargetWrapper btw = c.FindTargetByName("b") as BufferingTargetWrapper;
             AsyncTargetWrapper atw = c.FindTargetByName("a") as AsyncTargetWrapper;
             DebugTarget dt = c.FindTargetByName("c") as DebugTarget;
 
-            Assert.AreSame(atw, btw.WrappedTarget);
-            Assert.AreSame(dt, atw.WrappedTarget);
-            Assert.AreEqual(19, btw.BufferSize);
+            Assert.Same(atw, btw.WrappedTarget);
+            Assert.Same(dt, atw.WrappedTarget);
+            Assert.Equal(19, btw.BufferSize);
         }
 
-        [Test]
+        [Fact]
         public void WrapperRefTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -239,24 +231,24 @@ namespace NLog.UnitTests.Config
                 </targets>
             </nlog>");
 
-            Assert.IsNotNull(c.FindTargetByName("a"));
-            Assert.IsNotNull(c.FindTargetByName("b"));
-            Assert.IsNotNull(c.FindTargetByName("c"));
+            Assert.NotNull(c.FindTargetByName("a"));
+            Assert.NotNull(c.FindTargetByName("b"));
+            Assert.NotNull(c.FindTargetByName("c"));
 
-            Assert.IsInstanceOfType(typeof(BufferingTargetWrapper), c.FindTargetByName("b"));
-            Assert.IsInstanceOfType(typeof(AsyncTargetWrapper), c.FindTargetByName("a"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("c"));
+            Assert.IsType(typeof(BufferingTargetWrapper), c.FindTargetByName("b"));
+            Assert.IsType(typeof(AsyncTargetWrapper), c.FindTargetByName("a"));
+            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("c"));
 
             BufferingTargetWrapper btw = c.FindTargetByName("b") as BufferingTargetWrapper;
             AsyncTargetWrapper atw = c.FindTargetByName("a") as AsyncTargetWrapper;
             DebugTarget dt = c.FindTargetByName("c") as DebugTarget;
 
-            Assert.AreSame(atw, btw.WrappedTarget);
-            Assert.AreSame(dt, atw.WrappedTarget);
-            Assert.AreEqual(19, btw.BufferSize);
+            Assert.Same(atw, btw.WrappedTarget);
+            Assert.Same(dt, atw.WrappedTarget);
+            Assert.Equal(19, btw.BufferSize);
         }
 
-        [Test]
+        [Fact]
         public void CompoundTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -271,17 +263,17 @@ namespace NLog.UnitTests.Config
                 </targets>
             </nlog>");
 
-            Assert.IsNotNull(c.FindTargetByName("rr"));
-            Assert.IsNotNull(c.FindTargetByName("d1"));
-            Assert.IsNotNull(c.FindTargetByName("d2"));
-            Assert.IsNotNull(c.FindTargetByName("d3"));
-            Assert.IsNotNull(c.FindTargetByName("d4"));
+            Assert.NotNull(c.FindTargetByName("rr"));
+            Assert.NotNull(c.FindTargetByName("d1"));
+            Assert.NotNull(c.FindTargetByName("d2"));
+            Assert.NotNull(c.FindTargetByName("d3"));
+            Assert.NotNull(c.FindTargetByName("d4"));
 
-            Assert.IsInstanceOfType(typeof(RoundRobinGroupTarget), c.FindTargetByName("rr"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d1"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d2"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d3"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d4"));
+            Assert.IsType(typeof(RoundRobinGroupTarget), c.FindTargetByName("rr"));
+            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d1"));
+            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d2"));
+            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d3"));
+            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d4"));
 
             RoundRobinGroupTarget rr = c.FindTargetByName("rr") as RoundRobinGroupTarget;
             DebugTarget d1 = c.FindTargetByName("d1") as DebugTarget;
@@ -289,19 +281,19 @@ namespace NLog.UnitTests.Config
             DebugTarget d3 = c.FindTargetByName("d3") as DebugTarget;
             DebugTarget d4 = c.FindTargetByName("d4") as DebugTarget;
 
-            Assert.AreEqual(4, rr.Targets.Count);
-            Assert.AreSame(d1, rr.Targets[0]);
-            Assert.AreSame(d2, rr.Targets[1]);
-            Assert.AreSame(d3, rr.Targets[2]);
-            Assert.AreSame(d4, rr.Targets[3]);
+            Assert.Equal(4, rr.Targets.Count);
+            Assert.Same(d1, rr.Targets[0]);
+            Assert.Same(d2, rr.Targets[1]);
+            Assert.Same(d3, rr.Targets[2]);
+            Assert.Same(d4, rr.Targets[3]);
 
-            Assert.AreEqual(((SimpleLayout)d1.Layout).Text, "${message}1");
-            Assert.AreEqual(((SimpleLayout)d2.Layout).Text, "${message}2");
-            Assert.AreEqual(((SimpleLayout)d3.Layout).Text, "${message}3");
-            Assert.AreEqual(((SimpleLayout)d4.Layout).Text, "${message}4");
+            Assert.Equal(((SimpleLayout)d1.Layout).Text, "${message}1");
+            Assert.Equal(((SimpleLayout)d2.Layout).Text, "${message}2");
+            Assert.Equal(((SimpleLayout)d3.Layout).Text, "${message}3");
+            Assert.Equal(((SimpleLayout)d4.Layout).Text, "${message}4");
         }
 
-        [Test]
+        [Fact]
         public void CompoundRefTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -321,17 +313,17 @@ namespace NLog.UnitTests.Config
                 </targets>
             </nlog>");
 
-            Assert.IsNotNull(c.FindTargetByName("rr"));
-            Assert.IsNotNull(c.FindTargetByName("d1"));
-            Assert.IsNotNull(c.FindTargetByName("d2"));
-            Assert.IsNotNull(c.FindTargetByName("d3"));
-            Assert.IsNotNull(c.FindTargetByName("d4"));
+            Assert.NotNull(c.FindTargetByName("rr"));
+            Assert.NotNull(c.FindTargetByName("d1"));
+            Assert.NotNull(c.FindTargetByName("d2"));
+            Assert.NotNull(c.FindTargetByName("d3"));
+            Assert.NotNull(c.FindTargetByName("d4"));
 
-            Assert.IsInstanceOfType(typeof(RoundRobinGroupTarget), c.FindTargetByName("rr"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d1"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d2"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d3"));
-            Assert.IsInstanceOfType(typeof(DebugTarget), c.FindTargetByName("d4"));
+            Assert.IsType(typeof(RoundRobinGroupTarget), c.FindTargetByName("rr"));
+            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d1"));
+            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d2"));
+            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d3"));
+            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d4"));
 
             RoundRobinGroupTarget rr = c.FindTargetByName("rr") as RoundRobinGroupTarget;
             DebugTarget d1 = c.FindTargetByName("d1") as DebugTarget;
@@ -339,19 +331,19 @@ namespace NLog.UnitTests.Config
             DebugTarget d3 = c.FindTargetByName("d3") as DebugTarget;
             DebugTarget d4 = c.FindTargetByName("d4") as DebugTarget;
 
-            Assert.AreEqual(4, rr.Targets.Count);
-            Assert.AreSame(d1, rr.Targets[0]);
-            Assert.AreSame(d2, rr.Targets[1]);
-            Assert.AreSame(d3, rr.Targets[2]);
-            Assert.AreSame(d4, rr.Targets[3]);
+            Assert.Equal(4, rr.Targets.Count);
+            Assert.Same(d1, rr.Targets[0]);
+            Assert.Same(d2, rr.Targets[1]);
+            Assert.Same(d3, rr.Targets[2]);
+            Assert.Same(d4, rr.Targets[3]);
 
-            Assert.AreEqual(((SimpleLayout)d1.Layout).Text, "${message}1");
-            Assert.AreEqual(((SimpleLayout)d2.Layout).Text, "${message}2");
-            Assert.AreEqual(((SimpleLayout)d3.Layout).Text, "${message}3");
-            Assert.AreEqual(((SimpleLayout)d4.Layout).Text, "${message}4");
+            Assert.Equal(((SimpleLayout)d1.Layout).Text, "${message}1");
+            Assert.Equal(((SimpleLayout)d2.Layout).Text, "${message}2");
+            Assert.Equal(((SimpleLayout)d3.Layout).Text, "${message}3");
+            Assert.Equal(((SimpleLayout)d4.Layout).Text, "${message}4");
         }
 
-        [Test]
+        [Fact]
         public void AsyncWrappersTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -363,23 +355,23 @@ namespace NLog.UnitTests.Config
             </nlog>");
 
             var t = c.FindTargetByName("d") as AsyncTargetWrapper;
-            Assert.IsNotNull(t);
-            Assert.AreEqual(t.Name, "d");
+            Assert.NotNull(t);
+            Assert.Equal(t.Name, "d");
 
             var wrappedTarget = t.WrappedTarget as DebugTarget;
-            Assert.IsNotNull(wrappedTarget);
-            Assert.AreEqual("d_wrapped", wrappedTarget.Name);
+            Assert.NotNull(wrappedTarget);
+            Assert.Equal("d_wrapped", wrappedTarget.Name);
 
             t = c.FindTargetByName("d2") as AsyncTargetWrapper;
-            Assert.IsNotNull(t);
-            Assert.AreEqual(t.Name, "d2");
+            Assert.NotNull(t);
+            Assert.Equal(t.Name, "d2");
 
             wrappedTarget = t.WrappedTarget as DebugTarget;
-            Assert.IsNotNull(wrappedTarget);
-            Assert.AreEqual("d2_wrapped", wrappedTarget.Name);
+            Assert.NotNull(wrappedTarget);
+            Assert.Equal("d2_wrapped", wrappedTarget.Name);
         }
 
-        [Test]
+        [Fact]
         public void DefaultTargetParametersTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -392,15 +384,15 @@ namespace NLog.UnitTests.Config
             </nlog>");
 
             var t = c.FindTargetByName("d") as DebugTarget;
-            Assert.IsNotNull(t);
-            Assert.AreEqual("'x${message}x'", t.Layout.ToString());
+            Assert.NotNull(t);
+            Assert.Equal("'x${message}x'", t.Layout.ToString());
 
             t = c.FindTargetByName("d2") as DebugTarget;
-            Assert.IsNotNull(t);
-            Assert.AreEqual("'x${message}x'", t.Layout.ToString());
+            Assert.NotNull(t);
+            Assert.Equal("'x${message}x'", t.Layout.ToString());
         }
 
-        [Test]
+        [Fact]
         public void DefaultWrapperTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -415,19 +407,19 @@ namespace NLog.UnitTests.Config
             </nlog>");
 
             var bufferingTargetWrapper = c.FindTargetByName("d") as BufferingTargetWrapper;
-            Assert.IsNotNull(bufferingTargetWrapper);
+            Assert.NotNull(bufferingTargetWrapper);
 
             var retryingTargetWrapper = bufferingTargetWrapper.WrappedTarget as RetryingTargetWrapper;
-            Assert.IsNotNull(retryingTargetWrapper);
-            Assert.IsNull(retryingTargetWrapper.Name);
+            Assert.NotNull(retryingTargetWrapper);
+            Assert.Null(retryingTargetWrapper.Name);
 
             var debugTarget = retryingTargetWrapper.WrappedTarget as DebugTarget;
-            Assert.IsNotNull(debugTarget);
-            Assert.AreEqual("d_wrapped", debugTarget.Name);
-            Assert.AreEqual("'${level}'", debugTarget.Layout.ToString());
+            Assert.NotNull(debugTarget);
+            Assert.Equal("d_wrapped", debugTarget.Name);
+            Assert.Equal("'${level}'", debugTarget.Layout.ToString());
         }
 
-        [Test]
+        [Fact]
         public void DataTypesTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -458,25 +450,25 @@ namespace NLog.UnitTests.Config
             </nlog>");
 
             var myTarget = c.FindTargetByName("myTarget") as MyTarget;
-            Assert.IsNotNull(myTarget);
-            Assert.AreEqual((byte)42, myTarget.ByteProperty);
-            Assert.AreEqual((short)42, myTarget.Int16Property);
-            Assert.AreEqual(42, myTarget.Int32Property);
-            Assert.AreEqual(42000000000L, myTarget.Int64Property);
-            Assert.AreEqual("foobar", myTarget.StringProperty);
-            Assert.AreEqual(true, myTarget.BoolProperty);
-            Assert.AreEqual(3.14159, myTarget.DoubleProperty);
-            Assert.AreEqual(3.14159f, myTarget.FloatProperty);
-            Assert.AreEqual(MyEnum.Value3, myTarget.EnumProperty);
-            Assert.AreEqual(MyFlagsEnum.Value1 | MyFlagsEnum.Value3, myTarget.FlagsEnumProperty);
-            Assert.AreEqual(Encoding.UTF8, myTarget.EncodingProperty);
-            Assert.AreEqual("en-US", myTarget.CultureProperty.Name);
-            Assert.AreEqual(typeof(int), myTarget.TypeProperty);
-            Assert.AreEqual("'${level}'", myTarget.LayoutProperty.ToString());
-            Assert.AreEqual("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
+            Assert.NotNull(myTarget);
+            Assert.Equal((byte)42, myTarget.ByteProperty);
+            Assert.Equal((short)42, myTarget.Int16Property);
+            Assert.Equal(42, myTarget.Int32Property);
+            Assert.Equal(42000000000L, myTarget.Int64Property);
+            Assert.Equal("foobar", myTarget.StringProperty);
+            Assert.Equal(true, myTarget.BoolProperty);
+            Assert.Equal(3.14159, myTarget.DoubleProperty);
+            Assert.Equal(3.14159f, myTarget.FloatProperty);
+            Assert.Equal(MyEnum.Value3, myTarget.EnumProperty);
+            Assert.Equal(MyFlagsEnum.Value1 | MyFlagsEnum.Value3, myTarget.FlagsEnumProperty);
+            Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty);
+            Assert.Equal("en-US", myTarget.CultureProperty.Name);
+            Assert.Equal(typeof(int), myTarget.TypeProperty);
+            Assert.Equal("'${level}'", myTarget.LayoutProperty.ToString());
+            Assert.Equal("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
         }
 
-        [Test]
+        [Fact]
         public void NullableDataTypesTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"
@@ -507,22 +499,22 @@ namespace NLog.UnitTests.Config
             </nlog>");
 
             var myTarget = c.FindTargetByName("myTarget") as MyNullableTarget;
-            Assert.IsNotNull(myTarget);
-            Assert.AreEqual((byte)42, myTarget.ByteProperty);
-            Assert.AreEqual((short)42, myTarget.Int16Property);
-            Assert.AreEqual(42, myTarget.Int32Property);
-            Assert.AreEqual(42000000000L, myTarget.Int64Property);
-            Assert.AreEqual("foobar", myTarget.StringProperty);
-            Assert.AreEqual(true, myTarget.BoolProperty);
-            Assert.AreEqual(3.14159, myTarget.DoubleProperty);
-            Assert.AreEqual(3.14159f, myTarget.FloatProperty);
-            Assert.AreEqual(MyEnum.Value3, myTarget.EnumProperty);
-            Assert.AreEqual(MyFlagsEnum.Value1 | MyFlagsEnum.Value3, myTarget.FlagsEnumProperty);
-            Assert.AreEqual(Encoding.UTF8, myTarget.EncodingProperty);
-            Assert.AreEqual("en-US", myTarget.CultureProperty.Name);
-            Assert.AreEqual(typeof(int), myTarget.TypeProperty);
-            Assert.AreEqual("'${level}'", myTarget.LayoutProperty.ToString());
-            Assert.AreEqual("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
+            Assert.NotNull(myTarget);
+            Assert.Equal((byte)42, myTarget.ByteProperty);
+            Assert.Equal((short)42, myTarget.Int16Property);
+            Assert.Equal(42, myTarget.Int32Property);
+            Assert.Equal(42000000000L, myTarget.Int64Property);
+            Assert.Equal("foobar", myTarget.StringProperty);
+            Assert.Equal(true, myTarget.BoolProperty);
+            Assert.Equal(3.14159, myTarget.DoubleProperty);
+            Assert.Equal(3.14159f, myTarget.FloatProperty);
+            Assert.Equal(MyEnum.Value3, myTarget.EnumProperty);
+            Assert.Equal(MyFlagsEnum.Value1 | MyFlagsEnum.Value3, myTarget.FlagsEnumProperty);
+            Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty);
+            Assert.Equal("en-US", myTarget.CultureProperty.Name);
+            Assert.Equal(typeof(int), myTarget.TypeProperty);
+            Assert.Equal("'${level}'", myTarget.LayoutProperty.ToString());
+            Assert.Equal("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
         }
 
         [Target("MyTarget")]

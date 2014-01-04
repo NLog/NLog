@@ -53,7 +53,6 @@ namespace NLog
             return (T)this.GetLogger(name, typeof(T));
         }
 
-#if !NET_CF
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
@@ -72,6 +71,5 @@ namespace NLog
 
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
         }
-#endif
     }
 }

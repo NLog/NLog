@@ -36,25 +36,16 @@ namespace NLog.UnitTests.Conditions
     using System;
     using System.Globalization;
     using System.IO;
-#if !NET_CF && !SILVERLIGHT
+#if !SILVERLIGHT
     using System.Runtime.Serialization.Formatters.Binary;
-#endif
-    using NUnit.Framework;
-
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-    using ExpectedException = Microsoft.VisualStudio.TestTools.UnitTesting.ExpectedExceptionAttribute;
 #endif
     using NLog.Conditions;
     using NLog.Config;
+    using Xunit;
 
-    [TestFixture]
     public class ConditionEvaluatorTests : NLogTestBase
     {
-        [Test]
+        [Fact]
         public void BooleanOperatorTest()
         {
             AssertEvaluationResult(false, "false or false");
@@ -71,7 +62,7 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult(true, "not not true");
         }
 
-        [Test]
+        [Fact]
         public void ConditionMethodsTest()
         {
             AssertEvaluationResult(true, "starts-with('foobar','foo')");
@@ -88,47 +79,39 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult(true, "contains('foo','')");
         }
 
-        [Test]
+        [Fact]
         public void ConditionMethodNegativeTest1()
         {
             try
             {
                 AssertEvaluationResult(true, "starts-with('foobar')");
-                Assert.Fail("Expected exception");
+                Assert.True(false, "Expected exception");
             }
             catch (ConditionParseException ex)
             {
-                Assert.AreEqual("Cannot resolve function 'starts-with'", ex.Message);
-                Assert.IsNotNull(ex.InnerException);
-#if NET_CF || WINDOWS_PHONE
-                Assert.AreEqual("Condition method 'starts-with' expects 2 parameters, but passed 1.", ex.InnerException.Message);
-#else
-                Assert.AreEqual("Condition method 'starts-with' requires between 2 and 3 parameters, but passed 1.", ex.InnerException.Message);
-#endif
+                Assert.Equal("Cannot resolve function 'starts-with'", ex.Message);
+                Assert.NotNull(ex.InnerException);
+                Assert.Equal("Condition method 'starts-with' requires between 2 and 3 parameters, but passed 1.", ex.InnerException.Message);
             }
         }
 
-        [Test]
+        [Fact]
         public void ConditionMethodNegativeTest2()
         {
             try
             {
                 AssertEvaluationResult(true, "starts-with('foobar','baz','qux','zzz')");
-                Assert.Fail("Expected exception");
+                Assert.True(false, "Expected exception");
             }
             catch (ConditionParseException ex)
             {
-                Assert.AreEqual("Cannot resolve function 'starts-with'", ex.Message);
-                Assert.IsNotNull(ex.InnerException);
-#if NET_CF || WINDOWS_PHONE
-                Assert.AreEqual("Condition method 'starts-with' expects 2 parameters, but passed 4.", ex.InnerException.Message);
-#else
-                Assert.AreEqual("Condition method 'starts-with' requires between 2 and 3 parameters, but passed 4.", ex.InnerException.Message);
-#endif
+                Assert.Equal("Cannot resolve function 'starts-with'", ex.Message);
+                Assert.NotNull(ex.InnerException);
+                Assert.Equal("Condition method 'starts-with' requires between 2 and 3 parameters, but passed 4.", ex.InnerException.Message);
             }
         }
 
-        [Test]
+        [Fact]
         public void LiteralTest()
         {
             AssertEvaluationResult(null, "null");
@@ -144,7 +127,7 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult("d'Artagnan", "'d''Artagnan'");
         }
 
-        [Test]
+        [Fact]
         public void LogEventInfoPropertiesTest()
         {
             AssertEvaluationResult(LogLevel.Warn, "level");
@@ -152,7 +135,7 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult("MyCompany.Product.Class", "logger");
         }
 
-        [Test]
+        [Fact]
         public void RelationalOperatorTest()
         {
             AssertEvaluationResult(true, "1 < 2");
@@ -189,108 +172,104 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult(true, "1 != null");
         }
 
-        [Test]
-        [ExpectedException(typeof(ConditionEvaluationException))]
+        [Fact]
         public void UnsupportedRelationalOperatorTest()
         {
             var cond = new ConditionRelationalExpression("true", "true", (ConditionRelationalOperator)(-1));
-            cond.Evaluate(LogEventInfo.CreateNullEvent());
+            Assert.Throws<ConditionEvaluationException>(() => cond.Evaluate(LogEventInfo.CreateNullEvent()));
         }
 
-        [Test]
-        [ExpectedException(typeof(NotSupportedException))]
+        [Fact]
         public void UnsupportedRelationalOperatorTest2()
         {
             var cond = new ConditionRelationalExpression("true", "true", (ConditionRelationalOperator)(-1));
-            cond.ToString();
+            Assert.Throws<NotSupportedException>(() => cond.ToString());
         }
 
-        [Test]
+        [Fact]
         public void MethodWithLogEventInfoTest()
         {
             var factories = SetupConditionMethods();
-            Assert.AreEqual(true, ConditionParser.ParseExpression("IsValid()", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("IsValid()", factories).Evaluate(CreateWellKnownContext()));
         }
 
-        [Test]
+        [Fact]
         public void TypePromotionTest()
         {
             var factories = SetupConditionMethods();
 
-            Assert.AreEqual(true, ConditionParser.ParseExpression("ToDateTime('2010/01/01') == '2010/01/01'", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("ToInt64(1) == ToInt32(1)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("'42' == 42", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("42 == '42'", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("ToDouble(3) == 3", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("3 == ToDouble(3)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("ToSingle(3) == 3", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("3 == ToSingle(3)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("ToDecimal(3) == 3", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("3 == ToDecimal(3)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("ToInt32(3) == ToInt16(3)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("ToInt16(3) == ToInt32(3)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("true == ToInt16(1)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(true, ConditionParser.ParseExpression("ToInt16(1) == true", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("ToDateTime('2010/01/01') == '2010/01/01'", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("ToInt64(1) == ToInt32(1)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("'42' == 42", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("42 == '42'", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("ToDouble(3) == 3", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("3 == ToDouble(3)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("ToSingle(3) == 3", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("3 == ToSingle(3)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("ToDecimal(3) == 3", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("3 == ToDecimal(3)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("ToInt32(3) == ToInt16(3)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("ToInt16(3) == ToInt32(3)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("true == ToInt16(1)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(true, ConditionParser.ParseExpression("ToInt16(1) == true", factories).Evaluate(CreateWellKnownContext()));
 
-            Assert.AreEqual(false, ConditionParser.ParseExpression("ToDateTime('2010/01/01') == '2010/01/02'", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("ToInt64(1) == ToInt32(2)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("'42' == 43", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("42 == '43'", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("ToDouble(3) == 4", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("3 == ToDouble(4)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("ToSingle(3) == 4", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("3 == ToSingle(4)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("ToDecimal(3) == 4", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("3 == ToDecimal(4)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("ToInt32(3) == ToInt16(4)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("ToInt16(3) == ToInt32(4)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("false == ToInt16(4)", factories).Evaluate(CreateWellKnownContext()));
-            Assert.AreEqual(false, ConditionParser.ParseExpression("ToInt16(1) == false", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("ToDateTime('2010/01/01') == '2010/01/02'", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("ToInt64(1) == ToInt32(2)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("'42' == 43", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("42 == '43'", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("ToDouble(3) == 4", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("3 == ToDouble(4)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("ToSingle(3) == 4", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("3 == ToSingle(4)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("ToDecimal(3) == 4", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("3 == ToDecimal(4)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("ToInt32(3) == ToInt16(4)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("ToInt16(3) == ToInt32(4)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("false == ToInt16(4)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Equal(false, ConditionParser.ParseExpression("ToInt16(1) == false", factories).Evaluate(CreateWellKnownContext()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ConditionEvaluationException))]
+        [Fact]
         public void TypePromotionNegativeTest1()
         {
             var factories = SetupConditionMethods();
 
-            Assert.AreEqual(true, ConditionParser.ParseExpression("ToDateTime('2010/01/01') == '20xx/01/01'", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Throws<ConditionEvaluationException>(() => ConditionParser.ParseExpression("ToDateTime('2010/01/01') == '20xx/01/01'", factories).Evaluate(CreateWellKnownContext()));
         }
 
-        [Test]
-        [ExpectedException(typeof(ConditionEvaluationException))]
+        [Fact]
         public void TypePromotionNegativeTest2()
         {
             var factories = SetupConditionMethods();
 
-            Assert.AreEqual(true, ConditionParser.ParseExpression("GetGuid() == ToInt16(1)", factories).Evaluate(CreateWellKnownContext()));
+            Assert.Throws<ConditionEvaluationException>(() => ConditionParser.ParseExpression("GetGuid() == ToInt16(1)", factories).Evaluate(CreateWellKnownContext()));
         }
 
-        [Test]
+        [Fact]
         public void ExceptionTest1()
         {
             var ex1 = new ConditionEvaluationException();
-            Assert.IsNotNull(ex1.Message);
+            Assert.NotNull(ex1.Message);
         }
 
-        [Test]
+        [Fact]
         public void ExceptionTest2()
         {
             var ex1 = new ConditionEvaluationException("msg");
-            Assert.AreEqual("msg", ex1.Message);
+            Assert.Equal("msg", ex1.Message);
         }
 
-        [Test]
+        [Fact]
         public void ExceptionTest3()
         {
             var inner = new InvalidOperationException("f");
             var ex1 = new ConditionEvaluationException("msg", inner);
-            Assert.AreEqual("msg", ex1.Message);
-            Assert.AreSame(inner, ex1.InnerException);
+            Assert.Equal("msg", ex1.Message);
+            Assert.Same(inner, ex1.InnerException);
         }
 
-#if !SILVERLIGHT && !NET_CF
-        [Test]
+#if !SILVERLIGHT
+        [Fact]
         public void ExceptionTest4()
         {
             var inner = new InvalidOperationException("f");
@@ -301,36 +280,36 @@ namespace NLog.UnitTests.Conditions
             ms.Position = 0;
             Exception ex2 = (Exception)bf.Deserialize(ms);
 
-            Assert.AreEqual("msg", ex2.Message);
-            Assert.AreEqual("f", ex2.InnerException.Message);
+            Assert.Equal("msg", ex2.Message);
+            Assert.Equal("f", ex2.InnerException.Message);
         }
 #endif
 
-        [Test]
+        [Fact]
         public void ExceptionTest11()
         {
             var ex1 = new ConditionParseException();
-            Assert.IsNotNull(ex1.Message);
+            Assert.NotNull(ex1.Message);
         }
 
-        [Test]
+        [Fact]
         public void ExceptionTest12()
         {
             var ex1 = new ConditionParseException("msg");
-            Assert.AreEqual("msg", ex1.Message);
+            Assert.Equal("msg", ex1.Message);
         }
 
-        [Test]
+        [Fact]
         public void ExceptionTest13()
         {
             var inner = new InvalidOperationException("f");
             var ex1 = new ConditionParseException("msg", inner);
-            Assert.AreEqual("msg", ex1.Message);
-            Assert.AreSame(inner, ex1.InnerException);
+            Assert.Equal("msg", ex1.Message);
+            Assert.Same(inner, ex1.InnerException);
         }
 
-#if !SILVERLIGHT && !NET_CF
-        [Test]
+#if !SILVERLIGHT
+        [Fact]
         public void ExceptionTest14()
         {
             var inner = new InvalidOperationException("f");
@@ -341,8 +320,8 @@ namespace NLog.UnitTests.Conditions
             ms.Position = 0;
             Exception ex2 = (Exception)bf.Deserialize(ms);
 
-            Assert.AreEqual("msg", ex2.Message);
-            Assert.AreEqual("f", ex2.InnerException.Message);
+            Assert.Equal("msg", ex2.Message);
+            Assert.Equal("f", ex2.InnerException.Message);
         }
 #endif
 
@@ -366,7 +345,7 @@ namespace NLog.UnitTests.Conditions
             ConditionExpression condition = ConditionParser.ParseExpression(conditionText);
             LogEventInfo context = CreateWellKnownContext();
             object actualResult = condition.Evaluate(context);
-            Assert.AreEqual(expectedResult, actualResult);
+            Assert.Equal(expectedResult, actualResult);
         }
 
         private static LogEventInfo CreateWellKnownContext()

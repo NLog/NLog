@@ -40,19 +40,11 @@ namespace NLog.UnitTests.Contexts
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using NUnit.Framework;
+    using Xunit;
 
-#if !NUNIT
-    using SetUp = Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute;
-    using TestFixture = Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute;
-    using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
-    using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
-#endif
-
-    [TestFixture]
     public class NestedDiagnosticsContextTests
     {
-        [Test]
+        [Fact]
         public void NDCTest1()
         {
             List<Exception> exceptions = new List<Exception>();
@@ -68,32 +60,32 @@ namespace NLog.UnitTests.Contexts
                             try
                             {
                                 NestedDiagnosticsContext.Clear();
-                                Assert.AreEqual(string.Empty, NestedDiagnosticsContext.TopMessage);
-                                Assert.AreEqual(string.Empty, NestedDiagnosticsContext.Pop());
+                                Assert.Equal(string.Empty, NestedDiagnosticsContext.TopMessage);
+                                Assert.Equal(string.Empty, NestedDiagnosticsContext.Pop());
                                 AssertContents(NestedDiagnosticsContext.GetAllMessages());
                                 using (NestedDiagnosticsContext.Push("foo"))
                                 {
-                                    Assert.AreEqual("foo", NestedDiagnosticsContext.TopMessage);
+                                    Assert.Equal("foo", NestedDiagnosticsContext.TopMessage);
                                     AssertContents(NestedDiagnosticsContext.GetAllMessages(), "foo");
                                     using (NestedDiagnosticsContext.Push("bar"))
                                     {
                                         AssertContents(NestedDiagnosticsContext.GetAllMessages(), "bar", "foo");
-                                        Assert.AreEqual("bar", NestedDiagnosticsContext.TopMessage);
+                                        Assert.Equal("bar", NestedDiagnosticsContext.TopMessage);
                                         NestedDiagnosticsContext.Push("baz");
                                         AssertContents(NestedDiagnosticsContext.GetAllMessages(), "baz", "bar", "foo");
-                                        Assert.AreEqual("baz", NestedDiagnosticsContext.TopMessage);
-                                        Assert.AreEqual("baz", NestedDiagnosticsContext.Pop());
+                                        Assert.Equal("baz", NestedDiagnosticsContext.TopMessage);
+                                        Assert.Equal("baz", NestedDiagnosticsContext.Pop());
 
                                         AssertContents(NestedDiagnosticsContext.GetAllMessages(), "bar", "foo");
-                                        Assert.AreEqual("bar", NestedDiagnosticsContext.TopMessage);
+                                        Assert.Equal("bar", NestedDiagnosticsContext.TopMessage);
                                     }
 
                                     AssertContents(NestedDiagnosticsContext.GetAllMessages(), "foo");
-                                    Assert.AreEqual("foo", NestedDiagnosticsContext.TopMessage);
+                                    Assert.Equal("foo", NestedDiagnosticsContext.TopMessage);
                                 }
 
                                 AssertContents(NestedDiagnosticsContext.GetAllMessages());
-                                Assert.AreEqual(string.Empty, NestedDiagnosticsContext.Pop());
+                                Assert.Equal(string.Empty, NestedDiagnosticsContext.Pop());
                             }
                             catch (Exception ex)
                             {
@@ -124,10 +116,10 @@ namespace NLog.UnitTests.Contexts
                 exceptionsMessage.Append(ex.ToString());
             }
 
-            Assert.AreEqual(0, exceptions.Count, exceptionsMessage.ToString());
+            Assert.True(exceptions.Count == 0, exceptionsMessage.ToString());
         }
 
-        [Test]
+        [Fact]
         public void NDCTest2()
         {
             List<Exception> exceptions = new List<Exception>();
@@ -143,32 +135,32 @@ namespace NLog.UnitTests.Contexts
                         try
                         {
                             NDC.Clear();
-                            Assert.AreEqual(string.Empty, NDC.TopMessage);
-                            Assert.AreEqual(string.Empty, NDC.Pop());
+                            Assert.Equal(string.Empty, NDC.TopMessage);
+                            Assert.Equal(string.Empty, NDC.Pop());
                             AssertContents(NDC.GetAllMessages());
                             using (NDC.Push("foo"))
                             {
-                                Assert.AreEqual("foo", NDC.TopMessage);
+                                Assert.Equal("foo", NDC.TopMessage);
                                 AssertContents(NDC.GetAllMessages(), "foo");
                                 using (NDC.Push("bar"))
                                 {
                                     AssertContents(NDC.GetAllMessages(), "bar", "foo");
-                                    Assert.AreEqual("bar", NDC.TopMessage);
+                                    Assert.Equal("bar", NDC.TopMessage);
                                     NDC.Push("baz");
                                     AssertContents(NDC.GetAllMessages(), "baz", "bar", "foo");
-                                    Assert.AreEqual("baz", NDC.TopMessage);
-                                    Assert.AreEqual("baz", NDC.Pop());
+                                    Assert.Equal("baz", NDC.TopMessage);
+                                    Assert.Equal("baz", NDC.Pop());
 
                                     AssertContents(NDC.GetAllMessages(), "bar", "foo");
-                                    Assert.AreEqual("bar", NDC.TopMessage);
+                                    Assert.Equal("bar", NDC.TopMessage);
                                 }
 
                                 AssertContents(NDC.GetAllMessages(), "foo");
-                                Assert.AreEqual("foo", NDC.TopMessage);
+                                Assert.Equal("foo", NDC.TopMessage);
                             }
 
                             AssertContents(NDC.GetAllMessages());
-                            Assert.AreEqual(string.Empty, NDC.Pop());
+                            Assert.Equal(string.Empty, NDC.Pop());
                         }
                         catch (Exception ex)
                         {
@@ -199,15 +191,15 @@ namespace NLog.UnitTests.Contexts
                 exceptionsMessage.Append(ex.ToString());
             }
 
-            Assert.AreEqual(0, exceptions.Count, exceptionsMessage.ToString());
+            Assert.True(exceptions.Count == 0, exceptionsMessage.ToString());
         }
 
         private static void AssertContents(string[] actual, params string[] expected)
         {
-            Assert.AreEqual(expected.Length, actual.Length);
+            Assert.Equal(expected.Length, actual.Length);
             for (int i = 0; i < expected.Length; ++i)
             {
-                Assert.AreEqual(expected[i], actual[i]);
+                Assert.Equal(expected[i], actual[i]);
             }
         }
     }
