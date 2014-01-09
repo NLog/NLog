@@ -337,6 +337,16 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Process the log event
+        /// <param name="logLevel">The log level.</param>
+        /// <param name="loggerName">The name of the logger.</param>
+        /// <param name="message">The log message.</param>
+        /// <param name="arguments">The log parameters.</param>
+        /// <param name="eventId">The event id.</param>
+        /// <param name="eventType">The event type.</param>
+        /// <param name="relatedActiviyId">The releated activity id.</param>
+        /// </summary>
         protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActiviyId)
         {
             var ev = new LogEventInfo();
