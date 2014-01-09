@@ -137,6 +137,11 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the specified level, otherwise it returns <see langword="false" />.</returns>
         public bool IsEnabled(LogLevel level)
         {
+            if (level == null)
+            {
+                throw new InvalidOperationException("Log level must be defined");
+            }
+
             return this.GetTargetsForLevel(level) != null;
         }
 

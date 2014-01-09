@@ -1067,6 +1067,18 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("second", logMessage);
         }
 
+        [Fact]
+        public void When_Logging_LogEvent_Without_Level_Defined_No_Exception_Should_Be_Thrown()
+        {
+            var config = new LoggingConfiguration();
+            var target = new MyTarget();
+            config.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, target));
+            LogManager.Configuration = config;
+            var logger = LogManager.GetLogger("A");
+
+            Assert.Throws<InvalidOperationException>(() => logger.Log(new LogEventInfo()));
+        }
+
         public abstract class BaseWrapper
         {
             public void Log(string what)
