@@ -396,6 +396,7 @@ namespace NLog
         /// </summary>
         /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value to be written.</param>
+        [Conditional("DEBUG")]
         public void Trace<T>(T value)
         {
             if (this.IsTraceEnabled)
@@ -410,6 +411,7 @@ namespace NLog
         /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
+        [Conditional("DEBUG")]
         public void Trace<T>(IFormatProvider formatProvider, T value)
         {
             if (this.IsTraceEnabled)
@@ -422,6 +424,7 @@ namespace NLog
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        [Conditional("DEBUG")]
         public void Trace(LogMessageGenerator messageFunc)
         {
             if (this.IsTraceEnabled)
@@ -440,6 +443,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Conditional("DEBUG")]
         public void TraceException([Localizable(false)] string message, Exception exception)
         {
             if (this.IsTraceEnabled)
@@ -454,6 +458,7 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [Conditional("DEBUG")]
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         { 
@@ -467,6 +472,7 @@ namespace NLog
         /// Writes the diagnostic message at the <c>Trace</c> level.
         /// </summary>
         /// <param name="message">Log message.</param>
+        [Conditional("DEBUG")]
         public void Trace([Localizable(false)] string message) 
         { 
             if (this.IsTraceEnabled)
@@ -480,6 +486,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [Conditional("DEBUG")]
         public void Trace([Localizable(false)] string message, params object[] args) 
         { 
             if (this.IsTraceEnabled)
@@ -495,6 +502,7 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
+        [Conditional("DEBUG")]
         [StringFormatMethod("message")]
         public void Trace<TArgument>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
         { 
@@ -510,6 +518,7 @@ namespace NLog
         /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
+        [Conditional("DEBUG")]
         [StringFormatMethod("message")]
         public void Trace<TArgument>([Localizable(false)] string message, TArgument argument)
         { 
@@ -528,6 +537,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [Conditional("DEBUG")]
         public void Trace<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsTraceEnabled)
@@ -544,6 +554,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [Conditional("DEBUG")]
         [StringFormatMethod("message")]
         public void Trace<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
         { 
@@ -564,6 +575,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [Conditional("DEBUG")]
         public void Trace<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsTraceEnabled)
@@ -582,6 +594,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [Conditional("DEBUG")]
         [StringFormatMethod("message")]
         public void Trace<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
