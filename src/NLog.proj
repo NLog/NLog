@@ -153,6 +153,7 @@
         <BuildInfoFileContent>
 // automatically generated
 [assembly: System.Reflection.AssemblyProduct("$(BuildProductName)")]
+[assembly: System.Reflection.AssemblyVersion("3.0.0.0")]
 </BuildInfoFileContent>
     </PropertyGroup>
 

@@ -61,7 +61,6 @@
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyBuildInfo.cs" />
     <Compile Include="Common\AsyncContinuation.cs" />
     <Compile Include="Common\AsyncHelpers.cs" />
     <Compile Include="Common\AsynchronousAction.cs" />
