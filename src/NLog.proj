@@ -316,6 +316,7 @@
     <TokenReplace Path="$(NuGetBuildPath)\NLog\NLog.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
     
     <!-- package -->
+    <RemoveDir Directories="$(NuGetOutputPath)" />
     <MakeDir Directories="$(NuGetOutputPath)" />
     <Exec Command='"$(NuGetTool)" pack NLog.nuspec -Symbols -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog" />
   </Target>
