@@ -63,8 +63,12 @@ namespace NLog.LayoutRenderers
         {
             if (this.Variable != null)
             {
-                var layout = new SimpleLayout(EnvironmentHelper.GetSafeEnvironmentVariable(this.Variable));
-                builder.Append(layout.Render(logEvent));
+                var environmentVariable = EnvironmentHelper.GetSafeEnvironmentVariable(this.Variable);
+                if (!string.IsNullOrEmpty(environmentVariable))
+                {
+                    var layout = new SimpleLayout(environmentVariable);
+                    builder.Append(layout.Render(logEvent));
+                }
             }
         }
     }
