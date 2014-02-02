@@ -309,6 +309,13 @@ namespace NLog
         { 
             if (this.IsEnabled(level))
             {
+                var exceptionCandidate = argument as Exception;
+                if (exceptionCandidate != null)
+                {
+                    this.LogException(level, message, exceptionCandidate);
+                    return;
+                }
+
                 this.WriteToTargets(level, message, new object[] { argument });
             }
         }
@@ -520,6 +527,13 @@ namespace NLog
         { 
             if (this.IsTraceEnabled)
             {
+                var exceptionCandidate = argument as Exception;
+                if (exceptionCandidate != null)
+                {
+                    this.TraceException(message, exceptionCandidate);
+                    return;
+                }
+
                 this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
@@ -727,6 +741,13 @@ namespace NLog
         { 
             if (this.IsDebugEnabled)
             {
+                var exceptionCandidate = argument as Exception;
+                if (exceptionCandidate != null)
+                {
+                    this.DebugException(message, exceptionCandidate);
+                    return;
+                }
+
                 this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
@@ -934,6 +955,13 @@ namespace NLog
         { 
             if (this.IsInfoEnabled)
             {
+                var exceptionCandidate = argument as Exception;
+                if (exceptionCandidate != null)
+                {
+                    this.InfoException(message, exceptionCandidate);
+                    return;
+                }
+
                 this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
@@ -1141,6 +1169,13 @@ namespace NLog
         { 
             if (this.IsWarnEnabled)
             {
+                var exceptionCandidate = argument as Exception;
+                if (exceptionCandidate != null)
+                {
+                    this.WarnException(message, exceptionCandidate);
+                    return;
+                }
+
                 this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
@@ -1346,6 +1381,13 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error<TArgument>([Localizable(false)] string message, TArgument argument)
         { 
+            var exceptionCandidate = argument as Exception;
+            if (exceptionCandidate != null)
+            {
+                this.ErrorException(message, exceptionCandidate);
+                return;
+            }
+
             if (this.IsErrorEnabled)
             {
                 this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
@@ -1555,6 +1597,13 @@ namespace NLog
         { 
             if (this.IsFatalEnabled)
             {
+                var exceptionCandidate = argument as Exception;
+                if (exceptionCandidate != null)
+                {
+                    this.FatalException(message, exceptionCandidate);
+                    return;
+                }
+
                 this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
