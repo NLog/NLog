@@ -136,6 +136,76 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void ExceptionUsingLogMethodTest()
+        {
+            SetConfigurationForExceptionUsingRootMethodTests();
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            logger.Log(LogLevel.Error, "msg", ex);
+            AssertDebugLastMessage("debug1", "ERROR*Test exception*" + typeof(InvalidOperationException).Name);
+        }
+
+        [Fact]
+        public void ExceptionUsingTraceMethodTest()
+        {
+            SetConfigurationForExceptionUsingRootMethodTests();
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            logger.Trace("msg", ex);
+            AssertDebugLastMessage("debug1", "TRACE*Test exception*" + typeof(InvalidOperationException).Name);
+        }
+
+        [Fact]
+        public void ExceptionUsingDebugMethodTest()
+        {
+            SetConfigurationForExceptionUsingRootMethodTests();
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            logger.Debug("msg", ex);
+            AssertDebugLastMessage("debug1", "DEBUG*Test exception*" + typeof(InvalidOperationException).Name);
+        }
+
+        [Fact]
+        public void ExceptionUsingInfoMethodTest()
+        {
+            SetConfigurationForExceptionUsingRootMethodTests();
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            logger.Info("msg", ex);
+            AssertDebugLastMessage("debug1", "INFO*Test exception*" + typeof(InvalidOperationException).Name);
+        }
+
+        [Fact]
+        public void ExceptionUsingWarnMethodTest()
+        {
+            SetConfigurationForExceptionUsingRootMethodTests();
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            logger.Warn("msg", ex);
+            AssertDebugLastMessage("debug1", "WARN*Test exception*" + typeof(InvalidOperationException).Name);
+        }
+
+        [Fact]
+        public void ExceptionUsingErrorMethodTest()
+        {
+            SetConfigurationForExceptionUsingRootMethodTests();
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            logger.Error("msg", ex);
+            AssertDebugLastMessage("debug1", "ERROR*Test exception*" + typeof(InvalidOperationException).Name);
+        }
+
+        [Fact]
+        public void ExceptionUsingFatalMethodTest()
+        {
+            SetConfigurationForExceptionUsingRootMethodTests();
+            string exceptionMessage = "Test exception";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            logger.Fatal("msg", ex);
+            AssertDebugLastMessage("debug1", "FATAL*Test exception*" + typeof(InvalidOperationException).Name);
+        }
+
+        [Fact]
         public void InnerExceptionTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -179,6 +249,19 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + 
 "\r\n----INNER----\r\n" +
 "System.InvalidOperationException Wrapper1");
+        }
+
+        private void SetConfigurationForExceptionUsingRootMethodTests()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${level:uppercase=true}*${exception:format=message,shorttype:separator=*}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Trace' writeTo='debug1' />
+                </rules>
+            </nlog>");
         }
 
         private Exception GetExceptionWithStackTrace(string exceptionMessage)
