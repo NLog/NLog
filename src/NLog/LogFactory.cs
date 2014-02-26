@@ -697,8 +697,11 @@ namespace NLog
             yield return "NLog.config";
 #else
             // NLog.config from application directory
-            yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
-
+            if (CurrentAppDomain.BaseDirectory != null)
+            {
+                yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
+            }
+ 
             // current config file with .config renamed to .nlog
             string cf = CurrentAppDomain.ConfigurationFile;
             if (cf != null)
@@ -709,7 +712,10 @@ namespace NLog
                 {
                     foreach (var path in privateBinPaths)
                     {
-                        yield return Path.Combine(path, "NLog.config");
+                        if (path != null)
+                        {
+                            yield return Path.Combine(path, "NLog.config");
+                        }
                     }
                 }
             }
