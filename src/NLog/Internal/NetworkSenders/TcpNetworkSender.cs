@@ -158,7 +158,12 @@ namespace NLog.Internal.NetworkSenders
             {
                 if (this.MaxQueueSize != 0 && this.pendingRequests.Count >= this.MaxQueueSize)
                 {
-                    this.pendingRequests.Dequeue();
+                    var dequeued = this.pendingRequests.Dequeue();
+
+                    if (dequeued != null)
+                    {
+                        dequeued.Dispose();
+                    }
                 }
 
                 this.pendingRequests.Enqueue(args);
