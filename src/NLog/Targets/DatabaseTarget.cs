@@ -218,11 +218,23 @@ namespace NLog.Targets
         [RequiredParameter]
         public Layout CommandText { get; set; }
 
+	/// <summary>
+        /// Gets or sets the type of the SQL command to be run on each log level.
+        /// </summary>
+        /// <remarks>
+        /// This specifies how the command text is interpreted, as "Text" (default) or as "StoredProcedure".
+        /// When using the value StoredProcedure, the commandText-property would 
+        /// normally be the name of the stored procedure. TableDirect method is not supported in this context.
+        /// </remarks>
+        /// <docgen category='SQL Statement' order='11' />
+        [DefaultValue(CommandType.Text)]
+        public CommandType CommandType { get; set; }
+        
         /// <summary>
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a database named or positional parameter.
         /// </summary>
-        /// <docgen category='SQL Statement' order='11' />
+        /// <docgen category='SQL Statement' order='12' />
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public IList<DatabaseParameterInfo> Parameters { get; private set; }
 
@@ -438,7 +450,8 @@ namespace NLog.Targets
 
             IDbCommand command = this.activeConnection.CreateCommand();
             command.CommandText = this.CommandText.Render(logEvent);
-
+	    command.CommandType = this.CommandType;
+	    
             InternalLogger.Trace("Executing {0}: {1}", command.CommandType, command.CommandText);
 
             foreach (DatabaseParameterInfo par in this.Parameters)
