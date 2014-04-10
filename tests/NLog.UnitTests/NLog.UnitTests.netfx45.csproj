@@ -28,7 +28,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
-    <DefineConstants>TRACE;DEBUG;NET4_5;WCF_SUPPORTED</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <Optimize>false</Optimize>
@@ -55,7 +55,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkName>.NET Framework 4.5</TargetFrameworkName>
-    <DefineConstants>NET4_5;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
+    <DefineConstants>NET4_5;WCF_SUPPORTED;ASYNC_SUPPORTED;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
   </PropertyGroup>
