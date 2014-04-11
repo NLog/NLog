@@ -1024,10 +1024,12 @@ namespace NLog.Targets
                 switch (this.ArchiveEvery)
                 {
                     case FileArchivePeriod.Year:
+                    case FileArchivePeriod.UTCYear:
                         formatString = "yyyy";
                         break;
 
                     case FileArchivePeriod.Month:
+                    case FileArchivePeriod.UTCMonth:
                         formatString = "yyyyMM";
                         break;
 
@@ -1036,10 +1038,12 @@ namespace NLog.Targets
                         break;
 
                     case FileArchivePeriod.Hour:
+                    case FileArchivePeriod.UTCHour:
                         formatString = "yyyyMMddHH";
                         break;
 
                     case FileArchivePeriod.Minute:
+                    case FileArchivePeriod.UTCMinute:
                         formatString = "yyyyMMddHHmm";
                         break;
                 }
@@ -1050,28 +1054,37 @@ namespace NLog.Targets
         private DateTime GetArchiveDate()
         {
             DateTime archiveDate = DateTime.Now;
+            if (this.ArchiveEvery >= FileArchivePeriod.UTCYear)
+            {
+                archiveDate = DateTime.UtcNow;
+            }
 
             // Because AutoArchive/DateArchive gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
             // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
             switch (this.ArchiveEvery)
             {
                 case FileArchivePeriod.Day:
+                case FileArchivePeriod.UTCDay:
                     archiveDate = archiveDate.AddDays(-1);
                     break;
 
                 case FileArchivePeriod.Hour:
+                case FileArchivePeriod.UTCHour:
                     archiveDate = archiveDate.AddHours(-1);
                     break;
 
                 case FileArchivePeriod.Minute:
+                case FileArchivePeriod.UTCMinute:
                     archiveDate = archiveDate.AddMinutes(-1);
                     break;
 
                 case FileArchivePeriod.Month:
+                case FileArchivePeriod.UTCMonth:
                     archiveDate = archiveDate.AddMonths(-1);
                     break;
 
                 case FileArchivePeriod.Year:
+                case FileArchivePeriod.UTCYear:
                     archiveDate = archiveDate.AddYears(-1);
                     break;
             }

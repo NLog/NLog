@@ -66,6 +66,31 @@ namespace NLog.Targets
         /// <summary>
         /// Archive every minute.
         /// </summary>
-        Minute
+        Minute,
+
+        /// <summary>
+        /// Archive every UTC year.
+        /// </summary>
+        UTCYear,
+
+        /// <summary>
+        /// Archive every UTC month.
+        /// </summary>
+        UTCMonth,
+
+        /// <summary>
+        /// Archive UTC daily.
+        /// </summary>
+        UTCDay,
+
+        /// <summary>
+        /// Archive every UTC hour.
+        /// </summary>
+        UTCHour,
+
+        /// <summary>
+        /// Archive every UTC minute.
+        /// </summary>
+        UTCMinute
     }
 }
