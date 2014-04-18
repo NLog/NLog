@@ -209,6 +209,14 @@ namespace NLog.LayoutRenderers
             sb.Append(ex.GetType().Name);
         }
 
+        private static void AppendData(StringBuilder sb, Exception ex)
+        {
+            foreach (var key in ex.Data.Keys)
+            {
+                sb.AppendFormat("{0}: {1};", key, ex.Data[key]);
+            }
+        }
+
         private static ExceptionDataTarget[] CompileFormat(string formatSpecifier)
         {
             string[] parts = formatSpecifier.Replace(" ", string.Empty).Split(',');
@@ -240,6 +248,10 @@ namespace NLog.LayoutRenderers
 
                     case "STACKTRACE":
                         dataTargets.Add(AppendStackTrace);
+                        break;
+
+                    case "DATA":
+                        dataTargets.Add(AppendData);
                         break;
 
                     default:
