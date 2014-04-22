@@ -211,9 +211,12 @@ namespace NLog.LayoutRenderers
 
         private static void AppendData(StringBuilder sb, Exception ex)
         {
+            string separator = string.Empty;
             foreach (var key in ex.Data.Keys)
             {
-                sb.AppendFormat("{0}: {1};", key, ex.Data[key]);
+                sb.Append(separator);
+                sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
+                separator = ";";
             }
         }
 
