@@ -44,6 +44,7 @@ namespace NLog.UnitTests.LayoutRenderers
     public class ExceptionTests : NLogTestBase
     {
         private Logger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionTests");
+        private const string ExceptionDataFormat = "{0}: {1}";
 
         [Fact]
         public void ExceptionWithStackTraceTest()
@@ -59,14 +60,18 @@ namespace NLog.UnitTests.LayoutRenderers
                     <target name='debug6' type='Debug' layout='${exception:format=message}' />
                     <target name='debug7' type='Debug' layout='${exception:format=method}' />
                     <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
+                    <target name='debug9' type='Debug' layout='${exception:format=data}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8' />
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9' />
                 </rules>
             </nlog>");
 
-            string exceptionMessage = "Test exception";
+            const string exceptionMessage = "Test exception";
+            const string exceptionDataKey = "testkey";
+            const string exceptionDataValue = "testvalue";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            ex.Data.Add(exceptionDataKey, exceptionDataValue);
             logger.ErrorException("msg", ex);
             AssertDebugLastMessage("debug1", exceptionMessage);
             AssertDebugLastMessage("debug2", ex.StackTrace);
@@ -74,6 +79,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug4", typeof(InvalidOperationException).Name);
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
+            AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
@@ -97,14 +103,18 @@ namespace NLog.UnitTests.LayoutRenderers
                     <target name='debug6' type='Debug' layout='${exception:format=message}' />
                     <target name='debug7' type='Debug' layout='${exception:format=method}' />
                     <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
+                    <target name='debug9' type='Debug' layout='${exception:format=data}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8' />
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9' />
                 </rules>
             </nlog>");
 
-            string exceptionMessage = "Test exception";
+            const string exceptionMessage = "Test exception";
+            const string exceptionDataKey = "testkey";
+            const string exceptionDataValue = "testvalue";
             Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
+            ex.Data.Add(exceptionDataKey, exceptionDataValue);
             logger.ErrorException("msg", ex);
             AssertDebugLastMessage("debug1", exceptionMessage);
             AssertDebugLastMessage("debug2", "");
@@ -114,6 +124,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug7", "");
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
         }
 
         [Fact]
@@ -222,8 +233,8 @@ namespace NLog.UnitTests.LayoutRenderers
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
             logger.ErrorException("msg", ex);
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine + 
-"InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
-"InvalidOperationException Test exception");
+                "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                "InvalidOperationException Test exception");
         }
 
         [Fact]
@@ -233,9 +244,11 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
+                    <target name='debug2' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message,data}' />
                 </targets>
                 <rules>
                     <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug2' />
                 </rules>
             </nlog>");
 
@@ -244,11 +257,17 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
 
             string exceptionMessage = "Test exception";
+            const string exceptionDataKey = "testkey";
+            const string exceptionDataValue = "testvalue";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
+            ex.InnerException.Data.Add(exceptionDataKey, exceptionDataValue);
             logger.ErrorException("msg", ex);
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + 
-"\r\n----INNER----\r\n" +
-"System.InvalidOperationException Wrapper1");
+                "\r\n----INNER----\r\n" +
+                "System.InvalidOperationException Wrapper1");
+            AssertDebugLastMessage("debug2", string.Format("InvalidOperationException Wrapper2" +
+                "\r\n----INNER----\r\n" +
+                "System.InvalidOperationException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
         }
 
         private void SetConfigurationForExceptionUsingRootMethodTests()
