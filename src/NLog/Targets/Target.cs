@@ -435,6 +435,8 @@ namespace NLog.Targets
         {
             try
             {
+                this.MergeEventProperties(logEvent.LogEvent);
+
                 this.Write(logEvent.LogEvent);
                 logEvent.Continuation(null);
             }
@@ -472,6 +474,22 @@ namespace NLog.Targets
         {
             this.allLayouts = new List<Layout>(ObjectGraphScanner.FindReachableObjects<Layout>(this));
             InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
+        }
+
+        private void MergeEventProperties(LogEventInfo logEvent)
+        {
+            foreach (var item in logEvent.Parameters)
+            {
+                if (item.GetType() == typeof(LogEventInfo))
+                {
+
+                    foreach (var propertyItem in ((LogEventInfo)item).Properties)
+                    {
+                        logEvent.Properties.Remove(propertyItem.Key);
+                        logEvent.Properties.Add(propertyItem);
+                    }
+                }
+            }
         }
     }
 }
