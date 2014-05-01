@@ -113,7 +113,8 @@ namespace NLog
                     methodAssembly = mb.DeclaringType.Assembly;
                 }
 
-                if ((loggerType == null && SkipAssembly(methodAssembly)) || mb.DeclaringType == loggerType)
+                //if ((loggerType == null && SkipAssembly(methodAssembly)) || mb.DeclaringType == loggerType)
+				if (SkipAssembly(methodAssembly) || (loggerType != null && mb.DeclaringType == loggerType))
                 {
                     firstUserFrame = i + 1;
                 }
