@@ -37,6 +37,9 @@ namespace NLog
     using System.ComponentModel;
     using NLog.Internal;
     using JetBrains.Annotations;
+#if ASYNC_SUPPORTED
+    using System.Threading.Tasks;
+#endif
 
     /// <summary>
     /// Provides logging interface and utility functions.
@@ -1683,6 +1686,83 @@ namespace NLog
         #endregion
 
         // end of generated code
+
+        /// <summary>
+        /// Runs action. If the action throws, the exception is logged at <c>Error</c> level. Exception is not propagated outside of this method.
+        /// </summary>
+        /// <param name="action">Action to execute.</param>
+        public void Swallow(Action action)
+        {
+            try
+            {
+                action();
+            }
+            catch (Exception e)
+            {
+                Error(e);
+            }
+        }
+
+        /// <summary>
+        /// Runs the provided function and returns its result. If exception is thrown, it is logged at <c>Error</c> level.
+        /// Exception is not propagated outside of this method. Fallback value is returned instead.
+        /// </summary>
+        /// <typeparam name="T">Return type of the provided function.</typeparam>
+        /// <param name="func">Function to run.</param>
+        /// <param name="fallback">Fallback value to return in case of exception. Defaults to default value of type T.</param>
+        /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
+        public T Swallow<T>(Func<T> func, T fallback = default(T))
+        {
+            try
+            {
+                return func();
+            }
+            catch (Exception e)
+            {
+                Error(e);
+                return fallback;
+            }
+        }
+
+#if ASYNC_SUPPORTED
+        /// <summary>
+        /// Runs async action. If the action throws, the exception is logged at <c>Error</c> level. Exception is not propagated outside of this method.
+        /// </summary>
+        /// <param name="asyncAction">Async action to execute.</param>
+        public async Task SwallowAsync(Func<Task> asyncAction)
+        {
+            try
+            {
+                await asyncAction();
+            }
+            catch (Exception e)
+            {
+                Error(e);
+            }
+        }
+
+        /// <summary>
+        /// Runs the provided async function and returns its result. If exception is thrown, it is logged at <c>Error</c> level.
+        /// Exception is not propagated outside of this method. Fallback value is returned instead.
+        /// </summary>
+        /// <typeparam name="T">Return type of the provided function.</typeparam>
+        /// <param name="asyncFunc">Async function to run.</param>
+        /// <param name="fallback">Fallback value to return in case of exception. Defaults to default value of type T.</param>
+        /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
+        public async Task<T> SwallowAsync<T>(Func<Task<T>> asyncFunc, T fallback = default(T))
+        {
+            try
+            {
+                return await asyncFunc();
+            }
+            catch (Exception e)
+            {
+                Error(e);
+                return fallback;
+            }
+        }
+#endif
+
         internal void Initialize(string name, LoggerConfiguration loggerConfiguration, LogFactory factory)
         {
             this.Name = name;
