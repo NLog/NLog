@@ -26,7 +26,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG;NET4_5;CLIENT_SKU;WCF_SUPPORTED</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>..\..\build\bin\Debug\.NET Framework 4.5\</OutputPath>
@@ -44,7 +44,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkName>.NET Framework 4.5</TargetFrameworkName>
-    <DefineConstants>NET4_5;CLIENT_SKU;WCF_SUPPORTED;$(DefineConstants)</DefineConstants>
+    <DefineConstants>NET4_5;CLIENT_SKU;WCF_SUPPORTED;ASYNC_SUPPORTED;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\$(TargetFrameworkName)</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
     <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>

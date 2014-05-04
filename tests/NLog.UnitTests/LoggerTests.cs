@@ -38,6 +38,9 @@ namespace NLog.UnitTests
     using System;
     using System.Globalization;
     using NLog.Config;
+#if ASYNC_SUPPORTED
+    using System.Threading.Tasks;
+#endif
     using Xunit;
 
     public class LoggerTests : NLogTestBase
@@ -1025,6 +1028,58 @@ namespace NLog.UnitTests
                         AssertDebugCounter("debug", 0);
                 }
             }
+        }
+
+        [Test]
+        public void SwallowTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Error' writeTo='debug' />
+                    </rules>
+                </nlog>");
+            Logger logger = LogManager.GetLogger("A");
+            bool warningFix = true;
+            
+            bool executed = false;
+            logger.Swallow(() => executed = true);
+            Assert.IsTrue(executed);
+
+            Assert.AreEqual(1, logger.Swallow(() => 1));
+            Assert.AreEqual(1, logger.Swallow(() => 1, 2));
+
+#if ASYNC_SUPPORTED
+            executed = false;
+            logger.SwallowAsync(async () => { await Task.Delay(20); executed = true; }).Wait();
+            Assert.IsTrue(executed);
+
+            Assert.AreEqual(1, logger.SwallowAsync(async () => { await Task.Delay(20); return 1; }).Result);
+            Assert.AreEqual(1, logger.SwallowAsync(async () => { await Task.Delay(20); return 1; }, 2).Result);
+#endif
+
+            AssertDebugCounter("debug", 0);
+
+            logger.Swallow(() => { throw new ApplicationException("Test message 1"); });
+            AssertDebugLastMessageContains("debug", "Test message 1");
+
+            Assert.AreEqual(0, logger.Swallow(() => { if (warningFix) throw new ApplicationException("Test message 2"); return 1; }));
+            AssertDebugLastMessageContains("debug", "Test message 2");
+            
+            Assert.AreEqual(2, logger.Swallow(() => { if (warningFix) throw new ApplicationException("Test message 3"); return 1; }, 2));
+            AssertDebugLastMessageContains("debug", "Test message 3");
+
+#if ASYNC_SUPPORTED
+            logger.SwallowAsync(async () => { await Task.Delay(20); throw new ApplicationException("Test message 4"); }).Wait();
+            AssertDebugLastMessageContains("debug", "Test message 4");
+
+            Assert.AreEqual(0, logger.SwallowAsync(async () => { await Task.Delay(20); if (warningFix) throw new ApplicationException("Test message 5"); return 1; }).Result);
+            AssertDebugLastMessageContains("debug", "Test message 5");
+
+            Assert.AreEqual(2, logger.SwallowAsync(async () => { await Task.Delay(20); if (warningFix) throw new ApplicationException("Test message 6"); return 1; }, 2).Result);
+            AssertDebugLastMessageContains("debug", "Test message 6");
+#endif
         }
 
         [Fact]
