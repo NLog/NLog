@@ -84,21 +84,23 @@ namespace NLog.Targets
 
             public int MaxArchiveFileToKeep { get; set; }
 
+            /// <returns><c>true</c> if the file has been moved successfully</returns>
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-            public void AddToArchive(string archiveFileName, string fileName, bool createDirectoryIfNotExists)
+            public bool AddToArchive(string archiveFileName, string fileName, bool createDirectoryIfNotExists)
             {
+
                 if (MaxArchiveFileToKeep < 1)
                 {
                     InternalLogger.Warn("AddToArchive is called. Even though the MaxArchiveFiles is set to less than 1");
 
-                    return;
+                    return false;
                 }
 
                 if (!File.Exists(fileName))
                 {
                     InternalLogger.Error("Error while trying to archive, Source File : {0} Not found.", fileName);
 
-                    return;
+                    return false;
                 }
 
                 while (archiveFileEntryQueue.Count >= MaxArchiveFileToKeep)
@@ -169,6 +171,7 @@ namespace NLog.Targets
                 }
 
                 archiveFileEntryQueue.Enqueue(archiveFileName);
+                return true;
             }
         }
 
@@ -877,7 +880,7 @@ namespace NLog.Targets
 
             try
             {
-                File.Move(fileName, newFileName);
+                MoveFileToArchive(fileName, newFileName);
             }
             catch (IOException)
             {
@@ -887,7 +890,7 @@ namespace NLog.Targets
                     Directory.CreateDirectory(dir);
                 }
 
-                File.Move(fileName, newFileName);
+                MoveFileToArchive(fileName, newFileName);
             }
         }
 
@@ -957,7 +960,19 @@ namespace NLog.Targets
             }
 
             string newFileName = ReplaceNumber(pattern, nextNumber);
-            File.Move(fileName, newFileName);
+            MoveFileToArchive(fileName, newFileName);
+        }
+
+        private void MoveFileToArchive(string existingFileName, string archiveFileName)
+        {
+            File.Move(existingFileName, archiveFileName);
+            var fileName = Path.GetFileName(existingFileName);
+            if (fileName == null) return;
+            // When the file has been moved, the original filename is 
+            // no longer one of the initializedFiles. The initializedFilesCounter
+            // should be left alone, the amount is still valid.
+            if (this.initializedFiles.ContainsKey(fileName))
+                this.initializedFiles.Remove(fileName);
         }
 
 #if !NET_CF
@@ -1011,7 +1026,7 @@ namespace NLog.Targets
 
             DateTime newFileDate = GetArchiveDate();
             string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
-            File.Move(fileName, newFileName);
+            MoveFileToArchive(fileName, newFileName);
         }
 #endif
 
@@ -1106,7 +1121,9 @@ namespace NLog.Targets
 
             if (!IsContainValidNumberPatternForReplacement(fileNamePattern))
             {
-                dynamicArchiveFileHandler.AddToArchive(fileNamePattern, fi.FullName, CreateDirs);
+                if (dynamicArchiveFileHandler.AddToArchive(fileNamePattern, fi.FullName, CreateDirs))
+                    if (this.initializedFiles.ContainsKey(fi.FullName))
+                        this.initializedFiles.Remove(fi.FullName);
             }
             else
             {
