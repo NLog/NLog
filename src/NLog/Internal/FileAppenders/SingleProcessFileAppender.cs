@@ -113,7 +113,10 @@ namespace NLog.Internal.FileAppenders
         /// </returns>
         public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
-            throw new NotSupportedException();
+	        var fi = new FileInfo(base.FileName);
+	        lastWriteTime = fi.LastWriteTime;
+	        fileLength = fi.Length;
+	        return true;
         }
 
         /// <summary>
