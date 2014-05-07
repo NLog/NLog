@@ -71,7 +71,7 @@ using System.Xml.Linq;
 
             // Console.WriteLine("lastmsg: {0}", debugTarget.LastMessage);
 
-            Assert.Null(debugTarget);
+            Assert.NotNull(debugTarget);
             Assert.True(debugTarget.LastMessage.Contains(msg), "Unexpected last message value on '" + targetName + "'");
         }
 
