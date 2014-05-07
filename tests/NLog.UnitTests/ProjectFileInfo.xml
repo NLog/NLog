@@ -61,26 +61,6 @@
      </ItemGroup>
    </Project>
 
-   <Project File="NLog.UnitTests.wp7.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="Content">
-        <FileSet Include="AllContentFiles" />
-        <FileSet Include="ContentFilesCopyToOutput" />
-     </ItemGroup>
-   </Project>
-
-   <Project File="NLog.UnitTests.wp71.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="Content">
-        <FileSet Include="AllContentFiles" />
-        <FileSet Include="ContentFilesCopyToOutput" />
-     </ItemGroup>
-   </Project>
-
    <Project File="NLog.UnitTests.monodevelop.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
