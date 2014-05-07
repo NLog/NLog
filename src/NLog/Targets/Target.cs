@@ -478,6 +478,11 @@ namespace NLog.Targets
 
         private void MergeEventProperties(LogEventInfo logEvent)
         {
+			if (logEvent.Parameters == null)
+			{
+				return;
+			}
+
             foreach (var item in logEvent.Parameters)
             {
                 if (item.GetType() == typeof(LogEventInfo))
