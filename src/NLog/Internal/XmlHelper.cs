@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text.RegularExpressions;
-using System.Xml;
-
 namespace NLog.Internal
 {
+	using System;
+	using System.Text.RegularExpressions;
+	using System.Xml;
+
 	/// <summary>
 	///  Helper class for XML
 	/// </summary>
