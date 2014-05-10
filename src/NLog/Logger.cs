@@ -1743,7 +1743,14 @@ namespace NLog
         /// <param name="asyncAction">Async action to execute.</param>
         public async Task SwallowAsync(Func<Task> asyncAction)
         {
-            return SwallowAsync(asyncAction);
+	        try
+	        {
+		        await asyncAction();
+	        }
+	        catch (Exception e)
+	        {
+		        Error(e);
+	        }
         }
 
         /// <summary>
@@ -1753,17 +1760,9 @@ namespace NLog
         /// <typeparam name="T">Return type of the provided function.</typeparam>
         /// <param name="asyncFunc">Async function to run.</param>
         /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
-        public async Task<T> SwallowAsync<T>(Func<Task<T>> asyncFunc, T fallback = default(T))
+        public async Task<T> SwallowAsync<T>(Func<Task<T>> asyncFunc)
         {
-            try
-            {
-                return await asyncFunc();
-            }
-            catch (Exception e)
-            {
-                Error(e);
-                return fallback;
-            }
+	        return await SwallowAsync(asyncFunc, default(T));
         }
 
         /// <summary>
@@ -1774,7 +1773,7 @@ namespace NLog
         /// <param name="asyncFunc">Async function to run.</param>
         /// <param name="fallback">Fallback value to return in case of exception. Defaults to default value of type T.</param>
         /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
-        public async Task<T> SwallowAsync<T>(Func<Task<T>> asyncFunc, T fallback = default(T))
+        public async Task<T> SwallowAsync<T>(Func<Task<T>> asyncFunc, T fallback)
         {
             try
             {
