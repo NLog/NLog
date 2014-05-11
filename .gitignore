@@ -31,3 +31,4 @@ examples/NLogDemo/gmail*.txt
 tools/FAKE/
 packages/
 build/
+*.sublime-*
