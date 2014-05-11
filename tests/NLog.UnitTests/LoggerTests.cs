@@ -1061,23 +1061,23 @@ namespace NLog.UnitTests
 
             AssertDebugCounter("debug", 0);
 
-            logger.Swallow(() => { throw new ApplicationException("Test message 1"); });
+            logger.Swallow(() => { throw new InvalidOperationException("Test message 1"); });
             AssertDebugLastMessageContains("debug", "Test message 1");
 
-            Assert.Equal(0, logger.Swallow(() => { if (warningFix) throw new ApplicationException("Test message 2"); return 1; }));
+            Assert.Equal(0, logger.Swallow(() => { if (warningFix) throw new InvalidOperationException("Test message 2"); return 1; }));
             AssertDebugLastMessageContains("debug", "Test message 2");
             
-            Assert.Equal(2, logger.Swallow(() => { if (warningFix) throw new ApplicationException("Test message 3"); return 1; }, 2));
+            Assert.Equal(2, logger.Swallow(() => { if (warningFix) throw new InvalidOperationException("Test message 3"); return 1; }, 2));
             AssertDebugLastMessageContains("debug", "Test message 3");
 
 #if ASYNC_SUPPORTED
-            logger.SwallowAsync(async () => { await Task.Delay(20); throw new ApplicationException("Test message 4"); }).Wait();
+            logger.SwallowAsync(async () => { await Task.Delay(20); throw new InvalidOperationException("Test message 4"); }).Wait();
             AssertDebugLastMessageContains("debug", "Test message 4");
 
-            Assert.Equal(0, logger.SwallowAsync(async () => { await Task.Delay(20); if (warningFix) throw new ApplicationException("Test message 5"); return 1; }).Result);
+            Assert.Equal(0, logger.SwallowAsync(async () => { await Task.Delay(20); if (warningFix) throw new InvalidOperationException("Test message 5"); return 1; }).Result);
             AssertDebugLastMessageContains("debug", "Test message 5");
 
-            Assert.Equal(2, logger.SwallowAsync(async () => { await Task.Delay(20); if (warningFix) throw new ApplicationException("Test message 6"); return 1; }, 2).Result);
+            Assert.Equal(2, logger.SwallowAsync(async () => { await Task.Delay(20); if (warningFix) throw new InvalidOperationException("Test message 6"); return 1; }, 2).Result);
             AssertDebugLastMessageContains("debug", "Test message 6");
 #endif
         }
