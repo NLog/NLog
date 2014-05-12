@@ -972,7 +972,13 @@ namespace NLog.Targets
             // no longer one of the initializedFiles. The initializedFilesCounter
             // should be left alone, the amount is still valid.
             if (this.initializedFiles.ContainsKey(fileName))
+            {
                 this.initializedFiles.Remove(fileName);
+            }
+            else if (this.initializedFiles.ContainsKey(existingFileName))
+            {
+                this.initializedFiles.Remove(existingFileName);
+            }
         }
 
 #if !NET_CF

@@ -303,6 +303,54 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void RepeatingHeaderTest()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                const string header = "Headerline";
+
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
+                    ArchiveAboveSize = 51,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = ArchiveNumberingMode.Sequence,
+                    Layout = "${message}",
+                    Header = header,
+                    MaxArchiveFiles = 2,
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                for (var i = 0; i < 16; ++i)
+                {
+                    logger.Debug("123456789");
+                }
+
+                LogManager.Configuration = null;
+
+                AssertFileContentsStartsWith(tempFile, header, Encoding.UTF8);
+
+                AssertFileContentsStartsWith(Path.Combine(tempPath, "archive/0002.txt"), header, Encoding.UTF8);
+
+                AssertFileContentsStartsWith(Path.Combine(tempPath, "archive/0001.txt"), header, Encoding.UTF8);
+
+                Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0000.txt")));
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        [Fact]
         public void RollingArchiveTest1()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -553,7 +601,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void BatchErrorHandlingTest()
         {
-            var fileTarget = new FileTarget {FileName = "${logger}", Layout = "${message}"};
+            var fileTarget = new FileTarget { FileName = "${logger}", Layout = "${message}" };
             fileTarget.Initialize(null);
 
             // make sure that when file names get sorted, the asynchronous continuations are sorted with them as well
