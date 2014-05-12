@@ -84,20 +84,19 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string baseDir = Environment.GetFolderPath(this.Folder);
+            string outputPath = Environment.GetFolderPath(this.Folder);
+
+            if (this.Dir != null)
+            {
+                outputPath = Path.Combine(outputPath, this.Dir);
+            }
 
             if (this.File != null)
             {
-                builder.Append(Path.Combine(baseDir, this.File));
+                outputPath = Path.Combine(outputPath, this.File);
             }
-            else if (this.Dir != null)
-            {
-                builder.Append(Path.Combine(baseDir, this.Dir));
-            }
-            else
-            {
-                builder.Append(baseDir);
-            }
+   
+            builder.Append(outputPath);
         }
     }
 }
