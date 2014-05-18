@@ -174,7 +174,13 @@ namespace NLog.UnitTests
                 logger.Trace(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
+#pragma warning disable 0618
+                // Obsolete method requires testing until removed.
                 logger.TraceException("message", new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+#pragma warning restore 0618
+
+                logger.Trace("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
                 logger.Trace(delegate { return "message from lambda"; });
@@ -314,8 +320,11 @@ namespace NLog.UnitTests
                 logger.Debug(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
+#pragma warning disable 0618
+                // Obsolete method requires testing until completely removed.
                 logger.DebugException("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+#pragma warning restore 0618
 
                 logger.Debug(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -454,7 +463,13 @@ namespace NLog.UnitTests
                 logger.Info(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
+#pragma warning disable 0618
+                // Obsolete method requires testing until removed.
                 logger.InfoException("message", new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+#pragma warning restore 0618
+
+                logger.Info("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
                 logger.Info(delegate { return "message from lambda"; });
@@ -594,7 +609,13 @@ namespace NLog.UnitTests
                 logger.Warn(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
+#pragma warning disable 0618
+                // Obsolete method requires testing until removed.
                 logger.WarnException("message", new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+#pragma warning restore 0618
+
+                logger.Warn("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
                 logger.Warn(delegate { return "message from lambda"; });
@@ -734,7 +755,13 @@ namespace NLog.UnitTests
                 logger.Error(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
+#pragma warning disable 0618
+                // Obsolete method requires testing until completely removed.
                 logger.ErrorException("message", new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+#pragma warning restore 0618
+
+                logger.Error("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
                 logger.Error(delegate { return "message from lambda"; });
@@ -874,7 +901,13 @@ namespace NLog.UnitTests
                 logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
+#pragma warning disable 0618
+                // Obsolete method requires testing until removed.
                 logger.FatalException("message", new Exception("test"));
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+#pragma warning restore 0618
+
+                logger.Fatal("message", new Exception("test"));
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
                 logger.Fatal(delegate { return "message from lambda"; });
