@@ -55,8 +55,51 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Environment_WhenVariableIsLayout_ShouldBeWrittenAsLayout()
         {
-            Environment.SetEnvironmentVariable("NLOGTEST", "${level}");
-            AssertLayoutRendererOutput("${environment:NLOGTEST}", "Info");
+ 	        Environment.SetEnvironmentVariable("NLOGTEST", "${level}");
+	        AssertLayoutRendererOutput("${environment:variable=NLOGTEST}", "Info");
+ 	        AssertLayoutRendererOutput("${environment:NLOGTEST}", "Info");
+        }
+	
+        [Fact]
+        public void Environment_WhenVariableExists_DoNothing()
+        {
+	        Environment.SetEnvironmentVariable("NLOGTEST", "ABC1234");           
+	        // Test default value with different variations on variable parameter syntax. 
+	        AssertLayoutRendererOutput("${environment:variable=NLOGTEST:default=5678}", "ABC1234");
+	        AssertLayoutRendererOutput("${environment:NLOGTEST:default=5678}", "ABC1234");
+        }
+	
+        [Fact]
+        public void Environment_WhenVariableIsLayoutAndExists_DoNothing()
+        {
+	        Environment.SetEnvironmentVariable("NLOGTEST", "${level}");
+	        AssertLayoutRendererOutput("${environment:NLOGTEST:default=5678}", "Info");
+        }
+	
+        [Fact]
+        public void Environment_WhenVariableDoesNotExists_UseDefault()
+        {
+	        if (Environment.GetEnvironmentVariable("NLOGTEST") != null)
+	        {
+	            Environment.SetEnvironmentVariable("NLOGTEST", null);
+	        }
+	
+	        // Test default value with different variations on variable parameter syntax. 
+	        AssertLayoutRendererOutput("${environment:variable=NLOGTEST:default=1234}", "1234");
+	        AssertLayoutRendererOutput("${environment:NLOGTEST:default=5678}", "5678");
+        }
+	
+        [Fact]
+        public void Environment_WhenDefaultEmpty_EmptyString()
+        {
+	        if (Environment.GetEnvironmentVariable("NLOGTEST") != null)
+	        {
+	            Environment.SetEnvironmentVariable("NLOGTEST", null);
+	        }
+	
+	        // Test default value with different variations on variable parameter syntax. 
+	        AssertLayoutRendererOutput("${environment:variable=NLOGTEST:default=}", "");
+	        AssertLayoutRendererOutput("${environment:NLOGTEST:default=}", "");
         }
     }
 }

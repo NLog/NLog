@@ -55,20 +55,34 @@ namespace NLog.LayoutRenderers
         public string Variable { get; set; }
 
         /// <summary>
+        /// Gets or sets the default value to be used when the environment variable is not set.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        public string Default { get; set; }
+	
+ 
+        /// <summary>
         /// Renders the specified environment variable and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (this.Variable != null)
-            {
-                var environmentVariable = EnvironmentHelper.GetSafeEnvironmentVariable(this.Variable);
-                if (!string.IsNullOrEmpty(environmentVariable))
-                {
-                    var layout = new SimpleLayout(environmentVariable);
-                    builder.Append(layout.Render(logEvent));
-                }
+	        if (this.Variable != null)
+	        {
+	            var environmentVariable = EnvironmentHelper.GetSafeEnvironmentVariable(this.Variable);
+	            if (!string.IsNullOrEmpty(environmentVariable))
+	            {
+	                var layout = new SimpleLayout(environmentVariable);
+	                builder.Append(layout.Render(logEvent));
+	            }
+	            else {
+	                if (this.Default != null) 
+	                {
+	                    var layout = new SimpleLayout(this.Default);
+	                    builder.Append(layout.Render(logEvent));
+	                }
+	            }
             }
         }
     }
