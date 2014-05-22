@@ -166,13 +166,20 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a");
 
             var ex = new InvalidOperationException("Exception message.");
-            logger.DebugException("Foo", ex);
+            
 #if !SILVERLIGHT
             string newline = Environment.NewLine;
 #else
             string newline = "\r\n";
 #endif
 
+#pragma warning disable 0618
+            // Obsolete method requires testing until completely removed.
+            logger.DebugException("Foo", ex);
+            AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
+#pragma warning restore 0618
+
+            logger.Debug("Foo", ex);
             AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
         }
 
@@ -192,7 +199,13 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a");
 
             var ex = new InvalidOperationException("Exception message.");
+#pragma warning disable 0618
+            // Obsolete method requires testing until completely removed.
             logger.DebugException("Foo", ex);
+            AssertDebugLastMessage("debug", "Foo," + ex.ToString());
+#pragma warning restore 0618
+
+            logger.Debug("Foo", ex);
             AssertDebugLastMessage("debug", "Foo," + ex.ToString());
         }
     }
