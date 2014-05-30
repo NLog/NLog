@@ -33,7 +33,8 @@
 
 #if !SILVERLIGHT2 && !NET_CF
 
-namespace NLog.LayoutRenderers {
+namespace NLog.LayoutRenderers
+{
     using System;
     using System.Globalization;
     using System.ComponentModel;

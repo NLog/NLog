@@ -32,7 +32,8 @@
 // 
 
 
-namespace NLog.LayoutRenderers {
+namespace NLog.LayoutRenderers
+{
     /// <summary>
     /// 
     /// </summary>

@@ -51,7 +51,8 @@ using NLog.Layouts;
     using TearDown =  Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute;
 #endif
 
-namespace NLog.UnitTests.LayoutRenderers {
+namespace NLog.UnitTests.LayoutRenderers
+{
     [TestFixture]
     public class AssemblyNameTests : NLogTestBase {
         private readonly AssemblyName assemblyName = new AssemblyName("ExampleAssembly, Version=1.0.0.0, Culture=en, PublicKeyToken=a5d015c7d5a0b012");
