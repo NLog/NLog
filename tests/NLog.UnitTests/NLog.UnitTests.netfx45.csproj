@@ -104,7 +104,6 @@
     <Compile Include="GetLoggerTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />
-    <Compile Include="LayoutRenderers\AssemblyNameTests.cs" />
     <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
     <Compile Include="LayoutRenderers\BaseDirTests.cs" />
     <Compile Include="LayoutRenderers\CallSiteTests.cs" />
