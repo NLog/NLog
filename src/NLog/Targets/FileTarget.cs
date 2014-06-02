@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 namespace NLog.Targets
 {
     using System;
@@ -991,38 +993,34 @@ namespace NLog.Targets
             string fileNameMask = baseNamePattern.Substring(0, firstPart) + "*" + baseNamePattern.Substring(lastPart);
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
-            int fileIndex = 0;
 
             try
             {
-
+                DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
 #if SILVERLIGHT
-                List<string> files = Directory.EnumerateFiles(dirName, fileNameMask).ToList();
+                List<string> files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
 #else
-                List<string> files = Directory.GetFiles(dirName, fileNameMask).ToList();
+                List<string> files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
 #endif
-                Dictionary<DateTime, string> filesByDate = new Dictionary<DateTime, string>();
+                List<string> filesByDate = new List<string>();
 
-                foreach (string file in files)
+                for (int index = 0; index < files.Count; index++)
                 {
-                    string archiveFileName = Path.GetFileName(file);
+                    string archiveFileName = Path.GetFileName(files[index]);
                     string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
-                    DateTime fileDate = DateTime.Now;
+                    DateTime fileDate = DateTime.MinValue;
                     if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
                     {
-                        filesByDate.Add(fileDate, file);
+                        filesByDate.Add(files[index]);
                     }
                 }
-
-
-                foreach (KeyValuePair<DateTime, string> file in filesByDate)
+                 
+                for (int fileIndex = 0; fileIndex < filesByDate.Count; fileIndex++)
                 {
                     if (fileIndex > files.Count - this.MaxArchiveFiles)
                         break;
 
-                    File.Delete(file.Value);
-
-                    fileIndex++;
+                    File.Delete(filesByDate[fileIndex]);
                 }
             }
             catch (DirectoryNotFoundException)
