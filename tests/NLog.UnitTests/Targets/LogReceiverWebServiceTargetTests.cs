@@ -40,6 +40,8 @@ namespace NLog.UnitTests.Targets
     using NLog.Config;
     using NLog.Targets;
     using Xunit;
+    using NLog.Targets.Wrappers;
+    using System.Threading;
 
     public class LogReceiverWebServiceTargetTests : NLogTestBase
     {
@@ -177,13 +179,29 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(payload.Events[0].LoggerOrdinal, payload.Events[2].LoggerOrdinal);
         }
 
+        [Fact]
+        public void NoEmptyEventLists()
+        {
+            var configuration = new LoggingConfiguration();
+            var target = new MyLogReceiverWebServiceTarget();
+            target.EndpointAddress = "http://notimportant:9999/";
+            target.Initialize(configuration);
+            var asyncTarget = new AsyncTargetWrapper(target);
+            asyncTarget.Initialize(configuration);
+            asyncTarget.WriteAsyncLogEvents(new[] { LogEventInfo.Create(LogLevel.Info, "logger1", "message1").WithContinuation(ex => { }) });
+            Thread.Sleep(1000);
+            Assert.Equal(1, target.SendCount);
+        }
+
         public class MyLogReceiverWebServiceTarget : LogReceiverWebServiceTarget
         {
             public NLogEvents LastPayload;
+            public int SendCount;
 
             protected internal override bool OnSend(NLogEvents events, IEnumerable<AsyncLogEventInfo> asyncContinuations)
             {
                 this.LastPayload = events;
+                ++this.SendCount;
 
                 foreach (var ac in asyncContinuations)
                 {
