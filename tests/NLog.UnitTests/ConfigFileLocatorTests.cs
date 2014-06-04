@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Threading;
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests
@@ -116,10 +118,12 @@ namespace NLog.UnitTests
             }
             catch (IOException)
             {
+                Thread.Sleep(500);
                 Directory.Delete(_tempDirectory, true);
             }
             catch (UnauthorizedAccessException)
             {
+                Thread.Sleep(500);
                 Directory.Delete(_tempDirectory, true);
             }
         }
