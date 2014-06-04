@@ -46,7 +46,7 @@ namespace NLog.UnitTests.Targets
     using Xunit;
 
     public class ConcurrentFileTargetTests : NLogTestBase
-	{
+    {
         private Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.ConcurrentFileTargetTests");
 
         private void ConfigureSharedFile(string mode)
