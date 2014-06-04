@@ -48,6 +48,8 @@ namespace NLog.Internal
 
         int Port { get; set; }
 
+        int Timeout { get; set; }
+
         ICredentialsByHost Credentials { get; set; }
 
         bool EnableSsl { get; set; }
