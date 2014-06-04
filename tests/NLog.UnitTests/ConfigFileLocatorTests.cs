@@ -45,7 +45,7 @@ namespace NLog.UnitTests
     using Microsoft.CSharp;
     using Xunit;
 
-    public class ConfigFileLocatorTests : IDisposable
+    public class ConfigFileLocatorTests
     {
         private string appConfigContents = @"
 <configuration>
@@ -108,24 +108,6 @@ namespace NLog.UnitTests
         {
             _tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
             Directory.CreateDirectory(_tempDirectory);
-        }
-
-        public void Dispose()
-        {
-            try
-            {
-                Directory.Delete(_tempDirectory, true);
-            }
-            catch (IOException)
-            {
-                Thread.Sleep(500);
-                Directory.Delete(_tempDirectory, true);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                Thread.Sleep(500);
-                Directory.Delete(_tempDirectory, true);
-            }
         }
 
         [Fact]
