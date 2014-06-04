@@ -118,6 +118,10 @@ namespace NLog.UnitTests
             {
                 Directory.Delete(_tempDirectory, true);
             }
+            catch (UnauthorizedAccessException)
+            {
+                Directory.Delete(_tempDirectory, true);
+            }
         }
 
         [Fact]
