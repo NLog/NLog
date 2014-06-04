@@ -57,6 +57,7 @@ namespace NLog
         private bool attributesLoaded;
         private bool autoLoggerName;
         private LogLevel forceLogLevel;
+        private bool disableFlush;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogTraceListener"/> class.
@@ -116,6 +117,24 @@ namespace NLog
             {
                 this.attributesLoaded = true;
                 this.forceLogLevel = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether flush calls from trace sources should be ignored.
+        /// </summary>
+        public bool DisableFlush
+        {
+            get
+            {
+                this.InitAttributes();
+                return this.disableFlush;
+            }
+
+            set
+            {
+                this.attributesLoaded = true;
+                this.disableFlush = value;
             }
         }
 
@@ -196,13 +215,16 @@ namespace NLog
         /// </summary>
         public override void Flush()
         {
-            if (this.LogFactory != null)
+            if (!this.DisableFlush)
             {
-                this.LogFactory.Flush();
-            }
-            else
-            {
-                LogManager.Flush();
+                if (this.LogFactory != null)
+                {
+                    this.LogFactory.Flush();
+                }
+                else
+                {
+                    LogManager.Flush();
+                }
             }
         }
 
@@ -305,7 +327,7 @@ namespace NLog
         /// </returns>
         protected override string[] GetSupportedAttributes()
         {
-            return new[] { "defaultLogLevel", "autoLoggerName", "forceLogLevel" };
+            return new[] { "defaultLogLevel", "autoLoggerName", "forceLogLevel", "disableFlush" };
         }
 
         /// <summary>
@@ -446,6 +468,10 @@ namespace NLog
 
                         case "AUTOLOGGERNAME":
                             this.AutoLoggerName = XmlConvert.ToBoolean(value);
+                            break;
+
+                        case "DISABLEFLUSH":
+                            this.disableFlush = Boolean.Parse(value);
                             break;
                     }
                 }
