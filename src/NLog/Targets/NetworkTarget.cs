@@ -315,6 +315,7 @@ namespace NLog.Targets
                 // already have address
                 if (this.currentSenderCache.TryGetValue(address, out sender))
                 {
+                    sender.CheckSocket();
                     return sender;
                 }
 

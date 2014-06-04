@@ -155,6 +155,14 @@ namespace NLog.Internal.NetworkSenders
                 asyncContinuation(error);
             }
         }
+
+        public override void CheckSocket()
+        {
+            if (socket == null)
+            {
+                DoInitialize();
+            }
+        }
     }
 }
 
