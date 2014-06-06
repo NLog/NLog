@@ -86,12 +86,16 @@ namespace NLog
         private readonly int ordinal;
         private readonly string name;
 
+        private LogLevel()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of <see cref="LogLevel"/>.
         /// </summary>
         /// <param name="name">The log level name.</param>
         /// <param name="ordinal">The log level ordinal number.</param>
-        public LogLevel(string name, int ordinal)
+        private LogLevel(string name, int ordinal)
         {
             this.name = name;
             this.ordinal = ordinal;
@@ -367,8 +371,16 @@ namespace NLog
         /// </returns>
         public int CompareTo(object obj)
         {
-            var level = (LogLevel)obj;
+            if (obj == null)
+            {
+                throw new ArgumentNullException("obj");
+            }
 
+            // The code below does NOT account if the casting to LogLevel returns null. This is 
+            // because as this class is sealed and does not provide any public constructors it 
+            // is impossible to create a invalid instance.
+
+            LogLevel level = (LogLevel)obj;
             return this.Ordinal - level.Ordinal;
         }
     }
