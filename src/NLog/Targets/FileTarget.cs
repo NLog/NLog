@@ -720,7 +720,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            string fileName = this.FileName.Render(logEvent);
+            string fileName = CleanupFileName(this.FileName.Render(logEvent));
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
             if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
@@ -751,7 +751,7 @@ namespace NLog.Targets
 
                 foreach (var bucket in buckets)
                 {
-                    string fileName = bucket.Key;
+                    string fileName = CleanupFileName(bucket.Key);
 
                     ms.SetLength(0);
                     ms.Position = 0;
@@ -1014,7 +1014,7 @@ namespace NLog.Targets
                         filesByDate.Add(files[index]);
                     }
                 }
-                 
+
                 for (int fileIndex = 0; fileIndex < filesByDate.Count; fileIndex++)
                 {
                     if (fileIndex > files.Count - this.MaxArchiveFiles)
@@ -1459,6 +1459,17 @@ namespace NLog.Targets
                     break;
                 }
             }
+        }
+
+        private static string CleanupFileName(string fileName)
+        {
+            var lastDirSeparator =
+                fileName.LastIndexOfAny(new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar });
+
+            var fileName1 = fileName.Substring(lastDirSeparator + 1);
+            var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator) : string.Empty;
+            fileName1 = Path.GetInvalidFileNameChars().Aggregate(fileName1, (current, c) => current.Replace(c, '_'));
+            return Path.Combine(dirName, fileName1);
         }
     }
 }

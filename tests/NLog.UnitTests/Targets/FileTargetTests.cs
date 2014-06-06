@@ -744,9 +744,9 @@ namespace NLog.UnitTests.Targets
             var events = new[]
             {
                 new LogEventInfo(LogLevel.Info, "file99.txt", "msg1").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "a/", "msg1").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "a/", "msg2").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "a/", "msg3").WithContinuation(exceptions.Add)
+                new LogEventInfo(LogLevel.Info, "", "msg1").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "", "msg2").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "", "msg3").WithContinuation(exceptions.Add)
             };
 
             fileTarget.WriteAsyncLogEvents(events);
@@ -808,6 +808,38 @@ namespace NLog.UnitTests.Targets
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
+            }
+        }
+
+        [Fact]
+        public void FileTarget_InvalidFileNameCorrection()
+        {            
+            var tempFile = Path.GetTempFileName();
+            var invalidTempFile = tempFile + Path.GetInvalidFileNameChars()[0];
+            var expectedCorrectedTempFile = tempFile + "_";
+
+            try
+            {
+                var ft = new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(invalidTempFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    OpenFileCacheTimeout = 0
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Fatal);
+
+                logger.Fatal("aaa");
+                LogManager.Configuration = null;
+                AssertFileContents(expectedCorrectedTempFile, "Fatal aaa\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(invalidTempFile))
+                    File.Delete(invalidTempFile); 
+                if (File.Exists(expectedCorrectedTempFile))
+                    File.Delete(expectedCorrectedTempFile);             
             }
         }
     }
