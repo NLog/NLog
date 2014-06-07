@@ -148,27 +148,28 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         public void ReplaceNamedGroupTests()
         {
             var pattern = @"(?<!\d[ -]*)(?:(?<digits>\d)[ -]*){8,16}(?=(\d[ -]*){3}(\d)(?![ -]*\d))";
-            var replacement = @"X";
             var groupName = @"digits";
 
             var regex = new System.Text.RegularExpressions.Regex(
                 pattern,
                 System.Text.RegularExpressions.RegexOptions.Compiled | System.Text.RegularExpressions.RegexOptions.IgnoreCase);
 
-            var testCases = new List<Tuple<string, string>>
+            var testCases = new List<Tuple<string, string, string>>
             {
-                Tuple.Create("1234", "1234"),
-                Tuple.Create("1234-5678-1234-5678", "XXXX-XXXX-XXXX-5678"),
-                Tuple.Create("1234 5678 1234 5678", "XXXX XXXX XXXX 5678"),
-                Tuple.Create("1234567812345678", "XXXXXXXXXXXX5678"),
-                Tuple.Create("ABCD-1234-5678-1234-5678", "ABCD-XXXX-XXXX-XXXX-5678"),
-                Tuple.Create("1234-5678-1234-5678-ABCD", "XXXX-XXXX-XXXX-5678-ABCD"),
-                Tuple.Create("ABCD-1234-5678-1234-5678-ABCD", "ABCD-XXXX-XXXX-XXXX-5678-ABCD"),
+                Tuple.Create("1234", "1234", "X"),
+                Tuple.Create("1234-5678-1234-5678", "XXXX-XXXX-XXXX-5678", "X"),
+                Tuple.Create("1234 5678 1234 5678", "XXXX XXXX XXXX 5678", "X"),
+                Tuple.Create("1234567812345678", "XXXXXXXXXXXX5678", "X"),
+                Tuple.Create("ABCD-1234-5678-1234-5678", "ABCD-XXXX-XXXX-XXXX-5678", "X"),
+                Tuple.Create("1234-5678-1234-5678-ABCD", "XXXX-XXXX-XXXX-5678-ABCD", "X"),
+                Tuple.Create("ABCD-1234-5678-1234-5678-ABCD", "ABCD-XXXX-XXXX-XXXX-5678-ABCD", "X"),
+                Tuple.Create("ABCD-1234-5678-1234-5678-ABCD", "ABCD-XXXXXXXX-XXXXXXXX-XXXXXXXX-5678-ABCD", "XX"),
             };
 
             foreach (var testCase in testCases)
             {
                 var input = testCase.Item1;
+                var replacement = testCase.Item3;
 
                 var result = regex.Replace(
                     input, m => ReplaceLayoutRendererWrapper.ReplaceNamedGroup(input, groupName, replacement, m));
