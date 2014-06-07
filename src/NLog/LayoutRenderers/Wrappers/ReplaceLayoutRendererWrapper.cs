@@ -128,16 +128,41 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Post-processed text.</returns>
         protected override string Transform(string text)
         {
+            var replacer = new Replacer(text, this.ReplaceGroupName, this.ReplaceWith);
+
             return string.IsNullOrEmpty(this.ReplaceGroupName) ?
                 this.regex.Replace(text, this.ReplaceWith)
-                : this.regex.Replace(text, match => ReplaceNamedGroup(text, this.ReplaceGroupName, this.ReplaceWith, match));
+                : this.regex.Replace(text, replacer.EvaluateMatch);
         }
 
-        private static string ReplaceNamedGroup(string input, string groupName, string replacement, Match m)
+        /// <summary>
+        /// This class was created instead of simply using a lambda expression so that the "ThreadAgnosticAttributeTest" will pass
+        /// </summary>
+        [ThreadAgnostic]
+        private class Replacer
         {
-            var sb = new StringBuilder(m.Value);
+            private readonly string text;
+            private readonly string replaceGroupName;
+            private readonly string replaceWith;
 
-            var captures = m.Groups[groupName].Captures.OfType<Capture>();
+            internal Replacer(string text, string replaceGroupName, string replaceWith)
+            {
+                this.text = text;
+                this.replaceGroupName = replaceGroupName;
+                this.replaceWith = replaceWith;
+            }
+
+            internal string EvaluateMatch(Match match)
+            {
+                return ReplaceNamedGroup(text, replaceGroupName, replaceWith, match);
+            }
+        }
+
+        private static string ReplaceNamedGroup(string input, string groupName, string replacement, Match match)
+        {
+            var sb = new StringBuilder(match.Value);
+
+            var captures = match.Groups[groupName].Captures.OfType<Capture>();
             foreach (var capt in captures)
             {
                 if (capt == null)
