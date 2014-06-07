@@ -139,7 +139,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// This class was created instead of simply using a lambda expression so that the "ThreadAgnosticAttributeTest" will pass
         /// </summary>
         [ThreadAgnostic]
-        private class Replacer
+        public class Replacer
         {
             private readonly string text;
             private readonly string replaceGroupName;
@@ -158,19 +158,35 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
-        private static string ReplaceNamedGroup(string input, string groupName, string replacement, Match match)
+        /// <summary>
+        /// A match evaluator for Regular Expression based replacing
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="groupName"></param>
+        /// <param name="replacement"></param>
+        /// <param name="match"></param>
+        /// <returns></returns>
+        public static string ReplaceNamedGroup(string input, string groupName, string replacement, Match match)
         {
-            var sb = new StringBuilder(match.Value);
+            var sb = new StringBuilder(input);
+            var matchStart = match.Index;
+            var matchLength = match.Length;
 
-            var captures = match.Groups[groupName].Captures.OfType<Capture>();
+            var captures = match.Groups[groupName].Captures.OfType<Capture>().OrderByDescending(c => c.Index);
             foreach (var capt in captures)
             {
                 if (capt == null)
                     continue;
 
+                matchLength += replacement.Length - capt.Length;
+
                 sb.Remove(capt.Index, capt.Length);
                 sb.Insert(capt.Index, replacement);
             }
+
+            var end = matchStart + matchLength;
+            sb.Remove(end, sb.Length - end);
+            sb.Remove(0, matchStart);
 
             return sb.ToString();
         }

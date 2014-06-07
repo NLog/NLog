@@ -278,7 +278,7 @@ namespace NLog.UnitTests.Layouts
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
     <variable name=""searchExp""
-              value=""(?&lt;!\\d[ -]*)(?\u003a(?&lt;digits&gt;\\d)[ -]*)\u007b8,16\u007d(?=(\\d[ -]*)\u007b3\u007d(\\d)(?![\\d -]))""
+              value=""(?&lt;!\\d[ -]*)(?\u003a(?&lt;digits&gt;\\d)[ -]*)\u007b8,16\u007d(?=(\\d[ -]*)\u007b3\u007d(\\d)(?![ -]\\d))""
               />
     
     <variable name=""message1"" value=""${replace:inner=${message}:searchFor=${searchExp}:replaceWith=\u003a\u003a:regex=true:ignorecase=true}"" />
@@ -306,7 +306,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(true, l1.Regex);
             Assert.Equal(true, l1.IgnoreCase);
             Assert.Equal(@"::", l1.ReplaceWith);
-            Assert.Equal(@"(?<!\d[ -]*)(?:(?<digits>\d)[ -]*){8,16}(?=(\d[ -]*){3}(\d)(?![\d -]))", l1.SearchFor);
+            Assert.Equal(@"(?<!\d[ -]*)(?:(?<digits>\d)[ -]*){8,16}(?=(\d[ -]*){3}(\d)(?![ -]\d))", l1.SearchFor);
         }
 
         [Fact]
@@ -317,7 +317,7 @@ namespace NLog.UnitTests.Layouts
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
     <variable name=""searchExp""
-              value=""(?&lt;!\\d[ -]*)(?\:(?&lt;digits&gt;\\d)[ -]*)\{8,16\}(?=(\\d[ -]*)\{3\}(\\d)(?![\\d -]))""
+              value=""(?&lt;!\\d[ -]*)(?\:(?&lt;digits&gt;\\d)[ -]*)\{8,16\}(?=(\\d[ -]*)\{3\}(\\d)(?![ -]\\d))""
               />
     
     <variable name=""message1"" value=""${replace:inner=${message}:searchFor=${searchExp}:replaceWith=\u003a\u003a:regex=true:ignorecase=true}"" />
@@ -345,7 +345,7 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(true, l1.Regex);
             Assert.Equal(true, l1.IgnoreCase);
             Assert.Equal(@"::", l1.ReplaceWith);
-            Assert.Equal(@"(?<!\d[ -]*)(?:(?<digits>\d)[ -]*){8,16}(?=(\d[ -]*){3}(\d)(?![\d -]))", l1.SearchFor);
+            Assert.Equal(@"(?<!\d[ -]*)(?:(?<digits>\d)[ -]*){8,16}(?=(\d[ -]*){3}(\d)(?![ -]\d))", l1.SearchFor);
         }
     }
 }
