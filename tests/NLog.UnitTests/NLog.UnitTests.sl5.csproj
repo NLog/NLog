@@ -123,9 +123,10 @@
     <Compile Include="Filters\WhenNotEqualTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
+    <Compile Include="LayoutRenderers\AppSettingTests.cs" />
+    <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
     <Compile Include="LayoutRenderers\BaseDirTests.cs" />
     <Compile Include="LayoutRenderers\CallSiteTests.cs" />
-    <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
     <Compile Include="LayoutRenderers\CounterTests.cs" />
     <Compile Include="LayoutRenderers\DateTests.cs" />
     <Compile Include="LayoutRenderers\EnvironmentTests.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="LayoutRenderers\RegistryTests.cs" />
     <Compile Include="LayoutRenderers\Rot13Tests.cs" />
     <Compile Include="LayoutRenderers\ShortDateTests.cs" />
+    <Compile Include="LayoutRenderers\SpecialFolderTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
     <Compile Include="LayoutRenderers\TimeTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedTests.cs" />
@@ -153,6 +155,7 @@
     <Compile Include="LayoutRenderers\Wrappers\JsonEncodeTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\OnExceptionTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\ReplaceTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenEmptyTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeTests.cs" />
@@ -174,11 +177,11 @@
     <Compile Include="SourceCodeTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
     <Compile Include="Targets\ConsoleTargetTests.cs" />
-    <Compile Include="Targets\MessageQueueTargetTests.cs" />
     <Compile Include="Targets\DatabaseTargetTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
     <Compile Include="Targets\MailTargetTests.cs" />
+    <Compile Include="Targets\MessageQueueTargetTests.cs" />
     <Compile Include="Targets\NetworkTargetTests.cs" />
     <Compile Include="Targets\RichTextBoxTargetTests.cs" />
     <Compile Include="Targets\TargetTests.cs" />

@@ -33,6 +33,8 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.Linq;
+    using System.Text;
     using System.Text.RegularExpressions;
     using NLog.Config;
 
@@ -65,6 +67,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <value>The replacement string.</value>
         /// <docgen category='Search/Replace Options' order='10' />
         public string ReplaceWith { get; set; }
+
+        /// <summary>
+        /// Gets or sets the group name to replace when using regular expressions.
+        /// Leave null or empty to replace without using group name.
+        /// </summary>
+        /// <value>The group name.</value>
+        /// <docgen category='Search/Replace Options' order='10' />
+        public string ReplaceGroupName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case.
@@ -118,7 +128,26 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Post-processed text.</returns>
         protected override string Transform(string text)
         {
-            return this.regex.Replace(text, this.ReplaceWith);
+            return string.IsNullOrEmpty(this.ReplaceGroupName) ?
+                this.regex.Replace(text, this.ReplaceWith)
+                : this.regex.Replace(text, match => ReplaceNamedGroup(text, this.ReplaceGroupName, this.ReplaceWith, match));
+        }
+
+        private static string ReplaceNamedGroup(string input, string groupName, string replacement, Match m)
+        {
+            var sb = new StringBuilder(m.Value);
+
+            var captures = m.Groups[groupName].Captures.OfType<Capture>();
+            foreach (var capt in captures)
+            {
+                if (capt == null)
+                    continue;
+
+                sb.Remove(capt.Index, capt.Length);
+                sb.Insert(capt.Index, replacement);
+            }
+
+            return sb.ToString();
         }
     }
 }
