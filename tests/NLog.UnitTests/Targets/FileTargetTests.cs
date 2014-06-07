@@ -51,7 +51,7 @@ namespace NLog.UnitTests.Targets
 
     public class FileTargetTests : NLogTestBase
     {
-        private readonly Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
+        private readonly ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 
         [Fact]
         public void SimpleFileTest1()

@@ -46,9 +46,9 @@ namespace NLog.UnitTests
         [Fact]
         public void GetLoggerTest()
         {
-            Logger loggerA = LogManager.GetLogger("A");
-            Logger loggerA2 = LogManager.GetLogger("A");
-            Logger loggerB = LogManager.GetLogger("B");
+            ILogger loggerA = LogManager.GetLogger("A");
+            ILogger loggerA2 = LogManager.GetLogger("A");
+            ILogger loggerB = LogManager.GetLogger("B");
             Assert.Same(loggerA, loggerA2);
             Assert.NotSame(loggerA, loggerB);
             Assert.Equal("A", loggerA.Name);
@@ -59,9 +59,9 @@ namespace NLog.UnitTests
         public void GarbageCollectionTest()
         {
             string uniqueLoggerName = Guid.NewGuid().ToString();
-            Logger loggerA1 = LogManager.GetLogger(uniqueLoggerName);
+            ILogger loggerA1 = LogManager.GetLogger(uniqueLoggerName);
             GC.Collect();
-            Logger loggerA2 = LogManager.GetLogger(uniqueLoggerName);
+            ILogger loggerA2 = LogManager.GetLogger(uniqueLoggerName);
             Assert.Same(loggerA1, loggerA2);
         }
 
@@ -84,8 +84,8 @@ namespace NLog.UnitTests
         [Fact]
         public void NullLoggerTest()
         {
-            Logger l = LogManager.CreateNullLogger();
-            Assert.Equal("", l.Name);
+            ILogger l = LogManager.CreateNullLogger();
+            Assert.Equal(String.Empty, l.Name);
         }
 
         [Fact]
@@ -198,7 +198,7 @@ namespace NLog.UnitTests
                     }
                     LogManager.Configuration = new XmlLoggingConfiguration(fileName);
                     AssertDebugCounter("debug", 0);
-                    Logger logger = LogManager.GetLogger("A");
+                    ILogger logger = LogManager.GetLogger("A");
                     logger.Debug("aaa");
                     AssertDebugLastMessage("debug", "aaa");
 					
@@ -274,7 +274,7 @@ namespace NLog.UnitTests
         [Fact]
         public void GivenLazyClass_WhenGetCurrentClassLogger_ThenLoggerNameShouldBeCurrentClass()
         {
-            var logger = new Lazy<Logger>(LogManager.GetCurrentClassLogger);
+            var logger = new Lazy<ILogger>(LogManager.GetCurrentClassLogger);
 
             Assert.Equal(this.GetType().FullName, logger.Value.Name);
         }

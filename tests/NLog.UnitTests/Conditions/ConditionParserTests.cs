@@ -139,7 +139,7 @@ namespace NLog.UnitTests.Conditions
         }
 
         [Fact]
-        public void RelationalOperatorTest()
+        public void RelationalOperatorTest2()
         {
             RelationalOperatorTest("=", "==");
             RelationalOperatorTest("==", "==");

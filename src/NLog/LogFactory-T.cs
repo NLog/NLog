@@ -36,6 +36,8 @@ namespace NLog
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
 
+    // TODO: Must lookinto this 
+
     /// <summary>
     /// Specialized LogFactory that can return instances of custom logger types.
     /// </summary>
