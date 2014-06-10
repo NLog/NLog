@@ -222,6 +222,12 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool ReplaceNewlineWithBrTagInHtml { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating the SMTP client timeout.
+        /// </summary>
+        [DefaultValue(10000)]
+        public int Timeout { get; set;}
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method.")]
         internal virtual ISmtpClient CreateSmtpClient()
         {
@@ -332,6 +338,7 @@ namespace NLog.Targets
             client.Host = this.SmtpServer.Render( lastEvent );
             client.Port = this.SmtpPort;
             client.EnableSsl = this.EnableSsl;
+            client.Timeout = this.Timeout;
 
             if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
             {

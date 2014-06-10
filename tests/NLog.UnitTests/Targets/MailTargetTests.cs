@@ -506,6 +506,8 @@ namespace NLog.UnitTests.Targets
 
             public string Host { get; set; }
             public int Port { get; set; }
+            public int Timeout { get; set; }
+
             public ICredentialsByHost Credentials { get; set; }
             public bool EnableSsl { get; set; }
             public List<MailMessage> MessagesSent { get; private set; }

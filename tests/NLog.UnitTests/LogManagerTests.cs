@@ -175,11 +175,11 @@ namespace NLog.UnitTests
         {
             if (IsMacOsX())
             {
-            	// skip this on Mac OS, since it requires root permissions for
-            	// filesystem watcher
-            	return;
+                // skip this on Mac OS, since it requires root permissions for
+                // filesystem watcher
+                return;
             }
-			
+            
             using (new InternalLoggerScope())
             {
                 string fileName = Path.GetTempFileName();
@@ -201,7 +201,7 @@ namespace NLog.UnitTests
                     Logger logger = LogManager.GetLogger("A");
                     logger.Debug("aaa");
                     AssertDebugLastMessage("debug", "aaa");
-					
+                    
                     InternalLogger.Info("Rewriting test file...");
 
                     // now write the file again

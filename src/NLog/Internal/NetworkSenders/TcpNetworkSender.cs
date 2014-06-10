@@ -271,6 +271,14 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
+        public override void CheckSocket()
+        {
+            if (socket == null)
+            {
+                DoInitialize();
+            }
+        }
+
         /// <summary>
         /// Facilitates mocking of <see cref="SocketAsyncEventArgs"/> class.
         /// </summary>

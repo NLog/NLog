@@ -193,6 +193,10 @@ namespace NLog.Internal.NetworkSenders
 #endif
         }
 
+        public virtual void CheckSocket()
+        {
+        }
+
         private void Dispose(bool disposing)
         {
             if (disposing)

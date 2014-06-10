@@ -418,7 +418,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                         continuationThread[eventNumber] = Thread.CurrentThread;
                         continuationHit[eventNumber] = true;
                         Interlocked.Increment(ref hitCount);
-                        resetEvent.Set();
+                        if (eventNumber > 0)
+                        {
+                            resetEvent.Set();
+                        }
                     };
 
             var eventCounter = 0;

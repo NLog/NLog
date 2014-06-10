@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Threading;
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests
@@ -100,112 +102,59 @@ namespace NLog.UnitTests
         private string nlogConfigOutput = "--BEGIN--|NLC InfoMsg|NLC WarnMsg|NLC ErrorMsg|NLC FatalMsg|--END--|";
         private string nlogDllNLogOutput = "--BEGIN--|NDN InfoMsg|NDN WarnMsg|NDN ErrorMsg|NDN FatalMsg|--END--|";
         private string missingConfigOutput = "--BEGIN--|--END--|";
+        private readonly string _tempDirectory;
+
+        public ConfigFileLocatorTests()
+        {
+            _tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(_tempDirectory);
+        }
 
         [Fact]
         public void MissingConfigFileTest()
         {
-            string dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-
-            Directory.CreateDirectory(dir);
-            try
-            {
-                string output = RunTestIn(dir);
-                Assert.Equal(missingConfigOutput, output);
-            }
-            finally
-            {
-                Directory.Delete(dir, true);
-            }
+            string output = RunTest();
+            Assert.Equal(missingConfigOutput, output);
         }
 
         [Fact]
         public void NLogDotConfigTest()
         {
-            string dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-
-            Directory.CreateDirectory(dir);
-            try
-            {
-                File.WriteAllText(Path.Combine(dir, "NLog.config"), nlogConfigContents);
-                string output = RunTestIn(dir);
-                Assert.Equal(nlogConfigOutput, output);
-            }
-            finally
-            {
-                Directory.Delete(dir, true);
-            }
+            File.WriteAllText(Path.Combine(_tempDirectory, "NLog.config"), nlogConfigContents);
+            string output = RunTest();
+            Assert.Equal(nlogConfigOutput, output);
         }
 
         [Fact]
         public void NLogDotDllDotNLogTest()
         {
-            string dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-
-            Directory.CreateDirectory(dir);
-            try
-            {
-                File.WriteAllText(Path.Combine(dir, "NLog.dll.nlog"), nlogDllNLogContents);
-                string output = RunTestIn(dir);
-                Assert.Equal(nlogDllNLogOutput, output);
-            }
-            finally
-            {
-                Directory.Delete(dir, true);
-            }
+            File.WriteAllText(Path.Combine(_tempDirectory, "NLog.dll.nlog"), nlogDllNLogContents);
+            string output = RunTest();
+            Assert.Equal(nlogDllNLogOutput, output);
         }
 
         [Fact]
         public void NLogDotDllDotNLogInDirectoryWithSpaces()
         {
-            string dir = Path.Combine(Path.GetTempPath(), "abc " + Guid.NewGuid().ToString("N") + " def");
-
-            Directory.CreateDirectory(dir);
-            try
-            {
-                File.WriteAllText(Path.Combine(dir, "NLog.dll.nlog"), nlogDllNLogContents);
-                string output = RunTestIn(dir);
-                Assert.Equal(nlogDllNLogOutput, output);
-            }
-            finally
-            {
-                Directory.Delete(dir, true);
-            }
+            File.WriteAllText(Path.Combine(_tempDirectory, "NLog.dll.nlog"), nlogDllNLogContents);
+            string output = RunTest();
+            Assert.Equal(nlogDllNLogOutput, output);
         }
 
         [Fact]
         public void AppDotConfigTest()
         {
-            string dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-
-            Directory.CreateDirectory(dir);
-            try
-            {
-                File.WriteAllText(Path.Combine(dir, "ConfigFileLocator.exe.config"), appConfigContents);
-                string output = RunTestIn(dir);
-                Assert.Equal(appConfigOutput, output);
-            }
-            finally
-            {
-                Directory.Delete(dir, true);
-            }
+            File.WriteAllText(Path.Combine(_tempDirectory, "ConfigFileLocator.exe.config"), appConfigContents);
+            string output = RunTest();
+            Assert.Equal(appConfigOutput, output);
         }
 
         [Fact]
         public void AppDotNLogTest()
         {
-            string dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-
-            Directory.CreateDirectory(dir);
-            try
-            {
-                File.WriteAllText(Path.Combine(dir, "ConfigFileLocator.exe.nlog"), appNLogContents);
-                string output = RunTestIn(dir);
-                Assert.Equal(appNLogOutput, output);
-            }
-            finally
-            {
-                Directory.Delete(dir, true);
-            }
+            File.WriteAllText(Path.Combine(_tempDirectory, "ConfigFileLocator.exe.nlog"), appNLogContents);
+            string output = RunTest();
+            Assert.Equal(appNLogOutput, output);
         }
 
         [Fact]
@@ -238,39 +187,28 @@ namespace NLog.UnitTests
                                              Output = nlogDllNLogOutput
                                          },
                                  };
-            string dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-
-            Directory.CreateDirectory(dir);
-            try
+            // deploy all files
+            foreach (var p in precedence)
             {
-                // deploy all files
-                foreach (var p in precedence)
-                {
-                    File.WriteAllText(Path.Combine(dir, p.File), p.Contents);
-                }
-
-                string output;
-
-                // walk files in precedence order and delete config files
-                foreach (var p in precedence)
-                {
-                    output = RunTestIn(dir);
-                    Assert.Equal(p.Output, output);
-                    File.Delete(Path.Combine(dir, p.File));
-                }
-
-                output = RunTestIn(dir);
-                Assert.Equal(missingConfigOutput, output);
-
+                File.WriteAllText(Path.Combine(_tempDirectory, p.File), p.Contents);
             }
-            finally
+
+            string output;
+
+            // walk files in precedence order and delete config files
+            foreach (var p in precedence)
             {
-                Directory.Delete(dir, true);
+                output = RunTest();
+                Assert.Equal(p.Output, output);
+                File.Delete(Path.Combine(_tempDirectory, p.File));
             }
+
+            output = RunTest();
+            Assert.Equal(missingConfigOutput, output);
 
         }
 
-        private static string RunTestIn(string directory)
+        private string RunTest()
         {
         string sourceCode = @"
 using System;
@@ -295,7 +233,7 @@ class C1
 }";
             var provider = new CSharpCodeProvider();
             var options = new CompilerParameters();
-            options.OutputAssembly = Path.Combine(directory, "ConfigFileLocator.exe");
+            options.OutputAssembly = Path.Combine(_tempDirectory, "ConfigFileLocator.exe");
             options.GenerateExecutable = true;
             options.ReferencedAssemblies.Add(typeof(Logger).Assembly.Location);
             options.IncludeDebugInformation = true;
@@ -304,7 +242,7 @@ class C1
                 var results = provider.CompileAssemblyFromSource(options, sourceCode);
                 Assert.False(results.Errors.HasWarnings);
                 Assert.False(results.Errors.HasErrors);
-                File.Copy(typeof (Logger).Assembly.Location, Path.Combine(directory, "NLog.dll"));
+                File.Copy(typeof (Logger).Assembly.Location, Path.Combine(_tempDirectory, "NLog.dll"));
             }
 
             return RunAndRedirectOutput(options.OutputAssembly);
