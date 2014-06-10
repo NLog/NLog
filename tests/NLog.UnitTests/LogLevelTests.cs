@@ -36,6 +36,7 @@ namespace NLog.UnitTests
     using System;
     using Xunit;
 
+    [Trait("Component", "Core")]
     public class LogLevelTests : NLogTestBase
     {
         [Fact]
@@ -68,6 +69,43 @@ namespace NLog.UnitTests
             Assert.False(LogLevel.Warn >= LogLevel.Error);
             Assert.False(LogLevel.Error >= LogLevel.Fatal);
             Assert.False(LogLevel.Fatal >= LogLevel.Off);
+        }
+
+        [Fact]
+        public void LogLevelEqualityTest()
+        {
+            LogLevel levelTrace = LogLevel.Trace;
+            LogLevel levelInfo = LogLevel.Info;
+
+            Assert.True(LogLevel.Trace == levelTrace);
+            Assert.True(LogLevel.Info == levelInfo);
+            Assert.False(LogLevel.Trace == levelInfo);
+
+            Assert.False(LogLevel.Trace != levelTrace);
+            Assert.False(LogLevel.Info != levelInfo);
+            Assert.True(LogLevel.Trace != levelInfo);
+        }
+
+        [Fact]
+        public void LogLevelFromOrdinal_InputInRange_ExpectValidLevel()
+        { 
+            Assert.Same(LogLevel.FromOrdinal(0), LogLevel.Trace);
+            Assert.Same(LogLevel.FromOrdinal(1), LogLevel.Debug);
+            Assert.Same(LogLevel.FromOrdinal(2), LogLevel.Info);
+            Assert.Same(LogLevel.FromOrdinal(3), LogLevel.Warn);
+            Assert.Same(LogLevel.FromOrdinal(4), LogLevel.Error);
+            Assert.Same(LogLevel.FromOrdinal(5), LogLevel.Fatal);
+            Assert.Same(LogLevel.FromOrdinal(6), LogLevel.Off);
+        }
+
+        [Fact]
+        public void LogLevelFromOrdinal_InputOutOfRange_ExpectException()
+        {
+            Assert.Throws<ArgumentException>(() => LogLevel.FromOrdinal(100));
+
+            // Boundary conditions.
+            Assert.Throws<ArgumentException>(() => LogLevel.FromOrdinal(-1));
+            Assert.Throws<ArgumentException>(() => LogLevel.FromOrdinal(7));
         }
 
         [Fact]
@@ -108,6 +146,7 @@ namespace NLog.UnitTests
         public void FromStringFailingTest()
         {
             Assert.Throws<ArgumentException>(() => LogLevel.FromString("zzz"));
+            Assert.Throws<ArgumentNullException>(() => LogLevel.FromString(null));
         }
 
         [Fact]
@@ -135,6 +174,92 @@ namespace NLog.UnitTests
             Assert.Equal(LogLevel.Warn.ToString(), "Warn");
             Assert.Equal(LogLevel.Error.ToString(), "Error");
             Assert.Equal(LogLevel.Fatal.ToString(), "Fatal");
+        }
+
+        [Fact]
+        public void LogLevelCompareTo_ValidLevels_ExpectIntValues()
+        {
+            LogLevel levelTrace = LogLevel.Trace;
+            LogLevel levelDebug = LogLevel.Debug;
+            LogLevel levelInfo = LogLevel.Info;
+            LogLevel levelWarn = LogLevel.Warn;
+            LogLevel levelError = LogLevel.Error;
+            LogLevel levelFatal = LogLevel.Fatal;
+            LogLevel levelOff = LogLevel.Off;
+
+            LogLevel levelMin = LogLevel.MinLevel;
+            LogLevel levelMax = LogLevel.MaxLevel;
+          
+            Assert.Equal(LogLevel.Trace.CompareTo(levelDebug), -1);
+            Assert.Equal(LogLevel.Debug.CompareTo(levelInfo), -1);
+            Assert.Equal(LogLevel.Info.CompareTo(levelWarn), -1);
+            Assert.Equal(LogLevel.Warn.CompareTo(levelError), -1);
+            Assert.Equal(LogLevel.Error.CompareTo(levelFatal), -1);
+            Assert.Equal(LogLevel.Fatal.CompareTo(levelOff), -1);
+
+            Assert.Equal(LogLevel.Debug.CompareTo(levelTrace), 1);
+            Assert.Equal(LogLevel.Info.CompareTo(levelDebug), 1);
+            Assert.Equal(LogLevel.Warn.CompareTo(levelInfo), 1);
+            Assert.Equal(LogLevel.Error.CompareTo(levelWarn), 1);
+            Assert.Equal(LogLevel.Fatal.CompareTo(levelError), 1);
+            Assert.Equal(LogLevel.Off.CompareTo(levelFatal), 1);
+
+            Assert.Equal(LogLevel.Debug.CompareTo(levelDebug), 0);
+            Assert.Equal(LogLevel.Info.CompareTo(levelInfo), 0);
+            Assert.Equal(LogLevel.Warn.CompareTo(levelWarn), 0);
+            Assert.Equal(LogLevel.Error.CompareTo(levelError), 0);
+            Assert.Equal(LogLevel.Fatal.CompareTo(levelFatal), 0);
+            Assert.Equal(LogLevel.Off.CompareTo(levelOff), 0);
+
+            Assert.Equal(LogLevel.Trace.CompareTo(levelMin), 0);
+            Assert.Equal(LogLevel.Debug.CompareTo(levelMin), 1);
+            Assert.Equal(LogLevel.Info.CompareTo(levelMin), 2);
+            Assert.Equal(LogLevel.Warn.CompareTo(levelMin), 3);
+            Assert.Equal(LogLevel.Error.CompareTo(levelMin), 4);
+            Assert.Equal(LogLevel.Fatal.CompareTo(levelMin), 5);
+            Assert.Equal(LogLevel.Off.CompareTo(levelMin), 6);
+
+            Assert.Equal(LogLevel.Trace.CompareTo(levelMax), -5);
+            Assert.Equal(LogLevel.Debug.CompareTo(levelMax), -4);
+            Assert.Equal(LogLevel.Info.CompareTo(levelMax), -3);
+            Assert.Equal(LogLevel.Warn.CompareTo(levelMax), -2);
+            Assert.Equal(LogLevel.Error.CompareTo(levelMax), -1);
+            Assert.Equal(LogLevel.Fatal.CompareTo(levelMax), 0);
+            Assert.Equal(LogLevel.Off.CompareTo(levelMax), 1);
+        }
+
+        [Fact]
+        public void LogLevelCompareTo_Null_ExpectException()
+        {
+            Assert.Throws<ArgumentNullException>(() => LogLevel.MinLevel.CompareTo(null));
+            Assert.Throws<ArgumentNullException>(() => LogLevel.MaxLevel.CompareTo(null));
+            
+            Assert.Throws<ArgumentNullException>(() => LogLevel.Debug.CompareTo(null));
+        }
+
+        [Fact]
+        public void LogLevel_MinMaxLevels_ExpectConstantValues()
+        {
+            Assert.Same(LogLevel.Trace, LogLevel.MinLevel); 
+            Assert.Same(LogLevel.Fatal, LogLevel.MaxLevel); 
+        }
+
+        [Fact]
+        public void LogLevelGetHashCode()
+        {
+            Assert.Equal(LogLevel.Trace.GetHashCode(), 0);
+            Assert.Equal(LogLevel.Debug.GetHashCode(), 1);
+            Assert.Equal(LogLevel.Info.GetHashCode(), 2);
+            Assert.Equal(LogLevel.Warn.GetHashCode(), 3);
+            Assert.Equal(LogLevel.Error.GetHashCode(), 4);
+            Assert.Equal(LogLevel.Fatal.GetHashCode(), 5);
+            Assert.Equal(LogLevel.Off.GetHashCode(), 6);
+        }
+
+        [Fact]
+        public void LogLevelEquals_Null_ExpectFalse()
+        { 
+            Assert.False(LogLevel.Debug.Equals(null));
         }
     }
 }
