@@ -1051,8 +1051,14 @@ namespace NLog.UnitTests
                     logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                     if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
+                    logger.Log(level, "message", new Exception("test"));
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+#pragma warning disable 0618
+                    // Obsolete method requires testing until removed.
                     logger.LogException(level, "message", new Exception("test"));
                     if (enabled == 1) AssertDebugLastMessage("debug", "message");
+#pragma warning restore 0618
 
                     logger.Log(level, delegate { return "message from lambda"; });
                     if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");

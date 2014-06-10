@@ -232,6 +232,7 @@ namespace NLog
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Log(LogLevel, String, Exception) method instead.")]
         public void LogException(LogLevel level, [Localizable(false)] string message, Exception exception)
         {
             this.Log(level, message, exception);
@@ -326,7 +327,7 @@ namespace NLog
                 var exceptionCandidate = argument as Exception;
                 if (exceptionCandidate != null)
                 {
-                    this.LogException(level, message, exceptionCandidate);
+                    this.Log(level, message, exceptionCandidate);
                     return;
                 }
 
