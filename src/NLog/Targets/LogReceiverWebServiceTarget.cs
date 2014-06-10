@@ -75,7 +75,7 @@ namespace NLog.Targets
         /// <value>The endpoint address.</value>
         /// <docgen category='Connection Options' order='10' />
         [RequiredParameter]
-        public string EndpointAddress { get; set; }
+        public virtual string EndpointAddress { get; set; }
 
 #if WCF_SUPPORTED
         /// <summary>
