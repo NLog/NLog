@@ -100,7 +100,7 @@ namespace NLog.Targets
                 new RichTextBoxRowColoringRule("level == LogLevel.Debug", "Gray", "Empty"),
                 new RichTextBoxRowColoringRule("level == LogLevel.Trace", "DarkGray", "Empty", FontStyle.Italic),
             };
-            
+
             DefaultRowColoringRules = rules.AsReadOnly();
         }
 
@@ -306,7 +306,7 @@ namespace NLog.Targets
             {
                 matchingRule = RichTextBoxRowColoringRule.Default;
             }
-            
+
             string logMessage = this.Layout.Render(logEvent);
 
             this.TargetRichTextBox.BeginInvoke(new DelSendTheMessageToRichTextBox(this.SendTheMessageToRichTextBox), new object[] { logMessage, matchingRule });
@@ -353,9 +353,9 @@ namespace NLog.Targets
                 this.lineCount++;
                 if (this.lineCount > this.MaxLines)
                 {
-                    int pos = rtbx.GetFirstCharIndexFromLine(1);
-                    rtbx.Select(0, pos);
-                    rtbx.SelectedText = string.Empty;
+                    rtbx.SelectionStart = 0;
+                    rtbx.SelectionLength = rtbx.GetFirstCharIndexFromLine(1);
+                    rtbx.Text = rtbx.Text.Remove(rtbx.SelectionStart, rtbx.SelectionLength);
                     this.lineCount--;
                 }
             }
