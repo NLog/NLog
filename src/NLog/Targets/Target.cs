@@ -485,7 +485,7 @@ namespace NLog.Targets
 
             foreach (var item in logEvent.Parameters)
             {
-                if (item.GetType() == typeof(LogEventInfo))
+                if (item!=null && item.GetType() == typeof(LogEventInfo))
                 {
 
                     foreach (var propertyItem in ((LogEventInfo)item).Properties)
