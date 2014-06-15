@@ -101,32 +101,53 @@ namespace NLog
 
         private static int FindCallingMethodOnStackTrace(StackTrace stackTrace, Type loggerType)
         {
-            int firstUserFrame = 0;
-            for (int i = 0; i < stackTrace.FrameCount; ++i)
+            int? firstUserFrame = null;
+
+            if (loggerType != null)
             {
-                StackFrame frame = stackTrace.GetFrame(i);
-                MethodBase mb = frame.GetMethod();
-                Assembly methodAssembly = null;
+                for (int i = 0; i < stackTrace.FrameCount; ++i)
+                {
+                    StackFrame frame = stackTrace.GetFrame(i);
+                    MethodBase mb = frame.GetMethod();
 
-                if (mb.DeclaringType != null)
-                {
-                    methodAssembly = mb.DeclaringType.Assembly;
-                }
-
-				if ((loggerType == null && SkipAssembly(methodAssembly)) || mb.DeclaringType == loggerType)
-                {
-                    firstUserFrame = i + 1;
-                }
-                else
-                {
-                    if (firstUserFrame != 0)
-                    {
+                    if (mb.DeclaringType == loggerType)
+                        firstUserFrame = i + 1;
+                    else if (firstUserFrame != null)
                         break;
+                }
+            }
+
+            if (firstUserFrame == stackTrace.FrameCount)
+                firstUserFrame = null;
+            
+            if (firstUserFrame == null)
+            {
+                for (int i = 0; i < stackTrace.FrameCount; ++i)
+                {
+                    StackFrame frame = stackTrace.GetFrame(i);
+                    MethodBase mb = frame.GetMethod();
+                    Assembly methodAssembly = null;
+
+                    if (mb.DeclaringType != null)
+                    {
+                        methodAssembly = mb.DeclaringType.Assembly;
+                    }
+
+                    if (SkipAssembly(methodAssembly))
+                    {
+                        firstUserFrame = i + 1;
+                    }
+                    else
+                    {
+                        if (firstUserFrame != 0)
+                        {
+                            break;
+                        }
                     }
                 }
             }
 
-            return firstUserFrame;
+            return firstUserFrame ?? 0;
         }
 
         private static bool SkipAssembly(Assembly assembly)
