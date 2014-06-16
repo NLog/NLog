@@ -253,6 +253,17 @@ namespace NLog.Targets
         public bool DeleteOldFileOnStartup { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to archive old log file on startup.
+        /// </summary>
+        /// <remarks>
+        /// This option works only when the "FileName" parameter denotes a single file.
+        /// After archiving the old file, the current log file will be empty.
+        /// </remarks>
+        /// <docgen category='Output Options' order='10' />
+        [DefaultValue(false)]
+        public bool ArchiveOldFileOnStartup { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to replace file contents on each write instead of appending log message at the end.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
@@ -1266,6 +1277,19 @@ namespace NLog.Targets
             {
                 if (!this.initializedFiles.ContainsKey(fileName))
                 {
+                    if (this.ArchiveOldFileOnStartup)
+                    {
+                        try
+                        {
+                            this.DoAutoArchive(fileName, null);
+                        }
+                        catch (Exception exception)
+                        {
+                            if (exception.MustBeRethrown())
+                                throw;
+                            InternalLogger.Warn("Unable to archive old log file '{0}': {1}", fileName, exception);
+                        }
+                    }
                     if (this.DeleteOldFileOnStartup)
                     {
                         try
