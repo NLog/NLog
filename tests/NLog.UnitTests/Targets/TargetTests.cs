@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -267,6 +269,17 @@ namespace NLog.UnitTests.Targets
             {
                 Assert.True(false, "Exeption thrown: " + e);
             }
+        }
+
+        [Fact]
+        public void WriteFormattedStringEvent_WithNullArgument()
+        {
+            var target = new MyTarget();
+            SimpleConfigurator.ConfigureForTargetLogging(target);
+            var logger = LogManager.GetLogger("WriteFormattedStringEvent_EventWithNullArguments");
+            string t = null;
+            logger.Info("Testing null:{0}",t);
+            Assert.Equal(1, target.WriteCount); 
         }
 
         public class MyTarget : Target
