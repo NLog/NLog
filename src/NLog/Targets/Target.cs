@@ -476,7 +476,12 @@ namespace NLog.Targets
             InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
         }
 
-        private void MergeEventProperties(LogEventInfo logEvent)
+        /// <summary>
+        /// Merges (copies) the event context properties from any event info object stored in
+        /// parameters of the given event info object.
+        /// </summary>
+        /// <param name="logEvent">The event info object to perform the merge to.</param>
+        protected void MergeEventProperties(LogEventInfo logEvent)
         {
 			if (logEvent.Parameters == null)
 			{
