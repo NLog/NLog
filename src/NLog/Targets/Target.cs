@@ -485,13 +485,13 @@ namespace NLog.Targets
 
             foreach (var item in logEvent.Parameters)
             {
-                if (item.GetType() == typeof(LogEventInfo))
+                var logEventParameter = item as LogEventInfo;
+                if (logEventParameter != null)
                 {
-
-                    foreach (var propertyItem in ((LogEventInfo)item).Properties)
+                    foreach (var propertyItem in logEventParameter.Properties)
                     {
-                        logEvent.Properties.Remove(propertyItem.Key);
-                        logEvent.Properties.Add(propertyItem);
+                        logEventParameter.Properties.Remove(propertyItem.Key);
+                        logEventParameter.Properties.Add(propertyItem);
                     }
                 }
             }
