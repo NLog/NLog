@@ -132,7 +132,7 @@ namespace NLog.Targets
             if (EventLog.SourceExists(this.Source, this.MachineName))
             {
                 string currentLogName = EventLog.LogNameFromSourceName(this.Source, this.MachineName);
-                if (currentLogName != this.Log)
+                if (!currentLogName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))            
                 {
                     // re-create the association between Log and Source
                     EventLog.DeleteEventSource(this.Source, this.MachineName);
@@ -185,7 +185,7 @@ namespace NLog.Targets
             base.InitializeTarget();
 
             var s = EventLog.LogNameFromSourceName(this.Source, this.MachineName);
-            if (s != this.Log)
+            if (!s.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))            
             {
                 this.CreateEventSourceIfNeeded();
             }
@@ -250,7 +250,7 @@ namespace NLog.Targets
                 if (EventLog.SourceExists(this.Source, this.MachineName))
                 {
                     string currentLogName = EventLog.LogNameFromSourceName(this.Source, this.MachineName);
-                    if (currentLogName != this.Log)
+                    if (!currentLogName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))            
                     {
                         // re-create the association between Log and Source
                         EventLog.DeleteEventSource(this.Source, this.MachineName);
