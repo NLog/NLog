@@ -141,14 +141,14 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void RelationalOperatorTest()
         {
-            RelationalOperatorTest("=", "==");
-            RelationalOperatorTest("==", "==");
-            RelationalOperatorTest("!=", "!=");
-            RelationalOperatorTest("<>", "!=");
-            RelationalOperatorTest("<", "<");
-            RelationalOperatorTest(">", ">");
-            RelationalOperatorTest("<=", "<=");
-            RelationalOperatorTest(">=", ">=");
+            RelationalOperatorTestInner("=", "==");
+            RelationalOperatorTestInner("==", "==");
+            RelationalOperatorTestInner("!=", "!=");
+            RelationalOperatorTestInner("<>", "!=");
+            RelationalOperatorTestInner("<", "<");
+            RelationalOperatorTestInner(">", ">");
+            RelationalOperatorTestInner("<=", "<=");
+            RelationalOperatorTestInner(">=", ">=");
         }
 
         [Fact]
@@ -299,7 +299,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Throws<ConditionParseException>(() => tokenizer.GetNextToken());
         }
 
-        private void RelationalOperatorTest(string op, string result)
+        private void RelationalOperatorTestInner(string op, string result)
         {
             string operand1 = "3";
             string operand2 = "7";

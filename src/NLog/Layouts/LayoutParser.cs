@@ -185,13 +185,95 @@ namespace NLog.Layouts
                     break;
                 }
 
+                // Code in this condition was replaced
+                // to support escape codes e.g. '\r' '\n' '\u003a',
+                // which can not be used directly as they are used as tokens by the parser
+                // All escape codes listed in the following link were included
+                // in addition to "\{", "\}", "\:" which are NLog specific:
+                // http://blogs.msdn.com/b/csharpfaq/archive/2004/03/12/what-character-escape-sequences-are-available.aspx
                 if (ch == '\\')
                 {
                     // skip the backslash
                     sr.Read();
 
-                    // append next character
-                    nameBuf.Append((char)sr.Read());
+                    var nextChar = (char)sr.Peek();
+
+                    switch (nextChar)
+                    {
+                        case ':':
+                            sr.Read();
+                            nameBuf.Append(':');
+                            break;
+                        case '{':
+                            sr.Read();
+                            nameBuf.Append('{');
+                            break;
+                        case '}':
+                            sr.Read();
+                            nameBuf.Append('}');
+                            break;
+
+                        case '\'':
+                            sr.Read();
+                            nameBuf.Append('\'');
+                            break;
+                        case '"':
+                            sr.Read();
+                            nameBuf.Append('"');
+                            break;
+                        case '\\':
+                            sr.Read();
+                            nameBuf.Append('\\');
+                            break;
+                        case '0':
+                            sr.Read();
+                            nameBuf.Append('\0');
+                            break;
+                        case 'a':
+                            sr.Read();
+                            nameBuf.Append('\a');
+                            break;
+                        case 'b':
+                            sr.Read();
+                            nameBuf.Append('\b');
+                            break;
+                        case 'f':
+                            sr.Read();
+                            nameBuf.Append('\f');
+                            break;
+                        case 'n':
+                            sr.Read();
+                            nameBuf.Append('\n');
+                            break;
+                        case 'r':
+                            sr.Read();
+                            nameBuf.Append('\r');
+                            break;
+                        case 't':
+                            sr.Read();
+                            nameBuf.Append('\t');
+                            break;
+                        case 'u':
+                            sr.Read();
+                            var uChar = GetUnicode(sr, 4); // 4 digits
+                            nameBuf.Append(uChar);
+                            break;
+                        case 'U':
+                            sr.Read();
+                            var UChar = GetUnicode(sr, 8); // 8 digits
+                            nameBuf.Append(UChar);
+                            break;
+                        case 'x':
+                            sr.Read();
+                            var xChar = GetUnicode(sr, 4); // 1-4 digits
+                            nameBuf.Append(xChar);
+                            break;
+                        case 'v':
+                            sr.Read();
+                            nameBuf.Append('\v');
+                            break;
+                    }
+
                     continue;
                 }
 
@@ -200,6 +282,29 @@ namespace NLog.Layouts
             }
 
             return nameBuf.ToString();
+        }
+
+        private static char GetUnicode(SimpleStringReader sr, int maxDigits)
+        {
+            int code = 0;
+
+            for (int cnt = 0; cnt < maxDigits; cnt++)
+            {
+                var digitCode = sr.Peek();
+                if (digitCode >= (int)'0' && digitCode <= (int)'9')
+                    digitCode = digitCode - (int)'0';
+                else if (digitCode >= (int)'a' && digitCode <= (int)'f')
+                    digitCode = digitCode - (int)'a' + 10;
+                else if (digitCode >= (int)'A' && digitCode <= (int)'F')
+                    digitCode = digitCode - (int)'A' + 10;
+                else
+                    break;
+
+                sr.Read();
+                code = code * 16 + digitCode;
+            }
+
+            return (char)code;
         }
 
         private static LayoutRenderer ParseLayoutRenderer(ConfigurationItemFactory configurationItemFactory, SimpleStringReader sr)

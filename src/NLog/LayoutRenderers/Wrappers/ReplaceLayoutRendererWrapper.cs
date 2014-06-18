@@ -33,6 +33,8 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.Linq;
+    using System.Text;
     using System.Text.RegularExpressions;
     using NLog.Config;
 
@@ -65,6 +67,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <value>The replacement string.</value>
         /// <docgen category='Search/Replace Options' order='10' />
         public string ReplaceWith { get; set; }
+
+        /// <summary>
+        /// Gets or sets the group name to replace when using regular expressions.
+        /// Leave null or empty to replace without using group name.
+        /// </summary>
+        /// <value>The group name.</value>
+        /// <docgen category='Search/Replace Options' order='10' />
+        public string ReplaceGroupName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to ignore case.
@@ -118,7 +128,67 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Post-processed text.</returns>
         protected override string Transform(string text)
         {
-            return this.regex.Replace(text, this.ReplaceWith);
+            var replacer = new Replacer(text, this.ReplaceGroupName, this.ReplaceWith);
+
+            return string.IsNullOrEmpty(this.ReplaceGroupName) ?
+                this.regex.Replace(text, this.ReplaceWith)
+                : this.regex.Replace(text, replacer.EvaluateMatch);
+        }
+
+        /// <summary>
+        /// This class was created instead of simply using a lambda expression so that the "ThreadAgnosticAttributeTest" will pass
+        /// </summary>
+        [ThreadAgnostic]
+        public class Replacer
+        {
+            private readonly string text;
+            private readonly string replaceGroupName;
+            private readonly string replaceWith;
+
+            internal Replacer(string text, string replaceGroupName, string replaceWith)
+            {
+                this.text = text;
+                this.replaceGroupName = replaceGroupName;
+                this.replaceWith = replaceWith;
+            }
+
+            internal string EvaluateMatch(Match match)
+            {
+                return ReplaceNamedGroup(text, replaceGroupName, replaceWith, match);
+            }
+        }
+
+        /// <summary>
+        /// A match evaluator for Regular Expression based replacing
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="groupName"></param>
+        /// <param name="replacement"></param>
+        /// <param name="match"></param>
+        /// <returns></returns>
+        public static string ReplaceNamedGroup(string input, string groupName, string replacement, Match match)
+        {
+            var sb = new StringBuilder(input);
+            var matchStart = match.Index;
+            var matchLength = match.Length;
+
+            var captures = match.Groups[groupName].Captures.OfType<Capture>().OrderByDescending(c => c.Index);
+            foreach (var capt in captures)
+            {
+                if (capt == null)
+                    continue;
+
+                matchLength += replacement.Length - capt.Length;
+
+                sb.Remove(capt.Index, capt.Length);
+                sb.Insert(capt.Index, replacement);
+            }
+
+            var end = matchStart + matchLength;
+            sb.Remove(end, sb.Length - end);
+            sb.Remove(0, matchStart);
+
+            return sb.ToString();
         }
     }
 }
