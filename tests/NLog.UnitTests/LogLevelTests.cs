@@ -36,10 +36,10 @@ namespace NLog.UnitTests
     using System;
     using Xunit;
 
-    [Trait("Component", "Core")]
     public class LogLevelTests : NLogTestBase
     {
         [Fact]
+        [Trait("Component", "Core")]
         public void OrdinalTest()
         {
             Assert.True(LogLevel.Trace < LogLevel.Debug);
@@ -72,6 +72,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Trait("Component", "Core")]
         public void LogLevelEqualityTest()
         {
             LogLevel levelTrace = LogLevel.Trace;
@@ -87,6 +88,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Trait("Component", "Core")]
         public void LogLevelFromOrdinal_InputInRange_ExpectValidLevel()
         { 
             Assert.Same(LogLevel.FromOrdinal(0), LogLevel.Trace);
@@ -99,6 +101,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Trait("Component", "Core")]
         public void LogLevelFromOrdinal_InputOutOfRange_ExpectException()
         {
             Assert.Throws<ArgumentException>(() => LogLevel.FromOrdinal(100));
@@ -109,6 +112,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Trait("Component", "Core")]
         public void FromStringTest()
         {
             Assert.Same(LogLevel.FromString("trace"), LogLevel.Trace);
@@ -143,6 +147,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Trait("Component", "Core")]
         public void FromStringFailingTest()
         {
             Assert.Throws<ArgumentException>(() => LogLevel.FromString("zzz"));
@@ -150,6 +155,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Trait("Component", "Core")]
         public void LogLevelNullComparison()
         {
             LogLevel level = LogLevel.Info;
@@ -166,6 +172,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Trait("Component", "Core")]
         public void ToStringTest()
         {
             Assert.Equal(LogLevel.Trace.ToString(), "Trace");
@@ -177,6 +184,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Trait("Component", "Core")]
         public void LogLevelCompareTo_ValidLevels_ExpectIntValues()
         {
             LogLevel levelTrace = LogLevel.Trace;
@@ -229,6 +237,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Trait("Component", "Core")]
         public void LogLevelCompareTo_Null_ExpectException()
         {
             Assert.Throws<ArgumentNullException>(() => LogLevel.MinLevel.CompareTo(null));
@@ -238,6 +247,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Trait("Component", "Core")]
         public void LogLevel_MinMaxLevels_ExpectConstantValues()
         {
             Assert.Same(LogLevel.Trace, LogLevel.MinLevel); 
@@ -245,6 +255,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Trait("Component", "Core")]
         public void LogLevelGetHashCode()
         {
             Assert.Equal(LogLevel.Trace.GetHashCode(), 0);
@@ -257,6 +268,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        [Trait("Component", "Core")]
         public void LogLevelEquals_Null_ExpectFalse()
         { 
             Assert.False(LogLevel.Debug.Equals(null));
