@@ -12,7 +12,7 @@
     <BuildLabelDash Condition=" '$(BuildLabelOverride)' == 'NONE' "></BuildLabelDash>
     <BuildLabelDash Condition=" '$(BuildLabelOverride)' != '' and '$(BuildLabelOverride)' != 'NONE' ">-$(BuildLabelOverride)</BuildLabelDash>
     <BuildVersion Condition=" '$(BuildVersion)' == '' " >$(BUILD_NUMBER)</BuildVersion>
-    <BuildVersion Condition=" '$(BuildVersion)' == '' " >3.0.0.0</BuildVersion>
+    <BuildVersion Condition=" '$(BuildVersion)' == '' " >3.1.0.0</BuildVersion>
     <BuildVersion Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildVersion>
     <BuildProductName>NLog v$(BuildVersion)$(BuildLabel)</BuildProductName>
   </PropertyGroup>
