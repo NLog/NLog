@@ -67,7 +67,7 @@ namespace NLog.UnitTests
 
             SimpleConfigurator.ConfigureForTargetLogging(debugTarget1, LogLevel.Debug);
 
-            Logger logger = LogManager.GetLogger(Guid.NewGuid().ToString("N"));
+            ILogger logger = LogManager.GetLogger(Guid.NewGuid().ToString("N"));
 
             logger.Info("foo");
 

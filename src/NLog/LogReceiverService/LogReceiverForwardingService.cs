@@ -101,7 +101,7 @@ namespace NLog.LogReceiverService
         /// <param name="logEvents">The log events.</param>
         protected virtual void ProcessLogMessages(LogEventInfo[] logEvents)
         {
-            Logger logger = null;
+            ILogger logger = null;
             string lastLoggerName = string.Empty;
 
             foreach (var ev in logEvents)

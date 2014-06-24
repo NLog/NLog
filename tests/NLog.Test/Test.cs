@@ -45,7 +45,7 @@ namespace NLog.Test
 
     public class Test
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
         public static void LogProc(string msg)
         {
