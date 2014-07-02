@@ -1036,7 +1036,7 @@ namespace NLog.Targets
                 Directory.CreateDirectory(dirName);
             }
 
-            DateTime newFileDate = GetArchiveDate();
+            DateTime newFileDate = DateTime.Now;
             string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
             MoveFileToArchive(fileName, newFileName);
         }
@@ -1072,38 +1072,6 @@ namespace NLog.Targets
                 }
             }
             return formatString;
-        }
-
-        private DateTime GetArchiveDate()
-        {
-            DateTime archiveDate = DateTime.Now;
-
-            // Because AutoArchive/DateArchive gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
-            // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
-            switch (this.ArchiveEvery)
-            {
-                case FileArchivePeriod.Day:
-                    archiveDate = archiveDate.AddDays(-1);
-                    break;
-
-                case FileArchivePeriod.Hour:
-                    archiveDate = archiveDate.AddHours(-1);
-                    break;
-
-                case FileArchivePeriod.Minute:
-                    archiveDate = archiveDate.AddMinutes(-1);
-                    break;
-
-                case FileArchivePeriod.Month:
-                    archiveDate = archiveDate.AddMonths(-1);
-                    break;
-
-                case FileArchivePeriod.Year:
-                    archiveDate = archiveDate.AddYears(-1);
-                    break;
-            }
-
-            return archiveDate;
         }
 
         private void DoAutoArchive(string fileName, LogEventInfo ev)
