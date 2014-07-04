@@ -186,7 +186,7 @@ namespace NLog.Targets
         public FileTarget()
         {
             this.ArchiveNumbering = ArchiveNumberingMode.Sequence;
-            this._MaxArchiveFilesField = 9;
+            this._MaxArchiveFilesField = 0;
             this.ConcurrentWriteAttemptDelay = 1;
             this.ArchiveEvery = FileArchivePeriod.None;
             this.ArchiveAboveSize = -1;
@@ -479,7 +479,7 @@ namespace NLog.Targets
         /// Gets or sets the maximum number of archive files that should be kept.
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
-        [DefaultValue(9)]
+        [DefaultValue(0)]
         public int MaxArchiveFiles
         {
             get
