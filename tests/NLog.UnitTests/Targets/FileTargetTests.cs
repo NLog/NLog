@@ -194,6 +194,84 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+
+        [Fact]
+        public void ArchiveFileOnStartTest()
+        {
+            var tempFile = Path.GetTempFileName();
+            var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "Archive");
+            try
+            {
+                var ft = new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(tempFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}"
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null;
+
+                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+
+                // configure again, without
+                // ArchiveOldFileOnStartup
+
+                ft = new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(tempFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}"
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null;
+                AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+
+                // configure again, this time with
+                // ArchiveldFileOnStartup                
+                var archiveTempName = Path.Combine(tempArchiveFolder, "archive.txt");
+
+                ft = new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(tempFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    ArchiveOldFileOnStartup = true,
+                    ArchiveNumbering = ArchiveNumberingMode.Sequence,
+                    ArchiveFileName = archiveTempName
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+                logger.Debug("ddd");
+                logger.Info("eee");
+                logger.Warn("fff");
+
+                LogManager.Configuration = null;
+                AssertFileContents(tempFile, "Debug ddd\nInfo eee\nWarn fff\n", Encoding.UTF8);
+                AssertFileContents(archiveTempName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempArchiveFolder))
+                    Directory.Delete(tempArchiveFolder, true);
+            }
+        }
+
+
         [Fact]
         public void CreateDirsTest()
         {
