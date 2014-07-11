@@ -1877,6 +1877,14 @@ namespace NLog
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), LogEventInfo.Create(level, this.Name, formatProvider, message, args), this.Factory);
         }
 
+        internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message)
+        {
+            // please note that this overload calls the overload of LogEventInfo.Create with object[] parameter on purpose -
+            // to avoid unnecessary string.Format (in case of calling Create(LogLevel, string, IFormatProvider, object))
+            var logEvent = LogEventInfo.Create(level, this.Name, formatProvider, message, (object[])null);
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), logEvent, this.Factory);
+        }
+
         internal void WriteToTargets<T>(LogLevel level, IFormatProvider formatProvider, T value)
         {
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), LogEventInfo.Create(level, this.Name, formatProvider, value), this.Factory);
