@@ -186,7 +186,7 @@ namespace NLog.Targets
         public FileTarget()
         {
             this.ArchiveNumbering = ArchiveNumberingMode.Sequence;
-            this._MaxArchiveFilesField = 9;
+            this._MaxArchiveFilesField = 0;
             this.ConcurrentWriteAttemptDelay = 1;
             this.ArchiveEvery = FileArchivePeriod.None;
             this.ArchiveAboveSize = -1;
@@ -490,7 +490,7 @@ namespace NLog.Targets
         /// Gets or sets the maximum number of archive files that should be kept.
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
-        [DefaultValue(9)]
+        [DefaultValue(0)]
         public int MaxArchiveFiles
         {
             get
@@ -880,7 +880,7 @@ namespace NLog.Targets
 
         private void RecursiveRollingRename(string fileName, string pattern, int archiveNumber)
         {
-            if (archiveNumber >= this.MaxArchiveFiles)
+            if (this.MaxArchiveFiles != 0 && archiveNumber >= this.MaxArchiveFiles)
             {
                 File.Delete(fileName);
                 return;
@@ -966,7 +966,7 @@ namespace NLog.Targets
                 nextNumber = 0;
             }
 
-            if (minNumber != -1)
+            if (minNumber != -1 && this.MaxArchiveFiles != 0)
             {
                 int minNumberToKeep = nextNumber - this.MaxArchiveFiles + 1;
                 for (int i = minNumber; i < minNumberToKeep; ++i)
@@ -1034,12 +1034,15 @@ namespace NLog.Targets
                     }
                 }
 
-                for (int fileIndex = 0; fileIndex < filesByDate.Count; fileIndex++)
+                if (this.MaxArchiveFiles != 0)
                 {
-                    if (fileIndex > files.Count - this.MaxArchiveFiles)
-                        break;
+                    for (int fileIndex = 0; fileIndex < filesByDate.Count; fileIndex++)
+                    {
+                        if (fileIndex > files.Count - this.MaxArchiveFiles)
+                            break;
 
-                    File.Delete(filesByDate[fileIndex]);
+                        File.Delete(filesByDate[fileIndex]);
+                    }
                 }
             }
             catch (DirectoryNotFoundException)
