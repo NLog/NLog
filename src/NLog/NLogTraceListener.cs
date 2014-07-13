@@ -433,7 +433,7 @@ namespace NLog
                 ev.Properties.Add("EventID", eventId.Value);
             }
 
-            Logger logger;
+            ILogger logger;
             if (this.LogFactory != null)
             {
                 logger = this.LogFactory.GetLogger(ev.LoggerName);

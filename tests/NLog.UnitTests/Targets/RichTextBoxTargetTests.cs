@@ -47,7 +47,7 @@ namespace NLog.UnitTests.Targets
 
     public class RichTextBoxTargetTests : NLogTestBase
     {
-        private Logger logger = LogManager.GetLogger("NLog.UnitTests.Targets.RichTextBoxTargetTests");
+        private ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.RichTextBoxTargetTests");
 
         [Fact]
         public void SimpleRichTextBoxTargetTest()
