@@ -52,9 +52,11 @@ using System.Security;
 #elif DOCUMENTATION
     [assembly: AssemblyTitle("NLog Documentation")]
 #elif __IOS__
-	[assembly: AssemblyTitle("NLog for MonoTouch")]
+	[assembly: AssemblyTitle("NLog for iOS")]
 #elif WINDOWS_PHONE
 	[assembly: AssemblyTitle("NLog for Windows Phone 8")]
+#elif __ANDROID__
+	[assembly: AssemblyTitle("NLog for Android")]
 #else
 #error Unrecognized build target - please update AssemblyInfo.cs
 #endif

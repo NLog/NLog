@@ -48,7 +48,7 @@ namespace NLog
     using NLog.Internal;
     using NLog.Targets;
 
-#if SILVERLIGHT && !__IOS__
+#if SILVERLIGHT && !__IOS__ && !__ANDROID__
     using System.Windows;
 #endif
 
@@ -57,7 +57,7 @@ namespace NLog
     /// </summary>
     public class LogFactory : IDisposable
 	{
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private readonly MultiFileWatcher watcher;
         private const int ReconfigAfterFileChangedTimeout = 1000;
 #endif
@@ -81,7 +81,7 @@ namespace NLog
         /// </summary>
         public LogFactory()
 		{
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
 #endif
@@ -143,7 +143,7 @@ namespace NLog
 
                     this.configLoaded = true;
 
-#if !SILVERLIGHT  && !__IOS__
+#if !SILVERLIGHT  && !__IOS__ && !__ANDROID__
                     if (this.config == null)
                     {
                         // try to load default configuration
@@ -181,7 +181,7 @@ namespace NLog
                         }
 					}
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                     if (this.config != null)
                     {
                         Dump(this.config);
@@ -206,7 +206,7 @@ namespace NLog
 
             set
 			{
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 try
                 {
                     this.watcher.StopWatching();
@@ -243,7 +243,7 @@ namespace NLog
 
                         this.config.InitializeAll();
                         this.ReconfigExistingLoggers(this.config);
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                         try
                         {
                             this.watcher.Watch(this.config.FileNamesToWatch);
@@ -519,7 +519,7 @@ namespace NLog
             return this.logsEnabled >= 0;
         }
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         internal void ReloadConfigOnTimer(object state)
         {
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
@@ -683,7 +683,7 @@ namespace NLog
         {
             if (disposing)
 			{
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 this.watcher.Dispose();
 
                 if (this.reloadTimer != null)
@@ -807,7 +807,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private void ConfigFileChanged(object sender, EventArgs args)
         {
             InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);

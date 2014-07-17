@@ -145,7 +145,7 @@ namespace NLog.Config
         }
 #endif
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).

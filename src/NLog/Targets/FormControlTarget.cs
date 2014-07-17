@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !MONO && !SILVERLIGHT &&!__IOS__
+#if !MONO && !SILVERLIGHT &&!__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
 {
