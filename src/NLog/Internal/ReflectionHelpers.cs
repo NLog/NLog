@@ -57,7 +57,7 @@ namespace NLog.Internal
 		/// <remarks>Types which cannot be loaded are skipped.</remarks>
 		public static Type[] SafeGetTypes(this Assembly assembly)
 		{
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
             return assembly.GetTypes();
 #else
 			try
