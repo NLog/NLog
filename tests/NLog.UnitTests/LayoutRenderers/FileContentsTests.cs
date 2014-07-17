@@ -38,7 +38,11 @@ namespace NLog.UnitTests.LayoutRenderers
     using System;
     using System.IO;
     using System.Text;
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
 
     public class FileContentsTests : NLogTestBase
     {

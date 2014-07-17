@@ -37,7 +37,11 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using System.IO;
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
 
     public class BaseDirTests : NLogTestBase
     {

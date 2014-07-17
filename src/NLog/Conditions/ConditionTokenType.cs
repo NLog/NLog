@@ -36,8 +36,12 @@ namespace NLog.Conditions
     /// <summary>
     /// Token types for condition expressions.
     /// </summary>
-    internal enum ConditionTokenType
-    {
+#if(__IOS__)
+    public enum ConditionTokenType
+#else
+	internal enum ConditionTokenType
+#endif
+	{
         EndOfInput,
 
         BeginningOfInput,

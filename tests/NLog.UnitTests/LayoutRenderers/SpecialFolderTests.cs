@@ -36,7 +36,11 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using System.IO;
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
 
     /// <summary>
     ///     Provides Unit testing for <see cref="NLog.LayoutRenderers.SpecialFolderLayoutRenderer"/>

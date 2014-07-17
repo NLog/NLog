@@ -35,7 +35,12 @@ namespace NLog.UnitTests.LogReceiverService
 {
     using System;
     using System.IO;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 #if WCF_SUPPORTED
     using System.Runtime.Serialization;
 #endif
@@ -157,7 +162,7 @@ namespace NLog.UnitTests.LogReceiverService
             Assert.Equal(LogLevel.Warn, converted[1].Level);
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
         /// <summary>
         /// Ensures that serialization formats of DataContractSerializer and XmlSerializer are the same
         /// on the same <see cref="NLogEvents"/> object.

@@ -36,8 +36,12 @@ namespace NLog.Conditions
     /// <summary>
     /// Condition message expression (represented by the <b>message</b> keyword).
     /// </summary>
-    internal sealed class ConditionMessageExpression : ConditionExpression
-    {
+#if(__IOS__)
+    public sealed class ConditionMessageExpression : ConditionExpression
+#else
+	internal sealed class ConditionMessageExpression : ConditionExpression
+#endif
+	{
         /// <summary>
         /// Returns a string representation of this expression.
         /// </summary>

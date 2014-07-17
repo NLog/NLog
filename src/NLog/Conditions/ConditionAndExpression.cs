@@ -36,8 +36,12 @@ namespace NLog.Conditions
     /// <summary>
     /// Condition <b>and</b> expression.
     /// </summary>
-    internal sealed class ConditionAndExpression : ConditionExpression
-    {
+#if(__IOS__)
+    public sealed class ConditionAndExpression : ConditionExpression
+#else
+	internal sealed class ConditionAndExpression : ConditionExpression
+#endif
+	{
         private static readonly object boxedFalse = false;
         private static readonly object boxedTrue = true;
 

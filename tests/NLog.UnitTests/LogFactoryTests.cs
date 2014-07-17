@@ -35,7 +35,11 @@
 namespace NLog.UnitTests
 {
     using System;
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
 
     public class LogFactoryTests : NLogTestBase
     {

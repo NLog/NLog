@@ -32,7 +32,7 @@
 // 
 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
 
 namespace NLog.UnitTests.Targets
 {

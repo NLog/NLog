@@ -33,7 +33,11 @@
 using System;
 using System.IO;
 using NLog.Fluent;
-using Xunit;
+#if(__IOS__)
+	using NUnit.Framework;
+#else
+    using Xunit;
+#endif
 
 namespace NLog.UnitTests.Fluent
 {

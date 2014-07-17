@@ -39,7 +39,12 @@ namespace NLog.UnitTests.LayoutRenderers
     using System.Xml;
     using System.Reflection;
     using System.IO;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class Log4JXmlTests : NLogTestBase
     {

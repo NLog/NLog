@@ -39,8 +39,12 @@ namespace NLog.Conditions
     /// Condition layout expression (represented by a string literal
     /// with embedded ${}).
     /// </summary>
-    internal sealed class ConditionLayoutExpression : ConditionExpression
-    {
+#if(__IOS__)
+    public sealed class ConditionLayoutExpression : ConditionExpression
+#else
+	internal sealed class ConditionLayoutExpression : ConditionExpression
+#endif
+	{
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionLayoutExpression" /> class.
         /// </summary>

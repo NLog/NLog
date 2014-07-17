@@ -88,8 +88,12 @@ namespace NLog.Layouts
             this.Text = txt;
         }
 
-        internal SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
-        {
+#if(__IOS__)
+        public SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
+#else
+		internal SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
+#endif
+		{
             this.configurationItemFactory = configurationItemFactory;
             this.SetRenderers(renderers, text);
         }

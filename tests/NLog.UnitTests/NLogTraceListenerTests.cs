@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
 
 #define DEBUG
 
@@ -39,6 +39,7 @@ namespace NLog.UnitTests
 {
     using System.Diagnostics;
     using Xunit;
+
 
     public class NLogTraceListenerTests : NLogTestBase
     {

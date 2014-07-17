@@ -98,7 +98,7 @@ namespace NLog
             remove { globalFactory.ConfigurationChanged -= value; }
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT 
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -108,7 +108,7 @@ namespace NLog
             remove { globalFactory.ConfigurationReloaded -= value; }
         }
 #endif
-        /// <summary>
+		/// <summary>
         /// Gets or sets a value indicating whether NLog should throw exceptions. 
         /// By default exceptions are not thrown under any circumstances.
         /// </summary>

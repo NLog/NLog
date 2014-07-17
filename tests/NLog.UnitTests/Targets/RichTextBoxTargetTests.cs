@@ -33,7 +33,7 @@
 
 using System.Diagnostics;
 
-#if !MONO && !SILVERLIGHT
+#if !MONO && !SILVERLIGHT && !__IOS__
 
 namespace NLog.UnitTests.Targets
 {

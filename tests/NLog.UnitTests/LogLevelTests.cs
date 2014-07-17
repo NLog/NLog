@@ -34,7 +34,12 @@
 namespace NLog.UnitTests
 {
     using System;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class LogLevelTests : NLogTestBase
     {

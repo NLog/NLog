@@ -36,8 +36,12 @@ namespace NLog.Conditions
     /// <summary>
     /// Relational operators used in conditions.
     /// </summary>
-    internal enum ConditionRelationalOperator
-    {
+#if(__IOS__)
+    public enum ConditionRelationalOperator
+#else
+	internal enum ConditionRelationalOperator
+#endif
+	{
         /// <summary>
         /// Equality (==).
         /// </summary>

@@ -932,11 +932,11 @@ namespace NLog.Targets
             var number2name = new Dictionary<int, string>();
 
             try
-            {
-#if SILVERLIGHT
+			{
+#if SILVERLIGHT && !WINDOWS_PHONE
                 foreach (string s in Directory.EnumerateFiles(dirName, fileNameMask))
 #else
-                foreach (string s in Directory.GetFiles(dirName, fileNameMask))
+				foreach (string s in Directory.GetFiles(dirName, fileNameMask))
 #endif
                 {
                     string baseName = Path.GetFileName(s);
@@ -1016,10 +1016,10 @@ namespace NLog.Targets
             try
             {
                 DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                 List<string> files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
 #else
-                List<string> files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
+				List<string> files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
 #endif
                 List<string> filesByDate = new List<string>();
 

@@ -36,7 +36,11 @@ namespace NLog.UnitTests.LayoutRenderers
     using System;
     using System.Reflection;
     using System.Threading;
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
 
     public class CallSiteTests : NLogTestBase
     {
