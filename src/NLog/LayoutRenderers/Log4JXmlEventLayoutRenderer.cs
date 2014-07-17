@@ -75,6 +75,8 @@ namespace NLog.LayoutRenderers
 
 #if SILVERLIGHT
             this.AppInfo = "Silverlight Application";
+#elif __IOS__
+			this.AppInfo = "MonoTouch Application";
 #else
             this.AppInfo = string.Format(
                 CultureInfo.InvariantCulture,

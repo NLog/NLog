@@ -33,7 +33,11 @@
 
 namespace NLog.UnitTests.Config
 {
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
 
     public class CaseSensitivityTests : NLogTestBase
     {

@@ -30,7 +30,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-
+#if !__IOS__
 namespace NLog.Targets
 {
     using System;
@@ -255,7 +255,7 @@ namespace NLog.Targets
                 };
 
             this.inCall = true;
-#if SILVERLIGHT
+#if SILVERLIGHT 
             if (!Deployment.Current.Dispatcher.CheckAccess())
             {
                 Deployment.Current.Dispatcher.BeginInvoke(() => client.ProcessLogMessagesAsync(events));
@@ -399,3 +399,5 @@ namespace NLog.Targets
         }
     }
 }
+
+#endif

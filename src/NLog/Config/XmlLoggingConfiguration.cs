@@ -114,8 +114,12 @@ namespace NLog.Config
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
-        internal XmlLoggingConfiguration(XmlElement element, string fileName)
-        {
+#if(__IOS__)
+        public XmlLoggingConfiguration(XmlElement element, string fileName)
+#else
+		internal XmlLoggingConfiguration(XmlElement element, string fileName)
+#endif
+		{
             using (var stringReader = new StringReader(element.OuterXml))
             {
                 XmlReader reader = XmlReader.Create(stringReader);
@@ -141,7 +145,7 @@ namespace NLog.Config
         }
 #endif
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -156,7 +160,7 @@ namespace NLog.Config
         }
 #endif
 
-        /// <summary>
+		/// <summary>
         /// Gets or sets a value indicating whether the configuration files
         /// should be watched for changes and reloaded automatically when changed.
         /// </summary>

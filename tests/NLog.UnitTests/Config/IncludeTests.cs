@@ -36,7 +36,11 @@ namespace NLog.UnitTests.Config
     using System;
     using System.IO;
     using NLog.Config;
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
 
     public class IncludeTests : NLogTestBase
     {

@@ -30,7 +30,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-
+#if(!__IOS__)
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -39,7 +39,11 @@ namespace NLog.UnitTests.Targets
     using NLog.LogReceiverService;
     using NLog.Config;
     using NLog.Targets;
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
     using NLog.Targets.Wrappers;
     using System.Threading;
 
@@ -213,3 +217,5 @@ namespace NLog.UnitTests.Targets
         }
     }
 }
+
+#endif

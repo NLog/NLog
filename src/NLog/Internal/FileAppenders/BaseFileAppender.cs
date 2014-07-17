@@ -196,7 +196,7 @@ namespace NLog.Internal.FileAppenders
             throw new InvalidOperationException("Should not be reached.");
         }
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO && !__IOS__
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowConcurrentWrite)
         {
@@ -233,7 +233,7 @@ namespace NLog.Internal.FileAppenders
         }
 #endif
 
-        private FileStream TryCreateFileStream(bool allowConcurrentWrite)
+		private FileStream TryCreateFileStream(bool allowConcurrentWrite)
         {
             FileShare fileShare = FileShare.Read;
 
@@ -245,9 +245,9 @@ namespace NLog.Internal.FileAppenders
             if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows)
             {
                 fileShare |= FileShare.Delete;
-            }
+			}
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO && !__IOS__
             try
             {
                 if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)
@@ -261,7 +261,7 @@ namespace NLog.Internal.FileAppenders
             } 
 #endif
 
-            return new FileStream(
+			return new FileStream(
                 this.FileName, 
                 FileMode.Append, 
                 FileAccess.Write, 

@@ -41,7 +41,7 @@ namespace NLog.Common
     using System.Text;
     using NLog.Internal;
     using NLog.Time;
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
     using ConfigurationManager = System.Configuration.ConfigurationManager;
 #endif
 
@@ -57,15 +57,15 @@ namespace NLog.Common
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static InternalLogger()
-        {
-#if !SILVERLIGHT
+		{
+#if !SILVERLIGHT && !__IOS__
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
             Info("NLog internal logger initialized.");
 #else
-            LogLevel = LogLevel.Info;
+			LogLevel = LogLevel.Info;
 #endif
             IncludeTimestamp = true;
         }
@@ -357,9 +357,9 @@ namespace NLog.Common
 
                 // we have no place to log the message to so we ignore it
             }
-        }
+		}
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
         private static string GetSettingString(string configName, string envName)
         {
             string settingValue = ConfigurationManager.AppSettings[configName];
@@ -427,5 +427,5 @@ namespace NLog.Common
             }
         }
 #endif
-    }
+	}
 }

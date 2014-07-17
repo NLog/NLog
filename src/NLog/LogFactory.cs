@@ -48,30 +48,30 @@ namespace NLog
     using NLog.Internal;
     using NLog.Targets;
 
-#if SILVERLIGHT
+#if SILVERLIGHT && !__IOS__
     using System.Windows;
 #endif
 
-    /// <summary>
+	/// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>
     public class LogFactory : IDisposable
-    {
-#if !SILVERLIGHT
+	{
+#if !SILVERLIGHT && !__IOS__
         private readonly MultiFileWatcher watcher;
         private const int ReconfigAfterFileChangedTimeout = 1000;
 #endif
 
-        private static IAppDomain currentAppDomain;
+		private static IAppDomain currentAppDomain;
         private readonly Dictionary<LoggerCacheKey, WeakReference> loggerCache = new Dictionary<LoggerCacheKey, WeakReference>();
 
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
         private Timer reloadTimer;
 #endif
 
-        private LoggingConfiguration config;
+		private LoggingConfiguration config;
         private LogLevel globalThreshold = LogLevel.MinLevel;
         private bool configLoaded;
         private int logsEnabled;
@@ -80,12 +80,12 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         public LogFactory()
-        {
-#if !SILVERLIGHT
+		{
+#if !SILVERLIGHT && !__IOS__
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
 #endif
-        }
+		}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
@@ -102,14 +102,14 @@ namespace NLog
         /// </summary>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT 
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
 #endif
 
-        /// <summary>
+		/// <summary>
         /// Gets the current <see cref="IAppDomain"/>.
         /// </summary>
         public static IAppDomain CurrentAppDomain
@@ -143,7 +143,7 @@ namespace NLog
 
                     this.configLoaded = true;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT  && !__IOS__
                     if (this.config == null)
                     {
                         // try to load default configuration
@@ -151,18 +151,18 @@ namespace NLog
                     }
 #endif
 
-                    if (this.config == null)
+					if (this.config == null)
                     {
                         foreach (string configFile in GetCandidateFileNames())
-                        {
-#if !SILVERLIGHT && !MONO
+						{
+#if !SILVERLIGHT && !MONO 
                             if (File.Exists(configFile))
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);
                                 this.config = new XmlLoggingConfiguration(configFile);
                                 break;
                             }
-#elif SILVERLIGHT
+#elif SILVERLIGHT 
                             Uri configFileUri = new Uri(configFile, UriKind.Relative);
                             if (Application.GetResourceStream(configFileUri) != null)
                             {
@@ -171,7 +171,7 @@ namespace NLog
                                 break;
                             }
 #else
-                            if (File.Exists(configFile))
+							if (File.Exists(configFile))
                             {
                                 InternalLogger.Debug("Attempting to load config from {0}", configFile);
                                 this.config = new XmlLoggingConfiguration(configFile);
@@ -179,9 +179,9 @@ namespace NLog
                             }
 #endif
                         }
-                    }
+					}
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
                     if (this.config != null)
                     {
                         Dump(this.config);
@@ -195,7 +195,7 @@ namespace NLog
                         }
                     }
 #endif
-                    if (this.config != null)
+					if (this.config != null)
                     {
                         this.config.InitializeAll();
                     }
@@ -205,8 +205,8 @@ namespace NLog
             }
 
             set
-            {
-#if !SILVERLIGHT
+			{
+#if !SILVERLIGHT && !__IOS__
                 try
                 {
                     this.watcher.StopWatching();
@@ -222,7 +222,7 @@ namespace NLog
                 }
 #endif
 
-                lock (this)
+				lock (this)
                 {
                     LoggingConfiguration oldConfig = this.config;
                     if (oldConfig != null)
@@ -243,7 +243,7 @@ namespace NLog
 
                         this.config.InitializeAll();
                         this.ReconfigExistingLoggers(this.config);
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
                         try
                         {
                             this.watcher.Watch(this.config.FileNamesToWatch);
@@ -258,7 +258,7 @@ namespace NLog
                             InternalLogger.Warn("Cannot start file watching: {0}", exception);
                         }
 #endif
-                    }
+					}
 
                     var configurationChangedDelegate = this.ConfigurationChanged;
 
@@ -519,7 +519,7 @@ namespace NLog
             return this.logsEnabled >= 0;
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
         internal void ReloadConfigOnTimer(object state)
         {
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
@@ -574,7 +574,7 @@ namespace NLog
         }
 #endif
 
-        internal void ReconfigExistingLoggers(LoggingConfiguration configuration)
+		internal void ReconfigExistingLoggers(LoggingConfiguration configuration)
         {
             if (configuration != null)
             {
@@ -641,8 +641,12 @@ namespace NLog
             }
         }
 
-        internal LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration configuration)
-        {
+#if(__IOS__)
+        public LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration configuration)
+#else
+		internal LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration configuration)
+#endif
+		{
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             TargetWithFilterChain[] lastTargetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
 
@@ -678,8 +682,8 @@ namespace NLog
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
-            {
-#if !SILVERLIGHT
+			{
+#if !SILVERLIGHT && !__IOS__
                 this.watcher.Dispose();
 
                 if (this.reloadTimer != null)
@@ -688,7 +692,7 @@ namespace NLog
                     this.reloadTimer = null;
                 }
 #endif
-            }
+			}
         }
 
         private static IEnumerable<string> GetCandidateFileNames()
@@ -803,7 +807,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
         private void ConfigFileChanged(object sender, EventArgs args)
         {
             InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);
@@ -831,7 +835,7 @@ namespace NLog
         }
 #endif
 
-        /// <summary>
+		/// <summary>
         /// Logger cache key.
         /// </summary>
         internal class LoggerCacheKey

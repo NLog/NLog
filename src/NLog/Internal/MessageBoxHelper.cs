@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !__IOS__
+
 namespace NLog.Internal
 {
     using System;
@@ -72,3 +74,5 @@ namespace NLog.Internal
         }
     }
 }
+
+#endif

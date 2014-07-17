@@ -42,7 +42,12 @@ namespace NLog.UnitTests
 
     using NLog.Layouts;
     using NLog.Config;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 #if SILVERLIGHT
 using System.Xml.Linq;
 #else
@@ -141,7 +146,7 @@ using System.Xml.Linq;
 
         protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT 
             XElement element = XElement.Parse(configXml);
             return new XmlLoggingConfiguration(element.CreateReader(), null);
 #else
