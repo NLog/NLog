@@ -53,13 +53,13 @@ namespace NLog.Config
     using NLog.LayoutRenderers;
     using NLog.Time;
 #if SILVERLIGHT
-// ReSharper disable once RedundantUsingDirective
+
     using System.Windows;
 #endif
-
     /// <summary>
     /// A class for configuring NLog through an XML configuration file 
     /// (App.config style or App.nlog style).
+    /// </summary>
     /// </summary>
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
@@ -68,17 +68,17 @@ namespace NLog.Config
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
-        
+
         private ConfigurationItemFactory ConfigurationItemFactory
         {
             get { return ConfigurationItemFactory.Default; }
         }
-
-        #endregion
-
-        #region contructors
-
         /// <summary>
+        #endregion
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
+        #region contructors
+        /// </summary>
+        /// <param name="fileName">Configuration file to be read.</param>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
@@ -130,8 +130,12 @@ namespace NLog.Config
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
-        internal XmlLoggingConfiguration(XmlElement element, string fileName)
-        {
+#if(__IOS__)
+        public XmlLoggingConfiguration(XmlElement element, string fileName)
+#else
+		internal XmlLoggingConfiguration(XmlElement element, string fileName)
+#endif
+		{
             using (var stringReader = new StringReader(element.OuterXml))
             {
                 XmlReader reader = XmlReader.Create(stringReader);
@@ -158,9 +162,9 @@ namespace NLog.Config
 #endif
         #endregion
 
+#if !SILVERLIGHT && !__IOS__
         #region public properties
 
-#if !SILVERLIGHT
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -175,11 +179,11 @@ namespace NLog.Config
         }
 #endif
 
-        /// <summary>
-        /// Did the <see cref="Initialize"/> Succeeded? <c>true</c>= success, <c>false</c>= error, <c>null</c> = initialize not started yet.
-        /// </summary>
+		/// <summary>
+        /// Gets or sets a value indicating whether the configuration files
+        /// should be watched for changes and reloaded automatically when changed.
         public bool? InitializeSucceeded { get; private set; }
-
+        /// </summary>
 
         /// <summary>
         /// Gets or sets a value indicating whether the configuration files
@@ -200,17 +204,17 @@ namespace NLog.Config
                 {
                     return this.visitedFile.Keys;
                 }
-
+                
                 return new string[0];
             }
         }
 
         #endregion
-
-        #region public methods
-
         /// <summary>
+        #region public methods
         /// Re-reads the original configuration file and returns the new <see cref="LoggingConfiguration" /> object.
+        /// </summary>
+        /// <returns>The new <see cref="XmlLoggingConfiguration" /> object.</returns>
         /// </summary>
         /// <returns>The new <see cref="XmlLoggingConfiguration" /> object.</returns>
         public override LoggingConfiguration Reload()
@@ -325,7 +329,7 @@ namespace NLog.Config
                 }
 
                 NLogConfigurationException ConfigException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
-
+                
                 if (!ignoreErrors)
                 {
                     if (LogManager.ThrowExceptions)
@@ -437,7 +441,7 @@ namespace NLog.Config
 
             //parse all other direct elements
             foreach (var child in children)
-            {
+                {
                 switch (child.LocalName.ToUpper(CultureInfo.InvariantCulture))
                 {
                     case "EXTENSIONS":
@@ -916,13 +920,13 @@ namespace NLog.Config
         private void ParseTimeElement(NLogXmlElement timeElement)
         {
             timeElement.AssertName("time");
-
+            
             string type = timeElement.GetRequiredAttribute("type");
-
+            
             TimeSource newTimeSource = this.ConfigurationItemFactory.TimeSources.CreateInstance(type);
-
+            
             this.ConfigureObjectFromAttributes(newTimeSource, timeElement, true);
-
+        
             InternalLogger.Info("Selecting time source {0}", newTimeSource);
             TimeSource.Current = newTimeSource;
         }

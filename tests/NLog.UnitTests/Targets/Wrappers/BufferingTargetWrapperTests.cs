@@ -40,7 +40,12 @@ namespace NLog.UnitTests.Targets.Wrappers
     using NLog.Common;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class BufferingTargetWrapperTests : NLogTestBase
     {
@@ -268,7 +273,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(19, myTarget.BufferedTotalEvents);
             Assert.Equal(19, myTarget.WriteCount);
 
-            // sleep 2 seconds and the last remaining one will be flushed
+            // sleep 2 seonds and the last remaining one will be flushed
             Thread.Sleep(1500);
             Assert.Equal(20, hitCount);
             Assert.Equal(3, myTarget.BufferedWriteCount);

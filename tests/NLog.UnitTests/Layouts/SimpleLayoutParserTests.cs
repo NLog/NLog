@@ -37,7 +37,12 @@ namespace NLog.UnitTests.Layouts
     using NLog.LayoutRenderers.Wrappers;
     using NLog.Layouts;
     using NLog.Targets;
+#if(__IOS__)
+		using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class SimpleLayoutParserTests : NLogTestBase
     {
@@ -358,7 +363,7 @@ namespace NLog.UnitTests.Layouts
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             Assert.Equal("Test: Hello", l.Render(le));
-        }
+    }
 
         [Fact]
         public void InnerLayoutWithColonTest()
@@ -367,7 +372,7 @@ namespace NLog.UnitTests.Layouts
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             Assert.Equal("Test: Hello", l.Render(le));
-        }
+}
 
         [Fact]
         public void InnerLayoutWithSlashSingleTest()

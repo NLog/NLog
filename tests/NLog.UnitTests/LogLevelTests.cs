@@ -34,7 +34,12 @@
 namespace NLog.UnitTests
 {
     using System;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class LogLevelTests : NLogTestBase
     {
@@ -270,7 +275,7 @@ namespace NLog.UnitTests
         [Fact]
         [Trait("Component", "Core")]
         public void LogLevelEquals_Null_ExpectFalse()
-        {
+        { 
             Assert.False(LogLevel.Debug.Equals(null));
 
             LogLevel logLevel = null;
@@ -303,7 +308,7 @@ namespace NLog.UnitTests
             Assert.False(LogLevel.Warn.Equals(levelError));
             Assert.False(LogLevel.Warn.Equals(levelFatal));
             Assert.False(LogLevel.Warn.Equals(levelOff));
-        }
+    }
 
         [Fact]
         public void LogLevelEqual_TypeOfLogLevel()
@@ -315,6 +320,6 @@ namespace NLog.UnitTests
             Assert.False(LogLevel.Warn.Equals(LogLevel.Error));
             Assert.False(LogLevel.Warn.Equals(LogLevel.Fatal));
             Assert.False(LogLevel.Warn.Equals(LogLevel.Off));
-        }
+}
     }
 }

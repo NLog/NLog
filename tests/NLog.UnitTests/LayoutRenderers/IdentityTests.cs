@@ -37,7 +37,11 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Security.Principal;
     using System.Threading;
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
 
     public class IdentityTests : NLogTestBase
     {

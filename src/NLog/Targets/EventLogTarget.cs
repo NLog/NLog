@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
 
 namespace NLog.Targets
 {
@@ -49,7 +49,7 @@ namespace NLog.Targets
     /// <summary>
     /// Writes log message to the Event Log.
     /// </summary>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/EventLog-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="http://nlog-project.org/wiki/EventLog_target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 
@@ -108,20 +108,20 @@ namespace NLog.Targets
         public Layout Category { get; set; }
 
         /// <summary>
-        /// Optional entrytype. When not set, or when not convertable to <see cref="LogLevel"/> then determined by <see cref="NLog.LogLevel"/>
-        /// </summary>
-        public Layout EntryType { get; set; }
-
-        /// <summary>
         /// Gets or sets the value to be used as the event Source.
         /// </summary>
+        public Layout EntryType { get; set; }
         /// <remarks>
         /// By default this is the friendly name of the current AppDomain.
         /// </remarks>
         /// <docgen category='Event Log Options' order='10' />
-        public Layout Source { get; set; }
 
         /// <summary>
+        /// Gets or sets the name of the Event Log to write to. This can be System, Application or 
+        /// any user-defined name.
+        public Layout Source { get; set; }
+        /// </summary>
+        /// <docgen category='Event Log Options' order='10' />
         /// Gets or sets the name of the Event Log to write to. This can be System, Application or 
         /// any user-defined name.
         /// </summary>
@@ -136,15 +136,15 @@ namespace NLog.Targets
         public void Install(InstallationContext installationContext)
         {
             var fixedSource = GetFixedSource();
+                    // re-create the association between Log and Source
 
-            //always throw error to keep backwardscomp behavior.
             CreateEventSourceIfNeeded(fixedSource, true);
-        }
+                }
+
 
         /// <summary>
         /// Performs uninstallation which requires administrative permissions.
         /// </summary>
-        /// <param name="installationContext">The installation context.</param>
         public void Uninstall(InstallationContext installationContext)
         {
             var fixedSource = GetFixedSource();
@@ -152,7 +152,7 @@ namespace NLog.Targets
             if (string.IsNullOrEmpty(fixedSource))
             {
                 InternalLogger.Debug("Skipping removing of event source because it contains layout renderers");
-            }
+        }
             else
             {
                 EventLog.DeleteEventSource(fixedSource, this.MachineName);
@@ -173,7 +173,7 @@ namespace NLog.Targets
             if (!string.IsNullOrEmpty(fixedSource))
             {
                 return EventLog.SourceExists(fixedSource, this.MachineName);
-            }
+        }
             InternalLogger.Debug("Unclear if event source exists because it contains layout renderers");
             return null; //unclear! 
         }
@@ -197,7 +197,7 @@ namespace NLog.Targets
                 if (!currentSourceName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
                 {
                     this.CreateEventSourceIfNeeded(fixedSource, false);
-                }
+        }
             }
         }
 
@@ -251,12 +251,12 @@ namespace NLog.Targets
                 if (EnumHelpers.TryParse(value, true, out eventLogEntryType))
                 {
                     return eventLogEntryType;
-                }
+        }
             }
 
             // determine auto
             if (logEvent.Level >= LogLevel.Error)
-            {
+        {
                 return EventLogEntryType.Error;
             }
             if (logEvent.Level >= LogLevel.Warn)
@@ -265,7 +265,7 @@ namespace NLog.Targets
             }
             return EventLogEntryType.Information;
         }
-
+            // if we throw anywhere, we remain non-operational
 
         /// <summary>
         /// Get the source, if and only if the source is fixed. 
@@ -318,7 +318,7 @@ namespace NLog.Targets
                 if (EventLog.SourceExists(fixedSource, this.MachineName))
                 {
                     string currentLogName = EventLog.LogNameFromSourceName(fixedSource, this.MachineName);
-                    if (!currentLogName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
+                    if (!currentLogName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))            
                     {
                         // re-create the association between Log and Source
                         EventLog.DeleteEventSource(fixedSource, this.MachineName);
@@ -347,7 +347,7 @@ namespace NLog.Targets
                 {
                     throw;
                 }
-              
+
                 throw;
             }
         }

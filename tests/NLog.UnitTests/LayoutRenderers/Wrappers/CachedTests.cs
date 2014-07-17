@@ -35,7 +35,12 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
     using NLog.Layouts;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class CachedTests : NLogTestBase
     {
@@ -62,7 +67,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             s3 = l.Render(LogEventInfo.CreateNullEvent());
             Assert.NotEqual(s2, s3);
 
-            // unless we use clearcache=none
+            // calling Initialize() on Layout Renderer will reset the cached value
             l = "${cached:${guid}:cached=true:clearcache=none}";
             s1 = l.Render(LogEventInfo.CreateNullEvent());
             l.Renderers[0].Close();

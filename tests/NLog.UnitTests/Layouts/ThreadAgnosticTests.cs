@@ -38,7 +38,12 @@ namespace NLog.UnitTests.Layouts
     using NLog.Config;
     using NLog.LayoutRenderers.Wrappers;
     using NLog.Layouts;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class ThreadAgnosticTests : NLogTestBase
     {
@@ -51,7 +56,7 @@ namespace NLog.UnitTests.Layouts
                 {
                     if (t.IsAbstract || t.IsEnum || t.IsNestedPrivate)
                     {
-                        // skip non-concrete types, enumerations, and private nested types
+                        // skip non-concrete types
                         continue;
                     }
 

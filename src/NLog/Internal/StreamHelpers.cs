@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !__IOS__
+
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,16 +41,16 @@ using System.Linq;
 
 namespace NLog.Internal
 {
+
     /// <summary>
-    /// Stream helpers
-    /// </summary>
+    /// Message Box helper.
     public static class StreamHelpers
     {
-
         /// <summary>
-        /// Copy stream input to output. Skip the first bytes
+        /// Shows the specified message using platform-specific message box.
         /// </summary>
-        /// <param name="input">stream to read from</param>
+        /// <param name="message">The message.</param>
+        /// <param name="caption">The caption.</param>
         /// <param name="output">stream to write to</param>
         /// <param name="offset">first bytes to skip (optional)</param>
         public static void CopyWithOffset(this Stream input, Stream output, int offset)
@@ -77,3 +80,5 @@ namespace NLog.Internal
 
     }
 }
+
+#endif

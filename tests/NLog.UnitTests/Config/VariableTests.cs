@@ -38,7 +38,12 @@ namespace NLog.UnitTests.Config
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class VariableTests : NLogTestBase
     {
@@ -91,7 +96,7 @@ namespace NLog.UnitTests.Config
             //dont change the ${test} as it isn't a Layout
             Assert.Equal("${test}", target.Source);
 
-        }
+    }
 #endif
 
       

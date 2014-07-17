@@ -35,7 +35,12 @@ namespace NLog.UnitTests.Config
 {
     using NLog.Config;
     using NLog.Filters;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class RuleConfigurationTests : NLogTestBase
     {
@@ -324,6 +329,6 @@ namespace NLog.UnitTests.Config
             Logger b = LogManager.GetLogger("b");
             b.Debug("testDebug");
             AssertDebugLastMessage("d1", "testDebug");
-        }
+    }
     }
 }

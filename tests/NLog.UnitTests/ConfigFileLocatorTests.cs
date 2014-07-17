@@ -33,7 +33,7 @@
 
 using System.Threading;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
 
 namespace NLog.UnitTests
 {
@@ -253,9 +253,9 @@ class C1
             using (var proc = new Process())
 			{
 #if MONO
-				var sb = new StringBuilder();
-				sb.AppendFormat("\"{0}\" ", exeFile);
-				proc.StartInfo.Arguments = sb.ToString();
+            var sb = new StringBuilder();
+            sb.AppendFormat("\"{0}\" ", exeFile);
+                proc.StartInfo.Arguments = sb.ToString();
                 proc.StartInfo.FileName = "mono";
 				proc.StartInfo.StandardOutputEncoding = Encoding.UTF8;
 				proc.StartInfo.StandardErrorEncoding = Encoding.UTF8;

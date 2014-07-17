@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
 
 namespace NLog.Targets
 {
@@ -40,7 +40,7 @@ namespace NLog.Targets
     /// <summary>
     /// Outputs log messages through the <c>OutputDebugString()</c> Win32 API.
     /// </summary>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/OutputDebugString-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="http://nlog-project.org/wiki/OutputDebugString_target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 

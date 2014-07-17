@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !__IOS__
 using System.ComponentModel;
 using System.Reflection;
 using System.Text;
@@ -418,14 +419,14 @@ namespace NLog.UnitTests
             foreach (var type in types)
             {
                 VerifyDefaultValuesType(type, reportErrors);
-            }
+    }
 
             //one message for all failing properties
             var fullMessage = string.Format("{0} errors: \n -------- \n- {1}", reportErrors.Count, string.Join("\n- ", reportErrors));
             Assert.False(reportErrors.Any(), fullMessage);
 
 
-        }
+}
 
         ///<summary>Verify all properties with the <see cref="DefaultValueAttribute"/></summary>
         ///<remarks>Note: Xunit dont like overloads</remarks>

@@ -42,9 +42,14 @@ namespace NLog.UnitTests
 
     using NLog.Layouts;
     using NLog.Config;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 #if SILVERLIGHT
-    using System.Xml.Linq;
+using System.Xml.Linq;
 #else
     using System.Xml;
     using System.IO.Compression;
@@ -82,7 +87,7 @@ namespace NLog.UnitTests
         {
             return GetDebugLastMessage(targetName, LogManager.Configuration);
         }
-
+            // Console.WriteLine("lastmsg: {0}", debugTarget.LastMessage);
         public string GetDebugLastMessage(string targetName, LoggingConfiguration configuration)
         {
             return GetDebugTarget(targetName, configuration).LastMessage;
@@ -221,7 +226,7 @@ namespace NLog.UnitTests
 
         protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT 
             XElement element = XElement.Parse(configXml);
             return new XmlLoggingConfiguration(element.CreateReader(), null);
 #else

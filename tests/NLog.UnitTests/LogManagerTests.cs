@@ -45,6 +45,13 @@ namespace NLog.UnitTests
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
+    using System.Diagnostics;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
+    using Xunit;
+#endif
 
 #if NET4_5
     using System.Threading.Tasks;
@@ -77,8 +84,8 @@ namespace NLog.UnitTests
 
         static WeakReference GetWeakReferenceToTemporaryLogger()
         {
-            string uniqueLoggerName = Guid.NewGuid().ToString();
-            return new WeakReference(LogManager.GetLogger(uniqueLoggerName));
+            string uniqueLoggerName = Guid.NewGuid ().ToString();
+            return new WeakReference (LogManager.GetLogger(uniqueLoggerName));
         }
 
         [Fact]
@@ -280,7 +287,7 @@ namespace NLog.UnitTests
             _reloadCounter++;
         }
 
-        private bool IsMacOsX()
+        private bool IsMacOsX ()
         {
 #if MONO
             if (Directory.Exists("/Library/Frameworks/Mono.framework/"))
@@ -301,7 +308,7 @@ namespace NLog.UnitTests
                 // filesystem watcher
                 return;
             }
-
+            
             using (new InternalLoggerScope())
             {
                 string fileName = Path.GetTempFileName();
@@ -323,7 +330,7 @@ namespace NLog.UnitTests
                     ILogger logger = LogManager.GetLogger("A");
                     logger.Debug("aaa");
                     AssertDebugLastMessage("debug", "aaa");
-
+                    
                     InternalLogger.Info("Rewriting test file...");
 
                     // now write the file again
@@ -515,8 +522,8 @@ namespace NLog.UnitTests
                 });
                 mTarget.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
                 mTarget2.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
-            }
-        }
+    }
+}
 
         /// <summary>
         /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>

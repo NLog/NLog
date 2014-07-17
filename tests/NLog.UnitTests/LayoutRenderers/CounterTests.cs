@@ -33,7 +33,11 @@
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
     using NLog.Fluent;
 
     public class CounterTests : NLogTestBase

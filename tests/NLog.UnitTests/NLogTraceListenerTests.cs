@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
 
 #define DEBUG
 
@@ -204,7 +204,7 @@ namespace NLog.UnitTests
             ts.TraceData(TraceEventType.Critical, 145, 42, 3.14, "foo");
             AssertDebugLastMessage("debug", string.Format("MySource1 Fatal 42, {0}, foo 145", 3.14.ToString(System.Globalization.CultureInfo.CurrentCulture)));
         }
-
+        
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else

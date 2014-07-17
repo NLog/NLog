@@ -31,9 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
 
 namespace NLog.Targets
 {
@@ -43,6 +41,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Globalization;
+    using System.Linq;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -51,7 +50,7 @@ namespace NLog.Targets
     /// <summary>
     /// Increments specified performance counter on each write.
     /// </summary>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/PerformanceCounter-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="http://nlog-project.org/wiki/PerformanceCounter_target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 
@@ -132,9 +131,9 @@ namespace NLog.Targets
         public PerformanceCounterType CounterType { get; set; }
 
         /// <summary>
-        /// The value by which to increment the counter.
+        /// Performs installation which requires administrative permissions.
         /// </summary>
-        /// <docgen category='Performance Counter Options' order='10' />
+        /// <param name="installationContext">The installation context.</param>
         [DefaultValue(1)]
         public Layout IncrementValue { get; set; }
 
