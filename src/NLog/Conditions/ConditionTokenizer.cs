@@ -40,8 +40,12 @@ namespace NLog.Conditions
     /// <summary>
     /// Hand-written tokenizer for conditions.
     /// </summary>
-    internal sealed class ConditionTokenizer
-    {
+#if(__IOS__)
+    public sealed class ConditionTokenizer
+#else
+	internal sealed class ConditionTokenizer
+#endif
+	{
         private static readonly ConditionTokenType[] charIndexToTokenType = BuildCharIndexToTokenType();
         private readonly SimpleStringReader stringReader;
 

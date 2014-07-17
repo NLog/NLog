@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !__IOS__
+#if !__IOS__ && !WINDOWS_PHONE
 
 namespace NLog.Internal
 {

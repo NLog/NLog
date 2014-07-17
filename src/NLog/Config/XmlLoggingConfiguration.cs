@@ -715,14 +715,14 @@ namespace NLog.Config
                 if (assemblyFile != null)
                 {
                     try
-                    {
-#if SILVERLIGHT
+					{
+#if SILVERLIGHT && !WINDOWS_PHONE
                                 var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
                                 var assemblyPart = new AssemblyPart();
                                 Assembly asm = assemblyPart.Load(si.Stream);
 #else
 
-                        string fullFileName = Path.Combine(baseDirectory, assemblyFile);
+						string fullFileName = Path.Combine(baseDirectory, assemblyFile);
                         InternalLogger.Info("Loading assembly file: {0}", fullFileName);
 
                         Assembly asm = Assembly.LoadFrom(fullFileName);
@@ -752,12 +752,12 @@ namespace NLog.Config
                     try
                     {
                         InternalLogger.Info("Loading assembly name: {0}", assemblyName);
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                         var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
                         var assemblyPart = new AssemblyPart();
                         Assembly asm = assemblyPart.Load(si.Stream);
 #else
-                        Assembly asm = Assembly.Load(assemblyName);
+						Assembly asm = Assembly.Load(assemblyName);
 #endif
 
                         this.configurationItemFactory.RegisterItemsFromAssembly(asm, prefix);

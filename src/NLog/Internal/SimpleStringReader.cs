@@ -36,8 +36,12 @@ namespace NLog.Internal
     /// <summary>
     /// Simple character tokenizer.
     /// </summary>
-    internal class SimpleStringReader
-    {
+#if(__IOS__)
+    public class SimpleStringReader
+#else
+	internal class SimpleStringReader
+#endif
+	{
         private readonly string text;
 
         /// <summary>
