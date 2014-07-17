@@ -162,7 +162,7 @@ namespace NLog.Config
 #endif
         #endregion
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         #region public properties
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 

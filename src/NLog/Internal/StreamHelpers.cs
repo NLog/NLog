@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !__IOS__ && !WINDOWS_PHONE
+#if !__IOS__ && !WINDOWS_PHONE && !__ANDROID__
 
 
 using System;
