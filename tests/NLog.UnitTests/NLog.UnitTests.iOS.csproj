@@ -224,9 +224,9 @@
     <None Include="Properties\OutOfBrowserSettings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.MonoTouch.csproj">
+    <ProjectReference Include="..\..\src\NLog\NLog.iOS.csproj">
       <Project>{9E517F74-F072-4E1E-80C8-EEDCECBD0557}</Project>
-      <Name>NLog.MonoTouch</Name>
+      <Name>NLog.iOS</Name>
     </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
