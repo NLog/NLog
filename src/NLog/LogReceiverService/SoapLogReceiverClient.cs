@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !WCF_SUPPORTED && !__IOS__
+#if !WCF_SUPPORTED && !__IOS__ && !WINDOWS_PHONE
 
 namespace NLog.LogReceiverService
 {

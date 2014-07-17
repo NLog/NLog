@@ -30,7 +30,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-#if !__IOS__
+#if !__IOS__ && !WINDOWS_PHONE
 namespace NLog.Targets
 {
     using System;
@@ -55,7 +55,7 @@ namespace NLog.Targets
     /// <summary>
     /// Sends log messages to a NLog Receiver Service (using WCF or Web Services).
     /// </summary>
-    /// <seealso href="https://github.com/nlog/nlog/wiki/LogReceiverService-target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="http://nlog-project.org/wiki/LogReceiverService_target">Documentation on NLog Wiki</seealso>
     [Target("LogReceiverService")]
     public class LogReceiverWebServiceTarget : Target
     {
@@ -164,7 +164,7 @@ namespace NLog.Targets
             var networkLogEvents = this.TranslateLogEvents(logEvents);
             this.Send(networkLogEvents, logEvents);
         }
-        
+
         /// <summary>
         /// Flush any pending log messages asynchronously (in case of asynchronous targets).
         /// </summary>
@@ -398,7 +398,7 @@ namespace NLog.Targets
         }
 #endif
 
-        private void SendBufferedEvents()
+	    private void SendBufferedEvents()
         {
             lock (this.SyncRoot)
             {

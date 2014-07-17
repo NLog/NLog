@@ -33,52 +33,57 @@
 
 namespace NLog.Internal
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using System.Text;
-    using NLog.Common;
+	using System;
+	using System.Collections.Generic;
+	using System.Reflection;
+	using System.Text;
+	using NLog.Common;
 
-    /// <summary>
-    /// Reflection helpers.
-    /// </summary>
-    internal static class ReflectionHelpers
-    {
-        /// <summary>
-        /// Gets all usable exported types from the given assembly.
-        /// </summary>
-        /// <param name="assembly">Assembly to scan.</param>
-        /// <returns>Usable types from the given assembly.</returns>
-        /// <remarks>Types which cannot be loaded are skipped.</remarks>
-        public static Type[] SafeGetTypes(this Assembly assembly)
-        {
+	/// <summary>
+	/// Reflection helpers.
+	/// </summary>
+#if(__IOS__)
+	public static class ReflectionHelpers
+#else
+	internal static class ReflectionHelpers
+#endif
+
+	{
+		/// <summary>
+		/// Gets all usable exported types from the given assembly.
+		/// </summary>
+		/// <param name="assembly">Assembly to scan.</param>
+		/// <returns>Usable types from the given assembly.</returns>
+		/// <remarks>Types which cannot be loaded are skipped.</remarks>
+		public static Type[] SafeGetTypes(this Assembly assembly)
+		{
 #if SILVERLIGHT
             return assembly.GetTypes();
 #else
-            try
-            {
-                return assembly.GetTypes();
-            }
-            catch (ReflectionTypeLoadException typeLoadException)
-            {
-                foreach (var ex in typeLoadException.LoaderExceptions)
-                {
-                    InternalLogger.Warn("Type load exception: {0}", ex);
-                }
+			try
+			{
+				return assembly.GetTypes();
+			}
+			catch (ReflectionTypeLoadException typeLoadException)
+			{
+				foreach (var ex in typeLoadException.LoaderExceptions)
+				{
+					InternalLogger.Warn("Type load exception: {0}", ex);
+				}
 
-                var loadedTypes = new List<Type>();
-                foreach (var t in typeLoadException.Types)
-                {
-                    if (t != null)
-                    {
-                        loadedTypes.Add(t);
-                    }
-                }
+				var loadedTypes = new List<Type>();
+				foreach (var t in typeLoadException.Types)
+				{
+					if (t != null)
+					{
+						loadedTypes.Add(t);
+					}
+				}
 
-                return loadedTypes.ToArray();
-            }
+				return loadedTypes.ToArray();
+			}
 #endif
-        }
+		}
 
         /// <summary>
         /// Is this a static class?
@@ -91,6 +96,6 @@ namespace NLog.Internal
         public static bool IsStaticClass(this Type type)
         {
             return type.IsClass && type.IsAbstract && type.IsSealed;
-        }
-    }
+	    }
+    
 }

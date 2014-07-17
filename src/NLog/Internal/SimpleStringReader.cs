@@ -38,11 +38,15 @@ namespace NLog.Internal
     /// <summary>
     /// Simple character tokenizer.
     /// </summary>
+#if(__IOS__)
+    public class SimpleStringReader
+#else
 #if DEBUG
      [System.Diagnostics.DebuggerDisplay("{CurrentState}")]
 #endif
-    internal class SimpleStringReader
-    {
+	internal class SimpleStringReader
+#endif
+	{
         private readonly string text;
 
         /// <summary>

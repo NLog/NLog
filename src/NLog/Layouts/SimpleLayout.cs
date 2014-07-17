@@ -88,17 +88,21 @@ namespace NLog.Layouts
             this.Text = txt;
         }
 
-        internal SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
-        {
+#if(__IOS__)
+        public SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
+#else
+		internal SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
+#endif
+		{
             this.configurationItemFactory = configurationItemFactory;
             this.SetRenderers(renderers, text);
         }
 
         /// <summary>
-        /// Original text before compile to Layout renderes
+        /// Gets or sets the layout text.
         /// </summary>
         public string OriginalText { get; private set; }
-
+        /// <docgen category='Layout Options' order='10' />
         /// <summary>
         /// Gets or sets the layout text.
         /// </summary>
@@ -126,14 +130,14 @@ namespace NLog.Layouts
                 this.SetRenderers(renderers, txt);
             }
         }
+
         /// <summary>
-        /// Is the message fixed? (no Layout renderers used)
-        /// </summary>
+        /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
         public bool IsFixedText
         {
             get { return this.fixedText != null; }
         }
-
+        /// </summary>
         /// <summary>
         /// Get the fixed text. Only set when <see cref="IsFixedText"/> is <c>true</c>
         /// </summary>
@@ -166,7 +170,7 @@ namespace NLog.Layouts
         /// <param name="text">The text to be escaped.</param>
         /// <returns>The escaped text.</returns>
         /// <remarks>
-        /// Escaping is done by replacing all occurrences of
+        /// Escaping is done by replacing all occurences of
         /// '${' with '${literal:text=${}'
         /// </remarks>
         public static string Escape(string text)
@@ -175,11 +179,11 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Evaluates the specified text by expanding all layout renderers.
+        /// Evaluates the specified text by expadinging all layout renderers.
         /// </summary>
         /// <param name="text">The text to be evaluated.</param>
         /// <param name="logEvent">Log event to be used for evaluation.</param>
-        /// <returns>The input text with all occurrences of ${} replaced with
+        /// <returns>The input text with all occurences of ${} replaced with
         /// values provided by the appropriate layout renderers.</returns>
         public static string Evaluate(string text, LogEventInfo logEvent)
         {
@@ -188,11 +192,11 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Evaluates the specified text by expanding all layout renderers
+        /// Evaluates the specified text by expadinging all layout renderers
         /// in new <see cref="LogEventInfo" /> context.
         /// </summary>
         /// <param name="text">The text to be evaluated.</param>
-        /// <returns>The input text with all occurrences of ${} replaced with
+        /// <returns>The input text with all occurences of ${} replaced with
         /// values provided by the appropriate layout renderers.</returns>
         public static string Evaluate(string text)
         {
