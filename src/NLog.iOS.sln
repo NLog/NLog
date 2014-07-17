@@ -2,9 +2,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.MonoTouch", "NLog\NLog.MonoTouch.csproj", "{9E517F74-F072-4E1E-80C8-EEDCECBD0557}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.iOS", "NLog\NLog.iOS.csproj", "{9E517F74-F072-4E1E-80C8-EEDCECBD0557}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.MonoTouch", "..\tests\NLog.UnitTests\NLog.UnitTests.MonoTouch.csproj", "{C48047FF-7E14-443D-906D-7E021AB5707A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.iOS", "..\tests\NLog.UnitTests\NLog.UnitTests.iOS.csproj", "{C48047FF-7E14-443D-906D-7E021AB5707A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
