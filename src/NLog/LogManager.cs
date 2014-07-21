@@ -157,8 +157,9 @@ namespace NLog
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
+        [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static Logger GetCurrentClassLogger()
+        public static ILogger GetCurrentClassLogger()
         {
             string loggerName;
             Type declaringType;
@@ -192,8 +193,9 @@ namespace NLog
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
+        [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static Logger GetCurrentClassLogger(Type loggerType)
+        public static ILogger GetCurrentClassLogger(Type loggerType)
         {
             Type declaringType;
             int framesToSkip = 1;
@@ -215,7 +217,8 @@ namespace NLog
         /// Creates a logger that discards all log messages.
         /// </summary>
         /// <returns>Null logger which discards all log messages.</returns>
-        public static Logger CreateNullLogger()
+        [CLSCompliant(false)]
+        public static ILogger CreateNullLogger()
         {
             return globalFactory.CreateNullLogger();
         }
@@ -225,7 +228,8 @@ namespace NLog
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
-        public static Logger GetLogger(string name)
+        [CLSCompliant(false)]
+        public static ILogger GetLogger(string name)
         {
             return globalFactory.GetLogger(name);
         }
@@ -236,7 +240,8 @@ namespace NLog
         /// <param name="name">Name of the logger.</param>
         /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
-        public static Logger GetLogger(string name, Type loggerType)
+        [CLSCompliant(false)]
+        public static ILogger GetLogger(string name, Type loggerType)
         {
             return globalFactory.GetLogger(name, loggerType);
         }
