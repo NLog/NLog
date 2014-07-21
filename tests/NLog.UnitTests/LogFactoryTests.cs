@@ -50,7 +50,7 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetCurrentClassLogger();
+            ILogger logger = LogManager.GetCurrentClassLogger();
             logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
         }
         
