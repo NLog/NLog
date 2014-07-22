@@ -755,7 +755,6 @@ namespace NLog.UnitTests.Targets
                     {
                         exceptions.Add(ex);
                         pendingWrites--;
-                        Console.WriteLine("Write finished. Pending {0}", pendingWrites);
                         if (pendingWrites == 0)
                         {
                             writeCompleted.Set();
@@ -769,10 +768,8 @@ namespace NLog.UnitTests.Targets
                 target.WriteAsyncLogEvent(ev);
             }
 
-            Console.WriteLine("Waiting for completion...");
             writeCompleted.WaitOne();
 
-            Console.WriteLine("Closing...");
 
             // no exception
             target.Close();
