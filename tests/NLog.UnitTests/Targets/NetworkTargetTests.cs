@@ -779,8 +779,6 @@ namespace NLog.UnitTests.Targets
             {
                 Assert.NotNull(ex);
             }
-
-            Thread.Sleep(1000);
         }
 #endif
 
