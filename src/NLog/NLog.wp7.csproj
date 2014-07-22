@@ -132,7 +132,6 @@
     </Compile>
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
-    <Compile Include="Internal\EnumerableHelpers.cs" />
     <Compile Include="Internal\EnvironmentHelper.cs" />
     <Compile Include="Internal\ExceptionHelper.cs" />
     <Compile Include="Internal\FactoryHelper.cs" />

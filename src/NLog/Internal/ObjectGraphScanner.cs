@@ -115,7 +115,7 @@ namespace NLog.Internal
                 var enumerable = value as IEnumerable;
                 if (enumerable != null)
                 {
-                    foreach (object element in enumerable.OfType<object>().ToList())
+                    foreach (object element in enumerable)
                     {
                         ScanProperties(result, element, level + 1, visitedObjects);
                     }
