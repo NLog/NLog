@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Common;
+
 namespace NLog.Config
 {
     using System;
@@ -189,9 +191,11 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">Item name prefix.</param>
         public void RegisterItemsFromAssembly(Assembly assembly, string itemNamePrefix)
         {
+            InternalLogger.Debug("ScanAssembly('{0}')", assembly.FullName);
+            var typesToScan = assembly.SafeGetTypes();
             foreach (IFactory f in this.allFactories)
             {
-                f.ScanAssembly(assembly, itemNamePrefix);
+                f.ScanTypes(typesToScan, itemNamePrefix);
             }
         }
 
