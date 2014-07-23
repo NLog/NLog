@@ -32,6 +32,7 @@
 // 
 
 using System.Globalization;
+using System.Linq;
 
 namespace NLog.Config
 {
@@ -185,7 +186,7 @@ namespace NLog.Config
             }
 
             this.InitializeAll();
-            foreach (IInstallable installable in EnumerableHelpers.OfType<IInstallable>(this.configItems))
+            foreach (IInstallable installable in this.configItems.OfType<IInstallable>())
             {
                 installationContext.Info("Installing '{0}'", installable);
 
@@ -222,7 +223,7 @@ namespace NLog.Config
 
             this.InitializeAll();
 
-            foreach (IInstallable installable in EnumerableHelpers.OfType<IInstallable>(this.configItems))
+            foreach (IInstallable installable in this.configItems.OfType<IInstallable>())
             {
                 installationContext.Info("Uninstalling '{0}'", installable);
 
