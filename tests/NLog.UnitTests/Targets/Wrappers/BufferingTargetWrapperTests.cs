@@ -245,7 +245,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(0, myTarget.WriteCount);
 
             // sleep 2 seconds, this will trigger the timer and flush all events
-            Thread.Sleep(4000);
+            Thread.Sleep(1500);
             Assert.Equal(9, hitCount);
             Assert.Equal(1, myTarget.BufferedWriteCount);
             Assert.Equal(9, myTarget.BufferedTotalEvents);
@@ -269,7 +269,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(19, myTarget.WriteCount);
 
             // sleep 2 seonds and the last remaining one will be flushed
-            Thread.Sleep(2000);
+            Thread.Sleep(1500);
             Assert.Equal(20, hitCount);
             Assert.Equal(3, myTarget.BufferedWriteCount);
             Assert.Equal(20, myTarget.BufferedTotalEvents);
@@ -351,8 +351,6 @@ namespace NLog.UnitTests.Targets.Wrappers
                     flushException = ex;
                     flushHit.Set();
                 });
-
-            Thread.Sleep(1000);
 
             flushHit.WaitOne();
             Assert.Null(flushException);
