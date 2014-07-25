@@ -1367,7 +1367,6 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Error(String, Exception) method instead.")]
         public void ErrorException([Localizable(false)] string message, Exception exception)
         {
             this.Error(message, exception);
