@@ -35,6 +35,7 @@
 namespace NLog.UnitTests
 {
     using System;
+    using NLog.Config;
     using Xunit;
 
     public class LogFactoryTests : NLogTestBase
@@ -102,6 +103,48 @@ namespace NLog.UnitTests
             
             Assert.True(ExceptionThrown);
             
+        }
+
+        [Fact]
+        public void ReloadConfigOnTimer_Raises_ConfigurationReloadedEvent()
+        {
+            var called = false;
+            var loggingConfiguration = new LoggingConfiguration();
+            LogManager.Configuration = loggingConfiguration;
+            var logFactory = new LogFactory(loggingConfiguration);
+            logFactory.ConfigurationReloaded += (sender, args) => { called = true; };
+
+            logFactory.ReloadConfigOnTimer(loggingConfiguration);
+
+            Assert.True(called);
+        }
+
+        [Fact]
+        public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent_With_Correct_Sender()
+        {
+            object calledBy = null;
+            var loggingConfiguration = new LoggingConfiguration();
+            LogManager.Configuration = loggingConfiguration;
+            var logFactory = new LogFactory(loggingConfiguration);
+            logFactory.ConfigurationReloaded += (sender, args) => { calledBy = sender; };
+
+            logFactory.ReloadConfigOnTimer(loggingConfiguration);
+
+            Assert.Same(calledBy, logFactory);
+        }
+
+        [Fact]
+        public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent_With_Argument_Indicating_Success()
+        {
+            LoggingConfigurationReloadedEventArgs arguments = null;
+            var loggingConfiguration = new LoggingConfiguration();
+            LogManager.Configuration = loggingConfiguration;
+            var logFactory = new LogFactory(loggingConfiguration);
+            logFactory.ConfigurationReloaded += (sender, args) => { arguments = args; };
+
+            logFactory.ReloadConfigOnTimer(loggingConfiguration);
+
+            Assert.True(arguments.Succeeded);
         }
 
         public static void Throws()
