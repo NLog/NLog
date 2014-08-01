@@ -168,13 +168,13 @@ namespace NLog.UnitTests
             var exceptions = new List<Exception>();
 
             // set up a timer to strike in 1 second
-            var cont = AsyncHelpers.WithTimeout(AsyncHelpers.PreventMultipleCalls(exceptions.Add), TimeSpan.FromSeconds(1));
+            var cont = AsyncHelpers.WithTimeout(AsyncHelpers.PreventMultipleCalls(exceptions.Add), TimeSpan.FromMilliseconds(500));
 
             // call success quickly, hopefully before the timer comes
             cont(null);
 
             // sleep 2 seconds to make sure timer event comes
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
             // make sure we got success, not a timer exception
             Assert.Equal(1, exceptions.Count);
@@ -196,14 +196,14 @@ namespace NLog.UnitTests
             var exceptions = new List<Exception>();
 
             // set up a timer to strike in 3 second
-            var cont = AsyncHelpers.WithTimeout(AsyncHelpers.PreventMultipleCalls(exceptions.Add), TimeSpan.FromSeconds(1));
+            var cont = AsyncHelpers.WithTimeout(AsyncHelpers.PreventMultipleCalls(exceptions.Add), TimeSpan.FromSeconds(500));
 
             var exception = new InvalidOperationException("Foo");
             // call success quickly, hopefully before the timer comes
             cont(exception);
 
             // sleep 2 seconds to make sure timer event comes
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
             // make sure we got success, not a timer exception
             Assert.Equal(1, exceptions.Count);

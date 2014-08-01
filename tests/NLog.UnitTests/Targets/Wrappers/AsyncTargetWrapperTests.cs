@@ -294,7 +294,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 () =>
                 {
                     targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
-                    Thread.Sleep(3000);
+                    Thread.Sleep(1000);
                 },
                 LogLevel.Trace);
 
