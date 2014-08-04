@@ -104,6 +104,7 @@
     <Compile Include="Config\LoggingRule.cs" />
     <Compile Include="Config\MethodFactory.cs" />
     <Compile Include="Config\NameBaseAttribute.cs" />
+    <Compile Include="Config\NLogConfigurationIgnorePropertyAttribute.cs" />
     <Compile Include="Config\NLogConfigurationItemAttribute.cs" />
     <Compile Include="Config\NLogXmlElement.cs" />
     <Compile Include="Config\RequiredParameterAttribute.cs" />
