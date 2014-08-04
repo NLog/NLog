@@ -339,7 +339,7 @@ namespace NLog.Targets
         }
 #endif
 
-	    private void SendBufferedEvents()
+        private void SendBufferedEvents()
         {
             lock (this.SyncRoot)
             {
