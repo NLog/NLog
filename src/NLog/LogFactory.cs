@@ -548,7 +548,7 @@ namespace NLog
                         this.Configuration = newConfig;
                         if (this.ConfigurationReloaded != null)
                         {
-                            this.ConfigurationReloaded(true, null);
+                            this.ConfigurationReloaded(this, new LoggingConfigurationReloadedEventArgs(true, null));
                         }
                     }
                     else
