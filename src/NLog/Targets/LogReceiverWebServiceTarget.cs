@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Globalization;
 #if WCF_SUPPORTED
     using System.ServiceModel;
@@ -335,11 +336,23 @@ namespace NLog.Targets
             {
                 client = new WcfLogReceiverClient(this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
             }
+
+            client.ProcessLogMessagesCompleted += ClientOnProcessLogMessagesCompleted;
+
             return client;
+        }
+
+        private void ClientOnProcessLogMessagesCompleted(object sender, AsyncCompletedEventArgs asyncCompletedEventArgs)
+        {
+            var client = sender as WcfLogReceiverClient;
+            if (client != null && client.State == CommunicationState.Opened)
+            {
+                client.Close();
+            }
         }
 #endif
 
-	    private void SendBufferedEvents()
+        private void SendBufferedEvents()
         {
             lock (this.SyncRoot)
             {
