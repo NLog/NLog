@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using System.Threading;
@@ -44,13 +45,34 @@ namespace NLog.LayoutRenderers
     public class ThreadIdLayoutRenderer : LayoutRenderer
     {
         /// <summary>
+        /// Gets or sets the padding width.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(0)]
+        public int PaddingWidth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the padding character.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(' ')]
+        public char PaddingChar { get; set; }
+
+        /// <summary>
         /// Renders the current thread identifier and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture));
+            var text = Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture);
+
+            if (PaddingWidth > 0)
+            {
+                text = text.PadLeft(PaddingWidth, PaddingChar);
+            }
+
+            builder.Append(text);
         }
     }
 }
