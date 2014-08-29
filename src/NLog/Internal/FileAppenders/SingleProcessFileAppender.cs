@@ -56,6 +56,15 @@ namespace NLog.Internal.FileAppenders
         /// <param name="parameters">The parameters.</param>
         public SingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
+        	var fi = new FileInfo(fileName);
+        	if (fi.Exists)
+        	{
+        	    this.FileTouched(fi.LastWriteTime);
+        	}
+        	else
+        	{
+        	    this.FileTouched();
+        	}
             this.file = CreateFileStream(false);
         }
 
@@ -113,10 +122,18 @@ namespace NLog.Internal.FileAppenders
         /// </returns>
         public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
         {
-	        var fi = new FileInfo(base.FileName);
-	        lastWriteTime = fi.LastWriteTime;
-	        fileLength = fi.Length;
-	        return true;
+	        if (file != null)
+	        {
+	            lastWriteTime = LastWriteTime;
+	            fileLength = file.Length;
+	            return true;
+	        }
+	        else
+	        {
+	            lastWriteTime = new DateTime();
+	            fileLength = 0;
+	            return false;
+	        }
         }
 
         /// <summary>
