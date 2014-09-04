@@ -505,6 +505,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         public void Trace([Localizable(false)] string message, params object[] args) 
         { 
             if (this.IsTraceEnabled)
@@ -573,6 +574,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         public void Trace<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsTraceEnabled)
@@ -609,6 +611,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         public void Trace<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsTraceEnabled)
@@ -730,6 +733,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         public void Debug([Localizable(false)] string message, params object[] args) 
         { 
             if (this.IsDebugEnabled)
@@ -798,6 +802,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         public void Debug<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsDebugEnabled)
@@ -834,6 +839,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         public void Debug<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsDebugEnabled)
@@ -955,6 +961,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         public void Info([Localizable(false)] string message, params object[] args) 
         { 
             if (this.IsInfoEnabled)
@@ -1023,6 +1030,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         public void Info<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsInfoEnabled)
@@ -1059,6 +1067,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         public void Info<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsInfoEnabled)
@@ -1180,6 +1189,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         public void Warn([Localizable(false)] string message, params object[] args) 
         { 
             if (this.IsWarnEnabled)
@@ -1248,6 +1258,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         public void Warn<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsWarnEnabled)
@@ -1284,6 +1295,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         public void Warn<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsWarnEnabled)
@@ -1404,6 +1416,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         public void Error([Localizable(false)] string message, params object[] args) 
         { 
             if (this.IsErrorEnabled)
@@ -1472,6 +1485,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         public void Error<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsErrorEnabled)
@@ -1508,6 +1522,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         public void Error<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsErrorEnabled)
@@ -1629,6 +1644,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         public void Fatal([Localizable(false)] string message, params object[] args) 
         { 
             if (this.IsFatalEnabled)
@@ -1697,6 +1713,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         public void Fatal<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (this.IsFatalEnabled)
@@ -1733,6 +1750,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         public void Fatal<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (this.IsFatalEnabled)
