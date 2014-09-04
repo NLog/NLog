@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,49 +31,41 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+using System;
+using Xunit;
+
+namespace NLog.UnitTests.LayoutRenderers
 {
-    using System;
-    using System.Threading;
-
-    /// <summary>
-    /// Helper class for dealing with exceptions.
-    /// </summary>
-    internal static class ExceptionHelper
+    public class ExceptionLayoutRendererTests : NLogTestBase
     {
-        /// <summary>
-        /// Determines whether the exception must be rethrown.
-        /// </summary>
-        /// <param name="exception">The exception.</param>
-        /// <returns>True if the exception must be rethrown, false otherwise.</returns>
-        public static bool MustBeRethrown(this Exception exception)
+        private Logger _logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionLayoutRendererTests");
+
+        [Fact]
+        public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception()
         {
-            if (exception is StackOverflowException)
-            {
-                return true;
-            }
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
 
-            if (exception is ThreadAbortException)
-            {
-                return true;
-            }
+            var ex = new ExceptionWithBrokenMessagePropertyException();
 
-            if (exception is OutOfMemoryException)
-            {
-                return true;
-            }
+            Assert.ThrowsDelegate action = () => _logger.ErrorException("msg", ex);
 
-            if (exception is NLogConfigurationException)
-            {
-                return true;
-            }
+            Assert.DoesNotThrow(action);
+        }
 
-            if (exception.GetType().IsSubclassOf(typeof(NLogConfigurationException)))
+        private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
+        {
+            public override string Message
             {
-                return true;
+                get { throw new Exception("Exception from Message property"); }
             }
-
-            return false;
         }
     }
 }

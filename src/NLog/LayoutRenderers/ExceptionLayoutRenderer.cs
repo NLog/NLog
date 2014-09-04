@@ -174,7 +174,20 @@ namespace NLog.LayoutRenderers
 
         private static void AppendMessage(StringBuilder sb, Exception ex)
         {
-            sb.Append(ex.Message);
+            try
+            {
+                sb.Append(ex.Message);
+            }
+            catch (Exception exception)
+            {
+                var message = string.Format("Exception in {0}.AppendMessage(): {1}.", typeof(ExceptionLayoutRenderer).FullName, exception.GetType().FullName);
+                sb.Append("NLog message:" + message);
+
+                if (InternalLogger.IsWarnEnabled)
+                {
+                    InternalLogger.Warn(message);
+                }
+            }
         }
 
         private static void AppendMethod(StringBuilder sb, Exception ex)
