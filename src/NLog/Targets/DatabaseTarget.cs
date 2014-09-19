@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Transactions;
 
 #if !SILVERLIGHT
 
@@ -46,6 +45,7 @@ namespace NLog.Targets
     using System.Globalization;
     using System.Reflection;
     using System.Text;
+    using System.Transactions;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
