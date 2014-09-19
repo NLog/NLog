@@ -164,14 +164,6 @@ namespace NLog.Targets
         public bool KeepConnection { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to use database transactions. 
-        /// Some data providers require this.
-        /// </summary>
-        /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(false)]
-        public bool UseTransactions { get; set; }
-
-        /// <summary>
         /// Gets or sets the database host name. If the ConnectionString is not provided
         /// this value will be used to construct the "Server=" part of the
         /// connection string.
