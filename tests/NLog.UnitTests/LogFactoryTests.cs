@@ -32,6 +32,7 @@
 // 
 
 
+#if !SILVERLIGHT
 namespace NLog.UnitTests
 {
     using System;
@@ -153,3 +154,4 @@ namespace NLog.UnitTests
         }
     }
 }
+#endif
