@@ -347,7 +347,7 @@ namespace NLog.Targets
             var client = sender as WcfLogReceiverClient;
             if (client != null && client.State == CommunicationState.Opened)
             {
-                client.Close();
+                ((ICommunicationObject)client).Close();
             }
         }
 #endif
