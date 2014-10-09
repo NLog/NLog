@@ -121,7 +121,12 @@ namespace NLog
         internal static IAppDomain CurrentAppDomain
         {
             get { return _currentAppDomain ?? (_currentAppDomain = AppDomainWrapper.CurrentDomain); }
-            set { _currentAppDomain = value; }
+            set
+            {
+                _currentAppDomain.DomainUnload -= TurnOffLogging;
+                _currentAppDomain.ProcessExit -= TurnOffLogging;
+                _currentAppDomain = value;
+            }
         }
 
         /// <summary>
