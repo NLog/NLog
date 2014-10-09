@@ -61,6 +61,7 @@
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Annotations.cs" />
     <Compile Include="Common\AsyncContinuation.cs" />
     <Compile Include="Common\AsyncHelpers.cs" />
     <Compile Include="Common\AsynchronousAction.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Config\LoggingRule.cs" />
     <Compile Include="Config\MethodFactory.cs" />
     <Compile Include="Config\NameBaseAttribute.cs" />
+    <Compile Include="Config\NLogConfigurationIgnorePropertyAttribute.cs" />
     <Compile Include="Config\NLogConfigurationItemAttribute.cs" />
     <Compile Include="Config\NLogXmlElement.cs" />
     <Compile Include="Config\RequiredParameterAttribute.cs" />
@@ -127,10 +129,10 @@
     <Compile Include="GDC.cs" />
     <Compile Include="GlobalDiagnosticsContext.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Annotations.cs" />
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EnvironmentHelper.cs" />
     <Compile Include="Internal\ExceptionHelper.cs" />
@@ -147,6 +149,7 @@
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileInfoHelper.cs" />
     <Compile Include="Internal\FormHelper.cs" />
+    <Compile Include="Internal\IConfigurationManager.cs" />
     <Compile Include="Internal\IRenderable.cs" />
     <Compile Include="Internal\ISmtpClient.cs" />
     <Compile Include="Internal\ISupportsInitialize.cs" />
