@@ -40,6 +40,12 @@
      </ItemGroup>
    </Project>
 
+   <Project File="NLog.sl5.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+   </Project>
+
    <Project File="NLog.mono2.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
