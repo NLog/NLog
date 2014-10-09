@@ -58,7 +58,7 @@ namespace NLog.Config
     {
         private readonly ConfigurationItemFactory configurationItemFactory = ConfigurationItemFactory.Default;
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
-        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase); 
 
         private string originalFileName;
 
@@ -155,6 +155,17 @@ namespace NLog.Config
             }
         }
 #endif
+
+        /// <summary>
+        /// Gets the variables defined in the configuration.
+        /// </summary>
+        public Dictionary<string, string> Variables
+        {
+            get
+            {
+                return variables;
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether the configuration files
