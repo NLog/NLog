@@ -448,6 +448,12 @@ namespace NLog.Targets
         {
             this.EnsureConnectionOpen(this.BuildConnectionString(logEvent));
 
+            IDbTransaction transaction = null;
+            if (UseTransactions)
+            {
+                transaction = activeConnection.BeginTransaction();
+            }
+
             IDbCommand command = this.activeConnection.CreateCommand();
             command.CommandText = this.CommandText.Render(logEvent);
 	    command.CommandType = this.CommandType;
@@ -487,6 +493,12 @@ namespace NLog.Targets
             }
 
             int result = command.ExecuteNonQuery();
+
+            if (transaction != null)
+            {
+                transaction.Commit();
+            }
+
             InternalLogger.Trace("Finished execution, result = {0}", result);
         }
 

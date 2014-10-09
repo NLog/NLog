@@ -100,7 +100,7 @@ namespace NLog.Targets
                 new RichTextBoxRowColoringRule("level == LogLevel.Debug", "Gray", "Empty"),
                 new RichTextBoxRowColoringRule("level == LogLevel.Trace", "DarkGray", "Empty", FontStyle.Italic),
             };
-            
+
             DefaultRowColoringRules = rules.AsReadOnly();
         }
 
@@ -306,7 +306,7 @@ namespace NLog.Targets
             {
                 matchingRule = RichTextBoxRowColoringRule.Default;
             }
-            
+
             string logMessage = this.Layout.Render(logEvent);
 
             this.TargetRichTextBox.BeginInvoke(new DelSendTheMessageToRichTextBox(this.SendTheMessageToRichTextBox), new object[] { logMessage, matchingRule });
