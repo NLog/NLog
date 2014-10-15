@@ -172,7 +172,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private static void AppendMessage(StringBuilder sb, Exception ex)
+        protected virtual void AppendMessage(StringBuilder sb, Exception ex)
         {
             try
             {
@@ -190,7 +190,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private static void AppendMethod(StringBuilder sb, Exception ex)
+        protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
 #if SILVERLIGHT
             sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
@@ -202,27 +202,27 @@ namespace NLog.LayoutRenderers
 #endif
         }
 
-        private static void AppendStackTrace(StringBuilder sb, Exception ex)
+        protected virtual void AppendStackTrace(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.StackTrace);
         }
 
-        private static void AppendToString(StringBuilder sb, Exception ex)
+        protected virtual void AppendToString(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.ToString());
         }
 
-        private static void AppendType(StringBuilder sb, Exception ex)
+        protected virtual void AppendType(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.GetType().FullName);
         }
 
-        private static void AppendShortType(StringBuilder sb, Exception ex)
+        protected virtual void AppendShortType(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.GetType().Name);
         }
 
-        private static void AppendData(StringBuilder sb, Exception ex)
+        protected virtual void AppendData(StringBuilder sb, Exception ex)
         {
             string separator = string.Empty;
             foreach (var key in ex.Data.Keys)
@@ -280,7 +280,7 @@ namespace NLog.LayoutRenderers
         }
 
 #if SILVERLIGHT
-        private static string ParseMethodNameFromStackTrace(string stackTrace)
+        protected static string ParseMethodNameFromStackTrace(string stackTrace)
         {
             // get the first line of the stack trace
             string stackFrameLine;
