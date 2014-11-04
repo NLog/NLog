@@ -239,10 +239,10 @@ namespace NLog.Targets
 
             if (this.KeepConnection)
             {
-                NetworkSender sender = this.GetCachedNetworkSender(address);
+                var sender = this.GetCachedNetworkSender(address);
 
                 this.ChunkedSend(
-                    sender, 
+                    sender,
                     bytes,
                     ex =>
                         {
