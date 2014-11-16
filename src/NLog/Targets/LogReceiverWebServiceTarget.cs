@@ -158,6 +158,28 @@ namespace NLog.Targets
             var networkLogEvents = this.TranslateLogEvents(logEvents);
             this.Send(networkLogEvents, logEvents);
         }
+        
+        /// <summary>
+        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            try
+            {
+                this.SendBufferedEvents();
+                asyncContinuation(null);
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                asyncContinuation(exception);
+            }
+        }
 
         private static int GetStringOrdinal(NLogEvents context, Dictionary<string, int> stringTable, string value)
         {
