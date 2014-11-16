@@ -72,7 +72,16 @@ namespace NLog.Internal.NetworkSenders
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Socket is disposed elsewhere.")]
         protected internal virtual ISocket CreateSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
         {
-            return new SocketProxy(addressFamily, socketType, protocolType);
+            var proxy = new SocketProxy(addressFamily, socketType, protocolType);
+
+            Uri uri;
+            if (Uri.TryCreate(this.Address, UriKind.Absolute, out uri)
+                && uri.Host.Equals(IPAddress.Broadcast.ToString(), StringComparison.InvariantCultureIgnoreCase))
+            {
+                proxy.UnderlyingSocket.EnableBroadcast = true;
+            }
+
+            return proxy;
         }
 
         /// <summary>
