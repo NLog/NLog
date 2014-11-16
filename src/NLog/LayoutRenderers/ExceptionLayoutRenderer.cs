@@ -172,7 +172,12 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private static void AppendMessage(StringBuilder sb, Exception ex)
+        /// <summary>
+        /// Appends the Message of an Exception to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="ex">The exception containing the Message to append.</param>
+        protected virtual void AppendMessage(StringBuilder sb, Exception ex)
         {
             try
             {
@@ -190,7 +195,12 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private static void AppendMethod(StringBuilder sb, Exception ex)
+        /// <summary>
+        /// Appends the method name from Exception's stack trace to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="ex">The Exception whose method name should be appended.</param>
+        protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
 #if SILVERLIGHT
             sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
@@ -202,27 +212,52 @@ namespace NLog.LayoutRenderers
 #endif
         }
 
-        private static void AppendStackTrace(StringBuilder sb, Exception ex)
+        /// <summary>
+        /// Appends the stack trace from an Exception to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="ex">The Exception whose stack trace should be appended.</param>
+        protected virtual void AppendStackTrace(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.StackTrace);
         }
 
-        private static void AppendToString(StringBuilder sb, Exception ex)
+        /// <summary>
+        /// Appends the result of calling ToString() on an Exception to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="ex">The Exception whose call to ToString() should be appended.</param>
+        protected virtual void AppendToString(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.ToString());
         }
 
-        private static void AppendType(StringBuilder sb, Exception ex)
+        /// <summary>
+        /// Appends the type of an Exception to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="ex">The Exception whose type should be appended.</param>
+        protected virtual void AppendType(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.GetType().FullName);
         }
 
-        private static void AppendShortType(StringBuilder sb, Exception ex)
+        /// <summary>
+        /// Appends the short type of an Exception to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="ex">The Exception whose short type should be appended.</param>
+        protected virtual void AppendShortType(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.GetType().Name);
         }
 
-        private static void AppendData(StringBuilder sb, Exception ex)
+        /// <summary>
+        /// Appends the contents of an Exception's Data property to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="ex">The Exception whose Data property elements should be appended.</param>
+        protected virtual void AppendData(StringBuilder sb, Exception ex)
         {
             string separator = string.Empty;
             foreach (var key in ex.Data.Keys)
@@ -233,7 +268,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private static ExceptionDataTarget[] CompileFormat(string formatSpecifier)
+        private ExceptionDataTarget[] CompileFormat(string formatSpecifier)
         {
             string[] parts = formatSpecifier.Replace(" ", string.Empty).Split(',');
             var dataTargets = new List<ExceptionDataTarget>();
@@ -280,7 +315,7 @@ namespace NLog.LayoutRenderers
         }
 
 #if SILVERLIGHT
-        private static string ParseMethodNameFromStackTrace(string stackTrace)
+        protected static string ParseMethodNameFromStackTrace(string stackTrace)
         {
             // get the first line of the stack trace
             string stackFrameLine;
