@@ -708,6 +708,14 @@ namespace NLog
             if (cf != null)
             {
                 yield return Path.ChangeExtension(cf, ".nlog");
+
+                // .nlog file based on the non-vshost version of the current config file
+                const string vshostSubStr = ".vshost.";
+                if (cf.Contains(vshostSubStr))
+                {
+                   yield return Path.ChangeExtension(cf.Replace(vshostSubStr, "."), ".nlog");
+                }
+
                 IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
                 if (privateBinPaths != null)
                 {
