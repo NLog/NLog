@@ -72,7 +72,7 @@ namespace NLog.UnitTests.LayoutRenderers
             // compile code and generate assembly
             System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
 
-            Assert.Equal(false, results.Errors.HasErrors);
+            Assert.False(results.Errors.HasErrors);
 
             // create nlog configuration
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -93,6 +93,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // load methodinfo
             MethodInfo logDebugMethod = hiddenAssemblyLoggerType.GetMethod("LogDebug");
+            Assert.NotNull(logDebugMethod);
 
             // instantiate the HiddenAssemblyLogger from previously generated assembly
             object instance = Activator.CreateInstance(hiddenAssemblyLoggerType);
