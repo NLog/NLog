@@ -103,6 +103,21 @@ using System.Xml.Linq;
             }
         }
 
+        public void AssertFileSize(string filename, long expectedSize)
+        {
+            var fi = new FileInfo(filename);
+
+            if (!fi.Exists)
+            {
+                Assert.True(true, string.Format("File \"{0}\" doesn't exist.", filename));
+            }
+
+            if (fi.Length != expectedSize)
+            {
+                Assert.True(true, string.Format("Filesize of \"{0}\" unequals {1}.", filename, expectedSize));
+            }
+        }
+
         public void AssertFileContents(string fileName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);
