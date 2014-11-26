@@ -52,6 +52,7 @@ namespace NLog
         private static readonly LogFactory globalFactory = new LogFactory();
         private static IAppDomain _currentAppDomain;
         private static GetCultureInfo _defaultCultureInfo = () => CultureInfo.CurrentCulture;
+        private static readonly System.Collections.Generic.List<System.Reflection.Assembly> _hiddenAssemblies = new System.Collections.Generic.List<System.Reflection.Assembly>();
 
         /// <summary>
         /// Delegate used to the the culture to use.
@@ -156,6 +157,27 @@ namespace NLog
         {
             get { return _defaultCultureInfo; }
             set { _defaultCultureInfo = value; }
+        }
+
+        internal static System.Reflection.Assembly[] HiddenAssemblies
+        {
+            get { return _hiddenAssemblies.ToArray(); }
+        }
+
+        /// <summary>
+        /// Adds the given assembly which will be skipped 
+        /// when NLog is trying to find the calling method on stack trace.
+        /// </summary>
+        /// <param name="assembly">The assembly to skip.</param>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void AddHiddenAssembly(System.Reflection.Assembly assembly)
+        {
+            if (_hiddenAssemblies.Contains(assembly))
+            {
+                return;
+            }
+
+            _hiddenAssemblies.Add(assembly);
         }
 
         /// <summary>
