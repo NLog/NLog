@@ -42,6 +42,74 @@ namespace NLog.UnitTests.LayoutRenderers
     {
 #if !SILVERLIGHT
         [Fact]
+        public void HiddenAssemblyTest()
+        {
+            const string code = @"
+                                namespace Foo
+                                {
+                                    public class HiddenAssemblyLogger
+                                    {
+                                        public void LogDebug(NLog.Logger logger)
+                                        {
+                                            logger.Debug(""msg"");
+                                        }
+                                    }
+                                }
+                              ";
+
+            var provider = new Microsoft.CSharp.CSharpCodeProvider();
+            var parameters = new System.CodeDom.Compiler.CompilerParameters();
+
+            // reference the NLog dll
+            parameters.ReferencedAssemblies.Add("NLog.dll");
+
+            // the assembly should be generated in memory
+            parameters.GenerateInMemory = true;
+
+            // generate a dll instead of an executable
+            parameters.GenerateExecutable = false;
+
+            // compile code and generate assembly
+            System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
+
+            Assert.Equal(false, results.Errors.HasErrors);
+
+            // create nlog configuration
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            // create logger
+            Logger logger = LogManager.GetLogger("A");
+
+            // load HiddenAssemblyLogger type
+            Assembly compiledAssembly = results.CompiledAssembly;
+            Type hiddenAssemblyLoggerType = compiledAssembly.GetType("Foo.HiddenAssemblyLogger");
+            Assert.NotNull(hiddenAssemblyLoggerType);
+
+            // load methodinfo
+            MethodInfo logDebugMethod = hiddenAssemblyLoggerType.GetMethod("LogDebug");
+
+            // instantiate the HiddenAssemblyLogger from previously generated assembly
+            object instance = Activator.CreateInstance(hiddenAssemblyLoggerType);
+
+            // Add the previously generated assembly to the "blacklist"
+            LogManager.AddHiddenAssembly(compiledAssembly);
+
+            // call the log method
+            logDebugMethod.Invoke(instance, new object[] {logger});
+
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
+        }
+#endif
+
+#if !SILVERLIGHT
+        [Fact]
         public void LineNumberTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
