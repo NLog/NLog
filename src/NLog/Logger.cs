@@ -36,7 +36,7 @@ namespace NLog
     using System;
     using System.ComponentModel;
     using NLog.Internal;
-    using JetBrains.Annotations;
+    using NLog.Annotations;
 #if ASYNC_SUPPORTED
     using System.Threading.Tasks;
 #endif
