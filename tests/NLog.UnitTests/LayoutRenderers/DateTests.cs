@@ -52,7 +52,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
             LogManager.GetLogger("d").Debug("zzz");
-            DateTime dt = DateTime.ParseExact(GetDebugLastMessage("debug"), "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            DateTime dt = DateTime.ParseExact(GetDebugLastMessage("debug"), "yyyy/MM/dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
             DateTime now = DateTime.Now;
 
             Assert.True(Math.Abs((dt - now).TotalSeconds) < 5);
