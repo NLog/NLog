@@ -36,6 +36,7 @@ namespace NLog
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Linq;
     using System.Reflection;
     using System.Threading;
     using NLog.Common;
@@ -110,7 +111,7 @@ namespace NLog
                     StackFrame frame = stackTrace.GetFrame(i);
                     MethodBase mb = frame.GetMethod();
 
-                    if (mb.DeclaringType == loggerType)
+                    if (mb.DeclaringType == loggerType || (mb.DeclaringType != null && SkipAssembly(mb.DeclaringType.Assembly)))
                         firstUserFrame = i + 1;
                     else if (firstUserFrame != null)
                         break;
@@ -163,6 +164,11 @@ namespace NLog
             }
 
             if (assembly == systemAssembly)
+            {
+                return true;
+            }
+
+            if (LogManager.HiddenAssemblies.Contains(assembly))
             {
                 return true;
             }
