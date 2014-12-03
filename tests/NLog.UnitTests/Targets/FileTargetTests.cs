@@ -855,6 +855,93 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void FileTarget_ArchiveNumbering_DateAndSequence()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}.txt"),
+                    ArchiveDateFormat = "yyyy-MM-dd",
+                    ArchiveAboveSize = 1000,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    MaxArchiveFiles = 3,
+                    ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
+                    ArchiveEvery = FileArchivePeriod.Day
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                // we emit 5 * 250 *(3 x aaa + \n) bytes
+                // so that we should get a full file + 3 archives
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("aaa");
+                }
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("bbb");
+                }
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("ccc");
+                }
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("ddd");
+                }
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("eee");
+                }
+
+                string currentDate = DateTime.Now.ToString(ft.ArchiveDateFormat);
+
+                LogManager.Configuration = null;
+
+                AssertFileContents(tempFile,
+                    StringRepeat(250, "eee\n"),
+                    Encoding.UTF8);
+
+                AssertFileContents(
+                    Path.Combine(tempPath, string.Format("archive/{0}.1.txt", currentDate)),
+                    StringRepeat(250, "bbb\n"),
+                    Encoding.UTF8);
+
+                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.1.txt", currentDate)), ft.ArchiveAboveSize);
+
+                AssertFileContents(
+                    Path.Combine(tempPath, string.Format("archive/{0}.2.txt", currentDate)),
+                    StringRepeat(250, "ccc\n"),
+                    Encoding.UTF8);
+
+                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.2.txt", currentDate)), ft.ArchiveAboveSize);
+
+                AssertFileContents(
+                    Path.Combine(tempPath, string.Format("archive/{0}.3.txt", currentDate)),
+                    StringRepeat(250, "ddd\n"),
+                    Encoding.UTF8);
+
+                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.3.txt", currentDate)), ft.ArchiveAboveSize);
+
+                Assert.True(!File.Exists(Path.Combine(tempPath, string.Format("archive/{0}.0.txt", currentDate))));
+                Assert.True(!File.Exists(Path.Combine(tempPath, string.Format("archive/{0}.4.txt", currentDate))));
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        [Fact]
         public void FileTarget_WithArchiveFileNameEndingInNumberPlaceholder_ShouldArchiveFile()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());

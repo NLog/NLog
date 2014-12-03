@@ -1003,6 +1003,116 @@ namespace NLog.Targets
         }
 
 #if !NET_CF
+        private void DateAndSequentialArchive(string fileName, string pattern, LogEventInfo logEvent)
+        {
+            string baseNamePattern = Path.GetFileName(pattern);
+
+            if (string.IsNullOrEmpty(baseNamePattern))
+            {
+                return;
+            }
+
+            int placeholderFirstPart = baseNamePattern.IndexOf("{#", StringComparison.Ordinal);
+            int placeholderLastPart = baseNamePattern.IndexOf("#}", StringComparison.Ordinal) + 2;
+            int dateTrailerLength = baseNamePattern.Length - placeholderLastPart;
+
+            string fileNameMask = baseNamePattern.Substring(0, placeholderFirstPart) + "*" + baseNamePattern.Substring(placeholderLastPart);
+            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
+
+            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
+
+            if (string.IsNullOrEmpty(dirName))
+            {
+                return;
+            }
+
+            bool isDaySwitch = false;
+
+            DateTime lastWriteTime;
+            long fileLength;
+            if (this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            {
+                string formatString = GetDateFormatString(string.Empty);
+                string ts = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
+                string ts2 = logEvent.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
+
+                isDaySwitch = ts != ts2;
+            }
+
+            int nextSequenceNumber = -1;
+
+            try
+            {
+                var directoryInfo = new DirectoryInfo(dirName);
+#if SILVERLIGHT
+                List<string> files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
+#else
+                List<string> files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
+#endif
+
+                var filesByDate = new List<string>();
+                for (int index = 0; index < files.Count; index++)
+                {
+                    string archiveFileName = Path.GetFileName(files[index]);
+
+                    if (string.IsNullOrEmpty(archiveFileName))
+                    {
+                        continue;
+                    }
+
+                    string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
+                    string numberPart = archiveFileName.Substring(fileNameMask.LastIndexOf('*') + dateFormat.Length + 1,
+                        archiveFileName.Length - dateTrailerLength - (fileNameMask.LastIndexOf('*') + dateFormat.Length + 1));
+
+                    int num;
+
+                    try
+                    {
+                        num = Convert.ToInt32(numberPart, CultureInfo.InvariantCulture);
+                    }
+                    catch (FormatException)
+                    {
+                        continue;
+                    }
+
+                    if (datePart == GetArchiveDate(isDaySwitch).ToString(dateFormat))
+                    {
+                        nextSequenceNumber = Math.Max(nextSequenceNumber, num);
+                    }
+
+                    DateTime fileDate;
+
+                    if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None,
+                        out fileDate))
+                    {
+                        filesByDate.Add(files[index]);
+                    }
+                }
+
+                nextSequenceNumber++;
+
+                // Cleanup archive files
+                for (int fileIndex = 0; fileIndex < filesByDate.Count; fileIndex++)
+                {
+                    if (fileIndex > files.Count - this.MaxArchiveFiles)
+                        break;
+
+                    File.Delete(filesByDate[fileIndex]);
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Directory.CreateDirectory(dirName);
+                nextSequenceNumber = 0;
+            }
+
+            DateTime newFileDate = GetArchiveDate(isDaySwitch);
+            string newFileName = Path.Combine(dirName,
+                fileNameMask.Replace("*", string.Format("{0}.{1}", newFileDate.ToString(dateFormat), nextSequenceNumber)));
+
+            MoveFileToArchive(fileName, newFileName);
+        }
+
         private void DateArchive(string fileName, string pattern)
         {
             string baseNamePattern = Path.GetFileName(pattern);
@@ -1047,7 +1157,7 @@ namespace NLog.Targets
                 Directory.CreateDirectory(dirName);
             }
 
-            DateTime newFileDate = GetArchiveDate();
+            DateTime newFileDate = GetArchiveDate(true);
             string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
             MoveFileToArchive(fileName, newFileName);
         }
@@ -1085,32 +1195,34 @@ namespace NLog.Targets
             return formatString;
         }
 
-        private DateTime GetArchiveDate()
+        private DateTime GetArchiveDate(bool isNextCycle)
         {
             DateTime archiveDate = DateTime.Now;
 
             // Because AutoArchive/DateArchive gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
             // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
+            int addCount = isNextCycle ? -1 : 0;
+
             switch (this.ArchiveEvery)
             {
                 case FileArchivePeriod.Day:
-                    archiveDate = archiveDate.AddDays(-1);
+                    archiveDate = archiveDate.AddDays(addCount);
                     break;
 
                 case FileArchivePeriod.Hour:
-                    archiveDate = archiveDate.AddHours(-1);
+                    archiveDate = archiveDate.AddHours(addCount);
                     break;
 
                 case FileArchivePeriod.Minute:
-                    archiveDate = archiveDate.AddMinutes(-1);
+                    archiveDate = archiveDate.AddMinutes(addCount);
                     break;
 
                 case FileArchivePeriod.Month:
-                    archiveDate = archiveDate.AddMonths(-1);
+                    archiveDate = archiveDate.AddMonths(addCount);
                     break;
 
                 case FileArchivePeriod.Year:
-                    archiveDate = archiveDate.AddYears(-1);
+                    archiveDate = archiveDate.AddYears(addCount);
                     break;
             }
 
@@ -1163,6 +1275,10 @@ namespace NLog.Targets
 #if !NET_CF
                     case ArchiveNumberingMode.Date:
                         this.DateArchive(fi.FullName, fileNamePattern);
+                        break;
+
+                    case ArchiveNumberingMode.DateAndSequence:
+                        this.DateAndSequentialArchive(fi.FullName, fileNamePattern, ev);
                         break;
 #endif
                 }
