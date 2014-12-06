@@ -181,7 +181,7 @@ namespace NLog.Targets
             }
         }
 
-        private static int GetStringOrdinal(NLogEvents context, Dictionary<string, int> stringTable, string value)
+        private static int AddValueAndGetStringOrdinal(NLogEvents context, Dictionary<string, int> stringTable, string value)
         {
             int stringIndex;
 
@@ -397,16 +397,16 @@ namespace NLog.Targets
         {
             var nlogEvent = new NLogEvent();
             nlogEvent.Id = eventInfo.SequenceID;
-            nlogEvent.MessageOrdinal = GetStringOrdinal(context, stringTable, eventInfo.FormattedMessage);
+            nlogEvent.MessageOrdinal = AddValueAndGetStringOrdinal(context, stringTable, eventInfo.FormattedMessage);
             nlogEvent.LevelOrdinal = eventInfo.Level.Ordinal;
-            nlogEvent.LoggerOrdinal = GetStringOrdinal(context, stringTable, eventInfo.LoggerName);
+            nlogEvent.LoggerOrdinal = AddValueAndGetStringOrdinal(context, stringTable, eventInfo.LoggerName);
             nlogEvent.TimeDelta = eventInfo.TimeStamp.ToUniversalTime().Ticks - context.BaseTimeUtc;
 
             for (int i = 0; i < this.Parameters.Count; ++i)
             {
                 var param = this.Parameters[i];
                 var value = param.Layout.Render(eventInfo);
-                int stringIndex = GetStringOrdinal(context, stringTable, value);
+                int stringIndex = AddValueAndGetStringOrdinal(context, stringTable, value);
 
                 nlogEvent.ValueIndexes.Add(stringIndex);
             }
@@ -426,9 +426,12 @@ namespace NLog.Targets
                     value = string.Empty;
                 }
 
-                int stringIndex = GetStringOrdinal(context, stringTable, value);
+                int stringIndex = AddValueAndGetStringOrdinal(context, stringTable, value);
                 nlogEvent.ValueIndexes.Add(stringIndex);
             }
+
+
+            nlogEvent.ValueIndexes.Add(AddValueAndGetStringOrdinal(context, stringTable, eventInfo.Exception.ToString()));
 
             return nlogEvent;
         }
