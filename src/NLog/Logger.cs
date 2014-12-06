@@ -467,7 +467,6 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Trace(String, Exception) method instead.")]
         public void TraceException([Localizable(false)] string message, Exception exception)
         {
             this.Trace(message, exception); 
@@ -695,7 +694,6 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Debug(String, Exception) method instead.")]
         public void DebugException([Localizable(false)] string message, Exception exception)
         {
             this.Debug(message, exception);
@@ -923,7 +921,6 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Info(String, Exception) method instead.")]
         public void InfoException([Localizable(false)] string message, Exception exception)
         {
             this.Info(message, exception);
@@ -1151,7 +1148,6 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Warn(String, Exception) method instead.")]
         public void WarnException([Localizable(false)] string message, Exception exception)
         {
             this.Warn(message, exception);
@@ -1606,7 +1602,6 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Fatal(String, Exception) method instead.")]
         public void FatalException([Localizable(false)] string message, Exception exception)
         {
             this.Fatal(message, exception);
@@ -1807,18 +1802,18 @@ namespace NLog
         /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
         public T Swallow<T>(Func<T> func)
         {
-	        return Swallow(func, default(T));
+            return Swallow(func, default(T));
         }
 
-		/// <summary>
-		/// Runs the provided function and returns its result. If exception is thrown, it is logged at <c>Error</c> level.
-		/// Exception is not propagated outside of this method. Fallback value is returned instead.
-		/// </summary>
-		/// <typeparam name="T">Return type of the provided function.</typeparam>
-		/// <param name="func">Function to run.</param>
-		/// <param name="fallback">Fallback value to return in case of exception. Defaults to default value of type T.</param>
-		/// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
-		public T Swallow<T>(Func<T> func, T fallback)
+        /// <summary>
+        /// Runs the provided function and returns its result. If exception is thrown, it is logged at <c>Error</c> level.
+        /// Exception is not propagated outside of this method. Fallback value is returned instead.
+        /// </summary>
+        /// <typeparam name="T">Return type of the provided function.</typeparam>
+        /// <param name="func">Function to run.</param>
+        /// <param name="fallback">Fallback value to return in case of exception. Defaults to default value of type T.</param>
+        /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
+        public T Swallow<T>(Func<T> func, T fallback)
         {
             try
             {
@@ -1838,14 +1833,14 @@ namespace NLog
         /// <param name="asyncAction">Async action to execute.</param>
         public async Task SwallowAsync(Func<Task> asyncAction)
         {
-	        try
-	        {
-		        await asyncAction();
-	        }
-	        catch (Exception e)
-	        {
-		        Error(e);
-	        }
+            try
+            {
+                await asyncAction();
+            }
+            catch (Exception e)
+            {
+                Error(e);
+            }
         }
 
         /// <summary>
@@ -1857,7 +1852,7 @@ namespace NLog
         /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
         public async Task<T> SwallowAsync<T>(Func<Task<T>> asyncFunc)
         {
-	        return await SwallowAsync(asyncFunc, default(T));
+            return await SwallowAsync(asyncFunc, default(T));
         }
 
         /// <summary>
@@ -1882,7 +1877,7 @@ namespace NLog
         }
 #endif
 
-		internal void Initialize(string name, LoggerConfiguration loggerConfiguration, LogFactory factory)
+        internal void Initialize(string name, LoggerConfiguration loggerConfiguration, LogFactory factory)
         {
             this.Name = name;
             this.Factory = factory;

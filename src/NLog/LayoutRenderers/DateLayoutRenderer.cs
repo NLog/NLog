@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public DateLayoutRenderer()
         {
-            this.Format = "G";
+            this.Format = "yyyy/MM/dd HH:mm:ss.fff";
             this.Culture = CultureInfo.InvariantCulture;
         }
 

@@ -51,6 +51,13 @@ namespace NLog.Targets
         /// <summary>
         /// Date style numbering.  Archives will be stamped with the prior period (Year, Month, Day, Hour, Minute) datetime.
         /// </summary>
-        Date, 
+        Date,
+
+        /// <summary>
+        /// Date and sequence style numbering.
+        /// Archives will be stamped with the prior period (Year, Month, Day) datetime.
+        /// The most recent archive has the highest number (in combination with the date).
+        /// </summary>
+        DateAndSequence,
     }
 }
