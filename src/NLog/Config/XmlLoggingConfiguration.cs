@@ -40,7 +40,9 @@ namespace NLog.Config
     using System.Globalization;
     using System.IO;
     using System.Reflection;
+#if !UNITY3D_WEB
     using System.Windows;
+#endif
     using System.Xml;
     using NLog.Common;
     using NLog.Filters;
@@ -58,7 +60,7 @@ namespace NLog.Config
     {
         private readonly ConfigurationItemFactory configurationItemFactory = ConfigurationItemFactory.Default;
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
-        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase); 
+        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
 
@@ -186,7 +188,7 @@ namespace NLog.Config
                 {
                     return this.visitedFile.Keys;
                 }
-                
+
                 return new string[0];
             }
         }
@@ -288,7 +290,7 @@ namespace NLog.Config
                 }
 
                 NLogConfigurationException ConfigException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
-                
+
                 if (!ignoreErrors)
                 {
                     if (LogManager.ThrowExceptions)
@@ -723,6 +725,9 @@ namespace NLog.Config
                 {
                     try
                     {
+#if UNITY3D_WEB
+                        throw new NotSupportedException();
+#else
 #if SILVERLIGHT
                                 var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
                                 var assemblyPart = new AssemblyPart();
@@ -735,6 +740,7 @@ namespace NLog.Config
                         Assembly asm = Assembly.LoadFrom(fullFileName);
 #endif
                         this.configurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+#endif
                     }
                     catch (Exception exception)
                     {
@@ -759,6 +765,9 @@ namespace NLog.Config
                     try
                     {
                         InternalLogger.Info("Loading assembly name: {0}", assemblyName);
+#if UNITY3D_WEB
+                        throw new NotSupportedException();
+#else
 #if SILVERLIGHT
                         var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
                         var assemblyPart = new AssemblyPart();
@@ -768,6 +777,7 @@ namespace NLog.Config
 #endif
 
                         this.configurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+#endif
                     }
                     catch (Exception exception)
                     {
@@ -802,7 +812,9 @@ namespace NLog.Config
                 {
                     newFileName = Path.Combine(baseDirectory, newFileName);
                 }
-
+#if UNITY3D_WEB
+                        throw new NotSupportedException();
+#else
 #if SILVERLIGHT
                 newFileName = newFileName.Replace("\\", "/");
                 if (Application.GetResourceStream(new Uri(newFileName, UriKind.Relative)) != null)
@@ -817,6 +829,7 @@ namespace NLog.Config
                 {
                     throw new FileNotFoundException("Included file not found: " + newFileName);
                 }
+#endif
             }
             catch (Exception exception)
             {
@@ -839,13 +852,13 @@ namespace NLog.Config
         private void ParseTimeElement(NLogXmlElement timeElement)
         {
             timeElement.AssertName("time");
-            
+
             string type = timeElement.GetRequiredAttribute("type");
-            
+
             TimeSource newTimeSource = this.configurationItemFactory.TimeSources.CreateInstance(type);
-            
+
             this.ConfigureObjectFromAttributes(newTimeSource, timeElement, true);
-        
+
             InternalLogger.Info("Selecting time source {0}", newTimeSource);
             TimeSource.Current = newTimeSource;
         }

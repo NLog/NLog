@@ -29,8 +29,9 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
+#if !UNITY3D_WEB
 using System.Linq;
 
 namespace NLog.Targets
@@ -1628,3 +1629,4 @@ namespace NLog.Targets
 #endif
     }
 }
+#endif

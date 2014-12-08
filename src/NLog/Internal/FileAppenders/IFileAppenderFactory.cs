@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UNITY3D_WEB
 namespace NLog.Internal.FileAppenders
 {
     /// <summary>
@@ -47,3 +48,4 @@ namespace NLog.Internal.FileAppenders
         BaseFileAppender Open(string fileName, ICreateFileParameters parameters);
     }
 }
+#endif

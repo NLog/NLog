@@ -49,7 +49,7 @@ namespace NLog
     using NLog.Internal;
     using NLog.Targets;
 
-#if SILVERLIGHT
+#if SILVERLIGHT && !UNITY3D_WEB
     using System.Windows;
 #endif
 
@@ -154,6 +154,7 @@ namespace NLog
 
                     if (this.config == null)
                     {
+#if !UNITY3D_WEB
                         foreach (string configFile in GetCandidateFileNames())
                         {
 #if !SILVERLIGHT && !MONO
@@ -180,6 +181,7 @@ namespace NLog
                             }
 #endif
                         }
+#endif
                     }
 
 #if !SILVERLIGHT

@@ -35,11 +35,13 @@ namespace NLog.Internal
 {
     using System;
     using System.Text;
+#if !UNITY3D_WEB
 #if SILVERLIGHT
     using System.Windows;
     using System.Windows.Browser;
 #else
     using System.Windows.Forms;
+#endif
 #endif
 
     /// <summary>
@@ -55,7 +57,9 @@ namespace NLog.Internal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "Not important here.")]
         public static void Show(string message, string caption)
         {
-#if SILVERLIGHT
+#if UNITY3D_WEB
+            Console.WriteLine(caption + ": " + message);
+#elif SILVERLIGHT
             Action action = () => HtmlPage.Window.Alert(caption + "\r\n\r\n" + message);
 
             if (!Deployment.Current.Dispatcher.CheckAccess())

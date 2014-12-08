@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if MONO
+#if MONO && !UNITY3D_WEB
 
 using System;
 using System.Xml;

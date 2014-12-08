@@ -167,7 +167,7 @@ namespace NLog.Internal.NetworkSenders
         /// <returns>Parsed endpoint.</returns>
         protected virtual EndPoint ParseEndpointAddress(Uri uri, AddressFamily addressFamily)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT && !UNITY3D_WEB
             return new DnsEndPoint(uri.Host, uri.Port, addressFamily);
 #else
             switch (uri.HostNameType)
