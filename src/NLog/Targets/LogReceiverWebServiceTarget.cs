@@ -430,8 +430,10 @@ namespace NLog.Targets
                 nlogEvent.ValueIndexes.Add(stringIndex);
             }
 
-
-            nlogEvent.ValueIndexes.Add(AddValueAndGetStringOrdinal(context, stringTable, eventInfo.Exception.ToString()));
+            if (eventInfo.Exception != null)
+            {
+            	nlogEvent.ValueIndexes.Add(AddValueAndGetStringOrdinal(context, stringTable, eventInfo.Exception.ToString()));
+        	}
 
             return nlogEvent;
         }
