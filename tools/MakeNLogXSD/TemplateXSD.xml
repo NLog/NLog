@@ -143,6 +143,12 @@
         <xs:documentation>Ignore further rules if this one matches.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+
+    <xs:attribute name="enabled" type="xs:boolean" default="true">
+      <xs:annotation>
+        <xs:documentation>Enable or disable logging rule. Disabled rules are ignored.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:complexType name="NLogFilters">
