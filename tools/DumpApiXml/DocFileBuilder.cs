@@ -69,6 +69,8 @@
             this.DumpApiDocs(writer, "layout", "NLog.LayoutAttribute", "", "");
             this.DumpApiDocs(writer, "layout-renderer", "NLog.LayoutRendererAttribute", "${", "}");
             this.DumpApiDocs(writer, "filter", "NLog.FilterAttribute", "", " filter");
+
+            this.DumpApiDocs(writer, "time-source", "NLog.Time.TimeSourceAttribute", "", " time source");
             writer.WriteEndElement();
         }
 
@@ -557,6 +559,9 @@
 
                 case "filter":
                     return name + "_filter";
+
+                case "time-source":
+                    return name + "_time_source";
             }
 
             string slugBase;

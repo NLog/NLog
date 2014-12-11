@@ -14,6 +14,7 @@
       <xs:element name="variable" type="NLogVariable" />
       <xs:element name="targets" type="NLogTargets" />
       <xs:element name="rules" type="NLogRules" />
+      <xs:element name="time" type="TimeSource" />
     </xs:choice>
     <xs:attribute name="autoReload" type="xs:boolean">
       <xs:annotation>
@@ -241,6 +242,9 @@
   </xs:complexType>
 
   <xs:complexType name="Filter" abstract="true">
+  </xs:complexType>
+
+  <xs:complexType name="TimeSource" abstract="true">
   </xs:complexType>
 
   <xs:simpleType name="SimpleLayoutAttribute">
