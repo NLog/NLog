@@ -92,6 +92,10 @@ namespace MakeNLogXSD
                     case "layout":
                         baseType = "Layout";
                         break;
+
+                    case "time-source":
+                        baseType = "TimeSource";
+                        break;
                 }
 
                 if (baseType == null)
