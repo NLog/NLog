@@ -592,7 +592,7 @@ namespace NLog
             }
         }
 
-        internal void GetTargetsByLevelForLogger(string name, IList<LoggingRule> rules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel)
+        internal void GetTargetsByLevelForLogger(string name, IList<LoggingRule> rules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
             foreach (LoggingRule rule in rules)
             {
@@ -603,10 +603,13 @@ namespace NLog
 
                 for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
                 {
-                    if (i < this.GlobalThreshold.Ordinal || !rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(i)))
+                    if (i < this.GlobalThreshold.Ordinal || suppressedLevels[i] || !rule.IsLoggingEnabledForLevel(LogLevel.FromOrdinal(i)))
                     {
                         continue;
                     }
+
+                    if (rule.Final)
+                        suppressedLevels[i] = true;
 
                     foreach (Target target in rule.Targets)
                     {
@@ -624,12 +627,8 @@ namespace NLog
                     }
                 }
 
-                this.GetTargetsByLevelForLogger(name, rule.ChildRules, targetsByLevel, lastTargetsByLevel);
+                this.GetTargetsByLevelForLogger(name, rule.ChildRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
 
-                if (rule.Final)
-                {
-                    break;
-                }
             }
 
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
@@ -646,10 +645,11 @@ namespace NLog
         {
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             TargetWithFilterChain[] lastTargetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
+            bool[] suppressedLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
             if (configuration != null && this.IsLoggingEnabled())
             {
-                this.GetTargetsByLevelForLogger(name, configuration.LoggingRules, targetsByLevel, lastTargetsByLevel);
+                this.GetTargetsByLevelForLogger(name, configuration.LoggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
             }
 
             InternalLogger.Debug("Targets for {0} by level:", name);
