@@ -107,6 +107,35 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        public void ReloadConfigOnTimer_DoesNotThrowConfigException_IfConfigChangedInBetween()
+        {
+            var loggingConfiguration = new LoggingConfiguration();
+            LogManager.Configuration = loggingConfiguration;
+            var logFactory = new LogFactory(loggingConfiguration);
+            var differentConfiguration = new LoggingConfiguration();
+
+            Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
+        }
+
+        private class ReloadNullConfiguration : LoggingConfiguration
+        {
+            public override LoggingConfiguration Reload()
+            {
+                return null;
+            }
+        }
+
+        [Fact]
+        public void ReloadConfigOnTimer_DoesNotThrowConfigException_IfConfigReloadReturnsNull()
+        {
+            var loggingConfiguration = new ReloadNullConfiguration();
+            LogManager.Configuration = loggingConfiguration;
+            var logFactory = new LogFactory(loggingConfiguration);
+
+            Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(loggingConfiguration));
+        }
+
+        [Fact]
         public void ReloadConfigOnTimer_Raises_ConfigurationReloadedEvent()
         {
             var called = false;
