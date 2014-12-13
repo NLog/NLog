@@ -133,7 +133,7 @@ namespace NLog.UnitTests
             bool ExceptionThrown = false;
             try 
             {
-                LogManager.ThrowExceptions = true;
+                LogManager.ThrowExceptions = false;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             }
             catch(Exception )
@@ -144,12 +144,12 @@ namespace NLog.UnitTests
         }
         
         [Fact]
-        public void InvalidLoggerConfiguration_DoesNotThrowConfigurationException_IfThrowExceptionsFlagIsNotSet()
+        public void InvalidLoggerConfiguration_ThrowsConfigurationException_IfThrowExceptionsFlagIsNotSet()
         {
             bool ExceptionThrown = false;
             try 
             {
-                LogManager.ThrowExceptions = false;
+                LogManager.ThrowExceptions = true;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             }
             catch(Exception)
@@ -157,7 +157,7 @@ namespace NLog.UnitTests
                 ExceptionThrown = true;
             }
             
-            Assert.False(ExceptionThrown);
+            Assert.True(ExceptionThrown);
             
         }
 

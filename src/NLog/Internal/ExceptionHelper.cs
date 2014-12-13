@@ -63,12 +63,12 @@ namespace NLog.Internal
                 return true;
             }
 
-            if (exception is NLogConfigurationException && LogManager.ThrowExceptions)
+            if (exception is NLogConfigurationException)
             {
                 return true;
             }
 
-            if (exception.GetType().IsSubclassOf(typeof(NLogConfigurationException)) && LogManager.ThrowExceptions)
+            if (exception.GetType().IsSubclassOf(typeof(NLogConfigurationException)))
             {
                 return true;
             }

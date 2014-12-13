@@ -287,38 +287,8 @@ namespace NLog.UnitTests.Conditions
         }
 
         [Fact]
-        public void UnrecognizedMethod_ThrowsParseException_IfThrowExceptionsFlagIsNotSet()
+        public void UnrecognizedMethod()
         {
-            LogManager.ThrowExceptions = false;
-            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("unrecognized-method()"));
-        }
-
-        [Fact]
-        public void UnrecognizedMethod_DoesNotThrowConfigurationException_IfThrowExceptionsFlagIsNotSet()
-        {
-            bool exceptionThrown = false;
-
-            LogManager.ThrowExceptions = false;
-            try
-            {
-                ConditionParser.ParseExpression("unrecognized-method()");
-            }
-            catch (NLogConfigurationException)
-            {
-                exceptionThrown = true;
-            }
-            catch
-            {
-                // swallow other types of exceptions
-            }
-
-            Assert.False(exceptionThrown, "Should not throw configuration exception.");
-        }
-
-        [Fact]
-        public void UnrecognizedMethod_ThrowsConfigurationException_IfThrowExceptionsFalgIsSet()
-        {
-            LogManager.ThrowExceptions = true;
             Assert.Throws<NLogConfigurationException>(() => ConditionParser.ParseExpression("unrecognized-method()"));
         }
 
