@@ -1183,21 +1183,6 @@ namespace NLog.UnitTests
             protected abstract void InternalLog(string what);
         }
 
-        [Fact]
-        public void Log_LoggerWrappedAndStackTraceEnabled_UserStackFrameIsCurrentMethod()
-        {
-            LoggingConfiguration config = new LoggingConfiguration();
-            MyTarget target = new MyTarget();
-            config.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, target));
-            LogManager.Configuration = config;
-
-            MyWrapper wrapper = new MyWrapper();
-            wrapper.Log("test");
-
-
-            Assert.Equal(MethodBase.GetCurrentMethod(), target.LastEvent.UserStackFrame.GetMethod());
-        }
-
         public class MyWrapper : BaseWrapper
         {
             private readonly Logger wrapperLogger;
