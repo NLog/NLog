@@ -31,15 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Net.Sockets;
-
-using NLog.Internal.NetworkSenders;
-
-using Xunit;
-using Xunit.Extensions;
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests.Internal.NetworkSenders
 {
+    using System.Net.Sockets;
+
+    using NLog.Internal.NetworkSenders;
+
+    using Xunit;
+    using Xunit.Extensions;
+
     public class UdpNetworkSenderTests
     {
         [Theory]
@@ -58,3 +60,5 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         }
     }
 }
+
+#endif
