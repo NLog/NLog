@@ -105,6 +105,22 @@ namespace NLog.Targets
                     return false;
                 }
 
+                // Delete a single file if there is only one archive kept.
+                // This allows using a single archive file with a non-autonumbered name.
+                if (MaxArchiveFileToKeep == 1)
+                {
+                   archiveFileEntryQueue.Clear();
+
+                   try
+                   {
+                      File.Delete(archiveFileName);
+                   }
+                   catch (Exception exceptionThrown)
+                   {
+                      InternalLogger.Warn("Can't Delete Single Old Archive File : {0} , Exception : {1}", archiveFileName, exceptionThrown);
+                   }
+                }
+
                 while (archiveFileEntryQueue.Count >= MaxArchiveFileToKeep)
                 {
                     string oldestArchivedFileName = archiveFileEntryQueue.Dequeue();
