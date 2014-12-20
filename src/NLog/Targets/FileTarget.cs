@@ -243,7 +243,7 @@ namespace NLog.Targets
 #if !SILVERLIGHT
             this.FileAttributes = Win32FileAttributes.Normal;
 #endif
-            this.NewLineChars = EnvironmentHelper.NewLine;
+            this.LineEnding = LineEndingMode.Default;
             this.EnableFileDelete = true;
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
@@ -363,31 +363,6 @@ namespace NLog.Targets
             set
             {
                 this.lineEndingMode = value;
-                switch (value)
-                {
-                    case LineEndingMode.CR:
-                        this.NewLineChars = "\r";
-                        break;
-
-                    case LineEndingMode.LF:
-                        this.NewLineChars = "\n";
-                        break;
-
-                    case LineEndingMode.CRLF:
-                        this.NewLineChars = "\r\n";
-                        break;
-
-                    case LineEndingMode.Default:
-                        this.NewLineChars = EnvironmentHelper.NewLine;
-                        break;
-
-                    case LineEndingMode.None:
-                        this.NewLineChars = string.Empty;
-                        break;
-                    
-                    default:
-                        throw new ArgumentException("Invalid LineEnding value.");
-                }
             }
         }
 
@@ -563,7 +538,12 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the characters that are appended after each line.
         /// </summary>
-        protected internal string NewLineChars { get; private set; }
+        protected internal string NewLineChars { 
+            get 
+            { 
+                return lineEndingMode.NewLineCharacters; 
+            } 
+        }
 
         /// <summary>
         /// Removes records of initialized files that have not been 
@@ -960,23 +940,7 @@ namespace NLog.Targets
 
                 RollArchiveForward(fileName, newFileName);
             }
-        }
-
-        /*
-        [Obsolete("Never used")]
-        private struct Pattern 
-        {
-            public String Source = String.Empty;
-
-            public int StartIndex = -1;
-            public int EndIndex = -1;
-
-            public int Length() 
-            {
-                return -1;
-            }
-        }
-        */
+        }     
 
         private void SequentialArchive(string fileName, string pattern)
         { 
