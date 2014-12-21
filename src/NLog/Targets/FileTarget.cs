@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-
 namespace NLog.Targets
 {
     using System;
@@ -40,6 +38,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using System.Threading;
     using Common;
@@ -849,10 +848,10 @@ namespace NLog.Targets
             return value;
         }
 
-        private Boolean ContainValidNumberPattern(string pattern)
+        private bool ContainFileNamePattern(string fileName)
         {
-            int startingIndex = pattern.IndexOf("{#", StringComparison.Ordinal);
-            int endingIndex = pattern.IndexOf("#}", StringComparison.Ordinal);
+            int startingIndex = fileName.IndexOf("{#", StringComparison.Ordinal);
+            int endingIndex = fileName.IndexOf("#}", StringComparison.Ordinal);
 
             return (startingIndex != -1 && endingIndex != -1 && startingIndex < endingIndex);
         }
@@ -904,7 +903,7 @@ namespace NLog.Targets
 
         private void RecursiveRollingRename(string fileName, string pattern, int archiveNumber)
         {
-            if (this.MaxArchiveFiles != 0 && archiveNumber >= this.MaxArchiveFiles)
+            if (this.MaxArchiveFiles > 0 && archiveNumber >= this.MaxArchiveFiles)
             {
                 File.Delete(fileName);
                 return;
@@ -918,7 +917,7 @@ namespace NLog.Targets
             string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
             if (File.Exists(fileName))
             {
-                this.RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
+                RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
             }
 
             InternalLogger.Trace("Renaming {0} to {1}", fileName, newFileName);
@@ -940,32 +939,12 @@ namespace NLog.Targets
             }
         }
 
-        /*
-        [Obsolete("Never used")]
-        private struct Pattern 
-        {
-            public String Source = String.Empty;
-
-            public int StartIndex = -1;
-            public int EndIndex = -1;
-
-            public int Length() 
-            {
-                return -1;
-            }
-        }
-        */
-
         private void SequentialArchive(string fileName, string pattern)
-        { 
-            string baseNamePattern = Path.GetFileName(pattern);
-
-            int firstPart = baseNamePattern.IndexOf("{#", StringComparison.Ordinal);
-            int lastPart = baseNamePattern.IndexOf("#}", StringComparison.Ordinal) + 2;
-            int trailerLength = baseNamePattern.Length - lastPart;
-
-            string fileNameMask = baseNamePattern.Substring(0, firstPart) + "*" + baseNamePattern.Substring(lastPart);
-
+        {
+            FileNameTemplate fileTemplate = new FileNameTemplate(Path.GetFileName(pattern));
+            int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt; 
+            string fileNameMask = fileTemplate.ReplacePattern("*");
+            
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             int nextNumber = -1;
             int minNumber = -1;
@@ -981,7 +960,7 @@ namespace NLog.Targets
 #endif
                 {
                     string baseName = Path.GetFileName(s);
-                    string number = baseName.Substring(firstPart, baseName.Length - trailerLength - firstPart);
+                    string number = baseName.Substring(fileTemplate.BeginAt, baseName.Length - trailerLength - fileTemplate.BeginAt);
                     int num;
 
                     try
@@ -1045,10 +1024,73 @@ namespace NLog.Targets
             }
         }
 
+
+        private sealed class FileNameTemplate
+        {
+            public const string PatternStartCharacters = "{#";
+            public const string PatternEndCharacters = "#}";
+
+            public string Template
+            {
+                get { return this.template; }
+            }
+
+            public string Pattern
+            {
+                get
+                {
+                    return this.Pattern;
+                }
+            }
+
+            public int BeginAt
+            {
+                get
+                {
+                    return startIndex;
+                }
+            }
+
+            public int EndAt
+            {
+                get
+                {
+                    return endIndex;
+                }
+            }
+
+            private readonly string template;
+            private readonly string pattern;
+
+            private readonly int startIndex;
+            private readonly int endIndex;
+
+            public FileNameTemplate(string template)
+            {
+                this.template = template;                
+                this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
+                this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
+
+                this.pattern = this.HasPattern() ? template.Substring(this.startIndex, this.endIndex - this.startIndex) : String.Empty;
+
+            }            
+
+            public bool HasPattern()
+            {
+                return (this.BeginAt != -1 && this.EndAt != -1 && this.BeginAt < this.EndAt);
+            }
+
+            public string ReplacePattern(string replacementValue) 
+            {
+                return String.IsNullOrEmpty(replacementValue) ? this.Template : template.Substring(0, this.BeginAt) + replacementValue + template.Substring(this.EndAt);
+            }
+        }
+       
+
 #if !NET_CF
         private void DateArchive(string fileName, string pattern)
         {
-            string fileNameMask = GetFilenameMask(pattern);
+            string fileNameMask = ReplaceReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
 
@@ -1094,21 +1136,16 @@ namespace NLog.Targets
             RollArchiveForward(fileName, newFileName);
         }
 
-        private static string GetFilenameMask(string pattern)
+        private string ReplaceReplaceFileNamePattern(string pattern, string replacementValue)
         {
-            string baseNamePattern = Path.GetFileName(pattern);
-
-            int firstPart = baseNamePattern.IndexOf("{#", StringComparison.Ordinal);
-            int lastPart = baseNamePattern.IndexOf("#}", StringComparison.Ordinal) + 2;
-            string fileNameMask = baseNamePattern.Substring(0, firstPart) + "*" + baseNamePattern.Substring(lastPart);
-
-            return fileNameMask;
+            return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
         }
 #endif
 
         private string GetDateFormatString(string defaultFormat)
         {
-            // If archiveDateFormat is not set in the config file, use a default date format string based on the archive period
+            // If archiveDateFormat is not set in the config file, use a default 
+            // date format string based on the archive period.
             string formatString = defaultFormat;
             if (string.IsNullOrEmpty(formatString))
             {
@@ -1194,7 +1231,7 @@ namespace NLog.Targets
                 fileNamePattern = this.ArchiveFileName.Render(eventInfo);
             }
 
-            if (!ContainValidNumberPattern(fileNamePattern))
+            if (!ContainFileNamePattern(fileNamePattern))
             {
                 if (fileArchive.Archive(fileNamePattern, fi.FullName, CreateDirs))
                 {
@@ -1227,7 +1264,11 @@ namespace NLog.Targets
 
         private bool ShouldAutoArchive(string fileName, LogEventInfo ev, int upcomingWriteSize)
         {
-            if (this.ArchiveAboveSize == -1 && this.ArchiveEvery == FileArchivePeriod.None)
+            return ShouldAutoArchiveBasedOnFileSize(fileName, upcomingWriteSize) ||
+                   ShouldAutoArchiveBasedOnTime(fileName, ev);
+
+            /*
+            if (this.ArchiveAboveSize == FileTarget.ArchiveAboveSizeDisabled && this.ArchiveEvery == FileArchivePeriod.None)
             {
                 return false;
             }
@@ -1240,7 +1281,7 @@ namespace NLog.Targets
                 return false;
             }
 
-            if (this.ArchiveAboveSize != -1)
+            if (this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled)
             {
                 if (fileLength + upcomingWriteSize > this.ArchiveAboveSize)
                 {
@@ -1255,6 +1296,63 @@ namespace NLog.Targets
                 string ts2 = ev.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
 
                 if (ts != ts2)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+            */
+        }
+
+        private bool ShouldAutoArchiveBasedOnFileSize(string fileName, int upcomingWriteSize)
+        {
+            if (this.ArchiveAboveSize == FileTarget.ArchiveAboveSizeDisabled)
+            {
+                return false;
+            }
+
+            DateTime lastWriteTime;
+            long fileLength;
+
+            if (!this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            {
+                return false;
+            }
+
+            if (this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled)
+            {
+                if (fileLength + upcomingWriteSize > this.ArchiveAboveSize)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool ShouldAutoArchiveBasedOnTime(string fileName, LogEventInfo logEvent)
+        {
+            if (this.ArchiveEvery == FileArchivePeriod.None)
+            {
+                return false;
+            }
+
+            DateTime lastWriteTime;
+            long fileLength;
+
+            if (!this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            {
+                return false;
+            }
+
+            if (this.ArchiveEvery != FileArchivePeriod.None)
+            {
+                string formatString = GetDateFormatString(string.Empty);
+                string fileLastChanged = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
+                string logEventRecorded = logEvent.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
+
+                if (fileLastChanged != logEventRecorded)
                 {
                     return true;
                 }
