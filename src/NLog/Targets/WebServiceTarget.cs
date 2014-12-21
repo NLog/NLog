@@ -47,7 +47,7 @@ namespace NLog.Targets
     /// <summary>
     /// Calls the specified web service on each log message.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/WebService_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/WebService-target">Documentation on NLog Wiki</seealso>
     /// <remarks>
     /// The web service must implement a method that accepts a number of string parameters.
     /// </remarks>
