@@ -70,151 +70,6 @@ namespace NLog.Targets
 
         private readonly DynamicFileArchive fileArchive;
 
-        private class DynamicFileArchive
-        {
-            public bool CreateDirectory { get; set; }
-
-            public int MaxArchiveFileToKeep { get; set; }
-
-            public DynamicFileArchive(int maxArchivedFiles) : this()
-            {
-                this.MaxArchiveFileToKeep = maxArchivedFiles;
-            }
-            private readonly Queue<string> archiveFileQueue;
- 
-            /// <summary>
-            /// Adds a file into archive.
-            /// </summary>
-            /// <param name="archiveFileName">File name of the archive</param>
-            /// <param name="fileName">Original file name</param>
-            /// <param name="createDirectory">Create a directory, if it does not exist</param>
-            /// <returns><c>true</c> if the file has been moved successfully; <c>false</c> otherwise</returns>
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-            public bool Archive(string archiveFileName, string fileName, bool createDirectory)
-            {
-                if (MaxArchiveFileToKeep < 1)
-                {
-                    InternalLogger.Warn("Archive is called. Even though the MaxArchiveFiles is set to less than 1");
-                    return false;
-                }
-
-                if (!File.Exists(fileName))
-                {
-                    InternalLogger.Error("Error while archiving, Source File : {0} Not found.", fileName);
-                    return false;
-                }
-
-                DeleteOldArchiveFiles();
-                AddToArchive(archiveFileName, fileName, createDirectory);
-                archiveFileQueue.Enqueue(archiveFileName);
-                return true;
-            }
-            
-            public DynamicFileArchive()
-            {
-                this.MaxArchiveFileToKeep = -1;
-
-                archiveFileQueue = new Queue<string>();
-            }
-
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="archiveFileName"></param>
-            /// <param name="fileName"></param>
-            /// <param name="createDirectory"></param>
-            private void AddToArchive(string archiveFileName, string fileName, bool createDirectory)
-            {
-                String alternativeFileName = archiveFileName;
-
-                if (archiveFileQueue.Contains(archiveFileName))
-                {
-                    InternalLogger.Trace("AddToArchive file {0} already exist. Trying different file name.", archiveFileName);
-                    alternativeFileName = FindSuitableFilename(archiveFileName, 1);
-                }
-
-                try
-                {
-                    File.Move(fileName, alternativeFileName);
-                }
-                catch (DirectoryNotFoundException)
-                {
-                    if (createDirectory)
-                    {
-                        InternalLogger.Trace("AddToArchive directory not found. Creating {0}", Path.GetDirectoryName(archiveFileName));
-
-                        try
-                        {
-                            Directory.CreateDirectory(Path.GetDirectoryName(archiveFileName));
-                            File.Move(fileName, alternativeFileName);
-                        }
-                        catch (Exception ex)
-                        {
-                            InternalLogger.Error("Cannot create archive directory, Exception : {0}", ex);
-                            throw;
-                        }
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Cannot archive file {0}, Exception : {1}", fileName, ex);
-                    throw;
-                }
-            }
-
-            /// <summary>
-            /// Remove old archive files when the files on the queue are more than the 
-            /// MaxArchiveFilesToKeep.  
-            /// </summary>
-            private void DeleteOldArchiveFiles()
-            {
-                while (archiveFileQueue.Count >= MaxArchiveFileToKeep)
-                {
-                    string oldestArchivedFileName = archiveFileQueue.Dequeue();
-
-                    try
-                    {
-                        File.Delete(oldestArchivedFileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Warn("Cannot delete old archive file : {0} , Exception : {1}", oldestArchivedFileName, ex);
-                    }
-                }
-            }
-
-            /// <summary>
-            /// Creates a new unique filename by appending a number to it. This method tests that 
-            /// the filename created does not exist.
-            /// 
-            /// This process can be slow as it increments the number sequencially from a specified 
-            /// starting point until it finds a number which produces a filename which does not 
-            /// exist.
-            /// 
-            /// Example: 
-            ///     Original Filename   trace.log
-            ///     Target Filename     trace.15.log
-            /// </summary>          
-            /// <param name="fileName">Original filename</param>
-            /// <param name="numberToStartWith">Number starting point</param>
-            /// <returns>File name suitable for archiving</returns>
-            private string FindSuitableFilename(string fileName, int numberToStartWith)
-            {
-                String targetFileName = Path.GetFileNameWithoutExtension(fileName) + ".{#}" + Path.GetExtension(fileName);
-
-                while (File.Exists(ReplaceNumberPattern(targetFileName, numberToStartWith)))
-                {
-                    InternalLogger.Trace("AddToArchive file {0} already exist. Trying with different file name.", fileName);
-                    numberToStartWith++;
-                }
-                return targetFileName;
-            }            
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
@@ -1023,68 +878,6 @@ namespace NLog.Targets
                 this.initializedFiles.Remove(existingFileName);
             }
         }
-
-
-        private sealed class FileNameTemplate
-        {
-            public const string PatternStartCharacters = "{#";
-            public const string PatternEndCharacters = "#}";
-
-            public string Template
-            {
-                get { return this.template; }
-            }
-
-            public string Pattern
-            {
-                get
-                {
-                    return this.Pattern;
-                }
-            }
-
-            public int BeginAt
-            {
-                get
-                {
-                    return startIndex;
-                }
-            }
-
-            public int EndAt
-            {
-                get
-                {
-                    return endIndex;
-                }
-            }
-
-            private readonly string template;
-            private readonly string pattern;
-
-            private readonly int startIndex;
-            private readonly int endIndex;
-
-            public FileNameTemplate(string template)
-            {
-                this.template = template;                
-                this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
-                this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
-
-                this.pattern = this.HasPattern() ? template.Substring(this.startIndex, this.endIndex - this.startIndex) : String.Empty;
-
-            }            
-
-            public bool HasPattern()
-            {
-                return (this.BeginAt != -1 && this.EndAt != -1 && this.BeginAt < this.EndAt);
-            }
-
-            public string ReplacePattern(string replacementValue) 
-            {
-                return String.IsNullOrEmpty(replacementValue) ? this.Template : template.Substring(0, this.BeginAt) + replacementValue + template.Substring(this.EndAt);
-            }
-        }
        
 
 #if !NET_CF
@@ -1709,6 +1502,250 @@ namespace NLog.Targets
             fileName1 = Path.GetInvalidFileNameChars().Aggregate(fileName1, (current, c) => current.Replace(c, '_'));
             return Path.Combine(dirName, fileName1);
         }
-#endif
+        #endif
+
+                private class DynamicFileArchive
+                {
+            public bool CreateDirectory { get; set; }
+
+            public int MaxArchiveFileToKeep { get; set; }
+
+            public DynamicFileArchive(int maxArchivedFiles) : this()
+            {
+                this.MaxArchiveFileToKeep = maxArchivedFiles;
+            }
+            private readonly Queue<string> archiveFileQueue;
+ 
+            /// <summary>
+            /// Adds a file into archive.
+            /// </summary>
+            /// <param name="archiveFileName">File name of the archive</param>
+            /// <param name="fileName">Original file name</param>
+            /// <param name="createDirectory">Create a directory, if it does not exist</param>
+            /// <returns><c>true</c> if the file has been moved successfully; <c>false</c> otherwise</returns>
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+            public bool Archive(string archiveFileName, string fileName, bool createDirectory)
+            {
+                if (MaxArchiveFileToKeep < 1)
+                {
+                    InternalLogger.Warn("Archive is called. Even though the MaxArchiveFiles is set to less than 1");
+                    return false;
+                }
+
+                if (!File.Exists(fileName))
+                {
+                    InternalLogger.Error("Error while archiving, Source File : {0} Not found.", fileName);
+                    return false;
+                }
+
+                DeleteOldArchiveFiles();
+                AddToArchive(archiveFileName, fileName, createDirectory);
+                archiveFileQueue.Enqueue(archiveFileName);
+                return true;
+            }
+            
+            public DynamicFileArchive()
+            {
+                this.MaxArchiveFileToKeep = -1;
+
+                archiveFileQueue = new Queue<string>();
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="archiveFileName"></param>
+            /// <param name="fileName"></param>
+            /// <param name="createDirectory"></param>
+            private void AddToArchive(string archiveFileName, string fileName, bool createDirectory)
+            {
+                String alternativeFileName = archiveFileName;
+
+                if (archiveFileQueue.Contains(archiveFileName))
+                {
+                    InternalLogger.Trace("AddToArchive file {0} already exist. Trying different file name.", archiveFileName);
+                    alternativeFileName = FindSuitableFilename(archiveFileName, 1);
+                }
+
+                try
+                {
+                    File.Move(fileName, alternativeFileName);
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    if (createDirectory)
+                    {
+                        InternalLogger.Trace("AddToArchive directory not found. Creating {0}", Path.GetDirectoryName(archiveFileName));
+
+                        try
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(archiveFileName));
+                            File.Move(fileName, alternativeFileName);
+                        }
+                        catch (Exception ex)
+                        {
+                            InternalLogger.Error("Cannot create archive directory, Exception : {0}", ex);
+                            throw;
+                        }
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error("Cannot archive file {0}, Exception : {1}", fileName, ex);
+                    throw;
+                }
+            }
+
+            /// <summary>
+            /// Remove old archive files when the files on the queue are more than the 
+            /// MaxArchiveFilesToKeep.  
+            /// </summary>
+            private void DeleteOldArchiveFiles()
+            {
+                while (archiveFileQueue.Count >= MaxArchiveFileToKeep)
+                {
+                    string oldestArchivedFileName = archiveFileQueue.Dequeue();
+
+                    try
+                    {
+                        File.Delete(oldestArchivedFileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Warn("Cannot delete old archive file : {0} , Exception : {1}", oldestArchivedFileName, ex);
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Creates a new unique filename by appending a number to it. This method tests that 
+            /// the filename created does not exist.
+            /// 
+            /// This process can be slow as it increments the number sequencially from a specified 
+            /// starting point until it finds a number which produces a filename which does not 
+            /// exist.
+            /// 
+            /// Example: 
+            ///     Original Filename   trace.log
+            ///     Target Filename     trace.15.log
+            /// </summary>          
+            /// <param name="fileName">Original filename</param>
+            /// <param name="numberToStartWith">Number starting point</param>
+            /// <returns>File name suitable for archiving</returns>
+            private string FindSuitableFilename(string fileName, int numberToStartWith)
+            {
+                String targetFileName = Path.GetFileNameWithoutExtension(fileName) + ".{#}" + Path.GetExtension(fileName);
+
+                while (File.Exists(ReplaceNumberPattern(targetFileName, numberToStartWith)))
+                {
+                    InternalLogger.Trace("AddToArchive file {0} already exist. Trying with different file name.", fileName);
+                    numberToStartWith++;
+                }
+                return targetFileName;
+            }            
+                }
+
+
+        private sealed class FileNameTemplate
+        {
+            /// <summary>
+            /// Characters determining the start of the <see cref="P:FileNameTemplate.Pattern"/>.
+            /// </summary>
+            public const string PatternStartCharacters = "{#";
+            
+            /// <summary>
+            /// Characters determining the end of the <see cref="P:FileNameTemplate.Pattern"/>.
+            /// </summary>
+            public const string PatternEndCharacters = "#}";
+
+            /// <summary>
+            /// File name which is used as template for matching and replacements. 
+            /// It is expected to contain a pattern to match.
+            /// </summary>
+            public string Template
+            {
+                get { return this.template; }
+            }
+
+            /// <summary>
+            /// Pattern found within <see cref="P:FileNameTemplate.Template"/>. 
+            /// <see cref="String.Empty"/> is returned when the template does 
+            /// not contain any pattern.
+            /// </summary>
+            public string Pattern
+            {
+                get
+                {
+                    return this.Pattern;
+                }
+            }
+
+            /// <summary>
+            /// The begging position of the <see cref="P:FileNameTemplate.Pattern"/> 
+            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
+            /// when no pattern can be found.
+            /// </summary>
+            public int BeginAt
+            {
+                get
+                {
+                    return startIndex;
+                }
+            }
+
+            /// <summary>
+            /// The ending position of the <see cref="P:FileNameTemplate.Pattern"/> 
+            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
+            /// when no pattern can be found.
+            /// </summary>
+            public int EndAt
+            {
+                get
+                {
+                    return endIndex;
+                }
+            }
+
+            private readonly string template;
+            private readonly string pattern;
+
+            private readonly int startIndex;
+            private readonly int endIndex;
+
+            public FileNameTemplate(string template)
+            {
+                this.template = template;                
+                this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
+                this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
+
+                this.pattern = this.HasPattern() ? template.Substring(this.startIndex, this.endIndex - this.startIndex) : String.Empty;
+
+            }            
+
+            /// <summary>
+            /// Checks if there the <see cref="P:FileNameTemplate.Template"/> 
+            /// contains the <see cref="P:FileNameTemplate.Pattern"/>.
+            /// </summary>
+            /// <returns>Returns <see langword="true" /> if pattern is found in 
+            /// the template, <see langword="false" /> otherwise.</returns>
+            public bool HasPattern()
+            {
+                return (this.BeginAt != -1 && this.EndAt != -1 && this.BeginAt < this.EndAt);
+            }
+
+            /// <summary>
+            /// Replace the pattern with the specified String.
+            /// </summary>
+            /// <param name="replacementValue"></param>
+            /// <returns></returns>
+            public string ReplacePattern(string replacementValue)
+            {
+                return String.IsNullOrEmpty(replacementValue) ? this.Template : template.Substring(0, this.BeginAt) + replacementValue + template.Substring(this.EndAt);
+            }
+        }
     }
 }
