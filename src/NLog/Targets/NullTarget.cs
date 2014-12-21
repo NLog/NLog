@@ -38,7 +38,7 @@ namespace NLog.Targets
     /// <summary>
     /// Discards log messages. Used mainly for debugging and benchmarking.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/Null_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/Null-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 

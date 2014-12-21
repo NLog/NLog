@@ -42,7 +42,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Repeats each log event the specified number of times.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/RepeatingWrapper_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/RepeatingWrapper-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>This example causes each log message to be repeated 3 times.</p>
     /// <p>

@@ -40,7 +40,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Provides fallback-on-error.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/FallbackGroup_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/FallbackGroup-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>This example causes the messages to be written to server1, 
     /// and if it fails, messages go to server2.</p>
