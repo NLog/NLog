@@ -174,6 +174,7 @@
     <Compile Include="RoutingTests.cs" />
     <Compile Include="SourceCodeTests.cs" />
     <Compile Include="Targets\LineEndingModeTests.cs" />
+    <Compile Include="Targets\MemoryTargetTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
     <Compile Include="Targets\ConsoleTargetTests.cs" />
     <Compile Include="Targets\DatabaseTargetTests.cs" />
