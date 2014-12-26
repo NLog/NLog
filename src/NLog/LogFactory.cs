@@ -305,7 +305,7 @@ namespace NLog
         /// </summary>
         /// <returns>Null logger instance.</returns>
         [CLSCompliant(false)]
-        public ILogger CreateNullLogger()
+        public Logger CreateNullLogger()
         {
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             Logger newLogger = new Logger();
@@ -321,7 +321,7 @@ namespace NLog
         /// Make sure you're not doing this in a loop.</remarks>
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public ILogger GetCurrentClassLogger()
+        public Logger GetCurrentClassLogger()
         {
 #if SILVERLIGHT
             var frame = new StackFrame(1);
@@ -341,7 +341,7 @@ namespace NLog
         /// Make sure you're not doing this in a loop.</remarks>
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public ILogger GetCurrentClassLogger(Type loggerType)
+        public Logger GetCurrentClassLogger(Type loggerType)
         {
 #if !SILVERLIGHT
             var frame = new StackFrame(1, false);
@@ -358,7 +358,7 @@ namespace NLog
         /// <param name="name">Name of the logger.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         [CLSCompliant(false)]
-        public ILogger GetLogger(string name)
+        public Logger GetLogger(string name)
         {
             return this.GetLogger(new LoggerCacheKey(typeof(ILogger), name));
         }
@@ -371,7 +371,7 @@ namespace NLog
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the 
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         [CLSCompliant(false)]
-        public ILogger GetLogger(string name, Type loggerType)
+        public Logger GetLogger(string name, Type loggerType)
         {
             return this.GetLogger(new LoggerCacheKey(loggerType, name));
         }
