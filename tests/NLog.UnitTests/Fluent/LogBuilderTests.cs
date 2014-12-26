@@ -123,6 +123,5 @@ namespace NLog.UnitTests.Fluent
                 .Property("Test", "ErrorWrite")
                 .Write();
         }
-
     }
 }

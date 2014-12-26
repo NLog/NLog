@@ -37,17 +37,17 @@
 namespace NLog.UnitTests.Targets
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text;
+    using System.Threading;
+    using Xunit;
+
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
-
-    using System.Threading;
-    using System.Collections.Generic;
-    using Xunit;
 
     public class FileTargetTests : NLogTestBase
     {
