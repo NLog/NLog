@@ -96,6 +96,7 @@
     <Compile Include="ApiTests.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
+    <Compile Include="Common\InternalLoggerTests.cs" />
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
     <Compile Include="Config\CaseSensitivityTests.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />
     <Compile Include="SourceCodeTests.cs" />
+    <Compile Include="Targets\MemoryTargetTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
     <Compile Include="Targets\ConsoleTargetTests.cs" />
     <Compile Include="Targets\DatabaseTargetTests.cs" />
