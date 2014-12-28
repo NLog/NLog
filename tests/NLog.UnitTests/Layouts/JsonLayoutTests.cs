@@ -54,7 +54,7 @@ namespace NLog.UnitTests.Layouts
                         new JsonAttribute("message", "${message}"),
                     }
             };
-
+            
             var ev = new LogEventInfo();
             ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
             ev.Level = LogLevel.Info;
