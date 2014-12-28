@@ -51,7 +51,7 @@ namespace NLog.Layouts
         /// </summary>
         public JsonLayout()
         {
-            this.Columns = new List<JsonAttribute>();
+            this.Attributes = new List<JsonAttribute>();
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='CSV Options' order='10' />
         [ArrayParameter(typeof(JsonAttribute), "attribute")]
-        public IList<JsonAttribute> Columns { get; private set; }
+        public IList<JsonAttribute> Attributes { get; private set; }
 
         /// <summary>
         /// Formats the log event as a JSON document for writing.
@@ -73,7 +73,7 @@ namespace NLog.Layouts
             sb.Append("{ ");
             bool first = true;
 
-            foreach (var col in this.Columns)
+            foreach (var col in this.Attributes)
             {
                 jsonWrapper.Inner = col.Layout;
                 string text = jsonWrapper.Render(logEvent);
