@@ -352,7 +352,7 @@ namespace NLog
         /// target and filter list. Useful after modifying the configuration programmatically
         /// to ensure that all loggers have been properly configured.
         /// </summary>
-        internal void ReconfigExistingLoggers()
+        public void ReconfigExistingLoggers()
         {
             if (this.config != null)
             {
