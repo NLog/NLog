@@ -267,6 +267,8 @@
     <Compile Include="Layouts\CsvColumnDelimiterMode.cs" />
     <Compile Include="Layouts\CsvLayout.cs" />
     <Compile Include="Layouts\CsvQuotingMode.cs" />
+    <Compile Include="Layouts\JsonAttribute.cs" />
+    <Compile Include="Layouts\JsonLayout.cs" />
     <Compile Include="Layouts\Layout.cs" />
     <Compile Include="Layouts\LayoutAttribute.cs" />
     <Compile Include="Layouts\LayoutParser.cs" />

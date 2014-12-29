@@ -110,6 +110,7 @@
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedTests.cs" />
     <Compile Include="Layouts\CsvLayoutTests.cs" />
+    <Compile Include="Layouts\JsonLayoutTests.cs" />
     <Compile Include="Layouts\SimpleLayoutOutputTests.cs" />
     <Compile Include="Layouts\SimpleLayoutParserTests.cs" />
     <Compile Include="LoggerTests.cs" />
