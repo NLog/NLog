@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-
 namespace NLog
 {
     using System;
@@ -40,6 +38,7 @@ namespace NLog
     using System.Diagnostics;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Text;
     using System.Threading;
@@ -65,6 +64,7 @@ namespace NLog
 
         private static IAppDomain currentAppDomain;
         private readonly Dictionary<LoggerCacheKey, WeakReference> loggerCache = new Dictionary<LoggerCacheKey, WeakReference>();
+        private readonly object syncRoot = new object();
 
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
 
@@ -135,7 +135,7 @@ namespace NLog
         {
             get
             {
-                lock (this)
+                lock (this.syncRoot)
                 {
                     if (this.configLoaded)
                     {
@@ -223,7 +223,7 @@ namespace NLog
                 }
 #endif
 
-                lock (this)
+                lock (this.syncRoot)
                 {
                     LoggingConfiguration oldConfig = this.config;
                     if (oldConfig != null)
@@ -283,7 +283,7 @@ namespace NLog
 
             set
             {
-                lock (this)
+                lock (this.syncRoot)
                 {
                     this.globalThreshold = value;
                     this.ReconfigExistingLoggers();
@@ -481,7 +481,7 @@ namespace NLog
         /// reenables logging. To be used with C# <c>using ()</c> statement.</returns>
         public IDisposable DisableLogging()
         {
-            lock (this)
+            lock (this.syncRoot)
             {
                 this.logsEnabled--;
                 if (this.logsEnabled == -1)
@@ -498,7 +498,7 @@ namespace NLog
         /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
         public void EnableLogging()
         {
-            lock (this)
+            lock (this.syncRoot)
             {
                 this.logsEnabled++;
                 if (this.logsEnabled == 0)
@@ -526,7 +526,7 @@ namespace NLog
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
 
             InternalLogger.Info("Reloading configuration...");
-            lock (this)
+            lock (this.syncRoot)
             {
                 if (this.reloadTimer != null)
                 {
@@ -558,7 +558,11 @@ namespace NLog
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception is NLogConfigurationException)
+                    {
+                        InternalLogger.Warn(exception.Message);
+                    }
+                    else if (exception.MustBeRethrown())
                     {
                         throw;
                     }
@@ -753,7 +757,7 @@ namespace NLog
 
         private Logger GetLogger(LoggerCacheKey cacheKey)
         {
-            lock (this)
+            lock (this.syncRoot)
             {
                 WeakReference l;
 
@@ -822,7 +826,7 @@ namespace NLog
             //
             // The trick is to schedule the reload in one second after
             // the last change notification comes in.
-            lock (this)
+            lock (this.syncRoot)
             {
                 if (this.reloadTimer == null)
                 {
