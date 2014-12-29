@@ -348,7 +348,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
             return globalFactory.DisableLogging();
         }
 
-        /// <summary>Increases the log enable counter and if it reaches 0 the logs are disabled.</summary>
+        /// <summary>Increases the log enable counter and if it reaches 0 the logs are enabled.</summary>
         /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
         /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
         public static void EnableLogging()
