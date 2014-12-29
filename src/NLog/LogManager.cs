@@ -321,7 +321,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
         /// reenables logging. To be used with C# <c>using ()</c> statement.</returns>
         public static IDisposable DisableLogging()
         {
-            return globalFactory.DisableLogging();
+            return globalFactory.SuspendLogging();
         }
 
         /// <summary>Increases the log enable counter and if it reaches 0 the logs are disabled.</summary>
@@ -329,7 +329,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
         /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
         public static void EnableLogging()
         {
-            globalFactory.EnableLogging();
+            globalFactory.ResumeLogging();
         }
 
         /// <summary>
