@@ -44,7 +44,7 @@ namespace NLog.Targets
     /// <summary>
     /// Writes log message to the specified message queue handled by MSMQ.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/MessageQueue_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/MessageQueue-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 

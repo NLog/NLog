@@ -41,7 +41,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Distributes log events to targets in a round-robin fashion.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/RoundRobinGroup_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/RoundRobinGroup-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>This example causes the messages to be written to either file1.txt or file2.txt.
     /// Each odd message is written to file2.txt, each even message goes to file1.txt.
