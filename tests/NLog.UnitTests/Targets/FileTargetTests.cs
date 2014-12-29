@@ -133,6 +133,7 @@ namespace NLog.UnitTests.Targets
             {
                 var ft = new FileTarget
                                     {
+                                        DeleteOldFileOnStartup = false,
                                         FileName = SimpleLayout.Escape(tempFile),
                                         LineEnding = LineEndingMode.LF,
                                         Layout = "${level} ${message}"
@@ -153,6 +154,7 @@ namespace NLog.UnitTests.Targets
 
                 ft = new FileTarget
                          {
+                             DeleteOldFileOnStartup = false,
                              FileName = SimpleLayout.Escape(tempFile),
                              LineEnding = LineEndingMode.LF,
                              Layout = "${level} ${message}"
@@ -194,7 +196,6 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-
         [Fact]
         public void ArchiveFileOnStartTest()
         {
@@ -202,8 +203,10 @@ namespace NLog.UnitTests.Targets
             var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "Archive");
             try
             {
+                // Configure first time with ArchiveOldFileOnStartup = false. 
                 var ft = new FileTarget
                 {
+                    ArchiveOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(tempFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
@@ -219,11 +222,11 @@ namespace NLog.UnitTests.Targets
 
                 AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
 
-                // configure again, without
-                // ArchiveOldFileOnStartup
-
+                // Configure second time with ArchiveOldFileOnStartup = false again. 
+                // Expected behavior: Extra content to be appended to the file.
                 ft = new FileTarget
                 {
+                    ArchiveOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(tempFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
@@ -238,8 +241,11 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;
                 AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
 
-                // configure again, this time with
-                // ArchiveldFileOnStartup                
+
+                // Configure third time with ArchiveOldFileOnStartup = true again. 
+                // Expected behavior: Extra content will be stored in a new file; the 
+                //      old content should be moved into a new location.
+                
                 var archiveTempName = Path.Combine(tempArchiveFolder, "archive.txt");
 
                 ft = new FileTarget
@@ -248,8 +254,9 @@ namespace NLog.UnitTests.Targets
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     ArchiveOldFileOnStartup = true,
-                    ArchiveNumbering = ArchiveNumberingMode.Sequence,
-                    ArchiveFileName = archiveTempName
+                    ArchiveFileName = archiveTempName,
+                    ArchiveNumbering = ArchiveNumberingMode.Sequence,                    
+                    MaxArchiveFiles = 1
                 };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -259,6 +266,7 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
                 AssertFileContents(tempFile, "Debug ddd\nInfo eee\nWarn fff\n", Encoding.UTF8);
+                Assert.True(File.Exists(archiveTempName));
                 AssertFileContents(archiveTempName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
             finally
@@ -270,7 +278,6 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempArchiveFolder, true);
             }
         }
-
 
         [Fact]
         public void CreateDirsTest()
