@@ -159,7 +159,7 @@ namespace NLog
         /// Make sure you're not doing this in a loop.</remarks>
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static ILogger GetCurrentClassLogger()
+        public static Logger GetCurrentClassLogger()
         {
             string loggerName;
             Type declaringType;
@@ -195,7 +195,7 @@ namespace NLog
         /// Make sure you're not doing this in a loop.</remarks>
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static ILogger GetCurrentClassLogger(Type loggerType)
+        public static Logger GetCurrentClassLogger(Type loggerType)
         {
             Type declaringType;
             int framesToSkip = 1;
@@ -218,7 +218,7 @@ namespace NLog
         /// </summary>
         /// <returns>Null logger which discards all log messages.</returns>
         [CLSCompliant(false)]
-        public static ILogger CreateNullLogger()
+        public static Logger CreateNullLogger()
         {
             return globalFactory.CreateNullLogger();
         }
@@ -229,7 +229,7 @@ namespace NLog
         /// <param name="name">Name of the logger.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         [CLSCompliant(false)]
-        public static ILogger GetLogger(string name)
+        public static Logger GetLogger(string name)
         {
             return globalFactory.GetLogger(name);
         }
@@ -241,7 +241,7 @@ namespace NLog
         /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         [CLSCompliant(false)]
-        public static ILogger GetLogger(string name, Type loggerType)
+        public static Logger GetLogger(string name, Type loggerType)
         {
             return globalFactory.GetLogger(name, loggerType);
         }
