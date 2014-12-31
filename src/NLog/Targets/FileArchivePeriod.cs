@@ -44,27 +44,27 @@ namespace NLog.Targets
         None,
 
         /// <summary>
-        /// AddToArchive every year.
+        /// Archive every year.
         /// </summary>
         Year,
 
         /// <summary>
-        /// AddToArchive every month.
+        /// Archive every month.
         /// </summary>
         Month,
 
         /// <summary>
-        /// AddToArchive daily.
+        /// Archive daily.
         /// </summary>
         Day,
 
         /// <summary>
-        /// AddToArchive every hour.
+        /// Archive every hour.
         /// </summary>
         Hour,
 
         /// <summary>
-        /// AddToArchive every minute.
+        /// Archive every minute.
         /// </summary>
         Minute
     }

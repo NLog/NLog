@@ -274,7 +274,7 @@ namespace NLog
         ///     To be used with C# <c>using ()</c> statement.</returns>
         public static IDisposable DisableLogging()
         {
-            return factory.DisableLogging();
+            return factory.SuspendLogging();
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace NLog
         ///     than or equal to <see cref="DisableLogging"/> calls.</remarks>
         public static void EnableLogging()
         {
-            factory.EnableLogging();
+            factory.ResumeLogging();
         }
 
         /// <summary>

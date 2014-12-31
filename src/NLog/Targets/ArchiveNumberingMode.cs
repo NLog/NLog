@@ -49,8 +49,7 @@ namespace NLog.Targets
         Rolling,
 
         /// <summary>
-        /// Date style numbering.  Archives will be stamped with the prior period 
-        /// (Year, Month, Day, Hour, Minute) datetime.
+        /// Date style numbering.  Archives will be stamped with the prior period (Year, Month, Day, Hour, Minute) datetime.
         /// </summary>
         Date, 
     }
