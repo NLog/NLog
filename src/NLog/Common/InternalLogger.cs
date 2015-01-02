@@ -320,10 +320,15 @@ namespace NLog.Common
                 var logFile = LogFile;
                 if (!string.IsNullOrEmpty(logFile))
                 {
+#if UNITY3D_WEB
+                    if (!LogToConsole)
+                        Console.WriteLine(msg);
+#else
                     using (var textWriter = File.AppendText(logFile))
                     {
                         textWriter.WriteLine(msg);
                     }
+#endif
                 }
 
                 // log to LogWriter

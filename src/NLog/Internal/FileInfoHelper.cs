@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UNITY3D_WEB
 namespace NLog.Internal
 {
     using System;
@@ -73,3 +74,5 @@ namespace NLog.Internal
         public abstract bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength);
     }
 }
+
+#endif

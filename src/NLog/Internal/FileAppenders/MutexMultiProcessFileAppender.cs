@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UNITY3D_WEB
 
 namespace NLog.Internal.FileAppenders
 {

@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UNITY3D_WEB
 namespace NLog.Targets
 {
     using System;
@@ -42,7 +43,7 @@ namespace NLog.Targets
     using System.ServiceModel.Channels;
 #endif
     using System.Threading;
-#if SILVERLIGHT
+#if SILVERLIGHT && !UNITY3D_WEB
     using System.Windows;
     using System.Windows.Threading;
 #endif
@@ -439,3 +440,5 @@ namespace NLog.Targets
         }
     }
 }
+
+#endif

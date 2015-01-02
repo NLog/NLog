@@ -25,6 +25,7 @@
     <BuildAllFrameworks>true</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildMono2)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL4)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildUnityWeb)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL5)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
@@ -78,6 +79,7 @@
     <BuildMono2>true</BuildMono2>
     <BuildSL4>true</BuildSL4>
     <BuildSL5>true</BuildSL5>
+    <BuildUnityWeb>true</BuildUnityWeb>
     <BuildNetFX35>true</BuildNetFX35>
     <BuildNetFX40>true</BuildNetFX40>
     <BuildNetFX45>true</BuildNetFX45>
@@ -98,10 +100,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <TargetFramework Include="Mono 2.x" Condition="'$(BuildMono2)' == 'true'">
-        <ProjectFileSuffix>.mono2</ProjectFileSuffix>
-        <ToolsVersion>3.5</ToolsVersion>
-    </TargetFramework>
     <TargetFramework Include="Silverlight 4.0" Condition="'$(BuildSL4)'=='true'">
         <ProjectFileSuffix>.sl4</ProjectFileSuffix>
         <NuGetDir>sl4</NuGetDir>
@@ -115,6 +113,11 @@
         <ToolsVersion>3.5</ToolsVersion>
         <NuGetDir>net35</NuGetDir>
     </TargetFramework>
+    <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildUnityWeb)'=='true'">
+        <ProjectFileSuffix>.unity3d.web</ProjectFileSuffix>
+        <ToolsVersion>3.5</ToolsVersion>
+        <NuGetDir>unity</NuGetDir>
+    </TargetFramework>
     <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
         <ProjectFileSuffix>.netfx40</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
@@ -124,6 +127,10 @@
         <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
         <NuGetDir>net45</NuGetDir>
+    </TargetFramework>
+    <TargetFramework Include="Mono 2.x" Condition="'$(BuildMono2)' == 'true'">
+        <ProjectFileSuffix>.mono2</ProjectFileSuffix>
+        <ToolsVersion>3.5</ToolsVersion>
     </TargetFramework>
   </ItemGroup>
 

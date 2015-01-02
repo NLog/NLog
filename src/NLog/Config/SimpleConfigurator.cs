@@ -89,11 +89,13 @@ namespace NLog.Config
             LogManager.Configuration = config;
         }
 
-        /// <summary>
-        /// Configures NLog for file logging so that all messages above and including
-        /// the <see cref="LogLevel.Info"/> level are written to the specified file.
-        /// </summary>
-        /// <param name="fileName">Log file name.</param>
+#if !UNITY3D_WEB
+
+    /// <summary>
+    /// Configures NLog for file logging so that all messages above and including
+    /// the <see cref="LogLevel.Info"/> level are written to the specified file.
+    /// </summary>
+    /// <param name="fileName">Log file name.</param>
         public static void ConfigureForFileLogging(string fileName)
         {
             ConfigureForFileLogging(fileName, LogLevel.Info);
@@ -112,5 +114,7 @@ namespace NLog.Config
             target.FileName = fileName;
             ConfigureForTargetLogging(target, minLevel);
         }
+#endif
+
     }
 }

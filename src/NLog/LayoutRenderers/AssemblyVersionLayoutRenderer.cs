@@ -40,11 +40,16 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
     using NLog.Internal;
 #if SILVERLIGHT
+#if !UNITY3D_WEB
 	using System.Windows;
+#endif
 #if SILVERLIGHT5
 	using System.Reflection;
 #endif
 #else
+	using System.Reflection;
+#endif
+#if UNITY3D_WEB
 	using System.Reflection;
 #endif
 
@@ -61,7 +66,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT && !UNITY3D_WEB
 			var assembly = Application.Current.GetType().Assembly;
 #else
             var assembly = Assembly.GetEntryAssembly();

@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UNITY3D_WEB
 namespace NLog.Internal
 {
     using System;
@@ -69,3 +70,5 @@ namespace NLog.Internal
         }
     }
 }
+
+#endif

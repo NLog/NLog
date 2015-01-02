@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UNITY3D_WEB
 using System.Security;
 
 namespace NLog.Internal.FileAppenders
@@ -270,3 +271,5 @@ namespace NLog.Internal.FileAppenders
         }
     }
 }
+
+#endif
