@@ -270,8 +270,51 @@ namespace NLog.UnitTests
         [Fact]
         [Trait("Component", "Core")]
         public void LogLevelEquals_Null_ExpectFalse()
-        { 
+        {
             Assert.False(LogLevel.Debug.Equals(null));
+
+            LogLevel logLevel = null;
+            Assert.False(LogLevel.Debug.Equals(logLevel));
+
+            Object obj = logLevel;
+            Assert.False(LogLevel.Debug.Equals(obj));
+        }
+
+        [Fact]
+        public void LogLevelEqual_TypeOfObject()
+        {
+            // Objects of any other type should always return false.
+            Assert.False(LogLevel.Debug.Equals((int) 1));
+            Assert.False(LogLevel.Debug.Equals((string)"Debug"));
+
+            // Valid LogLevel objects boxed as Object type.
+            Object levelTrace = LogLevel.Trace;
+            Object levelDebug = LogLevel.Debug;
+            Object levelInfo = LogLevel.Info;
+            Object levelWarn = LogLevel.Warn;
+            Object levelError = LogLevel.Error;
+            Object levelFatal = LogLevel.Fatal;
+            Object levelOff = LogLevel.Off;
+
+            Assert.False(LogLevel.Warn.Equals(levelTrace));
+            Assert.False(LogLevel.Warn.Equals(levelDebug));
+            Assert.False(LogLevel.Warn.Equals(levelInfo));
+            Assert.True(LogLevel.Warn.Equals(levelWarn));
+            Assert.False(LogLevel.Warn.Equals(levelError));
+            Assert.False(LogLevel.Warn.Equals(levelFatal));
+            Assert.False(LogLevel.Warn.Equals(levelOff));
+        }
+
+        [Fact]
+        public void LogLevelEqual_TypeOfLogLevel()
+        {
+            Assert.False(LogLevel.Warn.Equals(LogLevel.Trace));
+            Assert.False(LogLevel.Warn.Equals(LogLevel.Debug));
+            Assert.False(LogLevel.Warn.Equals(LogLevel.Info));
+            Assert.True(LogLevel.Warn.Equals(LogLevel.Warn));
+            Assert.False(LogLevel.Warn.Equals(LogLevel.Error));
+            Assert.False(LogLevel.Warn.Equals(LogLevel.Fatal));
+            Assert.False(LogLevel.Warn.Equals(LogLevel.Off));
         }
     }
 }
