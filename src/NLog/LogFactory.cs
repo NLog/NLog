@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 namespace NLog
 {
     using System;
@@ -304,6 +306,7 @@ namespace NLog
         /// Creates a logger that discards all log messages.
         /// </summary>
         /// <returns>Null logger instance.</returns>
+        [CLSCompliant(false)]
         public Logger CreateNullLogger()
         {
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
@@ -318,6 +321,7 @@ namespace NLog
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
+        [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger()
         {
@@ -337,6 +341,7 @@ namespace NLog
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
+        [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
@@ -354,9 +359,10 @@ namespace NLog
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
+        [CLSCompliant(false)]
         public Logger GetLogger(string name)
         {
-            return this.GetLogger(new LoggerCacheKey(typeof(Logger), name));
+            return this.GetLogger(new LoggerCacheKey(typeof(ILogger), name));
         }
 
         /// <summary>
@@ -366,6 +372,7 @@ namespace NLog
         /// <param name="loggerType">The type of the logger to create. The type must inherit from NLog.Logger.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the 
         /// same argument aren't guaranteed to return the same logger reference.</returns>
+        [CLSCompliant(false)]
         public Logger GetLogger(string name, Type loggerType)
         {
             return this.GetLogger(new LoggerCacheKey(loggerType, name));
@@ -773,7 +780,7 @@ namespace NLog
 
                 Logger newLogger;
 
-                if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
+                if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(ILogger))
                 {
                     
                     try

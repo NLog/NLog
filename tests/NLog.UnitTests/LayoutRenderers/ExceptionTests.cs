@@ -43,7 +43,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class ExceptionTests : NLogTestBase
     {
-        private Logger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionTests");
+        private ILogger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionTests");
         private const string ExceptionDataFormat = "{0}: {1}";
 
         [Fact]

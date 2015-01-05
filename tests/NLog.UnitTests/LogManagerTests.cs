@@ -34,21 +34,22 @@
 namespace NLog.UnitTests
 {
     using System;
+    using System.Diagnostics;
     using System.IO;
+    using Xunit;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Layouts;
     using NLog.Targets;
-    using System.Diagnostics;
-    using Xunit;
 
     public class LogManagerTests : NLogTestBase
     {
         [Fact]
         public void GetLoggerTest()
         {
-            Logger loggerA = LogManager.GetLogger("A");
-            Logger loggerA2 = LogManager.GetLogger("A");
-            Logger loggerB = LogManager.GetLogger("B");
+            ILogger loggerA = LogManager.GetLogger("A");
+            ILogger loggerA2 = LogManager.GetLogger("A");
+            ILogger loggerB = LogManager.GetLogger("B");
             Assert.Same(loggerA, loggerA2);
             Assert.NotSame(loggerA, loggerB);
             Assert.Equal("A", loggerA.Name);
@@ -59,9 +60,9 @@ namespace NLog.UnitTests
         public void GarbageCollectionTest()
         {
             string uniqueLoggerName = Guid.NewGuid().ToString();
-            Logger loggerA1 = LogManager.GetLogger(uniqueLoggerName);
+            ILogger loggerA1 = LogManager.GetLogger(uniqueLoggerName);
             GC.Collect();
-            Logger loggerA2 = LogManager.GetLogger(uniqueLoggerName);
+            ILogger loggerA2 = LogManager.GetLogger(uniqueLoggerName);
             Assert.Same(loggerA1, loggerA2);
         }
 
@@ -84,8 +85,8 @@ namespace NLog.UnitTests
         [Fact]
         public void NullLoggerTest()
         {
-            Logger l = LogManager.CreateNullLogger();
-            Assert.Equal("", l.Name);
+            ILogger l = LogManager.CreateNullLogger();
+            Assert.Equal(String.Empty, l.Name);
         }
 
         [Fact]
@@ -109,6 +110,7 @@ namespace NLog.UnitTests
             LogManager.ThrowExceptions = false;
         }
 
+        //[Fact(Skip="Side effects to other unit tests.")]
         public void GlobalThresholdTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -139,6 +141,117 @@ namespace NLog.UnitTests
 
             LogManager.GetLogger("A").Debug("zzz");
             AssertDebugLastMessage("debug", "yyy");
+
+            LogManager.Shutdown();
+            LogManager.Configuration = null;
+        }
+
+        [Fact]
+        public void DisableLoggingTest_UsingStatement()
+        {
+            const string LoggerConfig = @"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='DisableLoggingTest_UsingStatement_A' levels='Trace' writeTo='debug' />
+                        <logger name='DisableLoggingTest_UsingStatement_B' levels='Error' writeTo='debug' />
+                    </rules>
+                </nlog>";
+            
+            // Disable/Enable logging should affect ALL the loggers.
+            ILogger loggerA = LogManager.GetLogger("DisableLoggingTest_UsingStatement_A");
+            ILogger loggerB = LogManager.GetLogger("DisableLoggingTest_UsingStatement_B");
+            LogManager.Configuration = CreateConfigurationFromString(LoggerConfig);
+
+            // The starting state for logging is enable.
+            Assert.True(LogManager.IsLoggingEnabled());
+
+            loggerA.Trace("TTT");
+            AssertDebugLastMessage("debug", "TTT");
+
+            loggerB.Error("EEE");
+            AssertDebugLastMessage("debug", "EEE");
+
+            loggerA.Trace("---");
+            AssertDebugLastMessage("debug", "---");
+
+            using (LogManager.DisableLogging())
+            {
+                Assert.False(LogManager.IsLoggingEnabled());
+
+                // The last of LastMessage outside using statement should be returned.
+
+                loggerA.Trace("TTT");
+                AssertDebugLastMessage("debug", "---");
+
+                loggerB.Error("EEE");
+                AssertDebugLastMessage("debug", "---");                
+            }
+
+            Assert.True(LogManager.IsLoggingEnabled());
+
+            loggerA.Trace("TTT");
+            AssertDebugLastMessage("debug", "TTT");
+
+            loggerB.Error("EEE");
+            AssertDebugLastMessage("debug", "EEE");
+
+            LogManager.Shutdown();
+            LogManager.Configuration = null;
+        }
+
+        [Fact]
+        public void DisableLoggingTest_WithoutUsingStatement()
+        {
+            const string LoggerConfig = @"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='DisableLoggingTest_WithoutUsingStatement_A' levels='Trace' writeTo='debug' />
+                        <logger name='DisableLoggingTest_WithoutUsingStatement_B' levels='Error' writeTo='debug' />
+                    </rules>
+                </nlog>";
+
+            // Disable/Enable logging should affect ALL the loggers.
+            ILogger loggerA = LogManager.GetLogger("DisableLoggingTest_WithoutUsingStatement_A");
+            ILogger loggerB = LogManager.GetLogger("DisableLoggingTest_WithoutUsingStatement_B");
+            LogManager.Configuration = CreateConfigurationFromString(LoggerConfig);
+
+            // The starting state for logging is enable.
+            Assert.True(LogManager.IsLoggingEnabled());
+
+            loggerA.Trace("TTT");
+            AssertDebugLastMessage("debug", "TTT");
+
+            loggerB.Error("EEE");
+            AssertDebugLastMessage("debug", "EEE");
+
+            loggerA.Trace("---");
+            AssertDebugLastMessage("debug", "---");
+           
+            LogManager.DisableLogging();
+            Assert.False(LogManager.IsLoggingEnabled());
+
+            // The last value of LastMessage before DisableLogging() should be returned.
+
+            loggerA.Trace("TTT");
+            AssertDebugLastMessage("debug", "---");
+
+            loggerB.Error("EEE");
+            AssertDebugLastMessage("debug", "---");
+
+            LogManager.EnableLogging();
+            
+            Assert.True(LogManager.IsLoggingEnabled());
+
+            loggerA.Trace("TTT");
+            AssertDebugLastMessage("debug", "TTT");
+
+            loggerB.Error("EEE");
+            AssertDebugLastMessage("debug", "EEE");
+
+            LogManager.Shutdown();
+            LogManager.Configuration = null;
         }
 
 #if !SILVERLIGHT
@@ -198,10 +311,10 @@ namespace NLog.UnitTests
                     }
                     LogManager.Configuration = new XmlLoggingConfiguration(fileName);
                     AssertDebugCounter("debug", 0);
-                    Logger logger = LogManager.GetLogger("A");
+                    ILogger logger = LogManager.GetLogger("A");
                     logger.Debug("aaa");
                     AssertDebugLastMessage("debug", "aaa");
-                    
+
                     InternalLogger.Info("Rewriting test file...");
 
                     // now write the file again
@@ -274,7 +387,7 @@ namespace NLog.UnitTests
         [Fact]
         public void GivenLazyClass_WhenGetCurrentClassLogger_ThenLoggerNameShouldBeCurrentClass()
         {
-            var logger = new Lazy<Logger>(LogManager.GetCurrentClassLogger);
+            var logger = new Lazy<ILogger>(LogManager.GetCurrentClassLogger);
 
             Assert.Equal(this.GetType().FullName, logger.Value.Name);
         }
