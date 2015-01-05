@@ -58,6 +58,7 @@
     <Reference Include="Mono.Posix" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
