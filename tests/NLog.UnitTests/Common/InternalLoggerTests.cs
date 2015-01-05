@@ -35,7 +35,6 @@ using System;
 using System.Globalization;
 using System.IO;
 using Xunit;
-using Xunit.Extensions;
 using NLog.Common;
 using System.Text;
 
@@ -170,6 +169,7 @@ namespace NLog.UnitTests.Common
             Assert.True(writer2.ToString() == expected);
         }
 
+#if !SILVERLIGHT
         [Fact]
         public void WriteToConsoleOutTests()
         {
@@ -266,6 +266,8 @@ namespace NLog.UnitTests.Common
             Assert.True(consoleWriter2.ToString() == expected);
         }
 
+#endif
+
         [Fact]
         public void WriteToFileTests()
         {
@@ -304,10 +306,8 @@ namespace NLog.UnitTests.Common
             }
         }
 
-        /// <summary>
-        /// Test the output of the internal logger when the IncludeTimestamp = true.
-        /// </summary>
-        [Fact, FreezeClock]
+#if !SILVERLIGHT
+        [Fact]
         public void TimestampTests()
         {
             InternalLogger.LogLevel = LogLevel.Trace;
@@ -340,5 +340,6 @@ namespace NLog.UnitTests.Common
 
             Assert.True(consoleOutWriter.ToString() == expected);
         }
+#endif
     }
 }

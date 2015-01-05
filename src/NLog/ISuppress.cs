@@ -34,7 +34,9 @@
 namespace NLog
 {
     using System;
+#if ASYNC_SUPPORTED
     using System.Threading.Tasks;
+#endif
 
     /// <summary>
     /// Provides an interface to execute System.Actions without surfacing any exceptions raised for that action.
