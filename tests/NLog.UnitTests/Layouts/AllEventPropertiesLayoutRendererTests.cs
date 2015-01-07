@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.Text;
 using NLog.LayoutRenderers;
 
@@ -70,7 +71,7 @@ namespace NLog.UnitTests.Layouts
         {
             var sb = new StringBuilder();
             var renderer = new AllEventPropertiesLayoutRenderer();
-            renderer.Format = "{0} is {1}";
+            renderer.Format = "[key] is [value]";
             var ev = BuildLogEventWithProperties();
 
             renderer.Render(sb, ev);
@@ -88,6 +89,22 @@ namespace NLog.UnitTests.Layouts
             renderer.Render(sb, ev);
 
             Assert.Equal("", sb.ToString());
+        }
+
+        [Fact]
+        public void TestInvalidCustomFormatWithoutKeyPlaceholder()
+        {
+            var renderer = new AllEventPropertiesLayoutRenderer();
+            var ex = Assert.Throws<ArgumentException>(() => renderer.Format = "[key is [value]");
+            Assert.Equal("Invalid format: [key] placeholder is missing.", ex.Message);
+        }
+
+        [Fact]
+        public void TestInvalidCustomFormatWithoutValuePlaceholder()
+        {
+            var renderer = new AllEventPropertiesLayoutRenderer();
+            var ex = Assert.Throws<ArgumentException>(() => renderer.Format = "[key] is [vlue]");
+            Assert.Equal("Invalid format: [value] placeholder is missing.", ex.Message);
         }
         
         private static LogEventInfo BuildLogEventWithProperties()

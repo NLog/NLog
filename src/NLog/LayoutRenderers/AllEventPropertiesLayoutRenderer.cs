@@ -43,13 +43,15 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("all-event-properties")]
     public class AllEventPropertiesLayoutRenderer : LayoutRenderer
     {
+        private string format;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AllEventPropertiesLayoutRenderer"/> class.
         /// </summary>
         public AllEventPropertiesLayoutRenderer()
         {
             this.Separator = ", ";
-            this.Format = "{0}={1}";
+            this.Format = "[key]=[value]";
         }
 
         /// <summary>
@@ -62,7 +64,20 @@ namespace NLog.LayoutRenderers
         /// Gets or sets how key/value pairs will be formatted.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        public string Format { get; set; }
+        public string Format
+        {
+            get { return format; }
+            set
+            {
+                if (!value.Contains("[key]"))
+                    throw new ArgumentException("Invalid format: [key] placeholder is missing.");
+
+                if (!value.Contains("[value]"))
+                    throw new ArgumentException("Invalid format: [value] placeholder is missing.");
+
+                format = value;
+            }
+        }
 
         /// <summary>
         /// Renders all log event's properties and appends them to the specified <see cref="StringBuilder" />.
@@ -84,8 +99,10 @@ namespace NLog.LayoutRenderers
 
                 var key = Convert.ToString(property.Key, CultureInfo.InvariantCulture);
                 var value = Convert.ToString(property.Value, CultureInfo.InvariantCulture);
+                var pair = Format.Replace("[key]", key)
+                                 .Replace("[value]", value);
 
-                builder.AppendFormat(Format, key, value);
+                builder.Append(pair);
             }
         }
     }
