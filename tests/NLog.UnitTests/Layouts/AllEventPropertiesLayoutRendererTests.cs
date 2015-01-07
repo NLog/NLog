@@ -77,6 +77,18 @@ namespace NLog.UnitTests.Layouts
 
             Assert.Equal("a is 1, hello is world, 17 is 100", sb.ToString());
         }
+
+        [Fact]
+        public void NoProperties()
+        {
+            var sb = new StringBuilder();
+            var renderer = new AllEventPropertiesLayoutRenderer();
+            var ev = new LogEventInfo();
+
+            renderer.Render(sb, ev);
+
+            Assert.Equal("", sb.ToString());
+        }
         
         private static LogEventInfo BuildLogEventWithProperties()
         {
