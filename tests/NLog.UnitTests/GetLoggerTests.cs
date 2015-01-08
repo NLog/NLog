@@ -52,8 +52,8 @@ namespace NLog.UnitTests
 
             MyLogger l1 = (MyLogger)lf.GetLogger("AAA", typeof(MyLogger));
             MyLogger l2 = (MyLogger)lf.GetLogger("AAA", typeof(MyLogger));
-            ILogger l3 = lf.GetLogger("AAA", typeof(ILogger));
-            ILogger l4 = lf.GetLogger("AAA", typeof(ILogger));
+            ILogger l3 = lf.GetLogger("AAA", typeof(Logger));
+            ILogger l4 = lf.GetLogger("AAA", typeof(Logger));
             ILogger l5 = lf.GetLogger("AAA");
             ILogger l6 = lf.GetLogger("AAA");
 
@@ -75,8 +75,8 @@ namespace NLog.UnitTests
 
             MyLogger l1 = (MyLogger)lf.GetCurrentClassLogger(typeof(MyLogger));
             MyLogger l2 = (MyLogger)lf.GetCurrentClassLogger(typeof(MyLogger));
-            ILogger l3 = lf.GetCurrentClassLogger(typeof(ILogger));
-            ILogger l4 = lf.GetCurrentClassLogger(typeof(ILogger));
+            ILogger l3 = lf.GetCurrentClassLogger(typeof(Logger));
+            ILogger l4 = lf.GetCurrentClassLogger(typeof(Logger));
             ILogger l5 = lf.GetCurrentClassLogger();
             ILogger l6 = lf.GetCurrentClassLogger();
 
@@ -135,7 +135,7 @@ namespace NLog.UnitTests
                 LogManager.ThrowExceptions = false;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             }
-            catch(Exception )
+            catch (NLogConfigurationException)
             {
                 ExceptionThrown = true;
             }
@@ -151,7 +151,7 @@ namespace NLog.UnitTests
                 LogManager.ThrowExceptions = true;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             }
-            catch(Exception)
+            catch (NLogConfigurationException)
             {
                 ExceptionThrown = true;
             }

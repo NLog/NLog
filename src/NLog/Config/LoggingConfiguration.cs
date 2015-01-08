@@ -273,6 +273,11 @@ namespace NLog.Config
 
         internal void Dump()
         {
+            if (!InternalLogger.IsDebugEnabled)
+            {
+                return;
+            }
+
             InternalLogger.Debug("--- NLog configuration dump. ---");
             InternalLogger.Debug("Targets:");
             foreach (Target target in this.targets.Values)
