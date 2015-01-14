@@ -51,6 +51,13 @@ using System.Xml.Linq;
 
     public abstract class NLogTestBase
     {
+        protected NLogTestBase()
+        {
+            InternalLogger.LogToConsole = false;
+            InternalLogger.LogToConsoleError = false;
+            LogManager.ThrowExceptions = false;
+        }
+
         public void AssertDebugCounter(string targetName, int val)
         {
             var debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
