@@ -34,6 +34,7 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using Xunit;
 using NLog.Common;
 using System.Text;
@@ -330,15 +331,13 @@ namespace NLog.UnitTests.Common
             InternalLogger.Debug("DDD");
             InternalLogger.Info("III");
 
-            string expectedDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture);
-            string expected = expectedDateTime + " Warn WWW\n" +
-                    expectedDateTime + " Error EEE\n" +
-                    expectedDateTime + " Fatal FFF\n" +
-                    expectedDateTime + " Trace TTT\n" +
-                    expectedDateTime + " Debug DDD\n" +
-                    expectedDateTime + " Info III\n";
+            string expectedDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 
-            Assert.Equal(expected, consoleOutWriter.ToString());
+            var strings = consoleOutWriter.ToString().Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var str in strings)
+            {
+                Assert.Contains(expectedDateTime + ".", str);
+            }
         }
 #endif
     }
