@@ -338,7 +338,7 @@ namespace NLog.UnitTests.Common
                     expectedDateTime + " Debug DDD\n" +
                     expectedDateTime + " Info III\n";
 
-            Assert.True(consoleOutWriter.ToString() == expected);
+            Assert.Equal(expected, consoleOutWriter.ToString());
         }
 #endif
     }
