@@ -184,7 +184,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Fatal 42 123");
 
             ts.TraceData(TraceEventType.Critical, 145, 42, 3.14, "foo");
-            AssertDebugLastMessage("debug", string.Format("MySource1 Fatal 42, {0}, foo 145", 3.14));
+            AssertDebugLastMessage("debug", string.Format("MySource1 Fatal 42, {0}, foo 145", 3.14.ToString(System.Globalization.CultureInfo.CurrentCulture)));
         }
         
         [Fact]
