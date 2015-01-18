@@ -51,7 +51,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Runtime.Serialization" />
@@ -62,7 +61,6 @@
     <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyBuildInfo.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LayoutRenderers\AppSettingLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs" />
