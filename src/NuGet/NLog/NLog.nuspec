@@ -15,5 +15,6 @@ For your main project also need to install "NLog Configuration" package.</descri
     <iconUrl>http://nlog-project.org/N.png</iconUrl>
     <projectUrl>http://github.com/NLog/NLog/</projectUrl>
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
+    <tags>logging, log, tracing, logfiles</tags>
   </metadata>
 </package>
