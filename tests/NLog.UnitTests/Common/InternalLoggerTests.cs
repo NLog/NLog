@@ -267,8 +267,6 @@ namespace NLog.UnitTests.Common
             Assert.True(consoleWriter2.ToString() == expected);
         }
 
-#endif
-
         [Fact]
         public void WriteToFileTests()
         {
@@ -307,7 +305,6 @@ namespace NLog.UnitTests.Common
             }
         }
 
-#if !SILVERLIGHT
         [Fact]
         public void TimestampTests()
         {
