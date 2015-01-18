@@ -16,5 +16,6 @@
     <dependencies>
       <dependency id="NLog" version="[$BuildVersion$]" />
     </dependencies>
+    <tags>logging, log, tracing, logfiles</tags>
   </metadata>
 </package>

@@ -13,5 +13,6 @@
     <iconUrl>http://nlog-project.org/NConfig.png</iconUrl>
     <projectUrl>http://github.com/NLog/NLog/</projectUrl>
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
+    <tags>nlog, intellisense, xsd</tags>
   </metadata>
 </package>

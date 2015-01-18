@@ -17,5 +17,6 @@
       <dependency id="NLog" version="$BuildVersion$" />
       <dependency id="NLog.Schema" version="$BuildVersion$" />
     </dependencies>
+    <tags>nlog, xml, config</tags>
   </metadata>
 </package>
