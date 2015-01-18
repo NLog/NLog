@@ -73,7 +73,7 @@ namespace NLog.UnitTests
                 </nlog>");
                 }
 
-                Logger logger = LogManager.GetLogger("A");
+                ILogger logger = LogManager.GetLogger("A");
 
                 logger.Trace("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
@@ -219,7 +219,7 @@ namespace NLog.UnitTests
                 </nlog>");
                 }
 
-                Logger logger = LogManager.GetLogger("A");
+                ILogger logger = LogManager.GetLogger("A");
 
                 logger.Debug("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
@@ -362,7 +362,7 @@ namespace NLog.UnitTests
                 </nlog>");
                 }
 
-                Logger logger = LogManager.GetLogger("A");
+                ILogger logger = LogManager.GetLogger("A");
 
                 logger.Info("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
@@ -508,7 +508,7 @@ namespace NLog.UnitTests
                 </nlog>");
                 }
 
-                Logger logger = LogManager.GetLogger("A");
+                ILogger logger = LogManager.GetLogger("A");
 
                 logger.Warn("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
@@ -654,7 +654,7 @@ namespace NLog.UnitTests
                 </nlog>");
                 }
 
-                Logger logger = LogManager.GetLogger("A");
+                ILogger logger = LogManager.GetLogger("A");
 
                 logger.Error("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
@@ -800,7 +800,7 @@ namespace NLog.UnitTests
                 </nlog>");
                 }
 
-                Logger logger = LogManager.GetLogger("A");
+                ILogger logger = LogManager.GetLogger("A");
 
                 logger.Fatal("message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
@@ -950,7 +950,7 @@ namespace NLog.UnitTests
                                   </nlog>");
                     }
 
-                    Logger logger = LogManager.GetLogger("A");
+                    ILogger logger = LogManager.GetLogger("A");
 
                     logger.Log(level, "message");
                     if (enabled == 1) AssertDebugLastMessage("debug", "message");
@@ -1079,7 +1079,7 @@ namespace NLog.UnitTests
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
                 </nlog>");
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             bool warningFix = true;
             
             bool executed = false;
@@ -1132,7 +1132,7 @@ namespace NLog.UnitTests
                         </rules>
                     </nlog>");
 
-            Logger l = LogManager.GetLogger("StringFormatWillNotCauseExceptions");
+            ILogger l = LogManager.GetLogger("StringFormatWillNotCauseExceptions");
 
             // invalid format string
             l.Info("aaaa {0");
@@ -1185,7 +1185,7 @@ namespace NLog.UnitTests
 
         public class MyWrapper : BaseWrapper
         {
-            private readonly Logger wrapperLogger;
+            private readonly ILogger wrapperLogger;
 
             public MyWrapper()
             {

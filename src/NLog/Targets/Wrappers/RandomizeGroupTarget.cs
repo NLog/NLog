@@ -40,7 +40,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Sends log messages to a randomly selected target.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/RandomizeGroup_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/RandomizeGroup-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>This example causes the messages to be written to either file1.txt or file2.txt 
     /// chosen randomly on a per-message basis.

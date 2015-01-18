@@ -42,7 +42,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Retries in case of write error.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/RetryingWrapper_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/RetryingWrapper-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>This example causes each write attempt to be repeated 3 times, 
     /// sleeping 1 second between attempts if first one fails.</p>

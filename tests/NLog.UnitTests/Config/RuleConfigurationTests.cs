@@ -296,5 +296,34 @@ namespace NLog.UnitTests.Config
             Assert.Equal("starts-with(message, 'z')", conditionBasedFilter.Condition.ToString());
             Assert.Equal(FilterResult.Ignore, conditionBasedFilter.Action);
         }
+
+
+        [Fact]
+        public void LoggingRule_Final_SuppressesOnlyMatchingLevels()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                </targets>
+
+                <rules>
+                    <logger name='a' level='Debug' final='true' />
+                    <logger name='*' minlevel='Debug' writeTo='d1' />
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration = c;
+            Logger a = LogManager.GetLogger("a");
+            Assert.False(a.IsDebugEnabled);
+            Assert.True(a.IsInfoEnabled);
+            a.Info("testInfo");
+            a.Debug("suppressedDebug");
+            AssertDebugLastMessage("d1", "testInfo");
+
+            Logger b = LogManager.GetLogger("b");
+            b.Debug("testDebug");
+            AssertDebugLastMessage("d1", "testDebug");
+        }
     }
 }

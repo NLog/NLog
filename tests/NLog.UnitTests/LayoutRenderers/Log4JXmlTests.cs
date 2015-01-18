@@ -66,7 +66,7 @@ namespace NLog.UnitTests.LayoutRenderers
             NestedDiagnosticsContext.Push("baz2");
             NestedDiagnosticsContext.Push("baz3");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", "some message");
             logEventInfo.Properties["nlogPropertyKey"] = "nlogPropertyValue";
             logger.Log(logEventInfo);

@@ -229,7 +229,7 @@ namespace NLog.Config
         /// <returns>Default factory.</returns>
         private static ConfigurationItemFactory BuildDefaultFactory()
         {
-            var factory = new ConfigurationItemFactory(typeof(Logger).Assembly);
+            var factory = new ConfigurationItemFactory(typeof(ILogger).Assembly);
             factory.RegisterExtendedItems();
 
             return factory;
@@ -240,7 +240,7 @@ namespace NLog.Config
         /// </summary>
         private void RegisterExtendedItems()
         {
-            string suffix = typeof(Logger).AssemblyQualifiedName;
+            string suffix = typeof(ILogger).AssemblyQualifiedName;
             string myAssemblyName = "NLog,";
             string extendedAssemblyName = "NLog.Extended,";
             int p = suffix.IndexOf(myAssemblyName, StringComparison.OrdinalIgnoreCase);

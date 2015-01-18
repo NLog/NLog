@@ -48,7 +48,7 @@ namespace NLog.Targets
     /// <summary>
     /// Log text a Rich Text Box control in an existing or new form.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/RichTextBox_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/RichTextBox-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 

@@ -39,7 +39,7 @@ namespace NLog.Targets
     /// <summary>
     /// Calls the specified static method on each log message and passes contextual parameters to it.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/MethodCall_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/MethodCall-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 

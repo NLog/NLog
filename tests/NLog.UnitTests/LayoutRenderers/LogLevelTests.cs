@@ -48,7 +48,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "Debug a");
             logger.Info("a");

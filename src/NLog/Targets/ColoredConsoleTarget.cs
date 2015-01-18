@@ -44,7 +44,7 @@ namespace NLog.Targets
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/ColoredConsole_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/ColoredConsole-target">Documentation on NLog Wiki</seealso>
     [Target("ColoredConsole")]
     public sealed class ColoredConsoleTarget : TargetWithLayoutHeaderAndFooter
     {

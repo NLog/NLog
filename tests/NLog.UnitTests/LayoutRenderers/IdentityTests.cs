@@ -54,7 +54,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 AssertLayoutRendererOutput("${identity:authtype=false:isauthenticated=false}", "SOMEDOMAIN\\SomeUser");
                 AssertLayoutRendererOutput("${identity:fsnormalize=true}", "auth_CustomAuth_SOMEDOMAIN_SomeUser");
             }
-            finally 
+            finally
             {
                 Thread.CurrentPrincipal = oldPrincipal;
             }
@@ -63,7 +63,44 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void IdentityTest2()
         {
-            AssertLayoutRendererOutput("${identity}", "notauth::");
+            var oldPrincipal = Thread.CurrentPrincipal;
+
+            Thread.CurrentPrincipal = new GenericPrincipal(new NotAuthenticatedIdentity(), new []{"role1"});
+            try
+            {
+                AssertLayoutRendererOutput("${identity}", "notauth::");
+            }
+            finally
+            {
+                Thread.CurrentPrincipal = oldPrincipal;
+            }
+        }
+
+        /// <summary>
+        /// Mock object for IsAuthenticated property.
+        /// </summary>
+        private class NotAuthenticatedIdentity : GenericIdentity
+        {
+            
+            public NotAuthenticatedIdentity()
+                : base("")
+            {
+            }
+
+            #region Overrides of GenericIdentity
+
+            /// <summary>
+            /// Gets a value indicating whether the user has been authenticated.
+            /// </summary>
+            /// <returns>
+            /// true if the user was has been authenticated; otherwise, false.
+            /// </returns>
+            public override bool IsAuthenticated
+            {
+                get { return false; }
+            }
+
+            #endregion
         }
     }
 }

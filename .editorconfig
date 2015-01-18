@@ -1,0 +1,11 @@
+; Top-most EditorConfig file
+root = true
+
+; Unix-style newlines
+[*]
+end_of_line = LF
+
+; 4-column space indentation
+[*.cs]
+indent_style = space
+indent_size = 4
