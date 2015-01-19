@@ -1,4 +1,5 @@
-= Welcome to NLog
+Welcome to NLog
+===
 
 NLog is a free logging platform for .NET with rich log routing and management 
 capabilities. It makes it easy to produce and manage high-quality logs for 
