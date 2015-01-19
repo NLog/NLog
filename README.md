@@ -15,6 +15,7 @@ messages through a common engine.
 NLog is open source software, licensed under the terms of BSD license. 
 See LICENSE.txt for details.
 
-Project Homepage: http://nlog-project.org
+For more information, see the website http://nlog-project.org 
+or to just get started with the tutorials on [the NLog wiki](https://github.com/NLog/NLog/wiki)
 
 Project RSS Feed: http://nlog-project.org/feed/
