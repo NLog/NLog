@@ -37,7 +37,10 @@ namespace NLog
     using System.ComponentModel;
     using JetBrains.Annotations;
 
-    public partial interface ILoggerBase
+    /// <summary>
+    /// Provides basic logging interface and utility functions.
+    /// </summary>
+    public interface ILoggerBase
     {
         /// <summary>
         /// Occurs when logger configuration changes.

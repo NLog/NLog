@@ -133,9 +133,7 @@
     <Compile Include="GlobalDiagnosticsContext.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ILogger.cs" />
-    <Compile Include="ILogger-V1.cs" />
-	<Compile Include="ILoggerBase.cs" />
-    <Compile Include="ILoggerBase-V1.cs" />
+    <Compile Include="ILoggerBase.cs" />
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>

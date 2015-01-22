@@ -43,8 +43,9 @@ namespace NLog
 
     /// <summary>
     /// Provides logging interface and utility functions.
+    /// Extends basic logging interface <see cref="ILoggerBase"/> with overloads for each logging level.
     /// </summary>
-    public partial interface ILogger : ILoggerBase, ISuppress
+    public interface ILogger : ILoggerBase, ISuppress
     {
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Trace</c> level.
