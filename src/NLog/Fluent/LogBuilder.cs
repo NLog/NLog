@@ -33,6 +33,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using NLog.Time;
 
 namespace NLog.Fluent
 {
@@ -70,7 +71,7 @@ namespace NLog.Fluent
             {
                 Level = logLevel,
                 LoggerName = logger.Name,
-                TimeStamp = DateTime.Now
+                TimeStamp = TimeSource.Current.Time
             };
         }
 
