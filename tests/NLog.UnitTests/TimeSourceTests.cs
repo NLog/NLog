@@ -85,6 +85,14 @@ namespace NLog.UnitTests
             }
         }
 
+
+        internal class FixedTimeSource : TimeSource
+        {
+            public override DateTime Time { get { return FixedTime; } }
+            public DateTime FixedTime { get; set; }
+        }
+
+
         void TestTimeSource(TimeSource source, DateTime expected, DateTimeKind kind)
         {
             Assert.IsType(typeof(FastLocalTimeSource), TimeSource.Current);

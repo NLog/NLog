@@ -48,6 +48,7 @@ namespace NLog.UnitTests.Targets
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using NLog.Time;
 
     public class FileTargetTests : NLogTestBase
     {
@@ -526,6 +527,74 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+
+        [Fact]
+        public void DeleteArchiveFilesByDateFromTimeSource()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            var defaultTimeSource = TimeSource.Current;
+            try
+            {
+                var timeSource = new TimeSourceTests.FixedTimeSource() {FixedTime = DateTime.UtcNow};
+                TimeSource.Current = timeSource;
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}.txt"),
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = ArchiveNumberingMode.Date,
+                    ArchiveEvery = FileArchivePeriod.Day,
+                    //ArchiveDateFormat = "yyyyMMdd",  // use default archive date format for specified ArchiveEvery
+                    Layout = "${date:format=O}|${message}",
+                    MaxArchiveFiles = 3
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+                //writing 19 times 10 bytes (9 char + linefeed) will result in 3 archive files and 1 current file
+                for (var i = 0; i < 10; ++i)
+                {
+                    logger.Debug("123456789");
+
+                    timeSource.FixedTime += TimeSpan.FromDays(1);
+                }
+                //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
+                LogManager.Configuration = null;
+
+                var archivePath = Path.Combine(tempPath, "archive");
+                var files = Directory.GetFiles(archivePath).OrderBy(s => s);
+                //the amount of archived files may not exceed the set 'MaxArchiveFiles'
+                Assert.Equal(ft.MaxArchiveFiles, files.Count());
+
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+                //writing just one line of 11 bytes will trigger the cleanup of old archived files
+                //as stated by the MaxArchiveFiles property, but will only delete the oldest file
+                logger.Debug("1234567890");
+                LogManager.Configuration = null;
+
+                var files2 = Directory.GetFiles(archivePath).OrderBy(s => s);
+                Assert.Equal(ft.MaxArchiveFiles, files2.Count());
+
+                //the oldest file should be deleted
+                Assert.DoesNotContain(files.ElementAt(0), files2);
+                //two files should still be there
+                Assert.Equal(files.ElementAt(1), files2.ElementAt(0));
+                Assert.Equal(files.ElementAt(2), files2.ElementAt(1));
+                //one new archive file shoud be created
+                Assert.DoesNotContain(files2.ElementAt(2), files);
+            }
+            finally
+            {
+                TimeSource.Current = defaultTimeSource; // restore default time source
                 LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
