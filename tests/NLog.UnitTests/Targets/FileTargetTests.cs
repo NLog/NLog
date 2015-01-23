@@ -32,6 +32,8 @@
 // 
 
 
+using Xunit.Extensions;
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -535,62 +537,100 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        public static IEnumerable<object[]> DeleteArchiveFiles_UsesDateFromCurrentTimeSource_TestParameters
+        {
+            get
+            {
+                var booleanValues = new[] {true, false};
+                var timeKindValues = new[] {DateTimeKind.Utc, DateTimeKind.Local};
+                return 
+                    from concurrentWrites in booleanValues 
+                    from keepFileOpen in booleanValues 
+                    from networkWrites in booleanValues
+                    from timeKind in timeKindValues 
+                    select new object[] { timeKind, concurrentWrites, keepFileOpen, networkWrites};
+            }
+        }
 
-        [Fact]
-        public void DeleteArchiveFilesByDateFromTimeSource()
+
+        [Theory]
+        [PropertyData("DeleteArchiveFiles_UsesDateFromCurrentTimeSource_TestParameters")]
+        public void DeleteArchiveFiles_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
             var defaultTimeSource = TimeSource.Current;
             try
             {
-                var timeSource = new TimeSourceTests.FixedTimeSource() {FixedTime = DateTime.UtcNow};
+                // this time source is using UTC time
+                var timeSource = new TimeSourceTests.FixedTimeSource
+                {
+                    FixedTime = timeKind == DateTimeKind.Utc ? DateTime.UtcNow : DateTime.Now
+                };
                 TimeSource.Current = timeSource;
+
+                var archiveFileNameTemplate = Path.Combine(tempPath, "archive/{#}.txt");
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}.txt"),
+                    ArchiveFileName = archiveFileNameTemplate,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Date,
                     ArchiveEvery = FileArchivePeriod.Day,
-                    //ArchiveDateFormat = "yyyyMMdd",  // use default archive date format for specified ArchiveEvery
+                    ArchiveDateFormat = "yyyyMMdd",
                     Layout = "${date:format=O}|${message}",
-                    MaxArchiveFiles = 3
+                    MaxArchiveFiles = 3,
+                    ConcurrentWrites = concurrentWrites,
+                    KeepFileOpen = keepFileOpen,
+                    NetworkWrites = networkWrites,
                 };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
-                //writing 19 times 10 bytes (9 char + linefeed) will result in 3 archive files and 1 current file
-                for (var i = 0; i < 10; ++i)
-                {
-                    logger.Debug("123456789");
 
-                    timeSource.FixedTime += TimeSpan.FromDays(1);
+                logger.Debug("123456789");
+                DateTime previousWriteTime = timeSource.Time;
+
+                const int daysToTestLogging = 10;
+                const int intervalsPerDay = 24;
+                var loggingInterval = TimeSpan.FromHours(1);
+                for (var i = 0; i < daysToTestLogging*intervalsPerDay; ++i)
+                {
+                    timeSource.FixedTime += loggingInterval;
+                    logger.Debug("123456789");
+                    if (timeSource.Time.Date != previousWriteTime.Date)
+                    {
+                        // ensure new archive is created when the day part of time is changed
+                        var archiveFileName = archiveFileNameTemplate.Replace("{#}", previousWriteTime.ToString(ft.ArchiveDateFormat));
+                        Assert.True(File.Exists(archiveFileName), string.Format("new archive should be created when the day part of {0} time is changed", timeKind));
+                    }
+                    previousWriteTime = timeSource.Time;
                 }
                 //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
                 LogManager.Configuration = null;
 
                 var archivePath = Path.Combine(tempPath, "archive");
-                var files = Directory.GetFiles(archivePath).OrderBy(s => s);
+                var files = Directory.GetFiles(archivePath).OrderBy(s => s).ToList();
                 //the amount of archived files may not exceed the set 'MaxArchiveFiles'
-                Assert.Equal(ft.MaxArchiveFiles, files.Count());
+                Assert.Equal(ft.MaxArchiveFiles, files.Count);
 
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
-                //writing just one line of 11 bytes will trigger the cleanup of old archived files
+                //writing one line on a new day will trigger the cleanup of old archived files
                 //as stated by the MaxArchiveFiles property, but will only delete the oldest file
+                timeSource.FixedTime += TimeSpan.FromDays(1);
                 logger.Debug("1234567890");
                 LogManager.Configuration = null;
 
-                var files2 = Directory.GetFiles(archivePath).OrderBy(s => s);
-                Assert.Equal(ft.MaxArchiveFiles, files2.Count());
+                var files2 = Directory.GetFiles(archivePath).OrderBy(s => s).ToList();
+                Assert.Equal(ft.MaxArchiveFiles, files2.Count);
 
                 //the oldest file should be deleted
-                Assert.DoesNotContain(files.ElementAt(0), files2);
+                Assert.DoesNotContain(files[0], files2);
                 //two files should still be there
-                Assert.Equal(files.ElementAt(1), files2.ElementAt(0));
-                Assert.Equal(files.ElementAt(2), files2.ElementAt(1));
+                Assert.Equal(files[1], files2[0]);
+                Assert.Equal(files[2], files2[1]);
                 //one new archive file shoud be created
-                Assert.DoesNotContain(files2.ElementAt(2), files);
+                Assert.DoesNotContain(files2[2], files);
             }
             finally
             {
