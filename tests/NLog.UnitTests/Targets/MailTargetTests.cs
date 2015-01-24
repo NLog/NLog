@@ -544,7 +544,28 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void MailTarget_WithEmptyFrom_ThrowsArgumentExceptionDuringSend()
+        public void MailTarget_WithEmptyTo_ThrowsNLogRuntimeException()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "",
+                Subject = "Hello from NLog",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}",
+            };
+            mmt.Initialize(null);
+
+            var exceptions = new List<Exception>();
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+
+            Assert.NotNull(exceptions[0]);
+            Assert.IsType<NLogRuntimeException>(exceptions[0]);
+        }
+
+        [Fact]
+        public void MailTarget_WithEmptyFrom_ThrowsNLogRuntimeException()
         {
             var mmt = new MockMailTarget
             {
@@ -561,7 +582,28 @@ namespace NLog.UnitTests.Targets
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
 
             Assert.NotNull(exceptions[0]);
-            Assert.IsType<ArgumentException>(exceptions[0]);
+            Assert.IsType<NLogRuntimeException>(exceptions[0]);
+        }
+
+        [Fact]
+        public void MailTarget_WithEmptySmtpServer_ThrowsNLogRuntimeException()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "bar@bar.com",
+                To = "foo@bar.com",
+                Subject = "Hello from NLog",
+                SmtpServer = "",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}"
+            };
+            mmt.Initialize(null);
+
+            var exceptions = new List<Exception>();
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+
+            Assert.NotNull(exceptions[0]);
+            Assert.IsType<NLogRuntimeException>(exceptions[0]);
         }
 
         [Fact]
@@ -647,6 +689,10 @@ namespace NLog.UnitTests.Targets
 
             public void Send(MailMessage msg)
             {
+                if (string.IsNullOrEmpty(this.Host))
+                {
+                    throw new InvalidOperationException("Host is null or empty.");
+                }
                 this.MessagesSent.Add(msg);
                 if (Host == "ERROR")
                 {
