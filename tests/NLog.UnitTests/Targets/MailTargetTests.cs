@@ -90,7 +90,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("bar@yourserver.com", msg.Bcc[1].Address);
             Assert.Equal(msg.Body, "Info MyLogger log message 1");
         }
-        
+
         [Fact]
         public void MailTarget_WithNewlineInSubject_SendsMail()
         {
@@ -251,7 +251,7 @@ namespace NLog.UnitTests.Targets
             var mock1 = mmt.CreatedMocks[0];
             Assert.Equal("MyLogger1.mydomain.com", mock1.Host);
             Assert.Equal(1, mock1.MessagesSent.Count);
-            
+
             var msg1 = mock1.MessagesSent[0];
             Assert.Equal("log message 1\nlog message 3\n", msg1.Body);
 
@@ -415,7 +415,7 @@ namespace NLog.UnitTests.Targets
             var lines = messageSent.Body.Split(new[] { "<br/>" }, StringSplitOptions.RemoveEmptyEntries);
             Assert.True(lines.Length == 3);
         }
-        
+
         [Fact]
         public void NoReplaceNewlinesWithBreakInHtmlMail()
         {
@@ -453,13 +453,13 @@ namespace NLog.UnitTests.Targets
                 Priority = "high"
             };
             mmt.Initialize(null);
-            
+
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.Equal(MailPriority.High, messageSent.Priority);
         }
-        
+
         [Fact]
         public void MailTarget_WithoutPriority_SendsMailWithNormalPriority()
         {
@@ -471,13 +471,13 @@ namespace NLog.UnitTests.Targets
                 SmtpServer = "server1",
             };
             mmt.Initialize(null);
-            
+
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.Equal(MailPriority.Normal, messageSent.Priority);
         }
-        
+
         [Fact]
         public void MailTarget_WithInvalidPriority_SendsMailWithNormalPriority()
         {
@@ -490,11 +490,144 @@ namespace NLog.UnitTests.Targets
                 Priority = "invalidPriority"
             };
             mmt.Initialize(null);
-            
+
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.Equal(MailPriority.Normal, messageSent.Priority);
+        }
+
+        [Fact]
+        public void MailTarget_WithValidToAndEmptyCC_SendsMail()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@foo.com",
+                CC = "",
+                Subject = "Hello from NLog",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}",
+            };
+            mmt.Initialize(null);
+
+            var exceptions = new List<Exception>();
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+
+            Assert.Null(exceptions[0]);
+            Assert.Equal(1, mmt.CreatedMocks.Count);
+            Assert.Equal(1, mmt.CreatedMocks[0].MessagesSent.Count);
+        }
+
+        [Fact]
+        public void MailTarget_WithValidToAndEmptyBcc_SendsMail()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@foo.com",
+                Bcc = "",
+                Subject = "Hello from NLog",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}",
+            };
+            mmt.Initialize(null);
+
+            var exceptions = new List<Exception>();
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+
+            Assert.Null(exceptions[0]);
+            Assert.Equal(1, mmt.CreatedMocks.Count);
+            Assert.Equal(1, mmt.CreatedMocks[0].MessagesSent.Count);
+        }
+
+        [Fact]
+        public void MailTarget_WithEmptyFrom_ThrowsArgumentExceptionDuringSend()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "",
+                To = "foo@bar.com",
+                Subject = "Hello from NLog",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}"
+            };
+            mmt.Initialize(null);
+
+            var exceptions = new List<Exception>();
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+
+            Assert.NotNull(exceptions[0]);
+            Assert.IsType<ArgumentException>(exceptions[0]);
+        }
+
+        [Fact]
+        public void MailTargetInitialize_WithoutSpecifiedTo_ThrowsConfigException()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                Subject = "Hello from NLog",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}"
+            };
+            Assert.Throws<NLogConfigurationException>(() => mmt.Initialize(null));
+        }
+
+        [Fact]
+        public void MailTargetInitialize_WithoutSpecifiedFrom_ThrowsConfigException()
+        {
+            var mmt = new MockMailTarget
+            {
+                To = "foo@bar.com",
+                Subject = "Hello from NLog",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}"
+            };
+            Assert.Throws<NLogConfigurationException>(() => mmt.Initialize(null));
+        }
+
+        [Fact]
+        public void MailTargetInitialize_WithoutSpecifiedSmtpServer_ThrowsConfigException()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@bar.com",
+                Subject = "Hello from NLog",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}"
+            };
+            Assert.Throws<NLogConfigurationException>(() => mmt.Initialize(null));
+        }
+
+        [Fact]
+        public void MailTarget_WithoutSubject_SendsMessageWithDefaultSubject()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@bar.com",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}"
+            };
+            mmt.Initialize(null);
+
+            var exceptions = new List<Exception>();
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+
+            Assert.Null(exceptions[0]);
+            Assert.Equal(1, mmt.CreatedMocks.Count);
+            var mock = mmt.CreatedMocks[0];
+            Assert.Equal(1, mock.MessagesSent.Count);
+
+            Assert.Equal(string.Format("Message from NLog on {0}", Environment.MachineName), mock.MessagesSent[0].Subject);
         }
 
         public class MockSmtpClient : ISmtpClient
