@@ -72,13 +72,6 @@ namespace NLog.LayoutRenderers
         public int TopFrames { get; set; }
 
         /// <summary>
-        /// Gets or sets the number of frames to skip.
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(0)]
-        public int SkipFrames { get; set; }
-
-        /// <summary>
         /// Gets or sets the stack frame separator string.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
@@ -108,11 +101,10 @@ namespace NLog.LayoutRenderers
                 startingFrame = logEvent.StackTrace.FrameCount - 1;
             }
 
-            int endingFrame = logEvent.UserStackFrameNumber + SkipFrames;
             switch (this.Format)
             {
                 case StackTraceFormat.Raw:
-                    for (int i = startingFrame; i >= endingFrame; --i)
+                    for (int i = startingFrame; i >= logEvent.UserStackFrameNumber; --i)
                     {
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         builder.Append(f.ToString());
@@ -121,7 +113,7 @@ namespace NLog.LayoutRenderers
                     break;
 
                 case StackTraceFormat.Flat:
-                    for (int i = startingFrame; i >= endingFrame; --i)
+                    for (int i = startingFrame; i >= logEvent.UserStackFrameNumber; --i)
                     {
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         if (!first)
@@ -148,7 +140,7 @@ namespace NLog.LayoutRenderers
                     break;
 
                 case StackTraceFormat.DetailedFlat:
-                    for (int i = startingFrame; i >= endingFrame; --i)
+                    for (int i = startingFrame; i >= logEvent.UserStackFrameNumber; --i)
                     {
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         if (!first)
