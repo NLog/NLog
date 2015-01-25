@@ -57,6 +57,8 @@ namespace NLog.Internal.Fakeables
                                  : appDomain.SetupInformation.PrivateBinPath.Split(new[] {';'},
                                                                                    StringSplitOptions.RemoveEmptyEntries);
             FriendlyName = appDomain.FriendlyName;
+            Id = appDomain.Id;
+            
 #endif
 #if !SILVERLIGHT && !MONO
             appDomain.ProcessExit += OnProcessExit;
@@ -89,6 +91,11 @@ namespace NLog.Internal.Fakeables
         /// Gets or set the friendly name.
         /// </summary>
         public string FriendlyName { get; private set; }
+
+        /// <summary>
+        /// Gets an integer that uniquely identifies the application domain within the process. 
+        /// </summary>
+        public int Id { get; private set; }
 #endif
 
 #if !SILVERLIGHT && !MONO

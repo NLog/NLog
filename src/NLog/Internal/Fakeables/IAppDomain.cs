@@ -61,6 +61,11 @@ namespace NLog.Internal.Fakeables
         /// Gets or set the friendly name.
         /// </summary>
         string FriendlyName { get; }
+
+        /// <summary>
+        /// Gets an integer that uniquely identifies the application domain within the process. 
+        /// </summary>
+        int Id { get; }
 #endif
 
 #if !SILVERLIGHT && !MONO
