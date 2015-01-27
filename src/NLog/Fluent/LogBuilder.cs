@@ -43,13 +43,14 @@ namespace NLog.Fluent
     public class LogBuilder
     {
         private readonly LogEventInfo _logEvent;
-        private readonly Logger _logger;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogBuilder"/> class.
         /// </summary>
         /// <param name="logger">The <see cref="Logger"/> to send the log event.</param>
-        public LogBuilder(Logger logger)
+        [CLSCompliant(false)]
+        public LogBuilder(ILogger logger)
             : this(logger, LogLevel.Debug)
         {
         }
@@ -59,7 +60,8 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="logger">The <see cref="Logger"/> to send the log event.</param>
         /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
-        public LogBuilder(Logger logger, LogLevel logLevel)
+        [CLSCompliant(false)]
+        public LogBuilder(ILogger logger, LogLevel logLevel)
         {
             if (logger == null)
                 throw new ArgumentNullException("logger");

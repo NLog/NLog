@@ -45,7 +45,8 @@ namespace NLog.Fluent
         /// <param name="logger">The logger to write the log event to.</param>
         /// <param name="logLevel">The log level.</param>
         /// <returns></returns>
-        public static LogBuilder Log(this Logger logger, LogLevel logLevel)
+        [CLSCompliant(false)]
+        public static LogBuilder Log(this ILogger logger, LogLevel logLevel)
         {
             var builder = new LogBuilder(logger, logLevel);
             return builder;
@@ -56,7 +57,8 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns></returns>
-        public static LogBuilder Trace(this Logger logger)
+        [CLSCompliant(false)]
+        public static LogBuilder Trace(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Trace);
             return builder;
@@ -67,7 +69,8 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns></returns>
-        public static LogBuilder Debug(this Logger logger)
+        [CLSCompliant(false)]
+        public static LogBuilder Debug(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Debug);
             return builder;
@@ -78,7 +81,8 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns></returns>
-        public static LogBuilder Info(this Logger logger)
+        [CLSCompliant(false)]
+        public static LogBuilder Info(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Info);
             return builder;
@@ -89,7 +93,8 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns></returns>
-        public static LogBuilder Warn(this Logger logger)
+        [CLSCompliant(false)]
+        public static LogBuilder Warn(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Warn);
             return builder;
@@ -100,7 +105,8 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns></returns>
-        public static LogBuilder Error(this Logger logger)
+        [CLSCompliant(false)]
+        public static LogBuilder Error(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Error);
             return builder;
@@ -111,7 +117,8 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="logger">The logger to write the log event to.</param>
         /// <returns></returns>
-        public static LogBuilder Fatal(this Logger logger)
+        [CLSCompliant(false)]
+        public static LogBuilder Fatal(this ILogger logger)
         {
             var builder = new LogBuilder(logger, LogLevel.Fatal);
             return builder;
