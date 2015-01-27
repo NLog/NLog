@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
@@ -195,7 +195,9 @@
     <Compile Include="Internal\Win32ThreadIDHelper.cs" />
     <Compile Include="Internal\XmlHelper.cs" />
     <Compile Include="ISuppress.cs" />
+    <Compile Include="LayoutRenderers\AllEventPropertiesLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
+    <Compile Include="LayoutRenderers\AppDomainLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspRequestValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspSessionValueLayoutRenderer.cs" />
