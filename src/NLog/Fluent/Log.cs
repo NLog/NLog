@@ -42,7 +42,7 @@ namespace NLog.Fluent
     /// </summary>
     public static class Log
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Starts building a log event with the specified <see cref="LogLevel" />.

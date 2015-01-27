@@ -81,6 +81,8 @@ namespace NLog.Targets
     [Target("Mail")]
     public class MailTarget : TargetWithLayoutHeaderAndFooter
     {
+        private const string RequiredPropertyIsEmptyFormat = "After the processing of the MailTarget's '{0}' property it appears to be empty. The email message will not be sent.";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MailTarget" /> class.
         /// </summary>
@@ -168,6 +170,7 @@ namespace NLog.Targets
         /// Gets or sets SMTP Server to be used for sending.
         /// </summary>
         /// <docgen category='SMTP Options' order='10' />
+        [RequiredParameter]
         public Layout SmtpServer { get; set; }
 
         /// <summary>
@@ -326,6 +329,8 @@ namespace NLog.Targets
                     throw;
                 }
 
+                InternalLogger.Error(exception.ToString());
+
                 foreach (var ev in events)
                 {
                     ev.Continuation(exception);
@@ -335,7 +340,12 @@ namespace NLog.Targets
 
         private void ConfigureMailClient( LogEventInfo lastEvent, ISmtpClient client )
         {
-            client.Host = this.SmtpServer.Render( lastEvent );
+            var renderedSmtpServer = this.SmtpServer.Render( lastEvent );
+            if (string.IsNullOrEmpty(renderedSmtpServer))
+            {
+                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
+            }
+            client.Host = renderedSmtpServer;
             client.Port = this.SmtpPort;
             client.EnableSsl = this.EnableSsl;
             client.Timeout = this.Timeout;
@@ -398,15 +408,24 @@ namespace NLog.Targets
 
         private void SetupMailMessage(MailMessage msg, LogEventInfo logEvent)
         {
-            msg.From = new MailAddress(this.From.Render(logEvent));
-            foreach (string mail in this.To.Render(logEvent).Split(';'))
+            var renderedFrom = this.From.Render(logEvent);
+            if (string.IsNullOrEmpty(renderedFrom))
+            {
+                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "From"));
+            }
+            msg.From = new MailAddress(renderedFrom);
+            foreach (string mail in this.To.Render(logEvent).Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries))
             {
                 msg.To.Add(mail);
+            }
+            if (msg.To.Count < 1)
+            {
+                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "To"));
             }
 
             if (this.Bcc != null)
             {
-                foreach (string mail in this.Bcc.Render(logEvent).Split(';'))
+                foreach (string mail in this.Bcc.Render(logEvent).Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries))
                 {
                     msg.Bcc.Add(mail);
                 }
@@ -414,7 +433,7 @@ namespace NLog.Targets
 
             if (this.CC != null)
             {
-                foreach (string mail in this.CC.Render(logEvent).Split(';'))
+                foreach (string mail in this.CC.Render(logEvent).Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     msg.CC.Add(mail);
                 }

@@ -40,7 +40,7 @@ namespace NLog.UnitTests.Fluent
 
     public class LogBuilderTests
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 
         [Fact]
         public void TraceWrite()
