@@ -245,5 +245,24 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d");
             Assert.NotNull(d1Target);
         }
+
+        [Fact]
+        public void Extension_should_be_auto_loaded_when_following_NLog_dll_format()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+    <targets>
+        <target name='t' type='AutoLoadTarget' />
+    </targets>
+
+    <rules>
+      <logger name='*' writeTo='t'>
+      </logger>
+    </rules>
+</nlog>");
+
+            var autoLoadedTarget = configuration.FindTargetByName("t");
+            Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+        }
     }
 }
