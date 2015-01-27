@@ -130,9 +130,9 @@
     <Compile Include="GlobalDiagnosticsContext.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ILogger.cs" />
-    <Compile Include="ILogger-V1.cs" />
-	<Compile Include="ILoggerBase.cs" />
+    <Compile Include="ILoggerBase.cs" />
     <Compile Include="ILoggerBase-V1.cs" />
+    <Compile Include="ILogger-V1.cs" />
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
@@ -152,7 +152,6 @@
     <Compile Include="Internal\FileAppenders\SingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileInfoHelper.cs" />
-    <Compile Include="Internal\FormHelper.cs" />
     <Compile Include="Internal\IConfigurationManager.cs" />
     <Compile Include="Internal\IRenderable.cs" />
     <Compile Include="Internal\ISmtpClient.cs" />
@@ -160,7 +159,6 @@
     <Compile Include="Internal\IUsesStackTrace.cs" />
     <Compile Include="Internal\LocalizableAttribute.cs" />
     <Compile Include="Internal\LoggerConfiguration.cs" />
-    <Compile Include="Internal\MessageBoxHelper.cs" />
     <Compile Include="Internal\MultiFileWatcher.cs" />
     <Compile Include="Internal\MySmtpClient.cs" />
     <Compile Include="Internal\NativeMethods.cs">
@@ -326,12 +324,10 @@
     <Compile Include="Targets\EventLogTarget.cs" />
     <Compile Include="Targets\FileArchivePeriod.cs" />
     <Compile Include="Targets\FileTarget.cs" />
-    <Compile Include="Targets\FormControlTarget.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTarget.cs" />
     <Compile Include="Targets\MailTarget.cs" />
     <Compile Include="Targets\MemoryTarget.cs" />
-    <Compile Include="Targets\MessageBoxTarget.cs" />
     <Compile Include="Targets\MethodCallParameter.cs" />
     <Compile Include="Targets\MethodCallTarget.cs" />
     <Compile Include="Targets\MethodCallTargetBase.cs" />
@@ -343,7 +339,6 @@
     <Compile Include="Targets\OutputDebugStringTarget.cs" />
     <Compile Include="Targets\PerformanceCounterTarget.cs" />
     <Compile Include="Targets\RichTextBoxRowColoringRule.cs" />
-    <Compile Include="Targets\RichTextBoxTarget.cs" />
     <Compile Include="Targets\RichTextBoxWordColoringRule.cs" />
     <Compile Include="Targets\SmtpAuthenticationMode.cs" />
     <Compile Include="Targets\Target.cs" />
