@@ -42,6 +42,7 @@ Please provide the following information:
 
 Bug report
 ----
+Please provide the following information:
 - The current NLog version
 - The error message and stacktrace
 - Any current work arounds
@@ -51,5 +52,5 @@ Bug report
 
 Pull requests
 ----
-Please add some unit tests! 
+Unit tests are really appreciated! 
 
