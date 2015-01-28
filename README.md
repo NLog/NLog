@@ -43,7 +43,7 @@ Please provide the following information:
 
  
 
-Bug report
+Bug reports
 ----
 Please provide the following information:
 - The current NLog version
