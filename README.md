@@ -38,8 +38,8 @@ Questions
 Please provide the following information:
 - The current NLog version
 - The current config (file content or API calls)
-- The current result
-- What result is expected 
+- If relevant: the current result
+- If relevant: what result is expected 
 
  
 
