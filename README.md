@@ -30,16 +30,16 @@ Feature requests
 Please provide the following information:
 - The current NLog version
 - Any current work arounds
-- The current config (file content or API calls)
+- Example of the config when implemented
 - Pull requests and unit tests are welcome!
 
 Questions
 ----
 Please provide the following information:
 - The current NLog version
-- What was expected 
 - The current config (file content or API calls)
-- What is the current result
+- The current result
+- What result is expected 
 
  
 
@@ -48,6 +48,8 @@ Bug report
 Please provide the following information:
 - The current NLog version
 - The error message and stacktrace
+- The current result
+- What result is expected 
 - Any current work arounds
 - The current config (file content or API calls)
 - Pull requests and unit tests are welcome!
