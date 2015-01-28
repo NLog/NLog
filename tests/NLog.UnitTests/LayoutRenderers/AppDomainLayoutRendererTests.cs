@@ -31,44 +31,52 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+using System;
+using System.Linq;
+using Xunit;
+
+#if !SILVERLIGHT
+
+namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
-    using System.Text;
-#if SILVERLIGHT
-    using System.Windows;
-    using System.Windows.Browser;
-#else
-    using System.Windows.Forms;
-#endif
 
-    /// <summary>
-    /// Message Box helper.
-    /// </summary>
-    internal class MessageBoxHelper
+    public class AppDomainLayoutRendererTests : NLogTestBase
     {
-        /// <summary>
-        /// Shows the specified message using platform-specific message box.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <param name="caption">The caption.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1300:SpecifyMessageBoxOptions", Justification = "Not important here.")]
-        public static void Show(string message, string caption)
-        {
-#if SILVERLIGHT
-            Action action = () => HtmlPage.Window.Alert(caption + "\r\n\r\n" + message);
+        private int id = AppDomain.CurrentDomain.Id;
+        private string friendlyname = AppDomain.CurrentDomain.FriendlyName;
 
-            if (!Deployment.Current.Dispatcher.CheckAccess())
-            {
-                Deployment.Current.Dispatcher.BeginInvoke(action);
-            }
-            else
-            {
-                action();
-            }
-#else
-            MessageBox.Show(message, caption);
-#endif
+        [Fact]
+        public void AppDomainTest()
+        {
+            //example: 0003: NLog.UnitTests
+            AssertLayoutRendererOutput("${appdomain}", string.Format("{0:0000}:{1}", id, friendlyname));
         }
+
+        [Fact]
+        public void AppDomainShortFormatTest()
+        {
+            //example: 03
+            AssertLayoutRendererOutput("${appdomain:format=short}", string.Format("{0:00}", id, friendlyname));
+        }
+
+        [Fact]
+        public void AppDomainTestLongFormatTest()
+        {
+            //example: 0003: NLog.UnitTests
+            AssertLayoutRendererOutput("${appdomain:format=long}", string.Format("{0:0000}:{1}", id, friendlyname));
+        }
+
+        [Fact(Skip = "Not working because of issue #427 - Evaluating nested substitutions ")]
+        //[Fact]
+        public void AppDomainCustomFormatTest()
+        {
+            //example: 0003: NLog.UnitTests
+            AssertLayoutRendererOutput("${appdomain:format={1}{0}}", string.Format("{1}{0}", id, friendlyname));
+        }
+
+
     }
 }
+
+#endif
