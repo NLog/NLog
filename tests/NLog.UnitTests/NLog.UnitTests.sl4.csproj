@@ -122,6 +122,7 @@
     <Compile Include="GetLoggerTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />
     <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
     <Compile Include="LayoutRenderers\BaseDirTests.cs" />
