@@ -21,42 +21,6 @@ or just get started with the tutorials on [the NLog wiki](https://github.com/NLo
 
 Project RSS Feed: [nlog-project.org/feed](http://nlog-project.org/feed/)
 
-Support
+Questions? Bug reports? Feature requests?
 ===
-Do you have feature requests, questions or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow these guidelines: 
-
-Feature requests
-----
-Please provide the following information:
-- The current NLog version
-- Any current work-arounds
-- Example of the config when implemented
-- Pull requests and unit tests are welcome!
-
-Questions
-----
-Please provide the following information:
-- The current NLog version
-- The current config (file content or API calls)
-- If relevant: the current result
-- If relevant: the expected result
-
- 
-
-Bug reports
-----
-Please provide the following information:
-- The current NLog version
-- The error message and stacktrace
-- The current result
-- The expected result 
-- Any current work-arounds
-- The current config (file content or API calls)
-- Pull requests and unit tests are welcome!
-
-
-
-Pull requests
-----
-Unit tests are really appreciated! 
-
+Do you have feature requests, questions or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](CONTRIBUTING.md).
