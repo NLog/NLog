@@ -28,6 +28,6 @@ or just get started with the tutorials on [the NLog wiki](https://github.com/NLo
 
 Project RSS Feed: [nlog-project.org/feed](http://nlog-project.org/feed/)
 
-Questions? Bug reports? Feature requests?
-===
+Questions, bug reports or feature requests?
+---
 Do you have feature requests, questions or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](CONTRIBUTING.md).
