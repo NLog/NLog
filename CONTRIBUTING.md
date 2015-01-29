@@ -1,4 +1,4 @@
-Support guidelines
+Support & contributing guidelines
 ===
 Do you have feature requests, questions or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow these guidelines: 
 
