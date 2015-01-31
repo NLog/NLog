@@ -25,6 +25,7 @@ Bug reports
 Please provide the following information:
 - The current NLog version
 - The error message and stacktrace
+- The internal log, `Debug` level. See [Internal Logging](https://github.com/NLog/NLog/wiki/Internal-Logging)
 - The current result
 - The expected result 
 - Any current work-arounds
