@@ -81,8 +81,6 @@ namespace NLog.UnitTests.Config
             var targets = ConfigurationItemFactory.Default.Targets;
 
             AssertInstance(targets, "MSMQ", "MessageQueueTarget");
-            AssertInstance(targets, "AspNetTrace", "AspNetTraceTarget");
-            AssertInstance(targets, "AspNetBufferingWrapper", "AspNetBufferingTargetWrapper");
         }
 
         [Fact]
@@ -91,12 +89,6 @@ namespace NLog.UnitTests.Config
             var layoutRenderers = ConfigurationItemFactory.Default.LayoutRenderers;
 
             AssertInstance(layoutRenderers, "appsetting", "AppSettingLayoutRenderer");
-            AssertInstance(layoutRenderers, "aspnet-application", "AspNetApplicationValueLayoutRenderer");
-            AssertInstance(layoutRenderers, "aspnet-request", "AspNetRequestValueLayoutRenderer");
-            AssertInstance(layoutRenderers, "aspnet-sessionid", "AspNetSessionIDLayoutRenderer");
-            AssertInstance(layoutRenderers, "aspnet-session", "AspNetSessionValueLayoutRenderer");
-            AssertInstance(layoutRenderers, "aspnet-user-authtype", "AspNetUserAuthTypeLayoutRenderer");
-            AssertInstance(layoutRenderers, "aspnet-user-identity", "AspNetUserIdentityLayoutRenderer");
         }
 
         private static void AssertInstance<T1, T2>(INamedItemFactory<T1, T2> targets, string itemName, string expectedTypeName)
