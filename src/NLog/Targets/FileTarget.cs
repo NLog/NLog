@@ -1721,6 +1721,20 @@ using System.Linq;
             /// </summary>
             private void DeleteOldArchiveFiles()
             {
+                if (MaxArchiveFileToKeep == 1)
+                {
+                    var archiveFileName = archiveFileQueue.Dequeue();
+                    
+                    try
+                    {
+                        File.Delete(archiveFileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Warn("Cannot delete old archive file : {0} , Exception : {1}", archiveFileName, ex);
+                    }
+                }
+
                 while (archiveFileQueue.Count >= MaxArchiveFileToKeep)
                 {
                     string oldestArchivedFileName = archiveFileQueue.Dequeue();
