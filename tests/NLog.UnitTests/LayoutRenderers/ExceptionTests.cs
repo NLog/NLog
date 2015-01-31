@@ -409,6 +409,34 @@ namespace NLog.UnitTests.LayoutRenderers
                 "System.InvalidOperationException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
         }
 
+        [Fact]
+        public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            var ex = new ExceptionWithBrokenMessagePropertyException();
+
+            Assert.ThrowsDelegate action = () => logger.ErrorException("msg", ex);
+
+            Assert.DoesNotThrow(action);
+        }
+
+        private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
+        {
+            public override string Message
+            {
+                get { throw new Exception("Exception from Message property"); }
+            }
+        }
+
         private void SetConfigurationForExceptionUsingRootMethodTests()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
