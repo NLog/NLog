@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Layouts;
+
 namespace NLog.LayoutRenderers
 {
     using System.Collections.Generic;
@@ -73,7 +75,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the name of the sequence. Different named sequences can have individual values.
         /// </summary>
         /// <docgen category='Counter Options' order='10' />
-        public string Sequence { get; set; }
+        public Layout Sequence { get; set; }
 
         /// <summary>
         /// Renders the specified counter value and appends it to the specified <see cref="StringBuilder" />.
@@ -86,7 +88,7 @@ namespace NLog.LayoutRenderers
 
             if (this.Sequence != null)
             {
-                v = GetNextSequenceValue(this.Sequence, this.Value, this.Increment);
+                v = GetNextSequenceValue(this.Sequence.Render(logEvent), this.Value, this.Increment);
             }
             else
             {
