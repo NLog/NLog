@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Layouts;
+
 #if !SILVERLIGHT && !MONO
 
 namespace NLog.UnitTests.Targets
@@ -77,13 +79,41 @@ namespace NLog.UnitTests.Targets
         {
             WriteEventLogEntry2(LogLevel.Fatal, EventLogEntryType.Error);
         }
-  
-        private static void WriteEventLogEntry2(LogLevel logLevel, EventLogEntryType eventLogEntryType)
+
+
+        [Fact]
+        public void WriteEventLogEntryFatalCustomEntryType()
+        {
+            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.SuccessAudit, new SimpleLayout("SuccessAudit"));
+        }
+
+        [Fact]
+        public void WriteEventLogEntryFatalCustomEntryTyp_caps()
+        {
+            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.SuccessAudit, new SimpleLayout("SUCCESSAUDIT"));
+        }
+
+        [Fact]
+        public void WriteEventLogEntryFatalCustomEntryTyp_fallback()
+        {
+            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.Warning, new SimpleLayout("falllback to auto determined"));
+        }
+
+        [Fact]
+        public void WriteEventLogEntryFatalCustomEntryTyp_error()
+        {
+            WriteEventLogEntry2(LogLevel.Debug, EventLogEntryType.Error, new SimpleLayout("error"));
+        }
+        private static void WriteEventLogEntry2(LogLevel logLevel, EventLogEntryType eventLogEntryType, Layout entryType = null)
         {
             var target = new EventLogTarget();
             //The Log to write to is intentionally lower case!!
             target.Log = "application";
-
+            if (entryType != null)
+            {
+                //set only when not default
+                target.EntryType = entryType;
+            }
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             var el = new EventLog(target.Log);
