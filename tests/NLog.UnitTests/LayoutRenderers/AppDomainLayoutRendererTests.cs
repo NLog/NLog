@@ -67,12 +67,11 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${appdomain:format=long}", string.Format("{0:0000}:{1}", id, friendlyname));
         }
 
-        [Fact(Skip = "Not working because of issue #427 - Evaluating nested substitutions ")]
-        //[Fact]
+        [Fact]
         public void AppDomainCustomFormatTest()
         {
             //example: 0003: NLog.UnitTests
-            AssertLayoutRendererOutput("${appdomain:format={1}{0}}", string.Format("{1}{0}", id, friendlyname));
+            AssertLayoutRendererOutput("${appdomain:format={1\\}{0\\}}", string.Format("{1}{0}", id, friendlyname));
         }
 
 
