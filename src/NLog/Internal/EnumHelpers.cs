@@ -95,7 +95,7 @@ namespace NLog.Internal
 
        
 
-            if (string.IsNullOrWhiteSpace(value))
+            if (IsNullOrWhiteSpace(value))
             {
                 result = default(TEnum);
                 return false;
@@ -115,6 +115,17 @@ namespace NLog.Internal
             }
 
 
+        }
+
+        /// <summary>
+        /// IsNullOrWhiteSpace for .net 3.5
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static bool IsNullOrWhiteSpace(string value)
+        {
+            if (value == null) return false;
+            return string.IsNullOrEmpty(value.Trim());
         }
     }
 }
