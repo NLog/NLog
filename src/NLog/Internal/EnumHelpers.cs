@@ -124,7 +124,8 @@ namespace NLog.Internal
         /// <returns></returns>
         private static bool IsNullOrWhiteSpace(string value)
         {
-            if (value == null) return false;
+            if (value == null) return true;
+            if (value.Length == 0) return true;
             return string.IsNullOrEmpty(value.Trim());
         }
     }
