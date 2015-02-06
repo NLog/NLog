@@ -1,5 +1,4 @@
-﻿
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -199,7 +198,7 @@ namespace NLog.UnitTests.Internal
         {
             //even with null, first ArgumentException
             double result;
-            Assert.Throws<ArgumentException>(() => EnumHelpers.TryParse(null,false, out result));
+            Assert.Throws<ArgumentException>(() => EnumHelpers.TryParse(null, false, out result));
         }
 
         #endregion
