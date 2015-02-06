@@ -62,10 +62,9 @@ Keep in mind that multiple versions of .Net are supported. Some methods are not 
 #if NET4_5
 #if SILVERLIGHT
 #if SILVERLIGHT5
-#if #WINDOWS_PHONE
-#if #WINDOWS_PHONE_7_1
 #if #MONO_2_0
 #if #MONO
 #if #WINDOWS_PHONE
 #if #WINDOWS_PHONE_7
+#if #WINDOWS_PHONE_7_1
 ```
