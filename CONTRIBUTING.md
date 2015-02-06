@@ -36,7 +36,7 @@ Please provide the following information:
 
 Pull requests
 ----
-Unit tests are really appreciated! 
+Unit tests are really appreciated! Also please [Sync all the projects](#Sync projects) 
 
 Sync projects
 ===
