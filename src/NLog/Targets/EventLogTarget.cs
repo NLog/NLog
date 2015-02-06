@@ -239,7 +239,7 @@ namespace NLog.Targets
                 var value = this.EntryType.Render(logEvent);
 
                 EventLogEntryType eventLogEntryType;
-                if (Enum.TryParse(value, true, out eventLogEntryType))
+                if (EnumHelpers.TryParse(value, true, out eventLogEntryType))
                 {
                     return eventLogEntryType;
                 }
