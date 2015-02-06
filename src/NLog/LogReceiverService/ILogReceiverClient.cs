@@ -55,7 +55,7 @@ namespace NLog.LogReceiverService
         /// IAsyncResult value which can be passed to <see cref="EndProcessLogMessages"/>.
         /// </returns>
 #if WCF_SUPPORTED
-        [OperationContractAttribute(AsyncPattern = true, Action = "http://nlog-project.org/ws/ILogReceiverServer/ProcessLogMessages", ReplyAction = "http://nlog-project.org/ws/ILogReceiverServer/ProcessLogMessagesResponse")]
+        [OperationContractAttribute(IsOneWay = true, AsyncPattern = true, Action = "http://nlog-project.org/ws/ILogReceiverServer/ProcessLogMessages")]
 #endif
         IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState);
 
