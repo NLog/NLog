@@ -40,7 +40,7 @@ Unit tests are really appreciated! Also please [Sync all the projects](#Sync pro
 
 Sync projects
 ===
-Adding or removing files to the project? Please keep all projects in sync, otherwhise  AppVeyor will complain.
+Adding or removing files to the project? Please keep all project files in sync, otherwhise AppVeyor will complain.
 The following Msbuild command can be used:
 ```
 NLog\src>msbuild NLog.proj /t:SyncProjectItems
