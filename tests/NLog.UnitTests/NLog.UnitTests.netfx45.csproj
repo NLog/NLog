@@ -211,6 +211,10 @@
       <Project>{A961A1F9-1024-4446-BF9E-A923137340B8}</Project>
       <Name>NLog.Extended.netfx45</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\NLogAutoLoadExtension\NLogAutoLoadExtension.netfx45.csproj">
+      <Project>{0aa8fb16-a377-4541-bef6-81d437d7b5e9}</Project>
+      <Name>NLogAutoLoadExtension.netfx45</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\NLog\NLog.netfx45.csproj">
       <Project>{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}</Project>
       <Name>NLog.netfx45</Name>
