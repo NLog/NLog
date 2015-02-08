@@ -67,17 +67,8 @@
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LayoutRenderers\AppSettingLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetApplicationValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetRequestValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetSessionIDLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetSessionValueLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetUserAuthTypeLayoutRenderer.cs" />
-    <Compile Include="LayoutRenderers\AspNetUserIdentityLayoutRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Targets\AspNetTraceTarget.cs" />
     <Compile Include="Targets\MessageQueueTarget.cs" />
-    <Compile Include="Targets\Wrappers\AspNetBufferingTargetWrapper.cs" />
-    <Compile Include="Web\NLogHttpModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
