@@ -36,5 +36,35 @@ Please provide the following information:
 
 Pull requests
 ----
-Unit tests are really appreciated! 
+Unit tests are really appreciated! Also please [Sync all the projects](#Sync projects) 
 
+Sync projects
+===
+Adding or removing files to the project? Please keep all project files in sync, otherwhise AppVeyor will complain.
+The following Msbuild command can be used:
+```
+NLog\src>msbuild NLog.proj /t:SyncProjectItems
+```
+
+MSbuild is located in:
+```
+"C:\Windows\Microsoft.NET\Framework\v...\MSBuild.exe"
+```
+
+
+Multiple .Net versions
+===
+Keep in mind that multiple versions of .Net are supported. Some methods are not available in all .Net versions. The following conditional complilation symbols can be used:
+
+```
+#if NET3_5
+#if NET4_0
+#if NET4_5
+#if SILVERLIGHT
+#if SILVERLIGHT5
+#if #MONO
+#if #MONO_2_0
+#if #WINDOWS_PHONE
+#if #WINDOWS_PHONE_7
+#if #WINDOWS_PHONE_7_1
+```
