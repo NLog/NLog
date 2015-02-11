@@ -39,23 +39,23 @@ namespace NLog.LogReceiverService
     using System.Collections.Generic;
 
     /// <summary>
-    /// Implementation of <see cref="ILogReceiverServer" /> which forwards received logs through <see cref="LogManager"/> or a given <see cref="LogFactory"/>.
+    /// Implementation of <see cref="ILogReceiverOneWayServer" /> which forwards received logs through <see cref="LogManager"/> or a given <see cref="LogFactory"/>.
     /// </summary>
-    public class LogReceiverForwardingService : BaseLogReceiverForwardingService, ILogReceiverServer
+    public class LogReceiverOneWayForwardingService : BaseLogReceiverForwardingService, ILogReceiverOneWayServer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogReceiverForwardingService"/> class.
+        /// Initializes a new instance of the <see cref="LogReceiverOneWayForwardingService"/> class.
         /// </summary>
-        public LogReceiverForwardingService()
+        public LogReceiverOneWayForwardingService()
             : this(null)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogReceiverForwardingService"/> class.
+        /// Initializes a new instance of the <see cref="LogReceiverOneWayForwardingService"/> class.
         /// </summary>
         /// <param name="logFactory">The log factory.</param>
-        public LogReceiverForwardingService(LogFactory logFactory)
+        public LogReceiverOneWayForwardingService(LogFactory logFactory)
             : base(logFactory)
         {
         }

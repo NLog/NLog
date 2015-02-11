@@ -1,4 +1,4 @@
-﻿// 
+// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,35 +31,38 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED && !SILVERLIGHT
-
 namespace NLog.LogReceiverService
 {
     using System;
-    using System.Collections.Generic;
-
+#if WCF_SUPPORTED
+    using System.ServiceModel;
+#endif
     /// <summary>
-    /// Implementation of <see cref="ILogReceiverServer" /> which forwards received logs through <see cref="LogManager"/> or a given <see cref="LogFactory"/>.
+    /// Service contract for Log Receiver client.
     /// </summary>
-    public class LogReceiverForwardingService : BaseLogReceiverForwardingService, ILogReceiverServer
+#if WCF_SUPPORTED
+    [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace, ConfigurationName = "NLog.LogReceiverService.ILogReceiverOneWayClient")]
+#endif
+    public interface ILogReceiverOneWayClient
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogReceiverForwardingService"/> class.
+        /// Begins processing of log messages.
         /// </summary>
-        public LogReceiverForwardingService()
-            : this(null)
-        {
-        }
+        /// <param name="events">The events.</param>
+        /// <param name="callback">The callback.</param>
+        /// <param name="asyncState">Asynchronous state.</param>
+        /// <returns>
+        /// IAsyncResult value which can be passed to <see cref="EndProcessLogMessages"/>.
+        /// </returns>
+#if WCF_SUPPORTED
+        [OperationContractAttribute(IsOneWay = true, AsyncPattern = true, Action = "http://nlog-project.org/ws/ILogReceiverOneWayServer/ProcessLogMessages")]
+#endif
+        IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState);
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogReceiverForwardingService"/> class.
+        /// Ends asynchronous processing of log messages.
         /// </summary>
-        /// <param name="logFactory">The log factory.</param>
-        public LogReceiverForwardingService(LogFactory logFactory)
-            : base(logFactory)
-        {
-        }
+        /// <param name="result">The result.</param>
+        void EndProcessLogMessages(IAsyncResult result);
     }
 }
-
-#endif

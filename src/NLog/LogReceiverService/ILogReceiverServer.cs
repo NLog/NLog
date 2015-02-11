@@ -47,7 +47,7 @@ namespace NLog.LogReceiverService
         /// Processes the log messages.
         /// </summary>
         /// <param name="events">The events.</param>
-        [OperationContract(IsOneWay=true)]
+        [OperationContract()]
         void ProcessLogMessages(NLogEvents events);
     }
 }
