@@ -91,7 +91,9 @@ namespace NLog
         /// <param name="message">Log message including parameter placeholders.</param>
         /// <param name="parameters">Parameter array.</param>
         public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters) 
-            : this(level, loggerName, formatProvider, message, parameters, null)
+            : this(level, loggerName, formatProvider, message, parameters, parameters == null 
+                                                                            ? null
+                                                                            : parameters[parameters.Length - 1] as Exception)
         {
         }
 

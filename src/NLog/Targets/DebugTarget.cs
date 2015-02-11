@@ -82,12 +82,19 @@ namespace NLog.Targets
         public string LastMessage { get; private set; }
 
         /// <summary>
+        /// Gets the last event rendered by this target.
+        /// </summary>
+        /// <docgen category='Debugging Options' order='10' />
+        public LogEventInfo LastEvent { get; private set; }
+
+        /// <summary>
         /// Increases the number of messages.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
             this.Counter++;
+            this.LastEvent = logEvent;
             this.LastMessage = this.Layout.Render(logEvent);
         }
     }
