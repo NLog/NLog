@@ -537,7 +537,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        public static IEnumerable<object[]> DeleteArchiveFiles_UsesDateFromCurrentTimeSource_TestParameters
+        public static IEnumerable<object[]> DateArchive_UsesDateFromCurrentTimeSource_TestParameters
         {
             get
             {
@@ -554,19 +554,16 @@ namespace NLog.UnitTests.Targets
 
 
         [Theory]
-        [PropertyData("DeleteArchiveFiles_UsesDateFromCurrentTimeSource_TestParameters")]
-        public void DeleteArchiveFiles_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites)
+        [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
+        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
             var defaultTimeSource = TimeSource.Current;
             try
             {
-                // this time source is using UTC time
-                var timeSource = new TimeSourceTests.FixedTimeSource
-                {
-                    FixedTime = timeKind == DateTimeKind.Utc ? DateTime.UtcNow : DateTime.Now
-                };
+                var timeSource = new TimeSourceTests.ShiftedTimeSource(timeKind);
+
                 TimeSource.Current = timeSource;
 
                 var archiveFileNameTemplate = Path.Combine(tempPath, "archive/{#}.txt");
@@ -590,20 +587,28 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("123456789");
                 DateTime previousWriteTime = timeSource.Time;
 
-                const int daysToTestLogging = 10;
+                const int daysToTestLogging = 5;
                 const int intervalsPerDay = 24;
                 var loggingInterval = TimeSpan.FromHours(1);
-                for (var i = 0; i < daysToTestLogging*intervalsPerDay; ++i)
+                for (var i = 0; i < daysToTestLogging * intervalsPerDay; ++i)
                 {
-                    timeSource.FixedTime += loggingInterval;
-                    logger.Debug("123456789");
-                    if (timeSource.Time.Date != previousWriteTime.Date)
-                    {
-                        // ensure new archive is created when the day part of time is changed
-                        var archiveFileName = archiveFileNameTemplate.Replace("{#}", previousWriteTime.ToString(ft.ArchiveDateFormat));
-                        Assert.True(File.Exists(archiveFileName), string.Format("new archive should be created when the day part of {0} time is changed", timeKind));
-                    }
-                    previousWriteTime = timeSource.Time;
+                    timeSource.AddToLocalTime(loggingInterval);
+
+                    var eventInfo = new LogEventInfo(LogLevel.Debug, logger.Name, "123456789");
+                    logger.Log(eventInfo);
+
+                    var dayIsChanged = eventInfo.TimeStamp.Date != previousWriteTime.Date;
+                    // ensure new archive is created only when the day part of time is changed
+                    var archiveFileName = archiveFileNameTemplate.Replace("{#}", previousWriteTime.ToString(ft.ArchiveDateFormat));
+                    var archiveExists = File.Exists(archiveFileName);
+                    if (dayIsChanged)
+                        Assert.True(archiveExists, string.Format("new archive should be created when the day part of {0} time is changed", timeKind));
+                    else
+                        Assert.False(archiveExists, string.Format("new archive should not be create when day part of {0} time is unchanged", timeKind));
+
+                    previousWriteTime = eventInfo.TimeStamp.Date;
+                    if (dayIsChanged)
+                        timeSource.AddToSystemTime(TimeSpan.FromDays(1));
                 }
                 //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
                 LogManager.Configuration = null;
@@ -617,7 +622,7 @@ namespace NLog.UnitTests.Targets
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
                 //writing one line on a new day will trigger the cleanup of old archived files
                 //as stated by the MaxArchiveFiles property, but will only delete the oldest file
-                timeSource.FixedTime += TimeSpan.FromDays(1);
+                timeSource.AddToLocalTime(TimeSpan.FromDays(1));
                 logger.Debug("1234567890");
                 LogManager.Configuration = null;
 
