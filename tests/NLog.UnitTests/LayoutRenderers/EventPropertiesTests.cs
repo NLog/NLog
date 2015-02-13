@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Filters;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using NLog.Layouts;
@@ -43,7 +45,6 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             Layout l = "${event-properties:aaa}";
             LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
-
             // empty
             Assert.Equal("", l.Render(lei));
         }

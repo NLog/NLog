@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Layouts;
+
 #if !SILVERLIGHT && !MONO
 
 namespace NLog.UnitTests.Targets
@@ -45,26 +47,90 @@ namespace NLog.UnitTests.Targets
     public class EventLogTargetTests : NLogTestBase
     {
         [Fact]
-        public void WriteEventLogEntry()
+        public void WriteEventLogEntryTrace()
+        {
+            WriteEventLogEntry2(LogLevel.Trace, EventLogEntryType.Information);
+        }
+
+        [Fact]
+        public void WriteEventLogEntryDebug()
+        {
+            WriteEventLogEntry2(LogLevel.Debug, EventLogEntryType.Information);
+        }
+
+        [Fact]
+        public void WriteEventLogEntryInfo()
+        {
+            WriteEventLogEntry2(LogLevel.Info, EventLogEntryType.Information);
+        }
+        [Fact]
+        public void WriteEventLogEntryWarn()
+        {
+            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.Warning);
+        }
+
+        [Fact]
+        public void WriteEventLogEntryError()
+        {
+            WriteEventLogEntry2(LogLevel.Error, EventLogEntryType.Error);
+        }
+        [Fact]
+        public void WriteEventLogEntryFatal()
+        {
+            WriteEventLogEntry2(LogLevel.Fatal, EventLogEntryType.Error);
+        }
+
+
+        [Fact]
+        public void WriteEventLogEntryFatalCustomEntryType()
+        {
+            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.SuccessAudit, new SimpleLayout("SuccessAudit"));
+        }
+
+        [Fact]
+        public void WriteEventLogEntryFatalCustomEntryTyp_caps()
+        {
+            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.SuccessAudit, new SimpleLayout("SUCCESSAUDIT"));
+        }
+
+        [Fact]
+        public void WriteEventLogEntryFatalCustomEntryTyp_fallback()
+        {
+            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.Warning, new SimpleLayout("falllback to auto determined"));
+        }
+
+        [Fact]
+        public void WriteEventLogEntryFatalCustomEntryTyp_error()
+        {
+            WriteEventLogEntry2(LogLevel.Debug, EventLogEntryType.Error, new SimpleLayout("error"));
+        }
+        private static void WriteEventLogEntry2(LogLevel logLevel, EventLogEntryType eventLogEntryType, Layout entryType = null)
         {
             var target = new EventLogTarget();
             //The Log to write to is intentionally lower case!!
-            target.Log = "application";  
-
-            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+            target.Log = "application";
+            if (entryType != null)
+            {
+                //set only when not default
+                target.EntryType = entryType;
+            }
+            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             var el = new EventLog(target.Log);
 
-            var latestEntryTime  = el.Entries.Cast<EventLogEntry>().Max(n => n.TimeWritten);
-
+            var latestEntryTime = el.Entries.Cast<EventLogEntry>().Max(n => n.TimeWritten);
 
             var testValue = Guid.NewGuid();
-            logger.Debug(testValue.ToString());
-            
-            var entryExists = (from entry in el.Entries.Cast<EventLogEntry>()
-                                where entry.TimeWritten >= latestEntryTime
-                                && entry.Message.Contains(testValue.ToString())
-                                select entry).Any();
+            logger.Log(logLevel, testValue.ToString());
+
+            //debug-> error
+            EntryExists(el, latestEntryTime, testValue, eventLogEntryType);
+        }
+
+        private static void EntryExists(EventLog el, DateTime latestEntryTime, Guid testValue, EventLogEntryType eventLogEntryType)
+        {
+            var entryExists = el.Entries.Cast<EventLogEntry>()
+                .Any(entry => entry.TimeWritten >= latestEntryTime && entry.EntryType == eventLogEntryType && entry.Message.Contains(testValue.ToString()));
 
             Assert.True(entryExists);
         }
