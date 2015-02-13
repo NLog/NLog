@@ -176,12 +176,26 @@ namespace NLog.UnitTests
 
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
-                logger.TraceException("message", new Exception("test"));
+                var testEx1 = new Exception("test1");
+                logger.TraceException("message", testEx1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx1);
 #pragma warning restore 0618
 
-                logger.Trace("message", new Exception("test"));
+                var testEx2 = new Exception("test2");
+                logger.Trace("message", testEx2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx2);
+
+                var testEx3 = new Exception("test3");
+                logger.Trace("message {0}", 1, testEx3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 1");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx3);
+
+                var testEx4 = new Exception("test4");
+                logger.Trace("message {0} {1}", 2, testEx4);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 1 System.Exception: test4");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx4);
 
                 logger.Trace(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -321,10 +335,27 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
 #pragma warning disable 0618
-                // Obsolete method requires testing until completely removed.
-                logger.DebugException("message", new Exception("test"));
+                // Obsolete method requires testing until removed.
+                var testEx1 = new Exception("test1");
+                logger.DebugException("message", testEx1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx1);
 #pragma warning restore 0618
+
+                var testEx2 = new Exception("test2");
+                logger.Debug("message", testEx2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx2);
+
+                var testEx3 = new Exception("test3");
+                logger.Debug("message {0}", 1, testEx3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 1");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx3);
+
+                var testEx4 = new Exception("test4");
+                logger.Debug("message {0} {1}", 2, testEx4);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 1 System.Exception: test4");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx4);
 
                 logger.Debug(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -465,12 +496,26 @@ namespace NLog.UnitTests
 
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
-                logger.InfoException("message", new Exception("test"));
+                var testEx1 = new Exception("test1");
+                logger.InfoException("message", testEx1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx1);
 #pragma warning restore 0618
 
-                logger.Info("message", new Exception("test"));
+                var testEx2 = new Exception("test2");
+                logger.Info("message", testEx2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx2);
+
+                var testEx3 = new Exception("test3");
+                logger.Info("message {0}", 1, testEx3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 1");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx3);
+
+                var testEx4 = new Exception("test4");
+                logger.Info("message {0} {1}", 2, testEx4);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 1 System.Exception: test4");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx4);
 
                 logger.Info(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -611,12 +656,26 @@ namespace NLog.UnitTests
 
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
-                logger.WarnException("message", new Exception("test"));
+                var testEx1 = new Exception("test1");
+                logger.WarnException("message", testEx1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx1);
 #pragma warning restore 0618
 
-                logger.Warn("message", new Exception("test"));
+                var testEx2 = new Exception("test2");
+                logger.Warn("message", testEx2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx2);
+
+                var testEx3 = new Exception("test3");
+                logger.Warn("message {0}", 1, testEx3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 1");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx3);
+
+                var testEx4 = new Exception("test4");
+                logger.Warn("message {0} {1}", 2, testEx4);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 1 System.Exception: test4");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx4);
 
                 logger.Warn(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -756,13 +815,27 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
 #pragma warning disable 0618
-                // Obsolete method requires testing until completely removed.
-                logger.ErrorException("message", new Exception("test"));
+                // Obsolete method requires testing until removed.
+                var testEx1 = new Exception("test1");
+                logger.ErrorException("message", testEx1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx1);
 #pragma warning restore 0618
 
-                logger.Error("message", new Exception("test"));
+                var testEx2 = new Exception("test2");
+                logger.Error("message", testEx2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx2);
+
+                var testEx3 = new Exception("test3");
+                logger.Error("message {0}", 1, testEx3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 1");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx3);
+
+                var testEx4 = new Exception("test4");
+                logger.Error("message {0} {1}", 2, testEx4);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 1 System.Exception: test4");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx4);
 
                 logger.Error(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -903,12 +976,26 @@ namespace NLog.UnitTests
 
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
-                logger.FatalException("message", new Exception("test"));
+                var testEx1 = new Exception("test1");
+                logger.FatalException("message", testEx1);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx1);
 #pragma warning restore 0618
 
-                logger.Fatal("message", new Exception("test"));
+                var testEx2 = new Exception("test2");
+                logger.Fatal("message", testEx2);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx2);
+
+                var testEx3 = new Exception("test3");
+                logger.Fatal("message {0}", 1, testEx3);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 1");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx3);
+
+                var testEx4 = new Exception("test4");
+                logger.Fatal("message {0} {1}", 2, testEx4);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 1 System.Exception: test4");
+                if (enabled == 1) AssertDebugLastEventsException("debug", testEx4);
 
                 logger.Fatal(delegate { return "message from lambda"; });
                 if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
@@ -1056,9 +1143,26 @@ namespace NLog.UnitTests
 
 #pragma warning disable 0618
                     // Obsolete method requires testing until removed.
-                    logger.LogException(level, "message", new Exception("test"));
+                    var testEx1 = new Exception("test1");
+                    logger.LogException(level, "message", testEx1);
                     if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                    if (enabled == 1) AssertDebugLastEventsException("debug", testEx1);
 #pragma warning restore 0618
+
+                    var testEx2 = new Exception("test2");
+                    logger.Log(level, "message", testEx2);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message");
+                    if (enabled == 1) AssertDebugLastEventsException("debug", testEx2);
+
+                    var testEx3 = new Exception("test3");
+                    logger.Log(level, "message {0}", 1, testEx3);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message 1");
+                    if (enabled == 1) AssertDebugLastEventsException("debug", testEx3);
+
+                    var testEx4 = new Exception("test4");
+                    logger.Log(level, "message {0} {1}", 2, testEx4);
+                    if (enabled == 1) AssertDebugLastMessage("debug", "message 1 System.Exception: test4");
+                    if (enabled == 1) AssertDebugLastEventsException("debug", testEx4);
 
                     logger.Log(level, delegate { return "message from lambda"; });
                     if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");

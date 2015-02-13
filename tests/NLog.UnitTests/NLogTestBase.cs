@@ -84,10 +84,24 @@ using System.Xml.Linq;
             Assert.True(debugTarget.LastMessage.Contains(msg), "Unexpected last message value on '" + targetName + "'");
         }
 
+        public void AssertDebugLastEventsException(string targetName, Exception e)
+        {
+            NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
+
+            Assert.NotNull(debugTarget);
+            Assert.Same(e, debugTarget.LastEvent.Exception);
+        }
+
         public string GetDebugLastMessage(string targetName)
         {
             var debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
             return debugTarget.LastMessage;
+        }
+
+        public LogEventInfo GetDebugLastEvent(string targetName)
+        {
+            var debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
+            return debugTarget.LastEvent;
         }
 
         public void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
