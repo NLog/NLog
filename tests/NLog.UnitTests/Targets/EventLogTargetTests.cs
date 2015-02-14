@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+using System.Threading;
 using NLog.Layouts;
 
 #if !SILVERLIGHT && !MONO
@@ -109,6 +111,8 @@ namespace NLog.UnitTests.Targets
             var target = new EventLogTarget();
             //The Log to write to is intentionally lower case!!
             target.Log = "application";
+            // set the source explicitly to prevent random AppDomain name being used as the source name
+            target.Source = "NLog.UnitTests";
             if (entryType != null)
             {
                 //set only when not default
@@ -118,22 +122,41 @@ namespace NLog.UnitTests.Targets
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             var el = new EventLog(target.Log);
 
-            var latestEntryTime = el.Entries.Cast<EventLogEntry>().Max(n => n.TimeWritten);
+            var entriesWritten = new List<EventLogEntry>();
+            EntryWrittenEventHandler onEntryWritten = (s, e) => entriesWritten.Add(e.Entry);
+            el.EnableRaisingEvents = true;
+            el.EntryWritten += onEntryWritten;
 
-            var testValue = Guid.NewGuid();
-            logger.Log(logLevel, testValue.ToString());
+            var testValue = Guid.NewGuid().ToString();
+            try
+            {
+                logger.Log(logLevel, testValue);
+                // introduce small delay to catch the event on another worker thread
+                Thread.Sleep(50);
+            }
+            finally
+            {
+                el.EnableRaisingEvents = false;
+                el.EntryWritten -= onEntryWritten;
+            }
 
             //debug-> error
-            EntryExists(el, latestEntryTime, testValue, eventLogEntryType);
+            EntryExists(entriesWritten, testValue, target.Source, eventLogEntryType);
         }
 
-        private static void EntryExists(EventLog el, DateTime latestEntryTime, Guid testValue, EventLogEntryType eventLogEntryType)
+        private static void EntryExists(IEnumerable<EventLogEntry> entries, string expectedValue, string expectedSource, EventLogEntryType expectedEntryType)
         {
-            var entryExists = el.Entries.Cast<EventLogEntry>()
-                .Any(entry => entry.TimeWritten >= latestEntryTime && entry.EntryType == eventLogEntryType && entry.Message.Contains(testValue.ToString()));
+            var entryExists = entries
+                .Any(entry => 
+                    entry.Source == expectedSource && 
+                    entry.EntryType == expectedEntryType && 
+                    entry.Message.Contains(expectedValue));
 
-            Assert.True(entryExists);
+            Assert.True(entryExists, string.Format(
+                "Failed to find entry of type '{1}' from source '{0}' containing text '{2}' in the message", 
+                expectedSource, expectedEntryType, expectedValue));
         }
+
     }
 }
 
