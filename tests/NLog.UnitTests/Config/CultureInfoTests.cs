@@ -34,6 +34,7 @@
 namespace NLog.UnitTests.Config
 {
     using System.Globalization;
+    using System.Threading;
     using Xunit;
 
     public class CultureInfoTests : NLogTestBase
@@ -44,6 +45,30 @@ namespace NLog.UnitTests.Config
             var configuration = CreateConfigurationFromString("<nlog useInvariantCulture='true'></nlog>");
 
             Assert.Equal(CultureInfo.InvariantCulture, configuration.DefaultCultureInfo);
+        }
+
+        [Fact]
+        public void Regression_SettingDefaultCultureInfo_AffectsAllConfigurationInstances()
+        {
+            var currentCulture = CultureInfo.CurrentCulture;
+            try
+            {
+                // set the current thread culture to be definitely different from the InvariantCulture
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
+
+                var configuration1 = CreateConfigurationFromString("<nlog></nlog>");
+                Assert.Equal(CultureInfo.CurrentCulture, configuration1.DefaultCultureInfo);
+
+                var configuration2 = CreateConfigurationFromString("<nlog useInvariantCulture='true'></nlog>");
+                Assert.Equal(CultureInfo.InvariantCulture, configuration2.DefaultCultureInfo);
+
+                Assert.NotEqual(configuration1.DefaultCultureInfo, configuration2.DefaultCultureInfo);
+            }
+            finally
+            {
+                // restore current thread culture
+                Thread.CurrentThread.CurrentCulture = currentCulture;
+            }
         }
     }
 }
