@@ -32,7 +32,7 @@
 // 
 
 using System.Collections.Generic;
-using System.Threading;
+using System.Diagnostics.Eventing.Reader;
 using NLog.Layouts;
 
 #if !SILVERLIGHT && !MONO
@@ -122,39 +122,58 @@ namespace NLog.UnitTests.Targets
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             var el = new EventLog(target.Log);
 
-            var entriesWritten = new List<EventLogEntry>();
-            EntryWrittenEventHandler onEntryWritten = (s, e) => entriesWritten.Add(e.Entry);
-            el.EnableRaisingEvents = true;
-            el.EntryWritten += onEntryWritten;
+            var loggedNotBefore = DateTime.Now.AddMinutes(-1);
 
             var testValue = Guid.NewGuid().ToString();
-            try
-            {
-                logger.Log(logLevel, testValue);
-                // introduce small delay to catch the event on another worker thread
-                Thread.Sleep(200);
-            }
-            finally
-            {
-                el.EnableRaisingEvents = false;
-                el.EntryWritten -= onEntryWritten;
-            }
+            logger.Log(logLevel, testValue);
 
+            var entries = GetEventRecords(el.Log).TakeWhile(e => e.TimeCreated > loggedNotBefore).ToList();
             //debug-> error
-            EntryExists(entriesWritten, testValue, target.Source, eventLogEntryType);
+            EntryExists(entries, testValue, target.Source, eventLogEntryType);
         }
 
-        private static void EntryExists(IEnumerable<EventLogEntry> entries, string expectedValue, string expectedSource, EventLogEntryType expectedEntryType)
+        private static void EntryExists(IEnumerable<EventRecord> entries, string expectedValue, string expectedSource, EventLogEntryType expectedEntryType)
         {
             var entryExists = entries
-                .Any(entry => 
-                    entry.Source == expectedSource && 
-                    entry.EntryType == expectedEntryType && 
-                    entry.Message.Contains(expectedValue));
+                .Any(entry =>
+                    entry.ProviderName == expectedSource &&
+                    HasEntryType(entry, expectedEntryType) &&
+                    entry.Properties.Any(prop => Convert.ToString(prop.Value).Contains(expectedValue))
+                    );
 
             Assert.True(entryExists, string.Format(
                 "Failed to find entry of type '{1}' from source '{0}' containing text '{2}' in the message", 
                 expectedSource, expectedEntryType, expectedValue));
+        }
+
+
+        private static IEnumerable<EventRecord> GetEventRecords(string logName)
+        {
+            var query = new EventLogQuery(logName, PathType.LogName) { ReverseDirection = true };
+            using (var reader = new EventLogReader(query))
+                for (var eventInstance = reader.ReadEvent(); eventInstance != null; eventInstance = reader.ReadEvent())
+                    yield return eventInstance;
+        }
+
+        private static bool HasEntryType(EventRecord eventRecord, EventLogEntryType entryType)
+        {
+            var keywords = (StandardEventKeywords) (eventRecord.Keywords ?? 0);
+            var level = (StandardEventLevel) (eventRecord.Level ?? 0);
+            bool isClassicEvent = keywords.HasFlag(StandardEventKeywords.EventLogClassic);
+            switch (entryType)
+            {
+                case EventLogEntryType.Error:
+                    return isClassicEvent && level == StandardEventLevel.Error;
+                case EventLogEntryType.Warning:
+                    return isClassicEvent && level == StandardEventLevel.Warning;
+                case EventLogEntryType.Information:
+                    return isClassicEvent && level == StandardEventLevel.Informational;
+                case EventLogEntryType.SuccessAudit:
+                    return keywords.HasFlag(StandardEventKeywords.AuditSuccess);
+                case EventLogEntryType.FailureAudit:
+                    return keywords.HasFlag(StandardEventKeywords.AuditFailure);
+            }
+            return false;
         }
 
     }
