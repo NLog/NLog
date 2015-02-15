@@ -132,7 +132,7 @@ namespace NLog.UnitTests.Targets
             {
                 logger.Log(logLevel, testValue);
                 // introduce small delay to catch the event on another worker thread
-                Thread.Sleep(50);
+                Thread.Sleep(200);
             }
             finally
             {
