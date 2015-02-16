@@ -48,7 +48,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void Regression_SettingDefaultCultureInfo_AffectsAllConfigurationInstances()
+        public void DifferentConfigurations_UseDifferentDefaultCulture()
         {
             var currentCulture = CultureInfo.CurrentCulture;
             try
@@ -56,13 +56,34 @@ namespace NLog.UnitTests.Config
                 // set the current thread culture to be definitely different from the InvariantCulture
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
 
-                var configuration1 = CreateConfigurationFromString("<nlog></nlog>");
+                var configurationTemplate = @"<nlog useInvariantCulture='{0}'>
+<targets>
+    <target name='debug' type='Debug' layout='${{message}}' />
+</targets>
+<rules>
+    <logger name='*' writeTo='debug'/>
+</rules>
+</nlog>";
+                var testValue = 3.14;
+
+                // configuration with current culture
+                var configuration1 = CreateConfigurationFromString(string.Format(configurationTemplate, false));
                 Assert.Equal(CultureInfo.CurrentCulture, configuration1.DefaultCultureInfo);
 
-                var configuration2 = CreateConfigurationFromString("<nlog useInvariantCulture='true'></nlog>");
+                // configuration with invariant culture
+                var configuration2 = CreateConfigurationFromString(string.Format(configurationTemplate, true));
                 Assert.Equal(CultureInfo.InvariantCulture, configuration2.DefaultCultureInfo);
 
                 Assert.NotEqual(configuration1.DefaultCultureInfo, configuration2.DefaultCultureInfo);
+
+                var logger1 = new LogFactory(configuration1).GetLogger("test");
+                var logger2 = new LogFactory(configuration2).GetLogger("test");
+
+                logger1.Debug(testValue);
+                Assert.Equal(testValue.ToString(CultureInfo.CurrentCulture), GetDebugLastMessage("debug", configuration1));
+
+                logger2.Debug(testValue);
+                Assert.Equal(testValue.ToString(CultureInfo.InvariantCulture), GetDebugLastMessage("debug", configuration2));
             }
             finally
             {
