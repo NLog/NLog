@@ -60,34 +60,42 @@ using System.Xml.Linq;
 
         public void AssertDebugCounter(string targetName, int val)
         {
-            var debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
-
-            Assert.NotNull(debugTarget);
-            Assert.Equal(val, debugTarget.Counter);
+            Assert.Equal(val, GetDebugTarget(targetName).Counter);
         }
 
         public void AssertDebugLastMessage(string targetName, string msg)
         {
-            NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
-
-            Assert.NotNull(debugTarget);
-            Assert.Equal(msg, debugTarget.LastMessage);
+            Assert.Equal(msg, GetDebugLastMessage(targetName));
         }
+
 
         public void AssertDebugLastMessageContains(string targetName, string msg)
         {
-            NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
-
-            // Console.WriteLine("lastmsg: {0}", debugTarget.LastMessage);
-
-            Assert.NotNull(debugTarget);
-            Assert.True(debugTarget.LastMessage.Contains(msg), "Unexpected last message value on '" + targetName + "'");
+            string debugLastMessage = GetDebugLastMessage(targetName);
+            Assert.True(debugLastMessage.Contains(msg),
+                string.Format("Expected to find '{0}' in last message value on '{1}', but found '{2}'", msg, targetName, debugLastMessage));
         }
 
         public string GetDebugLastMessage(string targetName)
         {
-            var debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
-            return debugTarget.LastMessage;
+            return GetDebugLastMessage(targetName, LogManager.Configuration);
+        }
+
+        public string GetDebugLastMessage(string targetName, LoggingConfiguration configuration)
+        {
+            return GetDebugTarget(targetName, configuration).LastMessage;
+        }
+
+        public NLog.Targets.DebugTarget GetDebugTarget(string targetName)
+        {
+            return GetDebugTarget(targetName, LogManager.Configuration);
+        }
+
+        public NLog.Targets.DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
+        {
+            var debugTarget = (NLog.Targets.DebugTarget)configuration.FindTargetByName(targetName);
+            Assert.NotNull(debugTarget);
+            return debugTarget;
         }
 
         public void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
