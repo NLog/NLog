@@ -33,10 +33,13 @@
 
 namespace NLog.UnitTests.Config
 {
+    using System;
     using System.Globalization;
     using System.Threading;
     using Xunit;
 
+    using NLog.Config;
+    
     public class CultureInfoTests : NLogTestBase
     {
         [Fact]
@@ -64,7 +67,7 @@ namespace NLog.UnitTests.Config
     <logger name='*' writeTo='debug'/>
 </rules>
 </nlog>";
-                var testValue = 3.14;
+
 
                 // configuration with current culture
                 var configuration1 = CreateConfigurationFromString(string.Format(configurationTemplate, false));
@@ -76,19 +79,29 @@ namespace NLog.UnitTests.Config
 
                 Assert.NotEqual(configuration1.DefaultCultureInfo, configuration2.DefaultCultureInfo);
 
-                var logger1 = new LogFactory(configuration1).GetLogger("test");
-                var logger2 = new LogFactory(configuration2).GetLogger("test");
+                var testNumber = 3.14;
+                var testDate = DateTime.Now;
+                const string formatString = "{0},{1:d}";
 
-                logger1.Debug(testValue);
-                Assert.Equal(testValue.ToString(CultureInfo.CurrentCulture), GetDebugLastMessage("debug", configuration1));
+                AssertMessageFormattedWithCulture(configuration1, CultureInfo.CurrentCulture, formatString, testNumber, testDate);
+                AssertMessageFormattedWithCulture(configuration2, CultureInfo.InvariantCulture, formatString, testNumber, testDate);
 
-                logger2.Debug(testValue);
-                Assert.Equal(testValue.ToString(CultureInfo.InvariantCulture), GetDebugLastMessage("debug", configuration2));
             }
             finally
             {
                 // restore current thread culture
                 Thread.CurrentThread.CurrentCulture = currentCulture;
+            }
+        }
+
+        private void AssertMessageFormattedWithCulture(LoggingConfiguration configuration, CultureInfo culture, string formatString, params object[] parameters)
+        {
+            var expected = string.Format(culture, formatString, parameters);
+            using (var logFactory = new LogFactory(configuration))
+            {
+                var logger = logFactory.GetLogger("test");
+                logger.Debug(formatString, parameters);
+                Assert.Equal(expected, GetDebugLastMessage("debug", configuration));
             }
         }
     }

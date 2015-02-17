@@ -1909,7 +1909,7 @@ namespace NLog
 
         internal void WriteToTargets(LogLevel level, [Localizable(false)] string message, object[] args)
         {
-            this.WriteToTargets(level, null, message, args);
+            this.WriteToTargets(level, this.Factory.DefaultCultureInfo, message, args);
         }
 
         internal void WriteToTargets(LogEventInfo logEvent)
