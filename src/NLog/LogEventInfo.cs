@@ -60,6 +60,9 @@ namespace NLog
         private readonly object layoutCacheLock = new object();
 
         private string formattedMessage;
+        private string message;
+        private object[] parameters;
+        private IFormatProvider formatProvider;
         private IDictionary<Layout, string> layoutCache;
         private IDictionary<object, object> properties;
         private IDictionary eventContextAdapter;
@@ -197,19 +200,46 @@ namespace NLog
         /// <summary>
         /// Gets or sets the log message including any parameter placeholders.
         /// </summary>
-        public string Message { get; set; }
+        public string Message
+        {
+            get { return message; }
+            set
+            {
+                message = value; 
+                ResetFormattedMessage();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the parameter values or null if no parameters have been specified.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "For backwards compatibility.")]
-        public object[] Parameters { get; set; }
+        public object[] Parameters
+        {
+            get { return parameters; }
+            set
+            {
+                parameters = value;
+                ResetFormattedMessage();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the format provider that was provided while logging or <see langword="null" />
         /// when no formatProvider was specified.
         /// </summary>
-        public IFormatProvider FormatProvider { get; set; }
+        public IFormatProvider FormatProvider
+        {
+            get { return formatProvider; }
+            set
+            {
+                if (formatProvider != value)
+                {
+                    formatProvider = value;
+                    ResetFormattedMessage();
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the formatted message.
@@ -452,6 +482,11 @@ namespace NLog
                     InternalLogger.Warn("Error when formatting a message: {0}", exception);
                 }
             }
+        }
+
+        private void ResetFormattedMessage()
+        {
+            this.formattedMessage = null;
         }
 
         private void InitEventContext()
