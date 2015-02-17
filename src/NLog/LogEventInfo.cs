@@ -439,7 +439,7 @@ namespace NLog
             {
                 try
                 {
-                    this.formattedMessage = string.Format(this.FormatProvider ?? LogManager.DefaultCultureInfo(), this.Message, this.Parameters);
+                    this.formattedMessage = string.Format(this.FormatProvider ?? CultureInfo.CurrentCulture, this.Message, this.Parameters);
                 }
                 catch (Exception exception)
                 {
