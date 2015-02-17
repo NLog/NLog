@@ -878,10 +878,15 @@ namespace NLog.Targets
 #if NET4_5
             if (enableCompression)
             {
-                using (var stream = new FileStream(archiveFileName, FileMode.Create))
-                using (var archive = new ZipArchive(stream, ZipArchiveMode.Create))
+                using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
+                using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
+                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    archive.CreateEntryFromFile(fileName, Path.GetFileName(fileName));
+                    var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
+                    using (var destination = zipArchiveEntry.Open())
+                    {
+                        originalFileStream.CopyTo(destination);
+                    }
                 }
 
                 File.Delete(fileName);

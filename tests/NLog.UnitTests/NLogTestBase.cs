@@ -134,7 +134,8 @@ using System.Xml.Linq;
                 Assert.True(true, "File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
-            using (var zip = ZipFile.OpenRead(fileName))
+            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
             {
                 Assert.Equal(1, zip.Entries.Count);
                 Assert.Equal(encodedBuf.Length, zip.Entries[0].Length);
