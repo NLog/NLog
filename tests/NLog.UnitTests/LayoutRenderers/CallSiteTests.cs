@@ -370,6 +370,9 @@ namespace NLog.UnitTests.LayoutRenderers
         public void When_Wrapped_Ignore_Wrapper_Methods_In_Callstack()
         {
 
+            //namespace en name of current method
+            const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.When_Wrapped_Ignore_Wrapper_Methods_In_Callstack";
+
             LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
@@ -380,11 +383,12 @@ namespace NLog.UnitTests.LayoutRenderers
 
             ILogger logger = LogManager.GetLogger("A");
             logger.Warn("direct");
-            AssertDebugLastMessage("debug", "NLog.UnitTests.LoggerTests.When_Wrapped_Ignore_Wrapper_Methods_In_Callstack|direct");
+            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
 
             LoggerTests.BaseWrapper wrappedLogger = new LoggerTests.MyWrapper();
             wrappedLogger.Log("wrapped");
-            AssertDebugLastMessage("debug", "NLog.UnitTests.LoggerTests.When_Wrapped_Ignore_Wrapper_Methods_In_Callstack|wrapped");
+            AssertDebugLastMessage("debug", string.Format("{0}|wrapped", currentMethodFullName));
+       
 
         }
     }
