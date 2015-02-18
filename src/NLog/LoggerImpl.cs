@@ -104,19 +104,17 @@ namespace NLog
         {
             int? firstUserFrame = null;
 
-            if (loggerType != null)
+            
+            for (int i = 0; i < stackTrace.FrameCount; ++i)
             {
-                for (int i = 0; i < stackTrace.FrameCount; ++i)
-                {
-                    StackFrame frame = stackTrace.GetFrame(i);
-                    MethodBase mb = frame.GetMethod();
-
-                    if (mb.DeclaringType == loggerType || (mb.DeclaringType != null && SkipAssembly(mb.DeclaringType.Assembly)))
-                        firstUserFrame = i + 1;
-                    else if (firstUserFrame != null)
-                        break;
-                }
+                StackFrame frame = stackTrace.GetFrame(i);
+                MethodBase mb = frame.GetMethod();
+                if ((loggerType == null && mb.DeclaringType != null && SkipAssembly(mb.DeclaringType.Assembly)) || mb.DeclaringType == loggerType)
+                    firstUserFrame = i + 1;
+                else if (firstUserFrame != null)
+                    break;
             }
+            
 
             if (firstUserFrame == stackTrace.FrameCount)
                 firstUserFrame = null;
