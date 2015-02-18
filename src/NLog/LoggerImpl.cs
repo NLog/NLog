@@ -109,7 +109,7 @@ namespace NLog
             {
                 StackFrame frame = stackTrace.GetFrame(i);
                 MethodBase mb = frame.GetMethod();
-                if ((loggerType == null && mb.DeclaringType != null && SkipAssembly(mb.DeclaringType.Assembly)) || mb.DeclaringType == loggerType)
+                if ((loggerType == null || mb.DeclaringType != null && SkipAssembly(mb.DeclaringType.Assembly)) || mb.DeclaringType == loggerType)
                     firstUserFrame = i + 1;
                 else if (firstUserFrame != null)
                     break;
