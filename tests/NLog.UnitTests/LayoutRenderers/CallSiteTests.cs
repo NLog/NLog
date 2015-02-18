@@ -102,7 +102,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.AddHiddenAssembly(compiledAssembly);
 
             // call the log method
-            logDebugMethod.Invoke(instance, new object[] {logger});
+            logDebugMethod.Invoke(instance, new object[] { logger });
 
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
@@ -198,7 +198,7 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "MethodNameWithPa msg");
         }
-        
+
         [Fact]
         public void GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame()
         {
@@ -214,7 +214,7 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame msg");
         }
-        
+
         [Fact]
         public void GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame()
         {
@@ -364,6 +364,28 @@ namespace NLog.UnitTests.LayoutRenderers
                 string lastMessage = GetDebugLastMessage("debug");
                 Assert.True(lastMessage.Contains("+<>"));
             }
+        }
+
+        [Fact]
+        public void When_Wrapped_Ignore_Wrapper_Methods_In_Callstack()
+        {
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Warn' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Warn("direct");
+            AssertDebugLastMessage("debug", "NLog.UnitTests.LoggerTests.When_Wrapped_Ignore_Wrapper_Methods_In_Callstack|direct");
+
+            LoggerTests.BaseWrapper wrappedLogger = new LoggerTests.MyWrapper();
+            wrappedLogger.Log("wrapped");
+            AssertDebugLastMessage("debug", "NLog.UnitTests.LoggerTests.When_Wrapped_Ignore_Wrapper_Methods_In_Callstack|wrapped");
+
         }
     }
 }
