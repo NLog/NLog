@@ -104,49 +104,19 @@ namespace NLog
         {
             int? firstUserFrame = null;
 
-            
             for (int i = 0; i < stackTrace.FrameCount; ++i)
             {
                 StackFrame frame = stackTrace.GetFrame(i);
                 MethodBase mb = frame.GetMethod();
-                if ((loggerType == null || mb.DeclaringType != null && SkipAssembly(mb.DeclaringType.Assembly)) || mb.DeclaringType == loggerType)
+                if (mb.DeclaringType != null &&
+                    (SkipAssembly(mb.DeclaringType.Assembly) ||
+                     loggerType != null && loggerType.IsAssignableFrom(mb.DeclaringType)))
                     firstUserFrame = i + 1;
                 else if (firstUserFrame != null)
-                    break;
-            }
-            
-
-            if (firstUserFrame == stackTrace.FrameCount)
-                firstUserFrame = null;
-            
-            if (firstUserFrame == null)
-            {
-                for (int i = 0; i < stackTrace.FrameCount; ++i)
-                {
-                    StackFrame frame = stackTrace.GetFrame(i);
-                    MethodBase mb = frame.GetMethod();
-                    Assembly methodAssembly = null;
-
-                    if (mb.DeclaringType != null)
-                    {
-                        methodAssembly = mb.DeclaringType.Assembly;
-                    }
-
-                    if (SkipAssembly(methodAssembly))
-                    {
-                        firstUserFrame = i + 1;
-                    }
-                    else
-                    {
-                        if (firstUserFrame != 0)
-                        {
-                            break;
-                        }
-                    }
-                }
+                    return firstUserFrame.Value;
             }
 
-            return firstUserFrame ?? 0;
+            return 0;
         }
 
         private static bool SkipAssembly(Assembly assembly)
