@@ -164,7 +164,7 @@ namespace NLog
 
         internal static bool IsHiddenAssembly(Assembly assembly)
         {
-            return _hiddenAssemblies == null || _hiddenAssemblies.Contains(assembly);
+            return _hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly);
         }
 
         /// <summary>
