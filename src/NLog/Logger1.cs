@@ -50,6 +50,7 @@ namespace NLog
         {
             get { return this.isTraceEnabled; }
         }
+
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Debug</c> level.
         /// </summary>
@@ -58,6 +59,7 @@ namespace NLog
         {
             get { return this.isDebugEnabled; }
         }
+
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Info</c> level.
         /// </summary>
@@ -66,6 +68,7 @@ namespace NLog
         {
             get { return this.isInfoEnabled; }
         }
+
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Warn</c> level.
         /// </summary>
@@ -74,6 +77,7 @@ namespace NLog
         {
             get { return this.isWarnEnabled; }
         }
+
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Error</c> level.
         /// </summary>
@@ -82,6 +86,7 @@ namespace NLog
         {
             get { return this.isErrorEnabled; }
         }
+
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Fatal</c> level.
         /// </summary>
@@ -90,6 +95,7 @@ namespace NLog
         {
             get { return this.isFatalEnabled; }
         }
+
 
         #region Trace() overloads 
 

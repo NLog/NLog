@@ -64,6 +64,7 @@ namespace NLog
         {
             get { return this.is<#=level#>Enabled; }
         }
+
 <#
 
     }
