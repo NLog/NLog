@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.Config
 {
+    using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
@@ -66,6 +67,34 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(lr3);
             Assert.Equal("[[", lr1.Text);
             Assert.Equal("]]", lr3.Text);
+        }
+
+        [Fact]
+        public void None_xml_configuration_returns_null_when_accessing_variables()
+        {
+            var configuration = new LoggingConfiguration();
+            LogManager.Configuration = configuration;
+            
+            Assert.Null(LogManager.Configuration.Variables);
+        }
+
+        [Fact]
+        public void Xml_configuration_returns_defined_variables()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+    <variable name='prefix' value='[[' />
+    <variable name='suffix' value=']]' />
+
+    <targets>
+        <target name='d1' type='Debug' layout='${prefix}${message}${suffix}' />
+    </targets>
+</nlog>");
+
+            LogManager.Configuration = configuration;
+
+            Assert.Equal("[[", LogManager.Configuration.Variables["prefix"]);
+            Assert.Equal("]]", LogManager.Configuration.Variables["suffix"]);
         }
     }
 }
