@@ -349,7 +349,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Set propertes of <see cref="client"/>
+        /// Set propertes of <paramref name="client"/>
         /// </summary>
         /// <param name="lastEvent">last event for username/password</param>
         /// <param name="client">client to set properties on</param>
@@ -471,11 +471,11 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Render <see cref="layout"/> and add the addresses to <see cref="mailAddressCollection"/>
+        /// Render  <paramref name="layout"/> and add the addresses to <paramref name="mailAddressCollection"/>
         /// </summary>
         /// <param name="mailAddressCollection">Addresses appended to this list</param>
         /// <param name="layout">layout with adresses, ; separated</param>
-        /// <param name="logEvent">event for rendering the <see cref="layout"/></param>
+        /// <param name="logEvent">event for rendering the <paramref name="layout"/></param>
         /// <returns>added a address?</returns>
         private static bool AddAddresses(MailAddressCollection mailAddressCollection, Layout layout, LogEventInfo logEvent)
         {
