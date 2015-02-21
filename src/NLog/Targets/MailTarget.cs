@@ -369,10 +369,12 @@ namespace NLog.Targets
         {
             var sb = new StringBuilder();
 
-            sb.Append(this.From.Render(logEvent));
+            if (this.From != null) 
+                sb.Append(this.From.Render(logEvent));
 
             sb.Append("|");
-            sb.Append(this.To.Render(logEvent));
+            if (this.To != null) 
+                sb.Append(this.To.Render(logEvent));
 
             sb.Append("|");
             if (this.CC != null)
