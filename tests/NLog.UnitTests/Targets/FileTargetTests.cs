@@ -32,6 +32,8 @@
 // 
 
 
+using Xunit.Extensions;
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -48,6 +50,7 @@ namespace NLog.UnitTests.Targets
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using NLog.Time;
 
     public class FileTargetTests : NLogTestBase
     {
@@ -551,6 +554,117 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        public static IEnumerable<object[]> DateArchive_UsesDateFromCurrentTimeSource_TestParameters
+        {
+            get
+            {
+                var booleanValues = new[] {true, false};
+                var timeKindValues = new[] {DateTimeKind.Utc, DateTimeKind.Local};
+                return 
+                    from concurrentWrites in booleanValues 
+                    from keepFileOpen in booleanValues 
+                    from networkWrites in booleanValues
+                    from timeKind in timeKindValues 
+                    select new object[] { timeKind, concurrentWrites, keepFileOpen, networkWrites};
+            }
+        }
+
+
+        [Theory]
+        [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
+        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites)
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            var defaultTimeSource = TimeSource.Current;
+            try
+            {
+                var timeSource = new TimeSourceTests.ShiftedTimeSource(timeKind);
+
+                TimeSource.Current = timeSource;
+
+                var archiveFileNameTemplate = Path.Combine(tempPath, "archive/{#}.txt");
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = archiveFileNameTemplate,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = ArchiveNumberingMode.Date,
+                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveDateFormat = "yyyyMMdd",
+                    Layout = "${date:format=O}|${message}",
+                    MaxArchiveFiles = 3,
+                    ConcurrentWrites = concurrentWrites,
+                    KeepFileOpen = keepFileOpen,
+                    NetworkWrites = networkWrites,
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                logger.Debug("123456789");
+                DateTime previousWriteTime = timeSource.Time;
+
+                const int daysToTestLogging = 5;
+                const int intervalsPerDay = 24;
+                var loggingInterval = TimeSpan.FromHours(1);
+                for (var i = 0; i < daysToTestLogging * intervalsPerDay; ++i)
+                {
+                    timeSource.AddToLocalTime(loggingInterval);
+
+                    var eventInfo = new LogEventInfo(LogLevel.Debug, logger.Name, "123456789");
+                    logger.Log(eventInfo);
+
+                    var dayIsChanged = eventInfo.TimeStamp.Date != previousWriteTime.Date;
+                    // ensure new archive is created only when the day part of time is changed
+                    var archiveFileName = archiveFileNameTemplate.Replace("{#}", previousWriteTime.ToString(ft.ArchiveDateFormat));
+                    var archiveExists = File.Exists(archiveFileName);
+                    if (dayIsChanged)
+                        Assert.True(archiveExists, string.Format("new archive should be created when the day part of {0} time is changed", timeKind));
+                    else
+                        Assert.False(archiveExists, string.Format("new archive should not be create when day part of {0} time is unchanged", timeKind));
+
+                    previousWriteTime = eventInfo.TimeStamp.Date;
+                    if (dayIsChanged)
+                        timeSource.AddToSystemTime(TimeSpan.FromDays(1));
+                }
+                //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
+                LogManager.Configuration = null;
+
+                var archivePath = Path.Combine(tempPath, "archive");
+                var files = Directory.GetFiles(archivePath).OrderBy(s => s).ToList();
+                //the amount of archived files may not exceed the set 'MaxArchiveFiles'
+                Assert.Equal(ft.MaxArchiveFiles, files.Count);
+
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+                //writing one line on a new day will trigger the cleanup of old archived files
+                //as stated by the MaxArchiveFiles property, but will only delete the oldest file
+                timeSource.AddToLocalTime(TimeSpan.FromDays(1));
+                logger.Debug("1234567890");
+                LogManager.Configuration = null;
+
+                var files2 = Directory.GetFiles(archivePath).OrderBy(s => s).ToList();
+                Assert.Equal(ft.MaxArchiveFiles, files2.Count);
+
+                //the oldest file should be deleted
+                Assert.DoesNotContain(files[0], files2);
+                //two files should still be there
+                Assert.Equal(files[1], files2[0]);
+                Assert.Equal(files[2], files2[1]);
+                //one new archive file shoud be created
+                Assert.DoesNotContain(files2[2], files);
+            }
+            finally
+            {
+                TimeSource.Current = defaultTimeSource; // restore default time source
                 LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);

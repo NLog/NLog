@@ -77,5 +77,30 @@ namespace NLog.Time
 
             return this.GetType().Name;
         }
+
+        /// <summary>
+        ///  Converts the specified system time to the same form as the time value originated from this time source.
+        /// </summary>
+        /// <param name="systemTime">The system originated time value to convert.</param>
+        /// <returns>
+        ///  The value of <paramref name="systemTime"/> converted to the same form 
+        ///  as time values originated from this source.
+        /// </returns>
+        /// <remarks>
+        ///  <para>
+        ///   There are situations when NLog have to compare the time originated from TimeSource 
+        ///   to the time originated externally in the system.
+        ///   To be able to provide meaningful result of such comparisons the system time must be expressed in 
+        ///   the same form as TimeSource time.
+        /// </para>
+        /// <para>
+        ///   Examples:
+        ///    - If the TimeSource provides time values of local time, it should also convert the provided 
+        ///      <paramref name="systemTime"/> to the local time.
+        ///    - If the TimeSource shifts or skews its time values, it should also apply 
+        ///      the same transform to the given <paramref name="systemTime"/>.
+        /// </para>
+        /// </remarks>
+        public abstract DateTime FromSystemTime(DateTime systemTime);
     }
 }

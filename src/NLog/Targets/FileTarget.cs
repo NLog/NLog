@@ -47,6 +47,7 @@ namespace NLog.Targets
     using Internal;
     using Internal.FileAppenders;
     using Layouts;
+    using Time;
 
     /// <summary>
     /// Writes log messages to one or more files.
@@ -1118,7 +1119,7 @@ namespace NLog.Targets
 
         private DateTime GetArchiveDate(bool isNextCycle)
         {
-            DateTime archiveDate = DateTime.Now;
+            DateTime archiveDate = TimeSource.Current.Time;
 
             // Because AutoArchive/DateArchive gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
             // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
@@ -1295,9 +1296,12 @@ namespace NLog.Targets
 
             if (this.ArchiveEvery != FileArchivePeriod.None)
             {
+                // file write time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
+                // so we should ask the TimeSource to convert file time to TimeSource time:
+                lastWriteTime = TimeSource.Current.FromSystemTime(lastWriteTime);
                 string formatString = GetDateFormatString(string.Empty);
                 string fileLastChanged = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
-                string logEventRecorded = logEvent.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
+                string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
 
                 if (fileLastChanged != logEventRecorded)
                 {
@@ -1319,7 +1323,7 @@ namespace NLog.Targets
 
                 try
                 {
-                    DateTime timeToKill = DateTime.Now.AddSeconds(-this.OpenFileCacheTimeout);
+                    DateTime timeToKill = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
                     for (int i = 0; i < this.recentAppenders.Length; ++i)
                     {
                         if (this.recentAppenders[i] == null)
@@ -1602,7 +1606,7 @@ namespace NLog.Targets
             if (fileInfo.Exists)
             {
                 fileLength = fileInfo.Length;
-                lastWriteTime = fileInfo.LastWriteTime;
+                lastWriteTime = fileInfo.LastWriteTimeUtc;
                 return true;
             }
 
