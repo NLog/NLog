@@ -410,17 +410,18 @@ namespace NLog.Targets
 
         private void SetupMailMessage(MailMessage msg, LogEventInfo logEvent)
         {
-            var renderedFrom = this.From.Render(logEvent);
+            var renderedFrom = this.From == null ? null: this.From.Render(logEvent);
             if (string.IsNullOrEmpty(renderedFrom))
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "From"));
             }
             msg.From = new MailAddress(renderedFrom);
-            foreach (string mail in this.To.Render(logEvent).Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries))
-            {
-                msg.To.Add(mail);
-            }
-            if (msg.To.Count < 1)
+            if (this.To != null)
+                foreach (string mail in this.To.Render(logEvent).Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    msg.To.Add(mail);
+                }
+            if (msg.To == null || msg.To.Count < 1)
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "To"));
             }
@@ -441,7 +442,7 @@ namespace NLog.Targets
                 }
             }
 
-            msg.Subject = this.Subject.Render(logEvent).Trim();
+            msg.Subject = this.Subject == null ? string.Empty : this.Subject.Render(logEvent).Trim();
             msg.BodyEncoding = this.Encoding;
             msg.IsBodyHtml = this.Html;
 
