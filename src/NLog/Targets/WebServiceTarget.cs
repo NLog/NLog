@@ -115,6 +115,21 @@ namespace NLog.Targets
         public Encoding Encoding { get; set; }
 
         /// <summary>
+        /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
+        /// </summary>
+        public bool IncludeBOM { get; set; }
+
+        /// <summary>
+        /// Get the encoding with or without BOM
+        /// </summary>
+        /// <returns></returns>
+        private Encoding GetEncoding()
+        {
+            return Encoding.ConvertEncodingBOM(IncludeBOM);
+        }
+
+
+        /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
         /// </summary>
         /// <param name="parameters">Method call parameters.</param>
@@ -155,61 +170,61 @@ namespace NLog.Targets
 
             AsyncContinuation sendContinuation =
                 ex =>
+                {
+                    if (ex != null)
                     {
-                        if (ex != null)
+                        continuation(ex);
+                        return;
+                    }
+
+                    request.BeginGetResponse(
+                        r =>
                         {
-                            continuation(ex);
-                            return;
-                        }
-
-                        request.BeginGetResponse(
-                            r =>
+                            try
                             {
-                                try
+                                using (var response = request.EndGetResponse(r))
                                 {
-                                    using (var response = request.EndGetResponse(r))
-                                    {
-                                    }
-
-                                    continuation(null);
                                 }
-                                catch (Exception ex2)
+
+                                continuation(null);
+                            }
+                            catch (Exception ex2)
+                            {
+                                if (ex2.MustBeRethrown())
                                 {
-                                    if (ex2.MustBeRethrown())
-                                    {
-                                        throw;
-                                    }
-
-                                    continuation(ex2);
+                                    throw;
                                 }
-                            }, 
-                            null);
-                    };
+
+                                continuation(ex2);
+                            }
+                        },
+                        null);
+                };
 
             if (postPayload != null && postPayload.Length > 0)
             {
                 request.BeginGetRequestStream(
                     r =>
+                    {
+                        try
                         {
-                            try
+                            using (Stream stream = request.EndGetRequestStream(r))
                             {
-                                using (Stream stream = request.EndGetRequestStream(r))
-                                {
-                                    stream.Write(postPayload, 0, postPayload.Length);
-                                }
-
-                                sendContinuation(null);
+                                stream.Write(postPayload, 0, postPayload.Length);
                             }
-                            catch (Exception ex)
+
+                            sendContinuation(null);
+                        }
+                        catch (Exception ex)
+                        {
+                            if (ex.MustBeRethrown())
                             {
-                                if (ex.MustBeRethrown())
-                                {
-                                    throw;
-                                }
-
-                                continuation(ex);
+                                throw;
                             }
-                        },
+
+                            continuation(ex);
+                        }
+                    },
                     null);
             }
             else
@@ -234,7 +249,7 @@ namespace NLog.Targets
 
             using (var ms = new MemoryStream())
             {
-                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.Encoding });
+                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.GetEncoding() });
 
                 xtw.WriteStartElement("soap", "Envelope", SoapEnvelopeNamespace);
                 xtw.WriteStartElement("Body", SoapEnvelopeNamespace);
@@ -263,7 +278,7 @@ namespace NLog.Targets
 
             using (var ms = new MemoryStream())
             {
-                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.Encoding });
+                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.GetEncoding() });
 
                 xtw.WriteStartElement("soap12", "Envelope", Soap12EnvelopeNamespace);
                 xtw.WriteStartElement("Body", Soap12EnvelopeNamespace);
@@ -303,7 +318,7 @@ namespace NLog.Targets
             string separator = string.Empty;
             using (var ms = new MemoryStream())
             {
-                var sw = new StreamWriter(ms, this.Encoding);
+                var sw = new StreamWriter(ms, this.GetEncoding());
                 sw.Write(string.Empty);
                 int i = 0;
                 foreach (MethodCallParameter parameter in this.Parameters)
