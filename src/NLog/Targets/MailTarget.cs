@@ -261,7 +261,7 @@ namespace NLog.Targets
             }
         }
 
-        private void ProcessSingleMailMessage(IReadOnlyList<AsyncLogEventInfo> events)
+        private void ProcessSingleMailMessage(List<AsyncLogEventInfo> events)
         {
             try
             {
