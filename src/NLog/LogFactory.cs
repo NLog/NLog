@@ -43,6 +43,8 @@ namespace NLog
     using System.Text;
     using System.Threading;
 
+    using JetBrains.Annotations;
+
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -267,6 +269,22 @@ namespace NLog
                     this.globalThreshold = value;
                     this.ReconfigExistingLoggers();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets the default culture info to use as <see cref="LogEventInfo.FormatProvider"/>.
+        /// </summary>
+        /// <value>
+        /// Specific culture info or null to use <see cref="CultureInfo.CurrentCulture"/>
+        /// </value>
+        [CanBeNull]
+        public CultureInfo DefaultCultureInfo
+        {
+            get
+            {
+                var configuration = this.Configuration;
+                return configuration != null ? configuration.DefaultCultureInfo : null;
             }
         }
 

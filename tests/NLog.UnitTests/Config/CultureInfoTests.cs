@@ -33,9 +33,13 @@
 
 namespace NLog.UnitTests.Config
 {
+    using System;
     using System.Globalization;
+    using System.Threading;
     using Xunit;
 
+    using NLog.Config;
+    
     public class CultureInfoTests : NLogTestBase
     {
         [Fact]
@@ -44,6 +48,61 @@ namespace NLog.UnitTests.Config
             var configuration = CreateConfigurationFromString("<nlog useInvariantCulture='true'></nlog>");
 
             Assert.Equal(CultureInfo.InvariantCulture, configuration.DefaultCultureInfo);
+        }
+
+        [Fact]
+        public void DifferentConfigurations_UseDifferentDefaultCulture()
+        {
+            var currentCulture = CultureInfo.CurrentCulture;
+            try
+            {
+                // set the current thread culture to be definitely different from the InvariantCulture
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
+
+                var configurationTemplate = @"<nlog useInvariantCulture='{0}'>
+<targets>
+    <target name='debug' type='Debug' layout='${{message}}' />
+</targets>
+<rules>
+    <logger name='*' writeTo='debug'/>
+</rules>
+</nlog>";
+
+
+                // configuration with current culture
+                var configuration1 = CreateConfigurationFromString(string.Format(configurationTemplate, false));
+                Assert.Equal(null, configuration1.DefaultCultureInfo);
+
+                // configuration with invariant culture
+                var configuration2 = CreateConfigurationFromString(string.Format(configurationTemplate, true));
+                Assert.Equal(CultureInfo.InvariantCulture, configuration2.DefaultCultureInfo);
+
+                Assert.NotEqual(configuration1.DefaultCultureInfo, configuration2.DefaultCultureInfo);
+
+                var testNumber = 3.14;
+                var testDate = DateTime.Now;
+                const string formatString = "{0},{1:d}";
+
+                AssertMessageFormattedWithCulture(configuration1, CultureInfo.CurrentCulture, formatString, testNumber, testDate);
+                AssertMessageFormattedWithCulture(configuration2, CultureInfo.InvariantCulture, formatString, testNumber, testDate);
+
+            }
+            finally
+            {
+                // restore current thread culture
+                Thread.CurrentThread.CurrentCulture = currentCulture;
+            }
+        }
+
+        private void AssertMessageFormattedWithCulture(LoggingConfiguration configuration, CultureInfo culture, string formatString, params object[] parameters)
+        {
+            var expected = string.Format(culture, formatString, parameters);
+            using (var logFactory = new LogFactory(configuration))
+            {
+                var logger = logFactory.GetLogger("test");
+                logger.Debug(formatString, parameters);
+                Assert.Equal(expected, GetDebugLastMessage("debug", configuration));
+            }
         }
     }
 }
