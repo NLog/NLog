@@ -97,6 +97,7 @@ namespace NLog.Targets
             this.Encoding = Encoding.UTF8;
             this.SmtpPort = 25;
             this.SmtpAuthentication = SmtpAuthenticationMode.None;
+            this.Timeout = 10000;
         }
 
         /// <summary>
@@ -228,6 +229,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating the SMTP client timeout.
         /// </summary>
+        /// <remarks>Warning: zero is not infinit waiting</remarks>
         [DefaultValue(10000)]
         public int Timeout { get; set;}
 
@@ -369,10 +371,12 @@ namespace NLog.Targets
         {
             var sb = new StringBuilder();
 
-            sb.Append(this.From.Render(logEvent));
+            if (this.From != null) 
+                sb.Append(this.From.Render(logEvent));
 
             sb.Append("|");
-            sb.Append(this.To.Render(logEvent));
+            if (this.To != null) 
+                sb.Append(this.To.Render(logEvent));
 
             sb.Append("|");
             if (this.CC != null)
@@ -408,17 +412,18 @@ namespace NLog.Targets
 
         private void SetupMailMessage(MailMessage msg, LogEventInfo logEvent)
         {
-            var renderedFrom = this.From.Render(logEvent);
+            var renderedFrom = this.From == null ? null: this.From.Render(logEvent);
             if (string.IsNullOrEmpty(renderedFrom))
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "From"));
             }
             msg.From = new MailAddress(renderedFrom);
-            foreach (string mail in this.To.Render(logEvent).Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries))
-            {
-                msg.To.Add(mail);
-            }
-            if (msg.To.Count < 1)
+            if (this.To != null)
+                foreach (string mail in this.To.Render(logEvent).Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    msg.To.Add(mail);
+                }
+            if (msg.To == null || msg.To.Count < 1)
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "To"));
             }
@@ -439,7 +444,7 @@ namespace NLog.Targets
                 }
             }
 
-            msg.Subject = this.Subject.Render(logEvent).Trim();
+            msg.Subject = this.Subject == null ? string.Empty : this.Subject.Render(logEvent).Trim();
             msg.BodyEncoding = this.Encoding;
             msg.IsBodyHtml = this.Html;
 

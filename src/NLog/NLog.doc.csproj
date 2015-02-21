@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
+    <Compile Include="Internal\EnumHelpers.cs" />
     <Compile Include="Internal\EnvironmentHelper.cs" />
     <Compile Include="Internal\ExceptionHelper.cs" />
     <Compile Include="Internal\FactoryHelper.cs" />
@@ -289,15 +290,21 @@
     <Compile Include="LogLevel.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="LogMessageGenerator.cs" />
+    <Compile Include="LogReceiverService\BaseLogReceiverForwardingService.cs" />
     <Compile Include="LogReceiverService\ILogReceiverClient.cs" />
+    <Compile Include="LogReceiverService\ILogReceiverOneWayClient.cs" />
+    <Compile Include="LogReceiverService\ILogReceiverOneWayServer.cs" />
     <Compile Include="LogReceiverService\ILogReceiverServer.cs" />
     <Compile Include="LogReceiverService\LogReceiverForwardingService.cs" />
+    <Compile Include="LogReceiverService\LogReceiverOneWayForwardingService.cs" />
     <Compile Include="LogReceiverService\LogReceiverServiceConfig.cs" />
     <Compile Include="LogReceiverService\NLogEvent.cs" />
     <Compile Include="LogReceiverService\NLogEvents.cs" />
     <Compile Include="LogReceiverService\SoapLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\StringCollection.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
+    <Compile Include="LogReceiverService\WcfLogReceiverClientFacade.cs" />
+    <Compile Include="LogReceiverService\WcfLogReceiverOneWayClient.cs" />
     <Compile Include="MappedDiagnosticsContext.cs" />
     <Compile Include="MDC.cs" />
     <Compile Include="NDC.cs" />

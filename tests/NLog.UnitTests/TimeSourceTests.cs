@@ -80,10 +80,53 @@ namespace NLog.UnitTests
             {
                 get
                 {
-                    return new DateTime(DateTime.UtcNow.AddHours(1).Ticks, DateTimeKind.Unspecified);
+                    return FromSystemTime(DateTime.UtcNow);
                 }
             }
+
+            public override DateTime FromSystemTime(DateTime systemTime)
+            {
+                return new DateTime(systemTime.ToUniversalTime().AddHours(1).Ticks, DateTimeKind.Unspecified);
+            }
         }
+
+        internal class ShiftedTimeSource : TimeSource
+        {
+            private readonly DateTimeKind kind;
+            private DateTimeOffset sourceTime;
+            private TimeSpan systemTimeDelta;
+
+            public ShiftedTimeSource(DateTimeKind kind)
+            {
+                this.kind = kind;
+                sourceTime = DateTimeOffset.UtcNow;
+                systemTimeDelta = TimeSpan.Zero;
+            }
+
+            public override DateTime Time { get { return ConvertToKind(sourceTime); } }
+
+            public override DateTime FromSystemTime(DateTime systemTime)
+            {
+                return ConvertToKind(systemTime + systemTimeDelta);
+            }
+
+            private DateTime ConvertToKind(DateTimeOffset value)
+            {
+                return kind == DateTimeKind.Local ? value.LocalDateTime : value.UtcDateTime;
+            }
+
+            public void AddToSystemTime(TimeSpan delta)
+            {
+                systemTimeDelta += delta;
+            }
+
+            public void AddToLocalTime(TimeSpan delta)
+            {
+                sourceTime += delta;
+            }
+        }
+
+
 
         void TestTimeSource(TimeSource source, DateTime expected, DateTimeKind kind)
         {
@@ -92,7 +135,10 @@ namespace NLog.UnitTests
             Assert.Same(source, TimeSource.Current);
             var evt = new LogEventInfo(LogLevel.Info, "logger", "msg");
             Assert.Equal(kind, evt.TimeStamp.Kind);
-            Assert.True(expected.AddSeconds(-5) < evt.TimeStamp && evt.TimeStamp < expected.AddSeconds(5));
+            Assert.True((expected - evt.TimeStamp).Duration() < TimeSpan.FromSeconds(5));
+
+            Assert.True((source.Time - source.FromSystemTime(DateTime.UtcNow)).Duration() < TimeSpan.FromSeconds(5));
+
             LogEventInfo evt2;
             do
             {
