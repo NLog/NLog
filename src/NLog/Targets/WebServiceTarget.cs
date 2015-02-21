@@ -81,6 +81,8 @@ namespace NLog.Targets
         {
             this.Protocol = WebServiceProtocol.Soap11;
             this.Encoding = Encoding.UTF8;
+            //BOM give some issues on encoding
+            this.IncludeBOM = false; 
         }
 
         /// <summary>
