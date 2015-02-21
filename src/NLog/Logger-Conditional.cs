@@ -43,7 +43,8 @@ using System.Linq;
 namespace NLog
 {
     /// <summary>
-    /// Conditional logging. Only used when the DEBUG system is set.
+    /// Conditional logging. Only used when the DEBUG system is set. 
+    /// See: https://msdn.microsoft.com/en-us/library/4xssyw96%28v=vs.90%29.aspx 
     /// </summary>
     public partial class Logger
     {
