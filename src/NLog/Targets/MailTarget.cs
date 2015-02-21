@@ -166,7 +166,7 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='11' />
         [DefaultValue(false)]
         public bool Html { get; set; }
-        
+
         /// <summary>
         /// Gets or sets SMTP Server to be used for sending.
         /// </summary>
@@ -231,7 +231,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>Warning: zero is not infinit waiting</remarks>
         [DefaultValue(10000)]
-        public int Timeout { get; set;}
+        public int Timeout { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method.")]
         internal virtual ISmtpClient CreateSmtpClient()
@@ -261,7 +261,7 @@ namespace NLog.Targets
             }
         }
 
-        private void ProcessSingleMailMessage(List<AsyncLogEventInfo> events)
+        private void ProcessSingleMailMessage(IReadOnlyList<AsyncLogEventInfo> events)
         {
             try
             {
@@ -269,51 +269,18 @@ namespace NLog.Targets
                 LogEventInfo lastEvent = events[events.Count - 1].LogEvent;
 
                 // unbuffered case, create a local buffer, append header, body and footer
-                var bodyBuffer = new StringBuilder();
-                if (this.Header != null)
-                {
-                    bodyBuffer.Append(this.Header.Render(firstEvent));
-                    if (this.AddNewLines)
-                    {
-                        bodyBuffer.Append("\n");
-                    }
-                }
+                var bodyBuffer = CreateBodyBuffer(events, firstEvent, lastEvent);
 
-                foreach (AsyncLogEventInfo eventInfo in events)
+                using (var msg = CreateMailMessage(lastEvent, bodyBuffer.ToString()))
                 {
-                    bodyBuffer.Append(this.Layout.Render(eventInfo.LogEvent));
-                    if (this.AddNewLines)
-                    {
-                        bodyBuffer.Append("\n");
-                    }
-                }
-
-                if (this.Footer != null)
-                {
-                    bodyBuffer.Append(this.Footer.Render(lastEvent));
-                    if (this.AddNewLines)
-                    {
-                        bodyBuffer.Append("\n");
-                    }
-                }
-
-                using (var msg = new MailMessage())
-                {
-                    this.SetupMailMessage(msg, lastEvent);
-                    msg.Body = bodyBuffer.ToString();
-                    if (msg.IsBodyHtml && ReplaceNewlineWithBrTagInHtml)
-                    {
-                        msg.Body = msg.Body.Replace(EnvironmentHelper.NewLine, "<br/>");
-                    }
-
                     using (ISmtpClient client = this.CreateSmtpClient())
                     {
                         if (!UseSystemNetMailSettings)
-                            ConfigureMailClient( lastEvent, client );
+                            ConfigureMailClient(lastEvent, client);
 
-                        InternalLogger.Debug( "Sending mail to {0} using {1}:{2} (ssl={3})", msg.To, client.Host, client.Port, client.EnableSsl );
-                        InternalLogger.Trace( "  Subject: '{0}'", msg.Subject );
-                        InternalLogger.Trace( "  From: '{0}'", msg.From.ToString() );
+                        InternalLogger.Debug("Sending mail to {0} using {1}:{2} (ssl={3})", msg.To, client.Host, client.Port, client.EnableSsl);
+                        InternalLogger.Trace("  Subject: '{0}'", msg.Subject);
+                        InternalLogger.Trace("  From: '{0}'", msg.From.ToString());
 
                         client.Send(msg);
 
@@ -326,12 +293,14 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
+                //always log
+                InternalLogger.Error(exception.ToString());
+
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
-
-                InternalLogger.Error(exception.ToString());
+                
 
                 foreach (var ev in events)
                 {
@@ -340,9 +309,53 @@ namespace NLog.Targets
             }
         }
 
-        private void ConfigureMailClient( LogEventInfo lastEvent, ISmtpClient client )
+        /// <summary>
+        /// Create buffer for body
+        /// </summary>
+        /// <param name="events">all events</param>
+        /// <param name="firstEvent">first event for header</param>
+        /// <param name="lastEvent">last event for footer</param>
+        /// <returns></returns>
+        private StringBuilder CreateBodyBuffer(IEnumerable<AsyncLogEventInfo> events, LogEventInfo firstEvent, LogEventInfo lastEvent)
         {
-            var renderedSmtpServer = this.SmtpServer.Render( lastEvent );
+            var bodyBuffer = new StringBuilder();
+            if (this.Header != null)
+            {
+                bodyBuffer.Append(this.Header.Render(firstEvent));
+                if (this.AddNewLines)
+                {
+                    bodyBuffer.Append("\n");
+                }
+            }
+
+            foreach (AsyncLogEventInfo eventInfo in events)
+            {
+                bodyBuffer.Append(this.Layout.Render(eventInfo.LogEvent));
+                if (this.AddNewLines)
+                {
+                    bodyBuffer.Append("\n");
+                }
+            }
+
+            if (this.Footer != null)
+            {
+                bodyBuffer.Append(this.Footer.Render(lastEvent));
+                if (this.AddNewLines)
+                {
+                    bodyBuffer.Append("\n");
+                }
+            }
+            return bodyBuffer;
+        }
+
+        /// <summary>
+        /// Set propertes of <see cref="client"/>
+        /// </summary>
+        /// <param name="lastEvent">last event for username/password</param>
+        /// <param name="client">client to set properties on</param>
+        private void ConfigureMailClient(LogEventInfo lastEvent, ISmtpClient client)
+        {
+            var renderedSmtpServer = this.SmtpServer.Render(lastEvent);
             if (string.IsNullOrEmpty(renderedSmtpServer))
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
@@ -354,28 +367,28 @@ namespace NLog.Targets
 
             if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
             {
-                InternalLogger.Trace( "  Using NTLM authentication." );
+                InternalLogger.Trace("  Using NTLM authentication.");
                 client.Credentials = CredentialCache.DefaultNetworkCredentials;
             }
             else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
             {
-                string username = this.SmtpUserName.Render( lastEvent );
-                string password = this.SmtpPassword.Render( lastEvent );
+                string username = this.SmtpUserName.Render(lastEvent);
+                string password = this.SmtpPassword.Render(lastEvent);
 
-                InternalLogger.Trace( "  Using basic authentication: Username='{0}' Password='{1}'", username, new string( '*', password.Length ) );
-                client.Credentials = new NetworkCredential( username, password );
+                InternalLogger.Trace("  Using basic authentication: Username='{0}' Password='{1}'", username, new string('*', password.Length));
+                client.Credentials = new NetworkCredential(username, password);
             }
         }
 
-        private string GetSmtpSettingsKey( LogEventInfo logEvent )
+        private string GetSmtpSettingsKey(LogEventInfo logEvent)
         {
             var sb = new StringBuilder();
 
-            if (this.From != null) 
+            if (this.From != null)
                 sb.Append(this.From.Render(logEvent));
 
             sb.Append("|");
-            if (this.To != null) 
+            if (this.To != null)
                 sb.Append(this.To.Render(logEvent));
 
             sb.Append("|");
@@ -393,7 +406,7 @@ namespace NLog.Targets
             sb.Append("|");
             if (this.SmtpServer != null)
             {
-                sb.Append( this.SmtpServer.Render( logEvent ) );
+                sb.Append(this.SmtpServer.Render(logEvent));
             }
 
             if (this.SmtpPassword != null)
@@ -410,49 +423,39 @@ namespace NLog.Targets
             return sb.ToString();
         }
 
-        private void SetupMailMessage(MailMessage msg, LogEventInfo logEvent)
+        /// <summary>
+        /// Create the mailmessage with the addresses, properties and body.
+        /// </summary>
+        private MailMessage CreateMailMessage(LogEventInfo lastEvent, string body)
         {
-            var renderedFrom = this.From == null ? null: this.From.Render(logEvent);
+
+            var msg = new MailMessage();
+            var renderedFrom = this.From == null ? null : this.From.Render(lastEvent);
             if (string.IsNullOrEmpty(renderedFrom))
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "From"));
             }
             msg.From = new MailAddress(renderedFrom);
-            if (this.To != null)
-                foreach (string mail in this.To.Render(logEvent).Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    msg.To.Add(mail);
-                }
-            if (msg.To == null || msg.To.Count < 1)
+
+            var addedTo = AddAddresses(msg.To, this.To, lastEvent);
+            var addedCc = AddAddresses(msg.CC, this.CC, lastEvent);
+            var addedBcc = AddAddresses(msg.Bcc, this.Bcc, lastEvent);
+
+            if (!addedTo && !addedCc && !addedBcc)
             {
-                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "To"));
+                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "To/Cc/Bcc"));
             }
 
-            if (this.Bcc != null)
-            {
-                foreach (string mail in this.Bcc.Render(logEvent).Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    msg.Bcc.Add(mail);
-                }
-            }
-
-            if (this.CC != null)
-            {
-                foreach (string mail in this.CC.Render(logEvent).Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    msg.CC.Add(mail);
-                }
-            }
-
-            msg.Subject = this.Subject == null ? string.Empty : this.Subject.Render(logEvent).Trim();
+            msg.Subject = this.Subject == null ? string.Empty : this.Subject.Render(lastEvent).Trim();
             msg.BodyEncoding = this.Encoding;
             msg.IsBodyHtml = this.Html;
 
             if (this.Priority != null)
             {
-                var renderedPriority = this.Priority.Render(logEvent);
+                var renderedPriority = this.Priority.Render(lastEvent);
                 try
                 {
+
                     msg.Priority = (MailPriority)Enum.Parse(typeof(MailPriority), renderedPriority, true);
                 }
                 catch
@@ -461,6 +464,32 @@ namespace NLog.Targets
                     msg.Priority = MailPriority.Normal;
                 }
             }
+            msg.Body = body;
+            if (msg.IsBodyHtml && ReplaceNewlineWithBrTagInHtml && msg.Body != null) 
+                msg.Body = msg.Body.Replace(EnvironmentHelper.NewLine, "<br/>");
+            return msg;
+        }
+
+        /// <summary>
+        /// Render <see cref="layout"/> and add the addresses to <see cref="mailAddressCollection"/>
+        /// </summary>
+        /// <param name="mailAddressCollection">Addresses appended to this list</param>
+        /// <param name="layout">layout with adresses, ; separated</param>
+        /// <param name="logEvent">event for rendering the <see cref="layout"/></param>
+        /// <returns>added a address?</returns>
+        private static bool AddAddresses(MailAddressCollection mailAddressCollection, Layout layout, LogEventInfo logEvent)
+        {
+            var added = false;
+            if (layout != null)
+            {
+                foreach (string mail in layout.Render(logEvent).Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    mailAddressCollection.Add(mail);
+                    added = true;
+                }
+            }
+
+            return added;
         }
     }
 }
