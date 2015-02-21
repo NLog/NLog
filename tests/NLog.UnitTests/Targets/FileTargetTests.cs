@@ -199,8 +199,22 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void ArchiveFileOnStartTest()
         {
+            ArchiveFileOnStartTests(enableCompression: false);
+        }
+
+#if NET4_5
+        [Fact]
+        public void ArchiveFileOnStartTest_WithCompression()
+        {
+            ArchiveFileOnStartTests(enableCompression: true);
+        }
+#endif
+
+        private void ArchiveFileOnStartTests(bool enableCompression)
+        {
             var tempFile = Path.GetTempFileName();
             var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "Archive");
+            var archiveExtension = enableCompression ? "zip" : "txt";
             try
             {
                 // Configure first time with ArchiveOldFileOnStartup = false. 
@@ -245,17 +259,20 @@ namespace NLog.UnitTests.Targets
                 // Configure third time with ArchiveOldFileOnStartup = true again. 
                 // Expected behavior: Extra content will be stored in a new file; the 
                 //      old content should be moved into a new location.
-                
-                var archiveTempName = Path.Combine(tempArchiveFolder, "archive.txt");
+
+                var archiveTempName = Path.Combine(tempArchiveFolder, "archive." + archiveExtension);
 
                 ft = new FileTarget
                 {
+#if NET4_5
+                    EnableArchiveFileCompression = enableCompression,
+#endif
                     FileName = SimpleLayout.Escape(tempFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
                     ArchiveOldFileOnStartup = true,
                     ArchiveFileName = archiveTempName,
-                    ArchiveNumbering = ArchiveNumberingMode.Sequence,                    
+                    ArchiveNumbering = ArchiveNumberingMode.Sequence,
                     MaxArchiveFiles = 1
                 };
 
@@ -267,7 +284,15 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;
                 AssertFileContents(tempFile, "Debug ddd\nInfo eee\nWarn fff\n", Encoding.UTF8);
                 Assert.True(File.Exists(archiveTempName));
-                AssertFileContents(archiveTempName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+
+                var assertFileContents =
+#if NET4_5
+                    enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+#else
+                    new Action<string, string, Encoding>(AssertFileContents);
+#endif
+                assertFileContents(archiveTempName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n",
+                    Encoding.UTF8);
             }
             finally
             {
@@ -719,20 +744,37 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void RollingArchiveTest1()
         {
+            RollingArchiveTests(enableCompression: false);
+        }
+
+#if NET4_5
+        [Fact]
+        public void RollingArchiveCompressionTest1()
+        {
+            RollingArchiveTests(enableCompression: true);
+        }
+#endif
+        
+        private void RollingArchiveTests(bool enableCompression)
+        {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
+            var archiveExtension = enableCompression ? "zip" : "txt";
             try
             {
                 var ft = new FileTarget
-                                    {
-                                        FileName = tempFile,
-                                        ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
-                                        ArchiveAboveSize = 1000,
-                                        LineEnding = LineEndingMode.LF,
-                                        ArchiveNumbering = ArchiveNumberingMode.Rolling,
-                                        Layout = "${message}",
-                                        MaxArchiveFiles = 3
-                                    };
+                {
+#if NET4_5
+                    EnableArchiveFileCompression = enableCompression,
+#endif
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/{####}." + archiveExtension),
+                    ArchiveAboveSize = 1000,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = ArchiveNumberingMode.Rolling,
+                    Layout = "${message}",
+                    MaxArchiveFiles = 3
+                };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
@@ -761,26 +803,33 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
 
+                var assertFileContents =
+#if NET4_5
+ enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+#else
+                    new Action<string, string, Encoding>(AssertFileContents);
+#endif
+
                 AssertFileContents(tempFile,
                     StringRepeat(250, "eee\n"),
                     Encoding.UTF8);
 
-                AssertFileContents(
-                    Path.Combine(tempPath, "archive/0000.txt"),
+                assertFileContents(
+                    Path.Combine(tempPath, "archive/0000." + archiveExtension),
                     StringRepeat(250, "ddd\n"),
                     Encoding.UTF8);
 
-                AssertFileContents(
-                    Path.Combine(tempPath, "archive/0001.txt"),
+                assertFileContents(
+                    Path.Combine(tempPath, "archive/0001." + archiveExtension),
                     StringRepeat(250, "ccc\n"),
                     Encoding.UTF8);
 
-                AssertFileContents(
-                    Path.Combine(tempPath, "archive/0002.txt"),
+                assertFileContents(
+                    Path.Combine(tempPath, "archive/0002." + archiveExtension),
                     StringRepeat(250, "bbb\n"),
                     Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0003.txt")));
+                Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0003." + archiveExtension)));
             }
             finally
             {
@@ -1099,14 +1148,31 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void FileTarget_ArchiveNumbering_DateAndSequence()
         {
+            FileTarget_ArchiveNumbering_DateAndSequenceTests(enableCompression: false);
+        }
+
+#if NET4_5
+        [Fact]
+        public void FileTarget_ArchiveNumbering_DateAndSequence_WithCompression()
+        {
+            FileTarget_ArchiveNumbering_DateAndSequenceTests(enableCompression: true);
+        }
+#endif
+
+        private void FileTarget_ArchiveNumbering_DateAndSequenceTests(bool enableCompression)
+        {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
+            var archiveExtension = enableCompression ? "zip" : "txt";
             try
             {
                 var ft = new FileTarget
                 {
+#if NET4_5
+                    EnableArchiveFileCompression = enableCompression,
+#endif
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}.txt"),
+                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}." + archiveExtension),
                     ArchiveDateFormat = "yyyy-MM-dd",
                     ArchiveAboveSize = 1000,
                     LineEnding = LineEndingMode.LF,
@@ -1145,33 +1211,39 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
 
+                var assertFileContents =
+#if NET4_5
+                    enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+#else
+                    new Action<string, string, Encoding>(AssertFileContents);
+#endif
                 AssertFileContents(tempFile,
                     StringRepeat(250, "eee\n"),
                     Encoding.UTF8);
 
-                AssertFileContents(
-                    Path.Combine(tempPath, string.Format("archive/{0}.1.txt", currentDate)),
+                assertFileContents(
+                    Path.Combine(tempPath, string.Format("archive/{0}.1.{1}", currentDate, archiveExtension)),
                     StringRepeat(250, "bbb\n"),
                     Encoding.UTF8);
 
-                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.1.txt", currentDate)), ft.ArchiveAboveSize);
+                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.1.{1}", currentDate, archiveExtension)), ft.ArchiveAboveSize);
 
-                AssertFileContents(
-                    Path.Combine(tempPath, string.Format("archive/{0}.2.txt", currentDate)),
+                assertFileContents(
+                    Path.Combine(tempPath, string.Format("archive/{0}.2.{1}", currentDate, archiveExtension)),
                     StringRepeat(250, "ccc\n"),
                     Encoding.UTF8);
 
-                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.2.txt", currentDate)), ft.ArchiveAboveSize);
+                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.2.{1}", currentDate, archiveExtension)), ft.ArchiveAboveSize);
 
-                AssertFileContents(
-                    Path.Combine(tempPath, string.Format("archive/{0}.3.txt", currentDate)),
+                assertFileContents(
+                    Path.Combine(tempPath, string.Format("archive/{0}.3.{1}", currentDate, archiveExtension)),
                     StringRepeat(250, "ddd\n"),
                     Encoding.UTF8);
 
-                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.3.txt", currentDate)), ft.ArchiveAboveSize);
+                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.3.{1}", currentDate, archiveExtension)), ft.ArchiveAboveSize);
 
-                Assert.True(!File.Exists(Path.Combine(tempPath, string.Format("archive/{0}.0.txt", currentDate))));
-                Assert.True(!File.Exists(Path.Combine(tempPath, string.Format("archive/{0}.4.txt", currentDate))));
+                Assert.True(!File.Exists(Path.Combine(tempPath, string.Format("archive/{0}.0.{1}", currentDate, archiveExtension))));
+                Assert.True(!File.Exists(Path.Combine(tempPath, string.Format("archive/{0}.4.{1}", currentDate, archiveExtension))));
             }
             finally
             {
