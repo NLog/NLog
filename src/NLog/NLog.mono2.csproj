@@ -284,6 +284,7 @@
     <Compile Include="LogFactory.cs" />
     <Compile Include="LogFactory-T.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="Logger-Conditional.cs" />
     <Compile Include="LoggerImpl.cs" />
     <Compile Include="Logger-V1Compat.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
