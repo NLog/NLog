@@ -108,15 +108,22 @@ namespace NLog
             {
                 StackFrame frame = stackTrace.GetFrame(i);
                 MethodBase mb = frame.GetMethod();
-                if (mb.DeclaringType != null &&
-                    (SkipAssembly(mb.DeclaringType.Assembly) ||
-                     loggerType != null && loggerType.IsAssignableFrom(mb.DeclaringType)))
+                if (ShouldSkipTypeStackFrame(mb.DeclaringType, loggerType))
                     firstUserFrame = i + 1;
                 else if (firstUserFrame != null)
                     return firstUserFrame.Value;
             }
 
             return 0;
+        }
+
+        private static bool ShouldSkipTypeStackFrame(Type declaringType, Type loggerType)
+        {
+            if (declaringType == null) return false;
+            // skip stack frame if the method declaring type assembly is from hidden assemblies list
+            if (SkipAssembly(declaringType.Assembly)) return true;
+            // or if that type is the loggerType or one of its subtypes
+            return loggerType != null && loggerType.IsAssignableFrom(declaringType);
         }
 
         private static bool SkipAssembly(Assembly assembly)
