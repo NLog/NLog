@@ -192,7 +192,7 @@ namespace NLog.Targets
                             }
                             catch (Exception ex2)
                             {
-                                InternalLogger.Error(ex.ToString());
+                                InternalLogger.Error(ex2.ToString());
                                 if (ex2.MustBeRethrown())
                                 {
                                     throw;
