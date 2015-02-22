@@ -54,7 +54,7 @@ namespace NLog.Internal
             if (!includeBOM)
             {
                 //default .net uses BOM, so we have to create a new instance to exlucde this.
-                if (encoding.EncodingName == Encoding.UTF8.EncodingName)
+                if (encoding.EncodingName.Equals(Encoding.UTF8.EncodingName, StringComparison.InvariantCulture))
                 {
                     return new UTF8Encoding(false);
 
