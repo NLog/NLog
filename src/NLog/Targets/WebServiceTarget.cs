@@ -235,46 +235,38 @@ namespace NLog.Targets
             }
         }
 
-        private byte[] PrepareSoap11Request(HttpWebRequest request, object[] parameters)
+        private byte[] PrepareSoap11Request(HttpWebRequest request, object[] parameterValues)
         {
-            request.Method = "POST";
-            request.ContentType = "text/xml; charset=" + this.Encoding.WebName;
-
+            string soapAction;
             if (this.Namespace.EndsWith("/", StringComparison.Ordinal))
             {
-                request.Headers["SOAPAction"] = this.Namespace + this.MethodName;
+                soapAction = this.Namespace + this.MethodName;
             }
             else
             {
-                request.Headers["SOAPAction"] = this.Namespace + "/" + this.MethodName;
+                soapAction = this.Namespace + "/" + this.MethodName;
             }
+            request.Headers["SOAPAction"] = soapAction;
 
-            using (var ms = new MemoryStream())
-            {
-                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.GetEncoding() });
+            return PrepareSoapRequestPost(request, parameterValues, SoapEnvelopeNamespace, "soap");
 
-                xtw.WriteStartElement("soap", "Envelope", SoapEnvelopeNamespace);
-                xtw.WriteStartElement("Body", SoapEnvelopeNamespace);
-                xtw.WriteStartElement(this.MethodName, this.Namespace);
-                int i = 0;
-
-                foreach (MethodCallParameter par in this.Parameters)
-                {
-                    xtw.WriteElementString(par.Name, Convert.ToString(parameters[i], CultureInfo.InvariantCulture));
-                    i++;
-                }
-
-                xtw.WriteEndElement(); // methodname
-                xtw.WriteEndElement(); // Body
-                xtw.WriteEndElement(); // soap:Envelope
-                xtw.Flush();
-
-                return ms.ToArray();
-            }
         }
 
         private byte[] PrepareSoap12Request(HttpWebRequest request, object[] parameterValues)
         {
+            return PrepareSoapRequestPost(request, parameterValues, Soap12EnvelopeNamespace, "soap12");
+        }
+
+        /// <summary>
+        /// Helper for creating soap POST-XML request
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="parameterValues"></param>
+        /// <param name="soapEnvelopeNamespace"></param>
+        /// <param name="soapname"></param>
+        /// <returns></returns>
+        private byte[] PrepareSoapRequestPost(WebRequest request, object[] parameterValues, string soapEnvelopeNamespace, string soapname)
+        {
             request.Method = "POST";
             request.ContentType = "text/xml; charset=" + this.Encoding.WebName;
 
@@ -282,8 +274,8 @@ namespace NLog.Targets
             {
                 XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.GetEncoding() });
 
-                xtw.WriteStartElement("soap12", "Envelope", Soap12EnvelopeNamespace);
-                xtw.WriteStartElement("Body", Soap12EnvelopeNamespace);
+                xtw.WriteStartElement(soapname, "Envelope", soapEnvelopeNamespace);
+                xtw.WriteStartElement("Body", soapEnvelopeNamespace);
                 xtw.WriteStartElement(this.MethodName, this.Namespace);
                 int i = 0;
                 foreach (MethodCallParameter par in this.Parameters)
@@ -292,9 +284,9 @@ namespace NLog.Targets
                     i++;
                 }
 
-                xtw.WriteEndElement();
-                xtw.WriteEndElement();
-                xtw.WriteEndElement();
+                xtw.WriteEndElement(); // methodname
+                xtw.WriteEndElement(); // Body
+                xtw.WriteEndElement(); // soap:Envelope
                 xtw.Flush();
 
                 return ms.ToArray();
