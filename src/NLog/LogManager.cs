@@ -54,7 +54,7 @@ namespace NLog
         private static readonly LogFactory factory = new LogFactory();
         private static IAppDomain currentAppDomain;
         private static GetCultureInfo defaultCultureInfo = () => CultureInfo.CurrentCulture;
-        private static List<Assembly> _hiddenAssemblies;
+        private static ICollection<Assembly> _hiddenAssemblies;
         private static readonly object lockObject = new object();
 
         /// <summary>
@@ -180,13 +180,10 @@ namespace NLog
                 if (_hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly))
                     return;
 
-                var newHiddenAssemblies = new List<Assembly>(); 
-
-                if (_hiddenAssemblies != null)
-                    newHiddenAssemblies.AddRange(_hiddenAssemblies);
-                newHiddenAssemblies.Add(assembly);
-
-                _hiddenAssemblies = newHiddenAssemblies;
+                _hiddenAssemblies = new HashSet<Assembly>(_hiddenAssemblies ?? Enumerable.Empty<Assembly>())
+                {
+                    assembly
+                };
             }
         }
 
