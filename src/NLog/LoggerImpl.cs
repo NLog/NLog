@@ -136,7 +136,7 @@ namespace NLog
                 return true;
             }
 
-            if (LogManager.HiddenAssemblies.Contains(assembly))
+            if (LogManager.IsHiddenAssembly(assembly))
             {
                 return true;
             }
