@@ -39,6 +39,7 @@ namespace NLog
     using System.Linq;
     using System.Reflection;
     using System.Threading;
+    using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Config;
     using NLog.Filters;
@@ -56,7 +57,7 @@ namespace NLog
         private static readonly Assembly systemAssembly = typeof(Debug).Assembly;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
-        internal static void Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
+        internal static void Write([NotNull] Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
         {
             if (targets == null)
             {
@@ -100,7 +101,14 @@ namespace NLog
             }
         }
 
-        private static int FindCallingMethodOnStackTrace(StackTrace stackTrace, Type loggerType)
+        /// <summary>
+        ///  Finds first user stack frame in a stack trace
+        /// </summary>
+        /// <param name="stackTrace">The stack trace of the logging method invocation</param>
+        /// <param name="loggerType">Type of the logger or logger wrapper</param>
+        /// <returns>Index of the first user stack frame or 0 if all stack frames are non-user</returns>
+        /// <seealso cref="IsNonUserStackFrame"/>
+        private static int FindCallingMethodOnStackTrace([NotNull] StackTrace stackTrace, [NotNull] Type loggerType)
         {
             int? firstUserFrame = null;
 
@@ -108,15 +116,34 @@ namespace NLog
             {
                 StackFrame frame = stackTrace.GetFrame(i);
                 MethodBase mb = frame.GetMethod();
-                if (mb.DeclaringType != null &&
-                    (SkipAssembly(mb.DeclaringType.Assembly) ||
-                     loggerType != null && loggerType.IsAssignableFrom(mb.DeclaringType)))
+                if (IsNonUserStackFrame(mb, loggerType))
                     firstUserFrame = i + 1;
                 else if (firstUserFrame != null)
                     return firstUserFrame.Value;
             }
 
             return 0;
+        }
+
+        /// <summary>
+        ///  Defines whether a stack frame belongs to non-user code
+        /// </summary>
+        /// <param name="method">Method of the stack frame</param>
+        /// <param name="loggerType">Type of the logger or logger wrapper</param>
+        /// <returns><see langword="true"/>, if the method is from non-user code and should be skipped</returns>
+        /// <remarks>
+        ///  The method is classified as non-user if its declaring assembly is from hidden assemblies list
+        ///  or its declaring type is <paramref name="loggerType"/> or one of its subtypes.
+        /// </remarks>
+        private static bool IsNonUserStackFrame([NotNull] MethodBase method, [NotNull] Type loggerType)
+        {
+            var declaringType = method.DeclaringType;
+            // get assembly by declaring type or by module for global methods
+            var assembly = declaringType != null ? declaringType.Assembly : method.Module.Assembly; 
+            // skip stack frame if the method declaring type assembly is from hidden assemblies list
+            if (SkipAssembly(assembly)) return true;
+            // or if that type is the loggerType or one of its subtypes
+            return declaringType != null && loggerType.IsAssignableFrom(declaringType);
         }
 
         private static bool SkipAssembly(Assembly assembly)
