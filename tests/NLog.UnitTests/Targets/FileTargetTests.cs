@@ -562,6 +562,71 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        // Test commented out as it takes 5 minutes to run
+        /*
+        [Fact]
+        public void DeleteArchiveFilesByDateWithDateName()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "${date:format=yyyyMMddHHmm}.txt");
+            try
+            {
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "{#}.txt"),
+                    ArchiveEvery = FileArchivePeriod.Minute,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = ArchiveNumberingMode.Date,
+                    ArchiveDateFormat = "yyyyMMddHHmm", //make sure the minutes are set in the filename
+                    Layout = "${message}",
+                    MaxArchiveFiles = 3
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+                //writing 4 times 10 bytes (9 char + linefeed) will result in 2 archive files and 1 current file
+                for (var i = 0; i < 4; ++i)
+                {
+                    logger.Debug("123456789");
+                    //build in a  sleep to make sure the current time is reflected in the filename
+                    Thread.Sleep(60000);
+                }
+                //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
+                LogManager.Configuration = null;
+
+                var files = Directory.GetFiles(tempPath).OrderBy(s => s);
+                //the amount of archived files may not exceed the set 'MaxArchiveFiles'
+                Assert.Equal(ft.MaxArchiveFiles, files.Count());
+
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+                //writing one minute later will trigger the cleanup of old archived files
+                //as stated by the MaxArchiveFiles property, but will only delete the oldest file
+                Thread.Sleep(60000);
+                logger.Debug("123456789");
+                LogManager.Configuration = null;
+
+                var files2 = Directory.GetFiles(tempPath).OrderBy(s => s);
+                Assert.Equal(ft.MaxArchiveFiles, files2.Count());
+
+                //the oldest file should be deleted
+                Assert.DoesNotContain(files.ElementAt(0), files2);
+                //two files should still be there
+                Assert.Equal(files.ElementAt(1), files2.ElementAt(0));
+                Assert.Equal(files.ElementAt(2), files2.ElementAt(1));
+                //one new archive file shoud be created
+                Assert.DoesNotContain(files2.ElementAt(2), files);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }*/
+
         public static IEnumerable<object[]> DateArchive_UsesDateFromCurrentTimeSource_TestParameters
         {
             get

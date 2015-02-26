@@ -636,6 +636,19 @@ namespace NLog.Targets
                 this.DoAutoArchive(fileName, logEvent);
             }
 
+            // Clean up old archives if this is the first time a log record has been written to
+            // this log file and the archiving system is date/time based.
+            if (this.ArchiveNumbering == ArchiveNumberingMode.Date  && this.ArchiveEvery != FileArchivePeriod.None)
+            {
+                FileInfo fileInfo = new FileInfo(fileName);
+                if (!fileInfo.Exists)
+                {
+                    string fileNamePattern = this.GetFileNamePattern(fileName, logEvent, fileInfo);
+                    this.DeleteOldDateArchive(fileNamePattern);
+                }
+            }
+            
+
             this.WriteToFile(fileName, bytes, false);
         }
 
@@ -1041,6 +1054,20 @@ namespace NLog.Targets
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
 
+            DeleteOldDateArchive(pattern);
+
+            DateTime newFileDate = GetArchiveDate(true);
+            string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
+            RollArchiveForward(fileName, newFileName, shouldCompress: true);
+        }
+
+        private void DeleteOldDateArchive(string pattern)
+        {
+            
+            string fileNameMask = ReplaceReplaceFileNamePattern(pattern, "*");
+            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
+            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
+
             try
             {
                 DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
@@ -1077,10 +1104,6 @@ namespace NLog.Targets
             {
                 Directory.CreateDirectory(dirName);
             }
-
-            DateTime newFileDate = GetArchiveDate(true);
-            string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
-            RollArchiveForward(fileName, newFileName, shouldCompress: true);
         }
 #endif
 
@@ -1160,20 +1183,7 @@ namespace NLog.Targets
             }
 
             // Console.WriteLine("DoAutoArchive({0})", fileName);
-            string fileNamePattern;
-
-            if (this.ArchiveFileName == null)
-            {
-                string ext = Path.GetExtension(fileName);
-                fileNamePattern = Path.ChangeExtension(fi.FullName, ".{#}" + ext);
-            }
-            else
-            {
-                //The archive file name is given. There are two possibiliy 
-                //(1) User supplied the Filename with pattern
-                //(2) User supplied the normal filename
-                fileNamePattern = this.ArchiveFileName.Render(eventInfo);
-            }
+            string fileNamePattern = GetFileNamePattern(fileName, eventInfo, fi);
 
             if (!ContainFileNamePattern(fileNamePattern))
             {
@@ -1208,6 +1218,25 @@ namespace NLog.Targets
 #endif
                 }
             }
+        }
+
+        private string GetFileNamePattern(string fileName, LogEventInfo eventInfo, FileInfo fi)
+        {
+            string fileNamePattern;
+
+            if (this.ArchiveFileName == null)
+            {
+                string ext = Path.GetExtension(fileName);
+                fileNamePattern = Path.ChangeExtension(fi.FullName, ".{#}" + ext);
+            }
+            else
+            {
+                //The archive file name is given. There are two possibiliy 
+                //(1) User supplied the Filename with pattern
+                //(2) User supplied the normal filename
+                fileNamePattern = this.ArchiveFileName.Render(eventInfo);
+            }
+            return fileNamePattern;
         }
 
         private bool ShouldAutoArchive(string fileName, LogEventInfo ev, int upcomingWriteSize)
