@@ -630,15 +630,9 @@ namespace NLog.Targets
 #endif
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
-            if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
-            {
-                this.InvalidateCacheItem(fileName);
-                this.DoAutoArchive(fileName, logEvent);
-            }
-
             // Clean up old archives if this is the first time a log record has been written to
             // this log file and the archiving system is date/time based.
-            if (this.ArchiveNumbering == ArchiveNumberingMode.Date  && this.ArchiveEvery != FileArchivePeriod.None)
+            if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None)
             {
                 FileInfo fileInfo = new FileInfo(fileName);
                 if (!fileInfo.Exists)
@@ -647,7 +641,12 @@ namespace NLog.Targets
                     this.DeleteOldDateArchive(fileNamePattern);
                 }
             }
-            
+
+            if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
+            {
+                this.InvalidateCacheItem(fileName);
+                this.DoAutoArchive(fileName, logEvent);
+            }
 
             this.WriteToFile(fileName, bytes, false);
         }
