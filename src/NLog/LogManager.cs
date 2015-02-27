@@ -34,11 +34,13 @@
 namespace NLog
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Threading;
+    using System.Linq;
     using Internal.Fakeables;
     using NLog.Common;
     using NLog.Config;
@@ -51,7 +53,11 @@ namespace NLog
     {
         private static readonly LogFactory factory = new LogFactory();
         private static IAppDomain currentAppDomain;
-        private static readonly System.Collections.Generic.List<System.Reflection.Assembly> _hiddenAssemblies = new System.Collections.Generic.List<System.Reflection.Assembly>();
+        private static GetCultureInfo defaultCultureInfo = () => CultureInfo.CurrentCulture;
+        private static ICollection<Assembly> _hiddenAssemblies;
+
+        private static readonly object lockObject = new object();
+
 
         /// <summary>
         /// Delegate used to set/get the culture in use.
@@ -160,9 +166,9 @@ namespace NLog
             return factory.GetLogger(GetClassFullName());
         }
 
-        internal static System.Reflection.Assembly[] HiddenAssemblies
+        internal static bool IsHiddenAssembly(Assembly assembly)
         {
-            get { return _hiddenAssemblies.ToArray(); }
+            return _hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly);
         }
 
         /// <summary>
@@ -171,14 +177,18 @@ namespace NLog
         /// </summary>
         /// <param name="assembly">The assembly to skip.</param>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void AddHiddenAssembly(System.Reflection.Assembly assembly)
+        public static void AddHiddenAssembly(Assembly assembly)
         {
-            if (_hiddenAssemblies.Contains(assembly))
+            lock (lockObject)
             {
-                return;
-            }
+                if (_hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly))
+                    return;
 
-            _hiddenAssemblies.Add(assembly);
+                _hiddenAssemblies = new HashSet<Assembly>(_hiddenAssemblies ?? Enumerable.Empty<Assembly>())
+                {
+                    assembly
+                };
+            }
         }
 
         /// <summary>

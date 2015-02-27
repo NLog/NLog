@@ -1,0 +1,1 @@
+msbuild src\NLog.proj /t:SyncProjectItems
