@@ -81,8 +81,7 @@ namespace NLog.Targets
         {
             this.Protocol = WebServiceProtocol.Soap11;
             this.Encoding = Encoding.UTF8;
-            //BOM give some issues on encoding
-            this.IncludeBOM = false;
+
         }
 
         /// <summary>
@@ -115,21 +114,6 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         public Encoding Encoding { get; set; }
-
-        /// <summary>
-        /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
-        /// </summary>
-        public bool IncludeBOM { get; set; }
-
-        /// <summary>
-        /// Get the encoding with or without BOM
-        /// </summary>
-        /// <returns></returns>
-        private Encoding GetEncoding()
-        {
-            return Encoding.ConvertEncodingBOM(IncludeBOM);
-        }
-
 
         /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
@@ -274,7 +258,7 @@ namespace NLog.Targets
 
             using (var ms = new MemoryStream())
             {
-                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.GetEncoding() });
+                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.Encoding });
 
                 xtw.WriteStartElement(soapname, "Envelope", soapEnvelopeNamespace);
                 xtw.WriteStartElement("Body", soapEnvelopeNamespace);
@@ -311,25 +295,37 @@ namespace NLog.Targets
         {
             request.ContentType = "application/x-www-form-urlencoded; charset=" + this.Encoding.WebName;
 
-            string separator = string.Empty;
-            using (var ms = new MemoryStream())
+            using (var ms = CreateHttpRequestUrl(parameterValues))
             {
-                var sw = new StreamWriter(ms, this.GetEncoding());
-                sw.Write(string.Empty);
-                int i = 0;
-                foreach (MethodCallParameter parameter in this.Parameters)
-                {
-                    sw.Write(separator);
-                    sw.Write(parameter.Name);
-                    sw.Write("=");
-                    sw.Write(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), true));
-                    separator = "&";
-                    i++;
-                }
-
-                sw.Flush();
                 return ms.ToArray();
             }
+        }
+
+        /// <summary>
+        /// Create the HTTP url from the values
+        /// </summary>
+        /// <param name="parameterValues">values of parameters, index-based</param>
+        /// <remarks>internal for unittesting</remarks>
+        /// <returns>stream with url</returns>
+        internal MemoryStream CreateHttpRequestUrl(object[] parameterValues)
+        {
+            var ms = new MemoryStream();
+            string separator = string.Empty;
+            var sw = new StreamWriter(ms, this.Encoding);
+            sw.Write(string.Empty);
+            int i = 0;
+            foreach (MethodCallParameter parameter in this.Parameters)
+            {
+                sw.Write(separator);
+                sw.Write(parameter.Name);
+                sw.Write("=");
+                sw.Write(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), true));
+                separator = "&";
+                i++;
+            }
+            sw.Flush();
+            return ms;
+
         }
     }
 }

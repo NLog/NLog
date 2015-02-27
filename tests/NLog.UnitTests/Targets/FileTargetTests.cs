@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
+using NLog.LayoutRenderers;
 using Xunit.Extensions;
 
 #if !SILVERLIGHT
@@ -292,7 +292,7 @@ namespace NLog.UnitTests.Targets
 #if NET4_5
                     enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 #else
-                    new Action<string, string, Encoding>(AssertFileContents);
+ new Action<string, string, Encoding>(AssertFileContents);
 #endif
                 assertFileContents(archiveTempName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n",
                     Encoding.UTF8);
@@ -566,14 +566,14 @@ namespace NLog.UnitTests.Targets
         {
             get
             {
-                var booleanValues = new[] {true, false};
-                var timeKindValues = new[] {DateTimeKind.Utc, DateTimeKind.Local};
-                return 
-                    from concurrentWrites in booleanValues 
-                    from keepFileOpen in booleanValues 
+                var booleanValues = new[] { true, false };
+                var timeKindValues = new[] { DateTimeKind.Utc, DateTimeKind.Local };
+                return
+                    from concurrentWrites in booleanValues
+                    from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
-                    from timeKind in timeKindValues 
-                    select new object[] { timeKind, concurrentWrites, keepFileOpen, networkWrites};
+                    from timeKind in timeKindValues
+                    select new object[] { timeKind, concurrentWrites, keepFileOpen, networkWrites };
             }
         }
 
@@ -868,7 +868,7 @@ namespace NLog.UnitTests.Targets
             RollingArchiveTests(enableCompression: true);
         }
 #endif
-        
+
         private void RollingArchiveTests(bool enableCompression)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -921,7 +921,7 @@ namespace NLog.UnitTests.Targets
 #if NET4_5
  enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 #else
-                    new Action<string, string, Encoding>(AssertFileContents);
+ new Action<string, string, Encoding>(AssertFileContents);
 #endif
 
                 AssertFileContents(tempFile,
@@ -1329,7 +1329,7 @@ namespace NLog.UnitTests.Targets
 #if NET4_5
                     enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 #else
-                    new Action<string, string, Encoding>(AssertFileContents);
+ new Action<string, string, Encoding>(AssertFileContents);
 #endif
                 AssertFileContents(tempFile,
                     StringRepeat(250, "eee\n"),
@@ -1434,6 +1434,73 @@ namespace NLog.UnitTests.Targets
                 if (File.Exists(expectedCorrectedTempFile))
                     File.Delete(expectedCorrectedTempFile);
             }
+        }
+
+
+        [Fact]
+        public void FileEncodingTest_utf16()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog>
+    <targets>
+        <target name='d1' type='File'  encoding='utf-16'  />
+    </targets>
+</nlog>");
+
+            var d1 = configuration.FindTargetByName("d1") as FileTarget;
+
+
+            Assert.Equal(d1.Encoding.WebName, "utf-16");
+            Assert.NotNull(d1);
+            var layout = d1.Layout as SimpleLayout;
+            Assert.NotNull(layout);
+
+
+        }
+
+        [Fact]
+        public void FileEncodingTest_utf8_default_BOM()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog>
+    <targets>
+        <target name='d1' type='File'  encoding='utf-8'  />
+    </targets>
+</nlog>");
+
+            var d1 = configuration.FindTargetByName("d1") as FileTarget;
+
+
+            Assert.Equal(d1.Encoding.WebName, "utf-8");
+            var utf8BOM = new byte[] { 239, 187, 191 };
+            Assert.Equal(d1.Encoding.GetPreamble(), utf8BOM);
+            Assert.NotNull(d1);
+            var layout = d1.Layout as SimpleLayout;
+            Assert.NotNull(layout);
+
+
+        }
+         [Fact]
+        public void FileEncodingTest_utf8_default_no_BOM()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog>
+    <targets>
+        <target name='d1' type='File'  encoding='utf-8-nobom'  />
+    </targets>
+</nlog>");
+
+            var d1 = configuration.FindTargetByName("d1") as FileTarget;
+
+
+            Assert.Equal(d1.Encoding.WebName, "utf-8");
+            var emptyBom = new byte[] { };
+            Assert.Equal(d1.Encoding.GetPreamble(), emptyBom);
+            Assert.NotNull(d1);
+            var layout = d1.Layout as SimpleLayout;
+            Assert.NotNull(layout);
+
+
         }
     }
 }
