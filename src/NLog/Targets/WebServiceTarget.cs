@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 namespace NLog.Targets
 {
     using System;
@@ -80,7 +82,12 @@ namespace NLog.Targets
         public WebServiceTarget()
         {
             this.Protocol = WebServiceProtocol.Soap11;
-            this.Encoding = Encoding.UTF8;
+
+            //default NO utf-8 bom 
+            const bool writeBOM = false;
+            this.Encoding = new UTF8Encoding(writeBOM);
+            this.IncludeBOM = writeBOM;
+
 
         }
 
@@ -110,6 +117,13 @@ namespace NLog.Targets
         public WebServiceProtocol Protocol { get; set; }
 
         /// <summary>
+        /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
+        /// 
+        /// This will only work for UTF-8.
+        /// </summary>
+        public bool? IncludeBOM { get; set; }
+
+        /// <summary>
         /// Gets or sets the encoding.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
@@ -125,6 +139,7 @@ namespace NLog.Targets
             throw new NotImplementedException();
         }
 
+
         /// <summary>
         /// Invokes the web service method.
         /// </summary>
@@ -133,7 +148,16 @@ namespace NLog.Targets
         protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
         {
             var request = (HttpWebRequest)WebRequest.Create(this.Url);
-            byte[] postPayload = null;
+            Func<AsyncCallback, IAsyncResult> begin = (r) => request.BeginGetRequestStream(r, null);
+            Func<IAsyncResult, Stream> getStream = request.EndGetRequestStream;
+
+            DoInvoke(parameters, continuation, request, begin, getStream);
+        }
+
+        internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest request, Func<AsyncCallback, IAsyncResult> beginFunc, 
+            Func<IAsyncResult, Stream> getStreamFunc)
+        {
+            Stream postPayload = null;
 
             switch (this.Protocol)
             {
@@ -190,20 +214,24 @@ namespace NLog.Targets
 
             if (postPayload != null && postPayload.Length > 0)
             {
-                request.BeginGetRequestStream(
-                    r =>
+                postPayload.Position = 0;
+                beginFunc(
+                    result =>
                     {
                         try
                         {
-                            using (Stream stream = request.EndGetRequestStream(r))
+                            using (Stream stream = getStreamFunc(result))
                             {
-                                stream.Write(postPayload, 0, postPayload.Length);
+                                WriteStreamAndFixPreamble(postPayload, stream, this.IncludeBOM, this.Encoding);
+
+                                postPayload.Dispose();
                             }
 
                             sendContinuation(null);
                         }
                         catch (Exception ex)
                         {
+                            postPayload.Dispose();
                             InternalLogger.Error(ex.ToString());
                             if (ex.MustBeRethrown())
                             {
@@ -212,8 +240,7 @@ namespace NLog.Targets
 
                             continuation(ex);
                         }
-                    },
-                    null);
+                    });
             }
             else
             {
@@ -221,7 +248,7 @@ namespace NLog.Targets
             }
         }
 
-        private byte[] PrepareSoap11Request(HttpWebRequest request, object[] parameterValues)
+        private MemoryStream PrepareSoap11Request(HttpWebRequest request, object[] parameterValues)
         {
             string soapAction;
             if (this.Namespace.EndsWith("/", StringComparison.Ordinal))
@@ -238,7 +265,7 @@ namespace NLog.Targets
 
         }
 
-        private byte[] PrepareSoap12Request(HttpWebRequest request, object[] parameterValues)
+        private MemoryStream PrepareSoap12Request(HttpWebRequest request, object[] parameterValues)
         {
             return PrepareSoapRequestPost(request, parameterValues, Soap12EnvelopeNamespace, "soap12");
         }
@@ -251,64 +278,48 @@ namespace NLog.Targets
         /// <param name="soapEnvelopeNamespace"></param>
         /// <param name="soapname"></param>
         /// <returns></returns>
-        private byte[] PrepareSoapRequestPost(WebRequest request, object[] parameterValues, string soapEnvelopeNamespace, string soapname)
+        private MemoryStream PrepareSoapRequestPost(WebRequest request, object[] parameterValues, string soapEnvelopeNamespace, string soapname)
         {
             request.Method = "POST";
             request.ContentType = "text/xml; charset=" + this.Encoding.WebName;
 
-            using (var ms = new MemoryStream())
+            var ms = new MemoryStream();
+            XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.Encoding });
+
+            xtw.WriteStartElement(soapname, "Envelope", soapEnvelopeNamespace);
+            xtw.WriteStartElement("Body", soapEnvelopeNamespace);
+            xtw.WriteStartElement(this.MethodName, this.Namespace);
+            int i = 0;
+            foreach (MethodCallParameter par in this.Parameters)
             {
-                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.Encoding });
-
-                xtw.WriteStartElement(soapname, "Envelope", soapEnvelopeNamespace);
-                xtw.WriteStartElement("Body", soapEnvelopeNamespace);
-                xtw.WriteStartElement(this.MethodName, this.Namespace);
-                int i = 0;
-                foreach (MethodCallParameter par in this.Parameters)
-                {
-                    xtw.WriteElementString(par.Name, Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture));
-                    i++;
-                }
-
-                xtw.WriteEndElement(); // methodname
-                xtw.WriteEndElement(); // Body
-                xtw.WriteEndElement(); // soap:Envelope
-                xtw.Flush();
-
-                return ms.ToArray();
+                xtw.WriteElementString(par.Name, Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture));
+                i++;
             }
+
+            xtw.WriteEndElement(); // methodname
+            xtw.WriteEndElement(); // Body
+            xtw.WriteEndElement(); // soap:Envelope
+            xtw.Flush();
+
+            return ms;
         }
 
-        private byte[] PreparePostRequest(HttpWebRequest request, object[] parameterValues)
+        private MemoryStream PreparePostRequest(HttpWebRequest request, object[] parameterValues)
         {
             request.Method = "POST";
             return PrepareHttpRequest(request, parameterValues);
         }
 
-        private byte[] PrepareGetRequest(HttpWebRequest request, object[] parameterValues)
+        private MemoryStream PrepareGetRequest(HttpWebRequest request, object[] parameterValues)
         {
             request.Method = "GET";
             return PrepareHttpRequest(request, parameterValues);
         }
 
-        private byte[] PrepareHttpRequest(HttpWebRequest request, object[] parameterValues)
+        private MemoryStream PrepareHttpRequest(HttpWebRequest request, object[] parameterValues)
         {
             request.ContentType = "application/x-www-form-urlencoded; charset=" + this.Encoding.WebName;
 
-            using (var ms = CreateHttpRequestUrl(parameterValues))
-            {
-                return ms.ToArray();
-            }
-        }
-
-        /// <summary>
-        /// Create the HTTP url from the values
-        /// </summary>
-        /// <param name="parameterValues">values of parameters, index-based</param>
-        /// <remarks>internal for unittesting</remarks>
-        /// <returns>stream with url</returns>
-        internal MemoryStream CreateHttpRequestUrl(object[] parameterValues)
-        {
             var ms = new MemoryStream();
             string separator = string.Empty;
             var sw = new StreamWriter(ms, this.Encoding);
@@ -325,7 +336,76 @@ namespace NLog.Targets
             }
             sw.Flush();
             return ms;
+        }
+
+        //private static byte[] StreamToBytesArray(MemoryStream stream, bool? writeUtf8BOM, Encoding encoding)
+        //{
+        //    var streamToBytesArray = stream.ToArray();
+
+        //    return FixPreambleBytes(streamToBytesArray, writeUtf8BOM, encoding);
+        //}
+
+        /// <summary>
+        /// Write from input to output. Fix the UTF-8 bom
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="output"></param>
+        /// <param name="writeUtf8BOM"></param>
+        /// <param name="encoding"></param>
+        private static void WriteStreamAndFixPreamble(Stream input, Stream output, bool? writeUtf8BOM, Encoding encoding)
+        {
+            //only when utf-8 encoding is used, the Encoding preamble is optional
+            var nothingToDo = writeUtf8BOM == null || !(encoding is UTF8Encoding);
+
+            const int preambleSize = 3;
+            if (!nothingToDo)
+            {
+                //it's UTF-8
+                var hasBomInEncoding = encoding.GetPreamble().Length == preambleSize;
+
+                //BOM already in Encoding.
+                nothingToDo = writeUtf8BOM.Value && hasBomInEncoding;
+
+                //Bom already not in Encoding
+                nothingToDo = nothingToDo || !writeUtf8BOM.Value && !hasBomInEncoding;
+            }
+            var offset = nothingToDo ? 0 : preambleSize;
+            input.CopyWithOffset(output, offset);
 
         }
+
+
+        //private static byte[] FixPreambleBytes(byte[] streamToBytesArray, bool? writeUtf8BOM, Encoding encoding)
+        //{
+        //    var nothingToDo = writeUtf8BOM == null || !(encoding is UTF8Encoding);
+
+        //    const int preambleSize = 3;
+        //    if (!nothingToDo)
+        //    {
+        //        //it's UTF-8
+        //        var hasBomInEncoding = encoding.GetPreamble().Length == preambleSize;
+
+        //        //BOM already in Encoding.
+        //        nothingToDo = writeUtf8BOM.Value && hasBomInEncoding;
+
+        //        //Bom already not in Encoding
+        //        nothingToDo = nothingToDo || !writeUtf8BOM.Value && !hasBomInEncoding;
+        //    }
+
+        //    if (nothingToDo)
+        //    {
+        //        //no BOM skipping on UTF-16 or 32
+        //        return streamToBytesArray;
+        //    }
+
+        //    //it's UTF-8
+        //    if (writeUtf8BOM.Value)
+        //    {
+        //        //need bom,
+        //        return EncodingHelpers.Utf8BOM.Concat(streamToBytesArray).ToArray();
+        //    }
+        //    //skip BOM
+        //    return streamToBytesArray.Skip(preambleSize).ToArray();
+        //}
     }
 }

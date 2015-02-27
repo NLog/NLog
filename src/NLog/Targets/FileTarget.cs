@@ -267,20 +267,6 @@ namespace NLog.Targets
         public Encoding Encoding { get; set; }
 
         /// <summary>
-        /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
-        /// </summary>
-        public bool IncludeBOM { get; set; }
-
-        /// <summary>
-        /// Get the encoding with or without BOM
-        /// </summary>
-        /// <returns></returns>
-        private Encoding GetEncoding()
-        {
-            return Encoding.ConvertEncodingBOM(IncludeBOM);
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether concurrent writes to the log file by multiple processes on the same host.
         /// </summary>
         /// <remarks>
@@ -718,7 +704,7 @@ namespace NLog.Targets
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
             string renderedText = this.GetFormattedMessage(logEvent) + this.NewLineChars;
-            return this.TransformBytes(this.GetEncoding().GetBytes(renderedText));
+            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
         }
 
         /// <summary>
@@ -1637,7 +1623,7 @@ namespace NLog.Targets
             }
 
             string renderedText = layout.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
-            return this.TransformBytes(this.GetEncoding().GetBytes(renderedText));
+            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
         }
 
         private void InvalidateCacheItem(string fileName)

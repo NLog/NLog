@@ -256,15 +256,7 @@ namespace NLog.Internal
 
             if (type == typeof(Encoding))
             {
-
-                if (value.Equals("utf-8-nobom", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    newValue = new UTF8Encoding(false);
-                }
-                else
-                {
-                    newValue = Encoding.GetEncoding(value);    
-                }
+                newValue = Encoding.GetEncoding(value);    
                 return true;
             }
 

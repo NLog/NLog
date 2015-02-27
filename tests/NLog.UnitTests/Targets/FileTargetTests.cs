@@ -1486,7 +1486,7 @@ namespace NLog.UnitTests.Targets
             var configuration = CreateConfigurationFromString(@"
 <nlog>
     <targets>
-        <target name='d1' type='File'  encoding='utf-8-nobom'  />
+        <target name='d1' type='File'  encoding='utf-8'  />
     </targets>
 </nlog>");
 
@@ -1499,7 +1499,9 @@ namespace NLog.UnitTests.Targets
             Assert.NotNull(d1);
             var layout = d1.Layout as SimpleLayout;
             Assert.NotNull(layout);
-
+#if !DEBUG
+             fix me
+#endif
 
         }
     }

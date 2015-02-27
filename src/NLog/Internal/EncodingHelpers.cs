@@ -63,5 +63,10 @@ namespace NLog.Internal
 
             return encoding;
         }
+
+        /// <summary>
+        /// UTF-8 BOM 239, 187, 191
+        /// </summary>
+        internal static readonly byte[] Utf8BOM = { 0xEF, 0xBB, 0xBF };
     }
 }
