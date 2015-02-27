@@ -305,6 +305,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg1')
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg2')
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg4')
 Close()
+Dispose()
 Open('Database=MyLogger2').
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
 ";
