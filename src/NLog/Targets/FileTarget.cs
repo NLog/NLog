@@ -72,6 +72,8 @@ namespace NLog.Targets
 
         private readonly DynamicFileArchive fileArchive;
 
+        private string previousFileName;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
@@ -105,6 +107,8 @@ namespace NLog.Targets
             this.fileArchive = new DynamicFileArchive(MaxArchiveFiles);
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
+
+            this.previousFileName = "";
         }
 
         /// <summary>
@@ -616,6 +620,7 @@ namespace NLog.Targets
             }
         }
 
+
         /// <summary>
         /// Writes the specified logging event to a file specified in the FileName 
         /// parameter.
@@ -634,11 +639,12 @@ namespace NLog.Targets
             // this log file and the archiving system is date/time based.
             if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None)
             {
-                FileInfo fileInfo = new FileInfo(fileName);
-                if (!fileInfo.Exists)
+                if (this.previousFileName != fileName)
                 {
+                    FileInfo fileInfo = new FileInfo(fileName);
                     string fileNamePattern = this.GetFileNamePattern(fileName, logEvent, fileInfo);
                     this.DeleteOldDateArchive(fileNamePattern);
+                    this.previousFileName = fileName;
                 }
             }
 
