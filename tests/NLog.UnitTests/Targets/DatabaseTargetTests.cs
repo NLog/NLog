@@ -83,12 +83,15 @@ namespace NLog.UnitTests.Targets
             string expectedLog = @"Open('FooBar').
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg1')
 Close()
+Dispose()
 Open('FooBar').
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg2')
 Close()
+Dispose()
 Open('FooBar').
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
 Close()
+Dispose()
 ";
 
             AssertLog(expectedLog);
@@ -127,6 +130,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg1')
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg2')
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
 Close()
+Dispose()
 ";
 
             AssertLog(expectedLog);
@@ -167,6 +171,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             MockDbConnection.ClearLog();
             dt.Close();
             expectedLog = @"Close()
+Dispose()
 ";
 
             AssertLog(expectedLog);
@@ -212,6 +217,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             MockDbConnection.ClearLog();
             dt.Close();
             expectedLog = @"Close()
+Dispose()
 ";
 
             AssertLog(expectedLog);
@@ -246,9 +252,11 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg1')
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg2')
 Close()
+Dispose()
 Open('Database=MyLogger2').
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
 Close()
+Dispose()
 Open('Database=MyLogger').
 ExecuteNonQuery: INSERT INTO FooBar VALUES('msg4')
 ";
@@ -258,6 +266,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg4')
             MockDbConnection.ClearLog();
             dt.Close();
             expectedLog = @"Close()
+Dispose()
 ";
 
             AssertLog(expectedLog);
@@ -315,6 +324,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES('msg3')
             MockDbConnection.ClearLog();
             dt.Close();
             expectedLog = @"Close()
+Dispose()
 ";
 
             AssertLog(expectedLog);
@@ -401,6 +411,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
             MockDbConnection.ClearLog();
             dt.Close();
             expectedLog = @"Close()
+Dispose()
 ";
 
             AssertLog(expectedLog);
@@ -500,6 +511,7 @@ Parameter #2 Value=MyLogger2
 Add Parameter Parameter #2
 ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
 Close()
+Dispose()
 ";
             AssertLog(expectedLog);
         }
@@ -585,12 +597,15 @@ Close()
             string expectedLog = @"Open('cannotexecute').
 ExecuteNonQuery: not important
 Close()
+Dispose()
 Open('cannotexecute').
 ExecuteNonQuery: not important
 Close()
+Dispose()
 Open('cannotexecute').
 ExecuteNonQuery: not important
 Close()
+Dispose()
 ";
             AssertLog(expectedLog);
         }
@@ -624,12 +639,15 @@ Close()
             string expectedLog = @"Open('cannotexecute').
 ExecuteNonQuery: not important
 Close()
+Dispose()
 Open('cannotexecute').
 ExecuteNonQuery: not important
 Close()
+Dispose()
 Open('cannotexecute').
 ExecuteNonQuery: not important
 Close()
+Dispose()
 ";
             AssertLog(expectedLog);
         }
