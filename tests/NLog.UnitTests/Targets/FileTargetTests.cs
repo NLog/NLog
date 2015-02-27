@@ -562,13 +562,11 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        // Test commented out as it takes 5 minutes to run
-        /*
         [Fact]
         public void DeleteArchiveFilesByDateWithDateName()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            var tempFile = Path.Combine(tempPath, "${date:format=yyyyMMddHHmm}.txt");
+            var tempFile = Path.Combine(tempPath, "${date:format=yyyyMMddHHmmssfff}.txt");
             try
             {
                 var ft = new FileTarget
@@ -578,7 +576,7 @@ namespace NLog.UnitTests.Targets
                     ArchiveEvery = FileArchivePeriod.Minute,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Date,
-                    ArchiveDateFormat = "yyyyMMddHHmm", //make sure the minutes are set in the filename
+                    ArchiveDateFormat = "yyyyMMddHHmmssfff", //make sure the milliseconds are set in the filename
                     Layout = "${message}",
                     MaxArchiveFiles = 3
                 };
@@ -589,7 +587,7 @@ namespace NLog.UnitTests.Targets
                 {
                     logger.Debug("123456789");
                     //build in a  sleep to make sure the current time is reflected in the filename
-                    Thread.Sleep(60000);
+                    Thread.Sleep(50);
                 }
                 //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
                 LogManager.Configuration = null;
@@ -600,9 +598,9 @@ namespace NLog.UnitTests.Targets
 
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
-                //writing one minute later will trigger the cleanup of old archived files
+                //writing 50ms later will trigger the cleanup of old archived files
                 //as stated by the MaxArchiveFiles property, but will only delete the oldest file
-                Thread.Sleep(60000);
+                Thread.Sleep(50);
                 logger.Debug("123456789");
                 LogManager.Configuration = null;
 
@@ -625,7 +623,7 @@ namespace NLog.UnitTests.Targets
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
-        }*/
+        }
 
         public static IEnumerable<object[]> DateArchive_UsesDateFromCurrentTimeSource_TestParameters
         {
