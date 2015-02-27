@@ -112,7 +112,7 @@
     </TargetFramework>
     <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildNetFX35)'=='true'">
         <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
-        <ToolsVersion>3.5</ToolsVersion>
+        <ToolsVersion>4.0</ToolsVersion>
         <NuGetDir>net35</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
@@ -224,15 +224,15 @@
   </Target>
 
   <Target Name="NetFx35Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll" ContinueOnError="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
   </Target>
 
   <Target Name="NetFx40Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLog.UnitTests.dll" ContinueOnError="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
   </Target>
 
   <Target Name="NetFx45Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" ContinueOnError="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
   </Target>
 
   <Target Name="SL4Test">

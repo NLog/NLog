@@ -55,11 +55,14 @@ namespace NLog
         private static IAppDomain currentAppDomain;
         private static GetCultureInfo defaultCultureInfo = () => CultureInfo.CurrentCulture;
         private static ICollection<Assembly> _hiddenAssemblies;
+
         private static readonly object lockObject = new object();
+
 
         /// <summary>
         /// Delegate used to set/get the culture in use.
         /// </summary>
+        [Obsolete]
         public delegate CultureInfo GetCultureInfo();
 
 #if !SILVERLIGHT && !MONO
@@ -143,10 +146,11 @@ namespace NLog
         /// <summary>
         /// Gets or sets the default culture to use.
         /// </summary>
+        [Obsolete("Use Configuration.DefaultCultureInfo property instead")]
         public static GetCultureInfo DefaultCultureInfo
         {
-            get { return defaultCultureInfo; }
-            set { defaultCultureInfo = value; }
+            get { return () => factory.DefaultCultureInfo ?? CultureInfo.CurrentCulture; }
+            set { throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo."); }
         }
 
         /// <summary>

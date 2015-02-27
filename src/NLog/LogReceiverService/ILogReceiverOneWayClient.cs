@@ -31,36 +31,38 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+namespace NLog.LogReceiverService
 {
-    using System.Text;
-    using System.Web;
-
+    using System;
+#if WCF_SUPPORTED
+    using System.ServiceModel;
+#endif
     /// <summary>
-    /// ASP.NET Session ID.
-    /// </summary>                 
-    [LayoutRenderer("aspnet-sessionid")]
-    public class AspNetSessionIDLayoutRenderer : LayoutRenderer
+    /// Service contract for Log Receiver client.
+    /// </summary>
+#if WCF_SUPPORTED
+    [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace, ConfigurationName = "NLog.LogReceiverService.ILogReceiverOneWayClient")]
+#endif
+    public interface ILogReceiverOneWayClient
     {
         /// <summary>
-        /// Renders the ASP.NET Session ID appends it to the specified <see cref="StringBuilder" />.
+        /// Begins processing of log messages.
         /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            HttpContext context = HttpContext.Current;
-            if (context == null)
-            {
-                return;
-            }
+        /// <param name="events">The events.</param>
+        /// <param name="callback">The callback.</param>
+        /// <param name="asyncState">Asynchronous state.</param>
+        /// <returns>
+        /// IAsyncResult value which can be passed to <see cref="EndProcessLogMessages"/>.
+        /// </returns>
+#if WCF_SUPPORTED
+        [OperationContractAttribute(IsOneWay = true, AsyncPattern = true, Action = "http://nlog-project.org/ws/ILogReceiverOneWayServer/ProcessLogMessages")]
+#endif
+        IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState);
 
-            if (context.Session == null)
-            {
-                return;
-            }
-
-            builder.Append(context.Session.SessionID);
-        }
+        /// <summary>
+        /// Ends asynchronous processing of log messages.
+        /// </summary>
+        /// <param name="result">The result.</param>
+        void EndProcessLogMessages(IAsyncResult result);
     }
 }
