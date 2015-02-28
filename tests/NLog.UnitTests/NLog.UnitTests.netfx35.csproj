@@ -9,8 +9,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v4.0</TargetFrameworkVersion>
-    <ApplicationIcon></ApplicationIcon>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -19,8 +21,10 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <SignAssembly>true</SignAssembly>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <FileUpgradeFlags></FileUpgradeFlags>
-    <UpgradeBackupLocation></UpgradeBackupLocation>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\src\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -121,6 +125,7 @@
     <Compile Include="Filters\WhenNotEqualTests.cs" />
     <Compile Include="Fluent\LogBuilderTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
+    <Compile Include="Internal\EnumHelpersTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
@@ -223,6 +228,10 @@
     <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.netfx35.csproj">
       <Project>{F801A1F9-1024-4446-BF9E-A923137340B8}</Project>
       <Name>NLog.Extended.netfx35</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NLogAutoLoadExtension\NLogAutoLoadExtension.netfx35.csproj">
+      <Project>{0aa8fb16-a377-4541-bef6-81d437d7b5e9}</Project>
+      <Name>NLogAutloadExtension.netfx35</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\NLog\NLog.netfx35.csproj">
       <Project>{C124B63D-1658-4311-9BA8-9C3CFAF9B32E}</Project>

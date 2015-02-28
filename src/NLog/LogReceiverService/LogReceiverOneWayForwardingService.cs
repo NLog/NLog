@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,61 +31,33 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if WCF_SUPPORTED && !SILVERLIGHT
 
-namespace NLog.Web
+namespace NLog.LogReceiverService
 {
     using System;
-    using System.Web;
+    using System.Collections.Generic;
 
     /// <summary>
-    /// ASP.NET HttpModule that enables NLog to hook BeginRequest and EndRequest events easily.
+    /// Implementation of <see cref="ILogReceiverOneWayServer" /> which forwards received logs through <see cref="LogManager"/> or a given <see cref="LogFactory"/>.
     /// </summary>
-    public class NLogHttpModule : IHttpModule
+    public class LogReceiverOneWayForwardingService : BaseLogReceiverForwardingService, ILogReceiverOneWayServer
     {
         /// <summary>
-        /// Event to be raised at the end of each HTTP Request.
+        /// Initializes a new instance of the <see cref="LogReceiverOneWayForwardingService"/> class.
         /// </summary>
-        public static event EventHandler EndRequest;
-
-        /// <summary>
-        /// Event to be raised at the beginning of each HTTP Request.
-        /// </summary>
-        public static event EventHandler BeginRequest;
-
-        /// <summary>
-        /// Initializes the HttpModule.
-        /// </summary>
-        /// <param name="application">
-        /// ASP.NET application.
-        /// </param>
-        public void Init(HttpApplication application)
-        {
-            application.BeginRequest += this.BeginRequestHandler;
-            application.EndRequest += this.EndRequestHandler;
-        }
-
-        /// <summary>
-        /// Disposes the module.
-        /// </summary>
-        public void Dispose()
+        public LogReceiverOneWayForwardingService()
+            : this(null)
         {
         }
 
-        private void BeginRequestHandler(object sender, EventArgs args)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogReceiverOneWayForwardingService"/> class.
+        /// </summary>
+        /// <param name="logFactory">The log factory.</param>
+        public LogReceiverOneWayForwardingService(LogFactory logFactory)
+            : base(logFactory)
         {
-            if (BeginRequest != null)
-            {
-                BeginRequest(sender, args);
-            }
-        }
-
-        private void EndRequestHandler(object sender, EventArgs args)
-        {
-            if (EndRequest != null)
-            {
-                EndRequest(sender, args);
-            }
         }
     }
 }

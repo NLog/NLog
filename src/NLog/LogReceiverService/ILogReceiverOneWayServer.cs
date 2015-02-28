@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,41 +31,25 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+#if WCF_SUPPORTED && !SILVERLIGHT
+
+namespace NLog.LogReceiverService
 {
-    using System.Text;
-    using System.Web;
+    using System.ServiceModel;
 
     /// <summary>
-    /// ASP.NET User variable.
+    /// Service contract for Log Receiver server.
     /// </summary>
-    [LayoutRenderer("aspnet-user-identity")]
-    public class AspNetUserIdentityLayoutRenderer : LayoutRenderer
+    [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
+    public interface ILogReceiverOneWayServer
     {
         /// <summary>
-        /// Renders the specified ASP.NET User.Identity.Name variable and appends it to the specified <see cref="StringBuilder" />.
+        /// Processes the log messages.
         /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            HttpContext context = HttpContext.Current;
-            if (context == null)
-            {
-                return;
-            }
-
-            if (context.User == null)
-            {
-                return;
-            }
-
-            if (context.User.Identity == null)
-            {
-                return;
-            }
-
-            builder.Append(context.User.Identity.Name);
-        }
+        /// <param name="events">The events.</param>
+        [OperationContract(IsOneWay=true)]
+        void ProcessLogMessages(NLogEvents events);
     }
 }
+
+#endif

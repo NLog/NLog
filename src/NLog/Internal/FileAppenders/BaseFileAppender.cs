@@ -60,7 +60,7 @@ namespace NLog.Internal.FileAppenders
         {
             this.CreateFileParameters = createParameters;
             this.FileName = fileName;
-            this.OpenTime = TimeSource.Current.Time.ToLocalTime();
+            this.OpenTime = DateTime.UtcNow; // to be consistent with timeToKill in FileTarget.AutoClosingTimerCallback
             this.LastWriteTime = DateTime.MinValue;
         }
 
@@ -73,13 +73,13 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the last write time.
         /// </summary>
-        /// <value>The last write time.</value>
+        /// <value>The last write time. DateTime value must be of UTC kind.</value>
         public DateTime LastWriteTime { get; private set; }
 
         /// <summary>
         /// Gets the open time of the file.
         /// </summary>
-        /// <value>The open time.</value>
+        /// <value>The open time. DateTime value must be of UTC kind.</value>
         public DateTime OpenTime { get; private set; }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the file info.
         /// </summary>
-        /// <param name="lastWriteTime">The last write time.</param>
+        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
         /// <param name="fileLength">Length of the file.</param>
         /// <returns>True if the operation succeeded, false otherwise.</returns>
         public abstract bool GetFileInfo(out DateTime lastWriteTime, out long fileLength);
@@ -138,13 +138,14 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         protected void FileTouched()
         {
-            this.LastWriteTime = TimeSource.Current.Time.ToLocalTime();
+            // always use system time in UTC to be consistent with FileInfo.LastWriteTimeUtc
+            this.LastWriteTime = DateTime.UtcNow;
         }
 
         /// <summary>
         /// Records the last write time for a file to be specific date.
         /// </summary>
-        /// <param name="dateTime">Date and time when the last write occurred.</param>
+        /// <param name="dateTime">Date and time when the last write occurred. The value must be of UTC kind.</param>
         protected void FileTouched(DateTime dateTime)
         {
             this.LastWriteTime = dateTime;
