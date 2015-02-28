@@ -53,7 +53,6 @@ namespace NLog
     {
         private static readonly LogFactory factory = new LogFactory();
         private static IAppDomain currentAppDomain;
-        private static GetCultureInfo defaultCultureInfo = () => CultureInfo.CurrentCulture;
         private static ICollection<Assembly> _hiddenAssemblies;
 
         private static readonly object lockObject = new object();
