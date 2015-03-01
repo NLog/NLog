@@ -33,6 +33,15 @@
    <Customize FileSet="ExcludedFromStyleCop" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
    </Customize>
+   
+  <FileSet Name="logger.tt">
+    <Include File="Logger1.cs" />
+  </FileSet>
+  <Customize FileSet="logger.tt" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <AutoGen>True</AutoGen>
+    <DesignTime>True</DesignTime>
+    <DependentUpon>Logger.tt</DependentUpon>
+  </Customize>
 
    <Project File="NLog.sl4.csproj">
      <ItemGroup Name="Compile">

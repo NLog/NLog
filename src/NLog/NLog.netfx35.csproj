@@ -27,8 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Debug</OutputPath>
-    <CodeAnalysisRules>
-    </CodeAnalysisRules>
+    <CodeAnalysisRules></CodeAnalysisRules>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -285,6 +284,11 @@
     <Compile Include="LogFactory.cs" />
     <Compile Include="LogFactory-T.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="Logger1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Logger.tt</DependentUpon>
+    </Compile>
     <Compile Include="Logger-Conditional.cs" />
     <Compile Include="LoggerImpl.cs" />
     <Compile Include="Logger-V1Compat.cs">
