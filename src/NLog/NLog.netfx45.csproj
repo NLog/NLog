@@ -400,6 +400,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Logger.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Logger1.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StyleCopTargetsFile)" Condition="Exists('$(StyleCopTargetsFile)')" />
