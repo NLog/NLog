@@ -27,7 +27,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Debug</OutputPath>
-    <CodeAnalysisRules></CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -403,4 +404,13 @@
     </ItemGroup>
   </Target>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <ItemGroup>
+    <None Include="Logger.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Logger1.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
 </Project>
