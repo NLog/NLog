@@ -399,6 +399,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Migrated rules for NLog.sl4.ruleset" />
+    <None Include="Logger.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Logger1.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
