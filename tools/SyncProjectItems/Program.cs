@@ -39,6 +39,9 @@ namespace SyncProjectItems
     using System.Linq;
     using System.Xml.Linq;
 
+    /// <summary>
+    /// Read ProjectFileInfo.xml and sync .csproj files (defined in ProjectFileInfo.xml)
+    /// </summary>
     class Program
     {
         private static XNamespace MSBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
@@ -77,6 +80,8 @@ namespace SyncProjectItems
                 foreach (var itemGroup in project.Elements("ItemGroup"))
                 {
                     string itemGroupName = (string)itemGroup.Attribute("Name");
+                    var keepOldAttr = itemGroup.Attribute("KeepOldFiles");
+                    bool keepOldFiles = keepOldAttr != null && bool.Parse(keepOldAttr.Value);
                     var contents = new HashSet<string>();
                     foreach (var fileSetElement in itemGroup.Elements("FileSet"))
                     {
@@ -85,20 +90,36 @@ namespace SyncProjectItems
 
                         if (include != null)
                         {
-                            contents.UnionWith(filesets[include]);
+                            var fileset = GetFileset(filesets, include);
+                            contents.UnionWith(fileset);
                         }
 
                         if (exclude != null)
                         {
-                            contents.ExceptWith(filesets[exclude]);
+                            var fileset = GetFileset(filesets, exclude);
+                            contents.ExceptWith(fileset);
                         }
                     }
 
                     Console.WriteLine("  <{0}/>: {1} items", itemGroupName, contents.Count);
 
-                    var existingItemGroup = projectContents.Elements(MSBuildNamespace + "ItemGroup").Where(c => c.Elements(MSBuildNamespace + itemGroupName).Any()).First();
-                    existingItemGroup.Elements().Remove();
+                    var xName = MSBuildNamespace + "ItemGroup";
+                    var projectItemGroup = projectContents.Elements(xName).FirstOrDefault(c => c.Elements(MSBuildNamespace + itemGroupName).Any());
 
+                    if (projectItemGroup != null)
+                    {
+                        //remove old elemens
+                        if (!keepOldFiles)
+                            projectItemGroup.Elements().Remove();
+                    }
+                    else
+                    {
+                        //cerate new group
+                        projectItemGroup = new XElement(xName);
+                        projectContents.Add(projectItemGroup);
+                    }
+
+                    //add files
                     foreach (var filename in contents.OrderBy(c => c))
                     {
                         var item = new XElement(MSBuildNamespace + itemGroupName, new XAttribute("Include", filename));
@@ -118,7 +139,7 @@ namespace SyncProjectItems
                             }
                         }
 
-                        existingItemGroup.Add(item);
+                        projectItemGroup.Add(item);
                     }
 
                 }
@@ -134,6 +155,16 @@ namespace SyncProjectItems
                     Console.WriteLine("  Project file is up-to-date.");
                 }
             }
+        }
+
+        private static IEnumerable<string> GetFileset(Dictionary<string, HashSet<string>> filesets, string name)
+        {
+            if (!filesets.ContainsKey(name))
+            {
+                throw new Exception(string.Format("Fileset with key {0} is not found (case sensitive)", name));
+            }
+
+            return filesets[name];
         }
 
         private static Dictionary<string, HashSet<string>> LoadFileSets(XElement projectDescriptor, string baseDirectory)
