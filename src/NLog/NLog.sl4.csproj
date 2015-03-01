@@ -294,6 +294,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Logger.tt</DependentUpon>
     </Compile>
+    <Compile Include="Logger-Conditional.cs" />
     <Compile Include="LoggerImpl.cs" />
     <Compile Include="Logger-V1Compat.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
