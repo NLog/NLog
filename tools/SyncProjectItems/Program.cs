@@ -39,6 +39,9 @@ namespace SyncProjectItems
     using System.Linq;
     using System.Xml.Linq;
 
+    /// <summary>
+    /// Read ProjectFileInfo.xml and sync .csproj files (defined in ProjectFileInfo.xml)
+    /// </summary>
     class Program
     {
         private static XNamespace MSBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
@@ -77,6 +80,8 @@ namespace SyncProjectItems
                 foreach (var itemGroup in project.Elements("ItemGroup"))
                 {
                     string itemGroupName = (string)itemGroup.Attribute("Name");
+                    var keepOldAttr = itemGroup.Attribute("KeepOldFiles");
+                    bool keepOldFiles = keepOldAttr != null && bool.Parse(keepOldAttr.Value);
                     var contents = new HashSet<string>();
                     foreach (var fileSetElement in itemGroup.Elements("FileSet"))
                     {
@@ -85,23 +90,53 @@ namespace SyncProjectItems
 
                         if (include != null)
                         {
-                            contents.UnionWith(filesets[include]);
+                            var fileset = GetFileset(filesets, include);
+                            contents.UnionWith(fileset);
                         }
 
                         if (exclude != null)
                         {
-                            contents.ExceptWith(filesets[exclude]);
+                            var fileset = GetFileset(filesets, exclude);
+                            contents.ExceptWith(fileset);
                         }
                     }
 
                     Console.WriteLine("  <{0}/>: {1} items", itemGroupName, contents.Count);
 
-                    var existingItemGroup = projectContents.Elements(MSBuildNamespace + "ItemGroup").Where(c => c.Elements(MSBuildNamespace + itemGroupName).Any()).First();
-                    existingItemGroup.Elements().Remove();
+                    var fullItemGroup = MSBuildNamespace + "ItemGroup";
+                    var fullItemGroupName = MSBuildNamespace + itemGroupName;
+                    var projectItemGroup = projectContents.Elements(fullItemGroup).FirstOrDefault(c => c.Elements(fullItemGroupName).Any());
+                    var groupIsEmpty = false;
 
+                    if (projectItemGroup != null)
+                    {
+                        //remove old elemens
+                        if (!keepOldFiles)
+                        {
+                            projectItemGroup.Elements().Remove();
+                            groupIsEmpty = true;
+                        }
+                    }
+                    else
+                    {
+                        //create new group
+                        projectItemGroup = new XElement(fullItemGroup);
+                        projectContents.Add(projectItemGroup);
+                        groupIsEmpty = true;
+                    }
+                    var xElementComparer = new XElementIncludeAttrComparer();
+                    //add files
                     foreach (var filename in contents.OrderBy(c => c))
                     {
-                        var item = new XElement(MSBuildNamespace + itemGroupName, new XAttribute("Include", filename));
+                        var item = new XElement(fullItemGroupName, new XAttribute("Include", filename));
+
+                        if (!groupIsEmpty)
+                        {
+                            //ignore if already there
+                           
+                            if (projectItemGroup.Elements().Contains(item, xElementComparer))
+                                break;
+                        }
 
                         foreach (var customize in projectDescriptor.Elements(MSBuildNamespace + "Customize"))
                         {
@@ -118,7 +153,7 @@ namespace SyncProjectItems
                             }
                         }
 
-                        existingItemGroup.Add(item);
+                        projectItemGroup.Add(item);
                     }
 
                 }
@@ -134,6 +169,16 @@ namespace SyncProjectItems
                     Console.WriteLine("  Project file is up-to-date.");
                 }
             }
+        }
+
+        private static IEnumerable<string> GetFileset(Dictionary<string, HashSet<string>> filesets, string name)
+        {
+            if (!filesets.ContainsKey(name))
+            {
+                throw new Exception(string.Format("Fileset with key {0} is not found (case sensitive)", name));
+            }
+
+            return filesets[name];
         }
 
         private static Dictionary<string, HashSet<string>> LoadFileSets(XElement projectDescriptor, string baseDirectory)
@@ -202,5 +247,51 @@ namespace SyncProjectItems
                 FindMatchingFiles(fileList, fileName, dir, prefix + baseName + "\\", add);
             }
         }
+
+        /// <summary>
+        /// Compare xelemens by inlude attr
+        /// </summary>
+        private class XElementIncludeAttrComparer : IEqualityComparer<XElement>
+        {
+           
+            #region Implementation of IEqualityComparer<in XElement>
+
+            /// <summary>
+            /// Determines whether the specified objects are equal.
+            /// </summary>
+            /// <returns>
+            /// true if the specified objects are equal; otherwise, false.
+            /// </returns>
+            /// <param name="x">The first object of type <paramref name="T"/> to compare.</param><param name="y">The second object of type <paramref name="T"/> to compare.</param>
+            public bool Equals(XElement x, XElement y)
+            {
+                if (x == null) return y == null;
+
+                var includeXAttr = x.Attribute("Include");
+                var includeYAttr = y.Attribute("Include");
+
+                if (includeXAttr == null) return includeYAttr == null;
+                return  x.Name == y.Name && includeXAttr.Value == includeYAttr.Value;
+            }
+
+            /// <summary>
+            /// Returns a hash code for the specified object.
+            /// </summary>
+            /// <returns>
+            /// A hash code for the specified object.
+            /// </returns>
+            /// <param name="obj">The <see cref="T:System.Object"/> for which a hash code is to be returned.</param><exception cref="T:System.ArgumentNullException">The type of <paramref name="obj"/> is a reference type and <paramref name="obj"/> is null.</exception>
+            public int GetHashCode(XElement obj)
+            {
+                throw new NotSupportedException();
+            }
+
+            #endregion
+
+
+
+        }
     }
+
+    
 }
