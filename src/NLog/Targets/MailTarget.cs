@@ -436,7 +436,7 @@ namespace NLog.Targets
             var renderedFrom = this.From == null ? null : this.From.Render(lastEvent);
             if (string.IsNullOrEmpty(renderedFrom))
             {
-                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "From"));
+                throw new NLogRuntimeException(RequiredPropertyIsEmptyFormat, "From");
             }
             msg.From = new MailAddress(renderedFrom);
 
@@ -446,7 +446,7 @@ namespace NLog.Targets
 
             if (!addedTo && !addedCc && !addedBcc)
             {
-                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "To/Cc/Bcc"));
+                throw new NLogRuntimeException(RequiredPropertyIsEmptyFormat, "To/Cc/Bcc");
             }
 
             msg.Subject = this.Subject == null ? string.Empty : this.Subject.Render(lastEvent).Trim();
