@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 #if !SILVERLIGHT
 
 namespace NLog.Targets
@@ -261,10 +263,20 @@ namespace NLog.Targets
             }
         }
 
-        private void ProcessSingleMailMessage(List<AsyncLogEventInfo> events)
+        /// <summary>
+        /// Create mail and send with SMTP
+        /// </summary>
+        /// <param name="events">event printed in the body of the event</param>
+        private void ProcessSingleMailMessage([NotNull] List<AsyncLogEventInfo> events)
         {
+
             try
             {
+                if (events.Count == 0)
+                {
+                    throw new NLogRuntimeException("We need at least one event.");
+                }
+
                 LogEventInfo firstEvent = events[0].LogEvent;
                 LogEventInfo lastEvent = events[events.Count - 1].LogEvent;
 
@@ -300,7 +312,7 @@ namespace NLog.Targets
                 {
                     throw;
                 }
-                
+
 
                 foreach (var ev in events)
                 {
@@ -380,47 +392,38 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Create key for grouping. Needed for multiple events in one mailmessage
+        /// </summary>
+        /// <param name="logEvent">event for rendering layouts   </param>  
+        ///<returns>string to group on</returns>
         private string GetSmtpSettingsKey(LogEventInfo logEvent)
         {
             var sb = new StringBuilder();
 
-            if (this.From != null)
-                sb.Append(this.From.Render(logEvent));
+            AppendLayout(sb, logEvent, this.From);
+            AppendLayout(sb, logEvent, this.To);
+            AppendLayout(sb, logEvent, this.CC);
+            AppendLayout(sb, logEvent, this.Bcc);
+            AppendLayout(sb, logEvent, this.SmtpServer);
+            AppendLayout(sb, logEvent, this.SmtpPassword);
+            AppendLayout(sb, logEvent, this.SmtpUserName);
 
-            sb.Append("|");
-            if (this.To != null)
-                sb.Append(this.To.Render(logEvent));
-
-            sb.Append("|");
-            if (this.CC != null)
-            {
-                sb.Append(this.CC.Render(logEvent));
-            }
-
-            sb.Append("|");
-            if (this.Bcc != null)
-            {
-                sb.Append(this.Bcc.Render(logEvent));
-            }
-
-            sb.Append("|");
-            if (this.SmtpServer != null)
-            {
-                sb.Append(this.SmtpServer.Render(logEvent));
-            }
-
-            if (this.SmtpPassword != null)
-            {
-                sb.Append(this.SmtpPassword.Render(logEvent));
-            }
-
-            sb.Append("|");
-            if (this.SmtpUserName != null)
-            {
-                sb.Append(this.SmtpUserName.Render(logEvent));
-            }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Append rendered layout to the stringbuilder
+        /// </summary>
+        /// <param name="sb">append to this</param>
+        /// <param name="logEvent">event for rendering <paramref name="layout"/></param>
+        /// <param name="layout">appened if not <c>null</c></param>
+        private static void AppendLayout(StringBuilder sb, LogEventInfo logEvent, Layout layout)
+        {
+            sb.Append("|");
+            if (layout != null)
+                sb.Append(layout.Render(logEvent));
         }
 
         /// <summary>
@@ -465,7 +468,7 @@ namespace NLog.Targets
                 }
             }
             msg.Body = body;
-            if (msg.IsBodyHtml && ReplaceNewlineWithBrTagInHtml && msg.Body != null) 
+            if (msg.IsBodyHtml && ReplaceNewlineWithBrTagInHtml && msg.Body != null)
                 msg.Body = msg.Body.Replace(EnvironmentHelper.NewLine, "<br/>");
             return msg;
         }
