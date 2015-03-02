@@ -3,7 +3,7 @@ Issue labeling
 
 When a new issue is submitted at GitHub, it will be labeled. 
 
-We use the following guidline:
+We use the following guideline:
 
 * preferably, each issue has a label, although this isn't a goal. The goals is to get a nice overview where we stand & if there a lot of issues.
 * Bug-reports, even non-confirmed bugs are labels under `bug`.
