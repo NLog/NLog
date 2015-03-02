@@ -1,4 +1,4 @@
-Support & contributing guidelines
+Support & contributing guidelines (March 2, 2015)
 ===
 Do you have feature requests, questions or would you like to report a bug? Please follow these guidelines when posting on the [issue list](https://github.com/NLog/NLog/issues).
 
@@ -7,14 +7,14 @@ Feature requests
 Please provide the following information:
 - The current NLog version
 - Any current work-arounds
-- Example of the config when implemented
-- Pull requests and unit tests are welcome!
+- Example of the config when implemented. Please use [fenced code blocks](https://help.github.com/articles/github-flavored-markdown/#fenced-code-blocks).
+- Pull requests and unit tests are welcome! 
 
 Questions
 ----
 Please provide the following information:
 - The current NLog version
-- The current config (file content or API calls)
+- The current config (file content or API calls). Please use [fenced code blocks](https://help.github.com/articles/github-flavored-markdown/#fenced-code-blocks).
 - If relevant: the current result
 - If relevant: the expected result
 
@@ -24,12 +24,12 @@ Bug reports
 ----
 Please provide the following information:
 - The current NLog version
-- The error message and stacktrace
+- The error message and stacktrace. Please use [fenced code blocks](https://help.github.com/articles/github-flavored-markdown/#fenced-code-blocks).
 - The internal log, `Debug` level. See [Internal Logging](https://github.com/NLog/NLog/wiki/Internal-Logging)
 - The current result
 - The expected result 
 - Any current work-arounds
-- The current config (file content or API calls)
+- The current config (file content or API calls). Please use [fenced code blocks](https://help.github.com/articles/github-flavored-markdown/#fenced-code-blocks).
 - Pull requests and unit tests are welcome!
 
 
@@ -37,6 +37,11 @@ Please provide the following information:
 Pull requests
 ----
 Unit tests are really appreciated! Also please [Sync all the projects](#Sync projects) 
+
+Please document any public method and proptery. Document **why** and not how. At least required: 
+
+* Method: Summary, param and return.
+* Property: Summary
 
 Sync projects
 ===
@@ -68,3 +73,5 @@ Keep in mind that multiple versions of .Net are supported. Some methods are not 
 #if #WINDOWS_PHONE_7
 #if #WINDOWS_PHONE_7_1
 ```
+
+
