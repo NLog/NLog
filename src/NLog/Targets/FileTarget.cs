@@ -641,8 +641,7 @@ namespace NLog.Targets
             {
                 if (this.previousFileName != fileName)
                 {
-                    FileInfo fileInfo = new FileInfo(fileName);
-                    string fileNamePattern = this.GetFileNamePattern(fileName, logEvent, fileInfo);
+                    string fileNamePattern = this.GetFileNamePattern(fileName, logEvent);
                     this.DeleteOldDateArchive(fileNamePattern);
                     this.previousFileName = fileName;
                 }
@@ -1066,6 +1065,11 @@ namespace NLog.Targets
             RollArchiveForward(fileName, newFileName, shouldCompress: true);
         }
 
+        /// <summary>
+        /// Deletes archive files in reverse chronological order until only the
+        /// MaxArchiveFiles number of archive files remain.
+        /// </summary>
+        /// <param name="pattern">The pattern that archive filenames will match</param>
         private void DeleteOldDateArchive(string pattern)
         {
             
@@ -1181,22 +1185,22 @@ namespace NLog.Targets
 
         private void DoAutoArchive(string fileName, LogEventInfo eventInfo)
         {
-            FileInfo fi = new FileInfo(fileName);
-            if (!fi.Exists)
+            FileInfo fileInfo = new FileInfo(fileName);
+            if (!fileInfo.Exists)
             {
                 return;
             }
 
             // Console.WriteLine("DoAutoArchive({0})", fileName);
-            string fileNamePattern = GetFileNamePattern(fileName, eventInfo, fi);
+            string fileNamePattern = GetFileNamePattern(fileName, eventInfo);
 
             if (!ContainFileNamePattern(fileNamePattern))
             {
-                if (fileArchive.Archive(fileNamePattern, fi.FullName, CreateDirs, EnableArchiveFileCompression))
+                if (fileArchive.Archive(fileNamePattern, fileInfo.FullName, CreateDirs, EnableArchiveFileCompression))
                 {
-                    if (this.initializedFiles.ContainsKey(fi.FullName))
+                    if (this.initializedFiles.ContainsKey(fileInfo.FullName))
                     {
-                        this.initializedFiles.Remove(fi.FullName);
+                        this.initializedFiles.Remove(fileInfo.FullName);
                     }
                 }
             }
@@ -1205,34 +1209,42 @@ namespace NLog.Targets
                 switch (this.ArchiveNumbering)
                 {
                     case ArchiveNumberingMode.Rolling:
-                        this.RecursiveRollingRename(fi.FullName, fileNamePattern, 0);
+                        this.RecursiveRollingRename(fileInfo.FullName, fileNamePattern, 0);
                         break;
 
                     case ArchiveNumberingMode.Sequence:
-                        this.SequentialArchive(fi.FullName, fileNamePattern);
+                        this.SequentialArchive(fileInfo.FullName, fileNamePattern);
                         break;
 
 #if !NET_CF
                     case ArchiveNumberingMode.Date:
-                        this.DateArchive(fi.FullName, fileNamePattern);
+                        this.DateArchive(fileInfo.FullName, fileNamePattern);
                         break;
 
                     case ArchiveNumberingMode.DateAndSequence:
-                        this.DateAndSequentialArchive(fi.FullName, fileNamePattern, eventInfo);
+                        this.DateAndSequentialArchive(fileInfo.FullName, fileNamePattern, eventInfo);
                         break;
 #endif
                 }
             }
         }
 
-        private string GetFileNamePattern(string fileName, LogEventInfo eventInfo, FileInfo fi)
+        /// <summary>
+        /// Gets the pattern that archive files will match
+        /// </summary>
+        /// <param name="fileName">Filename of the log file</param>
+        /// <param name="eventInfo">Log event info of the log that is currently been written</param>
+        /// <returns>A string with a pattern that will match the archive filenames</returns>
+        private string GetFileNamePattern(string fileName, LogEventInfo eventInfo)
         {
             string fileNamePattern;
+
+            FileInfo fileInfo = new FileInfo(fileName);
 
             if (this.ArchiveFileName == null)
             {
                 string ext = Path.GetExtension(fileName);
-                fileNamePattern = Path.ChangeExtension(fi.FullName, ".{#}" + ext);
+                fileNamePattern = Path.ChangeExtension(fileInfo.FullName, ".{#}" + ext);
             }
             else
             {
