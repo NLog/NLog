@@ -256,7 +256,7 @@ namespace NLog.Internal
 
             if (type == typeof(Encoding))
             {
-                newValue = Encoding.GetEncoding(value);    
+                newValue = Encoding.GetEncoding(value);
                 return true;
             }
 
