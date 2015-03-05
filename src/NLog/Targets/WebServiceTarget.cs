@@ -338,12 +338,6 @@ namespace NLog.Targets
             return ms;
         }
 
-        //private static byte[] StreamToBytesArray(MemoryStream stream, bool? writeUtf8BOM, Encoding encoding)
-        //{
-        //    var streamToBytesArray = stream.ToArray();
-
-        //    return FixPreambleBytes(streamToBytesArray, writeUtf8BOM, encoding);
-        //}
 
         /// <summary>
         /// Write from input to output. Fix the UTF-8 bom
@@ -375,37 +369,5 @@ namespace NLog.Targets
         }
 
 
-        //private static byte[] FixPreambleBytes(byte[] streamToBytesArray, bool? writeUtf8BOM, Encoding encoding)
-        //{
-        //    var nothingToDo = writeUtf8BOM == null || !(encoding is UTF8Encoding);
-
-        //    const int preambleSize = 3;
-        //    if (!nothingToDo)
-        //    {
-        //        //it's UTF-8
-        //        var hasBomInEncoding = encoding.GetPreamble().Length == preambleSize;
-
-        //        //BOM already in Encoding.
-        //        nothingToDo = writeUtf8BOM.Value && hasBomInEncoding;
-
-        //        //Bom already not in Encoding
-        //        nothingToDo = nothingToDo || !writeUtf8BOM.Value && !hasBomInEncoding;
-        //    }
-
-        //    if (nothingToDo)
-        //    {
-        //        //no BOM skipping on UTF-16 or 32
-        //        return streamToBytesArray;
-        //    }
-
-        //    //it's UTF-8
-        //    if (writeUtf8BOM.Value)
-        //    {
-        //        //need bom,
-        //        return EncodingHelpers.Utf8BOM.Concat(streamToBytesArray).ToArray();
-        //    }
-        //    //skip BOM
-        //    return streamToBytesArray.Skip(preambleSize).ToArray();
-        //}
     }
 }

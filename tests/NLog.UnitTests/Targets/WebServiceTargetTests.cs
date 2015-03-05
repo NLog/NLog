@@ -159,7 +159,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             var textStream = GenerateStreamFromString(text);
             var textBytes = StreamToBytes(textStream);
-           
+
             textStream.Position = 0;
             textStream.Flush();
 
@@ -173,38 +173,26 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
         }
 
-       
-
-
-
-        public Stream GenerateStreamFromString(string s)
+        [Fact]
+        public void WebserviceTest_httppost_utf8_default_no_bom()
         {
-            MemoryStream stream = new MemoryStream();
-            StreamWriter writer = new StreamWriter(stream);
-            writer.Write(s);
-            writer.Flush();
-            stream.Position = 0;
-            return stream;
+            WebserviceTest_httppost_utf8("", false);
         }
 
-        public static byte[] StreamToBytes(Stream stream)
+
+        [Fact]
+        public void WebserviceTest_httppost_utf8_with_bom()
         {
-            stream.Flush();
-            stream.Position = 0;
-            byte[] buffer = new byte[16 * 1024];
-            using (MemoryStream ms = new MemoryStream())
-            {
-                int read;
-                while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
-                }
-                return ms.ToArray();
-            }
+            WebserviceTest_httppost_utf8("includeBOM='true'", true);
         }
 
         [Fact]
-        public void WebserviceTest_httppost_utf8_full()
+        public void WebserviceTest_httppost_utf8_no_boml()
+        {
+            WebserviceTest_httppost_utf8("includeBOM='false'", false);
+        }
+
+        private void WebserviceTest_httppost_utf8(string bomAttr, bool includeBom)
         {
             var configuration = CreateConfigurationFromString(@"
                 <nlog>
@@ -213,6 +201,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             name='webservice'
             url='http://localhost:57953/Home/Foo2'
             protocol='HttpPost'
+          " + bomAttr + @"
             encoding='UTF-8'
             methodName='Foo'>
         <parameter name='empty' type='System.String' layout=''/> <!-- work around so the guid is decoded properly -->
@@ -230,25 +219,24 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             Assert.NotNull(target);
 
             Assert.Equal(target.Parameters.Count, 7);
-            var parameterValues = new object[] { "", "336cec87129942eeabab3d8babceead7", "Debg", "2014-06-26 23:15:14.6348", "TestClient.Program", "Debug", "DELL" };
-
 
             Assert.Equal(target.Encoding.WebName, "utf-8");
 
-
             //async call with mockup stream
             WebRequest webRequest = WebRequest.Create("http://www.test.com");
-            var request = (HttpWebRequest)webRequest;
+            var request = (HttpWebRequest) webRequest;
             var streamMock = new StreamMock();
+
+            //event for async testing
             var counterEvent = new CountdownEvent(1);
 
+            var parameterValues = new object[] {"", "336cec87129942eeabab3d8babceead7", "Debg", "2014-06-26 23:15:14.6348", "TestClient.Program", "Debug", "DELL"};
             target.DoInvoke(parameterValues, c => counterEvent.Signal(), request,
                 callback =>
                 {
                     var t = new Task(() => { });
                     callback(t);
                     return t;
-
                 },
                 result => streamMock);
 
@@ -260,17 +248,54 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             const string expectedUrl = "empty=&guid=336cec87129942eeabab3d8babceead7&m=Debg&date=2014-06-26+23%3a15%3a14.6348&logger=TestClient.Program&level=Debug&machinename=DELL";
             Assert.Equal(expectedUrl, url);
 
-
             Assert.True(bytes.Length > 3);
 
-            var first3 = bytes.Take(3);
-            Assert.NotEqual(first3, EncodingHelpers.Utf8BOM);
+            //not bom
+            var possbleBomBytes = bytes.Take(3);
+            if (includeBom)
+            {
+                Assert.Equal(possbleBomBytes, EncodingHelpers.Utf8BOM);
+            }
+            else
+            {
+                Assert.NotEqual(possbleBomBytes, EncodingHelpers.Utf8BOM);
+            }
 
-
-            Assert.Equal(bytes.Length, 140);
-
+            Assert.Equal(bytes.Length, includeBom ? 143 : 140);
         }
 
+        #region helpers
+
+
+        private Stream GenerateStreamFromString(string s)
+        {
+            MemoryStream stream = new MemoryStream();
+            StreamWriter writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
+        }
+
+        private static byte[] StreamToBytes(Stream stream)
+        {
+            stream.Flush();
+            stream.Position = 0;
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
+        }
+
+        /// <summary>
+        /// Mock the stream
+        /// </summary>
         private class StreamMock : MemoryStream
         {
             public byte[] bytes;
@@ -302,7 +327,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         }
 
 
-
+        #endregion
     }
 
 
