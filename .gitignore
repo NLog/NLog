@@ -33,4 +33,3 @@ packages/
 build/
 *.sublime-*
 *.DotSettings
-sync projects.bat
