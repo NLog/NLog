@@ -26,7 +26,7 @@ See LICENSE.txt for details.
 For more information, see the website [nlog-project.org](http://nlog-project.org)
 or just get started with the tutorials on [the NLog wiki](https://github.com/NLog/NLog/wiki).
 
-Project RSS Feed: [nlog-project.org/feed](http://nlog-project.org/feed/)
+[Project news - including RSS feed](http://nlog-project.org/archives/)
 
 Questions, bug reports or feature requests?
 ---
