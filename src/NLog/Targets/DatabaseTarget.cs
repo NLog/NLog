@@ -549,6 +549,7 @@ namespace NLog.Targets
             if (this.activeConnection != null)
             {
                 this.activeConnection.Close();
+                this.activeConnection.Dispose();
                 this.activeConnection = null;
                 this.activeConnectionString = null;
             }
