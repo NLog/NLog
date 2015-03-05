@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
 using NLog.LayoutRenderers;
 using Xunit.Extensions;
 
@@ -1447,39 +1448,18 @@ namespace NLog.UnitTests.Targets
     </targets>
 </nlog>");
 
-            var d1 = configuration.FindTargetByName("d1") as FileTarget;
+            var target = configuration.FindTargetByName("d1") as FileTarget;
 
 
-            Assert.Equal(d1.Encoding.WebName, "utf-16");
-            Assert.NotNull(d1);
-            var layout = d1.Layout as SimpleLayout;
+            Assert.Equal(target.Encoding.WebName, "utf-16");
+            Assert.NotNull(target);
+            var layout = target.Layout as SimpleLayout;
             Assert.NotNull(layout);
 
 
         }
 
-        [Fact]
-        public void FileEncodingTest_utf8_default_BOM()
-        {
-            var configuration = CreateConfigurationFromString(@"
-<nlog>
-    <targets>
-        <target name='d1' type='File'  encoding='utf-8'  />
-    </targets>
-</nlog>");
-
-            var d1 = configuration.FindTargetByName("d1") as FileTarget;
-
-
-            Assert.Equal(d1.Encoding.WebName, "utf-8");
-            var utf8BOM = new byte[] { 239, 187, 191 };
-            Assert.Equal(d1.Encoding.GetPreamble(), utf8BOM);
-            Assert.NotNull(d1);
-            var layout = d1.Layout as SimpleLayout;
-            Assert.NotNull(layout);
-
-
-        }
+ 
          [Fact]
         public void FileEncodingTest_utf8_default_no_BOM()
         {
@@ -1490,18 +1470,16 @@ namespace NLog.UnitTests.Targets
     </targets>
 </nlog>");
 
-            var d1 = configuration.FindTargetByName("d1") as FileTarget;
+            var target = configuration.FindTargetByName("d1") as FileTarget;
 
 
-            Assert.Equal(d1.Encoding.WebName, "utf-8");
+            Assert.Equal(target.Encoding.WebName, "utf-8");
             var emptyBom = new byte[] { };
-            Assert.Equal(d1.Encoding.GetPreamble(), emptyBom);
-            Assert.NotNull(d1);
-            var layout = d1.Layout as SimpleLayout;
+            Assert.Equal(target.Encoding.GetPreamble(), emptyBom);
+            Assert.NotNull(target);
+            var layout = target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-#if !DEBUG
-             fix me
-#endif
+
 
         }
     }
