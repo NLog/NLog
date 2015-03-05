@@ -81,6 +81,8 @@ namespace NLog.Targets
         {
             this.Protocol = WebServiceProtocol.Soap11;
             this.Encoding = Encoding.UTF8;
+            //BOM give some issues on encoding
+            this.IncludeBOM = false;
         }
 
         /// <summary>
@@ -113,6 +115,21 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         public Encoding Encoding { get; set; }
+
+        /// <summary>
+        /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
+        /// </summary>
+        public bool IncludeBOM { get; set; }
+
+        /// <summary>
+        /// Get the encoding with or without BOM
+        /// </summary>
+        /// <returns></returns>
+        private Encoding GetEncoding()
+        {
+            return Encoding.ConvertEncodingBOM(IncludeBOM);
+        }
+
 
         /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
@@ -155,61 +172,63 @@ namespace NLog.Targets
 
             AsyncContinuation sendContinuation =
                 ex =>
+                {
+                    if (ex != null)
                     {
-                        if (ex != null)
+                        continuation(ex);
+                        return;
+                    }
+
+                    request.BeginGetResponse(
+                        r =>
                         {
-                            continuation(ex);
-                            return;
-                        }
-
-                        request.BeginGetResponse(
-                            r =>
+                            try
                             {
-                                try
+                                using (var response = request.EndGetResponse(r))
                                 {
-                                    using (var response = request.EndGetResponse(r))
-                                    {
-                                    }
-
-                                    continuation(null);
                                 }
-                                catch (Exception ex2)
+
+                                continuation(null);
+                            }
+                            catch (Exception ex2)
+                            {
+                                InternalLogger.Error(ex2.ToString());
+                                if (ex2.MustBeRethrown())
                                 {
-                                    if (ex2.MustBeRethrown())
-                                    {
-                                        throw;
-                                    }
-
-                                    continuation(ex2);
+                                    throw;
                                 }
-                            }, 
-                            null);
-                    };
+
+                                continuation(ex2);
+                            }
+                        },
+                        null);
+                };
 
             if (postPayload != null && postPayload.Length > 0)
             {
                 request.BeginGetRequestStream(
                     r =>
+                    {
+                        try
                         {
-                            try
+                            using (Stream stream = request.EndGetRequestStream(r))
                             {
-                                using (Stream stream = request.EndGetRequestStream(r))
-                                {
-                                    stream.Write(postPayload, 0, postPayload.Length);
-                                }
-
-                                sendContinuation(null);
+                                stream.Write(postPayload, 0, postPayload.Length);
                             }
-                            catch (Exception ex)
+
+                            sendContinuation(null);
+                        }
+                        catch (Exception ex)
+                        {
+                            InternalLogger.Error(ex.ToString());
+                            if (ex.MustBeRethrown())
                             {
-                                if (ex.MustBeRethrown())
-                                {
-                                    throw;
-                                }
-
-                                continuation(ex);
+                                throw;
                             }
-                        },
+
+                            continuation(ex);
+                        }
+                    },
                     null);
             }
             else
@@ -218,55 +237,47 @@ namespace NLog.Targets
             }
         }
 
-        private byte[] PrepareSoap11Request(HttpWebRequest request, object[] parameters)
+        private byte[] PrepareSoap11Request(HttpWebRequest request, object[] parameterValues)
         {
-            request.Method = "POST";
-            request.ContentType = "text/xml; charset=" + this.Encoding.WebName;
-
+            string soapAction;
             if (this.Namespace.EndsWith("/", StringComparison.Ordinal))
             {
-                request.Headers["SOAPAction"] = this.Namespace + this.MethodName;
+                soapAction = this.Namespace + this.MethodName;
             }
             else
             {
-                request.Headers["SOAPAction"] = this.Namespace + "/" + this.MethodName;
+                soapAction = this.Namespace + "/" + this.MethodName;
             }
+            request.Headers["SOAPAction"] = soapAction;
 
-            using (var ms = new MemoryStream())
-            {
-                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.Encoding });
+            return PrepareSoapRequestPost(request, parameterValues, SoapEnvelopeNamespace, "soap");
 
-                xtw.WriteStartElement("soap", "Envelope", SoapEnvelopeNamespace);
-                xtw.WriteStartElement("Body", SoapEnvelopeNamespace);
-                xtw.WriteStartElement(this.MethodName, this.Namespace);
-                int i = 0;
-
-                foreach (MethodCallParameter par in this.Parameters)
-                {
-                    xtw.WriteElementString(par.Name, Convert.ToString(parameters[i], CultureInfo.InvariantCulture));
-                    i++;
-                }
-
-                xtw.WriteEndElement(); // methodname
-                xtw.WriteEndElement(); // Body
-                xtw.WriteEndElement(); // soap:Envelope
-                xtw.Flush();
-
-                return ms.ToArray();
-            }
         }
 
         private byte[] PrepareSoap12Request(HttpWebRequest request, object[] parameterValues)
         {
+            return PrepareSoapRequestPost(request, parameterValues, Soap12EnvelopeNamespace, "soap12");
+        }
+
+        /// <summary>
+        /// Helper for creating soap POST-XML request
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="parameterValues"></param>
+        /// <param name="soapEnvelopeNamespace"></param>
+        /// <param name="soapname"></param>
+        /// <returns></returns>
+        private byte[] PrepareSoapRequestPost(WebRequest request, object[] parameterValues, string soapEnvelopeNamespace, string soapname)
+        {
             request.Method = "POST";
             request.ContentType = "text/xml; charset=" + this.Encoding.WebName;
 
             using (var ms = new MemoryStream())
             {
-                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.Encoding });
+                XmlWriter xtw = XmlWriter.Create(ms, new XmlWriterSettings { Encoding = this.GetEncoding() });
 
-                xtw.WriteStartElement("soap12", "Envelope", Soap12EnvelopeNamespace);
-                xtw.WriteStartElement("Body", Soap12EnvelopeNamespace);
+                xtw.WriteStartElement(soapname, "Envelope", soapEnvelopeNamespace);
+                xtw.WriteStartElement("Body", soapEnvelopeNamespace);
                 xtw.WriteStartElement(this.MethodName, this.Namespace);
                 int i = 0;
                 foreach (MethodCallParameter par in this.Parameters)
@@ -275,9 +286,9 @@ namespace NLog.Targets
                     i++;
                 }
 
-                xtw.WriteEndElement();
-                xtw.WriteEndElement();
-                xtw.WriteEndElement();
+                xtw.WriteEndElement(); // methodname
+                xtw.WriteEndElement(); // Body
+                xtw.WriteEndElement(); // soap:Envelope
                 xtw.Flush();
 
                 return ms.ToArray();
@@ -303,7 +314,7 @@ namespace NLog.Targets
             string separator = string.Empty;
             using (var ms = new MemoryStream())
             {
-                var sw = new StreamWriter(ms, this.Encoding);
+                var sw = new StreamWriter(ms, this.GetEncoding());
                 sw.Write(string.Empty);
                 int i = 0;
                 foreach (MethodCallParameter parameter in this.Parameters)
