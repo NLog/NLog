@@ -1438,50 +1438,7 @@ namespace NLog.UnitTests.Targets
         }
 
 
-        [Fact]
-        public void FileEncodingTest_utf16()
-        {
-            var configuration = CreateConfigurationFromString(@"
-<nlog>
-    <targets>
-        <target name='d1' type='File'  encoding='utf-16'  />
-    </targets>
-</nlog>");
-
-            var target = configuration.FindTargetByName("d1") as FileTarget;
-
-
-            Assert.Equal(target.Encoding.WebName, "utf-16");
-            Assert.NotNull(target);
-            var layout = target.Layout as SimpleLayout;
-            Assert.NotNull(layout);
-
-
-        }
-
- 
-         [Fact]
-        public void FileEncodingTest_utf8_default_no_BOM()
-        {
-            var configuration = CreateConfigurationFromString(@"
-<nlog>
-    <targets>
-        <target name='d1' type='File'  encoding='utf-8'  />
-    </targets>
-</nlog>");
-
-            var target = configuration.FindTargetByName("d1") as FileTarget;
-
-
-            Assert.Equal(target.Encoding.WebName, "utf-8");
-            var emptyBom = new byte[] { };
-            Assert.Equal(target.Encoding.GetPreamble(), emptyBom);
-            Assert.NotNull(target);
-            var layout = target.Layout as SimpleLayout;
-            Assert.NotNull(layout);
-
-
-        }
+    
     }
 }
 
