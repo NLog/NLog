@@ -44,6 +44,7 @@ namespace NLog
     using NLog.Internal;
     using NLog.Layouts;
     using NLog.Time;
+    using System.Reflection;
 
     /// <summary>
     /// Represents the logging event.
@@ -66,6 +67,9 @@ namespace NLog
         private IDictionary<Layout, string> layoutCache;
         private IDictionary<object, object> properties;
         private IDictionary eventContextAdapter;
+        private string callerMethodName;
+        private string callerSourceFilePath;
+        private int callerSourceLineNumber;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
@@ -291,6 +295,62 @@ namespace NLog
         }
 
         /// <summary>
+        /// Method or property name in which the event was logged
+        /// </summary>
+        public string CallerMethodName
+        {
+            get
+            {
+                return callerMethodName ?? CallerMethodNameFromCallStack(0);
+            }
+            set
+            {
+                callerMethodName = value;
+            }
+        }
+        
+        /// <summary>
+        /// Full path of the source file that contains the member in which the event was logged
+        /// </summary>
+        public string CallerSourceFilePath
+        {
+            get
+            {
+                return callerSourceFilePath ?? CallerSourceFilePathFromCallStack(0);
+            }
+            set
+            {
+                callerSourceFilePath = value;
+            }
+        }
+
+        /// <summary>
+        /// Line number in the source file at which the event was logged
+        /// </summary>
+        public int CallerLineNumber
+        {
+            get
+            {
+                return callerSourceLineNumber != 0 ? callerSourceLineNumber : CallerLineNumberFromCallStack(0);
+            }
+            set
+            {
+                callerSourceLineNumber = value;
+            }
+        }
+
+        /// <summary>
+        /// Name of the class that contains the member in which the event was logged
+        /// </summary>
+        public string CallerClassName
+        {
+            get
+            {
+                return CallerClassNameFromCallStack(0);
+            }
+        }
+
+        /// <summary>
         /// Creates the null event.
         /// </summary>
         /// <returns>Null log event.</returns>
@@ -410,6 +470,31 @@ namespace NLog
             }
         }
 
+        internal string CallerSourceFilePathFromCallStack(int skipFrames)
+        {
+            StackFrame frame = GetCallStackFrame(skipFrames);
+            return (frame != null) ? frame.GetFileName() : null;
+        }
+
+        internal int CallerLineNumberFromCallStack(int skipFrames)
+        {
+            StackFrame frame = GetCallStackFrame(skipFrames);
+            return (frame != null) ? frame.GetFileLineNumber() : 0;
+        }
+
+        internal string CallerClassNameFromCallStack(int skipFrames)
+        {
+            MethodBase method = GetCallStackMethod(skipFrames);
+            return (method != null && method.DeclaringType != null) ?
+                method.DeclaringType.FullName : null;
+        }
+
+        internal string CallerMethodNameFromCallStack(int skipFrames)
+        {
+            MethodBase method = GetCallStackMethod(skipFrames);
+            return (method != null) ? method.Name : null;
+        }
+
         private static bool NeedToPreformatMessage(object[] parameters)
         {
             // we need to preformat message if it contains any parameters which could possibly
@@ -493,6 +578,17 @@ namespace NLog
         {
             this.properties = new Dictionary<object, object>();
             this.eventContextAdapter = new DictionaryAdapter<object, object>(this.properties);
+        }
+
+        private StackFrame GetCallStackFrame(int skipFrames)
+        {
+            return this.StackTrace != null ? this.StackTrace.GetFrame(this.UserStackFrameNumber + skipFrames) : null;
+        }
+
+        private MethodBase GetCallStackMethod(int skipFrames)
+        {
+            StackFrame frame = GetCallStackFrame(skipFrames);
+            return (frame != null) ? frame.GetMethod() : null;
         }
     }
 }

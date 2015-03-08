@@ -36,6 +36,9 @@ namespace NLog
     using System;
     using System.ComponentModel;
     using JetBrains.Annotations;
+#if NET4_5
+    using System.Runtime.CompilerServices;
+#endif
 
     public partial interface ILoggerBase
     {
@@ -69,11 +72,27 @@ namespace NLog
 
         #region Log() overloads
 
+#if NET4_5
         /// <summary>
         /// Writes the specified diagnostic message.
         /// </summary>
         /// <param name="logEvent">Log event.</param>
-        void Log(LogEventInfo logEvent);
+        /// <param name="memberName">Method or property name of the caller.</param>
+        /// <param name="sourceFilePath">Full path of the source file that contains the caller.</param>
+        /// <param name="sourceLineNumber">Line number in the source file at which the method is called.</param>
+#else
+        /// <summary>
+        /// Writes the specified diagnostic message.
+        /// </summary>
+        /// <param name="logEvent">Log event.</param>
+#endif
+        void Log(LogEventInfo logEvent
+#if NET4_5
+           , [CallerMemberName] string memberName = ""
+           , [CallerFilePath] string sourceFilePath = ""
+           , [CallerLineNumber] int sourceLineNumber = 0
+#endif
+            );
 
         /// <summary>
         /// Writes the specified diagnostic message.
