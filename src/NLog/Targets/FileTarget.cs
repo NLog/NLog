@@ -72,7 +72,9 @@ namespace NLog.Targets
 
         private readonly DynamicFileArchive fileArchive;
 
-        private string previousFileName;
+        // Queue used so the oldest used filename can be removed from when the list of filenames
+        // that exist have got too long.
+        private Queue<string> previousFileNames;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -108,7 +110,8 @@ namespace NLog.Targets
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
 
-            this.previousFileName = "";
+            this.maxLogFilenames = 20;
+            this.previousFileNames = new Queue<string>(this.maxLogFilenames);
         }
 
         /// <summary>
@@ -179,6 +182,17 @@ namespace NLog.Targets
         /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(false)]
         public bool KeepFileOpen { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum number of log filenames that should be stored as existing.
+        /// </summary>
+        /// <remarks>
+        /// The bigger this number is the longer it will take to write each log record. The smaller the number is
+        /// the higher the chance that the clean function will be run when no new files have been opened.
+        /// </remarks>
+        /// <docgen category='Performance Tuning Options' order='10' />
+        [DefaultValue(20)]
+        public int maxLogFilenames { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
@@ -639,11 +653,16 @@ namespace NLog.Targets
             // this log file and the archiving system is date/time based.
             if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None)
             {
-                if (this.previousFileName != fileName)
+                if (!previousFileNames.Contains(fileName))
                 {
+                    if (this.previousFileNames.Count > this.maxLogFilenames)
+                    {
+                        this.previousFileNames.Dequeue();
+                    }
+
                     string fileNamePattern = this.GetFileNamePattern(fileName, logEvent);
                     this.DeleteOldDateArchive(fileNamePattern);
-                    this.previousFileName = fileName;
+                    this.previousFileNames.Enqueue(fileName);
                 }
             }
 
