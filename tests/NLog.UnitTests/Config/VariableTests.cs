@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.Config
 {
+    using System;
     using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
@@ -70,12 +71,12 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void None_xml_configuration_returns_null_when_accessing_variables()
+        public void None_xml_configuration_throws_not_supported_exception_when_accessing_variables()
         {
             var configuration = new LoggingConfiguration();
             LogManager.Configuration = configuration;
             
-            Assert.Null(LogManager.Configuration.Variables);
+            Assert.Throws<NotSupportedException>(() =>LogManager.Configuration.Variables);
         }
 
         [Fact]
