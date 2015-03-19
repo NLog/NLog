@@ -1832,7 +1832,7 @@ namespace NLog.Targets
             /// </summary>
             private void DeleteOldArchiveFiles()
             {
-                if (MaxArchiveFileToKeep == 1)
+                if (MaxArchiveFileToKeep == 1 && archiveFileQueue.Any())
                 {
                     var archiveFileName = archiveFileQueue.Dequeue();
                     
