@@ -72,6 +72,10 @@ namespace NLog.Targets
 
         private readonly DynamicFileArchive fileArchive;
 
+        // Queue used so the oldest used filename can be removed from when the list of filenames
+        // that exist have got too long.
+        private Queue<string> previousFileNames;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
@@ -105,6 +109,9 @@ namespace NLog.Targets
             this.fileArchive = new DynamicFileArchive(MaxArchiveFiles);
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
+
+            this.maxLogFilenames = 20;
+            this.previousFileNames = new Queue<string>(this.maxLogFilenames);
         }
 
         /// <summary>
@@ -175,6 +182,17 @@ namespace NLog.Targets
         /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(false)]
         public bool KeepFileOpen { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum number of log filenames that should be stored as existing.
+        /// </summary>
+        /// <remarks>
+        /// The bigger this number is the longer it will take to write each log record. The smaller the number is
+        /// the higher the chance that the clean function will be run when no new files have been opened.
+        /// </remarks>
+        /// <docgen category='Performance Tuning Options' order='10' />
+        [DefaultValue(20)]
+        public int maxLogFilenames { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
@@ -616,6 +634,7 @@ namespace NLog.Targets
             }
         }
 
+
         /// <summary>
         /// Writes the specified logging event to a file specified in the FileName 
         /// parameter.
@@ -629,6 +648,23 @@ namespace NLog.Targets
             string fileName = this.FileName.Render(logEvent);
 #endif
             byte[] bytes = this.GetBytesToWrite(logEvent);
+
+            // Clean up old archives if this is the first time a log record has been written to
+            // this log file and the archiving system is date/time based.
+            if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None)
+            {
+                if (!previousFileNames.Contains(fileName))
+                {
+                    if (this.previousFileNames.Count > this.maxLogFilenames)
+                    {
+                        this.previousFileNames.Dequeue();
+                    }
+
+                    string fileNamePattern = this.GetFileNamePattern(fileName, logEvent);
+                    this.DeleteOldDateArchive(fileNamePattern);
+                    this.previousFileNames.Enqueue(fileName);
+                }
+            }
 
             if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
             {
@@ -1041,6 +1077,25 @@ namespace NLog.Targets
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
 
+            DeleteOldDateArchive(pattern);
+
+            DateTime newFileDate = GetArchiveDate(true);
+            string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
+            RollArchiveForward(fileName, newFileName, shouldCompress: true);
+        }
+
+        /// <summary>
+        /// Deletes archive files in reverse chronological order until only the
+        /// MaxArchiveFiles number of archive files remain.
+        /// </summary>
+        /// <param name="pattern">The pattern that archive filenames will match</param>
+        private void DeleteOldDateArchive(string pattern)
+        {
+            
+            string fileNameMask = ReplaceReplaceFileNamePattern(pattern, "*");
+            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
+            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
+
             try
             {
                 DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
@@ -1077,10 +1132,6 @@ namespace NLog.Targets
             {
                 Directory.CreateDirectory(dirName);
             }
-
-            DateTime newFileDate = GetArchiveDate(true);
-            string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
-            RollArchiveForward(fileName, newFileName, shouldCompress: true);
         }
 #endif
 
@@ -1153,35 +1204,22 @@ namespace NLog.Targets
 
         private void DoAutoArchive(string fileName, LogEventInfo eventInfo)
         {
-            FileInfo fi = new FileInfo(fileName);
-            if (!fi.Exists)
+            FileInfo fileInfo = new FileInfo(fileName);
+            if (!fileInfo.Exists)
             {
                 return;
             }
 
             // Console.WriteLine("DoAutoArchive({0})", fileName);
-            string fileNamePattern;
-
-            if (this.ArchiveFileName == null)
-            {
-                string ext = Path.GetExtension(fileName);
-                fileNamePattern = Path.ChangeExtension(fi.FullName, ".{#}" + ext);
-            }
-            else
-            {
-                //The archive file name is given. There are two possibiliy 
-                //(1) User supplied the Filename with pattern
-                //(2) User supplied the normal filename
-                fileNamePattern = this.ArchiveFileName.Render(eventInfo);
-            }
+            string fileNamePattern = GetFileNamePattern(fileName, eventInfo);
 
             if (!ContainFileNamePattern(fileNamePattern))
             {
-                if (fileArchive.Archive(fileNamePattern, fi.FullName, CreateDirs, EnableArchiveFileCompression))
+                if (fileArchive.Archive(fileNamePattern, fileInfo.FullName, CreateDirs, EnableArchiveFileCompression))
                 {
-                    if (this.initializedFiles.ContainsKey(fi.FullName))
+                    if (this.initializedFiles.ContainsKey(fileInfo.FullName))
                     {
-                        this.initializedFiles.Remove(fi.FullName);
+                        this.initializedFiles.Remove(fileInfo.FullName);
                     }
                 }
             }
@@ -1190,24 +1228,51 @@ namespace NLog.Targets
                 switch (this.ArchiveNumbering)
                 {
                     case ArchiveNumberingMode.Rolling:
-                        this.RecursiveRollingRename(fi.FullName, fileNamePattern, 0);
+                        this.RecursiveRollingRename(fileInfo.FullName, fileNamePattern, 0);
                         break;
 
                     case ArchiveNumberingMode.Sequence:
-                        this.SequentialArchive(fi.FullName, fileNamePattern);
+                        this.SequentialArchive(fileInfo.FullName, fileNamePattern);
                         break;
 
 #if !NET_CF
                     case ArchiveNumberingMode.Date:
-                        this.DateArchive(fi.FullName, fileNamePattern);
+                        this.DateArchive(fileInfo.FullName, fileNamePattern);
                         break;
 
                     case ArchiveNumberingMode.DateAndSequence:
-                        this.DateAndSequentialArchive(fi.FullName, fileNamePattern, eventInfo);
+                        this.DateAndSequentialArchive(fileInfo.FullName, fileNamePattern, eventInfo);
                         break;
 #endif
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the pattern that archive files will match
+        /// </summary>
+        /// <param name="fileName">Filename of the log file</param>
+        /// <param name="eventInfo">Log event info of the log that is currently been written</param>
+        /// <returns>A string with a pattern that will match the archive filenames</returns>
+        private string GetFileNamePattern(string fileName, LogEventInfo eventInfo)
+        {
+            string fileNamePattern;
+
+            FileInfo fileInfo = new FileInfo(fileName);
+
+            if (this.ArchiveFileName == null)
+            {
+                string ext = Path.GetExtension(fileName);
+                fileNamePattern = Path.ChangeExtension(fileInfo.FullName, ".{#}" + ext);
+            }
+            else
+            {
+                //The archive file name is given. There are two possibiliy 
+                //(1) User supplied the Filename with pattern
+                //(2) User supplied the normal filename
+                fileNamePattern = this.ArchiveFileName.Render(eventInfo);
+            }
+            return fileNamePattern;
         }
 
         private bool ShouldAutoArchive(string fileName, LogEventInfo ev, int upcomingWriteSize)
