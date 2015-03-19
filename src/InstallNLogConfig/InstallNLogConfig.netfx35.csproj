@@ -71,9 +71,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.netfx35.csproj">
-      <Project>{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}</Project>
-      <Name>NLog.netfx40</Name>
+    <ProjectReference Include="..\NLog\NLog.netfx35.csproj">
+      <Project>{C124B63D-1658-4311-9BA8-9C3CFAF9B32E}</Project>
+      <Name>NLog.netfx35</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

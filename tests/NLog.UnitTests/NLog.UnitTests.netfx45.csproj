@@ -9,8 +9,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ApplicationIcon></ApplicationIcon>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -63,6 +65,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
@@ -104,6 +107,7 @@
     <Compile Include="Filters\WhenNotEqualTests.cs" />
     <Compile Include="Fluent\LogBuilderTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
+    <Compile Include="Internal\EnumHelpersTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
@@ -116,7 +120,6 @@
     <Compile Include="LayoutRenderers\EnvironmentTests.cs" />
     <Compile Include="LayoutRenderers\EventContextTests.cs" />
     <Compile Include="LayoutRenderers\EventPropertiesTests.cs" />
-    <Compile Include="LayoutRenderers\ExceptionLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\ExceptionTests.cs" />
     <Compile Include="LayoutRenderers\FileContentsTests.cs" />
     <Compile Include="LayoutRenderers\GDCTests.cs" />
@@ -209,6 +212,10 @@
     <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.netfx45.csproj">
       <Project>{A961A1F9-1024-4446-BF9E-A923137340B8}</Project>
       <Name>NLog.Extended.netfx45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NLogAutoLoadExtension\NLogAutoLoadExtension.netfx45.csproj">
+      <Project>{0aa8fb16-a377-4541-bef6-81d437d7b5e9}</Project>
+      <Name>NLogAutoLoadExtension.netfx45</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\NLog\NLog.netfx45.csproj">
       <Project>{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}</Project>

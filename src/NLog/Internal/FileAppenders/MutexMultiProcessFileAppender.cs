@@ -161,7 +161,7 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the file info.
         /// </summary>
-        /// <param name="lastWriteTime">The last write time.</param>
+        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
         /// <param name="fileLength">Length of the file.</param>
         /// <returns>
         /// True if the operation succeeded, false otherwise.

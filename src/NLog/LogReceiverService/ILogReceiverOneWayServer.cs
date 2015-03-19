@@ -31,41 +31,25 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using Xunit;
+#if WCF_SUPPORTED && !SILVERLIGHT
 
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.LogReceiverService
 {
-    public class ExceptionLayoutRendererTests : NLogTestBase
+    using System.ServiceModel;
+
+    /// <summary>
+    /// Service contract for Log Receiver server.
+    /// </summary>
+    [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
+    public interface ILogReceiverOneWayServer
     {
-        private Logger _logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionLayoutRendererTests");
-
-        [Fact]
-        public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception()
-        {
-            LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog>
-                <targets>
-                    <target name='debug1' type='Debug' layout='${exception}' />
-                </targets>
-                <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
-                </rules>
-            </nlog>");
-
-            var ex = new ExceptionWithBrokenMessagePropertyException();
-
-            Assert.ThrowsDelegate action = () => _logger.ErrorException("msg", ex);
-
-            Assert.DoesNotThrow(action);
-        }
-
-        private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
-        {
-            public override string Message
-            {
-                get { throw new Exception("Exception from Message property"); }
-            }
-        }
+        /// <summary>
+        /// Processes the log messages.
+        /// </summary>
+        /// <param name="events">The events.</param>
+        [OperationContract(IsOneWay=true)]
+        void ProcessLogMessages(NLogEvents events);
     }
 }
+
+#endif

@@ -1,115 +1,165 @@
 <ProjectFiles>
-   <!--
+  <!--
      this file contains information necessary to regenerate Compile items in all NLog project files 
      based on contents of this directory
 
      The file is processed by SyncProjectItems.exe in tools directory.
    -->
 
-   <FileSet Name="AllFilesToCompile">
-     <Include File="*.cs" />
-   </FileSet>
+  <FileSet Name="AllFilesToCompile">
+    <Include File="*.cs" />
+  </FileSet>
 
-   <FileSet Name="AllResources">
-     <Include File="*.ico" />
-   </FileSet>
 
-   <FileSet Name="CommonFiles">
+  <FileSet Name="AllResources">
+    <Include File="*.ico" />
+  </FileSet>
+
+  <FileSet Name="CommonFiles">
     <Include File="AssemblyBuildInfo.cs" />
     <Include File="GlobalSuppressions.cs" />
     <Include File="Properties\AssemblyInfo.cs" />
     <Include File="Internal\LogEventInfoBuffer.cs" />
-   </FileSet>
+  </FileSet>
 
-   <FileSet Name="ExcludedFromStyleCop">
+  <FileSet Name="ExcludedFromStyleCop">
     <Include File="ComInterop\IComLogManager.cs" />
     <Include File="ComInterop\IComLogger.cs" />
     <Include File="Internal\AspHelper.cs" />
     <Include File="Internal\NativeMethods.cs" />
     <Include File="Internal\Win32FileNativeMethods.cs" />
     <Include File="Logger-V1Compat.cs" />
-   </FileSet>
+  </FileSet>
 
-   <Customize FileSet="ExcludedFromStyleCop" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-   </Customize>
+  <Customize FileSet="ExcludedFromStyleCop" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
+  </Customize>
 
-   <Project File="NLog.sl4.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-   </Project>
+  <FileSet Name="Logger.tt-result">
+    <Include File="Logger1.cs" />
+  </FileSet>
+  <Customize FileSet="Logger.tt-result" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <AutoGen>True</AutoGen>
+    <DesignTime>True</DesignTime>
+    <DependentUpon>Logger.tt</DependentUpon>
+  </Customize>
 
-   <Project File="NLog.sl5.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-   </Project>
+  <FileSet Name="Logger.tt">
+    <Include File="Logger.tt" />
+  </FileSet>
+  <Customize FileSet="Logger.tt" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Generator>TextTemplatingFileGenerator</Generator>
+    <LastGenOutput>Logger1.cs</LastGenOutput>
+  </Customize>
 
-   <Project File="NLog.mono2.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
-     </ItemGroup>
-   </Project>
+  <Project File="NLog.sl4.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+  </Project>
 
-   <Project File="NLog.monodevelop.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
-     </ItemGroup>
-   </Project>
+  <Project File="NLog.sl5.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+  </Project>
 
-   <Project File="NLog.netfx35.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
-     </ItemGroup>
-   </Project>
+  <Project File="NLog.mono2.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+    <ItemGroup Name="EmbeddedResource">
+      <FileSet Include="AllResources" />
+    </ItemGroup>
+  </Project>
 
-   <Project File="NLog.netfx40.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
-     </ItemGroup>
-   </Project>
+  <Project File="NLog.monodevelop.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+    <ItemGroup Name="EmbeddedResource">
+      <FileSet Include="AllResources" />
+    </ItemGroup>
+  </Project>
 
-   <Project File="NLog.netfx45.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
-     </ItemGroup>
-   </Project>
+  <Project File="NLog.netfx35.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+    <ItemGroup Name="EmbeddedResource">
+      <FileSet Include="AllResources" />
+    </ItemGroup>
+  </Project>
 
-   <Project File="NLog.wp7.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-   </Project>
-                          
-   <Project File="NLog.wp71.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-   </Project>
+  <Project File="NLog.netfx40.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+    <ItemGroup Name="EmbeddedResource">
+      <FileSet Include="AllResources" />
+    </ItemGroup>
+  </Project>
 
-   <Project File="NLog.doc.csproj">
-     <ItemGroup Name="Compile">
-        <FileSet Include="AllFilesToCompile" />
-     </ItemGroup>
-     <ItemGroup Name="EmbeddedResource">
-        <FileSet Include="AllResources" />
-     </ItemGroup>
-   </Project>
+  <Project File="NLog.netfx45.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+    <ItemGroup Name="EmbeddedResource">
+      <FileSet Include="AllResources" />
+    </ItemGroup>
+  </Project>
+
+  <Project File="NLog.wp7.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+
+  </Project>
+
+  <Project File="NLog.wp71.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+
+  </Project>
+
+  <Project File="NLog.doc.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+    <ItemGroup Name="EmbeddedResource">
+      <FileSet Include="AllResources" />
+    </ItemGroup>
+  </Project>
 
 </ProjectFiles>

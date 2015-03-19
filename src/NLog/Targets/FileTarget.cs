@@ -38,7 +38,8 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
-using System.Linq;
+    using System.IO.Compression;
+    using System.Linq;
     using System.Text;
     using System.Threading;
     using Common;
@@ -46,6 +47,7 @@ using System.Linq;
     using Internal;
     using Internal.FileAppenders;
     using Layouts;
+    using Time;
 
     /// <summary>
     /// Writes log messages to one or more files.
@@ -69,6 +71,10 @@ using System.Linq;
         private int maxArchiveFiles;
 
         private readonly DynamicFileArchive fileArchive;
+
+        // Queue used so the oldest used filename can be removed from when the list of filenames
+        // that exist have got too long.
+        private Queue<string> previousFileNames;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -103,6 +109,9 @@ using System.Linq;
             this.fileArchive = new DynamicFileArchive(MaxArchiveFiles);
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
+
+            this.maxLogFilenames = 20;
+            this.previousFileNames = new Queue<string>(this.maxLogFilenames);
         }
 
         /// <summary>
@@ -175,6 +184,17 @@ using System.Linq;
         public bool KeepFileOpen { get; set; }
 
         /// <summary>
+        /// Gets or sets the maximum number of log filenames that should be stored as existing.
+        /// </summary>
+        /// <remarks>
+        /// The bigger this number is the longer it will take to write each log record. The smaller the number is
+        /// the higher the chance that the clean function will be run when no new files have been opened.
+        /// </remarks>
+        /// <docgen category='Performance Tuning Options' order='10' />
+        [DefaultValue(20)]
+        public int maxLogFilenames { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
@@ -215,8 +235,8 @@ using System.Linq;
             set
             {
                 this.lineEndingMode = value;
-                }
             }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to automatically flush the file buffers after each log message.
@@ -387,14 +407,26 @@ using System.Linq;
         /// <docgen category='Archival Options' order='10' />
         public ArchiveNumberingMode ArchiveNumbering { get; set; }
 
+#if NET4_5
+        /// <summary>
+        /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
+        /// </summary>
+        /// <docgen category='Archival Options' order='10' />
+        [DefaultValue(false)]
+        public bool EnableArchiveFileCompression { get; set; }
+#else
+        private const bool EnableArchiveFileCompression = false;
+#endif
+
         /// <summary>
         /// Gets the characters that are appended after each line.
         /// </summary>
-        protected internal string NewLineChars { 
-            get 
-            { 
-                return lineEndingMode.NewLineCharacters; 
-            } 
+        protected internal string NewLineChars
+        {
+            get
+            {
+                return lineEndingMode.NewLineCharacters;
+            }
         }
 
         /// <summary>
@@ -602,6 +634,7 @@ using System.Linq;
             }
         }
 
+
         /// <summary>
         /// Writes the specified logging event to a file specified in the FileName 
         /// parameter.
@@ -615,6 +648,23 @@ using System.Linq;
             string fileName = this.FileName.Render(logEvent);
 #endif
             byte[] bytes = this.GetBytesToWrite(logEvent);
+
+            // Clean up old archives if this is the first time a log record has been written to
+            // this log file and the archiving system is date/time based.
+            if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None)
+            {
+                if (!previousFileNames.Contains(fileName))
+                {
+                    if (this.previousFileNames.Count > this.maxLogFilenames)
+                    {
+                        this.previousFileNames.Dequeue();
+                    }
+
+                    string fileNamePattern = this.GetFileNamePattern(fileName, logEvent);
+                    this.DeleteOldDateArchive(fileNamePattern);
+                    this.previousFileNames.Enqueue(fileName);
+                }
+            }
 
             if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
             {
@@ -777,9 +827,10 @@ using System.Linq;
 
             InternalLogger.Trace("Renaming {0} to {1}", fileName, newFileName);
 
+            var shouldCompress = archiveNumber == 0;
             try
             {
-                RollArchiveForward(fileName, newFileName);
+                RollArchiveForward(fileName, newFileName, shouldCompress);
             }
             catch (IOException)
             {
@@ -790,16 +841,16 @@ using System.Linq;
                     Directory.CreateDirectory(dir);
                 }
 
-                RollArchiveForward(fileName, newFileName);
+                RollArchiveForward(fileName, newFileName, shouldCompress);
             }
         }
 
         private void SequentialArchive(string fileName, string pattern)
         {
             FileNameTemplate fileTemplate = new FileNameTemplate(Path.GetFileName(pattern));
-            int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt; 
+            int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt;
             string fileNameMask = fileTemplate.ReplacePattern("*");
-            
+
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             int nextNumber = -1;
             int minNumber = -1;
@@ -856,12 +907,37 @@ using System.Linq;
             }
 
             string newFileName = ReplaceNumberPattern(pattern, nextNumber);
-            RollArchiveForward(fileName, newFileName);
+            RollArchiveForward(fileName, newFileName, shouldCompress: true);
         }
 
-        private void RollArchiveForward(string existingFileName, string archiveFileName)
+        private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
         {
-            File.Move(existingFileName, archiveFileName);
+#if NET4_5
+            if (enableCompression)
+            {
+                using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
+                using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
+                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
+                    using (var destination = zipArchiveEntry.Open())
+                    {
+                        originalFileStream.CopyTo(destination);
+                    }
+                }
+
+                File.Delete(fileName);
+            }
+            else
+#endif
+            {
+                File.Move(fileName, archiveFileName);
+            }
+        }
+
+        private void RollArchiveForward(string existingFileName, string archiveFileName, bool shouldCompress)
+        {
+            ArchiveFile(existingFileName, archiveFileName, shouldCompress && EnableArchiveFileCompression);
 
             string fileName = Path.GetFileName(existingFileName);
             if (fileName == null) { return; }
@@ -987,7 +1063,7 @@ using System.Linq;
             string newFileName = Path.Combine(dirName,
                 fileNameMask.Replace("*", string.Format("{0}.{1}", newFileDate.ToString(dateFormat), nextSequenceNumber)));
 
-            RollArchiveForward(fileName, newFileName);
+            RollArchiveForward(fileName, newFileName, shouldCompress: true);
         }
 
         private string ReplaceReplaceFileNamePattern(string pattern, string replacementValue)
@@ -997,6 +1073,25 @@ using System.Linq;
 
         private void DateArchive(string fileName, string pattern)
         {
+            string fileNameMask = ReplaceReplaceFileNamePattern(pattern, "*");
+            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
+            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
+
+            DeleteOldDateArchive(pattern);
+
+            DateTime newFileDate = GetArchiveDate(true);
+            string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
+            RollArchiveForward(fileName, newFileName, shouldCompress: true);
+        }
+
+        /// <summary>
+        /// Deletes archive files in reverse chronological order until only the
+        /// MaxArchiveFiles number of archive files remain.
+        /// </summary>
+        /// <param name="pattern">The pattern that archive filenames will match</param>
+        private void DeleteOldDateArchive(string pattern)
+        {
+            
             string fileNameMask = ReplaceReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
@@ -1024,23 +1119,19 @@ using System.Linq;
 
                 if (this.MaxArchiveFiles != 0)
                 {
-                for (int fileIndex = 0; fileIndex < filesByDate.Count; fileIndex++)
-                {
-                    if (fileIndex > files.Count - this.MaxArchiveFiles)
-                        break;
+                    for (int fileIndex = 0; fileIndex < filesByDate.Count; fileIndex++)
+                    {
+                        if (fileIndex > files.Count - this.MaxArchiveFiles)
+                            break;
 
-                    File.Delete(filesByDate[fileIndex]);
+                        File.Delete(filesByDate[fileIndex]);
+                    }
                 }
-            }
             }
             catch (DirectoryNotFoundException)
             {
                 Directory.CreateDirectory(dirName);
             }
-
-            DateTime newFileDate = GetArchiveDate(true);
-            string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
-            RollArchiveForward(fileName, newFileName);
         }
 #endif
 
@@ -1079,7 +1170,7 @@ using System.Linq;
 
         private DateTime GetArchiveDate(bool isNextCycle)
         {
-            DateTime archiveDate = DateTime.Now;
+            DateTime archiveDate = TimeSource.Current.Time;
 
             // Because AutoArchive/DateArchive gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
             // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
@@ -1113,19 +1204,66 @@ using System.Linq;
 
         private void DoAutoArchive(string fileName, LogEventInfo eventInfo)
         {
-            FileInfo fi = new FileInfo(fileName);
-            if (!fi.Exists)
+            FileInfo fileInfo = new FileInfo(fileName);
+            if (!fileInfo.Exists)
             {
                 return;
             }
 
             // Console.WriteLine("DoAutoArchive({0})", fileName);
+            string fileNamePattern = GetFileNamePattern(fileName, eventInfo);
+
+            if (!ContainFileNamePattern(fileNamePattern))
+            {
+                if (fileArchive.Archive(fileNamePattern, fileInfo.FullName, CreateDirs, EnableArchiveFileCompression))
+                {
+                    if (this.initializedFiles.ContainsKey(fileInfo.FullName))
+                    {
+                        this.initializedFiles.Remove(fileInfo.FullName);
+                    }
+                }
+            }
+            else
+            {
+                switch (this.ArchiveNumbering)
+                {
+                    case ArchiveNumberingMode.Rolling:
+                        this.RecursiveRollingRename(fileInfo.FullName, fileNamePattern, 0);
+                        break;
+
+                    case ArchiveNumberingMode.Sequence:
+                        this.SequentialArchive(fileInfo.FullName, fileNamePattern);
+                        break;
+
+#if !NET_CF
+                    case ArchiveNumberingMode.Date:
+                        this.DateArchive(fileInfo.FullName, fileNamePattern);
+                        break;
+
+                    case ArchiveNumberingMode.DateAndSequence:
+                        this.DateAndSequentialArchive(fileInfo.FullName, fileNamePattern, eventInfo);
+                        break;
+#endif
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the pattern that archive files will match
+        /// </summary>
+        /// <param name="fileName">Filename of the log file</param>
+        /// <param name="eventInfo">Log event info of the log that is currently been written</param>
+        /// <returns>A string with a pattern that will match the archive filenames</returns>
+        private string GetFileNamePattern(string fileName, LogEventInfo eventInfo)
+        {
             string fileNamePattern;
+
+            FileInfo fileInfo = new FileInfo(fileName);
 
             if (this.ArchiveFileName == null)
             {
                 string ext = Path.GetExtension(fileName);
-                fileNamePattern = Path.ChangeExtension(fi.FullName, ".{#}" + ext);
+                fileNamePattern = Path.ChangeExtension(fileInfo.FullName, ".{#}" + ext);
             }
             else
             {
@@ -1134,40 +1272,7 @@ using System.Linq;
                 //(2) User supplied the normal filename
                 fileNamePattern = this.ArchiveFileName.Render(eventInfo);
             }
-
-            if (!ContainFileNamePattern(fileNamePattern))
-            {
-                if (fileArchive.Archive(fileNamePattern, fi.FullName, CreateDirs))
-                {
-                    if (this.initializedFiles.ContainsKey(fi.FullName))
-                    {
-                        this.initializedFiles.Remove(fi.FullName);
-            }
-                }
-            }
-            else
-            {
-                switch (this.ArchiveNumbering)
-                {
-                    case ArchiveNumberingMode.Rolling:
-                        this.RecursiveRollingRename(fi.FullName, fileNamePattern, 0);
-                        break;
-
-                    case ArchiveNumberingMode.Sequence:
-                        this.SequentialArchive(fi.FullName, fileNamePattern);
-                        break;
-
-#if !NET_CF
-                    case ArchiveNumberingMode.Date:
-                        this.DateArchive(fi.FullName, fileNamePattern);
-                        break;
-
-                    case ArchiveNumberingMode.DateAndSequence:
-                        this.DateAndSequentialArchive(fi.FullName, fileNamePattern, eventInfo);
-                        break;
-#endif
-                }
-            }
+            return fileNamePattern;
         }
 
         private bool ShouldAutoArchive(string fileName, LogEventInfo ev, int upcomingWriteSize)
@@ -1256,9 +1361,12 @@ using System.Linq;
 
             if (this.ArchiveEvery != FileArchivePeriod.None)
             {
+                // file write time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
+                // so we should ask the TimeSource to convert file time to TimeSource time:
+                lastWriteTime = TimeSource.Current.FromSystemTime(lastWriteTime);
                 string formatString = GetDateFormatString(string.Empty);
                 string fileLastChanged = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
-                string logEventRecorded = logEvent.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
+                string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
 
                 if (fileLastChanged != logEventRecorded)
                 {
@@ -1280,7 +1388,7 @@ using System.Linq;
 
                 try
                 {
-                    DateTime timeToKill = DateTime.Now.AddSeconds(-this.OpenFileCacheTimeout);
+                    DateTime timeToKill = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
                     for (int i = 0; i < this.recentAppenders.Length; ++i)
                     {
                         if (this.recentAppenders[i] == null)
@@ -1379,7 +1487,7 @@ using System.Linq;
             }
 
             return appenderToWrite;
-                    }
+        }
 
         private byte[] GetHeaderBytes()
         {
@@ -1393,7 +1501,7 @@ using System.Linq;
 
             string renderedText = this.Header.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
             return this.TransformBytes(this.Encoding.GetBytes(renderedText));
-            */ 
+            */
         }
 
         private byte[] GetFooterBytes()
@@ -1407,7 +1515,7 @@ using System.Linq;
 
             string renderedText = this.Footer.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
             return this.TransformBytes(this.Encoding.GetBytes(renderedText));
-            */ 
+            */
         }
 
         private void WriteToFile(string fileName, byte[] bytes, bool justData)
@@ -1563,7 +1671,7 @@ using System.Linq;
             if (fileInfo.Exists)
             {
                 fileLength = fileInfo.Length;
-                lastWriteTime = fileInfo.LastWriteTime;
+                lastWriteTime = fileInfo.LastWriteTimeUtc;
                 return true;
             }
 
@@ -1617,28 +1725,30 @@ using System.Linq;
             fileName1 = Path.GetInvalidFileNameChars().Aggregate(fileName1, (current, c) => current.Replace(c, '_'));
             return Path.Combine(dirName, fileName1);
         }
-        #endif
+#endif
 
-                private class DynamicFileArchive
-                {
+        private class DynamicFileArchive
+        {
             public bool CreateDirectory { get; set; }
 
             public int MaxArchiveFileToKeep { get; set; }
 
-            public DynamicFileArchive(int maxArchivedFiles) : this()
+            public DynamicFileArchive(int maxArchivedFiles)
+                : this()
             {
                 this.MaxArchiveFileToKeep = maxArchivedFiles;
             }
- 
+
             /// <summary>
             /// Adds a file into archive.
             /// </summary>
             /// <param name="archiveFileName">File name of the archive</param>
             /// <param name="fileName">Original file name</param>
             /// <param name="createDirectory">Create a directory, if it does not exist</param>
+            /// <param name="enableCompression">Enables file compression</param>
             /// <returns><c>true</c> if the file has been moved successfully; <c>false</c> otherwise</returns>
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-            public bool Archive(string archiveFileName, string fileName, bool createDirectory)
+            public bool Archive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
             {
                 if (MaxArchiveFileToKeep < 1)
                 {
@@ -1653,11 +1763,11 @@ using System.Linq;
                 }
 
                 DeleteOldArchiveFiles();
-                AddToArchive(archiveFileName, fileName, createDirectory);
+                AddToArchive(archiveFileName, fileName, createDirectory, enableCompression);
                 archiveFileQueue.Enqueue(archiveFileName);
                 return true;
             }
-            
+
             public DynamicFileArchive()
             {
                 this.MaxArchiveFileToKeep = -1;
@@ -1672,7 +1782,8 @@ using System.Linq;
             /// <param name="archiveFileName"></param>
             /// <param name="fileName"></param>
             /// <param name="createDirectory"></param>
-            private void AddToArchive(string archiveFileName, string fileName, bool createDirectory)
+            /// <param name="enableCompression"></param>
+            private void AddToArchive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
             {
                 String alternativeFileName = archiveFileName;
 
@@ -1684,7 +1795,7 @@ using System.Linq;
 
                 try
                 {
-                    File.Move(fileName, alternativeFileName);
+                    ArchiveFile(fileName, alternativeFileName, enableCompression);
                 }
                 catch (DirectoryNotFoundException)
                 {
@@ -1695,7 +1806,7 @@ using System.Linq;
                         try
                         {
                             Directory.CreateDirectory(Path.GetDirectoryName(archiveFileName));
-                            File.Move(fileName, alternativeFileName);
+                            ArchiveFile(fileName, alternativeFileName, enableCompression);
                         }
                         catch (Exception ex)
                         {
@@ -1775,8 +1886,8 @@ using System.Linq;
                     numberToStartWith++;
                 }
                 return targetFileName;
-            }            
-                }
+            }
+        }
 
 
         private sealed class FileNameTemplate
@@ -1785,7 +1896,7 @@ using System.Linq;
             /// Characters determining the start of the <see cref="P:FileNameTemplate.Pattern"/>.
             /// </summary>
             public const string PatternStartCharacters = "{#";
-            
+
             /// <summary>
             /// Characters determining the end of the <see cref="P:FileNameTemplate.Pattern"/>.
             /// </summary>
@@ -1847,13 +1958,13 @@ using System.Linq;
 
             public FileNameTemplate(string template)
             {
-                this.template = template;                
+                this.template = template;
                 this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
                 this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
 
                 this.pattern = this.HasPattern() ? template.Substring(this.startIndex, this.endIndex - this.startIndex) : String.Empty;
 
-            }            
+            }
 
             /// <summary>
             /// Checks if there the <see cref="P:FileNameTemplate.Template"/> 

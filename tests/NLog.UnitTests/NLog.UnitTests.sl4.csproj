@@ -120,6 +120,7 @@
     <Compile Include="Filters\WhenNotEqualTests.cs" />
     <Compile Include="Fluent\LogBuilderTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
+    <Compile Include="Internal\EnumHelpersTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
@@ -132,7 +133,6 @@
     <Compile Include="LayoutRenderers\EnvironmentTests.cs" />
     <Compile Include="LayoutRenderers\EventContextTests.cs" />
     <Compile Include="LayoutRenderers\EventPropertiesTests.cs" />
-    <Compile Include="LayoutRenderers\ExceptionLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\ExceptionTests.cs" />
     <Compile Include="LayoutRenderers\FileContentsTests.cs" />
     <Compile Include="LayoutRenderers\GDCTests.cs" />

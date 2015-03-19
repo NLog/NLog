@@ -32,6 +32,9 @@
 // 
 
 using System;
+using System.ComponentModel;
+using System.Globalization;
+using JetBrains.Annotations;
 using NLog.Internal;
 
 namespace NLog.Targets
@@ -39,6 +42,7 @@ namespace NLog.Targets
     /// <summary>
     /// Line ending mode.
     /// </summary>
+    [TypeConverter(typeof(LineEndingModeConverter))]
     public sealed class LineEndingMode 
     {
         /// <summary>
@@ -102,6 +106,29 @@ namespace NLog.Targets
         {
             this.name = name;
             this.newLineCharacters = newLineCharacters;
+        }
+
+
+        /// <summary>
+        ///  Returns the <see cref="LineEndingMode"/> that corresponds to the supplied <paramref name="name"/>.
+        /// </summary>
+        /// <param name="name">
+        ///  The textual representation of the line ending mode, such as CRLF, LF, Default etc.
+        ///  Name is not case sensitive.
+        /// </param>
+        /// <returns>The <see cref="LineEndingMode"/> value, that corresponds to the <paramref name="name"/>.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">There is no line ending mode with the specified name.</exception>
+        public static LineEndingMode FromString([NotNull] string name)
+        {
+            if (name == null) throw new ArgumentNullException("name");
+
+            if (name.Equals(CRLF.Name, StringComparison.OrdinalIgnoreCase)) return CRLF;
+            if (name.Equals(LF.Name, StringComparison.OrdinalIgnoreCase)) return LF;
+            if (name.Equals(CR.Name, StringComparison.OrdinalIgnoreCase)) return CR;
+            if (name.Equals(Default.Name, StringComparison.OrdinalIgnoreCase)) return Default;
+            if (name.Equals(None.Name, StringComparison.OrdinalIgnoreCase)) return None;
+
+            throw new ArgumentOutOfRangeException("name", name, "LineEndingMode is out of range");
         }
 
         /// <summary>
@@ -191,6 +218,39 @@ namespace NLog.Targets
             }
 
             return this.NewLineCharacters == other.NewLineCharacters;
+        }
+
+
+
+        /// <summary>
+        /// Provides a type converter to convert <see cref="LineEndingMode"/> objects to and from other representations.
+        /// </summary>
+        public class LineEndingModeConverter : TypeConverter
+        {
+            /// <summary>
+            /// Returns whether this converter can convert an object of the given type to the type of this converter, using the specified context.
+            /// </summary>
+            /// <returns>
+            /// true if this converter can perform the conversion; otherwise, false.
+            /// </returns>
+            /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param><param name="sourceType">A <see cref="T:System.Type"/> that represents the type you want to convert from. </param>
+            public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+            {
+                return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
+            }
+
+            /// <summary>
+            /// Converts the given object to the type of this converter, using the specified context and culture information.
+            /// </summary>
+            /// <returns>
+            /// An <see cref="T:System.Object"/> that represents the converted value.
+            /// </returns>
+            /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param><param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture. </param><param name="value">The <see cref="T:System.Object"/> to convert. </param><exception cref="T:System.NotSupportedException">The conversion cannot be performed. </exception>
+            public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+            {
+                var name = value as string;
+                return name != null ? LineEndingMode.FromString(name) : base.ConvertFrom(context, culture, value);
+            }
         }
     }
 }
