@@ -22,6 +22,7 @@
             { typeof(Encoding).FullName, "Encoding" },
             { "NLog.Layouts.Layout", "Layout" },
             { "NLog.Targets.Target", "Target" },
+            { "NLog.Targets.LineEndingMode", "LineEndingMode" },
             { "NLog.Conditions.ConditionExpression", "Condition" },
             { "NLog.Filters.FilterResult", "FilterResult" },
             { "NLog.Layout", "Layout" },

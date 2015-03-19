@@ -169,6 +169,16 @@
     </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="LineEndingMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Default" />
+      <xs:enumeration value="CRLF" />
+      <xs:enumeration value="CR" />
+      <xs:enumeration value="LF" />
+      <xs:enumeration value="None" />
+    </xs:restriction>
+  </xs:simpleType>
+
   <xs:simpleType name="NLogLevelList">
     <xs:restriction base="xs:string">
       <xs:pattern value="(|Trace|Debug|Info|Warn|Error|Fatal)(,(Trace|Debug|Info|Warn|Error|Fatal))*" />
