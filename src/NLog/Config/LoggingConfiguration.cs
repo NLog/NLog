@@ -74,7 +74,7 @@ namespace NLog.Config
         {
             get
             {
-                return null;
+                throw new NotSupportedException("Variables is only supported in XmlConfiguration");
             }
         }
 
