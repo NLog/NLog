@@ -1919,7 +1919,7 @@ namespace NLog
 
         internal void WriteToTargets(Type wrapperType, LogEventInfo logEvent)
         {
-            LoggerImpl.Write(wrapperType, this.GetTargetsForLevel(logEvent.Level), logEvent, this.Factory);
+            LoggerImpl.Write(wrapperType ?? this.loggerType, this.GetTargetsForLevel(logEvent.Level), logEvent, this.Factory);
         }
 
         internal void SetConfiguration(LoggerConfiguration newConfiguration)
