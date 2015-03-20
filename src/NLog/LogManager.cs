@@ -31,7 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
 using System.Threading;
 
 namespace NLog
@@ -52,7 +54,9 @@ namespace NLog
         private static readonly LogFactory globalFactory = new LogFactory();
         private static IAppDomain _currentAppDomain;
         private static GetCultureInfo _defaultCultureInfo = () => CultureInfo.CurrentCulture;
-        private static readonly System.Collections.Generic.List<System.Reflection.Assembly> _hiddenAssemblies = new System.Collections.Generic.List<System.Reflection.Assembly>();
+        private static ICollection<Assembly> _hiddenAssemblies;
+
+        private static readonly object lockObject = new object();
 
         /// <summary>
         /// Delegate used to the the culture to use.
@@ -159,9 +163,9 @@ namespace NLog
             set { _defaultCultureInfo = value; }
         }
 
-        internal static System.Reflection.Assembly[] HiddenAssemblies
+        internal static bool IsHiddenAssembly(Assembly assembly)
         {
-            get { return _hiddenAssemblies.ToArray(); }
+            return _hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly);
         }
 
         /// <summary>
@@ -170,14 +174,18 @@ namespace NLog
         /// </summary>
         /// <param name="assembly">The assembly to skip.</param>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void AddHiddenAssembly(System.Reflection.Assembly assembly)
+        public static void AddHiddenAssembly(Assembly assembly)
         {
-            if (_hiddenAssemblies.Contains(assembly))
+            lock (lockObject)
             {
-                return;
-            }
+                if (_hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly))
+                    return;
 
-            _hiddenAssemblies.Add(assembly);
+                _hiddenAssemblies = new HashSet<Assembly>(_hiddenAssemblies ?? Enumerable.Empty<Assembly>())
+                {
+                    assembly
+                };
+            }
         }
 
         /// <summary>
