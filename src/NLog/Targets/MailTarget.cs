@@ -95,6 +95,7 @@ namespace NLog.Targets
             this.Encoding = Encoding.UTF8;
             this.SmtpPort = 25;
             this.SmtpAuthentication = SmtpAuthenticationMode.None;
+            this.Timeout = 10000;
         }
 
         /// <summary>
@@ -225,6 +226,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating the SMTP client timeout.
         /// </summary>
+        /// <remarks>Warning: zero is not infinit waiting</remarks>
         [DefaultValue(10000)]
         public int Timeout { get; set;}
 
