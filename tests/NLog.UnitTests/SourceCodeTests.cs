@@ -31,6 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.ComponentModel;
+using System.Reflection;
+using System.Text;
+using NLog.Targets;
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests
@@ -380,6 +385,148 @@ namespace NLog.UnitTests
 
             return success;
         }
+
+        /// <summary>
+        /// Vertify that all properties with the <see cref="DefaultValueAttribute"/> are set with the default ctor.
+        /// </summary>
+        [Fact]
+        public void VerifyDefaultValues()
+        {
+
+            var ass = typeof(LoggerImpl).Assembly;
+            //var types = AppDomain.CurrentDomain.GetAssemblies()
+            //    .SelectMany(s => s.GetTypes());
+            var types = ass.GetTypes();
+
+            //  VerifyDefaultValuesType(typeof(MailTarget));
+            List<string> reportErrors = new List<string>();
+
+            foreach (var type in types)
+            {
+                VerifyDefaultValuesType(type, reportErrors);
+            }
+
+            //one message for all failing properties
+            var fullMessage = string.Format("{0} errors: \n -------- \n{1}", reportErrors.Count, string.Join("\n- ", reportErrors));
+            Assert.False(reportErrors.Any(), fullMessage);
+
+
+        }
+
+        ///<summary>Verify all properties with the <see cref="DefaultValueAttribute"/></summary>
+        ///<remarks>Note: Xunit dont like overloads</remarks>
+        private static void VerifyDefaultValuesType(Type type, List<string> reportErrors)
+        {
+            var props = type.GetProperties();
+
+            var defaultValuesDict = new Dictionary<string, object>();
+
+            //find first [DefaultValue] values of all props
+            foreach (var propertyInfo in props)
+            {
+
+                var defaultValues = propertyInfo.GetCustomAttributes(typeof(DefaultValueAttribute), true);
+                if (defaultValues.Any())
+                {
+                    var firstDefaultValueAttr = (DefaultValueAttribute)defaultValues.First();
+
+                    defaultValuesDict.Add(propertyInfo.Name, firstDefaultValueAttr.Value);
+                }
+            }
+            if (defaultValuesDict.Any())
+            {
+                //find first ctor without parameters
+                var ctor = type.GetConstructors().FirstOrDefault(c => !c.GetParameters().Any());
+                if (ctor != null)
+                {
+                    var newObject = ctor.Invoke(null);
+
+                    //check al needed props
+                    foreach (var propertyInfo in props.Where(p => defaultValuesDict.ContainsKey(p.Name)))
+                    {
+                        var neededVal = defaultValuesDict[propertyInfo.Name];
+                        var currentVal = propertyInfo.GetValue(newObject, null);
+
+                        if (neededVal == null)
+                        {
+                            if (currentVal != null)
+                            {
+                                ReportFailingDefaultValue(reportErrors, type, propertyInfo, neededVal, currentVal);
+                                //reported. Next
+                            }
+                            //both null, OK, next
+                            continue;
+                        }
+                        if (currentVal == null)
+                        {
+                            //needed was null, so wrong
+                            ReportFailingDefaultValue(reportErrors, type, propertyInfo, neededVal, currentVal);
+                            //reported. Next
+                            continue;
+                        }
+                        //try as strings first
+
+                        var neededString = neededVal.ToString();
+                        var currentString = currentVal.ToString();
+                        var eqstring = neededString.Equals(currentString);
+                        if (eqstring)
+                        {
+                            //ok, so next
+                            continue;
+                        }
+
+                        //nulls or not string equals, fallback
+                        //Assert.Equal(neededVal, currentVal);
+                        var eq = neededVal.Equals(currentVal);
+                        if (!eq)
+                        {
+                            ReportFailingDefaultValue(reportErrors, type, propertyInfo, neededVal, currentVal);
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+        private static void ReportFailingDefaultValue(List<string> reportErrors, Type type, PropertyInfo propertyInfo, object neededVal, object currentVal)
+        {
+
+            //skiplist
+            var propType = propertyInfo.PropertyType;
+            if (propType == typeof(Encoding) && currentVal != null && neededVal != null)
+            {
+                var stringVal = neededVal.ToString();
+                if (currentVal is UTF8Encoding && (stringVal.Equals("utf-8", StringComparison.InvariantCultureIgnoreCase) || stringVal.Equals("utf8", StringComparison.InvariantCultureIgnoreCase)))
+                    return;
+                //ok
+            }
+
+            reportErrors.Add(CreateFailedDefaultValueMessage(type, propertyInfo, neededVal, currentVal));
+        }
+
+        private static string CreateFailedDefaultValueMessage(Type type, PropertyInfo propertyInfo, object expectedVal, object currentVal)
+        {
+
+
+            string message = string.Format("{0}.{1} has a wrong value for [DefaultValueAttribute] compared to the default ctor. DefaultValueAttribute says = {2} and ctor tells = {3}",
+                type.FullName, propertyInfo.Name, PrintValForMessage(expectedVal), PrintValForMessage(currentVal));
+
+            return message;
+        }
+
+        /// <summary>
+        /// print value quoted or as NULL
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        private static string PrintValForMessage(object o)
+        {
+            if (o == null) return "NULL";
+            return "'" + o.ToString() + "'";
+        }
+
+
     }
 }
 
