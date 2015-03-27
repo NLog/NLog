@@ -34,6 +34,7 @@
 using System.ComponentModel;
 using System.Reflection;
 using System.Text;
+using NLog.Layouts;
 using NLog.Targets;
 
 #if !SILVERLIGHT
@@ -407,7 +408,7 @@ namespace NLog.UnitTests
             }
 
             //one message for all failing properties
-            var fullMessage = string.Format("{0} errors: \n -------- \n{1}", reportErrors.Count, string.Join("\n- ", reportErrors));
+            var fullMessage = string.Format("{0} errors: \n -------- \n- {1}", reportErrors.Count, string.Join("\n- ", reportErrors));
             Assert.False(reportErrors.Any(), fullMessage);
 
 
@@ -447,40 +448,14 @@ namespace NLog.UnitTests
                         var neededVal = defaultValuesDict[propertyInfo.Name];
                         var currentVal = propertyInfo.GetValue(newObject, null);
 
-                        if (neededVal == null)
-                        {
-                            if (currentVal != null)
-                            {
-                                ReportFailingDefaultValue(reportErrors, type, propertyInfo, neededVal, currentVal);
-                                //reported. Next
-                            }
-                            //both null, OK, next
-                            continue;
-                        }
-                        if (currentVal == null)
-                        {
-                            //needed was null, so wrong
-                            ReportFailingDefaultValue(reportErrors, type, propertyInfo, neededVal, currentVal);
-                            //reported. Next
-                            continue;
-                        }
-                        //try as strings first
 
-                        var neededString = neededVal.ToString();
-                        var currentString = currentVal.ToString();
-                        var eqstring = neededString.Equals(currentString);
-                        if (eqstring)
-                        {
-                            //ok, so next
-                            continue;
-                        }
-
-                        //nulls or not string equals, fallback
-                        //Assert.Equal(neededVal, currentVal);
-                        var eq = neededVal.Equals(currentVal);
+                        var eq = AreDefaultValuesEqual(neededVal, currentVal, propertyInfo);
                         if (!eq)
                         {
-                            ReportFailingDefaultValue(reportErrors, type, propertyInfo, neededVal, currentVal);
+                            //report
+                            string message = string.Format("{0}.{1} has a wrong value for [DefaultValueAttribute] compared to the default ctor. DefaultValueAttribute says = {2} and ctor tells = {3}",
+                                type.FullName, propertyInfo.Name, PrintValForMessage(neededVal), PrintValForMessage(currentVal));
+                            reportErrors.Add(message);
                         }
                     }
                 }
@@ -489,30 +464,72 @@ namespace NLog.UnitTests
 
         }
 
-        private static void ReportFailingDefaultValue(List<string> reportErrors, Type type, PropertyInfo propertyInfo, object neededVal, object currentVal)
+        /// <summary>
+        /// Are the values equal?
+        /// </summary>
+        /// <param name="neededVal">the val from the <see cref="DefaultValueAttribute"/></param>
+        /// <param name="currentVal">the val from the empty ctor</param>
+        /// <param name="propertyInfo">the prop where the value came from</param>
+        /// <returns>equals</returns>
+        private static bool AreDefaultValuesEqual(object neededVal, object currentVal, PropertyInfo propertyInfo)
         {
-
-            //skiplist
-            var propType = propertyInfo.PropertyType;
-            if (propType == typeof(Encoding) && currentVal != null && neededVal != null)
+            if (neededVal == null)
             {
-                var stringVal = neededVal.ToString();
-                if (currentVal is UTF8Encoding && (stringVal.Equals("utf-8", StringComparison.InvariantCultureIgnoreCase) || stringVal.Equals("utf8", StringComparison.InvariantCultureIgnoreCase)))
-                    return;
-                //ok
+                if (currentVal != null)
+                {
+                    return false;
+
+                }
+                //both null, OK, next
+                return true;
+            }
+            if (currentVal == null)
+            {
+                //needed was null, so wrong
+                return false;
+            }
+            //try as strings first
+
+
+
+            var propType = propertyInfo.PropertyType;
+            var neededString = neededVal.ToString();
+            var currentString = currentVal.ToString();
+
+
+
+            //handle quotes with Layouts
+            if (propType == typeof(Layout))
+            {
+               
+                neededString = "'" + neededString + "'";
+
             }
 
-            reportErrors.Add(CreateFailedDefaultValueMessage(type, propertyInfo, neededVal, currentVal));
-        }
+            var eqstring = neededString.Equals(currentString);
+            if (eqstring)
+            {
+                //ok, so next
+                return true;
+            }
 
-        private static string CreateFailedDefaultValueMessage(Type type, PropertyInfo propertyInfo, object expectedVal, object currentVal)
-        {
+        
 
+            //handle UTF-8 properly
+            if (propType == typeof(Encoding))
+            {
 
-            string message = string.Format("{0}.{1} has a wrong value for [DefaultValueAttribute] compared to the default ctor. DefaultValueAttribute says = {2} and ctor tells = {3}",
-                type.FullName, propertyInfo.Name, PrintValForMessage(expectedVal), PrintValForMessage(currentVal));
+                if (currentVal is UTF8Encoding && (neededString.Equals("utf-8", StringComparison.InvariantCultureIgnoreCase) || neededString.Equals("utf8", StringComparison.InvariantCultureIgnoreCase)))
+                    return true;
 
-            return message;
+            }
+
+      
+
+            //nulls or not string equals, fallback
+            //Assert.Equal(neededVal, currentVal);
+            return neededVal.Equals(currentVal);
+
         }
 
         /// <summary>
@@ -523,7 +540,7 @@ namespace NLog.UnitTests
         private static string PrintValForMessage(object o)
         {
             if (o == null) return "NULL";
-            return "'" + o.ToString() + "'";
+            return "'" + o + "'";
         }
 
 
