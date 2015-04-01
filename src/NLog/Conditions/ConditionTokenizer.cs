@@ -230,7 +230,7 @@ namespace NLog.Conditions
 
             this.TokenValue = ch.ToString();
 
-            var success = TryGetComparisionToken(ch);
+            var success = TryGetComparisonToken(ch);
             if (success) return;
 
             success = TryGetLogicalToken(ch);
@@ -255,11 +255,11 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Try the comparision tokens (greater, smaller, greater-equals, smaller-equals)
+        /// Try the comparison tokens (greater, smaller, greater-equals, smaller-equals)
         /// </summary>
         /// <param name="ch">current char</param>
         /// <returns>is match</returns>
-        private bool TryGetComparisionToken(char ch)
+        private bool TryGetComparisonToken(char ch)
         {
             if (ch == '<')
             {

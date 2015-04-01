@@ -66,7 +66,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="RichTextBoxRowColoringRule" /> class.
         /// </summary>
         /// <param name="condition">The condition.</param>
-        /// <param name="fontColor">Color of the foregroung text.</param>
+        /// <param name="fontColor">Color of the foreground text.</param>
         /// <param name="backColor">Color of the background text.</param>
         /// <param name="fontStyle">The font style.</param>
         public RichTextBoxRowColoringRule(string condition, string fontColor, string backColor, FontStyle fontStyle)

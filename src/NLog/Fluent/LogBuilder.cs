@@ -134,7 +134,7 @@ namespace NLog.Fluent
         }
 
         /// <summary>
-        /// Sets the log message and parameters for formating on the logging event.
+        /// Sets the log message and parameters for formatting on the logging event.
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="arg0">The object to format.</param>
@@ -148,7 +148,7 @@ namespace NLog.Fluent
         }
 
         /// <summary>
-        /// Sets the log message and parameters for formating on the logging event.
+        /// Sets the log message and parameters for formatting on the logging event.
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="arg0">The first object to format.</param>
@@ -163,7 +163,7 @@ namespace NLog.Fluent
         }
 
         /// <summary>
-        /// Sets the log message and parameters for formating on the logging event.
+        /// Sets the log message and parameters for formatting on the logging event.
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="arg0">The first object to format.</param>
@@ -179,7 +179,7 @@ namespace NLog.Fluent
         }
 
         /// <summary>
-        /// Sets the log message and parameters for formating on the logging event.
+        /// Sets the log message and parameters for formatting on the logging event.
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="arg0">The first object to format.</param>
@@ -196,7 +196,7 @@ namespace NLog.Fluent
         }
 
         /// <summary>
-        /// Sets the log message and parameters for formating on the logging event.
+        /// Sets the log message and parameters for formatting on the logging event.
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>
@@ -210,7 +210,7 @@ namespace NLog.Fluent
         }
 
         /// <summary>
-        /// Sets the log message and parameters for formating on the logging event.
+        /// Sets the log message and parameters for formatting on the logging event.
         /// </summary>
         /// <param name="provider">An object that supplies culture-specific formatting information.</param>
         /// <param name="format">A composite format string.</param>

@@ -789,11 +789,11 @@ namespace NLog
         {
             lock (this.syncRoot)
             {
-                Logger existngLogger = loggerCache.Retrieve(cacheKey);
-                if (existngLogger != null) 
+                Logger existingLogger = loggerCache.Retrieve(cacheKey);
+                if (existingLogger != null) 
                 {
                     // Logger is still in cache and referenced.
-                    return existngLogger;
+                    return existingLogger;
                 }
 
                 Logger newLogger;

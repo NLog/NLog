@@ -114,7 +114,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             foreach (var exception in exceptions)
             {
                 Assert.NotNull(exception);
-                Assert.Equal("Some exception has ocurred.", exception.Message);
+                Assert.Equal("Some exception has occurred.", exception.Message);
             }
         }
 
@@ -135,7 +135,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 if (this.ThrowExceptions)
                 {
-                    throw new InvalidOperationException("Some exception has ocurred.");
+                    throw new InvalidOperationException("Some exception has occurred.");
                 }
             }
         }

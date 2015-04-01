@@ -418,7 +418,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="sb">append to this</param>
         /// <param name="logEvent">event for rendering <paramref name="layout"/></param>
-        /// <param name="layout">appened if not <c>null</c></param>
+        /// <param name="layout">append if not <c>null</c></param>
         private static void AppendLayout(StringBuilder sb, LogEventInfo logEvent, Layout layout)
         {
             sb.Append("|");
@@ -477,7 +477,7 @@ namespace NLog.Targets
         /// Render  <paramref name="layout"/> and add the addresses to <paramref name="mailAddressCollection"/>
         /// </summary>
         /// <param name="mailAddressCollection">Addresses appended to this list</param>
-        /// <param name="layout">layout with adresses, ; separated</param>
+        /// <param name="layout">layout with addresses, ; separated</param>
         /// <param name="logEvent">event for rendering the <paramref name="layout"/></param>
         /// <returns>added a address?</returns>
         private static bool AddAddresses(MailAddressCollection mailAddressCollection, Layout layout, LogEventInfo logEvent)

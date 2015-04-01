@@ -55,12 +55,12 @@ namespace NLog.Config
         WithSource = 2,
 
         /// <summary>
-        /// Capture maximum amount of the stack trace information supported on the plaform.
+        /// Capture maximum amount of the stack trace information supported on the platform.
         /// </summary>
         Max = 2,
 #else
         /// <summary>
-        /// Capture maximum amount of the stack trace information supported on the plaform.
+        /// Capture maximum amount of the stack trace information supported on the platform.
         /// </summary>
         Max = 1,
 #endif
