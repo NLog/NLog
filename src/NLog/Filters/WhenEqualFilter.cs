@@ -39,7 +39,7 @@ namespace NLog.Filters
 
     /// <summary>
     /// Matches when the calculated layout is equal to the specified substring.
-    /// This filter is deprecated in favour of <c>&lt;when /&gt;</c> which is based on <a href="conditions.html">contitions</a>.
+    /// This filter is deprecated in favor of <c>&lt;when /&gt;</c> which is based on <a href="conditions.html">conditions</a>.
     /// </summary>
     [Filter("whenEqual")]
     public class WhenEqualFilter : LayoutBasedFilter

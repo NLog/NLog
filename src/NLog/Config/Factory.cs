@@ -42,7 +42,7 @@ namespace NLog.Config
     /// Factory for class-based items.
     /// </summary>
     /// <typeparam name="TBaseType">The base type of each item.</typeparam>
-    /// <typeparam name="TAttributeType">The type of the attribute used to annotate itemss.</typeparam>
+    /// <typeparam name="TAttributeType">The type of the attribute used to annotate items.</typeparam>
     internal class Factory<TBaseType, TAttributeType> : INamedItemFactory<TBaseType, Type>, IFactory
         where TBaseType : class 
         where TAttributeType : NameBaseAttribute
@@ -60,7 +60,7 @@ namespace NLog.Config
         /// <summary>
         /// Scans the assembly.
         /// </summary>
-        /// <param name="types">The types to scane.</param>
+        /// <param name="types">The types to scan.</param>
         /// <param name="prefix">The prefix.</param>
         public void ScanTypes(Type[] types, string prefix)
         {
@@ -128,7 +128,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Tries to get registed item definition.
+        /// Tries to get registered item definition.
         /// </summary>
         /// <param name="itemName">Name of the item.</param>
         /// <param name="result">Reference to a variable which will store the item definition.</param>

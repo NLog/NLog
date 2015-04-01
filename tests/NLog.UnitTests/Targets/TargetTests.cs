@@ -267,7 +267,7 @@ namespace NLog.UnitTests.Targets
             }
             catch (Exception e)
             {
-                Assert.True(false, "Exeption thrown: " + e);
+                Assert.True(false, "Exception thrown: " + e);
             }
         }
 

@@ -59,7 +59,7 @@ namespace NLog.Internal
         /// <param name="inputs">The inputs.</param>
         /// <param name="keySelector">The key selector function.</param>
         /// <returns>
-        /// Dictonary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
+        /// Dictionary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
         /// </returns>
         public static Dictionary<TKey, List<TValue>> BucketSort<TValue, TKey>(this IEnumerable<TValue> inputs, KeySelector<TValue, TKey> keySelector)
         {
