@@ -15,7 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -334,6 +335,7 @@
     <Compile Include="Targets\ConsoleRowHighlightingRule.cs" />
     <Compile Include="Targets\ConsoleTarget.cs" />
     <Compile Include="Targets\ConsoleWordHighlightingRule.cs" />
+    <Compile Include="Targets\CustomActionTarget.cs" />
     <Compile Include="Targets\DatabaseCommandInfo.cs" />
     <Compile Include="Targets\DatabaseParameterInfo.cs" />
     <Compile Include="Targets\DatabaseTarget.cs" />
@@ -342,6 +344,7 @@
     <Compile Include="Targets\EventLogTarget.cs" />
     <Compile Include="Targets\FileArchivePeriod.cs" />
     <Compile Include="Targets\FileTarget.cs" />
+    <Compile Include="Targets\IActionProvider.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTarget.cs" />
     <Compile Include="Targets\MailTarget.cs" />
