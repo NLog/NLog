@@ -90,6 +90,7 @@ namespace NLog.Targets
             this.DBProvider = "sqlserver";
             this.DBHost = ".";
             this.ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
+            this.CommandType = CommandType.Text;
         }
 
         /// <summary>
