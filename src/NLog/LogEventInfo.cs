@@ -72,6 +72,8 @@ namespace NLog
         /// </summary>
         public LogEventInfo()
         {
+            this.TimeStamp = TimeSource.Current.Time;
+            this.SequenceID = Interlocked.Increment(ref globalSequenceId);
         }
 
         /// <summary>
@@ -107,17 +109,16 @@ namespace NLog
         /// <param name="message">Log message including parameter placeholders.</param>
         /// <param name="parameters">Parameter array.</param>
         /// <param name="exception">Exception information.</param>
-        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception)
+        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception): this()
         {
-            this.TimeStamp = TimeSource.Current.Time;
+            
             this.Level = level;
             this.LoggerName = loggerName;
             this.Message = message;
             this.Parameters = parameters;
             this.FormatProvider = formatProvider;
             this.Exception = exception;
-            this.SequenceID = Interlocked.Increment(ref globalSequenceId);
-
+         
             if (NeedToPreformatMessage(parameters))
             {
                 this.CalcFormattedMessage();
