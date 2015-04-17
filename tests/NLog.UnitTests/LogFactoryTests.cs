@@ -211,7 +211,12 @@ namespace NLog.UnitTests
                 LogManager.Configuration = xmlLoggingConfiguration;
 
 
-                LogManager.ConfigurationReloaded += (sender, e) => counterEvent.Signal();
+                LogManager.ConfigurationReloaded += (sender, e) =>
+                {
+                    
+                    if(counterEvent.CurrentCount < 1)
+                        counterEvent.Signal();
+                };
 
                 Test_if_reload_success(@"c:\temp\log.txt");
 
@@ -259,7 +264,11 @@ namespace NLog.UnitTests
                 var xmlLoggingConfiguration = new XmlLoggingConfiguration(tempPathFile);
                 LogManager.Configuration = xmlLoggingConfiguration;
 
-                LogManager.ConfigurationReloaded += (sender, e) => counterEvent.Signal();
+                LogManager.ConfigurationReloaded += (sender, e) =>
+                {
+                    if(counterEvent.CurrentCount <3 )
+                        counterEvent.Signal();
+                };
 
                 Test_if_reload_success(@"c:\temp\log.txt");
 
