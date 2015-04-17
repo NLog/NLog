@@ -62,6 +62,8 @@ namespace NLog.Config
 
         private string originalFileName;
 
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
@@ -155,6 +157,11 @@ namespace NLog.Config
             }
         }
 #endif
+
+        /// <summary>
+        /// Did the <see cref="Initialize"/> Succeeded? <c>true</c>= success, <c>false</c>= error, <c>null</c> = initialize not started yet.
+        /// </summary>
+        public bool? InitializeSucceeded { get; private set; }
 
         /// <summary>
         /// Gets the variables defined in the configuration.
@@ -259,6 +266,7 @@ namespace NLog.Config
         {
             try
             {
+                InitializeSucceeded = null;
                 reader.MoveToContent();
                 var content = new NLogXmlElement(reader);
                 if (fileName != null)
@@ -279,9 +287,11 @@ namespace NLog.Config
                 {
                     this.ParseTopLevel(content, null);
                 }
+                InitializeSucceeded = true;
             }
             catch (Exception exception)
             {
+                InitializeSucceeded = false;
                 if (exception.MustBeRethrown())
                 {
                     throw;
