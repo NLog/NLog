@@ -597,7 +597,8 @@ namespace NLog
                     {
                         throw new NLogConfigurationException("Config changed in between. Not reloading.");
                     }
-
+                    //problem: XmlLoggingConfiguration.Initialize eats exception. ALso XmlLoggingConfiguration.Reload never returns null.
+                    //therefor reload is always turned of
                     LoggingConfiguration newConfig = configurationToReload.Reload();
                     if (newConfig != null)
                     {
