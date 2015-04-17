@@ -31,6 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO;
+using System.Linq;
+using System.Threading;
+using NLog.Targets;
 
 #if !SILVERLIGHT
 namespace NLog.UnitTests
@@ -180,6 +184,181 @@ namespace NLog.UnitTests
         public static void Throws()
         {
             throw new Exception();
+        }
+
+
+        /// <summary>
+        /// Reload by writing file test
+        /// </summary>
+        [Fact]
+        public void Auto_reload_validxml_test()
+        {
+
+            try
+            {
+
+                string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+                Directory.CreateDirectory(tempPath);
+
+                var tempPathFile = Path.Combine(tempPath, "main.nlog");
+
+                WriteToFile(validXML, tempPathFile);
+
+                //event for async testing
+                var counterEvent = new CountdownEvent(1);
+
+                var xmlLoggingConfiguration = new XmlLoggingConfiguration(tempPathFile);
+                LogManager.Configuration = xmlLoggingConfiguration;
+
+
+                LogManager.ConfigurationReloaded += (sender, e) => counterEvent.Signal();
+
+                Test_if_reload_success(@"c:\temp\log.txt");
+
+                WriteToFile(validXML2, tempPathFile);
+
+                //test after signal
+                counterEvent.Wait(3000);
+
+                Test_if_reload_success(@"c:\temp\log2.txt");
+
+
+
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+
+            }
+        }
+
+
+
+
+
+
+        [Fact]
+        public void Auto_Reload_invalidxml_test()
+        {
+
+
+
+            try
+            {
+
+                string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+                Directory.CreateDirectory(tempPath);
+
+                var tempPathFile = Path.Combine(tempPath, "main.nlog");
+
+                WriteToFile(validXML, tempPathFile);
+
+                //event for async testing
+                var counterEvent = new CountdownEvent(3);
+
+                var xmlLoggingConfiguration = new XmlLoggingConfiguration(tempPathFile);
+                LogManager.Configuration = xmlLoggingConfiguration;
+
+                LogManager.ConfigurationReloaded += (sender, e) => counterEvent.Signal();
+
+                Test_if_reload_success(@"c:\temp\log.txt");
+
+
+                //set invalid, set valid
+
+                WriteToFile(invalidXML, tempPathFile);
+                Thread.Sleep(1500);
+                WriteToFile(validXML2, tempPathFile);
+
+                counterEvent.Wait(9000);
+
+                Test_if_reload_success(@"c:\temp\log2.txt");
+
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+
+            }
+        }
+
+        const string validXML = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
+<nlog xmlns=""http://www.nlog-project.org/schemas/NLog.xsd""
+      xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" 
+      autoReload=""true"" 
+      internalLogLevel=""Info"" 
+      throwExceptions=""false"">
+  <targets>
+    <target name=""file"" xsi:type=""File""   fileName=""c:\temp\log.txt"" layout=""${level} "" />
+  </targets>
+  <rules>
+    <logger name=""*"" minlevel=""Error"" writeTo=""file"" />
+  </rules>
+</nlog>
+";
+
+        const string validXML2 = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
+<nlog xmlns=""http://www.nlog-project.org/schemas/NLog.xsd""
+      xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" 
+      autoReload=""true"" 
+      internalLogLevel=""Info"" 
+      throwExceptions=""false"">
+  <targets>
+    <target name=""file"" xsi:type=""File""   fileName=""c:\temp\log2.txt"" layout=""${level} "" />
+  </targets>
+  <rules>
+    <logger name=""*"" minlevel=""Error"" writeTo=""file"" />
+  </rules>
+</nlog>
+";
+
+        const string invalidXML = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
+<nlog xmlns=""http://www.nlog-project.org/schemas/NLog.xsd""
+      xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" 
+      autoReload=""true"" 
+      internalLogLevel=""Info"" 
+      throwExceptions=""false"">
+  <targets>
+    <target name=""file"" xsi:type=""File""   fileName=""c:\temp\log.txt"" layout=""${level} "" />
+  </targets>
+  <rules>
+    <logger name=""*"" minlevel=""Error"" writeTo=""file"" />
+
+";
+
+        /// <summary>
+        /// Test after reload
+        /// </summary>
+        /// <param name="filenameTest"></param>
+        private static void Test_if_reload_success(string filenameTest)
+        {
+
+
+            var loggingConfiguration = LogManager.Configuration;
+            LogManager.Configuration = loggingConfiguration;
+            // xmlLoggingConfiguration.Reload();
+            Assert.True(((XmlLoggingConfiguration)loggingConfiguration).AutoReload);
+            Assert.Equal(1, loggingConfiguration.FileNamesToWatch.Count());
+            //   Assert.Equal(1, xmlLoggingConfiguration.AllTargets.Count);
+
+            var target = LogManager.Configuration.FindTargetByName("file") as FileTarget;
+            Assert.NotNull(target);
+            Assert.Equal(string.Format(@"'{0}'", filenameTest), target.FileName.ToString());
+        }
+
+        /// <summary>
+        /// Write config to file
+        /// </summary>
+        /// <param name="configXML"></param>
+        /// <param name="path">path to file</param>
+        private static void WriteToFile(string configXML, string path)
+        {
+
+
+            using (StreamWriter fs = File.CreateText(path))
+                fs.Write(configXML);
+
+
         }
     }
 }

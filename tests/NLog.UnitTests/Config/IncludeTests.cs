@@ -33,6 +33,7 @@
 
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using NLog.Targets;
 
 namespace NLog.UnitTests.Config
@@ -45,112 +46,10 @@ namespace NLog.UnitTests.Config
     public class IncludeTests : NLogTestBase
     {
 
-
-        [Fact]
-        public void ReloadInvalidXMlTest()
-        {
-            var validXML = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
-<nlog xmlns=""http://www.nlog-project.org/schemas/NLog.xsd""
-      xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" 
-      autoReload=""true"" 
-      internalLogLevel=""Info"" 
-      throwExceptions=""false"">
-  <targets>
-    <target name=""file"" xsi:type=""File""   fileName=""c:\temp\log.txt"" layout=""${level} "" />
-  </targets>
-  <rules>
-    <logger name=""*"" minlevel=""Error"" writeTo=""file"" />
-  </rules>
-</nlog>
-";
-
-            var validXML2 = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
-<nlog xmlns=""http://www.nlog-project.org/schemas/NLog.xsd""
-      xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" 
-      autoReload=""true"" 
-      internalLogLevel=""Info"" 
-      throwExceptions=""false"">
-  <targets>
-    <target name=""file"" xsi:type=""File""   fileName=""c:\temp\log2.txt"" layout=""${level} "" />
-  </targets>
-  <rules>
-    <logger name=""*"" minlevel=""Error"" writeTo=""file"" />
-  </rules>
-</nlog>
-";
-
-            var invalidXML = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
-<nlog xmlns=""http://www.nlog-project.org/schemas/NLog.xsd""
-      xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" 
-      autoReload=""true"" 
-      internalLogLevel=""Info"" 
-      throwExceptions=""false"">
-  <targets>
-    <target name=""file"" xsi:type=""File""   fileName=""c:\temp\log.txt"" layout=""${level} "" />
-  </targets>
-  <rules>
-    <logger name=""*"" minlevel=""Error"" writeTo=""file"" />
-
-";
-
-            
-          
-
-            try
-            {
-
-                string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-                Directory.CreateDirectory(tempPath);
-
-                var tempPathFile = Path.Combine(tempPath, "main.nlog");
-
-                var path = WriteToFile(validXML, tempPathFile);
-
-                var xmlLoggingConfiguration = new XmlLoggingConfiguration(path);
-                LogManager.Configuration = xmlLoggingConfiguration;
-
-                Test(@"c:\temp\log.txt");
-
-                WriteToFile(validXML2, tempPathFile);
+       
 
 
-
-                Test(@"c:\temp\log2.txt");
-
-            }
-            finally
-            {
-                LogManager.Configuration = null;
-
-            }
-        }
-
-        private static void Test(string test)
-        {
-
-          
-            var loggingConfiguration = LogManager.Configuration;
-            LogManager.Configuration = loggingConfiguration;
-           // xmlLoggingConfiguration.Reload();
-            Assert.True(((XmlLoggingConfiguration)loggingConfiguration).AutoReload);
-            Assert.Equal(1, loggingConfiguration.FileNamesToWatch.Count());
-            //   Assert.Equal(1, xmlLoggingConfiguration.AllTargets.Count);
-
-            var target = LogManager.Configuration.FindTargetByName("file") as FileTarget;
-            Assert.NotNull(target);
-            Assert.Equal(string.Format(@"'{0}'", test), target.FileName.ToString());
-        }
-
-        private static string WriteToFile(string configXML, string path)
-        {
-          
-
-            using (StreamWriter fs = File.CreateText(path))
-                fs.Write(configXML);
-
-            string fileToLoad = path;
-            return fileToLoad;
-        }
+    
 
         [Fact]
         public void IncludeTest()
