@@ -16,10 +16,6 @@ It can process diagnostic messages emitted from any .NET language, augment
 them with contextual information, format them according to your preference 
 and send them to one or more targets such as file or database. 
 
-.NET, C/C++ and COM interop APIs are supported so that all your application 
-components including legacy modules written in C++/COM can route their log 
-messages through a common engine. 
-
 NLog is open source software, licensed under the terms of BSD license. 
 See LICENSE.txt for details.
 
