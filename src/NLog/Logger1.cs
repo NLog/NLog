@@ -151,6 +151,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Trace(message, exception) instead")]
         public void TraceException([Localizable(false)] string message, Exception exception)
         {
             this.Trace(message, exception); 
@@ -378,6 +379,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Debug(message, exception) instead")]
         public void DebugException([Localizable(false)] string message, Exception exception)
         {
             this.Debug(message, exception); 
@@ -605,6 +607,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Info(message, exception) instead")]
         public void InfoException([Localizable(false)] string message, Exception exception)
         {
             this.Info(message, exception); 
@@ -832,6 +835,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Warn(message, exception) instead")]
         public void WarnException([Localizable(false)] string message, Exception exception)
         {
             this.Warn(message, exception); 
@@ -1059,6 +1063,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Error(message, exception) instead")]
         public void ErrorException([Localizable(false)] string message, Exception exception)
         {
             this.Error(message, exception); 
@@ -1286,6 +1291,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Fatal(message, exception) instead")]
         public void FatalException([Localizable(false)] string message, Exception exception)
         {
             this.Fatal(message, exception); 
