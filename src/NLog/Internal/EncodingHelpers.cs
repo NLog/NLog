@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,27 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Layouts
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace NLog.Internal
 {
-    /// <summary>
-    /// Specifies CSV quoting modes.
-    /// </summary>
-    public enum CsvQuotingMode
+    internal static class EncodingHelpers
     {
         /// <summary>
-        /// Quote all column.
+        /// UTF-8 BOM 239, 187, 191
         /// </summary>
-        All,
-
-        /// <summary>
-        /// Quote nothing.
-        /// </summary>
-        Nothing,
-
-        /// <summary>
-        /// Quote only whose values contain the quote symbol or
-        /// the separator.
-        /// </summary>
-        Auto
+        internal static readonly byte[] Utf8BOM = { 0xEF, 0xBB, 0xBF };
     }
 }

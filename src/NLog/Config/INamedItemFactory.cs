@@ -52,7 +52,7 @@ namespace NLog.Config
         void RegisterDefinition(string itemName, TDefinitionType itemDefinition);
 
         /// <summary>
-        /// Tries to get registed item definition.
+        /// Tries to get registered item definition.
         /// </summary>
         /// <param name="itemName">Name of the item.</param>
         /// <param name="result">Reference to a variable which will store the item definition.</param>

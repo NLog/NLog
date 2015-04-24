@@ -31,7 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
+using NLog.Internal;
+using NLog.LayoutRenderers;
 using Xunit.Extensions;
 
 #if !SILVERLIGHT
@@ -292,7 +293,7 @@ namespace NLog.UnitTests.Targets
 #if NET4_5
                     enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 #else
-                    new Action<string, string, Encoding>(AssertFileContents);
+ new Action<string, string, Encoding>(AssertFileContents);
 #endif
                 assertFileContents(archiveTempName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n",
                     Encoding.UTF8);
@@ -629,14 +630,14 @@ namespace NLog.UnitTests.Targets
         {
             get
             {
-                var booleanValues = new[] {true, false};
-                var timeKindValues = new[] {DateTimeKind.Utc, DateTimeKind.Local};
-                return 
-                    from concurrentWrites in booleanValues 
-                    from keepFileOpen in booleanValues 
+                var booleanValues = new[] { true, false };
+                var timeKindValues = new[] { DateTimeKind.Utc, DateTimeKind.Local };
+                return
+                    from concurrentWrites in booleanValues
+                    from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
-                    from timeKind in timeKindValues 
-                    select new object[] { timeKind, concurrentWrites, keepFileOpen, networkWrites};
+                    from timeKind in timeKindValues
+                    select new object[] { timeKind, concurrentWrites, keepFileOpen, networkWrites };
             }
         }
 
@@ -931,7 +932,7 @@ namespace NLog.UnitTests.Targets
             RollingArchiveTests(enableCompression: true);
         }
 #endif
-        
+
         private void RollingArchiveTests(bool enableCompression)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -984,7 +985,7 @@ namespace NLog.UnitTests.Targets
 #if NET4_5
  enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 #else
-                    new Action<string, string, Encoding>(AssertFileContents);
+ new Action<string, string, Encoding>(AssertFileContents);
 #endif
 
                 AssertFileContents(tempFile,
@@ -1392,7 +1393,7 @@ namespace NLog.UnitTests.Targets
 #if NET4_5
                     enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 #else
-                    new Action<string, string, Encoding>(AssertFileContents);
+ new Action<string, string, Encoding>(AssertFileContents);
 #endif
                 AssertFileContents(tempFile,
                     StringRepeat(250, "eee\n"),
@@ -1498,6 +1499,9 @@ namespace NLog.UnitTests.Targets
                     File.Delete(expectedCorrectedTempFile);
             }
         }
+
+
+    
     }
 }
 

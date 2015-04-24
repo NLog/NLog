@@ -1,6 +1,8 @@
 Welcome to NLog
 ===
 
+[![Join the chat at https://gitter.im/NLog/NLog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLog/NLog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg?style=flat)](https://www.nuget.org/packages/NLog)
 [![Version](https://img.shields.io/nuget/v/NLog.svg?style=flat)](https://www.nuget.org/packages/NLog)
 [![GitHub release](https://img.shields.io/github/release/NLog/NLog.svg)](https://github.com/NLog/NLog/releases)
@@ -15,10 +17,6 @@ your application regardless of its size or complexity.
 It can process diagnostic messages emitted from any .NET language, augment 
 them with contextual information, format them according to your preference 
 and send them to one or more targets such as file or database. 
-
-.NET, C/C++ and COM interop APIs are supported so that all your application 
-components including legacy modules written in C++/COM can route their log 
-messages through a common engine. 
 
 NLog is open source software, licensed under the terms of BSD license. 
 See LICENSE.txt for details.

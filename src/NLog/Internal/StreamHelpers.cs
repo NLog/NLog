@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,27 +31,49 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Layouts
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace NLog.Internal
 {
     /// <summary>
-    /// Specifies CSV quoting modes.
+    /// Stream helpers
     /// </summary>
-    public enum CsvQuotingMode
+    public static class StreamHelpers
     {
-        /// <summary>
-        /// Quote all column.
-        /// </summary>
-        All,
 
         /// <summary>
-        /// Quote nothing.
+        /// Copy stream input to output. Skip the first bytes
         /// </summary>
-        Nothing,
+        /// <param name="input">stream to read from</param>
+        /// <param name="output">stream to write to</param>
+        /// <param name="offset">first bytes to skip (optional)</param>
+        public static void CopyWithOffset(this Stream input, Stream output, int offset)
+        {
 
-        /// <summary>
-        /// Quote only whose values contain the quote symbol or
-        /// the separator.
-        /// </summary>
-        Auto
+            if (offset < 0)
+            {
+                throw new ArgumentException("negative offset");
+            }
+
+          
+           //skip offset
+            input.Seek(offset, SeekOrigin.Current);
+
+
+            byte[] buffer = new byte[4096];
+            int read;
+            while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+            {
+
+                output.Write(buffer, 0, read);
+               
+            }
+        }
+
+      
+
     }
 }

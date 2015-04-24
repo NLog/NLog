@@ -38,14 +38,14 @@ Pull requests
 ----
 Unit tests are really appreciated! Also please [Sync all the projects](#Sync projects) 
 
-Please document any public method and proptery. Document **why** and not how. At least required: 
+Please document any public method and property. Document **why** and not how. At least required: 
 
 * Method: Summary, param and return.
 * Property: Summary
 
 Sync projects
 ===
-Adding or removing files to the project? Please keep all project files in sync, otherwhise AppVeyor will complain.
+Adding or removing files to the project? Please keep all project files in sync, otherwise AppVeyor will complain.
 The following Msbuild command can be used:
 ```
 NLog\src>msbuild NLog.proj /t:SyncProjectItems
@@ -59,7 +59,7 @@ MSbuild is located in:
 
 Multiple .Net versions
 ===
-Keep in mind that multiple versions of .Net are supported. Some methods are not available in all .Net versions. The following conditional complilation symbols can be used:
+Keep in mind that multiple versions of .Net are supported. Some methods are not available in all .Net versions. The following conditional compilation symbols can be used:
 
 ```
 #if NET3_5

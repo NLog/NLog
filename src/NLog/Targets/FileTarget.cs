@@ -453,7 +453,7 @@ namespace NLog.Targets
         {
             var filesToUninitialize = new List<string>();
 
-            // Select the files require to be unitialised.
+            // Select the files require to be uninitialized.
             foreach (var file in this.initializedFiles)
             {
                 if (file.Value < cleanupThreshold)
@@ -462,7 +462,7 @@ namespace NLog.Targets
                 }
             }
 
-            // Unitialise the files.
+            // Uninitialize the files.
             foreach (string fileName in filesToUninitialize)
             {
                 this.WriteFooterAndUninitialize(fileName);
@@ -1267,7 +1267,7 @@ namespace NLog.Targets
             }
             else
             {
-                //The archive file name is given. There are two possibiliy 
+                //The archive file name is given. There are two possibilities
                 //(1) User supplied the Filename with pattern
                 //(2) User supplied the normal filename
                 fileNamePattern = this.ArchiveFileName.Render(eventInfo);
@@ -1865,7 +1865,7 @@ namespace NLog.Targets
             /// Creates a new unique filename by appending a number to it. This method tests that 
             /// the filename created does not exist.
             /// 
-            /// This process can be slow as it increments the number sequencially from a specified 
+            /// This process can be slow as it increments the number sequentially from a specified 
             /// starting point until it finds a number which produces a filename which does not 
             /// exist.
             /// 

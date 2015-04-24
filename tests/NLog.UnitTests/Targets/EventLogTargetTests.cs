@@ -98,7 +98,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryFatalCustomEntryTyp_fallback()
         {
-            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.Warning, new SimpleLayout("falllback to auto determined"));
+            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.Warning, new SimpleLayout("fallback to auto determined"));
         }
 
         [Fact]

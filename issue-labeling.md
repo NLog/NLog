@@ -9,7 +9,7 @@ We use the following guideline:
 * Bug-reports, even non-confirmed bugs are labels under `bug`.
 * Functional changes are labeled under 'feature'. Even small `features`.
 * Non-functional changes  are labeled under `enhancement`.
-* Issue's that have missing info are labeled under `incomplete info`. If we don't get a response withing 14 days, I will **close** the issue.
+* Issue's that have missing info are labeled under `incomplete info`. If we don't get a response within 14 days, I will **close** the issue.
 * answered questions are **closed** after 3 days. 
 * Issues which have PR's are labeled under `almost ready`
 * The rest of the labels should be straightforward ;) 

@@ -91,7 +91,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Convert the formating string
+        /// Convert the formatting string
         /// </summary>
         /// <param name="format"></param>
         /// <returns></returns>

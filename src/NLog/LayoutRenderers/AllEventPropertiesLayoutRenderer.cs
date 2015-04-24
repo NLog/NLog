@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Gets or sets string that'll be used to separate key/value pairs.
+        /// Gets or sets string that will be used to separate key/value pairs.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         public string Separator { get; set; }
