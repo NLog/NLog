@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Runtime.InteropServices;
 using NLog.Internal;
 using NLog.LayoutRenderers;
 using Xunit.Extensions;
