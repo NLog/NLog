@@ -1004,15 +1004,20 @@ namespace NLog.Targets
 #endif
 
                 var filesByDate = new List<string>();
+
+                //It's possible that the log file itself has a name that will match the archive file mask.
+                var archiveFileCount = files.Count; 
+
                 for (int index = 0; index < files.Count; index++)
                 {
                     //Get the archive file name or empty string if it's null
                     string archiveFileName = Path.GetFileName(files[index]) ?? "";
 
-                    //If our archive name is empty or it's the same as our intended log file, just continue checking.
+
                     if (string.IsNullOrEmpty(archiveFileName) || 
                         archiveFileName.Equals(Path.GetFileName(fileName)))
                     {
+                        archiveFileCount--;
                         continue;
                     }
 
@@ -1050,7 +1055,7 @@ namespace NLog.Targets
                 // Cleanup archive files
                 for (int fileIndex = 0; fileIndex < filesByDate.Count; fileIndex++)
                 {
-                    if (fileIndex > files.Count - this.MaxArchiveFiles)
+                    if (fileIndex > archiveFileCount - this.MaxArchiveFiles)
                         break;
 
                     File.Delete(filesByDate[fileIndex]);
