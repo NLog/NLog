@@ -108,7 +108,14 @@ namespace NLog.LayoutRenderers.Wrappers
 
                 if (this.FixedLength && s.Length > absolutePadding)
                 {
-                    s = s.Substring(0, absolutePadding);
+                    if (this.Padding > 0)
+                    {
+                        s = s.Substring(s.Length - absolutePadding);
+                    }
+                    else
+                    {
+                        s = s.Substring(0, absolutePadding);
+                    }
                 }
             }
 
