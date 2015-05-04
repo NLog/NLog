@@ -89,7 +89,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${message:padding=3:fixedlength=true}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${message:padding=-3:fixedlength=true}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
@@ -97,9 +97,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
             ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
-            AssertDebugLastMessage("debug", "  a");
+            AssertDebugLastMessage("debug", "a  ");
             logger.Debug("a{0}", 1);
-            AssertDebugLastMessage("debug", " a1");
+            AssertDebugLastMessage("debug", "a1 ");
             logger.Debug("a{0}{1}", 1, "2");
             AssertDebugLastMessage("debug", "a12");
             logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));

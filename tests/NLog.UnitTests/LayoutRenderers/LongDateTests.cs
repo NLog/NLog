@@ -85,7 +85,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${longdate:padding=5:fixedlength=true}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${longdate:padding=-5:fixedlength=true}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
