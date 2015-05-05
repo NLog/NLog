@@ -302,13 +302,6 @@ namespace NLog
         {
             if (this.IsEnabled(level))
             {
-                var exceptionCandidate = argument as Exception;
-                if (exceptionCandidate != null)
-                {
-                    this.Log(level, message, exceptionCandidate);
-                    return;
-                }
-
                 this.WriteToTargets(level, message, new object[] { argument });
             }
         }
