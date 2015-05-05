@@ -192,10 +192,8 @@ namespace NLog.UnitTests
         [Fact]
         public void Auto_reload_validxml_test()
         {
-
             try
             {
-
                 string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
                 Directory.CreateDirectory(tempPath);
 
@@ -208,8 +206,7 @@ namespace NLog.UnitTests
 
                 var xmlLoggingConfiguration = new XmlLoggingConfiguration(tempPathFile);
                 LogManager.Configuration = xmlLoggingConfiguration;
-
-
+                
                 LogManager.ConfigurationReloaded += (sender, e) =>
                 {
                     
@@ -226,8 +223,6 @@ namespace NLog.UnitTests
 
                 Test_if_reload_success(@"c:\temp\log2.txt");
 
-
-
             }
             finally
             {
@@ -239,12 +234,8 @@ namespace NLog.UnitTests
         [Fact]
         public void Auto_Reload_invalidxml_test()
         {
-
-
-
             try
             {
-
                 string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
                 Directory.CreateDirectory(tempPath);
 
@@ -284,7 +275,6 @@ namespace NLog.UnitTests
             finally
             {
                 LogManager.Configuration = null;
-
             }
         }
 
@@ -352,8 +342,6 @@ namespace NLog.UnitTests
         /// <param name="filenameTest"></param>
         private static void Test_if_reload_success(string filenameTest)
         {
-
-
             var loggingConfiguration = LogManager.Configuration;
             LogManager.Configuration = loggingConfiguration;
             // xmlLoggingConfiguration.Reload();
@@ -373,12 +361,8 @@ namespace NLog.UnitTests
         /// <param name="path">path to file</param>
         private static void WriteToFile(string configXML, string path)
         {
-
-
             using (StreamWriter fs = File.CreateText(path))
                 fs.Write(configXML);
-
-
         }
     }
 }
