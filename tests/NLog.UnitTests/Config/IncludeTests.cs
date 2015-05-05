@@ -45,12 +45,6 @@ namespace NLog.UnitTests.Config
 
     public class IncludeTests : NLogTestBase
     {
-
-       
-
-
-    
-
         [Fact]
         public void IncludeTest()
         {

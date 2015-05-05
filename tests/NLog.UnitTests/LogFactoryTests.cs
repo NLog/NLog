@@ -186,7 +186,6 @@ namespace NLog.UnitTests
             throw new Exception();
         }
 
-
         /// <summary>
         /// Reload by writing file test
         /// </summary>
@@ -236,11 +235,6 @@ namespace NLog.UnitTests
 
             }
         }
-
-
-
-
-
 
         [Fact]
         public void Auto_Reload_invalidxml_test()
