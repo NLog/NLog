@@ -130,6 +130,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+	    [Obsolete("Use <#=level#>(LogLevel level, Exception exception, string message, params object[] args)")]
         public void <#=level#>Exception([Localizable(false)] string message, Exception exception)
         {
             this.<#=level#>(message, exception); 
@@ -181,11 +182,41 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+		[Obsolete("Use <#=level#>(LogLevel level, Exception exception, string message, params object[] args)")]
         public void <#=level#>([Localizable(false)] string message, Exception exception)
         {
             if (this.Is<#=level#>Enabled)
             {
                 this.WriteToTargetsWithException(LogLevel.<#=level#>, message, exception);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c><#=level#></c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void <#=level#>(Exception exception, [Localizable(false)] string message, params object[] args)
+        {
+            if (this.Is<#=level#>Enabled)
+            {
+                this.WriteToTargetsWithException(LogLevel.<#=level#>, exception, message, args);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c><#=level#></c> level.
+        /// </summary>
+		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+		/// <param name="args">Arguments to format.</param>
+        public void <#=level#>(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
+        {
+            if (this.Is<#=level#>Enabled)
+            {
+                this.WriteToTargetsWithException(LogLevel.<#=level#>, exception, formatProvider, message, args);
             }
         }
 

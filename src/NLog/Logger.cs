@@ -253,7 +253,7 @@ namespace NLog
         {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargetsWithException(exception, level, message, args);
+                this.WriteToTargetsWithException(level, exception, message, args);
             }
         }
 
@@ -269,7 +269,7 @@ namespace NLog
         {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargetsWithException(exception, level, formatProvider, message, args);
+                this.WriteToTargetsWithException(level, exception, formatProvider, message, args);
             }
         }
 
@@ -516,12 +516,12 @@ namespace NLog
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, message, ex)), this.Factory);
         }
 
-        internal void WriteToTargetsWithException(Exception ex, LogLevel level, [Localizable(false)] string message, object[] args)
+        internal void WriteToTargetsWithException(LogLevel level, Exception ex, [Localizable(false)] string message, object[] args)
         {
-            WriteToTargetsWithException(ex, level, this.Factory.DefaultCultureInfo, message, args);
+            WriteToTargetsWithException(level, ex, this.Factory.DefaultCultureInfo, message, args);
         }
 
-        internal void WriteToTargetsWithException(Exception ex, LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
+        internal void WriteToTargetsWithException(LogLevel level, Exception ex, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
         {
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, ex, formatProvider, message, args)), this.Factory);
         }
