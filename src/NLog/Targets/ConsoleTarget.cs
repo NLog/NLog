@@ -68,7 +68,7 @@ namespace NLog.Targets
         public bool Error { get; set; }
 
         /// <summary>
-        /// Set the encoding for writing messages. 
+        /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>
         /// <remarks>Has side effect</remarks>
         public Encoding Encoding
