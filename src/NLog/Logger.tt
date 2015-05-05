@@ -130,7 +130,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-	    [Obsolete("Use <#=level#>(LogLevel level, Exception exception, string message, params object[] args)")]
+	    [Obsolete("Use <#=level#>(LogLevel level, Exception exception, string message, params object[] args) method instead.")]
         public void <#=level#>Exception([Localizable(false)] string message, Exception exception)
         {
             this.<#=level#>(message, exception); 
@@ -182,7 +182,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use <#=level#>(LogLevel level, Exception exception, string message, params object[] args)")]
+		[Obsolete("Use <#=level#>(LogLevel level, Exception exception, string message, params object[] args) method instead.")]
         public void <#=level#>([Localizable(false)] string message, Exception exception)
         {
             if (this.Is<#=level#>Enabled)

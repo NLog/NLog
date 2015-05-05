@@ -347,7 +347,7 @@ namespace NLog
         /// <param name="message">The message.</param>
         /// <param name="exception">The exception.</param>
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
-        [Obsolete("use Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message)")]
+        [Obsolete("use Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, string message)")]
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, [Localizable(false)] string message, Exception exception)
         {
             return new LogEventInfo(logLevel, loggerName, null, message, null, exception);
