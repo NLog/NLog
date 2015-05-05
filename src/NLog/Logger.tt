@@ -187,7 +187,7 @@ namespace NLog
         {
             if (this.Is<#=level#>Enabled)
             {
-                this.WriteToTargetsWithException(LogLevel.<#=level#>, message, exception);
+                this.WriteToTargets(LogLevel.<#=level#>, message, exception);
             }
         }
 
@@ -201,7 +201,7 @@ namespace NLog
         {
             if (this.Is<#=level#>Enabled)
             {
-                this.WriteToTargetsWithException(LogLevel.<#=level#>, exception, message, args);
+                this.WriteToTargets(LogLevel.<#=level#>, exception, message, args);
             }
         }
 
@@ -216,7 +216,7 @@ namespace NLog
         {
             if (this.Is<#=level#>Enabled)
             {
-                this.WriteToTargetsWithException(LogLevel.<#=level#>, exception, formatProvider, message, args);
+                this.WriteToTargets(LogLevel.<#=level#>, exception, formatProvider, message, args);
             }
         }
 
