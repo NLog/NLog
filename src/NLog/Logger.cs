@@ -238,7 +238,7 @@ namespace NLog
         {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargetsWithException(level, message, exception);
+                this.WriteToTargets(level, message, exception);
             }
         }
 
@@ -511,7 +511,7 @@ namespace NLog
         }
 
         [Obsolete("Use WriteToTargetsWithException(Exception ex, LogLevel level, IFormatProvider formatProvider, string message, object[] args) method instead.")]
-        internal void WriteToTargetsWithException(LogLevel level, [Localizable(false)] string message, Exception ex)
+        internal void WriteToTargets(LogLevel level, [Localizable(false)] string message, Exception ex)
         {
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, message, ex)), this.Factory);
         }
