@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Text;
+
 namespace NLog.Targets
 {
     using System;
@@ -64,6 +66,16 @@ namespace NLog.Targets
         /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
         public bool Error { get; set; }
+
+        /// <summary>
+        /// Set the encoding for writing messages. 
+        ///  </summary>
+        /// <remarks>Has side effect</remarks>
+        public Encoding Encoding
+        {
+            get { return Console.OutputEncoding; }
+            set { Console.OutputEncoding = value; }
+        }
 
         /// <summary>
         /// Initializes the target.
