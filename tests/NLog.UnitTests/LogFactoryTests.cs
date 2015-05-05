@@ -253,16 +253,12 @@ namespace NLog.UnitTests
                 WriteToFile(validXML, tempPathFile);
 
                 //event for async testing
-                var counterEvent = new CountdownEvent(3);
+                var counterEvent = new CountdownEvent(1);
 
                 var xmlLoggingConfiguration = new XmlLoggingConfiguration(tempPathFile);
                 LogManager.Configuration = xmlLoggingConfiguration;
 
-                LogManager.ConfigurationReloaded += (sender, e) =>
-                {
-                    if(counterEvent.CurrentCount <3 )
-                        counterEvent.Signal();
-                };
+                LogManager.ConfigurationReloaded += SignalCounterEvent1(counterEvent);
 
                 Test_if_reload_success(@"c:\temp\log.txt");
 
@@ -270,10 +266,17 @@ namespace NLog.UnitTests
                 //set invalid, set valid
 
                 WriteToFile(invalidXML, tempPathFile);
-                Thread.Sleep(1500);
+
+                counterEvent.Wait(2000);
+               
                 WriteToFile(validXML2, tempPathFile);
 
-                counterEvent.Wait(9000);
+                LogManager.ConfigurationReloaded -= SignalCounterEvent1(counterEvent);
+
+                var counterEvent2 = new CountdownEvent(1);
+                LogManager.ConfigurationReloaded += (sender, e) => SignalCounterEvent(counterEvent2);
+
+                counterEvent2.Wait(2000);
 
                 Test_if_reload_success(@"c:\temp\log2.txt");
 
@@ -282,6 +285,20 @@ namespace NLog.UnitTests
             {
                 LogManager.Configuration = null;
 
+            }
+        }
+
+        private static EventHandler<LoggingConfigurationReloadedEventArgs> SignalCounterEvent1(CountdownEvent counterEvent)
+        {
+            return (sender, e) => SignalCounterEvent(counterEvent);
+        }
+
+        private static void SignalCounterEvent(CountdownEvent counterEvent)
+        {
+            //we get this event sometimes mulitple times for 1 change
+            if (counterEvent.CurrentCount < 1)
+            {
+                counterEvent.Signal();
             }
         }
 
