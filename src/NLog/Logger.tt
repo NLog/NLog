@@ -185,7 +185,7 @@ namespace NLog
         {
             if (this.Is<#=level#>Enabled)
             {
-                this.WriteToTargets(LogLevel.<#=level#>, message, exception);
+                this.WriteToTargetsWithException(LogLevel.<#=level#>, message, exception);
             }
         }
 

@@ -79,7 +79,7 @@ namespace NLog
         /// </summary>
         public LogFactory Factory { get; private set; }
 
-        
+
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the specified level.
         /// </summary>
@@ -119,8 +119,8 @@ namespace NLog
                 this.WriteToTargets(wrapperType, logEvent);
             }
         }
-    
-        #region Log() overloads 
+
+        #region Log() overloads
 
         /// <overloads>
         /// Writes the diagnostic message at the specified level using the specified format provider and format parameters.
@@ -193,10 +193,10 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
-        { 
+        {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, args); 
+                this.WriteToTargets(level, formatProvider, message, args);
             }
         }
 
@@ -205,8 +205,8 @@ namespace NLog
         /// </summary>
         /// <param name="level">The log level.</param>
         /// <param name="message">Log message.</param>
-        public void Log(LogLevel level, [Localizable(false)] string message) 
-        { 
+        public void Log(LogLevel level, [Localizable(false)] string message)
+        {
             if (this.IsEnabled(level))
             {
                 this.WriteToTargets(level, null, message);
@@ -219,8 +219,8 @@ namespace NLog
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
-        public void Log(LogLevel level, [Localizable(false)] string message, params object[] args) 
-        { 
+        public void Log(LogLevel level, [Localizable(false)] string message, params object[] args)
+        {
             if (this.IsEnabled(level))
             {
                 this.WriteToTargets(level, message, args);
@@ -233,11 +233,43 @@ namespace NLog
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args)")]
         public void Log(LogLevel level, [Localizable(false)] string message, Exception exception)
         {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, message, exception);
+                this.WriteToTargetsWithException(level, message, exception);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="args">Arguments to format.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args)
+        {
+            if (this.IsEnabled(level))
+            {
+                this.WriteToTargetsWithException2(exception, level, message, args);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="args">Arguments to format.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Log(LogLevel level, Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
+        {
+            if (this.IsEnabled(level))
+            {
+                this.WriteToTargetsWithException2(exception, level, formatProvider, message, args);
             }
         }
 
@@ -251,10 +283,10 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [StringFormatMethod("message")]
         public void Log<TArgument>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
-        { 
+        {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                this.WriteToTargets(level, formatProvider, message, new object[] { argument });
             }
         }
 
@@ -267,7 +299,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [StringFormatMethod("message")]
         public void Log<TArgument>(LogLevel level, [Localizable(false)] string message, TArgument argument)
-        { 
+        {
             if (this.IsEnabled(level))
             {
                 var exceptionCandidate = argument as Exception;
@@ -291,11 +323,11 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Log<TArgument1, TArgument2>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
-        { 
+        public void Log<TArgument1, TArgument2>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
+        {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2 }); 
+                this.WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2 });
             }
         }
 
@@ -310,7 +342,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [StringFormatMethod("message")]
         public void Log<TArgument1, TArgument2>(LogLevel level, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
-        { 
+        {
             if (this.IsEnabled(level))
             {
                 this.WriteToTargets(level, message, new object[] { argument1, argument2 });
@@ -329,11 +361,11 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
-        { 
+        public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
+                this.WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2, argument3 });
             }
         }
 
@@ -350,7 +382,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [StringFormatMethod("message")]
         public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
-        { 
+        {
             if (this.IsEnabled(level))
             {
                 this.WriteToTargets(level, message, new object[] { argument1, argument2, argument3 });
@@ -359,7 +391,7 @@ namespace NLog
 
         #endregion
 
- 
+
         /// <summary>
         /// Runs action. If the action throws, the exception is logged at <c>Error</c> level. Exception is not propagated outside of this method.
         /// </summary>
@@ -485,10 +517,22 @@ namespace NLog
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, formatProvider, value)), this.Factory);
         }
 
-        internal void WriteToTargets(LogLevel level, [Localizable(false)] string message, Exception ex)
+        [Obsolete("use WriteToTargetsWithException(Exception ex, LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)")]
+        internal void WriteToTargetsWithException(LogLevel level, [Localizable(false)] string message, Exception ex)
         {
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, message, ex)), this.Factory);
         }
+
+        internal void WriteToTargetsWithException2(Exception ex, LogLevel level, [Localizable(false)] string message, object[] args)
+        {
+            WriteToTargetsWithException2(ex, level, this.Factory.DefaultCultureInfo, message, args);
+        }
+
+        internal void WriteToTargetsWithException2(Exception ex, LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
+        {
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, ex, formatProvider, message, args)), this.Factory);
+        }
+
 
         internal void WriteToTargets(LogLevel level, [Localizable(false)] string message, object[] args)
         {
