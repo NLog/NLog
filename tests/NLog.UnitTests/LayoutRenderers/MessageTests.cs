@@ -179,7 +179,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
 #pragma warning restore 0618
 
-            logger.Debug("Foo", ex);
+            logger.Debug(ex, "Foo");
             AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
         }
 
