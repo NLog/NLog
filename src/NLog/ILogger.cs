@@ -135,6 +135,23 @@ namespace NLog
         void TraceException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        void Trace(Exception exception, [Localizable(false)] string message, params object[] args);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        void Trace(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
+
+        /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters and formatting them with the supplied format provider.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
@@ -265,6 +282,23 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         [Obsolete("Use Debug(String, Exception) method instead.")]
         void DebugException([Localizable(false)] string message, Exception exception);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        void Debug(Exception exception, [Localizable(false)] string message, params object[] args);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        void Debug(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters and formatting them with the supplied format provider.
@@ -399,6 +433,23 @@ namespace NLog
         void InfoException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        void Info(Exception exception, [Localizable(false)] string message, params object[] args);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        void Info(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
+
+        /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level using the specified parameters and formatting them with the supplied format provider.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
@@ -529,6 +580,23 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         [Obsolete("Use Warn(String, Exception) method instead.")]
         void WarnException([Localizable(false)] string message, Exception exception);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        void Warn(Exception exception, [Localizable(false)] string message, params object[] args);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        void Warn(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters and formatting them with the supplied format provider.
@@ -663,6 +731,24 @@ namespace NLog
         void ErrorException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        void Error(Exception exception, [Localizable(false)] string message, params object[] args);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        void Error(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
+
+
+        /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters and formatting them with the supplied format provider.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
@@ -795,6 +881,23 @@ namespace NLog
         void FatalException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        void Fatal(Exception exception, [Localizable(false)] string message, params object[] args);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        void Fatal(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
+
+        /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters and formatting them with the supplied format provider.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
@@ -891,5 +994,6 @@ namespace NLog
         void Fatal<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3);
 
         #endregion
+
     }
 }
