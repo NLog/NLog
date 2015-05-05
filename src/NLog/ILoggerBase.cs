@@ -115,8 +115,27 @@ namespace NLog
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Log(LogLevel, String, Exception) method instead.")]
+        [Obsolete("Use Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args)")]
         void LogException(LogLevel level, [Localizable(false)] string message, Exception exception);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="args">Arguments to format.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        void Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="args">Arguments to format.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        void Log(LogLevel level, Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
         /// Writes the diagnostic message at the specified level using the specified parameters and formatting them with the supplied format provider.
@@ -149,6 +168,7 @@ namespace NLog
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args)")]
         void Log(LogLevel level, [Localizable(false)] string message, Exception exception);
 
         /// <summary>
