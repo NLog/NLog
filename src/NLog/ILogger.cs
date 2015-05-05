@@ -131,7 +131,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Trace(String, Exception) method instead.")]
+        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead.")]
         void TraceException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -178,6 +178,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead.")]
         void Trace([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -280,7 +281,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Debug(String, Exception) method instead.")]
+        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead.")]
         void DebugException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -327,6 +328,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead.")]
         void Debug([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -429,7 +431,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Info(String, Exception) method instead.")]
+        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead.")]
         void InfoException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -476,6 +478,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead.")]
         void Info([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -578,7 +581,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Warn(String, Exception) method instead.")]
+        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead.")]
         void WarnException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -625,6 +628,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead.")]
         void Warn([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -727,7 +731,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Error(String, Exception) method instead.")]
+        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead.")]
         void ErrorException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -775,6 +779,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead.")]
         void Error([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -877,7 +882,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use Fatal(String, Exception) method instead.")]
+        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead.")]
         void FatalException([Localizable(false)] string message, Exception exception);
 
         /// <summary>
@@ -924,6 +929,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead.")]
         void Fatal([Localizable(false)] string message, Exception exception);
 
         /// <summary>
