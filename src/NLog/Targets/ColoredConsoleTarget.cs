@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Text;
+
 #if !SILVERLIGHT
 
 namespace NLog.Targets
@@ -124,6 +126,16 @@ namespace NLog.Targets
         /// <docgen category='Highlighting Rules' order='9' />
         [DefaultValue(true)]
         public bool UseDefaultRowHighlightingRules { get; set; }
+
+        /// <summary>
+        /// The encoding for writing messages to the <see cref="Console"/>.
+        ///  </summary>
+        /// <remarks>Has side effect</remarks>
+        public Encoding Encoding
+        {
+            get { return Console.OutputEncoding; }
+            set { Console.OutputEncoding = value; }
+        }
 
         /// <summary>
         /// Gets the row highlighting rules.
