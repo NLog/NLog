@@ -1500,8 +1500,56 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Fact]
+        public void Single_Archive_File_Rolls_Correctly()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/file.txt2"),
+                    ArchiveAboveSize = 1000,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    MaxArchiveFiles = 1,
+                };
 
-    
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                // we emit 5 * 250 *(3 x aaa + \n) bytes
+                // so that we should get a full file + 3 archives
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("aaa");
+                }
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("bbb");
+                }
+
+                LogManager.Configuration = null;
+
+                AssertFileContents(tempFile,
+                    StringRepeat(250, "bbb\n"),
+                    Encoding.UTF8);
+
+                AssertFileContents(
+                    Path.Combine(tempPath, "archive/file.txt2"),
+                    StringRepeat(250, "aaa\n"),
+                    Encoding.UTF8);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
     }
 }
 
