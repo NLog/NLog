@@ -98,13 +98,13 @@ namespace NLog.Targets
         public Uri Url { get; set; }
 
         /// <summary>
-        /// Gets or sets the Web service method name.
+        /// Gets or sets the Web service method name. Only used with Soap.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         public string MethodName { get; set; }
 
         /// <summary>
-        /// Gets or sets the Web service namespace.
+        /// Gets or sets the Web service namespace. Only used with Soap.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         public string Namespace { get; set; }
