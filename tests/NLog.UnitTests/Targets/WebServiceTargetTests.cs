@@ -276,7 +276,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             LogManager.Configuration = configuration;
             var logger = LogManager.GetCurrentClassLogger();
 
-          
+
 
 
 
@@ -395,9 +395,31 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             }
 
             // POST api/values 
-            public void Post(string param1 = "", string param2 = "")
+            //public void Post(string param1 = "", string param2 = "", [FromBody] object body = null)
+            //{
+            //    logger.Info(LogTemplate, "POST", param1, param2, body);
+            //} 
+            // POST api/values 
+            //public void Post(string param1 = "", string param2 = "")
+            //{
+
+
+            //    logger.Info(LogTemplate, "POST", param1, param2, null);
+
+            //    //var res = Request.Content.ReadAsStringAsync().Result;
+            //}
+
+
+            public void Post([FromBody] ComplexType complexType)
             {
-                logger.Info(LogTemplate, "POST", param1, param2, null);
+                //this is working. 
+                logger.Info(LogTemplate, "POST", null, null, complexType);
+            }
+
+            public class ComplexType
+            {
+                public object Param1 { get; set; }
+                public object Param2 { get; set; }
             }
 
             //// POST api/values 
