@@ -37,13 +37,18 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Cache;
+using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Http;
+using Microsoft.Owin.Hosting;
+using NLog.Fluent;
 using NLog.Internal;
 using NLog.Layouts;
 using NLog.Targets;
+using Owin;
 using Xunit;
 
 namespace NLog.UnitTests.Targets
@@ -134,13 +139,13 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             //async call with mockup stream
             WebRequest webRequest = WebRequest.Create("http://www.test.com");
-            var request = (HttpWebRequest) webRequest;
+            var request = (HttpWebRequest)webRequest;
             var streamMock = new StreamMock();
 
             //event for async testing
             var counterEvent = new CountdownEvent(1);
 
-            var parameterValues = new object[] {"", "336cec87129942eeabab3d8babceead7", "Debg", "2014-06-26 23:15:14.6348", "TestClient.Program", "Debug", "DELL"};
+            var parameterValues = new object[] { "", "336cec87129942eeabab3d8babceead7", "Debg", "2014-06-26 23:15:14.6348", "TestClient.Program", "Debug", "DELL" };
             target.DoInvoke(parameterValues, c => counterEvent.Signal(), request,
                 callback =>
                 {
@@ -238,6 +243,190 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
         #endregion
+
+
+        const string ws_address = "http://localhost:9000/";
+        [Fact]
+        public void TestWebserviceCall_post()
+        {
+
+
+            var configuration = CreateConfigurationFromString(string.Format(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='{0}{1}'
+                                protocol='HttpPost'
+                                encoding='UTF-8'
+                               >
+                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' type='System.String' layout='${{level}}'/>
+     
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>", ws_address, "api/values"));
+
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+
+
+            StartOwinTest(() =>
+            {
+
+                logger.Info("message 1 with a post");
+            });
+
+
+        }
+
+
+        [Fact]
+        public void TestWebserviceCall_get()
+        {
+
+
+            var configuration = CreateConfigurationFromString(string.Format(@"
+                <nlog throwExceptions='true' >
+                    <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='{0}{1}'
+                                protocol='HttpGet'
+                                encoding='UTF-8'
+                               >
+                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' type='System.String' layout='${{level}}'/>
+     
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>", ws_address, "api/values"));
+
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+
+
+            StartOwinTest(() =>
+            {
+
+                logger.Info("message 1 with a post");
+            });
+
+
+        }
+
+        private class Startup
+        {
+            // This code configures Web API. The Startup class is specified as a type
+            // parameter in the WebApp.Start method.
+            public void Configuration(IAppBuilder appBuilder)
+            {
+                // Configure Web API for self-host. 
+                HttpConfiguration config = new HttpConfiguration();
+                config.Routes.MapHttpRoute(
+                    name: "DefaultApi",
+                    routeTemplate: "api/{controller}/{id}",
+                    defaults: new { id = RouteParameter.Optional }
+                );
+
+                appBuilder.UseWebApi(config);
+            }
+        }
+
+        private const string LogTemplate = "Method: {0}, param1: '{1}', param2: '{2}', body: {3}";
+
+        ///<remarks>Must be public </remarks>
+        public class ValuesController : ApiController
+        {
+
+            private Logger logger = LogManager.GetLogger("apiLogger");
+
+            // GET api/values 
+            public IEnumerable<string> Get(string param1 = "", string param2 = "")
+            {
+
+                logger.Info(LogTemplate, "GET", param1, param2, null);
+
+                return new string[] { "value1", "value2" };
+            }
+
+            // GET api/values/5 
+            public string Get(int id)
+            {
+
+                return "value";
+            }
+
+            // POST api/values 
+            public void Post(string param1 = "", string param2 = "")
+            {
+                logger.Info(LogTemplate, "POST", param1, param2, null);
+            }
+
+            //// POST api/values 
+            //public void Post(string param1, [FromBody]string value, string param2 = "")
+            //{
+            //    logger.Info(LogTemplate, "POST", param1, param2, value);
+            //}
+
+            // PUT api/values/5 
+            public void Put(int id, [FromBody]string value)
+            {
+            }
+
+            // DELETE api/values/5 
+            public void Delete(int id)
+            {
+            }
+        }
+
+        private static void StartOwinTest(Action tests)
+        {
+            // HttpSelfHostConfiguration 
+            //http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
+
+
+
+
+            // Start OWIN host 
+            using (WebApp.Start<Startup>(url: ws_address))
+            {
+              
+
+                //plain tests for testing call with httpclient
+                //HttpClient client = new HttpClient();
+
+                //{
+                //    var response = client.GetAsync(ws_address + "api/values").Result;
+                //    var result = response.Content.ReadAsStringAsync().Result;
+                //}
+
+                //{
+                //    var response = client.PostAsync(ws_address + "api/values", new StringContent("abc")).Result;
+                //    var result = response.Content.ReadAsStringAsync().Result;
+                //}
+                tests();
+                Thread.Sleep(2000);
+
+                //  Console.WriteLine(response);
+                //   var result = response.Content.ReadAsStringAsync().Result;
+                //    Console.WriteLine(result);
+            }
+        }
     }
 
 
