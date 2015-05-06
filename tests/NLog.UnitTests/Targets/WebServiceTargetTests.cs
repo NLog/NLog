@@ -276,6 +276,29 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             LogManager.Configuration = configuration;
             var logger = LogManager.GetCurrentClassLogger();
 
+            //            Test Name:	TestWebserviceCall_get
+            //Test FullName:	NLog.UnitTests.Targets.WebServiceTargetTests.TestWebserviceCall_get
+            //Test Source:	x:\_GitHub\NLog\tests\NLog.UnitTests\Targets\WebServiceTargetTests.cs : line 293
+            //Test Outcome:	Failed
+            //Test Duration:	0:00:00,463
+
+            //Result Message:	System.Net.ProtocolViolationException : Cannot send a content-body with this verb-type.
+            //Result StackTrace:	
+            //at System.Net.HttpWebRequest.CheckProtocol(Boolean onRequestStream)
+            //   at System.Net.HttpWebRequest.BeginGetRequestStream(AsyncCallback callback, Object state)
+            //   at NLog.Targets.WebServiceTarget.<>c__DisplayClass1.<DoInvoke>b__0(AsyncCallback r) in x:\_GitHub\NLog\src\NLog\Targets\WebServiceTarget.cs:line 151
+            //   at NLog.Targets.WebServiceTarget.DoInvoke(Object[] parameters, AsyncContinuation continuation, HttpWebRequest request, Func`2 beginFunc, Func`2 getStreamFunc) in x:\_GitHub\NLog\src\NLog\Targets\WebServiceTarget.cs:line 218
+            //   at NLog.Targets.WebServiceTarget.DoInvoke(Object[] parameters, AsyncContinuation continuation) in x:\_GitHub\NLog\src\NLog\Targets\WebServiceTarget.cs:line 154
+            //   at NLog.Targets.MethodCallTargetBase.Write(AsyncLogEventInfo logEvent) in x:\_GitHub\NLog\src\NLog\Targets\MethodCallTargetBase.cs:line 79
+            //   at NLog.Targets.Target.WriteAsyncLogEvent(AsyncLogEventInfo logEvent) in x:\_GitHub\NLog\src\NLog\Targets\Target.cs:line 215
+            //   at NLog.LoggerImpl.WriteToTargetWithFilterChain(TargetWithFilterChain targetListHead, LogEventInfo logEvent, AsyncContinuation onException) in x:\_GitHub\NLog\src\NLog\LoggerImpl.cs:line 194
+            //   at NLog.LoggerImpl.Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory) in x:\_GitHub\NLog\src\NLog\LoggerImpl.cs:line 97
+            //   at NLog.Logger.WriteToTargets(LogLevel level, IFormatProvider formatProvider, String message) in x:\_GitHub\NLog\src\NLog\Logger.cs:line 480
+            //   at NLog.Logger.Info(String message) in x:\_GitHub\NLog\src\NLog\Logger1.cs:line 636
+            //   at NLog.UnitTests.Targets.WebServiceTargetTests.<>c__DisplayClassc.<TestWebserviceCall_get>b__b() in x:\_GitHub\NLog\tests\NLog.UnitTests\Targets\WebServiceTargetTests.cs:line 326
+            //   at NLog.UnitTests.Targets.WebServiceTargetTests.StartOwinTest(Action tests) in x:\_GitHub\NLog\tests\NLog.UnitTests\Targets\WebServiceTargetTests.cs:line 422
+            //   at NLog.UnitTests.Targets.WebServiceTargetTests.TestWebserviceCall_get() in x:\_GitHub\NLog\tests\NLog.UnitTests\Targets\WebServiceTargetTests.cs:line 323
+
 
 
             StartOwinTest(() =>
@@ -405,7 +428,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             // Start OWIN host 
             using (WebApp.Start<Startup>(url: ws_address))
             {
-              
+
 
                 //plain tests for testing call with httpclient
                 //HttpClient client = new HttpClient();
