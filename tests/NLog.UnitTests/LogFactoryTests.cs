@@ -255,19 +255,30 @@ namespace NLog.UnitTests
 
 
                 //set invalid, set valid
-
                 WriteToFile(invalidXML, tempPathFile);
 
-                counterEvent.Wait(2000);
+                counterEvent.Wait(5000);
+
+                if (counterEvent.CurrentCount != 0)
+                {
+                    throw new Exception("failed to reload");
+                }
                
-                WriteToFile(validXML2, tempPathFile);
+               
 
                 LogManager.ConfigurationReloaded -= SignalCounterEvent1(counterEvent);
 
                 var counterEvent2 = new CountdownEvent(1);
                 LogManager.ConfigurationReloaded += (sender, e) => SignalCounterEvent(counterEvent2);
 
-                counterEvent2.Wait(2000);
+                WriteToFile(validXML2, tempPathFile);
+
+                counterEvent2.Wait(5000);
+
+                if (counterEvent2.CurrentCount != 0)
+                {
+                    throw new Exception("failed to reload - 2");
+                }
 
                 Test_if_reload_success(@"c:\temp\log2.txt");
 
@@ -285,8 +296,8 @@ namespace NLog.UnitTests
 
         private static void SignalCounterEvent(CountdownEvent counterEvent)
         {
-            //we get this event sometimes mulitple times for 1 change
-            if (counterEvent.CurrentCount < 1)
+            //we get this event sometimes mulitple times for 1 change. So no signal if not needed.
+            if (counterEvent.CurrentCount > 0)
             {
                 counterEvent.Signal();
             }
