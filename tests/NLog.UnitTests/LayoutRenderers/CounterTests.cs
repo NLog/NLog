@@ -34,6 +34,7 @@
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
+    using NLog.Fluent;
 
     public class CounterTests : NLogTestBase
     {
@@ -48,7 +49,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             logger.Info("a");
             AssertDebugLastMessage("debug", "a 1 1");
@@ -58,6 +59,32 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a 3 3");
             logger.Fatal("a");
             AssertDebugLastMessage("debug", "a 4 4");
+        }
+
+        [Fact]
+        public void LayoutCounterTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+           
+                <targets><target name='debug' type='Debug' layout='${message} ${counter:sequence=${event-context:item=context1}} ${counter}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Info' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+
+
+            logger.Info().Message("a").Property("context1", "seq1").Write();
+            AssertDebugLastMessage("debug", "a 1 1");
+            logger.Info().Message("a").Property("context1", "seq1").Write();
+            AssertDebugLastMessage("debug", "a 2 2"); 
+            logger.Info().Message("a").Property("context1", "seq2").Write();
+            AssertDebugLastMessage("debug", "a 1 3");
+            logger.Info().Message("a").Property("context1", "seq1").Write();
+            AssertDebugLastMessage("debug", "a 3 4");
         }
 
         [Fact]
@@ -71,7 +98,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             logger.Info("a");
             AssertDebugLastMessage("debug", "a 1 1");

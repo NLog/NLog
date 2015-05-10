@@ -41,6 +41,8 @@ namespace NLog.Config
     using System.Collections.ObjectModel;
     using System.Reflection;
 
+    using JetBrains.Annotations;
+
     using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
@@ -106,13 +108,13 @@ namespace NLog.Config
         public IList<LoggingRule> LoggingRules { get; private set; }
 
         /// <summary>
-        /// Gets or sets the default culture info use.
+        /// Gets or sets the default culture info to use as <see cref="LogEventInfo.FormatProvider"/>.
         /// </summary>
-        public CultureInfo DefaultCultureInfo
-        {
-            get { return LogManager.DefaultCultureInfo(); }
-            set { LogManager.DefaultCultureInfo = () => value; }
-        }
+        /// <value>
+        /// Specific culture info or null to use <see cref="CultureInfo.CurrentCulture"/>
+        /// </value>
+        [CanBeNull]
+        public CultureInfo DefaultCultureInfo { get; set; }
 
         /// <summary>
         /// Gets all targets.
@@ -287,6 +289,11 @@ namespace NLog.Config
 
         internal void Dump()
         {
+            if (!InternalLogger.IsDebugEnabled)
+            {
+                return;
+            }
+
             InternalLogger.Debug("--- NLog configuration dump. ---");
             InternalLogger.Debug("Targets:");
             foreach (Target target in this.targets.Values)

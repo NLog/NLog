@@ -11,10 +11,11 @@
     <description>NLog.Extended.dll for use with .NET Framework Extended profile. Supports server-specific targets and other extensions.</description>
     <language>en-US</language>
     <iconUrl>http://nlog-project.org/N.png</iconUrl>
-    <projectUrl>http://github.com/NLog/NLog/</projectUrl>
+    <projectUrl>http://nlog-project.org/</projectUrl>
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
     <dependencies>
       <dependency id="NLog" version="[$BuildVersion$]" />
     </dependencies>
+    <tags>logging, log, tracing, logfiles</tags>
   </metadata>
 </package>

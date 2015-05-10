@@ -31,6 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
+using NLog.Layouts;
+
 #if !SILVERLIGHT && !MONO
 
 namespace NLog.UnitTests.Targets
@@ -45,29 +49,133 @@ namespace NLog.UnitTests.Targets
     public class EventLogTargetTests : NLogTestBase
     {
         [Fact]
-        public void WriteEventLogEntry()
+        public void WriteEventLogEntryTrace()
+        {
+            WriteEventLogEntry2(LogLevel.Trace, EventLogEntryType.Information);
+        }
+
+        [Fact]
+        public void WriteEventLogEntryDebug()
+        {
+            WriteEventLogEntry2(LogLevel.Debug, EventLogEntryType.Information);
+        }
+
+        [Fact]
+        public void WriteEventLogEntryInfo()
+        {
+            WriteEventLogEntry2(LogLevel.Info, EventLogEntryType.Information);
+        }
+        [Fact]
+        public void WriteEventLogEntryWarn()
+        {
+            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.Warning);
+        }
+
+        [Fact]
+        public void WriteEventLogEntryError()
+        {
+            WriteEventLogEntry2(LogLevel.Error, EventLogEntryType.Error);
+        }
+        [Fact]
+        public void WriteEventLogEntryFatal()
+        {
+            WriteEventLogEntry2(LogLevel.Fatal, EventLogEntryType.Error);
+        }
+
+
+        [Fact]
+        public void WriteEventLogEntryFatalCustomEntryType()
+        {
+            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.SuccessAudit, new SimpleLayout("SuccessAudit"));
+        }
+
+        [Fact]
+        public void WriteEventLogEntryFatalCustomEntryTyp_caps()
+        {
+            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.SuccessAudit, new SimpleLayout("SUCCESSAUDIT"));
+        }
+
+        [Fact]
+        public void WriteEventLogEntryFatalCustomEntryTyp_fallback()
+        {
+            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.Warning, new SimpleLayout("fallback to auto determined"));
+        }
+
+        [Fact]
+        public void WriteEventLogEntryFatalCustomEntryTyp_error()
+        {
+            WriteEventLogEntry2(LogLevel.Debug, EventLogEntryType.Error, new SimpleLayout("error"));
+        }
+        private static void WriteEventLogEntry2(LogLevel logLevel, EventLogEntryType eventLogEntryType, Layout entryType = null)
         {
             var target = new EventLogTarget();
             //The Log to write to is intentionally lower case!!
-            target.Log = "application";  
-
-            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
+            target.Log = "application";
+            // set the source explicitly to prevent random AppDomain name being used as the source name
+            target.Source = "NLog.UnitTests";
+            if (entryType != null)
+            {
+                //set only when not default
+                target.EntryType = entryType;
+            }
+            SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             var el = new EventLog(target.Log);
 
-            var latestEntryTime  = el.Entries.Cast<EventLogEntry>().Max(n => n.TimeWritten);
+            var loggedNotBefore = DateTime.Now.AddMinutes(-1);
 
+            var testValue = Guid.NewGuid().ToString();
+            logger.Log(logLevel, testValue);
 
-            var testValue = Guid.NewGuid();
-            logger.Debug(testValue.ToString());
-            
-            var entryExists = (from entry in el.Entries.Cast<EventLogEntry>()
-                                where entry.TimeWritten >= latestEntryTime
-                                && entry.Message.Contains(testValue.ToString())
-                                select entry).Any();
-
-            Assert.True(entryExists);
+            var entries = GetEventRecords(el.Log).TakeWhile(e => e.TimeCreated > loggedNotBefore).ToList();
+            //debug-> error
+            EntryExists(entries, testValue, target.Source, eventLogEntryType);
         }
+
+        private static void EntryExists(IEnumerable<EventRecord> entries, string expectedValue, string expectedSource, EventLogEntryType expectedEntryType)
+        {
+            var entryExists = entries
+                .Any(entry =>
+                    entry.ProviderName == expectedSource &&
+                    HasEntryType(entry, expectedEntryType) &&
+                    entry.Properties.Any(prop => Convert.ToString(prop.Value).Contains(expectedValue))
+                    );
+
+            Assert.True(entryExists, string.Format(
+                "Failed to find entry of type '{1}' from source '{0}' containing text '{2}' in the message", 
+                expectedSource, expectedEntryType, expectedValue));
+        }
+
+
+        private static IEnumerable<EventRecord> GetEventRecords(string logName)
+        {
+            var query = new EventLogQuery(logName, PathType.LogName) { ReverseDirection = true };
+            using (var reader = new EventLogReader(query))
+                for (var eventInstance = reader.ReadEvent(); eventInstance != null; eventInstance = reader.ReadEvent())
+                    yield return eventInstance;
+        }
+
+        private static bool HasEntryType(EventRecord eventRecord, EventLogEntryType entryType)
+        {
+            var keywords = (StandardEventKeywords) (eventRecord.Keywords ?? 0);
+            var level = (StandardEventLevel) (eventRecord.Level ?? 0);
+            bool isClassicEvent = keywords.HasFlag(StandardEventKeywords.EventLogClassic);
+            switch (entryType)
+            {
+                case EventLogEntryType.Error:
+                    return isClassicEvent && level == StandardEventLevel.Error;
+                case EventLogEntryType.Warning:
+                    return isClassicEvent && level == StandardEventLevel.Warning;
+                case EventLogEntryType.Information:
+                    return isClassicEvent && level == StandardEventLevel.Informational;
+                case EventLogEntryType.SuccessAudit:
+                    return keywords.HasFlag(StandardEventKeywords.AuditSuccess);
+                case EventLogEntryType.FailureAudit:
+                    return keywords.HasFlag(StandardEventKeywords.AuditFailure);
+            }
+            return false;
+        }
+
     }
 }
 

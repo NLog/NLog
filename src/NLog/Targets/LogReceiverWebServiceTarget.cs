@@ -55,7 +55,7 @@ namespace NLog.Targets
     /// <summary>
     /// Sends log messages to a NLog Receiver Service (using WCF or Web Services).
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/LogReceiverService_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/LogReceiverService-target">Documentation on NLog Wiki</seealso>
     [Target("LogReceiverService")]
     public class LogReceiverWebServiceTarget : Target
     {
@@ -91,6 +91,12 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         public bool UseBinaryEncoding { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to use a WCF service contract that is one way (fire and forget) or two way (request-reply)
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        public bool UseOneWayContract { get; set; }
 #endif
 
         /// <summary>
@@ -334,9 +340,9 @@ namespace NLog.Targets
         /// service configuration - binding and endpoint address
         /// </summary>
         /// <returns></returns>
-        protected virtual WcfLogReceiverClient CreateWcfLogReceiverClient()
+        protected virtual WcfLogReceiverClientFacade CreateWcfLogReceiverClient()
         {
-            WcfLogReceiverClient client;
+            WcfLogReceiverClientFacade client;
 
             if (string.IsNullOrEmpty(this.EndpointConfigurationName))
             {
@@ -352,11 +358,11 @@ namespace NLog.Targets
                     binding = new BasicHttpBinding();
                 }
 
-                client = new WcfLogReceiverClient(binding, new EndpointAddress(this.EndpointAddress));
+                client = new WcfLogReceiverClientFacade(UseOneWayContract, binding, new EndpointAddress(this.EndpointAddress));
             }
             else
             {
-                client = new WcfLogReceiverClient(this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
+                client = new WcfLogReceiverClientFacade(UseOneWayContract, this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
             }
 
             client.ProcessLogMessagesCompleted += ClientOnProcessLogMessagesCompleted;
@@ -366,10 +372,10 @@ namespace NLog.Targets
 
         private void ClientOnProcessLogMessagesCompleted(object sender, AsyncCompletedEventArgs asyncCompletedEventArgs)
         {
-            var client = sender as WcfLogReceiverClient;
+            var client = sender as WcfLogReceiverClientFacade;
             if (client != null && client.State == CommunicationState.Opened)
             {
-                ((ICommunicationObject)client).Close();
+                client.CloseCommunicationObject();
             }
         }
 #endif

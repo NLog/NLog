@@ -41,6 +41,7 @@ namespace NLog
     using System.Linq;
     using System.Reflection;
     using System.Threading;
+    using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Config;
     using NLog.Filters;
@@ -58,7 +59,7 @@ namespace NLog
         private static readonly Assembly systemAssembly = typeof(Debug).Assembly;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
-        internal static void Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
+        internal static void Write([NotNull] Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
         {
             if (targets == null)
             {
@@ -113,18 +114,18 @@ namespace NLog
         {
             int? firstUserFrame = null;
 
-            for (int i = 0; i < stackTrace.FrameCount; ++i)
-            {
-                StackFrame frame = stackTrace.GetFrame(i);
-                MethodBase mb = frame.GetMethod();
+                for (int i = 0; i < stackTrace.FrameCount; ++i)
+                {
+                    StackFrame frame = stackTrace.GetFrame(i);
+                    MethodBase mb = frame.GetMethod();
                 if (IsNonUserStackFrame(mb, loggerType))
-                    firstUserFrame = i + 1;
-                else if (firstUserFrame != null)
+                        firstUserFrame = i + 1;
+                    else if (firstUserFrame != null)
                     return firstUserFrame.Value;
-            }
+                }
 
             return 0;
-        }
+                    }
 
         /// <summary>
         ///  Defines whether a stack frame belongs to non-user code
@@ -140,7 +141,7 @@ namespace NLog
         {
             var declaringType = method.DeclaringType;
             // get assembly by declaring type or by module for global methods
-            var assembly = declaringType != null ? declaringType.Assembly : method.Module.Assembly;
+            var assembly = declaringType != null ? declaringType.Assembly : method.Module.Assembly; 
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             if (SkipAssembly(assembly)) return true;
             // or if that type is the loggerType or one of its subtypes

@@ -36,69 +36,74 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Globalization;
     using System.Text;
-    using System.Web;
-    using NLog.Config;
 
     /// <summary>
-    /// ASP.NET Session variable.
+    /// Log event context data.
     /// </summary>
-    /// <remarks>
-    /// Use this layout renderer to insert the value of the specified variable stored 
-    /// in the ASP.NET Session dictionary.
-    /// </remarks>
-    /// <example>
-    /// <para>You can set the value of an ASP.NET Session variable by using the following code:</para>
-    /// <code lang="C#">
-    /// <![CDATA[
-    /// HttpContext.Current.Session["myvariable"] = 123;
-    /// HttpContext.Current.Session["stringvariable"] = "aaa BBB";
-    /// HttpContext.Current.Session["anothervariable"] = DateTime.Now;
-    /// ]]>
-    /// </code>
-    /// <para>Example usage of ${aspnet-session}:</para>
-    /// <code lang="NLog Layout Renderer">
-    /// ${aspnet-session:variable=myvariable} - produces "123"
-    /// ${aspnet-session:variable=anothervariable} - produces "01/01/2006 00:00:00"
-    /// ${aspnet-session:variable=anothervariable:culture=pl-PL} - produces "2006-01-01 00:00:00"
-    /// ${aspnet-session:variable=myvariable:padding=5} - produces "  123"
-    /// ${aspnet-session:variable=myvariable:padding=-5} - produces "123  "
-    /// ${aspnet-session:variable=stringvariable:upperCase=true} - produces "AAA BBB"
-    /// </code>
-    /// </example>
-    [LayoutRenderer("aspnet-session")]
-    public class AspNetSessionValueLayoutRenderer : LayoutRenderer
+    [LayoutRenderer("all-event-properties")]
+    public class AllEventPropertiesLayoutRenderer : LayoutRenderer
     {
-        /// <summary>
-        /// Gets or sets the session variable name.
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [DefaultParameter]
-        public string Variable { get; set; }
+        private string format;
 
         /// <summary>
-        /// Renders the specified ASP.NET Session value and appends it to the specified <see cref="StringBuilder" />.
+        /// Initializes a new instance of the <see cref="AllEventPropertiesLayoutRenderer"/> class.
+        /// </summary>
+        public AllEventPropertiesLayoutRenderer()
+        {
+            this.Separator = ", ";
+            this.Format = "[key]=[value]";
+        }
+
+        /// <summary>
+        /// Gets or sets string that will be used to separate key/value pairs.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        public string Separator { get; set; }
+
+        /// <summary>
+        /// Gets or sets how key/value pairs will be formatted.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        public string Format
+        {
+            get { return format; }
+            set
+            {
+                if (!value.Contains("[key]"))
+                    throw new ArgumentException("Invalid format: [key] placeholder is missing.");
+
+                if (!value.Contains("[value]"))
+                    throw new ArgumentException("Invalid format: [value] placeholder is missing.");
+
+                format = value;
+            }
+        }
+
+        /// <summary>
+        /// Renders all log event's properties and appends them to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (this.Variable == null)
-            {
-                return;
-            }
+            bool first = true;
 
-            HttpContext context = HttpContext.Current;
-            if (context == null)
+            foreach (var property in logEvent.Properties)
             {
-                return;
-            }
+                if (!first)
+                {
+                    builder.Append(Separator);
+                }
 
-            if (context.Session == null)
-            {
-                return;
-            }
+                first = false;
 
-            builder.Append(Convert.ToString(context.Session[this.Variable], CultureInfo.InvariantCulture));
+                var key = Convert.ToString(property.Key, CultureInfo.InvariantCulture);
+                var value = Convert.ToString(property.Value, CultureInfo.InvariantCulture);
+                var pair = Format.Replace("[key]", key)
+                                 .Replace("[value]", value);
+
+                builder.Append(pair);
+            }
         }
     }
 }

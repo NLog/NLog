@@ -30,16 +30,17 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-using System;
-using System.IO;
-using NLog.Fluent;
-using Xunit;
 
 namespace NLog.UnitTests.Fluent
 {
+    using System;
+    using System.IO;
+    using Xunit;
+    using NLog.Fluent;
+
     public class LogBuilderTests
     {
-        private static readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 
         [Fact]
         public void TraceWrite()
@@ -122,6 +123,5 @@ namespace NLog.UnitTests.Fluent
                 .Property("Test", "ErrorWrite")
                 .Write();
         }
-
     }
 }

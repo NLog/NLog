@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO;
+using System.Linq;
 using NLog.Common;
 
 namespace NLog.Config
@@ -229,8 +231,29 @@ namespace NLog.Config
         /// <returns>Default factory.</returns>
         private static ConfigurationItemFactory BuildDefaultFactory()
         {
-            var factory = new ConfigurationItemFactory(typeof(Logger).Assembly);
+            var nlogAssembly = typeof(ILogger).Assembly;
+            var factory = new ConfigurationItemFactory(nlogAssembly);
             factory.RegisterExtendedItems();
+#if !SILVERLIGHT
+            var assemblyLocation = Path.GetDirectoryName(nlogAssembly.Location);
+            if (assemblyLocation == null)
+            {
+                return factory;
+            }
+
+            var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
+                .Select(Path.GetFileName)
+                .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
+                .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
+                .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
+                .Select(x => Path.Combine(assemblyLocation, x));
+            foreach (var extensionDll in extensionDlls)
+            {
+                InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
+                var extensionAssembly = Assembly.LoadFrom(extensionDll);
+                factory.RegisterItemsFromAssembly(extensionAssembly);
+            }
+#endif
 
             return factory;
         }
@@ -240,7 +263,7 @@ namespace NLog.Config
         /// </summary>
         private void RegisterExtendedItems()
         {
-            string suffix = typeof(Logger).AssemblyQualifiedName;
+            string suffix = typeof(ILogger).AssemblyQualifiedName;
             string myAssemblyName = "NLog,";
             string extendedAssemblyName = "NLog.Extended,";
             int p = suffix.IndexOf(myAssemblyName, StringComparison.OrdinalIgnoreCase);

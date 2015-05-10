@@ -31,41 +31,43 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+namespace NLog.Layouts
 {
-    using System.Text;
-    using System.Web;
+    using NLog.Config;
 
     /// <summary>
-    /// ASP.NET User variable.
+    /// JSON attribute.
     /// </summary>
-    [LayoutRenderer("aspnet-user-identity")]
-    public class AspNetUserIdentityLayoutRenderer : LayoutRenderer
+    [NLogConfigurationItem]
+    [ThreadAgnostic]
+    public class JsonAttribute
     {
         /// <summary>
-        /// Renders the specified ASP.NET User.Identity.Name variable and appends it to the specified <see cref="StringBuilder" />.
+        /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
         /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        public JsonAttribute() : this(null, null) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
+        /// </summary>
+        /// <param name="name">The name of the attribute.</param>
+        /// <param name="layout">The layout of the attribute's value.</param>
+        public JsonAttribute(string name, Layout layout)
         {
-            HttpContext context = HttpContext.Current;
-            if (context == null)
-            {
-                return;
-            }
-
-            if (context.User == null)
-            {
-                return;
-            }
-
-            if (context.User.Identity == null)
-            {
-                return;
-            }
-
-            builder.Append(context.User.Identity.Name);
+            this.Name = name;
+            this.Layout = layout;
         }
+
+        /// <summary>
+        /// Gets or sets the name of the attribute.
+        /// </summary>
+        [RequiredParameter]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the layout that will be rendered as the attribute's value.
+        /// </summary>
+        [RequiredParameter]
+        public Layout Layout { get; set; }
     }
 }

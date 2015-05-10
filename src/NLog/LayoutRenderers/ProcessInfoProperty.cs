@@ -141,7 +141,7 @@ namespace NLog.LayoutRenderers
         PeakPagedMemorySize64,
 
         /// <summary>
-        /// Peak Vitual Memory Size.
+        /// Peak Virtual Memory Size.
         /// </summary>
         PeakVirtualMemorySize,
 

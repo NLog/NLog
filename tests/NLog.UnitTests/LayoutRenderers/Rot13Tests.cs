@@ -91,7 +91,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </nlog>");
 
             MappedDiagnosticsContext.Set("A", "Foo.Bar!");
-            Logger l = LogManager.GetLogger("NLog.UnitTests.LayoutRenderers.Rot13Tests");
+            ILogger l = LogManager.GetLogger("NLog.UnitTests.LayoutRenderers.Rot13Tests");
             l.Trace("aaa");
 
             AssertDebugLastMessage("debug", "Sbb.One!");

@@ -13,7 +13,8 @@ This package installs NLog.dll with includes core logging functionality.
 For your main project also need to install "NLog Configuration" package.</description>
     <language>en-US</language>
     <iconUrl>http://nlog-project.org/N.png</iconUrl>
-    <projectUrl>http://github.com/NLog/NLog/</projectUrl>
+    <projectUrl>http://nlog-project.org/</projectUrl>
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
+    <tags>logging, log, tracing, logfiles</tags>
   </metadata>
 </package>

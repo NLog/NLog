@@ -49,7 +49,7 @@ namespace NLog.Targets
     /// <summary>
     /// Writes log message to the Event Log.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/EventLog_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/EventLog-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 
@@ -73,7 +73,8 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
-        public EventLogTarget() : this(AppDomainWrapper.CurrentDomain)
+        public EventLogTarget()
+            : this(AppDomainWrapper.CurrentDomain)
         {
         }
 
@@ -107,6 +108,11 @@ namespace NLog.Targets
         public Layout Category { get; set; }
 
         /// <summary>
+        /// Optional entrytype. When not set, or when not convertable to <see cref="LogLevel"/> then determined by <see cref="NLog.LogLevel"/>
+        /// </summary>
+        public Layout EntryType { get; set; }
+
+        /// <summary>
         /// Gets or sets the value to be used as the event Source.
         /// </summary>
         /// <remarks>
@@ -132,7 +138,7 @@ namespace NLog.Targets
             if (EventLog.SourceExists(this.Source, this.MachineName))
             {
                 string currentLogName = EventLog.LogNameFromSourceName(this.Source, this.MachineName);
-                if (!currentLogName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))            
+                if (!currentLogName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
                 {
                     // re-create the association between Log and Source
                     EventLog.DeleteEventSource(this.Source, this.MachineName);
@@ -185,7 +191,7 @@ namespace NLog.Targets
             base.InitializeTarget();
 
             var s = EventLog.LogNameFromSourceName(this.Source, this.MachineName);
-            if (!s.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))            
+            if (!s.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
             {
                 this.CreateEventSourceIfNeeded();
             }
@@ -204,20 +210,7 @@ namespace NLog.Targets
                 message = message.Substring(0, 16384);
             }
 
-            EventLogEntryType entryType;
-
-            if (logEvent.Level >= LogLevel.Error)
-            {
-                entryType = EventLogEntryType.Error;
-            }
-            else if (logEvent.Level >= LogLevel.Warn)
-            {
-                entryType = EventLogEntryType.Warning;
-            }
-            else
-            {
-                entryType = EventLogEntryType.Information;
-            }
+            var entryType = GetEntryType(logEvent);
 
             int eventId = 0;
 
@@ -237,6 +230,34 @@ namespace NLog.Targets
             eventLog.WriteEntry(message, entryType, eventId, category);
         }
 
+        private EventLogEntryType GetEntryType(LogEventInfo logEvent)
+        {
+            if (this.EntryType != null)
+            {
+                //try parse, if fail,  determine auto
+
+                var value = this.EntryType.Render(logEvent);
+
+                EventLogEntryType eventLogEntryType;
+                if (EnumHelpers.TryParse(value, true, out eventLogEntryType))
+                {
+                    return eventLogEntryType;
+                }
+            }
+
+            // determine auto
+       
+            if (logEvent.Level >= LogLevel.Error)
+            {
+                return EventLogEntryType.Error;
+            }
+            if (logEvent.Level >= LogLevel.Warn)
+            {
+                return EventLogEntryType.Warning;
+            }
+            return EventLogEntryType.Information;
+        }
+
         private EventLog GetEventLog()
         {
             return eventLogInstance ?? (eventLogInstance = new EventLog(this.Log, this.MachineName, this.Source));
@@ -250,7 +271,7 @@ namespace NLog.Targets
                 if (EventLog.SourceExists(this.Source, this.MachineName))
                 {
                     string currentLogName = EventLog.LogNameFromSourceName(this.Source, this.MachineName);
-                    if (!currentLogName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))            
+                    if (!currentLogName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
                     {
                         // re-create the association between Log and Source
                         EventLog.DeleteEventSource(this.Source, this.MachineName);

@@ -60,6 +60,9 @@ namespace NLog
         private readonly object layoutCacheLock = new object();
 
         private string formattedMessage;
+        private string message;
+        private object[] parameters;
+        private IFormatProvider formatProvider;
         private IDictionary<Layout, string> layoutCache;
         private IDictionary<object, object> properties;
         private IDictionary eventContextAdapter;
@@ -69,6 +72,8 @@ namespace NLog
         /// </summary>
         public LogEventInfo()
         {
+            this.TimeStamp = TimeSource.Current.Time;
+            this.SequenceID = Interlocked.Increment(ref globalSequenceId);
         }
 
         /// <summary>
@@ -104,17 +109,16 @@ namespace NLog
         /// <param name="message">Log message including parameter placeholders.</param>
         /// <param name="parameters">Parameter array.</param>
         /// <param name="exception">Exception information.</param>
-        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception)
+        public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception): this()
         {
-            this.TimeStamp = TimeSource.Current.Time;
+            
             this.Level = level;
             this.LoggerName = loggerName;
             this.Message = message;
             this.Parameters = parameters;
             this.FormatProvider = formatProvider;
             this.Exception = exception;
-            this.SequenceID = Interlocked.Increment(ref globalSequenceId);
-
+         
             if (NeedToPreformatMessage(parameters))
             {
                 this.CalcFormattedMessage();
@@ -197,19 +201,46 @@ namespace NLog
         /// <summary>
         /// Gets or sets the log message including any parameter placeholders.
         /// </summary>
-        public string Message { get; set; }
+        public string Message
+        {
+            get { return message; }
+            set
+            {
+                message = value; 
+                ResetFormattedMessage();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the parameter values or null if no parameters have been specified.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "For backwards compatibility.")]
-        public object[] Parameters { get; set; }
+        public object[] Parameters
+        {
+            get { return parameters; }
+            set
+            {
+                parameters = value;
+                ResetFormattedMessage();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the format provider that was provided while logging or <see langword="null" />
         /// when no formatProvider was specified.
         /// </summary>
-        public IFormatProvider FormatProvider { get; set; }
+        public IFormatProvider FormatProvider
+        {
+            get { return formatProvider; }
+            set
+            {
+                if (formatProvider != value)
+                {
+                    formatProvider = value;
+                    ResetFormattedMessage();
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the formatted message.
@@ -316,9 +347,39 @@ namespace NLog
         /// <param name="message">The message.</param>
         /// <param name="exception">The exception.</param>
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
+        [Obsolete("use Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, string message)")]
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, [Localizable(false)] string message, Exception exception)
         {
             return new LogEventInfo(logLevel, loggerName, null, message, null, exception);
+        }
+
+        /// <summary>
+        /// Creates the log event.
+        /// </summary>
+        /// <param name="logLevel">The log level.</param>
+        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="exception">The exception.</param>
+        /// <param name="formatProvider">The format provider.</param>
+        /// <param name="message">The message.</param>
+        /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message)
+        {
+            return Create(logLevel, loggerName, exception, formatProvider, message, null);
+        }
+
+        /// <summary>
+        /// Creates the log event.
+        /// </summary>
+        /// <param name="logLevel">The log level.</param>
+        /// <param name="loggerName">Name of the logger.</param>
+        /// <param name="exception">The exception.</param>
+        /// <param name="formatProvider">The format provider.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
+        public static LogEventInfo Create(LogLevel logLevel, string loggerName, Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters)
+        {
+            return new LogEventInfo(logLevel, loggerName,formatProvider, message, parameters, exception);
         }
 
         /// <summary>
@@ -439,7 +500,7 @@ namespace NLog
             {
                 try
                 {
-                    this.formattedMessage = string.Format(this.FormatProvider ?? LogManager.DefaultCultureInfo(), this.Message, this.Parameters);
+                    this.formattedMessage = string.Format(this.FormatProvider ?? CultureInfo.CurrentCulture, this.Message, this.Parameters);
                 }
                 catch (Exception exception)
                 {
@@ -452,6 +513,11 @@ namespace NLog
                     InternalLogger.Warn("Error when formatting a message: {0}", exception);
                 }
             }
+        }
+
+        private void ResetFormattedMessage()
+        {
+            this.formattedMessage = null;
         }
 
         private void InitEventContext()

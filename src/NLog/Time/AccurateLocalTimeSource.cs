@@ -45,5 +45,18 @@ namespace NLog.Time
         /// Gets current local time directly from DateTime.Now.
         /// </summary>
         public override DateTime Time { get { return DateTime.Now; } }
+
+
+        /// <summary>
+        ///  Converts the specified system time to the same form as the time value originated from this time source.
+        /// </summary>
+        /// <param name="systemTime">The system originated time value to convert.</param>
+        /// <returns>
+        ///  The value of <paramref name="systemTime"/> converted to local time.
+        /// </returns>
+        public override DateTime FromSystemTime(DateTime systemTime)
+        {
+            return systemTime.ToLocalTime();
+        }
     }
 }

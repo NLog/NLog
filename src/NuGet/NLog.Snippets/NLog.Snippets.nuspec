@@ -11,7 +11,8 @@
     <description>Installs NLog snippets.</description>
     <language>en-US</language>
     <iconUrl>http://nlog-project.org/N.png</iconUrl>
-    <projectUrl>http://github.com/NLog/NLog/</projectUrl>
+    <projectUrl>http://nlog-project.org/</projectUrl>
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
+    <tags>nlog, snippets</tags>
   </metadata>
 </package>

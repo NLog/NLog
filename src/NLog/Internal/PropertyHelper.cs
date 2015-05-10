@@ -35,6 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Globalization;
     using System.Reflection;
     using System.Text;
@@ -76,18 +77,11 @@ namespace NLog.Internal
                 propertyType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
 
                 if (!TryNLogSpecificConversion(propertyType, value, out newValue, configurationItemFactory))
-                {
-                    if (!TryGetEnumValue(propertyType, value, out newValue))
-                    {
-                        if (!TryImplicitConversion(propertyType, value, out newValue))
-                        {
-                            if (!TrySpecialConversion(propertyType, value, out newValue))
-                            {
-                                newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
-                            }
-                        }
-                    }
-                }
+                if (!TryGetEnumValue(propertyType, value, out newValue))
+                if (!TryImplicitConversion(propertyType, value, out newValue))
+                if (!TrySpecialConversion(propertyType, value, out newValue))
+                if (!TryTypeConverterConversion(propertyType, value, out newValue))
+                    newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
 
                 propInfo.SetValue(o, newValue, null);
             }
@@ -248,12 +242,6 @@ namespace NLog.Internal
 
         private static bool TrySpecialConversion(Type type, string value, out object newValue)
         {
-            if (type == typeof(Uri))
-            {
-                newValue = new Uri(value, UriKind.RelativeOrAbsolute);
-                return true;
-            }
-
             if (type == typeof(Encoding))
             {
                 newValue = Encoding.GetEncoding(value);
@@ -275,6 +263,20 @@ namespace NLog.Internal
             newValue = null;
             return false;
         }
+
+        private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
+        {
+            var converter = TypeDescriptor.GetConverter(type);
+            if (converter.CanConvertFrom(typeof(string)))
+            {
+                newValue = converter.ConvertFromInvariantString(value);
+                return true;
+            }
+
+            newValue = null;
+            return false;
+        }
+
 
         private static bool TryGetPropertyInfo(Type targetType, string propertyName, out PropertyInfo result)
         {

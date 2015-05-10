@@ -70,6 +70,24 @@ namespace NLog.UnitTests.Config
             Assert.Equal("]]", lr3.Text);
         }
 
+        [Fact(Skip = "Bug? Dunno, but it's bad")]
+        public void VariablesTest_string_should_not_exand()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+  <variable name='test' value='hello'/>
+  <targets>
+    <target type='EventLog'  name='test'  source='${test}'/>
+  </targets>
+</nlog>");
+
+            var target = configuration.FindTargetByName("test") as EventLogTarget;
+            Assert.NotNull(target);
+            //dont change the ${test} as it isn't a Layout
+            Assert.Equal("${test}", target.Source);
+
+        }
+
         [Fact]
         public void None_xml_configuration_throws_not_supported_exception_when_accessing_variables()
         {

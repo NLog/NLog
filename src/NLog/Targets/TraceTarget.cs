@@ -42,7 +42,7 @@ namespace NLog.Targets
     /// <summary>
     /// Sends log messages through System.Diagnostics.Trace.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/Trace_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/Trace-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 

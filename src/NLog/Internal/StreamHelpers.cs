@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,36 +31,49 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace NLog.Internal
 {
-    using System.Text;
-    using System.Web;
-
     /// <summary>
-    /// ASP.NET Session ID.
-    /// </summary>                 
-    [LayoutRenderer("aspnet-sessionid")]
-    public class AspNetSessionIDLayoutRenderer : LayoutRenderer
+    /// Stream helpers
+    /// </summary>
+    public static class StreamHelpers
     {
+
         /// <summary>
-        /// Renders the ASP.NET Session ID appends it to the specified <see cref="StringBuilder" />.
+        /// Copy stream input to output. Skip the first bytes
         /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <param name="input">stream to read from</param>
+        /// <param name="output">stream to write to</param>
+        /// <param name="offset">first bytes to skip (optional)</param>
+        public static void CopyWithOffset(this Stream input, Stream output, int offset)
         {
-            HttpContext context = HttpContext.Current;
-            if (context == null)
+
+            if (offset < 0)
             {
-                return;
+                throw new ArgumentException("negative offset");
             }
 
-            if (context.Session == null)
-            {
-                return;
-            }
+          
+           //skip offset
+            input.Seek(offset, SeekOrigin.Current);
 
-            builder.Append(context.Session.SessionID);
+
+            byte[] buffer = new byte[4096];
+            int read;
+            while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+            {
+
+                output.Write(buffer, 0, read);
+               
+            }
         }
+
+      
+
     }
 }

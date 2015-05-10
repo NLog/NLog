@@ -367,7 +367,7 @@ namespace NLog
         /// <param name="arguments">The log parameters.</param>
         /// <param name="eventId">The event id.</param>
         /// <param name="eventType">The event type.</param>
-        /// <param name="relatedActiviyId">The releated activity id.</param>
+        /// <param name="relatedActiviyId">The related activity id.</param>
         /// </summary>
         protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActiviyId)
         {
@@ -433,7 +433,7 @@ namespace NLog
                 ev.Properties.Add("EventID", eventId.Value);
             }
 
-            Logger logger;
+            ILogger logger;
             if (this.LogFactory != null)
             {
                 logger = this.LogFactory.GetLogger(ev.LoggerName);

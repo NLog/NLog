@@ -285,6 +285,9 @@ namespace MakeNLogXSD
                 case "Condition":
                     return "Condition";
 
+                case "LineEndingMode":
+                    return "LineEndingMode";
+
                 case "String":
                     return "xs:string";
 

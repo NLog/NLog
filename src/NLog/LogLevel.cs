@@ -39,7 +39,7 @@ namespace NLog
     /// <summary>
     /// Defines available log levels.
     /// </summary>
-    public sealed class LogLevel : IComparable
+    public sealed class LogLevel : IComparable, IEquatable<LogLevel>
     {
         /// <summary>
         /// Trace log level.
@@ -85,10 +85,6 @@ namespace NLog
 
         private readonly int ordinal;
         private readonly string name;
-
-        private LogLevel()
-        {
-        }
 
         /// <summary>
         /// Initializes a new instance of <see cref="LogLevel"/>.
@@ -269,7 +265,7 @@ namespace NLog
         /// <summary>
         /// Returns the <see cref="T:NLog.LogLevel"/> that corresponds to the supplied <see langword="string" />.
         /// </summary>
-        /// <param name="levelName">The texual representation of the log level.</param>
+        /// <param name="levelName">The textual representation of the log level.</param>
         /// <returns>The enumeration value.</returns>
         public static LogLevel FromString(string levelName)
         {
@@ -340,12 +336,8 @@ namespace NLog
         /// Determines whether the specified <see cref="System.Object"/> is equal to this instance.
         /// </summary>
         /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
-        /// <returns>
-        /// Value of <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
-        /// </returns>
-        /// <exception cref="T:System.NullReferenceException">
-        /// The <paramref name="obj"/> parameter is null.
-        /// </exception>
+        /// <returns>Value of <c>true</c> if the specified <see cref="System.Object"/> is equal to 
+        /// this instance; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             LogLevel other = obj as LogLevel;
@@ -355,6 +347,17 @@ namespace NLog
             }
 
             return this.Ordinal == other.Ordinal;
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="NLog.LogLevel"/> instance is equal to this instance.
+        /// </summary>
+        /// <param name="other">The <see cref="NLog.LogLevel"/> to compare with this instance.</param>
+        /// <returns>Value of <c>true</c> if the specified <see cref="NLog.LogLevel"/> is equal to 
+        /// this instance; otherwise, <c>false</c>.</returns>
+        public bool Equals(LogLevel other)
+        {
+            return other == null ? false : this.Ordinal == other.Ordinal;
         }
 
         /// <summary>

@@ -33,6 +33,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using NLog.Time;
 
 namespace NLog.Fluent
 {
@@ -42,13 +43,14 @@ namespace NLog.Fluent
     public class LogBuilder
     {
         private readonly LogEventInfo _logEvent;
-        private readonly Logger _logger;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogBuilder"/> class.
         /// </summary>
         /// <param name="logger">The <see cref="Logger"/> to send the log event.</param>
-        public LogBuilder(Logger logger)
+        [CLSCompliant(false)]
+        public LogBuilder(ILogger logger)
             : this(logger, LogLevel.Debug)
         {
         }
@@ -58,7 +60,8 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="logger">The <see cref="Logger"/> to send the log event.</param>
         /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
-        public LogBuilder(Logger logger, LogLevel logLevel)
+        [CLSCompliant(false)]
+        public LogBuilder(ILogger logger, LogLevel logLevel)
         {
             if (logger == null)
                 throw new ArgumentNullException("logger");
@@ -70,7 +73,7 @@ namespace NLog.Fluent
             {
                 Level = logLevel,
                 LoggerName = logger.Name,
-                TimeStamp = DateTime.Now
+                TimeStamp = TimeSource.Current.Time
             };
         }
 
@@ -131,7 +134,7 @@ namespace NLog.Fluent
         }
 
         /// <summary>
-        /// Sets the log message and parameters for formating on the logging event.
+        /// Sets the log message and parameters for formatting on the logging event.
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="arg0">The object to format.</param>
@@ -145,7 +148,7 @@ namespace NLog.Fluent
         }
 
         /// <summary>
-        /// Sets the log message and parameters for formating on the logging event.
+        /// Sets the log message and parameters for formatting on the logging event.
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="arg0">The first object to format.</param>
@@ -160,7 +163,7 @@ namespace NLog.Fluent
         }
 
         /// <summary>
-        /// Sets the log message and parameters for formating on the logging event.
+        /// Sets the log message and parameters for formatting on the logging event.
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="arg0">The first object to format.</param>
@@ -176,7 +179,7 @@ namespace NLog.Fluent
         }
 
         /// <summary>
-        /// Sets the log message and parameters for formating on the logging event.
+        /// Sets the log message and parameters for formatting on the logging event.
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="arg0">The first object to format.</param>
@@ -193,7 +196,7 @@ namespace NLog.Fluent
         }
 
         /// <summary>
-        /// Sets the log message and parameters for formating on the logging event.
+        /// Sets the log message and parameters for formatting on the logging event.
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>
@@ -207,7 +210,7 @@ namespace NLog.Fluent
         }
 
         /// <summary>
-        /// Sets the log message and parameters for formating on the logging event.
+        /// Sets the log message and parameters for formatting on the logging event.
         /// </summary>
         /// <param name="provider">An object that supplies culture-specific formatting information.</param>
         /// <param name="format">A composite format string.</param>

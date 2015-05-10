@@ -132,11 +132,17 @@
     <Compile Include="GDC.cs" />
     <Compile Include="GlobalDiagnosticsContext.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ILogger.cs" />
+    <Compile Include="ILoggerBase.cs" />
+    <Compile Include="ILoggerBase-V1.cs" />
+    <Compile Include="ILogger-V1.cs" />
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
+    <Compile Include="Internal\EncodingHelpers.cs" />
+    <Compile Include="Internal\EnumHelpers.cs" />
     <Compile Include="Internal\EnvironmentHelper.cs" />
     <Compile Include="Internal\ExceptionHelper.cs" />
     <Compile Include="Internal\FactoryHelper.cs" />
@@ -151,7 +157,6 @@
     <Compile Include="Internal\FileAppenders\SingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileInfoHelper.cs" />
-    <Compile Include="Internal\FormHelper.cs" />
     <Compile Include="Internal\IConfigurationManager.cs" />
     <Compile Include="Internal\IRenderable.cs" />
     <Compile Include="Internal\ISmtpClient.cs" />
@@ -159,7 +164,6 @@
     <Compile Include="Internal\IUsesStackTrace.cs" />
     <Compile Include="Internal\LocalizableAttribute.cs" />
     <Compile Include="Internal\LoggerConfiguration.cs" />
-    <Compile Include="Internal\MessageBoxHelper.cs" />
     <Compile Include="Internal\MultiFileWatcher.cs" />
     <Compile Include="Internal\MySmtpClient.cs" />
     <Compile Include="Internal\NativeMethods.cs">
@@ -187,6 +191,7 @@
     <Compile Include="Internal\SingleCallContinuation.cs" />
     <Compile Include="Internal\SortHelpers.cs" />
     <Compile Include="Internal\StackTraceUsageUtils.cs" />
+    <Compile Include="Internal\StreamHelpers.cs" />
     <Compile Include="Internal\TargetWithFilterChain.cs" />
     <Compile Include="Internal\ThreadIDHelper.cs" />
     <Compile Include="Internal\ThreadLocalStorageHelper.cs" />
@@ -198,7 +203,10 @@
     </Compile>
     <Compile Include="Internal\Win32ThreadIDHelper.cs" />
     <Compile Include="Internal\XmlHelper.cs" />
+    <Compile Include="ISuppress.cs" />
+    <Compile Include="LayoutRenderers\AllEventPropertiesLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AmbientPropertyAttribute.cs" />
+    <Compile Include="LayoutRenderers\AppDomainLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspApplicationValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspRequestValueLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\AspSessionValueLayoutRenderer.cs" />
@@ -271,6 +279,8 @@
     <Compile Include="Layouts\CsvColumnDelimiterMode.cs" />
     <Compile Include="Layouts\CsvLayout.cs" />
     <Compile Include="Layouts\CsvQuotingMode.cs" />
+    <Compile Include="Layouts\JsonAttribute.cs" />
+    <Compile Include="Layouts\JsonLayout.cs" />
     <Compile Include="Layouts\Layout.cs" />
     <Compile Include="Layouts\LayoutAttribute.cs" />
     <Compile Include="Layouts\LayoutParser.cs" />
@@ -281,6 +291,12 @@
     <Compile Include="LogFactory.cs" />
     <Compile Include="LogFactory-T.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="Logger1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Logger.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logger-Conditional.cs" />
     <Compile Include="LoggerImpl.cs" />
     <Compile Include="Logger-V1Compat.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
@@ -288,15 +304,21 @@
     <Compile Include="LogLevel.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="LogMessageGenerator.cs" />
+    <Compile Include="LogReceiverService\BaseLogReceiverForwardingService.cs" />
     <Compile Include="LogReceiverService\ILogReceiverClient.cs" />
+    <Compile Include="LogReceiverService\ILogReceiverOneWayClient.cs" />
+    <Compile Include="LogReceiverService\ILogReceiverOneWayServer.cs" />
     <Compile Include="LogReceiverService\ILogReceiverServer.cs" />
     <Compile Include="LogReceiverService\LogReceiverForwardingService.cs" />
+    <Compile Include="LogReceiverService\LogReceiverOneWayForwardingService.cs" />
     <Compile Include="LogReceiverService\LogReceiverServiceConfig.cs" />
     <Compile Include="LogReceiverService\NLogEvent.cs" />
     <Compile Include="LogReceiverService\NLogEvents.cs" />
     <Compile Include="LogReceiverService\SoapLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\StringCollection.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
+    <Compile Include="LogReceiverService\WcfLogReceiverClientFacade.cs" />
+    <Compile Include="LogReceiverService\WcfLogReceiverOneWayClient.cs" />
     <Compile Include="MappedDiagnosticsContext.cs" />
     <Compile Include="MDC.cs" />
     <Compile Include="NDC.cs" />
@@ -321,12 +343,10 @@
     <Compile Include="Targets\EventLogTarget.cs" />
     <Compile Include="Targets\FileArchivePeriod.cs" />
     <Compile Include="Targets\FileTarget.cs" />
-    <Compile Include="Targets\FormControlTarget.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTarget.cs" />
     <Compile Include="Targets\MailTarget.cs" />
     <Compile Include="Targets\MemoryTarget.cs" />
-    <Compile Include="Targets\MessageBoxTarget.cs" />
     <Compile Include="Targets\MethodCallParameter.cs" />
     <Compile Include="Targets\MethodCallTarget.cs" />
     <Compile Include="Targets\MethodCallTargetBase.cs" />
@@ -338,7 +358,6 @@
     <Compile Include="Targets\OutputDebugStringTarget.cs" />
     <Compile Include="Targets\PerformanceCounterTarget.cs" />
     <Compile Include="Targets\RichTextBoxRowColoringRule.cs" />
-    <Compile Include="Targets\RichTextBoxTarget.cs" />
     <Compile Include="Targets\RichTextBoxWordColoringRule.cs" />
     <Compile Include="Targets\SmtpAuthenticationMode.cs" />
     <Compile Include="Targets\Target.cs" />
@@ -382,6 +401,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Migrated rules for NLog.sl4.ruleset" />
+    <None Include="Logger.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Logger1.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

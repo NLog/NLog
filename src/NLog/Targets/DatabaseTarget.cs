@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 #if !SILVERLIGHT
 
 namespace NLog.Targets
@@ -44,6 +45,7 @@ namespace NLog.Targets
     using System.Globalization;
     using System.Reflection;
     using System.Text;
+    using System.Transactions;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -53,7 +55,7 @@ namespace NLog.Targets
 	/// <summary>
     /// Writes log messages to the database using an ADO.NET provider.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/Database_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/Database-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <para>
     /// The configuration is dependent on the database type, because
@@ -88,6 +90,7 @@ namespace NLog.Targets
             this.DBProvider = "sqlserver";
             this.DBHost = ".";
             this.ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
+            this.CommandType = CommandType.Text;
         }
 
         /// <summary>
@@ -162,14 +165,6 @@ namespace NLog.Targets
         /// <docgen category='Connection Options' order='10' />
         [DefaultValue(true)]
         public bool KeepConnection { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to use database transactions. 
-        /// Some data providers require this.
-        /// </summary>
-        /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(false)]
-        public bool UseTransactions { get; set; }
 
         /// <summary>
         /// Gets or sets the database host name. If the ConnectionString is not provided
@@ -446,48 +441,55 @@ namespace NLog.Targets
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
         private void WriteEventToDatabase(LogEventInfo logEvent)
         {
-            this.EnsureConnectionOpen(this.BuildConnectionString(logEvent));
-
-            IDbCommand command = this.activeConnection.CreateCommand();
-            command.CommandText = this.CommandText.Render(logEvent);
-	    command.CommandType = this.CommandType;
-	    
-            InternalLogger.Trace("Executing {0}: {1}", command.CommandType, command.CommandText);
-
-            foreach (DatabaseParameterInfo par in this.Parameters)
+            //Always suppress transaction so that the caller does not rollback loggin if they are rolling back their transaction.
+            using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
             {
-                IDbDataParameter p = command.CreateParameter();
-                p.Direction = ParameterDirection.Input;
-                if (par.Name != null)
+                this.EnsureConnectionOpen(this.BuildConnectionString(logEvent));
+
+                IDbCommand command = this.activeConnection.CreateCommand();
+                command.CommandText = this.CommandText.Render(logEvent);
+                command.CommandType = this.CommandType;
+
+                InternalLogger.Trace("Executing {0}: {1}", command.CommandType, command.CommandText);
+
+                foreach (DatabaseParameterInfo par in this.Parameters)
                 {
-                    p.ParameterName = par.Name;
+                    IDbDataParameter p = command.CreateParameter();
+                    p.Direction = ParameterDirection.Input;
+                    if (par.Name != null)
+                    {
+                        p.ParameterName = par.Name;
+                    }
+
+                    if (par.Size != 0)
+                    {
+                        p.Size = par.Size;
+                    }
+
+                    if (par.Precision != 0)
+                    {
+                        p.Precision = par.Precision;
+                    }
+
+                    if (par.Scale != 0)
+                    {
+                        p.Scale = par.Scale;
+                    }
+
+                    string stringValue = par.Layout.Render(logEvent);
+
+                    p.Value = stringValue;
+                    command.Parameters.Add(p);
+
+                    InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
                 }
 
-                if (par.Size != 0)
-                {
-                    p.Size = par.Size;
-                }
+                int result = command.ExecuteNonQuery();
+                InternalLogger.Trace("Finished execution, result = {0}", result);
 
-                if (par.Precision != 0)
-                {
-                    p.Precision = par.Precision;
-                }
-
-                if (par.Scale != 0)
-                {
-                    p.Scale = par.Scale;
-                }
-
-                string stringValue = par.Layout.Render(logEvent);
-
-                p.Value = stringValue;
-                command.Parameters.Add(p);
-
-                InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
+                //not really needed as there is no transaction at all.
+                transactionScope.Complete();
             }
-
-            int result = command.ExecuteNonQuery();
-            InternalLogger.Trace("Finished execution, result = {0}", result);
         }
 
         private string BuildConnectionString(LogEventInfo logEvent)
@@ -548,6 +550,7 @@ namespace NLog.Targets
             if (this.activeConnection != null)
             {
                 this.activeConnection.Close();
+                this.activeConnection.Dispose();
                 this.activeConnection = null;
                 this.activeConnectionString = null;
             }

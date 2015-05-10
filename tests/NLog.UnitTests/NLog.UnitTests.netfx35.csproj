@@ -96,6 +96,7 @@
     <Compile Include="ApiTests.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
+    <Compile Include="Common\InternalLoggerTests.cs" />
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
     <Compile Include="Config\CaseSensitivityTests.cs" />
@@ -119,9 +120,11 @@
     <Compile Include="Filters\WhenNotContainsTests.cs" />
     <Compile Include="Filters\WhenNotEqualTests.cs" />
     <Compile Include="Fluent\LogBuilderTests.cs" />
-    <Compile Include="GetLoggerTests.cs" />	
+    <Compile Include="GetLoggerTests.cs" />
+    <Compile Include="Internal\EnumHelpersTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />
     <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
     <Compile Include="LayoutRenderers\BaseDirTests.cs" />
@@ -131,7 +134,6 @@
     <Compile Include="LayoutRenderers\EnvironmentTests.cs" />
     <Compile Include="LayoutRenderers\EventContextTests.cs" />
     <Compile Include="LayoutRenderers\EventPropertiesTests.cs" />
-    <Compile Include="LayoutRenderers\ExceptionLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\ExceptionTests.cs" />
     <Compile Include="LayoutRenderers\FileContentsTests.cs" />
     <Compile Include="LayoutRenderers\GDCTests.cs" />
@@ -159,7 +161,9 @@
     <Compile Include="LayoutRenderers\Wrappers\WhenEmptyTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeTests.cs" />
+    <Compile Include="Layouts\AllEventPropertiesLayoutRendererTests.cs" />
     <Compile Include="Layouts\CsvLayoutTests.cs" />
+    <Compile Include="Layouts\JsonLayoutTests.cs" />
     <Compile Include="Layouts\SimpleLayoutOutputTests.cs" />
     <Compile Include="Layouts\SimpleLayoutParserTests.cs" />
     <Compile Include="Layouts\ThreadAgnosticTests.cs" />
@@ -180,12 +184,14 @@
     <Compile Include="Targets\DatabaseTargetTests.cs" />
     <Compile Include="Targets\EventLogTargetTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
+    <Compile Include="Targets\LineEndingModeTests.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
     <Compile Include="Targets\MailTargetTests.cs" />
+    <Compile Include="Targets\MemoryTargetTests.cs" />
     <Compile Include="Targets\MessageQueueTargetTests.cs" />
     <Compile Include="Targets\NetworkTargetTests.cs" />
-    <Compile Include="Targets\RichTextBoxTargetTests.cs" />
     <Compile Include="Targets\TargetTests.cs" />
+    <Compile Include="Targets\WebServiceTargetTests.cs" />
     <Compile Include="Targets\Wrappers\AsyncRequestQueueTests.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\AutoFlushTargetWrapperTests.cs" />
@@ -219,6 +225,10 @@
     <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.netfx35.csproj">
       <Project>{F801A1F9-1024-4446-BF9E-A923137340B8}</Project>
       <Name>NLog.Extended.netfx35</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NLogAutoLoadExtension\NLogAutoLoadExtension.netfx35.csproj">
+      <Project>{0aa8fb16-a377-4541-bef6-81d437d7b5e9}</Project>
+      <Name>NLogAutloadExtension.netfx35</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\NLog\NLog.netfx35.csproj">
       <Project>{C124B63D-1658-4311-9BA8-9C3CFAF9B32E}</Project>

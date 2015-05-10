@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO.Compression;
 using System.Security.Permissions;
 
 namespace NLog.UnitTests
@@ -51,36 +52,51 @@ using System.Xml.Linq;
 
     public abstract class NLogTestBase
     {
+        protected NLogTestBase()
+        {
+            InternalLogger.LogToConsole = false;
+            InternalLogger.LogToConsoleError = false;
+            LogManager.ThrowExceptions = false;
+        }
+
         public void AssertDebugCounter(string targetName, int val)
         {
-            var debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
-
-            Assert.NotNull(debugTarget);
-            Assert.Equal(val, debugTarget.Counter);
+            Assert.Equal(val, GetDebugTarget(targetName).Counter);
         }
 
         public void AssertDebugLastMessage(string targetName, string msg)
         {
-            NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
-
-            Assert.NotNull(debugTarget);
-            Assert.Equal(msg, debugTarget.LastMessage);
+            Assert.Equal(msg, GetDebugLastMessage(targetName));
         }
+
 
         public void AssertDebugLastMessageContains(string targetName, string msg)
         {
-            NLog.Targets.DebugTarget debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
-
-            // Console.WriteLine("lastmsg: {0}", debugTarget.LastMessage);
-
-            Assert.NotNull(debugTarget);
-            Assert.True(debugTarget.LastMessage.Contains(msg), "Unexpected last message value on '" + targetName + "'");
+            string debugLastMessage = GetDebugLastMessage(targetName);
+            Assert.True(debugLastMessage.Contains(msg),
+                string.Format("Expected to find '{0}' in last message value on '{1}', but found '{2}'", msg, targetName, debugLastMessage));
         }
 
         public string GetDebugLastMessage(string targetName)
         {
-            var debugTarget = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName(targetName);
-            return debugTarget.LastMessage;
+            return GetDebugLastMessage(targetName, LogManager.Configuration);
+        }
+
+        public string GetDebugLastMessage(string targetName, LoggingConfiguration configuration)
+        {
+            return GetDebugTarget(targetName, configuration).LastMessage;
+        }
+
+        public NLog.Targets.DebugTarget GetDebugTarget(string targetName)
+        {
+            return GetDebugTarget(targetName, LogManager.Configuration);
+        }
+
+        public NLog.Targets.DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
+        {
+            var debugTarget = (NLog.Targets.DebugTarget)configuration.FindTargetByName(targetName);
+            Assert.NotNull(debugTarget);
+            return debugTarget;
         }
 
         public void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
@@ -117,6 +133,34 @@ using System.Xml.Linq;
                 Assert.True(true, string.Format("Filesize of \"{0}\" unequals {1}.", filename, expectedSize));
             }
         }
+
+#if NET4_5
+        public void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+        {
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                Assert.True(true, "File '" + fileName + "' doesn't exist.");
+
+            byte[] encodedBuf = encoding.GetBytes(contents);
+            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
+            {
+                Assert.Equal(1, zip.Entries.Count);
+                Assert.Equal(encodedBuf.Length, zip.Entries[0].Length);
+
+                byte[] buf = new byte[(int)zip.Entries[0].Length];
+                using (var fs = zip.Entries[0].Open())
+                {
+                    fs.Read(buf, 0, buf.Length);
+                }
+
+                for (int i = 0; i < buf.Length; ++i)
+                {
+                    Assert.Equal(encodedBuf[i], buf[i]);
+                }
+            }
+        }
+#endif
 
         public void AssertFileContents(string fileName, string contents, Encoding encoding)
         {

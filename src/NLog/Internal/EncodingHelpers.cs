@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,46 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
-{
-    using System.Text;
-    using System.Web;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-    /// <summary>
-    /// ASP.NET User variable.
-    /// </summary>
-    [LayoutRenderer("aspnet-user-authtype")]
-    public class AspNetUserAuthTypeLayoutRenderer : LayoutRenderer
+namespace NLog.Internal
+{
+    internal static class EncodingHelpers
     {
         /// <summary>
-        /// Renders the specified ASP.NET User.Identity.AuthenticationType variable and appends it to the specified <see cref="StringBuilder" />.
+        /// UTF-8 BOM 239, 187, 191
         /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            HttpContext context = HttpContext.Current;
-            if (context == null)
-            {
-                return;
-            }
-
-            if (context.User == null)
-            {
-                return;
-            }
-
-            if (context.User.Identity == null)
-            {
-                return;
-            }
-
-            if (!context.User.Identity.IsAuthenticated)
-            {
-                return;
-            }
-            
-            builder.Append(context.User.Identity.AuthenticationType);
-        }
+        internal static readonly byte[] Utf8BOM = { 0xEF, 0xBB, 0xBF };
     }
 }
