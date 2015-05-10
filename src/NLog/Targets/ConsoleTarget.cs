@@ -31,11 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Text;
+
 
 namespace NLog.Targets
 {
     using System;
+    using System.Text;
     using System.ComponentModel;
 
     /// <summary>
