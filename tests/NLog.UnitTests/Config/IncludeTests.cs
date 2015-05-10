@@ -92,8 +92,6 @@ namespace NLog.UnitTests.Config
             }
         }
 
-
-
         [Fact]
         public void IncludeNotExistingTest()
         {

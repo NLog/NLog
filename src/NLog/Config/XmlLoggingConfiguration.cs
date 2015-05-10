@@ -61,9 +61,7 @@ namespace NLog.Config
         private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase); 
 
         private string originalFileName;
-
-
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
