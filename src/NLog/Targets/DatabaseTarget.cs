@@ -163,7 +163,7 @@ namespace NLog.Targets
         /// database connection open between the log events.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool KeepConnection { get; set; }
 
         /// <summary>
