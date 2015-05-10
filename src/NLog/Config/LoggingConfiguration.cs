@@ -67,6 +67,20 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Gets the variables defined in the configuration.
+        /// </summary>
+        /// <remarks>
+        /// Returns null if not configured using XML configuration.
+        /// </remarks>
+        public virtual Dictionary<string, string> Variables
+        {
+            get
+            {
+                throw new NotSupportedException("Variables is only supported in XmlConfiguration");
+            }
+        }
+
+        /// <summary>
         /// Gets a collection of named targets specified in the configuration.
         /// </summary>
         /// <returns>

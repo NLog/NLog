@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog
 {
     using System;
@@ -112,18 +114,18 @@ namespace NLog
         {
             int? firstUserFrame = null;
 
-            for (int i = 0; i < stackTrace.FrameCount; ++i)
-            {
-                StackFrame frame = stackTrace.GetFrame(i);
-                MethodBase mb = frame.GetMethod();
+                for (int i = 0; i < stackTrace.FrameCount; ++i)
+                {
+                    StackFrame frame = stackTrace.GetFrame(i);
+                    MethodBase mb = frame.GetMethod();
                 if (IsNonUserStackFrame(mb, loggerType))
-                    firstUserFrame = i + 1;
-                else if (firstUserFrame != null)
+                        firstUserFrame = i + 1;
+                    else if (firstUserFrame != null)
                     return firstUserFrame.Value;
-            }
+                }
 
             return 0;
-        }
+                    }
 
         /// <summary>
         ///  Defines whether a stack frame belongs to non-user code

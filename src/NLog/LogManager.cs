@@ -36,10 +36,10 @@ namespace NLog
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Globalization;
+	using System.Globalization;
     using System.Reflection;
+	using System.Threading;
     using System.Runtime.CompilerServices;
-    using System.Threading;
     using System.Linq;
     using Internal.Fakeables;
     using NLog.Common;
@@ -181,7 +181,7 @@ namespace NLog
             lock (lockObject)
             {
                 if (_hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly))
-                    return;
+                return;
 
                 _hiddenAssemblies = new HashSet<Assembly>(_hiddenAssemblies ?? Enumerable.Empty<Assembly>())
                 {
@@ -256,23 +256,23 @@ namespace NLog
             factory.Flush();
         }
 
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        public static void Flush(TimeSpan timeout)
-        {
-            factory.Flush(timeout);
-        }
+/// <summary>
+/// Flush any pending log messages (in case of asynchronous targets).
+/// </summary>
+/// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+public static void Flush(TimeSpan timeout)
+{
+    factory.Flush(timeout);
+}
 
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        public static void Flush(int timeoutMilliseconds)
-        {
-            factory.Flush(timeoutMilliseconds);
-        }
+/// <summary>
+/// Flush any pending log messages (in case of asynchronous targets).
+/// </summary>
+/// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+public static void Flush(int timeoutMilliseconds)
+{
+    factory.Flush(timeoutMilliseconds);
+}
 #endif
 
         /// <summary>
@@ -284,25 +284,25 @@ namespace NLog
             factory.Flush(asyncContinuation);
         }
 
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        public static void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
-        {
-            factory.Flush(asyncContinuation, timeout);
-        }
+/// <summary>
+/// Flush any pending log messages (in case of asynchronous targets).
+/// </summary>
+/// <param name="asyncContinuation">The asynchronous continuation.</param>
+/// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+public static void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
+{
+    factory.Flush(asyncContinuation, timeout);
+}
 
-        /// <summary>
-        /// Flush any pending log messages (in case of asynchronous targets).
-        /// </summary>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        public static void Flush(AsyncContinuation asyncContinuation, int timeoutMilliseconds)
-        {
-            factory.Flush(asyncContinuation, timeoutMilliseconds);
-        }
+/// <summary>
+/// Flush any pending log messages (in case of asynchronous targets).
+/// </summary>
+/// <param name="asyncContinuation">The asynchronous continuation.</param>
+/// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+public static void Flush(AsyncContinuation asyncContinuation, int timeoutMilliseconds)
+{
+    factory.Flush(asyncContinuation, timeoutMilliseconds);
+}
 
         /// <summary>
         /// Decreases the log enable counter and if it reaches -1 the logs are disabled.
@@ -349,6 +349,25 @@ namespace NLog
             }
         }
 
+#if !SILVERLIGHT && !MONO
+        private static void SetupTerminationEvents()
+        {
+            try
+            {
+                CurrentAppDomain.ProcessExit += TurnOffLogging;
+                CurrentAppDomain.DomainUnload += TurnOffLogging;
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                InternalLogger.Warn("Error setting up termination events: {0}", exception);
+            }            
+        }
+
         /// <summary>
         /// Gets the fully qualified name of the class invoking the LogManager, including the 
         /// namespace but not the assembly.    
@@ -379,25 +398,6 @@ namespace NLog
             } while (declaringType.Module.Name.Equals("mscorlib.dll", StringComparison.OrdinalIgnoreCase));
 
             return className;
-        }
-
-#if !SILVERLIGHT && !MONO
-        private static void SetupTerminationEvents()
-        {
-            try
-            {
-                CurrentAppDomain.ProcessExit += TurnOffLogging;
-                CurrentAppDomain.DomainUnload += TurnOffLogging;
-            }
-            catch (Exception exception)
-            {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-
-                InternalLogger.Warn("Error setting up termination events: {0}", exception);
-            }            
         }
 
         private static void TurnOffLogging(object sender, EventArgs args)
