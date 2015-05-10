@@ -1501,6 +1501,52 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void FileTarget_LogAndArchiveFilesWithSameName_ShouldArchive()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var logFile = Path.Combine(tempPath, "Application.log");
+            var tempDirectory = new DirectoryInfo(tempPath);
+            try
+            {
+
+                var archiveFile = Path.Combine(tempPath, "Application{#}.log");
+                var archiveFileMask = "Application*.log";
+
+                var ft = new FileTarget
+                {
+                    FileName = logFile,
+                    ArchiveFileName = archiveFile,
+                    ArchiveAboveSize = 1, //Force immediate archival
+                    ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
+                    MaxArchiveFiles = 5
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                //Creates 5 archive files.
+                for (int i = 0; i <= 5; i++)
+                {
+                    logger.Debug("a");
+                }
+
+                Assert.True(File.Exists(logFile));
+
+                //Five archive files, plus the log file itself.
+                Assert.True(tempDirectory.GetFiles(archiveFileMask).Count() == 5 + 1);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+
+                if (tempDirectory.Exists)
+                {
+                    tempDirectory.Delete(true);
+                }
+            }
+            
+        }
+
+        [Fact]
         public void Single_Archive_File_Rolls_Correctly()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
