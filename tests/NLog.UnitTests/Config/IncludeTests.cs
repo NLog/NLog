@@ -31,6 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
+using NLog.Targets;
+
 namespace NLog.UnitTests.Config
 {
     using System;

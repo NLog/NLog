@@ -597,8 +597,22 @@ namespace NLog
                     {
                         throw new NLogConfigurationException("Config changed in between. Not reloading.");
                     }
-
+                
                     LoggingConfiguration newConfig = configurationToReload.Reload();
+
+                    //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
+                    //therefor we check the InitializeSucceeded property.
+                    
+                    var xmlConfig = newConfig as XmlLoggingConfiguration;
+                    if (xmlConfig != null)
+                    {
+                        
+                        if (!xmlConfig.InitializeSucceeded.HasValue || !xmlConfig.InitializeSucceeded.Value)
+                        {
+                            throw new NLogConfigurationException("Configuration.Reload() failed. Invalid XML?");
+                        }
+                    }
+
                     if (newConfig != null)
                     {
                         this.Configuration = newConfig;
