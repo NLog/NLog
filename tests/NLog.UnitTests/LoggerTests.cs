@@ -180,7 +180,7 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 #pragma warning restore 0618
 
-                logger.Trace("message", new Exception("test"));
+                logger.Trace(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
                 logger.Trace(delegate { return "message from lambda"; });
@@ -469,7 +469,7 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 #pragma warning restore 0618
 
-                logger.Info("message", new Exception("test"));
+                logger.Info(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
                 logger.Info(delegate { return "message from lambda"; });
@@ -615,7 +615,7 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 #pragma warning restore 0618
 
-                logger.Warn("message", new Exception("test"));
+                logger.Warn(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
                 logger.Warn(delegate { return "message from lambda"; });
@@ -761,7 +761,7 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 #pragma warning restore 0618
 
-                logger.Error("message", new Exception("test"));
+                logger.Error(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
                 logger.Error(delegate { return "message from lambda"; });
@@ -907,7 +907,7 @@ namespace NLog.UnitTests
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 #pragma warning restore 0618
 
-                logger.Fatal("message", new Exception("test"));
+                logger.Fatal(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
                 logger.Fatal(delegate { return "message from lambda"; });
@@ -1051,7 +1051,7 @@ namespace NLog.UnitTests
                     logger.Log(level, CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                     if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
-                    logger.Log(level, "message", new Exception("test"));
+                    logger.Log(level, new Exception("test"), "message");
                     if (enabled == 1) AssertDebugLastMessage("debug", "message");
 
 #pragma warning disable 0618

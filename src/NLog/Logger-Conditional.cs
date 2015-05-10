@@ -91,10 +91,24 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
-        public void ConditionalDebugException(string message, Exception exception)
+        public void ConditionalDebug(Exception exception, string message, params object[] args)
         {
-            DebugException(message, exception);
+            Debug(exception, message, args);
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        [Conditional("DEBUG")]
+        public void ConditionalDebug(Exception exception, IFormatProvider formatProvider, string message, params object[] args)
+        {
+            Debug(exception, formatProvider, message, args);
         }
 
         /// <summary>
@@ -130,17 +144,7 @@ namespace NLog
             Debug(message, args);
         }
 
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        [Conditional("DEBUG")]
-        public void ConditionalDebug(string message, Exception exception)
-        {
-            Debug(message, exception);
-        }
-
+   
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameter and formatting it with the supplied format provider.
         /// </summary>
@@ -549,11 +553,26 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
-        public void ConditionalTraceException(string message, Exception exception)
+        public void ConditionalTrace(Exception exception, string message, params object[] args)
         {
-            TraceException(message, exception);
+            Trace(exception, message, args);
         }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="args">Arguments to format.</param>
+        [Conditional("DEBUG")]
+        public void ConditionalTrace(Exception exception, IFormatProvider formatProvider, string message, params object[] args)
+        {
+            Trace(exception, formatProvider, message, args);
+        }
+
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters and formatting them with the supplied format provider.
@@ -586,17 +605,6 @@ namespace NLog
         public void ConditionalTrace(string message, params object[] args)
         {
             Trace(message, args);
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        [Conditional("DEBUG")]
-        public void ConditionalTrace(string message, Exception exception)
-        {
-            Trace(message, exception);
         }
 
         /// <summary>

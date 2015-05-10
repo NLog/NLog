@@ -118,7 +118,7 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionDataValue = "testvalue";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error("msg", ex);
+            logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", exceptionMessage);
             AssertDebugLastMessage("debug2", ex.StackTrace);
             AssertDebugLastMessage("debug3", typeof(InvalidOperationException).FullName);
@@ -202,7 +202,7 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionDataValue = "testvalue";
             Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error("msg", ex);
+            logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", exceptionMessage);
             AssertDebugLastMessage("debug2", "");
             AssertDebugLastMessage("debug3", typeof(InvalidOperationException).FullName);
@@ -236,7 +236,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug1", "Test exception\r\n" + typeof(InvalidOperationException).Name);
 #pragma warning restore 0618
 
-            logger.Error("msg", ex);
+            logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "Test exception\r\n" + typeof(InvalidOperationException).Name);
         }
 
@@ -246,7 +246,7 @@ namespace NLog.UnitTests.LayoutRenderers
             SetConfigurationForExceptionUsingRootMethodTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Log(LogLevel.Error, "msg", ex);
+            logger.Log(LogLevel.Error, ex, "msg");
             AssertDebugLastMessage("debug1", "ERROR*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
@@ -256,7 +256,7 @@ namespace NLog.UnitTests.LayoutRenderers
             SetConfigurationForExceptionUsingRootMethodTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Trace("msg", ex);
+            logger.Trace(ex, "msg");
             AssertDebugLastMessage("debug1", "TRACE*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
@@ -266,7 +266,7 @@ namespace NLog.UnitTests.LayoutRenderers
             SetConfigurationForExceptionUsingRootMethodTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Debug("msg", ex);
+            logger.Debug(ex, "msg");
             AssertDebugLastMessage("debug1", "DEBUG*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
@@ -276,7 +276,7 @@ namespace NLog.UnitTests.LayoutRenderers
             SetConfigurationForExceptionUsingRootMethodTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Info("msg", ex);
+            logger.Info(ex, "msg");
             AssertDebugLastMessage("debug1", "INFO*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
@@ -286,7 +286,7 @@ namespace NLog.UnitTests.LayoutRenderers
             SetConfigurationForExceptionUsingRootMethodTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Warn("msg", ex);
+            logger.Warn(ex, "msg");
             AssertDebugLastMessage("debug1", "WARN*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
@@ -296,7 +296,7 @@ namespace NLog.UnitTests.LayoutRenderers
             SetConfigurationForExceptionUsingRootMethodTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Error("msg", ex);
+            logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "ERROR*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
@@ -306,7 +306,7 @@ namespace NLog.UnitTests.LayoutRenderers
             SetConfigurationForExceptionUsingRootMethodTests();
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            logger.Fatal("msg", ex);
+            logger.Fatal(ex, "msg");
             AssertDebugLastMessage("debug1", "FATAL*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
@@ -334,7 +334,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 "InvalidOperationException Test exception");
 #pragma warning restore 0618
 
-            logger.Error("msg", ex);
+            logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
                 "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
                 "InvalidOperationException Test exception");
@@ -400,7 +400,7 @@ namespace NLog.UnitTests.LayoutRenderers
             const string exceptionDataValue = "testvalue";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
             ex.InnerException.Data.Add(exceptionDataKey, exceptionDataValue);
-            logger.Error("msg", ex);
+            logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + 
                 "\r\n----INNER----\r\n" +
                 "System.InvalidOperationException Wrapper1");
@@ -423,9 +423,10 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
             var ex = new ExceptionWithBrokenMessagePropertyException();
-
+#pragma warning disable 0618
+            // Obsolete method requires testing until completely removed.
             Assert.ThrowsDelegate action = () => logger.ErrorException("msg", ex);
-
+#pragma warning restore 0618
             Assert.DoesNotThrow(action);
         }
 
