@@ -148,7 +148,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>Alias for the <c>Layout</c> property.</remarks>
         /// <docgen category='Message Options' order='6' />
-        [DefaultValue("${message}")]
+        [DefaultValue("${message}${newline}")]
         public Layout Body
         {
             get { return this.Layout; }
