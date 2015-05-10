@@ -114,15 +114,19 @@ namespace NLog.Targets
             this.Output(this.Layout.Render(logEvent));
         }
 
-        private void Output(string s)
+        /// <summary>
+        /// Write to output
+        /// </summary>
+        /// <param name="textLine">text to be written.</param>
+        private void Output(string textLine)
         {
             if (this.Error)
             {
-                Console.Error.WriteLine(s);
+                Console.Error.WriteLine(textLine);
             }
             else
             {
-                Console.Out.WriteLine(s);
+                Console.Out.WriteLine(textLine);
             }
         }
     }
