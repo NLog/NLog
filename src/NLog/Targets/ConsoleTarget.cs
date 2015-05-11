@@ -34,6 +34,7 @@
 namespace NLog.Targets
 {
     using System;
+    using System.Text;
     using System.ComponentModel;
 
     /// <summary>
@@ -64,6 +65,16 @@ namespace NLog.Targets
         /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
         public bool Error { get; set; }
+
+        /// <summary>
+        /// The encoding for writing messages to the <see cref="Console"/>.
+        ///  </summary>
+        /// <remarks>Has side effect</remarks>
+        public Encoding Encoding
+        {
+            get { return Console.OutputEncoding; }
+            set { Console.OutputEncoding = value; }
+        }
 
         /// <summary>
         /// Initializes the target.
@@ -103,15 +114,19 @@ namespace NLog.Targets
             this.Output(this.Layout.Render(logEvent));
         }
 
-        private void Output(string s)
+        /// <summary>
+        /// Write to output
+        /// </summary>
+        /// <param name="textLine">text to be written.</param>
+        private void Output(string textLine)
         {
             if (this.Error)
             {
-                Console.Error.WriteLine(s);
+                Console.Error.WriteLine(textLine);
             }
             else
             {
-                Console.Out.WriteLine(s);
+                Console.Out.WriteLine(textLine);
             }
         }
     }
