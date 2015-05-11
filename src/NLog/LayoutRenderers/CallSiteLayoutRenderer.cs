@@ -130,89 +130,79 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            StackFrame frame = logEvent.StackTrace != null ? logEvent.StackTrace.GetFrame(logEvent.UserStackFrameNumber + SkipFrames) : null;
-            if (frame != null)
+            if (this.ClassName)
             {
-                MethodBase method = frame.GetMethod();
-                if (this.ClassName)
-                {
-                    if (method.DeclaringType != null)
-                    {
-                        string className = method.DeclaringType.FullName;
-
-                        if (this.CleanNamesOfAnonymousDelegates)
-                        {
-                            // NLog.UnitTests.LayoutRenderers.CallSiteTests+<>c__DisplayClassa
-                            if (className.Contains("+<>"))
-                            {
-                                int index = className.IndexOf("+<>");
-                                className = className.Substring(0, index);
-                            }
-                        }
-
-                        builder.Append(className);
-                    }
-                    else
-                    {
-                        builder.Append("<no type>");
-                    }
-                }
-
-                if (this.MethodName)
-                {
-                    if (this.ClassName)
-                    {
-                        builder.Append(".");
-                    }
-
-                    if (method != null)
-                    {
-                        string methodName = method.Name;
-
-                        if (this.CleanNamesOfAnonymousDelegates)
-                        {
-                            // Clean up the function name if it is an anonymous delegate
-                            // <.ctor>b__0
-                            // <Main>b__2
-                            if (methodName.Contains("__") == true && methodName.StartsWith("<") == true && methodName.Contains(">") == true)
-                            {
-                                int startIndex = methodName.IndexOf('<') + 1;
-                                int endIndex = methodName.IndexOf('>');
-
-                                methodName = methodName.Substring(startIndex, endIndex - startIndex);
-                            }
-                        }
-
-                        builder.Append(methodName);
-                    }
-                    else
-                    {
-                        builder.Append("<no method>");
-                    }
-                }
-
+                AppendFormatedCalssName(builder, logEvent);
+            }
+            if (this.MethodName)
+            {
+                AppendFormatedMethodName(builder, logEvent);
+            }
 #if !SILVERLIGHT
-                if (this.FileName)
-                {
-                    string fileName = frame.GetFileName();
-                    if (fileName != null)
-                    {
-                        builder.Append("(");
-                        if (this.IncludeSourcePath)
-                        {
-                            builder.Append(fileName);
-                        }
-                        else
-                        {
-                            builder.Append(Path.GetFileName(fileName));
-                        }
-
-                        builder.Append(":");
-                        builder.Append(frame.GetFileLineNumber());
-                        builder.Append(")");
-                    }
-                }
+            if (this.FileName)
+            {
+                AppendFormatedFileName(builder, logEvent);
+            }
 #endif
+        }
+
+
+        private void AppendFormatedCalssName(StringBuilder builder, LogEventInfo logEvent)
+        {
+            string className = SkipFrames == 0 ?
+                logEvent.CallerClassName : logEvent.CallerClassNameFromCallStack(SkipFrames);
+            if (className == null)
+            {
+                className = "<no type>";
+            }
+            else if (this.CleanNamesOfAnonymousDelegates && className.Contains("+<>"))
+            {
+                // NLog.UnitTests.LayoutRenderers.CallSiteTests+<>c__DisplayClassa
+                int index = className.IndexOf("+<>");
+                className = className.Substring(0, index);
+            }
+            builder.Append(className);
+        }
+
+        private void AppendFormatedMethodName(StringBuilder builder, LogEventInfo logEvent)
+        {
+            if (this.ClassName) builder.Append(".");
+            string methodName = SkipFrames == 0 ?
+                logEvent.CallerMethodName : logEvent.CallerMethodNameFromCallStack(SkipFrames);
+            if (methodName == null)
+            {
+                methodName = "<no method>";
+            }
+            else if (this.CleanNamesOfAnonymousDelegates &&
+                (methodName.Contains("__") == true && methodName.StartsWith("<") == true && methodName.Contains(">") == true))
+            {
+                // Clean up the function name if it is an anonymous delegate
+                // <.ctor>b__0
+                // <Main>b__2
+                int startIndex = methodName.IndexOf('<') + 1;
+                int endIndex = methodName.IndexOf('>');
+                methodName = methodName.Substring(startIndex, endIndex - startIndex);
+            }
+            builder.Append(methodName);
+        }
+
+        private void AppendFormatedFileName(StringBuilder builder, LogEventInfo logEvent)
+        {
+            string fileName = SkipFrames == 0 ?
+                logEvent.CallerSourceFilePath : logEvent.CallerSourceFilePathFromCallStack(SkipFrames);
+            int lineNumber = SkipFrames == 0 ?
+                logEvent.CallerLineNumber : logEvent.CallerLineNumberFromCallStack(SkipFrames);
+            if (fileName != null)
+            {
+                if (!this.IncludeSourcePath)
+                {
+                    fileName = Path.GetFileName(fileName);
+                }
+                builder.Append("(");
+                builder.Append(fileName);
+                builder.Append(":");
+                builder.Append(lineNumber);
+                builder.Append(")");
             }
         }
     }

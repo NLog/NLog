@@ -39,6 +39,7 @@ namespace NLog
     using JetBrains.Annotations;
 #if ASYNC_SUPPORTED
     using System.Threading.Tasks;
+    using System.Runtime.CompilerServices;
 #endif
 
     /// <summary>
@@ -94,14 +95,35 @@ namespace NLog
             return this.GetTargetsForLevel(level) != null;
         }
 
+#if NET4_5 
         /// <summary>
         /// Writes the specified diagnostic message.
         /// </summary>
         /// <param name="logEvent">Log event.</param>
-        public void Log(LogEventInfo logEvent)
+        /// <param name="memberName">Method or property name of the caller.</param>
+        /// <param name="sourceFilePath">Full path of the source file that contains the caller.</param>
+        /// <param name="sourceLineNumber">Line number in the source file at which the method is called.</param>
+#else   
+        /// <summary>
+        /// Writes the specified diagnostic message.
+        /// </summary>
+        /// <param name="logEvent">Log event.</param>
+#endif
+        public void Log(LogEventInfo logEvent
+#if NET4_5
+           , [CallerMemberName] string memberName = ""
+           , [CallerFilePath] string sourceFilePath = ""
+           , [CallerLineNumber] int sourceLineNumber = 0
+#endif
+            )
         {
             if (this.IsEnabled(logEvent.Level))
             {
+#if NET4_5
+                logEvent.CallerMethodName = memberName;
+                logEvent.CallerSourceFilePath = sourceFilePath;
+                logEvent.CallerLineNumber = sourceLineNumber;
+#endif
                 this.WriteToTargets(logEvent);
             }
         }
