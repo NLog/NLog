@@ -36,14 +36,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Cache;
-using System.Runtime.Serialization;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using NLog.Internal;
-using NLog.Layouts;
 using NLog.Targets;
+
+#if NET4_5
+using System.Web.Http;
+using Owin;
+using Microsoft.Owin.Hosting;
+#endif
 using Xunit;
 
 namespace NLog.UnitTests.Targets
@@ -134,13 +136,13 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             //async call with mockup stream
             WebRequest webRequest = WebRequest.Create("http://www.test.com");
-            var request = (HttpWebRequest) webRequest;
+            var request = (HttpWebRequest)webRequest;
             var streamMock = new StreamMock();
 
             //event for async testing
             var counterEvent = new CountdownEvent(1);
 
-            var parameterValues = new object[] {"", "336cec87129942eeabab3d8babceead7", "Debg", "2014-06-26 23:15:14.6348", "TestClient.Program", "Debug", "DELL"};
+            var parameterValues = new object[] { "", "336cec87129942eeabab3d8babceead7", "Debg", "2014-06-26 23:15:14.6348", "TestClient.Program", "Debug", "DELL" };
             target.DoInvoke(parameterValues, c => counterEvent.Signal(), request,
                 callback =>
                 {
@@ -238,7 +240,182 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
         #endregion
+
+#if NET4_5
+
+
+        const string WsAddress = "http://localhost:9000/";
+
+        /// <summary>
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/> (only checking for no exception)
+        /// </summary>
+        [Fact]
+        public void WebserviceTest_restapi_httppost()
+        {
+
+
+            var configuration = CreateConfigurationFromString(string.Format(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='{0}{1}'
+                                protocol='HttpPost'
+                                encoding='UTF-8'
+                               >
+                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' type='System.String' layout='${{level}}'/>
+     
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>", WsAddress, "api/values"));
+
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+
+
+
+
+            StartOwinTest(() =>
+            {
+
+                logger.Info("message 1 with a post");
+            });
+
+
+        }
+
+        /// <summary>
+        /// Test the Webservice with REST api -  <see cref="WebServiceProtocol.HttpGet"/>  (only checking for no exception)
+        /// </summary>
+        [Fact(Skip = "Not working - ProtocolViolationException - skip for fix later")]
+        public void WebserviceTest_restapi_httpget()
+        {
+
+
+            var configuration = CreateConfigurationFromString(string.Format(@"
+                <nlog throwExceptions='true' >
+                    <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='{0}{1}'
+                                protocol='HttpGet'
+                                encoding='UTF-8'
+                               >
+                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' type='System.String' layout='${{level}}'/>
+     
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>", WsAddress, "api/values"));
+
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+               StartOwinTest(() =>
+            {
+
+                logger.Info("message 1 with a post");
+            });
+
+
+        }
+
+        private class Startup
+        {
+            // This code configures Web API. The Startup class is specified as a type
+            // parameter in the WebApp.Start method.
+            public void Configuration(IAppBuilder appBuilder)
+            {
+                // Configure Web API for self-host. 
+                HttpConfiguration config = new HttpConfiguration();
+                config.Routes.MapHttpRoute(
+                    name: "DefaultApi",
+                    routeTemplate: "api/{controller}/{id}",
+                    defaults: new { id = RouteParameter.Optional }
+                );
+
+                appBuilder.UseWebApi(config);
+            }
+        }
+
+        private const string LogTemplate = "Method: {0}, param1: '{1}', param2: '{2}', body: {3}";
+
+        ///<remarks>Must be public </remarks>
+        public class ValuesController : ApiController
+        {
+
+            private Logger logger = LogManager.GetLogger("apiLogger");
+
+            // GET api/values 
+            public IEnumerable<string> Get(string param1 = "", string param2 = "")
+            {
+
+                logger.Info(LogTemplate, "GET", param1, param2, null);
+
+                return new string[] { "value1", "value2" };
+            }
+
+            // GET api/values/5 
+            public string Get(int id)
+            {
+
+                return "value";
+            }
+
+
+            public void Post([FromBody] ComplexType complexType)
+            {
+                //this is working. 
+                logger.Info(LogTemplate, "POST", null, null, complexType);
+            }
+
+            /// <summary>
+            /// We need complext type because of content-type: "application/x-www-form-urlencoded"
+            /// </summary>
+            public class ComplexType
+            {
+                public object Param1 { get; set; }
+                public object Param2 { get; set; }
+            }
+
+           // PUT api/values/5 
+            public void Put(int id, [FromBody]string value)
+            {
+            }
+
+            // DELETE api/values/5 
+            public void Delete(int id)
+            {
+            }
+        }
+
+        private static void StartOwinTest(Action testsFunc)
+        {
+            // HttpSelfHostConfiguration 
+            //http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
+
+            // Start OWIN host 
+            using (WebApp.Start<Startup>(url: WsAddress))
+            {
+                testsFunc();
+            }
+        }
+
+#endif
     }
-
-
+    
 }
