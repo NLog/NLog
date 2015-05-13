@@ -38,6 +38,7 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using NLog.Internal;
 using NLog.Targets;
 
@@ -290,7 +291,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             });
 
 
-        }
+        }   
 
         /// <summary>
         /// Test the Webservice with REST api -  <see cref="WebServiceProtocol.HttpGet"/>  (only checking for no exception)
@@ -334,6 +335,74 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
         }
 
+
+
+        /// <summary>
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/> (only checking for no exception)
+        /// 
+        /// repeats for checking 'lost messages'
+        /// </summary>
+        [Fact]
+        public void WebserviceTest_restapi_httppost_checkingLost()
+        {
+
+
+            var configuration = CreateConfigurationFromString(string.Format(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='{0}{1}'
+                                protocol='HttpPost'
+                                encoding='UTF-8'
+                               >
+                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' type='System.String' layout='${{level}}'/>
+     
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>", WsAddress, "api/values"));
+
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+
+
+            var upper = 10;
+            var createdMessages = new List<string>(1000);
+
+            for (int i = 0; i < upper; i++)
+            {
+                var message = "message " + i;
+                createdMessages.Add(message);
+              
+            }
+
+            //reset
+            ValuesController.RecievedLogsPostParam1 = new List<string>();
+
+            StartOwinTest(() =>
+            {
+                foreach (var createdMessage in createdMessages)
+                {
+                    logger.Info(createdMessage);
+                }
+               
+            });
+
+
+
+            //Assert.Equal(createdMessages.Count, ValuesController.RecievedLogsPostParam1.Count);
+            //Assert.Equal(createdMessages, ValuesController.RecievedLogsPostParam1);
+
+        }
+
         private class Startup
         {
             // This code configures Web API. The Startup class is specified as a type
@@ -358,14 +427,21 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         public class ValuesController : ApiController
         {
 
-            private Logger logger = LogManager.GetLogger("apiLogger");
+          
+            /// <summary>
+            /// Recieved param1 (get)
+            /// </summary>
+            public static List<string> RecievedLogsGetParam1 = new List<string>();  
+            /// <summary>
+            /// Recieved param1 (post)
+            /// </summary>
+            public static List<string> RecievedLogsPostParam1 = new List<string>();  
 
             // GET api/values 
             public IEnumerable<string> Get(string param1 = "", string param2 = "")
             {
 
-                logger.Info(LogTemplate, "GET", param1, param2, null);
-
+                RecievedLogsGetParam1.Add(param1);
                 return new string[] { "value1", "value2" };
             }
 
@@ -380,7 +456,11 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             public void Post([FromBody] ComplexType complexType)
             {
                 //this is working. 
-                logger.Info(LogTemplate, "POST", null, null, complexType);
+                if (complexType == null)
+                {
+                    throw new ArgumentNullException("complexType");
+                }
+                RecievedLogsPostParam1.Add(complexType.Param1.ToString());
             }
 
             /// <summary>
