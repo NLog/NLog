@@ -275,13 +275,13 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", WsAddress, "api/values"));
+                </nlog>", WsAddress, "api/logme"));
 
 
             LogManager.Configuration = configuration;
             var logger = LogManager.GetCurrentClassLogger();
 
-            ValuesController.ResetState(1);
+            LogMeController.ResetState(1);
 
 
 
@@ -292,7 +292,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             });
 
 
-        }   
+        }
 
         /// <summary>
         /// Test the Webservice with REST api -  <see cref="WebServiceProtocol.HttpGet"/>  (only checking for no exception)
@@ -321,19 +321,19 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", WsAddress, "api/values"));
+                </nlog>", WsAddress, "api/logme"));
 
 
             LogManager.Configuration = configuration;
             var logger = LogManager.GetCurrentClassLogger();
 
-            ValuesController.ResetState(1);
+            LogMeController.ResetState(1);
 
-               StartOwinTest(() =>
-            {
+            StartOwinTest(() =>
+         {
 
-                logger.Info("message 1 with a post");
-            });
+             logger.Info("message 1 with a post");
+         });
 
 
         }
@@ -375,7 +375,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", WsAddress, "api/values"));
+                </nlog>", WsAddress, "api/logme"));
 
 
             LogManager.Configuration = configuration;
@@ -390,29 +390,32 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 var message = "message " + i;
                 createdMessages.Add(message);
-              
+
             }
 
             //reset
-            ValuesController.ResetState(messageCount);
-            
+            LogMeController.ResetState(messageCount);
+
             StartOwinTest(() =>
             {
                 foreach (var createdMessage in createdMessages)
                 {
                     logger.Info(createdMessage);
                 }
-               
+
             });
 
 
 
-            Assert.Equal(ValuesController.countdownEvent.CurrentCount, 0);
-            Assert.Equal(createdMessages.Count, ValuesController.RecievedLogsPostParam1.Count);
+            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(createdMessages.Count, LogMeController.RecievedLogsPostParam1.Count);
             //Assert.Equal(createdMessages, ValuesController.RecievedLogsPostParam1);
 
         }
 
+        /// <summary>
+        /// Start/config route of WS
+        /// </summary>
         private class Startup
         {
             // This code configures Web API. The Startup class is specified as a type
@@ -434,27 +437,52 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         private const string LogTemplate = "Method: {0}, param1: '{1}', param2: '{2}', body: {3}";
 
         ///<remarks>Must be public </remarks>
-        public class ValuesController : ApiController
+        public class LogMeController : ApiController
         {
-
+            /// <summary>
+            /// Reset the state for unit testing
+            /// </summary>
+            /// <param name="expectedMessages"></param>
             public static void ResetState(int expectedMessages)
             {
                 RecievedLogsPostParam1 = new ConcurrentBag<string>();
                 RecievedLogsGetParam1 = new ConcurrentBag<string>();
-                countdownEvent = new CountdownEvent(expectedMessages);
+                CountdownEvent = new CountdownEvent(expectedMessages);
             }
 
-            public static CountdownEvent countdownEvent = null;
+            /// <summary>
+            /// Countdown event for keeping WS alive.
+            /// </summary>
+            public static CountdownEvent CountdownEvent = null;
 
-          
+
             /// <summary>
-            /// Recieved param1 (get)
+            /// Recieved param1 values (get)
             /// </summary>
-            public static ConcurrentBag<string> RecievedLogsGetParam1 = new ConcurrentBag<string>();  
+            public static ConcurrentBag<string> RecievedLogsGetParam1 = new ConcurrentBag<string>();
             /// <summary>
-            /// Recieved param1 (post)
+            /// Recieved param1 values(post)
             /// </summary>
-            public static ConcurrentBag<string> RecievedLogsPostParam1 = new ConcurrentBag<string>();  
+            public static ConcurrentBag<string> RecievedLogsPostParam1 = new ConcurrentBag<string>();
+      
+
+            /// <summary>
+            /// We need a complex type for modelbinding because of content-type: "application/x-www-form-urlencoded" in <see cref="WebServiceTarget"/>
+            /// </summary>
+            public class ComplexType
+            {
+                public string Param1 { get; set; }
+                public string Param2 { get; set; }
+            }
+
+            /// <summary>
+            /// Get
+            /// </summary>
+            public string Get(int id)
+            {
+
+                return "value";
+            }
 
             // GET api/values 
             public IEnumerable<string> Get(string param1 = "", string param2 = "")
@@ -464,14 +492,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 return new string[] { "value1", "value2" };
             }
 
-            // GET api/values/5 
-            public string Get(int id)
-            {
-
-                return "value";
-            }
-
-
+            /// <summary>
+            /// Post
+            /// </summary>
             public void Post([FromBody] ComplexType complexType)
             {
                 //this is working. 
@@ -481,57 +504,50 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 }
                 RecievedLogsPostParam1.Add(complexType.Param1);
 
-                if (countdownEvent != null)
+                if (CountdownEvent != null)
                 {
-                    countdownEvent.Signal();
+                    CountdownEvent.Signal();
                 }
             }
 
-            /// <summary>
-            /// We need complext type because of content-type: "application/x-www-form-urlencoded"
-            /// </summary>
-            public class ComplexType
-            {
-                public string Param1 { get; set; }
-                public string Param2 { get; set; }
-            }
 
-           // PUT api/values/5 
+            /// <summary>
+            /// Put
+            /// </summary>
+         
             public void Put(int id, [FromBody]string value)
             {
             }
 
-            // DELETE api/values/5 
+            /// <summary>
+            /// Delete
+            /// </summary>
             public void Delete(int id)
             {
             }
         }
 
-      
+
 
         internal static void StartOwinTest(Action testsFunc)
         {
+            // HttpSelfHostConfiguration. So info: http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 
-          
-
-            // HttpSelfHostConfiguration 
-            //http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
-
-            // Start OWIN host 
+            // Start webservice 
             using (WebApp.Start<Startup>(url: WsAddress))
             {
                 testsFunc();
-               
 
-                if (ValuesController.countdownEvent != null)
+                //wait for all recieved message, or timeout. There is no exception on timeout, so we have to check carefully in the unit test.
+                if (LogMeController.CountdownEvent != null)
                 {
-                   
-                    ValuesController.countdownEvent.Wait(webserviceCheckTimeoutMs);
+
+                    LogMeController.CountdownEvent.Wait(webserviceCheckTimeoutMs);
                 }
             }
         }
 
 #endif
     }
-    
+
 }
