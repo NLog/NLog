@@ -116,7 +116,10 @@ namespace NLog.Internal
                 var enumerable = value as IEnumerable;
                 if (enumerable != null)
                 {
-                    foreach (object element in enumerable)
+                    //cast to list otherwhise possible:  Collection was modified after the enumerator was instantiated.
+                    var elements = enumerable as IList<object> ?? enumerable.Cast<object>().ToList();
+
+                    foreach (object element in elements)
                     {
                         ScanProperties(result, element, level + 1, visitedObjects);
                     }
