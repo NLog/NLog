@@ -31,6 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Practices.Unity;
+
 namespace NLog.UnitTests
 {
     using System;
@@ -390,6 +395,109 @@ namespace NLog.UnitTests
             var logger = new Lazy<ILogger>(LogManager.GetCurrentClassLogger);
 
             Assert.Equal(this.GetType().FullName, logger.Value.Name);
+        }
+#endif
+#if NET4_5
+
+        private static MemoryQueueTarget mTarget = new MemoryQueueTarget(500);
+        private static MemoryQueueTarget mTarget2 = new MemoryQueueTarget(500);
+
+        /// <summary>
+        /// Note: THe problem  can be reproduced when: debugging the unittest + "break when exception is thrown" checked in visual studio.
+        /// </summary>
+        [Fact]
+        public void ThreadSafe_getCurrentClassLogger_test()
+        {
+
+
+
+
+            using (var c = new UnityContainer())
+            {
+                var r = Enumerable.Range(1, 100); //reported with 10.
+                Task.Run(() =>
+                {
+                    //need for init
+                    LogManager.Configuration = new LoggingConfiguration();
+                    LogManager.Configuration.AddTarget("memory", mTarget);
+                    LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget));
+                    LogManager.Configuration.AddTarget("memory2", mTarget2);
+                    LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget2));
+                    LogManager.ReconfigExistingLoggers();
+                });
+
+                Parallel.ForEach(r, a =>
+                {
+                    var res = c.Resolve<ClassA>();
+                });
+                mTarget.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
+                mTarget2.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
+
+
+
+
+            }
+        }
+
+        [Target("Memory")]
+        public sealed class MemoryQueueTarget : TargetWithLayout
+        {
+            private int maxSize;
+            public MemoryQueueTarget(int size)
+            {
+                this.Logs = new Queue<string>();
+                this.maxSize = size;
+            }
+
+            public Queue<string> Logs { get; private set; }
+
+            protected override void Write(LogEventInfo logEvent)
+            {
+                string msg = this.Layout.Render(logEvent);
+                if (msg.Length > 100)
+                    msg = msg.Substring(0, 100) + "...";
+
+                this.Logs.Enqueue(msg);
+                while (this.Logs.Count > maxSize)
+                {
+                    Logs.Dequeue();
+                }
+            }
+        }
+
+        public class ClassA
+        {
+            private static Logger logger = LogManager.GetCurrentClassLogger();
+            public ClassA(ClassB dd)
+            {
+                logger.Info("Hi there A");
+
+            }
+        }
+        public class ClassB
+        {
+            private static Logger logger = LogManager.GetCurrentClassLogger();
+            public ClassB(ClassC dd)
+            {
+                logger.Info("Hi there B");
+            }
+        }
+        public class ClassC
+        {
+            private static Logger logger = LogManager.GetCurrentClassLogger();
+            public ClassC(ClassD dd)
+            {
+                logger.Info("Hi there C");
+
+            }
+        }
+        public class ClassD
+        {
+            private static Logger logger = LogManager.GetCurrentClassLogger();
+            public ClassD()
+            {
+                logger.Info("Hi there D");
+            }
         }
 #endif
     }
