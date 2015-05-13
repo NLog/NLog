@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -280,7 +281,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             LogManager.Configuration = configuration;
             var logger = LogManager.GetCurrentClassLogger();
 
-
+            ValuesController.ResetState(1);
 
 
 
@@ -326,6 +327,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             LogManager.Configuration = configuration;
             var logger = LogManager.GetCurrentClassLogger();
 
+            ValuesController.ResetState(1);
+
                StartOwinTest(() =>
             {
 
@@ -336,6 +339,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         }
 
 
+        /// <summary>
+        /// Timeout for <see cref="WebserviceTest_restapi_httppost_checkingLost"/>.
+        /// 
+        /// in miliseconds. 20000 = 20 sec
+        /// </summary>
+        const int webserviceCheckTimeoutMs = 20000;
 
         /// <summary>
         /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/> (only checking for no exception)
@@ -374,10 +383,10 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
 
-            var upper = 10;
-            var createdMessages = new List<string>(1000);
+            const int messageCount = 1000;
+            var createdMessages = new List<string>(messageCount);
 
-            for (int i = 0; i < upper; i++)
+            for (int i = 0; i < messageCount; i++)
             {
                 var message = "message " + i;
                 createdMessages.Add(message);
@@ -385,8 +394,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             }
 
             //reset
-            ValuesController.RecievedLogsPostParam1 = new List<string>();
-
+            ValuesController.ResetState(messageCount);
+            
             StartOwinTest(() =>
             {
                 foreach (var createdMessage in createdMessages)
@@ -398,7 +407,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
 
-            //Assert.Equal(createdMessages.Count, ValuesController.RecievedLogsPostParam1.Count);
+            Assert.Equal(ValuesController.countdownEvent.CurrentCount, 0);
+            Assert.Equal(createdMessages.Count, ValuesController.RecievedLogsPostParam1.Count);
             //Assert.Equal(createdMessages, ValuesController.RecievedLogsPostParam1);
 
         }
@@ -427,15 +437,24 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         public class ValuesController : ApiController
         {
 
+            public static void ResetState(int expectedMessages)
+            {
+                RecievedLogsPostParam1 = new ConcurrentBag<string>();
+                RecievedLogsGetParam1 = new ConcurrentBag<string>();
+                countdownEvent = new CountdownEvent(expectedMessages);
+            }
+
+            public static CountdownEvent countdownEvent = null;
+
           
             /// <summary>
             /// Recieved param1 (get)
             /// </summary>
-            public static List<string> RecievedLogsGetParam1 = new List<string>();  
+            public static ConcurrentBag<string> RecievedLogsGetParam1 = new ConcurrentBag<string>();  
             /// <summary>
             /// Recieved param1 (post)
             /// </summary>
-            public static List<string> RecievedLogsPostParam1 = new List<string>();  
+            public static ConcurrentBag<string> RecievedLogsPostParam1 = new ConcurrentBag<string>();  
 
             // GET api/values 
             public IEnumerable<string> Get(string param1 = "", string param2 = "")
@@ -460,7 +479,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 {
                     throw new ArgumentNullException("complexType");
                 }
-                RecievedLogsPostParam1.Add(complexType.Param1.ToString());
+                RecievedLogsPostParam1.Add(complexType.Param1);
+
+                if (countdownEvent != null)
+                {
+                    countdownEvent.Signal();
+                }
             }
 
             /// <summary>
@@ -468,8 +492,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             /// </summary>
             public class ComplexType
             {
-                public object Param1 { get; set; }
-                public object Param2 { get; set; }
+                public string Param1 { get; set; }
+                public string Param2 { get; set; }
             }
 
            // PUT api/values/5 
@@ -483,8 +507,13 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             }
         }
 
-        private static void StartOwinTest(Action testsFunc)
+      
+
+        internal static void StartOwinTest(Action testsFunc)
         {
+
+          
+
             // HttpSelfHostConfiguration 
             //http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 
@@ -492,6 +521,13 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             using (WebApp.Start<Startup>(url: WsAddress))
             {
                 testsFunc();
+               
+
+                if (ValuesController.countdownEvent != null)
+                {
+                   
+                    ValuesController.countdownEvent.Wait(webserviceCheckTimeoutMs);
+                }
             }
         }
 
