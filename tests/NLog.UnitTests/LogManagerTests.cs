@@ -31,14 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Practices.Unity;
-
 namespace NLog.UnitTests
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Diagnostics;
     using System.IO;
     using Xunit;
@@ -46,6 +43,11 @@ namespace NLog.UnitTests
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
+
+#if NET4_5
+    using System.Threading.Tasks;
+    using Microsoft.Practices.Unity;
+#endif
 
     public class LogManagerTests : NLogTestBase
     {
