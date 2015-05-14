@@ -401,19 +401,23 @@ namespace NLog.UnitTests
 #endif
 #if NET4_5
 
+        /// <summary>
+        /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
+        /// </summary>
         private static MemoryQueueTarget mTarget = new MemoryQueueTarget(500);
+        /// <summary>
+        /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
+        /// </summary>
         private static MemoryQueueTarget mTarget2 = new MemoryQueueTarget(500);
 
         /// <summary>
         /// Note: THe problem  can be reproduced when: debugging the unittest + "break when exception is thrown" checked in visual studio.
+        /// 
+        /// https://github.com/NLog/NLog/issues/500
         /// </summary>
         [Fact]
         public void ThreadSafe_getCurrentClassLogger_test()
         {
-
-
-
-
             using (var c = new UnityContainer())
             {
                 var r = Enumerable.Range(1, 100); //reported with 10.
@@ -434,13 +438,12 @@ namespace NLog.UnitTests
                 });
                 mTarget.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
                 mTarget2.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
-
-
-
-
             }
         }
 
+        /// <summary>
+        /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
+        /// </summary>
         [Target("Memory")]
         public sealed class MemoryQueueTarget : TargetWithLayout
         {
@@ -467,6 +470,9 @@ namespace NLog.UnitTests
             }
         }
 
+        /// <summary>
+        /// class for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
+        /// </summary>
         public class ClassA
         {
             private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -476,6 +482,9 @@ namespace NLog.UnitTests
 
             }
         }
+        /// <summary>
+        /// class for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
+        /// </summary>
         public class ClassB
         {
             private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -484,6 +493,9 @@ namespace NLog.UnitTests
                 logger.Info("Hi there B");
             }
         }
+        /// <summary>
+        /// class for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
+        /// </summary>
         public class ClassC
         {
             private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -493,6 +505,9 @@ namespace NLog.UnitTests
 
             }
         }
+        /// <summary>
+        /// class for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
+        /// </summary>
         public class ClassD
         {
             private static Logger logger = LogManager.GetCurrentClassLogger();
