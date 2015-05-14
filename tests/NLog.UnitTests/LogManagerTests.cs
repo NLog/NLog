@@ -390,7 +390,7 @@ namespace NLog.UnitTests
             Assert.Equal(this.GetType().FullName, logger.Name);
         }
 
-#if NET4_0
+#if NET4_0 || NET4_5
         [Fact]
         public void GivenLazyClass_WhenGetCurrentClassLogger_ThenLoggerNameShouldBeCurrentClass()
         {
