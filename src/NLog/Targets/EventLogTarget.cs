@@ -151,7 +151,7 @@ namespace NLog.Targets
 
             if (string.IsNullOrEmpty(fixedSource))
             {
-                InternalLogger.Debug("Skipping removing of eventsource because it contains layout renderers");
+                InternalLogger.Debug("Skipping removing of event source because it contains layout renderers");
             }
             else
             {
@@ -174,7 +174,7 @@ namespace NLog.Targets
             {
                 return EventLog.SourceExists(fixedSource, this.MachineName);
             }
-            InternalLogger.Debug("Unclear if eventsource exists because it contains layout renderers");
+            InternalLogger.Debug("Unclear if event source exists because it contains layout renderers");
             return null; //unclear! 
         }
 
@@ -189,12 +189,12 @@ namespace NLog.Targets
 
             if (string.IsNullOrEmpty(fixedSource))
             {
-                InternalLogger.Debug("Skipping creation of eventsource because it contains layout renderers");
+                InternalLogger.Debug("Skipping creation of event source because it contains layout renderers");
             }
             else
             {
-                var s = EventLog.LogNameFromSourceName(fixedSource, this.MachineName);
-                if (!s.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
+                var currentSourceName = EventLog.LogNameFromSourceName(fixedSource, this.MachineName);
+                if (!currentSourceName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
                 {
                     this.CreateEventSourceIfNeeded(fixedSource, false);
                 }
@@ -292,9 +292,8 @@ namespace NLog.Targets
             return eventLogInstance ?? (eventLogInstance = new EventLog(this.Log, this.MachineName, this.Source.Render(logEvent)));
         }
 
-
         /// <summary>
-        /// (re-)create a eventsource, if it isn't there. Works only with fixed sourcenames.
+        /// (re-)create a event source, if it isn't there. Works only with fixed sourcenames.
         /// </summary>
         /// <param name="fixedSource">sourcenaam. If source is not fixed (see <see cref="SimpleLayout.IsFixedText"/>, then pass <c>null</c> or emptystring.</param>
         /// <param name="alwaysThrowError">always throw an Exception when there is an error</param>
@@ -303,7 +302,7 @@ namespace NLog.Targets
 
             if (string.IsNullOrEmpty(fixedSource))
             {
-                InternalLogger.Debug("Skipping creation of eventsource because it contains layout renderers");
+                InternalLogger.Debug("Skipping creation of event source because it contains layout renderers");
                 //we can only create event sources if the source is fixed (no layout)
                 return;
 
@@ -344,7 +343,6 @@ namespace NLog.Targets
                 {
                     throw;
                 }
-
               
                 throw;
             }
