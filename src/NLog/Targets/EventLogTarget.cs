@@ -119,7 +119,7 @@ namespace NLog.Targets
         /// By default this is the friendly name of the current AppDomain.
         /// </remarks>
         /// <docgen category='Event Log Options' order='10' />
-        public string Source { get; set; }
+        public Layout Source { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the Event Log to write to. This can be System, Application or 
@@ -135,15 +135,25 @@ namespace NLog.Targets
         /// <param name="installationContext">The installation context.</param>
         public void Install(InstallationContext installationContext)
         {
-            if (EventLog.SourceExists(this.Source, this.MachineName))
+            var fixedSource = GetFixedSource();
+
+            if (string.IsNullOrEmpty(fixedSource))
             {
-                string currentLogName = EventLog.LogNameFromSourceName(this.Source, this.MachineName);
+                InternalLogger.Debug("Skipping creation of eventsource because it contains layout renderers");
+                //we can only create event sources if the source is fixed (no layout)
+                return;
+
+            }
+
+            if (EventLog.SourceExists(fixedSource, this.MachineName))
+            {
+                string currentLogName = EventLog.LogNameFromSourceName(fixedSource, this.MachineName);
                 if (!currentLogName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
                 {
                     // re-create the association between Log and Source
-                    EventLog.DeleteEventSource(this.Source, this.MachineName);
+                    EventLog.DeleteEventSource(fixedSource, this.MachineName);
 
-                    var escd = new EventSourceCreationData(this.Source, this.Log)
+                    var escd = new EventSourceCreationData(fixedSource, this.Log)
                     {
                         MachineName = this.MachineName
                     };
@@ -153,12 +163,12 @@ namespace NLog.Targets
             }
             else
             {
-                var escd = new EventSourceCreationData(this.Source, this.Log)
+                var eventSourceCreationData = new EventSourceCreationData(fixedSource, this.Log)
                 {
                     MachineName = this.MachineName
                 };
 
-                EventLog.CreateEventSource(escd);
+                EventLog.CreateEventSource(eventSourceCreationData);
             }
         }
 
@@ -168,7 +178,16 @@ namespace NLog.Targets
         /// <param name="installationContext">The installation context.</param>
         public void Uninstall(InstallationContext installationContext)
         {
-            EventLog.DeleteEventSource(this.Source, this.MachineName);
+            var fixedSource = GetFixedSource();
+
+            if (string.IsNullOrEmpty(fixedSource))
+            {
+                InternalLogger.Debug("Skipping removing of eventsource because it contains layout renderers");
+            }
+            else
+            {
+                EventLog.DeleteEventSource(fixedSource, this.MachineName);
+            }
         }
 
         /// <summary>
@@ -180,7 +199,14 @@ namespace NLog.Targets
         /// </returns>
         public bool? IsInstalled(InstallationContext installationContext)
         {
-            return EventLog.SourceExists(this.Source, this.MachineName);
+            var fixedSource = GetFixedSource();
+
+            if (!string.IsNullOrEmpty(fixedSource))
+            {
+                return EventLog.SourceExists(fixedSource, this.MachineName);
+            }
+            InternalLogger.Debug("Unclear if eventsource exists because it contains layout renderers");
+            return null; //unclear! 
         }
 
         /// <summary>
@@ -190,10 +216,19 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
 
-            var s = EventLog.LogNameFromSourceName(this.Source, this.MachineName);
-            if (!s.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
+            var fixedSource = GetFixedSource();
+
+            if (string.IsNullOrEmpty(fixedSource))
             {
-                this.CreateEventSourceIfNeeded();
+                InternalLogger.Debug("Skipping creation of eventsource because it contains layout renderers");
+            }
+            else
+            {
+                var s = EventLog.LogNameFromSourceName(fixedSource, this.MachineName);
+                if (!s.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    this.CreateEventSourceIfNeeded(fixedSource);
+                }
             }
         }
 
@@ -226,7 +261,7 @@ namespace NLog.Targets
                 category = Convert.ToInt16(this.Category.Render(logEvent), CultureInfo.InvariantCulture);
             }
 
-            var eventLog = GetEventLog();
+            var eventLog = GetEventLog(logEvent);
             eventLog.WriteEntry(message, entryType, eventId, category);
         }
 
@@ -258,24 +293,57 @@ namespace NLog.Targets
             return EventLogEntryType.Information;
         }
 
-        private EventLog GetEventLog()
+
+        /// <summary>
+        /// Get the source, if and only if the source is fixed. 
+        /// </summary>
+        /// <returns><c>null</c> when not fixed</returns>
+        private string GetFixedSource()
         {
-            return eventLogInstance ?? (eventLogInstance = new EventLog(this.Log, this.MachineName, this.Source));
+            if (this.Source == null)
+            {
+                return null;
+            }
+            var simpleLayout = Source as SimpleLayout;
+            if (simpleLayout != null && simpleLayout.IsFixedText)
+            {
+                return simpleLayout.FixedText;
+            }
+            return null;
         }
 
-        private void CreateEventSourceIfNeeded()
+        /// <summary>
+        /// Get the eventlog to write to.
+        /// </summary>
+        /// <param name="logEvent">Event if the source needs to be rendered.</param>
+        /// <returns></returns>
+        private EventLog GetEventLog(LogEventInfo logEvent)
         {
+            return eventLogInstance ?? (eventLogInstance = new EventLog(this.Log, this.MachineName, this.Source.Render(logEvent)));
+        }
+
+        private void CreateEventSourceIfNeeded(string fixedSource)
+        {
+
+            if (string.IsNullOrEmpty(fixedSource))
+            {
+                InternalLogger.Debug("Skipping creation of eventsource because it contains layout renderers");
+                //we can only create event sources if the source is fixed (no layout)
+                return;
+
+            }
+
             // if we throw anywhere, we remain non-operational
             try
             {
-                if (EventLog.SourceExists(this.Source, this.MachineName))
+                if (EventLog.SourceExists(fixedSource, this.MachineName))
                 {
-                    string currentLogName = EventLog.LogNameFromSourceName(this.Source, this.MachineName);
+                    string currentLogName = EventLog.LogNameFromSourceName(fixedSource, this.MachineName);
                     if (!currentLogName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
                     {
                         // re-create the association between Log and Source
-                        EventLog.DeleteEventSource(this.Source, this.MachineName);
-                        var escd = new EventSourceCreationData(this.Source, this.Log)
+                        EventLog.DeleteEventSource(fixedSource, this.MachineName);
+                        var escd = new EventSourceCreationData(fixedSource, this.Log)
                         {
                             MachineName = this.MachineName
                         };
@@ -285,12 +353,12 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    var escd = new EventSourceCreationData(this.Source, this.Log)
+                    var eventSourceCreationData = new EventSourceCreationData(fixedSource, this.Log)
                     {
                         MachineName = this.MachineName
                     };
 
-                    EventLog.CreateEventSource(escd);
+                    EventLog.CreateEventSource(eventSourceCreationData);
                 }
             }
             catch (Exception exception)
