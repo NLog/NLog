@@ -298,7 +298,8 @@ namespace NLog.Targets
         /// Get the source, if and only if the source is fixed. 
         /// </summary>
         /// <returns><c>null</c> when not fixed</returns>
-        private string GetFixedSource()
+        /// <remarks>Internal for unit tests</remarks>
+        internal string GetFixedSource()
         {
             if (this.Source == null)
             {

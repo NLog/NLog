@@ -129,7 +129,8 @@ namespace NLog.UnitTests.Targets
 
             var entries = GetEventRecords(el.Log).TakeWhile(e => e.TimeCreated > loggedNotBefore).ToList();
             //debug-> error
-            EntryExists(entries, testValue, target.Source, eventLogEntryType);
+            var expectedSource = target.GetFixedSource();
+            EntryExists(entries, testValue, expectedSource, eventLogEntryType);
         }
 
         private static void EntryExists(IEnumerable<EventRecord> entries, string expectedValue, string expectedSource, EventLogEntryType expectedEntryType)
