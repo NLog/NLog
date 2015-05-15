@@ -137,39 +137,8 @@ namespace NLog.Targets
         {
             var fixedSource = GetFixedSource();
 
-            if (string.IsNullOrEmpty(fixedSource))
-            {
-                InternalLogger.Debug("Skipping creation of eventsource because it contains layout renderers");
-                //we can only create event sources if the source is fixed (no layout)
-                return;
-
-            }
-
-            if (EventLog.SourceExists(fixedSource, this.MachineName))
-            {
-                string currentLogName = EventLog.LogNameFromSourceName(fixedSource, this.MachineName);
-                if (!currentLogName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
-                {
-                    // re-create the association between Log and Source
-                    EventLog.DeleteEventSource(fixedSource, this.MachineName);
-
-                    var escd = new EventSourceCreationData(fixedSource, this.Log)
-                    {
-                        MachineName = this.MachineName
-                    };
-
-                    EventLog.CreateEventSource(escd);
-                }
-            }
-            else
-            {
-                var eventSourceCreationData = new EventSourceCreationData(fixedSource, this.Log)
-                {
-                    MachineName = this.MachineName
-                };
-
-                EventLog.CreateEventSource(eventSourceCreationData);
-            }
+            //always throw error to keep backwardscomp behavior.
+            CreateEventSourceIfNeeded(fixedSource, true);
         }
 
         /// <summary>
@@ -227,7 +196,7 @@ namespace NLog.Targets
                 var s = EventLog.LogNameFromSourceName(fixedSource, this.MachineName);
                 if (!s.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
                 {
-                    this.CreateEventSourceIfNeeded(fixedSource);
+                    this.CreateEventSourceIfNeeded(fixedSource, false);
                 }
             }
         }
@@ -323,7 +292,13 @@ namespace NLog.Targets
             return eventLogInstance ?? (eventLogInstance = new EventLog(this.Log, this.MachineName, this.Source.Render(logEvent)));
         }
 
-        private void CreateEventSourceIfNeeded(string fixedSource)
+
+        /// <summary>
+        /// (re-)create a eventsource, if it isn't there. Works only with fixed sourcenames.
+        /// </summary>
+        /// <param name="fixedSource">sourcenaam. If source is not fixed (see <see cref="SimpleLayout.IsFixedText"/>, then pass <c>null</c> or emptystring.</param>
+        /// <param name="alwaysThrowError">always throw an Exception when there is an error</param>
+        private void CreateEventSourceIfNeeded(string fixedSource, bool alwaysThrowError)
         {
 
             if (string.IsNullOrEmpty(fixedSource))
@@ -344,12 +319,12 @@ namespace NLog.Targets
                     {
                         // re-create the association between Log and Source
                         EventLog.DeleteEventSource(fixedSource, this.MachineName);
-                        var escd = new EventSourceCreationData(fixedSource, this.Log)
+                        var eventSourceCreationData = new EventSourceCreationData(fixedSource, this.Log)
                         {
                             MachineName = this.MachineName
                         };
 
-                        EventLog.CreateEventSource(escd);
+                        EventLog.CreateEventSource(eventSourceCreationData);
                     }
                 }
                 else
@@ -364,12 +339,13 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                InternalLogger.Error("Error when connecting to EventLog: {0}", exception);
+                if (alwaysThrowError || exception.MustBeRethrown())
                 {
                     throw;
                 }
 
-                InternalLogger.Error("Error when connecting to EventLog: {0}", exception);
+              
                 throw;
             }
         }
