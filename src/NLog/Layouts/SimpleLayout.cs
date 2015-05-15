@@ -119,6 +119,21 @@ namespace NLog.Layouts
                 this.SetRenderers(renderers, txt);
             }
         }
+        /// <summary>
+        /// Is the message fixed? (no Layout renderers used)
+        /// </summary>
+        public bool IsFixedText
+        {
+            get { return this.fixedText != null; }
+        }
+
+        /// <summary>
+        /// Get the fixed text. Only set when <see cref="IsFixedText"/> is <c>true</c>
+        /// </summary>
+        public string FixedText
+        {
+            get { return fixedText; }
+        }
 
         /// <summary>
         /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
@@ -211,7 +226,7 @@ namespace NLog.Layouts
         /// <returns>The rendered layout.</returns>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            if (this.fixedText != null)
+            if (IsFixedText)
             {
                 return this.fixedText;
             }
