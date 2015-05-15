@@ -234,6 +234,11 @@ namespace NLog.Targets
             eventLog.WriteEntry(message, entryType, eventId, category);
         }
 
+        /// <summary>
+        /// Get the entry type for logging the message.
+        /// </summary>
+        /// <param name="logEvent">The logging event - for rendering the <see cref="EntryType"/></param>
+        /// <returns></returns>
         private EventLogEntryType GetEntryType(LogEventInfo logEvent)
         {
             if (this.EntryType != null)
@@ -250,7 +255,6 @@ namespace NLog.Targets
             }
 
             // determine auto
-       
             if (logEvent.Level >= LogLevel.Error)
             {
                 return EventLogEntryType.Error;
@@ -266,7 +270,7 @@ namespace NLog.Targets
         /// <summary>
         /// Get the source, if and only if the source is fixed. 
         /// </summary>
-        /// <returns><c>null</c> when not fixed</returns>
+        /// <returns><c>null</c> when not <see cref="SimpleLayout.IsFixedText"/></returns>
         /// <remarks>Internal for unit tests</remarks>
         internal string GetFixedSource()
         {
