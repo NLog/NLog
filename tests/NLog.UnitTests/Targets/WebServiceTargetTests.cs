@@ -142,10 +142,10 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             var streamMock = new StreamMock();
 
             //event for async testing
-            var counterEvent = new CountdownEvent(1);
+            var counterEvent = new ManualResetEvent(false);
 
             var parameterValues = new object[] { "", "336cec87129942eeabab3d8babceead7", "Debg", "2014-06-26 23:15:14.6348", "TestClient.Program", "Debug", "DELL" };
-            target.DoInvoke(parameterValues, c => counterEvent.Signal(), request,
+            target.DoInvoke(parameterValues, c => counterEvent.Set(), request,
                 callback =>
                 {
                     var t = new Task(() => { });
@@ -154,7 +154,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 },
                 result => streamMock);
 
-            counterEvent.Wait();
+            counterEvent.WaitOne();
 
             var bytes = streamMock.bytes;
             var url = streamMock.stringed;
