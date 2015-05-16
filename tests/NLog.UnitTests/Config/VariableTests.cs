@@ -70,6 +70,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("]]", lr3.Text);
         }
 
+#if !SILVERLIGHT
         [Fact(Skip = "Bug? Dunno, but it's bad")]
         public void VariablesTest_string_should_not_exand()
         {
@@ -87,6 +88,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("${test}", target.Source);
 
         }
+#endif
 
         [Fact]
         public void None_xml_configuration_throws_not_supported_exception_when_accessing_variables()

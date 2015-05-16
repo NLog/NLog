@@ -57,7 +57,11 @@ namespace NLog.Internal
             if (fi.Exists)
             {
                 fileLength = fi.Length;
+#if !SILVERLIGHT
                 lastWriteTime = fi.LastWriteTimeUtc;
+#else
+                lastWriteTime = fi.LastWriteTime;
+#endif
                 return true;
             }
             else

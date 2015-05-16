@@ -31,9 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO.Compression;
-using System.Security.Permissions;
-
 namespace NLog.UnitTests
 {
     using System;
@@ -45,9 +42,11 @@ namespace NLog.UnitTests
     using NLog.Config;
     using Xunit;
 #if SILVERLIGHT
-using System.Xml.Linq;
+    using System.Xml.Linq;
 #else
     using System.Xml;
+    using System.IO.Compression;
+    using System.Security.Permissions;
 #endif
 
     public abstract class NLogTestBase

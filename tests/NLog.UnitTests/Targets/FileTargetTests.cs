@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
-using NLog.LayoutRenderers;
-using Xunit.Extensions;
-
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -46,12 +42,15 @@ namespace NLog.UnitTests.Targets
     using System.Text;
     using System.Threading;
     using Xunit;
+    using Xunit.Extensions;
 
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using NLog.Time;
+    using NLog.Internal;
+    using NLog.LayoutRenderers;
 
     public class FileTargetTests : NLogTestBase
     {

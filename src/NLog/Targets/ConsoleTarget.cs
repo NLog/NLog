@@ -66,6 +66,7 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool Error { get; set; }
 
+#if !SILVERLIGHT
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>
@@ -75,6 +76,7 @@ namespace NLog.Targets
             get { return Console.OutputEncoding; }
             set { Console.OutputEncoding = value; }
         }
+#endif
 
         /// <summary>
         /// Initializes the target.

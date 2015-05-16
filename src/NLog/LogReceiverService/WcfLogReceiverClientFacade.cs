@@ -39,6 +39,9 @@ namespace NLog.LogReceiverService
     using System.ComponentModel;
     using System.ServiceModel;
     using System.ServiceModel.Channels;
+#if SILVERLIGHT
+    using System.Net;
+#endif
 
     /// <summary>
     /// Log Receiver Client facade. It allows the use either of the one way or two way 

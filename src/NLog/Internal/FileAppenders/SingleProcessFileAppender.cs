@@ -59,7 +59,11 @@ namespace NLog.Internal.FileAppenders
             var fi = new FileInfo(fileName);
             if (fi.Exists)
             {
+#if !SILVERLIGHT
                 this.FileTouched(fi.LastWriteTimeUtc);
+#else
+                this.FileTouched(fi.LastWriteTime);
+#endif
             }
             else
             {

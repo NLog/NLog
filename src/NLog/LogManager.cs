@@ -36,9 +36,9 @@ namespace NLog
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-	using System.Globalization;
+    using System.Globalization;
     using System.Reflection;
-	using System.Threading;
+    using System.Threading;
     using System.Runtime.CompilerServices;
     using System.Linq;
     using Internal.Fakeables;
@@ -367,6 +367,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
                 InternalLogger.Warn("Error setting up termination events: {0}", exception);
             }            
         }
+#endif
 
         /// <summary>
         /// Gets the fully qualified name of the class invoking the LogManager, including the 
@@ -408,6 +409,5 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
             Configuration = null;
             InternalLogger.Info("Logger has been shut down.");
         }
-#endif
     }
 }
