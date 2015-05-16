@@ -1542,6 +1542,11 @@ namespace NLog.Targets
                 this.WriteHeader(appender);
             }
 
+            if (this.AutoFlush)
+            {
+                appender.Flush();
+            }
+
             appender.Write(bytes);
         }
 
