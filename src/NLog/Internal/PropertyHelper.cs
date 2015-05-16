@@ -279,6 +279,11 @@ namespace NLog.Internal
                 newValue = LineEndingMode.FromString(value);
                 return true;
             }
+            else if (type == typeof(Uri))
+            {
+                newValue = new Uri(value);
+                return true;
+            }
 #endif
 
             newValue = null;

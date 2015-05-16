@@ -31,10 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using NLog.Layouts;
-
 #if !SILVERLIGHT && !MONO
 
 namespace NLog.UnitTests.Targets
@@ -45,6 +41,9 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.Linq;
     using Xunit;
+    using System.Collections.Generic;
+    using System.Diagnostics.Eventing.Reader;
+    using NLog.Layouts;
 
     public class EventLogTargetTests : NLogTestBase
     {

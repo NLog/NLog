@@ -179,6 +179,7 @@
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />
     <Compile Include="SourceCodeTests.cs" />
+    <Compile Include="Targets\EventLogTargetTests.cs" />
     <Compile Include="Targets\LineEndingModeTests.cs" />
     <Compile Include="Targets\MemoryTargetTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
