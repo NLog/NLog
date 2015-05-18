@@ -124,7 +124,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         <parameter name='date' type='System.String' layout='${longdate}'/>
         <parameter name='logger' type='System.String' layout='${logger}'/>
         <parameter name='level' type='System.String' layout='${level}'/>
-        <parameter name='machinename' type='System.String' layout='${machinename}'/>
     </target>
 </targets>
                 </nlog>");
@@ -144,7 +143,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             //event for async testing
             var counterEvent = new ManualResetEvent(false);
 
-            var parameterValues = new object[] { "", "336cec87129942eeabab3d8babceead7", "Debg", "2014-06-26 23:15:14.6348", "TestClient.Program", "Debug", "DELL" };
+            var parameterValues = new object[] { "", "336cec87129942eeabab3d8babceead7", "Debg", "2014-06-26 23:15:14.6348", "TestClient.Program", "Debug" };
             target.DoInvoke(parameterValues, c => counterEvent.Set(), request,
                 callback =>
                 {
@@ -159,7 +158,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             var bytes = streamMock.bytes;
             var url = streamMock.stringed;
 
-            const string expectedUrl = "empty=&guid=336cec87129942eeabab3d8babceead7&m=Debg&date=2014-06-26+23%3a15%3a14.6348&logger=TestClient.Program&level=Debug&machinename=DELL";
+            const string expectedUrl = "empty=&guid=336cec87129942eeabab3d8babceead7&m=Debg&date=2014-06-26+23%3a15%3a14.6348&logger=TestClient.Program&level=Debug";
             Assert.Equal(expectedUrl, url);
 
             Assert.True(bytes.Length > 3);
