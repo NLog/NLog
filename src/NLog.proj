@@ -14,6 +14,8 @@
     <BuildVersion Condition=" '$(BuildVersion)' == '' " >$(BUILD_NUMBER)</BuildVersion>
     <BuildVersion Condition=" '$(BuildVersion)' == '' " >3.2.0.0</BuildVersion>
     <BuildVersion Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildVersion>
+    <NuGetVersion>$(BuildVersion)</NuGetVersion>
+    <NuGetVersion Condition="'$(NuGetPrelease)' != ''">$(BuildVersion)-$(NuGetPrelease)</NuGetVersion>
     <BuildProductName>NLog v$(BuildVersion)$(BuildLabel)</BuildProductName>
   </PropertyGroup>
 
@@ -51,7 +53,7 @@
     <BuildInfoFile>$(BaseOutputDirectory)\bin\BuildInfo.cs</BuildInfoFile>
     <NuGetTool>$(BaseOutputDirectory)\..\tools\NuGet.exe</NuGetTool>
     <NuGetBuildPath>$(BaseOutputDirectory)\obj\$(Configuration)\NuGet</NuGetBuildPath>
-    <NuGetProperties>BuildVersion=$(BuildVersion)</NuGetProperties>
+    <NuGetProperties>BuildVersion=$(NuGetVersion)</NuGetProperties>
   </PropertyGroup>
 
   <!-- detect location of various SDKs and tools-->
@@ -313,7 +315,7 @@
     <Copy SourceFiles="@(NuGetSourceFiles)" DestinationFolder="$(NuGetBuildPath)\NLog\src\src\NLog\%(RecursiveDir)" />
     <Copy SourceFiles="$(BuildInfoFile)" DestinationFolder="$(NuGetBuildPath)\NLog\src\build\bin" />
 
-    <TokenReplace Path="$(NuGetBuildPath)\NLog\NLog.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+    <TokenReplace Path="$(NuGetBuildPath)\NLog\NLog.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
     
     <!-- package -->
     <RemoveDir Directories="$(NuGetOutputPath)" />
