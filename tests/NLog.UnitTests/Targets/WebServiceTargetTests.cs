@@ -131,7 +131,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             var target = configuration.FindTargetByName("webservice") as WebServiceTarget;
             Assert.NotNull(target);
 
-            Assert.Equal(target.Parameters.Count, 7);
+            Assert.Equal(target.Parameters.Count, 6);
 
             Assert.Equal(target.Encoding.WebName, "utf-8");
 
@@ -174,7 +174,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 Assert.NotEqual(possbleBomBytes, EncodingHelpers.Utf8BOM);
             }
 
-            Assert.Equal(bytes.Length, includeBom ? 143 : 140);
+            Assert.Equal(bytes.Length, includeBom ? 126 : 123);
         }
 
         #region helpers
