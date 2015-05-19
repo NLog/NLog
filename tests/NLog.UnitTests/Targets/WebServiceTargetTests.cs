@@ -164,7 +164,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             Assert.True(bytes.Length > 3);
 
             //not bom
-            var possbleBomBytes = bytes.Take(3);
+            var possbleBomBytes = bytes.Take(3).ToArray();
             if (includeBom)
             {
                 Assert.Equal(possbleBomBytes, EncodingHelpers.Utf8BOM);
