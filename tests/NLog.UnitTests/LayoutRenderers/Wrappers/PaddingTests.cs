@@ -40,61 +40,134 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
     public class PaddingTests : NLogTestBase
     {
         [Fact]
-        public void PositivePaddingIsRightAlign()
+        public void PositivePaddingWithLeftAlign()
         {
             SimpleLayout l;
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
 
-            l = @"${message:padding=10}";
+            l = @"${message:padding=10:alignmentOnTruncation=left}";
             Assert.Equal("   message", l.Render(le));
 
-            l = @"${message:padding=9}";
+            l = @"${message:padding=9:alignmentOnTruncation=left}";
             Assert.Equal("  message", l.Render(le));
 
-            l = @"${message:padding=8}";
+            l = @"${message:padding=8:alignmentOnTruncation=left}";
             Assert.Equal(" message", l.Render(le));
 
-            l = @"${message:padding=7}";
+            l = @"${message:padding=7:alignmentOnTruncation=left}";
             Assert.Equal("message", l.Render(le));
 
-            l = @"${message:padding=6}";
+            l = @"${message:padding=6:alignmentOnTruncation=left}";
             Assert.Equal("message", l.Render(le));
 
-            l = @"${message:padding=6:fixedLength=true}";
+            l = @"${message:padding=6:fixedLength=true:alignmentOnTruncation=left}";
+            Assert.Equal("messag", l.Render(le));
+
+            l = @"${message:padding=5:fixedLength=true:alignmentOnTruncation=left}";
+            Assert.Equal("messa", l.Render(le));
+        }
+
+        [Fact]
+        public void PositivePaddingWithRightAlign()
+        {
+            SimpleLayout l;
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+
+            l = @"${message:padding=10:alignmentOnTruncation=right}";
+            Assert.Equal("   message", l.Render(le));
+
+            l = @"${message:padding=9:alignmentOnTruncation=right}";
+            Assert.Equal("  message", l.Render(le));
+
+            l = @"${message:padding=8:alignmentOnTruncation=right}";
+            Assert.Equal(" message", l.Render(le));
+
+            l = @"${message:padding=7:alignmentOnTruncation=right}";
+            Assert.Equal("message", l.Render(le));
+
+            l = @"${message:padding=6:alignmentOnTruncation=right}";
+            Assert.Equal("message", l.Render(le));
+
+            l = @"${message:padding=6:fixedLength=true:alignmentOnTruncation=right}";
             Assert.Equal("essage", l.Render(le));
 
-            l = @"${message:padding=5:fixedLength=true}";
+            l = @"${message:padding=5:fixedLength=true:alignmentOnTruncation=right}";
             Assert.Equal("ssage", l.Render(le));
         }
 
         [Fact]
-        public void NegativePaddingIsLeftAlign()
+        public void NegativePaddingWithLeftAlign()
         {
             SimpleLayout l;
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
 
-            l = @"${message:padding=-10}";
+            l = @"${message:padding=-10:alignmentOnTruncation=left}";
             Assert.Equal("message   ", l.Render(le));
 
-            l = @"${message:padding=-9}";
+            l = @"${message:padding=-9:alignmentOnTruncation=left}";
             Assert.Equal("message  ", l.Render(le));
 
-            l = @"${message:padding=-8}";
+            l = @"${message:padding=-8:alignmentOnTruncation=left}";
             Assert.Equal("message ", l.Render(le));
 
-            l = @"${message:padding=-7}";
+            l = @"${message:padding=-7:alignmentOnTruncation=left}";
             Assert.Equal("message", l.Render(le));
 
-            l = @"${message:padding=-6}";
+            l = @"${message:padding=-6:alignmentOnTruncation=left}";
             Assert.Equal("message", l.Render(le));
 
-            l = @"${message:padding=-6:fixedLength=true}";
+            l = @"${message:padding=-6:fixedLength=true:alignmentOnTruncation=left}";
             Assert.Equal("messag", l.Render(le));
 
-            l = @"${message:padding=-5:fixedLength=true}";
+            l = @"${message:padding=-5:fixedLength=true:alignmentOnTruncation=left}";
             Assert.Equal("messa", l.Render(le));
+        }
+
+        [Fact]
+        public void NegativePaddingWithRightAlign()
+        {
+            SimpleLayout l;
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+
+            l = @"${message:padding=-10:alignmentOnTruncation=right}";
+            Assert.Equal("message   ", l.Render(le));
+
+            l = @"${message:padding=-9:alignmentOnTruncation=right}";
+            Assert.Equal("message  ", l.Render(le));
+
+            l = @"${message:padding=-8:alignmentOnTruncation=right}";
+            Assert.Equal("message ", l.Render(le));
+
+            l = @"${message:padding=-7:alignmentOnTruncation=right}";
+            Assert.Equal("message", l.Render(le));
+
+            l = @"${message:padding=-6:alignmentOnTruncation=right}";
+            Assert.Equal("message", l.Render(le));
+
+            l = @"${message:padding=-6:fixedLength=true:alignmentOnTruncation=right}";
+            Assert.Equal("essage", l.Render(le));
+
+            l = @"${message:padding=-5:fixedLength=true:alignmentOnTruncation=right}";
+            Assert.Equal("ssage", l.Render(le));
+        }
+
+        [Fact]
+        public void DefaultAlignmentIsLeft()
+        {
+            SimpleLayout defaultLayout, leftLayout, rightLayout;
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+
+            defaultLayout = @"${message:padding=5:fixedLength=true}";
+            leftLayout = @"${message:padding=5:fixedLength=true:alignmentOnTruncation=left}";
+            rightLayout = @"${message:padding=5:fixedLength=true:alignmentOnTruncation=right}";
+
+            Assert.Equal(leftLayout.Render(le), defaultLayout.Render(le));
+            Assert.NotEqual(rightLayout.Render(le), defaultLayout.Render(le));
         }
     }
 }

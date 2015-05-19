@@ -44,6 +44,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("Padding")]
     [AmbientProperty("PadCharacter")]
     [AmbientProperty("FixedLength")]
+    [AmbientProperty("AlignmentOnTruncation")]
     [ThreadAgnostic]
     public sealed class PaddingLayoutRendererWrapper : WrapperLayoutRendererBase
     {
@@ -81,6 +82,16 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool FixedLength { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether a value that has
+        /// been truncated (when <see cref="FixedLength" /> is true)
+        /// will be left-aligned (characters removed from the right)
+        /// or right-aligned (characters removed from the left). The
+        /// default is left alignment.
+        /// </summary>
+        [DefaultValue(PaddingHorizontalAlignment.Left)]
+        public PaddingHorizontalAlignment AlignmentOnTruncation { get; set; }
+
+        /// <summary>
         /// Transforms the output of another layout.
         /// </summary>
         /// <param name="text">Output to be transform.</param>
@@ -108,13 +119,17 @@ namespace NLog.LayoutRenderers.Wrappers
 
                 if (this.FixedLength && s.Length > absolutePadding)
                 {
-                    if (this.Padding > 0)
+                    switch (this.AlignmentOnTruncation)
                     {
-                        s = s.Substring(s.Length - absolutePadding);
-                    }
-                    else
-                    {
-                        s = s.Substring(0, absolutePadding);
+                        case PaddingHorizontalAlignment.Left:
+                            s = s.Substring(0, absolutePadding);
+                            break;
+                        case PaddingHorizontalAlignment.Right:
+                            s = s.Substring(s.Length - absolutePadding);
+                            break;
+
+                        default:
+                            goto case PaddingHorizontalAlignment.Left;
                     }
                 }
             }
