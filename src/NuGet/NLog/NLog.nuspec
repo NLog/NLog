@@ -4,7 +4,7 @@
     <id>NLog</id>
     <title>NLog</title>
     <version>$BuildVersion$</version>
-    <authors>Kim Christensen</authors>
+    <authors>Kim Christensen, Julian Verdurmen</authors>
     <owners>Kim Christensen</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>NLog - Advanced .NET and Silverlight Logging</summary>
@@ -15,6 +15,6 @@ For your main project also need to install "NLog Configuration" package.</descri
     <iconUrl>http://nlog-project.org/N.png</iconUrl>
     <projectUrl>http://nlog-project.org/</projectUrl>
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
-    <tags>logging, log, tracing, logfiles</tags>
+    <tags>logging, log, tracing, logfiles, NLog</tags>
   </metadata>
 </package>
