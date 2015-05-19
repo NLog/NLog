@@ -21,7 +21,7 @@
     <Name>Documentation</Name>
     <NLogBuildPath>$(NLogPath)\build\bin\$(Configuration)\$(Framework)</NLogBuildPath>
     <!-- SHFB properties -->
-    <OutputPath>$(OutputPath)\..\..\..\..\docs\</OutputPath>
+    <OutputPath>$(OutputPath)</OutputPath>
     <HtmlHelpName>NLog</HtmlHelpName>
     <DocumentationSources>
       <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.dll" xmlns="" />
@@ -54,49 +54,39 @@
     </ApiFilter>
     <Preliminary>False</Preliminary>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="NLog" isDocumented="True" xmlns="">
+      <NamespaceSummaryItem name="NLog" isDocumented="True">
         Contains classes used by instrumented application to output log messages.
       </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Internal" isDocumented="True" xmlns="">
+<NamespaceSummaryItem name="NLog.Internal" isDocumented="True">
         Components used internally for NLog.
       </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Config" isDocumented="True" xmlns="">
+<NamespaceSummaryItem name="NLog.Config" isDocumented="True">
         Provides APIs to configure logging.
       </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Targets" isDocumented="True" xmlns="">
-        Contains implementation of log targets.
-      </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Targets.Wrappers" isDocumented="True" xmlns="">
-        Contains implementation of wrapper targets.
-      </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Filters" isDocumented="True" xmlns="">
-        Contains implementation of filters.
-      </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Layouts" isDocumented="True" xmlns="">
-        Contains implementation of layouts.
-      </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.LayoutRenderers" isDocumented="True" xmlns="">
-        Contains implementation of layout renderers.
-      </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.LayoutRenderers.Wrappers" isDocumented="True" xmlns="">
-        Contains implementation of wrapper layout renderers.
-      </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Conditions" isDocumented="True" xmlns="">
+<NamespaceSummaryItem name="NLog.Targets" isDocumented="True">Iimplementation of log targets.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Targets.Wrappers" isDocumented="True">Iimplementation of wrapper targets.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Filters" isDocumented="True">Implementation of filters.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Layouts" isDocumented="True">Implementation of layouts.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.LayoutRenderers" isDocumented="True">Implementation of layout renderers.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.LayoutRenderers.Wrappers" isDocumented="True">Implementation of wrapper layout renderers.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Conditions" isDocumented="True">
         Contains implementation of conditions used to filter log events.
       </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Common" isDocumented="True" xmlns="">
+<NamespaceSummaryItem name="NLog.Common" isDocumented="True">
         Contains common components used when implementing NLog extensions.
       </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.ComInterop" isDocumented="True" xmlns="">
+<NamespaceSummaryItem name="NLog.ComInterop" isDocumented="True">
         COM Interop classes.
       </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.LogReceiverService" isDocumented="True" xmlns="">
+<NamespaceSummaryItem name="NLog.LogReceiverService" isDocumented="True">
         WCF proxy classes for implementing clients and servers of log receiver service.
       </NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Web" isDocumented="True" xmlns="">
+<NamespaceSummaryItem name="NLog.Web" isDocumented="True">
         Integration with ASP.NET.
       </NamespaceSummaryItem>
-    </NamespaceSummaries>
+<NamespaceSummaryItem name="NLog.Fluent" isDocumented="False">Fluent building of log messages.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Internal.Fakeables" isDocumented="True">Helpers for mocking</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Time" isDocumented="True">Time calculations for messages.</NamespaceSummaryItem></NamespaceSummaries>
     <PlugInConfigurations>
     </PlugInConfigurations>
     <NamingMethod>MemberName</NamingMethod>
