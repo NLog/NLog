@@ -153,7 +153,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 },
                 result => streamMock);
 
-            counterEvent.WaitOne();
+            counterEvent.WaitOne(10000);
 
             var bytes = streamMock.bytes;
             var url = streamMock.stringed;
