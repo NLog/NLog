@@ -103,7 +103,7 @@
     <MaximumGroupParts>2</MaximumGroupParts>
     <NamespaceGrouping>False</NamespaceGrouping>
     <SdkLinkTarget>Blank</SdkLinkTarget>
-    <RootNamespaceTitle>NLog namespace</RootNamespaceTitle>
+    <RootNamespaceTitle>NLog namespaces</RootNamespaceTitle>
     <RootNamespaceContainer>True</RootNamespaceContainer>
     <PresentationStyle>VS2013</PresentationStyle>
     <Language>en-US</Language>
