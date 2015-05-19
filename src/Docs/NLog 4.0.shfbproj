@@ -21,7 +21,6 @@
     <Name>Documentation</Name>
     <NLogBuildPath>$(NLogPath)\build\bin\$(Configuration)\$(Framework)</NLogBuildPath>
     <!-- SHFB properties -->
-    <OutputPath>$(OutputPath)</OutputPath>
     <HtmlHelpName>NLog</HtmlHelpName>
     <DocumentationSources>
       <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.dll" xmlns="" />
