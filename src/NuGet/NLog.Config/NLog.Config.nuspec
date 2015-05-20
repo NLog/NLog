@@ -4,7 +4,7 @@
     <id>NLog.Config</id>
     <title>NLog Configuration</title>
     <version>$BuildVersion$</version>
-    <authors>Kim Christensen</authors>
+    <authors>Kim Christensen, Julian Verdurmen</authors>
     <owners>Kim Christensen</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Empty NLog.config file for use with NLog.</summary>
