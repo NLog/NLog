@@ -120,25 +120,19 @@ namespace NLog.UnitTests.Targets
             Assert.False(messageQueueTestProxy.QueueExistsCalled);
         }
 
-
         /// <summary>
         /// Checks if setting the CheckIfQueueExists is working
         /// </summary>
         [Fact]
         public void MessageQueueTarget_CheckIfQueueExists_setting_should_work()
         {
-
-
             var configuration = CreateConfigurationFromString(string.Format(@"
                 <nlog throwExceptions='true' >
                     <targets>
                         <target type='MSMQ'
                                 name='q'
                                 checkIfQueueExists='False' 
-                                queue='queue1'               
-                               >
-
-     
+                                queue='queue1' >
                         </target>
                     </targets>
                     <rules>
@@ -154,8 +148,6 @@ namespace NLog.UnitTests.Targets
 
             Assert.NotNull(messageQueueTarget);
             Assert.Equal(false, messageQueueTarget.CheckIfQueueExists);
-
-
         }
 
         private static MessageQueueTarget CreateTarget(MessageQueueProxy messageQueueTestProxy, bool createQueue, string queueName = "Test", bool checkIfQueueExists = true)
