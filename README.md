@@ -36,7 +36,7 @@ If you like to start with a small task, thent the following GitHub issues are ni
 
 - If you like to work with Mono: [#648](https://github.com/NLog/NLog/issues/648)
 - These issues would be great if it get fixed (and unit tested):  [#302](https://github.com/NLog/NLog/issues/302)
-- If you like to create an layout renderer (small task): [#86](https://github.com/NLog/NLog/issues/86)
+- If you like to create a layout renderer (small task): [#86](https://github.com/NLog/NLog/issues/86)
 - If you good in writing English or just like writing English:  [#520](https://github.com/NLog/NLog/issues/520)
 - If you like to work with Sandcastle Help File Builder (SHFB): [#655](https://github.com/NLog/NLog/issues/655)
 
