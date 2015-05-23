@@ -373,7 +373,10 @@ namespace NLog.UnitTests
         private static void WriteToFile(string configXML, string path)
         {
             using (StreamWriter fs = File.CreateText(path))
+            {
                 fs.Write(configXML);
+                fs.Flush();
+            }
         }
     }
 }
