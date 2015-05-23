@@ -155,7 +155,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x:fixedlength=true:alignmentOnTruncation=left}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x:fixedlength=true}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
