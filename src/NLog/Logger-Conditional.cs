@@ -43,9 +43,16 @@ using System.Linq;
 namespace NLog
 {
     /// <summary>
-    /// Conditional logging. Only used when the DEBUG conditional is set. 
-    /// See: https://msdn.microsoft.com/en-us/library/4xssyw96%28v=vs.90%29.aspx 
+    /// Logging methods which only are executed when the DEBUG conditional compilation symbol is set.
     /// </summary>
+    /// <remarks>
+    /// The DEBUG conditional compilation symbol is default enabled (only) in a debug build.
+    /// 
+    /// If the DEBUG conditional compilation symbol isn't set in the calling library, the compiler will remove all the invocations to these methods. 
+    /// This could lead to better performance. 
+    /// 
+    /// See: https://msdn.microsoft.com/en-us/library/4xssyw96%28v=vs.90%29.aspx
+    /// </remarks>
     public partial class Logger
     {
         #region ConditionalDebug
@@ -55,7 +62,7 @@ namespace NLog
         /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value to be written.</param>
         [Conditional("DEBUG")]
@@ -66,7 +73,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
@@ -78,7 +85,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         [Conditional("DEBUG")]
         public void ConditionalDebug(LogMessageGenerator messageFunc)
@@ -88,7 +95,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Debug</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
@@ -100,7 +107,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Debug</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -113,7 +120,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters and formatting them with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
@@ -125,7 +132,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">Log message.</param>
         [Conditional("DEBUG")]
         public void ConditionalDebug(string message)
@@ -135,7 +142,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
@@ -144,10 +151,10 @@ namespace NLog
             Debug(message, args);
         }
 
-   
+
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
@@ -160,7 +167,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -172,7 +179,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified arguments formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
@@ -187,7 +194,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
@@ -201,7 +208,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified arguments formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
@@ -218,7 +225,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
@@ -234,7 +241,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [Conditional("DEBUG")]
         public void ConditionalDebug(object value)
@@ -244,7 +251,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [Conditional("DEBUG")]
@@ -255,7 +262,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="arg1">First argument to format.</param>
         /// <param name="arg2">Second argument to format.</param>
@@ -267,7 +274,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="arg1">First argument to format.</param>
         /// <param name="arg2">Second argument to format.</param>
@@ -280,7 +287,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -292,7 +299,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -303,7 +310,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -315,7 +322,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -326,7 +333,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -338,7 +345,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -349,7 +356,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -361,7 +368,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -372,7 +379,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -384,7 +391,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -395,7 +402,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -407,7 +414,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -418,7 +425,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -430,7 +437,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -441,7 +448,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -453,7 +460,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -464,7 +471,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -476,7 +483,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -487,7 +494,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -499,7 +506,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -517,7 +524,7 @@ namespace NLog
         /// </overloads>
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="value">The value to be written.</param>
         [Conditional("DEBUG")]
@@ -528,7 +535,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="T">Type of the value.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">The value to be written.</param>
@@ -540,7 +547,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         [Conditional("DEBUG")]
         public void ConditionalTrace(LogMessageGenerator messageFunc)
@@ -550,7 +557,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Trace</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
@@ -562,7 +569,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Trace</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
@@ -576,7 +583,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters and formatting them with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
@@ -588,7 +595,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">Log message.</param>
         [Conditional("DEBUG")]
         public void ConditionalTrace(string message)
@@ -598,7 +605,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
         [Conditional("DEBUG")]
@@ -609,7 +616,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
@@ -622,7 +629,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="TArgument">The type of the argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -634,7 +641,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified arguments formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
@@ -649,7 +656,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
@@ -663,7 +670,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified arguments formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
@@ -680,7 +687,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <typeparam name="TArgument2">The type of the second argument.</typeparam>
         /// <typeparam name="TArgument3">The type of the third argument.</typeparam>
@@ -696,7 +703,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [Conditional("DEBUG")]
         public void ConditionalTrace(object value)
@@ -706,7 +713,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="value">A <see langword="object" /> to be written.</param>
         [Conditional("DEBUG")]
@@ -717,7 +724,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="arg1">First argument to format.</param>
         /// <param name="arg2">Second argument to format.</param>
@@ -729,7 +736,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="arg1">First argument to format.</param>
         /// <param name="arg2">Second argument to format.</param>
@@ -742,7 +749,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -754,7 +761,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -765,7 +772,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -777,7 +784,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -788,7 +795,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -800,7 +807,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -811,7 +818,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -823,7 +830,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -834,7 +841,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -846,7 +853,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -857,7 +864,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -869,7 +876,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -880,7 +887,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -892,7 +899,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -903,7 +910,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -915,7 +922,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -926,7 +933,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -938,7 +945,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -949,7 +956,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter and formatting it with the supplied format provider.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
@@ -961,7 +968,7 @@ namespace NLog
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified value as a parameter.
-        /// </summary>
+        /// Only executed when the DEBUG conditional compilation symbol is set.</summary>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [Conditional("DEBUG")]
@@ -970,7 +977,7 @@ namespace NLog
             Trace(message, argument);
         }
 
-       
+
         #endregion
     }
 }
