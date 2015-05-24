@@ -109,6 +109,7 @@
     <Compile Include="LayoutRenderers\ShortDateTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\PaddingTests.cs" />
     <Compile Include="Layouts\AllEventPropertiesLayoutRendererTests.cs" />
     <Compile Include="Layouts\CsvLayoutTests.cs" />
     <Compile Include="Layouts\JsonLayoutTests.cs" />

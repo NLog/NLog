@@ -167,7 +167,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void ClassNameWithPaddingTestTest()
+        public void ClassNameWithPaddingTestPadLeftAlignLeftTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -184,7 +184,60 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void MethodNameWithPaddingTestTest()
+        public void ClassNameWithPaddingTestPadLeftAlignRightTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=3:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            var typeName = currentMethod.DeclaringType.FullName;
+            AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
+        }
+
+        [Fact]
+        public void ClassNameWithPaddingTestPadRightAlignLeftTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=-3:fixedlength=true:alignmentOnTruncation=left} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
+        }
+
+        [Fact]
+        public void ClassNameWithPaddingTestPadRightAlignRightTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=-3:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            var typeName = currentMethod.DeclaringType.FullName;
+            AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
+        }
+
+        [Fact]
+        public void MethodNameWithPaddingTestPadLeftAlignLeftTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -197,6 +250,54 @@ namespace NLog.UnitTests.LayoutRenderers
             ILogger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "MethodNameWithPa msg");
+        }
+
+        [Fact]
+        public void MethodNameWithPaddingTestPadLeftAlignRightTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=16:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "ftAlignRightTest msg");
+        }
+
+        [Fact]
+        public void MethodNameWithPaddingTestPadRightAlignLeftTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=-16:fixedlength=true:alignmentOnTruncation=left} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "MethodNameWithPa msg");
+        }
+
+        [Fact]
+        public void MethodNameWithPaddingTestPadRightAlignRightTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=-16:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "htAlignRightTest msg");
         }
 
         [Fact]
