@@ -1,0 +1,34 @@
+version: 4.0.{build}
+build_script:
+- Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true
+test_script:
+- ps: >-
+    .\tests\CreateTestUsers.cmd
+
+
+    xunit.console.clr4 "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" /appveyor /noshadow
+
+    $success = $?
+
+
+    xunit.console.clr4 "build\bin\Debug\.NET Framework 4.5\NLog.UnitTests.dll" /appveyor /noshadow
+
+    if ( $success ) {
+     $success = $?
+    }
+
+
+    xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow
+
+    if ( $success ) {
+     $success = $?
+    }
+
+
+    .\tests\DeleteTestUsers.cmd
+
+
+    if ( -not $success) {
+      throw "tests not successfull"
+    }
+deploy: off
