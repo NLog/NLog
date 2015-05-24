@@ -131,6 +131,11 @@
         {
             string simpleName;
 
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                type = type.GetGenericArguments()[0];
+            }
+
             if (simpleTypeNames.TryGetValue(type.FullName, out simpleName))
             {
                 return simpleName;
