@@ -119,17 +119,14 @@ namespace NLog.LayoutRenderers.Wrappers
 
                 if (this.FixedLength && s.Length > absolutePadding)
                 {
-                    switch (this.AlignmentOnTruncation)
+                    if (this.AlignmentOnTruncation == PaddingHorizontalAlignment.Right)
                     {
-                        case PaddingHorizontalAlignment.Left:
-                            s = s.Substring(0, absolutePadding);
-                            break;
-                        case PaddingHorizontalAlignment.Right:
-                            s = s.Substring(s.Length - absolutePadding);
-                            break;
-
-                        default:
-                            goto case PaddingHorizontalAlignment.Left;
+                        s = s.Substring(s.Length - absolutePadding);
+                    }
+                    else
+                    {
+                        //left
+                        s = s.Substring(0, absolutePadding);
                     }
                 }
             }
