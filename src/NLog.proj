@@ -352,7 +352,7 @@
     <Copy SourceFiles="@(NuGetExtendedSourceFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\src\src\NLog.Extended\%(RecursiveDir)" />
     <Copy SourceFiles="$(BuildInfoFile)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\src\build\bin" />
 
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Extended\NLog.Extended.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+    <TokenReplace Path="$(NuGetBuildPath)\NLog.Extended\NLog.Extended.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
 
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
@@ -368,7 +368,7 @@
     <RemoveDir Directories="$(NuGetBuildPath)\NLog.Config" />
     <Copy SourceFiles="@(NuGetConfigFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Config\%(RecursiveDir)" />
 	
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Config\NLog.Config.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+    <TokenReplace Path="$(NuGetBuildPath)\NLog.Config\NLog.Config.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
 
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
@@ -386,7 +386,7 @@
     <Copy SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\NLog.xsd"
           DestinationFolder="$(NuGetBuildPath)\NLog.Schema\content" />
 	
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Schema\NLog.Schema.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+    <TokenReplace Path="$(NuGetBuildPath)\NLog.Schema\NLog.Schema.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
 
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
@@ -407,7 +407,7 @@
     <Copy SourceFiles="$(BaseOutputDirectory)..\src\VSIntegration\Snippets\VBLogger.snippet"
           DestinationFolder="$(NuGetBuildPath)\NLog.Snippets\tools\Snippets" />
   
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Snippets\NLog.Snippets.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+    <TokenReplace Path="$(NuGetBuildPath)\NLog.Snippets\NLog.Snippets.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
 
     <!-- package -->    
     <MakeDir Directories="$(NuGetOutputPath)" />
