@@ -71,8 +71,12 @@ namespace NLog.UnitTests.Config
         }
 
 #if !SILVERLIGHT
-        [Fact(Skip = "Bug? Dunno, but it's bad")]
-        public void VariablesTest_string_should_not_exand()
+
+        /// <summary>
+        /// Expand of property which are not layoutable <see cref="Layout"/>, but still get expanded.
+        /// </summary>
+        [Fact(Skip = "It's unclear if this is a bug of a feature. Probably this will a config setting in the feature")]
+        public void VariablesTest_string_expanding()
         {
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
