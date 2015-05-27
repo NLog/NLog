@@ -88,7 +88,14 @@ namespace NLog.Layouts
 
 					first = false;
 
-					sb.AppendFormat("\"{0}\": \"{1}\"", col.Name, text);
+					if(col.Encode)
+					{
+						sb.AppendFormat("\"{0}\": \"{1}\"", col.Name, text);
+					}
+					else
+					{
+						sb.AppendFormat("\"{0}\": {1}", col.Name, text);
+					}
 				}
 			}
 
