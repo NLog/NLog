@@ -1647,6 +1647,11 @@ namespace NLog.Targets
                 {
                     fs.Write(footerBytes, 0, footerBytes.Length);
                 }
+
+                if (this.AutoFlush)
+                {
+                    fs.Flush();
+                }
             }
         }
 
