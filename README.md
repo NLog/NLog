@@ -5,7 +5,9 @@ Welcome to NLog
 
 [![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg?style=flat)](https://www.nuget.org/packages/NLog)
 [![Version](https://img.shields.io/nuget/v/NLog.svg?style=flat)](https://www.nuget.org/packages/NLog)
+<!--
 [![Pre-release version](https://img.shields.io/nuget/vpre/NLog.svg)](https://www.nuget.org/packages/NLog)
+-->
 [![GitHub release](https://img.shields.io/github/release/NLog/NLog.svg)](https://github.com/NLog/NLog/releases)
 [![AppVeyor](https://img.shields.io/appveyor/ci/Xharze/nlog-134/master.svg?style=flat)](https://ci.appveyor.com/project/Xharze/nlog-134/branch/master)
 
