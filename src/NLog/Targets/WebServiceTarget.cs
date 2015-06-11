@@ -43,6 +43,7 @@ namespace NLog.Targets
     using System.Text;
     using System.Xml;
     using NLog.Common;
+    using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
 
@@ -76,19 +77,15 @@ namespace NLog.Targets
         private const string SoapEnvelopeNamespace = "http://schemas.xmlsoap.org/soap/envelope/";
         private const string Soap12EnvelopeNamespace = "http://www.w3.org/2003/05/soap-envelope";
 
+        private static Encoding DefaultEncoding = new UTF8Encoding(false);
+
         /// <summary>
         /// Initializes a new instance of the <see cref="WebServiceTarget" /> class.
         /// </summary>
         public WebServiceTarget()
         {
             this.Protocol = WebServiceProtocol.Soap11;
-
-            //default NO utf-8 bom 
-            const bool writeBOM = false;
-            this.Encoding = new UTF8Encoding(writeBOM);
-            this.IncludeBOM = writeBOM;
-
-
+            this.Encoding = DefaultEncoding;
         }
 
         /// <summary>
@@ -117,16 +114,10 @@ namespace NLog.Targets
         public WebServiceProtocol Protocol { get; set; }
 
         /// <summary>
-        /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
-        /// 
-        /// This will only work for UTF-8.
-        /// </summary>
-        public bool? IncludeBOM { get; set; }
-
-        /// <summary>
         /// Gets or sets the encoding.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
+        [DefaultByteOrderMark(ByteOrderMark.Unspecified)]
         public Encoding Encoding { get; set; }
 
         /// <summary>
@@ -222,8 +213,7 @@ namespace NLog.Targets
                         {
                             using (Stream stream = getStreamFunc(result))
                             {
-                                WriteStreamAndFixPreamble(postPayload, stream, this.IncludeBOM, this.Encoding);
-
+                                postPayload.CopyTo(stream);
                                 postPayload.Dispose();
                             }
 
@@ -337,37 +327,5 @@ namespace NLog.Targets
             sw.Flush();
             return ms;
         }
-
-
-        /// <summary>
-        /// Write from input to output. Fix the UTF-8 bom
-        /// </summary>
-        /// <param name="input"></param>
-        /// <param name="output"></param>
-        /// <param name="writeUtf8BOM"></param>
-        /// <param name="encoding"></param>
-        private static void WriteStreamAndFixPreamble(Stream input, Stream output, bool? writeUtf8BOM, Encoding encoding)
-        {
-            //only when utf-8 encoding is used, the Encoding preamble is optional
-            var nothingToDo = writeUtf8BOM == null || !(encoding is UTF8Encoding);
-
-            const int preambleSize = 3;
-            if (!nothingToDo)
-            {
-                //it's UTF-8
-                var hasBomInEncoding = encoding.GetPreamble().Length == preambleSize;
-
-                //BOM already in Encoding.
-                nothingToDo = writeUtf8BOM.Value && hasBomInEncoding;
-
-                //Bom already not in Encoding
-                nothingToDo = nothingToDo || !writeUtf8BOM.Value && !hasBomInEncoding;
-            }
-            var offset = nothingToDo ? 0 : preambleSize;
-            input.CopyWithOffset(output, offset);
-
-        }
-
-
     }
 }

@@ -79,7 +79,7 @@ namespace NLog.Internal
                 if (!TryNLogSpecificConversion(propertyType, value, out newValue, configurationItemFactory))
                 if (!TryGetEnumValue(propertyType, value, out newValue))
                 if (!TryImplicitConversion(propertyType, value, out newValue))
-                if (!TrySpecialConversion(propertyType, value, out newValue))
+                if (!TrySpecialConversion(propInfo, propertyType, value, out newValue))
                 if (!TryTypeConverterConversion(propertyType, value, out newValue))
                     newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
 
@@ -240,11 +240,13 @@ namespace NLog.Internal
             }
         }
 
-        private static bool TrySpecialConversion(Type type, string value, out object newValue)
+        private static bool TrySpecialConversion(PropertyInfo propertyInfo, Type type, string value, out object newValue)
         {
             if (type == typeof(Encoding))
             {
-                newValue = Encoding.GetEncoding(value);
+                // use the DefaultByteOrderMarkAttribute of the property to determine the default state of the BOM..
+                DefaultByteOrderMarkAttribute bomAttribute = (DefaultByteOrderMarkAttribute)propertyInfo.GetCustomAttribute(typeof(DefaultByteOrderMarkAttribute), true) ?? DefaultByteOrderMarkAttribute.Default;
+                newValue = EncodingHelpers.GetEncoding(value, bomAttribute.AsTriState);
                 return true;
             }
 

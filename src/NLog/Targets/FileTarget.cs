@@ -284,6 +284,7 @@ namespace NLog.Targets
         /// Gets or sets the file encoding.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
+        [DefaultByteOrderMark(ByteOrderMark.Exclude)]
         public Encoding Encoding { get; set; }
 
         /// <summary>
@@ -1634,6 +1635,12 @@ namespace NLog.Targets
         {
             using (FileStream fs = File.Create(fileName))
             {
+                byte[] preambleBytes = this.Encoding.GetPreamble();
+                if ((preambleBytes != null) && (preambleBytes.Length > 0))
+                {
+                    fs.Write(preambleBytes, 0, preambleBytes.Length);
+                }
+
                 byte[] headerBytes = this.GetHeaderBytes();
                 if (headerBytes != null)
                 {
@@ -1658,6 +1665,12 @@ namespace NLog.Targets
             //  Write header only on empty files or if file info cannot be obtained.
             if (!appender.GetFileInfo(out lastWriteTime, out fileLength) || fileLength == 0)
             {
+                byte[] preambleBytes = this.Encoding.GetPreamble();
+                if ((preambleBytes != null) && (preambleBytes.Length > 0))
+                {
+                    appender.Write(preambleBytes);
+                }
+
                 byte[] headerBytes = this.GetHeaderBytes();
                 if (headerBytes != null)
                 {

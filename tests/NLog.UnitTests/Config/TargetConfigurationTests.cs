@@ -447,6 +447,12 @@ namespace NLog.UnitTests.Config
                         conditionProperty=""starts-with(message, 'x')""
                         uriProperty='http://nlog-project.org'
                         lineEndingModeProperty='default'
+                        encodingWithBom='utf-8-bom'
+                        encodingWithoutBom='utf-8-no-bom'
+                        encodingDefaultBom='utf-16'
+                        encodingDefaultNoBom='utf-8'
+                        encodingOverrideNoBomWithBom='utf-8'
+                        encodingOverrideBomWithNoBom='utf-16'
                         />
                 </targets>
             </nlog>");
@@ -463,13 +469,26 @@ namespace NLog.UnitTests.Config
             Assert.Equal(3.14159f, myTarget.FloatProperty);
             Assert.Equal(MyEnum.Value3, myTarget.EnumProperty);
             Assert.Equal(MyFlagsEnum.Value1 | MyFlagsEnum.Value3, myTarget.FlagsEnumProperty);
-            Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty);
+            Assert.Equal(Encoding.UTF8.CodePage, myTarget.EncodingProperty.CodePage);
             Assert.Equal("en-US", myTarget.CultureProperty.Name);
             Assert.Equal(typeof(int), myTarget.TypeProperty);
             Assert.Equal("'${level}'", myTarget.LayoutProperty.ToString());
             Assert.Equal("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
             Assert.Equal(new Uri("http://nlog-project.org"), myTarget.UriProperty);
             Assert.Equal(LineEndingMode.Default, myTarget.LineEndingModeProperty);
+
+            Assert.Equal(Encoding.UTF8.CodePage, myTarget.EncodingWithBom.CodePage);
+            Assert.NotEmpty(myTarget.EncodingWithBom.GetPreamble());
+            Assert.Equal(Encoding.UTF8.CodePage, myTarget.EncodingWithoutBom.CodePage);
+            Assert.Empty(myTarget.EncodingWithoutBom.GetPreamble());
+            Assert.Equal(Encoding.Unicode.CodePage, myTarget.EncodingDefaultBom.CodePage);
+            Assert.NotEmpty(myTarget.EncodingDefaultBom.GetPreamble());
+            Assert.Equal(Encoding.UTF8.CodePage, myTarget.EncodingDefaultNoBom.CodePage);
+            Assert.Empty(myTarget.EncodingDefaultNoBom.GetPreamble());
+            Assert.Equal(Encoding.Unicode.CodePage, myTarget.EncodingOverrideBomWithNoBom.CodePage);
+            Assert.Empty(myTarget.EncodingOverrideBomWithNoBom.GetPreamble());
+            Assert.Equal(Encoding.UTF8.CodePage, myTarget.EncodingOverrideNoBomWithBom.CodePage);
+            Assert.NotEmpty(myTarget.EncodingOverrideNoBomWithBom.GetPreamble());
         }
 
         [Fact]
@@ -514,7 +533,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(3.14159f, myTarget.FloatProperty);
             Assert.Equal(MyEnum.Value3, myTarget.EnumProperty);
             Assert.Equal(MyFlagsEnum.Value1 | MyFlagsEnum.Value3, myTarget.FlagsEnumProperty);
-            Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty);
+            Assert.Equal(Encoding.UTF8.CodePage, myTarget.EncodingProperty.CodePage);
             Assert.Equal("en-US", myTarget.CultureProperty.Name);
             Assert.Equal(typeof(int), myTarget.TypeProperty);
             Assert.Equal("'${level}'", myTarget.LayoutProperty.ToString());
@@ -557,6 +576,16 @@ namespace NLog.UnitTests.Config
             public Uri UriProperty { get; set; }
 
             public LineEndingMode LineEndingModeProperty { get; set; }
+
+            public Encoding EncodingWithBom { get; set; }
+            public Encoding EncodingWithoutBom { get; set; }
+            public Encoding EncodingDefaultBom { get; set; }
+            public Encoding EncodingDefaultNoBom { get; set; }
+
+            [DefaultByteOrderMark(ByteOrderMark.Include)]
+            public Encoding EncodingOverrideNoBomWithBom { get; set; }
+            [DefaultByteOrderMark(ByteOrderMark.Exclude)]
+            public Encoding EncodingOverrideBomWithNoBom { get; set; }
         }
 
 
