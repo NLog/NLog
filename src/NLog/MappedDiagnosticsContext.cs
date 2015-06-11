@@ -47,9 +47,9 @@ namespace NLog
     {
         private static readonly object dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
 
-        internal static IDictionary<string, string> ThreadDictionary
+        internal static IDictionary<string, object> ThreadDictionary
         {
-            get { return ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, string>>(dataSlot); }
+            get { return ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(dataSlot); }
         }
 
         /// <summary>
@@ -63,20 +63,39 @@ namespace NLog
         }
 
         /// <summary>
+        /// Sets the current thread MDC item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        public static void Set(string item, object value)
+        {
+            ThreadDictionary[item] = value;
+        }
+
+        /// <summary>
         /// Gets the current thread MDC named item.
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>The item value of string.Empty if the value is not present.</returns>
         public static string Get(string item)
         {
-            string s;
+            object o = GetObject(item);
+            return (o != null) ? o.ToString() : String.Empty;
+        }
 
-            if (!ThreadDictionary.TryGetValue(item, out s))
-            {
-                s = string.Empty;
-            }
+        /// <summary>
+        /// Gets the current thread MDC named item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
+        public static object GetObject(string item)
+        {
+            object o;
 
-            return s;
+            if (!ThreadDictionary.TryGetValue(item, out o))
+                o = null;
+
+            return o;
         }
 
         /// <summary>

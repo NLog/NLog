@@ -62,6 +62,16 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets the Global Diagnostics Context named item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
+        public static object GetObject(string item)
+        {
+            return GlobalDiagnosticsContext.GetObject(item);
+        }
+
+        /// <summary>
         /// Checks whether the specified item exists in the Global Diagnostics Context.
         /// </summary>
         /// <param name="item">Item name.</param>

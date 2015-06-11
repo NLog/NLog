@@ -41,7 +41,7 @@ namespace NLog
     /// </summary>
     public static class GlobalDiagnosticsContext
     {
-        private static Dictionary<string, string> dict = new Dictionary<string, string>();
+        private static Dictionary<string, object> dict = new Dictionary<string, object>();
 
         /// <summary>
         /// Sets the Global Diagnostics Context item to the specified value.
@@ -57,22 +57,42 @@ namespace NLog
         }
 
         /// <summary>
+        /// Sets the Global Diagnostics Context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        public static void Set(string item, object value)
+        {
+            lock (dict)
+            {
+                dict[item] = value;
+            }
+        }
+
+        /// <summary>
         /// Gets the Global Diagnostics Context named item.
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>The item value of string.Empty if the value is not present.</returns>
         public static string Get(string item)
         {
+            return RenderContextObject(GetObject(item));
+        }
+
+        /// <summary>
+        /// Gets the Global Diagnostics Context named item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <returns>The item value, if defined; otherwise <c>null</c>.</returns>
+        public static object GetObject(string item)
+        {
             lock (dict)
             {
-                string s;
+                object o;
+                if (!dict.TryGetValue(item, out o))
+                    o = null;
 
-                if (!dict.TryGetValue(item, out s))
-                {
-                    s = string.Empty;
-                }
-
-                return s;
+                return o;
             }
         }
 
@@ -110,6 +130,18 @@ namespace NLog
             {
                 dict.Clear();
             }
+        }
+
+        internal static string RenderContextObject ( object o )
+        {
+            // TODO: Should consider if Configuration.DefaultCultureInfo should be used here instead of
+            //       null. Currently LogEventInfo uses Culture.CurrentCulture rather than deferring to the
+            //       Configuration.DefaultCultureInfo, which I suspect is a bug, but I don't know that 
+            //       yet. In any case, there is no LogEventInfo instance available here, so we either need
+            //       to use the current culture or defer to Configuration.DefaultCultureInfo. Currently
+            //       I've choosen to follow LogEventInfo and use whatever the current culture is.
+
+            return String.Format(null, "{0}", o);
         }
     }
 }
