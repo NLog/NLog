@@ -294,11 +294,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                 () =>
                 {
                     targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
-                    Thread.Sleep(1000);
+                    targetWrapper.Close();
                 },
                 LogLevel.Trace);
 
-            targetWrapper.Close();
             Assert.True(internalLog.StartsWith("Error Error in lazy writer timer procedure: System.NullReferenceException", StringComparison.Ordinal), internalLog);
         }
 
