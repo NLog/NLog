@@ -36,37 +36,23 @@ using System;
 namespace NLog.Config
 {
     /// <summary>
-    /// Marks a property whose type is <see cref="System.Text.Encoding"/> with a default BOM state, if one
-    /// is not specified by the Encoding name.
+    /// Indicates whether a BOM is included, excluded or defaulted.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-    public class DefaultByteOrderMarkAttribute : Attribute
+    public enum ByteOrderMark
     {
         /// <summary>
-        /// The DefaultByteOrderMarkAttribute to use if none is defined.
+        /// Use the Encoding's default BOM state.
         /// </summary>
-        public static readonly DefaultByteOrderMarkAttribute Default = new DefaultByteOrderMarkAttribute(ByteOrderMark.Unspecified);
+        Unspecified,
 
         /// <summary>
-        /// Initializes a new instance of <see cref="DefaultByteOrderMarkAttribute"/>.
+        /// Include the BOM by default.
         /// </summary>
-        /// <param name="bomState">The default state of the Byte Order Mark.</param>
-        public DefaultByteOrderMarkAttribute(ByteOrderMark bomState)
-        {
-            State = bomState;
-        }
+        Include,
 
         /// <summary>
-        /// The BOM state if not specified by the user.
+        /// Exclude the BOM by default.
         /// </summary>
-        public ByteOrderMark State { get; private set; }
-
-        internal bool? AsTriState
-        {
-            get
-            {
-                return (State == ByteOrderMark.Unspecified) ? (bool?)null : (State == ByteOrderMark.Include);
-            }
-        }
+        Exclude
     }
 }
