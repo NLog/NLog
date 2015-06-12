@@ -73,7 +73,44 @@ namespace NLog.Internal
             }
         }
 
-      
+#if NET3_5
+        /// <summary>
+        /// Copies the contents of one stream to another.
+        /// </summary>
+        /// <param name="sourceStream">The stream to copy from.</param>
+        /// <param name="destinationStream">The stream to copy to.</param>
+        public static void CopyTo(this Stream sourceStream, Stream destinationStream)
+        {
+            if ((sourceStream == null) || (destinationStream == null))
+                throw new ArgumentNullException((sourceStream == null) ? "sourceStream" : "destinationStream");
 
+            CopyStream(sourceStream, destinationStream, 81920);
+        }
+
+        /// <summary>
+        /// Copies the contents of one stream to another.
+        /// </summary>
+        /// <param name="sourceStream">The stream to copy from.</param>
+        /// <param name="destinationStream">The stream to copy to.</param>
+        /// <param name="bufferSize">The size of the buffer used during the copy.</param>
+        public static void CopyTo(this Stream sourceStream, Stream destinationStream, int bufferSize)
+        {
+            if ((sourceStream == null) || (destinationStream == null))
+                throw new ArgumentNullException((sourceStream == null) ? "sourceStream" : "destinationStream");
+
+            if (bufferSize <= 0)
+                throw new ArgumentOutOfRangeException("bufferSize");
+
+            CopyStream(sourceStream, destinationStream, bufferSize);
+        }
+
+        private static void CopyStream (Stream sourceStream, Stream destinationStream, int bufferSize )
+        {
+            int bytesRead;
+            byte[] buffer = new byte[bufferSize];
+            while ((bytesRead = sourceStream.Read(buffer, 0, buffer.Length)) != 0)
+                destinationStream.Write(buffer, 0, bytesRead);
+        }
+#endif
     }
 }
