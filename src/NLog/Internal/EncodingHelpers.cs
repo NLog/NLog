@@ -35,6 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NLog.Config;
 
 namespace NLog.Internal
 {
@@ -92,7 +93,7 @@ namespace NLog.Internal
             };
         }
 
-        internal static Encoding GetEncoding(string encodingName, bool? defaultToBom)
+        internal static Encoding GetEncoding(string encodingName, DefaultByteOrderMarkAttribute bomAttribute = null)
         {
             if (encodingName == null)
                 throw new ArgumentNullException("encodingName");
@@ -111,7 +112,7 @@ namespace NLog.Internal
             // defaultToBom is null, then we use whatever the EncodingInfo instance indicates
             // the default should be.
 
-            return encodingInfo.GetEncoding(hasBomSuffix ?? defaultToBom);
+            return encodingInfo.GetEncoding(hasBomSuffix, bomAttribute);
         }
 
         private static string GetEncodingBaseName(string encodingName, out bool? hasBomSuffix)
@@ -150,10 +151,9 @@ namespace NLog.Internal
                 NoBOM = noBomEncoding;
             }
 
-            public Encoding GetEncoding(bool? hasBom)
+            public Encoding GetEncoding(bool? hasBom, DefaultByteOrderMarkAttribute bomAttribute = null)
             {
-                // allow hasBom parameter to override the DefaultToBom property
-                return (hasBom ?? DefaultToBom) ? BOM : NoBOM;
+                return (hasBom ?? (bomAttribute ?? DefaultByteOrderMarkAttribute.Default).GetCodepageState(BOM.CodePage) ?? DefaultToBom) ? BOM : NoBOM;
             }
 
             protected abstract bool DefaultToBom { get; }

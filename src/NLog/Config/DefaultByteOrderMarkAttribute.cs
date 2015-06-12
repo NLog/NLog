@@ -50,23 +50,60 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of <see cref="DefaultByteOrderMarkAttribute"/>.
         /// </summary>
-        /// <param name="bomState">The default state of the Byte Order Mark.</param>
-        public DefaultByteOrderMarkAttribute(ByteOrderMark bomState)
+        public DefaultByteOrderMarkAttribute()
+            : this(ByteOrderMark.Unspecified)
         {
-            State = bomState;
         }
 
         /// <summary>
-        /// The BOM state if not specified by the user.
+        /// Initializes a new instance of <see cref="DefaultByteOrderMarkAttribute"/>.
         /// </summary>
-        public ByteOrderMark State { get; private set; }
-
-        internal bool? AsTriState
+        /// <param name="bomState">The default state of the Byte Order Mark.</param>
+        public DefaultByteOrderMarkAttribute(ByteOrderMark bomState)
         {
-            get
+            UTF8 = bomState;
+            UTF16 = bomState;
+            UTF32 = bomState;
+        }
+
+        internal bool? GetCodepageState(int codePage)
+        {
+            switch (codePage)
             {
-                return (State == ByteOrderMark.Unspecified) ? (bool?)null : (State == ByteOrderMark.Include);
+                case 1200:
+                case 1201:
+                    return GetByteOrderMarkState(UTF16);
+
+                case 12000:
+                case 12001:
+                    return GetByteOrderMarkState(UTF32);
+
+                case 65001:
+                    return GetByteOrderMarkState(UTF8);
+
+                default:
+                    return null;
             }
         }
+
+        private static bool? GetByteOrderMarkState ( ByteOrderMark orderMark )
+        {
+            return (orderMark == ByteOrderMark.Unspecified) ? (bool?)null : (orderMark == ByteOrderMark.Include);
+        }
+
+        /// <summary>
+        /// Gets a value that indicates whether a BOM is included in UTF-8 encoding by default.
+        /// </summary>
+        public ByteOrderMark UTF8 { get; set; }
+
+        /// <summary>
+        /// Gets a value that indicates whether a BOM is included in UTF-16 encodings by default.
+        /// </summary>
+        public ByteOrderMark UTF16 { get; set; }
+
+        /// <summary>
+        /// Gets a value that indicates whether a BOM is included in UTF-32 encodings by default.
+        /// </summary>
+        public ByteOrderMark UTF32 { get; set; }
     }
 }

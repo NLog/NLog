@@ -246,7 +246,7 @@ namespace NLog.Internal
             {
                 // use the DefaultByteOrderMarkAttribute of the property to determine the default state of the BOM..
                 DefaultByteOrderMarkAttribute bomAttribute = (DefaultByteOrderMarkAttribute)Attribute.GetCustomAttribute(propertyInfo, typeof(DefaultByteOrderMarkAttribute), true) ?? DefaultByteOrderMarkAttribute.Default;
-                newValue = EncodingHelpers.GetEncoding(value, bomAttribute.AsTriState);
+                newValue = EncodingHelpers.GetEncoding(value, bomAttribute);
                 return true;
             }
 

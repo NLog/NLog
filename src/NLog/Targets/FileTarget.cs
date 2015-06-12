@@ -284,7 +284,7 @@ namespace NLog.Targets
         /// Gets or sets the file encoding.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [DefaultByteOrderMark(ByteOrderMark.Exclude)]
+        [DefaultByteOrderMark(ByteOrderMark.Include, UTF8 = ByteOrderMark.Exclude)]
         public Encoding Encoding { get; set; }
 
         /// <summary>
