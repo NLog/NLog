@@ -33,118 +33,118 @@
 
 namespace NLog.UnitTests.Layouts
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Globalization;
-	using System.IO;
-	using NLog.Layouts;
-	using Xunit;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using NLog.Layouts;
+    using Xunit;
 
-	public class JsonLayoutTests : NLogTestBase
-	{
-		[Fact]
-		public void JsonLayoutRendering()
-		{
-			var jsonLayout = new JsonLayout()
-			{
-				Attributes =
-					{
-						new JsonAttribute("date", "${longdate}", true),
-						new JsonAttribute("level", "${level}", true),
-						new JsonAttribute("message", "${message}", true),
-					}
-			};
+    public class JsonLayoutTests : NLogTestBase
+    {
+        [Fact]
+        public void JsonLayoutRendering()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("date", "${longdate}", true),
+                        new JsonAttribute("level", "${level}", true),
+                        new JsonAttribute("message", "${message}", true),
+                    }
+            };
 
-			var ev = new LogEventInfo();
-			ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
-			ev.Level = LogLevel.Info;
-			ev.Message = "hello, world";
+            var ev = new LogEventInfo();
+            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
+            ev.Level = LogLevel.Info;
+            ev.Message = "hello, world";
 
-			Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello, world\" }", jsonLayout.Render(ev));
-		}
+            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello, world\" }", jsonLayout.Render(ev));
+        }
 
-		[Fact]
-		public void JsonLayoutRenderingAndEncodingSpecialCharacters()
-		{
-			var jsonLayout = new JsonLayout()
-			{
-				Attributes =
-					{
-						new JsonAttribute("date", "${longdate}", true),
-						new JsonAttribute("level", "${level}", true),
-						new JsonAttribute("message", "${message}", true),
-					}
-			};
+        [Fact]
+        public void JsonLayoutRenderingAndEncodingSpecialCharacters()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("date", "${longdate}", true),
+                        new JsonAttribute("level", "${level}", true),
+                        new JsonAttribute("message", "${message}", true),
+                    }
+            };
 
-			var ev = new LogEventInfo();
-			ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
-			ev.Level = LogLevel.Info;
-			ev.Message = "\"hello, world\"";
+            var ev = new LogEventInfo();
+            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
+            ev.Level = LogLevel.Info;
+            ev.Message = "\"hello, world\"";
 
-			Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"\\\"hello, world\\\"\" }", jsonLayout.Render(ev));
-		}
+            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"\\\"hello, world\\\"\" }", jsonLayout.Render(ev));
+        }
 
-		[Fact]
-		public void JsonLayoutRenderingAndEncodingLineBreaks()
-		{
-			var jsonLayout = new JsonLayout()
-			{
-				Attributes =
-					{
-						new JsonAttribute("date", "${longdate}", true),
-						new JsonAttribute("level", "${level}", true),
-						new JsonAttribute("message", "${message}", true),
-					}
-			};
+        [Fact]
+        public void JsonLayoutRenderingAndEncodingLineBreaks()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("date", "${longdate}", true),
+                        new JsonAttribute("level", "${level}", true),
+                        new JsonAttribute("message", "${message}", true),
+                    }
+            };
 
-			var ev = new LogEventInfo();
-			ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
-			ev.Level = LogLevel.Info;
-			ev.Message = "hello,\n\r world";
+            var ev = new LogEventInfo();
+            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
+            ev.Level = LogLevel.Info;
+            ev.Message = "hello,\n\r world";
 
-			Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello,\\n\\r world\" }", jsonLayout.Render(ev));
-		}
+            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello,\\n\\r world\" }", jsonLayout.Render(ev));
+        }
 
-		[Fact]
-		public void JsonLayoutRenderingAndNotEncodingMessageAttribute()
-		{
-			var jsonLayout = new JsonLayout()
-			{
-				Attributes =
-					{
-						new JsonAttribute("date", "${longdate}", true),
-						new JsonAttribute("level", "${level}", true),
-						new JsonAttribute("message", "${message}", false),
-					}
-			};
+        [Fact]
+        public void JsonLayoutRenderingAndNotEncodingMessageAttribute()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("date", "${longdate}", true),
+                        new JsonAttribute("level", "${level}", true),
+                        new JsonAttribute("message", "${message}", false),
+                    }
+            };
 
-			var ev = new LogEventInfo();
-			ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
-			ev.Level = LogLevel.Info;
-			ev.Message = "{ \"hello\" : \"world\" }";
+            var ev = new LogEventInfo();
+            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
+            ev.Level = LogLevel.Info;
+            ev.Message = "{ \"hello\" : \"world\" }";
 
-			Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": { \"hello\" : \"world\" } }", jsonLayout.Render(ev));
-		}
+            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": { \"hello\" : \"world\" } }", jsonLayout.Render(ev));
+        }
 
-		[Fact]
-		public void JsonLayoutRenderingAndEncodingMessageAttribute()
-		{
-			var jsonLayout = new JsonLayout()
-			{
-				Attributes =
-					{
-						new JsonAttribute("date", "${longdate}", true),
-						new JsonAttribute("level", "${level}", true),
-						new JsonAttribute("message", "${message}", true),
-					}
-			};
+        [Fact]
+        public void JsonLayoutRenderingAndEncodingMessageAttribute()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("date", "${longdate}", true),
+                        new JsonAttribute("level", "${level}", true),
+                        new JsonAttribute("message", "${message}", true),
+                    }
+            };
 
-			var ev = new LogEventInfo();
-			ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
-			ev.Level = LogLevel.Info;
-			ev.Message = "{ \"hello\" : \"world\" }";
+            var ev = new LogEventInfo();
+            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
+            ev.Level = LogLevel.Info;
+            ev.Message = "{ \"hello\" : \"world\" }";
 
-			Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"{ \\\"hello\\\" : \\\"world\\\" }\" }", jsonLayout.Render(ev));
-		}
-	}
+            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"{ \\\"hello\\\" : \\\"world\\\" }\" }", jsonLayout.Render(ev));
+        }
+    }
 }

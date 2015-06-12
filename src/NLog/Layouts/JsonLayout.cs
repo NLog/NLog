@@ -33,75 +33,75 @@
 
 namespace NLog.Layouts
 {
-	using Config;
-	using LayoutRenderers.Wrappers;
-	using System.Collections.Generic;
-	using System.Text;
+    using Config;
+    using LayoutRenderers.Wrappers;
+    using System.Collections.Generic;
+    using System.Text;
 
-	/// <summary>
-	/// A specialized layout that renders JSON-formatted events.
-	/// </summary>
-	[Layout("JsonLayout")]
-	[ThreadAgnostic]
-	[AppDomainFixedOutput]
-	public class JsonLayout : Layout
-	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="JsonLayout"/> class.
-		/// </summary>
-		public JsonLayout()
-		{
-			this.Attributes = new List<JsonAttribute>();
-		}
+    /// <summary>
+    /// A specialized layout that renders JSON-formatted events.
+    /// </summary>
+    [Layout("JsonLayout")]
+    [ThreadAgnostic]
+    [AppDomainFixedOutput]
+    public class JsonLayout : Layout
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JsonLayout"/> class.
+        /// </summary>
+        public JsonLayout()
+        {
+            this.Attributes = new List<JsonAttribute>();
+        }
 
-		/// <summary>
-		/// Gets the array of attributes' configurations.
-		/// </summary>
-		/// <docgen category='CSV Options' order='10' />
-		[ArrayParameter(typeof(JsonAttribute), "attribute")]
-		public IList<JsonAttribute> Attributes { get; private set; }
+        /// <summary>
+        /// Gets the array of attributes' configurations.
+        /// </summary>
+        /// <docgen category='CSV Options' order='10' />
+        [ArrayParameter(typeof(JsonAttribute), "attribute")]
+        public IList<JsonAttribute> Attributes { get; private set; }
 
-		/// <summary>
-		/// Formats the log event as a JSON document for writing.
-		/// </summary>
-		/// <param name="logEvent">The log event to be formatted.</param>
-		/// <returns>A JSON string representation of the log event.</returns>
-		protected override string GetFormattedMessage(LogEventInfo logEvent)
-		{
-			var jsonWrapper = new JsonEncodeLayoutRendererWrapper();
-			var sb = new StringBuilder();
-			sb.Append("{ ");
-			bool first = true;
+        /// <summary>
+        /// Formats the log event as a JSON document for writing.
+        /// </summary>
+        /// <param name="logEvent">The log event to be formatted.</param>
+        /// <returns>A JSON string representation of the log event.</returns>
+        protected override string GetFormattedMessage(LogEventInfo logEvent)
+        {
+            var jsonWrapper = new JsonEncodeLayoutRendererWrapper();
+            var sb = new StringBuilder();
+            sb.Append("{ ");
+            bool first = true;
 
-			foreach (var col in this.Attributes)
-			{
-				jsonWrapper.Inner = col.Layout;
-				jsonWrapper.JsonEncode = col.Encode;
-				string text = jsonWrapper.Render(logEvent);
+            foreach (var col in this.Attributes)
+            {
+                jsonWrapper.Inner = col.Layout;
+                jsonWrapper.JsonEncode = col.Encode;
+                string text = jsonWrapper.Render(logEvent);
 
-				if (!string.IsNullOrEmpty(text))
-				{
-					if (!first)
-					{
-						sb.Append(", ");
-					}
+                if (!string.IsNullOrEmpty(text))
+                {
+                    if (!first)
+                    {
+                        sb.Append(", ");
+                    }
 
-					first = false;
+                    first = false;
 
-					if(col.Encode)
-					{
-						sb.AppendFormat("\"{0}\": \"{1}\"", col.Name, text);
-					}
-					else
-					{
-						sb.AppendFormat("\"{0}\": {1}", col.Name, text);
-					}
-				}
-			}
+                    if(col.Encode)
+                    {
+                        sb.AppendFormat("\"{0}\": \"{1}\"", col.Name, text);
+                    }
+                    else
+                    {
+                        sb.AppendFormat("\"{0}\": {1}", col.Name, text);
+                    }
+                }
+            }
 
-			sb.Append(" }");
+            sb.Append(" }");
 
-			return sb.ToString();
-		}
-	}
+            return sb.ToString();
+        }
+    }
 }
