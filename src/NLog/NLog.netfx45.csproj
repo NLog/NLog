@@ -344,6 +344,7 @@
     <Compile Include="Targets\DebuggerTarget.cs" />
     <Compile Include="Targets\DebugTarget.cs" />
     <Compile Include="Targets\EventLogTarget.cs" />
+    <Compile Include="Targets\FastColoredConsoleTarget.cs" />
     <Compile Include="Targets\FileArchivePeriod.cs" />
     <Compile Include="Targets\FileTarget.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
