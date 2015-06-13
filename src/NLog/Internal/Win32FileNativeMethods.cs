@@ -65,7 +65,7 @@ namespace NLog.Internal
         }
 
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-        public static extern IntPtr CreateFile(
+        public static extern Microsoft.Win32.SafeHandles.SafeFileHandle CreateFile(
             string lpFileName,
             FileAccess dwDesiredAccess,
             int dwShareMode,
