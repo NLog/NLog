@@ -222,12 +222,13 @@ namespace NLog.Internal.FileAppenders
                 this.CreateFileParameters.FileAttributes, 
                 IntPtr.Zero);
 
-            if (handle.ToInt32() == -1)
+            var safeHandle = new Microsoft.Win32.SafeHandles.SafeFileHandle(handle, true);
+            
+            if (safeHandle.IsInvalid)
             {
                 Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
             }
 
-            var safeHandle = new Microsoft.Win32.SafeHandles.SafeFileHandle(handle, true);
             var returnValue = new FileStream(safeHandle, FileAccess.Write, this.CreateFileParameters.BufferSize);
             returnValue.Seek(0, SeekOrigin.End);
             return returnValue;
