@@ -73,10 +73,21 @@ namespace NLog
         /// Gets the Global Diagnostics Context named item.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>The item value of string.Empty if the value is not present.</returns>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         public static string Get(string item)
         {
-            return RenderContextObject(GetObject(item));
+            return Get(item, null);
+        }
+
+        /// <summary>
+        /// Gets the Global Diagnostics Context item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
+        /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        public static string Get(string item, IFormatProvider formatProvider) 
+        {
+            return ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>
@@ -132,16 +143,13 @@ namespace NLog
             }
         }
 
-        internal static string RenderContextObject ( object o )
+        internal static string ConvertToString(object o, IFormatProvider formatProvider)
         {
-            // TODO: Should consider if Configuration.DefaultCultureInfo should be used here instead of
-            //       null. Currently LogEventInfo uses Culture.CurrentCulture rather than deferring to the
-            //       Configuration.DefaultCultureInfo, which I suspect is a bug, but I don't know that 
-            //       yet. In any case, there is no LogEventInfo instance available here, so we either need
-            //       to use the current culture or defer to Configuration.DefaultCultureInfo. Currently
-            //       I've choosen to follow LogEventInfo and use whatever the current culture is.
+            // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
+            if ((formatProvider == null) && (LogManager.Configuration != null))
+                formatProvider = LogManager.Configuration.DefaultCultureInfo;
 
-            return String.Format(null, "{0}", o);
+            return String.Format(formatProvider, "{0}", o);
         }
     }
 }

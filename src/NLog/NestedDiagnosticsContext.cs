@@ -56,7 +56,7 @@ namespace NLog
         {
             get
             {
-                return GlobalDiagnosticsContext.RenderContextObject(TopObject);
+                return GlobalDiagnosticsContext.ConvertToString(TopObject, null);
             }
         }
 
@@ -107,7 +107,17 @@ namespace NLog
         /// <returns>The top message which is no longer on the stack.</returns>
         public static string Pop()
         {
-            return GlobalDiagnosticsContext.RenderContextObject(PopObject());
+            return Pop(null);
+        }
+
+        /// <summary>
+        /// Pops the top message from the NDC stack.
+        /// </summary>
+        /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting the value to a string.</param>
+        /// <returns>The top message, which is removed from the stack, as a string value.</returns>
+        public static string Pop(IFormatProvider formatProvider)
+        {
+            return GlobalDiagnosticsContext.ConvertToString(PopObject(), formatProvider);
         }
 
         /// <summary>
@@ -134,7 +144,17 @@ namespace NLog
         /// <returns>Array of strings on the stack.</returns>
         public static string[] GetAllMessages()
         {
-            return ThreadStack.Select((o) => GlobalDiagnosticsContext.RenderContextObject(o)).ToArray();
+            return GetAllMessages(null);
+        }
+
+        /// <summary>
+        /// Gets all messages from the stack, without removing them.
+        /// </summary>
+        /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
+        /// <returns>Array of strings.</returns>
+        public static string[] GetAllMessages(IFormatProvider formatProvider) 
+        {
+            return ThreadStack.Select((o) => GlobalDiagnosticsContext.ConvertToString(o, formatProvider)).ToArray();
         }
 
         /// <summary>

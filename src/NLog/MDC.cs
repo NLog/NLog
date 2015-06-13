@@ -55,7 +55,7 @@ namespace NLog
         /// Gets the current thread MDC named item.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>The item value of string.Empty if the value is not present.</returns>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         public static string Get(string item)
         {
             return MappedDiagnosticsContext.Get(item);

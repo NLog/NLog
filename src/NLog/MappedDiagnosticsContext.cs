@@ -76,11 +76,21 @@ namespace NLog
         /// Gets the current thread MDC named item.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>The item value of string.Empty if the value is not present.</returns>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         public static string Get(string item)
         {
-            object o = GetObject(item);
-            return (o != null) ? o.ToString() : String.Empty;
+            return Get(item, null);
+        }
+
+        /// <summary>
+        /// Gets the current thread MDC named item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        public static string Get (string item, IFormatProvider formatProvider) 
+        {
+            return GlobalDiagnosticsContext.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>
