@@ -213,24 +213,39 @@ namespace NLog.Internal.FileAppenders
                 fileShare |= Win32FileNativeMethods.FILE_SHARE_DELETE;
             }
 
-            IntPtr handle = Win32FileNativeMethods.CreateFile(
+            Microsoft.Win32.SafeHandles.SafeFileHandle handle = null;
+            FileStream fileStream = null;
+
+            try
+            {
+                handle = Win32FileNativeMethods.CreateFile(
                 fileName,
                 Win32FileNativeMethods.FileAccess.GenericWrite,
                 fileShare,
                 IntPtr.Zero,
                 Win32FileNativeMethods.CreationDisposition.OpenAlways,
-                this.CreateFileParameters.FileAttributes, 
+                this.CreateFileParameters.FileAttributes,
                 IntPtr.Zero);
 
-            if (handle.ToInt32() == -1)
-            {
-                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-            }
+                if (handle.IsInvalid)
+                {
+                    Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+                }
 
-            var safeHandle = new Microsoft.Win32.SafeHandles.SafeFileHandle(handle, true);
-            var returnValue = new FileStream(safeHandle, FileAccess.Write, this.CreateFileParameters.BufferSize);
-            returnValue.Seek(0, SeekOrigin.End);
-            return returnValue;
+                fileStream = new FileStream(handle, FileAccess.Write, this.CreateFileParameters.BufferSize);
+                fileStream.Seek(0, SeekOrigin.End);
+                return fileStream;
+            }
+            catch
+            {
+                if (fileStream != null)
+                    fileStream.Dispose();
+
+                if ((handle != null) && (!handle.IsClosed))
+                    handle.Close();
+
+                throw;
+            }
         }
 #endif
 

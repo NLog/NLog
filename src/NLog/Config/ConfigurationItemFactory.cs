@@ -235,7 +235,11 @@ namespace NLog.Config
             var factory = new ConfigurationItemFactory(nlogAssembly);
             factory.RegisterExtendedItems();
 #if !SILVERLIGHT
-            var assemblyLocation = Path.GetDirectoryName(nlogAssembly.Location);
+
+            var location = !String.IsNullOrEmpty(nlogAssembly.Location)
+                ? nlogAssembly.Location
+                : new Uri(nlogAssembly.CodeBase).LocalPath;
+            var assemblyLocation = Path.GetDirectoryName(location);
             if (assemblyLocation == null)
             {
                 return factory;
