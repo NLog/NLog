@@ -635,7 +635,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void MailTargetInitialize_WithoutSpecifiedSmtpServer_ThrowsConfigException()
+        public void MailTargetInitialize_WithoutSpecifiedSmtpServer_should_not_ThrowsConfigException()
         {
             var mmt = new MockMailTarget
             {
@@ -643,7 +643,23 @@ namespace NLog.UnitTests.Targets
                 To = "bar@bar.com",
                 Subject = "Hello from NLog",
                 SmtpPort = 27,
-                Body = "${level} ${logger} ${message}"
+                Body = "${level} ${logger} ${message}",
+                UseSystemNetMailSettings = true
+            };
+           
+        }
+
+        [Fact]
+        public void MailTargetInitialize_WithoutSpecifiedSmtpServer_ThrowsConfigException_if_UseSystemNetMailSettings()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@bar.com",
+                Subject = "Hello from NLog",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}",
+                UseSystemNetMailSettings = false
             };
             Assert.Throws<NLogConfigurationException>(() => mmt.Initialize(null));
         }

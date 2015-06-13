@@ -263,6 +263,18 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes the target. Can be used by inheriting classes
+        /// to initialize logging.
+        /// </summary>
+        protected override void InitializeTarget()
+        {
+
+            CheckRequiredParameters();
+
+            base.InitializeTarget();
+        }
+
+        /// <summary>
         /// Create mail and send with SMTP
         /// </summary>
         /// <param name="events">event printed in the body of the event</param>
@@ -367,10 +379,7 @@ namespace NLog.Targets
         private void ConfigureMailClient(LogEventInfo lastEvent, ISmtpClient client)
         {
 
-            if (this.SmtpServer == null)
-            {
-                throw new NLogRuntimeException(string.Format("The MailTarget's '{0}' property is not set - but needed because useSystemNetMailSettings=false. The email message will not be sent.", "SmtpServer"));
-            }
+            CheckRequiredParameters();
 
             var renderedSmtpServer = this.SmtpServer.Render(lastEvent);
             if (string.IsNullOrEmpty(renderedSmtpServer))
@@ -394,6 +403,15 @@ namespace NLog.Targets
 
                 InternalLogger.Trace("  Using basic authentication: Username='{0}' Password='{1}'", username, new string('*', password.Length));
                 client.Credentials = new NetworkCredential(username, password);
+            }
+        }
+
+        private void CheckRequiredParameters()
+        {
+            if (!this.UseSystemNetMailSettings && this.SmtpServer == null)
+            {
+                throw new NLogConfigurationException(
+                    string.Format("The MailTarget's '{0}' property is not set - but needed because useSystemNetMailSettings=false. The email message will not be sent.", "SmtpServer"));
             }
         }
 
