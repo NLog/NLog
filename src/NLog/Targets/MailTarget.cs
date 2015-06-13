@@ -173,7 +173,6 @@ namespace NLog.Targets
         /// Gets or sets SMTP Server to be used for sending.
         /// </summary>
         /// <docgen category='SMTP Options' order='10' />
-        [RequiredParameter]
         public Layout SmtpServer { get; set; }
 
         /// <summary>
@@ -367,6 +366,12 @@ namespace NLog.Targets
         /// <param name="client">client to set properties on</param>
         private void ConfigureMailClient(LogEventInfo lastEvent, ISmtpClient client)
         {
+
+            if (this.SmtpServer == null)
+            {
+                throw new NLogRuntimeException(string.Format("The MailTarget's '{0}' property is not set - but needed because useSystemNetMailSettings=false. The email message will not be sent.", "SmtpServer"));
+            }
+
             var renderedSmtpServer = this.SmtpServer.Render(lastEvent);
             if (string.IsNullOrEmpty(renderedSmtpServer))
             {
