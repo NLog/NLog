@@ -1544,12 +1544,12 @@ namespace NLog.Targets
                 this.WriteHeader(appender);
             }
 
+            appender.Write(bytes);
+
             if (this.AutoFlush)
             {
                 appender.Flush();
             }
-
-            appender.Write(bytes);
         }
 
         private bool InitializeFile(string fileName, bool justData)
@@ -1646,6 +1646,11 @@ namespace NLog.Targets
                 if (footerBytes != null)
                 {
                     fs.Write(footerBytes, 0, footerBytes.Length);
+                }
+
+                if (this.AutoFlush)
+                {
+                    fs.Flush();
                 }
             }
         }
