@@ -1544,12 +1544,12 @@ namespace NLog.Targets
                 this.WriteHeader(appender);
             }
 
+            appender.Write(bytes);
+
             if (this.AutoFlush)
             {
                 appender.Flush();
             }
-
-            appender.Write(bytes);
         }
 
         private bool InitializeFile(string fileName, bool justData)
