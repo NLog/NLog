@@ -239,6 +239,7 @@ namespace NLog.Config
             var assemblyLocation = GetNLogAssemblyLocation(nlogAssembly);
             if (assemblyLocation == null)
             {
+                InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
                 return factory;
             }
 
@@ -248,12 +249,15 @@ namespace NLog.Config
                 .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
                 .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
                 .Select(x => Path.Combine(assemblyLocation, x));
+
+            InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
             foreach (var extensionDll in extensionDlls)
             {
                 InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
                 var extensionAssembly = Assembly.LoadFrom(extensionDll);
                 factory.RegisterItemsFromAssembly(extensionAssembly);
             }
+            InternalLogger.Debug("Auto loading done");
 #endif
 
             return factory;
@@ -262,10 +266,12 @@ namespace NLog.Config
 #if !SILVERLIGHT
         private static string GetNLogAssemblyLocation(Assembly nlogAssembly)
         {
-            var location = !String.IsNullOrEmpty(nlogAssembly.Location)
-                ? nlogAssembly.Location
-                : new Uri(nlogAssembly.CodeBase).LocalPath;
-            var assemblyLocation = Path.GetDirectoryName(location);
+            Uri codeBase = new Uri(nlogAssembly.CodeBase);
+            UriBuilder uri = new UriBuilder(codeBase);
+
+            //UnescapeDataString removes file://
+            string path = Uri.UnescapeDataString(uri.Path);
+            var assemblyLocation = Path.GetDirectoryName(path);
             return assemblyLocation;
         }
 
