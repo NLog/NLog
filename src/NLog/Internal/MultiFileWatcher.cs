@@ -100,9 +100,16 @@ namespace NLog.Internal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Watcher is released in Dispose()")]
         internal void Watch(string fileName)
         {
+            var directory = Path.GetDirectoryName(fileName);
+            if (!Directory.Exists(directory))
+            {
+                InternalLogger.Warn("Cannot watch {0} for changes as it doesn't exist", directory);
+                return;
+            }
+
             var watcher = new FileSystemWatcher
             {
-                Path = Path.GetDirectoryName(fileName),
+                Path = directory,
                 Filter = Path.GetFileName(fileName),
                 NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes
             };
