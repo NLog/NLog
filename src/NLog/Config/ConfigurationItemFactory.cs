@@ -236,10 +236,7 @@ namespace NLog.Config
             factory.RegisterExtendedItems();
 #if !SILVERLIGHT
 
-            var location = !String.IsNullOrEmpty(nlogAssembly.Location)
-                ? nlogAssembly.Location
-                : new Uri(nlogAssembly.CodeBase).LocalPath;
-            var assemblyLocation = Path.GetDirectoryName(location);
+            var assemblyLocation = GetNLogAssemblyLocation(nlogAssembly);
             if (assemblyLocation == null)
             {
                 return factory;
@@ -262,6 +259,17 @@ namespace NLog.Config
             return factory;
         }
 
+#if !SILVERLIGHT
+        private static string GetNLogAssemblyLocation(Assembly nlogAssembly)
+        {
+            var location = !String.IsNullOrEmpty(nlogAssembly.Location)
+                ? nlogAssembly.Location
+                : new Uri(nlogAssembly.CodeBase).LocalPath;
+            var assemblyLocation = Path.GetDirectoryName(location);
+            return assemblyLocation;
+        }
+
+#endif
         /// <summary>
         /// Registers items in NLog.Extended.dll using late-bound types, so that we don't need a reference to NLog.Extended.dll.
         /// </summary>
