@@ -49,9 +49,9 @@ namespace NLog.UnitTests.Layouts
             {
                 Attributes =
                     {
-                        new JsonAttribute("date", "${longdate}", true),
-                        new JsonAttribute("level", "${level}", true),
-                        new JsonAttribute("message", "${message}", true),
+                        new JsonAttribute("date", "${longdate}"),
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("message", "${message}"),
                     }
             };
 
@@ -70,9 +70,9 @@ namespace NLog.UnitTests.Layouts
             {
                 Attributes =
                     {
-                        new JsonAttribute("date", "${longdate}", true),
-                        new JsonAttribute("level", "${level}", true),
-                        new JsonAttribute("message", "${message}", true),
+                        new JsonAttribute("date", "${longdate}"),
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("message", "${message}"),
                     }
             };
 
@@ -91,9 +91,9 @@ namespace NLog.UnitTests.Layouts
             {
                 Attributes =
                     {
-                        new JsonAttribute("date", "${longdate}", true),
-                        new JsonAttribute("level", "${level}", true),
-                        new JsonAttribute("message", "${message}", true),
+                        new JsonAttribute("date", "${longdate}"),
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("message", "${message}"),
                     }
             };
 
@@ -112,8 +112,8 @@ namespace NLog.UnitTests.Layouts
             {
                 Attributes =
                     {
-                        new JsonAttribute("date", "${longdate}", true),
-                        new JsonAttribute("level", "${level}", true),
+                        new JsonAttribute("date", "${longdate}"),
+                        new JsonAttribute("level", "${level}"),
                         new JsonAttribute("message", "${message}", false),
                     }
             };
@@ -133,9 +133,9 @@ namespace NLog.UnitTests.Layouts
             {
                 Attributes =
                     {
-                        new JsonAttribute("date", "${longdate}", true),
-                        new JsonAttribute("level", "${level}", true),
-                        new JsonAttribute("message", "${message}", true),
+                        new JsonAttribute("date", "${longdate}"),
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("message", "${message}"),
                     }
             };
 

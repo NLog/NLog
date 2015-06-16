@@ -45,19 +45,29 @@ namespace NLog.Layouts
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
         /// </summary>
-        public JsonAttribute() : this(null, null, null) { }
+        public JsonAttribute() : this(null, null, true) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
         /// </summary>
         /// <param name="name">The name of the attribute.</param>
         /// <param name="layout">The layout of the attribute's value.</param>
-        /// <param name="encode">Encode value with json-encode, true by default</param>
-        public JsonAttribute(string name, Layout layout, bool? encode)
+        public JsonAttribute(string name, Layout layout)
         {
             this.Name = name;
             this.Layout = layout;
-            this.Encode = encode ?? true;
+            this.Encode = true;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
+        /// </summary>
+        /// <param name="name">The name of the attribute.</param>
+        /// <param name="layout">The layout of the attribute's value.</param>
+        /// <param name="encode">Encode value with json-encode</param>
+        public JsonAttribute(string name, Layout layout, bool encode) : this(name, layout)
+        {
+            this.Encode = encode;
         }
 
         /// <summary>
