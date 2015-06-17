@@ -48,6 +48,10 @@ namespace NLog.Config
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using NLog.Time;
+#if SILVERLIGHT
+// ReSharper disable once RedundantUsingDirective
+    using System.Windows;
+#endif
 
     /// <summary>
     /// A class for configuring NLog through an XML configuration file 
