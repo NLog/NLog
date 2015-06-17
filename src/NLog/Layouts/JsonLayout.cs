@@ -88,13 +88,16 @@ namespace NLog.Layouts
 
                     first = false;
 
-                    var format = "\"{0}\": \"{1}\"";
+                    string format;
 
-                    //If encoding was disabled for current attribute,
-                    //Do not escape the value of the attribute.
-                    //This enables user to write already formated JSON.
-                    if(col.Encode == false)
+                    if(col.Encode)
                     {
+                        format = "\"{0}\": \"{1}\"";
+                    }
+                    else
+                    {
+                        //If encoding is disabled for current attribute, do not escape the value of the attribute.
+                        //This enables user to write arbitrary string value (including JSON).
                         format = "\"{0}\": {1}";
                     }
 
