@@ -166,5 +166,5 @@
     <ProjectReference Include="..\SampleExtensions\SampleExtensions.mono2.csproj" />
   </ItemGroup>
   <Import Project="..\..\src\Mono.targets" />
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
 </Project>
