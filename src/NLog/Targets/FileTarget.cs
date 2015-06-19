@@ -985,7 +985,7 @@ namespace NLog.Targets
 
             DateTime lastWriteTime;
             long fileLength;
-            if (this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            if (logEvent != null && this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
             {
                 string formatString = GetDateFormatString(string.Empty);
                 string ts = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
