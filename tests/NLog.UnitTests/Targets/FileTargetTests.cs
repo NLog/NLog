@@ -56,6 +56,23 @@ namespace NLog.UnitTests.Targets
     {
         private readonly ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
 
+        private void GenerateArchives(int count, string archiveDateFormat, string archiveFileName,
+            ArchiveNumberingMode archiveNumbering)
+        {
+            string logFileName = Path.GetTempFileName();
+            const int logFileMaxSize = 1;
+            var ft = new FileTarget {
+                                        FileName = logFileName,
+                                        ArchiveFileName = archiveFileName,
+                                        ArchiveDateFormat = archiveDateFormat,
+                                        ArchiveNumbering = archiveNumbering,
+                                        ArchiveAboveSize = logFileMaxSize
+                                    };
+            SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+            for (int currentSequenceNumber = 0; currentSequenceNumber < count; currentSequenceNumber++)
+                logger.Debug("Test {0}", currentSequenceNumber);
+        }
+
         [Fact]
         public void SimpleFileTest1()
         {
@@ -1684,7 +1701,52 @@ namespace NLog.UnitTests.Targets
                 return Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             }
         }
+
+        [Theory]
+        [InlineData("##", 0, "00")]
+        [InlineData("###", 1, "001")]
+        [InlineData("#", 20, "20")]
+        public void FileTarget_WithDateAndSequenceArchiveNumbering_ShouldPadSequenceNumberInArchiveFileName(
+            string placeHolderSharps, int sequenceNumber, string expectedSequenceInArchiveFileName)
+        {
+            string archivePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            const string archiveDateFormat = "yyyy-MM-dd";
+            string archiveFileName = Path.Combine(archivePath, String.Format("{{{0}}}.log", placeHolderSharps));
+            string expectedArchiveFullName = String.Format("{0}/{1}.{2}.log",
+                archivePath,
+                DateTime.Now.ToString(archiveDateFormat),
+                expectedSequenceInArchiveFileName);
+
+            GenerateArchives(count: sequenceNumber + 1, archiveDateFormat: archiveDateFormat,
+                archiveFileName: archiveFileName, archiveNumbering: ArchiveNumberingMode.DateAndSequence);
+            bool resultArchiveWithExpectedNameExists = File.Exists(expectedArchiveFullName);
+
+            Assert.True(resultArchiveWithExpectedNameExists);
+        }
+
+        [Theory]
+        [InlineData("yyyy-MM-dd HHmm")]
+        [InlineData("y")]
+        [InlineData("D")]
+        public void FileTarget_WithDateAndSequenceArchiveNumbering_ShouldRespectArchiveDateFormat(
+            string archiveDateFormat)
+        {
+            string archivePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string archiveFileName = Path.Combine(archivePath, "{#}.log");
+            string expectedDateInArchiveFileName = DateTime.Now.ToString(archiveDateFormat);
+            string expectedArchiveFullName = String.Format("{0}/{1}.1.log",
+                archivePath,
+                expectedDateInArchiveFileName);
+
+            // We generate 2 archives so that the algorithm that seeks old archives is also tested.
+            GenerateArchives(count: 2, archiveDateFormat: archiveDateFormat, archiveFileName: archiveFileName,
+                archiveNumbering: ArchiveNumberingMode.DateAndSequence);
+            bool resultArchiveWithExpectedNameExists = File.Exists(expectedArchiveFullName);
+
+            Assert.True(resultArchiveWithExpectedNameExists);
+        }
     }
+
 }
 
 #endif

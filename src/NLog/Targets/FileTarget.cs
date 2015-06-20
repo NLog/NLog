@@ -207,7 +207,7 @@ namespace NLog.Targets
         /// Gets or sets a value specifying the date format to use when archving files.
         /// </summary>
         /// <remarks>
-        /// This option works only when the "ArchiveNumbering" parameter is set to Date.
+        /// This option works only when the "ArchiveNumbering" parameter is set either to Date or DateAndSequence.
         /// </remarks>
         /// <docgen category='Output Options' order='10' />
         [DefaultValue("")]
@@ -1007,11 +1007,8 @@ namespace NLog.Targets
                 return;
             }
 
-            int placeholderFirstPart = baseNamePattern.IndexOf("{#", StringComparison.Ordinal);
-            int placeholderLastPart = baseNamePattern.IndexOf("#}", StringComparison.Ordinal) + 2;
-            int dateTrailerLength = baseNamePattern.Length - placeholderLastPart;
-
-            string fileNameMask = baseNamePattern.Substring(0, placeholderFirstPart) + "*" + baseNamePattern.Substring(placeholderLastPart);
+            FileNameTemplate fileTemplate = new FileNameTemplate(baseNamePattern);
+            string fileNameMask = fileTemplate.ReplacePattern("*");
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
 
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
@@ -1034,82 +1031,25 @@ namespace NLog.Targets
                 isDaySwitch = ts != ts2;
             }
 
-            int nextSequenceNumber = -1;
-
+            int minSequenceLength = fileTemplate.EndAt - fileTemplate.BeginAt - 2;
+            int nextSequenceNumber;
+            DateTime archiveDate = GetArchiveDate(isDaySwitch);
             try
             {
-                var directoryInfo = new DirectoryInfo(dirName);
-#if SILVERLIGHT
-                List<string> files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
-#else
-                List<string> files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
-#endif
+                List<DateAndSequenceArchive> archives = FindDateAndSequenceArchives(dirName, fileName, fileNameMask, minSequenceLength, dateFormat, fileTemplate)
+                    .ToList();
 
-                var filesByDate = new List<ParsedArchiveFileName>();
+                int? lastSequenceNumber = archives
+                    .Where(a => a.HasSameArchiveDate(archiveDate))
+                    .Max(a => (int?) a.Sequence);
+                nextSequenceNumber = (int) (lastSequenceNumber != null ? lastSequenceNumber + 1 : 0);
 
-                //It's possible that the log file itself has a name that will match the archive file mask.
-                var archiveFileCount = files.Count;
-
-                for (int index = 0; index < files.Count; index++)
-                {
-                    //Get the archive file name or empty string if it's null
-                    var unparsedName = files[index];
-                    string archiveFileName = Path.GetFileName(unparsedName) ?? "";
-
-
-                    if (string.IsNullOrEmpty(archiveFileName) ||
-                        archiveFileName.Equals(Path.GetFileName(fileName)))
-                    {
-                        archiveFileCount--;
-                        continue;
-                    }
-
-                    //find date and number part in filename
-                    var indexOfStart = fileNameMask.LastIndexOf('*');
-                    string datePart = archiveFileName.Substring(indexOfStart, dateFormat.Length);
-                    string numberPart = archiveFileName.Substring(indexOfStart + dateFormat.Length + 1,
-                        archiveFileName.Length - dateTrailerLength - (indexOfStart + dateFormat.Length + 1));
-
-                    //parse number part
-                    int num;
-                    try
-                    {
-                        num = Convert.ToInt32(numberPart, CultureInfo.InvariantCulture);
-                    }
-                    catch (FormatException)
-                    {
-                        continue;
-                    }
-
-                    //use for nextSeqNumber if this is the correct day
-                    if (datePart == GetArchiveDate(isDaySwitch).ToString(dateFormat))
-                    {
-                        nextSequenceNumber = Math.Max(nextSequenceNumber, num);
-                    }
-
-                    DateTime fileDate;
-                    //todo what are we checking here?
-                    if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None,
-                        out fileDate))
-                    {
-                        filesByDate.Add(new ParsedArchiveFileName(unparsedName, fileDate, num));
-                    }
-                }
-
-                //now order the fileNames by date and then number
-
-                filesByDate = filesByDate.OrderBy(f => f.DatePart).ThenBy(f => f.NumberPart).ToList();
-
-                nextSequenceNumber++;
-
-                // Cleanup archive files
-                for (int fileIndex = 0; fileIndex < filesByDate.Count; fileIndex++)
-                {
-                    if (fileIndex > archiveFileCount - this.MaxArchiveFiles)
-                        break;
-
-                    File.Delete(filesByDate[fileIndex].FullName);
-                }
+                var oldArchiveFileNames = archives
+                    .OrderBy(a => a.Date)
+                    .ThenBy(a => a.Sequence)
+                    .Select(a => a.FileName)
+                    .ToList();
+                EnsureArchiveCount(oldArchiveFileNames);
             }
             catch (DirectoryNotFoundException)
             {
@@ -1117,11 +1057,111 @@ namespace NLog.Targets
                 nextSequenceNumber = 0;
             }
 
-            DateTime newFileDate = GetArchiveDate(isDaySwitch);
-            string newFileName = Path.Combine(dirName,
-                fileNameMask.Replace("*", string.Format("{0}.{1}", newFileDate.ToString(dateFormat), nextSequenceNumber)));
+            string paddedSequence = nextSequenceNumber.ToString().PadLeft(minSequenceLength, '0');
+            string newFileNameWithoutPath = fileNameMask.Replace("*",
+                string.Format("{0}.{1}", archiveDate.ToString(dateFormat), paddedSequence));
+            string newFileName = Path.Combine(dirName, newFileNameWithoutPath);
 
             RollArchiveForward(fileName, newFileName, shouldCompress: true);
+        } 
+
+        /// <summary>
+        /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the MaxArchiveFiles setting.
+        /// </summary>
+        /// <remarks>
+        /// Items are deleted in the same order as in <param name="oldArchiveFileNames" />.
+        /// No file is deleted if MaxArchiveFile is equal to zero.
+        /// </remarks>
+        private void EnsureArchiveCount(List<string> oldArchiveFileNames)
+        {
+            if (this.MaxArchiveFiles == 0) return;
+
+            int numberToDelete = oldArchiveFileNames.Count - this.MaxArchiveFiles;
+
+            for (int fileIndex = 0; fileIndex < oldArchiveFileNames.Count; fileIndex++)
+            {
+                if (fileIndex > numberToDelete)
+                {
+                    break;
+                }
+
+                File.Delete(oldArchiveFileNames[fileIndex]);
+            }
+        }
+
+        /// <summary>
+        /// Searches a given directory for archives that comply with the current archive pattern.
+        /// </summary>
+        /// <returns>An enumeration of archive infos, ordered by their file creation date.</returns>
+        private IEnumerable<DateAndSequenceArchive> FindDateAndSequenceArchives(string dirName, string logFileName,
+            string fileNameMask,
+            int minSequenceLength, string dateFormat, FileNameTemplate fileTemplate)
+        {
+            var directoryInfo = new DirectoryInfo(dirName);
+            int archiveFileNameMinLength = fileNameMask.Length + minSequenceLength;
+            var archiveFileNames = GetFiles(directoryInfo, fileNameMask)
+                .Where(n => n.Name.Length >= archiveFileNameMinLength)
+                .OrderBy(n => n.CreationTime)
+                .Select(n => n.FullName);
+
+            foreach (string archiveFileName in archiveFileNames)
+            {
+                //Get the archive file name or empty string if it's null
+                string archiveFileNameWithoutPath = Path.GetFileName(archiveFileName) ?? "";
+
+                DateTime date;
+                int sequence;
+                if (
+                    !TryParseDateAndSequence(archiveFileNameWithoutPath, dateFormat, fileTemplate, out date,
+                        out sequence))
+                {
+                    continue;
+                }
+
+                //It's possible that the log file itself has a name that will match the archive file mask.
+                if (string.IsNullOrEmpty(archiveFileNameWithoutPath) ||
+                    archiveFileNameWithoutPath.Equals(Path.GetFileName(logFileName)))
+                {
+                    continue;
+                }
+
+                yield return new DateAndSequenceArchive(archiveFileName, date, dateFormat, sequence);
+            }
+        }
+
+        private static bool TryParseDateAndSequence(string archiveFileNameWithoutPath, string dateFormat, FileNameTemplate fileTemplate, out DateTime date, out int sequence)
+        {
+            int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt;
+            int dateAndSequenceIndex = fileTemplate.BeginAt;
+            int dateAndSequenceLength = archiveFileNameWithoutPath.Length - trailerLength - dateAndSequenceIndex;
+            
+            string dateAndSequence = archiveFileNameWithoutPath.Substring(dateAndSequenceIndex, dateAndSequenceLength);
+            int sequenceIndex = dateAndSequence.LastIndexOf('.') + 1;
+
+            string sequencePart = dateAndSequence.Substring(sequenceIndex);
+            if (!Int32.TryParse(sequencePart, NumberStyles.None, CultureInfo.CurrentCulture, out sequence))
+            {
+                date = default(DateTime);
+                return false;
+            }
+
+            string datePart = dateAndSequence.Substring(0, dateAndSequence.Length - sequencePart.Length - 1);
+            if (!DateTime.TryParseExact(datePart, dateFormat, CultureInfo.CurrentCulture, DateTimeStyles.None,
+                out date))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static IEnumerable<FileInfo> GetFiles(DirectoryInfo directoryInfo, string fileNameMask)
+        {
+#if SILVERLIGHT
+            return directoryInfo.EnumerateFiles(fileNameMask);
+#else
+            return directoryInfo.GetFiles(fileNameMask);
+#endif
         }
 
         private static string ReplaceReplaceFileNamePattern(string pattern, string replacementValue)
@@ -1178,10 +1218,11 @@ namespace NLog.Targets
                     }
                 }
 
-                if (this.MaxArchiveFiles != 0)
-                {
-                    for (int fileIndex = 0; fileIndex < filesByDate.Count; fileIndex++)
-                    {
+                /* TODO: The following block could use EnsureArchiveCount, but the behavior is not exactly the same.
+                 * The number of files to delete to "make room" is calculated using 'files.Count' instead of 'filesByDate.Count',
+                 * which I suspect to be a bug, since 'files' can contain filenames that are not actual archives. */
+                if (this.MaxArchiveFiles != 0) {
+                    for (int fileIndex = 0; fileIndex < filesByDate.Count; fileIndex++) {
                         if (fileIndex > files.Count - this.MaxArchiveFiles)
                             break;
 
