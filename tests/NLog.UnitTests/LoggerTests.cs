@@ -1090,6 +1090,8 @@ namespace NLog.UnitTests
             Assert.Equal(1, logger.Swallow(() => 1, 2));
 
 #if ASYNC_SUPPORTED
+            logger.SwallowAsync(Task.WhenAll()).Wait();
+
             executed = false;
             logger.SwallowAsync(async () => { await Task.Delay(20); executed = true; }).Wait();
             Assert.True(executed);
@@ -1110,14 +1112,19 @@ namespace NLog.UnitTests
             AssertDebugLastMessageContains("debug", "Test message 3");
 
 #if ASYNC_SUPPORTED
-            logger.SwallowAsync(async () => { await Task.Delay(20); throw new InvalidOperationException("Test message 4"); }).Wait();
+            var completion = new TaskCompletionSource<bool>();
+            completion.SetException(new InvalidOperationException("Test message 4"));
+            logger.SwallowAsync(completion.Task).Wait();
             AssertDebugLastMessageContains("debug", "Test message 4");
 
-            Assert.Equal(0, logger.SwallowAsync(async () => { await Task.Delay(20); if (warningFix) throw new InvalidOperationException("Test message 5"); return 1; }).Result);
+            logger.SwallowAsync(async () => { await Task.Delay(20); throw new InvalidOperationException("Test message 5"); }).Wait();
             AssertDebugLastMessageContains("debug", "Test message 5");
 
-            Assert.Equal(2, logger.SwallowAsync(async () => { await Task.Delay(20); if (warningFix) throw new InvalidOperationException("Test message 6"); return 1; }, 2).Result);
+            Assert.Equal(0, logger.SwallowAsync(async () => { await Task.Delay(20); if (warningFix) throw new InvalidOperationException("Test message 6"); return 1; }).Result);
             AssertDebugLastMessageContains("debug", "Test message 6");
+
+            Assert.Equal(2, logger.SwallowAsync(async () => { await Task.Delay(20); if (warningFix) throw new InvalidOperationException("Test message 7"); return 1; }, 2).Result);
+            AssertDebugLastMessageContains("debug", "Test message 7");
 #endif
         }
 
