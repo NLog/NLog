@@ -111,7 +111,7 @@ namespace NLog.UnitTests.Layouts
 
 
         [Fact]
-        public void AllEventWithFluent()
+        public void AllEventWithFluent_without_callerInformation()
         {
 
             var configuration = CreateConfigurationFromString(@"
@@ -135,7 +135,6 @@ namespace NLog.UnitTests.Layouts
 
             LogManager.Configuration = configuration;
 
-            // Test=InfoWrite, coolness=200%, a=not b, CallerMemberName=AllEventWithFluent, CallerFilePath=x:\GitHub-304\NLog\tests\NLog.UnitTests\Layouts\AllEventPropertiesLayoutRendererTests.cs, CallerLineNumber=144
             var logger = LogManager.GetCurrentClassLogger();
             logger.Debug()
                 .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
@@ -148,6 +147,48 @@ namespace NLog.UnitTests.Layouts
             base.AssertDebugLastMessage("m","Test=InfoWrite, coolness=200%, a=not b");
             
         }
+
+        [Fact]
+        public void AllEventWithFluent_with_callerInformation()
+        {
+
+            var configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true' >
+                    <targets>
+                        <target type='Debug'
+                                name='m'
+                               layout='${all-event-properties:IncludeCallerInformation=true}'
+                               >
+                           
+     
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='m'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>");
+
+
+            LogManager.Configuration = configuration;
+
+      
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Debug()
+                .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
+                .Property("Test", "InfoWrite")
+                .Property("coolness", "200%")
+                .Property("a", "not b")
+                .Write();
+
+
+            base.AssertDebugLastMessageContains("m", "CallerMemberName=");
+            base.AssertDebugLastMessageContains("m", "CallerFilePath=");
+            base.AssertDebugLastMessageContains("m", "CallerLineNumber=");
+
+        }
+        
         
         private static LogEventInfo BuildLogEventWithProperties()
         {
