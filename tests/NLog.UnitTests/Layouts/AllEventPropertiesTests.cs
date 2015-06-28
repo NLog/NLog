@@ -40,7 +40,7 @@ namespace NLog.UnitTests.Layouts
 {
     using Xunit;
 
-    public class AllEventPropertiesLayoutRendererTests : NLogTestBase
+    public class AllEventPropertiesTests : NLogTestBase
     {
         [Fact]
         public void AllParametersAreSetToDefault()
