@@ -34,6 +34,7 @@
 using System;
 using System.Text;
 using NLog.LayoutRenderers;
+using NLog.Fluent;
 
 namespace NLog.UnitTests.Layouts
 {
@@ -105,6 +106,47 @@ namespace NLog.UnitTests.Layouts
             var renderer = new AllEventPropertiesLayoutRenderer();
             var ex = Assert.Throws<ArgumentException>(() => renderer.Format = "[key] is [vlue]");
             Assert.Equal("Invalid format: [value] placeholder is missing.", ex.Message);
+        }
+
+
+
+        [Fact]
+        public void AllEventWithFluent()
+        {
+
+            var configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true' >
+                    <targets>
+                        <target type='Debug'
+                                name='m'
+                               layout='${all-event-properties}'
+                               >
+                           
+     
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='m'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>");
+
+
+            LogManager.Configuration = configuration;
+
+            // Test=InfoWrite, coolness=200%, a=not b, CallerMemberName=AllEventWithFluent, CallerFilePath=x:\GitHub-304\NLog\tests\NLog.UnitTests\Layouts\AllEventPropertiesLayoutRendererTests.cs, CallerLineNumber=144
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Debug()
+                .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
+                .Property("Test", "InfoWrite")
+                .Property("coolness", "200%")
+                .Property("a", "not b")
+                .Write();
+
+
+            base.AssertDebugLastMessage("m","Test=InfoWrite, coolness=200%, a=not b");
+            
         }
         
         private static LogEventInfo BuildLogEventWithProperties()
