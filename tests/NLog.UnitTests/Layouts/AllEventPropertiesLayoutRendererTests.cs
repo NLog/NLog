@@ -148,6 +148,9 @@ namespace NLog.UnitTests.Layouts
             
         }
 
+        
+#if NET4_5
+
         [Fact]
         public void AllEventWithFluent_with_callerInformation()
         {
@@ -189,6 +192,7 @@ namespace NLog.UnitTests.Layouts
 
         }
         
+#endif
         
         private static LogEventInfo BuildLogEventWithProperties()
         {
