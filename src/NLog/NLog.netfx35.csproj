@@ -27,10 +27,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Debug</OutputPath>
-    <CodeAnalysisRules>
-    </CodeAnalysisRules>
-    <CodeAnalysisRules>
-    </CodeAnalysisRules>
+    <CodeAnalysisRules></CodeAnalysisRules>
+    <CodeAnalysisRules></CodeAnalysisRules>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -209,6 +207,7 @@
     <Compile Include="LayoutRenderers\AssemblyVersionLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\CallSiteLineNumberLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CounterLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\DateLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\DocumentUriLayoutRenderer.cs" />
