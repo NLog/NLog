@@ -198,7 +198,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void MessageWithExceptionTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog>
+            <nlog exceptionLoggingOldStyle='true'>
                 <targets><target name='debug' type='Debug' layout='${message:withException=true}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />

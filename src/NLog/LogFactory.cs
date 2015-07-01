@@ -306,7 +306,7 @@ namespace NLog
         {
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             Logger newLogger = new Logger();
-            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel), this);
+            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel,false), this);
             return newLogger;
         }
 
@@ -726,7 +726,7 @@ namespace NLog
                 InternalLogger.Debug(sb.ToString());
             }
 
-            return new LoggerConfiguration(targetsByLevel);
+            return new LoggerConfiguration(targetsByLevel, configuration != null && configuration.ExceptionLoggingOldStyle);
         }
 
         /// <summary>

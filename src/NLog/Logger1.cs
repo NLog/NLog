@@ -536,17 +536,19 @@ namespace NLog
             {
 
 			//todo make configurable: exceptionLoggingOldStyle + logexceptionLoggingOldStyle
+                if (this.configuration.ExceptionLoggingOldStyle)
+                {
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
+                    {
 
-	            var exceptionCandidate = argument as Exception;		
-                if (exceptionCandidate != null)		
-                {		
-				
-				    // ReSharper disable CSharpWarnings::CS0618
-					#pragma warning disable 618
-                    this.Debug(message, exceptionCandidate);	
-					#pragma warning restore 618
-					// ReSharper restore CSharpWarnings::CS0618	
-                    return;		
+                        // ReSharper disable CSharpWarnings::CS0618
+#pragma warning disable 618
+                        this.Debug(message, exceptionCandidate);
+#pragma warning restore 618
+                        // ReSharper restore CSharpWarnings::CS0618	
+                        return;
+                    }
                 }
 
                 this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });

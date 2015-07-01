@@ -372,6 +372,7 @@ namespace NLog.Config
             {
                 this.DefaultCultureInfo = CultureInfo.InvariantCulture;
             }
+            this.ExceptionLoggingOldStyle = nlogElement.GetOptionalBooleanAttribute("exceptionLoggingOldStyle", false);
             this.AutoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", false);
             LogManager.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", LogManager.ThrowExceptions);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);

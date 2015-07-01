@@ -44,10 +44,13 @@ namespace NLog.Internal
         /// Initializes a new instance of the <see cref="LoggerConfiguration" /> class.
         /// </summary>
         /// <param name="targetsByLevel">The targets by level.</param>
-        public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel)
+        public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel, bool exceptionLoggingOldStyle = false)
         {
             this.targetsByLevel = targetsByLevel;
+            ExceptionLoggingOldStyle = exceptionLoggingOldStyle;
         }
+
+        public bool ExceptionLoggingOldStyle { get; private set; }
 
         /// <summary>
         /// Gets targets for the specified level.

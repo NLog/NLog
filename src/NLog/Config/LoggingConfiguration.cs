@@ -64,6 +64,8 @@ namespace NLog.Config
             this.LoggingRules = new List<LoggingRule>();
         }
 
+        public bool ExceptionLoggingOldStyle { get; set; }
+
         /// <summary>
         /// Gets the variables defined in the configuration.
         /// </summary>
