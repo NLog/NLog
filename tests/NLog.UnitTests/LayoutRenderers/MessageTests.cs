@@ -225,6 +225,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
             logger.Debug(ex, "Foo");
             AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
+
+            logger.Debug( "Foo", ex);
+            AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
         }
 
         [Fact]
