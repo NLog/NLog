@@ -31,6 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+using System.Data;
+using System.ServiceModel;
+using System.ServiceModel.Description;
+using System.Threading;
+
 namespace NLog.UnitTests.LogReceiverService
 {
     using System;
@@ -215,6 +221,94 @@ namespace NLog.UnitTests.LogReceiverService
 
             Assert.Equal(xml1, xml2);
         }
+#endif
+
+
+#if WCF_SUPPORTED
+
+        [Fact]
+        public void RealTestLogReciever()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+          <nlog throwExceptions='true'>
+                <targets>
+                   <target type='LogReceiverService'
+                          name='s1'
+               
+                          endpointAddress='http://localhost:8080/logrecievertest'
+                          useBinaryEncoding='false'
+                  
+                          includeEventProperties='false'>
+                    <parameter layout='testparam1' name='String' type='String'/>
+               </target>
+
+                   
+                </targets>
+                <rules>
+                    <logger name='logger1' minlevel='Trace' writeTo='s1' />
+              
+                </rules>
+            </nlog>");
+
+
+            //todo
+            createMock();
+
+        }
+
+        public void createMock()
+        {
+
+            Uri baseAddress = new Uri("http://localhost:8080/logrecievertest");
+
+            // Create the ServiceHost.
+            using (ServiceHost host = new ServiceHost(typeof(LogRecieverMock), baseAddress))
+            {
+                // Enable metadata publishing.
+                ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
+                smb.HttpGetEnabled = true;
+                smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
+                host.Description.Behaviors.Add(smb);
+
+                // Open the ServiceHost to start listening for messages. Since
+                // no endpoints are explicitly configured, the runtime will create
+                // one endpoint per base address for each service contract implemented
+                // by the service.
+                host.Open();
+
+
+                var logger = LogManager.GetLogger("logger1");
+                logger.Info("test 1");
+                logger.Info(new InvalidConstraintException("boo"), "test2");
+
+                //todo remove sleep
+                Thread.Sleep(1000);
+                var recieved = LogRecieverMock.recievedEvents;
+
+
+
+
+                // Close the ServiceHost.
+                host.Close();
+            }
+        }
+
+
+
+        public class LogRecieverMock : ILogReceiverServer
+        {
+            public static List<NLogEvents> recievedEvents = new List<NLogEvents>();
+
+            /// <summary>
+            /// Processes the log messages.
+            /// </summary>
+            /// <param name="events">The events.</param>
+            public void ProcessLogMessages(NLogEvents events)
+            {
+                recievedEvents.Add(events);
+            }
+        }
+
 #endif
     }
 }
