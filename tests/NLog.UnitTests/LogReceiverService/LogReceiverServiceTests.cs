@@ -33,6 +33,7 @@
 
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Threading;
@@ -52,6 +53,8 @@ namespace NLog.UnitTests.LogReceiverService
 
     public class LogReceiverServiceTests : NLogTestBase
     {
+        private const string logRecieverUrl = "http://localhost:8080/logrecievertest";
+
         [Fact]
         public void ToLogEventInfoTest()
         {
@@ -227,15 +230,15 @@ namespace NLog.UnitTests.LogReceiverService
 #if WCF_SUPPORTED
 
         [Fact]
-        public void RealTestLogReciever()
+        public void RealTestLogReciever1()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = CreateConfigurationFromString(string.Format(@"
           <nlog throwExceptions='true'>
                 <targets>
                    <target type='LogReceiverService'
                           name='s1'
                
-                          endpointAddress='http://localhost:8080/logrecievertest'
+                          endpointAddress='{0}'
                           useBinaryEncoding='false'
                   
                           includeEventProperties='false'>
@@ -248,18 +251,24 @@ namespace NLog.UnitTests.LogReceiverService
                     <logger name='logger1' minlevel='Trace' writeTo='s1' />
               
                 </rules>
-            </nlog>");
+            </nlog>", logRecieverUrl));
 
 
-            //todo
-            createMock();
+     
+            ExecLogRecieverAndCheck(ExecLogging1, CheckRecieved1, 2);
 
         }
 
-        public void createMock()
+        /// <summary>
+        /// Create WCF service, logs and listen to the events
+        /// </summary>
+        /// <param name="logFunc">function for logging the messages</param>
+        /// <param name="logCheckFunc">function for checking the received messsages</param>
+        /// <param name="messageCount">message count for wait for listen and checking</param>
+        public void ExecLogRecieverAndCheck(Action<Logger> logFunc, Action<List<NLogEvents>> logCheckFunc, int messageCount)
         {
 
-            Uri baseAddress = new Uri("http://localhost:8080/logrecievertest");
+            Uri baseAddress = new Uri(logRecieverUrl);
 
             // Create the ServiceHost.
             using (ServiceHost host = new ServiceHost(typeof(LogRecieverMock), baseAddress))
@@ -276,28 +285,43 @@ namespace NLog.UnitTests.LogReceiverService
                 // by the service.
                 host.Open();
 
-                var countdownEvent = new CountdownEvent(2);
+                //wait for 2 events
+
+                var countdownEvent = new CountdownEvent(messageCount);
                 //reset
                 LogRecieverMock.recievedEvents = new List<NLogEvents>();
                 LogRecieverMock.CountdownEvent = countdownEvent;
 
-                var logger = LogManager.GetLogger("logger1");
-                logger.Info("test 1");
-                logger.Info(new InvalidConstraintException("boo"), "test2");
+                var logger1 = LogManager.GetLogger("logger1");
+                logFunc(logger1);
 
                 countdownEvent.Wait(20000);
                 var recieved = LogRecieverMock.recievedEvents;
 
 
-                Assert.Equal(2, recieved.Count);
 
+
+                Assert.Equal(messageCount, recieved.Count);
+
+                logCheckFunc(recieved);
 
                 // Close the ServiceHost.
                 host.Close();
             }
         }
 
+        private static void CheckRecieved1(List<NLogEvents> recieved)
+        {
+            var log1 = recieved[0].ToEventInfo().First();
+            Assert.Equal("test 1", log1.Message);
+            var log2 = recieved[1].ToEventInfo().First();
+        }
 
+        private static void ExecLogging1(Logger logger)
+        {
+            logger.Info("test 1");
+            logger.Info(new InvalidConstraintException("boo"), "test2");
+        }
 
         public class LogRecieverMock : ILogReceiverServer
         {
@@ -317,7 +341,7 @@ namespace NLog.UnitTests.LogReceiverService
                     throw new Exception("test not prepared well");
                 }
 
-               
+
 
                 recievedEvents.Add(events);
 
