@@ -187,6 +187,23 @@ namespace NLog.UnitTests
         }
 
         /// <summary>
+        /// We should be forward compatible so that we can add easily attributes in the future.
+        /// </summary>
+        [Fact]
+        public void NewAttrOnNLogLevelShouldNotThrowError()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true' imAnewAttribute='noError'>
+                <targets><target type='file' name='f1' filename='test.log' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeto='f1'></logger>
+                </rules>
+            </nlog>");
+
+
+        }
+
+        /// <summary>
         /// Reload by writing file test
         /// </summary>
         [Fact]
