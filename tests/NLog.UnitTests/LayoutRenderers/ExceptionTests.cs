@@ -135,6 +135,53 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
         }
 
+        /// <summary>
+        /// Just wrrite exception, no message argument.
+        /// </summary>
+        [Fact]
+        public void ExceptionWithoutMessageParam()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception}' />
+                    <target name='debug2' type='Debug' layout='${exception:format=stacktrace}' />
+                    <target name='debug3' type='Debug' layout='${exception:format=type}' />
+                    <target name='debug4' type='Debug' layout='${exception:format=shorttype}' />
+                    <target name='debug5' type='Debug' layout='${exception:format=tostring}' />
+                    <target name='debug6' type='Debug' layout='${exception:format=message}' />
+                    <target name='debug7' type='Debug' layout='${exception:format=method}' />
+                    <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
+                    <target name='debug9' type='Debug' layout='${exception:format=data}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9' />
+                </rules>
+            </nlog>");
+
+            const string exceptionMessage = "I don't like nullref exception!";
+            const string exceptionDataKey = "testkey";
+            const string exceptionDataValue = "testvalue";
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            ex.Data.Add(exceptionDataKey, exceptionDataValue);
+            logger.Error(ex);
+            AssertDebugLastMessage("debug1", exceptionMessage);
+            AssertDebugLastMessage("debug2", ex.StackTrace);
+            AssertDebugLastMessage("debug3", typeof(InvalidOperationException).FullName);
+            AssertDebugLastMessage("debug4", typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug5", ex.ToString());
+            AssertDebugLastMessage("debug6", exceptionMessage);
+            AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
+
+            // each version of the framework produces slightly different information for MethodInfo, so we just 
+            // make sure it's not empty
+            var debug7Target = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
+            Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
+
+            AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
+        }
+
+
         [Fact]
         public void ExceptionWithoutStackTrace_ObsoleteMethodTest()
         {
@@ -451,6 +498,11 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
         }
 
+        /// <summary>
+        /// Get an excption with stacktrace by genating a exception
+        /// </summary>
+        /// <param name="exceptionMessage"></param>
+        /// <returns></returns>
         private Exception GetExceptionWithStackTrace(string exceptionMessage)
         {
             try
