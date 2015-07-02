@@ -276,16 +276,20 @@ namespace NLog.UnitTests.LogReceiverService
                 // by the service.
                 host.Open();
 
+                var countdownEvent = new CountdownEvent(2);
+                //reset
+                LogRecieverMock.recievedEvents = new List<NLogEvents>();
+                LogRecieverMock.CountdownEvent = countdownEvent;
 
                 var logger = LogManager.GetLogger("logger1");
                 logger.Info("test 1");
                 logger.Info(new InvalidConstraintException("boo"), "test2");
 
-                //todo remove sleep
-                Thread.Sleep(1000);
+                countdownEvent.Wait(20000);
                 var recieved = LogRecieverMock.recievedEvents;
 
 
+                Assert.Equal(2, recieved.Count);
 
 
                 // Close the ServiceHost.
@@ -297,6 +301,9 @@ namespace NLog.UnitTests.LogReceiverService
 
         public class LogRecieverMock : ILogReceiverServer
         {
+
+            public static CountdownEvent CountdownEvent;
+
             public static List<NLogEvents> recievedEvents = new List<NLogEvents>();
 
             /// <summary>
@@ -305,7 +312,16 @@ namespace NLog.UnitTests.LogReceiverService
             /// <param name="events">The events.</param>
             public void ProcessLogMessages(NLogEvents events)
             {
+                if (CountdownEvent == null)
+                {
+                    throw new Exception("test not prepared well");
+                }
+
+               
+
                 recievedEvents.Add(events);
+
+                CountdownEvent.Signal();
             }
         }
 
