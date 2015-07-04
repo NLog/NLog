@@ -121,5 +121,54 @@ namespace NLog.UnitTests.Config
             Assert.Equal("[[", LogManager.Configuration.Variables["prefix"]);
             Assert.Equal("]]", LogManager.Configuration.Variables["suffix"]);
         }
+
+
+
+
+        [Fact]
+        public void ReconfigExistingLoggers_should_use_new_values()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+  
+  <variable name='filename' value='initVal' />
+  <variable name='logDir' value='${basedir}/logs/${processname}'/>
+  
+  <targets>
+    <target type='File' name='FileLog'
+            fileName='${logDir}/${filename}.log'
+            layout='${longdate} [${uppercase:${level}}] ${message}'
+            archiveFileName='${logDir}/archives/${shortdate}.{#}.log'
+            archiveEvery='Day'
+            archiveNumbering='Rolling'
+            maxArchiveFiles='7'
+            concurrentWrites='true'
+            />
+  </targets>
+ 
+  <rules>
+    <logger name='*' minlevel='Debug' writeTo='FileLog' />
+  </rules>
+</nlog>
+
+");
+
+            LogManager.Configuration = configuration;
+            ReconfigExistingLoggers_checkTarget("initVal");
+
+            LogManager.Configuration.Variables["filename"] = "newVal";
+ 
+            LogManager.ReconfigExistingLoggers();
+
+            ReconfigExistingLoggers_checkTarget("newVal");
+        }
+
+        private static void ReconfigExistingLoggers_checkTarget(string fileName)
+        {
+            var target = LogManager.Configuration.FindTargetByName("FileLog") as FileTarget;
+
+            Assert.NotNull(target);
+            Assert.Equal(string.Format("'${{basedir}}/logs/${{processname}}/{0}.log'", fileName), target.FileName.ToString());
+        }
     }
 }
