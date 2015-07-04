@@ -99,8 +99,8 @@ namespace NLog.UnitTests.Config
         {
             var configuration = new LoggingConfiguration();
             LogManager.Configuration = configuration;
-            
-            Assert.Throws<NotSupportedException>(() =>LogManager.Configuration.Variables);
+
+            Assert.Throws<NotSupportedException>(() => LogManager.Configuration.Variables);
         }
 
         [Fact]
@@ -132,13 +132,13 @@ namespace NLog.UnitTests.Config
 <nlog throwExceptions='true'>
   
   <variable name='filename' value='initVal' />
-  <variable name='logDir' value='${basedir}/logs/${processname}'/>
+
   
   <targets>
     <target type='File' name='FileLog'
-            fileName='${logDir}/${filename}.log'
+            fileName='${filename}.log'
             layout='${longdate} [${uppercase:${level}}] ${message}'
-            archiveFileName='${logDir}/archives/${shortdate}.{#}.log'
+            archiveFileName='/archives/${shortdate}.{#}.log'
             archiveEvery='Day'
             archiveNumbering='Rolling'
             maxArchiveFiles='7'
@@ -157,7 +157,7 @@ namespace NLog.UnitTests.Config
             ReconfigExistingLoggers_checkTarget("initVal");
 
             LogManager.Configuration.Variables["filename"] = "newVal";
- 
+
             LogManager.ReconfigExistingLoggers();
 
             ReconfigExistingLoggers_checkTarget("newVal");
@@ -168,7 +168,7 @@ namespace NLog.UnitTests.Config
             var target = LogManager.Configuration.FindTargetByName("FileLog") as FileTarget;
 
             Assert.NotNull(target);
-            Assert.Equal(string.Format("'${{basedir}}/logs/${{processname}}/{0}.log'", fileName), target.FileName.ToString());
+            Assert.Equal(string.Format("'{0}.log'", fileName), target.FileName.ToString());
         }
     }
 }
