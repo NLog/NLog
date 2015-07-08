@@ -236,7 +236,7 @@ namespace NLog.Config
             factory.RegisterExtendedItems();
 #if !SILVERLIGHT
 
-            var assemblyLocation = GetNLogAssemblyLocation(nlogAssembly);
+            var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.CodeBase).LocalPath);
             if (assemblyLocation == null)
             {
                 InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
@@ -263,19 +263,6 @@ namespace NLog.Config
             return factory;
         }
 
-#if !SILVERLIGHT
-        private static string GetNLogAssemblyLocation(Assembly nlogAssembly)
-        {
-            Uri codeBase = new Uri(nlogAssembly.CodeBase);
-            UriBuilder uri = new UriBuilder(codeBase);
-
-            //UnescapeDataString removes file://
-            string path = Uri.UnescapeDataString(uri.Path);
-            var assemblyLocation = Path.GetDirectoryName(path);
-            return assemblyLocation;
-        }
-
-#endif
         /// <summary>
         /// Registers items in NLog.Extended.dll using late-bound types, so that we don't need a reference to NLog.Extended.dll.
         /// </summary>
