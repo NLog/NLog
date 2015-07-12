@@ -33,6 +33,7 @@
 
 namespace NLog.Internal
 {
+    using Security;
     using System;
     using System.Security;
 
@@ -77,7 +78,7 @@ namespace NLog.Internal
 
                 return s;
             }
-            catch (SecurityException)
+            catch (System.Security.SecurityException)
             {
                 return string.Empty;
             }
