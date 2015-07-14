@@ -1,10 +1,6 @@
 ﻿using NLog.Config;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLog.LayoutRenderers.Wrappers
 {
@@ -22,16 +18,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public ReplaceNewLinesLayoutRendererWrapper()
         {
-            this.ReplaceNewLines = true;
         }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether lower case conversion should be applied.
-        /// </summary>
-        /// <value>A value of <c>true</c> if lower case conversion should be applied; otherwise, <c>false</c>.</value>
-        /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(true)]
-        public bool ReplaceNewLines { get; set; }
 
         /// <summary>
         /// Post-processes the rendered message. 
@@ -40,14 +27,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>String with newline characters replaced with spaces.</returns>
         protected override string Transform(string text)
         {
-            if (this.ReplaceNewLines)
-            {
-                return text.Replace(Environment.NewLine, " ");
-            }
-            else
-            {
-                return text;
-            }
+            return text.Replace(Environment.NewLine, " ");
         }
 
     }
