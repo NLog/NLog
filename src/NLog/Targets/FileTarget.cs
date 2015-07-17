@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Threading.Tasks;
 
 namespace NLog.Targets
 {
@@ -950,7 +949,7 @@ namespace NLog.Targets
 
                 if (doCallback)
                 {
-                    Task.Run(() => archiveCallback(archiveFileName));
+                    System.Threading.Tasks.Task.Run(() => archiveCallback(archiveFileName));
                 }
             }
             else
