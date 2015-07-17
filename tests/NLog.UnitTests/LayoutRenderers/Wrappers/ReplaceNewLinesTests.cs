@@ -40,13 +40,33 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
     public class ReplaceNewLinesTests : NLogTestBase
     {
         [Fact]
-        public void ReplaceNewLineTest1()
+        public void ReplaceNewLineWithDefaultTest()
         {
             MappedDiagnosticsContext.Clear();
             MappedDiagnosticsContext.Set("foo", "bar" + System.Environment.NewLine + "123");
             SimpleLayout l = "${replace-newlines:${mdc:foo}}";
 
             Assert.Equal("bar 123", l.Render(LogEventInfo.CreateNullEvent()));
+        }
+
+        [Fact]
+        public void ReplaceNewLineWithSpecifiedSeparationStringTest()
+        {
+            MappedDiagnosticsContext.Clear();
+            MappedDiagnosticsContext.Set("foo", "bar" + System.Environment.NewLine + "123");
+            SimpleLayout l = "${replace-newlines:replacement=|:${mdc:foo}}";
+
+            Assert.Equal("bar|123", l.Render(LogEventInfo.CreateNullEvent()));
+        }
+
+        [Fact]
+        public void ReplaceNewLineOneLineTest()
+        {
+            MappedDiagnosticsContext.Clear();
+            MappedDiagnosticsContext.Set("foo", "bar123");
+            SimpleLayout l = "${replace-newlines:${mdc:foo}}";
+
+            Assert.Equal("bar123", l.Render(LogEventInfo.CreateNullEvent()));
         }
     }
 }

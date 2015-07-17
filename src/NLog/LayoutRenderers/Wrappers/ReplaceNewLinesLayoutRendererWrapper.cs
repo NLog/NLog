@@ -53,6 +53,19 @@ namespace NLog.LayoutRenderers.Wrappers
         {
         }
 
+
+        private string _replacement = " ";
+        /// <summary>
+        /// Gets or sets a value indicating the string that should be used for separating lines.
+        /// </summary>
+        [DefaultValue(" ")]
+        public string Replacement
+        {
+            get { return _replacement; }
+            set { _replacement = value; }
+        }
+
+
         /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
@@ -60,7 +73,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>String with newline characters replaced with spaces.</returns>
         protected override string Transform(string text)
         {
-            return text.Replace(Environment.NewLine, " ");
+            return text.Replace(Environment.NewLine, Replacement);
         }
 
     }
