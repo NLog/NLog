@@ -91,12 +91,6 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         public bool UseBinaryEncoding { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to use a WCF service contract that is one way (fire and forget) or two way (request-reply)
-        /// </summary>
-        /// <docgen category='Connection Options' order='10' />
-        public bool UseOneWayContract { get; set; }
 #endif
 
         /// <summary>
@@ -340,9 +334,9 @@ namespace NLog.Targets
         /// service configuration - binding and endpoint address
         /// </summary>
         /// <returns></returns>
-        protected virtual WcfLogReceiverClientFacade CreateWcfLogReceiverClient()
+        protected virtual WcfLogReceiverClient CreateWcfLogReceiverClient()
         {
-            WcfLogReceiverClientFacade client;
+            WcfLogReceiverClient client;
 
             if (string.IsNullOrEmpty(this.EndpointConfigurationName))
             {
@@ -358,11 +352,11 @@ namespace NLog.Targets
                     binding = new BasicHttpBinding();
                 }
 
-                client = new WcfLogReceiverClientFacade(UseOneWayContract, binding, new EndpointAddress(this.EndpointAddress));
+                client = new WcfLogReceiverClient(binding, new EndpointAddress(this.EndpointAddress));
             }
             else
             {
-                client = new WcfLogReceiverClientFacade(UseOneWayContract, this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
+                client = new WcfLogReceiverClient(this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
             }
 
             client.ProcessLogMessagesCompleted += ClientOnProcessLogMessagesCompleted;
@@ -372,10 +366,10 @@ namespace NLog.Targets
 
         private void ClientOnProcessLogMessagesCompleted(object sender, AsyncCompletedEventArgs asyncCompletedEventArgs)
         {
-            var client = sender as WcfLogReceiverClientFacade;
+            var client = sender as WcfLogReceiverClient;
             if (client != null && client.State == CommunicationState.Opened)
             {
-                client.CloseCommunicationObject();
+                ((ICommunicationObject)client).Close();
             }
         }
 #endif
