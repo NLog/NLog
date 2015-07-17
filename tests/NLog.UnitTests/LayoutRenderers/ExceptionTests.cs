@@ -132,7 +132,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var debug7Target = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
             Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
 
-            AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(InvalidOperationException).Name);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var debug7Target = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
             Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
 
-            AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(InvalidOperationException).Name);
         }
 
 
@@ -507,7 +507,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             try
             {
-                GenericClass<int, string, bool>.Method1("aaa", true, null, 42, DateTime.Now);
+                GenericClass<int, string, bool>.Method1("aaa", true, null, 42, DateTime.Now, exceptionMessage);
                 return null;
             }
             catch (Exception exception)
@@ -524,7 +524,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 {
                     try
                     {
-                        GenericClass<int, string, bool>.Method1("aaa", true, null, 42, DateTime.Now);
+                        GenericClass<int, string, bool>.Method1("aaa", true, null, 42, DateTime.Now, exceptionMessage);
                     }
                     catch (Exception exception)
                     {
@@ -551,15 +551,15 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private class GenericClass<TA, TB, TC>
         {
-            internal static List<GenericClass<TA, TB, TC>> Method1(string aaa, bool b, object o, int i, DateTime now)
+            internal static List<GenericClass<TA, TB, TC>> Method1(string aaa, bool b, object o, int i, DateTime now, string exceptionMessage)
             {
-                Method2(aaa, b, o, i, now, null, null);
+                Method2(aaa, b, o, i, now, null, null, exceptionMessage);
                 return null;
             }
 
-            internal static int Method2<T1, T2, T3>(T1 aaa, T2 b, T3 o, int i, DateTime now, Nullable<int> gfff, List<int>[] something)
+            internal static int Method2<T1, T2, T3>(T1 aaa, T2 b, T3 o, int i, DateTime now, Nullable<int> gfff, List<int>[] something, string exceptionMessage)
             {
-                throw new InvalidOperationException("Test exception");
+                throw new InvalidOperationException(exceptionMessage);
             }
         }
     }
