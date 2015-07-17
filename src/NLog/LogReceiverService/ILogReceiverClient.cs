@@ -64,5 +64,25 @@ namespace NLog.LogReceiverService
         /// </summary>
         /// <param name="result">The result.</param>
         void EndProcessLogMessages(IAsyncResult result);
+
+        /// <summary>
+        /// Begins processing of log messages.
+        /// </summary>
+        /// <param name="events">The events.</param>
+        /// <param name="callback">The callback.</param>
+        /// <param name="asyncState">Asynchronous state.</param>
+        /// <returns>
+        /// IAsyncResult value which can be passed to <see cref="EndProcessLogMessagesV2"/>.
+        /// </returns>
+#if WCF_SUPPORTED
+        [OperationContractAttribute(IsOneWay = true, AsyncPattern = true, Action = "http://nlog-project.org/ws/ILogReceiverServerV2/ProcessLogMessagesV2")]
+#endif
+        IAsyncResult BeginProcessLogMessagesV2(NLogEvents events, AsyncCallback callback, object asyncState);
+
+        /// <summary>
+        /// Ends asynchronous processing of log messages.
+        /// </summary>
+        /// <param name="result">The result.</param>
+        void EndProcessLogMessagesV2(IAsyncResult result);
     }
 }

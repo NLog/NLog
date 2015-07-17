@@ -15,8 +15,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -306,6 +305,7 @@
     <Compile Include="LogMessageGenerator.cs" />
     <Compile Include="LogReceiverService\ILogReceiverClient.cs" />
     <Compile Include="LogReceiverService\ILogReceiverServer.cs" />
+    <Compile Include="LogReceiverService\ILogReceiverServerV2.cs" />
     <Compile Include="LogReceiverService\LogReceiverForwardingService.cs" />
     <Compile Include="LogReceiverService\LogReceiverServiceConfig.cs" />
     <Compile Include="LogReceiverService\NLogEvent.cs" />

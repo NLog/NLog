@@ -301,6 +301,7 @@
     <Compile Include="LogMessageGenerator.cs" />
     <Compile Include="LogReceiverService\ILogReceiverClient.cs" />
     <Compile Include="LogReceiverService\ILogReceiverServer.cs" />
+    <Compile Include="LogReceiverService\ILogReceiverServerV2.cs" />
     <Compile Include="LogReceiverService\LogReceiverForwardingService.cs" />
     <Compile Include="LogReceiverService\LogReceiverServiceConfig.cs" />
     <Compile Include="LogReceiverService\NLogEvent.cs" />

@@ -107,6 +107,11 @@ namespace NLog.LogReceiverService
         /// </summary>
         public event EventHandler<AsyncCompletedEventArgs> CloseCompleted;
 
+        /// <summary>
+        /// Gets or sets if calls to the server should use the one way method or the original two way method.
+        /// </summary>
+        public Boolean UseOneWayCallsToServer { get; set; }
+
 #if SILVERLIGHT
         /// <summary>
         /// Gets or sets the cookie container.
@@ -212,12 +217,35 @@ namespace NLog.LogReceiverService
         }
 
         /// <summary>
+        /// Begins processing of log messages.
+        /// </summary>
+        /// <param name="events">The events to send.</param>
+        /// <param name="callback">The callback.</param>
+        /// <param name="asyncState">Asynchronous state.</param>
+        /// <returns>
+        /// IAsyncResult value which can be passed to <see cref="ILogReceiverClient.EndProcessLogMessages"/>.
+        /// </returns>
+        IAsyncResult ILogReceiverClient.BeginProcessLogMessagesV2(NLogEvents events, AsyncCallback callback, object asyncState)
+        {
+            return this.Channel.BeginProcessLogMessagesV2(events, callback, asyncState);
+        }
+
+        /// <summary>
         /// Ends asynchronous processing of log messages.
         /// </summary>
         /// <param name="result">The result.</param>
         void ILogReceiverClient.EndProcessLogMessages(IAsyncResult result)
         {
             this.Channel.EndProcessLogMessages(result);
+        }
+
+        /// <summary>
+        /// Ends asynchronous processing of log messages.
+        /// </summary>
+        /// <param name="result">The result.</param>
+        void ILogReceiverClient.EndProcessLogMessagesV2(IAsyncResult result)
+        {
+            this.Channel.EndProcessLogMessagesV2(result);
         }
 
 #if SILVERLIGHT
@@ -237,12 +265,22 @@ namespace NLog.LogReceiverService
         private IAsyncResult OnBeginProcessLogMessages(object[] inValues, AsyncCallback callback, object asyncState)
         {
             var events = (NLogEvents)inValues[0];
-            return ((ILogReceiverClient)this).BeginProcessLogMessages(events, callback, asyncState);
+            if (UseOneWayCallsToServer) {
+                return ((ILogReceiverClient)this).BeginProcessLogMessagesV2(events, callback, asyncState);
+            }
+            else {
+                return ((ILogReceiverClient)this).BeginProcessLogMessages(events, callback, asyncState);
+            }
         }
 
         private object[] OnEndProcessLogMessages(IAsyncResult result)
         {
-            ((ILogReceiverClient)this).EndProcessLogMessages(result);
+            if (UseOneWayCallsToServer) {
+                ((ILogReceiverClient)this).EndProcessLogMessagesV2(result);
+            }
+            else {
+                ((ILogReceiverClient)this).EndProcessLogMessages(result);
+            }
             return null;
         }
 

@@ -91,6 +91,12 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         public bool UseBinaryEncoding { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to use a WCF service contract that is one way (fire and forget) or two way (request-reply)
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        public bool UseOneWayContract { get; set; }
 #endif
 
         /// <summary>
@@ -360,6 +366,7 @@ namespace NLog.Targets
             }
 
             client.ProcessLogMessagesCompleted += ClientOnProcessLogMessagesCompleted;
+            client.UseOneWayCallsToServer = UseOneWayContract;
 
             return client;
         }
