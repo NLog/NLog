@@ -36,27 +36,28 @@ TOOLS=build/bin/Tools
 OUTPUT_DIR=build/bin/$(CONFIG)/Mono\ 2.x
 MONO_LIB_DIR=$(shell pkg-config --variable=libdir mono)/mono/4.0
 XBUILD=xbuild /nologo
+SOLUTION=monodevelop
 
 buildnlog:
-	$(XBUILD) src/NLog.Extended/NLog.Extended.monodevelop.csproj /p:Configuration=$(CONFIG)
+	$(XBUILD) src/NLog.Extended/NLog.Extended.$(SOLUTION).csproj /p:Configuration=$(CONFIG)
 
 buildtests:
-	$(XBUILD) tests/NLog.UnitTests/NLog.UnitTests.monodevelop.csproj /p:Configuration=$(CONFIG)  
+	$(XBUILD) tests/NLog.UnitTests/NLog.UnitTests.$(SOLUTION).csproj /p:Configuration=$(CONFIG)
 
 makexsdtool:
-	$(XBUILD) tools/MakeNLogXSD/MakeNLogXSD.csproj /p:Configuration=$(CONFIG)  
+	$(XBUILD) tools/MakeNLogXSD/MakeNLogXSD.csproj /p:Configuration=$(CONFIG)
 
 dumpapitool:
-	$(XBUILD) tools/DumpApiXml/DumpApiXml.csproj /p:Configuration=$(CONFIG)  
+	$(XBUILD) tools/DumpApiXml/DumpApiXml.csproj /p:Configuration=$(CONFIG)
 
 mergeapitool:
-	$(XBUILD) tools/MergeApiXml/MergeApiXml.csproj /p:Configuration=$(CONFIG)  
+	$(XBUILD) tools/MergeApiXml/MergeApiXml.csproj /p:Configuration=$(CONFIG)
 
 builddocpagestool:
-	$(XBUILD) tools/BuildDocPages/BuildDocPages.csproj /p:Configuration=$(CONFIG)  
+	$(XBUILD) tools/BuildDocPages/BuildDocPages.csproj /p:Configuration=$(CONFIG)
 
 syncprojectitemstool:
-	$(XBUILD) tools/SyncProjectItems/SyncProjectItems.csproj /p:Configuration=$(CONFIG)  
+	$(XBUILD) tools/SyncProjectItems/SyncProjectItems.csproj /p:Configuration=$(CONFIG)
 
 syncprojectitems: syncprojectitemstool
 	(cd src/NLog && mono ../../build/bin/Tools/SyncProjectItems.exe ProjectFileInfo.xml)
@@ -70,7 +71,7 @@ dumpapi: dumpapitool mergeapitool buildnlog
 
 builddocpages: builddocpagestool
 	(cd build/bin/$(CONFIG) && mono ../Tools/BuildDocPages.exe "NLogMerged.api.xml" "../../../tools/WebsiteFiles/style.xsl" "Website/generated" "../../.." html web)
- 
+
 xsd: makexsdtool
 	(cd $(OUTPUT_DIR) && mono ../../Tools/MakeNLogXSD.exe -api API/NLog.api -out NLog.mono2.xsd -xmlns http://www.nlog-project.org/schemas/NLog.mono2.xsd)
 
