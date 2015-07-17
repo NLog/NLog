@@ -76,18 +76,32 @@ namespace NLog.Layouts
             foreach (var col in this.Attributes)
             {
                 jsonWrapper.Inner = col.Layout;
+                jsonWrapper.JsonEncode = col.Encode;
                 string text = jsonWrapper.Render(logEvent);
-                
+
                 if (!string.IsNullOrEmpty(text))
                 {
-                    if (!first) 
+                    if (!first)
                     {
                         sb.Append(", ");
                     }
 
                     first = false;
 
-                    sb.AppendFormat("\"{0}\": \"{1}\"", col.Name, text);
+                    string format;
+
+                    if(col.Encode)
+                    {
+                        format = "\"{0}\": \"{1}\"";
+                    }
+                    else
+                    {
+                        //If encoding is disabled for current attribute, do not escape the value of the attribute.
+                        //This enables user to write arbitrary string value (including JSON).
+                        format = "\"{0}\": {1}";
+                    }
+
+                    sb.AppendFormat(format, col.Name, text);
                 }
             }
 

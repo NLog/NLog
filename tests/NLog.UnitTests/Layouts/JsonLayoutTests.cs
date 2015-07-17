@@ -54,7 +54,7 @@ namespace NLog.UnitTests.Layouts
                         new JsonAttribute("message", "${message}"),
                     }
             };
-            
+
             var ev = new LogEventInfo();
             ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
             ev.Level = LogLevel.Info;
@@ -103,6 +103,48 @@ namespace NLog.UnitTests.Layouts
             ev.Message = "hello,\n\r world";
 
             Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello,\\n\\r world\" }", jsonLayout.Render(ev));
+        }
+
+        [Fact]
+        public void JsonLayoutRenderingAndNotEncodingMessageAttribute()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("date", "${longdate}"),
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("message", "${message}", false),
+                    }
+            };
+
+            var ev = new LogEventInfo();
+            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
+            ev.Level = LogLevel.Info;
+            ev.Message = "{ \"hello\" : \"world\" }";
+
+            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": { \"hello\" : \"world\" } }", jsonLayout.Render(ev));
+        }
+
+        [Fact]
+        public void JsonLayoutRenderingAndEncodingMessageAttribute()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("date", "${longdate}"),
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("message", "${message}"),
+                    }
+            };
+
+            var ev = new LogEventInfo();
+            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
+            ev.Level = LogLevel.Info;
+            ev.Message = "{ \"hello\" : \"world\" }";
+
+            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"{ \\\"hello\\\" : \\\"world\\\" }\" }", jsonLayout.Render(ev));
         }
     }
 }
