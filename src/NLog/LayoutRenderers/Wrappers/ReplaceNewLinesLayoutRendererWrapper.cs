@@ -51,19 +51,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public ReplaceNewLinesLayoutRendererWrapper()
         {
+            Replacement = " ";
         }
 
-
-        private string _replacement = " ";
         /// <summary>
         /// Gets or sets a value indicating the string that should be used for separating lines.
         /// </summary>
         [DefaultValue(" ")]
-        public string Replacement
-        {
-            get { return _replacement; }
-            set { _replacement = value; }
-        }
+        public string Replacement { get; set; }
 
 
         /// <summary>
