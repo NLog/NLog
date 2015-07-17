@@ -268,20 +268,24 @@ namespace NLog
         { 
             if (this.IsTraceEnabled)
             {
-
-			//todo make configurable: exceptionLoggingOldStyle + logexceptionLoggingOldStyle
-
-	            var exceptionCandidate = argument as Exception;		
-                if (exceptionCandidate != null)		
-                {		
+#pragma warning disable 618
+           
+			//todo log also these calls as warning?
+                if (this.configuration.ExceptionLoggingOldStyle)
+#pragma warning restore 618
+                {   
+					var exceptionCandidate = argument as Exception;		
+					if (exceptionCandidate != null)		
+					{		
 				
-				    // ReSharper disable CSharpWarnings::CS0618
-					#pragma warning disable 618
-                    this.Trace(message, exceptionCandidate);	
-					#pragma warning restore 618
-					// ReSharper restore CSharpWarnings::CS0618	
-                    return;		
-                }
+						// ReSharper disable CSharpWarnings::CS0618
+						#pragma warning disable 618
+						this.Trace(message, exceptionCandidate);	
+						#pragma warning restore 618
+						// ReSharper restore CSharpWarnings::CS0618	
+						return;		
+					}
+				}
 
                 this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
@@ -534,22 +538,24 @@ namespace NLog
         { 
             if (this.IsDebugEnabled)
             {
-
-			//todo make configurable: exceptionLoggingOldStyle + logexceptionLoggingOldStyle
-                if (this.configuration.ExceptionLoggingOldStyle)
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-
-                        // ReSharper disable CSharpWarnings::CS0618
 #pragma warning disable 618
-                        this.Debug(message, exceptionCandidate);
+           
+			//todo log also these calls as warning?
+                if (this.configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;
-                    }
-                }
+                {   
+					var exceptionCandidate = argument as Exception;		
+					if (exceptionCandidate != null)		
+					{		
+				
+						// ReSharper disable CSharpWarnings::CS0618
+						#pragma warning disable 618
+						this.Debug(message, exceptionCandidate);	
+						#pragma warning restore 618
+						// ReSharper restore CSharpWarnings::CS0618	
+						return;		
+					}
+				}
 
                 this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
@@ -802,20 +808,24 @@ namespace NLog
         { 
             if (this.IsInfoEnabled)
             {
-
-			//todo make configurable: exceptionLoggingOldStyle + logexceptionLoggingOldStyle
-
-	            var exceptionCandidate = argument as Exception;		
-                if (exceptionCandidate != null)		
-                {		
+#pragma warning disable 618
+           
+			//todo log also these calls as warning?
+                if (this.configuration.ExceptionLoggingOldStyle)
+#pragma warning restore 618
+                {   
+					var exceptionCandidate = argument as Exception;		
+					if (exceptionCandidate != null)		
+					{		
 				
-				    // ReSharper disable CSharpWarnings::CS0618
-					#pragma warning disable 618
-                    this.Info(message, exceptionCandidate);	
-					#pragma warning restore 618
-					// ReSharper restore CSharpWarnings::CS0618	
-                    return;		
-                }
+						// ReSharper disable CSharpWarnings::CS0618
+						#pragma warning disable 618
+						this.Info(message, exceptionCandidate);	
+						#pragma warning restore 618
+						// ReSharper restore CSharpWarnings::CS0618	
+						return;		
+					}
+				}
 
                 this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
@@ -1068,20 +1078,24 @@ namespace NLog
         { 
             if (this.IsWarnEnabled)
             {
-
-			//todo make configurable: exceptionLoggingOldStyle + logexceptionLoggingOldStyle
-
-	            var exceptionCandidate = argument as Exception;		
-                if (exceptionCandidate != null)		
-                {		
+#pragma warning disable 618
+           
+			//todo log also these calls as warning?
+                if (this.configuration.ExceptionLoggingOldStyle)
+#pragma warning restore 618
+                {   
+					var exceptionCandidate = argument as Exception;		
+					if (exceptionCandidate != null)		
+					{		
 				
-				    // ReSharper disable CSharpWarnings::CS0618
-					#pragma warning disable 618
-                    this.Warn(message, exceptionCandidate);	
-					#pragma warning restore 618
-					// ReSharper restore CSharpWarnings::CS0618	
-                    return;		
-                }
+						// ReSharper disable CSharpWarnings::CS0618
+						#pragma warning disable 618
+						this.Warn(message, exceptionCandidate);	
+						#pragma warning restore 618
+						// ReSharper restore CSharpWarnings::CS0618	
+						return;		
+					}
+				}
 
                 this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
@@ -1334,20 +1348,24 @@ namespace NLog
         { 
             if (this.IsErrorEnabled)
             {
-
-			//todo make configurable: exceptionLoggingOldStyle + logexceptionLoggingOldStyle
-
-	            var exceptionCandidate = argument as Exception;		
-                if (exceptionCandidate != null)		
-                {		
+#pragma warning disable 618
+           
+			//todo log also these calls as warning?
+                if (this.configuration.ExceptionLoggingOldStyle)
+#pragma warning restore 618
+                {   
+					var exceptionCandidate = argument as Exception;		
+					if (exceptionCandidate != null)		
+					{		
 				
-				    // ReSharper disable CSharpWarnings::CS0618
-					#pragma warning disable 618
-                    this.Error(message, exceptionCandidate);	
-					#pragma warning restore 618
-					// ReSharper restore CSharpWarnings::CS0618	
-                    return;		
-                }
+						// ReSharper disable CSharpWarnings::CS0618
+						#pragma warning disable 618
+						this.Error(message, exceptionCandidate);	
+						#pragma warning restore 618
+						// ReSharper restore CSharpWarnings::CS0618	
+						return;		
+					}
+				}
 
                 this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
@@ -1600,20 +1618,24 @@ namespace NLog
         { 
             if (this.IsFatalEnabled)
             {
-
-			//todo make configurable: exceptionLoggingOldStyle + logexceptionLoggingOldStyle
-
-	            var exceptionCandidate = argument as Exception;		
-                if (exceptionCandidate != null)		
-                {		
+#pragma warning disable 618
+           
+			//todo log also these calls as warning?
+                if (this.configuration.ExceptionLoggingOldStyle)
+#pragma warning restore 618
+                {   
+					var exceptionCandidate = argument as Exception;		
+					if (exceptionCandidate != null)		
+					{		
 				
-				    // ReSharper disable CSharpWarnings::CS0618
-					#pragma warning disable 618
-                    this.Fatal(message, exceptionCandidate);	
-					#pragma warning restore 618
-					// ReSharper restore CSharpWarnings::CS0618	
-                    return;		
-                }
+						// ReSharper disable CSharpWarnings::CS0618
+						#pragma warning disable 618
+						this.Fatal(message, exceptionCandidate);	
+						#pragma warning restore 618
+						// ReSharper restore CSharpWarnings::CS0618	
+						return;		
+					}
+				}
 
                 this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }

@@ -726,7 +726,9 @@ namespace NLog
                 InternalLogger.Debug(sb.ToString());
             }
 
+#pragma warning disable 618
             return new LoggerConfiguration(targetsByLevel, configuration != null && configuration.ExceptionLoggingOldStyle);
+#pragma warning restore 618
         }
 
         /// <summary>

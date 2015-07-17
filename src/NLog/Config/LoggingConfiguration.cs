@@ -64,6 +64,10 @@ namespace NLog.Config
             this.LoggingRules = new List<LoggingRule>();
         }
 
+        /// <summary>
+        /// Use the old exception log handling of NLog 3.0? 
+        /// </summary>
+        [Obsolete("This option will be removed in NLog 5")]
         public bool ExceptionLoggingOldStyle { get; set; }
 
         /// <summary>
