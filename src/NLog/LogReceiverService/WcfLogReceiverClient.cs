@@ -44,7 +44,7 @@ namespace NLog.LogReceiverService
     /// <summary>
     /// Log Receiver Client using WCF.
     /// </summary>
-    public sealed class WcfLogReceiverClient : ClientBase<ILogReceiverClient>, ILogReceiverClient
+    public sealed class WcfLogReceiverClient : ClientBase<ILogReceiverTwoWayClient>, ILogReceiverTwoWayClient
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WcfLogReceiverClient"/> class.
@@ -204,9 +204,9 @@ namespace NLog.LogReceiverService
         /// <param name="callback">The callback.</param>
         /// <param name="asyncState">Asynchronous state.</param>
         /// <returns>
-        /// IAsyncResult value which can be passed to <see cref="ILogReceiverClient.EndProcessLogMessages"/>.
+        /// IAsyncResult value which can be passed to <see cref="ILogReceiverTwoWayClient.EndProcessLogMessages"/>.
         /// </returns>
-        IAsyncResult ILogReceiverClient.BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState)
+        public IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState)
         {
             return this.Channel.BeginProcessLogMessages(events, callback, asyncState);
         }
@@ -237,12 +237,12 @@ namespace NLog.LogReceiverService
         private IAsyncResult OnBeginProcessLogMessages(object[] inValues, AsyncCallback callback, object asyncState)
         {
             var events = (NLogEvents)inValues[0];
-            return ((ILogReceiverClient)this).BeginProcessLogMessages(events, callback, asyncState);
+            return ((ILogReceiverTwoWayClient)this).BeginProcessLogMessages(events, callback, asyncState);
         }
 
         private object[] OnEndProcessLogMessages(IAsyncResult result)
         {
-            ((ILogReceiverClient)this).EndProcessLogMessages(result);
+            ((ILogReceiverTwoWayClient)this).EndProcessLogMessages(result);
             return null;
         }
 

@@ -41,9 +41,9 @@ namespace NLog.LogReceiverService
     /// Service contract for Log Receiver client.
     /// </summary>
 #if WCF_SUPPORTED
-    [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace, ConfigurationName = "NLog.LogReceiverService.ILogReceiverOneWayClient")]
+    [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace, ConfigurationName = "NLog.LogReceiverService.ILogReceiverClient")]
 #endif
-    public interface ILogReceiverOneWayClient : ILogReceiverClient
+    public interface ILogReceiverTwoWayClient : ILogReceiverClient
     {
         /// <summary>
         /// Begins processing of log messages.
@@ -55,10 +55,10 @@ namespace NLog.LogReceiverService
         /// IAsyncResult value which can be passed to <see cref="ILogReceiverClient.EndProcessLogMessages"/>.
         /// </returns>
 #if WCF_SUPPORTED
-        [OperationContractAttribute(IsOneWay = true, AsyncPattern = true, Action = "http://nlog-project.org/ws/ILogReceiverOneWayServer/ProcessLogMessages")]
+        [OperationContractAttribute(AsyncPattern = true, Action = "http://nlog-project.org/ws/ILogReceiverServer/ProcessLogMessages", ReplyAction = "http://nlog-project.org/ws/ILogReceiverServer/ProcessLogMessagesResponse")]
 #endif
         new IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState);
 
-   
+      
     }
 }
