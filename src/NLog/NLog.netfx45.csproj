@@ -33,6 +33,7 @@
     <OutputPath>..\..\build\bin\Debug\.NET Framework 4.5\</OutputPath>
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>..\..\build\bin\Debug\.NET Framework 4.5\NLog.xml</DocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugType>pdbonly</DebugType>
@@ -307,9 +308,11 @@
     <Compile Include="LogMessageGenerator.cs" />
     <Compile Include="LogReceiverService\BaseLogReceiverForwardingService.cs" />
     <Compile Include="LogReceiverService\ILogReceiverClient.cs" />
+    <Compile Include="LogReceiverService\ILogReceiverTwoWayClient.cs" />
     <Compile Include="LogReceiverService\ILogReceiverOneWayClient.cs" />
     <Compile Include="LogReceiverService\ILogReceiverOneWayServer.cs" />
     <Compile Include="LogReceiverService\ILogReceiverServer.cs" />
+    <Compile Include="LogReceiverService\IWcfLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\LogReceiverForwardingService.cs" />
     <Compile Include="LogReceiverService\LogReceiverOneWayForwardingService.cs" />
     <Compile Include="LogReceiverService\LogReceiverServiceConfig.cs" />
@@ -317,8 +320,8 @@
     <Compile Include="LogReceiverService\NLogEvents.cs" />
     <Compile Include="LogReceiverService\SoapLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\StringCollection.cs" />
+    <Compile Include="LogReceiverService\WcfLogReceiverTwoWayClient.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
-    <Compile Include="LogReceiverService\WcfLogReceiverClientFacade.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverOneWayClient.cs" />
     <Compile Include="MappedDiagnosticsContext.cs" />
     <Compile Include="MDC.cs" />

@@ -340,9 +340,9 @@ namespace NLog.Targets
         /// service configuration - binding and endpoint address
         /// </summary>
         /// <returns></returns>
-        protected virtual WcfLogReceiverClientFacade CreateWcfLogReceiverClient()
+        protected virtual WcfLogReceiverClient CreateWcfLogReceiverClient()
         {
-            WcfLogReceiverClientFacade client;
+            WcfLogReceiverClient client;
 
             if (string.IsNullOrEmpty(this.EndpointConfigurationName))
             {
@@ -358,11 +358,11 @@ namespace NLog.Targets
                     binding = new BasicHttpBinding();
                 }
 
-                client = new WcfLogReceiverClientFacade(UseOneWayContract, binding, new EndpointAddress(this.EndpointAddress));
+                client = new WcfLogReceiverClient(UseOneWayContract, binding, new EndpointAddress(this.EndpointAddress));
             }
             else
             {
-                client = new WcfLogReceiverClientFacade(UseOneWayContract, this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
+                client = new WcfLogReceiverClient(UseOneWayContract, this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
             }
 
             client.ProcessLogMessagesCompleted += ClientOnProcessLogMessagesCompleted;
@@ -372,7 +372,7 @@ namespace NLog.Targets
 
         private void ClientOnProcessLogMessagesCompleted(object sender, AsyncCompletedEventArgs asyncCompletedEventArgs)
         {
-            var client = sender as WcfLogReceiverClientFacade;
+            var client = sender as WcfLogReceiverClient;
             if (client != null && client.State == CommunicationState.Opened)
             {
                 client.CloseCommunicationObject();
