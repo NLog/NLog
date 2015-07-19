@@ -203,6 +203,64 @@ namespace NLog.UnitTests
 
         }
 
+        [Fact]
+        public void Auto_Reload_after_rename()
+        {
+            try
+            {
+                var tempFolder = Guid.NewGuid().ToString();
+
+                var newFileName = "other.config";
+                string tempPath = Path.Combine(Path.GetTempPath(), tempFolder);
+                Directory.CreateDirectory(tempPath);
+
+                var originalFileName = "main.nlog";
+                var originalFilePath = Path.Combine(tempPath, originalFileName);
+                var newFilePath = Path.Combine(tempPath, newFileName);
+
+                //delete old stuff
+                new FileInfo(originalFilePath).Delete();
+                new FileInfo(newFilePath).Delete();
+
+                WriteToFile(validXML, originalFilePath);
+
+                //event for async testing
+                var counterEvent = new CountdownEvent(1);
+
+                var xmlLoggingConfiguration = new XmlLoggingConfiguration(originalFilePath);
+                LogManager.Configuration = xmlLoggingConfiguration;
+
+                LogManager.ConfigurationReloaded += SignalCounterEvent1(counterEvent);
+
+                //"move"
+                var fileInfo = new FileInfo(originalFilePath);
+                fileInfo.CopyTo(newFilePath);
+                fileInfo.Delete();
+
+                //write to new file
+                WriteToFile(validXML2, newFilePath);
+
+                //"move" back.
+                var fileInfo2 = new FileInfo(newFilePath);
+                fileInfo2.CopyTo(originalFilePath);
+                fileInfo2.Delete();
+                
+                counterEvent.Wait(5000);
+
+                Test_if_reload_success(@"c:\temp\log2.txt");
+
+                if (counterEvent.CurrentCount != 0)
+                {
+                    throw new Exception("failed to reload");
+                }
+
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+            }
+        }
+
         /// <summary>
         /// Reload by writing file test
         /// </summary>
