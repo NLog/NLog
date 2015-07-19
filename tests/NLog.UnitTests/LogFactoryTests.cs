@@ -59,7 +59,7 @@ namespace NLog.UnitTests
             ILogger logger = LogManager.GetCurrentClassLogger();
             logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
         }
-        
+
         [Fact]
         public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()
         {
@@ -67,7 +67,7 @@ namespace NLog.UnitTests
             try
             {
                 LogManager.ThrowExceptions = false;
-                
+
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog internalLogToConsole='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
@@ -76,15 +76,15 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 ExceptionThrown = true;
             }
-            
+
             Assert.False(ExceptionThrown);
-            
+
         }
-        
+
         [Fact]
         public void InvalidXMLConfiguration_ThrowErrorWhen_ThrowExceptionFlagIsSet()
         {
@@ -92,7 +92,7 @@ namespace NLog.UnitTests
             try
             {
                 LogManager.ThrowExceptions = true;
-                
+
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog internalLogToConsole='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
@@ -101,13 +101,13 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 ExceptionThrown = true;
             }
-            
+
             Assert.True(ExceptionThrown);
-            
+
         }
 
         [Fact]
@@ -203,6 +203,9 @@ namespace NLog.UnitTests
 
         }
 
+        /// <summary>
+        /// Rename file, do edits, and then rename back. The auto reload should work.
+        /// </summary>
         [Fact]
         public void Auto_Reload_after_rename()
         {
@@ -222,7 +225,7 @@ namespace NLog.UnitTests
                 new FileInfo(originalFilePath).Delete();
                 new FileInfo(newFilePath).Delete();
 
-                WriteToFile(validXML, originalFilePath);
+                WriteToFile(GetValidXml(), originalFilePath);
 
                 //event for async testing
                 var counterEvent = new CountdownEvent(1);
@@ -238,13 +241,13 @@ namespace NLog.UnitTests
                 fileInfo.Delete();
 
                 //write to new file
-                WriteToFile(validXML2, newFilePath);
+                WriteToFile(GetValidXml(@"c:\temp\log2.txt"), newFilePath);
 
                 //"move" back.
                 var fileInfo2 = new FileInfo(newFilePath);
                 fileInfo2.CopyTo(originalFilePath);
                 fileInfo2.Delete();
-                
+
                 counterEvent.Wait(5000);
 
                 Test_if_reload_success(@"c:\temp\log2.txt");
@@ -274,24 +277,24 @@ namespace NLog.UnitTests
 
                 var tempPathFile = Path.Combine(tempPath, "main.nlog");
 
-                WriteToFile(validXML, tempPathFile);
+                WriteToFile(GetValidXml(), tempPathFile);
 
                 //event for async testing
                 var counterEvent = new CountdownEvent(1);
 
                 var xmlLoggingConfiguration = new XmlLoggingConfiguration(tempPathFile);
                 LogManager.Configuration = xmlLoggingConfiguration;
-                
+
                 LogManager.ConfigurationReloaded += (sender, e) =>
                 {
-                    
-                    if(counterEvent.CurrentCount < 1)
+
+                    if (counterEvent.CurrentCount < 1)
                         counterEvent.Signal();
                 };
 
                 Test_if_reload_success(@"c:\temp\log.txt");
 
-                WriteToFile(validXML2, tempPathFile);
+                WriteToFile(GetValidXml(@"c:\temp\log2.txt"), tempPathFile);
 
                 //test after signal
                 counterEvent.Wait(3000);
@@ -316,7 +319,7 @@ namespace NLog.UnitTests
 
                 var tempPathFile = Path.Combine(tempPath, "main.nlog");
 
-                WriteToFile(validXML, tempPathFile);
+                WriteToFile(GetValidXml(), tempPathFile);
 
                 //event for async testing
                 var counterEvent = new CountdownEvent(1);
@@ -330,7 +333,7 @@ namespace NLog.UnitTests
 
 
                 //set invalid, set valid
-                WriteToFile(invalidXML, tempPathFile);
+                WriteToFile(InvalidXml, tempPathFile);
 
                 counterEvent.Wait(5000);
 
@@ -338,15 +341,15 @@ namespace NLog.UnitTests
                 {
                     throw new Exception("failed to reload");
                 }
-               
-               
+
+
 
                 LogManager.ConfigurationReloaded -= SignalCounterEvent1(counterEvent);
 
                 var counterEvent2 = new CountdownEvent(1);
                 LogManager.ConfigurationReloaded += (sender, e) => SignalCounterEvent(counterEvent2);
 
-                WriteToFile(validXML2, tempPathFile);
+                WriteToFile(GetValidXml(@"c:\temp\log2.txt"), tempPathFile);
 
                 counterEvent2.Wait(5000);
 
@@ -378,37 +381,29 @@ namespace NLog.UnitTests
             }
         }
 
-        const string validXML = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
+        private static string GetValidXml(string fileName = @"c:\temp\log.txt")
+        {
+            return
+                string.Format(@"<?xml version=""1.0"" encoding=""utf-8"" ?>
 <nlog xmlns=""http://www.nlog-project.org/schemas/NLog.xsd""
       xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" 
       autoReload=""true"" 
       internalLogLevel=""Info"" 
       throwExceptions=""false"">
   <targets>
-    <target name=""file"" xsi:type=""File""   fileName=""c:\temp\log.txt"" layout=""${level} "" />
+    <target name=""file"" xsi:type=""File""   fileName=""{0}"" layout=""${{level}} "" />
   </targets>
   <rules>
     <logger name=""*"" minlevel=""Error"" writeTo=""file"" />
   </rules>
 </nlog>
-";
+", fileName);
+        }
 
-        const string validXML2 = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
-<nlog xmlns=""http://www.nlog-project.org/schemas/NLog.xsd""
-      xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" 
-      autoReload=""true"" 
-      internalLogLevel=""Info"" 
-      throwExceptions=""false"">
-  <targets>
-    <target name=""file"" xsi:type=""File""   fileName=""c:\temp\log2.txt"" layout=""${level} "" />
-  </targets>
-  <rules>
-    <logger name=""*"" minlevel=""Error"" writeTo=""file"" />
-  </rules>
-</nlog>
-";
-
-        const string invalidXML = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
+        /// <summary>
+        /// Invalid XML missing closing tags.
+        /// </summary>
+        const string InvalidXml = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
 <nlog xmlns=""http://www.nlog-project.org/schemas/NLog.xsd""
       xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" 
       autoReload=""true"" 
@@ -453,6 +448,8 @@ namespace NLog.UnitTests
                 fs.Flush();
             }
         }
+
+     
     }
 }
 #endif
