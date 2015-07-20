@@ -80,9 +80,7 @@ namespace NLog.LogReceiverService
         /// <param name="result">The result.</param>
         void EndProcessLogMessages(IAsyncResult result);
 
-        void Open();
-        void Abort();
-        void Close();
+     
         void DisplayInitializationUI();
     }
 }
