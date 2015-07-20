@@ -154,20 +154,20 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Creates the file stream.
         /// </summary>
-        /// <param name="allowConcurrentWrite">If set to <c>true</c> allow concurrent writes.</param>
+        /// <param name="allowAtomicConcurrentWrite">If set to <c>true</c> allow concurrent writes.</param>
         /// <returns>A <see cref="FileStream"/> object which can be used to write to the file.</returns>
-        protected FileStream CreateFileStream(bool allowConcurrentWrite)
+        protected FileStream CreateFileStream(bool allowAtomicConcurrentWrite)
         {
             int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
 
-            InternalLogger.Trace("Opening {0} with concurrentWrite={1}", this.FileName, allowConcurrentWrite);
+            InternalLogger.Trace("Opening {0} with concurrentWrite={1}", this.FileName, allowAtomicConcurrentWrite);
             for (int i = 0; i < this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
             {
                 try
                 {
                     try
                     {
-                        return this.TryCreateFileStream(allowConcurrentWrite);
+                        return this.TryCreateFileStream(allowAtomicConcurrentWrite);
                     }
                     catch (DirectoryNotFoundException)
                     {
@@ -177,12 +177,12 @@ namespace NLog.Internal.FileAppenders
                         }
 
                         Directory.CreateDirectory(Path.GetDirectoryName(this.FileName));
-                        return this.TryCreateFileStream(allowConcurrentWrite);
+                        return this.TryCreateFileStream(allowAtomicConcurrentWrite);
                     }
                 }
                 catch (IOException)
                 {
-                    if (!this.CreateFileParameters.ConcurrentWrites || !allowConcurrentWrite || i + 1 == this.CreateFileParameters.ConcurrentWriteAttempts)
+                    if (!this.CreateFileParameters.ConcurrentWrites || i + 1 == this.CreateFileParameters.ConcurrentWriteAttempts)
                     {
                         throw; // rethrow
                     }
