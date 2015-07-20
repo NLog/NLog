@@ -177,6 +177,22 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Finds the target with the specified name and specified type.
+        /// </summary>
+        /// <param name="name">
+        /// The name of the target to be found.
+        /// </param>
+        /// <typeparam name="TTarget">Type of the target</typeparam>
+        /// <returns>
+        /// Found target or <see langword="null"/> when the target is not found of not of type <typeparamref name="TTarget"/>
+        /// </returns>
+        public TTarget FindTargetByName<TTarget>(string name)
+            where TTarget : Target
+        {
+            return FindTargetByName(name) as TTarget;
+        }
+
+        /// <summary>
         /// Called by LogManager when one of the log configuration files changes.
         /// </summary>
         /// <returns>
