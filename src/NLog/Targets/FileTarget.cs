@@ -398,7 +398,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets ors set a value indicating whether a managed file stream is forced, instead of used the native implementation.
+        /// Gets or set a value indicating whether a managed file stream is forced, instead of used the native implementation.
         /// </summary>
         [DefaultValue(false)]
         public bool ForceManaged { get; set; }
