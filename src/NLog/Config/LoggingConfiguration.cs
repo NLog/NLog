@@ -123,6 +123,19 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Registers the specified target object. The name of the target is read from <see cref="Target.Name"/>.
+        /// </summary>
+        /// <param name="target">
+        /// The target object with a <see cref="Target.Name"/>
+        /// </param>
+        /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <c>null</c></exception>
+        public void AddTarget([NotNull] Target target)
+        {
+            if (target == null) throw new ArgumentNullException("target");
+            AddTarget(target.Name, target);
+        }
+
+        /// <summary>
         /// Registers the specified target object under a given name.
         /// </summary>
         /// <param name="name">
