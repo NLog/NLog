@@ -31,15 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.ServiceModel;
-using System.ServiceModel.Description;
-using System.Threading;
+
+
 
 namespace NLog.UnitTests.LogReceiverService
 {
+
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.ServiceModel;
+    using System.ServiceModel.Description;
+    using System.Threading;
+
     using System;
     using System.IO;
     using Xunit;
