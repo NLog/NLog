@@ -59,6 +59,10 @@ namespace NLog.LogReceiverService
 #endif
         new IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState);
 
-   
+        /// <summary>
+        /// Ends asynchronous processing of log messages.
+        /// </summary>
+        /// <param name="result">The result.</param>
+        new void EndProcessLogMessages(IAsyncResult result);
     }
 }

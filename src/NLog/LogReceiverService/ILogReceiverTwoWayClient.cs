@@ -41,7 +41,7 @@ namespace NLog.LogReceiverService
     /// Service contract for Log Receiver client.
     /// </summary>
 #if WCF_SUPPORTED
-    [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace, ConfigurationName = "NLog.LogReceiverService.ILogReceiverClient")]
+    [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace, ConfigurationName = "NLog.LogReceiverService.ILogReceiverTwoWayClient")]
 #endif
     public interface ILogReceiverTwoWayClient : ILogReceiverClient
     {
@@ -59,6 +59,10 @@ namespace NLog.LogReceiverService
 #endif
         new IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState);
 
-      
+        /// <summary>
+        /// Ends asynchronous processing of log messages.
+        /// </summary>
+        /// <param name="result">The result.</param>
+        new void EndProcessLogMessages(IAsyncResult result);
     }
 }
