@@ -417,6 +417,9 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool EnableArchiveFileCompression { get; set; }
 #else
+        /// <summary>
+        /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
+        /// </summary>
         private const bool EnableArchiveFileCompression = false;
 #endif
 
