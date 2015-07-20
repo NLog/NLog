@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -1593,6 +1594,113 @@ namespace NLog.UnitTests.Targets
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
+            }
+        }
+        
+        [Fact]
+        public void FileTarget_NotifiesOnArchiveCreated()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                var archiveNotificationFlag = new ManualResetEvent(false);
+
+                FileTarget.FileArchivedHandler handler = name =>
+                {
+                    Assert.True(File.Exists(name));
+                    archiveNotificationFlag.Set();
+                };
+
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}archive.txt"),
+                    ArchiveAboveSize = 1000,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = ArchiveNumberingMode.Rolling,
+                    Layout = "${message}",
+                    OnFileArchived = handler
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("aaa");
+                }
+
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("bbb");
+                }
+
+                Assert.True(archiveNotificationFlag.WaitOne(250), "Didn't receive notification");
+                
+
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+
+                if (File.Exists(tempFile))
+                {
+                    File.Delete(tempFile);
+                }
+ 
+                if (Directory.Exists(tempPath))
+                {
+                    Directory.Delete(tempPath, true);
+                }
+            }
+        }
+
+
+        [Fact]
+        public void FileTarget_NullNotifier_DoesNotThrow()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}archive.txt"),
+                    ArchiveAboveSize = 1000,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = ArchiveNumberingMode.Rolling,
+                    Layout = "${message}",
+                    OnFileArchived = null
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("aaa");
+                }
+
+                //This next logger.Debug call will archive our file.
+                Assert.DoesNotThrow(() => logger.Debug("bbb"));
+
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+
+                if (File.Exists(tempFile))
+                {
+                    File.Delete(tempFile);
+                }
+
+                if (Directory.Exists(tempPath))
+                {
+                    Directory.Delete(tempPath, true);
+                }
             }
         }
     }
