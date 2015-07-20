@@ -929,14 +929,13 @@ namespace NLog.Targets
 
         private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression, FileArchivedHandler archiveCallback)
         {
-            var doCallback = archiveCallback != null;
-            
 #if NET4_5
             if (enableCompression)
             {
                 using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
                 using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read)
+                    )
                 {
                     var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
                     using (var destination = zipArchiveEntry.Open())
@@ -947,19 +946,17 @@ namespace NLog.Targets
 
                 File.Delete(fileName);
 
-                if (doCallback)
-                {
-                    System.Threading.Tasks.Task.Run(() => archiveCallback(archiveFileName));
-                }
             }
             else
 #endif
             {
                 File.Move(fileName, archiveFileName);
-                if (doCallback)
-                {
-                    ThreadPool.QueueUserWorkItem(o => archiveCallback(archiveFileName));
-                }
+
+            }
+
+            if (archiveCallback != null)
+            {
+                archiveCallback(archiveFileName);
             }
         }
 
