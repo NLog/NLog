@@ -929,6 +929,7 @@ namespace NLog.Targets
 
         private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression, FileArchivedHandler archiveCallback)
         {
+            
 #if NET4_5
             if (enableCompression)
             {
@@ -951,7 +952,6 @@ namespace NLog.Targets
 #endif
             {
                 File.Move(fileName, archiveFileName);
-
             }
 
             if (archiveCallback != null)
