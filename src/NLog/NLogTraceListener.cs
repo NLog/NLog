@@ -319,19 +319,6 @@ namespace NLog
         }
 
         /// <summary>
-        /// Writes trace information, a message, a related activity identity and event information to the listener specific output.
-        /// </summary>
-        /// <param name="eventCache">A <see cref="T:System.Diagnostics.TraceEventCache"/> object that contains the current process ID, thread ID, and stack trace information.</param>
-        /// <param name="source">A name used to identify the output, typically the name of the application that generated the trace event.</param>
-        /// <param name="id">A numeric identifier for the event.</param>
-        /// <param name="message">A message to write.</param>
-        /// <param name="relatedActivityId">A <see cref="T:System.Guid"/>  object identifying a related activity.</param>
-        public override void TraceTransfer(TraceEventCache eventCache, string source, int id, string message, Guid relatedActivityId)
-        {
-            this.ProcessLogEventInfo(LogLevel.Debug, source, message, null, id, TraceEventType.Transfer, relatedActivityId);
-        }
-
-        /// <summary>
         /// Gets the custom attributes supported by the trace listener.
         /// </summary>
         /// <returns>
