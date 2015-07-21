@@ -398,7 +398,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets ors set a value indicating whether a managed file stream is forced, instead of used the native implementation.
+        /// Gets or set a value indicating whether a managed file stream is forced, instead of used the native implementation.
         /// </summary>
         [DefaultValue(false)]
         public bool ForceManaged { get; set; }
@@ -417,6 +417,9 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool EnableArchiveFileCompression { get; set; }
 #else
+        /// <summary>
+        /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
+        /// </summary>
         private const bool EnableArchiveFileCompression = false;
 #endif
 
