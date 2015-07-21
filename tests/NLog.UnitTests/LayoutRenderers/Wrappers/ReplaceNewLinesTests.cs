@@ -68,5 +68,15 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 
             Assert.Equal("bar123", l.Render(LogEventInfo.CreateNullEvent()));
         }
+
+        [Fact]
+        public void ReplaceNewLineWithNoEmptySeparationStringTest()
+        {
+            MappedDiagnosticsContext.Clear();
+            MappedDiagnosticsContext.Set("foo", "bar" + System.Environment.NewLine + "123");
+            SimpleLayout l = "${replace-newlines:replacement=:${mdc:foo}}";
+
+            Assert.Equal("bar123", l.Render(LogEventInfo.CreateNullEvent()));
+        }
     }
 }
