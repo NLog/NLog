@@ -211,9 +211,9 @@ namespace NLog.Config
         }
 
         #endregion
-       
+
         #region public methods
-        
+
         /// <summary>
         /// Re-reads the original configuration file and returns the new <see cref="LoggingConfiguration" /> object.
         /// </summary>
@@ -252,6 +252,14 @@ namespace NLog.Config
             return s;
         }
 
+        /// <summary>
+        /// Remove the namespace (before :)
+        /// </summary>
+        /// <example>
+        /// x:a, will be a
+        /// </example>
+        /// <param name="attributeValue"></param>
+        /// <returns></returns>
         private static string StripOptionalNamespacePrefix(string attributeValue)
         {
             if (attributeValue == null)
@@ -361,6 +369,11 @@ namespace NLog.Config
 
         #region parse methods
 
+        /// <summary>
+        /// Parse the root
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="baseDirectory">path to directory of config file.</param>
         private void ParseTopLevel(NLogXmlElement content, string baseDirectory)
         {
             content.AssertName("nlog", "configuration");
@@ -377,6 +390,11 @@ namespace NLog.Config
             }
         }
 
+        /// <summary>
+        /// Parse {configuration} xml element.
+        /// </summary>
+        /// <param name="configurationElement"></param>
+        /// <param name="baseDirectory">path to directory of config file.</param>
         private void ParseConfigurationElement(NLogXmlElement configurationElement, string baseDirectory)
         {
             InternalLogger.Trace("ParseConfigurationElement");
@@ -388,6 +406,11 @@ namespace NLog.Config
             }
         }
 
+        /// <summary>
+        /// Parse {NLog} xml element.
+        /// </summary>
+        /// <param name="nlogElement"></param>
+        /// <param name="baseDirectory"></param>
         private void ParseNLogElement(NLogXmlElement nlogElement, string baseDirectory)
         {
             InternalLogger.Trace("ParseNLogElement");
