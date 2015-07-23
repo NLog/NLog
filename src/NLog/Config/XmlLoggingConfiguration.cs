@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 namespace NLog.Config
 {
     using System;
@@ -61,10 +63,10 @@ namespace NLog.Config
     {
         private readonly ConfigurationItemFactory configurationItemFactory = ConfigurationItemFactory.Default;
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
-        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase); 
+        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
@@ -194,7 +196,7 @@ namespace NLog.Config
                 {
                     return this.visitedFile.Keys;
                 }
-                
+
                 return new string[0];
             }
         }
@@ -299,7 +301,7 @@ namespace NLog.Config
                 }
 
                 NLogConfigurationException ConfigException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
-                
+
                 if (!ignoreErrors)
                 {
                     if (LogManager.ThrowExceptions)
@@ -380,12 +382,21 @@ namespace NLog.Config
             InternalLogger.LogLevel = LogLevel.FromString(nlogElement.GetOptionalAttribute("internalLogLevel", InternalLogger.LogLevel.Name));
             LogManager.GlobalThreshold = LogLevel.FromString(nlogElement.GetOptionalAttribute("globalThreshold", LogManager.GlobalThreshold.Name));
 
-            foreach (var el in nlogElement.Children)
+            var children = nlogElement.Children;
+
+            //first load the extensions, as the can be used in other elements (targets etc)
+            var extensionsChilds = children.Where(el => el.LocalName.Equals("EXTENSIONS", StringComparison.InvariantCultureIgnoreCase));
+            foreach (var extensionsChild in extensionsChilds)
+            {
+                this.ParseExtensionsElement(extensionsChild, baseDirectory);
+            }
+
+            foreach (var el in children)
             {
                 switch (el.LocalName.ToUpper(CultureInfo.InvariantCulture))
                 {
                     case "EXTENSIONS":
-                        this.ParseExtensionsElement(el, baseDirectory);
+                        //already parsed
                         break;
 
                     case "INCLUDE":
@@ -850,13 +861,13 @@ namespace NLog.Config
         private void ParseTimeElement(NLogXmlElement timeElement)
         {
             timeElement.AssertName("time");
-            
+
             string type = timeElement.GetRequiredAttribute("type");
-            
+
             TimeSource newTimeSource = this.configurationItemFactory.TimeSources.CreateInstance(type);
-            
+
             this.ConfigureObjectFromAttributes(newTimeSource, timeElement, true);
-        
+
             InternalLogger.Info("Selecting time source {0}", newTimeSource);
             TimeSource.Current = newTimeSource;
         }
