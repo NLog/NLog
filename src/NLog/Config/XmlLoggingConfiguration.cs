@@ -410,7 +410,7 @@ namespace NLog.Config
         /// Parse {NLog} xml element.
         /// </summary>
         /// <param name="nlogElement"></param>
-        /// <param name="baseDirectory"></param>
+        /// <param name="baseDirectory">path to directory of config file.</param>
         private void ParseNLogElement(NLogXmlElement nlogElement, string baseDirectory)
         {
             InternalLogger.Trace("ParseNLogElement");
@@ -474,6 +474,11 @@ namespace NLog.Config
             }
         }
 
+        /// <summary>
+        /// Parse {Rules} xml element
+        /// </summary>
+        /// <param name="rulesElement"></param>
+        /// <param name="rulesCollection">Rules are added to this parameter.</param>
         private void ParseRulesElement(NLogXmlElement rulesElement, IList<LoggingRule> rulesCollection)
         {
             InternalLogger.Trace("ParseRulesElement");
@@ -485,6 +490,11 @@ namespace NLog.Config
             }
         }
 
+        /// <summary>
+        /// Parse {Logger} xml element
+        /// </summary>
+        /// <param name="loggerElement"></param>
+        /// <param name="rulesCollection">Rules are added to this parameter.</param>
         private void ParseLoggerElement(NLogXmlElement loggerElement, IList<LoggingRule> rulesCollection)
         {
             loggerElement.AssertName("logger");
