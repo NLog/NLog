@@ -239,6 +239,7 @@ namespace NLog.UnitTests
                 var fileInfo = new FileInfo(originalFilePath);
                 fileInfo.CopyTo(newFilePath);
                 fileInfo.Delete();
+                Thread.Sleep(1000);
 
                 //write to new file
                 WriteToFile(GetValidXml(@"c:\temp\log2.txt"), newFilePath);
@@ -249,6 +250,7 @@ namespace NLog.UnitTests
                 fileInfo2.Delete();
 
                 counterEvent.Wait(5000);
+                Thread.Sleep(1000);
 
                 Test_if_reload_success(@"c:\temp\log2.txt");
 
