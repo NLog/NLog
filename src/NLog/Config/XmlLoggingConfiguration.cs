@@ -240,7 +240,13 @@ namespace NLog.Config
                    || name.Equals("compound-target-ref", StringComparison.OrdinalIgnoreCase);
         }
 
-        private static string CleanWhitespace(string s)
+        /// <summary>
+        /// Remove all spaces, also in between text. 
+        /// </summary>
+        /// <param name="s">text</param>
+        /// <returns>text without spaces</returns>
+        /// <remarks>Tabs and other whitespace is not removed!</remarks>
+        private static string CleanSpaces(string s)
         {
             s = s.Replace(" ", string.Empty); // get rid of the whitespace
             return s;
@@ -505,7 +511,7 @@ namespace NLog.Config
             }
             else if (loggerElement.AttributeValues.TryGetValue("levels", out levelString))
             {
-                levelString = CleanWhitespace(levelString);
+                levelString = CleanSpaces(levelString);
 
                 string[] tokens = levelString.Split(',');
                 foreach (string s in tokens)
