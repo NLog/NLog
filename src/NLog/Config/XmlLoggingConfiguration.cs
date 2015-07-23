@@ -391,37 +391,38 @@ namespace NLog.Config
                 this.ParseExtensionsElement(extensionsChild, baseDirectory);
             }
 
-            foreach (var el in children)
+            //parse all other direct elements
+            foreach (var child in children)
             {
-                switch (el.LocalName.ToUpper(CultureInfo.InvariantCulture))
+                switch (child.LocalName.ToUpper(CultureInfo.InvariantCulture))
                 {
                     case "EXTENSIONS":
                         //already parsed
                         break;
 
                     case "INCLUDE":
-                        this.ParseIncludeElement(el, baseDirectory);
+                        this.ParseIncludeElement(child, baseDirectory);
                         break;
 
                     case "APPENDERS":
                     case "TARGETS":
-                        this.ParseTargetsElement(el);
+                        this.ParseTargetsElement(child);
                         break;
 
                     case "VARIABLE":
-                        this.ParseVariableElement(el);
+                        this.ParseVariableElement(child);
                         break;
 
                     case "RULES":
-                        this.ParseRulesElement(el, this.LoggingRules);
+                        this.ParseRulesElement(child, this.LoggingRules);
                         break;
 
                     case "TIME":
-                        this.ParseTimeElement(el);
+                        this.ParseTimeElement(child);
                         break;
 
                     default:
-                        InternalLogger.Warn("Skipping unknown node: {0}", el.LocalName);
+                        InternalLogger.Warn("Skipping unknown node: {0}", child.LocalName);
                         break;
                 }
             }
