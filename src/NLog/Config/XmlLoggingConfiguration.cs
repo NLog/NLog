@@ -61,11 +61,17 @@ namespace NLog.Config
     /// </summary>
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
+        #region private fields
+
         private readonly ConfigurationItemFactory configurationItemFactory = ConfigurationItemFactory.Default;
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
         private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
+
+        #endregion
+
+        #region contructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
@@ -145,6 +151,9 @@ namespace NLog.Config
             }
         }
 #endif
+        #endregion
+
+        #region public properties
 
 #if !SILVERLIGHT
         /// <summary>
@@ -201,6 +210,10 @@ namespace NLog.Config
             }
         }
 
+        #endregion
+       
+        #region public methods
+        
         /// <summary>
         /// Re-reads the original configuration file and returns the new <see cref="LoggingConfiguration" /> object.
         /// </summary>
@@ -209,6 +222,8 @@ namespace NLog.Config
         {
             return new XmlLoggingConfiguration(this.originalFileName);
         }
+
+        #endregion
 
         private static bool IsTargetElement(string name)
         {
@@ -337,6 +352,8 @@ namespace NLog.Config
 
             this.ParseTopLevel(new NLogXmlElement(fileName), Path.GetDirectoryName(fileName));
         }
+
+        #region parse methods
 
         private void ParseTopLevel(NLogXmlElement content, string baseDirectory)
         {
@@ -872,6 +889,8 @@ namespace NLog.Config
             InternalLogger.Info("Selecting time source {0}", newTimeSource);
             TimeSource.Current = newTimeSource;
         }
+
+        #endregion
 
         private void SetPropertyFromElement(object o, NLogXmlElement element)
         {
