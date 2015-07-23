@@ -237,6 +237,8 @@ namespace NLog.UnitTests
 
                 //test after signal
                 counterEvent.Wait(3000);
+                //we need some extra time for completion
+                Thread.Sleep(1000);
 
                 Test_if_reload_success(@"c:\temp\log2.txt");
 
@@ -275,6 +277,8 @@ namespace NLog.UnitTests
                 WriteToFile(invalidXML, tempPathFile);
 
                 counterEvent.Wait(5000);
+                //we need some extra time for completion
+                Thread.Sleep(1000);
 
                 if (counterEvent.CurrentCount != 0)
                 {
@@ -291,6 +295,8 @@ namespace NLog.UnitTests
                 WriteToFile(validXML2, tempPathFile);
 
                 counterEvent2.Wait(5000);
+                //we need some extra time for completion
+                Thread.Sleep(1000);
 
                 if (counterEvent2.CurrentCount != 0)
                 {
