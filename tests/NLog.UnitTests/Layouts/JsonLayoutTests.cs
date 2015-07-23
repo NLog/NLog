@@ -64,6 +64,28 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void JsonLayoutRenderingNoSpaces()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("date", "${longdate}"),
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("message", "${message}"),
+                    },
+                SuppressSpaces = true
+            };
+
+            var ev = new LogEventInfo();
+            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
+            ev.Level = LogLevel.Info;
+            ev.Message = "hello, world";
+
+            Assert.Equal("{\"date\":\"2010-01-01 12:34:56.0000\",\"level\":\"Info\",\"message\":\"hello, world\"}", jsonLayout.Render(ev));
+        }
+
+        [Fact]
         public void JsonLayoutRenderingAndEncodingSpecialCharacters()
         {
             var jsonLayout = new JsonLayout()
