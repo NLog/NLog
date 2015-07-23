@@ -431,7 +431,7 @@ namespace NLog.Config
             var children = nlogElement.Children;
 
             //first load the extensions, as the can be used in other elements (targets etc)
-            var extensionsChilds = children.Where(el => el.LocalName.Equals("EXTENSIONS", StringComparison.InvariantCultureIgnoreCase));
+            var extensionsChilds = children.Where(child => child.LocalName.Equals("EXTENSIONS", StringComparison.InvariantCultureIgnoreCase));
             foreach (var extensionsChild in extensionsChilds)
             {
                 this.ParseExtensionsElement(extensionsChild, baseDirectory);
