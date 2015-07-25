@@ -216,6 +216,7 @@
     <Compile Include="LayoutRenderers\CounterLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\DateLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\DocumentUriLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\VariableLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\EnvironmentLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\EventContextLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\EventPropertiesLayoutRenderer.cs" />
