@@ -308,7 +308,7 @@ namespace NLog.UnitTests.LogReceiverService
                 var logger1 = LogManager.GetLogger("logger1");
                 logFunc(logger1);
 
-                countdownEvent.Wait(20000);
+                countdownEvent.Wait(8000);
                 var recieved = LogRecieverMock.recievedEvents;
 
 
@@ -336,7 +336,7 @@ namespace NLog.UnitTests.LogReceiverService
             logger.Info(new InvalidConstraintException("boo"), "test2");
         }
 
-        public class LogRecieverMock : ILogReceiverServer
+        public class LogRecieverMock : ILogReceiverServer, ILogReceiverOneWayServer
         {
 
             public static CountdownEvent CountdownEvent;
