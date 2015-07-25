@@ -70,6 +70,53 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void Var_with_layout_renderers()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+    <variable name='user' value='logger=${logger}' />
+    <variable name='password' value='realgoodpassword' />
+            
+                <targets>
+                    <target name='debug' type='Debug' layout= '${message} and ${var:user}=${var:password}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration.Variables["password"] = "123";
+            ILogger logger = LogManager.GetLogger("A");
+
+            logger.Debug("msg");
+            var lastMessage = GetDebugLastMessage("debug");
+            Assert.Equal("msg and logger=A=123", lastMessage);
+        }
+
+
+        [Fact]
+        public void Var_with_other_var()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+    <variable name='user' value='${var:password}=' />
+    <variable name='password' value='realgoodpassword' />
+            
+                <targets>
+                    <target name='debug' type='Debug' layout= '${message} and ${var:user}=${var:password}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration.Variables["password"] = "123";
+            ILogger logger = LogManager.GetLogger("A");
+
+            logger.Debug("msg");
+            var lastMessage = GetDebugLastMessage("debug");
+            Assert.Equal("msg and 123==123", lastMessage);
+        }
+
+        [Fact]
         public void Var_from_api()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

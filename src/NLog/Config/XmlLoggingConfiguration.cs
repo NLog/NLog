@@ -987,7 +987,11 @@ namespace NLog.Config
             // TODO - make this case-insensitive, will probably require a different approach
             foreach (var kvp in this.Variables)
             {
-                output = output.Replace("${" + kvp.Key + "}", kvp.Value);
+                var layout = kvp.Value;
+                //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
+                var simpleLayout = layout as SimpleLayout;
+
+                if (simpleLayout != null) output = output.Replace("${" + kvp.Key + "}", simpleLayout.OriginalText);
             }
 
             return output;

@@ -33,6 +33,7 @@
 
 using System.Globalization;
 using System.Linq;
+using NLog.Layouts;
 
 namespace NLog.Config
 {
@@ -55,11 +56,11 @@ namespace NLog.Config
             new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
 
         private object[] configItems;
-        
+
         /// <summary>
-        /// Variables defined in xml or in API. name is case case insensitive. Not supporting layouts now.
+        /// Variables defined in xml or in API. name is case case insensitive. 
         /// </summary>
-        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, SimpleLayout> variables = new Dictionary<string, SimpleLayout>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
@@ -72,7 +73,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the variables defined in the configuration.
         /// </summary>
-        public Dictionary<string, string> Variables
+        public Dictionary<string, SimpleLayout> Variables
         {
             get
             {
