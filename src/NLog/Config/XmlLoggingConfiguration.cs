@@ -68,8 +68,6 @@ namespace NLog.Config
         private readonly ConfigurationItemFactory configurationItemFactory = ConfigurationItemFactory.Default;
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
-        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-
         private string originalFileName;
 
         #endregion
