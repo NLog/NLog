@@ -73,7 +73,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the variables defined in the configuration.
         /// </summary>
-        public Dictionary<string, SimpleLayout> Variables
+        public IDictionary<string, SimpleLayout> Variables
         {
             get
             {
