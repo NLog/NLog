@@ -111,8 +111,8 @@ namespace NLog.UnitTests.Config
 
             LogManager.Configuration = configuration;
 
-            Assert.Equal("[[", LogManager.Configuration.Variables["prefix"].OriginalText);
-            Assert.Equal("]]", LogManager.Configuration.Variables["suffix"].OriginalText);
+            Assert.Equal("[[", LogManager.Configuration.Variables["prefix"].ToString());
+            Assert.Equal("]]", LogManager.Configuration.Variables["suffix"].ToString());
         }
     }
 }

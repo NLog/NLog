@@ -68,7 +68,7 @@ namespace NLog.LayoutRenderers
         {
             if (this.Name != null)
             {
-                SimpleLayout layout;
+                Layout layout;
                 if(LogManager.Configuration.Variables != null && LogManager.Configuration.Variables.TryGetValue(Name, out layout))
                 {
                     //todo in later stage also layout as values?

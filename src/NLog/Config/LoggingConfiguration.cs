@@ -60,7 +60,7 @@ namespace NLog.Config
         /// <summary>
         /// Variables defined in xml or in API. name is case case insensitive. 
         /// </summary>
-        private readonly Dictionary<string, SimpleLayout> variables = new Dictionary<string, SimpleLayout>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, Layout> variables = new Dictionary<string, Layout>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
@@ -73,7 +73,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the variables defined in the configuration.
         /// </summary>
-        public Dictionary<string, SimpleLayout> Variables
+        public Dictionary<string, Layout> Variables
         {
             get
             {

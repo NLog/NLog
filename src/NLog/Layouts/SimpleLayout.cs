@@ -207,7 +207,7 @@ namespace NLog.Layouts
         /// </returns>
         public override string ToString()
         {
-            return "'" + this.Text + "'";
+            return OriginalText;
         }
 
         internal void SetRenderers(LayoutRenderer[] renderers, string text)
