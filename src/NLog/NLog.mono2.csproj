@@ -256,6 +256,7 @@
     <Compile Include="LayoutRenderers\ThreadNameLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TicksLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TimeLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\VariableLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeLayoutRendererWrapper.cs" />
