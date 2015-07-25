@@ -1061,9 +1061,8 @@ namespace NLog.Config
             {
                 var layout = kvp.Value;
                 //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
-                var simpleLayout = layout as SimpleLayout;
 
-                if (simpleLayout != null) output = output.Replace("${" + kvp.Key + "}", simpleLayout.OriginalText);
+                if (layout != null) output = output.Replace("${" + kvp.Key + "}", layout.OriginalText);
             }
 
             return output;
