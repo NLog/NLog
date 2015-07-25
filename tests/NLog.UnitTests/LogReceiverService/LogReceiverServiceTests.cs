@@ -234,15 +234,27 @@ namespace NLog.UnitTests.LogReceiverService
 #if WCF_SUPPORTED
 
         [Fact]
-        public void RealTestLogReciever1()
+        public void RealTestLogReciever_two_way()
+        {
+            RealTestLogReciever(false);
+        }
+
+        [Fact]
+        public void RealTestLogReciever_one_way()
+        {
+            RealTestLogReciever(true);
+        }
+
+        private void RealTestLogReciever(bool useOneWayContract)
         {
             LogManager.Configuration = CreateConfigurationFromString(string.Format(@"
           <nlog throwExceptions='true'>
                 <targets>
                    <target type='LogReceiverService'
                           name='s1'
-               
+                         
                           endpointAddress='{0}'
+                          useOneWayContract='{1}'
                           useBinaryEncoding='false'
                   
                           includeEventProperties='false'>
@@ -255,12 +267,9 @@ namespace NLog.UnitTests.LogReceiverService
                     <logger name='logger1' minlevel='Trace' writeTo='s1' />
               
                 </rules>
-            </nlog>", logRecieverUrl));
+            </nlog>", logRecieverUrl, useOneWayContract.ToString().ToLower()));
 
-
-     
             ExecLogRecieverAndCheck(ExecLogging1, CheckRecieved1, 2);
-
         }
 
         /// <summary>
