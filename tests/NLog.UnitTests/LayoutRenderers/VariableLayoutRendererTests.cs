@@ -31,12 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#region
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
+
+#endregion
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -52,25 +54,19 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
             Assert.Equal("msg and admin=realgoodpassword", lastMessage);
-
-
         }
-
-  
 
         [Fact]
         public void Var_from_xml_and_edit()
         {
             CreateConfigFromXml();
-            
+
             LogManager.Configuration.Variables["password"] = "123";
             ILogger logger = LogManager.GetLogger("A");
 
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
             Assert.Equal("msg and admin=123", lastMessage);
-
-
         }
 
         [Fact]
@@ -86,8 +82,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-
-
             LogManager.Configuration.Variables["user"] = "admin";
             LogManager.Configuration.Variables["password"] = "123";
             ILogger logger = LogManager.GetLogger("A");
@@ -95,11 +89,7 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
             Assert.Equal("msg and admin=123", lastMessage);
-
-
-
         }
-
 
         [Fact]
         public void Var_default()
@@ -116,16 +106,12 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-          
             ILogger logger = LogManager.GetLogger("A");
 
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
             Assert.Equal("msg and admin=unknown", lastMessage);
-
-
         }
-
 
         [Fact]
         public void Var_default_after_clear()
@@ -149,16 +135,12 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
             Assert.Equal("msg and admin=unknown", lastMessage);
-
-
         }
-
 
         [Fact]
         public void Var_default_after_set_null()
         {
             CreateConfigFromXml();
-
 
             ILogger logger = LogManager.GetLogger("A");
 
@@ -167,16 +149,12 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
             Assert.Equal("msg and admin=", lastMessage);
-
-
         }
-
 
         [Fact]
         public void Var_default_after_set_emptyString()
         {
             CreateConfigFromXml();
-
 
             ILogger logger = LogManager.GetLogger("A");
 
@@ -185,10 +163,7 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
             Assert.Equal("msg and admin=", lastMessage);
-
-
         }
-
 
         [Fact]
         public void Var_default_after_xml_emptyString()
@@ -207,13 +182,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
             ILogger logger = LogManager.GetLogger("A");
 
-        
-
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
             Assert.Equal("msg and admin=", lastMessage);
-
-
         }
 
         private void CreateConfigFromXml()
@@ -230,6 +201,5 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
         }
-
     }
 }
