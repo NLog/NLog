@@ -55,6 +55,11 @@ namespace NLog.Config
             new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
 
         private object[] configItems;
+        
+        /// <summary>
+        /// Variables defined in xml or in API. name is case case insensitive. Not supporting layouts now.
+        /// </summary>
+        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
@@ -67,14 +72,11 @@ namespace NLog.Config
         /// <summary>
         /// Gets the variables defined in the configuration.
         /// </summary>
-        /// <remarks>
-        /// Returns null if not configured using XML configuration.
-        /// </remarks>
-        public virtual Dictionary<string, string> Variables
+        public Dictionary<string, string> Variables
         {
             get
             {
-                throw new NotSupportedException("Variables is only supported in XmlConfiguration");
+                return variables;
             }
         }
 

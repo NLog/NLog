@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.LayoutRenderers;
+
 namespace NLog.Config
 {
     using System;
@@ -61,7 +63,6 @@ namespace NLog.Config
     {
         private readonly ConfigurationItemFactory configurationItemFactory = ConfigurationItemFactory.Default;
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
-        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase); 
 
         private string originalFileName;
         
@@ -164,16 +165,6 @@ namespace NLog.Config
         /// </summary>
         public bool? InitializeSucceeded { get; private set; }
 
-        /// <summary>
-        /// Gets the variables defined in the configuration.
-        /// </summary>
-        public override Dictionary<string, string> Variables
-        {
-            get
-            {
-                return variables;
-            }
-        }
 
         /// <summary>
         /// Gets or sets a value indicating whether the configuration files
@@ -547,9 +538,9 @@ namespace NLog.Config
             variableElement.AssertName("variable");
 
             string name = variableElement.GetRequiredAttribute("name");
-            string value = this.ExpandVariables(variableElement.GetRequiredAttribute("value"));
+            string value = this.ExpandSimpleVariables(variableElement.GetRequiredAttribute("value"));
 
-            this.variables[name] = value;
+            this.Variables[name] = value;
         }
 
         private void ParseTargetsElement(NLogXmlElement targetsElement)
@@ -807,7 +798,7 @@ namespace NLog.Config
 
             try
             {
-                newFileName = this.ExpandVariables(newFileName);
+                newFileName = this.ExpandSimpleVariables(newFileName);
                 newFileName = SimpleLayout.Evaluate(newFileName);
                 if (baseDirectory != null)
                 {
@@ -873,7 +864,7 @@ namespace NLog.Config
                 return;
             }
 
-            PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandVariables(element.Value), this.configurationItemFactory);
+            PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandSimpleVariables(element.Value), this.configurationItemFactory);
         }
 
         private bool AddArrayItemFromElement(object o, NLogXmlElement element)
@@ -912,7 +903,7 @@ namespace NLog.Config
                     continue;
                 }
 
-                PropertyHelper.SetPropertyFromString(targetObject, childName, this.ExpandVariables(childValue), this.configurationItemFactory);
+                PropertyHelper.SetPropertyFromString(targetObject, childName, this.ExpandSimpleVariables(childValue), this.configurationItemFactory);
             }
         }
 
@@ -933,7 +924,7 @@ namespace NLog.Config
                     if (layoutTypeName != null)
                     {
                         // configure it from current element
-                        Layout layout = this.configurationItemFactory.Layouts.CreateInstance(this.ExpandVariables(layoutTypeName));
+                        Layout layout = this.configurationItemFactory.Layouts.CreateInstance(this.ExpandSimpleVariables(layoutTypeName));
                         this.ConfigureObjectFromAttributes(layout, layoutElement, true);
                         this.ConfigureObjectFromElement(layout, layoutElement);
                         targetPropertyInfo.SetValue(o, layout, null);
@@ -982,12 +973,19 @@ namespace NLog.Config
             return wrapperTargetInstance;
         }
 
-        private string ExpandVariables(string input)
+        /// <summary>
+        /// Replace a simple variable with a value. The orginal value is removed and thus we cannot redo this in a later stage.
+        /// 
+        /// Use for that: <see cref="VariableLayoutRenderer"/>
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private string ExpandSimpleVariables(string input)
         {
             string output = input;
 
             // TODO - make this case-insensitive, will probably require a different approach
-            foreach (var kvp in this.variables)
+            foreach (var kvp in this.Variables)
             {
                 output = output.Replace("${" + kvp.Key + "}", kvp.Value);
             }
