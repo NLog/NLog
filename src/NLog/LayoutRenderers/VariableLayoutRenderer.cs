@@ -35,12 +35,10 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
-    using Layouts;
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
 
     /// <summary>
-    /// The environment variable.
+    /// Render a NLog variable (xml or config)
     /// </summary>
     [LayoutRenderer("var")]
     public class VariableLayoutRenderer : LayoutRenderer
@@ -61,7 +59,7 @@ namespace NLog.LayoutRenderers
         public string Default { get; set; }
 
         /// <summary>
-        /// Renders the specified environment variable and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders the specified variable and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
