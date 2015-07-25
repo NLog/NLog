@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.LayoutRenderers;
+
 
 namespace NLog.Config
 {
@@ -40,6 +40,7 @@ namespace NLog.Config
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
+    using System.Linq;
     using System.IO;
     using System.Reflection;
     using System.Xml;
@@ -49,6 +50,7 @@ namespace NLog.Config
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using NLog.LayoutRenderers;
     using NLog.Time;
 #if SILVERLIGHT
 // ReSharper disable once RedundantUsingDirective
@@ -61,11 +63,19 @@ namespace NLog.Config
     /// </summary>
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
+        #region private fields
+
         private readonly ConfigurationItemFactory configurationItemFactory = ConfigurationItemFactory.Default;
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
+        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
         private string originalFileName;
-        
+
+        #endregion
+
+        #region contructors
+
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
@@ -144,6 +154,9 @@ namespace NLog.Config
             }
         }
 #endif
+        #endregion
+
+        #region public properties
 
 #if !SILVERLIGHT
         /// <summary>
@@ -185,10 +198,14 @@ namespace NLog.Config
                 {
                     return this.visitedFile.Keys;
                 }
-                
+
                 return new string[0];
             }
         }
+
+        #endregion
+
+        #region public methods
 
         /// <summary>
         /// Re-reads the original configuration file and returns the new <see cref="LoggingConfiguration" /> object.
@@ -198,6 +215,8 @@ namespace NLog.Config
         {
             return new XmlLoggingConfiguration(this.originalFileName);
         }
+
+        #endregion
 
         private static bool IsTargetElement(string name)
         {
@@ -214,12 +233,26 @@ namespace NLog.Config
                    || name.Equals("compound-target-ref", StringComparison.OrdinalIgnoreCase);
         }
 
-        private static string CleanWhitespace(string s)
+        /// <summary>
+        /// Remove all spaces, also in between text. 
+        /// </summary>
+        /// <param name="s">text</param>
+        /// <returns>text without spaces</returns>
+        /// <remarks>Tabs and other whitespace is not removed!</remarks>
+        private static string CleanSpaces(string s)
         {
             s = s.Replace(" ", string.Empty); // get rid of the whitespace
             return s;
         }
 
+        /// <summary>
+        /// Remove the namespace (before :)
+        /// </summary>
+        /// <example>
+        /// x:a, will be a
+        /// </example>
+        /// <param name="attributeValue"></param>
+        /// <returns></returns>
         private static string StripOptionalNamespacePrefix(string attributeValue)
         {
             if (attributeValue == null)
@@ -290,7 +323,7 @@ namespace NLog.Config
                 }
 
                 NLogConfigurationException ConfigException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
-                
+
                 if (!ignoreErrors)
                 {
                     if (LogManager.ThrowExceptions)
@@ -327,6 +360,13 @@ namespace NLog.Config
             this.ParseTopLevel(new NLogXmlElement(fileName), Path.GetDirectoryName(fileName));
         }
 
+        #region parse methods
+
+        /// <summary>
+        /// Parse the root
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="baseDirectory">path to directory of config file.</param>
         private void ParseTopLevel(NLogXmlElement content, string baseDirectory)
         {
             content.AssertName("nlog", "configuration");
@@ -343,6 +383,11 @@ namespace NLog.Config
             }
         }
 
+        /// <summary>
+        /// Parse {configuration} xml element.
+        /// </summary>
+        /// <param name="configurationElement"></param>
+        /// <param name="baseDirectory">path to directory of config file.</param>
         private void ParseConfigurationElement(NLogXmlElement configurationElement, string baseDirectory)
         {
             InternalLogger.Trace("ParseConfigurationElement");
@@ -354,6 +399,11 @@ namespace NLog.Config
             }
         }
 
+        /// <summary>
+        /// Parse {NLog} xml element.
+        /// </summary>
+        /// <param name="nlogElement"></param>
+        /// <param name="baseDirectory">path to directory of config file.</param>
         private void ParseNLogElement(NLogXmlElement nlogElement, string baseDirectory)
         {
             InternalLogger.Trace("ParseNLogElement");
@@ -371,42 +421,57 @@ namespace NLog.Config
             InternalLogger.LogLevel = LogLevel.FromString(nlogElement.GetOptionalAttribute("internalLogLevel", InternalLogger.LogLevel.Name));
             LogManager.GlobalThreshold = LogLevel.FromString(nlogElement.GetOptionalAttribute("globalThreshold", LogManager.GlobalThreshold.Name));
 
-            foreach (var el in nlogElement.Children)
+            var children = nlogElement.Children;
+
+            //first load the extensions, as the can be used in other elements (targets etc)
+            var extensionsChilds = children.Where(child => child.LocalName.Equals("EXTENSIONS", StringComparison.InvariantCultureIgnoreCase));
+            foreach (var extensionsChild in extensionsChilds)
             {
-                switch (el.LocalName.ToUpper(CultureInfo.InvariantCulture))
+                this.ParseExtensionsElement(extensionsChild, baseDirectory);
+            }
+
+            //parse all other direct elements
+            foreach (var child in children)
+            {
+                switch (child.LocalName.ToUpper(CultureInfo.InvariantCulture))
                 {
                     case "EXTENSIONS":
-                        this.ParseExtensionsElement(el, baseDirectory);
+                        //already parsed
                         break;
 
                     case "INCLUDE":
-                        this.ParseIncludeElement(el, baseDirectory);
+                        this.ParseIncludeElement(child, baseDirectory);
                         break;
 
                     case "APPENDERS":
                     case "TARGETS":
-                        this.ParseTargetsElement(el);
+                        this.ParseTargetsElement(child);
                         break;
 
                     case "VARIABLE":
-                        this.ParseVariableElement(el);
+                        this.ParseVariableElement(child);
                         break;
 
                     case "RULES":
-                        this.ParseRulesElement(el, this.LoggingRules);
+                        this.ParseRulesElement(child, this.LoggingRules);
                         break;
 
                     case "TIME":
-                        this.ParseTimeElement(el);
+                        this.ParseTimeElement(child);
                         break;
 
                     default:
-                        InternalLogger.Warn("Skipping unknown node: {0}", el.LocalName);
+                        InternalLogger.Warn("Skipping unknown node: {0}", child.LocalName);
                         break;
                 }
             }
         }
 
+        /// <summary>
+        /// Parse {Rules} xml element
+        /// </summary>
+        /// <param name="rulesElement"></param>
+        /// <param name="rulesCollection">Rules are added to this parameter.</param>
         private void ParseRulesElement(NLogXmlElement rulesElement, IList<LoggingRule> rulesCollection)
         {
             InternalLogger.Trace("ParseRulesElement");
@@ -418,6 +483,11 @@ namespace NLog.Config
             }
         }
 
+        /// <summary>
+        /// Parse {Logger} xml element
+        /// </summary>
+        /// <param name="loggerElement"></param>
+        /// <param name="rulesCollection">Rules are added to this parameter.</param>
         private void ParseLoggerElement(NLogXmlElement loggerElement, IList<LoggingRule> rulesCollection)
         {
             loggerElement.AssertName("logger");
@@ -467,7 +537,7 @@ namespace NLog.Config
             }
             else if (loggerElement.AttributeValues.TryGetValue("levels", out levelString))
             {
-                levelString = CleanWhitespace(levelString);
+                levelString = CleanSpaces(levelString);
 
                 string[] tokens = levelString.Split(',');
                 foreach (string s in tokens)
@@ -841,16 +911,18 @@ namespace NLog.Config
         private void ParseTimeElement(NLogXmlElement timeElement)
         {
             timeElement.AssertName("time");
-            
+
             string type = timeElement.GetRequiredAttribute("type");
-            
+
             TimeSource newTimeSource = this.configurationItemFactory.TimeSources.CreateInstance(type);
-            
+
             this.ConfigureObjectFromAttributes(newTimeSource, timeElement, true);
-        
+
             InternalLogger.Info("Selecting time source {0}", newTimeSource);
             TimeSource.Current = newTimeSource;
         }
+
+        #endregion
 
         private void SetPropertyFromElement(object o, NLogXmlElement element)
         {

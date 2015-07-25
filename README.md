@@ -32,11 +32,9 @@ Contributing
 ---
 As the current NLog team is a small team, we cannot fix every bug or implement every feature on our own. So contributions are really appreciated!
 
-If you like to start with a small task, thent the following GitHub issues are nice to start with:
+If you like to start with a small task, then
+[up-for-grabs](https://github.com/NLog/NLog/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+label%3Aup-for-grabs+-label%3A%22almost+ready%22+)  are nice to start with:
 
-- These issues would be great if it get fixed (and unit tested):  [#302](https://github.com/NLog/NLog/issues/302)
-- If you are good in writing English or just like writing English:  [#520](https://github.com/NLog/NLog/issues/520)
-- If you like to work with Sandcastle Help File Builder (SHFB): [#655](https://github.com/NLog/NLog/issues/655)
 
 A good way to get started (flow)
 
