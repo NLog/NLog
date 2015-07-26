@@ -65,7 +65,7 @@ namespace NLog
 
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
         private Timer reloadTimer;
-        private readonly MultiFileWatcher watcher;       
+        private readonly MultiFileWatcher watcher;
 #endif
 
         private static IAppDomain currentAppDomain;
@@ -74,7 +74,7 @@ namespace NLog
         private LoggingConfiguration config;
         private LogLevel globalThreshold = LogLevel.MinLevel;
         private bool configLoaded;
-		// TODO: logsEnabled property might be possible to be encapsulated into LogFactory.LogsEnabler class. 
+        // TODO: logsEnabled property might be possible to be encapsulated into LogFactory.LogsEnabler class. 
         private int logsEnabled;
         private readonly LoggerCache loggerCache = new LoggerCache();
 
@@ -98,6 +98,7 @@ namespace NLog
 #if !SILVERLIGHT
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
+            currentAppDomain.DomainUnload += currentAppDomain_DomainUnload;
 #endif
         }
 
@@ -105,9 +106,12 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         /// <param name="config">The config.</param>
-        public LogFactory(LoggingConfiguration config) : this()
+        public LogFactory(LoggingConfiguration config)
+            : this()
         {
             this.Configuration = config;
+            currentAppDomain.DomainUnload += currentAppDomain_DomainUnload;
+
         }
 
         /// <summary>
@@ -164,7 +168,7 @@ namespace NLog
 #else
                             if (File.Exists(configFile))
                             {
-                                LoadLoggingConfiguration(configFile);                                
+                                LoadLoggingConfiguration(configFile);
                                 break;
                             }
 #endif
@@ -227,7 +231,7 @@ namespace NLog
                     if (this.config != null)
                     {
                         config.Dump();
-                        
+
                         this.config.InitializeAll();
                         this.ReconfigExistingLoggers();
 #if !SILVERLIGHT
@@ -386,7 +390,7 @@ namespace NLog
             foreach (var logger in loggerCache.Loggers)
             {
                 logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, this.config));
-            }            
+            }
         }
 
 #if !SILVERLIGHT
@@ -597,16 +601,16 @@ namespace NLog
                     {
                         throw new NLogConfigurationException("Config changed in between. Not reloading.");
                     }
-                
+
                     LoggingConfiguration newConfig = configurationToReload.Reload();
 
                     //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
                     //therefor we check the InitializeSucceeded property.
-                    
+
                     var xmlConfig = newConfig as XmlLoggingConfiguration;
                     if (xmlConfig != null)
                     {
-                        
+
                         if (!xmlConfig.InitializeSucceeded.HasValue || !xmlConfig.InitializeSucceeded.Value)
                         {
                             throw new NLogConfigurationException("Configuration.Reload() failed. Invalid XML?");
@@ -760,7 +764,7 @@ namespace NLog
             {
                 yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
             }
- 
+
             // Current config file with .config renamed to .nlog
             string cf = CurrentAppDomain.ConfigurationFile;
             if (cf != null)
@@ -771,7 +775,7 @@ namespace NLog
                 const string vshostSubStr = ".vshost.";
                 if (cf.Contains(vshostSubStr))
                 {
-                   yield return Path.ChangeExtension(cf.Replace(vshostSubStr, "."), ".nlog");
+                    yield return Path.ChangeExtension(cf.Replace(vshostSubStr, "."), ".nlog");
                 }
 
                 IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
@@ -804,7 +808,7 @@ namespace NLog
             lock (this.syncRoot)
             {
                 Logger existingLogger = loggerCache.Retrieve(cacheKey);
-                if (existingLogger != null) 
+                if (existingLogger != null)
                 {
                     // Logger is still in cache and referenced.
                     return existingLogger;
@@ -813,25 +817,25 @@ namespace NLog
                 Logger newLogger;
 
                 if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
-                {                    
+                {
                     try
                     {
                         newLogger = (Logger)FactoryHelper.CreateInstance(cacheKey.ConcreteType);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
-                        if(ex.MustBeRethrown() || ThrowExceptions)
+                        if (ex.MustBeRethrown() || ThrowExceptions)
                         {
                             throw;
                         }
-                        
+
                         InternalLogger.Error("Cannot create instance of specified type. Proceeding with default type instance. Exception : {0}", ex);
-                        
+
                         // Creating default instance of logger if instance of specified type cannot be created.
                         cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));
-                        
+
                         newLogger = new Logger();
-                    } 
+                    }
                 }
                 else
                 {
@@ -876,7 +880,7 @@ namespace NLog
                 else
                 {
                     this.reloadTimer.Change(
-                            LogFactory.ReconfigAfterFileChangedTimeout, 
+                            LogFactory.ReconfigAfterFileChangedTimeout,
                             Timeout.Infinite);
                 }
             }
@@ -887,6 +891,21 @@ namespace NLog
         {
             InternalLogger.Debug("Loading config from {0}", configFile);
             this.config = new XmlLoggingConfiguration(configFile);
+        }
+
+        private void currentAppDomain_DomainUnload(object sender, EventArgs e)
+        {
+            //stop timer on domain unload, otherwise: 
+            //Exception: System.AppDomainUnloadedException
+            //Message: Attempted to access an unloaded AppDomain.
+            lock (this.syncRoot)
+            {
+                if (this.reloadTimer != null)
+                {
+                    this.reloadTimer.Dispose();
+                    this.reloadTimer = null;
+                }
+            }
         }
 
         /// <summary>
@@ -946,7 +965,7 @@ namespace NLog
                 return (this.ConcreteType == key.ConcreteType) && (key.Name == this.Name);
             }
         }
-        
+
         /// <summary>
         /// Logger cache.
         /// </summary>
