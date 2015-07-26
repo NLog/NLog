@@ -360,9 +360,6 @@ namespace NLog.UnitTests.Common
 
             try
             {
-                Assert.False(Directory.Exists(randomSubDirectory));
-                Assert.False(File.Exists(tempFile));
-                
                 // Invoke Log(LogLevel, string) for every log level.
                 InternalLogger.Log(LogLevel.Warn, "WWW");
                 InternalLogger.Log(LogLevel.Error, "EEE");

@@ -63,6 +63,11 @@ namespace NLog.Common
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
+            if (!string.IsNullOrEmpty(LogFile))
+            {
+				CreateDirectoriesIfNeeded(LogFile);
+			}
+			
             Info("NLog internal logger initialized.");
 #else
             LogLevel = LogLevel.Info;
@@ -320,7 +325,6 @@ namespace NLog.Common
                 var logFile = LogFile;
                 if (!string.IsNullOrEmpty(logFile))
                 {
-                    CreateDirectoriesIfNeeded(logFile);
                     using (var textWriter = File.AppendText(logFile))
                     {
                         textWriter.WriteLine(msg);
