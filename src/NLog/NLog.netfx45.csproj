@@ -15,8 +15,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -309,10 +308,10 @@
     <Compile Include="LogMessageGenerator.cs" />
     <Compile Include="LogReceiverService\BaseLogReceiverForwardingService.cs" />
     <Compile Include="LogReceiverService\ILogReceiverClient.cs" />
-    <Compile Include="LogReceiverService\ILogReceiverTwoWayClient.cs" />
     <Compile Include="LogReceiverService\ILogReceiverOneWayClient.cs" />
     <Compile Include="LogReceiverService\ILogReceiverOneWayServer.cs" />
     <Compile Include="LogReceiverService\ILogReceiverServer.cs" />
+    <Compile Include="LogReceiverService\ILogReceiverTwoWayClient.cs" />
     <Compile Include="LogReceiverService\IWcfLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\LogReceiverForwardingService.cs" />
     <Compile Include="LogReceiverService\LogReceiverOneWayForwardingService.cs" />
@@ -321,9 +320,9 @@
     <Compile Include="LogReceiverService\NLogEvents.cs" />
     <Compile Include="LogReceiverService\SoapLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\StringCollection.cs" />
-    <Compile Include="LogReceiverService\WcfLogReceiverTwoWayClient.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverOneWayClient.cs" />
+    <Compile Include="LogReceiverService\WcfLogReceiverTwoWayClient.cs" />
     <Compile Include="MappedDiagnosticsContext.cs" />
     <Compile Include="MDC.cs" />
     <Compile Include="NDC.cs" />
