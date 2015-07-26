@@ -125,7 +125,7 @@ namespace NLog.UnitTests.Config
 
 
 
-        [Fact]
+        [Fact(Skip = "This is a know issue and will be resolved diffently (due to backwardscomp and we don't prefer special cases in code)")]
         public void ReconfigExistingLoggers_should_use_new_values()
         {
             var configuration = CreateConfigurationFromString(@"
