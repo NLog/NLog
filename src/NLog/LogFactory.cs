@@ -98,7 +98,7 @@ namespace NLog
 #if !SILVERLIGHT
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
-            currentAppDomain.DomainUnload += currentAppDomain_DomainUnload;
+            CurrentAppDomain.DomainUnload += currentAppDomain_DomainUnload;
 #endif
         }
 
@@ -110,7 +110,7 @@ namespace NLog
             : this()
         {
             this.Configuration = config;
-            currentAppDomain.DomainUnload += currentAppDomain_DomainUnload;
+       
 
         }
 
