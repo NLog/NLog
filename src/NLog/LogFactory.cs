@@ -110,8 +110,6 @@ namespace NLog
             : this()
         {
             this.Configuration = config;
-       
-
         }
 
         /// <summary>
