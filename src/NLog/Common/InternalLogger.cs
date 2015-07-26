@@ -320,6 +320,7 @@ namespace NLog.Common
                 var logFile = LogFile;
                 if (!string.IsNullOrEmpty(logFile))
                 {
+                    CreateDirectoriesIfNeeded(logFile);
                     using (var textWriter = File.AppendText(logFile))
                     {
                         textWriter.WriteLine(msg);
@@ -424,6 +425,21 @@ namespace NLog.Common
                 }
 
                 return defaultValue;
+            }
+        }
+        
+        private static void CreateDirectoriesIfNeeded(string filename)
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(filename));
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
             }
         }
 #endif
