@@ -51,6 +51,7 @@ namespace NLog.Common
     public static class InternalLogger
     {
         private static object lockObject = new object();
+        private static string _logFile;
 
         /// <summary>
         /// Initializes static members of the InternalLogger class.
@@ -63,10 +64,6 @@ namespace NLog.Common
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
-            if (!string.IsNullOrEmpty(LogFile))
-            {
-				CreateDirectoriesIfNeeded(LogFile);
-			}
 			
             Info("NLog internal logger initialized.");
 #else
@@ -94,7 +91,22 @@ namespace NLog.Common
         /// Gets or sets the name of the internal log file.
         /// </summary>
         /// <remarks>A value of <see langword="null" /> value disables internal logging to a file.</remarks>
-        public static string LogFile { get; set; }
+        public static string LogFile
+        {
+            get
+            {
+                return _logFile;
+            }
+
+            set
+            {
+                _logFile = value;
+                if (!string.IsNullOrEmpty(_logFile))
+                {
+                    CreateDirectoriesIfNeeded(_logFile);
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the text writer that will receive internal logs.
