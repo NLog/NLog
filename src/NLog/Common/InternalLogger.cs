@@ -88,7 +88,7 @@ namespace NLog.Common
         public static bool LogToConsoleError { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the internal log file.
+        /// Gets or sets the file path of the internal log file.
         /// </summary>
         /// <remarks>A value of <see langword="null" /> value disables internal logging to a file.</remarks>
         public static string LogFile
