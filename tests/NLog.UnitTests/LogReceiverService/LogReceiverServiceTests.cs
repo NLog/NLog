@@ -308,7 +308,11 @@ namespace NLog.UnitTests.LogReceiverService
                 var logger1 = LogManager.GetLogger("logger1");
                 logFunc(logger1);
 
+
                 countdownEvent.Wait(8000);
+                //we need some extra time for completion
+                Thread.Sleep(1000);
+
                 var recieved = LogRecieverMock.recievedEvents;
 
 

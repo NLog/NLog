@@ -33,6 +33,7 @@
 
 namespace NLog.Layouts
 {
+    using System;
     using Config;
     using LayoutRenderers.Wrappers;
     using System.Collections.Generic;
@@ -62,6 +63,11 @@ namespace NLog.Layouts
         public IList<JsonAttribute> Attributes { get; private set; }
 
         /// <summary>
+        /// Gets or sets the option to suppress the extra spaces in the output json
+        /// </summary>
+        public bool SuppressSpaces { get; set; }
+
+        /// <summary>
         /// Formats the log event as a JSON document for writing.
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
@@ -70,7 +76,8 @@ namespace NLog.Layouts
         {
             var jsonWrapper = new JsonEncodeLayoutRendererWrapper();
             var sb = new StringBuilder();
-            sb.Append("{ ");
+            sb.Append("{");
+            AppendIf(!this.SuppressSpaces, sb, " ");
             bool first = true;
 
             foreach (var col in this.Attributes)
@@ -83,7 +90,8 @@ namespace NLog.Layouts
                 {
                     if (!first)
                     {
-                        sb.Append(", ");
+                        sb.Append(",");
+                        AppendIf(!this.SuppressSpaces, sb, " ");
                     }
 
                     first = false;
@@ -92,22 +100,31 @@ namespace NLog.Layouts
 
                     if(col.Encode)
                     {
-                        format = "\"{0}\": \"{1}\"";
+                        format = "\"{0}\":{1}\"{2}\"";
                     }
                     else
                     {
                         //If encoding is disabled for current attribute, do not escape the value of the attribute.
                         //This enables user to write arbitrary string value (including JSON).
-                        format = "\"{0}\": {1}";
+                        format = "\"{0}\":{1}{2}";
                     }
 
-                    sb.AppendFormat(format, col.Name, text);
+                    sb.AppendFormat(format, col.Name, !this.SuppressSpaces ? " " : "", text);
                 }
             }
 
-            sb.Append(" }");
+            AppendIf(!this.SuppressSpaces, sb, " ");
+            sb.Append("}");
 
             return sb.ToString();
+        }
+
+        private static void AppendIf<T>(bool condition, StringBuilder stringBuilder, T objectToAppend)
+        {
+            if (condition)
+            {
+                stringBuilder.Append(objectToAppend);
+            }
         }
     }
 }

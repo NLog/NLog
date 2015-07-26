@@ -179,6 +179,7 @@
     <Compile Include="LayoutRenderers\Wrappers\JsonEncodeTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\OnExceptionTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\PaddingTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\ReplaceNewLinesTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\ReplaceTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenEmptyTests.cs" />

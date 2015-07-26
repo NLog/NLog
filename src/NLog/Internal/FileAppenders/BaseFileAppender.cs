@@ -154,20 +154,20 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Creates the file stream.
         /// </summary>
-        /// <param name="allowConcurrentWrite">If set to <c>true</c> allow concurrent writes.</param>
+        /// <param name="allowFileSharedWriting">If set to <c>true</c> sets the file stream to allow shared writing.</param>
         /// <returns>A <see cref="FileStream"/> object which can be used to write to the file.</returns>
-        protected FileStream CreateFileStream(bool allowConcurrentWrite)
+        protected FileStream CreateFileStream(bool allowFileSharedWriting)
         {
             int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
 
-            InternalLogger.Trace("Opening {0} with concurrentWrite={1}", this.FileName, allowConcurrentWrite);
+			InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting);
             for (int i = 0; i < this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
             {
                 try
                 {
                     try
                     {
-                        return this.TryCreateFileStream(allowConcurrentWrite);
+                        return this.TryCreateFileStream(allowFileSharedWriting);
                     }
                     catch (DirectoryNotFoundException)
                     {
@@ -177,12 +177,12 @@ namespace NLog.Internal.FileAppenders
                         }
 
                         Directory.CreateDirectory(Path.GetDirectoryName(this.FileName));
-                        return this.TryCreateFileStream(allowConcurrentWrite);
+                        return this.TryCreateFileStream(allowFileSharedWriting);
                     }
                 }
                 catch (IOException)
                 {
-                    if (!this.CreateFileParameters.ConcurrentWrites || !allowConcurrentWrite || i + 1 == this.CreateFileParameters.ConcurrentWriteAttempts)
+                    if (!this.CreateFileParameters.ConcurrentWrites || i + 1 == this.CreateFileParameters.ConcurrentWriteAttempts)
                     {
                         throw; // rethrow
                     }
@@ -199,11 +199,11 @@ namespace NLog.Internal.FileAppenders
 
 #if !SILVERLIGHT && !MONO
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
-        private FileStream WindowsCreateFile(string fileName, bool allowConcurrentWrite)
+        private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting)
         {
             int fileShare = Win32FileNativeMethods.FILE_SHARE_READ;
 
-            if (allowConcurrentWrite)
+            if (allowFileSharedWriting)
             {
                 fileShare |= Win32FileNativeMethods.FILE_SHARE_WRITE;
             }
@@ -249,11 +249,11 @@ namespace NLog.Internal.FileAppenders
         }
 #endif
 
-        private FileStream TryCreateFileStream(bool allowConcurrentWrite)
+        private FileStream TryCreateFileStream(bool allowFileSharedWriting)
         {
             FileShare fileShare = FileShare.Read;
 
-            if (allowConcurrentWrite)
+            if (allowFileSharedWriting)
             {
                 fileShare = FileShare.ReadWrite;
             }
@@ -268,7 +268,7 @@ namespace NLog.Internal.FileAppenders
             {
                 if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)
                 {
-                    return this.WindowsCreateFile(this.FileName, allowConcurrentWrite);
+                    return this.WindowsCreateFile(this.FileName, allowFileSharedWriting);
                 }
             }
             catch (SecurityException)
