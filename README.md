@@ -33,7 +33,7 @@ Contributing
 As the current NLog team is a small team, we cannot fix every bug or implement every feature on our own. So contributions are really appreciated!
 
 If you like to start with a small task, then
-[up-for-grabs](https://github.com/NLog/NLog/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+label%3Aup-for-grabs+-label%3A%22almost+ready%22+)  are nice to start with:
+[up-for-grabs](https://github.com/NLog/NLog/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+label%3Aup-for-grabs+-label%3A%22almost+ready%22+)  are nice to start with.
 
 
 A good way to get started (flow)
