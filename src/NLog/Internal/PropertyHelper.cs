@@ -266,7 +266,7 @@ namespace NLog.Internal
 
         private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
             var converter = TypeDescriptor.GetConverter(type);
             if (converter.CanConvertFrom(typeof(string)))
             {

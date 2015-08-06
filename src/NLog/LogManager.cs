@@ -52,7 +52,9 @@ namespace NLog
     public sealed class LogManager
     {
         private static readonly LogFactory factory = new LogFactory();
+        #if !UAP10
         private static IAppDomain currentAppDomain;
+#endif
         private static ICollection<Assembly> _hiddenAssemblies;
 
         private static readonly object lockObject = new object();
@@ -64,7 +66,7 @@ namespace NLog
         [Obsolete]
         public delegate CultureInfo GetCultureInfo();
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO && !UAP10
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
@@ -110,7 +112,7 @@ namespace NLog
             get { return factory.ThrowExceptions; }
             set { factory.ThrowExceptions = value; }
         }
-
+#if !UAP10
         internal static IAppDomain CurrentAppDomain
         {
             get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
@@ -123,6 +125,7 @@ namespace NLog
                 currentAppDomain = value;
             }
         }
+#endif
 
         /// <summary>
         /// Gets or sets the current logging configuration.
@@ -247,7 +250,7 @@ namespace NLog
             factory.ReconfigExistingLoggers();
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
@@ -349,7 +352,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
             }
         }
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO && !UAP10
         private static void SetupTerminationEvents()
         {
             try
@@ -381,7 +384,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
 
             do
             {
-#if SILVERLIGHT
+#if SILVERLIGHT && UAP10
                 StackFrame frame = new StackTrace().GetFrame(framesToSkip);
 #else
                 StackFrame frame = new StackFrame(framesToSkip, false);

@@ -144,7 +144,7 @@ namespace NLog.Config
         }
 #endif
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -374,8 +374,10 @@ namespace NLog.Config
             }
             this.AutoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", false);
             LogManager.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", LogManager.ThrowExceptions);
+#if !UAP10
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
+#endif
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
             InternalLogger.LogLevel = LogLevel.FromString(nlogElement.GetOptionalAttribute("internalLogLevel", InternalLogger.LogLevel.Name));
             LogManager.GlobalThreshold = LogLevel.FromString(nlogElement.GetOptionalAttribute("globalThreshold", LogManager.GlobalThreshold.Name));

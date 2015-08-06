@@ -60,15 +60,16 @@ namespace NLog
     /// </summary>
     public class LogFactory : IDisposable
     {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
         private const int ReconfigAfterFileChangedTimeout = 1000;
 
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
         private Timer reloadTimer;
         private readonly MultiFileWatcher watcher;       
 #endif
-
+#if !UAP10
         private static IAppDomain currentAppDomain;
+#endif
         private readonly object syncRoot = new object();
 
         private LoggingConfiguration config;
@@ -95,7 +96,7 @@ namespace NLog
         /// </summary>
         public LogFactory()
         {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
 #endif
@@ -110,6 +111,7 @@ namespace NLog
             this.Configuration = config;
         }
 
+#if !UAP10
         /// <summary>
         /// Gets the current <see cref="IAppDomain"/>.
         /// </summary>
@@ -118,6 +120,7 @@ namespace NLog
             get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
             set { currentAppDomain = value; }
         }
+#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether exceptions should be thrown.
@@ -142,7 +145,7 @@ namespace NLog
 
                     this.configLoaded = true;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
                     if (this.config == null)
                     {
                         // Try to load default configuration.
@@ -173,7 +176,7 @@ namespace NLog
 
                     if (this.config != null)
                     {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
                         config.Dump();
                         try
                         {
@@ -193,7 +196,7 @@ namespace NLog
 
             set
             {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
                 try
                 {
                     this.watcher.StopWatching();
@@ -215,7 +218,7 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
                         this.Flush();
 #endif
                         oldConfig.Close();
@@ -230,7 +233,7 @@ namespace NLog
                         
                         this.config.InitializeAll();
                         this.ReconfigExistingLoggers();
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
                         try
                         {
                             this.watcher.Watch(this.config.FileNamesToWatch);
@@ -389,7 +392,7 @@ namespace NLog
             }            
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
@@ -576,7 +579,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
         internal void ReloadConfigOnTimer(object state)
         {
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
@@ -588,6 +591,12 @@ namespace NLog
                 {
                     this.reloadTimer.Dispose();
                     this.reloadTimer = null;
+                }
+                else
+                {
+                    //timer was disposed already. 
+                    this.watcher.Dispose();
+                    return;
                 }
 
                 this.watcher.StopWatching();
@@ -736,7 +745,7 @@ namespace NLog
         /// <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
             if (disposing)
             {
                 this.watcher.Dispose();
@@ -752,7 +761,7 @@ namespace NLog
 
         private static IEnumerable<string> GetCandidateConfigFileNames()
         {
-#if SILVERLIGHT
+#if SILVERLIGHT || UAP10
             yield return "NLog.config";
 #else
             // NLog.config from application directory
@@ -853,7 +862,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
         private void ConfigFileChanged(object sender, EventArgs args)
         {
             InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", LogFactory.ReconfigAfterFileChangedTimeout);

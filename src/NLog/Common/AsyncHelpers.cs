@@ -31,6 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if UAP10
+using Windows.System.Threading;
+#endif
+
 namespace NLog.Common
 {
     using System;

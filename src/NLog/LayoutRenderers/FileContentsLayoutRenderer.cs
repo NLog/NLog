@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public FileContentsLayoutRenderer()
         {
-#if SILVERLIGHT
+#if SILVERLIGHT || UAP10
             this.Encoding = Encoding.UTF8;
 #else
             this.Encoding = Encoding.Default;

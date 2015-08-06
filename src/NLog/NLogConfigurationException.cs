@@ -38,7 +38,7 @@ namespace NLog
     /// <summary>
     /// Exception thrown during NLog configuration.
     /// </summary>
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
     [Serializable]
 #endif
     public class NLogConfigurationException : Exception
@@ -69,7 +69,7 @@ namespace NLog
         {
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT  && !UAP10
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogConfigurationException" /> class.
         /// </summary>

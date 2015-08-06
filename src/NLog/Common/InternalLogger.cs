@@ -35,17 +35,19 @@ namespace NLog.Common
 {
     using System;
     using System.ComponentModel;
+#if !UAP10
     using System.Configuration;
+#endif
     using System.Globalization;
     using System.IO;
     using System.Text;
     using NLog.Internal;
     using NLog.Time;
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
     using ConfigurationManager = System.Configuration.ConfigurationManager;
 #endif
 
-	/// <summary>
+    /// <summary>
     /// NLog internal logger.
     /// </summary>
     public static class InternalLogger
@@ -58,7 +60,7 @@ namespace NLog.Common
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static InternalLogger()
         {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
@@ -75,6 +77,7 @@ namespace NLog.Common
         /// </summary>
         public static LogLevel LogLevel { get; set; }
 
+#if !UAP10
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console output stream.
         /// </summary>
@@ -84,6 +87,8 @@ namespace NLog.Common
         /// Gets or sets a value indicating whether internal messages should be written to the console error stream.
         /// </summary>
         public static bool LogToConsoleError { get; set; }
+
+#endif
 
         /// <summary>
         /// Gets or sets the name of the internal log file.
@@ -291,7 +296,11 @@ namespace NLog.Common
                 return;
             }
 
-            if (string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null)
+            if (string.IsNullOrEmpty(LogFile)
+#if !UAP10
+                && !LogToConsole && !LogToConsoleError 
+#endif
+                && LogWriter == null)
             {
                 return;
             }
@@ -335,7 +344,7 @@ namespace NLog.Common
                         writer.WriteLine(msg);
                     }
                 }
-
+#if !UAP10
                 // log to console
                 if (LogToConsole)
                 {
@@ -347,6 +356,7 @@ namespace NLog.Common
                 {
                     Console.Error.WriteLine(msg);
                 }
+#endif
             }
             catch (Exception exception)
             {
@@ -359,7 +369,7 @@ namespace NLog.Common
             }
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UAP10
         private static string GetSettingString(string configName, string envName)
         {
             string settingValue = ConfigurationManager.AppSettings[configName];

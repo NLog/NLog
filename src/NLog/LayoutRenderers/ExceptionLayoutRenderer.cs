@@ -202,7 +202,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose method name should be appended.</param>
         protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT || UAP10
             sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
 #else
             if (ex.TargetSite != null)
@@ -314,7 +314,7 @@ namespace NLog.LayoutRenderers
             return dataTargets.ToArray();
         }
 
-#if SILVERLIGHT
+#if SILVERLIGHT || UAP10
         protected static string ParseMethodNameFromStackTrace(string stackTrace)
         {
             // get the first line of the stack trace
