@@ -9,6 +9,11 @@ Welcome to NLog
 [![AppVeyor](https://img.shields.io/appveyor/ci/Xharze/nlog-134/master.svg)](https://ci.appveyor.com/project/Xharze/nlog-134/branch/master)
 <!--[![Pre-release version](https://img.shields.io/nuget/vpre/NLog.svg)](https://www.nuget.org/packages/NLog)--> 
 
+---
+
+[NLog is Looking for Developers!](http://nlog-project.org/2015/08/05/NLog-is-looking-for-developers.html)
+
+---
 
 NLog is a free logging platform for .NET with rich log routing and management 
 capabilities. It makes it easy to produce and manage high-quality logs for 
