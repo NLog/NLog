@@ -550,7 +550,15 @@ namespace NLog
 
         internal void WriteToTargets<T>(LogLevel level, IFormatProvider formatProvider, T value)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, formatProvider, value)), this.Factory);
+            var logEvent = PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, formatProvider, value));
+            var ex = value as Exception;
+            if (ex != null)
+            {
+                //also record exception
+                logEvent.Exception = ex;
+             
+            }
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), logEvent, this.Factory);
         }
 
         [Obsolete("Use WriteToTargets(Exception ex, LogLevel level, IFormatProvider formatProvider, string message, object[] args) method instead.")]
