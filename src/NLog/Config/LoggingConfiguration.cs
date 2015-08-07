@@ -126,6 +126,19 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Registers the specified target object. The name of the target is read from <see cref="Target.Name"/>.
+        /// </summary>
+        /// <param name="target">
+        /// The target object with a non <see langword="null"/> <see cref="Target.Name"/>
+        /// </param>
+        /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <see langword="null"/></exception>
+        public void AddTarget([NotNull] Target target)
+        {
+            if (target == null) throw new ArgumentNullException("target");
+            AddTarget(target.Name, target);
+        }
+
+        /// <summary>
         /// Registers the specified target object under a given name.
         /// </summary>
         /// <param name="name">
@@ -164,6 +177,22 @@ namespace NLog.Config
             }
 
             return value;
+        }
+
+        /// <summary>
+        /// Finds the target with the specified name and specified type.
+        /// </summary>
+        /// <param name="name">
+        /// The name of the target to be found.
+        /// </param>
+        /// <typeparam name="TTarget">Type of the target</typeparam>
+        /// <returns>
+        /// Found target or <see langword="null"/> when the target is not found of not of type <typeparamref name="TTarget"/>
+        /// </returns>
+        public TTarget FindTargetByName<TTarget>(string name)
+            where TTarget : Target
+        {
+            return FindTargetByName(name) as TTarget;
         }
 
         /// <summary>
