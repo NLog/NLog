@@ -1,2 +1,2 @@
 language: csharp
-solution: src/NLog.netfx45.sln
+solution: src/NLog.mono2.sln
