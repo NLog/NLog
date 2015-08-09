@@ -456,6 +456,10 @@ namespace NLog.Common
                 {
                     throw;
                 }
+                else
+                {
+                    Error("Cannot create needed directories to {0}. {1}", filename, exception.Message);
+                }
             }
         }
 #endif
