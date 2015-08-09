@@ -32,7 +32,7 @@
 // 
 
 
-
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests.LogReceiverService
 {
@@ -356,3 +356,6 @@ namespace NLog.UnitTests.LogReceiverService
 #endif
     }
 }
+
+
+#endif
