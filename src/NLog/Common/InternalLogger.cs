@@ -101,10 +101,13 @@ namespace NLog.Common
             set
             {
                 _logFile = value;
+
+#if !SILVERLIGHT
                 if (!string.IsNullOrEmpty(_logFile))
                 {
                     CreateDirectoriesIfNeeded(_logFile);
                 }
+#endif
             }
         }
 
