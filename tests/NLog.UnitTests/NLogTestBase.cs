@@ -31,9 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Practices.ObjectBuilder2;
+
 
 namespace NLog.UnitTests
 {
@@ -46,6 +44,10 @@ namespace NLog.UnitTests
     using NLog.Config;
     using Xunit;
     using System.Reflection;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.Practices.ObjectBuilder2;
+
 #if SILVERLIGHT
     using System.Xml.Linq;
 #else
