@@ -1345,21 +1345,20 @@ namespace NLog.UnitTests.Targets
             {
                 var archiveNotificationFlag = new ManualResetEvent(false);
 
-                FileTarget.FileArchivedHandler handler = name =>
-                {
-                    Assert.True(File.Exists(name));
-                    archiveNotificationFlag.Set();
-                };
-
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}archive.txt"),
+                    ArchiveFileName = Path.Combine(tempPath, "archive\\{#}archive.txt"),
                     ArchiveAboveSize = 1000,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Rolling,
                     Layout = "${message}",
-                    OnFileArchived = handler
+                };
+
+                ft.OnFileArchived += name =>
+                {
+                    Assert.True(File.Exists(name));
+                    archiveNotificationFlag.Set();
                 };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -1375,7 +1374,7 @@ namespace NLog.UnitTests.Targets
                     logger.Debug("bbb");
                 }
 
-                Assert.True(archiveNotificationFlag.WaitOne(250), "Didn't receive notification");
+                Assert.True(archiveNotificationFlag.WaitOne(250), "Didn't receive file archival notification");
 
 
             }
@@ -1393,6 +1392,70 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempPath, true);
                 }
             }
+        }
+        
+        [Fact]
+        public void FileTarget_NotifiesOnFileDeleted()
+        {
+
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                var archiveDeletionFlag = new ManualResetEvent(false);
+                int maxArchives = 5;
+                var archiveFilePath = Path.Combine(tempPath, "archive");
+
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(archiveFilePath, "{#}archive.txt"),
+                    ArchiveAboveSize = 1000,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = ArchiveNumberingMode.Rolling,
+                    Layout = "${message}",
+                    MaxArchiveFiles = maxArchives,
+                };
+
+                ft.OnArchiveFileDeleted += name =>
+                {
+                    Assert.True(!File.Exists(name));
+                    archiveDeletionFlag.Set();
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                for (int j = 0; j < maxArchives; j++)
+                {
+                    for (var i = 0; i < 250; ++i)
+                    {
+                        logger.Debug("aaa");
+                    }
+                }
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("bbb");
+                }
+
+                Assert.True(archiveDeletionFlag.WaitOne(250), "Didn't receive file deletion notification");
+
+
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+
+                if (File.Exists(tempFile))
+                {
+                    File.Delete(tempFile);
+                }
+
+                if (Directory.Exists(tempPath))
+                {
+                    Directory.Delete(tempPath, true);
+                }
+            }
+
         }
 
         private void FileTarget_ArchiveNumbering_DateAndSequenceTests(bool enableCompression)

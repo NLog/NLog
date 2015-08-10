@@ -71,10 +71,11 @@ namespace NLog.Targets
         private int initializedFilesCounter;
 
         /// <summary>
-        /// The shape of a file archive callback
+        /// Provides the shape of an archive file changed event. Event name will describe the action.
         /// </summary>
-        /// <param name="archiveFileName">The name of the newly created archive file.</param>
-        public delegate void FileArchivedHandler(string archiveFileName);
+        /// <param name="archiveFilename">The name of the file in question.</param>
+        public delegate void ArchiveFileAlteredHandler(string archiveFilename);
+        
 
         private int maxArchiveFiles;
 
@@ -120,6 +121,9 @@ namespace NLog.Targets
 
             this.maxLogFilenames = 20;
             this.previousFileNames = new Queue<string>(this.maxLogFilenames);
+
+            this.fileArchive.OnArchiveFileDeleted += fileArchive_OnArchiveFileDeleted;
+            this.fileArchive.OnFileArchived += fileArchive_OnFileArchived;
         }
 
         /// <summary>
@@ -430,10 +434,16 @@ namespace NLog.Targets
 #endif
 
         /// <summary>
-        /// Sets the method that is called when the file is archived.
+        /// The event that is raised when a file is archived.
         /// </summary>
         [DefaultValue(null)]
-        public FileArchivedHandler OnFileArchived { private get; set; }
+        public event ArchiveFileAlteredHandler OnFileArchived;
+
+        /// <summary>
+        /// The event that is raised when a file is deleted.
+        /// </summary>
+        [DefaultValue(null)]
+        public event ArchiveFileAlteredHandler OnArchiveFileDeleted;
 
         /// <summary>
         /// Gets the characters that are appended after each line.
@@ -828,6 +838,10 @@ namespace NLog.Targets
             if (this.MaxArchiveFiles > 0 && archiveNumber >= this.MaxArchiveFiles)
             {
                 File.Delete(fileName);
+                var preventNullRefs = this.OnArchiveFileDeleted;
+                if (preventNullRefs != null)
+                    preventNullRefs(fileName);
+
                 return;
             }
 
@@ -919,6 +933,9 @@ namespace NLog.Targets
                     if (number2name.TryGetValue(i, out s))
                     {
                         File.Delete(s);
+                        var preventNullRefs = this.OnArchiveFileDeleted;
+                        if (preventNullRefs != null)
+                            preventNullRefs(s);
                     }
                 }
             }
@@ -927,7 +944,7 @@ namespace NLog.Targets
             RollArchiveForward(fileName, newFileName, shouldCompress: true);
         }
 
-        private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression, FileArchivedHandler archiveCallback)
+        private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression, ArchiveFileAlteredHandler archiveCallback)
         {
 #if NET4_5
             if (enableCompression)
@@ -977,6 +994,32 @@ namespace NLog.Targets
             else if (this.initializedFiles.ContainsKey(existingFileName))
             {
                 this.initializedFiles.Remove(existingFileName);
+            }
+        }
+
+        /// <summary>
+        /// Acts as a pass-through method for the fileArchive object's OnFileArchived event. Raises our OnFileArchived event.
+        /// </summary>
+        /// <param name="archiveFilename"></param>
+        private void fileArchive_OnFileArchived(string archiveFilename)
+        {
+            var preventNullRefs = this.OnFileArchived;
+            if (preventNullRefs != null)
+            {
+                preventNullRefs(archiveFilename);
+            }
+        }
+
+        /// <summary>
+        /// Acts as a pass-through method for the fileArchive object's OnArchiveFileDeleted event. Raises our OnFileArchived event.
+        /// </summary>
+        /// <param name="archiveFilename"></param>
+        private void fileArchive_OnArchiveFileDeleted(string archiveFilename)
+        {
+            var preventNullRefs = this.OnArchiveFileDeleted;
+            if (preventNullRefs != null)
+            {
+                preventNullRefs(archiveFilename);
             }
         }
 
@@ -1083,7 +1126,11 @@ namespace NLog.Targets
                     if (fileIndex > archiveFileCount - this.MaxArchiveFiles)
                         break;
 
-                    File.Delete(filesByDate[fileIndex]);
+                    var file = filesByDate[fileIndex];
+                    File.Delete(file);
+                    var preventNullRefs = this.OnArchiveFileDeleted;
+                    if (preventNullRefs != null)
+                        preventNullRefs(file);
                 }
             }
             catch (DirectoryNotFoundException)
@@ -1157,7 +1204,11 @@ namespace NLog.Targets
                         if (fileIndex > files.Count - this.MaxArchiveFiles)
                             break;
 
-                        File.Delete(filesByDate[fileIndex]);
+                        var file = filesByDate[fileIndex];
+                        File.Delete(file);
+                        var preventNullRefs = this.OnArchiveFileDeleted;
+                        if (preventNullRefs != null)
+                            preventNullRefs(file);
                     }
                 }
             }
@@ -1248,7 +1299,7 @@ namespace NLog.Targets
 
             if (!ContainFileNamePattern(fileNamePattern))
             {
-                if (fileArchive.Archive(fileNamePattern, fileInfo.FullName, CreateDirs, EnableArchiveFileCompression, this.OnFileArchived))
+                if (fileArchive.Archive(fileNamePattern, fileInfo.FullName, CreateDirs, EnableArchiveFileCompression))
                 {
                     if (this.initializedFiles.ContainsKey(fileInfo.FullName))
                     {
@@ -1769,11 +1820,19 @@ namespace NLog.Targets
         }
 #endif
 
+        /// <summary>
+        /// Note: What is the purpose of this class??? BL 2015/08/10
+        /// </summary>
         private class DynamicFileArchive
         {
             public bool CreateDirectory { get; set; }
 
             public int MaxArchiveFileToKeep { get; set; }
+
+            public event ArchiveFileAlteredHandler OnFileArchived;
+
+            public event ArchiveFileAlteredHandler OnArchiveFileDeleted;
+
 
             public DynamicFileArchive(int maxArchivedFiles)
                 : this()
@@ -1788,10 +1847,9 @@ namespace NLog.Targets
             /// <param name="fileName">Original file name</param>
             /// <param name="createDirectory">Create a directory, if it does not exist</param>
             /// <param name="enableCompression">Enables file compression</param>
-            /// <param name="archiveCallback">The method to call when the file is archived.</param>
             /// <returns><c>true</c> if the file has been moved successfully; <c>false</c> otherwise</returns>
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-            public bool Archive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression, FileArchivedHandler archiveCallback)
+            public bool Archive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
             {
                 if (MaxArchiveFileToKeep < 1)
                 {
@@ -1806,7 +1864,7 @@ namespace NLog.Targets
                 }
 
                 DeleteOldArchiveFiles();
-                AddToArchive(archiveFileName, fileName, createDirectory, enableCompression, archiveCallback);
+                AddToArchive(archiveFileName, fileName, createDirectory, enableCompression);
                 archiveFileQueue.Enqueue(archiveFileName);
                 return true;
             }
@@ -1819,7 +1877,7 @@ namespace NLog.Targets
             }
             private readonly Queue<string> archiveFileQueue;
 
-            private void AddToArchive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression, FileArchivedHandler archiveCallback)
+            private void AddToArchive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
             {
                 String alternativeFileName = archiveFileName;
 
@@ -1831,7 +1889,7 @@ namespace NLog.Targets
 
                 try
                 {
-                    ArchiveFile(fileName, alternativeFileName, enableCompression, archiveCallback);
+                    ArchiveFile(fileName, alternativeFileName, enableCompression, this.OnFileArchived);
                 }
                 catch (DirectoryNotFoundException)
                 {
@@ -1842,7 +1900,7 @@ namespace NLog.Targets
                         try
                         {
                             Directory.CreateDirectory(Path.GetDirectoryName(archiveFileName));
-                            ArchiveFile(fileName, alternativeFileName, enableCompression, archiveCallback);
+                            ArchiveFile(fileName, alternativeFileName, enableCompression, this.OnFileArchived);
                         }
                         catch (Exception ex)
                         {
@@ -1875,6 +1933,9 @@ namespace NLog.Targets
                     try
                     {
                         File.Delete(archiveFileName);
+                        var preventNullRefs = this.OnArchiveFileDeleted;
+                        if (preventNullRefs != null)
+                            preventNullRefs(archiveFileName);
                     }
                     catch (Exception ex)
                     {
@@ -1889,6 +1950,9 @@ namespace NLog.Targets
                     try
                     {
                         File.Delete(oldestArchivedFileName);
+                        var preventNullRefs = this.OnArchiveFileDeleted;
+                        if (preventNullRefs != null)
+                            preventNullRefs(oldestArchivedFileName);
                     }
                     catch (Exception ex)
                     {
