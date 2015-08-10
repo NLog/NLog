@@ -75,6 +75,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <value>The encoding.</value>
         /// <docgen category='File Options' order='10' />
+        [DefaultByteOrderMark(ByteOrderMark.Include)]
         public Encoding Encoding { get; set; }
 
         /// <summary>

@@ -90,20 +90,20 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_httppost_utf8_default_no_bom()
         {
-            WebserviceTest_httppost_utf8("", false);
+            WebserviceTest_httppost_utf8("encoding='utf-8'", false);
         }
 
 
         [Fact]
         public void WebserviceTest_httppost_utf8_with_bom()
         {
-            WebserviceTest_httppost_utf8("includeBOM='true'", true);
+            WebserviceTest_httppost_utf8("encoding='utf-8-bom'", true);
         }
 
         [Fact]
         public void WebserviceTest_httppost_utf8_no_boml()
         {
-            WebserviceTest_httppost_utf8("includeBOM='false'", false);
+            WebserviceTest_httppost_utf8("encoding='utf-8-no-bom'", false);
         }
 
         private void WebserviceTest_httppost_utf8(string bomAttr, bool includeBom)
@@ -116,7 +116,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             url='http://localhost:57953/Home/Foo2'
             protocol='HttpPost'
           " + bomAttr + @"
-            encoding='UTF-8'
             methodName='Foo'>
         <parameter name='empty' type='System.String' layout=''/> <!-- work around so the guid is decoded properly -->
         <parameter name='guid' type='System.String' layout='${guid}'/>
