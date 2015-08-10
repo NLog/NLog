@@ -28,6 +28,11 @@ or just get started with the tutorials on [the NLog wiki](https://github.com/NLo
 
 [Project news - including RSS feed](http://nlog-project.org/archives/)
 
+Extensions
+---
+This is the core of NLog. There are multiple extensions on NLog, some are maintained by NLog and other by the community. Check [the targets](https://github.com/NLog/NLog/wiki/Targets#targets) and [the layout renderers](https://github.com/NLog/NLog/wiki/Layout-Renderers#layout-renderers) wiki pages for more information!
+
+
 Questions, bug reports or feature requests?
 ---
 Do you have feature requests, questions or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](CONTRIBUTING.md).
