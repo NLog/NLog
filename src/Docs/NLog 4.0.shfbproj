@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <!-- The configuration and platform will be used to determine which
+         assemblies to include from solution and project documentation
+         sources -->
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ff8480e8-de05-4447-a460-d63ee65bdcbf}</ProjectGuid>
+    <Framework>.NET Framework 4.5</Framework>
+    <NLogPath>$(MSBuildProjectDirectory)\..\..\</NLogPath>
+    <WorkingPath>Working\</WorkingPath>
+    <BuildLabel Condition="'$(BuildLabel)'=='(none)'">
+    </BuildLabel>
+    <SHFBSchemaVersion>1.9.9.0</SHFBSchemaVersion>
+    <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
+         Studio adds them anyway -->
+    <AssemblyName>NLog</AssemblyName>
+    <RootNamespace>NLog</RootNamespace>
+    <Name>Documentation</Name>
+    <NLogBuildPath>$(NLogPath)\build\bin\$(Configuration)\$(Framework)</NLogBuildPath>
+    <!-- SHFB properties -->
+    <OutputPath>$(NLogPath)\build\docs\</OutputPath>
+    <HtmlHelpName>NLog</HtmlHelpName>
+    <DocumentationSources>
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.dll" xmlns="" />
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.xml" xmlns="" />
+    </DocumentationSources>
+    <DocumentationSources Condition="Exists('$(NLogBuildPath)\NLog.Extended.dll')">
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.dll" />
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.xml" />
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.Extended.dll" />
+      <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.Extended.xml" />
+    </DocumentationSources>
+    <HelpTitle>Documentation NLog 4.0</HelpTitle>
+    <CopyrightText>Copyright %28c%29 2004-2015 by Kim Christensen</CopyrightText>
+    <FeedbackEMailAddress>
+    </FeedbackEMailAddress>
+    <CopyrightHref>http://nlog-project.org/</CopyrightHref>
+    <FrameworkVersion>.NET Framework 4.5</FrameworkVersion>
+    <ComponentConfigurations>
+      <ComponentConfig id="Code Block Component" enabled="True">
+        <component id="Code Block Component">
+  <basePath value="{@HtmlEncProjectFolder}/../.." />
+  <outputPaths>{@HelpFormatOutputPaths}</outputPaths>
+  <allowMissingSource value="false" />
+  <removeRegionMarkers value="false" />
+  <colorizer syntaxFile="{@SHFBFolder}PresentationStyles\Colorizer\highlight.xml" styleFile="{@SHFBFolder}PresentationStyles\Colorizer\highlight.xsl" stylesheet="{@SHFBFolder}PresentationStyles\Colorizer\highlight.css" scriptFile="{@SHFBFolder}PresentationStyles\Colorizer\highlight.js" disabled="{@DisableCodeBlockComponent}" language="cs" tabSize="0" numberLines="false" outlining="false" keepSeeTags="false" defaultTitle="true" />
+</component>
+      </ComponentConfig>
+    </ComponentConfigurations>
+    <ApiFilter>
+    </ApiFilter>
+    <Preliminary>False</Preliminary>
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="NLog" isDocumented="True">
+        Contains classes used by instrumented application to output log messages.
+      </NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Internal" isDocumented="True">
+        Components used internally for NLog.
+      </NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Config" isDocumented="True">
+        Provides APIs to configure logging.
+      </NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Targets" isDocumented="True">Iimplementation of log targets.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Targets.Wrappers" isDocumented="True">Iimplementation of wrapper targets.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Filters" isDocumented="True">Implementation of filters.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Layouts" isDocumented="True">Implementation of layouts.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.LayoutRenderers" isDocumented="True">Implementation of layout renderers.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.LayoutRenderers.Wrappers" isDocumented="True">Implementation of wrapper layout renderers.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Conditions" isDocumented="True">
+        Contains implementation of conditions used to filter log events.
+      </NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Common" isDocumented="True">
+        Contains common components used when implementing NLog extensions.
+      </NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.ComInterop" isDocumented="True">
+        COM Interop classes.
+      </NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.LogReceiverService" isDocumented="True">
+        WCF proxy classes for implementing clients and servers of log receiver service.
+      </NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Web" isDocumented="True">
+        Integration with ASP.NET.
+      </NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Fluent" isDocumented="False">Fluent building of log messages.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Internal.Fakeables" isDocumented="True">Helpers for mocking</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Time" isDocumented="True">Time calculations for messages.</NamespaceSummaryItem></NamespaceSummaries>
+    <PlugInConfigurations>
+    </PlugInConfigurations>
+    <NamingMethod>MemberName</NamingMethod>
+    <ProjectSummary>
+    </ProjectSummary>
+    <HelpFileFormat>Website</HelpFileFormat>
+    <SyntaxFilters>C#, Visual Basic, Visual Basic Usage</SyntaxFilters>
+    <BuildAssemblerVerbosity>OnlyErrors</BuildAssemblerVerbosity>
+    <IndentHtml>False</IndentHtml>
+    <KeepLogFile>True</KeepLogFile>
+    <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <CleanIntermediates>True</CleanIntermediates>
+    <MaximumGroupParts>2</MaximumGroupParts>
+    <NamespaceGrouping>False</NamespaceGrouping>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <RootNamespaceTitle>NLog namespaces</RootNamespaceTitle>
+    <RootNamespaceContainer>True</RootNamespaceContainer>
+    <PresentationStyle>VS2013</PresentationStyle>
+    <Language>en-US</Language>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected</VisibleItems>
+    <BuildLogFile />
+    <HtmlHelp1xCompilerPath />
+    <HtmlHelp2xCompilerPath />
+    <ComponentPath />
+    <TransformComponentArguments>
+      <Argument Key="logoFile" Value="../../NLogo.gif" />
+      <Argument Key="logoHeight" Value="" />
+      <Argument Key="logoWidth" Value="" />
+      <Argument Key="logoAltText" Value="NLog" />
+      <Argument Key="logoPlacement" Value="left" />
+      <Argument Key="logoAlignment" Value="left" />
+      <Argument Key="maxVersionParts" Value="" />
+      <Argument Key="defaultLanguage" Value="cs" />
+    </TransformComponentArguments>
+  </PropertyGroup>
+  <!-- There are no properties for these two groups but they need to appear in
+       order for Visual Studio to perform the build. -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+  <!-- Import the SHFB build targets -->
+  <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
+  <Import Project="Frameworks\$(Framework).shfbproj" Condition="Exists('Frameworks\$(Framework).shfbproj')" />
+</Project>
