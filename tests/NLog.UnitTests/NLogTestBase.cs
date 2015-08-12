@@ -46,8 +46,7 @@ namespace NLog.UnitTests
     using System.Reflection;
     using System.Collections.Generic;
     using System.Linq;
-    using Microsoft.Practices.ObjectBuilder2;
-
+ 
 #if SILVERLIGHT
     using System.Xml.Linq;
 #else
@@ -100,7 +99,10 @@ namespace NLog.UnitTests
         private static void SetStaticProperyValues(Type t, IDictionary<string, object> values)
         {
             var staticPropertyInfos = GetReadableAndWritableStaticPropertyInfos(t);
-            staticPropertyInfos.ForEach(p => { p.SetValue(t, values[p.Name], null); });
+            foreach (var p in staticPropertyInfos)
+            {
+                p.SetValue(t, values[p.Name], null);
+            }
         }
 
         /// <summary>
