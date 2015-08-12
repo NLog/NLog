@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !SILVERLIGHT4
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -56,3 +58,5 @@ namespace NLog.LayoutRenderers
         }
     }
 }
+
+#endif
