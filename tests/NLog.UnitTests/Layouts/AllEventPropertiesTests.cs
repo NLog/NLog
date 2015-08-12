@@ -34,12 +34,13 @@
 using System;
 using System.Text;
 using NLog.LayoutRenderers;
+using NLog.Fluent;
 
 namespace NLog.UnitTests.Layouts
 {
     using Xunit;
 
-    public class AllEventPropertiesLayoutRendererTests : NLogTestBase
+    public class AllEventPropertiesTests : NLogTestBase
     {
         [Fact]
         public void AllParametersAreSetToDefault()
@@ -106,6 +107,92 @@ namespace NLog.UnitTests.Layouts
             var ex = Assert.Throws<ArgumentException>(() => renderer.Format = "[key] is [vlue]");
             Assert.Equal("Invalid format: [value] placeholder is missing.", ex.Message);
         }
+
+
+
+        [Fact]
+        public void AllEventWithFluent_without_callerInformation()
+        {
+
+            var configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true' >
+                    <targets>
+                        <target type='Debug'
+                                name='m'
+                               layout='${all-event-properties}'
+                               >
+                           
+     
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='m'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>");
+
+
+            LogManager.Configuration = configuration;
+
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Debug()
+                .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
+                .Property("Test", "InfoWrite")
+                .Property("coolness", "200%")
+                .Property("a", "not b")
+                .Write();
+
+
+            base.AssertDebugLastMessage("m","Test=InfoWrite, coolness=200%, a=not b");
+            
+        }
+
+        
+#if NET4_5
+
+        [Fact]
+        public void AllEventWithFluent_with_callerInformation()
+        {
+
+            var configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true' >
+                    <targets>
+                        <target type='Debug'
+                                name='m'
+                               layout='${all-event-properties:IncludeCallerInformation=true}'
+                               >
+                           
+     
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='m'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>");
+
+
+            LogManager.Configuration = configuration;
+
+      
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Debug()
+                .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
+                .Property("Test", "InfoWrite")
+                .Property("coolness", "200%")
+                .Property("a", "not b")
+                .Write();
+
+
+            base.AssertDebugLastMessageContains("m", "CallerMemberName=");
+            base.AssertDebugLastMessageContains("m", "CallerFilePath=");
+            base.AssertDebugLastMessageContains("m", "CallerLineNumber=");
+
+        }
+        
+#endif
         
         private static LogEventInfo BuildLogEventWithProperties()
         {

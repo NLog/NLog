@@ -340,6 +340,9 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets the size in bytes above which log files will be automatically archived.
+        /// 
+        /// Warning: combining this with <see cref="ArchiveNumberingMode.Date"/> isn't supported. We cannot create multiple archive files, if they should have the same name.
+        /// Choose:  <see cref="ArchiveNumberingMode.DateAndSequence"/> 
         /// </summary>
         /// <remarks>
         /// Caution: Enabling this option can considerably slow down your file 
@@ -398,7 +401,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets ors set a value indicating whether a managed file stream is forced, instead of used the native implementation.
+        /// Gets or set a value indicating whether a managed file stream is forced, instead of used the native implementation.
         /// </summary>
         [DefaultValue(false)]
         public bool ForceManaged { get; set; }
@@ -417,6 +420,9 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool EnableArchiveFileCompression { get; set; }
 #else
+        /// <summary>
+        /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
+        /// </summary>
         private const bool EnableArchiveFileCompression = false;
 #endif
 
@@ -674,14 +680,14 @@ namespace NLog.Targets
                 this.DoAutoArchive(fileName, logEvent);
             }
 
-            this.WriteToFile(fileName, bytes, false);
+            this.WriteToFile(fileName, logEvent, bytes, false);
         }
 
         /// <summary>
         /// Writes the specified array of logging events to a file specified in the FileName
         /// parameter.
         /// </summary>
-        /// <param name="logEvents">An array of <see cref="LogEventInfo "/> objects.</param>
+        /// <param name="logEvents">An array of <see cref="AsyncLogEventInfo"/> objects.</param>
         /// <remarks>
         /// This function makes use of the fact that the events are batched by sorting
         /// the requests by filename. This optimizes the number of open/close calls
@@ -779,7 +785,7 @@ namespace NLog.Targets
                         this.DoAutoArchive(currentFileName, firstLogEvent);
                     }
 
-                    this.WriteToFile(currentFileName, ms.ToArray(), false);
+                    this.WriteToFile(currentFileName, firstLogEvent, ms.ToArray(), false);
                 }
             }
             catch (Exception exception)
@@ -1528,7 +1534,7 @@ namespace NLog.Targets
             */
         }
 
-        private void WriteToFile(string fileName, byte[] bytes, bool justData)
+        private void WriteToFile(string fileName, LogEventInfo logEvent, byte[] bytes, bool justData)
         {
             if (this.ReplaceFileContentsOnEachWrite)
             {
@@ -1536,7 +1542,7 @@ namespace NLog.Targets
                 return;
             }
 
-            bool writeHeader = InitializeFile(fileName, justData);
+            bool writeHeader = InitializeFile(fileName, logEvent, justData);
             BaseFileAppender appender = AllocateFileAppender(fileName);
 
             if (writeHeader)
@@ -1552,7 +1558,7 @@ namespace NLog.Targets
             }
         }
 
-        private bool InitializeFile(string fileName, bool justData)
+        private bool InitializeFile(string fileName, LogEventInfo logEvent, bool justData)
         {
             bool writeHeader = false;
 
@@ -1560,7 +1566,7 @@ namespace NLog.Targets
             {
                 if (!this.initializedFiles.ContainsKey(fileName))
                 {
-                    ProcessOnStartup(fileName);
+                    ProcessOnStartup(fileName, logEvent);
 
                     this.initializedFiles[fileName] = DateTime.Now;
                     this.initializedFilesCounter++;
@@ -1586,20 +1592,20 @@ namespace NLog.Targets
             {
                 if (File.Exists(fileName))
                 {
-                    this.WriteToFile(fileName, footerBytes, true);
+                    this.WriteToFile(fileName, null, footerBytes, true);
                 }
             }
 
             this.initializedFiles.Remove(fileName);
         }
 
-        private void ProcessOnStartup(string fileName)
+        private void ProcessOnStartup(string fileName, LogEventInfo logEvent)
         {
             if (this.ArchiveOldFileOnStartup)
             {
                 try
                 {
-                    this.DoAutoArchive(fileName, null);
+                    this.DoAutoArchive(fileName, logEvent);
                 }
                 catch (Exception exception)
                 {

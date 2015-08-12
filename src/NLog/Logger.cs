@@ -456,7 +456,28 @@ namespace NLog
 
 #if ASYNC_SUPPORTED
         /// <summary>
-        /// Runs async action. If the action throws, the exception is logged at <c>Error</c> level. Exception is not propagated outside of this method.
+        /// If the task causes an exception or is canceled, the exception is logged at <c>Error</c> level. Exception is not propagated outside of this method.
+        /// </summary>
+        /// <param name="task">Task for which to log an exception or cancellation.</param>
+        /// <returns>A task that completes when after <paramref name="task"/> completes.</returns>
+        /// <remarks>
+        /// This task returned by this method does not include a return value, even if <paramref name="task"/> is of type <see cref="Task{T}"/> because the value is not present if the task causes an exception or is canceled.
+        /// If your code requires the return value, do not use this method to swallow the exception; instead, await the task normally and catch the exception to handle the case of no return value.
+        /// </remarks>
+        public async Task SwallowAsync(Task task)
+        {
+            try
+            {
+                await task;
+            }
+            catch (Exception e)
+            {
+                Error(e);
+            }
+        }
+
+        /// <summary>
+        /// Runs async action. If the action causes an exception, or the task it returns causes an exception or is canceled, the exception is logged at <c>Error</c> level. Exception is not propagated outside of this method.
         /// </summary>
         /// <param name="asyncAction">Async action to execute.</param>
         public async Task SwallowAsync(Func<Task> asyncAction)
@@ -472,19 +493,21 @@ namespace NLog
         }
 
         /// <summary>
-        /// Runs the provided async function and returns its result. If exception is thrown, it is logged at <c>Error</c> level.
-        /// Exception is not propagated outside of this method. Fallback value is returned instead.
+        /// Runs the provided async function and returns its result.
+        /// If the function causes an exception, or the task it returns causes an exception or is canceled, the exception is logged at <c>Error</c> level.
+        /// Exception is not propagated outside of this method.
         /// </summary>
         /// <typeparam name="T">Return type of the provided function.</typeparam>
         /// <param name="asyncFunc">Async function to run.</param>
-        /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
+        /// <returns>Result returned by the provided task or a default value in case of exception.</returns>
         public async Task<T> SwallowAsync<T>(Func<Task<T>> asyncFunc)
         {
             return await SwallowAsync(asyncFunc, default(T));
         }
 
         /// <summary>
-        /// Runs the provided async function and returns its result. If exception is thrown, it is logged at <c>Error</c> level.
+        /// Runs the provided async function and returns its result.
+        /// If the function causes an exception, or the task it returns causes an exception or is canceled, the exception is thrown, it is logged at <c>Error</c> level.
         /// Exception is not propagated outside of this method. Fallback value is returned instead.
         /// </summary>
         /// <typeparam name="T">Return type of the provided function.</typeparam>
@@ -527,7 +550,15 @@ namespace NLog
 
         internal void WriteToTargets<T>(LogLevel level, IFormatProvider formatProvider, T value)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, formatProvider, value)), this.Factory);
+            var logEvent = PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, formatProvider, value));
+            var ex = value as Exception;
+            if (ex != null)
+            {
+                //also record exception
+                logEvent.Exception = ex;
+             
+            }
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), logEvent, this.Factory);
         }
 
         [Obsolete("Use WriteToTargets(Exception ex, LogLevel level, IFormatProvider formatProvider, string message, object[] args) method instead.")]

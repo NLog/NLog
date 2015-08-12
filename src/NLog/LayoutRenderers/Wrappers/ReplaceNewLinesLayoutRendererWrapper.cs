@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,57 +31,45 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Layouts
+namespace NLog.LayoutRenderers.Wrappers
 {
     using NLog.Config;
+    using System;
+    using System.ComponentModel;
+
 
     /// <summary>
-    /// JSON attribute.
+    /// Replaces newline characters from the result of another layout renderer with spaces.
     /// </summary>
-    [NLogConfigurationItem]
+    [LayoutRenderer("replace-newlines")]
+    [AmbientProperty("ReplaceNewLines")]
     [ThreadAgnostic]
-    public class JsonAttribute
+    public sealed class ReplaceNewLinesLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
+        /// Initializes a new instance of the <see cref="ReplaceNewLinesLayoutRendererWrapper" /> class.
         /// </summary>
-        public JsonAttribute() : this(null, null, true) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
-        /// </summary>
-        /// <param name="name">The name of the attribute.</param>
-        /// <param name="layout">The layout of the attribute's value.</param>
-        public JsonAttribute(string name, Layout layout): this(name, layout, true) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
-        /// </summary>
-        /// <param name="name">The name of the attribute.</param>
-        /// <param name="layout">The layout of the attribute's value.</param>
-        /// <param name="encode">Encode value with json-encode</param>
-        public JsonAttribute(string name, Layout layout, bool encode)
+        public ReplaceNewLinesLayoutRendererWrapper()
         {
-            this.Name = name;
-            this.Layout = layout;
-            this.Encode = encode;
+            Replacement = " ";
         }
 
         /// <summary>
-        /// Gets or sets the name of the attribute.
+        /// Gets or sets a value indicating the string that should be used for separating lines.
         /// </summary>
-        [RequiredParameter]
-        public string Name { get; set; }
+        [DefaultValue(" ")]
+        public string Replacement { get; set; }
+
 
         /// <summary>
-        /// Gets or sets the layout that will be rendered as the attribute's value.
+        /// Post-processes the rendered message. 
         /// </summary>
-        [RequiredParameter]
-        public Layout Layout { get; set; }
+        /// <param name="text">The text to be post-processed.</param>
+        /// <returns>String with newline characters replaced with spaces.</returns>
+        protected override string Transform(string text)
+        {
+            return text.Replace(Environment.NewLine, Replacement);
+        }
 
-        /// <summary>
-        /// Determines wether or not this attribute will be Json encoded.
-        /// </summary>
-        public bool Encode { get; set; }
     }
 }

@@ -14,6 +14,7 @@
     <BuildVersion Condition=" '$(BuildVersion)' == '' " >$(BUILD_NUMBER)</BuildVersion>
     <BuildVersion Condition=" '$(BuildVersion)' == '' " >3.2.0.0</BuildVersion>
     <BuildVersion Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildVersion>
+    <BuildLastMajorVersion Condition=" '$(BuildLastMajorVersion)' == '' ">$(BUILD_NUMBER)</BuildLastMajorVersion>
     <NuGetVersion>$(BuildVersion)</NuGetVersion>
     <NuGetVersion Condition="'$(NuGetPrelease)' != ''">$(BuildVersion)-$(NuGetPrelease)</NuGetVersion>
     <BuildProductName>NLog v$(BuildVersion)$(BuildLabel)</BuildProductName>
@@ -155,7 +156,8 @@
         <BuildInfoFileContent>
 // automatically generated
 [assembly: System.Reflection.AssemblyProduct("$(BuildProductName)")]
-[assembly: System.Reflection.AssemblyVersion("$(BuildVersion)")]
+[assembly: System.Reflection.AssemblyVersion("$(BuildLastMajorVersion)")]
+[assembly: System.Reflection.AssemblyInformationalVersion("$(BuildVersion)")]
 </BuildInfoFileContent>
     </PropertyGroup>
 

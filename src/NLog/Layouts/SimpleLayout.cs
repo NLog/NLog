@@ -95,6 +95,11 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Original text before compile to Layout renderes
+        /// </summary>
+        public string OriginalText { get; private set; }
+
+        /// <summary>
         /// Gets or sets the layout text.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
@@ -107,6 +112,8 @@ namespace NLog.Layouts
 
             set
             {
+                OriginalText = value;
+
                 LayoutRenderer[] renderers;
                 string txt;
 

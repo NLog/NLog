@@ -236,12 +236,10 @@ namespace NLog.Config
             factory.RegisterExtendedItems();
 #if !SILVERLIGHT
 
-            var location = !String.IsNullOrEmpty(nlogAssembly.Location)
-                ? nlogAssembly.Location
-                : new Uri(nlogAssembly.CodeBase).LocalPath;
-            var assemblyLocation = Path.GetDirectoryName(location);
+            var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.CodeBase).LocalPath);
             if (assemblyLocation == null)
             {
+                InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
                 return factory;
             }
 
@@ -251,12 +249,15 @@ namespace NLog.Config
                 .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
                 .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
                 .Select(x => Path.Combine(assemblyLocation, x));
+
+            InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
             foreach (var extensionDll in extensionDlls)
             {
                 InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
                 var extensionAssembly = Assembly.LoadFrom(extensionDll);
                 factory.RegisterItemsFromAssembly(extensionAssembly);
             }
+            InternalLogger.Debug("Auto loading done");
 #endif
 
             return factory;

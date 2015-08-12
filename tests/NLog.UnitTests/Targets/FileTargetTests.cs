@@ -290,7 +290,7 @@ namespace NLog.UnitTests.Targets
 
                 var assertFileContents =
 #if NET4_5
-                    enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+ enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 #else
  new Action<string, string, Encoding>(AssertFileContents);
 #endif
@@ -402,7 +402,7 @@ namespace NLog.UnitTests.Targets
                     Path.Combine(tempPath, "archive/0003.txt"),
                     StringRepeat(250, "ddd\n"),
                     Encoding.UTF8);
-
+                //0000 should not extists because of MaxArchiveFiles=3
                 Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0000.txt")));
                 Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0004.txt")));
             }
@@ -496,6 +496,80 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempPath, true);
             }
         }
+
+        [Fact(Skip = "this is not supported, because we cannot create multiple archive files with  ArchiveNumberingMode.Date (for one day)")]
+        
+        public void ArchiveAboveSizeWithArchiveNumberingModeDate_maxfiles_o()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), "ArchiveEveryCombinedWithArchiveAboveSize_" + Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
+                    ArchiveAboveSize = 1000,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    ArchiveNumbering = ArchiveNumberingMode.Date
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                //e.g. 20150804
+                var archiveFileName = DateTime.Now.ToString("yyyyMMdd");
+
+                // we emit 5 * 250 *(3 x aaa + \n) bytes
+                // so that we should get a full file + 3 archives
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("aaa");
+                }
+
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("bbb");
+                }
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("ccc");
+                }
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("ddd");
+                }
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("eee");
+                }
+
+                LogManager.Configuration = null;
+
+
+                //we expect only eee and all other in the archive
+                AssertFileContents(tempFile,
+                    StringRepeat(250, "eee\n"),
+                    Encoding.UTF8);
+
+                //DUNNO what to expected!
+                //try (which fails)
+                AssertFileContents(
+                    Path.Combine(tempPath, string.Format("archive/{0}.txt", archiveFileName)),
+                   StringRepeat(250, "aaa\n") +  StringRepeat(250, "bbb\n") + StringRepeat(250, "ccc\n") + StringRepeat(250, "ddd\n"),
+                    Encoding.UTF8);
+
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
 
         [Fact]
         public void DeleteArchiveFilesByDate()
@@ -1390,7 +1464,7 @@ namespace NLog.UnitTests.Targets
 
                 var assertFileContents =
 #if NET4_5
-                    enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+ enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 #else
  new Action<string, string, Encoding>(AssertFileContents);
 #endif
@@ -1542,7 +1616,7 @@ namespace NLog.UnitTests.Targets
                     tempDirectory.Delete(true);
                 }
             }
-            
+
         }
 
         [Fact]
