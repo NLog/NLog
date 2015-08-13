@@ -94,7 +94,15 @@ namespace NLog.UnitTests.Config
         }
 #endif
 
-      
+
+        [Fact]
+        public void None_xml_configuration_throws_not_supported_exception_when_accessing_variables()
+        {
+            var configuration = new LoggingConfiguration();
+            LogManager.Configuration = configuration;
+
+            Assert.Throws<NotSupportedException>(() => LogManager.Configuration.Variables);
+        }
 
         [Fact]
         public void Xml_configuration_returns_defined_variables()
@@ -113,6 +121,52 @@ namespace NLog.UnitTests.Config
 
             Assert.Equal("[[", LogManager.Configuration.Variables["prefix"].OriginalText);
             Assert.Equal("]]", LogManager.Configuration.Variables["suffix"].OriginalText);
+        }
+
+        [Fact(Skip = "This is a know issue and will be resolved diffently (due to backwardscomp and we don't prefer special cases in code)")]
+        public void ReconfigExistingLoggers_should_use_new_values()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+  
+  <variable name='filename' value='initVal' />
+
+  
+  <targets>
+    <target type='File' name='FileLog'
+            fileName='${filename}.log'
+            layout='${longdate} [${uppercase:${level}}] ${message}'
+            archiveFileName='/archives/${shortdate}.{#}.log'
+            archiveEvery='Day'
+            archiveNumbering='Rolling'
+            maxArchiveFiles='7'
+            concurrentWrites='true'
+            />
+  </targets>
+ 
+  <rules>
+    <logger name='*' minlevel='Debug' writeTo='FileLog' />
+  </rules>
+</nlog>
+
+");
+
+            LogManager.Configuration = configuration;
+            ReconfigExistingLoggers_checkTarget("initVal");
+
+            LogManager.Configuration.Variables["filename"] = "newVal";
+
+            LogManager.ReconfigExistingLoggers();
+
+            ReconfigExistingLoggers_checkTarget("newVal");
+        }
+
+        private static void ReconfigExistingLoggers_checkTarget(string fileName)
+        {
+            var target = LogManager.Configuration.FindTargetByName("FileLog") as FileTarget;
+
+            Assert.NotNull(target);
+            Assert.Equal(string.Format("'{0}.log'", fileName), target.FileName.ToString());
         }
     }
 }
