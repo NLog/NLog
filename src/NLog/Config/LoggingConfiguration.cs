@@ -71,6 +71,12 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Use the old exception log handling of NLog 3.0? 
+        /// </summary>
+        [Obsolete("This option will be removed in NLog 5")]
+        public bool ExceptionLoggingOldStyle { get; set; }
+
+        /// <summary>
         /// Gets the variables defined in the configuration.
         /// </summary>
         public IDictionary<string, SimpleLayout> Variables

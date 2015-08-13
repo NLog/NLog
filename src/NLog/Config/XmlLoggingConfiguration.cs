@@ -411,6 +411,9 @@ namespace NLog.Config
             {
                 this.DefaultCultureInfo = CultureInfo.InvariantCulture;
             }
+#pragma warning disable 618
+            this.ExceptionLoggingOldStyle = nlogElement.GetOptionalBooleanAttribute("exceptionLoggingOldStyle", false);
+#pragma warning restore 618
             this.AutoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", false);
             LogManager.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", LogManager.ThrowExceptions);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
