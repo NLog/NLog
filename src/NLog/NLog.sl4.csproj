@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
@@ -237,6 +237,7 @@
     <Compile Include="LayoutRenderers\LongDateLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\MachineNameLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\MdcLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\MdlcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\MessageLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\NdcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\NewLineLayoutRenderer.cs" />
@@ -260,6 +261,7 @@
     <Compile Include="LayoutRenderers\ThreadNameLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TicksLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TimeLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\TraceActivityIdLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\VariableLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedLayoutRendererWrapper.cs" />
@@ -324,6 +326,7 @@
     <Compile Include="LogReceiverService\WcfLogReceiverClientFacade.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverOneWayClient.cs" />
     <Compile Include="MappedDiagnosticsContext.cs" />
+    <Compile Include="MappedDiagnosticsLogicalContext.cs" />
     <Compile Include="MDC.cs" />
     <Compile Include="NDC.cs" />
     <Compile Include="NestedDiagnosticsContext.cs" />

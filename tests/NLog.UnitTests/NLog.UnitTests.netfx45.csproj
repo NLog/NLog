@@ -135,6 +135,7 @@
     <Compile Include="ConfigFileLocatorTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\MappedDiagnosticsLogicalContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
     <Compile Include="Filters\APITests.cs" />
     <Compile Include="Filters\ConditionBasedFilterTests.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="LayoutRenderers\LogLevelTests.cs" />
     <Compile Include="LayoutRenderers\LongDateTests.cs" />
     <Compile Include="LayoutRenderers\MDCTests.cs" />
+    <Compile Include="LayoutRenderers\MdlcLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\MessageTests.cs" />
     <Compile Include="LayoutRenderers\NDCTests.cs" />
     <Compile Include="LayoutRenderers\RegistryTests.cs" />
