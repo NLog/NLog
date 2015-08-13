@@ -591,7 +591,8 @@ namespace NLog
                     this.reloadTimer.Dispose();
                     this.reloadTimer = null;
                 }
-                else
+                
+                if(IsDisposing)
                 {
                     //timer was disposed already. 
                     this.watcher.Dispose();
@@ -897,6 +898,11 @@ namespace NLog
             this.config = new XmlLoggingConfiguration(configFile);
         }
 
+        /// <summary>
+        /// Currenty this logfactory is disposing?
+        /// </summary>
+        private bool IsDisposing;
+
         private void currentAppDomain_DomainUnload(object sender, EventArgs e)
         {
             //stop timer on domain unload, otherwise: 
@@ -904,6 +910,7 @@ namespace NLog
             //Message: Attempted to access an unloaded AppDomain.
             lock (this.syncRoot)
             {
+                IsDisposing = true;
                 if (this.reloadTimer != null)
                 {
                     this.reloadTimer.Dispose();
