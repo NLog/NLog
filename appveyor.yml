@@ -32,3 +32,13 @@ test_script:
       throw "tests not successfull"
     }
 deploy: off
+
+nuget:
+  project_feed: true
+  disable_publish_on_pr: true
+before_build:
+- ps: nuget restore
+build:
+  publish_nuget: true
+  publish_nuget_symbols: true
+  verbosity: normal

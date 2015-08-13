@@ -15,8 +15,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -212,6 +211,7 @@
     <Compile Include="LayoutRenderers\AssemblyVersionLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\CallSiteLineNumberLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CounterLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\DateLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\DocumentUriLayoutRenderer.cs" />
@@ -258,6 +258,7 @@
     <Compile Include="LayoutRenderers\ThreadNameLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TicksLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TimeLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\VariableLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeLayoutRendererWrapper.cs" />
@@ -267,6 +268,7 @@
     <Compile Include="LayoutRenderers\Wrappers\PaddingHorizontalAlignment.cs" />
     <Compile Include="LayoutRenderers\Wrappers\PaddingLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\ReplaceLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\ReplaceNewLinesLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\Rot13LayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\UppercaseLayoutRendererWrapper.cs" />
@@ -413,5 +415,5 @@
       <Compile Include="$(BuildInfoFile)" />
     </ItemGroup>
   </Target>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
 </Project>

@@ -31,6 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -60,6 +65,20 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         public string Separator { get; set; }
 
+#if NET4_5
+
+        /// <summary>
+        /// Also render the caller information attributes? (<see cref="CallerMemberNameAttribute"/>,
+        /// <see cref="CallerFilePathAttribute"/>, <see cref="CallerLineNumberAttribute"/>). 
+        /// 
+        /// See https://msdn.microsoft.com/en-us/library/hh534540.aspx
+        /// </summary>
+       [DefaultValue(false)] 
+       public bool IncludeCallerInformation { get; set; }
+
+
+#endif
+
         /// <summary>
         /// Gets or sets how key/value pairs will be formatted.
         /// </summary>
@@ -88,7 +107,7 @@ namespace NLog.LayoutRenderers
         {
             bool first = true;
 
-            foreach (var property in logEvent.Properties)
+            foreach (var property in GetProperties(logEvent))
             {
                 if (!first)
                 {
@@ -104,6 +123,45 @@ namespace NLog.LayoutRenderers
 
                 builder.Append(pair);
             }
+        }
+
+
+        #if NET4_5
+
+        /// <summary>
+        /// The names of caller information attributes.
+        /// https://msdn.microsoft.com/en-us/library/hh534540.aspx
+        /// </summary>
+        private static HashSet<string> CallerInformationAttributeNames = new HashSet<string>
+        {
+            {"CallerMemberName"},
+            {"CallerFilePath"},
+            {"CallerLineNumber"},
+        };
+
+        /// <summary>
+        /// Also render the call attributes? (<see cref="CallerMemberNameAttribute"/>,
+        /// <see cref="CallerFilePathAttribute"/>, <see cref="CallerLineNumberAttribute"/>). 
+        /// </summary>
+        /// 
+#endif
+
+
+        private IDictionary<object, object> GetProperties(LogEventInfo logEvent)
+        {
+#if NET4_5
+
+            if (this.IncludeCallerInformation)
+            {
+                return logEvent.Properties; 
+            }
+            //filter CallerInformationAttributeNames
+            return logEvent.Properties.Where(p => !CallerInformationAttributeNames.Contains(p.Key)).ToDictionary(p => p.Key, p => p.Value);
+
+#else
+
+            return logEvent.Properties;
+#endif
         }
     }
 }

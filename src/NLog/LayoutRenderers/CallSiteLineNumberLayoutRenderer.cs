@@ -31,57 +31,55 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Layouts
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using NLog.Config;
+using NLog.Internal;
+#if !SILVERLIGHT
+namespace NLog.LayoutRenderers
 {
-    using NLog.Config;
-
     /// <summary>
-    /// JSON attribute.
+    /// The call site source line number. Full callsite <see cref="CallSiteLayoutRenderer"/>
     /// </summary>
-    [NLogConfigurationItem]
+    [LayoutRenderer("callsite-linenumber")]
     [ThreadAgnostic]
-    public class JsonAttribute
+    public class CallSiteLineNumberLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
+        /// Gets or sets the number of frames to skip.
         /// </summary>
-        public JsonAttribute() : this(null, null, true) { }
-
+        [DefaultValue(0)]
+        public int SkipFrames { get; set; }
+        
         /// <summary>
-        /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
+        /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
-        /// <param name="name">The name of the attribute.</param>
-        /// <param name="layout">The layout of the attribute's value.</param>
-        public JsonAttribute(string name, Layout layout): this(name, layout, true) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
-        /// </summary>
-        /// <param name="name">The name of the attribute.</param>
-        /// <param name="layout">The layout of the attribute's value.</param>
-        /// <param name="encode">Encode value with json-encode</param>
-        public JsonAttribute(string name, Layout layout, bool encode)
+        StackTraceUsage IUsesStackTrace.StackTraceUsage
         {
-            this.Name = name;
-            this.Layout = layout;
-            this.Encode = encode;
+            get
+            {
+                return StackTraceUsage.WithSource;
+            }
         }
 
         /// <summary>
-        /// Gets or sets the name of the attribute.
+        /// Renders the call site and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
-        [RequiredParameter]
-        public string Name { get; set; }
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            StackFrame frame = logEvent.StackTrace != null ? logEvent.StackTrace.GetFrame(logEvent.UserStackFrameNumber + SkipFrames) : null;
+            if (frame != null)
+            {
+                var linenumber = frame.GetFileLineNumber();
+                builder.Append(linenumber);
 
-        /// <summary>
-        /// Gets or sets the layout that will be rendered as the attribute's value.
-        /// </summary>
-        [RequiredParameter]
-        public Layout Layout { get; set; }
-
-        /// <summary>
-        /// Determines wether or not this attribute will be Json encoded.
-        /// </summary>
-        public bool Encode { get; set; }
+            }
+        }
     }
 }
+#endif

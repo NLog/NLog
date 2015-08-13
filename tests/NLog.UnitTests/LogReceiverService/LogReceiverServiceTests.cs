@@ -31,8 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+#if !SILVERLIGHT
+
 namespace NLog.UnitTests.LogReceiverService
 {
+
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.ServiceModel;
+    using System.ServiceModel.Description;
+    using System.Threading;
+
     using System;
     using System.IO;
     using Xunit;
@@ -46,6 +57,8 @@ namespace NLog.UnitTests.LogReceiverService
 
     public class LogReceiverServiceTests : NLogTestBase
     {
+        private const string logRecieverUrl = "http://localhost:8080/logrecievertest";
+
         [Fact]
         public void ToLogEventInfoTest()
         {
@@ -216,5 +229,135 @@ namespace NLog.UnitTests.LogReceiverService
             Assert.Equal(xml1, xml2);
         }
 #endif
+
+
+#if WCF_SUPPORTED
+
+        [Fact]
+        public void RealTestLogReciever1()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(string.Format(@"
+          <nlog throwExceptions='true'>
+                <targets>
+                   <target type='LogReceiverService'
+                          name='s1'
+               
+                          endpointAddress='{0}'
+                          useBinaryEncoding='false'
+                  
+                          includeEventProperties='false'>
+                    <parameter layout='testparam1' name='String' type='String'/>
+               </target>
+
+                   
+                </targets>
+                <rules>
+                    <logger name='logger1' minlevel='Trace' writeTo='s1' />
+              
+                </rules>
+            </nlog>", logRecieverUrl));
+
+
+     
+            ExecLogRecieverAndCheck(ExecLogging1, CheckRecieved1, 2);
+
+        }
+
+        /// <summary>
+        /// Create WCF service, logs and listen to the events
+        /// </summary>
+        /// <param name="logFunc">function for logging the messages</param>
+        /// <param name="logCheckFunc">function for checking the received messsages</param>
+        /// <param name="messageCount">message count for wait for listen and checking</param>
+        public void ExecLogRecieverAndCheck(Action<Logger> logFunc, Action<List<NLogEvents>> logCheckFunc, int messageCount)
+        {
+
+            Uri baseAddress = new Uri(logRecieverUrl);
+
+            // Create the ServiceHost.
+            using (ServiceHost host = new ServiceHost(typeof(LogRecieverMock), baseAddress))
+            {
+                // Enable metadata publishing.
+                ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
+                smb.HttpGetEnabled = true;
+                smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
+                host.Description.Behaviors.Add(smb);
+
+                // Open the ServiceHost to start listening for messages. Since
+                // no endpoints are explicitly configured, the runtime will create
+                // one endpoint per base address for each service contract implemented
+                // by the service.
+                host.Open();
+
+                //wait for 2 events
+
+                var countdownEvent = new CountdownEvent(messageCount);
+                //reset
+                LogRecieverMock.recievedEvents = new List<NLogEvents>();
+                LogRecieverMock.CountdownEvent = countdownEvent;
+
+                var logger1 = LogManager.GetLogger("logger1");
+                logFunc(logger1);
+
+                countdownEvent.Wait(20000);
+                //we need some extra time for completion
+                Thread.Sleep(1000);
+                var recieved = LogRecieverMock.recievedEvents;
+
+
+
+
+                Assert.Equal(messageCount, recieved.Count);
+
+                logCheckFunc(recieved);
+
+                // Close the ServiceHost.
+                host.Close();
+            }
+        }
+
+        private static void CheckRecieved1(List<NLogEvents> recieved)
+        {
+            var log1 = recieved[0].ToEventInfo().First();
+            Assert.Equal("test 1", log1.Message);
+            var log2 = recieved[1].ToEventInfo().First();
+        }
+
+        private static void ExecLogging1(Logger logger)
+        {
+            logger.Info("test 1");
+            logger.Info(new InvalidConstraintException("boo"), "test2");
+        }
+
+        public class LogRecieverMock : ILogReceiverServer
+        {
+
+            public static CountdownEvent CountdownEvent;
+
+            public static List<NLogEvents> recievedEvents = new List<NLogEvents>();
+
+            /// <summary>
+            /// Processes the log messages.
+            /// </summary>
+            /// <param name="events">The events.</param>
+            public void ProcessLogMessages(NLogEvents events)
+            {
+                if (CountdownEvent == null)
+                {
+                    throw new Exception("test not prepared well");
+                }
+
+
+
+                recievedEvents.Add(events);
+
+                CountdownEvent.Signal();
+            }
+        }
+
+#endif
     }
 }
+
+
+#endif

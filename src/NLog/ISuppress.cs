@@ -70,6 +70,17 @@ namespace NLog
 
 #if ASYNC_SUPPORTED
         /// <summary>
+        /// If the task causes an exception or is canceled, the exception is logged at <c>Error</c> level. Exception is not propagated outside of this method.
+        /// </summary>
+        /// <param name="task">Task for which to log an exception or cancellation.</param>
+        /// <returns>A task that completes when after <paramref name="task"/> completes.</returns>
+        /// <remarks>
+        /// This task returned by this method does not include a return value, even if <paramref name="task"/> is of type <see cref="Task{T}"/> because the value is not present if the task causes an exception or is canceled.
+        /// If your code requires the return value, do not use this method to swallow the exception; instead, await the task normally and catch the exception to handle the case of no return value.
+        /// </remarks>
+        Task SwallowAsync(Task task);
+ 
+        /// <summary>
         /// Runs async action. If the action throws, the exception is logged at <c>Error</c> level. Exception is not propagated outside of this method.
         /// </summary>
         /// <param name="asyncAction">Async action to execute.</param>

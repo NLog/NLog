@@ -213,6 +213,7 @@
     <Compile Include="LayoutRenderers\AssemblyVersionLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\BaseDirLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CallSiteLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\CallSiteLineNumberLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\CounterLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\DateLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\DocumentUriLayoutRenderer.cs" />
@@ -259,6 +260,7 @@
     <Compile Include="LayoutRenderers\ThreadNameLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TicksLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TimeLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\VariableLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeLayoutRendererWrapper.cs" />
@@ -268,6 +270,7 @@
     <Compile Include="LayoutRenderers\Wrappers\PaddingHorizontalAlignment.cs" />
     <Compile Include="LayoutRenderers\Wrappers\PaddingLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\ReplaceLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\ReplaceNewLinesLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\Rot13LayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\UppercaseLayoutRendererWrapper.cs" />

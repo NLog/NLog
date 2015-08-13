@@ -31,57 +31,57 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Layouts
+using NLog.Layouts;
+
+namespace NLog.LayoutRenderers
 {
-    using NLog.Config;
+    using System.Text;
+    using Config;
 
     /// <summary>
-    /// JSON attribute.
+    /// Render a NLog variable (xml or config)
     /// </summary>
-    [NLogConfigurationItem]
-    [ThreadAgnostic]
-    public class JsonAttribute
+    [LayoutRenderer("var")]
+    public class VariableLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
+        /// Gets or sets the name of the NLog variable.
         /// </summary>
-        public JsonAttribute() : this(null, null, true) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
-        /// </summary>
-        /// <param name="name">The name of the attribute.</param>
-        /// <param name="layout">The layout of the attribute's value.</param>
-        public JsonAttribute(string name, Layout layout): this(name, layout, true) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="JsonAttribute" /> class.
-        /// </summary>
-        /// <param name="name">The name of the attribute.</param>
-        /// <param name="layout">The layout of the attribute's value.</param>
-        /// <param name="encode">Encode value with json-encode</param>
-        public JsonAttribute(string name, Layout layout, bool encode)
-        {
-            this.Name = name;
-            this.Layout = layout;
-            this.Encode = encode;
-        }
-
-        /// <summary>
-        /// Gets or sets the name of the attribute.
-        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [RequiredParameter]
+        [DefaultParameter]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the layout that will be rendered as the attribute's value.
+        /// Gets or sets the default value to be used when the variable is not set.
         /// </summary>
-        [RequiredParameter]
-        public Layout Layout { get; set; }
+        /// <remarks>Not used if Name is <c>null</c></remarks>
+        /// <docgen category='Rendering Options' order='10' />
+        public string Default { get; set; }
 
         /// <summary>
-        /// Determines wether or not this attribute will be Json encoded.
+        /// Renders the specified variable and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
-        public bool Encode { get; set; }
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            if (this.Name != null)
+            {
+                SimpleLayout layout;
+                if(LogManager.Configuration.Variables != null && LogManager.Configuration.Variables.TryGetValue(Name, out layout))
+                {
+                    //todo in later stage also layout as values?
+                    builder.Append(layout.Render(logEvent));
+                }
+                else if (Default != null)
+                {
+                    //fallback
+                    builder.Append(Default);
+                }
+            }
+        }
     }
 }
+
+

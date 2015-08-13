@@ -33,6 +33,7 @@
 
 using System.Globalization;
 using System.Linq;
+using NLog.Layouts;
 
 namespace NLog.Config
 {
@@ -57,6 +58,11 @@ namespace NLog.Config
         private object[] configItems;
 
         /// <summary>
+        /// Variables defined in xml or in API. name is case case insensitive. 
+        /// </summary>
+        private readonly Dictionary<string, SimpleLayout> variables = new Dictionary<string, SimpleLayout>(StringComparer.OrdinalIgnoreCase);
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
         /// </summary>
         public LoggingConfiguration()
@@ -67,14 +73,11 @@ namespace NLog.Config
         /// <summary>
         /// Gets the variables defined in the configuration.
         /// </summary>
-        /// <remarks>
-        /// Returns null if not configured using XML configuration.
-        /// </remarks>
-        public virtual Dictionary<string, string> Variables
+        public IDictionary<string, SimpleLayout> Variables
         {
             get
             {
-                throw new NotSupportedException("Variables is only supported in XmlConfiguration");
+                return variables;
             }
         }
 
@@ -123,6 +126,19 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Registers the specified target object. The name of the target is read from <see cref="Target.Name"/>.
+        /// </summary>
+        /// <param name="target">
+        /// The target object with a non <see langword="null"/> <see cref="Target.Name"/>
+        /// </param>
+        /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <see langword="null"/></exception>
+        public void AddTarget([NotNull] Target target)
+        {
+            if (target == null) throw new ArgumentNullException("target");
+            AddTarget(target.Name, target);
+        }
+
+        /// <summary>
         /// Registers the specified target object under a given name.
         /// </summary>
         /// <param name="name">
@@ -161,6 +177,22 @@ namespace NLog.Config
             }
 
             return value;
+        }
+
+        /// <summary>
+        /// Finds the target with the specified name and specified type.
+        /// </summary>
+        /// <param name="name">
+        /// The name of the target to be found.
+        /// </param>
+        /// <typeparam name="TTarget">Type of the target</typeparam>
+        /// <returns>
+        /// Found target or <see langword="null"/> when the target is not found of not of type <typeparamref name="TTarget"/>
+        /// </returns>
+        public TTarget FindTargetByName<TTarget>(string name)
+            where TTarget : Target
+        {
+            return FindTargetByName(name) as TTarget;
         }
 
         /// <summary>

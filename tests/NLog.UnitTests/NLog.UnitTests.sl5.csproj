@@ -162,7 +162,7 @@
     <Compile Include="LayoutRenderers\Wrappers\WhenEmptyTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeTests.cs" />
-    <Compile Include="Layouts\AllEventPropertiesLayoutRendererTests.cs" />
+    <Compile Include="Layouts\AllEventPropertiesTests.cs" />
     <Compile Include="Layouts\CsvLayoutTests.cs" />
     <Compile Include="Layouts\JsonLayoutTests.cs" />
     <Compile Include="Layouts\SimpleLayoutOutputTests.cs" />

@@ -94,6 +94,7 @@ namespace NLog.UnitTests.Config
         }
 #endif
 
+
         [Fact]
         public void None_xml_configuration_throws_not_supported_exception_when_accessing_variables()
         {
@@ -118,12 +119,9 @@ namespace NLog.UnitTests.Config
 
             LogManager.Configuration = configuration;
 
-            Assert.Equal("[[", LogManager.Configuration.Variables["prefix"]);
-            Assert.Equal("]]", LogManager.Configuration.Variables["suffix"]);
+            Assert.Equal("[[", LogManager.Configuration.Variables["prefix"].OriginalText);
+            Assert.Equal("]]", LogManager.Configuration.Variables["suffix"].OriginalText);
         }
-
-
-
 
         [Fact(Skip = "This is a know issue and will be resolved diffently (due to backwardscomp and we don't prefer special cases in code)")]
         public void ReconfigExistingLoggers_should_use_new_values()
