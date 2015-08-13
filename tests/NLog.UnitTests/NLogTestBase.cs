@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 namespace NLog.UnitTests
 {
     using System;
@@ -41,6 +43,10 @@ namespace NLog.UnitTests
     using NLog.Layouts;
     using NLog.Config;
     using Xunit;
+    using System.Reflection;
+    using System.Collections.Generic;
+    using System.Linq;
+ 
 #if SILVERLIGHT
     using System.Xml.Linq;
 #else
@@ -51,11 +57,63 @@ namespace NLog.UnitTests
 
     public abstract class NLogTestBase
     {
+
+        private static IDictionary<string, object> _internalLoggerProperties;
+        private static IDictionary<string, object> _logmanagerProperties;
+
         protected NLogTestBase()
         {
             InternalLogger.LogToConsole = false;
             InternalLogger.LogToConsoleError = false;
+
             LogManager.ThrowExceptions = false;
+
+            //remember the static values, so we can alter them in tests and restore them at the end.
+            _internalLoggerProperties = GeetStaticProperyValues(typeof(InternalLogger));
+            _logmanagerProperties = GeetStaticProperyValues(typeof(LogManager));
+        }
+
+        /// <summary>
+        /// Restore the static propertie values of the <see cref="LogManager"/> and <see cref="InternalLogger"/>
+        /// </summary>
+        protected static void RestoreStaticPropertyValues()
+        {
+            SetStaticProperyValues(typeof(InternalLogger), _internalLoggerProperties);
+            SetStaticProperyValues(typeof(LogManager), _logmanagerProperties);
+        }
+
+        /// <summary>
+        /// Get the values of the static properties
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        private static IDictionary<string, object> GeetStaticProperyValues(Type t)
+        {
+            var staticPropertyInfos = GetReadableAndWritableStaticPropertyInfos(t);
+            return staticPropertyInfos.Select(p => new KeyValuePair<string, object>(p.Name, p.GetValue(t, null))).ToDictionary(p => p.Key, p => p.Value);
+        }
+
+        /// <summary>
+        /// Set the values of the static properties
+        /// </summary>
+        private static void SetStaticProperyValues(Type t, IDictionary<string, object> values)
+        {
+            var staticPropertyInfos = GetReadableAndWritableStaticPropertyInfos(t);
+            foreach (var p in staticPropertyInfos)
+            {
+                p.SetValue(t, values[p.Name], null);
+            }
+        }
+
+        /// <summary>
+        /// Get the static properties we can read and write
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        private static IEnumerable<PropertyInfo> GetReadableAndWritableStaticPropertyInfos(Type t)
+        {
+            //bindingflags don't give any results, so checking the properties
+            return t.GetProperties().Where(p => p.CanRead && p.CanWrite);
         }
 
         public void AssertDebugCounter(string targetName, int val)
@@ -213,9 +271,7 @@ namespace NLog.UnitTests
         protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
         {
             var stringWriter = new StringWriter();
-            var oldWriter = InternalLogger.LogWriter;
-            var oldLevel = InternalLogger.LogLevel;
-            var oldIncludeTimestamp = InternalLogger.IncludeTimestamp;
+
             try
             {
                 InternalLogger.LogWriter = stringWriter;
@@ -227,44 +283,27 @@ namespace NLog.UnitTests
             }
             finally
             {
-                InternalLogger.LogWriter = oldWriter;
-                InternalLogger.LogLevel = oldLevel;
-                InternalLogger.IncludeTimestamp = oldIncludeTimestamp;
+                RestoreStaticPropertyValues();
             }
         }
 
         public delegate void SyncAction();
 
+        /// <summary>
+        /// Restore the static properties of the <see cref="InternalLogger"/> and <see cref="LogManager"/> in <see cref="Dispose"/>
+        /// </summary>
         public class InternalLoggerScope : IDisposable
         {
-            private readonly string logFile;
-            private readonly LogLevel logLevel;
-            private readonly bool logToConsole;
-            private readonly bool includeTimestamp;
-            private readonly bool logToConsoleError;
-            private readonly LogLevel globalThreshold;
-            private readonly bool throwExceptions;
+
 
             public InternalLoggerScope()
             {
-                this.logFile = InternalLogger.LogFile;
-                this.logLevel = InternalLogger.LogLevel;
-                this.logToConsole = InternalLogger.LogToConsole;
-                this.includeTimestamp = InternalLogger.IncludeTimestamp;
-                this.logToConsoleError = InternalLogger.LogToConsoleError;
-                this.globalThreshold = LogManager.GlobalThreshold;
-                this.throwExceptions = LogManager.ThrowExceptions;
+
             }
 
             public void Dispose()
             {
-                InternalLogger.LogFile = this.logFile;
-                InternalLogger.LogLevel = this.logLevel;
-                InternalLogger.LogToConsole = this.logToConsole;
-                InternalLogger.IncludeTimestamp = this.includeTimestamp;
-                InternalLogger.LogToConsoleError = this.logToConsoleError;
-                LogManager.GlobalThreshold = this.globalThreshold;
-                LogManager.ThrowExceptions = this.throwExceptions;
+                RestoreStaticPropertyValues();
             }
         }
     }
