@@ -2,6 +2,8 @@ Welcome to NLog
 ===
 
 [![Join the chat at https://gitter.im/NLog/NLog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLog/NLog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Twitter](https://img.shields.io/badge/Twitter-NLogOfficial-blue.svg)](https://twitter.com/nlogofficial)
+[![News](https://img.shields.io/badge/News-5_aug_2015-orange.svg)](http://nlog-project.org/archives/)
 
 [![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg)](https://www.nuget.org/packages/NLog)
 [![Version](https://img.shields.io/nuget/v/NLog.svg)](https://www.nuget.org/packages/NLog) 
