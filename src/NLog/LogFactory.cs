@@ -898,6 +898,8 @@ namespace NLog
             this.config = new XmlLoggingConfiguration(configFile);
         }
 
+
+#if !SILVERLIGHT
         /// <summary>
         /// Currenty this logfactory is disposing?
         /// </summary>
@@ -919,6 +921,8 @@ namespace NLog
             }
         }
 
+
+#endif
         /// <summary>
         /// Logger cache key.
         /// </summary>
