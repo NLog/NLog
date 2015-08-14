@@ -1388,11 +1388,11 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
 
-                var assertFileContents =
+                
 #if NET4_5
-                    enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+                var assertFileContents = enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 #else
- new Action<string, string, Encoding>(AssertFileContents);
+                var assertFileContents = new Action<string, string, Encoding>(AssertFileContents);
 #endif
                 AssertFileContents(tempFile,
                     StringRepeat(250, "eee\n"),
