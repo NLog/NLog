@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.monodevelop", "NLog\NLog.monodevelop.csproj", "{E7AB20BF-6920-442A-B876-CC05BC5CEC79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.mono", "NLog\NLog.mono.csproj", "{E7AB20BF-6920-442A-B876-CC05BC5CEC79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.monodevelop", "NLog.Extended\NLog.Extended.monodevelop.csproj", "{F801A1F9-1024-4446-BF9E-A923137340B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.mono", "NLog.Extended\NLog.Extended.mono.csproj", "{F801A1F9-1024-4446-BF9E-A923137340B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.monodevelop", "..\tests\SampleExtensions\SampleExtensions.monodevelop.csproj", "{C480452F-7E14-443D-906D-7E021ABAA107A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.mono", "..\tests\SampleExtensions\SampleExtensions.mono.csproj", "{C480452F-7E14-443D-906D-7E021ABAA107A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,7 +27,7 @@ Global
 		{F801A1F9-1024-4446-BF9E-A923137340B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F801A1F9-1024-4446-BF9E-A923137340B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
+	GlobalSection(monoProperties) = preSolution
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.inheritsSet = null
