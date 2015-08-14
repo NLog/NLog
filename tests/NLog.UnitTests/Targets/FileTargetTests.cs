@@ -1580,6 +1580,61 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempPath, true);
             }
         }
+
+        /// <summary>
+        /// Remove archived files in correct order
+        /// </summary>
+        [Fact]
+        public void FileTarget_ArchiveNumbering_remove_correct_order()
+        {
+            var tempPath = ArchiveFilenameHelper.GenerateTempPath();
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            var archiveExtension = "txt";
+            try
+            {
+                var maxArchiveFiles = 10;
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}." + archiveExtension),
+                    ArchiveDateFormat = "yyyy-MM-dd",
+                    ArchiveAboveSize = 1000,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    MaxArchiveFiles = maxArchiveFiles,
+                    ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+
+                ArchiveFilenameHelper helper = new ArchiveFilenameHelper(Path.Combine(tempPath, "archive"), DateTime.Now.ToString(ft.ArchiveDateFormat), archiveExtension);
+
+                Generate1000BytesLog('a');
+
+                for (int i = 0; i < maxArchiveFiles; i++)
+                {
+                    Generate1000BytesLog('a');
+                    Assert.True(helper.Exists(i), string.Format("file {0} is missing", i));
+                }
+
+                for (int i = maxArchiveFiles; i < 100; i++)
+                {
+                    Generate1000BytesLog('b');
+                    var numberToBeRemoved = i - maxArchiveFiles; // number 11, we need to remove 1 etc
+                    Assert.True(!helper.Exists(numberToBeRemoved), string.Format("archive file {0} has not been removed! We are created file {1}", numberToBeRemoved, i));
+                }
+
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
         
         private void Generate1000BytesLog(char c)
         {
