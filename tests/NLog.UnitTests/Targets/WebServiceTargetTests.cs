@@ -542,6 +542,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 {
 
                     LogMeController.CountdownEvent.Wait(webserviceCheckTimeoutMs);
+                    //we need some extra time for completion
+                    Thread.Sleep(1000);
                 }
             }
         }

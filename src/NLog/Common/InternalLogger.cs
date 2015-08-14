@@ -51,6 +51,7 @@ namespace NLog.Common
     public static class InternalLogger
     {
         private static object lockObject = new object();
+        private static string _logFile;
 
         /// <summary>
         /// Initializes static members of the InternalLogger class.
@@ -63,6 +64,7 @@ namespace NLog.Common
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
+			
             Info("NLog internal logger initialized.");
 #else
             LogLevel = LogLevel.Info;
@@ -86,10 +88,28 @@ namespace NLog.Common
         public static bool LogToConsoleError { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the internal log file.
+        /// Gets or sets the file path of the internal log file.
         /// </summary>
         /// <remarks>A value of <see langword="null" /> value disables internal logging to a file.</remarks>
-        public static string LogFile { get; set; }
+        public static string LogFile
+        {
+            get
+            {
+                return _logFile;
+            }
+
+            set
+            {
+                _logFile = value;
+
+#if !SILVERLIGHT
+                if (!string.IsNullOrEmpty(_logFile))
+                {
+                    CreateDirectoriesIfNeeded(_logFile);
+                }
+#endif
+            }
+        }
 
         /// <summary>
         /// Gets or sets the text writer that will receive internal logs.
@@ -424,6 +444,23 @@ namespace NLog.Common
                 }
 
                 return defaultValue;
+            }
+        }
+        
+        private static void CreateDirectoriesIfNeeded(string filename)
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(filename));
+            }
+            catch (Exception exception)
+            {
+                Error("Cannot create needed directories to {0}. {1}", filename, exception.Message);
+
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
             }
         }
 #endif

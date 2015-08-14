@@ -31,57 +31,36 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
-namespace NLog.Internal
+namespace NLog.LayoutRenderers
 {
+#if NET4_5
+    using System.Text;
+    using NLog.Config;
+
     /// <summary>
-    /// Logger configuration.
+    /// Mapped Diagnostic Logical Context item (based on CallContext).
     /// </summary>
-    internal class LoggerConfiguration
+    [LayoutRenderer("mdlc")]
+    public class MdlcLayoutRenderer : LayoutRenderer
     {
-        private readonly TargetWithFilterChain[] targetsByLevel;
+        /// <summary>
+        /// Gets or sets the name of the item.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [RequiredParameter]
+        [DefaultParameter]
+        public string Item { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoggerConfiguration" /> class.
+        /// Renders the specified MDLC item and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
-        /// <param name="targetsByLevel">The targets by level.</param>
-        /// <param name="exceptionLoggingOldStyle">  Use the old exception log handling of NLog 3.0? 
-        /// </param>
-        public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel, bool exceptionLoggingOldStyle = false)
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            this.targetsByLevel = targetsByLevel;
-#pragma warning disable 618
-            ExceptionLoggingOldStyle = exceptionLoggingOldStyle;
-#pragma warning restore 618
-        }
-
-        /// <summary>
-        /// Use the old exception log handling of NLog 3.0? 
-        /// </summary>
-        [Obsolete("This option will be removed in NLog 5")]
-        public bool ExceptionLoggingOldStyle { get; private set; }
-
-        /// <summary>
-        /// Gets targets for the specified level.
-        /// </summary>
-        /// <param name="level">The level.</param>
-        /// <returns>Chain of targets with attached filters.</returns>
-        public TargetWithFilterChain GetTargetsForLevel(LogLevel level)
-        {
-            return this.targetsByLevel[level.Ordinal];
-        }
-
-        /// <summary>
-        /// Determines whether the specified level is enabled.
-        /// </summary>
-        /// <param name="level">The level.</param>
-        /// <returns>
-        /// A value of <c>true</c> if the specified level is enabled; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsEnabled(LogLevel level)
-        {
-            return this.targetsByLevel[level.Ordinal] != null;
+            var message = MappedDiagnosticsLogicalContext.Get(Item);
+            builder.Append(message);
         }
     }
+#endif
 }
