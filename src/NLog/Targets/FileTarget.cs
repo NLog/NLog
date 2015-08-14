@@ -1029,12 +1029,14 @@ namespace NLog.Targets
                         continue;
                     }
 
-                    string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
-                    string numberPart = archiveFileName.Substring(fileNameMask.LastIndexOf('*') + dateFormat.Length + 1,
-                        archiveFileName.Length - dateTrailerLength - (fileNameMask.LastIndexOf('*') + dateFormat.Length + 1));
+                    //find date and number part in filename
+                    var indexOfStart = fileNameMask.LastIndexOf('*');
+                    string datePart = archiveFileName.Substring(indexOfStart, dateFormat.Length);
+                    string numberPart = archiveFileName.Substring(indexOfStart + dateFormat.Length + 1,
+                        archiveFileName.Length - dateTrailerLength - (indexOfStart + dateFormat.Length + 1));
 
+                    //parse number part
                     int num;
-
                     try
                     {
                         num = Convert.ToInt32(numberPart, CultureInfo.InvariantCulture);
@@ -1044,6 +1046,7 @@ namespace NLog.Targets
                         continue;
                     }
 
+                    //use for nextSeqNumber if this is the correct day
                     if (datePart == GetArchiveDate(isDaySwitch).ToString(dateFormat))
                     {
                         nextSequenceNumber = Math.Max(nextSequenceNumber, num);
