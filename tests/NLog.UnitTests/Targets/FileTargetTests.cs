@@ -290,7 +290,7 @@ namespace NLog.UnitTests.Targets
 
                 var assertFileContents =
 #if NET4_5
-                    enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+ enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 #else
  new Action<string, string, Encoding>(AssertFileContents);
 #endif
@@ -1343,6 +1343,9 @@ namespace NLog.UnitTests.Targets
             var archiveExtension = enableCompression ? "zip" : "txt";
             try
             {
+
+
+
                 var ft = new FileTarget
                 {
 #if NET4_5
@@ -1384,43 +1387,33 @@ namespace NLog.UnitTests.Targets
                     logger.Debug("eee");
                 }
 
-                string currentDate = DateTime.Now.ToString(ft.ArchiveDateFormat);
+                string archiveFilename = DateTime.Now.ToString(ft.ArchiveDateFormat);
 
                 LogManager.Configuration = null;
 
-                
+
 #if NET4_5
                 var assertFileContents = enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 #else
                 var assertFileContents = new Action<string, string, Encoding>(AssertFileContents);
 #endif
+                ArchiveFilenameHelper helper = new ArchiveFilenameHelper(Path.Combine(tempPath, "archive"), archiveFilename, archiveExtension);
+
                 AssertFileContents(tempFile,
                     StringRepeat(250, "eee\n"),
                     Encoding.UTF8);
 
-                assertFileContents(
-                    Path.Combine(tempPath, string.Format("archive/{0}.1.{1}", currentDate, archiveExtension)),
-                    StringRepeat(250, "bbb\n"),
-                    Encoding.UTF8);
+                assertFileContents(helper.GetFullPath(1), StringRepeat(250, "bbb\n"), Encoding.UTF8);
+                AssertFileSize(helper.GetFullPath(1), ft.ArchiveAboveSize);
 
-                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.1.{1}", currentDate, archiveExtension)), ft.ArchiveAboveSize);
+                assertFileContents(helper.GetFullPath(2), StringRepeat(250, "ccc\n"), Encoding.UTF8);
+                AssertFileSize(helper.GetFullPath(2), ft.ArchiveAboveSize);
 
-                assertFileContents(
-                    Path.Combine(tempPath, string.Format("archive/{0}.2.{1}", currentDate, archiveExtension)),
-                    StringRepeat(250, "ccc\n"),
-                    Encoding.UTF8);
+                assertFileContents(helper.GetFullPath(3), StringRepeat(250, "ddd\n"), Encoding.UTF8);
+                AssertFileSize(helper.GetFullPath(3), ft.ArchiveAboveSize);
 
-                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.2.{1}", currentDate, archiveExtension)), ft.ArchiveAboveSize);
-
-                assertFileContents(
-                    Path.Combine(tempPath, string.Format("archive/{0}.3.{1}", currentDate, archiveExtension)),
-                    StringRepeat(250, "ddd\n"),
-                    Encoding.UTF8);
-
-                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.3.{1}", currentDate, archiveExtension)), ft.ArchiveAboveSize);
-
-                Assert.True(!File.Exists(Path.Combine(tempPath, string.Format("archive/{0}.0.{1}", currentDate, archiveExtension))));
-                Assert.True(!File.Exists(Path.Combine(tempPath, string.Format("archive/{0}.4.{1}", currentDate, archiveExtension))));
+                Assert.True(!helper.Exists(0),"old one removed - max files");
+                Assert.True(!helper.Exists(4), "stop at 3");
             }
             finally
             {
@@ -1429,6 +1422,40 @@ namespace NLog.UnitTests.Targets
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
+            }
+        }
+
+        /// <summary>
+        /// Archive file helepr
+        /// </summary>
+        private class ArchiveFilenameHelper
+        {
+            public string FolderName { get; private set; }
+
+            public string FileName { get; private set; }
+            /// <summary>
+            /// Ext without dot
+            /// </summary>
+            public string Ext { get; set; }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+            /// </summary>
+            public ArchiveFilenameHelper(string folderName, string fileName, string ext)
+            {
+                Ext = ext;
+                FileName = fileName;
+                FolderName = folderName;
+            }
+
+            public bool Exists(int number)
+            {
+                return File.Exists(GetFullPath(number));
+            }
+
+            public string GetFullPath(int number)
+            {
+                return Path.Combine(string.Format("{0}/{1}.{2}.{3}", FolderName, FileName, number, Ext));
             }
         }
 
@@ -1542,7 +1569,7 @@ namespace NLog.UnitTests.Targets
                     tempDirectory.Delete(true);
                 }
             }
-            
+
         }
 
         [Fact]
