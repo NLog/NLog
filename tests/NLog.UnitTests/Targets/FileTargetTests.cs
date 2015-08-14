@@ -1338,14 +1338,11 @@ namespace NLog.UnitTests.Targets
 
         private void FileTarget_ArchiveNumbering_DateAndSequenceTests(bool enableCompression)
         {
-            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempPath = ArchiveFilenameHelper.GenerateTempPath();
             var tempFile = Path.Combine(tempPath, "file.txt");
             var archiveExtension = enableCompression ? "zip" : "txt";
             try
             {
-
-
-
                 var ft = new FileTarget
                 {
 #if NET4_5
@@ -1455,7 +1452,12 @@ namespace NLog.UnitTests.Targets
 
             public string GetFullPath(int number)
             {
-                return Path.Combine(string.Format("{0}/{1}.{2}.{3}", FolderName, FileName, number, Ext));
+                return Path.Combine(String.Format("{0}/{1}.{2}.{3}", FolderName, FileName, number, Ext));
+            }
+
+            public static string GenerateTempPath()
+            {
+                return Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             }
         }
 
