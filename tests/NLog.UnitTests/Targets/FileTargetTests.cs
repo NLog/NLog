@@ -361,26 +361,11 @@ namespace NLog.UnitTests.Targets
 
                 // we emit 5 * 250 *(3 x aaa + \n) bytes
                 // so that we should get a full file + 3 archives
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("aaa");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("bbb");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("ccc");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("ddd");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("eee");
-                }
+                Generate1000BytesLog('a');
+                Generate1000BytesLog('b');
+                Generate1000BytesLog('c');
+                Generate1000BytesLog('d');
+                Generate1000BytesLog('e');
 
                 LogManager.Configuration = null;
 
@@ -438,26 +423,11 @@ namespace NLog.UnitTests.Targets
 
                 // we emit 5 * 250 *(3 x aaa + \n) bytes
                 // so that we should get a full file + 4 archives
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("aaa");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("bbb");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("ccc");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("ddd");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("eee");
-                }
+                Generate1000BytesLog('a');
+                Generate1000BytesLog('b');
+                Generate1000BytesLog('c');
+                Generate1000BytesLog('d');
+                Generate1000BytesLog('e');
 
                 LogManager.Configuration = null;
 
@@ -1031,26 +1001,11 @@ namespace NLog.UnitTests.Targets
 
                 // we emit 5 * 250 * (3 x aaa + \n) bytes
                 // so that we should get a full file + 3 archives
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("aaa");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("bbb");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("ccc");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("ddd");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("eee");
-                }
+                Generate1000BytesLog('a');
+                Generate1000BytesLog('b');
+                Generate1000BytesLog('c');
+                Generate1000BytesLog('d');
+                Generate1000BytesLog('e');
 
                 LogManager.Configuration = null;
 
@@ -1114,30 +1069,11 @@ namespace NLog.UnitTests.Targets
 
                 // we emit 5 * 250 * (3 x aaa + \n) bytes
                 // so that we should get a full file + 4 archives
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("aaa");
-                }
-
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("bbb");
-                }
-
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("ccc");
-                }
-
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("ddd");
-                }
-
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("eee");
-                }
+                Generate1000BytesLog('a');
+                Generate1000BytesLog('b');
+                Generate1000BytesLog('c');
+                Generate1000BytesLog('d');
+                Generate1000BytesLog('e');
 
                 LogManager.Configuration = null;
 
@@ -1412,7 +1348,7 @@ namespace NLog.UnitTests.Targets
 
         private void FileTarget_ArchiveNumbering_DateAndSequenceTests(bool enableCompression)
         {
-            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempPath = ArchiveFilenameHelper.GenerateTempPath();
             var tempFile = Path.Combine(tempPath, "file.txt");
             var archiveExtension = enableCompression ? "zip" : "txt";
             try
@@ -1437,64 +1373,39 @@ namespace NLog.UnitTests.Targets
 
                 // we emit 5 * 250 *(3 x aaa + \n) bytes
                 // so that we should get a full file + 3 archives
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("aaa");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("bbb");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("ccc");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("ddd");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("eee");
-                }
+                Generate1000BytesLog('a');
+                Generate1000BytesLog('b');
+                Generate1000BytesLog('c');
+                Generate1000BytesLog('d');
+                Generate1000BytesLog('e');
 
-                string currentDate = DateTime.Now.ToString(ft.ArchiveDateFormat);
+                string archiveFilename = DateTime.Now.ToString(ft.ArchiveDateFormat);
 
                 LogManager.Configuration = null;
 
-                var assertFileContents =
+
 #if NET4_5
- enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+                var assertFileContents = enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
 #else
- new Action<string, string, Encoding>(AssertFileContents);
+                var assertFileContents = new Action<string, string, Encoding>(AssertFileContents);
 #endif
+                ArchiveFilenameHelper helper = new ArchiveFilenameHelper(Path.Combine(tempPath, "archive"), archiveFilename, archiveExtension);
+
                 AssertFileContents(tempFile,
                     StringRepeat(250, "eee\n"),
                     Encoding.UTF8);
 
-                assertFileContents(
-                    Path.Combine(tempPath, string.Format("archive/{0}.1.{1}", currentDate, archiveExtension)),
-                    StringRepeat(250, "bbb\n"),
-                    Encoding.UTF8);
+                assertFileContents(helper.GetFullPath(1), StringRepeat(250, "bbb\n"), Encoding.UTF8);
+                AssertFileSize(helper.GetFullPath(1), ft.ArchiveAboveSize);
 
-                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.1.{1}", currentDate, archiveExtension)), ft.ArchiveAboveSize);
+                assertFileContents(helper.GetFullPath(2), StringRepeat(250, "ccc\n"), Encoding.UTF8);
+                AssertFileSize(helper.GetFullPath(2), ft.ArchiveAboveSize);
 
-                assertFileContents(
-                    Path.Combine(tempPath, string.Format("archive/{0}.2.{1}", currentDate, archiveExtension)),
-                    StringRepeat(250, "ccc\n"),
-                    Encoding.UTF8);
+                assertFileContents(helper.GetFullPath(3), StringRepeat(250, "ddd\n"), Encoding.UTF8);
+                AssertFileSize(helper.GetFullPath(3), ft.ArchiveAboveSize);
 
-                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.2.{1}", currentDate, archiveExtension)), ft.ArchiveAboveSize);
-
-                assertFileContents(
-                    Path.Combine(tempPath, string.Format("archive/{0}.3.{1}", currentDate, archiveExtension)),
-                    StringRepeat(250, "ddd\n"),
-                    Encoding.UTF8);
-
-                AssertFileSize(Path.Combine(tempPath, string.Format("archive/{0}.3.{1}", currentDate, archiveExtension)), ft.ArchiveAboveSize);
-
-                Assert.True(!File.Exists(Path.Combine(tempPath, string.Format("archive/{0}.0.{1}", currentDate, archiveExtension))));
-                Assert.True(!File.Exists(Path.Combine(tempPath, string.Format("archive/{0}.4.{1}", currentDate, archiveExtension))));
+                Assert.True(!helper.Exists(0), "old one removed - max files");
+                Assert.True(!helper.Exists(4), "stop at 3");
             }
             finally
             {
@@ -1667,6 +1578,55 @@ namespace NLog.UnitTests.Targets
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
+            }
+        }
+        
+        private void Generate1000BytesLog(char c)
+        {
+            for (var i = 0; i < 250; ++i)
+            {
+                //3 chars with newlines = 4 bytes
+                logger.Debug(new string(c, 3));
+            }
+        }
+
+        /// <summary>
+        /// Archive file helepr
+        /// </summary>
+        /// <remarks>TODO rewrite older test</remarks>
+        private class ArchiveFilenameHelper
+        {
+            public string FolderName { get; private set; }
+
+            public string FileName { get; private set; }
+            /// <summary>
+            /// Ext without dot
+            /// </summary>
+            public string Ext { get; set; }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+            /// </summary>
+            public ArchiveFilenameHelper(string folderName, string fileName, string ext)
+            {
+                Ext = ext;
+                FileName = fileName;
+                FolderName = folderName;
+            }
+
+            public bool Exists(int number)
+            {
+                return File.Exists(GetFullPath(number));
+            }
+
+            public string GetFullPath(int number)
+            {
+                return Path.Combine(String.Format("{0}/{1}.{2}.{3}", FolderName, FileName, number, Ext));
+            }
+
+            public static string GenerateTempPath()
+            {
+                return Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             }
         }
     }
