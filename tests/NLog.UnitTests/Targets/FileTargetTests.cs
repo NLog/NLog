@@ -1425,6 +1425,7 @@ namespace NLog.UnitTests.Targets
         /// <summary>
         /// Archive file helepr
         /// </summary>
+        /// <remarks>TODO rewrite older test</remarks>
         private class ArchiveFilenameHelper
         {
             public string FolderName { get; private set; }
