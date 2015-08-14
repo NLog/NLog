@@ -193,7 +193,7 @@ namespace NLog.Targets
         /// the higher the chance that the clean function will be run when no new files have been opened.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(20)]
+        [DefaultValue(20)] //NLog5: todo rename correct for text case
         public int maxLogFilenames { get; set; }
 
         /// <summary>
@@ -806,7 +806,7 @@ namespace NLog.Targets
             pendingContinuations.Clear();
         }
 
-        private bool ContainFileNamePattern(string fileName)
+        private static bool ContainFileNamePattern(string fileName)
         {
             int startingIndex = fileName.IndexOf("{#", StringComparison.Ordinal);
             int endingIndex = fileName.IndexOf("#}", StringComparison.Ordinal);
@@ -863,7 +863,7 @@ namespace NLog.Targets
             int nextNumber = -1;
             int minNumber = -1;
 
-            var number2name = new Dictionary<int, string>();
+            var number2Name = new Dictionary<int, string>();
 
             try
             {
@@ -889,7 +889,7 @@ namespace NLog.Targets
                     nextNumber = Math.Max(nextNumber, num);
                     minNumber = minNumber != -1 ? Math.Min(minNumber, num) : num;
 
-                    number2name[num] = s;
+                    number2Name[num] = s;
                 }
 
                 nextNumber++;
@@ -907,7 +907,7 @@ namespace NLog.Targets
                 {
                     string s;
 
-                    if (number2name.TryGetValue(i, out s))
+                    if (number2Name.TryGetValue(i, out s))
                     {
                         File.Delete(s);
                     }
@@ -964,6 +964,40 @@ namespace NLog.Targets
         }
 
 #if !NET_CF
+
+        /// <summary>
+        /// Parsed filename of an archived file
+        /// 
+        /// Needed for removing the last on (so for sorting)
+        /// </summary>
+        private class ParsedArchiveFileName
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+            /// </summary>
+            public ParsedArchiveFileName(string fullName, DateTime datePart, int numberPart)
+            {
+                DatePart = datePart;
+                FullName = fullName;
+                NumberPart = numberPart;
+            }
+
+            /// <summary>
+            /// Full, unparsed name
+            /// </summary>
+            public string FullName { get; private set; }
+
+            /// <summary>
+            /// Parse date part
+            /// </summary>
+            public DateTime DatePart { get; private set; }
+
+            /// <summary>
+            /// Parsed number part
+            /// </summary>
+            public int NumberPart { get; private set; }
+        }
+
         private void DateAndSequentialArchive(string fileName, string pattern, LogEventInfo logEvent)
         {
             string baseNamePattern = Path.GetFileName(pattern);
@@ -1011,30 +1045,33 @@ namespace NLog.Targets
                 List<string> files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
 #endif
 
-                var filesByDate = new List<string>();
+                var filesByDate = new List<ParsedArchiveFileName>();
 
                 //It's possible that the log file itself has a name that will match the archive file mask.
-                var archiveFileCount = files.Count; 
+                var archiveFileCount = files.Count;
 
                 for (int index = 0; index < files.Count; index++)
                 {
                     //Get the archive file name or empty string if it's null
-                    string archiveFileName = Path.GetFileName(files[index]) ?? "";
+                    var unparsedName = files[index];
+                    string archiveFileName = Path.GetFileName(unparsedName) ?? "";
 
 
-                    if (string.IsNullOrEmpty(archiveFileName) || 
+                    if (string.IsNullOrEmpty(archiveFileName) ||
                         archiveFileName.Equals(Path.GetFileName(fileName)))
                     {
                         archiveFileCount--;
                         continue;
                     }
 
-                    string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
-                    string numberPart = archiveFileName.Substring(fileNameMask.LastIndexOf('*') + dateFormat.Length + 1,
-                        archiveFileName.Length - dateTrailerLength - (fileNameMask.LastIndexOf('*') + dateFormat.Length + 1));
+                    //find date and number part in filename
+                    var indexOfStart = fileNameMask.LastIndexOf('*');
+                    string datePart = archiveFileName.Substring(indexOfStart, dateFormat.Length);
+                    string numberPart = archiveFileName.Substring(indexOfStart + dateFormat.Length + 1,
+                        archiveFileName.Length - dateTrailerLength - (indexOfStart + dateFormat.Length + 1));
 
+                    //parse number part
                     int num;
-
                     try
                     {
                         num = Convert.ToInt32(numberPart, CultureInfo.InvariantCulture);
@@ -1044,19 +1081,24 @@ namespace NLog.Targets
                         continue;
                     }
 
+                    //use for nextSeqNumber if this is the correct day
                     if (datePart == GetArchiveDate(isDaySwitch).ToString(dateFormat))
                     {
                         nextSequenceNumber = Math.Max(nextSequenceNumber, num);
                     }
 
                     DateTime fileDate;
-
+                    //todo what are we checking here?
                     if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None,
                         out fileDate))
                     {
-                        filesByDate.Add(files[index]);
+                        filesByDate.Add(new ParsedArchiveFileName(unparsedName, fileDate, num));
                     }
                 }
+
+                //now order the fileNames by date and then number
+
+                filesByDate = filesByDate.OrderBy(f => f.DatePart).ThenBy(f => f.NumberPart).ToList();
 
                 nextSequenceNumber++;
 
@@ -1066,7 +1108,7 @@ namespace NLog.Targets
                     if (fileIndex > archiveFileCount - this.MaxArchiveFiles)
                         break;
 
-                    File.Delete(filesByDate[fileIndex]);
+                    File.Delete(filesByDate[fileIndex].FullName);
                 }
             }
             catch (DirectoryNotFoundException)
@@ -1082,7 +1124,7 @@ namespace NLog.Targets
             RollArchiveForward(fileName, newFileName, shouldCompress: true);
         }
 
-        private string ReplaceReplaceFileNamePattern(string pattern, string replacementValue)
+        private static string ReplaceReplaceFileNamePattern(string pattern, string replacementValue)
         {
             return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
         }
@@ -1096,8 +1138,11 @@ namespace NLog.Targets
             DeleteOldDateArchive(pattern);
 
             DateTime newFileDate = GetArchiveDate(true);
-            string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
-            RollArchiveForward(fileName, newFileName, shouldCompress: true);
+            if (dirName != null)
+            {
+                string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
+                RollArchiveForward(fileName, newFileName, shouldCompress: true);
+            }
         }
 
         /// <summary>
@@ -1107,7 +1152,7 @@ namespace NLog.Targets
         /// <param name="pattern">The pattern that archive filenames will match</param>
         private void DeleteOldDateArchive(string pattern)
         {
-            
+
             string fileNameMask = ReplaceReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
@@ -1754,8 +1799,6 @@ namespace NLog.Targets
 
         private class DynamicFileArchive
         {
-            public bool CreateDirectory { get; set; }
-
             public int MaxArchiveFileToKeep { get; set; }
 
             public DynamicFileArchive(int maxArchivedFiles)
@@ -1860,7 +1903,7 @@ namespace NLog.Targets
                 if (MaxArchiveFileToKeep == 1 && archiveFileQueue.Any())
                 {
                     var archiveFileName = archiveFileQueue.Dequeue();
-                    
+
                     try
                     {
                         File.Delete(archiveFileName);
@@ -1937,19 +1980,6 @@ namespace NLog.Targets
             }
 
             /// <summary>
-            /// Pattern found within <see cref="P:FileNameTemplate.Template"/>. 
-            /// <see cref="String.Empty"/> is returned when the template does 
-            /// not contain any pattern.
-            /// </summary>
-            public string Pattern
-            {
-                get
-                {
-                    return this.Pattern;
-                }
-            }
-
-            /// <summary>
             /// The begging position of the <see cref="P:FileNameTemplate.Pattern"/> 
             /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
             /// when no pattern can be found.
@@ -1976,7 +2006,6 @@ namespace NLog.Targets
             }
 
             private readonly string template;
-            private readonly string pattern;
 
             private readonly int startIndex;
             private readonly int endIndex;
@@ -1986,20 +2015,6 @@ namespace NLog.Targets
                 this.template = template;
                 this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
                 this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
-
-                this.pattern = this.HasPattern() ? template.Substring(this.startIndex, this.endIndex - this.startIndex) : String.Empty;
-
-            }
-
-            /// <summary>
-            /// Checks if there the <see cref="P:FileNameTemplate.Template"/> 
-            /// contains the <see cref="P:FileNameTemplate.Pattern"/>.
-            /// </summary>
-            /// <returns>Returns <see langword="true" /> if pattern is found in 
-            /// the template, <see langword="false" /> otherwise.</returns>
-            public bool HasPattern()
-            {
-                return (this.BeginAt != -1 && this.EndAt != -1 && this.BeginAt < this.EndAt);
             }
 
             /// <summary>
