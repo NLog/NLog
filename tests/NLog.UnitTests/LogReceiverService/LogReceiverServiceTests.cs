@@ -32,7 +32,7 @@
 // 
 
 
-
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests.LogReceiverService
 {
@@ -300,6 +300,8 @@ namespace NLog.UnitTests.LogReceiverService
                 logFunc(logger1);
 
                 countdownEvent.Wait(20000);
+                //we need some extra time for completion
+                Thread.Sleep(1000);
                 var recieved = LogRecieverMock.recievedEvents;
 
 
@@ -356,3 +358,6 @@ namespace NLog.UnitTests.LogReceiverService
 #endif
     }
 }
+
+
+#endif

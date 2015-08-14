@@ -2,6 +2,8 @@ Welcome to NLog
 ===
 
 [![Join the chat at https://gitter.im/NLog/NLog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLog/NLog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Twitter](https://img.shields.io/badge/Twitter-NLogOfficial-blue.svg)](https://twitter.com/nlogofficial)
+[![News](https://img.shields.io/badge/News-5_aug_2015-orange.svg)](http://nlog-project.org/archives/)
 
 [![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg)](https://www.nuget.org/packages/NLog)
 [![Version](https://img.shields.io/nuget/v/NLog.svg)](https://www.nuget.org/packages/NLog) 
@@ -9,6 +11,11 @@ Welcome to NLog
 [![AppVeyor](https://img.shields.io/appveyor/ci/Xharze/nlog-134/master.svg)](https://ci.appveyor.com/project/Xharze/nlog-134/branch/master)
 <!--[![Pre-release version](https://img.shields.io/nuget/vpre/NLog.svg)](https://www.nuget.org/packages/NLog)--> 
 
+---
+
+[NLog is Looking for Developers!](http://nlog-project.org/2015/08/05/NLog-is-looking-for-developers.html)
+
+---
 
 NLog is a free logging platform for .NET with rich log routing and management 
 capabilities. It makes it easy to produce and manage high-quality logs for 
@@ -23,6 +30,11 @@ or just get started with the tutorials on [the NLog wiki](https://github.com/NLo
 
 [Project news - including RSS feed](http://nlog-project.org/archives/)
 
+Extensions
+---
+This is the core of NLog. There are multiple extensions on NLog, some are maintained by NLog and other by the community. Check [the targets](https://github.com/NLog/NLog/wiki/Targets#targets) and [the layout renderers](https://github.com/NLog/NLog/wiki/Layout-Renderers#layout-renderers) wiki pages for more information!
+
+
 Questions, bug reports or feature requests?
 ---
 Do you have feature requests, questions or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](CONTRIBUTING.md).
@@ -32,11 +44,9 @@ Contributing
 ---
 As the current NLog team is a small team, we cannot fix every bug or implement every feature on our own. So contributions are really appreciated!
 
-If you like to start with a small task, thent the following GitHub issues are nice to start with:
+If you like to start with a small task, then
+[up-for-grabs](https://github.com/NLog/NLog/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+label%3Aup-for-grabs+-label%3A%22almost+ready%22+)  are nice to start with.
 
-- These issues would be great if it get fixed (and unit tested):  [#302](https://github.com/NLog/NLog/issues/302)
-- If you are good in writing English or just like writing English:  [#520](https://github.com/NLog/NLog/issues/520)
-- If you like to work with Sandcastle Help File Builder (SHFB): [#655](https://github.com/NLog/NLog/issues/655)
 
 A good way to get started (flow)
 

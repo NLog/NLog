@@ -336,6 +336,67 @@ namespace NLog.UnitTests.Common
                 Assert.Contains(expectedDateTime + ".", str);
             }
         }
+
+        [Fact]
+        public void CreateDirectoriesIfNeededTests()
+        {
+            string expected =
+                    "Warn WWW" + Environment.NewLine +
+                    "Error EEE" + Environment.NewLine +
+                    "Fatal FFF" + Environment.NewLine +
+                    "Trace TTT" + Environment.NewLine +
+                    "Debug DDD" + Environment.NewLine +
+                    "Info III" + Environment.NewLine;
+
+            // Store off the previous log file
+            string previousLogFile = InternalLogger.LogFile;
+
+            var tempPath = Path.GetTempPath();
+            var tempFileName = Path.GetRandomFileName();
+            var randomSubDirectory = Path.Combine(tempPath, Path.GetRandomFileName());
+            string tempFile = Path.Combine(randomSubDirectory, tempFileName);
+
+            InternalLogger.LogLevel = LogLevel.Trace;
+            InternalLogger.IncludeTimestamp = false;
+
+            Assert.False(Directory.Exists(randomSubDirectory));
+
+            // Set the log file, which will only create the needed directories
+            InternalLogger.LogFile = tempFile;
+
+            Assert.True(Directory.Exists(randomSubDirectory));
+
+            try
+            {
+                Assert.False(File.Exists(tempFile));
+
+                // Invoke Log(LogLevel, string) for every log level.
+                InternalLogger.Log(LogLevel.Warn, "WWW");
+                InternalLogger.Log(LogLevel.Error, "EEE");
+                InternalLogger.Log(LogLevel.Fatal, "FFF");
+                InternalLogger.Log(LogLevel.Trace, "TTT");
+                InternalLogger.Log(LogLevel.Debug, "DDD");
+                InternalLogger.Log(LogLevel.Info, "III");
+
+                AssertFileContents(tempFile, expected, Encoding.UTF8);
+                Assert.True(File.Exists(tempFile));
+            }
+            finally
+            {
+                // Reset LogFile to the previous value
+                InternalLogger.LogFile = previousLogFile;
+
+                if (File.Exists(tempFile))
+                {
+                    File.Delete(tempFile);
+                }
+
+                if (Directory.Exists(randomSubDirectory))
+                {
+                    Directory.Delete(randomSubDirectory);
+                }
+            }
+        }
 #endif
     }
 }

@@ -247,6 +247,25 @@ namespace NLog
         { 
             if (this.Is<#=level#>Enabled)
             {
+#pragma warning disable 618
+           
+			//todo log also these calls as warning?
+                if (this.configuration.ExceptionLoggingOldStyle)
+#pragma warning restore 618
+                {   
+					var exceptionCandidate = argument as Exception;		
+					if (exceptionCandidate != null)		
+					{		
+				
+						// ReSharper disable CSharpWarnings::CS0618
+						#pragma warning disable 618
+						this.<#=level#>(message, exceptionCandidate);	
+						#pragma warning restore 618
+						// ReSharper restore CSharpWarnings::CS0618	
+						return;		
+					}
+				}
+
                 this.WriteToTargets(LogLevel.<#=level#>, message, new object[] { argument });
             }
         }

@@ -340,6 +340,9 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets the size in bytes above which log files will be automatically archived.
+        /// 
+        /// Warning: combining this with <see cref="ArchiveNumberingMode.Date"/> isn't supported. We cannot create multiple archive files, if they should have the same name.
+        /// Choose:  <see cref="ArchiveNumberingMode.DateAndSequence"/> 
         /// </summary>
         /// <remarks>
         /// Caution: Enabling this option can considerably slow down your file 
