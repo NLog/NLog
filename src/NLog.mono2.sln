@@ -3,16 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.mono2", "NLog\NLog.mono2.csproj", "{E7AB20BF-6920-442A-B876-CC05BC5CEC79}"
 EndProject
-#disabled unit tests for travis/xbuild. Better build without unit tests than no builds..
-#Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.mono2", "..\tests\NLog.UnitTests\NLog.UnitTests.mono2.csproj", "{FE0A3713-E9A8-41F0-89FA-C1126F8FB6A8}"
-#EndProject
+# disabled unit tests for travis/xbuild. Better build without unit tests than no builds..
+# Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.UnitTests.mono2", "..\tests\NLog.UnitTests\NLog.UnitTests.mono2.csproj", "{FE0A3713-E9A8-41F0-89FA-C1126F8FB6A8}"
+# EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestFrameworkStub.mono2", "..\tools\UnitTestFrameworkStub\UnitTestFrameworkStub.mono2.csproj", "{FE0A3713-E9A8-41F0-89FA-C1128214B6A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExtensions.mono2", "..\tests\SampleExtensions\SampleExtensions.mono2.csproj", "{C480452F-7E14-443D-906D-7E021ABAA107}"
 EndProject
-#disabled unit tests for travis/xbuild. Better build without unit tests than no builds..
-#Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunUnitTests.mono2", "..\tools\RunUnitTests\RunUnitTests.mono2.csproj", "{FE0A3713-F151-41F0-89FA-C1128214B6A8}"
-#EndProject
+# disabled unit tests for travis/xbuild. Better build without unit tests than no builds..
+# Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunUnitTests.mono2", "..\tools\RunUnitTests\RunUnitTests.mono2.csproj", "{FE0A3713-F151-41F0-89FA-C1128214B6A8}"
+# EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
