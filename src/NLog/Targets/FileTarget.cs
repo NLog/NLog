@@ -964,6 +964,40 @@ namespace NLog.Targets
         }
 
 #if !NET_CF
+
+        /// <summary>
+        /// Parsed filename of an archived file
+        /// 
+        /// Needed for removing the last on (so for sorting)
+        /// </summary>
+        private class ParsedArchiveFileName
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+            /// </summary>
+            public ParsedArchiveFileName(string fullName, DateTime datePart, int numberPart)
+            {
+                DatePart = datePart;
+                FullName = fullName;
+                NumberPart = numberPart;
+            }
+
+            /// <summary>
+            /// Full, unparsed name
+            /// </summary>
+            public string FullName { get; set; }
+
+            /// <summary>
+            /// Parse date part
+            /// </summary>
+            public DateTime DatePart { get; set; }
+
+            /// <summary>
+            /// Parsed number part
+            /// </summary>
+            public int NumberPart { get; set; }
+        }
+
         private void DateAndSequentialArchive(string fileName, string pattern, LogEventInfo logEvent)
         {
             string baseNamePattern = Path.GetFileName(pattern);
@@ -1011,18 +1045,19 @@ namespace NLog.Targets
                 List<string> files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
 #endif
 
-                var filesByDate = new List<string>();
+                var filesByDate = new List<ParsedArchiveFileName>();
 
                 //It's possible that the log file itself has a name that will match the archive file mask.
-                var archiveFileCount = files.Count; 
+                var archiveFileCount = files.Count;
 
                 for (int index = 0; index < files.Count; index++)
                 {
                     //Get the archive file name or empty string if it's null
-                    string archiveFileName = Path.GetFileName(files[index]) ?? "";
+                    var unparsedName = files[index];
+                    string archiveFileName = Path.GetFileName(unparsedName) ?? "";
 
 
-                    if (string.IsNullOrEmpty(archiveFileName) || 
+                    if (string.IsNullOrEmpty(archiveFileName) ||
                         archiveFileName.Equals(Path.GetFileName(fileName)))
                     {
                         archiveFileCount--;
@@ -1053,13 +1088,17 @@ namespace NLog.Targets
                     }
 
                     DateTime fileDate;
-
+                    //todo what are we checking here?
                     if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None,
                         out fileDate))
                     {
-                        filesByDate.Add(files[index]);
+                        filesByDate.Add(new ParsedArchiveFileName(unparsedName, fileDate, num));
                     }
                 }
+
+                //now order the fileNames by date and then number
+
+                filesByDate = filesByDate.OrderBy(f => f.DatePart).ThenBy(f => f.NumberPart).ToList();
 
                 nextSequenceNumber++;
 
@@ -1069,7 +1108,7 @@ namespace NLog.Targets
                     if (fileIndex > archiveFileCount - this.MaxArchiveFiles)
                         break;
 
-                    File.Delete(filesByDate[fileIndex]);
+                    File.Delete(filesByDate[fileIndex].FullName);
                 }
             }
             catch (DirectoryNotFoundException)
@@ -1110,7 +1149,7 @@ namespace NLog.Targets
         /// <param name="pattern">The pattern that archive filenames will match</param>
         private void DeleteOldDateArchive(string pattern)
         {
-            
+
             string fileNameMask = ReplaceReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
@@ -1863,7 +1902,7 @@ namespace NLog.Targets
                 if (MaxArchiveFileToKeep == 1 && archiveFileQueue.Any())
                 {
                     var archiveFileName = archiveFileQueue.Dequeue();
-                    
+
                     try
                     {
                         File.Delete(archiveFileName);
