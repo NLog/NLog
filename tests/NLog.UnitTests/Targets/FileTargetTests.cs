@@ -1421,47 +1421,7 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempPath, true);
             }
         }
-
-        /// <summary>
-        /// Archive file helepr
-        /// </summary>
-        /// <remarks>TODO rewrite older test</remarks>
-        private class ArchiveFilenameHelper
-        {
-            public string FolderName { get; private set; }
-
-            public string FileName { get; private set; }
-            /// <summary>
-            /// Ext without dot
-            /// </summary>
-            public string Ext { get; set; }
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="T:System.Object"/> class.
-            /// </summary>
-            public ArchiveFilenameHelper(string folderName, string fileName, string ext)
-            {
-                Ext = ext;
-                FileName = fileName;
-                FolderName = folderName;
-            }
-
-            public bool Exists(int number)
-            {
-                return File.Exists(GetFullPath(number));
-            }
-
-            public string GetFullPath(int number)
-            {
-                return Path.Combine(String.Format("{0}/{1}.{2}.{3}", FolderName, FileName, number, Ext));
-            }
-
-            public static string GenerateTempPath()
-            {
-                return Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            }
-        }
-
+        
         [Fact]
         public void FileTarget_WithArchiveFileNameEndingInNumberPlaceholder_ShouldArchiveFile()
         {
@@ -1623,6 +1583,46 @@ namespace NLog.UnitTests.Targets
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
+            }
+        }
+        
+        /// <summary>
+        /// Archive file helepr
+        /// </summary>
+        /// <remarks>TODO rewrite older test</remarks>
+        private class ArchiveFilenameHelper
+        {
+            public string FolderName { get; private set; }
+
+            public string FileName { get; private set; }
+            /// <summary>
+            /// Ext without dot
+            /// </summary>
+            public string Ext { get; set; }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+            /// </summary>
+            public ArchiveFilenameHelper(string folderName, string fileName, string ext)
+            {
+                Ext = ext;
+                FileName = fileName;
+                FolderName = folderName;
+            }
+
+            public bool Exists(int number)
+            {
+                return File.Exists(GetFullPath(number));
+            }
+
+            public string GetFullPath(int number)
+            {
+                return Path.Combine(String.Format("{0}/{1}.{2}.{3}", FolderName, FileName, number, Ext));
+            }
+
+            public static string GenerateTempPath()
+            {
+                return Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             }
         }
     }
