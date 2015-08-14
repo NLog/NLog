@@ -38,11 +38,9 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.Diagnostics;
     using System.IO;
-    using System.Threading;
     using NLog.Config;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
-    using NLog.Common;
     using Xunit;
 
     public class ConcurrentFileTargetTests : NLogTestBase
@@ -77,25 +75,6 @@ namespace NLog.UnitTests.Targets
                     SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
                     break;
             }
-        }
-
-        public void Process(string threadName, string numLogsString, string mode)
-        {
-            if (threadName != null)
-            {
-                Thread.CurrentThread.Name = threadName;
-            }
-
-            ConfigureSharedFile(mode);
-            InternalLogger.LogLevel = LogLevel.Trace;
-            InternalLogger.LogToConsole = true;
-            int numLogs = Convert.ToInt32(numLogsString);
-            for (int i = 0; i < numLogs; ++i)
-            {
-                logger.Debug("{0}", i);
-            }
-            
-            LogManager.Configuration = null;
         }
 
         private void DoConcurrentTest(int numProcesses, int numLogs, string mode)
