@@ -366,7 +366,7 @@ namespace NLog.UnitTests.Targets
                 Generate1000BytesLog('c');
                 Generate1000BytesLog('d');
                 Generate1000BytesLog('e');
-           
+
                 LogManager.Configuration = null;
 
                 AssertFileContents(tempFile,
@@ -428,7 +428,7 @@ namespace NLog.UnitTests.Targets
                 Generate1000BytesLog('c');
                 Generate1000BytesLog('d');
                 Generate1000BytesLog('e');
-           
+
                 LogManager.Configuration = null;
 
                 AssertFileContents(tempFile,
@@ -932,7 +932,7 @@ namespace NLog.UnitTests.Targets
                 Generate1000BytesLog('c');
                 Generate1000BytesLog('d');
                 Generate1000BytesLog('e');
-           
+
                 LogManager.Configuration = null;
 
                 var assertFileContents =
@@ -1000,7 +1000,7 @@ namespace NLog.UnitTests.Targets
                 Generate1000BytesLog('c');
                 Generate1000BytesLog('d');
                 Generate1000BytesLog('e');
-           
+
                 LogManager.Configuration = null;
 
                 AssertFileContents(tempFile,
@@ -1304,7 +1304,7 @@ namespace NLog.UnitTests.Targets
                 Generate1000BytesLog('c');
                 Generate1000BytesLog('d');
                 Generate1000BytesLog('e');
-           
+
                 string archiveFilename = DateTime.Now.ToString(ft.ArchiveDateFormat);
 
                 LogManager.Configuration = null;
@@ -1506,89 +1506,7 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempPath, true);
             }
         }
-
-
-        /// <summary>
-        /// Remove archived files in correct order
-        /// </summary>
-        [Fact]
-        public void FileTarget_ArchiveNumbering_remove_correct_order()
-        {
-            var tempPath = ArchiveFilenameHelper.GenerateTempPath();
-            var tempFile = Path.Combine(tempPath, "file.txt");
-            var archiveExtension = "txt";
-            try
-            {
-                var ft = new FileTarget
-                {
-                    FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}." + archiveExtension),
-                    ArchiveDateFormat = "yyyy-MM-dd",
-                    ArchiveAboveSize = 1000,
-                    LineEnding = LineEndingMode.LF,
-                    Layout = "${message}",
-                    MaxArchiveFiles = 3,
-                    ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
-                    ArchiveEvery = FileArchivePeriod.Day
-                };
-
-                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
-
-                // we emit 4 * 250 *(3 x aaa + \n) bytes
-                // so that we should get a full file + 3 archives
-                Generate1000BytesLog('a');
-
-
-
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("bbb");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("ccc");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("ddd");
-                }
-                for (var i = 0; i < 250; ++i)
-                {
-                    logger.Debug("eee");
-                }
-
-                string archiveFilename = DateTime.Now.ToString(ft.ArchiveDateFormat);
-
-                LogManager.Configuration = null;
-
-
-
-                ArchiveFilenameHelper helper = new ArchiveFilenameHelper(Path.Combine(tempPath, "archive"), archiveFilename, archiveExtension);
-
-                AssertFileContents(tempFile, StringRepeat(250, "eee\n"), Encoding.UTF8);
-
-                AssertFileContents(helper.GetFullPath(1), StringRepeat(250, "bbb\n"), Encoding.UTF8);
-                AssertFileSize(helper.GetFullPath(1), ft.ArchiveAboveSize);
-
-                AssertFileContents(helper.GetFullPath(2), StringRepeat(250, "ccc\n"), Encoding.UTF8);
-                AssertFileSize(helper.GetFullPath(2), ft.ArchiveAboveSize);
-
-                AssertFileContents(helper.GetFullPath(3), StringRepeat(250, "ddd\n"), Encoding.UTF8);
-                AssertFileSize(helper.GetFullPath(3), ft.ArchiveAboveSize);
-
-                Assert.True(!helper.Exists(0), "old one removed - max files");
-                Assert.True(!helper.Exists(4), "stop at 3");
-            }
-            finally
-            {
-                LogManager.Configuration = null;
-                if (File.Exists(tempFile))
-                    File.Delete(tempFile);
-                if (Directory.Exists(tempPath))
-                    Directory.Delete(tempPath, true);
-            }
-        }
-
+        
         private void Generate1000BytesLog(char c)
         {
             for (var i = 0; i < 250; ++i)
