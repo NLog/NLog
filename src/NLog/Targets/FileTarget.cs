@@ -112,8 +112,8 @@ namespace NLog.Targets
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
 
-            this.MaxLogFilenames = 20;
-            this.previousFileNames = new Queue<string>(this.MaxLogFilenames);
+            this.maxLogFilenames = 20;
+            this.previousFileNames = new Queue<string>(this.maxLogFilenames);
         }
 
         /// <summary>
@@ -193,25 +193,8 @@ namespace NLog.Targets
         /// the higher the chance that the clean function will be run when no new files have been opened.
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(20)]
-        public int MaxLogFilenames { get; set; }
-
-
-        /// <summary>
-        /// Gets or sets the maximum number of log filenames that should be stored as existing.
-        /// </summary>
-        /// <remarks>
-        /// The bigger this number is the longer it will take to write each log record. The smaller the number is
-        /// the higher the chance that the clean function will be run when no new files have been opened.
-        /// </remarks>
-        /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(20)]
-        [Obsolete("Use MaxLogFilenames - this will be removed in NLog 5")]
-        public int maxLogFilenames
-        {
-            get { return MaxLogFilenames; }
-            set { MaxLogFilenames = value; }
-        }
+        [DefaultValue(20)] //NLog5: todo rename correct for text case
+        public int maxLogFilenames { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
@@ -680,7 +663,7 @@ namespace NLog.Targets
             {
                 if (!previousFileNames.Contains(fileName))
                 {
-                    if (this.previousFileNames.Count > this.MaxLogFilenames)
+                    if (this.previousFileNames.Count > this.maxLogFilenames)
                     {
                         this.previousFileNames.Dequeue();
                     }
@@ -823,7 +806,7 @@ namespace NLog.Targets
             pendingContinuations.Clear();
         }
 
-        private bool ContainFileNamePattern(string fileName)
+        private static bool ContainFileNamePattern(string fileName)
         {
             int startingIndex = fileName.IndexOf("{#", StringComparison.Ordinal);
             int endingIndex = fileName.IndexOf("#}", StringComparison.Ordinal);
@@ -1002,17 +985,17 @@ namespace NLog.Targets
             /// <summary>
             /// Full, unparsed name
             /// </summary>
-            public string FullName { get; set; }
+            public string FullName { get; private set; }
 
             /// <summary>
             /// Parse date part
             /// </summary>
-            public DateTime DatePart { get; set; }
+            public DateTime DatePart { get; private set; }
 
             /// <summary>
             /// Parsed number part
             /// </summary>
-            public int NumberPart { get; set; }
+            public int NumberPart { get; private set; }
         }
 
         private void DateAndSequentialArchive(string fileName, string pattern, LogEventInfo logEvent)
