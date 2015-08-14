@@ -112,8 +112,8 @@ namespace NLog.Targets
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
 
-            this.maxLogFilenames = 20;
-            this.previousFileNames = new Queue<string>(this.maxLogFilenames);
+            this.MaxLogFilenames = 20;
+            this.previousFileNames = new Queue<string>(this.MaxLogFilenames);
         }
 
         /// <summary>
@@ -194,7 +194,24 @@ namespace NLog.Targets
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(20)]
-        public int maxLogFilenames { get; set; }
+        public int MaxLogFilenames { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the maximum number of log filenames that should be stored as existing.
+        /// </summary>
+        /// <remarks>
+        /// The bigger this number is the longer it will take to write each log record. The smaller the number is
+        /// the higher the chance that the clean function will be run when no new files have been opened.
+        /// </remarks>
+        /// <docgen category='Performance Tuning Options' order='10' />
+        [DefaultValue(20)]
+        [Obsolete("Use MaxLogFilenames - this will be removed in NLog 5")]
+        public int maxLogFilenames
+        {
+            get { return MaxLogFilenames; }
+            set { MaxLogFilenames = value; }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
@@ -663,7 +680,7 @@ namespace NLog.Targets
             {
                 if (!previousFileNames.Contains(fileName))
                 {
-                    if (this.previousFileNames.Count > this.maxLogFilenames)
+                    if (this.previousFileNames.Count > this.MaxLogFilenames)
                     {
                         this.previousFileNames.Dequeue();
                     }
@@ -863,7 +880,7 @@ namespace NLog.Targets
             int nextNumber = -1;
             int minNumber = -1;
 
-            var number2name = new Dictionary<int, string>();
+            var number2Name = new Dictionary<int, string>();
 
             try
             {
@@ -889,7 +906,7 @@ namespace NLog.Targets
                     nextNumber = Math.Max(nextNumber, num);
                     minNumber = minNumber != -1 ? Math.Min(minNumber, num) : num;
 
-                    number2name[num] = s;
+                    number2Name[num] = s;
                 }
 
                 nextNumber++;
@@ -907,7 +924,7 @@ namespace NLog.Targets
                 {
                     string s;
 
-                    if (number2name.TryGetValue(i, out s))
+                    if (number2Name.TryGetValue(i, out s))
                     {
                         File.Delete(s);
                     }
@@ -1124,7 +1141,7 @@ namespace NLog.Targets
             RollArchiveForward(fileName, newFileName, shouldCompress: true);
         }
 
-        private string ReplaceReplaceFileNamePattern(string pattern, string replacementValue)
+        private static string ReplaceReplaceFileNamePattern(string pattern, string replacementValue)
         {
             return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
         }
@@ -1138,8 +1155,11 @@ namespace NLog.Targets
             DeleteOldDateArchive(pattern);
 
             DateTime newFileDate = GetArchiveDate(true);
-            string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
-            RollArchiveForward(fileName, newFileName, shouldCompress: true);
+            if (dirName != null)
+            {
+                string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
+                RollArchiveForward(fileName, newFileName, shouldCompress: true);
+            }
         }
 
         /// <summary>
@@ -1796,8 +1816,6 @@ namespace NLog.Targets
 
         private class DynamicFileArchive
         {
-            public bool CreateDirectory { get; set; }
-
             public int MaxArchiveFileToKeep { get; set; }
 
             public DynamicFileArchive(int maxArchivedFiles)
@@ -1979,19 +1997,6 @@ namespace NLog.Targets
             }
 
             /// <summary>
-            /// Pattern found within <see cref="P:FileNameTemplate.Template"/>. 
-            /// <see cref="String.Empty"/> is returned when the template does 
-            /// not contain any pattern.
-            /// </summary>
-            public string Pattern
-            {
-                get
-                {
-                    return this.Pattern;
-                }
-            }
-
-            /// <summary>
             /// The begging position of the <see cref="P:FileNameTemplate.Pattern"/> 
             /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
             /// when no pattern can be found.
@@ -2018,7 +2023,6 @@ namespace NLog.Targets
             }
 
             private readonly string template;
-            private readonly string pattern;
 
             private readonly int startIndex;
             private readonly int endIndex;
@@ -2028,20 +2032,6 @@ namespace NLog.Targets
                 this.template = template;
                 this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
                 this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
-
-                this.pattern = this.HasPattern() ? template.Substring(this.startIndex, this.endIndex - this.startIndex) : String.Empty;
-
-            }
-
-            /// <summary>
-            /// Checks if there the <see cref="P:FileNameTemplate.Template"/> 
-            /// contains the <see cref="P:FileNameTemplate.Pattern"/>.
-            /// </summary>
-            /// <returns>Returns <see langword="true" /> if pattern is found in 
-            /// the template, <see langword="false" /> otherwise.</returns>
-            public bool HasPattern()
-            {
-                return (this.BeginAt != -1 && this.EndAt != -1 && this.BeginAt < this.EndAt);
             }
 
             /// <summary>
