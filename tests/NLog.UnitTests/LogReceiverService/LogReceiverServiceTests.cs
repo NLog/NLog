@@ -234,27 +234,15 @@ namespace NLog.UnitTests.LogReceiverService
 #if WCF_SUPPORTED
 
         [Fact]
-        public void RealTestLogReciever_two_way()
-        {
-            RealTestLogReciever(false);
-        }
-
-        [Fact]
-        public void RealTestLogReciever_one_way()
-        {
-            RealTestLogReciever(true);
-        }
-
-        private void RealTestLogReciever(bool useOneWayContract)
+        public void RealTestLogReciever1()
         {
             LogManager.Configuration = CreateConfigurationFromString(string.Format(@"
           <nlog throwExceptions='true'>
                 <targets>
                    <target type='LogReceiverService'
                           name='s1'
-                         
+               
                           endpointAddress='{0}'
-                          useOneWayContract='{1}'
                           useBinaryEncoding='false'
                   
                           includeEventProperties='false'>
@@ -267,9 +255,12 @@ namespace NLog.UnitTests.LogReceiverService
                     <logger name='logger1' minlevel='Trace' writeTo='s1' />
               
                 </rules>
-            </nlog>", logRecieverUrl, useOneWayContract.ToString().ToLower()));
+            </nlog>", logRecieverUrl));
 
+
+     
             ExecLogRecieverAndCheck(ExecLogging1, CheckRecieved1, 2);
+
         }
 
         /// <summary>
@@ -308,11 +299,9 @@ namespace NLog.UnitTests.LogReceiverService
                 var logger1 = LogManager.GetLogger("logger1");
                 logFunc(logger1);
 
-
-                countdownEvent.Wait(8000);
+                countdownEvent.Wait(20000);
                 //we need some extra time for completion
                 Thread.Sleep(1000);
-
                 var recieved = LogRecieverMock.recievedEvents;
 
 
@@ -340,7 +329,7 @@ namespace NLog.UnitTests.LogReceiverService
             logger.Info(new InvalidConstraintException("boo"), "test2");
         }
 
-        public class LogRecieverMock : ILogReceiverServer, ILogReceiverOneWayServer
+        public class LogRecieverMock : ILogReceiverServer
         {
 
             public static CountdownEvent CountdownEvent;
