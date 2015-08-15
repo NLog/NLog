@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if WCF_SUPPORTED
+
+using System;
 using System.ComponentModel;
 using System.Net;
 using System.ServiceModel;
@@ -106,3 +108,5 @@ namespace NLog.LogReceiverService
         CookieContainer CookieContainer { get; set; }
     }
 }
+
+#endif
