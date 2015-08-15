@@ -226,7 +226,7 @@ namespace NLog.LogReceiverService
         /// A channel of type <see cref="ILogReceiverClient"/> that identifies the type 
         /// of service contract encapsulated by this client object (proxy).
         /// </returns>
-        protected override ILogReceiverClient CreateChannel()
+        protected override ILogReceiverTwoWayClient CreateChannel()
         {
             return new LogReceiverServerClientChannel(this);
         }
@@ -297,9 +297,9 @@ namespace NLog.LogReceiverService
         }
 
 #if SILVERLIGHT
-        private class LogReceiverServerClientChannel : ChannelBase<ILogReceiverClient>, ILogReceiverClient
+        private class LogReceiverServerClientChannel : ChannelBase<ILogReceiverTwoWayClient>, ILogReceiverTwoWayClient
         {
-            public LogReceiverServerClientChannel(ClientBase<ILogReceiverClient> client) :
+            public LogReceiverServerClientChannel(ClientBase<ILogReceiverTwoWayClient> client) :
                 base(client)
             {
             }
