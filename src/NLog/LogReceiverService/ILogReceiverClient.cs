@@ -38,11 +38,7 @@ namespace NLog.LogReceiverService
     /// <summary>
     /// Service contract for Log Receiver client.
     /// </summary>
-
     public interface ILogReceiverClient
     {
     }
-
-
-
 }
