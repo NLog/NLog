@@ -95,12 +95,13 @@ namespace NLog.LogReceiverService
         /// <param name="result">The result.</param>
         void EndProcessLogMessages(IAsyncResult result);
 
+#if !SILVERLIGHT
         /// <summary>
         /// Instructs the inner channel to display a user interface if one is required to initialize the channel prior to using it.
         /// </summary>
         void DisplayInitializationUI();
-
-        
+#endif
+      
         /// <summary>
         /// Gets or sets the cookie container.
         /// </summary>

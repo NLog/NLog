@@ -272,6 +272,8 @@ namespace NLog.LogReceiverService
             remove { ProxiedClient.Closing -= value; }
         }
 
+#if !SILVERLIGHT
+
         /// <summary>
         /// Instructs the inner channel to display a user interface if one is required to initialize the channel prior to using it.
         /// </summary>
@@ -279,6 +281,8 @@ namespace NLog.LogReceiverService
         {
             ProxiedClient.DisplayInitializationUI();
         }
+
+#endif
 
         /// <summary>
         /// Gets or sets the cookie container.

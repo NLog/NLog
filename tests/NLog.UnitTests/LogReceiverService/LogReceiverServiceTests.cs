@@ -38,17 +38,20 @@ namespace NLog.UnitTests.LogReceiverService
 {
 
     using System.Collections.Generic;
-    using System.Data;
+
     using System.Linq;
-    using System.ServiceModel;
-    using System.ServiceModel.Description;
+
     using System.Threading;
 
     using System;
     using System.IO;
     using Xunit;
-#if WCF_SUPPORTED
+#if WCF_SUPPORTED && !SILVERLIGHT
+        using System.Data;
     using System.Runtime.Serialization;
+
+        using System.ServiceModel;
+    using System.ServiceModel.Description;
 #endif
     using System.Xml;
     using System.Xml.Serialization;
@@ -231,7 +234,7 @@ namespace NLog.UnitTests.LogReceiverService
 #endif
 
 
-#if WCF_SUPPORTED
+#if WCF_SUPPORTED && !SILVERLIGHT
 
         [Fact]
         public void RealTestLogReciever_two_way()
