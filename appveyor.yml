@@ -1,44 +1,29 @@
 version: 4.0.{build}
 build_script:
-- Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true
+  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildSL5=true /p:BuildSL4=true /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true
 test_script:
-- ps: >-
-    .\tests\CreateTestUsers.cmd
+  - ps: >- 
+        .\tests\CreateTestUsers.cmd
 
+        xunit.console.clr4 "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" /appveyor /noshadow
 
-    xunit.console.clr4 "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" /appveyor /noshadow
+        $success = $?
 
-    $success = $?
+        xunit.console.clr4 "build\bin\Debug\.NET Framework 4.5\NLog.UnitTests.dll" /appveyor /noshadow
 
+        if ( $success ) {
+          $success = $?
+        }
 
-    xunit.console.clr4 "build\bin\Debug\.NET Framework 4.5\NLog.UnitTests.dll" /appveyor /noshadow
+        xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow
 
-    if ( $success ) {
-     $success = $?
-    }
+        if ( $success ) {
+          $success = $?
+        }
 
+        if ( -not $success) {
+           throw "tests not successfull"
+        }
 
-    xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow
-
-    if ( $success ) {
-     $success = $?
-    }
-
-
-    .\tests\DeleteTestUsers.cmd
-
-
-    if ( -not $success) {
-      throw "tests not successfull"
-    }
+        .\tests\DeleteTestUsers.cmd
 deploy: off
-
-nuget:
-  project_feed: true
-  disable_publish_on_pr: true
-before_build:
-- ps: nuget restore
-build:
-  publish_nuget: true
-  publish_nuget_symbols: true
-  verbosity: normal
