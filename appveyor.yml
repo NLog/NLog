@@ -5,17 +5,17 @@ test_script:
   - ps: >- 
         .\tests\CreateTestUsers.cmd
 
-        xunit.console.clr4 "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" /appveyor /noshadow
+        xunit.console.clr4 "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" /appveyor /noshadow  2> out-null
 
         $success = $?
 
-        xunit.console.clr4 "build\bin\Debug\.NET Framework 4.5\NLog.UnitTests.dll" /appveyor /noshadow
+        xunit.console.clr4 "build\bin\Debug\.NET Framework 4.5\NLog.UnitTests.dll" /appveyor /noshadow 2> out-null
 
         if ( $success ) {
           $success = $?
         }
 
-        xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow
+        xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow 2> out-null
 
         if ( $success ) {
           $success = $?
