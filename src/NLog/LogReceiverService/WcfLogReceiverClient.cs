@@ -284,6 +284,7 @@ namespace NLog.LogReceiverService
 
 #endif
 
+#if !NET4_0 && !NET3_5
         /// <summary>
         /// Gets or sets the cookie container.
         /// </summary>
@@ -293,6 +294,9 @@ namespace NLog.LogReceiverService
             get { return ProxiedClient.CookieContainer; }
             set { ProxiedClient.CookieContainer = value; }
         }
+
+#endif
+
 
         /// <summary>
         /// Completes an asynchronous operation to close a communication object.
