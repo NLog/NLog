@@ -5,6 +5,9 @@ using System.ServiceModel.Description;
 
 namespace NLog.LogReceiverService
 {
+    /// <summary>
+    /// Client of <see cref="ILogReceiverServer"/>
+    /// </summary>
     public interface IWcfLogReceiverClient : ICommunicationObject
     {
         /// <summary>
@@ -22,10 +25,19 @@ namespace NLog.LogReceiverService
         /// </summary>
         event EventHandler<AsyncCompletedEventArgs> CloseCompleted;
 
-    
+        /// <summary>
+        /// Enables the user to configure client and service credentials as well as service credential authentication settings for use on the client side of communication.
+        /// </summary>
         ClientCredentials ClientCredentials { get; }
-  
+
+        /// <summary>
+        /// Gets the underlying <see cref="IClientChannel"/> implementation.
+        /// </summary>
         IClientChannel InnerChannel { get; }
+
+        /// <summary>
+        /// Gets the target endpoint for the service to which the WCF client can connect.
+        /// </summary>
         ServiceEndpoint Endpoint { get; }
 
         /// <summary>
@@ -80,7 +92,9 @@ namespace NLog.LogReceiverService
         /// <param name="result">The result.</param>
         void EndProcessLogMessages(IAsyncResult result);
 
-     
+        /// <summary>
+        /// Instructs the inner channel to display a user interface if one is required to initialize the channel prior to using it.
+        /// </summary>
         void DisplayInitializationUI();
     }
 }

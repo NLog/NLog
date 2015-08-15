@@ -37,7 +37,6 @@ namespace NLog.LogReceiverService
 {
     using System;
     using System.ComponentModel;
-    using System.Net;
     using System.ServiceModel;
     using System.ServiceModel.Channels;
 
@@ -237,12 +236,12 @@ namespace NLog.LogReceiverService
         private IAsyncResult OnBeginProcessLogMessages(object[] inValues, AsyncCallback callback, object asyncState)
         {
             var events = (NLogEvents)inValues[0];
-            return ((ILogReceiverOneWayClient)this).BeginProcessLogMessages(events, callback, asyncState);
+            return this.BeginProcessLogMessages(events, callback, asyncState);
         }
 
         private object[] OnEndProcessLogMessages(IAsyncResult result)
         {
-            ((ILogReceiverOneWayClient)this).EndProcessLogMessages(result);
+            this.EndProcessLogMessages(result);
             return null;
         }
 

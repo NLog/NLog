@@ -52,7 +52,7 @@ namespace NLog.LogReceiverService
         /// <param name="callback">The callback.</param>
         /// <param name="asyncState">Asynchronous state.</param>
         /// <returns>
-        /// IAsyncResult value which can be passed to <see cref="ILogReceiverClient.EndProcessLogMessages"/>.
+        /// IAsyncResult value which can be passed to <see cref="EndProcessLogMessages"/>.
         /// </returns>
 #if WCF_SUPPORTED
         [OperationContractAttribute(IsOneWay = true, AsyncPattern = true, Action = "http://nlog-project.org/ws/ILogReceiverOneWayServer/ProcessLogMessages")]

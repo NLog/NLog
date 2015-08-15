@@ -31,44 +31,34 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Net;
-using System.ServiceModel.Description;
-
 #if WCF_SUPPORTED
 
 namespace NLog.LogReceiverService
 {
+    using System.ServiceModel.Description;
     using System;
     using System.ComponentModel;
     using System.ServiceModel;
     using System.ServiceModel.Channels;
-#if SILVERLIGHT
-    using System.Net;
-#endif
+
 
     /// <summary>
     /// Log Receiver Client facade. It allows the use either of the one way or two way 
     /// service contract using WCF through its unified interface.
     /// </summary>
+    /// <remarks>
+    /// Delegating methods are generated with Resharper.
+    /// 1. change ProxiedClient to private field (instead of public property)
+    /// 2. delegate members
+    /// 3. change ProxiedClient back to public property.
+    /// 
+    /// </remarks>
     public sealed class WcfLogReceiverClient : IWcfLogReceiverClient, ICommunicationObject
     {
-
-
-#if DEBUG
-
-        /// <summary>
-        /// The client getting proxied
-        /// </summary>
-        private IWcfLogReceiverClient ProxiedClient;
-#else
-
-
         /// <summary>
         /// The client getting proxied
         /// </summary>
         public IWcfLogReceiverClient ProxiedClient { get; private set; }
-
-#endif
 
         /// <summary>
         /// Do we use one-way or two-way messaging?
@@ -138,6 +128,9 @@ namespace NLog.LogReceiverService
 
         #region delegating
 
+        /// <summary>
+        /// Causes a communication object to transition immediately from its current state into the closed state.  
+        /// </summary>
         public void Abort()
         {
             ProxiedClient.Abort();
@@ -205,6 +198,9 @@ namespace NLog.LogReceiverService
             return ProxiedClient.BeginProcessLogMessages(events, callback, asyncState);
         }
 
+        /// <summary>
+        /// Enables the user to configure client and service credentials as well as service credential authentication settings for use on the client side of communication.
+        /// </summary>
         public ClientCredentials ClientCredentials
         {
             get { return ProxiedClient.ClientCredentials; }
@@ -219,6 +215,10 @@ namespace NLog.LogReceiverService
             ProxiedClient.Close(timeout);
         }
 
+        /// <summary>
+        /// Causes a communication object to transition from its current state into the closed state.  
+        /// </summary>
+        /// <exception cref="T:System.ServiceModel.CommunicationObjectFaultedException"><see cref="M:System.ServiceModel.ICommunicationObject.Close"/> was called on an object in the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception><exception cref="T:System.TimeoutException">The default close timeout elapsed before the <see cref="T:System.ServiceModel.ICommunicationObject"/> was able to close gracefully.</exception>
         public void Close()
         {
             ProxiedClient.Close();
@@ -241,24 +241,36 @@ namespace NLog.LogReceiverService
             ProxiedClient.CloseAsync();
         }
 
+        /// <summary>
+        /// Occurs when Close operation has completed.
+        /// </summary>
         public event EventHandler<AsyncCompletedEventArgs> CloseCompleted
         {
             add { ProxiedClient.CloseCompleted += value; }
             remove { ProxiedClient.CloseCompleted -= value; }
         }
 
+        /// <summary>
+        /// Occurs when the communication object completes its transition from the closing state into the closed state.
+        /// </summary>
         public event EventHandler Closed
         {
             add { ProxiedClient.Closed += value; }
             remove { ProxiedClient.Closed -= value; }
         }
 
+        /// <summary>
+        /// Occurs when the communication object first enters the closing state.
+        /// </summary>
         public event EventHandler Closing
         {
             add { ProxiedClient.Closing += value; }
             remove { ProxiedClient.Closing -= value; }
         }
 
+        /// <summary>
+        /// Instructs the inner channel to display a user interface if one is required to initialize the channel prior to using it.
+        /// </summary>
         public void DisplayInitializationUI()
         {
             ProxiedClient.DisplayInitializationUI();
@@ -282,6 +294,9 @@ namespace NLog.LogReceiverService
             ProxiedClient.EndOpen(result);
         }
 
+        /// <summary>
+        /// Gets the target endpoint for the service to which the WCF client can connect.
+        /// </summary>
         public ServiceEndpoint Endpoint
         {
             get { return ProxiedClient.Endpoint; }
@@ -296,17 +311,27 @@ namespace NLog.LogReceiverService
             ProxiedClient.EndProcessLogMessages(result);
         }
 
+        /// <summary>
+        /// Occurs when the communication object first enters the faulted state.
+        /// </summary>
         public event EventHandler Faulted
         {
             add { ProxiedClient.Faulted += value; }
             remove { ProxiedClient.Faulted -= value; }
         }
 
+        /// <summary>
+        /// Gets the underlying <see cref="IClientChannel"/> implementation.
+        /// </summary>
         public IClientChannel InnerChannel
         {
             get { return ProxiedClient.InnerChannel; }
         }
 
+        /// <summary>
+        /// Causes a communication object to transition from the created state into the opened state.  
+        /// </summary>
+        /// <exception cref="T:System.ServiceModel.CommunicationException">The <see cref="T:System.ServiceModel.ICommunicationObject"/> was unable to be opened and has entered the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception><exception cref="T:System.TimeoutException">The default open timeout elapsed before the <see cref="T:System.ServiceModel.ICommunicationObject"/> was able to enter the <see cref="F:System.ServiceModel.CommunicationState.Opened"/> state and has entered the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception>
         public void Open()
         {
             ProxiedClient.Open();
@@ -338,18 +363,27 @@ namespace NLog.LogReceiverService
             ProxiedClient.OpenAsync(userState);
         }
 
+        /// <summary>
+        /// Occurs when Open operation has completed.
+        /// </summary>
         public event EventHandler<AsyncCompletedEventArgs> OpenCompleted
         {
             add { ProxiedClient.OpenCompleted += value; }
             remove { ProxiedClient.OpenCompleted -= value; }
         }
 
+        /// <summary>
+        /// Occurs when the communication object completes its transition from the opening state into the opened state.
+        /// </summary>
         public event EventHandler Opened
         {
             add { ProxiedClient.Opened += value; }
             remove { ProxiedClient.Opened -= value; }
         }
 
+        /// <summary>
+        /// Occurs when the communication object first enters the opening state.
+        /// </summary>
         public event EventHandler Opening
         {
             add { ProxiedClient.Opening += value; }
@@ -375,6 +409,9 @@ namespace NLog.LogReceiverService
             ProxiedClient.ProcessLogMessagesAsync(events, userState);
         }
 
+        /// <summary>
+        /// Occurs when the log message processing has completed.
+        /// </summary>
         public event EventHandler<AsyncCompletedEventArgs> ProcessLogMessagesCompleted
         {
             add { ProxiedClient.ProcessLogMessagesCompleted += value; }
@@ -400,8 +437,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         public void CloseCommunicationObject()
         {
-
-            ((ICommunicationObject)ProxiedClient).Close();
+            ProxiedClient.Close();
         }
     }
 }
