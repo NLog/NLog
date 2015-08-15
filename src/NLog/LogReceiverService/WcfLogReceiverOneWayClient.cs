@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 #if WCF_SUPPORTED
 
 namespace NLog.LogReceiverService
@@ -39,6 +41,7 @@ namespace NLog.LogReceiverService
     using System.ComponentModel;
     using System.ServiceModel;
     using System.ServiceModel.Channels;
+    using System.Net;
 
     /// <summary>
     /// Log Receiver Client using WCF.
@@ -106,7 +109,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         public event EventHandler<AsyncCompletedEventArgs> CloseCompleted;
 
-#if SILVERLIGHT
+
         /// <summary>
         /// Gets or sets the cookie container.
         /// </summary>
@@ -136,7 +139,7 @@ namespace NLog.LogReceiverService
                 }
             }
         }
-#endif
+
 
         /// <summary>
         /// Opens the client asynchronously.

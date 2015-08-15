@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 
@@ -96,5 +97,12 @@ namespace NLog.LogReceiverService
         /// Instructs the inner channel to display a user interface if one is required to initialize the channel prior to using it.
         /// </summary>
         void DisplayInitializationUI();
+
+        
+        /// <summary>
+        /// Gets or sets the cookie container.
+        /// </summary>
+        /// <value>The cookie container.</value>
+        CookieContainer CookieContainer { get; set; }
     }
 }

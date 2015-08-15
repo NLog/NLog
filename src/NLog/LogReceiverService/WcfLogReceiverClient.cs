@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Net;
+
 #if WCF_SUPPORTED
 
 namespace NLog.LogReceiverService
@@ -206,6 +208,8 @@ namespace NLog.LogReceiverService
             get { return ProxiedClient.ClientCredentials; }
         }
 
+
+
         /// <summary>
         /// Causes a communication object to transition from its current state into the closed state.  
         /// </summary>
@@ -274,6 +278,16 @@ namespace NLog.LogReceiverService
         public void DisplayInitializationUI()
         {
             ProxiedClient.DisplayInitializationUI();
+        }
+
+        /// <summary>
+        /// Gets or sets the cookie container.
+        /// </summary>
+        /// <value>The cookie container.</value>
+        public CookieContainer CookieContainer
+        {
+            get { return ProxiedClient.CookieContainer; }
+            set { ProxiedClient.CookieContainer = value; }
         }
 
         /// <summary>
