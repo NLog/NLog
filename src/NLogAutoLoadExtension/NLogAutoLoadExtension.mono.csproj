@@ -54,12 +54,11 @@
     <Compile Include="AutoLoadTarget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\NLog\NLog.mono.csproj">
-      <Project>{c124b63d-1658-4311-9ba8-9c3cfaf9b32e}</Project>
+      <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
       <Name>NLog.mono</Name>
     </ProjectReference>
   </ItemGroup>
-
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
