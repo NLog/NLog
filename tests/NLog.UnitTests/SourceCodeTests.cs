@@ -164,6 +164,14 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl4.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.mono.csproj");
 
+			filesToCompile.Clear();
+			GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLogAutoLoadExtension/"), "*.cs", "");
+
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx35.csproj");
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx40.csproj");
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx45.csproj");
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.mono.csproj");
+
             Assert.Equal(0, failures);
         }
 

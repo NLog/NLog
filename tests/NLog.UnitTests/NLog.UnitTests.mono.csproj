@@ -3,8 +3,6 @@
   <PropertyGroup>
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE0A3713-E9A8-41F0-89FA-C1126F8FB6A8}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -214,15 +212,15 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLog\NLog.mono.csproj">
       <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
-      <Name>NLog.monodevelop</Name>
+      <Name>NLog.mono</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.mono.csproj">
       <Project>{F801A1F9-1024-4446-BF9E-A923137340B8}</Project>
-      <Name>NLog.Extended.monodevelop</Name>
+      <Name>NLog.Extended.mono</Name>
     </ProjectReference>
     <ProjectReference Include="..\SampleExtensions\SampleExtensions.mono.csproj">
       <Project>{5CCB56C3-4A6E-4C11-960B-2877099F52CE}</Project>
-      <Name>SampleExtensions.monodevelop</Name>
+      <Name>SampleExtensions.mono</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
