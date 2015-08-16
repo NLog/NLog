@@ -1,0 +1,3 @@
+language: csharp
+solution: src/NLog.mono.sln
+

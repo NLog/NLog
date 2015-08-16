@@ -75,9 +75,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\NLog\NLog.monodevelop.csproj">
+    <ProjectReference Include="..\NLog\NLog.mono.csproj">
       <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
-      <Name>NLog.monodevelop</Name>
+      <Name>NLog.mono</Name>
     </ProjectReference>
   </ItemGroup>
   <Target Name="BeforeBuild">
