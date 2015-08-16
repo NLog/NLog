@@ -68,7 +68,7 @@ namespace NLog.Internal.Fakeables
         int Id { get; }
 #endif
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT
         /// <summary>
         /// Process exit event.
         /// </summary>
