@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C480452F-7E14-443D-906D-7E021ABAA107A}</ProjectGuid>
+    <ProjectGuid>{2D85AAFA-76B0-4271-8AA8-42BBD796FD39}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SampleExtensions</RootNamespace>
-    <AssemblyName>SampleExtensions</AssemblyName>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
+    <RootNamespace>NLogAutloadExtension</RootNamespace>
+    <AssemblyName>NLogAutloadExtension</AssemblyName>
+    <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NoWarn>0419</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <NoConfig>true</NoConfig>
+    <DefineConstants>MONO;WCF_SUPPORTED;MONO_2_0;DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Debug</OutputPath>
+    <NoStdLib>true</NoStdLib>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
-    <NoConfig>true</NoConfig>
+    <DefineConstants>MONO;WCF_SUPPORTED;MONO_2_0;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Release</OutputPath>
+    <NoStdLib>true</NoStdLib>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup>
+    <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
-    <DefineConstants>MONO;MONO_2_0;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="FooLayout.cs" />
-    <Compile Include="FooLayoutRenderer.cs" />
-    <Compile Include="MyConditionMethods.cs" />
-    <Compile Include="MyTarget.cs" />
-    <Compile Include="WhenFooFilter.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="NLogTests.snk" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.monodevelop.csproj">
-      <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
-      <Name>NLog.monodevelop</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoLoadTarget.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\NLog\NLog.mono.csproj">
+      <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
+      <Name>NLog.mono</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
