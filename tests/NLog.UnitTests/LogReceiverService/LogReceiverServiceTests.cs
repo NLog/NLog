@@ -344,23 +344,14 @@ namespace NLog.UnitTests.LogReceiverService
 
         private static void CheckRecieved1(List<NLogEvents> recieved)
         {
-
-
-
+            //in some case the messages aren't retrieved in the right order when invoked in the same sec.
+            //more important is that both are retrieved with the correct info
             Assert.Equal(2, recieved.Count);
-            {
-                var log1 = recieved[0].ToEventInfo().First();
-                Assert.Equal("test 1", log1.Message);
-                Assert.Null(log1.Exception);
-            }
-            {
-                var log2 = recieved[1].ToEventInfo().First();
-                Assert.Equal("test 2", log2.Message);
 
-                //too bad exceptions are not passed?
-                //  Assert.NotNull(log2.Exception);
-                //Assert.Equal("boo", log2.Exception.Message);
-            }
+            var logmessages = new HashSet<string> {recieved[0].ToEventInfo().First().Message, recieved[1].ToEventInfo().First().Message};
+
+            Assert.True(logmessages.Contains("test 1"), "message 1 is missing");
+            Assert.True(logmessages.Contains("test 2"), "message 2 is missing");
         }
 
         private static void ExecLogging1(Logger logger)
