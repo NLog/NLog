@@ -236,16 +236,28 @@ namespace NLog.UnitTests.LogReceiverService
         [Fact]
         public void RealTestLogReciever_two_way()
         {
-            RealTestLogReciever(false);
+            RealTestLogReciever(false, false);
         }
 
         [Fact]
         public void RealTestLogReciever_one_way()
         {
-            RealTestLogReciever(true);
+            RealTestLogReciever(true, false);
         }
 
-        private void RealTestLogReciever(bool useOneWayContract, bool binaryEncode =false)
+        [Fact]
+        public void RealTestLogReciever_two_way_binary()
+        {
+            RealTestLogReciever(false, true);
+        }
+
+        [Fact]
+        public void RealTestLogReciever_one_way_binary()
+        {
+            RealTestLogReciever(true, true);
+        }
+
+        private void RealTestLogReciever(bool useOneWayContract, bool binaryEncode)
         {
             LogManager.Configuration = CreateConfigurationFromString(string.Format(@"
           <nlog throwExceptions='true'>
@@ -360,7 +372,7 @@ namespace NLog.UnitTests.LogReceiverService
             logger.Info(new InvalidConstraintException("boo"), "test 2");
         }
 
-        public class LogRecieverMock : ILogReceiverServer
+        public class LogRecieverMock : ILogReceiverServer, ILogReceiverOneWayServer
         {
 
             public static CountdownEvent CountdownEvent;
