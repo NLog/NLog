@@ -3,7 +3,7 @@ build_script:
   - Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildSL5=true /p:BuildSL4=true /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true
 test_script:
 - ps: .\tests\CreateTestUsers.cmd
-- xunit.console.clr4 "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" /appveyor /noshadow > NUL
-- xunit.console.clr4 "build\bin\Debug\.NET Framework 4.5\NLog.UnitTests.dll" /appveyor /noshadow > NUL
-- xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow > NUL
+- xunit.console.clr4 "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" /appveyor /noshadow
+- xunit.console.clr4 "build\bin\Debug\.NET Framework 4.5\NLog.UnitTests.dll" /appveyor /noshadow
+- xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow
 deploy: off
