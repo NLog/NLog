@@ -41,7 +41,6 @@ namespace NLog.UnitTests.Targets
     public class LineEndingModeTests : NLogTestBase
     {
         [Fact]
-		[Trait("Test", "Test")]
         public void LineEndingModeEqualityTest()
         {
             LineEndingMode modeDefault = LineEndingMode.Default;
@@ -67,7 +66,6 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-		[Trait("Test", "Test")]
         public void LineEndingModeInequalityTest()
         {
             LineEndingMode modeDefault = LineEndingMode.Default;
@@ -101,7 +99,6 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-		[Trait("Test", "Test")]
         public void LineEndingModeNullComparison()
         {
             LineEndingMode mode1 = LineEndingMode.LF;
@@ -118,7 +115,6 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-		[Trait("Test", "Test")]
         public void LineEndingModeToStringTest()
         {
             Assert.Equal(LineEndingMode.None.ToString(), "None");
