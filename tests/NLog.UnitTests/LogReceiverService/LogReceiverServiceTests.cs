@@ -245,13 +245,13 @@ namespace NLog.UnitTests.LogReceiverService
             RealTestLogReciever(true, false);
         }
 
-        [Fact]
+        [Fact(Skip = "unit test should listen to non-http for this")]
         public void RealTestLogReciever_two_way_binary()
         {
             RealTestLogReciever(false, true);
         }
 
-        [Fact]
+        [Fact(Skip = "unit test should listen to non-http for this")]
         public void RealTestLogReciever_one_way_binary()
         {
             RealTestLogReciever(true, true);
@@ -282,7 +282,7 @@ namespace NLog.UnitTests.LogReceiverService
             </nlog>", logRecieverUrl, useOneWayContract.ToString().ToLower(), binaryEncode.ToString().ToLower()));
 
 
-     
+
             ExecLogRecieverAndCheck(ExecLogging1, CheckRecieved1, 2);
 
         }
@@ -345,8 +345,8 @@ namespace NLog.UnitTests.LogReceiverService
         private static void CheckRecieved1(List<NLogEvents> recieved)
         {
 
-          
-            
+
+
             Assert.Equal(2, recieved.Count);
             {
                 var log1 = recieved[0].ToEventInfo().First();
@@ -358,7 +358,7 @@ namespace NLog.UnitTests.LogReceiverService
                 Assert.Equal("test 2", log2.Message);
 
                 //too bad exceptions are not passed?
-              //  Assert.NotNull(log2.Exception);
+                //  Assert.NotNull(log2.Exception);
                 //Assert.Equal("boo", log2.Exception.Message);
             }
         }
