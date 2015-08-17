@@ -35,30 +35,20 @@
 
 namespace NLog.LogReceiverService
 {
-    using System;
-    using System.Collections.Generic;
+    using System.ServiceModel;
 
     /// <summary>
-    /// Implementation of <see cref="ILogReceiverOneWayServer" /> which forwards received logs through <see cref="LogManager"/> or a given <see cref="LogFactory"/>.
+    /// Service contract for Log Receiver server.
     /// </summary>
-    public class LogReceiverOneWayForwardingService : BaseLogReceiverForwardingService, ILogReceiverOneWayServer
+    [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
+    public interface ILogReceiverServerV2 : ILogReceiverServer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogReceiverOneWayForwardingService"/> class.
+        /// Processes the log messages.
         /// </summary>
-        public LogReceiverOneWayForwardingService()
-            : this(null)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LogReceiverOneWayForwardingService"/> class.
-        /// </summary>
-        /// <param name="logFactory">The log factory.</param>
-        public LogReceiverOneWayForwardingService(LogFactory logFactory)
-            : base(logFactory)
-        {
-        }
+        /// <param name="events">The events.</param>
+        [OperationContract(IsOneWay=true)]
+        void ProcessLogMessagesV2(NLogEvents events);
     }
 }
 
