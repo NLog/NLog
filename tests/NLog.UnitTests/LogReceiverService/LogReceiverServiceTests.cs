@@ -245,7 +245,7 @@ namespace NLog.UnitTests.LogReceiverService
             RealTestLogReciever(true);
         }
 
-        private void RealTestLogReciever(bool useOneWayContract)
+        private void RealTestLogReciever(bool useOneWayContract, bool binaryEncode =false)
         {
             LogManager.Configuration = CreateConfigurationFromString(string.Format(@"
           <nlog throwExceptions='true'>
@@ -255,10 +255,10 @@ namespace NLog.UnitTests.LogReceiverService
                          
                           endpointAddress='{0}'
                           useOneWayContract='{1}'
-                          useBinaryEncoding='false'
+                          useBinaryEncoding='{2}'
                   
                           includeEventProperties='false'>
-                    <parameter layout='testparam1' name='String' type='String'/>
+                  <!--  <parameter name='key1' layout='testparam1'  type='String'/> -->
                </target>
 
                    
@@ -267,7 +267,7 @@ namespace NLog.UnitTests.LogReceiverService
                     <logger name='logger1' minlevel='Trace' writeTo='s1' />
               
                 </rules>
-            </nlog>", logRecieverUrl, useOneWayContract.ToString().ToLower()));
+            </nlog>", logRecieverUrl, useOneWayContract.ToString().ToLower(), binaryEncode.ToString().ToLower()));
 
             ExecLogRecieverAndCheck(ExecLogging1, CheckRecieved1, 2);
         }
@@ -329,15 +329,32 @@ namespace NLog.UnitTests.LogReceiverService
 
         private static void CheckRecieved1(List<NLogEvents> recieved)
         {
-            var log1 = recieved[0].ToEventInfo().First();
-            Assert.Equal("test 1", log1.Message);
-            var log2 = recieved[1].ToEventInfo().First();
+
+          
+            
+            Assert.Equal(2, recieved.Count);
+            {
+                var log1 = recieved[0].ToEventInfo().First();
+                Assert.Equal("test 1", log1.Message);
+                Assert.Null(log1.Exception);
+            }
+            {
+                var log2 = recieved[1].ToEventInfo().First();
+                Assert.Equal("test 2", log2.Message);
+
+                //too bad exceptions are not passed?
+              //  Assert.NotNull(log2.Exception);
+                //Assert.Equal("boo", log2.Exception.Message);
+            }
         }
 
         private static void ExecLogging1(Logger logger)
         {
             logger.Info("test 1");
-            logger.Info(new InvalidConstraintException("boo"), "test2");
+
+            //we wait 10 ms, because after a cold boot, the messages are arrived in the same moment and the order can change.
+            Thread.Sleep(10);
+            logger.Info(new InvalidConstraintException("boo"), "test 2");
         }
 
         public class LogRecieverMock : ILogReceiverServer, ILogReceiverOneWayServer
