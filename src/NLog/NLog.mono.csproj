@@ -4,8 +4,6 @@
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -263,11 +261,8 @@
     <Compile Include="LayoutRenderers\ThreadNameLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TicksLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TimeLayoutRenderer.cs" />
-
     <Compile Include="LayoutRenderers\TraceActivityIdLayoutRenderer.cs" />
-
     <Compile Include="LayoutRenderers\VariableLayoutRenderer.cs" />
-
     <Compile Include="LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeLayoutRendererWrapper.cs" />

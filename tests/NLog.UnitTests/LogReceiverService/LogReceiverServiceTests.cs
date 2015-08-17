@@ -252,7 +252,7 @@ namespace NLog.UnitTests.LogReceiverService
                 <targets>
                    <target type='LogReceiverService'
                           name='s1'
-                         
+               
                           endpointAddress='{0}'
                           useOneWayContract='{1}'
                           useBinaryEncoding='{2}'
@@ -269,7 +269,10 @@ namespace NLog.UnitTests.LogReceiverService
                 </rules>
             </nlog>", logRecieverUrl, useOneWayContract.ToString().ToLower(), binaryEncode.ToString().ToLower()));
 
+
+     
             ExecLogRecieverAndCheck(ExecLogging1, CheckRecieved1, 2);
+
         }
 
         /// <summary>
@@ -289,7 +292,9 @@ namespace NLog.UnitTests.LogReceiverService
                 // Enable metadata publishing.
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
+#if !MONO
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
+#endif
                 host.Description.Behaviors.Add(smb);
 
                 // Open the ServiceHost to start listening for messages. Since
@@ -308,11 +313,9 @@ namespace NLog.UnitTests.LogReceiverService
                 var logger1 = LogManager.GetLogger("logger1");
                 logFunc(logger1);
 
-
-                countdownEvent.Wait(8000);
+                countdownEvent.Wait(20000);
                 //we need some extra time for completion
                 Thread.Sleep(1000);
-
                 var recieved = LogRecieverMock.recievedEvents;
 
 
@@ -357,7 +360,7 @@ namespace NLog.UnitTests.LogReceiverService
             logger.Info(new InvalidConstraintException("boo"), "test 2");
         }
 
-        public class LogRecieverMock : ILogReceiverServer, ILogReceiverOneWayServer
+        public class LogRecieverMock : ILogReceiverServer
         {
 
             public static CountdownEvent CountdownEvent;

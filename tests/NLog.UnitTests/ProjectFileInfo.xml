@@ -61,7 +61,7 @@
      </ItemGroup>
    </Project>
 
-   <Project File="NLog.UnitTests.monodevelop.csproj">
+   <Project File="NLog.UnitTests.mono.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
      </ItemGroup>

@@ -70,19 +70,7 @@
     </ItemGroup>
   </Project>
 
-  <Project File="NLog.mono2.csproj">
-    <ItemGroup Name="Compile">
-      <FileSet Include="AllFilesToCompile" />
-    </ItemGroup>
-    <ItemGroup Name="None" KeepOldFiles="true">
-      <FileSet Include="Logger.tt" />
-    </ItemGroup>
-    <ItemGroup Name="EmbeddedResource">
-      <FileSet Include="AllResources" />
-    </ItemGroup>
-  </Project>
-
-  <Project File="NLog.monodevelop.csproj">
+  <Project File="NLog.mono.csproj">
     <ItemGroup Name="Compile">
       <FileSet Include="AllFilesToCompile" />
     </ItemGroup>
