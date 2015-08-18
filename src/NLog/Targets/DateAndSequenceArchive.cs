@@ -35,6 +35,9 @@ namespace NLog.Targets
 {
     using System;
 
+    /// <summary>
+    /// A descriptor for an archive created with the DateAndSequence numbering mode.
+    /// </summary>
     internal class DateAndSequenceArchive
     {
         private readonly string _fileName;
@@ -43,26 +46,43 @@ namespace NLog.Targets
         private readonly int _sequence;
         private readonly string _formattedDate;
 
+        /// <summary>
+        /// The full name of the archive file.
+        /// </summary>
         public string FileName
         {
             get { return _fileName; }
         }
 
+        /// <summary>
+        /// The parsed date contained in the file name.
+        /// </summary>
         public DateTime Date
         {
             get { return _date; }
         }
 
+        /// <summary>
+        /// The parsed sequence number contained in the file name.
+        /// </summary>
         public int Sequence
         {
             get { return _sequence; }
         }
 
-        public bool HasSameArchiveDate(DateTime date)
+        /// <summary>
+        /// Determines whether <paramref name="date"/> produces the same string as the current instance's date once formatted with the current instance's date format.
+        /// </summary>
+        /// <param name="date">The date to compare the current object's date to.</param>
+        /// <returns><c>True</c> if the formatted dates are equal, otherwise <c>False</c>.</returns>
+        public bool HasSameFormattedDate(DateTime date)
         {
             return date.ToString(_dateFormat) == _formattedDate;
         }
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DateAndSequenceArchive"/> class.
+        /// </summary>
         public DateAndSequenceArchive(string fileName, DateTime date, string dateFormat, int sequence)
         {
             if (fileName == null) throw new ArgumentNullException("fileName");
