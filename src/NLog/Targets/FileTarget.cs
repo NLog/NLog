@@ -1020,7 +1020,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Determines whether a file with a different name from <see cref="fileName"/> is needed to receive <see cref="logEvent"/>.
+        /// Determines whether a file with a different name from <paramref name="fileName"/> is needed to receive <paramref name="logEvent"/>.
         /// </summary>
         private bool IsDaySwitch(string fileName, LogEventInfo logEvent)
         {
@@ -1047,17 +1047,11 @@ namespace NLog.Targets
         /// </remarks>
         private void EnsureArchiveCount(List<string> oldArchiveFileNames)
         {
-            if (this.MaxArchiveFiles == 0) return;
+            if (this.MaxArchiveFiles <= 0) return;
 
             int numberToDelete = oldArchiveFileNames.Count - this.MaxArchiveFiles;
-
-            for (int fileIndex = 0; fileIndex < oldArchiveFileNames.Count; fileIndex++)
+            for (int fileIndex = 0; fileIndex <= numberToDelete; fileIndex++)
             {
-                if (fileIndex > numberToDelete)
-                {
-                    break;
-                }
-
                 File.Delete(oldArchiveFileNames[fileIndex]);
             }
         }
