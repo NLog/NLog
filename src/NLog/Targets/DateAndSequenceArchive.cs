@@ -40,35 +40,23 @@ namespace NLog.Targets
     /// </summary>
     internal class DateAndSequenceArchive
     {
-        private readonly string _fileName;
-        private readonly DateTime _date;
         private readonly string _dateFormat;
-        private readonly int _sequence;
         private readonly string _formattedDate;
 
         /// <summary>
         /// The full name of the archive file.
         /// </summary>
-        public string FileName
-        {
-            get { return _fileName; }
-        }
+        public string FileName { get; private set; }
 
         /// <summary>
         /// The parsed date contained in the file name.
         /// </summary>
-        public DateTime Date
-        {
-            get { return _date; }
-        }
+        public DateTime Date { get; private set; }
 
         /// <summary>
         /// The parsed sequence number contained in the file name.
         /// </summary>
-        public int Sequence
-        {
-            get { return _sequence; }
-        }
+        public int Sequence { get; private set; }
 
         /// <summary>
         /// Determines whether <paramref name="date"/> produces the same string as the current instance's date once formatted with the current instance's date format.
@@ -88,10 +76,10 @@ namespace NLog.Targets
             if (fileName == null) throw new ArgumentNullException("fileName");
             if (dateFormat == null) throw new ArgumentNullException("dateFormat");
 
-            _date = date;
+            Date = date;
             _dateFormat = dateFormat;
-            _sequence = sequence;
-            _fileName = fileName;
+            Sequence = sequence;
+            FileName = fileName;
             _formattedDate = date.ToString(dateFormat);
         }
     }
