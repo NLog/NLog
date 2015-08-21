@@ -77,7 +77,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string[] messages = NestedDiagnosticsContext.GetAllMessages();
+            string[] messages = NestedDiagnosticsContext.GetAllMessages(logEvent.FormatProvider);
             int startPos = 0;
             int endPos = messages.Length;
 
@@ -90,26 +90,13 @@ namespace NLog.LayoutRenderers
                 startPos = messages.Length - Math.Min(this.BottomFrames, messages.Length);
             }
 
-            int totalLength = 0;
-            int separatorLength = 0;
-
-            for (int i = endPos - 1; i >= startPos; --i)
-            {
-                totalLength += separatorLength + messages[i].Length;
-                separatorLength = this.Separator.Length;
-            }
-
             string separator = string.Empty;
-
-            StringBuilder sb = new StringBuilder();
             for (int i = endPos - 1; i >= startPos; --i)
             {
-                sb.Append(separator);
-                sb.Append(messages[i]);
+                builder.Append(separator);
+                builder.Append(messages[i]);
                 separator = this.Separator;
             }
-
-            builder.Append(sb.ToString());
         }
     }
 }

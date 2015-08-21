@@ -35,6 +35,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using NLog.Internal;
 
@@ -55,21 +56,26 @@ namespace NLog
         {
             get
             {
-                Stack<string> stack = ThreadStack;
-                if (stack.Count > 0)
-                {
-                    return stack.Peek();
-                }
-                else
-                {
-                    return string.Empty;
-                }
+                return GlobalDiagnosticsContext.ConvertToString(TopObject, null);
             }
         }
 
-        private static Stack<string> ThreadStack
+        /// <summary>
+        /// Gets the top NDC object but doesn't remove it.
+        /// </summary>
+        /// <returns>The object at the top of the NDC stack if defined; otherwise <c>null</c>.</returns>
+        public static object TopObject
         {
-            get { return ThreadLocalStorageHelper.GetDataForSlot<Stack<string>>(dataSlot); }
+            get 
+            {
+                Stack<object> stack = ThreadStack;
+                return (stack.Count > 0) ? stack.Peek() : null;
+            }
+        }
+
+        private static Stack<object> ThreadStack
+        {
+            get { return ThreadLocalStorageHelper.GetDataForSlot<Stack<object>>(dataSlot); }
         }
 
         /// <summary>
@@ -79,9 +85,19 @@ namespace NLog
         /// <returns>An instance of the object that implements IDisposable that returns the stack to the previous level when IDisposable.Dispose() is called. To be used with C# using() statement.</returns>
         public static IDisposable Push(string text)
         {
-            Stack<string> stack = ThreadStack;
+            return Push((object)text);
+        }
+
+        /// <summary>
+        /// Pushes the specified object on current thread NDC.
+        /// </summary>
+        /// <param name="value">The object to be pushed.</param>
+        /// <returns>An instance of the object that implements IDisposable that returns the stack to the previous level when IDisposable.Dispose() is called. To be used with C# using() statement.</returns>
+        public static IDisposable Push(object value)
+        {
+            Stack<object> stack = ThreadStack;
             int previousCount = stack.Count;
-            stack.Push(text);
+            stack.Push(value);
             return new StackPopper(stack, previousCount);
         }
 
@@ -91,15 +107,27 @@ namespace NLog
         /// <returns>The top message which is no longer on the stack.</returns>
         public static string Pop()
         {
-            Stack<string> stack = ThreadStack;
-            if (stack.Count > 0)
-            {
-                return stack.Pop();
-            }
-            else
-            {
-                return string.Empty;
-            }
+            return Pop(null);
+        }
+
+        /// <summary>
+        /// Pops the top message from the NDC stack.
+        /// </summary>
+        /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting the value to a string.</param>
+        /// <returns>The top message, which is removed from the stack, as a string value.</returns>
+        public static string Pop(IFormatProvider formatProvider)
+        {
+            return GlobalDiagnosticsContext.ConvertToString(PopObject(), formatProvider);
+        }
+
+        /// <summary>
+        /// Pops the top object off the NDC stack.
+        /// </summary>
+        /// <returns>The object from the top of the NDC stack, if defined; otherwise <c>null</c>.</returns>
+        public static object PopObject()
+        {
+            Stack<object> stack = ThreadStack;
+            return (stack.Count > 0) ? stack.Pop() : null;
         }
 
         /// <summary>
@@ -116,6 +144,25 @@ namespace NLog
         /// <returns>Array of strings on the stack.</returns>
         public static string[] GetAllMessages()
         {
+            return GetAllMessages(null);
+        }
+
+        /// <summary>
+        /// Gets all messages from the stack, without removing them.
+        /// </summary>
+        /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
+        /// <returns>Array of strings.</returns>
+        public static string[] GetAllMessages(IFormatProvider formatProvider) 
+        {
+            return ThreadStack.Select((o) => GlobalDiagnosticsContext.ConvertToString(o, formatProvider)).ToArray();
+        }
+
+        /// <summary>
+        /// Gets all objects on the stack.
+        /// </summary>
+        /// <returns>Array of objects on the stack.</returns>
+        public static object[] GetAllObjects() 
+        {
             return ThreadStack.ToArray();
         }
 
@@ -124,7 +171,7 @@ namespace NLog
         /// </summary>
         private class StackPopper : IDisposable
         {
-            private Stack<string> stack;
+            private Stack<object> stack;
             private int previousCount;
 
             /// <summary>
@@ -132,7 +179,7 @@ namespace NLog
             /// </summary>
             /// <param name="stack">The stack.</param>
             /// <param name="previousCount">The previous count.</param>
-            public StackPopper(Stack<string> stack, int previousCount)
+            public StackPopper(Stack<object> stack, int previousCount)
             {
                 this.stack = stack;
                 this.previousCount = previousCount;
