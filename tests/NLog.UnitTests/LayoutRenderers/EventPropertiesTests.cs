@@ -44,8 +44,8 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Test1()
         {
-            Layout layout = "${event-properties:aaa}";
-            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
+            Layout layout = "${event-properties:prop1}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "prop1", "bbb");
             // empty
             Assert.Equal("", layout.Render(logEvent));
         }
@@ -53,9 +53,9 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Test2()
         {
-            Layout layout = "${event-properties:aaa}";
+            Layout layout = "${event-properties:prop1}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
-            logEvent.Properties["aaa"] = "bbb";
+            logEvent.Properties["prop1"] = "bbb";
 
             // empty
             Assert.Equal("bbb", layout.Render(logEvent));
@@ -64,7 +64,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void NoSet()
         {
-            Layout layout = "${event-properties:aaa}";
+            Layout layout = "${event-properties:prop1}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
 
             // empty
@@ -75,9 +75,9 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Null()
         {
-            Layout layout = "${event-properties:aaa}";
+            Layout layout = "${event-properties:prop1}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
-            logEvent.Properties["aaa"] = null;
+            logEvent.Properties["prop1"] = null;
 
             // empty
             Assert.Equal("", layout.Render(logEvent));
@@ -86,9 +86,9 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void DateTime()
         {
-            Layout layout = "${event-properties:aaa}";
+            Layout layout = "${event-properties:prop1}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
-            logEvent.Properties["aaa"] = new DateTime(2020, 2, 21, 23, 1, 0);
+            logEvent.Properties["prop1"] = new DateTime(2020, 2, 21, 23, 1, 0);
 
             Assert.Equal("02/21/2020 23:01:00", layout.Render(logEvent));
         }
@@ -96,18 +96,18 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void DateTimeFormat()
         {
-            Layout layout = "${event-properties:aaa:format=yyyy-M-dd}";
+            Layout layout = "${event-properties:prop1:format=yyyy-M-dd}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
-            logEvent.Properties["aaa"] = new DateTime(2020, 2, 21, 23, 1, 0);
+            logEvent.Properties["prop1"] = new DateTime(2020, 2, 21, 23, 1, 0);
 
             Assert.Equal("2020-2-21", layout.Render(logEvent));
         }
         [Fact]
         public void DateTimeCulture()
         {
-            Layout layout = "${event-properties:aaa:culture=nl-NL}";
+            Layout layout = "${event-properties:prop1:culture=nl-NL}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
-            logEvent.Properties["aaa"] = new DateTime(2020, 2, 21, 23, 1, 0);
+            logEvent.Properties["prop1"] = new DateTime(2020, 2, 21, 23, 1, 0);
 
             Assert.Equal("21-2-2020 23:01:00", layout.Render(logEvent));
         }
