@@ -1185,20 +1185,7 @@ namespace NLog.Targets
                     }
                 }
 
-                /* TODO: The following block could use EnsureArchiveCount, but the behavior is not exactly the same.
-                 * The number of files to delete to "make room" is calculated using 'files.Count' instead of 'filesByDate.Count',
-                 * which I suspect to be a bug, since 'files' can contain filenames that are not actual archives. */
-                if (this.MaxArchiveFiles != 0)
-                {
-                    for (int fileIndex = 0; fileIndex < filesByDate.Count; fileIndex++)
-                    {
-                        if (fileIndex > files.Count - this.MaxArchiveFiles)
-                        {
-                            break;
-                        }
-                        File.Delete(filesByDate[fileIndex]);
-                    }
-                }
+                EnsureArchiveCount(filesByDate);
             }
             catch (DirectoryNotFoundException)
             {
