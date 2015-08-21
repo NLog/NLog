@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using NLog.Filters;
 
 namespace NLog.UnitTests.LayoutRenderers
@@ -43,21 +44,54 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Test1()
         {
-            Layout l = "${event-properties:aaa}";
-            LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
+            Layout layout = "${event-properties:aaa}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
             // empty
-            Assert.Equal("", l.Render(lei));
+            Assert.Equal("", layout.Render(logEvent));
         }
 
         [Fact]
         public void Test2()
         {
-            Layout l = "${event-properties:aaa}";
-            LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, "aaa", "bbb");
-            lei.Properties["aaa"] = "bbb";
+            Layout layout = "${event-properties:aaa}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["aaa"] = "bbb";
 
             // empty
-            Assert.Equal("bbb", l.Render(lei));
+            Assert.Equal("bbb", layout.Render(logEvent));
+        }
+
+        [Fact]
+        public void NoSet()
+        {
+            Layout layout = "${event-properties:aaa}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+
+            // empty
+            Assert.Equal("", layout.Render(logEvent));
+        }
+
+
+        [Fact]
+        public void Null()
+        {
+            Layout layout = "${event-properties:aaa}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["aaa"] = null;
+
+            // empty
+            Assert.Equal("", layout.Render(logEvent));
+        }
+
+        [Fact]
+        public void DateTime()
+        {
+            Layout layout = "${event-properties:aaa}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["aaa"] = new DateTime(2020, 2, 21);
+
+            // empty
+            Assert.Equal("02/21/2020 00:00:00", layout.Render(logEvent));
         }
     }
 }
