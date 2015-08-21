@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
@@ -15,7 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -220,6 +221,7 @@
     <Compile Include="LayoutRenderers\EventPropertiesLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\ExceptionLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\FileContentsLayoutRenderer.cs" />
+    <Compile Include="Internal\FormatHelper.cs" />
     <Compile Include="LayoutRenderers\GarbageCollectorInfoLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\GarbageCollectorProperty.cs" />
     <Compile Include="LayoutRenderers\GdcLayoutRenderer.cs" />
@@ -259,11 +261,8 @@
     <Compile Include="LayoutRenderers\ThreadNameLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TicksLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TimeLayoutRenderer.cs" />
-
     <Compile Include="LayoutRenderers\TraceActivityIdLayoutRenderer.cs" />
-
     <Compile Include="LayoutRenderers\VariableLayoutRenderer.cs" />
-
     <Compile Include="LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeLayoutRendererWrapper.cs" />

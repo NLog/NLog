@@ -88,10 +88,28 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             Layout layout = "${event-properties:aaa}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
-            logEvent.Properties["aaa"] = new DateTime(2020, 2, 21);
+            logEvent.Properties["aaa"] = new DateTime(2020, 2, 21, 23, 1, 0);
 
-            // empty
-            Assert.Equal("02/21/2020 00:00:00", layout.Render(logEvent));
+            Assert.Equal("02/21/2020 23:01:00", layout.Render(logEvent));
+        }
+
+        [Fact]
+        public void DateTimeFormat()
+        {
+            Layout layout = "${event-properties:aaa:format=yyyy-M-dd}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["aaa"] = new DateTime(2020, 2, 21, 23, 1, 0);
+
+            Assert.Equal("2020-2-21", layout.Render(logEvent));
+        }
+        [Fact]
+        public void DateTimeCulture()
+        {
+            Layout layout = "${event-properties:aaa:culture=nl-NL}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["aaa"] = new DateTime(2020, 2, 21, 23, 1, 0);
+
+            Assert.Equal("21-2-2020 23:01:00", layout.Render(logEvent));
         }
     }
 }
