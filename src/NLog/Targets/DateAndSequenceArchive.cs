@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,34 +31,56 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+namespace NLog.Targets
 {
     using System;
-    using System.Text;
-    using NLog.Config;
 
     /// <summary>
-    /// Mapped Diagnostic Context item. Provided for compatibility with log4net.
+    /// A descriptor for an archive created with the DateAndSequence numbering mode.
     /// </summary>
-    [LayoutRenderer("mdc")]
-    public class MdcLayoutRenderer : LayoutRenderer
+    internal class DateAndSequenceArchive
     {
-        /// <summary>
-        /// Gets or sets the name of the item.
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [RequiredParameter]
-        [DefaultParameter]
-        public string Item { get; set; }
+        private readonly string _dateFormat;
+        private readonly string _formattedDate;
 
         /// <summary>
-        /// Renders the specified MDC item and appends it to the specified <see cref="StringBuilder" />.
+        /// The full name of the archive file.
         /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        public string FileName { get; private set; }
+
+        /// <summary>
+        /// The parsed date contained in the file name.
+        /// </summary>
+        public DateTime Date { get; private set; }
+
+        /// <summary>
+        /// The parsed sequence number contained in the file name.
+        /// </summary>
+        public int Sequence { get; private set; }
+
+        /// <summary>
+        /// Determines whether <paramref name="date"/> produces the same string as the current instance's date once formatted with the current instance's date format.
+        /// </summary>
+        /// <param name="date">The date to compare the current object's date to.</param>
+        /// <returns><c>True</c> if the formatted dates are equal, otherwise <c>False</c>.</returns>
+        public bool HasSameFormattedDate(DateTime date)
         {
-            builder.Append(MappedDiagnosticsContext.Get(this.Item, logEvent.FormatProvider));
+            return date.ToString(_dateFormat) == _formattedDate;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DateAndSequenceArchive"/> class.
+        /// </summary>
+        public DateAndSequenceArchive(string fileName, DateTime date, string dateFormat, int sequence)
+        {
+            if (fileName == null) throw new ArgumentNullException("fileName");
+            if (dateFormat == null) throw new ArgumentNullException("dateFormat");
+
+            Date = date;
+            _dateFormat = dateFormat;
+            Sequence = sequence;
+            FileName = fileName;
+            _formattedDate = date.ToString(dateFormat);
         }
     }
 }

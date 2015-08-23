@@ -60,7 +60,7 @@ namespace NLog.Internal.Fakeables
             Id = appDomain.Id;
             
 #endif
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT
             appDomain.ProcessExit += OnProcessExit;
             appDomain.DomainUnload += OnDomainUnload;
 #endif
@@ -98,7 +98,7 @@ namespace NLog.Internal.Fakeables
         public int Id { get; private set; }
 #endif
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT
         /// <summary>
         /// Process exit event.
         /// </summary>

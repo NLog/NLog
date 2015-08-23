@@ -31,34 +31,44 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
-{
-    using System;
-    using System.Text;
-    using NLog.Config;
+#region
 
-    /// <summary>
-    /// Mapped Diagnostic Context item. Provided for compatibility with log4net.
-    /// </summary>
-    [LayoutRenderer("mdc")]
-    public class MdcLayoutRenderer : LayoutRenderer
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+#endregion
+
+namespace NLog.Internal
+{
+    internal static class FormatHelper
     {
         /// <summary>
-        /// Gets or sets the name of the item.
+        /// toString(format) if the object is a <see cref="IFormattable"/>
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [RequiredParameter]
-        [DefaultParameter]
-        public string Item { get; set; }
-
-        /// <summary>
-        /// Renders the specified MDC item and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <param name="value">value to be converted</param>
+        /// <param name="format">format value</param>
+        /// <param name="formatProvider">provider, for example culture</param>
+        /// <returns></returns>
+        public static string ToStringWithOptionalFormat(this object value, string format, IFormatProvider formatProvider)
         {
-            builder.Append(MappedDiagnosticsContext.Get(this.Item, logEvent.FormatProvider));
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
+            if (format == null)
+            {
+                return Convert.ToString(value, formatProvider);
+            }
+
+            var formattable = value as IFormattable;
+            if (formattable != null)
+            {
+                return formattable.ToString(format, formatProvider);
+            }
+
+            return Convert.ToString(value, formatProvider);
         }
     }
 }

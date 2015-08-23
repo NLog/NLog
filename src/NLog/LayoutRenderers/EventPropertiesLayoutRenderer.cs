@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -39,11 +41,19 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
 
     /// <summary>
-    /// Log event context data.
+    /// Log event context data. See <see cref="LogEventInfo.Properties"/>.
     /// </summary>
     [LayoutRenderer("event-properties")]
     public class EventPropertiesLayoutRenderer : LayoutRenderer
     {
+        /// <summary>
+        ///  Log event context data with default options.
+        /// </summary>
+        public EventPropertiesLayoutRenderer()
+        {
+            Culture = CultureInfo.InvariantCulture;
+        }
+
         /// <summary>
         /// Gets or sets the name of the item.
         /// </summary>
@@ -51,6 +61,17 @@ namespace NLog.LayoutRenderers
         [RequiredParameter]
         [DefaultParameter]
         public string Item { get; set; }
+
+        /// <summary>
+        /// Format string for conversion from object to string.
+        /// </summary>
+        public string Format { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the culture used for rendering. 
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        public CultureInfo Culture { get; set; }
 
         /// <summary>
         /// Renders the specified log event context item and appends it to the specified <see cref="StringBuilder" />.
@@ -63,7 +84,7 @@ namespace NLog.LayoutRenderers
 
             if (logEvent.Properties.TryGetValue(this.Item, out value))
             {
-                builder.Append(Convert.ToString(value, CultureInfo.InvariantCulture));
+                builder.Append(value.ToStringWithOptionalFormat(Format, Culture));
             }
         }
     }

@@ -1,0 +1,8 @@
+language: csharp
+solution: src/NLog.mono.sln
+install:
+  - nuget restore src/NLog.mono.sln
+  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release src/NLog.mono.sln
+  - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe "./build/bin/Release/Mono 2.x/NLog.UnitTests.dll"
