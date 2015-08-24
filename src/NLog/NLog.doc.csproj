@@ -319,7 +319,9 @@
     <Compile Include="LogReceiverService\NLogEvents.cs" />
     <Compile Include="LogReceiverService\SoapLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\StringCollection.cs" />
+    <Compile Include="LogReceiverService\WcfILogReceiverClient.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
+    <Compile Include="LogReceiverService\WcfLogReceiverClientBase.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverOneWayClient.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverTwoWayClient.cs" />
     <Compile Include="MappedDiagnosticsContext.cs" />
