@@ -54,6 +54,7 @@ namespace NLog.LogReceiverService
         /// Initializes a new instance of the <see cref="WcfLogReceiverClientBase{TService}"/> class.
         /// </summary>
         internal WcfLogReceiverClientBase()
+            : base()
         {
         }
 
@@ -62,6 +63,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         internal WcfLogReceiverClientBase(string endpointConfigurationName)
+            : base(endpointConfigurationName)
         {
         }
 
@@ -71,6 +73,7 @@ namespace NLog.LogReceiverService
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         /// <param name="remoteAddress">The remote address.</param>
         internal WcfLogReceiverClientBase(string endpointConfigurationName, string remoteAddress)
+            : base(endpointConfigurationName, remoteAddress)
         {
         }
 
@@ -80,6 +83,7 @@ namespace NLog.LogReceiverService
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         /// <param name="remoteAddress">The remote address.</param>
         internal WcfLogReceiverClientBase(string endpointConfigurationName, EndpointAddress remoteAddress)
+            : base(endpointConfigurationName, remoteAddress)
         {
         }
 
@@ -89,6 +93,7 @@ namespace NLog.LogReceiverService
         /// <param name="binding">The binding.</param>
         /// <param name="remoteAddress">The remote address.</param>
         internal WcfLogReceiverClientBase(Binding binding, EndpointAddress remoteAddress)
+            : base(binding, remoteAddress)
         {
         }
 
