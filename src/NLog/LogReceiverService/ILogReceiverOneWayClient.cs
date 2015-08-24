@@ -43,7 +43,7 @@ namespace NLog.LogReceiverService
 #if WCF_SUPPORTED
     [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace, ConfigurationName = "NLog.LogReceiverService.ILogReceiverOneWayClient")]
 #endif
-    public interface ILogReceiverOneWayClient : ILogReceiverClient
+    public interface ILogReceiverOneWayClient
     {
         /// <summary>
         /// Begins processing of log messages.

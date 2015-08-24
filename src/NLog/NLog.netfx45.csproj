@@ -15,7 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -325,6 +326,8 @@
     <Compile Include="LogReceiverService\SoapLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\StringCollection.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
+    <Compile Include="LogReceiverService\WcfLogReceiverClientBase.cs" />
+    <Compile Include="LogReceiverService\WcfILogReceiverClient.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverOneWayClient.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverTwoWayClient.cs" />
     <Compile Include="MappedDiagnosticsContext.cs" />

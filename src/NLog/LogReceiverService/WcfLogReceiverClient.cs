@@ -55,7 +55,7 @@ namespace NLog.LogReceiverService
     /// 3. change ProxiedClient back to public property.
     /// 
     /// </remarks>
-    public sealed class WcfLogReceiverClient : IWcfLogReceiverClient, ICommunicationObject
+    public sealed class WcfLogReceiverClient : IWcfLogReceiverClient
     {
         /// <summary>
         /// The client getting proxied

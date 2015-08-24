@@ -269,7 +269,7 @@ namespace NLog.Targets
             }
 
 #if WCF_SUPPORTED
-            var client = CreateWcfLogReceiverClient();
+            var client = CreateLogReceiver();
 
             client.ProcessLogMessagesCompleted += (sender, e) =>
                 {
@@ -340,6 +340,7 @@ namespace NLog.Targets
         /// service configuration - binding and endpoint address
         /// </summary>
         /// <returns></returns>
+        [Obsolete("Ths may be removed in a future release.  Use CreateLogReceiver.")]
         protected virtual WcfLogReceiverClient CreateWcfLogReceiverClient()
         {
             WcfLogReceiverClient client;
@@ -368,6 +369,23 @@ namespace NLog.Targets
             client.ProcessLogMessagesCompleted += ClientOnProcessLogMessagesCompleted;
 
             return client;
+        }
+
+        /// <summary>
+        /// Creating a new instance of IWcfLogReceiverClient
+        /// 
+        /// Inheritors can override this method and provide their own 
+        /// service configuration - binding and endpoint address
+        /// </summary>
+        /// <returns></returns>
+        protected IWcfLogReceiverClient CreateLogReceiver()
+        {
+#pragma warning disable 612, 618
+
+            return this.CreateWcfLogReceiverClient();
+
+#pragma warning restore 612, 618
+
         }
 
         private void ClientOnProcessLogMessagesCompleted(object sender, AsyncCompletedEventArgs asyncCompletedEventArgs)
