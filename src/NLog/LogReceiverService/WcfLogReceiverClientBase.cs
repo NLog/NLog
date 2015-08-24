@@ -216,20 +216,6 @@ namespace NLog.LogReceiverService
         /// <param name="result">The result.</param>
         public abstract void EndProcessLogMessages(IAsyncResult result);
 
-#if SILVERLIGHT
-        /// <summary>
-        /// Returns a new channel from the client to the service.
-        /// </summary>
-        /// <returns>
-        /// A channel of type <see cref="ILogReceiverOneWayClient"/> that identifies the type 
-        /// of service contract encapsulated by this client object (proxy).
-        /// </returns>
-        protected override ILogReceiverOneWayClient CreateChannel()
-        {
-            return new LogReceiverServerClientChannel(this);
-        }
-#endif
-
         private IAsyncResult OnBeginProcessLogMessages(object[] inValues, AsyncCallback callback, object asyncState)
         {
             var events = (NLogEvents)inValues[0];
@@ -293,33 +279,6 @@ namespace NLog.LogReceiverService
                 this.CloseCompleted(this, new AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
             }
         }
-
-#if SILVERLIGHT
-        private class LogReceiverServerClientChannel : ChannelBase<ILogReceiverOneWayClient>, ILogReceiverOneWayClient
-        {
-            public LogReceiverServerClientChannel(ClientBase<ILogReceiverOneWayClient> client) :
-                base(client)
-            {
-            }
-
-            public IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState)
-            {
-                return this.BeginInvoke(
-                    "ProcessLogMessages", 
-                    new object[] { events }, 
-                    callback, 
-                    asyncState);
-            }
-
-            public void EndProcessLogMessages(IAsyncResult result)
-            {
-                this.EndInvoke(
-                    "ProcessLogMessages", 
-                    new object[] { }, 
-                    result);
-            }
-        }
-#endif
     }
 }
 

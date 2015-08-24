@@ -122,6 +122,45 @@ namespace NLog.LogReceiverService
         {
             this.Channel.EndProcessLogMessages(result);
         }
+
+#if SILVERLIGHT
+        /// <summary>
+        /// Returns a new channel from the client to the service.
+        /// </summary>
+        /// <returns>
+        /// A channel of type <see cref="ILogReceiverOneWayClient"/> that identifies the type 
+        /// of service contract encapsulated by this client object (proxy).
+        /// </returns>
+        protected override ILogReceiverClient CreateChannel()
+        {
+            return new LogReceiverServerClientChannel(this);
+        }
+
+        private class LogReceiverServerClientChannel : ChannelBase<ILogReceiverClient>, ILogReceiverClient
+        {
+            public LogReceiverServerClientChannel(ClientBase<ILogReceiverClient> client) :
+                base(client)
+            {
+            }
+
+            public IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState)
+            {
+                return this.BeginInvoke(
+                    "ProcessLogMessages", 
+                    new object[] { events }, 
+                    callback, 
+                    asyncState);
+            }
+
+            public void EndProcessLogMessages(IAsyncResult result)
+            {
+                this.EndInvoke(
+                    "ProcessLogMessages", 
+                    new object[] { }, 
+                    result);
+            }
+        }
+#endif
     }
 }
 
