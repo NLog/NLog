@@ -46,30 +46,36 @@ namespace NLog.LogReceiverService
     /// <summary>
     /// Log Receiver Client using WCF.
     /// </summary>
-    public sealed class WcfLogReceiverOneWayClient : WcfLogReceiverClientBase<ILogReceiverOneWayClient>, ILogReceiverOneWayClient
+    /// <remarks>
+    /// This will be removed when ILogReceiverClient is removed.
+    /// This provides an implementation of the legacy interface.</remarks>
+#pragma warning disable 612, 618
+    [Obsolete("This may be removed in a future release.  Use WcfLogReceiverOneWayClient.")]
+    public sealed class WcfILogReceiverClient : WcfLogReceiverClientBase<ILogReceiverClient>, ILogReceiverClient
+#pragma warning restore 612, 618
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfILogReceiverClient"/> class.
         /// </summary>
-        public WcfLogReceiverOneWayClient()
+        public WcfILogReceiverClient()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfILogReceiverClient"/> class.
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
-        public WcfLogReceiverOneWayClient(string endpointConfigurationName) :
+        public WcfILogReceiverClient(string endpointConfigurationName) :
             base(endpointConfigurationName)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfILogReceiverClient"/> class.
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        public WcfLogReceiverOneWayClient(string endpointConfigurationName, string remoteAddress) :
+        public WcfILogReceiverClient(string endpointConfigurationName, string remoteAddress) :
             base(endpointConfigurationName, remoteAddress)
         {
         }
@@ -79,7 +85,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        public WcfLogReceiverOneWayClient(string endpointConfigurationName, EndpointAddress remoteAddress) :
+        public WcfILogReceiverClient(string endpointConfigurationName, EndpointAddress remoteAddress) :
             base(endpointConfigurationName, remoteAddress)
         {
         }
@@ -89,7 +95,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         /// <param name="binding">The binding.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        public WcfLogReceiverOneWayClient(Binding binding, EndpointAddress remoteAddress) :
+        public WcfILogReceiverClient(Binding binding, EndpointAddress remoteAddress) :
             base(binding, remoteAddress)
         {
         }
@@ -125,14 +131,14 @@ namespace NLog.LogReceiverService
         /// A channel of type <see cref="ILogReceiverOneWayClient"/> that identifies the type 
         /// of service contract encapsulated by this client object (proxy).
         /// </returns>
-        protected override ILogReceiverOneWayClient CreateChannel()
+        protected override ILogReceiverClient CreateChannel()
         {
             return new LogReceiverServerClientChannel(this);
         }
 
-        private class LogReceiverServerClientChannel : ChannelBase<ILogReceiverOneWayClient>, ILogReceiverOneWayClient
+        private class LogReceiverServerClientChannel : ChannelBase<ILogReceiverClient>, ILogReceiverClient
         {
-            public LogReceiverServerClientChannel(ClientBase<ILogReceiverOneWayClient> client) :
+            public LogReceiverServerClientChannel(ClientBase<ILogReceiverClient> client) :
                 base(client)
             {
             }
