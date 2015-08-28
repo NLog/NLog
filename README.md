@@ -53,7 +53,7 @@ A good way to get started (flow)
 
 1. Fork the NLog repos. 
 1. Create a new branch in you current repos from the 'master' branch.
-1. 'Check out' the code with Git or [GitHub for Windows](https://windows.github.com/)
+1. 'Check out' the code with Git or [GitHub Desktop](https://desktop.github.com/)
 1. Check [contributing.md](https://github.com/NLog/NLog/blob/master/CONTRIBUTING.md#sync-projects)
 1. push commits and create a Pull Request (PR) to NLog
 
