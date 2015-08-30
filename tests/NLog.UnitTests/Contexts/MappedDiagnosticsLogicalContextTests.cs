@@ -33,7 +33,7 @@
 
 namespace NLog.UnitTests.Contexts
 {
-#if NET4_5
+#if NET4_0 || NET4_5
     using System.Threading.Tasks;
     using Xunit;
 
