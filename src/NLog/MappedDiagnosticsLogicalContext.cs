@@ -33,7 +33,7 @@
 
 namespace NLog
 {
-#if NET4_5
+#if NET4_0 || NET4_5
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Runtime.Remoting.Messaging;
