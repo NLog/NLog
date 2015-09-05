@@ -45,6 +45,23 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        public void ToSupportObjectVal()
+        {
+            string key = "testKey1";
+            object value = 5;
+
+            MappedDiagnosticsLogicalContext.Set(key, value);
+
+            Assert.Equal(value, MappedDiagnosticsLogicalContext.Get(key));
+        }
+
+        [Fact]
+        public void given_no_item_exists_when_getting_item_should_return_null()
+        {
+            Assert.Null(MappedDiagnosticsLogicalContext.GetObject("itemThatShouldNotExist"));
+        }
+
+        [Fact]
         public void given_no_item_exists_when_getting_item_should_return_empty_string()
         {
             Assert.Empty(MappedDiagnosticsLogicalContext.Get("itemThatShouldNotExist"));
@@ -142,7 +159,7 @@ namespace NLog.UnitTests.Contexts
             MappedDiagnosticsLogicalContext.Set(key, "Item");
 
             MappedDiagnosticsLogicalContext.Clear();
-            
+
             Assert.False(MappedDiagnosticsLogicalContext.Contains(key));
         }
 
@@ -154,20 +171,17 @@ namespace NLog.UnitTests.Contexts
             const string valueForLogicalThread2 = "ValueForTask2";
             const string valueForLogicalThread3 = "ValueForTask3";
 
-            var task1 = Task.Factory.StartNew(() =>
-            {
+            var task1 = Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread1);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            var task2 = Task.Factory.StartNew(() =>
-            {
+            var task2 = Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread2);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            var task3 = Task.Factory.StartNew(() =>
-            {
+            var task3 = Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread3);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });

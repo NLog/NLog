@@ -34,6 +34,7 @@
 namespace NLog
 {
 #if NET4_0 || NET4_5
+    using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Runtime.Remoting.Messaging;
@@ -52,14 +53,14 @@ namespace NLog
     {
         private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
 
-        private static IDictionary<string, string> LogicalThreadDictionary
+        private static IDictionary<string, object> LogicalThreadDictionary
         {
             get
             {
-                var dictionary = CallContext.LogicalGetData(LogicalThreadDictionaryKey) as ConcurrentDictionary<string, string>;
+                var dictionary = CallContext.LogicalGetData(LogicalThreadDictionaryKey) as ConcurrentDictionary<string, object>;
                 if (dictionary == null)
                 {
-                    dictionary = new ConcurrentDictionary<string, string>();
+                    dictionary = new ConcurrentDictionary<string, object>();
                     CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
                 }
                 return dictionary;
@@ -70,15 +71,34 @@ namespace NLog
         /// Gets the current logical context named item.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>The item value of string.Empty if the value is not present.</returns>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         public static string Get(string item)
         {
-            string value;
+            return Get(item, null);
+        }
+
+        /// <summary>
+        /// Gets the current logical context named item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        public static string Get(string item, IFormatProvider formatProvider)
+        {
+            return GlobalDiagnosticsContext.ConvertToString(GetObject(item), formatProvider);
+        }
+
+        /// <summary>
+        /// Gets the current logical context named item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
+        public static object GetObject(string item)
+        {
+            object value;
 
             if (!LogicalThreadDictionary.TryGetValue(item, out value))
-            {
-                value = string.Empty;
-            }
+                value = null;
 
             return value;
         }
@@ -94,10 +114,20 @@ namespace NLog
         }
 
         /// <summary>
+        /// Sets the current logical context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        public static void Set(string item, object value)
+        {
+            LogicalThreadDictionary[item] = value;
+        }
+
+        /// <summary>
         /// Checks whether the specified item exists in current logical context.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>A boolean indicating whether the specified item exists in current thread MDC.</returns>
+        /// <returns>A boolean indicating whether the specified item exists in current logical context.</returns>
         public static bool Contains(string item)
         {
             return LogicalThreadDictionary.ContainsKey(item);
