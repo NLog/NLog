@@ -52,7 +52,7 @@ namespace NLog.UnitTests.Contexts
 
             MappedDiagnosticsLogicalContext.Set(key, value);
 
-            Assert.Equal(value, MappedDiagnosticsLogicalContext.Get(key));
+            Assert.Equal(value.ToString(), MappedDiagnosticsLogicalContext.Get(key));
         }
 
         [Fact]
