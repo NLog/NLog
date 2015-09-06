@@ -43,7 +43,6 @@ namespace NLog
     /// Async version of Mapped Diagnostics Context - a logical context structure that keeps a dictionary
     /// of strings and provides methods to output them in layouts.  Allows for maintaining state across
     /// asynchronous tasks and call contexts.
-    /// Mostly for compatibility with log4net (log4net.ThreadLogicalContext).
     /// </summary>
     /// <remarks>
     /// Ideally, these changes should be incorporated as a new version of the MappedDiagnosticsContext class in the original
@@ -68,7 +67,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the current logical context named item.
+        /// Gets the current logical context named item, as <see cref="string"/>.
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
@@ -78,7 +77,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the current logical context named item.
+        /// Gets the current logical context named item, as <see cref="string"/>.
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
@@ -89,7 +88,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the current logical context named item.
+        /// Gets the current logical context named item, as <see cref="object"/>.
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
@@ -124,17 +123,17 @@ namespace NLog
         }
 
         /// <summary>
-        /// Checks whether the specified item exists in current logical context.
+        /// Checks whether the specified <paramref name="item"/> exists in current logical context.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>A boolean indicating whether the specified item exists in current logical context.</returns>
+        /// <returns>A boolean indicating whether the specified <paramref name="item"/> exists in current logical context.</returns>
         public static bool Contains(string item)
         {
             return LogicalThreadDictionary.ContainsKey(item);
         }
 
         /// <summary>
-        /// Removes the specified item from current logical context.
+        /// Removes the specified <paramref name="item"/> from current logical context.
         /// </summary>
         /// <param name="item">Item name.</param>
         public static void Remove(string item)

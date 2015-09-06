@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.Contexts
 {
+    using System;
 #if NET4_0 || NET4_5
     using System.Threading.Tasks;
     using Xunit;
@@ -45,14 +46,28 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
-        public void ToSupportObjectVal()
+        public void given_item_exists_when_getting_item_should_return_item_for_objecttype_2()
         {
             string key = "testKey1";
             object value = 5;
 
             MappedDiagnosticsLogicalContext.Set(key, value);
 
-            Assert.Equal(value.ToString(), MappedDiagnosticsLogicalContext.Get(key));
+            string expected = "5";
+            string actual = MappedDiagnosticsLogicalContext.Get(key);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void given_item_exists_when_getting_item_should_return_item_for_objecttype()
+        {
+            string key = "testKey2";
+            object value = DateTime.Now;
+
+            MappedDiagnosticsLogicalContext.Set(key, value);
+
+            object actual = MappedDiagnosticsLogicalContext.GetObject(key);
+            Assert.Equal(value, actual);
         }
 
         [Fact]
