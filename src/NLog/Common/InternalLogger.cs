@@ -452,7 +452,7 @@ namespace NLog.Common
             try
             {
                 string parentDirectory = Path.GetDirectoryName(filename);
-                if (!string.IsNullOrWhiteSpace(parentDirectory))
+                if (!string.IsNullOrEmpty(parentDirectory))
                 {
                     Directory.CreateDirectory(parentDirectory);
                 }
