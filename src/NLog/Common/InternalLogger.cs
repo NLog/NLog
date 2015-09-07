@@ -451,7 +451,11 @@ namespace NLog.Common
         {
             try
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(filename));
+                string parentDirectory = Path.GetDirectoryName(filename);
+                if (!string.IsNullOrEmpty(parentDirectory))
+                {
+                    Directory.CreateDirectory(parentDirectory);
+                }
             }
             catch (Exception exception)
             {
