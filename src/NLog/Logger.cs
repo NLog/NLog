@@ -573,7 +573,10 @@ namespace NLog
             this.WriteToTargets(level, this.Factory.DefaultCultureInfo, message, args);
         }
 
-
+        /// <summary>
+        /// Write to target with <see cref="FormattableString"/>
+        /// </summary>
+        /// <remarks>With <see cref="IFormattable"/>we can't use the <see cref="IFormatProvider"/></remarks>
         internal void WriteToTargetsFormattableString(LogLevel level, Exception ex, IFormatProvider formatProvider, [Localizable(false)] FormattableString message)
         {
             if (this.IsEnabled(level))
