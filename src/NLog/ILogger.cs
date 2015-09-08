@@ -1001,6 +1001,8 @@ namespace NLog
 
         #endregion
 
+#if NET4_6
+
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters and formatting them with the supplied format provider.
         /// </summary>
@@ -1120,5 +1122,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         void Fatal(Exception exception, [Localizable(false)] FormattableString message);
+
+#endif
     }
 }

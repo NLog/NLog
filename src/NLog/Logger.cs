@@ -573,6 +573,8 @@ namespace NLog
             this.WriteToTargets(level, this.Factory.DefaultCultureInfo, message, args);
         }
 
+#if NET4_6
+
         /// <summary>
         /// Write to target with <see cref="FormattableString"/>
         /// </summary>
@@ -585,6 +587,7 @@ namespace NLog
             }
         }
 
+#endif
         internal void WriteToTargets(LogEventInfo logEvent)
         {
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(logEvent.Level), PrepareLogEventInfo(logEvent), this.Factory);
