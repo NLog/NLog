@@ -901,6 +901,16 @@ namespace NLog.UnitTests
                 logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
 
+                var testParam = "test_param";
+                logger.Fatal(CultureInfo.InvariantCulture, $"message{testParam}");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message" + testParam);
+
+                logger.Fatal($"message{testParam}");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message" + testParam);
+
+                logger.Fatal(new Exception("testex"), $"message{testParam}");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message" + testParam);
+
 #pragma warning disable 0618
                 // Obsolete method requires testing until removed.
                 logger.FatalException("message", new Exception("test"));
@@ -1081,7 +1091,7 @@ namespace NLog.UnitTests
                 </nlog>");
             ILogger logger = LogManager.GetLogger("A");
             bool warningFix = true;
-            
+
             bool executed = false;
             logger.Swallow(() => executed = true);
             Assert.True(executed);
@@ -1107,7 +1117,7 @@ namespace NLog.UnitTests
 
             Assert.Equal(0, logger.Swallow(() => { if (warningFix) throw new InvalidOperationException("Test message 2"); return 1; }));
             AssertDebugLastMessageContains("debug", "Test message 2");
-            
+
             Assert.Equal(2, logger.Swallow(() => { if (warningFix) throw new InvalidOperationException("Test message 3"); return 1; }, 2));
             AssertDebugLastMessageContains("debug", "Test message 3");
 
