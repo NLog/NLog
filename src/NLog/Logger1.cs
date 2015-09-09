@@ -203,7 +203,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use Trace(LogLevel level, Exception exception, string message, params object[] args) method instead.")]
+		[Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead.")]
         public void Trace([Localizable(false)] string message, Exception exception)
         {
             if (this.IsTraceEnabled)
@@ -473,7 +473,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use Debug(LogLevel level, Exception exception, string message, params object[] args) method instead.")]
+		[Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead.")]
         public void Debug([Localizable(false)] string message, Exception exception)
         {
             if (this.IsDebugEnabled)
@@ -743,7 +743,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use Info(LogLevel level, Exception exception, string message, params object[] args) method instead.")]
+		[Obsolete("Use Info(Exception exception, string message, params object[] args) method instead.")]
         public void Info([Localizable(false)] string message, Exception exception)
         {
             if (this.IsInfoEnabled)
@@ -1013,7 +1013,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use Warn(LogLevel level, Exception exception, string message, params object[] args) method instead.")]
+		[Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead.")]
         public void Warn([Localizable(false)] string message, Exception exception)
         {
             if (this.IsWarnEnabled)
@@ -1283,7 +1283,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use Error(LogLevel level, Exception exception, string message, params object[] args) method instead.")]
+		[Obsolete("Use Error(Exception exception, string message, params object[] args) method instead.")]
         public void Error([Localizable(false)] string message, Exception exception)
         {
             if (this.IsErrorEnabled)
@@ -1553,7 +1553,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use Fatal(LogLevel level, Exception exception, string message, params object[] args) method instead.")]
+		[Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead.")]
         public void Fatal([Localizable(false)] string message, Exception exception)
         {
             if (this.IsFatalEnabled)
