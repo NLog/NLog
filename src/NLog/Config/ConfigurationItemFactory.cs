@@ -254,16 +254,21 @@ namespace NLog.Config
             foreach (var extensionDll in extensionDlls)
             {
                 InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
+                var success = false;
                 try
                 {
                     var extensionAssembly = Assembly.LoadFrom(extensionDll);
                     factory.RegisterItemsFromAssembly(extensionAssembly);
+                    success = true;
                 }
                 catch (Exception)
                 {
                     InternalLogger.Warn("Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
                 }
-                InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
+                if (success)
+                {
+                    InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
+                }
 
             }
             InternalLogger.Debug("Auto loading done");
