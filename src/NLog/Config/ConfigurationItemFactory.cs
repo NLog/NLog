@@ -261,7 +261,7 @@ namespace NLog.Config
                 }
                 catch (Exception)
                 {
-                    InternalLogger.Warn("Auto loading assembly file: {0} failed! Skipping this file", extensionDll);
+                    InternalLogger.Warn("Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
                 }
                 InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
 
