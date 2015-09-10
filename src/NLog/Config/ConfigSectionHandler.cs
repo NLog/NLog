@@ -70,7 +70,7 @@ namespace NLog.Config
                     throw;
                 }
 
-                InternalLogger.Error("XmlLoggingConfigurationSection error: {0}", exception);
+                InternalLogger.Error("ConfigSectionHandler error: {0}", exception);
                 throw;
             }
         }

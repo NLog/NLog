@@ -50,7 +50,7 @@ namespace NLog.UnitTests
         private string appConfigContents = @"
 <configuration>
 <configSections>
-    <section name='nlog' type='NLog.Config.XmlLoggingConfigurationSection, NLog' requirePermission='false' />
+    <section name='nlog' type='NLog.Config.ConfigSectionHandler, NLog' requirePermission='false' />
 </configSections>
 
 <nlog>
