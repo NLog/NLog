@@ -47,9 +47,9 @@ namespace NLog.Config
     /// Class for providing Nlog configuration xml code from app.config
     /// to <see cref="XmlLoggingConfiguration"/>
     /// </summary>
-    public class XmlLoggingConfigurationSection : ConfigurationSection
+    public sealed class ConfigSectionHandler : ConfigurationSection
     {
-        private XmlLoggingConfiguration deserializedConfig = null;
+        XmlLoggingConfiguration deserializedConfig = null;
 
         /// <summary>
         /// Overriding base implementation to just store <see cref="XmlReader"/>
@@ -78,7 +78,7 @@ namespace NLog.Config
         /// <summary>
         /// Override base implementation to return a <see cref="LoggingConfiguration"/> object
         /// for <see cref="System.Configuration.ConfigurationManager.GetSection"/>
-        /// instead of the <see cref="XmlLoggingConfigurationSection"/> instance.
+        /// instead of the <see cref="ConfigSectionHandler"/> instance.
         /// </summary>
         /// <returns>
         /// A <see cref="LoggingConfiguration"/> instance, that has been deserialized from app.config.
