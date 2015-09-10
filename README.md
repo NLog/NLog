@@ -31,6 +31,7 @@ or just get started with the tutorials on [the NLog wiki](https://github.com/NLo
 
 Packages & Status
 ---
+NLog consists of multiple packages. Most of the functionality is inside the NLog (core) package. What's inside the packages? See [targets](https://github.com/NLog/NLog/wiki/Targets) and [layout renderers](https://github.com/NLog/NLog/wiki/Layout-Renderers) overview!
 
 Product  | Build status | Nuget |
 -------- | :------------ | :------------ | :------------------
