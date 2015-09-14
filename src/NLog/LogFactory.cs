@@ -385,7 +385,9 @@ namespace NLog
                 this.config.InitializeAll();
             }
 
-            foreach (var logger in loggerCache.Loggers)
+            //new list to avoid "Collection was modified; enumeration operation may not execute"
+            var loggers = new List<Logger>(loggerCache.Loggers);
+            foreach (var logger in loggers)
             {
                 logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, this.config));
             }
