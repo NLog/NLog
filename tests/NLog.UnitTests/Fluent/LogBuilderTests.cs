@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+
 namespace NLog.UnitTests.Fluent
 {
     using System;
@@ -54,6 +56,23 @@ namespace NLog.UnitTests.Fluent
                 .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "TraceWrite")
                 .Write();
+        }
+
+
+        [Fact]
+        public void TraceWriteProperties()
+        {
+            var props = new Dictionary<string, object>
+            {
+                {"prop1", "1"},
+                {"prop2", "2"},
+
+            };
+
+            _logger.Trace()
+                .Message("This is a test fluent message.")
+                .Properties(props).Write();
+
         }
 
         [Fact]
