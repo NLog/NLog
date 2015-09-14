@@ -115,6 +115,32 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("d").Debug("zzz");
             AssertDebugLastMessage("debug", "xyz");
         }
+
+
+        [Fact]
+        public void RegistyDefaultValueTest()
+        {
+            //example: 0003: NLog.UnitTests
+            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=logdefaultvalue}",
+                "logdefaultvalue");
+        }
+
+        [Fact]
+        public void RegistyDefaultValueTest_with_colon()
+        {
+            //example: 0003: NLog.UnitTests
+            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\:temp}",
+                "C:temp");
+        }
+
+
+        [Fact]
+        public void RegistyDefaultValueTest_with_slash()
+        {
+            //example: 0003: NLog.UnitTests
+            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C/temp}",
+                "C/temp");
+        }
     }
 }
 
