@@ -69,15 +69,7 @@ namespace NLog.Internal
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-
-                if (LogManager.ThrowExceptions)
-                {
-                    throw;
-                }
+                ex.HandleException();
 
                 ReportExceptionInHandler(ex);
             }

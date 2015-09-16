@@ -137,10 +137,7 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
+                ex.HandleException();
 
                 value = this.DefaultValue;
             }

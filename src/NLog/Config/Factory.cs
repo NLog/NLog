@@ -72,12 +72,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    InternalLogger.Error("Failed to add type '" + t.FullName + "': {0}", exception);
+                    exception.HandleException("Failed to add type '{0}': {1}", t.FullName , exception);
                 }
             }
         }
@@ -150,10 +145,7 @@ namespace NLog.Config
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
+                ex.HandleException();
 
                 // delegate invocation failed - type is not available
                 result = null;

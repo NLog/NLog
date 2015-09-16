@@ -31,20 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Layouts;
 using System.Globalization;
 using System.Linq;
-using NLog.Layouts;
 
 namespace NLog.Config
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using JetBrains.Annotations;
-
     using NLog.Common;
     using NLog.Internal;
     using NLog.Targets;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
     /// <summary>
     /// Keeps logging configuration and provides simple API
@@ -58,7 +57,7 @@ namespace NLog.Config
         private object[] configItems;
 
         /// <summary>
-        /// Variables defined in xml or in API. name is case case insensitive. 
+        /// Variables defined in xml or in API. name is case case insensitive.
         /// </summary>
         private readonly Dictionary<string, SimpleLayout> variables = new Dictionary<string, SimpleLayout>(StringComparer.OrdinalIgnoreCase);
 
@@ -71,7 +70,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Use the old exception log handling of NLog 3.0? 
+        /// Use the old exception log handling of NLog 3.0?
         /// </summary>
         [Obsolete("This option will be removed in NLog 5")]
         public bool ExceptionLoggingOldStyle { get; set; }
@@ -249,10 +248,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                    exception.HandleException();
 
                     installationContext.Error("'{0}' installation failed: {1}.", installable, exception);
                 }
@@ -286,10 +282,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                    exception.HandleException();
 
                     installationContext.Error("Uninstallation of '{0}' failed: {1}.", installable, exception);
                 }
@@ -311,12 +304,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    InternalLogger.Warn("Exception while closing {0}", exception);
+                    exception.HandleException(LogLevel.Warn, "Exception while closing {0}", exception);
                 }
             }
 
@@ -409,15 +397,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    if (LogManager.ThrowExceptions)
-                    {
-                        throw new NLogConfigurationException("Error during initialization of " + initialize, exception);
-                    }
+                    exception.HandleException("Error during initialization of {0}.", initialize);
                 }
             }
         }

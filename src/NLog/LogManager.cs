@@ -359,12 +359,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-
-                InternalLogger.Warn("Error setting up termination events: {0}", exception);
+                exception.HandleException(LogLevel.Warn, "Error setting up termination events: {0}", exception);
             }            
         }
 #endif

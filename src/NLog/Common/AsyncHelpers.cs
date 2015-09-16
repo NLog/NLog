@@ -284,10 +284,7 @@ namespace NLog.Common
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                    exception.HandleException();
 
                     cont(exception);
                 }
@@ -304,10 +301,7 @@ namespace NLog.Common
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                    exception.HandleException();
 
                     cont(exception);
                 }

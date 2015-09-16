@@ -78,10 +78,7 @@ namespace NLog.Internal.NetworkSenders
                     }
                     catch (Exception ex)
                     {
-                        if (ex.MustBeRethrown())
-                        {
-                            throw;
-                        }
+                        ex.HandleException();
 
                         asyncContinuation(ex);
                     }
@@ -101,10 +98,7 @@ namespace NLog.Internal.NetworkSenders
                     }
                     catch (Exception ex)
                     {
-                        if (ex.MustBeRethrown())
-                        {
-                            throw;
-                        }
+                        ex.HandleException();
 
                         asyncContinuation(ex);
                     }

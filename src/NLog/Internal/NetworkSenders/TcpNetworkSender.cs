@@ -188,10 +188,7 @@ namespace NLog.Internal.NetworkSenders
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
+                exception.HandleException();
 
                 continuation(exception);
             }

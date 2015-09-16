@@ -93,10 +93,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
+                ex.HandleException();
 
                 continuation(ex);
             }

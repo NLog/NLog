@@ -261,15 +261,7 @@ namespace NLog.Layouts
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    if (InternalLogger.IsWarnEnabled)
-                    {
-                        InternalLogger.Warn("Exception in {0}.Append(): {1}.", renderer.GetType().FullName, exception);
-                    }
+                    exception.HandleException(LogLevel.Warn, "Exception in {0}.Append(): {1}.", renderer.GetType().FullName, exception);
                 }
             }
 

@@ -67,10 +67,7 @@ namespace NLog.Conditions
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
+                exception.HandleException();
 
                 throw new ConditionEvaluationException("Exception occurred when evaluating condition", exception);
             }

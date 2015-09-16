@@ -38,9 +38,13 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
+
 #if !SILVERLIGHT
+
     using System.IO.Compression;
+
 #endif
+
     using System.Linq;
     using System.Text;
     using System.Threading;
@@ -60,6 +64,7 @@ namespace NLog.Targets
     {
         // Period is defined in days.
         private const int InitializedFilesCleanupPeriod = 2;
+
         private const int InitializedFilesCounterMax = 100;
         private const int ArchiveAboveSizeDisabled = -1;
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
@@ -214,12 +219,14 @@ namespace NLog.Targets
         public string ArchiveDateFormat { get; set; }
 
 #if !SILVERLIGHT
+
         /// <summary>
         /// Gets or sets the file attributes (Windows only).
         /// </summary>
         /// <docgen category='Output Options' order='10' />
         [Advanced]
         public Win32FileAttributes FileAttributes { get; set; }
+
 #endif
 
         /// <summary>
@@ -255,7 +262,7 @@ namespace NLog.Targets
         /// <remarks>
         /// The files are managed on a LRU (least recently used) basis, which flushes
         /// the files that have not been used for the longest period of time should the
-        /// cache become full. As a rule of thumb, you shouldn't set this parameter to 
+        /// cache become full. As a rule of thumb, you shouldn't set this parameter to
         /// a very high value. A number like 10-15 shouldn't be exceeded, because you'd
         /// be keeping a large number of files open which consumes system resources.
         /// </remarks>
@@ -265,7 +272,7 @@ namespace NLog.Targets
         public int OpenFileCacheSize { get; set; }
 
         /// <summary>
-        /// Gets or sets the maximum number of seconds that files are kept open. If this number is negative the files are 
+        /// Gets or sets the maximum number of seconds that files are kept open. If this number is negative the files are
         /// not automatically closed after a period of inactivity.
         /// </summary>
         /// <docgen category='Performance Tuning Options' order='10' />
@@ -340,12 +347,12 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets the size in bytes above which log files will be automatically archived.
-        /// 
+        ///
         /// Warning: combining this with <see cref="ArchiveNumberingMode.Date"/> isn't supported. We cannot create multiple archive files, if they should have the same name.
-        /// Choose:  <see cref="ArchiveNumberingMode.DateAndSequence"/> 
+        /// Choose:  <see cref="ArchiveNumberingMode.DateAndSequence"/>
         /// </summary>
         /// <remarks>
-        /// Caution: Enabling this option can considerably slow down your file 
+        /// Caution: Enabling this option can considerably slow down your file
         /// logging in multi-process scenarios. If only one process is going to
         /// be writing to the file, consider setting <c>ConcurrentWrites</c>
         /// to <c>false</c> for maximum performance.
@@ -361,7 +368,7 @@ namespace NLog.Targets
         /// if the current <c>hour</c> changes from 10 to 11, the first write that will occur
         /// on or after 11:00 will trigger the archiving.
         /// <p>
-        /// Caution: Enabling this option can considerably slow down your file 
+        /// Caution: Enabling this option can considerably slow down your file
         /// logging in multi-process scenarios. If only one process is going to
         /// be writing to the file, consider setting <c>ConcurrentWrites</c>
         /// to <c>false</c> for maximum performance.
@@ -375,7 +382,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>
         /// It may contain a special placeholder {#####}
-        /// that will be replaced with a sequence of numbers depending on 
+        /// that will be replaced with a sequence of numbers depending on
         /// the archiving strategy. The number of hash characters used determines
         /// the number of numerical digits to be used for numbering files.
         /// </remarks>
@@ -407,18 +414,20 @@ namespace NLog.Targets
         public bool ForceManaged { get; set; }
 
         /// <summary>
-        /// Gets or sets the way file archives are numbered. 
+        /// Gets or sets the way file archives are numbered.
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
         public ArchiveNumberingMode ArchiveNumbering { get; set; }
 
 #if NET4_5
+
         /// <summary>
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
         [DefaultValue(false)]
         public bool EnableArchiveFileCompression { get; set; }
+
 #else
         /// <summary>
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
@@ -438,7 +447,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Removes records of initialized files that have not been 
+        /// Removes records of initialized files that have not been
         /// accessed in the last two days.
         /// </summary>
         /// <remarks>
@@ -503,10 +512,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
+                exception.HandleException();
 
                 asyncContinuation(exception);
             }
@@ -642,9 +648,8 @@ namespace NLog.Targets
             }
         }
 
-
         /// <summary>
-        /// Writes the specified logging event to a file specified in the FileName 
+        /// Writes the specified logging event to a file specified in the FileName
         /// parameter.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
@@ -790,10 +795,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
+                exception.HandleException();
 
                 lastException = exception;
             }
@@ -950,7 +952,7 @@ namespace NLog.Targets
             string fileName = Path.GetFileName(existingFileName);
             if (fileName == null) { return; }
 
-            // When the file has been moved, the original filename is 
+            // When the file has been moved, the original filename is
             // no longer one of the initializedFiles. The initializedFilesCounter
             // should be left alone, the amount is still valid.
             if (this.initializedFiles.ContainsKey(fileName))
@@ -995,8 +997,8 @@ namespace NLog.Targets
                 // Find out the next sequence number among existing archives having the same date part as the current date.
                 int? lastSequenceNumber = archives
                     .Where(a => a.HasSameFormattedDate(archiveDate))
-                    .Max(a => (int?) a.Sequence);
-                nextSequenceNumber = (int) (lastSequenceNumber != null ? lastSequenceNumber + 1 : 0);
+                    .Max(a => (int?)a.Sequence);
+                nextSequenceNumber = (int)(lastSequenceNumber != null ? lastSequenceNumber + 1 : 0);
 
                 var oldArchiveFileNames = archives
                     .OrderBy(a => a.Date)
@@ -1034,7 +1036,7 @@ namespace NLog.Targets
 
                 return ts != ts2;
             }
-            
+
             return false;
         }
 
@@ -1101,7 +1103,7 @@ namespace NLog.Targets
             int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt;
             int dateAndSequenceIndex = fileTemplate.BeginAt;
             int dateAndSequenceLength = archiveFileNameWithoutPath.Length - trailerLength - dateAndSequenceIndex;
-            
+
             string dateAndSequence = archiveFileNameWithoutPath.Substring(dateAndSequenceIndex, dateAndSequenceLength);
             int sequenceIndex = dateAndSequence.LastIndexOf('.') + 1;
 
@@ -1159,7 +1161,6 @@ namespace NLog.Targets
         /// <param name="pattern">The pattern that archive filenames will match</param>
         private void DeleteOldDateArchive(string pattern)
         {
-
             string fileNameMask = ReplaceReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
@@ -1192,11 +1193,12 @@ namespace NLog.Targets
                 Directory.CreateDirectory(dirName);
             }
         }
+
 #endif
 
         private string GetDateFormatString(string defaultFormat)
         {
-            // If archiveDateFormat is not set in the config file, use a default 
+            // If archiveDateFormat is not set in the config file, use a default
             // date format string based on the archive period.
             string formatString = defaultFormat;
             if (string.IsNullOrEmpty(formatString))
@@ -1474,12 +1476,7 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    InternalLogger.Warn("Exception in AutoClosingTimerCallback: {0}", exception);
+                    exception.HandleException(LogLevel.Warn, "Exception in AutoClosingTimerCallback: {0}", exception);
                 }
             }
         }
@@ -1488,10 +1485,10 @@ namespace NLog.Targets
         {
             //
             // BaseFileAppender.Write is the most expensive operation here
-            // so the in-memory data structure doesn't have to be 
-            // very sophisticated. It's a table-based LRU, where we move 
+            // so the in-memory data structure doesn't have to be
+            // very sophisticated. It's a table-based LRU, where we move
             // the used element to become the first one.
-            // The number of items is usually very limited so the 
+            // The number of items is usually very limited so the
             // performance should be equivalent to the one of the hashtable.
             //
 
@@ -1652,12 +1649,7 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    InternalLogger.Warn("Unable to archive old log file '{0}': {1}", fileName, exception);
+                    exception.HandleException(LogLevel.Warn, "Unable to archive old log file '{0}': {1}", fileName, exception);
                 }
             }
 
@@ -1669,12 +1661,7 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    InternalLogger.Warn("Unable to delete old log file '{0}': {1}", fileName, exception);
+                    exception.HandleException(LogLevel.Warn, "Unable to delete old log file '{0}': {1}", fileName, exception);
                 }
             }
         }
@@ -1783,6 +1770,7 @@ namespace NLog.Targets
         }
 
 #if !SILVERLIGHT
+
         private static string CleanupInvalidFileNameChars(string fileName)
         {
             var lastDirSeparator =
@@ -1793,6 +1781,7 @@ namespace NLog.Targets
             fileName1 = Path.GetInvalidFileNameChars().Aggregate(fileName1, (current, c) => current.Replace(c, '_'));
             return Path.Combine(dirName, fileName1);
         }
+
 #endif
 
         private class DynamicFileArchive
@@ -1840,10 +1829,11 @@ namespace NLog.Targets
 
                 archiveFileQueue = new Queue<string>();
             }
+
             private readonly Queue<string> archiveFileQueue;
 
             /// <summary>
-            /// 
+            ///
             /// </summary>
             /// <param name="archiveFileName"></param>
             /// <param name="fileName"></param>
@@ -1893,8 +1883,8 @@ namespace NLog.Targets
             }
 
             /// <summary>
-            /// Remove old archive files when the files on the queue are more than the 
-            /// MaxArchiveFilesToKeep.  
+            /// Remove old archive files when the files on the queue are more than the
+            /// MaxArchiveFilesToKeep.
             /// </summary>
             private void DeleteOldArchiveFiles()
             {
@@ -1928,17 +1918,17 @@ namespace NLog.Targets
             }
 
             /// <summary>
-            /// Creates a new unique filename by appending a number to it. This method tests that 
+            /// Creates a new unique filename by appending a number to it. This method tests that
             /// the filename created does not exist.
-            /// 
-            /// This process can be slow as it increments the number sequentially from a specified 
-            /// starting point until it finds a number which produces a filename which does not 
+            ///
+            /// This process can be slow as it increments the number sequentially from a specified
+            /// starting point until it finds a number which produces a filename which does not
             /// exist.
-            /// 
-            /// Example: 
+            ///
+            /// Example:
             ///     Original Filename   trace.log
             ///     Target Filename     trace.15.log
-            /// </summary>          
+            /// </summary>
             /// <param name="fileName">Original filename</param>
             /// <param name="numberToStartWith">Number starting point</param>
             /// <returns>File name suitable for archiving</returns>
@@ -1955,7 +1945,6 @@ namespace NLog.Targets
             }
         }
 
-
         private sealed class FileNameTemplate
         {
             /// <summary>
@@ -1969,7 +1958,7 @@ namespace NLog.Targets
             public const string PatternEndCharacters = "#}";
 
             /// <summary>
-            /// File name which is used as template for matching and replacements. 
+            /// File name which is used as template for matching and replacements.
             /// It is expected to contain a pattern to match.
             /// </summary>
             public string Template
@@ -1978,8 +1967,8 @@ namespace NLog.Targets
             }
 
             /// <summary>
-            /// The begging position of the <see cref="P:FileNameTemplate.Pattern"/> 
-            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
+            /// The begging position of the <see cref="P:FileNameTemplate.Pattern"/>
+            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned
             /// when no pattern can be found.
             /// </summary>
             public int BeginAt
@@ -1991,8 +1980,8 @@ namespace NLog.Targets
             }
 
             /// <summary>
-            /// The ending position of the <see cref="P:FileNameTemplate.Pattern"/> 
-            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
+            /// The ending position of the <see cref="P:FileNameTemplate.Pattern"/>
+            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned
             /// when no pattern can be found.
             /// </summary>
             public int EndAt

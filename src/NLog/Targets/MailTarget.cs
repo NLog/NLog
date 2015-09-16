@@ -37,16 +37,16 @@ using JetBrains.Annotations;
 
 namespace NLog.Targets
 {
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Net;
     using System.Net.Mail;
     using System.Text;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Layouts;
 
     /// <summary>
     /// Sends log messages by email using SMTP protocol.
@@ -54,7 +54,7 @@ namespace NLog.Targets
     /// <seealso href="https://github.com/nlog/nlog/wiki/Mail-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
-    /// To set up the target in the <a href="config.html">configuration file</a>, 
+    /// To set up the target in the <a href="config.html">configuration file</a>,
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/Mail/Simple/NLog.config" />
@@ -71,7 +71,7 @@ namespace NLog.Targets
     /// which lets you send multiple log messages in single mail
     /// </p>
     /// <p>
-    /// To set up the buffered mail target in the <a href="config.html">configuration file</a>, 
+    /// To set up the buffered mail target in the <a href="config.html">configuration file</a>,
     /// use the following syntax:
     /// </p>
     /// <code lang="XML" source="examples/targets/Configuration File/Mail/Buffered/NLog.config" />
@@ -268,7 +268,6 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-
             CheckRequiredParameters();
 
             base.InitializeTarget();
@@ -280,7 +279,6 @@ namespace NLog.Targets
         /// <param name="events">event printed in the body of the event</param>
         private void ProcessSingleMailMessage([NotNull] List<AsyncLogEventInfo> events)
         {
-
             try
             {
                 if (events.Count == 0)
@@ -316,14 +314,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                //always log
-                InternalLogger.Error(exception.ToString());
-
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-
+                exception.HandleException(exception.ToString());
 
                 foreach (var ev in events)
                 {
@@ -378,7 +369,6 @@ namespace NLog.Targets
         /// <param name="client">client to set properties on</param>
         private void ConfigureMailClient(LogEventInfo lastEvent, ISmtpClient client)
         {
-
             CheckRequiredParameters();
 
             var renderedSmtpServer = this.SmtpServer.Render(lastEvent);
@@ -418,7 +408,7 @@ namespace NLog.Targets
         /// <summary>
         /// Create key for grouping. Needed for multiple events in one mailmessage
         /// </summary>
-        /// <param name="logEvent">event for rendering layouts   </param>  
+        /// <param name="logEvent">event for rendering layouts   </param>
         ///<returns>string to group on</returns>
         private string GetSmtpSettingsKey(LogEventInfo logEvent)
         {
@@ -431,7 +421,6 @@ namespace NLog.Targets
             AppendLayout(sb, logEvent, this.SmtpServer);
             AppendLayout(sb, logEvent, this.SmtpPassword);
             AppendLayout(sb, logEvent, this.SmtpUserName);
-
 
             return sb.ToString();
         }
@@ -454,7 +443,6 @@ namespace NLog.Targets
         /// </summary>
         private MailMessage CreateMailMessage(LogEventInfo lastEvent, string body)
         {
-
             var msg = new MailMessage();
             var renderedFrom = this.From == null ? null : this.From.Render(lastEvent);
             if (string.IsNullOrEmpty(renderedFrom))
@@ -481,7 +469,6 @@ namespace NLog.Targets
                 var renderedPriority = this.Priority.Render(lastEvent);
                 try
                 {
-
                     msg.Priority = (MailPriority)Enum.Parse(typeof(MailPriority), renderedPriority, true);
                 }
                 catch

@@ -202,12 +202,7 @@ namespace NLog
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    InternalLogger.Error("Cannot stop file watching: {0}", exception);
+                    exception.HandleException("Cannot stop file watching: {0}", exception);
                 }
 #endif
 
@@ -239,12 +234,7 @@ namespace NLog
                         }
                         catch (Exception exception)
                         {
-                            if (exception.MustBeRethrown())
-                            {
-                                throw;
-                            }
-
-                            InternalLogger.Warn("Cannot start file watching: {0}", exception);
+                            exception.HandleException(LogLevel.Warn, "Cannot start file watching: {0}", exception);
                         }
 #endif
                     }
@@ -641,9 +631,9 @@ namespace NLog
                     {
                         InternalLogger.Warn(exception.Message);
                     }
-                    else if (exception.MustBeRethrown())
+                    else
                     {
-                        throw;
+                        exception.HandleException();
                     }
 
                     this.watcher.Watch(configurationToReload.FileNamesToWatch);
@@ -831,12 +821,7 @@ namespace NLog
                     }
                     catch (Exception ex)
                     {
-                        if (ex.MustBeRethrown() || ThrowExceptions)
-                        {
-                            throw;
-                        }
-
-                        InternalLogger.Error("Cannot create instance of specified type. Proceeding with default type instance. Exception : {0}", ex);
+                        ex.HandleException("Cannot create instance of specified type. Proceeding with default type instance. Exception : {0}", ex);
 
                         // Creating default instance of logger if instance of specified type cannot be created.
                         cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));

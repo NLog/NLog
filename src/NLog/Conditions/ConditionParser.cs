@@ -136,12 +136,9 @@ namespace NLog.Conditions
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
+                exception.HandleException();
 
-                throw new ConditionParseException("Cannot resolve function '" + functionName + "'", exception);
+                throw new ConditionParseException(string.Format("Cannot resolve function '{0}'", functionName), exception);
             }
         }
 

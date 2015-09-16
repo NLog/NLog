@@ -129,10 +129,7 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                    exception.HandleException();
 
                     asyncContinuation(exception);
                 }
@@ -205,15 +202,7 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    if (LogManager.ThrowExceptions)
-                    {
-                        throw;
-                    }
+                    exception.HandleException();
 
                     wrappedContinuation(exception);
                 }
@@ -265,10 +254,7 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                    exception.HandleException();
 
                     // in case of synchronous failure, assume that nothing is running asynchronously
                     foreach (var ev in wrappedEvents)
@@ -300,13 +286,8 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
-                        {
-                            throw;
-                        }
-
+                        exception.HandleException("Error initializing target {0} {1}.", this, exception);
                         this.initializeException = exception;
-                        InternalLogger.Error("Error initializing target {0} {1}.", this, exception);
                         throw;
                     }
                 }
@@ -336,12 +317,7 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
-                        {
-                            throw;
-                        }
-
-                        InternalLogger.Error("Error closing target {0} {1}.", this, exception);
+                        exception.HandleException("Error closing target {0} {1}.", this, exception);
                         throw;
                     }
                 }
@@ -442,10 +418,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
+                exception.HandleException();
 
                 logEvent.Continuation(exception);
             }

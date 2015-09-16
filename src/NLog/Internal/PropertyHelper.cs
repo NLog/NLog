@@ -91,10 +91,7 @@ namespace NLog.Internal
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
+                exception.HandleException();
 
                 throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + o, exception);
             }

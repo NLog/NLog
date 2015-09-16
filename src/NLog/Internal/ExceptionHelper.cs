@@ -35,6 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Threading;
+    using NLog.Common;
 
     /// <summary>
     /// Helper class for dealing with exceptions.
@@ -48,6 +49,8 @@ namespace NLog.Internal
         /// <returns>True if the exception must be rethrown, false otherwise.</returns>
         public static bool MustBeRethrown(this Exception exception)
         {
+
+            // although seldom thrown, catch it (http://stackoverflow.com/a/1599238/1966710)
             if (exception is StackOverflowException)
             {
                 return true;
@@ -74,6 +77,60 @@ namespace NLog.Internal
             }
 
             return false;
+        }
+
+
+
+        /// <summary>
+        /// Rethrows the exception if necessary and eventually logs the specified message at error level.
+        /// </summary>
+        /// <param name="ex">The exception, that occurred.</param>
+        public static void HandleException(this Exception ex)
+        {
+            HandleException(ex, LogLevel.Off, null);
+        }
+
+        /// <summary>
+        /// Rethrows the exception if necessary and eventually logs the specified message at error level.
+        /// </summary>
+        /// <param name="ex">The exception, that occurred.</param>
+        /// <param name="message">Log message, which may include positional parameters.</param>
+        /// <param name="args">Arguments to the log message.</param>
+        public static void HandleException(this Exception ex, string message, params object[] args)
+        {
+            HandleException(ex, LogLevel.Error, message, args);
+        }
+
+        /// <summary>
+        /// Rethrows the exception, if necessary and eventually logs the specified message.
+        /// </summary>
+        /// <param name="ex">The exception, that occurred.</param>
+        /// <param name="level">Log level for the optional log message.</param>
+        /// <param name="message">Log message, which may include positional parameters.</param>
+        /// <param name="args">Arguments to the log message.</param>
+        public static void HandleException(this Exception ex, LogLevel level, string message, params object[] args)
+        {
+            if(MustBeRethrown(ex))
+            {
+                RethrowException(ex);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(message))
+            {
+                InternalLogger.Log(level, message, args);
+            }
+
+            if (LogManager.ThrowExceptions)
+            {
+                RethrowException(ex);
+            }
+
+        }
+
+        private static void RethrowException(Exception ex)
+        {
+            throw new Exception("An error occured, see inner exception for details.", ex);
         }
     }
 }

@@ -811,16 +811,7 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
-                        {
-                            throw;
-                        }
-
-                        InternalLogger.Error("Error loading extensions: {0}", exception);
-                        if (LogManager.ThrowExceptions)
-                        {
-                            throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
-                        }
+                        exception.HandleException("Error loading extensions in assembly '{0}': {1}", assemblyFile, exception);
                     }
 
                     continue;
@@ -844,16 +835,7 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
-                        {
-                            throw;
-                        }
-
-                        InternalLogger.Error("Error loading extensions: {0}", exception);
-                        if (LogManager.ThrowExceptions)
-                        {
-                            throw new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
-                        }
+                        exception.HandleException("Error loading extensions in assembly '{0}': {1}", assemblyName, exception);
                     }
 
                     continue;
@@ -893,12 +875,7 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-
-                InternalLogger.Error("Error when including '{0}' {1}", newFileName, exception);
+                exception.HandleException("Error when including '{0}' {1}", newFileName, exception);
 
                 if (includeElement.GetOptionalBooleanAttribute("ignoreErrors", false))
                 {
