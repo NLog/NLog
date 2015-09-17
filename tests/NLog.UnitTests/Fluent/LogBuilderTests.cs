@@ -32,7 +32,6 @@
 // 
 
 using System.Collections.Generic;
-using Microsoft.Practices.ObjectBuilder2;
 using NLog.Config;
 using NLog.Targets;
 using NLog.UnitTests.Common;
