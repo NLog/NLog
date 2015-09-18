@@ -17,8 +17,7 @@
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures></SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
@@ -32,8 +31,7 @@
     <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
     <UsePlatformExtensions>false</UsePlatformExtensions>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <LinkedServerProject>
-    </LinkedServerProject>
+    <LinkedServerProject></LinkedServerProject>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
@@ -100,6 +98,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
     <Compile Include="Common\InternalLoggerTests.cs" />
+    <Compile Include="Common\LastLogEventListTarget.cs" />
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
     <Compile Include="Config\CaseSensitivityTests.cs" />
@@ -115,6 +114,7 @@
     <Compile Include="ConfigFileLocatorTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\MappedDiagnosticsLogicalContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
     <Compile Include="Filters\APITests.cs" />
     <Compile Include="Filters\ConditionBasedFilterTests.cs" />
@@ -124,10 +124,14 @@
     <Compile Include="Filters\WhenNotEqualTests.cs" />
     <Compile Include="Fluent\LogBuilderTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
+    <Compile Include="Internal\EnumHelpersTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
+    <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />
     <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
     <Compile Include="LayoutRenderers\BaseDirTests.cs" />
+    <Compile Include="LayoutRenderers\CallSiteLineNumberTests.cs" />
     <Compile Include="LayoutRenderers\CallSiteTests.cs" />
     <Compile Include="LayoutRenderers\CounterTests.cs" />
     <Compile Include="LayoutRenderers\DateTests.cs" />
@@ -144,6 +148,7 @@
     <Compile Include="LayoutRenderers\LogLevelTests.cs" />
     <Compile Include="LayoutRenderers\LongDateTests.cs" />
     <Compile Include="LayoutRenderers\MDCTests.cs" />
+    <Compile Include="LayoutRenderers\MdlcLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\MessageTests.cs" />
     <Compile Include="LayoutRenderers\NDCTests.cs" />
     <Compile Include="LayoutRenderers\RegistryTests.cs" />
@@ -152,11 +157,13 @@
     <Compile Include="LayoutRenderers\SpecialFolderTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
     <Compile Include="LayoutRenderers\TimeTests.cs" />
+    <Compile Include="LayoutRenderers\VariableLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\JsonEncodeTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\OnExceptionTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\PaddingTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\ReplaceNewLinesTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\ReplaceTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenEmptyTests.cs" />
@@ -180,15 +187,15 @@
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />
     <Compile Include="SourceCodeTests.cs" />
-    <Compile Include="Targets\EventLogTargetTests.cs" />
-    <Compile Include="Targets\LineEndingModeTests.cs" />
-    <Compile Include="Targets\MemoryTargetTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
     <Compile Include="Targets\ConsoleTargetTests.cs" />
     <Compile Include="Targets\DatabaseTargetTests.cs" />
+    <Compile Include="Targets\EventLogTargetTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
+    <Compile Include="Targets\LineEndingModeTests.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
     <Compile Include="Targets\MailTargetTests.cs" />
+    <Compile Include="Targets\MemoryTargetTests.cs" />
     <Compile Include="Targets\MessageQueueTargetTests.cs" />
     <Compile Include="Targets\NetworkTargetTests.cs" />
     <Compile Include="Targets\TargetTests.cs" />
