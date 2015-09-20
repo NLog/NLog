@@ -157,6 +157,7 @@
 // automatically generated
 [assembly: System.Reflection.AssemblyProduct("$(BuildProductName)")]
 [assembly: System.Reflection.AssemblyVersion("$(BuildLastMajorVersion)")]
+[assembly: System.Reflection.AssemblyFileVersion("$(BuildVersion)")]
 [assembly: System.Reflection.AssemblyInformationalVersion("$(BuildVersion)")]
 </BuildInfoFileContent>
     </PropertyGroup>
