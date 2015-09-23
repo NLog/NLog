@@ -39,8 +39,11 @@ namespace NLog.LayoutRenderers
     using System.Globalization;
     using System.Text;
     using Microsoft.Win32;
+    using NLog;
     using NLog.Config;
-    using NLog.Internal;
+    using NLog.LayoutRenderers;
+    using System.ComponentModel;
+    using NLog.Layouts;
 
     /// <summary>
     /// A value from the Registry.
@@ -48,21 +51,27 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("registry")]
     public class RegistryLayoutRenderer : LayoutRenderer
     {
-        private string key;
-        private RegistryKey rootKey = Registry.LocalMachine;
+        private RegistryHive hive = RegistryHive.LocalMachine;
         private string subKey;
 
         /// <summary>
         /// Gets or sets the registry value name.
         /// </summary>
         /// <docgen category='Registry Options' order='10' />
-        public string Value { get; set; }
+        public Layout Value { get; set; }
 
         /// <summary>
         /// Gets or sets the value to be output when the specified registry key or value is not found.
         /// </summary>
         /// <docgen category='Registry Options' order='10' />
-        public string DefaultValue { get; set; }
+        public Layout DefaultValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets the registry view (see: https://msdn.microsoft.com/de-de/library/microsoft.win32.registryview.aspx). 
+        /// Allowed values: Registry32, Registry64, Default 
+        /// </summary>
+        [DefaultValue("Default")]
+        public RegistryView View { get; set; }
 
         /// <summary>
         /// Gets or sets the registry key.
@@ -74,49 +83,13 @@ namespace NLog.LayoutRenderers
         /// <li>HKEY_LOCAL_MACHINE\Key\Full\Name</li>
         /// <li>HKCU\Key\Full\Name</li>
         /// <li>HKEY_CURRENT_USER\Key\Full\Name</li>
+        /// <li>HKLM</li>
+        /// <li>HKEY_LOCAL_MACHINE</li>
         /// </ul>
         /// </remarks>
         /// <docgen category='Registry Options' order='10' />
         [RequiredParameter]
-        public string Key
-        {
-            get
-            {
-                return this.key;
-            }
-
-            set
-            {
-                this.key = value;
-                int pos = this.key.IndexOfAny(new char[] { '\\', '/' });
-
-                if (pos >= 0)
-                {
-                    string root = this.key.Substring(0, pos);
-                    switch (root.ToUpper(CultureInfo.InvariantCulture))
-                    {
-                        case "HKEY_LOCAL_MACHINE":
-                        case "HKLM":
-                            this.rootKey = Registry.LocalMachine;
-                            break;
-
-                        case "HKEY_CURRENT_USER":
-                        case "HKCU":
-                            this.rootKey = Registry.CurrentUser;
-                            break;
-
-                        default:
-                            throw new ArgumentException("Key name is invalid. Root hive not recognized.");
-                    }
-
-                    this.subKey = this.key.Substring(pos + 1).Replace('/', '\\');
-                }
-                else
-                {
-                    throw new ArgumentException("Key name is invalid");
-                }
-            }
-        }
+        public Layout Key { get; set; }
 
         /// <summary>
         /// Reads the specified registry key and value and appends it to
@@ -126,26 +99,84 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event. Ignored.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string value;
+            Object registryValue = null;
 
-            try
+            ParseKey(this.Key.Render(logEvent));
+
+            if (!(this.Value == null))
             {
-                using (RegistryKey registryKey = this.rootKey.OpenSubKey(this.subKey))
+                try
                 {
-                    value = Convert.ToString(registryKey.GetValue(this.Value, this.DefaultValue), CultureInfo.InvariantCulture);
+                    using (RegistryKey rootKey = RegistryKey.OpenBaseKey(hive, View))
+                    {
+                        if (!String.IsNullOrEmpty(this.subKey))
+                        {
+                            using (RegistryKey registryKey = rootKey.OpenSubKey(this.subKey))
+                            {
+                                registryValue = registryKey.GetValue(this.Value.Render(logEvent));
+                            }
+                        }
+                        else
+                        {
+                            registryValue = rootKey.GetValue(this.Value.Render(logEvent));
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (ex.MustBeRethrown())
+                    {
+                        throw;
+                    }
                 }
             }
-            catch (Exception ex)
+
+            string value = null;
+            if (registryValue != null) // valid value returned from registry will never be null
             {
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-
-                value = this.DefaultValue;
+                value = Convert.ToString(registryValue, CultureInfo.InvariantCulture);
             }
-
+            else if(this.DefaultValue != null)
+            {
+                value = this.DefaultValue.Render(logEvent);
+            }
             builder.Append(value);
+        }
+
+        /// <summary>
+        /// Splits up <paramref name="key"/> into its registry <see cref="hive"/> and <see cref="subKey"/>.
+        /// </summary>
+        /// <param name="key">full registry key name</param>
+        private void ParseKey(string key)
+        {
+            string hiveName;
+            int pos = key.IndexOfAny(new char[] { '\\', '/' });
+
+            if (pos >= 0)
+            {
+                hiveName = key.Substring(0, pos);
+                this.subKey = key.Substring(pos + 1).Replace('/', '\\');
+            }
+            else
+            {
+                hiveName = key;
+            }
+            switch (hiveName.ToUpper(CultureInfo.InvariantCulture))
+            {
+                case "HKEY_LOCAL_MACHINE":
+                case "HKLM":
+                    this.hive = RegistryHive.LocalMachine;
+                    break;
+
+                case "HKEY_CURRENT_USER":
+                case "HKCU":
+                    this.hive = RegistryHive.CurrentUser;
+                    break;
+
+                default:
+                    throw new ArgumentException("Key name is invalid. Root hive not recognized.");
+            }
         }
     }
 }
