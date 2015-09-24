@@ -70,8 +70,6 @@ namespace NLog.Targets
         private Timer autoClosingTimer;
         private int initializedFilesCounter;
 
-        private int maxArchiveFiles;
-
         private readonly DynamicFileArchive fileArchive;
 
         // Queue used so the oldest used filename can be removed from when the list of filenames
@@ -87,7 +85,6 @@ namespace NLog.Targets
         public FileTarget()
         {
             this.ArchiveNumbering = ArchiveNumberingMode.Sequence;
-            this.maxArchiveFiles = 0;
             this.ConcurrentWriteAttemptDelay = 1;
             this.ArchiveEvery = FileArchivePeriod.None;
             this.ArchiveAboveSize = FileTarget.ArchiveAboveSizeDisabled;
@@ -108,7 +105,7 @@ namespace NLog.Targets
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
             this.CreateDirs = true;
-            this.fileArchive = new DynamicFileArchive(MaxArchiveFiles);
+            this.fileArchive = new DynamicFileArchive(0);
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
 
@@ -391,12 +388,11 @@ namespace NLog.Targets
         {
             get
             {
-                return maxArchiveFiles;
+                return fileArchive.Size;
             }
             set
             {
-                maxArchiveFiles = value;
-                fileArchive.MaxArchiveFileToKeep = value;
+                fileArchive.Size = value;
             }
         }
 
@@ -1795,14 +1791,17 @@ namespace NLog.Targets
         }
 #endif
 
-        private class DynamicFileArchive
+        private sealed class DynamicFileArchive
         {
-            public int MaxArchiveFileToKeep { get; set; }
+            /// <summary>
+            /// Max
+            /// </summary>
+            public int Size { get; set; }
 
-            public DynamicFileArchive(int maxArchivedFiles)
-                : this()
+            public DynamicFileArchive(int size)
             {
-                this.MaxArchiveFileToKeep = maxArchivedFiles;
+                Size = size;
+                fileQueue = new Queue<string>(size);
             }
 
             /// <summary>
@@ -1816,7 +1815,7 @@ namespace NLog.Targets
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
             public bool Archive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
             {
-                if (MaxArchiveFileToKeep < 1)
+                if (Size < 1)
                 {
                     InternalLogger.Warn("Archive is called. Even though the MaxArchiveFiles is set to less than 1");
                     return false;
@@ -1830,30 +1829,15 @@ namespace NLog.Targets
 
                 DeleteOldArchiveFiles();
                 AddToArchive(archiveFileName, fileName, createDirectory, enableCompression);
-                archiveFileQueue.Enqueue(archiveFileName);
+                fileQueue.Enqueue(archiveFileName);
                 return true;
-            }
+            }            
 
-            public DynamicFileArchive()
-            {
-                this.MaxArchiveFileToKeep = -1;
-
-                archiveFileQueue = new Queue<string>();
-            }
-            private readonly Queue<string> archiveFileQueue;
-
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="archiveFileName"></param>
-            /// <param name="fileName"></param>
-            /// <param name="createDirectory"></param>
-            /// <param name="enableCompression"></param>
             private void AddToArchive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
             {
                 String alternativeFileName = archiveFileName;
 
-                if (archiveFileQueue.Contains(archiveFileName))
+                if (fileQueue.Contains(archiveFileName))
                 {
                     InternalLogger.Trace("AddToArchive file {0} already exist. Trying different file name.", archiveFileName);
                     alternativeFileName = FindSuitableFilename(archiveFileName, 1);
@@ -1898,32 +1882,28 @@ namespace NLog.Targets
             /// </summary>
             private void DeleteOldArchiveFiles()
             {
-                if (MaxArchiveFileToKeep == 1 && archiveFileQueue.Any())
+                // TODO: When the Size = 1 than ONLY a single file will be deleted. Is this the intended behavior? 
+                if (Size == 1 && fileQueue.Any())
                 {
-                    var archiveFileName = archiveFileQueue.Dequeue();
-
-                    try
-                    {
-                        File.Delete(archiveFileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Warn("Cannot delete old archive file : {0} , Exception : {1}", archiveFileName, ex);
-                    }
+                    string archiveFileName = fileQueue.Dequeue();
+                    DeleteFile(archiveFileName);
                 }
 
-                while (archiveFileQueue.Count >= MaxArchiveFileToKeep)
+                while (fileQueue.Count >= Size)
                 {
-                    string oldestArchivedFileName = archiveFileQueue.Dequeue();
+                    string oldestArchivedFileName = fileQueue.Dequeue();
+                    DeleteFile(oldestArchivedFileName);
+                }
+            }
 
-                    try
-                    {
-                        File.Delete(oldestArchivedFileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Warn("Cannot delete old archive file : {0} , Exception : {1}", oldestArchivedFileName, ex);
-                    }
+            private static void DeleteFile(string fileName) {
+                try 
+                {
+                    File.Delete(fileName);
+                }
+                catch (Exception ex) 
+                {
+                    InternalLogger.Warn("Cannot delete old archive file: {0}, Exception : {1}", fileName, ex);
                 }
             }
 
@@ -1953,8 +1933,9 @@ namespace NLog.Targets
                 }
                 return targetFileName;
             }
-        }
 
+            private readonly Queue<string> fileQueue;
+        }
 
         private sealed class FileNameTemplate
         {
