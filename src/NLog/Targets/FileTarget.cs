@@ -1127,14 +1127,14 @@ namespace NLog.Targets
 #endif
         }
 
-        private static string ReplaceReplaceFileNamePattern(string pattern, string replacementValue)
+        private static string ReplaceFileNamePattern(string pattern, string replacementValue)
         {
             return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
         }
 
         private void DateArchive(string fileName, string pattern)
         {
-            string fileNameMask = ReplaceReplaceFileNamePattern(pattern, "*");
+            string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
 
@@ -1156,7 +1156,7 @@ namespace NLog.Targets
         private void DeleteOldDateArchive(string pattern)
         {
 
-            string fileNameMask = ReplaceReplaceFileNamePattern(pattern, "*");
+            string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
 
