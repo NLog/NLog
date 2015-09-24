@@ -1605,8 +1605,8 @@ namespace NLog.Targets
             {
                 if (!this.initializedFiles.ContainsKey(fileName))
                 {
-                    ProcessOnStartup(fileName, logEvent);
-
+                    ProcessOnStartup(fileName, logEvent);                    
+                 
                     this.initializedFiles[fileName] = DateTime.Now;
                     this.initializedFilesCounter++;
                     writeHeader = true;
@@ -1640,33 +1640,32 @@ namespace NLog.Targets
 
         private void ProcessOnStartup(string fileName, LogEventInfo logEvent)
         {
-            if (this.ArchiveOldFileOnStartup)
-            {
-                try
-                {
+            ArchiveOnStartup(fileName, logEvent);
+            DeleteOnStartup(fileName);
+        }
+
+        private void ArchiveOnStartup(string fileName, LogEventInfo logEvent) {
+            if (this.ArchiveOldFileOnStartup) {
+                try {
                     this.DoAutoArchive(fileName, logEvent);
                 }
-                catch (Exception exception)
-                {
-                    if (exception.MustBeRethrown())
-                    {
+                catch (Exception exception) {
+                    if (exception.MustBeRethrown()) {
                         throw;
                     }
 
                     InternalLogger.Warn("Unable to archive old log file '{0}': {1}", fileName, exception);
                 }
             }
+        }
 
-            if (this.DeleteOldFileOnStartup)
-            {
-                try
-                {
+        private void DeleteOnStartup(string fileName) {
+            if (this.DeleteOldFileOnStartup) {
+                try {
                     File.Delete(fileName);
                 }
-                catch (Exception exception)
-                {
-                    if (exception.MustBeRethrown())
-                    {
+                catch (Exception exception) {
+                    if (exception.MustBeRethrown()) {
                         throw;
                     }
 
