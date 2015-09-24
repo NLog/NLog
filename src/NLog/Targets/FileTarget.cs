@@ -58,17 +58,13 @@ namespace NLog.Targets
     [Target("File")]
     public class FileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters
     {
-        // Period is defined in days.
-        private const int InitializedFilesCleanupPeriod = 2;
-        private const int InitializedFilesCounterMax = 100;
         private const int ArchiveAboveSizeDisabled = -1;
-        private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
+        private readonly InitializedFiles initializedFiles = new InitializedFiles();
 
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
         private IFileAppenderFactory appenderFactory;
         private BaseFileAppender[] recentAppenders;
         private Timer autoClosingTimer;
-        private int initializedFilesCounter;
 
         private readonly DynamicFileArchive fileArchive;
 
@@ -442,7 +438,7 @@ namespace NLog.Targets
         /// </remarks>
         public void CleanupInitializedFiles()
         {
-            this.CleanupInitializedFiles(DateTime.Now.AddDays(-FileTarget.InitializedFilesCleanupPeriod));
+            this.CleanupInitializedFiles(DateTime.Now.AddDays(-InitializedFiles.CleanupPeriod));
         }
 
         /// <summary>
@@ -455,20 +451,8 @@ namespace NLog.Targets
         /// </remarks>
         public void CleanupInitializedFiles(DateTime cleanupThreshold)
         {
-            var filesToUninitialize = new List<string>();
-
-            // Select the files require to be uninitialized.
-            foreach (var file in this.initializedFiles)
-            {
-                if (file.Value < cleanupThreshold)
-                {
-                    filesToUninitialize.Add(file.Key);
-                }
-            }
-
             // Uninitialize the files.
-            foreach (string fileName in filesToUninitialize)
-            {
+            foreach (string fileName in initializedFiles.GetExpired(cleanupThreshold)) {
                 this.WriteFooterAndUninitialize(fileName);
             }
         }
@@ -611,7 +595,7 @@ namespace NLog.Targets
         {
             base.CloseTarget();
 
-            foreach (string fileName in new List<string>(this.initializedFiles.Keys))
+            foreach (string fileName in initializedFiles.GetItems())
             {
                 this.WriteFooterAndUninitialize(fileName);
             }
@@ -949,13 +933,11 @@ namespace NLog.Targets
             // When the file has been moved, the original filename is 
             // no longer one of the initializedFiles. The initializedFilesCounter
             // should be left alone, the amount is still valid.
-            if (this.initializedFiles.ContainsKey(fileName))
-            {
-                this.initializedFiles.Remove(fileName);
+            if (initializedFiles.Contains(fileName)) {
+                initializedFiles.Remove(fileName);
             }
-            else if (this.initializedFiles.ContainsKey(existingFileName))
-            {
-                this.initializedFiles.Remove(existingFileName);
+            else if (initializedFiles.Contains(existingFileName)) {
+                initializedFiles.Remove(existingFileName);
             }
         }
 
@@ -1272,10 +1254,7 @@ namespace NLog.Targets
             {
                 if (fileArchive.Archive(fileNamePattern, fileInfo.FullName, CreateDirs, EnableArchiveFileCompression))
                 {
-                    if (this.initializedFiles.ContainsKey(fileInfo.FullName))
-                    {
-                        this.initializedFiles.Remove(fileInfo.FullName);
-                    }
+                    initializedFiles.Remove(fileInfo.FullName);
                 }
             }
             else
@@ -1603,22 +1582,20 @@ namespace NLog.Targets
 
             if (!justData)
             {
-                if (!this.initializedFiles.ContainsKey(fileName))
+                if (!initializedFiles.Contains(fileName)) 
                 {
-                    ProcessOnStartup(fileName, logEvent);                    
-                 
-                    this.initializedFiles[fileName] = DateTime.Now;
-                    this.initializedFilesCounter++;
-                    writeHeader = true;
+                    ProcessOnStartup(fileName, logEvent);
 
-                    if (this.initializedFilesCounter >= FileTarget.InitializedFilesCounterMax)
+                    writeHeader = true;
+                    initializedFiles.Add(fileName);
+
+                    if (initializedFiles.Count >= InitializedFiles.MaxAllowed) 
                     {
-                        this.initializedFilesCounter = 0;
-                        this.CleanupInitializedFiles();
+                        CleanupInitializedFiles();
                     }
                 }
 
-                this.initializedFiles[fileName] = DateTime.Now;
+                initializedFiles.Add(fileName);
             }
 
             return writeHeader;
@@ -1635,7 +1612,7 @@ namespace NLog.Targets
                 }
             }
 
-            this.initializedFiles.Remove(fileName);
+            initializedFiles.Remove(fileName);
         }
 
         private void ProcessOnStartup(string fileName, LogEventInfo logEvent)
@@ -1644,13 +1621,18 @@ namespace NLog.Targets
             DeleteOnStartup(fileName);
         }
 
-        private void ArchiveOnStartup(string fileName, LogEventInfo logEvent) {
-            if (this.ArchiveOldFileOnStartup) {
-                try {
+        private void ArchiveOnStartup(string fileName, LogEventInfo logEvent) 
+        {
+            if (this.ArchiveOldFileOnStartup) 
+            {
+                try 
+                {
                     this.DoAutoArchive(fileName, logEvent);
                 }
-                catch (Exception exception) {
-                    if (exception.MustBeRethrown()) {
+                catch (Exception exception) 
+                {
+                    if (exception.MustBeRethrown()) 
+                    {
                         throw;
                     }
 
@@ -1789,6 +1771,61 @@ namespace NLog.Targets
             return Path.Combine(dirName, fileName1);
         }
 #endif
+
+        private sealed class InitializedFiles
+        {
+            // Clean up Period is defined in days.
+            public const int CleanupPeriod = 2;
+
+            public const int MaxAllowed = 100;
+
+            public int Count
+            {
+                get
+                {
+                    return initializedFiles.Count;
+                }
+            }
+
+            public void Add(String fileName)
+            {
+                initializedFiles[fileName] = DateTime.Now;
+            }
+
+            public bool Remove(String fileName)
+            {
+                return initializedFiles.Remove(fileName);
+            }
+
+            public bool Contains(String fileName)
+            {
+                return initializedFiles.ContainsKey(fileName);
+            }
+
+            public IEnumerable<String> GetExpired(DateTime cleanupThreshold)
+            {
+                List<String> filesToUninitialize = new List<String>();
+
+                // Select the files require to be uninitialized.
+                foreach (var file in initializedFiles)
+                {
+                    if (file.Value < cleanupThreshold)
+                    {
+                        filesToUninitialize.Add(file.Key);
+                    }
+                }
+
+                return filesToUninitialize;
+            }
+
+            public IEnumerable<String> GetItems()
+            {
+                return new List<String>(initializedFiles.Keys);
+            }
+
+            // Key = Filename, Value = Insterted Date/Time
+            private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
+        }
 
         private sealed class DynamicFileArchive
         {
