@@ -68,6 +68,11 @@ namespace NLog.Internal
                 return true;
             }
 
+            if (exception.GetType().IsSubclassOf(typeof(NLogConfigurationException)))
+            {
+                return true;
+            }
+
             return false;
         }
     }

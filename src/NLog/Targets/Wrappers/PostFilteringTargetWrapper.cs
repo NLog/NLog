@@ -43,7 +43,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Filters buffered log entries based on a set of conditions that are evaluated on a group of events.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/PostFilteringWrapper_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/PostFilteringWrapper-target">Documentation on NLog Wiki</seealso>
     /// <remarks>
     /// PostFilteringWrapper must be used with some type of buffering target or wrapper, such as
     /// AsyncTargetWrapper, BufferingWrapper or ASPNetBufferingWrapper.

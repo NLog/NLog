@@ -36,6 +36,7 @@
 namespace NLog.Targets
 {
     using System;
+    using System.Text;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
@@ -44,7 +45,7 @@ namespace NLog.Targets
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/ColoredConsole_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/ColoredConsole-target">Documentation on NLog Wiki</seealso>
     [Target("ColoredConsole")]
     public sealed class ColoredConsoleTarget : TargetWithLayoutHeaderAndFooter
     {
@@ -124,6 +125,16 @@ namespace NLog.Targets
         /// <docgen category='Highlighting Rules' order='9' />
         [DefaultValue(true)]
         public bool UseDefaultRowHighlightingRules { get; set; }
+
+        /// <summary>
+        /// The encoding for writing messages to the <see cref="Console"/>.
+        ///  </summary>
+        /// <remarks>Has side effect</remarks>
+        public Encoding Encoding
+        {
+            get { return Console.OutputEncoding; }
+            set { Console.OutputEncoding = value; }
+        }
 
         /// <summary>
         /// Gets the row highlighting rules.

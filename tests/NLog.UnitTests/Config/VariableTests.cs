@@ -33,6 +33,8 @@
 
 namespace NLog.UnitTests.Config
 {
+    using System;
+    using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
@@ -66,6 +68,51 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(lr3);
             Assert.Equal("[[", lr1.Text);
             Assert.Equal("]]", lr3.Text);
+        }
+
+#if !SILVERLIGHT
+
+        /// <summary>
+        /// Expand of property which are not layoutable <see cref="Layout"/>, but still get expanded.
+        /// </summary>
+        [Fact(Skip = "It's unclear if this is a bug of a feature. Probably this will a config setting in the feature")]
+        public void VariablesTest_string_expanding()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+  <variable name='test' value='hello'/>
+  <targets>
+    <target type='EventLog'  name='test'  source='${test}'/>
+  </targets>
+</nlog>");
+
+            var target = configuration.FindTargetByName("test") as EventLogTarget;
+            Assert.NotNull(target);
+            //dont change the ${test} as it isn't a Layout
+            Assert.Equal("${test}", target.Source);
+
+        }
+#endif
+
+      
+
+        [Fact]
+        public void Xml_configuration_returns_defined_variables()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+    <variable name='prefix' value='[[' />
+    <variable name='suffix' value=']]' />
+
+    <targets>
+        <target name='d1' type='Debug' layout='${prefix}${message}${suffix}' />
+    </targets>
+</nlog>");
+
+            LogManager.Configuration = configuration;
+
+            Assert.Equal("[[", LogManager.Configuration.Variables["prefix"].OriginalText);
+            Assert.Equal("]]", LogManager.Configuration.Variables["suffix"].OriginalText);
         }
     }
 }

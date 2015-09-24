@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7638C35C-A8AC-437C-94FD-9DABD9D5839C}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,6 +19,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallNLogConfig.netfx35", "InstallNLogConfig\InstallNLogConfig.netfx35.csproj", "{0CF95BE4-0546-4CE9-AB49-B9E4DA59AEAA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.netfx35", "NLog.Extended\NLog.Extended.netfx35.csproj", "{F801A1F9-1024-4446-BF9E-A923137340B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogAutoLoadExtension.netfx35", "NLogAutoLoadExtension\NLogAutoLoadExtension.netfx35.csproj", "{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,6 +92,16 @@ Global
 		{F801A1F9-1024-4446-BF9E-A923137340B8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F801A1F9-1024-4446-BF9E-A923137340B8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F801A1F9-1024-4446-BF9E-A923137340B8}.Release|x86.ActiveCfg = Release|Any CPU
+		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

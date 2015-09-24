@@ -35,7 +35,6 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
-    using System.Reflection;
     using NLog.Common;
     using NLog.Internal;
 
@@ -43,7 +42,7 @@ namespace NLog.Config
     /// Factory for class-based items.
     /// </summary>
     /// <typeparam name="TBaseType">The base type of each item.</typeparam>
-    /// <typeparam name="TAttributeType">The type of the attribute used to annotate itemss.</typeparam>
+    /// <typeparam name="TAttributeType">The type of the attribute used to annotate items.</typeparam>
     internal class Factory<TBaseType, TAttributeType> : INamedItemFactory<TBaseType, Type>, IFactory
         where TBaseType : class 
         where TAttributeType : NameBaseAttribute
@@ -61,26 +60,25 @@ namespace NLog.Config
         /// <summary>
         /// Scans the assembly.
         /// </summary>
-        /// <param name="theAssembly">The assembly.</param>
+        /// <param name="types">The types to scan.</param>
         /// <param name="prefix">The prefix.</param>
-        public void ScanAssembly(Assembly theAssembly, string prefix)
+        public void ScanTypes(Type[] types, string prefix)
         {
-            try
+            foreach (Type t in types)
             {
-                InternalLogger.Debug("ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TAttributeType), typeof(TBaseType));
-                foreach (Type t in theAssembly.SafeGetTypes())
+                try
                 {
                     this.RegisterType(t, prefix);
                 }
-            }
-            catch (Exception exception)
-            {
-                if (exception.MustBeRethrown())
+                catch (Exception exception)
                 {
-                    throw;
-                }
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
 
-                InternalLogger.Error("Failed to add targets from '" + theAssembly.FullName + "': {0}", exception);
+                    InternalLogger.Error("Failed to add type '" + t.FullName + "': {0}", exception);
+                }
             }
         }
 
@@ -130,7 +128,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Tries to get registed item definition.
+        /// Tries to get registered item definition.
         /// </summary>
         /// <param name="itemName">Name of the item.</param>
         /// <param name="result">Reference to a variable which will store the item definition.</param>

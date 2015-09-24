@@ -34,12 +34,13 @@
 namespace NLog.Targets
 {
     using System;
+    using System.Text;
     using System.ComponentModel;
 
     /// <summary>
     /// Writes log messages to the console.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/Console_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/Console-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 
@@ -64,6 +65,18 @@ namespace NLog.Targets
         /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
         public bool Error { get; set; }
+
+#if !SILVERLIGHT
+        /// <summary>
+        /// The encoding for writing messages to the <see cref="Console"/>.
+        ///  </summary>
+        /// <remarks>Has side effect</remarks>
+        public Encoding Encoding
+        {
+            get { return Console.OutputEncoding; }
+            set { Console.OutputEncoding = value; }
+        }
+#endif
 
         /// <summary>
         /// Initializes the target.
@@ -103,15 +116,19 @@ namespace NLog.Targets
             this.Output(this.Layout.Render(logEvent));
         }
 
-        private void Output(string s)
+        /// <summary>
+        /// Write to output
+        /// </summary>
+        /// <param name="textLine">text to be written.</param>
+        private void Output(string textLine)
         {
             if (this.Error)
             {
-                Console.Error.WriteLine(s);
+                Console.Error.WriteLine(textLine);
             }
             else
             {
-                Console.Out.WriteLine(s);
+                Console.Out.WriteLine(textLine);
             }
         }
     }

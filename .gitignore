@@ -32,3 +32,4 @@ tools/FAKE/
 packages/
 build/
 *.sublime-*
+*.DotSettings

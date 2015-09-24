@@ -37,11 +37,29 @@
 
 namespace NLog.UnitTests
 {
+    using System;
+    using System.Globalization;
+    using System.Threading;
     using System.Diagnostics;
     using Xunit;
 
-    public class NLogTraceListenerTests : NLogTestBase
+    public class NLogTraceListenerTests : NLogTestBase, IDisposable
     {
+        private readonly CultureInfo previousCultureInfo;
+
+        public NLogTraceListenerTests()
+        {
+            this.previousCultureInfo = Thread.CurrentThread.CurrentCulture;
+            // set the culture info with the decimal separator (comma) different from InvariantCulture separator (point)
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
+        }
+        
+        public void Dispose()
+        {
+            // restore previous culture info
+            Thread.CurrentThread.CurrentCulture = this.previousCultureInfo;
+        }
+
         [Fact]
         public void TraceWriteTest()
         {
@@ -184,7 +202,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Fatal 42 123");
 
             ts.TraceData(TraceEventType.Critical, 145, 42, 3.14, "foo");
-            AssertDebugLastMessage("debug", string.Format("MySource1 Fatal 42, {0}, foo 145", 3.14));
+            AssertDebugLastMessage("debug", string.Format("MySource1 Fatal 42, {0}, foo 145", 3.14.ToString(System.Globalization.CultureInfo.CurrentCulture)));
         }
         
         [Fact]

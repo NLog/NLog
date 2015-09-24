@@ -12,8 +12,12 @@
     <BuildLabelDash Condition=" '$(BuildLabelOverride)' == 'NONE' "></BuildLabelDash>
     <BuildLabelDash Condition=" '$(BuildLabelOverride)' != '' and '$(BuildLabelOverride)' != 'NONE' ">-$(BuildLabelOverride)</BuildLabelDash>
     <BuildVersion Condition=" '$(BuildVersion)' == '' " >$(BUILD_NUMBER)</BuildVersion>
-    <BuildVersion Condition=" '$(BuildVersion)' == '' " >3.1.0.0</BuildVersion>
+    <BuildVersion Condition=" '$(BuildVersion)' == '' " >3.2.0.0</BuildVersion>
     <BuildVersion Condition=" '$(CCNetLabel)'!='' ">$(CCNetLabel)</BuildVersion>
+    <BuildLastMajorVersion Condition=" '$(BuildLastMajorVersion)' == '' ">$(BUILD_NUMBER)</BuildLastMajorVersion>
+    <AssemblyFileVersion></AssemblyFileVersion>
+    <NuGetVersion>$(BuildVersion)</NuGetVersion>
+    <NuGetVersion Condition="'$(NuGetPrelease)' != ''">$(BuildVersion)-$(NuGetPrelease)</NuGetVersion>
     <BuildProductName>NLog v$(BuildVersion)$(BuildLabel)</BuildProductName>
   </PropertyGroup>
 
@@ -51,7 +55,7 @@
     <BuildInfoFile>$(BaseOutputDirectory)\bin\BuildInfo.cs</BuildInfoFile>
     <NuGetTool>$(BaseOutputDirectory)\..\tools\NuGet.exe</NuGetTool>
     <NuGetBuildPath>$(BaseOutputDirectory)\obj\$(Configuration)\NuGet</NuGetBuildPath>
-    <NuGetProperties>BuildVersion=$(BuildVersion)</NuGetProperties>
+    <NuGetProperties>BuildVersion=$(NuGetVersion)</NuGetProperties>
   </PropertyGroup>
 
   <!-- detect location of various SDKs and tools-->
@@ -112,7 +116,7 @@
     </TargetFramework>
     <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildNetFX35)'=='true'">
         <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
-        <ToolsVersion>3.5</ToolsVersion>
+        <ToolsVersion>4.0</ToolsVersion>
         <NuGetDir>net35</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
@@ -153,7 +157,9 @@
         <BuildInfoFileContent>
 // automatically generated
 [assembly: System.Reflection.AssemblyProduct("$(BuildProductName)")]
-[assembly: System.Reflection.AssemblyVersion("$(BuildVersion)")]
+[assembly: System.Reflection.AssemblyVersion("$(BuildLastMajorVersion)")]
+[assembly: System.Reflection.AssemblyFileVersion("$(AssemblyFileVersion)")]
+[assembly: System.Reflection.AssemblyInformationalVersion("$(BuildVersion)")]
 </BuildInfoFileContent>
     </PropertyGroup>
 
@@ -224,15 +230,15 @@
   </Target>
 
   <Target Name="NetFx35Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll" ContinueOnError="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
   </Target>
 
   <Target Name="NetFx40Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLog.UnitTests.dll" ContinueOnError="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
   </Target>
 
   <Target Name="NetFx45Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" ContinueOnError="true" />
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
   </Target>
 
   <Target Name="SL4Test">
@@ -313,7 +319,7 @@
     <Copy SourceFiles="@(NuGetSourceFiles)" DestinationFolder="$(NuGetBuildPath)\NLog\src\src\NLog\%(RecursiveDir)" />
     <Copy SourceFiles="$(BuildInfoFile)" DestinationFolder="$(NuGetBuildPath)\NLog\src\build\bin" />
 
-    <TokenReplace Path="$(NuGetBuildPath)\NLog\NLog.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+    <TokenReplace Path="$(NuGetBuildPath)\NLog\NLog.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
     
     <!-- package -->
     <RemoveDir Directories="$(NuGetOutputPath)" />
@@ -350,7 +356,7 @@
     <Copy SourceFiles="@(NuGetExtendedSourceFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\src\src\NLog.Extended\%(RecursiveDir)" />
     <Copy SourceFiles="$(BuildInfoFile)" DestinationFolder="$(NuGetBuildPath)\NLog.Extended\src\build\bin" />
 
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Extended\NLog.Extended.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+    <TokenReplace Path="$(NuGetBuildPath)\NLog.Extended\NLog.Extended.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
 
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
@@ -366,7 +372,7 @@
     <RemoveDir Directories="$(NuGetBuildPath)\NLog.Config" />
     <Copy SourceFiles="@(NuGetConfigFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Config\%(RecursiveDir)" />
 	
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Config\NLog.Config.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+    <TokenReplace Path="$(NuGetBuildPath)\NLog.Config\NLog.Config.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
 
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
@@ -384,7 +390,7 @@
     <Copy SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\NLog.xsd"
           DestinationFolder="$(NuGetBuildPath)\NLog.Schema\content" />
 	
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Schema\NLog.Schema.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+    <TokenReplace Path="$(NuGetBuildPath)\NLog.Schema\NLog.Schema.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
 
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
@@ -405,7 +411,7 @@
     <Copy SourceFiles="$(BaseOutputDirectory)..\src\VSIntegration\Snippets\VBLogger.snippet"
           DestinationFolder="$(NuGetBuildPath)\NLog.Snippets\tools\Snippets" />
   
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Snippets\NLog.Snippets.nuspec" Token="$BuildVersion$" Replacement="$(BuildVersion)" />
+    <TokenReplace Path="$(NuGetBuildPath)\NLog.Snippets\NLog.Snippets.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
 
     <!-- package -->    
     <MakeDir Directories="$(NuGetOutputPath)" />

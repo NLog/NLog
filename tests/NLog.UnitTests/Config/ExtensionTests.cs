@@ -232,6 +232,54 @@ namespace NLog.UnitTests.Config
             Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 
+
+        [Fact]
+        public void ExtensionTest_extensions_not_top_and_used()
+        {
+            Assert.NotNull(typeof(FooLayout));
+
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+    
+    <targets>
+        <target name='t' type='MyTarget' />
+        <target name='d1' type='Debug' layout='${foo}' />
+        <target name='d2' type='Debug'>
+            <layout type='FooLayout' x='1'>
+            </layout>
+        </target>
+    </targets>
+
+    <rules>
+      <logger name='*' writeTo='t'>
+        <filters>
+           <whenFoo x='44' action='Ignore' />
+        </filters>
+      </logger>
+    </rules>
+
+<extensions>
+        <add assemblyFile='" + this.extensionAssemblyFullPath1 + @"' />
+    </extensions>
+
+</nlog>");
+
+            Target myTarget = configuration.FindTargetByName("t");
+            Assert.Equal("MyExtensionNamespace.MyTarget", myTarget.GetType().FullName);
+
+            var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
+            var layout = d1Target.Layout as SimpleLayout;
+            Assert.NotNull(layout);
+            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
+
+            var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
+            Assert.Equal("MyExtensionNamespace.FooLayout", d2Target.Layout.GetType().FullName);
+
+            Assert.Equal(1, configuration.LoggingRules[0].Filters.Count);
+            Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
+        }
+
         [Fact]
         public void CustomXmlNamespaceTest()
         {
@@ -245,5 +293,26 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d");
             Assert.NotNull(d1Target);
         }
+
+#if !SILVERLIGHT
+        [Fact]
+        public void Extension_should_be_auto_loaded_when_following_NLog_dll_format()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+    <targets>
+        <target name='t' type='AutoLoadTarget' />
+    </targets>
+
+    <rules>
+      <logger name='*' writeTo='t'>
+      </logger>
+    </rules>
+</nlog>");
+
+            var autoLoadedTarget = configuration.FindTargetByName("t");
+            Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+        }
+#endif
     }
 }

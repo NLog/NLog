@@ -78,7 +78,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void LongDateWithPadding()
+        public void LongDateWithPaddingPadLeftAlignLeft()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -92,6 +92,57 @@ namespace NLog.UnitTests.LayoutRenderers
             string date = GetDebugLastMessage("debug");
             Assert.Equal(5, date.Length);
             Assert.Equal(date[4], '-');
+        }
+
+        [Fact]
+        public void LongDateWithPaddingPadLeftAlignRight()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${longdate:padding=5:fixedlength=true:alignmentOnTruncation=right}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            LogManager.GetLogger("d").Debug("zzz");
+            string date = GetDebugLastMessage("debug");
+            Assert.Equal(5, date.Length);
+            Assert.Equal(date[0], '.');
+        }
+
+        [Fact]
+        public void LongDateWithPaddingPadRightAlignLeft()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${longdate:padding=-5:fixedlength=true:alignmentOnTruncation=left}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            LogManager.GetLogger("d").Debug("zzz");
+            string date = GetDebugLastMessage("debug");
+            Assert.Equal(5, date.Length);
+            Assert.Equal(date[4], '-');
+        }
+
+        [Fact]
+        public void LongDateWithPaddingPadRightAlignRight()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${longdate:padding=-5:fixedlength=true:alignmentOnTruncation=right}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            LogManager.GetLogger("d").Debug("zzz");
+            string date = GetDebugLastMessage("debug");
+            Assert.Equal(5, date.Length);
+            Assert.Equal(date[0], '.');
         }
     }
 }

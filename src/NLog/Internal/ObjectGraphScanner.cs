@@ -35,6 +35,7 @@ namespace NLog.Internal
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Reflection;
     using NLog.Common;
     using NLog.Config;
@@ -101,7 +102,7 @@ namespace NLog.Internal
 
             foreach (PropertyInfo prop in PropertyHelper.GetAllReadableProperties(o.GetType()))
             {
-                if (prop.PropertyType.IsPrimitive || prop.PropertyType.IsEnum || prop.PropertyType == typeof(string))
+                if (prop.PropertyType.IsPrimitive || prop.PropertyType.IsEnum || prop.PropertyType == typeof(string) || prop.IsDefined(typeof(NLogConfigurationIgnorePropertyAttribute), true))
                 {
                     continue;
                 }
@@ -111,11 +112,14 @@ namespace NLog.Internal
                 {
                     continue;
                 }
-
+                
                 var enumerable = value as IEnumerable;
                 if (enumerable != null)
                 {
-                    foreach (object element in enumerable.OfType<object>().ToList())
+                    //cast to list otherwhise possible:  Collection was modified after the enumerator was instantiated.
+                    var elements = enumerable as IList<object> ?? enumerable.Cast<object>().ToList();
+
+                    foreach (object element in elements)
                     {
                         ScanProperties(result, element, level + 1, visitedObjects);
                     }

@@ -41,7 +41,7 @@ namespace NLog
     /// </summary>
     public static class GlobalDiagnosticsContext
     {
-        private static Dictionary<string, string> dict = new Dictionary<string, string>();
+        private static Dictionary<string, object> dict = new Dictionary<string, object>();
 
         /// <summary>
         /// Sets the Global Diagnostics Context item to the specified value.
@@ -57,22 +57,53 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the Global Diagnostics Context named item.
+        /// Sets the Global Diagnostics Context item to the specified value.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>The item value of string.Empty if the value is not present.</returns>
-        public static string Get(string item)
+        /// <param name="value">Item value.</param>
+        public static void Set(string item, object value)
         {
             lock (dict)
             {
-                string s;
+                dict[item] = value;
+            }
+        }
 
-                if (!dict.TryGetValue(item, out s))
-                {
-                    s = string.Empty;
-                }
+        /// <summary>
+        /// Gets the Global Diagnostics Context named item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        public static string Get(string item)
+        {
+            return Get(item, null);
+        }
 
-                return s;
+        /// <summary>
+        /// Gets the Global Diagnostics Context item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
+        /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        public static string Get(string item, IFormatProvider formatProvider) 
+        {
+            return ConvertToString(GetObject(item), formatProvider);
+        }
+
+        /// <summary>
+        /// Gets the Global Diagnostics Context named item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <returns>The item value, if defined; otherwise <c>null</c>.</returns>
+        public static object GetObject(string item)
+        {
+            lock (dict)
+            {
+                object o;
+                if (!dict.TryGetValue(item, out o))
+                    o = null;
+
+                return o;
             }
         }
 
@@ -110,6 +141,15 @@ namespace NLog
             {
                 dict.Clear();
             }
+        }
+
+        internal static string ConvertToString(object o, IFormatProvider formatProvider)
+        {
+            // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
+            if ((formatProvider == null) && (LogManager.Configuration != null))
+                formatProvider = LogManager.Configuration.DefaultCultureInfo;
+
+            return String.Format(formatProvider, "{0}", o);
         }
     }
 }

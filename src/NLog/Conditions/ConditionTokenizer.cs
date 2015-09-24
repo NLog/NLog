@@ -230,115 +230,11 @@ namespace NLog.Conditions
 
             this.TokenValue = ch.ToString();
 
-            if (ch == '<')
-            {
-                this.ReadChar();
-                int nextChar = this.PeekChar();
+            var success = TryGetComparisonToken(ch);
+            if (success) return;
 
-                if (nextChar == '>')
-                {
-                    this.TokenType = ConditionTokenType.NotEqual;
-                    this.TokenValue = "<>";
-                    this.ReadChar();
-                    return;
-                }
-
-                if (nextChar == '=')
-                {
-                    this.TokenType = ConditionTokenType.LessThanOrEqualTo;
-                    this.TokenValue = "<=";
-                    this.ReadChar();
-                    return;
-                }
-
-                this.TokenType = ConditionTokenType.LessThan;
-                this.TokenValue = "<";
-                return;
-            }
-
-            if (ch == '>')
-            {
-                this.ReadChar();
-                int nextChar = this.PeekChar();
-
-                if (nextChar == '=')
-                {
-                    this.TokenType = ConditionTokenType.GreaterThanOrEqualTo;
-                    this.TokenValue = ">=";
-                    this.ReadChar();
-                    return;
-                }
-
-                this.TokenType = ConditionTokenType.GreaterThan;
-                this.TokenValue = ">";
-                return;
-            }
-
-            if (ch == '!')
-            {
-                this.ReadChar();
-                int nextChar = this.PeekChar();
-
-                if (nextChar == '=')
-                {
-                    this.TokenType = ConditionTokenType.NotEqual;
-                    this.TokenValue = "!=";
-                    this.ReadChar();
-                    return;
-                }
-
-                this.TokenType = ConditionTokenType.Not;
-                this.TokenValue = "!";
-                return;
-            }
-
-            if (ch == '&')
-            {
-                this.ReadChar();
-                int nextChar = this.PeekChar();
-                if (nextChar == '&')
-                {
-                    this.TokenType = ConditionTokenType.And;
-                    this.TokenValue = "&&";
-                    this.ReadChar();
-                    return;
-                }
-
-                throw new ConditionParseException("Expected '&&' but got '&'");
-            }
-
-            if (ch == '|')
-            {
-                this.ReadChar();
-                int nextChar = this.PeekChar();
-                if (nextChar == '|')
-                {
-                    this.TokenType = ConditionTokenType.Or;
-                    this.TokenValue = "||";
-                    this.ReadChar();
-                    return;
-                }
-
-                throw new ConditionParseException("Expected '||' but got '|'");
-            }
-
-            if (ch == '=')
-            {
-                this.ReadChar();
-                int nextChar = this.PeekChar();
-
-                if (nextChar == '=')
-                {
-                    this.TokenType = ConditionTokenType.EqualTo;
-                    this.TokenValue = "==";
-                    this.ReadChar();
-                    return;
-                }
-
-                this.TokenType = ConditionTokenType.EqualTo;
-                this.TokenValue = "=";
-                return;
-            }
+            success = TryGetLogicalToken(ch);
+            if (success) return;
 
             if (ch >= 32 && ch < 128)
             {
@@ -356,6 +252,134 @@ namespace NLog.Conditions
             }
 
             throw new ConditionParseException("Invalid token: " + ch);
+        }
+
+        /// <summary>
+        /// Try the comparison tokens (greater, smaller, greater-equals, smaller-equals)
+        /// </summary>
+        /// <param name="ch">current char</param>
+        /// <returns>is match</returns>
+        private bool TryGetComparisonToken(char ch)
+        {
+            if (ch == '<')
+            {
+                this.ReadChar();
+                int nextChar = this.PeekChar();
+
+                if (nextChar == '>')
+                {
+                    this.TokenType = ConditionTokenType.NotEqual;
+                    this.TokenValue = "<>";
+                    this.ReadChar();
+                    return true;
+                }
+
+                if (nextChar == '=')
+                {
+                    this.TokenType = ConditionTokenType.LessThanOrEqualTo;
+                    this.TokenValue = "<=";
+                    this.ReadChar();
+                    return true;
+                }
+
+                this.TokenType = ConditionTokenType.LessThan;
+                this.TokenValue = "<";
+                return true;
+            }
+
+            if (ch == '>')
+            {
+                this.ReadChar();
+                int nextChar = this.PeekChar();
+
+                if (nextChar == '=')
+                {
+                    this.TokenType = ConditionTokenType.GreaterThanOrEqualTo;
+                    this.TokenValue = ">=";
+                    this.ReadChar();
+                    return true;
+                }
+
+                this.TokenType = ConditionTokenType.GreaterThan;
+                this.TokenValue = ">";
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Try the logical tokens (and, or, not, equals)
+        /// </summary>
+        /// <param name="ch">current char</param>
+        /// <returns>is match</returns>
+        private bool TryGetLogicalToken(char ch)
+        {
+            if (ch == '!')
+            {
+                this.ReadChar();
+                int nextChar = this.PeekChar();
+
+                if (nextChar == '=')
+                {
+                    this.TokenType = ConditionTokenType.NotEqual;
+                    this.TokenValue = "!=";
+                    this.ReadChar();
+                    return true;
+                }
+
+                this.TokenType = ConditionTokenType.Not;
+                this.TokenValue = "!";
+                return true;
+            }
+
+            if (ch == '&')
+            {
+                this.ReadChar();
+                int nextChar = this.PeekChar();
+                if (nextChar == '&')
+                {
+                    this.TokenType = ConditionTokenType.And;
+                    this.TokenValue = "&&";
+                    this.ReadChar();
+                    return true;
+                }
+
+                throw new ConditionParseException("Expected '&&' but got '&'");
+            }
+
+            if (ch == '|')
+            {
+                this.ReadChar();
+                int nextChar = this.PeekChar();
+                if (nextChar == '|')
+                {
+                    this.TokenType = ConditionTokenType.Or;
+                    this.TokenValue = "||";
+                    this.ReadChar();
+                    return true;
+                }
+
+                throw new ConditionParseException("Expected '||' but got '|'");
+            }
+
+            if (ch == '=')
+            {
+                this.ReadChar();
+                int nextChar = this.PeekChar();
+
+                if (nextChar == '=')
+                {
+                    this.TokenType = ConditionTokenType.EqualTo;
+                    this.TokenValue = "==";
+                    this.ReadChar();
+                    return true;
+                }
+
+                this.TokenType = ConditionTokenType.EqualTo;
+                this.TokenValue = "=";
+                return true;
+            }
+            return false;
         }
 
         private static ConditionTokenType[] BuildCharIndexToTokenType()

@@ -60,7 +60,7 @@ namespace NLog.Internal.FileAppenders
         {
             this.CreateFileParameters = createParameters;
             this.FileName = fileName;
-            this.OpenTime = TimeSource.Current.Time.ToLocalTime();
+            this.OpenTime = DateTime.UtcNow; // to be consistent with timeToKill in FileTarget.AutoClosingTimerCallback
             this.LastWriteTime = DateTime.MinValue;
         }
 
@@ -73,13 +73,13 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the last write time.
         /// </summary>
-        /// <value>The last write time.</value>
+        /// <value>The last write time. DateTime value must be of UTC kind.</value>
         public DateTime LastWriteTime { get; private set; }
 
         /// <summary>
         /// Gets the open time of the file.
         /// </summary>
-        /// <value>The open time.</value>
+        /// <value>The open time. DateTime value must be of UTC kind.</value>
         public DateTime OpenTime { get; private set; }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the file info.
         /// </summary>
-        /// <param name="lastWriteTime">The last write time.</param>
+        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
         /// <param name="fileLength">Length of the file.</param>
         /// <returns>True if the operation succeeded, false otherwise.</returns>
         public abstract bool GetFileInfo(out DateTime lastWriteTime, out long fileLength);
@@ -138,13 +138,14 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         protected void FileTouched()
         {
-            this.LastWriteTime = TimeSource.Current.Time.ToLocalTime();
+            // always use system time in UTC to be consistent with FileInfo.LastWriteTimeUtc
+            this.LastWriteTime = DateTime.UtcNow;
         }
 
         /// <summary>
         /// Records the last write time for a file to be specific date.
         /// </summary>
-        /// <param name="dateTime">Date and time when the last write occurred.</param>
+        /// <param name="dateTime">Date and time when the last write occurred. The value must be of UTC kind.</param>
         protected void FileTouched(DateTime dateTime)
         {
             this.LastWriteTime = dateTime;
@@ -153,20 +154,20 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Creates the file stream.
         /// </summary>
-        /// <param name="allowConcurrentWrite">If set to <c>true</c> allow concurrent writes.</param>
+        /// <param name="allowFileSharedWriting">If set to <c>true</c> sets the file stream to allow shared writing.</param>
         /// <returns>A <see cref="FileStream"/> object which can be used to write to the file.</returns>
-        protected FileStream CreateFileStream(bool allowConcurrentWrite)
+        protected FileStream CreateFileStream(bool allowFileSharedWriting)
         {
             int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
 
-            InternalLogger.Trace("Opening {0} with concurrentWrite={1}", this.FileName, allowConcurrentWrite);
+			InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting);
             for (int i = 0; i < this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
             {
                 try
                 {
                     try
                     {
-                        return this.TryCreateFileStream(allowConcurrentWrite);
+                        return this.TryCreateFileStream(allowFileSharedWriting);
                     }
                     catch (DirectoryNotFoundException)
                     {
@@ -176,12 +177,12 @@ namespace NLog.Internal.FileAppenders
                         }
 
                         Directory.CreateDirectory(Path.GetDirectoryName(this.FileName));
-                        return this.TryCreateFileStream(allowConcurrentWrite);
+                        return this.TryCreateFileStream(allowFileSharedWriting);
                     }
                 }
                 catch (IOException)
                 {
-                    if (!this.CreateFileParameters.ConcurrentWrites || !allowConcurrentWrite || i + 1 == this.CreateFileParameters.ConcurrentWriteAttempts)
+                    if (!this.CreateFileParameters.ConcurrentWrites || i + 1 == this.CreateFileParameters.ConcurrentWriteAttempts)
                     {
                         throw; // rethrow
                     }
@@ -198,11 +199,11 @@ namespace NLog.Internal.FileAppenders
 
 #if !SILVERLIGHT && !MONO
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
-        private FileStream WindowsCreateFile(string fileName, bool allowConcurrentWrite)
+        private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting)
         {
             int fileShare = Win32FileNativeMethods.FILE_SHARE_READ;
 
-            if (allowConcurrentWrite)
+            if (allowFileSharedWriting)
             {
                 fileShare |= Win32FileNativeMethods.FILE_SHARE_WRITE;
             }
@@ -212,32 +213,47 @@ namespace NLog.Internal.FileAppenders
                 fileShare |= Win32FileNativeMethods.FILE_SHARE_DELETE;
             }
 
-            IntPtr handle = Win32FileNativeMethods.CreateFile(
+            Microsoft.Win32.SafeHandles.SafeFileHandle handle = null;
+            FileStream fileStream = null;
+
+            try
+            {
+                handle = Win32FileNativeMethods.CreateFile(
                 fileName,
                 Win32FileNativeMethods.FileAccess.GenericWrite,
                 fileShare,
                 IntPtr.Zero,
                 Win32FileNativeMethods.CreationDisposition.OpenAlways,
-                this.CreateFileParameters.FileAttributes, 
+                this.CreateFileParameters.FileAttributes,
                 IntPtr.Zero);
 
-            if (handle.ToInt32() == -1)
-            {
-                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-            }
+                if (handle.IsInvalid)
+                {
+                    Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+                }
 
-            var safeHandle = new Microsoft.Win32.SafeHandles.SafeFileHandle(handle, true);
-            var returnValue = new FileStream(safeHandle, FileAccess.Write, this.CreateFileParameters.BufferSize);
-            returnValue.Seek(0, SeekOrigin.End);
-            return returnValue;
+                fileStream = new FileStream(handle, FileAccess.Write, this.CreateFileParameters.BufferSize);
+                fileStream.Seek(0, SeekOrigin.End);
+                return fileStream;
+            }
+            catch
+            {
+                if (fileStream != null)
+                    fileStream.Dispose();
+
+                if ((handle != null) && (!handle.IsClosed))
+                    handle.Close();
+
+                throw;
+            }
         }
 #endif
 
-        private FileStream TryCreateFileStream(bool allowConcurrentWrite)
+        private FileStream TryCreateFileStream(bool allowFileSharedWriting)
         {
             FileShare fileShare = FileShare.Read;
 
-            if (allowConcurrentWrite)
+            if (allowFileSharedWriting)
             {
                 fileShare = FileShare.ReadWrite;
             }
@@ -252,7 +268,7 @@ namespace NLog.Internal.FileAppenders
             {
                 if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)
                 {
-                    return this.WindowsCreateFile(this.FileName, allowConcurrentWrite);
+                    return this.WindowsCreateFile(this.FileName, allowFileSharedWriting);
                 }
             }
             catch (SecurityException)

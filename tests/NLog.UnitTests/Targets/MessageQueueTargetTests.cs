@@ -51,7 +51,7 @@ namespace NLog.UnitTests.Targets
                                         };
             var target = CreateTarget(messageQueueTestProxy, false);
 
-            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
+            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => { }));
 
             Assert.Equal(1, messageQueueTestProxy.SentMessages.Count);
         }
@@ -65,7 +65,7 @@ namespace NLog.UnitTests.Targets
                                         };
             var target = CreateTarget(messageQueueTestProxy, false);
 
-            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
+            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => { }));
 
             Assert.Equal(0, messageQueueTestProxy.SentMessages.Count);
         }
@@ -79,7 +79,7 @@ namespace NLog.UnitTests.Targets
                                         };
             var target = CreateTarget(messageQueueTestProxy, true);
 
-            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
+            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => { }));
 
             Assert.True(messageQueueTestProxy.QueueCreated);
         }
@@ -93,7 +93,7 @@ namespace NLog.UnitTests.Targets
                                         };
             var target = CreateTarget(messageQueueTestProxy, true);
 
-            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
+            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => { }));
 
             Assert.Equal(1, messageQueueTestProxy.SentMessages.Count);
         }
@@ -103,8 +103,8 @@ namespace NLog.UnitTests.Targets
         {
             var messageQueueTestProxy = new MessageQueueTestProxy();
             var target = CreateTarget(messageQueueTestProxy, false, "DIRECT=http://test.com/MSMQ/queue");
-            
-            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
+
+            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => { }));
 
             Assert.False(messageQueueTestProxy.QueueExistsCalled);
         }
@@ -115,9 +115,39 @@ namespace NLog.UnitTests.Targets
             var messageQueueTestProxy = new MessageQueueTestProxy();
             var target = CreateTarget(messageQueueTestProxy, false, checkIfQueueExists: false);
 
-            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => {}));
+            target.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => { }));
 
             Assert.False(messageQueueTestProxy.QueueExistsCalled);
+        }
+
+        /// <summary>
+        /// Checks if setting the CheckIfQueueExists is working
+        /// </summary>
+        [Fact]
+        public void MessageQueueTarget_CheckIfQueueExists_setting_should_work()
+        {
+            var configuration = CreateConfigurationFromString(string.Format(@"
+                <nlog throwExceptions='true' >
+                    <targets>
+                        <target type='MSMQ'
+                                name='q'
+                                checkIfQueueExists='False' 
+                                queue='queue1' >
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='q'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>"));
+
+
+            LogManager.Configuration = configuration;
+            var messageQueueTarget = configuration.FindTargetByName("q") as MessageQueueTarget;
+
+            Assert.NotNull(messageQueueTarget);
+            Assert.Equal(false, messageQueueTarget.CheckIfQueueExists);
         }
 
         private static MessageQueueTarget CreateTarget(MessageQueueProxy messageQueueTestProxy, bool createQueue, string queueName = "Test", bool checkIfQueueExists = true)

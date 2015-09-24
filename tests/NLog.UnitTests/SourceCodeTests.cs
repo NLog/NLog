@@ -31,6 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.ComponentModel;
+using System.Reflection;
+using System.Text;
+using NLog.Layouts;
+using NLog.Targets;
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests
@@ -62,6 +68,7 @@ namespace NLog.UnitTests
             "AssemblyBuildInfo.cs",
             "GlobalSuppressions.cs",
             "CompilerAttributes.cs",
+            "Logger1.cs"
         };
 
         private string sourceCodeDirectory;
@@ -138,7 +145,7 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx45.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl4.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.wp7.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.monodevelop.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.mono.csproj");
 
             filesToCompile.Clear();
             GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLog.Extended/"), "*.cs", "");
@@ -146,7 +153,7 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx35.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx40.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx45.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.monodevelop.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.mono.csproj");
 
             filesToCompile.Clear();
             GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "tests/NLog.UnitTests/"), "*.cs", "");
@@ -155,7 +162,15 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx40.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx45.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl4.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.monodevelop.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.mono.csproj");
+
+			filesToCompile.Clear();
+			GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLogAutoLoadExtension/"), "*.cs", "");
+
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx35.csproj");
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx40.csproj");
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx45.csproj");
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono.csproj");
 
             Assert.Equal(0, failures);
         }
@@ -379,6 +394,164 @@ namespace NLog.UnitTests
 
             return success;
         }
+
+        /// <summary>
+        /// Vertify that all properties with the <see cref="DefaultValueAttribute"/> are set with the default ctor.
+        /// </summary>
+        [Fact]
+        public void VerifyDefaultValues()
+        {
+
+            var ass = typeof(LoggerImpl).Assembly;
+            //var types = AppDomain.CurrentDomain.GetAssemblies()
+            //    .SelectMany(s => s.GetTypes());
+            var types = ass.GetTypes();
+
+            //  VerifyDefaultValuesType(typeof(MailTarget));
+            List<string> reportErrors = new List<string>();
+
+            foreach (var type in types)
+            {
+                VerifyDefaultValuesType(type, reportErrors);
+            }
+
+            //one message for all failing properties
+            var fullMessage = string.Format("{0} errors: \n -------- \n- {1}", reportErrors.Count, string.Join("\n- ", reportErrors));
+            Assert.False(reportErrors.Any(), fullMessage);
+
+
+        }
+
+        ///<summary>Verify all properties with the <see cref="DefaultValueAttribute"/></summary>
+        ///<remarks>Note: Xunit dont like overloads</remarks>
+        private static void VerifyDefaultValuesType(Type type, List<string> reportErrors)
+        {
+            var props = type.GetProperties();
+
+            var defaultValuesDict = new Dictionary<string, object>();
+
+            //find first [DefaultValue] values of all props
+            foreach (var propertyInfo in props)
+            {
+
+                var defaultValues = propertyInfo.GetCustomAttributes(typeof(DefaultValueAttribute), true);
+                if (defaultValues.Any())
+                {
+                    var firstDefaultValueAttr = (DefaultValueAttribute)defaultValues.First();
+
+                    defaultValuesDict.Add(propertyInfo.Name, firstDefaultValueAttr.Value);
+                }
+            }
+            if (defaultValuesDict.Any())
+            {
+                //find first ctor without parameters
+                var ctor = type.GetConstructors().FirstOrDefault(c => !c.GetParameters().Any());
+                if (ctor != null)
+                {
+                    var newObject = ctor.Invoke(null);
+
+                    //check al needed props
+                    foreach (var propertyInfo in props.Where(p => defaultValuesDict.ContainsKey(p.Name)))
+                    {
+                        var neededVal = defaultValuesDict[propertyInfo.Name];
+                        var currentVal = propertyInfo.GetValue(newObject, null);
+
+
+                        var eq = AreDefaultValuesEqual(neededVal, currentVal, propertyInfo);
+                        if (!eq)
+                        {
+                            //report
+                            string message = string.Format("{0}.{1} has a wrong value for [DefaultValueAttribute] compared to the default ctor. DefaultValueAttribute says = {2} and ctor tells = {3}",
+                                type.FullName, propertyInfo.Name, PrintValForMessage(neededVal), PrintValForMessage(currentVal));
+                            reportErrors.Add(message);
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+        /// <summary>
+        /// Are the values equal?
+        /// </summary>
+        /// <param name="neededVal">the val from the <see cref="DefaultValueAttribute"/></param>
+        /// <param name="currentVal">the val from the empty ctor</param>
+        /// <param name="propertyInfo">the prop where the value came from</param>
+        /// <returns>equals</returns>
+        private static bool AreDefaultValuesEqual(object neededVal, object currentVal, PropertyInfo propertyInfo)
+        {
+            if (neededVal == null)
+            {
+                if (currentVal != null)
+                {
+                    return false;
+
+                }
+                //both null, OK, next
+                return true;
+            }
+            if (currentVal == null)
+            {
+                //needed was null, so wrong
+                return false;
+            }
+            //try as strings first
+
+
+
+            var propType = propertyInfo.PropertyType;
+            var neededString = neededVal.ToString();
+            var currentString = currentVal.ToString();
+
+
+
+            //handle quotes with Layouts
+            if (propType == typeof(Layout))
+            {
+               
+                neededString = "'" + neededString + "'";
+
+            }
+
+            var eqstring = neededString.Equals(currentString);
+            if (eqstring)
+            {
+                //ok, so next
+                return true;
+            }
+
+        
+
+            //handle UTF-8 properly
+            if (propType == typeof(Encoding))
+            {
+
+                if (currentVal is UTF8Encoding && (neededString.Equals("utf-8", StringComparison.InvariantCultureIgnoreCase) || neededString.Equals("utf8", StringComparison.InvariantCultureIgnoreCase)))
+                    return true;
+
+            }
+
+      
+
+            //nulls or not string equals, fallback
+            //Assert.Equal(neededVal, currentVal);
+            return neededVal.Equals(currentVal);
+
+        }
+
+        /// <summary>
+        /// print value quoted or as NULL
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        private static string PrintValForMessage(object o)
+        {
+            if (o == null) return "NULL";
+            return "'" + o + "'";
+        }
+
+
     }
 }
 

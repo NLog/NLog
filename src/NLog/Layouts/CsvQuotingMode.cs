@@ -34,7 +34,7 @@
 namespace NLog.Layouts
 {
     /// <summary>
-    /// Specifies allowes CSV quoting modes.
+    /// Specifies CSV quoting modes.
     /// </summary>
     public enum CsvQuotingMode
     {

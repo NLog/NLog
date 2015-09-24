@@ -42,6 +42,75 @@ namespace NLog.UnitTests.LayoutRenderers
     {
 #if !SILVERLIGHT
         [Fact]
+        public void HiddenAssemblyTest()
+        {
+            const string code = @"
+                                namespace Foo
+                                {
+                                    public class HiddenAssemblyLogger
+                                    {
+                                        public void LogDebug(NLog.Logger logger)
+                                        {
+                                            logger.Debug(""msg"");
+                                        }
+                                    }
+                                }
+                              ";
+
+            var provider = new Microsoft.CSharp.CSharpCodeProvider();
+            var parameters = new System.CodeDom.Compiler.CompilerParameters();
+
+            // reference the NLog dll
+            parameters.ReferencedAssemblies.Add("NLog.dll");
+
+            // the assembly should be generated in memory
+            parameters.GenerateInMemory = true;
+
+            // generate a dll instead of an executable
+            parameters.GenerateExecutable = false;
+
+            // compile code and generate assembly
+            System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
+
+            Assert.False(results.Errors.HasErrors);
+
+            // create nlog configuration
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            // create logger
+            Logger logger = LogManager.GetLogger("A");
+
+            // load HiddenAssemblyLogger type
+            Assembly compiledAssembly = results.CompiledAssembly;
+            Type hiddenAssemblyLoggerType = compiledAssembly.GetType("Foo.HiddenAssemblyLogger");
+            Assert.NotNull(hiddenAssemblyLoggerType);
+
+            // load methodinfo
+            MethodInfo logDebugMethod = hiddenAssemblyLoggerType.GetMethod("LogDebug");
+            Assert.NotNull(logDebugMethod);
+
+            // instantiate the HiddenAssemblyLogger from previously generated assembly
+            object instance = Activator.CreateInstance(hiddenAssemblyLoggerType);
+
+            // Add the previously generated assembly to the "blacklist"
+            LogManager.AddHiddenAssembly(compiledAssembly);
+
+            // call the log method
+            logDebugMethod.Invoke(instance, new object[] { logger });
+
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
+        }
+#endif
+
+#if !SILVERLIGHT
+        [Fact]
         public void LineNumberTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -52,7 +121,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
 #line 100000
             logger.Debug("msg");
             string lastMessage = GetDebugLastMessage("debug");
@@ -74,7 +143,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
@@ -91,14 +160,14 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + " msg");
         }
 
         [Fact]
-        public void ClassNameWithPaddingTestTest()
+        public void ClassNameWithPaddingTestPadLeftAlignLeftTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -108,14 +177,67 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
 
         [Fact]
-        public void MethodNameWithPaddingTestTest()
+        public void ClassNameWithPaddingTestPadLeftAlignRightTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=3:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            var typeName = currentMethod.DeclaringType.FullName;
+            AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
+        }
+
+        [Fact]
+        public void ClassNameWithPaddingTestPadRightAlignLeftTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=-3:fixedlength=true:alignmentOnTruncation=left} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
+        }
+
+        [Fact]
+        public void ClassNameWithPaddingTestPadRightAlignRightTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=-3:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            var typeName = currentMethod.DeclaringType.FullName;
+            AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
+        }
+
+        [Fact]
+        public void MethodNameWithPaddingTestPadLeftAlignLeftTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -125,11 +247,59 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "MethodNameWithPa msg");
         }
-        
+
+        [Fact]
+        public void MethodNameWithPaddingTestPadLeftAlignRightTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=16:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "ftAlignRightTest msg");
+        }
+
+        [Fact]
+        public void MethodNameWithPaddingTestPadRightAlignLeftTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=-16:fixedlength=true:alignmentOnTruncation=left} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "MethodNameWithPa msg");
+        }
+
+        [Fact]
+        public void MethodNameWithPaddingTestPadRightAlignRightTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=-16:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "htAlignRightTest msg");
+        }
+
         [Fact]
         public void GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame()
         {
@@ -141,11 +311,11 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame msg");
         }
-        
+
         [Fact]
         public void GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame()
         {
@@ -157,7 +327,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             Action action = () => logger.Debug("msg");
             action.Invoke();
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
@@ -174,7 +344,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     </rules>
                 </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -207,7 +377,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     </rules>
                 </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -241,7 +411,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     </rules>
                 </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -274,7 +444,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     </rules>
                 </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
 
             bool done = false;
             ThreadPool.QueueUserWorkItem(
@@ -296,5 +466,33 @@ namespace NLog.UnitTests.LayoutRenderers
                 Assert.True(lastMessage.Contains("+<>"));
             }
         }
+
+
+        [Fact]
+        public void When_Wrapped_Ignore_Wrapper_Methods_In_Callstack()
+        {
+
+            //namespace en name of current method
+            const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.When_Wrapped_Ignore_Wrapper_Methods_In_Callstack";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+               <nlog>
+                   <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
+                   <rules>
+                       <logger name='*' levels='Warn' writeTo='debug' />
+                   </rules>
+               </nlog>");
+
+            var logger = LogManager.GetLogger("A");
+            logger.Warn("direct");
+            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+
+            LoggerTests.BaseWrapper wrappedLogger = new LoggerTests.MyWrapper();
+            wrappedLogger.Log("wrapped");
+            AssertDebugLastMessage("debug", string.Format("{0}|wrapped", currentMethodFullName));
+
+
+        }
     }
+
 }

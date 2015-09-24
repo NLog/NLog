@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
 namespace NLog.Internal
 {
     /// <summary>
@@ -44,10 +46,21 @@ namespace NLog.Internal
         /// Initializes a new instance of the <see cref="LoggerConfiguration" /> class.
         /// </summary>
         /// <param name="targetsByLevel">The targets by level.</param>
-        public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel)
+        /// <param name="exceptionLoggingOldStyle">  Use the old exception log handling of NLog 3.0? 
+        /// </param>
+        public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel, bool exceptionLoggingOldStyle = false)
         {
             this.targetsByLevel = targetsByLevel;
+#pragma warning disable 618
+            ExceptionLoggingOldStyle = exceptionLoggingOldStyle;
+#pragma warning restore 618
         }
+
+        /// <summary>
+        /// Use the old exception log handling of NLog 3.0? 
+        /// </summary>
+        [Obsolete("This option will be removed in NLog 5")]
+        public bool ExceptionLoggingOldStyle { get; private set; }
 
         /// <summary>
         /// Gets targets for the specified level.
