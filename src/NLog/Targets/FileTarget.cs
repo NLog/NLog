@@ -1603,15 +1603,7 @@ namespace NLog.Targets
 
         private void WriteFooterAndUninitialize(string fileName)
         {
-            byte[] footerBytes = this.GetFooterBytes();
-            if (footerBytes != null)
-            {
-                if (File.Exists(fileName))
-                {
-                    this.WriteToFile(fileName, null, footerBytes, true);
-                }
-            }
-
+            WriteFooter(fileName);
             initializedFiles.Remove(fileName);
         }
 
@@ -1688,6 +1680,18 @@ namespace NLog.Targets
                 if (headerBytes != null)
                 {
                     appender.Write(headerBytes);
+                }
+            }
+        }
+
+        private void WriteFooter(string fileName)
+        {
+            byte[] footerBytes = this.GetFooterBytes();
+            if (footerBytes != null)
+            {
+                if (File.Exists(fileName))
+                {
+                    this.WriteToFile(fileName, null, footerBytes, true);
                 }
             }
         }
