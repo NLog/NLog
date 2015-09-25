@@ -126,6 +126,7 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets the current logging configuration.
+        /// <see cref="LogFactory.Configuration" />
         /// </summary>
         public static LoggingConfiguration Configuration
         {
