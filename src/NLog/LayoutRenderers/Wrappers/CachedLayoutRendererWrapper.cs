@@ -47,7 +47,18 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadAgnostic]
     public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private string cachedValue;
+        /// <summary>
+        /// A value indicating when the cache is cleared.
+        /// </summary>
+        public enum ClearCacheOption 
+        { 
+            /// <summary>Never clear the cache.</summary>
+            Never = 0,
+            /// <summary>Clear the cache whenever the <see cref="CachedLayoutRendererWrapper"/> is initialized.</summary>
+            OnInitialize = 1
+        }
+
+        private string cachedValue = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CachedLayoutRendererWrapper"/> class.
@@ -55,6 +66,7 @@ namespace NLog.LayoutRenderers.Wrappers
         public CachedLayoutRendererWrapper()
         {
             this.Cached = true;
+            this.ClearCache = ClearCacheOption.OnInitialize;
         }
 
         /// <summary>
@@ -65,12 +77,18 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool Cached { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating when the cache is cleared.
+        /// </summary>
+        public ClearCacheOption ClearCache { get; set; }
+
+        /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
-            this.cachedValue = null;
+            if (ClearCache == ClearCacheOption.OnInitialize)
+                this.cachedValue = null;
         }
 
         /// <summary>
@@ -79,7 +97,6 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void CloseLayoutRenderer()
         {
             base.CloseLayoutRenderer();
-            this.cachedValue = null;
         }
 
         /// <summary>
