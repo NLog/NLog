@@ -63,7 +63,7 @@ namespace NLog.Targets
 
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
         private IFileAppenderFactory appenderFactory;
-        private BaseFileAppender[] recentAppenders;
+        private BaseFileAppenderCache recentAppenders; 
         private Timer autoClosingTimer;
 
         private readonly DynamicFileArchive fileArchive;
@@ -107,6 +107,7 @@ namespace NLog.Targets
 
             this.maxLogFilenames = 20;
             this.previousFileNames = new Queue<string>(this.maxLogFilenames);
+            recentAppenders = BaseFileAppenderCache.Empty;
         }
 
         /// <summary>
@@ -469,16 +470,7 @@ namespace NLog.Targets
         {
             try
             {
-                foreach (BaseFileAppender t in this.recentAppenders)
-                {
-                    if (t == null)
-                    {
-                        break;
-                    }
-
-                    t.Flush();
-                }
-
+                recentAppenders.FlushAppenders();
                 asyncContinuation(null);
             }
             catch (Exception exception)
@@ -573,8 +565,7 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
             this.appenderFactory = GetFileAppenderFactory();
-
-            this.recentAppenders = new BaseFileAppender[this.OpenFileCacheSize];
+            recentAppenders = new BaseFileAppenderCache(OpenFileCacheSize, appenderFactory, this);
 
             if ((this.OpenFileCacheSize > 0 || this.EnableFileDelete) && this.OpenFileCacheTimeout > 0)
             {
@@ -607,21 +598,8 @@ namespace NLog.Targets
                 this.autoClosingTimer = null;
             }
 
-            if (this.recentAppenders != null)
-            {
-                for (int i = 0; i < this.recentAppenders.Length; ++i)
-                {
-                    if (this.recentAppenders[i] == null)
-                    {
-                        break;
-                    }
-
-                    this.recentAppenders[i].Close();
-                    this.recentAppenders[i] = null;
-                }
-            }
+            recentAppenders.CloseAppenders();
         }
-
 
         /// <summary>
         /// Writes the specified logging event to a file specified in the FileName 
@@ -656,7 +634,7 @@ namespace NLog.Targets
 
             if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
             {
-                this.InvalidateCacheItem(fileName);
+                recentAppenders.InvalidateAppender(fileName);
                 this.DoAutoArchive(fileName, logEvent);
             }
 
@@ -761,7 +739,7 @@ namespace NLog.Targets
                     if (this.ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
                     {
                         this.WriteFooterAndUninitialize(currentFileName);
-                        this.InvalidateCacheItem(currentFileName);
+                        recentAppenders.InvalidateAppender(currentFileName);
                         this.DoAutoArchive(currentFileName, firstLogEvent);
                     }
 
@@ -1422,30 +1400,8 @@ namespace NLog.Targets
 
                 try
                 {
-                    DateTime timeToKill = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
-                    for (int i = 0; i < this.recentAppenders.Length; ++i)
-                    {
-                        if (this.recentAppenders[i] == null)
-                        {
-                            break;
-                        }
-
-                        if (this.recentAppenders[i].OpenTime < timeToKill)
-                        {
-                            for (int j = i; j < this.recentAppenders.Length; ++j)
-                            {
-                                if (this.recentAppenders[j] == null)
-                                {
-                                    break;
-                                }
-
-                                this.recentAppenders[j].Close();
-                                this.recentAppenders[j] = null;
-                            }
-
-                            break;
-                        }
-                    }
+                    DateTime expireTime = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
+                    recentAppenders.CloseAppenders(expireTime);
                 }
                 catch (Exception exception)
                 {
@@ -1457,70 +1413,6 @@ namespace NLog.Targets
                     InternalLogger.Warn("Exception in AutoClosingTimerCallback: {0}", exception);
                 }
             }
-        }
-
-        private BaseFileAppender AllocateFileAppender(string fileName)
-        {
-            //
-            // BaseFileAppender.Write is the most expensive operation here
-            // so the in-memory data structure doesn't have to be 
-            // very sophisticated. It's a table-based LRU, where we move 
-            // the used element to become the first one.
-            // The number of items is usually very limited so the 
-            // performance should be equivalent to the one of the hashtable.
-            //
-
-            BaseFileAppender appenderToWrite = null;
-            int freeSpot = this.recentAppenders.Length - 1;
-
-            for (int i = 0; i < this.recentAppenders.Length; ++i)
-            {
-                // Use empty slot in recent appender list, if there is one.
-                if (this.recentAppenders[i] == null)
-                {
-                    freeSpot = i;
-                    break;
-                }
-
-                if (this.recentAppenders[i].FileName == fileName)
-                {
-                    // found it, move it to the first place on the list
-                    // (MRU)
-
-                    // file open has a chance of failure
-                    // if it fails in the constructor, we won't modify any data structures
-                    BaseFileAppender app = this.recentAppenders[i];
-                    for (int j = i; j > 0; --j)
-                    {
-                        this.recentAppenders[j] = this.recentAppenders[j - 1];
-                    }
-
-                    this.recentAppenders[0] = app;
-                    appenderToWrite = app;
-                    break;
-                }
-            }
-
-            if (appenderToWrite == null)
-            {
-                BaseFileAppender newAppender = this.appenderFactory.Open(fileName, this);
-
-                if (this.recentAppenders[freeSpot] != null)
-                {
-                    this.recentAppenders[freeSpot].Close();
-                    this.recentAppenders[freeSpot] = null;
-                }
-
-                for (int j = freeSpot; j > 0; --j)
-                {
-                    this.recentAppenders[j] = this.recentAppenders[j - 1];
-                }
-
-                this.recentAppenders[0] = newAppender;
-                appenderToWrite = newAppender;
-            }
-
-            return appenderToWrite;
         }
 
         private byte[] GetHeaderBytes()
@@ -1561,7 +1453,7 @@ namespace NLog.Targets
             }
 
             bool writeHeader = InitializeFile(fileName, logEvent, justData);
-            BaseFileAppender appender = AllocateFileAppender(fileName);
+            BaseFileAppender appender = recentAppenders.AllocateAppender(fileName);
 
             if (writeHeader)
             {
@@ -1698,18 +1590,9 @@ namespace NLog.Targets
 
         private bool GetFileInfo(string fileName, out DateTime lastWriteTime, out long fileLength)
         {
-            foreach (BaseFileAppender appender in this.recentAppenders)
+            if (recentAppenders.GetFileInfo(fileName, out lastWriteTime, out fileLength))
             {
-                if (appender == null)
-                {
-                    break;
-                }
-
-                if (appender.FileName == fileName)
-                {
-                    appender.GetFileInfo(out lastWriteTime, out fileLength);
-                    return true;
-                }
+                return true;
             }
 
             FileInfo fileInfo = new FileInfo(fileName);
@@ -1738,29 +1621,6 @@ namespace NLog.Targets
 
             string renderedText = layout.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
             return this.TransformBytes(this.Encoding.GetBytes(renderedText));
-        }
-
-        private void InvalidateCacheItem(string fileName)
-        {
-            for (int i = 0; i < this.recentAppenders.Length; ++i)
-            {
-                if (this.recentAppenders[i] == null)
-                {
-                    break;
-                }
-
-                if (this.recentAppenders[i].FileName == fileName)
-                {
-                    this.recentAppenders[i].Close();
-                    for (int j = i; j < this.recentAppenders.Length - 1; ++j)
-                    {
-                        this.recentAppenders[j] = this.recentAppenders[j + 1];
-                    }
-
-                    this.recentAppenders[this.recentAppenders.Length - 1] = null;
-                    break;
-                }
-            }
         }
 
 #if !SILVERLIGHT
