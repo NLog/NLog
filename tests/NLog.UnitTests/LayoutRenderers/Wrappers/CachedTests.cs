@@ -62,8 +62,8 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             s3 = l.Render(LogEventInfo.CreateNullEvent());
             Assert.NotEqual(s2, s3);
 
-            // unless we use clearcache=never
-            l = "${cached:${guid}:cached=true:clearcache=never}";
+            // unless we use clearcache=none
+            l = "${cached:${guid}:cached=true:clearcache=none}";
             s1 = l.Render(LogEventInfo.CreateNullEvent());
             l.Renderers[0].Close();
             s2 = l.Render(LogEventInfo.CreateNullEvent());

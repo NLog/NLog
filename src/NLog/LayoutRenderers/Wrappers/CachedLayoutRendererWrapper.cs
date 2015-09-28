@@ -55,9 +55,11 @@ namespace NLog.LayoutRenderers.Wrappers
         public enum ClearCacheOption 
         { 
             /// <summary>Never clear the cache.</summary>
-            Never = 0,
+            None = 0,
             /// <summary>Clear the cache whenever the <see cref="CachedLayoutRendererWrapper"/> is initialized.</summary>
-            OnInitialize = 1
+            OnInitialize = 1,
+            /// <summary>Clear the cache whenever the <see cref="CachedLayoutRendererWrapper"/> is closed.</summary>
+            OnClose = 2
         }
 
         private string cachedValue = null;
@@ -68,7 +70,7 @@ namespace NLog.LayoutRenderers.Wrappers
         public CachedLayoutRendererWrapper()
         {
             this.Cached = true;
-            this.ClearCache = ClearCacheOption.OnInitialize;
+            this.ClearCache = ClearCacheOption.OnInitialize | ClearCacheOption.OnClose;
         }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
-            if (ClearCache == ClearCacheOption.OnInitialize)
+            if (ClearCache.HasFlag(ClearCacheOption.OnInitialize))
                 this.cachedValue = null;
         }
 
@@ -99,6 +101,8 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void CloseLayoutRenderer()
         {
             base.CloseLayoutRenderer();
+            if (ClearCache.HasFlag(ClearCacheOption.OnClose))
+                this.cachedValue = null;
         }
 
         /// <summary>
