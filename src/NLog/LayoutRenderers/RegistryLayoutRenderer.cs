@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NET3_5
+#if !SILVERLIGHT
 
 namespace NLog.LayoutRenderers
 {
@@ -40,6 +40,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using Microsoft.Win32;
     using NLog;
+    using NLog.Internal;
     using NLog.Config;
     using NLog.LayoutRenderers;
     using System.ComponentModel;
@@ -66,13 +67,14 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Registry Options' order='10' />
         public Layout DefaultValue { get; set; }
 
+#if !NET3_5
         /// <summary>
         /// Gets or sets the registry view (see: https://msdn.microsoft.com/de-de/library/microsoft.win32.registryview.aspx). 
         /// Allowed values: Registry32, Registry64, Default 
         /// </summary>
         [DefaultValue("Default")]
         public RegistryView View { get; set; }
-
+#endif
         /// <summary>
         /// Gets or sets the registry key.
         /// </summary>
@@ -107,7 +109,13 @@ namespace NLog.LayoutRenderers
             {
                 try
                 {
+#if !NET3_5
                     using (RegistryKey rootKey = RegistryKey.OpenBaseKey(hive, View))
+#else                  
+                    var rootKey = MapHiveToKey(this.hive);
+
+#endif
+
                     {
                         if (!String.IsNullOrEmpty(this.subKey))
                         {
@@ -137,7 +145,7 @@ namespace NLog.LayoutRenderers
             {
                 value = Convert.ToString(registryValue, CultureInfo.InvariantCulture);
             }
-            else if(this.DefaultValue != null)
+            else if (this.DefaultValue != null)
             {
                 value = this.DefaultValue.Render(logEvent);
             }
@@ -178,6 +186,21 @@ namespace NLog.LayoutRenderers
                     throw new ArgumentException("Key name is invalid. Root hive not recognized.");
             }
         }
+
+#if NET3_5
+        private RegistryKey MapHiveToKey(RegistryHive hive)
+        {
+            switch(hive)
+            {
+                case RegistryHive.LocalMachine:
+                    return Registry.LocalMachine;
+                case RegistryHive.CurrentUser:
+                    return Registry.CurrentUser;
+                default:
+                    throw new ArgumentException("Only RegistryHive.LocalMachine and RegistryHive.CurrentUser are supported.", "hive");
+            }
+        }
+#endif
     }
 }
 
