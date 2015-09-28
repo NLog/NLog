@@ -33,8 +33,9 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using System.ComponentModel;
     using NLog.Config;
+    using System;
+    using System.ComponentModel;
 
     /// <summary>
     /// Applies caching to another layout output.
@@ -50,6 +51,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// A value indicating when the cache is cleared.
         /// </summary>
+        [Flags]
         public enum ClearCacheOption 
         { 
             /// <summary>Never clear the cache.</summary>
