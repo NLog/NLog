@@ -32,7 +32,6 @@
 // 
 
 #if !SILVERLIGHT
-
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -102,42 +101,41 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             Object registryValue = null;
+            // Value = null is necessary for querying "unnamed values"
+            string renderedValue = (this.Value != null) ? this.Value.Render(logEvent) : null;
 
             ParseKey(this.Key.Render(logEvent));
 
-            if (!(this.Value == null))
+            try
             {
-                try
-                {
 #if !NET3_5
-                    using (RegistryKey rootKey = RegistryKey.OpenBaseKey(hive, View))
+                using (RegistryKey rootKey = RegistryKey.OpenBaseKey(hive, View))
 #else                  
                     var rootKey = MapHiveToKey(this.hive);
 
 #endif
 
-                    {
-                        if (!String.IsNullOrEmpty(this.subKey))
-                        {
-                            using (RegistryKey registryKey = rootKey.OpenSubKey(this.subKey))
-                            {
-                                registryValue = registryKey.GetValue(this.Value.Render(logEvent));
-                            }
-                        }
-                        else
-                        {
-                            registryValue = rootKey.GetValue(this.Value.Render(logEvent));
-                        }
-
-                    }
-                }
-                catch (Exception ex)
                 {
-                    if (ex.MustBeRethrown())
+                    if (!String.IsNullOrEmpty(this.subKey))
                     {
-                        throw;
+                        using (RegistryKey registryKey = rootKey.OpenSubKey(this.subKey))
+                        {
+                            registryValue = registryKey.GetValue(renderedValue);
+                        }
                     }
+                    else
+                    {
+                        registryValue = rootKey.GetValue(renderedValue);
+                    }
+
                 }
+            }
+            catch (Exception ex)
+            {
+                //if (ex.MustBeRethrown())
+                //{
+                //    throw;
+                //}
             }
 
             string value = null;
