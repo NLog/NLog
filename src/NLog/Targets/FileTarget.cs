@@ -101,7 +101,7 @@ namespace NLog.Targets
             this.EnableFileDelete = true;
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
-            this.CreateDirs = true;
+            this.CreateDirs = true; 
             this.ForceManaged = false;
             this.MaxArchiveFiles = 0;
 
@@ -951,7 +951,7 @@ namespace NLog.Targets
                     ProcessOnStartup(fileName, logEvent);
 
                     writeHeader = true;
-                    initializedFiles.Add(fileName);
+                    initializedFiles.Update(fileName);
 
                     if (initializedFiles.Count >= InitializedFiles.MaxAllowed) 
                     {
@@ -959,7 +959,7 @@ namespace NLog.Targets
                     }
                 }
 
-                initializedFiles.Add(fileName);
+                initializedFiles.Update(fileName);
             }
 
             return writeHeader;
@@ -997,13 +997,18 @@ namespace NLog.Targets
             }
         }
 
-        private void DeleteOnStartup(string fileName) {
-            if (this.DeleteOldFileOnStartup) {
-                try {
+        private void DeleteOnStartup(string fileName)
+        {
+            if (this.DeleteOldFileOnStartup)
+            {
+                try
+                {
                     File.Delete(fileName);
                 }
-                catch (Exception exception) {
-                    if (exception.MustBeRethrown()) {
+                catch (Exception exception)
+                {
+                    if (exception.MustBeRethrown())
+                    {
                         throw;
                     }
 
@@ -1127,7 +1132,7 @@ namespace NLog.Targets
                 }
             }
 
-            public void Add(String fileName)
+            public void Update(String fileName)
             {
                 initializedFiles[fileName] = DateTime.Now;
             }
@@ -1144,23 +1149,19 @@ namespace NLog.Targets
 
             public IEnumerable<String> GetExpired(DateTime cleanupThreshold)
             {
-                List<String> filesToUninitialize = new List<String>();
-
                 // Select the files require to be uninitialized.
                 foreach (var file in initializedFiles)
                 {
                     if (file.Value < cleanupThreshold)
                     {
-                        filesToUninitialize.Add(file.Key);
+                        yield return file.Key;
                     }
                 }
-
-                return filesToUninitialize;
             }
 
             public IEnumerable<String> GetItems()
             {
-                return new List<String>(initializedFiles.Keys);
+                return initializedFiles.Keys.AsEnumerable();
             }
 
             // Key = Filename, Value = Insterted Date/Time
