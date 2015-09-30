@@ -66,7 +66,7 @@ namespace NLog.Targets
         private BaseFileAppenderCache recentAppenders; 
         private Timer autoClosingTimer;
 
-        private readonly DynamicFileArchive fileArchive = new DynamicFileArchive();
+        private readonly DynamicFileArchive fileArchive;
 
         // Queue used so the oldest used filename can be removed from when the list of filenames
         // that exist have got too long.
@@ -100,8 +100,8 @@ namespace NLog.Targets
             this.EnableFileDelete = true;
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
-            this.CreateDirs = true; 
-            this.MaxArchiveFiles = 0;
+            this.CreateDirs = true;
+            this.fileArchive = new DynamicFileArchive(0);
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
 
@@ -1479,7 +1479,7 @@ namespace NLog.Targets
                     ProcessOnStartup(fileName, logEvent);
 
                     writeHeader = true;
-                    initializedFiles.Update(fileName);
+                    initializedFiles.Add(fileName);
 
                     if (initializedFiles.Count >= InitializedFiles.MaxAllowed) 
                     {
@@ -1487,7 +1487,7 @@ namespace NLog.Targets
                     }
                 }
 
-                initializedFiles.Update(fileName);
+                initializedFiles.Add(fileName);
             }
 
             return writeHeader;
@@ -1525,18 +1525,13 @@ namespace NLog.Targets
             }
         }
 
-        private void DeleteOnStartup(string fileName)
-        {
-            if (this.DeleteOldFileOnStartup)
-            {
-                try
-                {
+        private void DeleteOnStartup(string fileName) {
+            if (this.DeleteOldFileOnStartup) {
+                try {
                     File.Delete(fileName);
                 }
-                catch (Exception exception)
-                {
-                    if (exception.MustBeRethrown())
-                    {
+                catch (Exception exception) {
+                    if (exception.MustBeRethrown()) {
                         throw;
                     }
 
@@ -1656,7 +1651,7 @@ namespace NLog.Targets
                 }
             }
 
-            public void Update(String fileName)
+            public void Add(String fileName)
             {
                 initializedFiles[fileName] = DateTime.Now;
             }
@@ -1673,19 +1668,23 @@ namespace NLog.Targets
 
             public IEnumerable<String> GetExpired(DateTime cleanupThreshold)
             {
+                List<String> filesToUninitialize = new List<String>();
+
                 // Select the files require to be uninitialized.
                 foreach (var file in initializedFiles)
                 {
                     if (file.Value < cleanupThreshold)
                     {
-                        yield return file.Key;
+                        filesToUninitialize.Add(file.Key);
                     }
                 }
+
+                return filesToUninitialize;
             }
 
             public IEnumerable<String> GetItems()
             {
-                return initializedFiles.Keys.AsEnumerable();
+                return new List<String>(initializedFiles.Keys);
             }
 
             // Key = Filename, Value = Insterted Date/Time
@@ -1694,12 +1693,16 @@ namespace NLog.Targets
 
         private sealed class DynamicFileArchive
         {
-            private readonly Queue<string> fileQueue = new Queue<string>();
-
             /// <summary>
-            /// Gets or sets the maximum number of archive files that should be kept.
+            /// Max
             /// </summary>
             public int Size { get; set; }
+
+            public DynamicFileArchive(int size)
+            {
+                Size = size;
+                fileQueue = new Queue<string>(size);
+            }
 
             /// <summary>
             /// Adds a file into archive.
@@ -1830,6 +1833,8 @@ namespace NLog.Targets
                 }
                 return targetFileName;
             }
+
+            private readonly Queue<string> fileQueue;
         }
 
         private sealed class FileNameTemplate
