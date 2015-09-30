@@ -70,7 +70,7 @@ namespace NLog.Targets
         private BaseFileAppenderCache recentAppenders; 
         private Timer autoClosingTimer;
 
-        private readonly DynamicFileArchive fileArchive;
+        private readonly DynamicFileArchive fileArchive = new DynamicFileArchive();
 
         // Queue used so the oldest used filename can be removed from when the list of filenames
         // that exist have got too long.
@@ -105,7 +105,7 @@ namespace NLog.Targets
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
             this.CreateDirs = true;
-            this.fileArchive = new DynamicFileArchive(0);
+            this.MaxArchiveFiles = 0;
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
 
@@ -1693,13 +1693,7 @@ namespace NLog.Targets
 
         private sealed class DynamicFileArchive
         {
-            private readonly Queue<string> fileQueue;
-
-            public DynamicFileArchive(int size)
-            {
-                Size = size;
-                fileQueue = new Queue<string>(size);
-            }
+            private readonly Queue<string> fileQueue = new Queue<string>();
 
             /// <summary>
             /// Gets or sets the maximum number of archive files that should be kept in the archive. 
