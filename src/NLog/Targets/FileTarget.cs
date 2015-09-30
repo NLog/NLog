@@ -1675,18 +1675,14 @@ namespace NLog.Targets
 
             public IEnumerable<String> GetExpired(DateTime cleanupThreshold)
             {
-                List<String> filesToUninitialize = new List<String>();
-
                 // Select the files require to be uninitialized.
                 foreach (var file in initializedFiles)
                 {
                     if (file.Value < cleanupThreshold)
                     {
-                        filesToUninitialize.Add(file.Key);
+                        yield return file.Key;
                     }
                 }
-
-                return filesToUninitialize;
             }
 
             public IEnumerable<String> GetItems()
