@@ -58,7 +58,11 @@ namespace NLog.Targets
     [Target("File")]
     public class FileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters
     {
+        // Clean up period, of the initialied files, is defined in days.
+        private const int CleanupPeriod = 2;
+        private const int MaxInitialisedFilesAllowed = 100;
         private const int ArchiveAboveSizeDisabled = -1;
+
         private readonly InitializedFiles initializedFiles = new InitializedFiles();
 
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
@@ -439,7 +443,7 @@ namespace NLog.Targets
         /// </remarks>
         public void CleanupInitializedFiles()
         {
-            this.CleanupInitializedFiles(DateTime.Now.AddDays(-InitializedFiles.CleanupPeriod));
+            this.CleanupInitializedFiles(DateTime.Now.AddDays(-CleanupPeriod));
         }
 
         /// <summary>
@@ -1479,15 +1483,15 @@ namespace NLog.Targets
                     ProcessOnStartup(fileName, logEvent);
 
                     writeHeader = true;
-                    initializedFiles.Add(fileName);
+                    initializedFiles.AddOrUpdate(fileName);
 
-                    if (initializedFiles.Count >= InitializedFiles.MaxAllowed) 
+                    if (initializedFiles.Count >= MaxInitialisedFilesAllowed) 
                     {
                         CleanupInitializedFiles();
                     }
                 }
 
-                initializedFiles.Add(fileName);
+                initializedFiles.AddOrUpdate(fileName);
             }
 
             return writeHeader;
@@ -1525,13 +1529,18 @@ namespace NLog.Targets
             }
         }
 
-        private void DeleteOnStartup(string fileName) {
-            if (this.DeleteOldFileOnStartup) {
-                try {
+        private void DeleteOnStartup(string fileName)
+        {
+            if (this.DeleteOldFileOnStartup)
+            {
+                try
+                {
                     File.Delete(fileName);
                 }
-                catch (Exception exception) {
-                    if (exception.MustBeRethrown()) {
+                catch (Exception exception)
+                {
+                    if (exception.MustBeRethrown())
+                    {
                         throw;
                     }
 
@@ -1638,10 +1647,8 @@ namespace NLog.Targets
 
         private sealed class InitializedFiles
         {
-            // Clean up Period is defined in days.
-            public const int CleanupPeriod = 2;
-
-            public const int MaxAllowed = 100;
+            // Key = Filename, Value = Insterted Date/Time
+            private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
 
             public int Count
             {
@@ -1651,7 +1658,7 @@ namespace NLog.Targets
                 }
             }
 
-            public void Add(String fileName)
+            public void AddOrUpdate(String fileName)
             {
                 initializedFiles[fileName] = DateTime.Now;
             }
@@ -1686,23 +1693,22 @@ namespace NLog.Targets
             {
                 return new List<String>(initializedFiles.Keys);
             }
-
-            // Key = Filename, Value = Insterted Date/Time
-            private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
         }
 
         private sealed class DynamicFileArchive
         {
-            /// <summary>
-            /// Max
-            /// </summary>
-            public int Size { get; set; }
+            private readonly Queue<string> fileQueue;
 
             public DynamicFileArchive(int size)
             {
                 Size = size;
                 fileQueue = new Queue<string>(size);
             }
+
+            /// <summary>
+            /// Gets or sets the maximum number of archive files that should be kept in the archive. 
+            /// </summary>
+            public int Size { get; set; }
 
             /// <summary>
             /// Adds a file into archive.
@@ -1796,6 +1802,10 @@ namespace NLog.Targets
                 }
             }
 
+            /// <summary>
+            /// Deletes the specified file and logs a message to internal logger if the action fails. 
+            /// </summary>
+            /// <param name="fileName">Filename to be deleted</param>
             private static void DeleteFile(string fileName) {
                 try 
                 {
@@ -1833,8 +1843,6 @@ namespace NLog.Targets
                 }
                 return targetFileName;
             }
-
-            private readonly Queue<string> fileQueue;
         }
 
         private sealed class FileNameTemplate
@@ -1842,12 +1850,23 @@ namespace NLog.Targets
             /// <summary>
             /// Characters determining the start of the <see cref="P:FileNameTemplate.Pattern"/>.
             /// </summary>
-            public const string PatternStartCharacters = "{#";
+            private const string PatternStartCharacters = "{#";
 
             /// <summary>
             /// Characters determining the end of the <see cref="P:FileNameTemplate.Pattern"/>.
             /// </summary>
-            public const string PatternEndCharacters = "#}";
+            private const string PatternEndCharacters = "#}";
+
+            private readonly int startIndex;
+            private readonly int endIndex;
+            private readonly string template;
+
+            public FileNameTemplate(string template)
+            {
+                this.template = template;
+                this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
+                this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
+            }
 
             /// <summary>
             /// File name which is used as template for matching and replacements. 
@@ -1882,18 +1901,6 @@ namespace NLog.Targets
                 {
                     return endIndex;
                 }
-            }
-
-            private readonly string template;
-
-            private readonly int startIndex;
-            private readonly int endIndex;
-
-            public FileNameTemplate(string template)
-            {
-                this.template = template;
-                this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
-                this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
             }
 
             /// <summary>
