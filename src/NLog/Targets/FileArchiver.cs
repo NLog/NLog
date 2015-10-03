@@ -50,58 +50,27 @@ namespace NLog.Targets
     using Internal.FileAppenders;
     using Layouts;
     using Time;
+
     /*
     public class FileArchiveParameters
     { 
     
     }
-     */ 
+     */
 
-    internal sealed class FileArchiver 
+    internal abstract class BaseFileArchive
     {
-        public const int ArchiveAboveSizeDisabled = -1;
+        /*
+        protected static string ReplaceFileNamePattern(string pattern, string replacementValue)
+        {
+            return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
+        }
+        */
 
-        private readonly DynamicFileArchive fileArchive = new DynamicFileArchive();
-
-        public FileArchiver(FileTarget target)
+        protected BaseFileArchive(FileTarget target)
         {
             Target = target;
         }
-
-        /// <summary>
-        /// Gets or sets the size in bytes above which log files will be automatically archived.
-        /// 
-        /// Warning: combining this with <see cref="ArchiveNumberingMode.Date"/> isn't supported. We cannot create multiple archive files, if they should have the same name.
-        /// Choose:  <see cref="ArchiveNumberingMode.DateAndSequence"/> 
-        /// </summary>
-        /// <remarks>
-        /// Caution: Enabling this option can considerably slow down your file 
-        /// logging in multi-process scenarios. If only one process is going to
-        /// be writing to the file, consider setting <c>ConcurrentWrites</c>
-        /// to <c>false</c> for maximum performance.
-        /// </remarks>
-        public long ArchiveAboveSize { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to automatically archive log files every time the specified time passes.
-        /// </summary>
-        /// <remarks>
-        /// Files are moved to the archive as part of the write operation if the current period of time changes. For example
-        /// if the current <c>hour</c> changes from 10 to 11, the first write that will occur
-        /// on or after 11:00 will trigger the archiving.
-        /// <p>
-        /// Caution: Enabling this option can considerably slow down your file 
-        /// logging in multi-process scenarios. If only one process is going to
-        /// be writing to the file, consider setting <c>ConcurrentWrites</c>
-        /// to <c>false</c> for maximum performance.
-        /// </p>
-        /// </remarks>
-        public FileArchivePeriod ArchiveEvery { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value specifying the date format to use when archving files.
-        /// </summary>
-        public string ArchiveDateFormat { get; set; }
 
 #if NET4_5
         /// <summary>
@@ -115,67 +84,135 @@ namespace NLog.Targets
         private const bool CompressionEnabled = false;
 #endif
 
-        /// <summary>
-        /// Max
-        /// </summary>
-        public int Size
-        {
-            get
-            {
-                return fileArchive.Size;
-            }
-
-            set
-            {
-                fileArchive.Size = value;
-            }
-        }
-
         public FileTarget Target { get; private set; } 
 
-        public bool Archive(string archiveFileName, string fileName, bool createDirectory)
+        protected void RollArchiveForward(string existingFileName, string archiveFileName, bool shouldCompress)
         {
-            return fileArchive.Archive(archiveFileName, fileName, createDirectory, CompressionEnabled);
+            ArchiveFile(existingFileName, archiveFileName, shouldCompress && CompressionEnabled);
+
+            string fileName = Path.GetFileName(existingFileName);
+            if (fileName == null) { return; }
+
+            // When the file has been moved, the original filename is 
+            // no longer one of the initializedFiles. The initializedFilesCounter
+            // should be left alone, the amount is still valid.
+            if (Target.Files.Contains(fileName))
+            {
+                Target.Files.Remove(fileName);
+            }
+            else if (Target.Files.Contains(existingFileName))
+            {
+                Target.Files.Remove(existingFileName);
+            }
         }
 
-        public void RollingArchive(string fileName, string pattern, int archiveNumber)
+        protected static string ReplaceNumberPattern(string pattern, int value)
         {
-            if (Size > 0 && archiveNumber >= Size)
-            {
-                File.Delete(fileName);
-                return;
-            }
+            int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
+            int lastPart = pattern.IndexOf("#}", StringComparison.Ordinal) + 2;
+            int numDigits = lastPart - firstPart - 2;
 
-            if (!File.Exists(fileName))
-            {
-                return;
-            }
+            return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') + pattern.Substring(lastPart);
+        }
 
-            string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
-            if (File.Exists(fileName))
+        private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
+        {
+#if NET4_5
+            if (enableCompression)
             {
-                RollingArchive(newFileName, pattern, archiveNumber + 1);
-            }
-
-            InternalLogger.Trace("Renaming {0} to {1}", fileName, newFileName);
-
-            var shouldCompress = archiveNumber == 0;
-            try
-            {
-                RollArchiveForward(fileName, newFileName, shouldCompress);
-            }
-            catch (IOException)
-            {
-                // TODO: Check the value of CreateDirs property before creating directories.
-                string dir = Path.GetDirectoryName(newFileName);
-                if (!Directory.Exists(dir))
+                using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
+                using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
+                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    Directory.CreateDirectory(dir);
+                    var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
+                    using (var destination = zipArchiveEntry.Open())
+                    {
+                        originalFileStream.CopyTo(destination);
+                    }
                 }
 
-                RollArchiveForward(fileName, newFileName, shouldCompress);
+                File.Delete(fileName);
+            }
+            else
+#endif
+            {
+                File.Move(fileName, archiveFileName);
             }
         }
+
+        protected sealed class FileNameTemplate
+        {
+            /// <summary>
+            /// Characters determining the start of the <see cref="P:FileNameTemplate.Pattern"/>.
+            /// </summary>
+            private const string PatternStartCharacters = "{#";
+
+            /// <summary>
+            /// Characters determining the end of the <see cref="P:FileNameTemplate.Pattern"/>.
+            /// </summary>
+            private const string PatternEndCharacters = "#}";
+
+            private readonly int startIndex;
+            private readonly int endIndex;
+            private readonly string template;
+
+            public FileNameTemplate(string template)
+            {
+                this.template = template;
+                this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
+                this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
+            }
+
+            /// <summary>
+            /// File name which is used as template for matching and replacements. 
+            /// It is expected to contain a pattern to match.
+            /// </summary>
+            public string Template
+            {
+                get { return this.template; }
+            }
+
+            /// <summary>
+            /// The begging position of the <see cref="P:FileNameTemplate.Pattern"/> 
+            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
+            /// when no pattern can be found.
+            /// </summary>
+            public int BeginAt
+            {
+                get
+                {
+                    return startIndex;
+                }
+            }
+
+            /// <summary>
+            /// The ending position of the <see cref="P:FileNameTemplate.Pattern"/> 
+            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
+            /// when no pattern can be found.
+            /// </summary>
+            public int EndAt
+            {
+                get
+                {
+                    return endIndex;
+                }
+            }
+
+            /// <summary>
+            /// Replace the pattern with the specified String.
+            /// </summary>
+            /// <param name="replacementValue"></param>
+            /// <returns></returns>
+            public string ReplacePattern(string replacementValue)
+            {
+                return String.IsNullOrEmpty(replacementValue) ? this.Template : template.Substring(0, this.BeginAt) + replacementValue + template.Substring(this.EndAt);
+            }
+        }
+    }
+
+    internal class SequentialFileArchive : BaseFileArchive
+    {
+        public SequentialFileArchive(FileTarget target) : base(target) { }
 
         public void SequentialArchive(string fileName, string pattern)
         {
@@ -241,6 +278,209 @@ namespace NLog.Targets
             string newFileName = ReplaceNumberPattern(pattern, nextNumber);
             RollArchiveForward(fileName, newFileName, shouldCompress: true);
         }
+
+        public int Size { get; set; }
+    }
+
+    internal sealed class FileArchiver 
+    {
+        public const int ArchiveAboveSizeDisabled = -1;
+
+        private readonly DynamicFileArchive fileArchive = new DynamicFileArchive();
+        private readonly SequentialFileArchive sequentialArchive;
+
+        public FileArchiver(FileTarget target)
+        {
+            Target = target;
+            sequentialArchive = new SequentialFileArchive(target);
+        }
+
+        /// <summary>
+        /// Gets or sets the size in bytes above which log files will be automatically archived.
+        /// 
+        /// Warning: combining this with <see cref="ArchiveNumberingMode.Date"/> isn't supported. We cannot create
+        ///          multiple archive files, if they should have the same name.
+        /// Choose: <see cref="ArchiveNumberingMode.DateAndSequence"/>
+        /// </summary>
+        /// <remarks>
+        /// Caution: Enabling this option can considerably slow down your file logging in multi-process scenarios. If
+        /// only one process is going to be writing to the file, consider setting <c>ConcurrentWrites</c> to
+        /// <c>false</c> for maximum performance.
+        /// </remarks>
+        public long ArchiveAboveSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to automatically archive log files every time the specified time passes.
+        /// </summary>
+        /// <remarks>
+        /// Files are moved to the archive as part of the write operation if the current period of time changes. For
+        /// example if the current <c>hour</c> changes from 10 to 11, the first write that will occur on or after 11:00
+        /// will trigger the archiving.
+        /// <p>
+        /// Caution: Enabling this option can considerably slow down your file logging in multi-process scenarios. If
+        /// only one process is going to be writing to the file, consider setting <c>ConcurrentWrites</c> to
+        /// <c>false</c> for maximum performance.
+        /// </p>
+        /// </remarks>
+        public FileArchivePeriod ArchiveEvery { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value specifying the date format to use when archving files.
+        /// </summary>
+        public string ArchiveDateFormat { get; set; }
+
+#if NET4_5
+        /// <summary>
+        /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
+        /// </summary>
+        public bool CompressionEnabled {
+            get
+            {
+                return sequentialArchive.CompressionEnabled;
+            }
+
+            set
+            {
+                sequentialArchive.CompressionEnabled = value;
+            }
+        }
+#else
+        /// <summary>
+        /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
+        /// </summary>
+        private const bool CompressionEnabled = false;
+#endif
+
+        /// <summary>
+        /// Max
+        /// </summary>
+        public int Size
+        {
+            get { return fileArchive.Size; }
+
+            set { 
+                fileArchive.Size = value;
+                sequentialArchive.Size = value;
+            }
+        }
+
+        public FileTarget Target { get; private set; } 
+
+        public bool Archive(string archiveFileName, string fileName, bool createDirectory)
+        {
+            return fileArchive.Archive(archiveFileName, fileName, createDirectory, CompressionEnabled);
+        }
+
+        public void RollingArchive(string fileName, string pattern, int archiveNumber)
+        {
+            if (Size > 0 && archiveNumber >= Size)
+            {
+                File.Delete(fileName);
+                return;
+            }
+
+            if (!File.Exists(fileName))
+            {
+                return;
+            }
+
+            string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
+            if (File.Exists(fileName))
+            {
+                RollingArchive(newFileName, pattern, archiveNumber + 1);
+            }
+
+            InternalLogger.Trace("Renaming {0} to {1}", fileName, newFileName);
+
+            var shouldCompress = (archiveNumber == 0);
+            try
+            {
+                RollArchiveForward(fileName, newFileName, shouldCompress);
+            }
+            catch (IOException)
+            {
+                // TODO: Check the value of CreateDirs property before creating directories.
+                string dir = Path.GetDirectoryName(newFileName);
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                RollArchiveForward(fileName, newFileName, shouldCompress);
+            }
+        }
+
+        public void SequentialArchive(string fileName, string pattern)
+        {
+            sequentialArchive.SequentialArchive(fileName, pattern);
+        }
+
+        /* SequentialArchive
+        public void SequentialArchive(string fileName, string pattern)
+        {
+            FileNameTemplate fileTemplate = new FileNameTemplate(Path.GetFileName(pattern));
+            int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt;
+            string fileNameMask = fileTemplate.ReplacePattern("*");
+
+            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
+            int nextNumber = -1;
+            int minNumber = -1;
+
+            var number2Name = new Dictionary<int, string>();
+
+            try
+            {
+#if SILVERLIGHT
+                foreach (string s in Directory.EnumerateFiles(dirName, fileNameMask))
+#else
+                foreach (string s in Directory.GetFiles(dirName, fileNameMask))
+#endif
+                {
+                    string baseName = Path.GetFileName(s);
+                    string number = baseName.Substring(fileTemplate.BeginAt, baseName.Length - trailerLength - fileTemplate.BeginAt);
+                    int num;
+
+                    try
+                    {
+                        num = Convert.ToInt32(number, CultureInfo.InvariantCulture);
+                    }
+                    catch (FormatException)
+                    {
+                        continue;
+                    }
+
+                    nextNumber = Math.Max(nextNumber, num);
+                    minNumber = minNumber != -1 ? Math.Min(minNumber, num) : num;
+
+                    number2Name[num] = s;
+                }
+
+                nextNumber++;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Directory.CreateDirectory(dirName);
+                nextNumber = 0;
+            }
+
+            if (minNumber != -1 && Size != 0)
+            {
+                int minNumberToKeep = nextNumber - Size + 1;
+                for (int i = minNumber; i < minNumberToKeep; ++i)
+                {
+                    string s;
+
+                    if (number2Name.TryGetValue(i, out s))
+                    {
+                        File.Delete(s);
+                    }
+                }
+            }
+
+            string newFileName = ReplaceNumberPattern(pattern, nextNumber);
+            RollArchiveForward(fileName, newFileName, shouldCompress: true);
+        }
+        */
 
 #if !NET_CF
         public void DateArchive(string fileName, string pattern)
@@ -313,6 +553,7 @@ namespace NLog.Targets
             RollArchiveForward(fileName, newFileName, shouldCompress: true);
         }
 
+        // TODO: Method duplicated
         private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
         {
 #if NET4_5
@@ -338,6 +579,7 @@ namespace NLog.Targets
             }
         }
 
+        // TODO: Method duplicated
         private static string ReplaceFileNamePattern(string pattern, string replacementValue)
         {
             return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
@@ -368,7 +610,8 @@ namespace NLog.Targets
         /// Searches a given directory for archives that comply with the current archive pattern.
         /// </summary>
         /// <returns>An enumeration of archive infos, ordered by their file creation date.</returns>
-        private IEnumerable<DateAndSequenceArchive> FindDateAndSequenceArchives(string dirName, string logFileName,
+        private IEnumerable<DateAndSequenceArchive> FindDateAndSequenceArchives(
+            string dirName, string logFileName,
             string fileNameMask,
             int minSequenceLength, string dateFormat, FileNameTemplate fileTemplate)
         {
@@ -626,6 +869,7 @@ namespace NLog.Targets
             return formatString;
         }
 
+        // TODO: Method duplicated.
         private void RollArchiveForward(string existingFileName, string archiveFileName, bool shouldCompress)
         {
             ArchiveFile(existingFileName, archiveFileName, shouldCompress && CompressionEnabled);
@@ -646,6 +890,7 @@ namespace NLog.Targets
             }
         }
 
+        // TODO: Method duplicated
         private static string ReplaceNumberPattern(string pattern, int value)
         {
             int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
@@ -800,6 +1045,7 @@ namespace NLog.Targets
             }
         }
 
+        // TODO: Class duplicated.
         private sealed class FileNameTemplate
         {
             /// <summary>
