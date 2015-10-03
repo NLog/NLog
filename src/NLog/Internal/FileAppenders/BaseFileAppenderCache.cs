@@ -192,27 +192,6 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
-        // HACK: This method exposes a reference to the underlying item directly to the calling method. 
-        //    A new object should be constructed through a copy constructor. At the moment we will allow this until we
-        //    verify that there is not significant performance penalty.
-        public BaseFileAppender FindItem(string fileName)
-        {
-            foreach (BaseFileAppender appender in appenders)
-            {
-                if (appender == null)
-                {
-                    break;
-                }
-
-                if (appender.FileName == fileName)
-                {
-                    return appender;
-                }
-            }
-
-            return null;
-        }
-
         /// <summary>
         /// Fluch all the allocated appenders. 
         /// </summary>
