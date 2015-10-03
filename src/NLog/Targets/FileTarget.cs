@@ -58,6 +58,10 @@ namespace NLog.Targets
     [Target("File")]
     public class FileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters
     {
+        // Clean up period, of the initialied files, is defined in days.
+        private const int CleanupPeriod = 2;
+        private const int MaxInitialisedFilesAllowed = 100;
+
         private readonly InitializedFiles initializedFiles = new InitializedFiles();
 
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
@@ -101,6 +105,7 @@ namespace NLog.Targets
             this.EnableFileDelete = true;
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
+
             this.CreateDirs = true; 
             this.ForceManaged = false;
             this.MaxArchiveFiles = 0;
@@ -461,7 +466,7 @@ namespace NLog.Targets
         /// </remarks>
         public void CleanupInitializedFiles()
         {
-            this.CleanupInitializedFiles(DateTime.Now.AddDays(-InitializedFiles.CleanupPeriod));
+            this.CleanupInitializedFiles(DateTime.Now.AddDays(-CleanupPeriod));
         }
 
         /// <summary>
@@ -951,15 +956,15 @@ namespace NLog.Targets
                     ProcessOnStartup(fileName, logEvent);
 
                     writeHeader = true;
-                    initializedFiles.Update(fileName);
+                    initializedFiles.AddOrUpdate(fileName);
 
-                    if (initializedFiles.Count >= InitializedFiles.MaxAllowed) 
+                    if (initializedFiles.Count >= MaxInitialisedFilesAllowed) 
                     {
                         CleanupInitializedFiles();
                     }
                 }
 
-                initializedFiles.Update(fileName);
+                initializedFiles.AddOrUpdate(fileName);
             }
 
             return writeHeader;
@@ -1119,10 +1124,8 @@ namespace NLog.Targets
         //      Review code when possible.  
         internal sealed class InitializedFiles
         {
-            // Clean up Period is defined in days.
-            public const int CleanupPeriod = 2;
-
-            public const int MaxAllowed = 100;
+            // Key = Filename, Value = Insterted Date/Time
+            private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
 
             public int Count
             {
@@ -1132,7 +1135,7 @@ namespace NLog.Targets
                 }
             }
 
-            public void Update(String fileName)
+            public void AddOrUpdate(String fileName)
             {
                 initializedFiles[fileName] = DateTime.Now;
             }
@@ -1161,11 +1164,8 @@ namespace NLog.Targets
 
             public IEnumerable<String> GetItems()
             {
-                return initializedFiles.Keys.AsEnumerable();
+                return new List<String>(initializedFiles.Keys);
             }
-
-            // Key = Filename, Value = Insterted Date/Time
-            private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
         }
     }
 }

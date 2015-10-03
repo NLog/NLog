@@ -647,23 +647,15 @@ namespace NLog.Targets
             return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') + pattern.Substring(lastPart);
         }
 
+
         private sealed class DynamicFileArchive
         {
+            private readonly Queue<string> fileQueue = new Queue<string>();
+
             /// <summary>
-            /// Max
+            /// Gets or sets the maximum number of archive files that should be kept in the archive. 
             /// </summary>
             public int Size { get; set; }
-
-            public DynamicFileArchive()
-            {
-                fileQueue = new Queue<string>();
-            }
-
-            public DynamicFileArchive(int size)
-            {
-                Size = size;
-                fileQueue = new Queue<string>(size);
-            }
 
             /// <summary>
             /// Adds a file into archive.
@@ -757,6 +749,10 @@ namespace NLog.Targets
                 }
             }
 
+            /// <summary>
+            /// Deletes the specified file and logs a message to internal logger if the action fails. 
+            /// </summary>
+            /// <param name="fileName">Filename to be deleted</param>
             private static void DeleteFile(string fileName)
             {
                 try
@@ -795,33 +791,6 @@ namespace NLog.Targets
                 }
                 return targetFileName;
             }
-
-            private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
-            {
-#if NET4_5
-                if (enableCompression)
-                {
-                    using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
-                    using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-                    using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
-                    {
-                        var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
-                        using (var destination = zipArchiveEntry.Open())
-                        {
-                            originalFileStream.CopyTo(destination);
-                        }
-                    }
-
-                    File.Delete(fileName);
-                }
-                else
-#endif
-                {
-                    File.Move(fileName, archiveFileName);
-                }
-            }
-
-            private readonly Queue<string> fileQueue;
         }
 
         private sealed class FileNameTemplate
@@ -829,12 +798,23 @@ namespace NLog.Targets
             /// <summary>
             /// Characters determining the start of the <see cref="P:FileNameTemplate.Pattern"/>.
             /// </summary>
-            public const string PatternStartCharacters = "{#";
+            private const string PatternStartCharacters = "{#";
 
             /// <summary>
             /// Characters determining the end of the <see cref="P:FileNameTemplate.Pattern"/>.
             /// </summary>
-            public const string PatternEndCharacters = "#}";
+            private const string PatternEndCharacters = "#}";
+
+            private readonly int startIndex;
+            private readonly int endIndex;
+            private readonly string template;
+
+            public FileNameTemplate(string template)
+            {
+                this.template = template;
+                this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
+                this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
+            }
 
             /// <summary>
             /// File name which is used as template for matching and replacements. 
@@ -869,18 +849,6 @@ namespace NLog.Targets
                 {
                     return endIndex;
                 }
-            }
-
-            private readonly string template;
-
-            private readonly int startIndex;
-            private readonly int endIndex;
-
-            public FileNameTemplate(string template)
-            {
-                this.template = template;
-                this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
-                this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
             }
 
             /// <summary>
