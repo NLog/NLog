@@ -35,27 +35,17 @@ namespace NLog.Internal.FileAppenders
 {
     using System;
 
+    /// <summary>
+    /// Maintains a collection of file appenders usually associated with file targets.
+    /// </summary>
     internal sealed class BaseFileAppenderCache
     {
+        private BaseFileAppender[] appenders;
+
+        /// <summary>
+        /// Declares initialise a zero size, empty list of appenders.
+        /// </summary>
         public static readonly BaseFileAppenderCache Empty = new BaseFileAppenderCache(0, null, null);
-
-        public ICreateFileParameters CreateFileParameters
-        {
-            get;
-            private set;
-        }
-
-        public IFileAppenderFactory Factory
-        {
-            get;
-            private set;
-        }
-
-        public int Size
-        {
-            get;
-            private set;
-        }
 
         public BaseFileAppenderCache(int size, IFileAppenderFactory appenderFactory, ICreateFileParameters createFileParams)
         {
@@ -66,6 +56,27 @@ namespace NLog.Internal.FileAppenders
             appenders = new BaseFileAppender[Size];
         }
 
+        /// <summary>
+        /// Gets the parameters which will be used for creating a file.
+        /// </summary>
+        public ICreateFileParameters CreateFileParameters { get; private set; }
+
+        /// <summary>
+        /// Gets the file appender factory used by all the appenders in this list.
+        /// </summary>
+        public IFileAppenderFactory Factory { get; private set; }
+
+        /// <summary>
+        /// Gets the number of appenders which the list can hold.
+        /// </summary>
+        public int Size { get; private set; }
+
+        /// <summary>
+        /// It allocates the first slot in the list when the file name does not already in the list and clean up any
+        /// unused slots.
+        /// </summary>
+        /// <param name="fileName">File name associated with a single appender</param>
+        /// <returns>The allocated appender</returns>
         public BaseFileAppender AllocateAppender(string fileName)
         {
             //
@@ -130,6 +141,9 @@ namespace NLog.Internal.FileAppenders
             return appenderToWrite;
         }
 
+        /// <summary>
+        /// Close all the allocated appenders. 
+        /// </summary>
         public void CloseAppenders()
         {
             if (appenders != null)
@@ -147,6 +161,10 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
+        /// <summary>
+        /// Close the allocated appenders initialised before the supplied time.
+        /// </summary>
+        /// <param name="expireTime">The time which prior the appenders considered expired</param>
         public void CloseAppenders(DateTime expireTime)
         {
             for (int i = 0; i < this.appenders.Length; ++i)
@@ -195,6 +213,9 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
+        /// <summary>
+        /// Fluch all the allocated appenders. 
+        /// </summary>
         public void FlushAppenders()
         {
             foreach (BaseFileAppender appender in appenders)
@@ -208,6 +229,13 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
+        /// <summary>
+        /// Gets the file info for a particular appender.
+        /// </summary>
+        /// <param name="fileName">The file name associated with a particular appender.</param>
+        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
+        /// <param name="fileLength">Length of the file.</param>
+        /// <returns>True if the operation succeeded, false otherwise.</returns>
         public bool GetFileInfo(string fileName, out DateTime lastWriteTime, out long fileLength)
         {
             foreach (BaseFileAppender appender in appenders)
@@ -230,6 +258,10 @@ namespace NLog.Internal.FileAppenders
             return false;
         }
 
+        /// <summary>
+        /// Closes the specified appender and removes it from the list. 
+        /// </summary>
+        /// <param name="fileName">File name of the appender to be closed.</param>
         public void InvalidateAppender(string fileName)
         {
             for (int i = 0; i < appenders.Length; ++i)
@@ -252,7 +284,5 @@ namespace NLog.Internal.FileAppenders
                 }
             }
         }
-
-        private BaseFileAppender[] appenders;
     }
 }
