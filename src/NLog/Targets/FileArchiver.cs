@@ -60,13 +60,6 @@ namespace NLog.Targets
 
     internal abstract class BaseFileArchive
     {
-        /*
-        protected static string ReplaceFileNamePattern(string pattern, string replacementValue)
-        {
-            return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
-        }
-        */
-
         protected BaseFileArchive(FileTarget target)
         {
             Target = target;
@@ -83,6 +76,7 @@ namespace NLog.Targets
         /// </summary>
         private const bool CompressionEnabled = false;
 #endif
+        public int Size { get; set; }
 
         public FileTarget Target { get; private set; } 
 
@@ -280,8 +274,6 @@ namespace NLog.Targets
             string newFileName = ReplaceNumberPattern(pattern, nextNumber);
             RollArchiveForward(fileName, newFileName, shouldCompress: true);
         }
-
-        public int Size { get; set; }
     }
 
 
@@ -327,24 +319,11 @@ namespace NLog.Targets
                 RollArchiveForward(fileName, newFileName, shouldCompress);
             }
         }
-
-        public int Size { get; set; }
     }
 
-    internal sealed class FileArchiver 
+    internal abstract class DateBasedFileArchive : BaseFileArchive
     {
-        public const int ArchiveAboveSizeDisabled = -1;
-
-        private readonly DynamicFileArchive fileArchive = new DynamicFileArchive();
-        private readonly SequentialFileArchive sequentialArchive;
-        private readonly RollingFileArchive rollingArchive;
-
-        public FileArchiver(FileTarget target)
-        {
-            Target = target;
-            sequentialArchive = new SequentialFileArchive(target);
-            rollingArchive = new RollingFileArchive(target);
-        }
+        public DateBasedFileArchive(FileTarget target) : base(target) { }
 
         /// <summary>
         /// Gets or sets the size in bytes above which log files will be automatically archived.
@@ -379,6 +358,248 @@ namespace NLog.Targets
         /// Gets or sets a value specifying the date format to use when archving files.
         /// </summary>
         public string ArchiveDateFormat { get; set; }
+        
+        protected static string ReplaceFileNamePattern(string pattern, string replacementValue)
+        {
+            return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
+        }
+
+        protected string GetDateFormatString(string defaultFormat)
+        {
+            // If archiveDateFormat is not set in the config file, use a default 
+            // date format string based on the archive period.
+            string formatString = defaultFormat;
+            if (string.IsNullOrEmpty(formatString))
+            {
+                switch (ArchiveEvery)
+                {
+                    case FileArchivePeriod.Year:
+                        formatString = "yyyy";
+                        break;
+
+                    case FileArchivePeriod.Month:
+                        formatString = "yyyyMM";
+                        break;
+
+                    default:
+                        formatString = "yyyyMMdd";
+                        break;
+
+                    case FileArchivePeriod.Hour:
+                        formatString = "yyyyMMddHH";
+                        break;
+
+                    case FileArchivePeriod.Minute:
+                        formatString = "yyyyMMddHHmm";
+                        break;
+                }
+            }
+            return formatString;
+        }
+
+        /// <summary>
+        /// Deletes archive files in reverse chronological order until only the
+        /// MaxArchiveFiles number of archive files remain.
+        /// </summary>
+        /// <param name="pattern">The pattern that archive filenames will match</param>
+        protected void DeleteOldDateArchive(string pattern)
+        {
+            string fileNameMask = ReplaceFileNamePattern(pattern, "*");
+            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
+            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
+
+            try
+            {
+                DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
+#if SILVERLIGHT
+                List<string> files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
+#else
+                List<string> files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
+#endif
+                List<string> filesByDate = new List<string>();
+
+                for (int index = 0; index < files.Count; index++)
+                {
+                    string archiveFileName = Path.GetFileName(files[index]);
+                    string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
+                    DateTime fileDate = DateTime.MinValue;
+                    if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
+                    {
+                        filesByDate.Add(files[index]);
+                    }
+                }
+
+                EnsureArchiveCount(filesByDate);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Directory.CreateDirectory(dirName);
+            }
+        }
+
+        protected DateTime GetArchiveDate(bool isNextCycle)
+        {
+            DateTime archiveDate = TimeSource.Current.Time;
+
+            // Because AutoArchive/DateArchive gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
+            // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
+            int addCount = isNextCycle ? -1 : 0;
+
+            switch (ArchiveEvery)
+            {
+                case FileArchivePeriod.Day:
+                    archiveDate = archiveDate.AddDays(addCount);
+                    break;
+
+                case FileArchivePeriod.Hour:
+                    archiveDate = archiveDate.AddHours(addCount);
+                    break;
+
+                case FileArchivePeriod.Minute:
+                    archiveDate = archiveDate.AddMinutes(addCount);
+                    break;
+
+                case FileArchivePeriod.Month:
+                    archiveDate = archiveDate.AddMonths(addCount);
+                    break;
+
+                case FileArchivePeriod.Year:
+                    archiveDate = archiveDate.AddYears(addCount);
+                    break;
+            }
+
+            return archiveDate;
+        }
+
+        /// <summary>
+        /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the Size property.
+        /// </summary>
+        /// <remarks>
+        /// Items are deleted in the same order as in <paramref name="oldArchiveFileNames" />.
+        /// No file is deleted if MaxArchiveFile is equal to zero.
+        /// </remarks>
+        private void EnsureArchiveCount(List<string> oldArchiveFileNames)
+        {
+            if (Size <= 0)
+            {
+                return;
+            }
+
+            int numberToDelete = oldArchiveFileNames.Count - Size;
+            for (int fileIndex = 0; fileIndex <= numberToDelete; fileIndex++)
+            {
+                File.Delete(oldArchiveFileNames[fileIndex]);
+            }
+        }
+    }
+
+#if !NET_CF
+    internal class DateFileArchive : DateBasedFileArchive
+    {
+        public DateFileArchive(FileTarget target) : base(target) { }
+
+        public void DateArchive(string fileName, string pattern)
+        {
+            string fileNameMask = ReplaceFileNamePattern(pattern, "*");
+            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
+            string dateFormat = GetDateFormatString(ArchiveDateFormat);
+
+            DeleteOldDateArchive(pattern);
+
+            DateTime newFileDate = GetArchiveDate(true);
+            if (dirName != null)
+            {
+                string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
+                RollArchiveForward(fileName, newFileName, shouldCompress: true);
+            }
+        }
+    }
+#endif
+
+    internal sealed class FileArchiver 
+    {
+        public const int ArchiveAboveSizeDisabled = -1;
+
+        private readonly DynamicFileArchive fileArchive = new DynamicFileArchive();
+        private readonly SequentialFileArchive sequentialArchive;
+        private readonly RollingFileArchive rollingArchive;
+#if !NET_CF
+        private readonly DateFileArchive dateArchive;
+#endif
+
+        public FileArchiver(FileTarget target)
+        {
+            Target = target;
+            sequentialArchive = new SequentialFileArchive(target);
+            rollingArchive = new RollingFileArchive(target);
+#if !NET_CF
+            dateArchive = new DateFileArchive(target);
+#endif
+        }
+
+        /// <summary>
+        /// Gets or sets the size in bytes above which log files will be automatically archived.
+        /// 
+        /// Warning: combining this with <see cref="ArchiveNumberingMode.Date"/> isn't supported. We cannot create
+        ///          multiple archive files, if they should have the same name.
+        /// Choose: <see cref="ArchiveNumberingMode.DateAndSequence"/>
+        /// </summary>
+        /// <remarks>
+        /// Caution: Enabling this option can considerably slow down your file logging in multi-process scenarios. If
+        /// only one process is going to be writing to the file, consider setting <c>ConcurrentWrites</c> to
+        /// <c>false</c> for maximum performance.
+        /// </remarks>
+        public long ArchiveAboveSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to automatically archive log files every time the specified time passes.
+        /// </summary>
+        /// <remarks>
+        /// Files are moved to the archive as part of the write operation if the current period of time changes. For
+        /// example if the current <c>hour</c> changes from 10 to 11, the first write that will occur on or after 11:00
+        /// will trigger the archiving.
+        /// <p>
+        /// Caution: Enabling this option can considerably slow down your file logging in multi-process scenarios. If
+        /// only one process is going to be writing to the file, consider setting <c>ConcurrentWrites</c> to
+        /// <c>false</c> for maximum performance.
+        /// </p>
+        /// </remarks>
+        public FileArchivePeriod ArchiveEvery 
+        {
+#if !NET_CF
+            get
+            {
+                return dateArchive.ArchiveEvery; 
+            }
+
+            set
+            {
+                dateArchive.ArchiveEvery = value;
+            }
+#else
+            get; set;
+#endif
+        }
+
+        /// <summary>
+        /// Gets or sets a value specifying the date format to use when archving files.
+        /// </summary>
+        public string ArchiveDateFormat
+        {
+#if !NET_CF
+            get
+            {
+                return dateArchive.ArchiveDateFormat;
+            }
+
+            set
+            {
+                dateArchive.ArchiveDateFormat = value;
+            }
+#else
+            get; set;
+#endif
+        }
 
 #if NET4_5
         /// <summary>
@@ -411,9 +632,11 @@ namespace NLog.Targets
             get { return fileArchive.Size; }
 
             set { 
+                // HACK: This is dangerous. An intermediate variable should be used. 
                 fileArchive.Size = value;
                 sequentialArchive.Size = value;
                 rollingArchive.Size = value;
+                dateArchive.Size = value;
             }
         }
 
@@ -437,18 +660,7 @@ namespace NLog.Targets
 #if !NET_CF
         public void DateArchive(string fileName, string pattern)
         {
-            string fileNameMask = ReplaceFileNamePattern(pattern, "*");
-            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
-            string dateFormat = GetDateFormatString(ArchiveDateFormat);
-
-            DeleteOldDateArchive(pattern);
-
-            DateTime newFileDate = GetArchiveDate(true);
-            if (dirName != null)
-            {
-                string newFileName = Path.Combine(dirName, fileNameMask.Replace("*", newFileDate.ToString(dateFormat)));
-                RollArchiveForward(fileName, newFileName, shouldCompress: true);
-            }
+            dateArchive.DateArchive(fileName, pattern);
         }
 
         public void DateAndSequentialArchive(string fileName, string pattern, LogEventInfo logEvent)
@@ -537,6 +749,7 @@ namespace NLog.Targets
             return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
         }
 
+        // TODO: Method duplicated
         /// <summary>
         /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the Size property.
         /// </summary>
@@ -653,6 +866,7 @@ namespace NLog.Targets
             return false;
         }
 
+        // TODO: Method duplicated.
         /// <summary>
         /// Deletes archive files in reverse chronological order until only the
         /// MaxArchiveFiles number of archive files remain.
@@ -660,7 +874,6 @@ namespace NLog.Targets
         /// <param name="pattern">The pattern that archive filenames will match</param>
         public void DeleteOldDateArchive(string pattern)
         {
-
             string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
@@ -754,6 +967,7 @@ namespace NLog.Targets
             return false;
         }
 
+        // TODO: Method duplicated.
         private DateTime GetArchiveDate(bool isNextCycle)
         {
             DateTime archiveDate = TimeSource.Current.Time;
@@ -788,6 +1002,7 @@ namespace NLog.Targets
             return archiveDate;
         }
 
+        // TODO: Method duplicated.
         private string GetDateFormatString(string defaultFormat)
         {
             // If archiveDateFormat is not set in the config file, use a default 
