@@ -91,7 +91,7 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
-            if (ClearCache.HasFlag(ClearCacheOption.OnInitialize))
+            if ((ClearCache & ClearCacheOption.OnInitialize) == ClearCacheOption.OnInitialize)
                 this.cachedValue = null;
         }
 
@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void CloseLayoutRenderer()
         {
             base.CloseLayoutRenderer();
-            if (ClearCache.HasFlag(ClearCacheOption.OnClose))
+            if ((ClearCache & ClearCacheOption.OnClose) == ClearCacheOption.OnClose)
                 this.cachedValue = null;
         }
 
