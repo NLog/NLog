@@ -431,8 +431,8 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool EnableArchiveFileCompression 
         {
-            get { return fileArchiver.EnableArchiveFileCompression; }
-            set { fileArchiver.EnableArchiveFileCompression = value; } 
+            get { return fileArchiver.CompressionEnabled; }
+            set { fileArchiver.CompressionEnabled = value; } 
         }
 #else
         /// <summary>
@@ -803,7 +803,7 @@ namespace NLog.Targets
 
             if (!ContainFileNamePattern(fileNamePattern))
             {
-                if (fileArchiver.Archive(fileNamePattern, fileInfo.FullName, CreateDirs, EnableArchiveFileCompression))
+                if (fileArchiver.Archive(fileNamePattern, fileInfo.FullName, CreateDirs))
                 {
                     initializedFiles.Remove(fileInfo.FullName);
                 }
@@ -813,7 +813,7 @@ namespace NLog.Targets
                 switch (this.ArchiveNumbering)
                 {
                     case ArchiveNumberingMode.Rolling:
-                        fileArchiver.RecursiveRollingRename(fileInfo.FullName, fileNamePattern, 0);
+                        fileArchiver.RollingArchive(fileInfo.FullName, fileNamePattern, 0);
                         break;
 
                     case ArchiveNumberingMode.Sequence:
@@ -894,31 +894,23 @@ namespace NLog.Targets
 
         private byte[] GetHeaderBytes()
         {
-            return this.GetLayoutBytes(this.Header);
-
-            /*
-            if (this.Header == null)
-            {
-                return null;
-            }
-
-            string renderedText = this.Header.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
-            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
-            */
+            return GetLayoutBytes(Header);
         }
 
         private byte[] GetFooterBytes()
         {
-            return this.GetLayoutBytes(this.Footer);
-            /*
-            if (this.Footer == null)
+            return GetLayoutBytes(Footer);
+        }
+
+        private byte[] GetLayoutBytes(Layout layout)
+        {
+            if (layout == null)
             {
                 return null;
             }
 
-            string renderedText = this.Footer.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
+            string renderedText = layout.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
             return this.TransformBytes(this.Encoding.GetBytes(renderedText));
-            */
         }
 
         private void WriteToFile(string fileName, LogEventInfo logEvent, byte[] bytes, bool justData)
@@ -1096,17 +1088,6 @@ namespace NLog.Targets
             return false;
         }
 
-        private byte[] GetLayoutBytes(Layout layout)
-        {
-            if (layout == null)
-            {
-                return null;
-            }
-
-            string renderedText = layout.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
-            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
-        }
-
 #if !SILVERLIGHT
         private static string CleanupInvalidFileNameChars(string fileName)
         {
@@ -1120,8 +1101,6 @@ namespace NLog.Targets
         }
 #endif
 
-        // HACK: Exposing GetFileInfo() method as internal creates tight coupling between FileTarget and FileArchiver classes. 
-        //      Review code when possible.  
         internal sealed class InitializedFiles
         {
             // Key = Filename, Value = Insterted Date/Time

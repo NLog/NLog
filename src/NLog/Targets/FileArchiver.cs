@@ -50,10 +50,23 @@ namespace NLog.Targets
     using Internal.FileAppenders;
     using Layouts;
     using Time;
+    /*
+    public class FileArchiveParameters
+    { 
+    
+    }
+     */ 
 
     internal sealed class FileArchiver 
     {
         public const int ArchiveAboveSizeDisabled = -1;
+
+        private readonly DynamicFileArchive fileArchive = new DynamicFileArchive();
+
+        public FileArchiver(FileTarget target)
+        {
+            Target = target;
+        }
 
         /// <summary>
         /// Gets or sets the size in bytes above which log files will be automatically archived.
@@ -94,12 +107,12 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
         /// </summary>
-        public bool EnableArchiveFileCompression { get; set; }
+        public bool CompressionEnabled { get; set; }
 #else
         /// <summary>
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
         /// </summary>
-        private const bool EnableArchiveFileCompression = false;
+        private const bool CompressionEnabled = false;
 #endif
 
         /// <summary>
@@ -120,17 +133,12 @@ namespace NLog.Targets
 
         public FileTarget Target { get; private set; } 
 
-        public FileArchiver(FileTarget target)
+        public bool Archive(string archiveFileName, string fileName, bool createDirectory)
         {
-            Target = target;
+            return fileArchive.Archive(archiveFileName, fileName, createDirectory, CompressionEnabled);
         }
 
-        public bool Archive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
-        {
-            return fileArchive.Archive(archiveFileName, fileName, createDirectory, enableCompression);
-        }
-
-        public void RecursiveRollingRename(string fileName, string pattern, int archiveNumber)
+        public void RollingArchive(string fileName, string pattern, int archiveNumber)
         {
             if (Size > 0 && archiveNumber >= Size)
             {
@@ -146,7 +154,7 @@ namespace NLog.Targets
             string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
             if (File.Exists(fileName))
             {
-                RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
+                RollingArchive(newFileName, pattern, archiveNumber + 1);
             }
 
             InternalLogger.Trace("Renaming {0} to {1}", fileName, newFileName);
@@ -620,7 +628,7 @@ namespace NLog.Targets
 
         private void RollArchiveForward(string existingFileName, string archiveFileName, bool shouldCompress)
         {
-            ArchiveFile(existingFileName, archiveFileName, shouldCompress && EnableArchiveFileCompression);
+            ArchiveFile(existingFileName, archiveFileName, shouldCompress && CompressionEnabled);
 
             string fileName = Path.GetFileName(existingFileName);
             if (fileName == null) { return; }
@@ -646,7 +654,6 @@ namespace NLog.Targets
 
             return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') + pattern.Substring(lastPart);
         }
-
 
         private sealed class DynamicFileArchive
         {
@@ -861,7 +868,5 @@ namespace NLog.Targets
                 return String.IsNullOrEmpty(replacementValue) ? this.Template : template.Substring(0, this.BeginAt) + replacementValue + template.Substring(this.EndAt);
             }
         }
-
-        private readonly DynamicFileArchive fileArchive = new DynamicFileArchive();
     }
 }
