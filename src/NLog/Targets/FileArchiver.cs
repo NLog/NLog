@@ -210,6 +210,8 @@ namespace NLog.Targets
         }
     }
 
+    // TODO: New class NumericFileArchive
+
     internal class SequentialFileArchive : BaseFileArchive
     {
         public SequentialFileArchive(FileTarget target) : base(target) { }
@@ -282,17 +284,66 @@ namespace NLog.Targets
         public int Size { get; set; }
     }
 
+
+    internal class RollingFileArchive : BaseFileArchive
+    {
+        public RollingFileArchive(FileTarget target) : base(target) { }
+
+        public void RollingArchive(string fileName, string pattern, int archiveNumber)
+        {
+            if (Size > 0 && archiveNumber >= Size)
+            {
+                File.Delete(fileName);
+                return;
+            }
+
+            if (!File.Exists(fileName))
+            {
+                return;
+            }
+
+            string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
+            if (File.Exists(fileName))
+            {
+                RollingArchive(newFileName, pattern, archiveNumber + 1);
+            }
+
+            InternalLogger.Trace("Renaming {0} to {1}", fileName, newFileName);
+
+            var shouldCompress = (archiveNumber == 0);
+            try
+            {
+                RollArchiveForward(fileName, newFileName, shouldCompress);
+            }
+            catch (IOException)
+            {
+                // TODO: Check the value of CreateDirs property before creating directories.
+                string dir = Path.GetDirectoryName(newFileName);
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                RollArchiveForward(fileName, newFileName, shouldCompress);
+            }
+        }
+
+        public int Size { get; set; }
+    }
+
     internal sealed class FileArchiver 
     {
         public const int ArchiveAboveSizeDisabled = -1;
 
         private readonly DynamicFileArchive fileArchive = new DynamicFileArchive();
         private readonly SequentialFileArchive sequentialArchive;
+        private readonly RollingFileArchive rollingArchive;
 
         public FileArchiver(FileTarget target)
         {
             Target = target;
             sequentialArchive = new SequentialFileArchive(target);
+            rollingArchive = new RollingFileArchive(target);
         }
 
         /// <summary>
@@ -342,6 +393,7 @@ namespace NLog.Targets
             set
             {
                 sequentialArchive.CompressionEnabled = value;
+                rollingArchive.CompressionEnabled = value;
             }
         }
 #else
@@ -361,6 +413,7 @@ namespace NLog.Targets
             set { 
                 fileArchive.Size = value;
                 sequentialArchive.Size = value;
+                rollingArchive.Size = value;
             }
         }
 
@@ -373,114 +426,13 @@ namespace NLog.Targets
 
         public void RollingArchive(string fileName, string pattern, int archiveNumber)
         {
-            if (Size > 0 && archiveNumber >= Size)
-            {
-                File.Delete(fileName);
-                return;
-            }
-
-            if (!File.Exists(fileName))
-            {
-                return;
-            }
-
-            string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
-            if (File.Exists(fileName))
-            {
-                RollingArchive(newFileName, pattern, archiveNumber + 1);
-            }
-
-            InternalLogger.Trace("Renaming {0} to {1}", fileName, newFileName);
-
-            var shouldCompress = (archiveNumber == 0);
-            try
-            {
-                RollArchiveForward(fileName, newFileName, shouldCompress);
-            }
-            catch (IOException)
-            {
-                // TODO: Check the value of CreateDirs property before creating directories.
-                string dir = Path.GetDirectoryName(newFileName);
-                if (!Directory.Exists(dir))
-                {
-                    Directory.CreateDirectory(dir);
-                }
-
-                RollArchiveForward(fileName, newFileName, shouldCompress);
-            }
+            rollingArchive.RollingArchive(fileName, pattern, archiveNumber);
         }
 
         public void SequentialArchive(string fileName, string pattern)
         {
             sequentialArchive.SequentialArchive(fileName, pattern);
         }
-
-        /* SequentialArchive
-        public void SequentialArchive(string fileName, string pattern)
-        {
-            FileNameTemplate fileTemplate = new FileNameTemplate(Path.GetFileName(pattern));
-            int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt;
-            string fileNameMask = fileTemplate.ReplacePattern("*");
-
-            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
-            int nextNumber = -1;
-            int minNumber = -1;
-
-            var number2Name = new Dictionary<int, string>();
-
-            try
-            {
-#if SILVERLIGHT
-                foreach (string s in Directory.EnumerateFiles(dirName, fileNameMask))
-#else
-                foreach (string s in Directory.GetFiles(dirName, fileNameMask))
-#endif
-                {
-                    string baseName = Path.GetFileName(s);
-                    string number = baseName.Substring(fileTemplate.BeginAt, baseName.Length - trailerLength - fileTemplate.BeginAt);
-                    int num;
-
-                    try
-                    {
-                        num = Convert.ToInt32(number, CultureInfo.InvariantCulture);
-                    }
-                    catch (FormatException)
-                    {
-                        continue;
-                    }
-
-                    nextNumber = Math.Max(nextNumber, num);
-                    minNumber = minNumber != -1 ? Math.Min(minNumber, num) : num;
-
-                    number2Name[num] = s;
-                }
-
-                nextNumber++;
-            }
-            catch (DirectoryNotFoundException)
-            {
-                Directory.CreateDirectory(dirName);
-                nextNumber = 0;
-            }
-
-            if (minNumber != -1 && Size != 0)
-            {
-                int minNumberToKeep = nextNumber - Size + 1;
-                for (int i = minNumber; i < minNumberToKeep; ++i)
-                {
-                    string s;
-
-                    if (number2Name.TryGetValue(i, out s))
-                    {
-                        File.Delete(s);
-                    }
-                }
-            }
-
-            string newFileName = ReplaceNumberPattern(pattern, nextNumber);
-            RollArchiveForward(fileName, newFileName, shouldCompress: true);
-        }
-        */
 
 #if !NET_CF
         public void DateArchive(string fileName, string pattern)
