@@ -94,8 +94,8 @@ namespace NLog.Targets
             {
                 archiveDateFormat = value;
 #if !NET_CF
-                dateArchive.ArchiveDateFormat = archiveDateFormat;
-                dateAndSequentialArchive.ArchiveDateFormat = archiveDateFormat;
+                dateArchive.DateFormat = archiveDateFormat;
+                dateAndSequentialArchive.DateFormat = archiveDateFormat;
 #endif
             }
         }
@@ -122,8 +122,8 @@ namespace NLog.Targets
             {
                 archiveEvery = value;
 #if !NET_CF
-                dateArchive.ArchiveEvery = archiveEvery;
-                dateAndSequentialArchive.ArchiveEvery = archiveEvery;
+                dateArchive.Period = archiveEvery;
+                dateAndSequentialArchive.Period = archiveEvery;
 #endif
             }
         }
@@ -175,28 +175,28 @@ namespace NLog.Targets
 
         public bool DynamicArchive(string archiveFileName, string fileName, bool createDirectory)
         {
-            return dynamicArchive.Archive(archiveFileName, fileName, createDirectory, CompressionEnabled);
+            return dynamicArchive.Process(archiveFileName, fileName, createDirectory, CompressionEnabled);
         }
 
-        public void RollingArchive(string fileName, string pattern, int archiveNumber)
+        public void RollingArchive(string fileName, string pattern)
         {
-            rollingArchive.RollingArchive(fileName, pattern, archiveNumber);
+            rollingArchive.Process(fileName, pattern);
         }
 
         public void SequentialArchive(string fileName, string pattern)
         {
-            sequentialArchive.SequentialArchive(fileName, pattern);
+            sequentialArchive.Process(fileName, pattern);
         }
 
 #if !NET_CF
         public void DateArchive(string fileName, string pattern)
         {
-            dateArchive.DateArchive(fileName, pattern);
+            dateArchive.Process(fileName, pattern);
         }
 
         public void DateAndSequentialArchive(string fileName, string pattern, LogEventInfo logEvent)
         {
-            dateAndSequentialArchive.DateAndSequentialArchive(fileName, pattern, logEvent);
+            dateAndSequentialArchive.Process(fileName, pattern, logEvent);
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace NLog.Targets
         /// <param name="pattern">The pattern that archive filenames will match</param>
         public void DeleteOldDateArchive(string pattern)
         {
-            dateArchive.DeleteOldDateArchive(pattern);
+            dateArchive.DeleteArchive(pattern);
         }
 #endif
 

@@ -813,7 +813,7 @@ namespace NLog.Targets
                 switch (this.ArchiveNumbering)
                 {
                     case ArchiveNumberingMode.Rolling:
-                        fileArchiver.RollingArchive(fileInfo.FullName, fileNamePattern, 0);
+                        fileArchiver.RollingArchive(fileInfo.FullName, fileNamePattern);
                         break;
 
                     case ArchiveNumberingMode.Sequence:

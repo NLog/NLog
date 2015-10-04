@@ -61,7 +61,7 @@ namespace NLog.Targets
 
         public FileTarget Target { get; private set; }
 
-        public static string ReplaceNumberPattern(string pattern, int value)
+        public static string ReplaceNumbericPattern(string pattern, int value)
         {
             int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
             int lastPart = pattern.IndexOf("#}", StringComparison.Ordinal) + 2;
@@ -90,10 +90,21 @@ namespace NLog.Targets
             }
         }
 
-        protected static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
+        /// <summary>
+        /// Compress or move the source file to the target location.
+        /// </summary>
+        /// <remarks>For compression is used the library supplied with .NET 4.5</remarks>
+        /// <param name="fileName">File name of the source file.</param>
+        /// <param name="archiveFileName">File name of the target file.</param>
+        /// <param name="shouldCompress">True if the target file name should be a compressed archive, False otherwise.</param>
+        protected static void ArchiveFile(string fileName, string archiveFileName, bool shouldCompress)
         {
+            // TODO: Revieve how the ArchiveFile() method is invoked. 
+            //      In some cases the shouldCompress parameter is passed (shouldCompress && CompressionEnabled) while in 
+            //      other cases the value CompressionEnabled is passed.
+
 #if NET4_5
-            if (enableCompression)
+            if (shouldCompress)
             {
                 using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
                 using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
