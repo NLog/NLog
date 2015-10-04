@@ -67,6 +67,7 @@ namespace NLog.Targets
             return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
         }
 
+        // TODO: Method duplicated in FileArchiver class.
         protected string GetDateFormatString(string defaultFormat)
         {
             // If archiveDateFormat is not set in the config file, use a default 

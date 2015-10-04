@@ -803,7 +803,7 @@ namespace NLog.Targets
 
             if (!ContainFileNamePattern(fileNamePattern))
             {
-                if (fileArchiver.Archive(fileNamePattern, fileInfo.FullName, CreateDirs))
+                if (fileArchiver.DynamicArchive(fileNamePattern, fileInfo.FullName, CreateDirs))
                 {
                     initializedFiles.Remove(fileInfo.FullName);
                 }
