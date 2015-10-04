@@ -378,7 +378,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Set propertes of <paramref name="client"/>
+        /// Set properties of <paramref name="client"/>
         /// </summary>
         /// <param name="lastEvent">last event for username/password</param>
         /// <param name="client">client to set properties on</param>
@@ -414,7 +414,7 @@ namespace NLog.Targets
 
         private void CheckRequiredParameters()
         {
-            if (!this.UseSystemNetMailSettings && (this.SmtpServer == null || string.IsNullOrEmpty(this.PickupDirectoryLocation)))
+            if (!this.UseSystemNetMailSettings && this.SmtpServer == null && string.IsNullOrEmpty(this.PickupDirectoryLocation))
             {
                 throw new NLogConfigurationException(
                     string.Format("The MailTarget's '{0}' and '{1}' properties are not set - but needed because useSystemNetMailSettings=false. The email message will not be sent.", "SmtpServer", "PickupDirectoryLocation"));
