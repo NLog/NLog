@@ -42,7 +42,15 @@ namespace NLog.Targets
     {
         public SequentialFileArchive(FileTarget target) : base(target) { }
 
-        public void SequentialArchive(string fileName, string pattern)
+        /// <summary>
+        /// Gets the way file archives are numbered from this particular class. 
+        /// </summary>
+        public ArchiveNumberingMode ArchiveNumbering
+        {
+            get { return ArchiveNumberingMode.Sequence; }
+        }
+
+        public void Process(string fileName, string pattern)
         {
             FileNameTemplate fileTemplate = new FileNameTemplate(Path.GetFileName(pattern));
             int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt;
@@ -103,7 +111,7 @@ namespace NLog.Targets
                 }
             }
 
-            string newFileName = ReplaceNumberPattern(pattern, nextNumber);
+            string newFileName = ReplaceNumbericPattern(pattern, nextNumber);
             RollArchiveForward(fileName, newFileName, shouldCompress: true);
         }
     }

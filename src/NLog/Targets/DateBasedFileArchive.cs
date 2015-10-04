@@ -55,49 +55,32 @@ namespace NLog.Targets
         /// <c>false</c> for maximum performance.
         /// </p>
         /// </remarks>
-        public FileArchivePeriod ArchiveEvery { get; set; }
+        public FileArchivePeriod Period { get; set; }
 
         /// <summary>
         /// Gets or sets a value specifying the date format to use when archving files.
         /// </summary>
-        public string ArchiveDateFormat { get; set; }
+        public string DateFormat { get; set; }
 
-        protected static string ReplaceFileNamePattern(string pattern, string replacementValue)
+        /// <summary>
+        /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the Size property.
+        /// </summary>
+        /// <remarks>
+        /// Items are deleted in the same order as in <paramref name="oldArchiveFileNames" />.
+        /// No file is deleted if Size property is less or equal to zero.
+        /// </remarks>
+        protected void EnsureArchiveCount(IList<string> oldArchiveFileNames)
         {
-            return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
-        }
-
-        protected string GetDateFormatString(string defaultFormat)
-        {
-            // If archiveDateFormat is not set in the config file, use a default 
-            // date format string based on the archive period.
-            string formatString = defaultFormat;
-            if (string.IsNullOrEmpty(formatString))
+            if (Size <= 0)
             {
-                switch (ArchiveEvery)
-                {
-                    case FileArchivePeriod.Year:
-                        formatString = "yyyy";
-                        break;
-
-                    case FileArchivePeriod.Month:
-                        formatString = "yyyyMM";
-                        break;
-
-                    default:
-                        formatString = "yyyyMMdd";
-                        break;
-
-                    case FileArchivePeriod.Hour:
-                        formatString = "yyyyMMddHH";
-                        break;
-
-                    case FileArchivePeriod.Minute:
-                        formatString = "yyyyMMddHHmm";
-                        break;
-                }
+                return;
             }
-            return formatString;
+
+            int numberToDelete = oldArchiveFileNames.Count - Size;
+            for (int fileIndex = 0; fileIndex <= numberToDelete; fileIndex++)
+            {
+                File.Delete(oldArchiveFileNames[fileIndex]);
+            }
         }
 
         protected DateTime GetArchiveDate(bool isNextCycle)
@@ -108,7 +91,7 @@ namespace NLog.Targets
             // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
             int addCount = isNextCycle ? -1 : 0;
 
-            switch (ArchiveEvery)
+            switch (Period)
             {
                 case FileArchivePeriod.Day:
                     archiveDate = archiveDate.AddDays(addCount);
@@ -134,25 +117,43 @@ namespace NLog.Targets
             return archiveDate;
         }
 
-        /// <summary>
-        /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the Size property.
-        /// </summary>
-        /// <remarks>
-        /// Items are deleted in the same order as in <paramref name="oldArchiveFileNames" />.
-        /// No file is deleted if MaxArchiveFile is equal to zero.
-        /// </remarks>
-        protected void EnsureArchiveCount(List<string> oldArchiveFileNames)
+        // TODO: Method duplicated in FileArchiver class.
+        protected string GetDateFormatString(string defaultFormat)
         {
-            if (Size <= 0)
+            // If archiveDateFormat is not set in the config file, use a default 
+            // date format string based on the archive period.
+            string formatString = defaultFormat;
+            if (string.IsNullOrEmpty(formatString))
             {
-                return;
-            }
+                switch (Period)
+                {
+                    case FileArchivePeriod.Year:
+                        formatString = "yyyy";
+                        break;
 
-            int numberToDelete = oldArchiveFileNames.Count - Size;
-            for (int fileIndex = 0; fileIndex <= numberToDelete; fileIndex++)
-            {
-                File.Delete(oldArchiveFileNames[fileIndex]);
+                    case FileArchivePeriod.Month:
+                        formatString = "yyyyMM";
+                        break;
+
+                    default:
+                        formatString = "yyyyMMdd";
+                        break;
+
+                    case FileArchivePeriod.Hour:
+                        formatString = "yyyyMMddHH";
+                        break;
+
+                    case FileArchivePeriod.Minute:
+                        formatString = "yyyyMMddHHmm";
+                        break;
+                }
             }
+            return formatString;
+        }
+
+        protected static string ReplaceFileNamePattern(string pattern, string replacementValue)
+        {
+            return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
         }
     }
 }

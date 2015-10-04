@@ -44,13 +44,21 @@ namespace NLog.Targets
     {
         public DateFileArchive(FileTarget target) : base(target) { }
 
-        public void DateArchive(string fileName, string pattern)
+        /// <summary>
+        /// Gets the way file archives are numbered from this particular class. 
+        /// </summary>
+        public ArchiveNumberingMode ArchiveNumbering
+        {
+            get { return ArchiveNumberingMode.Date; }
+        }
+
+        public void Process(string fileName, string pattern)
         {
             string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
-            string dateFormat = GetDateFormatString(ArchiveDateFormat);
+            string dateFormat = GetDateFormatString(DateFormat);
 
-            DeleteOldDateArchive(pattern);
+            DeleteArchive(pattern);
 
             DateTime newFileDate = GetArchiveDate(true);
             if (dirName != null)
@@ -61,15 +69,15 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Deletes archive files in reverse chronological order until only the
-        /// MaxArchiveFiles number of archive files remain.
+        /// Deletes archive files in reverse chronological order until only a number equal to Size property of archive
+        /// files remain.
         /// </summary>
         /// <param name="pattern">The pattern that archive filenames will match</param>
-        public void DeleteOldDateArchive(string pattern)
+        public void DeleteArchive(string pattern)
         {
             string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
-            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
+            string dateFormat = GetDateFormatString(this.DateFormat);
 
             try
             {

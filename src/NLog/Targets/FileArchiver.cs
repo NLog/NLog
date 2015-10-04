@@ -52,6 +52,10 @@ namespace NLog.Targets
         private readonly DateFileArchive dateArchive;
         private readonly DateAndSequentialFileArchive dateAndSequentialArchive;
 #endif
+        private FileArchivePeriod archiveEvery = FileArchivePeriod.None;
+        private string archiveDateFormat = String.Empty;
+        private bool compressionEnabled = false;
+        private int size = 0;
 
         public FileArchiver(FileTarget target)
         {
@@ -80,6 +84,23 @@ namespace NLog.Targets
         public long ArchiveAboveSize { get; set; }
 
         /// <summary>
+        /// Gets or sets a value specifying the date format to use when archving files.
+        /// </summary>
+        public string ArchiveDateFormat
+        {
+            get { return archiveDateFormat; }
+
+            set
+            {
+                archiveDateFormat = value;
+#if !NET_CF
+                dateArchive.DateFormat = archiveDateFormat;
+                dateAndSequentialArchive.DateFormat = archiveDateFormat;
+#endif
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to automatically archive log files every time the specified time passes.
         /// </summary>
         /// <remarks>
@@ -92,43 +113,19 @@ namespace NLog.Targets
         /// <c>false</c> for maximum performance.
         /// </p>
         /// </remarks>
-        public FileArchivePeriod ArchiveEvery 
+        public FileArchivePeriod ArchiveEvery
         {
-#if !NET_CF
-            get
-            {
-                return dateArchive.ArchiveEvery; 
-            }
+
+            get { return archiveEvery; }
 
             set
             {
-                dateArchive.ArchiveEvery = value;
-                dateAndSequentialArchive.ArchiveEvery = value;
-            }
-#else
-            get; set;
-#endif
-        }
-
-        /// <summary>
-        /// Gets or sets a value specifying the date format to use when archving files.
-        /// </summary>
-        public string ArchiveDateFormat
-        {
+                archiveEvery = value;
 #if !NET_CF
-            get
-            {
-                return dateArchive.ArchiveDateFormat;
-            }
-
-            set
-            {
-                dateArchive.ArchiveDateFormat = value;
-                dateAndSequentialArchive.ArchiveDateFormat = value;
-            }
-#else
-            get; set;
+                dateArchive.Period = archiveEvery;
+                dateAndSequentialArchive.Period = archiveEvery;
 #endif
+            }
         }
 
 #if NET4_5
@@ -136,19 +133,16 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
         /// </summary>
         public bool CompressionEnabled {
-            get
-            {
-                return sequentialArchive.CompressionEnabled;
-            }
+            get { return compressionEnabled; }
 
             set
             {
-                // HACK: This is dangerous. An intermediate variable should be used. 
-                dynamicArchive.CompressionEnabled = value;
-                sequentialArchive.CompressionEnabled = value;
-                rollingArchive.CompressionEnabled = value;
-                dateArchive.CompressionEnabled = value;
-                dateAndSequentialArchive.CompressionEnabled = value;
+                compressionEnabled = value;
+                dynamicArchive.CompressionEnabled = compressionEnabled;
+                sequentialArchive.CompressionEnabled = compressionEnabled;
+                rollingArchive.CompressionEnabled = compressionEnabled;
+                dateArchive.CompressionEnabled = compressionEnabled;
+                dateAndSequentialArchive.CompressionEnabled = compressionEnabled;
             }
         }
 #else
@@ -163,71 +157,46 @@ namespace NLog.Targets
         /// </summary>
         public int Size
         {
-            get { return dynamicArchive.Size; }
+            get { return size; }
 
-            set { 
-                // HACK: This is dangerous. An intermediate variable should be used. 
-                dynamicArchive.Size = value;
-                sequentialArchive.Size = value;
-                rollingArchive.Size = value;
-                dateArchive.Size = value;
-                dateAndSequentialArchive.Size = value;
-
+            set {
+                size = value;
+                dynamicArchive.Size = size;
+                sequentialArchive.Size = size;
+                rollingArchive.Size = size;
+#if !NET_CF
+                dateArchive.Size = size;
+                dateAndSequentialArchive.Size = size;
+#endif
             }
         }
 
         public FileTarget Target { get; private set; } 
 
-        public bool Archive(string archiveFileName, string fileName, bool createDirectory)
+        public bool DynamicArchive(string archiveFileName, string fileName, bool createDirectory)
         {
-            return dynamicArchive.Archive(archiveFileName, fileName, createDirectory, CompressionEnabled);
+            return dynamicArchive.Process(archiveFileName, fileName, createDirectory, CompressionEnabled);
         }
 
-        public void RollingArchive(string fileName, string pattern, int archiveNumber)
+        public void RollingArchive(string fileName, string pattern)
         {
-            rollingArchive.RollingArchive(fileName, pattern, archiveNumber);
+            rollingArchive.Process(fileName, pattern);
         }
 
         public void SequentialArchive(string fileName, string pattern)
         {
-            sequentialArchive.SequentialArchive(fileName, pattern);
+            sequentialArchive.Process(fileName, pattern);
         }
 
 #if !NET_CF
         public void DateArchive(string fileName, string pattern)
         {
-            dateArchive.DateArchive(fileName, pattern);
+            dateArchive.Process(fileName, pattern);
         }
 
         public void DateAndSequentialArchive(string fileName, string pattern, LogEventInfo logEvent)
         {
-            dateAndSequentialArchive.DateAndSequentialArchive(fileName, pattern, logEvent);
-        }
-
-        // TODO: Method duplicated
-        private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
-        {
-#if NET4_5
-            if (enableCompression)
-            {
-                using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
-                using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
-                    using (var destination = zipArchiveEntry.Open())
-                    {
-                        originalFileStream.CopyTo(destination);
-                    }
-                }
-
-                File.Delete(fileName);
-            }
-            else
-#endif
-            {
-                File.Move(fileName, archiveFileName);
-            }
+            dateAndSequentialArchive.Process(fileName, pattern, logEvent);
         }
 
         /// <summary>
@@ -237,7 +206,7 @@ namespace NLog.Targets
         /// <param name="pattern">The pattern that archive filenames will match</param>
         public void DeleteOldDateArchive(string pattern)
         {
-            dateArchive.DeleteOldDateArchive(pattern);
+            dateArchive.DeleteArchive(pattern);
         }
 #endif
 
@@ -300,7 +269,7 @@ namespace NLog.Targets
             return false;
         }
 
-        // TODO: Method duplicated.
+        // TODO: Method duplicated in DateBasedFileArchive class.
         private string GetDateFormatString(string defaultFormat)
         {
             // If archiveDateFormat is not set in the config file, use a default 

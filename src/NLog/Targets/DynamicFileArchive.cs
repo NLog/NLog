@@ -51,42 +51,58 @@ namespace NLog.Targets
         /// <param name="archiveFileName">File name of the archive</param>
         /// <param name="fileName">Original file name</param>
         /// <param name="createDirectory">Create a directory, if it does not exist</param>
-        /// <param name="enableCompression">Enables file compression</param>
+        /// <param name="shouldCompress">Enables file compression</param>
         /// <returns><c>true</c> if the file has been moved successfully; <c>false</c> otherwise</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        public bool Archive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
+        public bool Process(string archiveFileName, string fileName, bool createDirectory, bool shouldCompress)
         {
             if (Size < 1)
             {
-                InternalLogger.Warn("Archive is called. Even though the MaxArchiveFiles is set to less than 1");
+                InternalLogger.Warn("Archive process is called. Even though the Size property is set to less than 1.");
                 return false;
             }
 
             if (!File.Exists(fileName))
             {
-                InternalLogger.Error("Error while archiving, Source File : {0} Not found.", fileName);
+                InternalLogger.Error("Source file '{0}' not found.", fileName);
                 return false;
             }
 
             DeleteOldArchiveFiles();
-            AddToArchive(archiveFileName, fileName, createDirectory, enableCompression);
+            AddArchive(archiveFileName, fileName, createDirectory, shouldCompress);
             fileQueue.Enqueue(archiveFileName);
             return true;
         }
 
-        private void AddToArchive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
+        /// <summary>
+        /// Deletes the specified file and logs a message to internal logger if the action fails. 
+        /// </summary>
+        /// <param name="fileName">Filename to be deleted</param>
+        private static void DeleteFile(string fileName)
+        {
+            try
+            {
+                File.Delete(fileName);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn("Cannot delete old archive file: {0}, Exception : {1}", fileName, ex);
+            }
+        }
+
+        private void AddArchive(string archiveFileName, string fileName, bool createDirectory, bool shouldCompress)
         {
             String alternativeFileName = archiveFileName;
 
             if (fileQueue.Contains(archiveFileName))
             {
                 InternalLogger.Trace("AddToArchive file {0} already exist. Trying different file name.", archiveFileName);
-                alternativeFileName = FindSuitableFilename(archiveFileName, 1);
+                alternativeFileName = FindSuitableFilename(archiveFileName, numberToStartWith: 1);
             }
 
             try
             {
-                ArchiveFile(fileName, alternativeFileName, enableCompression);
+                ArchiveFile(fileName, alternativeFileName, shouldCompress);
             }
             catch (DirectoryNotFoundException)
             {
@@ -97,7 +113,7 @@ namespace NLog.Targets
                     try
                     {
                         Directory.CreateDirectory(Path.GetDirectoryName(archiveFileName));
-                        ArchiveFile(fileName, alternativeFileName, enableCompression);
+                        ArchiveFile(fileName, alternativeFileName, shouldCompress);
                     }
                     catch (Exception ex)
                     {
@@ -138,22 +154,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Deletes the specified file and logs a message to internal logger if the action fails. 
-        /// </summary>
-        /// <param name="fileName">Filename to be deleted</param>
-        private static void DeleteFile(string fileName)
-        {
-            try
-            {
-                File.Delete(fileName);
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Warn("Cannot delete old archive file: {0}, Exception : {1}", fileName, ex);
-            }
-        }
-
-        /// <summary>
         /// Creates a new unique filename by appending a number to it. This method tests that 
         /// the filename created does not exist.
         /// 
@@ -172,9 +172,9 @@ namespace NLog.Targets
         {
             String targetFileName = Path.GetFileNameWithoutExtension(fileName) + ".{#}" + Path.GetExtension(fileName);
 
-            while (File.Exists(BaseFileArchive.ReplaceNumberPattern(targetFileName, numberToStartWith)))
+            while (File.Exists(ReplaceNumbericPattern(targetFileName, numberToStartWith)))
             {
-                InternalLogger.Trace("AddToArchive file {0} already exist. Trying with different file name.", fileName);
+                InternalLogger.Trace("Archive file '{0}' already exist. Trying a different file name.", fileName);
                 numberToStartWith++;
             }
             return targetFileName;

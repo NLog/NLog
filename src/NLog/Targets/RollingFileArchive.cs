@@ -40,7 +40,20 @@ namespace NLog.Targets
     {
         public RollingFileArchive(FileTarget target) : base(target) { }
 
-        public void RollingArchive(string fileName, string pattern, int archiveNumber)
+        /// <summary>
+        /// Gets the way file archives are numbered from this particular class. 
+        /// </summary>
+        public ArchiveNumberingMode ArchiveNumbering 
+        {
+            get { return ArchiveNumberingMode.Rolling; }
+        }
+
+        public void Process(string fileName, string pattern) 
+        {
+            RollingArchive(fileName, pattern, archiveNumber: 0);
+        }
+
+        private void RollingArchive(string fileName, string pattern, int archiveNumber)
         {
             if (Size > 0 && archiveNumber >= Size)
             {
@@ -53,7 +66,7 @@ namespace NLog.Targets
                 return;
             }
 
-            string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
+            string newFileName = ReplaceNumbericPattern(pattern, archiveNumber);
             if (File.Exists(fileName))
             {
                 RollingArchive(newFileName, pattern, archiveNumber + 1);
