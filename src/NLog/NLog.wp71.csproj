@@ -338,6 +338,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Targets\ArchiveNumberingMode.cs" />
     <Compile Include="Targets\AspResponseTarget.cs" />
+    <Compile Include="Targets\BaseFileArchive.cs" />
     <Compile Include="Targets\ChainsawTarget.cs" />
     <Compile Include="Targets\ColoredConsoleTarget.cs" />
     <Compile Include="Targets\ConsoleOutputColor.cs" />
@@ -348,8 +349,12 @@
     <Compile Include="Targets\DatabaseParameterInfo.cs" />
     <Compile Include="Targets\DatabaseTarget.cs" />
     <Compile Include="Targets\DateAndSequenceArchive.cs" />
+    <Compile Include="Targets\DateAndSequentialFileArchive.cs" />
+    <Compile Include="Targets\DateBasedFileArchive.cs" />
+    <Compile Include="Targets\DateFileArchive.cs" />
     <Compile Include="Targets\DebuggerTarget.cs" />
     <Compile Include="Targets\DebugTarget.cs" />
+    <Compile Include="Targets\DynamicFileArchive.cs" />
     <Compile Include="Targets\EventLogTarget.cs" />
     <Compile Include="Targets\FileArchivePeriod.cs" />
     <Compile Include="Targets\FileTarget.cs" />
@@ -368,6 +373,8 @@
     <Compile Include="Targets\NullTarget.cs" />
     <Compile Include="Targets\OutputDebugStringTarget.cs" />
     <Compile Include="Targets\PerformanceCounterTarget.cs" />
+    <Compile Include="Targets\RollingFileArchive.cs" />
+    <Compile Include="Targets\SequentialFileArchive.cs" />
     <Compile Include="Targets\SmtpAuthenticationMode.cs" />
     <Compile Include="Targets\Target.cs" />
     <Compile Include="Targets\TargetAttribute.cs" />
