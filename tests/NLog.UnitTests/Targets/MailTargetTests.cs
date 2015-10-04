@@ -716,6 +716,8 @@ namespace NLog.UnitTests.Targets
                 }
             }
 
+            public string PickupDirectoryLocation { get; set; }
+
             public void Dispose()
             {
             }

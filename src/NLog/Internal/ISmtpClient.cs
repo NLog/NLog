@@ -55,6 +55,8 @@ namespace NLog.Internal
         bool EnableSsl { get; set; }
 
         void Send(MailMessage msg);
+
+        string PickupDirectoryLocation { get; set; }
     }
 }
 

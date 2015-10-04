@@ -197,7 +197,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether SSL (secure sockets layer) should be used when communicating with SMTP server.
         /// </summary>
-        /// <docgen category='SMTP Options' order='14' />
+        /// <docgen category='SMTP Options' order='14' />.
         [DefaultValue(false)]
         public bool EnableSsl { get; set; }
 
@@ -219,6 +219,7 @@ namespace NLog.Targets
         /// Gets or sets the folder where applications save mail messages to be processed by the local SMTP server.
         /// </summary>
         /// <docgen category='SMTP Options' order='17' />
+        [DefaultValue(null)]
         public string PickupDirectoryLocation { get; set; }
 
         /// <summary>
@@ -387,15 +388,23 @@ namespace NLog.Targets
 
             CheckRequiredParameters();
 
+
             var renderedSmtpServer = this.SmtpServer.Render(lastEvent);
-            if (string.IsNullOrEmpty(renderedSmtpServer))
+            if (string.IsNullOrEmpty(renderedSmtpServer) && string.IsNullOrEmpty(this.PickupDirectoryLocation))
             {
-                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
+
+                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat,
+                    string.IsNullOrEmpty(renderedSmtpServer) ? "SmtpServer" : "PickupDirectoryLocation"));
             }
+
+
+
+
             client.Host = renderedSmtpServer;
             client.Port = this.SmtpPort;
             client.EnableSsl = this.EnableSsl;
             client.Timeout = this.Timeout;
+            client.PickupDirectoryLocation = this.PickupDirectoryLocation;
 
             if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
             {
