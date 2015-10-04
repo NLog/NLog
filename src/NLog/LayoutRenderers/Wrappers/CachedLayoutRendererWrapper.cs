@@ -57,7 +57,7 @@ namespace NLog.LayoutRenderers.Wrappers
             /// <summary>Never clear the cache.</summary>
             None = 0,
             /// <summary>Clear the cache whenever the <see cref="CachedLayoutRendererWrapper"/> is initialized.</summary>
-            OnInitialize = 1,
+            OnInit = 1,
             /// <summary>Clear the cache whenever the <see cref="CachedLayoutRendererWrapper"/> is closed.</summary>
             OnClose = 2
         }
@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers.Wrappers
         public CachedLayoutRendererWrapper()
         {
             this.Cached = true;
-            this.ClearCache = ClearCacheOption.OnInitialize | ClearCacheOption.OnClose;
+            this.ClearCache = ClearCacheOption.OnInit | ClearCacheOption.OnClose;
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
-            if ((ClearCache & ClearCacheOption.OnInitialize) == ClearCacheOption.OnInitialize)
+            if ((ClearCache & ClearCacheOption.OnInit) == ClearCacheOption.OnInit)
                 this.cachedValue = null;
         }
 
