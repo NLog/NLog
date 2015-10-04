@@ -44,6 +44,14 @@ namespace NLog.Targets
     {
         public DateFileArchive(FileTarget target) : base(target) { }
 
+        /// <summary>
+        /// Gets the way file archives are numbered from this particular class. 
+        /// </summary>
+        public ArchiveNumberingMode ArchiveNumbering
+        {
+            get { return ArchiveNumberingMode.Date; }
+        }
+
         public void Process(string fileName, string pattern)
         {
             string fileNameMask = ReplaceFileNamePattern(pattern, "*");

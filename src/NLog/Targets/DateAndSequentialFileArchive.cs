@@ -44,6 +44,14 @@ namespace NLog.Targets
     {
         public DateAndSequentialFileArchive(FileTarget target) : base(target) { }
 
+        /// <summary>
+        /// Gets the way file archives are numbered from this particular class. 
+        /// </summary>
+        public ArchiveNumberingMode ArchiveNumbering
+        {
+            get { return ArchiveNumberingMode.DateAndSequence; }
+        }
+
         public void Process(string fileName, string pattern, LogEventInfo logEvent)
         {
             string baseNamePattern = Path.GetFileName(pattern);

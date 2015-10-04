@@ -46,6 +46,20 @@ namespace NLog.Targets
             Target = target;
         }
 
+        /* ArchiveNumbering Property
+        // TODO: This is a breaking change as it requires an extra value ArchiveNumberingMode.None to be added.          
+       
+        /// <summary>
+        /// Gets the way file archives are numbered from this particular class. 
+        /// </summary>
+        public abstract ArchiveNumberingMode ArchiveNumbering
+        {
+            get { return ArchiveNumberingMode.None; }
+
+            protected set;
+        }
+        */
+
 #if NET4_5
         /// <summary>
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
@@ -57,6 +71,7 @@ namespace NLog.Targets
         /// </summary>
         private const bool CompressionEnabled = false;
 #endif
+
         public int Size { get; set; }
 
         public FileTarget Target { get; private set; }
