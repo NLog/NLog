@@ -50,6 +50,7 @@ namespace NLog
     using NLog.Internal;
     using NLog.Targets;
     using NLog.Internal.Fakeables;
+    using System.Reflection;
 
 #if SILVERLIGHT
     using System.Windows;
@@ -189,8 +190,9 @@ namespace NLog
                         }
 #endif
                         this.config.InitializeAll();
+                        LogConfigurationInitialized();
                     }
-
+                    
                     return this.config;
                 }
             }
@@ -292,6 +294,12 @@ namespace NLog
             }
         }
 
+        private void LogConfigurationInitialized()
+        {
+            InternalLogger.Info("Configuration initialized.");
+            InternalLoggerHelpers.LogAssemblyVersion(Assembly.GetAssembly(typeof(ILogger)));
+        }
+        
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting 
         /// unmanaged resources.

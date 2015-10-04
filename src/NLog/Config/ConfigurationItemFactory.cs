@@ -261,6 +261,7 @@ namespace NLog.Config
                 try
                 {
                     var extensionAssembly = Assembly.LoadFrom(extensionDll);
+                    InternalLoggerHelpers.LogAssemblyVersion(extensionAssembly);
                     factory.RegisterItemsFromAssembly(extensionAssembly);
                     success = true;
                 }

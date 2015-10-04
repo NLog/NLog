@@ -117,7 +117,7 @@ namespace NLog.UnitTests
                     if (!VerifySingleFile(file))
                     {
                         failedFiles++;
-                        Console.WriteLine("Missing header: {0}", file);
+                        System.Diagnostics.Debugger.Log(0, "Tests", string.Format("Missing header: {0}{1}", file, Environment.NewLine));
                     }
                 }
             }
