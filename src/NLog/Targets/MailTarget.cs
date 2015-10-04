@@ -216,6 +216,12 @@ namespace NLog.Targets
         public bool UseSystemNetMailSettings { get; set; }
 
         /// <summary>
+        /// Gets or sets the folder where applications save mail messages to be processed by the local SMTP server.
+        /// </summary>
+        /// <docgen category='SMTP Options' order='17' />
+        public string PickupDirectoryLocation { get; set; }
+
+        /// <summary>
         /// Gets or sets the priority used for sending mails.
         /// </summary>
         public Layout Priority { get; set; }
@@ -408,10 +414,10 @@ namespace NLog.Targets
 
         private void CheckRequiredParameters()
         {
-            if (!this.UseSystemNetMailSettings && this.SmtpServer == null)
+            if (!this.UseSystemNetMailSettings && (this.SmtpServer == null || string.IsNullOrEmpty(this.PickupDirectoryLocation)))
             {
                 throw new NLogConfigurationException(
-                    string.Format("The MailTarget's '{0}' property is not set - but needed because useSystemNetMailSettings=false. The email message will not be sent.", "SmtpServer"));
+                    string.Format("The MailTarget's '{0}' and '{1}' properties are not set - but needed because useSystemNetMailSettings=false. The email message will not be sent.", "SmtpServer", "PickupDirectoryLocation"));
             }
         }
 
