@@ -71,7 +71,16 @@ namespace NLog.Targets
 #endif
         public int Size { get; set; }
 
-        public FileTarget Target { get; private set; } 
+        public FileTarget Target { get; private set; }
+
+        public static string ReplaceNumberPattern(string pattern, int value)
+        {
+            int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
+            int lastPart = pattern.IndexOf("#}", StringComparison.Ordinal) + 2;
+            int numDigits = lastPart - firstPart - 2;
+
+            return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') + pattern.Substring(lastPart);
+        }
 
         protected void RollArchiveForward(string existingFileName, string archiveFileName, bool shouldCompress)
         {
@@ -93,16 +102,7 @@ namespace NLog.Targets
             }
         }
 
-        public static string ReplaceNumberPattern(string pattern, int value)
-        {
-            int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
-            int lastPart = pattern.IndexOf("#}", StringComparison.Ordinal) + 2;
-            int numDigits = lastPart - firstPart - 2;
-
-            return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') + pattern.Substring(lastPart);
-        }
-
-        private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
+        protected static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
         {
 #if NET4_5
             if (enableCompression)
@@ -194,6 +194,148 @@ namespace NLog.Targets
             {
                 return String.IsNullOrEmpty(replacementValue) ? this.Template : template.Substring(0, this.BeginAt) + replacementValue + template.Substring(this.EndAt);
             }
+        }
+    }
+
+    internal sealed class DynamicFileArchive : BaseFileArchive
+    {
+        private readonly Queue<string> fileQueue = new Queue<string>();
+
+        public DynamicFileArchive(FileTarget target) : base(target) { }
+
+        /// <summary>
+        /// Adds a file into archive.
+        /// </summary>
+        /// <param name="archiveFileName">File name of the archive</param>
+        /// <param name="fileName">Original file name</param>
+        /// <param name="createDirectory">Create a directory, if it does not exist</param>
+        /// <param name="enableCompression">Enables file compression</param>
+        /// <returns><c>true</c> if the file has been moved successfully; <c>false</c> otherwise</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        public bool Archive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
+        {
+            if (Size < 1)
+            {
+                InternalLogger.Warn("Archive is called. Even though the MaxArchiveFiles is set to less than 1");
+                return false;
+            }
+
+            if (!File.Exists(fileName))
+            {
+                InternalLogger.Error("Error while archiving, Source File : {0} Not found.", fileName);
+                return false;
+            }
+
+            DeleteOldArchiveFiles();
+            AddToArchive(archiveFileName, fileName, createDirectory, enableCompression);
+            fileQueue.Enqueue(archiveFileName);
+            return true;
+        }
+
+        private void AddToArchive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
+        {
+            String alternativeFileName = archiveFileName;
+
+            if (fileQueue.Contains(archiveFileName))
+            {
+                InternalLogger.Trace("AddToArchive file {0} already exist. Trying different file name.", archiveFileName);
+                alternativeFileName = FindSuitableFilename(archiveFileName, 1);
+            }
+
+            try
+            {
+                ArchiveFile(fileName, alternativeFileName, enableCompression);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                if (createDirectory)
+                {
+                    InternalLogger.Trace("AddToArchive directory not found. Creating {0}", Path.GetDirectoryName(archiveFileName));
+
+                    try
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(archiveFileName));
+                        ArchiveFile(fileName, alternativeFileName, enableCompression);
+                    }
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Error("Cannot create archive directory, Exception : {0}", ex);
+                        throw;
+                    }
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error("Cannot archive file {0}, Exception : {1}", fileName, ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Remove old archive files when the files on the queue are more than the 
+        /// MaxArchiveFilesToKeep.  
+        /// </summary>
+        private void DeleteOldArchiveFiles()
+        {
+            // TODO: When the Size = 1 than ONLY a single file will be deleted. Is this the intended behavior? 
+            if (Size == 1 && fileQueue.Any())
+            {
+                string archiveFileName = fileQueue.Dequeue();
+                DeleteFile(archiveFileName);
+            }
+
+            while (fileQueue.Count >= Size)
+            {
+                string oldestArchivedFileName = fileQueue.Dequeue();
+                DeleteFile(oldestArchivedFileName);
+            }
+        }
+
+        /// <summary>
+        /// Deletes the specified file and logs a message to internal logger if the action fails. 
+        /// </summary>
+        /// <param name="fileName">Filename to be deleted</param>
+        private static void DeleteFile(string fileName)
+        {
+            try
+            {
+                File.Delete(fileName);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn("Cannot delete old archive file: {0}, Exception : {1}", fileName, ex);
+            }
+        }
+
+        /// <summary>
+        /// Creates a new unique filename by appending a number to it. This method tests that 
+        /// the filename created does not exist.
+        /// 
+        /// This process can be slow as it increments the number sequentially from a specified 
+        /// starting point until it finds a number which produces a filename which does not 
+        /// exist.
+        /// 
+        /// Example: 
+        ///     Original Filename   trace.log
+        ///     Target Filename     trace.15.log
+        /// </summary>          
+        /// <param name="fileName">Original filename</param>
+        /// <param name="numberToStartWith">Number starting point</param>
+        /// <returns>File name suitable for archiving</returns>
+        private string FindSuitableFilename(string fileName, int numberToStartWith)
+        {
+            String targetFileName = Path.GetFileNameWithoutExtension(fileName) + ".{#}" + Path.GetExtension(fileName);
+
+            while (File.Exists(BaseFileArchive.ReplaceNumberPattern(targetFileName, numberToStartWith)))
+            {
+                InternalLogger.Trace("AddToArchive file {0} already exist. Trying with different file name.", fileName);
+                numberToStartWith++;
+            }
+            return targetFileName;
         }
     }
 
@@ -656,7 +798,7 @@ namespace NLog.Targets
     {
         public const int ArchiveAboveSizeDisabled = -1;
 
-        private readonly DynamicFileArchive fileArchive = new DynamicFileArchive();
+        private readonly DynamicFileArchive dynamicArchive;
         private readonly SequentialFileArchive sequentialArchive;
         private readonly RollingFileArchive rollingArchive;
 #if !NET_CF
@@ -667,6 +809,7 @@ namespace NLog.Targets
         public FileArchiver(FileTarget target)
         {
             Target = target;
+            dynamicArchive = new DynamicFileArchive(target);
             sequentialArchive = new SequentialFileArchive(target);
             rollingArchive = new RollingFileArchive(target);
 #if !NET_CF
@@ -754,6 +897,7 @@ namespace NLog.Targets
             set
             {
                 // HACK: This is dangerous. An intermediate variable should be used. 
+                dynamicArchive.CompressionEnabled = value;
                 sequentialArchive.CompressionEnabled = value;
                 rollingArchive.CompressionEnabled = value;
                 dateArchive.CompressionEnabled = value;
@@ -772,15 +916,16 @@ namespace NLog.Targets
         /// </summary>
         public int Size
         {
-            get { return fileArchive.Size; }
+            get { return dynamicArchive.Size; }
 
             set { 
                 // HACK: This is dangerous. An intermediate variable should be used. 
-                fileArchive.Size = value;
+                dynamicArchive.Size = value;
                 sequentialArchive.Size = value;
                 rollingArchive.Size = value;
                 dateArchive.Size = value;
                 dateAndSequentialArchive.Size = value;
+
             }
         }
 
@@ -788,7 +933,7 @@ namespace NLog.Targets
 
         public bool Archive(string archiveFileName, string fileName, bool createDirectory)
         {
-            return fileArchive.Archive(archiveFileName, fileName, createDirectory, CompressionEnabled);
+            return dynamicArchive.Archive(archiveFileName, fileName, createDirectory, CompressionEnabled);
         }
 
         public void RollingArchive(string fileName, string pattern, int archiveNumber)
@@ -908,50 +1053,6 @@ namespace NLog.Targets
             return false;
         }
 
-        public static string ReplaceNumberPattern(string pattern, int value)
-        {
-            int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
-            int lastPart = pattern.IndexOf("#}", StringComparison.Ordinal) + 2;
-            int numDigits = lastPart - firstPart - 2;
-
-            return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') + pattern.Substring(lastPart);
-        }
-
-        // TODO: Method duplicated.
-        private DateTime GetArchiveDate(bool isNextCycle)
-        {
-            DateTime archiveDate = TimeSource.Current.Time;
-
-            // Because AutoArchive/DateArchive gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
-            // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
-            int addCount = isNextCycle ? -1 : 0;
-
-            switch (ArchiveEvery)
-            {
-                case FileArchivePeriod.Day:
-                    archiveDate = archiveDate.AddDays(addCount);
-                    break;
-
-                case FileArchivePeriod.Hour:
-                    archiveDate = archiveDate.AddHours(addCount);
-                    break;
-
-                case FileArchivePeriod.Minute:
-                    archiveDate = archiveDate.AddMinutes(addCount);
-                    break;
-
-                case FileArchivePeriod.Month:
-                    archiveDate = archiveDate.AddMonths(addCount);
-                    break;
-
-                case FileArchivePeriod.Year:
-                    archiveDate = archiveDate.AddYears(addCount);
-                    break;
-            }
-
-            return archiveDate;
-        }
-
         // TODO: Method duplicated.
         private string GetDateFormatString(string defaultFormat)
         {
@@ -984,151 +1085,6 @@ namespace NLog.Targets
                 }
             }
             return formatString;
-        }
-
-        private sealed class DynamicFileArchive
-        {
-            private readonly Queue<string> fileQueue = new Queue<string>();
-
-            /// <summary>
-            /// Gets or sets the maximum number of archive files that should be kept in the archive. 
-            /// </summary>
-            public int Size { get; set; }
-
-            /// <summary>
-            /// Adds a file into archive.
-            /// </summary>
-            /// <param name="archiveFileName">File name of the archive</param>
-            /// <param name="fileName">Original file name</param>
-            /// <param name="createDirectory">Create a directory, if it does not exist</param>
-            /// <param name="enableCompression">Enables file compression</param>
-            /// <returns><c>true</c> if the file has been moved successfully; <c>false</c> otherwise</returns>
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-            public bool Archive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
-            {
-                if (Size < 1)
-                {
-                    InternalLogger.Warn("Archive is called. Even though the MaxArchiveFiles is set to less than 1");
-                    return false;
-                }
-
-                if (!File.Exists(fileName))
-                {
-                    InternalLogger.Error("Error while archiving, Source File : {0} Not found.", fileName);
-                    return false;
-                }
-
-                DeleteOldArchiveFiles();
-                AddToArchive(archiveFileName, fileName, createDirectory, enableCompression);
-                fileQueue.Enqueue(archiveFileName);
-                return true;
-            }
-
-            private void AddToArchive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
-            {
-                String alternativeFileName = archiveFileName;
-
-                if (fileQueue.Contains(archiveFileName))
-                {
-                    InternalLogger.Trace("AddToArchive file {0} already exist. Trying different file name.", archiveFileName);
-                    alternativeFileName = FindSuitableFilename(archiveFileName, 1);
-                }
-
-                try
-                {
-                    ArchiveFile(fileName, alternativeFileName, enableCompression);
-                }
-                catch (DirectoryNotFoundException)
-                {
-                    if (createDirectory)
-                    {
-                        InternalLogger.Trace("AddToArchive directory not found. Creating {0}", Path.GetDirectoryName(archiveFileName));
-
-                        try
-                        {
-                            Directory.CreateDirectory(Path.GetDirectoryName(archiveFileName));
-                            ArchiveFile(fileName, alternativeFileName, enableCompression);
-                        }
-                        catch (Exception ex)
-                        {
-                            InternalLogger.Error("Cannot create archive directory, Exception : {0}", ex);
-                            throw;
-                        }
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Cannot archive file {0}, Exception : {1}", fileName, ex);
-                    throw;
-                }
-            }
-
-            /// <summary>
-            /// Remove old archive files when the files on the queue are more than the 
-            /// MaxArchiveFilesToKeep.  
-            /// </summary>
-            private void DeleteOldArchiveFiles()
-            {
-                // TODO: When the Size = 1 than ONLY a single file will be deleted. Is this the intended behavior? 
-                if (Size == 1 && fileQueue.Any())
-                {
-                    string archiveFileName = fileQueue.Dequeue();
-                    DeleteFile(archiveFileName);
-                }
-
-                while (fileQueue.Count >= Size)
-                {
-                    string oldestArchivedFileName = fileQueue.Dequeue();
-                    DeleteFile(oldestArchivedFileName);
-                }
-            }
-
-            /// <summary>
-            /// Deletes the specified file and logs a message to internal logger if the action fails. 
-            /// </summary>
-            /// <param name="fileName">Filename to be deleted</param>
-            private static void DeleteFile(string fileName)
-            {
-                try
-                {
-                    File.Delete(fileName);
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Warn("Cannot delete old archive file: {0}, Exception : {1}", fileName, ex);
-                }
-            }
-
-            /// <summary>
-            /// Creates a new unique filename by appending a number to it. This method tests that 
-            /// the filename created does not exist.
-            /// 
-            /// This process can be slow as it increments the number sequentially from a specified 
-            /// starting point until it finds a number which produces a filename which does not 
-            /// exist.
-            /// 
-            /// Example: 
-            ///     Original Filename   trace.log
-            ///     Target Filename     trace.15.log
-            /// </summary>          
-            /// <param name="fileName">Original filename</param>
-            /// <param name="numberToStartWith">Number starting point</param>
-            /// <returns>File name suitable for archiving</returns>
-            private string FindSuitableFilename(string fileName, int numberToStartWith)
-            {
-                String targetFileName = Path.GetFileNameWithoutExtension(fileName) + ".{#}" + Path.GetExtension(fileName);
-
-                while (File.Exists(BaseFileArchive.ReplaceNumberPattern(targetFileName, numberToStartWith)))
-                {
-                    InternalLogger.Trace("AddToArchive file {0} already exist. Trying with different file name.", fileName);
-                    numberToStartWith++;
-                }
-                return targetFileName;
-            }
         }
     }
 }
