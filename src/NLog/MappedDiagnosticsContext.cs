@@ -73,7 +73,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the current thread MDC named item.
+        /// Gets the current thread MDC named item, as <see cref="string"/>.
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
@@ -83,18 +83,18 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the current thread MDC named item.
+        /// Gets the current thread MDC named item, as <see cref="string"/>.
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
-        public static string Get (string item, IFormatProvider formatProvider) 
+        public static string Get(string item, IFormatProvider formatProvider)
         {
             return GlobalDiagnosticsContext.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>
-        /// Gets the current thread MDC named item.
+        /// Gets the current thread MDC named item, as <see cref="object"/>.
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
@@ -112,14 +112,14 @@ namespace NLog
         /// Checks whether the specified item exists in current thread MDC.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>A boolean indicating whether the specified item exists in current thread MDC.</returns>
+        /// <returns>A boolean indicating whether the specified <paramref name="item"/> exists in current thread MDC.</returns>
         public static bool Contains(string item)
         {
             return ThreadDictionary.ContainsKey(item);
         }
 
         /// <summary>
-        /// Removes the specified item from current thread MDC.
+        /// Removes the specified <paramref name="item"/> from current thread MDC.
         /// </summary>
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
