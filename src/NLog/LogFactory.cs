@@ -297,7 +297,7 @@ namespace NLog
         private void LogConfigurationInitialized()
         {
             InternalLogger.Info("Configuration initialized.");
-            InternalLoggerHelpers.LogAssemblyVersion(Assembly.GetAssembly(typeof(ILogger)));
+            InternalLogger.LogAssemblyVersion(typeof(ILogger).Assembly);
         }
         
         /// <summary>

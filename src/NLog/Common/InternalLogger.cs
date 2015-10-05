@@ -38,12 +38,12 @@ namespace NLog.Common
     using System.Configuration;
     using System.Globalization;
     using System.IO;
+    using System.Reflection;
     using System.Text;
     using NLog.Internal;
     using NLog.Time;
 #if !SILVERLIGHT
     using ConfigurationManager = System.Configuration.ConfigurationManager;
-    using System.Reflection;
     using System.Diagnostics;
 #endif
 
@@ -389,11 +389,15 @@ namespace NLog.Common
         {
             try
             {
+#if SILVERLIGHT
+                Info(assembly.FullName);
+#else
                 var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
                 Info("{0}. File version: {1}. Product version: {2}.",
                     assembly.FullName,
                     fileVersionInfo.FileVersion,
                     fileVersionInfo.ProductVersion);
+#endif
             }
             catch (Exception exc)
             {
