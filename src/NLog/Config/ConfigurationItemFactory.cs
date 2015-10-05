@@ -98,6 +98,10 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets default singleton instance of <see cref="ConfigurationItemFactory"/>.
         /// </summary>
+        /// <remarks>
+        /// This property implements lazy instantiation so that the <see cref="ConfigurationItemFactory"/> is not built before 
+        /// the internal logger is configured.
+        /// </remarks>
         public static ConfigurationItemFactory Default
         {
             get
@@ -261,7 +265,7 @@ namespace NLog.Config
                 try
                 {
                     var extensionAssembly = Assembly.LoadFrom(extensionDll);
-                    InternalLoggerHelpers.LogAssemblyVersion(extensionAssembly);
+                    InternalLogger.LogAssemblyVersion(extensionAssembly);
                     factory.RegisterItemsFromAssembly(extensionAssembly);
                     success = true;
                 }

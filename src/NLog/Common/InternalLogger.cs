@@ -43,9 +43,11 @@ namespace NLog.Common
     using NLog.Time;
 #if !SILVERLIGHT
     using ConfigurationManager = System.Configuration.ConfigurationManager;
+    using System.Reflection;
+    using System.Diagnostics;
 #endif
 
-	/// <summary>
+    /// <summary>
     /// NLog internal logger.
     /// </summary>
     public static class InternalLogger
@@ -376,6 +378,26 @@ namespace NLog.Common
                 }
 
                 // we have no place to log the message to so we ignore it
+            }
+        }
+
+        /// <summary>
+        /// Logs the assembly version and file version of the given Assembly.
+        /// </summary>
+        /// <param name="assembly">The assembly to log.</param>
+        public static void LogAssemblyVersion(Assembly assembly)
+        {
+            try
+            {
+                var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+                Info("{0}. File version: {1}. Product version: {2}.",
+                    assembly.FullName,
+                    fileVersionInfo.FileVersion,
+                    fileVersionInfo.ProductVersion);
+            }
+            catch (Exception exc)
+            {
+                Error("Error logging version of assembly {0}: {1}.", assembly.FullName, exc.Message);
             }
         }
 
