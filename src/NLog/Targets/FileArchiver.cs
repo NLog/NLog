@@ -54,7 +54,7 @@ namespace NLog.Targets
 #endif
         private FileArchivePeriod archiveEvery = FileArchivePeriod.None;
         private string archiveDateFormat = String.Empty;
-        private bool compressionEnabled = false;
+        private bool compressionEnabled;
         private int size = 0;
 
         public FileArchiver(FileTarget target)
