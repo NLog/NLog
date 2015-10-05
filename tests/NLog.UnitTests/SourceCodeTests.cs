@@ -183,10 +183,10 @@ namespace NLog.UnitTests
             var missingFiles = filesToCompile.Except(filesInProject).ToList();
             if (missingFiles.Count > 0)
             {
-                Console.WriteLine("The following files must be added to {0}", string.Join(";", projectFiles));
+                System.Diagnostics.Debugger.Log(0, "Tests", string.Format("The following files must be added to {0}{1}", string.Join(";", projectFiles), Environment.NewLine));
                 foreach (var f in missingFiles)
                 {
-                    Console.WriteLine("  {0}", f);
+                    System.Diagnostics.Debugger.Log(0, "Tests", string.Format("  {0}{1}", f, Environment.NewLine));
                 }
             }
 
@@ -218,6 +218,11 @@ namespace NLog.UnitTests
                 }
 
                 if (file.Contains(".g."))
+                {
+                    continue;
+                }
+
+                if (file.Contains(Path.Combine("obj", "Debug")))
                 {
                     continue;
                 }
