@@ -42,6 +42,10 @@ namespace NLog.Targets
     {
         public DateBasedFileArchive(FileTarget target) : base(target) { }
 
+        // TODO: Default date format for each FileArchivePeriod can be combined in a static class.
+        //      This will simplify the GetArchiveDate() and GetDateFormatString() methods.
+        //      FileArchivePeriod.Day == FileArchivePeriod.Default can be added.
+
         /// <summary>
         /// Gets or sets a value indicating whether to automatically archive log files every time the specified time passes.
         /// </summary>
@@ -61,25 +65,25 @@ namespace NLog.Targets
         /// Gets or sets a value specifying the date format to use when archving files.
         /// </summary>
         public string DateFormat { get; set; }
-
+        
         /// <summary>
         /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the Size property.
         /// </summary>
         /// <remarks>
-        /// Items are deleted in the same order as in <paramref name="oldArchiveFileNames" />.
+        /// Items are deleted in the same order as in <paramref name="fileNames" />.
         /// No file is deleted if Size property is less or equal to zero.
         /// </remarks>
-        protected void EnsureArchiveCount(IList<string> oldArchiveFileNames)
+        protected void DeleteExcessFiles(IList<string> fileNames)
         {
             if (Size <= 0)
             {
                 return;
             }
 
-            int numberToDelete = oldArchiveFileNames.Count - Size;
+            int numberToDelete = fileNames.Count - Size;
             for (int fileIndex = 0; fileIndex <= numberToDelete; fileIndex++)
             {
-                File.Delete(oldArchiveFileNames[fileIndex]);
+                File.Delete(fileNames[fileIndex]);
             }
         }
 
@@ -153,6 +157,8 @@ namespace NLog.Targets
 
         protected static string ReplaceFileNamePattern(string pattern, string replacementValue)
         {
+            // TODO: ReplaceFileNamePattern() method can be moved in FileNameTemplate class.
+
             return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
         }
     }

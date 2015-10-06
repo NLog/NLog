@@ -90,7 +90,7 @@ namespace NLog.Targets
                     .ThenBy(a => a.Sequence)
                     .Select(a => a.FileName)
                     .ToList();
-                EnsureArchiveCount(oldArchiveFileNames);
+                DeleteExcessFiles(oldArchiveFileNames);
             }
             catch (DirectoryNotFoundException)
             {

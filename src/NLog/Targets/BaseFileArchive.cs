@@ -114,7 +114,7 @@ namespace NLog.Targets
         /// <param name="shouldCompress">True if the target file name should be a compressed archive, False otherwise.</param>
         protected static void ArchiveFile(string fileName, string archiveFileName, bool shouldCompress)
         {
-            // TODO: Revieve how the ArchiveFile() method is invoked. 
+            // TODO: Review how the ArchiveFile() method is invoked. 
             //      In some cases the shouldCompress parameter is passed (shouldCompress && CompressionEnabled) while in 
             //      other cases the value CompressionEnabled is passed.
 

@@ -58,7 +58,7 @@ namespace NLog.Targets
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(DateFormat);
 
-            DeleteArchive(pattern);
+            DeleteOutdatedFiles(pattern);
 
             DateTime newFileDate = GetArchiveDate(true);
             if (dirName != null)
@@ -73,7 +73,7 @@ namespace NLog.Targets
         /// files remain.
         /// </summary>
         /// <param name="pattern">The pattern that archive filenames will match</param>
-        public void DeleteArchive(string pattern)
+        public void DeleteOutdatedFiles(string pattern)
         {
             string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
@@ -100,7 +100,7 @@ namespace NLog.Targets
                     }
                 }
 
-                EnsureArchiveCount(filesByDate);
+                DeleteExcessFiles(filesByDate);
             }
             catch (DirectoryNotFoundException)
             {
