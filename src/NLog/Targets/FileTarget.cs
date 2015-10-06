@@ -60,7 +60,6 @@ namespace NLog.Targets
     {
         // Clean up period, of the initialied files, is defined in days.
         private const int CleanupPeriod = 2;
-        private const int MaxInitialisedFilesAllowed = 100;
 
         private readonly InitializedFiles initializedFiles = new InitializedFiles();
 
@@ -113,6 +112,7 @@ namespace NLog.Targets
             this.maxLogFilenames = 20;
             this.previousFileNames = new Queue<string>(this.maxLogFilenames);
             recentAppenders = BaseFileAppenderCache.Empty;
+            initializedFiles.MaxAllowed = 100;
         }
 
         /// <summary>
@@ -642,22 +642,7 @@ namespace NLog.Targets
 #endif
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
-            // Clean up old archives if this is the first time a log record has been written to
-            // this log file and the archiving system is date/time based.
-            if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None)
-            {
-                if (!previousFileNames.Contains(fileName))
-                {
-                    if (this.previousFileNames.Count > this.maxLogFilenames)
-                    {
-                        this.previousFileNames.Dequeue();
-                    }
-
-                    string fileNamePattern = this.GetFileNamePattern(fileName, logEvent);
-                    fileArchiver.DeleteOldDateArchive(fileNamePattern);
-                    this.previousFileNames.Enqueue(fileName);
-                }
-            }
+            DeleteOldDateArchives(logEvent, fileName);
 
             if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
             {
@@ -666,6 +651,30 @@ namespace NLog.Targets
             }
 
             this.WriteToFile(fileName, logEvent, bytes, false);
+        }
+
+        private void DeleteOldDateArchives(LogEventInfo logEvent, string fileName)
+        {
+            // TODO: This appears to be the only method utilising the previousFileNames queue. 
+            //      Does this method belong in this class or it should be moved?
+
+
+            // Clean up old archives if this is the first time a log record has been written to
+            // this log file and the archiving system is date/time based.
+            if (ArchiveNumbering == ArchiveNumberingMode.Date && ArchiveEvery != FileArchivePeriod.None)
+            {
+                if (!previousFileNames.Contains(fileName))
+                {
+                    if (previousFileNames.Count > maxLogFilenames)
+                    {
+                        previousFileNames.Dequeue();
+                    }
+
+                    string fileNamePattern = GetFileNamePattern(fileName, logEvent);
+                    fileArchiver.DeleteOldDateArchive(fileNamePattern);
+                    previousFileNames.Enqueue(fileName);
+                }
+            }
         }
 
         /// <summary>
@@ -950,7 +959,7 @@ namespace NLog.Targets
                     writeHeader = true;
                     initializedFiles.AddOrUpdate(fileName);
 
-                    if (initializedFiles.Count >= MaxInitialisedFilesAllowed) 
+                    if (initializedFiles.Count >= initializedFiles.MaxAllowed) 
                     {
                         CleanupInitializedFiles();
                     }
@@ -1034,6 +1043,9 @@ namespace NLog.Targets
             }
         }
 
+        // TODO: Align the parameter lists of WriteHeader() and WriteFooter() methods. 
+        //      Their function and behavior of those two functions are very close and they should be aligned.
+
         private void WriteHeader(BaseFileAppender appender)
         {
             long fileLength;
@@ -1113,6 +1125,8 @@ namespace NLog.Targets
                     return initializedFiles.Count;
                 }
             }
+
+            public int MaxAllowed { get; set; }
 
             public void AddOrUpdate(String fileName)
             {

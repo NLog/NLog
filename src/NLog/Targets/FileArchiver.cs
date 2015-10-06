@@ -206,7 +206,7 @@ namespace NLog.Targets
         /// <param name="pattern">The pattern that archive filenames will match</param>
         public void DeleteOldDateArchive(string pattern)
         {
-            dateArchive.DeleteArchive(pattern);
+            dateArchive.DeleteOutdatedFiles(pattern);
         }
 #endif
 
