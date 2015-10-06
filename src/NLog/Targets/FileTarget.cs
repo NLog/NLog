@@ -660,7 +660,9 @@ namespace NLog.Targets
             // REMOVED: fileArchiver.DateArchive(fileInfo.FullName, fileNamePattern);
             DateFileArchive fileArchive = new DateFileArchive(this)
             {
+#if NET4_5
                 CompressionEnabled = this.EnableArchiveFileCompression,
+#endif
                 Size = this.MaxArchiveFiles,
                 // Date specific archive properties.
                 DateFormat = this.ArchiveDateFormat,
@@ -808,7 +810,9 @@ namespace NLog.Targets
             {
                 DynamicFileArchive fileArchive = new DynamicFileArchive(this)
                 {
+#if NET4_5
                     CompressionEnabled = this.EnableArchiveFileCompression,
+#endif
                     Size = this.MaxArchiveFiles
                 };
 
@@ -827,7 +831,9 @@ namespace NLog.Targets
                         // REMOVED: fileArchiver.RollingArchive(fileInfo.FullName, fileNamePattern);
                         RollingFileArchive fileArchive = new RollingFileArchive(this)
                         {
+#if NET4_5
                             CompressionEnabled = this.EnableArchiveFileCompression,
+#endif
                             Size = this.MaxArchiveFiles 
                         };
                         fileArchive.Process(fileInfo.FullName, fileNamePattern);
@@ -839,7 +845,9 @@ namespace NLog.Targets
                         // REMOVED: fileArchiver.SequentialArchive(fileInfo.FullName, fileNamePattern);
                         SequentialFileArchive fileArchive = new SequentialFileArchive(this)
                         {
+#if NET4_5
                             CompressionEnabled = this.EnableArchiveFileCompression,
+#endif
                             Size = this.MaxArchiveFiles
                         };
 
@@ -852,7 +860,9 @@ namespace NLog.Targets
                         // REMOVED: fileArchiver.DateArchive(fileInfo.FullName, fileNamePattern);
                         DateFileArchive fileArchive = new DateFileArchive(this)
                         {
+#if NET4_5
                             CompressionEnabled = this.EnableArchiveFileCompression,
+#endif
                             Size = this.MaxArchiveFiles,
                             // Date specific archive properties.
                             DateFormat = this.ArchiveDateFormat,
@@ -868,7 +878,9 @@ namespace NLog.Targets
                         // REMOVED: fileArchiver.DateAndSequentialArchive(fileInfo.FullName, fileNamePattern, eventInfo);
                         DateAndSequentialFileArchive fileArchive = new DateAndSequentialFileArchive(this)
                         {
+#if NET4_5
                             CompressionEnabled = this.EnableArchiveFileCompression,
+#endif
                             Size = this.MaxArchiveFiles,
                             // Date specific archive properties.
                             DateFormat = this.ArchiveDateFormat,
@@ -909,8 +921,6 @@ namespace NLog.Targets
             }
             return fileNamePattern;
         }
-
-
 
         // TODO: Method duplicated in DateBasedFileArchive class.
         private string GetDateFormatString(string defaultFormat)
