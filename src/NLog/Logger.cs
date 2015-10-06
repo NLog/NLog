@@ -406,7 +406,7 @@ namespace NLog
 
 
         /// <summary>
-        /// Runs action. If the action throws, the exception is logged at <c>Error</c> level. Exception is not propagated outside of this method.
+        /// Runs action. If the action throws, the exception is logged at <c>Error</c> level. The exception is not propagated outside of this method.
         /// </summary>
         /// <param name="action">Action to execute.</param>
         public void Swallow(Action action)
@@ -422,24 +422,24 @@ namespace NLog
         }
 
         /// <summary>
-        /// Runs the provided function and returns its result. If exception is thrown, it is logged at <c>Error</c> level.
-        /// Exception is not propagated outside of this method. Fallback value is returned instead.
+        /// Runs the provided function and returns its result. If an exception is thrown, it is logged at <c>Error</c> level.
+        /// The exception is not propagated outside of this method; a default value is returned instead.
         /// </summary>
         /// <typeparam name="T">Return type of the provided function.</typeparam>
         /// <param name="func">Function to run.</param>
-        /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
+        /// <returns>Result returned by the provided function or the default value of type <typeparamref name="T"/> in case of exception.</returns>
         public T Swallow<T>(Func<T> func)
         {
             return Swallow(func, default(T));
         }
 
         /// <summary>
-        /// Runs the provided function and returns its result. If exception is thrown, it is logged at <c>Error</c> level.
-        /// Exception is not propagated outside of this method. Fallback value is returned instead.
+        /// Runs the provided function and returns its result. If an exception is thrown, it is logged at <c>Error</c> level.
+        /// The exception is not propagated outside of this method; a fallback value is returned instead.
         /// </summary>
         /// <typeparam name="T">Return type of the provided function.</typeparam>
         /// <param name="func">Function to run.</param>
-        /// <param name="fallback">Fallback value to return in case of exception. Defaults to default value of type T.</param>
+        /// <param name="fallback">Fallback value to return in case of exception.</param>
         /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
         public T Swallow<T>(Func<T> func, T fallback)
         {
@@ -456,7 +456,7 @@ namespace NLog
 
 #if ASYNC_SUPPORTED
         /// <summary>
-        /// Runs async action. If the action throws, the exception is logged at <c>Error</c> level. Exception is not propagated outside of this method.
+        /// Runs async action. If the action throws, the exception is logged at <c>Error</c> level. The exception is not propagated outside of this method.
         /// </summary>
         /// <param name="asyncAction">Async action to execute.</param>
         public async Task SwallowAsync(Func<Task> asyncAction)
@@ -472,26 +472,26 @@ namespace NLog
         }
 
         /// <summary>
-        /// Runs the provided async function and returns its result. If exception is thrown, it is logged at <c>Error</c> level.
-        /// Exception is not propagated outside of this method. Fallback value is returned instead.
+        /// Runs the provided async function and returns its result. If the task does not run to completion, an exception is logged at <c>Error</c> level.
+        /// The exception is not propagated outside of this method; a default value is returned instead.
         /// </summary>
-        /// <typeparam name="T">Return type of the provided function.</typeparam>
+        /// <typeparam name="TResult">Return type of the provided function.</typeparam>
         /// <param name="asyncFunc">Async function to run.</param>
-        /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
-        public async Task<T> SwallowAsync<T>(Func<Task<T>> asyncFunc)
+        /// <returns>A task that represents the completion of the supplied task. If the supplied task ends in the <see cref="TaskStatus.RanToCompletion"/> state, the result of the new task will be the result of the supplied task; otherwise, the result of the new task will be the default value of type <typeparamref name="TResult"/>.</returns>
+        public async Task<TResult> SwallowAsync<TResult>(Func<Task<TResult>> asyncFunc)
         {
-            return await SwallowAsync(asyncFunc, default(T));
+            return await SwallowAsync(asyncFunc, default(TResult));
         }
 
         /// <summary>
-        /// Runs the provided async function and returns its result. If exception is thrown, it is logged at <c>Error</c> level.
-        /// Exception is not propagated outside of this method. Fallback value is returned instead.
+        /// Runs the provided async function and returns its result. If the task does not run to completion, an exception is logged at <c>Error</c> level.
+        /// The exception is not propagated outside of this method; a fallback value is returned instead.
         /// </summary>
-        /// <typeparam name="T">Return type of the provided function.</typeparam>
+        /// <typeparam name="TResult">Return type of the provided function.</typeparam>
         /// <param name="asyncFunc">Async function to run.</param>
-        /// <param name="fallback">Fallback value to return in case of exception. Defaults to default value of type T.</param>
-        /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
-        public async Task<T> SwallowAsync<T>(Func<Task<T>> asyncFunc, T fallback)
+        /// <param name="fallback">Fallback value to return if the task does not end in the <see cref="TaskStatus.RanToCompletion"/> state.</param>
+        /// <returns>A task that represents the completion of the supplied task. If the supplied task ends in the <see cref="TaskStatus.RanToCompletion"/> state, the result of the new task will be the result of the supplied task; otherwise, the result of the new task will be the fallback value.</returns>
+        public async Task<TResult> SwallowAsync<TResult>(Func<Task<TResult>> asyncFunc, TResult fallback)
         {
             try
             {
