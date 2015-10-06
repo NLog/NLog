@@ -646,7 +646,7 @@ namespace NLog.UnitTests.Targets
                 Body = "${level} ${logger} ${message}",
                 UseSystemNetMailSettings = true
             };
-           
+
         }
 
         [Fact]
@@ -662,6 +662,45 @@ namespace NLog.UnitTests.Targets
                 UseSystemNetMailSettings = false
             };
             Assert.Throws<NLogConfigurationException>(() => mmt.Initialize(null));
+        }
+
+        /// <summary>
+        /// Test for https://github.com/NLog/NLog/issues/690
+        /// </summary>
+        [Fact]
+        public void MailTarget_UseSystemNetMailSettings_False_Override()
+        {
+            var inConfigVal = @"C:\config";
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@bar.com",
+                Subject = "Hello from NLog",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}",
+                PickupDirectoryLocation = @"C:\TEMP",
+                UseSystemNetMailSettings = false
+            };
+            mmt.Initialize(null);
+            Assert.NotEqual(mmt.PickupDirectoryLocation, inConfigVal);
+        }
+
+        [Fact]
+        public void MailTarget_UseSystemNetMailSettings_True()
+        {
+            var inConfigVal = @"C:\config";
+            var mmt = new MailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@bar.com",
+                Subject = "Hello from NLog",
+                Body = "${level} ${logger} ${message}",
+                UseSystemNetMailSettings = true
+            };
+
+            var smtp = new SmtpClient();
+            mmt.Initialize(null);
+            Assert.Equal(mmt.PickupDirectoryLocation, inConfigVal);
         }
 
         [Fact]
@@ -695,15 +734,17 @@ namespace NLog.UnitTests.Targets
                 this.MessagesSent = new List<MailMessage>();
             }
 
-            public string Host { get; set; }
-            public int Port { get; set; }
-            public int Timeout { get; set; }
+            public new string Host { get; set; }
+            public new int Port { get; set; }
+            public new int Timeout { get; set; }
+            public new string PickupDirectoryLocation { get; set; }
 
-            public ICredentialsByHost Credentials { get; set; }
-            public bool EnableSsl { get; set; }
+
+            public new ICredentialsByHost Credentials { get; set; }
+            public new bool EnableSsl { get; set; }
             public List<MailMessage> MessagesSent { get; private set; }
 
-            public void Send(MailMessage msg)
+            public new void Send(MailMessage msg)
             {
                 if (string.IsNullOrEmpty(this.Host))
                 {
@@ -715,10 +756,7 @@ namespace NLog.UnitTests.Targets
                     throw new InvalidOperationException("Some SMTP error.");
                 }
             }
-
-            public string PickupDirectoryLocation { get; set; }
-
-            public void Dispose()
+            public new void Dispose()
             {
             }
         }
