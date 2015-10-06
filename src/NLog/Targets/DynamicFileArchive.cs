@@ -51,10 +51,9 @@ namespace NLog.Targets
         /// <param name="archiveFileName">File name of the archive</param>
         /// <param name="fileName">Original file name</param>
         /// <param name="createDirectory">Create a directory, if it does not exist</param>
-        /// <param name="shouldCompress">Enables file compression</param>
         /// <returns><c>true</c> if the file has been moved successfully; <c>false</c> otherwise</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        public bool Process(string archiveFileName, string fileName, bool createDirectory, bool shouldCompress)
+        public bool Process(string archiveFileName, string fileName, bool createDirectory)
         {
             if (Size < 1)
             {
@@ -69,7 +68,7 @@ namespace NLog.Targets
             }
 
             DeleteOldArchiveFiles();
-            AddArchive(archiveFileName, fileName, createDirectory, shouldCompress);
+            AddArchive(archiveFileName, fileName, createDirectory);
             fileQueue.Enqueue(archiveFileName);
             return true;
         }
@@ -90,7 +89,7 @@ namespace NLog.Targets
             }
         }
 
-        private void AddArchive(string archiveFileName, string fileName, bool createDirectory, bool shouldCompress)
+        private void AddArchive(string archiveFileName, string fileName, bool createDirectory)
         {
             String alternativeFileName = archiveFileName;
 
@@ -102,7 +101,7 @@ namespace NLog.Targets
 
             try
             {
-                ArchiveFile(fileName, alternativeFileName, shouldCompress);
+                ArchiveFile(fileName, alternativeFileName, CompressionEnabled);
             }
             catch (DirectoryNotFoundException)
             {
@@ -113,7 +112,7 @@ namespace NLog.Targets
                     try
                     {
                         Directory.CreateDirectory(Path.GetDirectoryName(archiveFileName));
-                        ArchiveFile(fileName, alternativeFileName, shouldCompress);
+                        ArchiveFile(fileName, alternativeFileName, CompressionEnabled);
                     }
                     catch (Exception ex)
                     {
