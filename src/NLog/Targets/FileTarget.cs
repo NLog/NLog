@@ -38,18 +38,15 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
-#if !SILVERLIGHT
-    using System.IO.Compression;
-#endif
     using System.Linq;
     using System.Text;
     using System.Threading;
-    using Common;
-    using Config;
-    using Internal;
-    using Internal.FileAppenders;
-    using Layouts;
-    using Time;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Internal.FileAppenders;
+    using NLog.Layouts;
+    using NLog.Time;
 
     /// <summary>
     /// Writes log messages to one or more files.
