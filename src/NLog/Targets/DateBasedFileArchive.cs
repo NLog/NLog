@@ -38,8 +38,15 @@ namespace NLog.Targets
     using System.IO;
     using NLog.Time;
 
+    /// <summary>
+    /// Base of all the file archiving classes when the archiving is triggered based on Date/Time. 
+    /// </summary>
     internal abstract class DateBasedFileArchive : BaseFileArchive
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DateBasedFileArchive"/> class.
+        /// </summary>
+        /// <param name="target">The <see cref="FileTarget"/> creating this class.</param>
         public DateBasedFileArchive(FileTarget target) : base(target) { }
 
         // TODO: Default date format for each FileArchivePeriod can be combined in a static class.
@@ -67,11 +74,12 @@ namespace NLog.Targets
         public string DateFormat { get; set; }
         
         /// <summary>
-        /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the Size property.
+        /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the <see
+        /// cref="P:NLog.Targets.BaseFileArchive.Size"/> property.
         /// </summary>
         /// <remarks>
-        /// Items are deleted in the same order as in <paramref name="fileNames" />.
-        /// No file is deleted if Size property is less or equal to zero.
+        /// Items are deleted in the same order as in <paramref name="fileNames"/>. No file is deleted if <see
+        /// cref="P:NLog.Targets.BaseFileArchive.Size"/> property is less or equal to zero.
         /// </remarks>
         protected void DeleteExcessFiles(IList<string> fileNames)
         {
@@ -121,7 +129,15 @@ namespace NLog.Targets
             return archiveDate;
         }
 
-        // TODO: Method duplicated in FileArchiver class.
+        /// <summary>
+        /// Returns the format used to convert a <see cref="System.DateTime"/> to <see cref="System.String"/> based on
+        /// the valus of the <see cref="Period"/> property.
+        /// </summary>
+        /// <param name="defaultFormat">The format to be used.</param>
+        /// <returns>
+        /// The value of the <paramref name="defaultFormat"/> when not empty, a formating string coresponding to the
+        /// value of the <see cref="Period"/> property otherwise.
+        /// </returns>
         protected string GetDateFormatString(string defaultFormat)
         {
             // If archiveDateFormat is not set in the config file, use a default 

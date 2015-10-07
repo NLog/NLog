@@ -39,11 +39,26 @@ namespace NLog.Targets
     using System.IO.Compression;
 #endif
 
+    /// <summary>
+    /// Base of all the file archiving classes. 
+    /// </summary>
     internal abstract class BaseFileArchive
     {
+        // TODO: [Review Required] Archiving of files follows two distinct and conflicting focuses. 
+        //      The first focus ison HOW we construct the file name of the archive i.e. sequential or rolling. 
+        //      The second focus is on WHEN or WHAT conditions trigger the archiving i.e. time/date based.
+        // 
+        //      Both focuses will be served better if we create a rule based trigger for the archiving which stays 
+        //      indiendent of the actual target format of the archive file name.
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseFileArchive" /> class.
+        /// </summary>
+        /// <param name="target">The <see cref="FileTarget" /> creating this class.</param>
         protected BaseFileArchive(FileTarget target)
         {
-            Target = target;
+            Target = target;             
         }
 
         /* ArchiveNumbering Property
@@ -71,9 +86,18 @@ namespace NLog.Targets
         /// </summary>
         public const bool CompressionEnabled = false;
 #endif
-
+        /// <summary>
+        /// Gets or sets the maximum number of archive files that should be kept.
+        /// </summary>
         public int Size { get; set; }
 
+        /// <summary>
+        /// Gets the <see cref="FileTarget"/> class which initialised this instance.
+        /// </summary>
+        /// <remarks>
+        /// The reference to the invoking <see cref="FileTarget"/> class is required as we need to gain access to the
+        /// initialised files at any one time.
+        /// </remarks>
         public FileTarget Target { get; private set; }
 
         public static string ReplaceNumbericPattern(string pattern, int value)
