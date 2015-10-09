@@ -82,6 +82,7 @@ namespace NLog
                 logEvent.SetStackTrace(stackTrace, firstUserFrame);
             }
 
+#if !UAP10
             int originalThreadId = Thread.CurrentThread.ManagedThreadId;
             AsyncContinuation exceptionHandler = ex =>
                 {
@@ -93,7 +94,12 @@ namespace NLog
                         }
                     }
                 };
-
+#else
+            //noop
+            //TODO
+            AsyncContinuation exceptionHandler = ex => { };
+            
+#endif
             for (var t = targets; t != null; t = t.NextInChain)
             {
                 if (!WriteToTargetWithFilterChain(t, logEvent, exceptionHandler))

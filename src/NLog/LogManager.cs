@@ -384,7 +384,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
 
             do
             {
-#if SILVERLIGHT && UAP10
+#if SILVERLIGHT 
                 StackFrame frame = new StackTrace().GetFrame(framesToSkip);
 #else
                 StackFrame frame = new StackFrame(framesToSkip, false);

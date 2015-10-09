@@ -165,6 +165,22 @@ namespace NLog.Internal
             return typeInfo.Module;
 #endif
         }
+        public static object InvokeMethod(this MethodInfo methodInfo, string methodName, object[] callParameters)
+        {
+#if !UAP10
+           methodInfo.DeclaringType.InvokeMember( 
+                MethodInfo.Name, 
+                BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding, 
+                null, 
+                null, 
+                callParameters
+#elif !SILVERLIGHT && !UAP10
+                , CultureInfo.InvariantCulture
+#else
+            //TODO test
+           return methodInfo.Invoke(methodName, callParameters);
+#endif
+        }
 
         public static Assembly Assembly(this Module module)
         {
