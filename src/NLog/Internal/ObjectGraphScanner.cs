@@ -77,7 +77,7 @@ namespace NLog.Internal
                 return;
             }
 
-            if (!o.GetType().IsDefined(typeof(NLogConfigurationItemAttribute), true))
+            if (!o.GetType().IsDefined<NLogConfigurationItemAttribute>(true))
             {
                 return;
             }

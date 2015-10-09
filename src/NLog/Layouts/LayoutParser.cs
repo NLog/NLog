@@ -440,7 +440,7 @@ namespace NLog.Layouts
                     continue;
                 }
 
-                if (!renderable.GetType().IsDefined(typeof(AppDomainFixedOutputAttribute), false))
+                if (!renderable.GetType().IsDefined< AppDomainFixedOutputAttribute>(false))
                 {
                     return false;
                 }

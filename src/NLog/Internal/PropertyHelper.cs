@@ -138,7 +138,7 @@ namespace NLog.Internal
 
         internal static Type GetArrayItemType(PropertyInfo propInfo)
         {
-            var arrayParameterAttribute = (ArrayParameterAttribute)Attribute.GetCustomAttribute(propInfo, typeof(ArrayParameterAttribute));
+            var arrayParameterAttribute =  ReflectionHelpers.GetCustomAttribute<ArrayParameterAttribute>(propInfo);
             if (arrayParameterAttribute != null)
             {
                 return arrayParameterAttribute.ItemType;
@@ -207,7 +207,7 @@ namespace NLog.Internal
                 return false;
             }
 
-            if (resultType.IsDefined(typeof(FlagsAttribute), false))
+            if (resultType.IsDefined<FlagsAttribute>(false))
             {
                 ulong union = 0;
 
@@ -322,7 +322,7 @@ namespace NLog.Internal
             var retVal = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
             foreach (PropertyInfo propInfo in GetAllReadableProperties(t))
             {
-                var arrayParameterAttribute = (ArrayParameterAttribute)Attribute.GetCustomAttribute(propInfo, typeof(ArrayParameterAttribute));
+                var arrayParameterAttribute = ReflectionHelpers.GetCustomAttribute<ArrayParameterAttribute>(propInfo);
 
                 if (arrayParameterAttribute != null)
                 {

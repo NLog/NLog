@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections;
+using NLog.Config;
+
 namespace NLog.Internal
 {
     using System;
@@ -77,6 +80,47 @@ namespace NLog.Internal
 
                 return loadedTypes.ToArray();
             }
+#endif
+        }
+
+
+        public static TAttr GetCustomAttribute<TAttr>(this Type type)
+            where TAttr : Attribute
+        {
+#if !UAP10
+            return  (TAttr)Attribute.GetCustomAttribute(type, typeof(TAttr));
+#else
+
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.GetCustomAttribute<TAttr>();
+#endif
+        }
+
+        public static TAttr GetCustomAttribute<TAttr>(PropertyInfo info)
+    where TAttr : Attribute
+        {
+            return info.GetCustomAttribute<TAttr>();
+        }
+
+        public static IEnumerable<TAttr> GetCustomAttributes<TAttr>(Type type, bool inherit)
+                where TAttr : Attribute
+        {
+#if !UAP10
+            return  (TAttr[])Attribute.GetCustomAttributes(type, typeof(TAttr));
+#else
+
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.GetCustomAttributes<TAttr>(inherit);
+#endif
+        }
+
+        public static bool IsDefined<TAttr>(this Type type, bool inherit)
+        {
+#if !UAP10
+            return type.IsDefined(typeof (TAttr), inherit);
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsDefined(typeof (TAttr), inherit);
 #endif
         }
     }
