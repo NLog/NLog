@@ -57,9 +57,9 @@ namespace NLog.LayoutRenderers
         static NLogDirLayoutRenderer()
         {
             var assembly = typeof(LogManager).Assembly();
-            var location = !String.IsNullOrEmpty(assembly.Location)
-                ? assembly.Location
-                : new Uri(assembly.CodeBase).LocalPath;
+            var location = !String.IsNullOrEmpty(assembly.Location())
+                ? assembly.Location()
+                : new Uri(assembly.CodeBase()).LocalPath;
             NLogDir = Path.GetDirectoryName(location);
         }
 

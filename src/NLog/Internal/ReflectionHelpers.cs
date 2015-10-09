@@ -176,6 +176,28 @@ namespace NLog.Internal
 #endif
         }
 
+
+        public static string CodeBase(this Assembly assembly)
+        {
+#if !UAP10
+            return assembly.Codebase;
+#else
+            throw new NotImplementedException();
+
+#endif
+        }
+
+
+        public static string Location(this Assembly assembly)
+        {
+#if !UAP10
+            return assembly.Location;
+#else
+            throw new NotImplementedException();
+
+#endif
+        }
+
 #if UAP10
         public static bool IsSubclassOf(this Type type, Type subtype)
         {
