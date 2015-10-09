@@ -32,6 +32,7 @@
 // 
 
 using System.Collections;
+using System.Diagnostics;
 using NLog.Config;
 
 namespace NLog.Internal
@@ -206,5 +207,38 @@ namespace NLog.Internal
 
         }
 #endif
+    }
+
+    public static class StackFrameExt
+    {
+
+#if UAP10
+        /// <summary>
+        /// Null
+        /// </summary>
+        /// <returns></returns>
+        public static StackFrame GetFrame(this StackTrace strackTrace, int number)
+        {
+
+            //TODO
+            return null;
+        }
+#endif
+        /// <summary>
+        /// 0
+        /// </summary>
+        /// <returns></returns>
+        public static int GetFrameCount(this StackTrace strackTrace)
+        {
+
+#if !UAP10
+            return strackTrace.FrameCount;
+#else
+            return 0;
+
+#endif
+            //TODO
+
+        }
     }
 }

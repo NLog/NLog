@@ -114,7 +114,7 @@ namespace NLog
         {
             int? firstUserFrame = null;
 
-                for (int i = 0; i < stackTrace.FrameCount; ++i)
+                for (int i = 0; i < stackTrace.GetFrameCount(); ++i)
                 {
                     StackFrame frame = stackTrace.GetFrame(i);
                     MethodBase mb = frame.GetMethod();

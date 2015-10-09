@@ -103,9 +103,9 @@ namespace NLog.LayoutRenderers
         {
             bool first = true;
             int startingFrame = logEvent.UserStackFrameNumber + this.TopFrames - 1;
-            if (startingFrame >= logEvent.StackTrace.FrameCount)
+            if (startingFrame >= logEvent.StackTrace.GetFrameCount())
             {
-                startingFrame = logEvent.StackTrace.FrameCount - 1;
+                startingFrame = logEvent.StackTrace.GetFrameCount() - 1;
             }
 
             int endingFrame = logEvent.UserStackFrameNumber + SkipFrames;
