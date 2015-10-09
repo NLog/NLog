@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 #if !SILVERLIGHT
 
 namespace NLog.LayoutRenderers
@@ -54,7 +56,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         static NLogDirLayoutRenderer()
         {
-            var assembly = typeof(LogManager).Assembly;
+            var assembly = typeof(LogManager).Assembly();
             var location = !String.IsNullOrEmpty(assembly.Location)
                 ? assembly.Location
                 : new Uri(assembly.CodeBase).LocalPath;

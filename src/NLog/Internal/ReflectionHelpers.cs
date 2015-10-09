@@ -123,5 +123,66 @@ namespace NLog.Internal
             return typeInfo.IsDefined(typeof (TAttr), inherit);
 #endif
         }
+
+        public static bool IsEnum(this Type type)
+        {
+#if !UAP10
+            return type.IsEnum;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsEnum;
+#endif
+        }
+
+        public static bool IsPrimitive(this Type type)
+        {
+#if !UAP10
+            return type.IsPrimitive;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsPrimitive;
+#endif
+        }
+
+        public static Assembly Assembly(this Type type)
+        {
+#if !UAP10
+            return type.Assembly;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.Assembly;
+#endif
+        }
+
+
+        public static Module Module(this Type type)
+        {
+#if !UAP10
+            return type.Module;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.Module;
+#endif
+        }
+
+        public static Assembly Assembly(this Module module)
+        {
+#if !UAP10
+            return module.Assembly;
+#else
+            //TODO check this
+            var typeInfo = module.GetType().GetTypeInfo();
+            return typeInfo.Assembly;
+#endif
+        }
+
+#if UAP10
+        public static bool IsSubclassOf(this Type type, Type subtype)
+        {
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsSubclassOf(subtype);
+
+        }
+#endif
     }
 }

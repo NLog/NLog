@@ -54,9 +54,9 @@ namespace NLog
     internal static class LoggerImpl
     {
         private const int StackTraceSkipMethods = 0;
-        private static readonly Assembly nlogAssembly = typeof(LoggerImpl).Assembly;
-        private static readonly Assembly mscorlibAssembly = typeof(string).Assembly;
-        private static readonly Assembly systemAssembly = typeof(Debug).Assembly;
+        private static readonly Assembly nlogAssembly = typeof(LoggerImpl).Assembly();
+        private static readonly Assembly mscorlibAssembly = typeof(string).Assembly();
+        private static readonly Assembly systemAssembly = typeof(Debug).Assembly();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
         internal static void Write([NotNull] Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
@@ -141,7 +141,7 @@ namespace NLog
         {
             var declaringType = method.DeclaringType;
             // get assembly by declaring type or by module for global methods
-            var assembly = declaringType != null ? declaringType.Assembly : method.Module.Assembly; 
+            var assembly = declaringType != null ? declaringType.Assembly() : method.Module.Assembly(); 
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             if (SkipAssembly(assembly)) return true;
             // or if that type is the loggerType or one of its subtypes

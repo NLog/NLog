@@ -201,7 +201,7 @@ namespace NLog.Internal
 
         private static bool TryGetEnumValue(Type resultType, string value, out object result)
         {
-            if (!resultType.IsEnum)
+            if (!resultType.IsEnum())
             {
                 result = null;
                 return false;
