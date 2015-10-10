@@ -61,10 +61,10 @@ namespace NLog.Config
     {
         private readonly ConfigurationItemFactory configurationItemFactory = ConfigurationItemFactory.Default;
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
-        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase); 
+        private readonly Dictionary<string, string> variables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
@@ -194,7 +194,7 @@ namespace NLog.Config
                 {
                     return this.visitedFile.Keys;
                 }
-                
+
                 return new string[0];
             }
         }
@@ -299,7 +299,7 @@ namespace NLog.Config
                 }
 
                 NLogConfigurationException ConfigException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
-                
+
                 if (!ignoreErrors)
                 {
                     if (LogManager.ThrowExceptions)
@@ -736,17 +736,7 @@ namespace NLog.Config
                 {
                     try
                     {
-#if SILVERLIGHT
-                                var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
-                                var assemblyPart = new AssemblyPart();
-                                Assembly asm = assemblyPart.Load(si.Stream);
-#else
-
-                        string fullFileName = Path.Combine(baseDirectory, assemblyFile);
-                        InternalLogger.Info("Loading assembly file: {0}", fullFileName);
-
-                        Assembly asm = Assembly.LoadFrom(fullFileName);
-#endif
+                        var asm = AssemblyHelpers.LoadFrom(assemblyFile, baseDirectory);
                         this.configurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
                     }
                     catch (Exception exception)
@@ -771,15 +761,8 @@ namespace NLog.Config
                 {
                     try
                     {
-                        InternalLogger.Info("Loading assembly name: {0}", assemblyName);
-#if SILVERLIGHT
-                        var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
-                        var assemblyPart = new AssemblyPart();
-                        Assembly asm = assemblyPart.Load(si.Stream);
-#else
-                        Assembly asm = Assembly.Load(assemblyName);
-#endif
-
+                        var asm = AssemblyHelpers.LoadFrom(assemblyName, baseDirectory);
+                        
                         this.configurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
                     }
                     catch (Exception exception)
@@ -852,13 +835,13 @@ namespace NLog.Config
         private void ParseTimeElement(NLogXmlElement timeElement)
         {
             timeElement.AssertName("time");
-            
+
             string type = timeElement.GetRequiredAttribute("type");
-            
+
             TimeSource newTimeSource = this.configurationItemFactory.TimeSources.CreateInstance(type);
-            
+
             this.ConfigureObjectFromAttributes(newTimeSource, timeElement, true);
-        
+
             InternalLogger.Info("Selecting time source {0}", newTimeSource);
             TimeSource.Current = newTimeSource;
         }

@@ -257,12 +257,13 @@ namespace NLog.Internal.FileAppenders
             {
                 fileShare = FileShare.ReadWrite;
             }
+#if !UAP10
 
             if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows)
             {
                 fileShare |= FileShare.Delete;
             }
-
+#endif
 #if !SILVERLIGHT && !MONO && !UAP10
             try
             {

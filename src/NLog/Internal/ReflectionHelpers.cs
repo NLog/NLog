@@ -33,6 +33,7 @@
 
 using System.Collections;
 using System.Diagnostics;
+using System.IO;
 using NLog.Config;
 
 namespace NLog.Internal
@@ -89,7 +90,7 @@ namespace NLog.Internal
             where TAttr : Attribute
         {
 #if !UAP10
-            return  (TAttr)Attribute.GetCustomAttribute(type, typeof(TAttr));
+            return (TAttr)Attribute.GetCustomAttribute(type, typeof(TAttr));
 #else
 
             var typeInfo = type.GetTypeInfo();
@@ -107,7 +108,7 @@ namespace NLog.Internal
                 where TAttr : Attribute
         {
 #if !UAP10
-            return  (TAttr[])Attribute.GetCustomAttributes(type, typeof(TAttr));
+            return (TAttr[])Attribute.GetCustomAttributes(type, typeof(TAttr));
 #else
 
             var typeInfo = type.GetTypeInfo();
@@ -118,7 +119,7 @@ namespace NLog.Internal
         public static bool IsDefined<TAttr>(this Type type, bool inherit)
         {
 #if !UAP10
-            return type.IsDefined(typeof (TAttr), inherit);
+            return type.IsDefined(typeof(TAttr), inherit);
 #else
             var typeInfo = type.GetTypeInfo();
             return typeInfo.IsDefined(typeof (TAttr), inherit);
@@ -168,12 +169,12 @@ namespace NLog.Internal
         public static object InvokeMethod(this MethodInfo methodInfo, string methodName, object[] callParameters)
         {
 #if !UAP10
-           return methodInfo.DeclaringType.InvokeMember(
-                methodName,
-                BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding,
-                null,
-                null,
-                callParameters);
+            return methodInfo.DeclaringType.InvokeMember(
+                 methodName,
+                 BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding,
+                 null,
+                 null,
+                 callParameters);
 #elif !SILVERLIGHT && !UAP10
                 , CultureInfo.InvariantCulture
 #else
@@ -259,5 +260,44 @@ namespace NLog.Internal
             //TODO
 
         }
+    }
+
+    /// <summary>
+    /// Helpers for <see cref="Assembly"/>.
+    /// </summary>
+    public class AssemblyHelpers
+    {
+        /// <summary>
+        /// Load from url
+        /// </summary>
+        /// <param name="assemblyName">name without .dll</param>
+        /// <param name="baseDirectory"></param>
+        /// <returns></returns>
+        public static Assembly LoadFrom(string assemblyName, string baseDirectory)
+        {
+            var assemblyFile = assemblyName + ".dll";
+#if SILVERLIGHT
+                                var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
+                                var assemblyPart = new AssemblyPart();
+                                Assembly asm = assemblyPart.Load(si.Stream);
+            return asm;
+#elif UAP10
+
+
+            var name = new AssemblyName(assemblyName);
+            return Assembly.Load(name);
+
+#else
+
+
+            string fullFileName = Path.Combine(baseDirectory, assemblyFile);
+            InternalLogger.Info("Loading assembly file: {0}", fullFileName);
+
+            Assembly asm = Assembly.LoadFrom(fullFileName);
+            return asm;
+
+#endif
+        }
+
     }
 }
