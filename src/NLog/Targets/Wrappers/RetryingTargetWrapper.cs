@@ -124,7 +124,9 @@ namespace NLog.Targets.Wrappers
                     }
 
                     // sleep and try again
+#if !UAP10
                     Thread.Sleep(this.RetryDelayMilliseconds);
+#endif
                     this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
                 };
 

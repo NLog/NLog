@@ -186,11 +186,13 @@ namespace NLog.Internal.FileAppenders
                     {
                         throw; // rethrow
                     }
-
+#if !UAP10
                     int actualDelay = this.random.Next(currentDelay);
                     InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
                     currentDelay *= 2;
+                   
                     System.Threading.Thread.Sleep(actualDelay);
+#endif
                 }
             }
 
