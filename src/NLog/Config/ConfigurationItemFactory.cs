@@ -254,7 +254,7 @@ namespace NLog.Config
             foreach (var extensionDll in extensionDlls)
             {
                 InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
-                var extensionAssembly = Assembly.LoadFrom(extensionDll);
+                var extensionAssembly = AssemblyHelpers.LoadFrom(extensionDll, assemblyLocation);
                 factory.RegisterItemsFromAssembly(extensionAssembly);
             }
             InternalLogger.Debug("Auto loading done");
