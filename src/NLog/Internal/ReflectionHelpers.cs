@@ -168,16 +168,16 @@ namespace NLog.Internal
         public static object InvokeMethod(this MethodInfo methodInfo, string methodName, object[] callParameters)
         {
 #if !UAP10
-           methodInfo.DeclaringType.InvokeMember( 
-                MethodInfo.Name, 
-                BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding, 
-                null, 
-                null, 
-                callParameters
+           return methodInfo.DeclaringType.InvokeMember(
+                methodName,
+                BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding,
+                null,
+                null,
+                callParameters);
 #elif !SILVERLIGHT && !UAP10
                 , CultureInfo.InvariantCulture
 #else
-            //TODO test
+    //TODO test
            return methodInfo.Invoke(methodName, callParameters);
 #endif
         }
@@ -197,7 +197,7 @@ namespace NLog.Internal
         public static string CodeBase(this Assembly assembly)
         {
 #if !UAP10
-            return assembly.Codebase;
+            return assembly.CodeBase;
 #else
             throw new NotImplementedException();
 
@@ -225,6 +225,9 @@ namespace NLog.Internal
 #endif
     }
 
+    /// <summary>
+    /// Ext for stackframe
+    /// </summary>
     public static class StackFrameExt
     {
 
