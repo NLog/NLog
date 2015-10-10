@@ -102,10 +102,14 @@ namespace NLog.LayoutRenderers
         {
             try
             {
+#if UAP10
+               return File.ReadAllText(fileName, this.Encoding);
+#else
                 using (var reader = new StreamReader(fileName, this.Encoding))
                 {
                     return reader.ReadToEnd();
                 }
+#endif
             }
             catch (Exception exception)
             {
