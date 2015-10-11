@@ -71,8 +71,11 @@ namespace NLog
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 StackTrace stackTrace;
-#if !SILVERLIGHT
+#if UAP10
+                stackTrace = new StackTrace(null, false);
+#elif !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
+
 #else
                 stackTrace = new StackTrace();
 #endif

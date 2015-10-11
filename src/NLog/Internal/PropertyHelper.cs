@@ -170,6 +170,8 @@ namespace NLog.Internal
 
         private static bool TryImplicitConversion(Type resultType, string value, out object result)
         {
+
+#if !UAP10
             MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string) }, null);
             if (operatorImplicitMethod == null)
             {
@@ -178,6 +180,21 @@ namespace NLog.Internal
             }
 
             result = operatorImplicitMethod.Invoke(null, new object[] { value });
+#else
+            try
+            {
+                result = Convert.ChangeType(value, resultType);
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+
+
+#endif
+
+
             return true;
         }
 

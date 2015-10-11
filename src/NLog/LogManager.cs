@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO;
+
 namespace NLog
 {
     using System;
@@ -155,6 +157,22 @@ namespace NLog
             set { throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo."); }
         }
 
+#if UAP10
+        /// <summary>
+        /// Gets the logger named after the currently-being-initialized class.
+        /// </summary>
+        /// <returns>The logger.</returns>
+        /// <remarks>This is a slow-running method. 
+        /// Make sure you're not doing this in a loop.</remarks>
+        [CLSCompliant(false)]
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static Logger GetCurrentClassLogger([CallerFilePath] string path = "")
+        {
+            var filename = Path.GetFileNameWithoutExtension(path);
+
+            return factory.GetLogger(filename);
+        }
+#else
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
@@ -167,7 +185,7 @@ namespace NLog
         {
             return factory.GetLogger(GetClassFullName());
         }
-
+#endif
         internal static bool IsHiddenAssembly(Assembly assembly)
         {
             return _hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly);
@@ -193,6 +211,23 @@ namespace NLog
             }
         }
 
+#if UAP10
+        /// <summary>
+        /// Gets the logger named after the currently-being-initialized class.
+        /// </summary>
+        /// <returns>The logger.</returns>
+        /// <remarks>This is a slow-running method. 
+        /// Make sure you're not doing this in a loop.</remarks>
+        [CLSCompliant(false)]
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static Logger GetCurrentClassLogger(Type loggerType, [CallerFilePath] string path = "")
+        {
+            var filename = Path.GetFileNameWithoutExtension(path);
+
+            return factory.GetLogger(filename, loggerType);
+        }
+#else
+
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
@@ -206,7 +241,7 @@ namespace NLog
         {
             return factory.GetLogger(GetClassFullName(), loggerType);            
         }
-
+#endif
         /// <summary>
         /// Creates a logger that discards all log messages.
         /// </summary>
@@ -372,6 +407,8 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
         }
 #endif
 
+#if !UAP10
+
         /// <summary>
         /// Gets the fully qualified name of the class invoking the LogManager, including the 
         /// namespace but not the assembly.    
@@ -384,7 +421,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
 
             do
             {
-#if SILVERLIGHT 
+#if SILVERLIGHT
                 StackFrame frame = new StackTrace().GetFrame(framesToSkip);
 #else
                 StackFrame frame = new StackFrame(framesToSkip, false);
@@ -403,6 +440,8 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
 
             return className;
         }
+#endif
+
 
         private static void TurnOffLogging(object sender, EventArgs args)
         {

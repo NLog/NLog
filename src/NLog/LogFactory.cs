@@ -75,7 +75,7 @@ namespace NLog
         private LoggingConfiguration config;
         private LogLevel globalThreshold = LogLevel.MinLevel;
         private bool configLoaded;
-		// TODO: logsEnabled property might be possible to be encapsulated into LogFactory.LogsEnabler class. 
+        // TODO: logsEnabled property might be possible to be encapsulated into LogFactory.LogsEnabler class. 
         private int logsEnabled;
         private readonly LoggerCache loggerCache = new LoggerCache();
 
@@ -167,7 +167,7 @@ namespace NLog
 #else
                             if (File.Exists(configFile))
                             {
-                                LoadLoggingConfiguration(configFile);                                
+                                LoadLoggingConfiguration(configFile);
                                 break;
                             }
 #endif
@@ -230,7 +230,7 @@ namespace NLog
                     if (this.config != null)
                     {
                         config.Dump();
-                        
+
                         this.config.InitializeAll();
                         this.ReconfigExistingLoggers();
 #if !SILVERLIGHT && !UAP10
@@ -320,17 +320,29 @@ namespace NLog
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
+#if UAP10
+        public Logger GetCurrentClassLogger([CallerFilePath] string path = "")
+#else
         public Logger GetCurrentClassLogger()
+#endif
         {
+#if !UAP10
 #if SILVERLIGHT
             var frame = new StackFrame(1);
 #else
             var frame = new StackFrame(1, false);
 #endif
+                return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
+#else
 
-            return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
+            var filename = Path.GetFileNameWithoutExtension(path);
+
+            return this.GetLogger(filename);
+#endif
+        
         }
 
+#if !UAP10
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
@@ -342,6 +354,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
+
 #if !SILVERLIGHT
             var frame = new StackFrame(1, false);
 #else
@@ -350,7 +363,7 @@ namespace NLog
 
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
         }
-
+#endif
         /// <summary>
         /// Gets the specified named logger.
         /// </summary>
@@ -389,7 +402,7 @@ namespace NLog
             foreach (var logger in loggerCache.Loggers)
             {
                 logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, this.config));
-            }            
+            }
         }
 
 #if !SILVERLIGHT && !UAP10
@@ -813,7 +826,7 @@ namespace NLog
             lock (this.syncRoot)
             {
                 Logger existingLogger = loggerCache.Retrieve(cacheKey);
-                if (existingLogger != null) 
+                if (existingLogger != null)
                 {
                     // Logger is still in cache and referenced.
                     return existingLogger;
@@ -822,25 +835,25 @@ namespace NLog
                 Logger newLogger;
 
                 if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
-                {                    
+                {
                     try
                     {
                         newLogger = (Logger)FactoryHelper.CreateInstance(cacheKey.ConcreteType);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
-                        if(ex.MustBeRethrown() || ThrowExceptions)
+                        if (ex.MustBeRethrown() || ThrowExceptions)
                         {
                             throw;
                         }
-                        
+
                         InternalLogger.Error("Cannot create instance of specified type. Proceeding with default type instance. Exception : {0}", ex);
-                        
+
                         // Creating default instance of logger if instance of specified type cannot be created.
                         cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));
-                        
+
                         newLogger = new Logger();
-                    } 
+                    }
                 }
                 else
                 {
@@ -955,7 +968,7 @@ namespace NLog
                 return (this.ConcreteType == key.ConcreteType) && (key.Name == this.Name);
             }
         }
-        
+
         /// <summary>
         /// Logger cache.
         /// </summary>
