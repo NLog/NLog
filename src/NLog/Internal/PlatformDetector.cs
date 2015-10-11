@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !UAP10
+#if !UWP10
 
 namespace NLog.Internal
 {

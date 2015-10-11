@@ -89,7 +89,7 @@ namespace NLog.Internal
         public static TAttr GetCustomAttribute<TAttr>(this Type type)
             where TAttr : Attribute
         {
-#if !UAP10
+#if !UWP10
             return (TAttr)Attribute.GetCustomAttribute(type, typeof(TAttr));
 #else
 
@@ -107,7 +107,7 @@ namespace NLog.Internal
         public static IEnumerable<TAttr> GetCustomAttributes<TAttr>(Type type, bool inherit)
                 where TAttr : Attribute
         {
-#if !UAP10
+#if !UWP10
             return (TAttr[])Attribute.GetCustomAttributes(type, typeof(TAttr));
 #else
 
@@ -118,7 +118,7 @@ namespace NLog.Internal
 
         public static bool IsDefined<TAttr>(this Type type, bool inherit)
         {
-#if !UAP10
+#if !UWP10
             return type.IsDefined(typeof(TAttr), inherit);
 #else
             var typeInfo = type.GetTypeInfo();
@@ -128,7 +128,7 @@ namespace NLog.Internal
 
         public static bool IsEnum(this Type type)
         {
-#if !UAP10
+#if !UWP10
             return type.IsEnum;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -138,7 +138,7 @@ namespace NLog.Internal
 
         public static bool IsPrimitive(this Type type)
         {
-#if !UAP10
+#if !UWP10
             return type.IsPrimitive;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -148,7 +148,7 @@ namespace NLog.Internal
 
         public static Assembly Assembly(this Type type)
         {
-#if !UAP10
+#if !UWP10
             return type.Assembly;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -159,7 +159,7 @@ namespace NLog.Internal
 
         public static Module Module(this Type type)
         {
-#if !UAP10
+#if !UWP10
             return type.Module;
 #else
             var typeInfo = type.GetTypeInfo();
@@ -168,14 +168,14 @@ namespace NLog.Internal
         }
         public static object InvokeMethod(this MethodInfo methodInfo, string methodName, object[] callParameters)
         {
-#if !UAP10
+#if !UWP10
             return methodInfo.DeclaringType.InvokeMember(
                  methodName,
                  BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding,
                  null,
                  null,
                  callParameters);
-#elif !SILVERLIGHT && !UAP10
+#elif !SILVERLIGHT && !UWP10
                 , CultureInfo.InvariantCulture
 #else
     //TODO test
@@ -185,7 +185,7 @@ namespace NLog.Internal
 
         public static Assembly Assembly(this Module module)
         {
-#if !UAP10
+#if !UWP10
             return module.Assembly;
 #else
             //TODO check this
@@ -197,9 +197,11 @@ namespace NLog.Internal
 
         public static string CodeBase(this Assembly assembly)
         {
-#if !UAP10
+#if !UWP10
             return assembly.CodeBase;
 #else
+            
+
             throw new NotImplementedException();
 
 #endif
@@ -208,7 +210,7 @@ namespace NLog.Internal
 
         public static string Location(this Assembly assembly)
         {
-#if !UAP10
+#if !UWP10
             return assembly.Location;
 #else
             throw new NotImplementedException();
@@ -216,7 +218,7 @@ namespace NLog.Internal
 #endif
         }
 
-#if UAP10
+#if UWP10
         public static bool IsSubclassOf(this Type type, Type subtype)
         {
             var typeInfo = type.GetTypeInfo();
@@ -232,7 +234,7 @@ namespace NLog.Internal
     public static class StackFrameExt
     {
 
-#if UAP10
+#if UWP10
         /// <summary>
         /// Null
         /// </summary>
@@ -251,7 +253,7 @@ namespace NLog.Internal
         public static int GetFrameCount(this StackTrace strackTrace)
         {
 
-#if !UAP10
+#if !UWP10
             return strackTrace.FrameCount;
 #else
             return 0;
@@ -281,7 +283,7 @@ namespace NLog.Internal
                                 var assemblyPart = new AssemblyPart();
                                 Assembly asm = assemblyPart.Load(si.Stream);
             return asm;
-#elif UAP10
+#elif UWP10
 
 
             var name = new AssemblyName(assemblyName);

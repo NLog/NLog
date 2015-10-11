@@ -71,7 +71,7 @@ namespace NLog
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 StackTrace stackTrace;
-#if UAP10
+#if UWP10
                 stackTrace = new StackTrace(null, false);
 #elif !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
@@ -85,7 +85,7 @@ namespace NLog
                 logEvent.SetStackTrace(stackTrace, firstUserFrame);
             }
 
-#if !UAP10
+#if !UWP10
             int originalThreadId = Thread.CurrentThread.ManagedThreadId;
             AsyncContinuation exceptionHandler = ex =>
                 {

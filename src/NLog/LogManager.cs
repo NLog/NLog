@@ -54,7 +54,7 @@ namespace NLog
     public sealed class LogManager
     {
         private static readonly LogFactory factory = new LogFactory();
-        #if !UAP10
+        #if !UWP10
         private static IAppDomain currentAppDomain;
 #endif
         private static ICollection<Assembly> _hiddenAssemblies;
@@ -68,7 +68,7 @@ namespace NLog
         [Obsolete]
         public delegate CultureInfo GetCultureInfo();
 
-#if !SILVERLIGHT && !MONO && !UAP10
+#if !SILVERLIGHT && !MONO && !UWP10
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
@@ -114,7 +114,7 @@ namespace NLog
             get { return factory.ThrowExceptions; }
             set { factory.ThrowExceptions = value; }
         }
-#if !UAP10
+#if !UWP10
         internal static IAppDomain CurrentAppDomain
         {
             get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
@@ -157,7 +157,7 @@ namespace NLog
             set { throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo."); }
         }
 
-#if UAP10
+#if UWP10
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
@@ -211,7 +211,7 @@ namespace NLog
             }
         }
 
-#if UAP10
+#if UWP10
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
@@ -285,7 +285,7 @@ namespace NLog
             factory.ReconfigExistingLoggers();
         }
 
-#if !SILVERLIGHT && !UAP10
+#if !SILVERLIGHT && !UWP10
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
@@ -387,7 +387,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
             }
         }
 
-#if !SILVERLIGHT && !MONO && !UAP10
+#if !SILVERLIGHT && !MONO && !UWP10
         private static void SetupTerminationEvents()
         {
             try
@@ -407,7 +407,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
         }
 #endif
 
-#if !UAP10
+#if !UWP10
 
         /// <summary>
         /// Gets the fully qualified name of the class invoking the LogManager, including the 

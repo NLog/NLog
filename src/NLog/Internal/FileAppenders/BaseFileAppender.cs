@@ -186,7 +186,7 @@ namespace NLog.Internal.FileAppenders
                     {
                         throw; // rethrow
                     }
-#if !UAP10
+#if !UWP10
                     int actualDelay = this.random.Next(currentDelay);
                     InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
                     currentDelay *= 2;
@@ -199,7 +199,7 @@ namespace NLog.Internal.FileAppenders
             throw new InvalidOperationException("Should not be reached.");
         }
 
-#if !SILVERLIGHT && !MONO && !UAP10
+#if !SILVERLIGHT && !MONO && !UWP10
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting)
         {
@@ -259,14 +259,14 @@ namespace NLog.Internal.FileAppenders
             {
                 fileShare = FileShare.ReadWrite;
             }
-#if !UAP10
+#if !UWP10
 
             if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows)
             {
                 fileShare |= FileShare.Delete;
             }
 #endif
-#if !SILVERLIGHT && !MONO && !UAP10
+#if !SILVERLIGHT && !MONO && !UWP10
             try
             {
                 if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)

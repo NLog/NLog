@@ -64,14 +64,14 @@ namespace NLog
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Backwards compatibility")]
         [MethodImpl(MethodImplOptions.NoInlining)]
 
-#if UAP10
+#if UWP10
         public new T GetCurrentClassLogger([CallerFilePath] string path = "")
 #else
         public new T GetCurrentClassLogger()
 #endif
         {
 
-#if !UAP10
+#if !UWP10
 #if SILVERLIGHT
             StackFrame frame = new StackFrame(1);
 #else

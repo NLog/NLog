@@ -7,7 +7,7 @@ using Microsoft.Win32.SafeHandles;
 
 namespace NLog
 {
-#if UAP10
+#if UWP10
     public static class Uapp10Ext
     {
         public static void Close(this SafeFileHandle handle)

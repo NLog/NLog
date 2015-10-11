@@ -46,7 +46,7 @@ namespace NLog.Internal
         /// </summary>
         static FileInfoHelper()
         {
-#if SILVERLIGHT || UAP10
+#if SILVERLIGHT || UWP10
             Helper = new PortableFileInfoHelper();
 #else
             if (PlatformDetector.IsDesktopWin32)

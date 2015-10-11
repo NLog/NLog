@@ -35,7 +35,7 @@ namespace NLog.Common
 {
     using System;
     using System.ComponentModel;
-#if !UAP10
+#if !UWP10
     using System.Configuration;
 #endif
     using System.Globalization;
@@ -43,7 +43,7 @@ namespace NLog.Common
     using System.Text;
     using NLog.Internal;
     using NLog.Time;
-#if !SILVERLIGHT && !UAP10
+#if !SILVERLIGHT && !UWP10
     using ConfigurationManager = System.Configuration.ConfigurationManager;
 #endif
 
@@ -60,7 +60,7 @@ namespace NLog.Common
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static InternalLogger()
         {
-#if !SILVERLIGHT && !UAP10
+#if !SILVERLIGHT && !UWP10
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
@@ -77,7 +77,7 @@ namespace NLog.Common
         /// </summary>
         public static LogLevel LogLevel { get; set; }
 
-#if !UAP10
+#if !UWP10
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console output stream.
         /// </summary>
@@ -297,7 +297,7 @@ namespace NLog.Common
             }
 
             if (string.IsNullOrEmpty(LogFile)
-#if !UAP10
+#if !UWP10
                 && !LogToConsole && !LogToConsoleError 
 #endif
                 && LogWriter == null)
@@ -344,7 +344,7 @@ namespace NLog.Common
                         writer.WriteLine(msg);
                     }
                 }
-#if !UAP10
+#if !UWP10
                 // log to console
                 if (LogToConsole)
                 {
@@ -369,7 +369,7 @@ namespace NLog.Common
             }
         }
 
-#if !SILVERLIGHT && !UAP10
+#if !SILVERLIGHT && !UWP10
         private static string GetSettingString(string configName, string envName)
         {
             string settingValue = ConfigurationManager.AppSettings[configName];

@@ -49,7 +49,7 @@ namespace NLog.Internal
         public static bool MustBeRethrown(this Exception exception)
         {
 
-#if !UAP10
+#if !UWP10
             if (exception is StackOverflowException)
             {
                 return true;

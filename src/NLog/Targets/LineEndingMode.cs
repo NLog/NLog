@@ -40,7 +40,7 @@ using NLog.Internal;
 namespace NLog.Targets
 {
 
-#if !UAP10
+#if !UWP10
     /// <summary>
     /// Line ending mode.
     /// </summary>
@@ -227,7 +227,7 @@ namespace NLog.Targets
             return this.NewLineCharacters == other.NewLineCharacters;
         }
 
-#if !UAP10
+#if !UWP10
 
         /// <summary>
         /// Provides a type converter to convert <see cref="LineEndingMode"/> objects to and from other representations.

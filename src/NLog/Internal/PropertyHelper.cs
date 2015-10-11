@@ -171,7 +171,7 @@ namespace NLog.Internal
         private static bool TryImplicitConversion(Type resultType, string value, out object result)
         {
 
-#if !UAP10
+#if !UWP10
             MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string) }, null);
             if (operatorImplicitMethod == null)
             {
@@ -283,7 +283,7 @@ namespace NLog.Internal
 
         private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
-#if !SILVERLIGHT && !UAP10
+#if !SILVERLIGHT && !UWP10
             var converter = TypeDescriptor.GetConverter(type);
             if (converter.CanConvertFrom(typeof(string)))
             {

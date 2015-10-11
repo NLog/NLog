@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public FileContentsLayoutRenderer()
         {
-#if SILVERLIGHT || UAP10
+#if SILVERLIGHT || UWP10
             this.Encoding = Encoding.UTF8;
 #else
             this.Encoding = Encoding.Default;
@@ -102,7 +102,7 @@ namespace NLog.LayoutRenderers
         {
             try
             {
-#if UAP10
+#if UWP10
                return File.ReadAllText(fileName, this.Encoding);
 #else
                 using (var reader = new StreamReader(fileName, this.Encoding))

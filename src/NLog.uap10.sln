@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A2DA21
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.uap10", "NLog\NLog.uap10.csproj", "{73243409-2F47-4A01-BE5B-4FCCA318B1F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.uwp10", "NLog\NLog.uwp10.csproj", "{73243409-2F47-4A01-BE5B-4FCCA318B1F7}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution

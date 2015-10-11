@@ -106,7 +106,7 @@ namespace NLog.Conditions
         /// <returns>Result of the given relational operator.</returns>
         private static object Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
         {
-#if UAP10
+#if UWP10
             StringComparer comparer = StringComparer.Ordinal;
             var leftValue2 = leftValue as string;
             var rightValue2 = rightValue as string;

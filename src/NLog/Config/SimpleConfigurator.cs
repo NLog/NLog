@@ -41,7 +41,7 @@ namespace NLog.Config
     public static class SimpleConfigurator
     {
 
-#if !UAP10
+#if !UWP10
         /// <summary>
         /// Configures NLog for console logging so that all messages above and including
         /// the <see cref="LogLevel.Info"/> level are output to the console.
