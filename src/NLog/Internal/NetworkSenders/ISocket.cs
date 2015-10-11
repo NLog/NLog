@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
+#if !UWP10
 namespace NLog.Internal.NetworkSenders
 {
     using System.Net.Sockets;
@@ -52,3 +52,4 @@ namespace NLog.Internal.NetworkSenders
 #endif
     }
 }
+#endif

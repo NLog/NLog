@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
 namespace NLog.LayoutRenderers
 {
     using System.Globalization;
@@ -54,3 +55,4 @@ namespace NLog.LayoutRenderers
         }
     }
 }
+#endif
