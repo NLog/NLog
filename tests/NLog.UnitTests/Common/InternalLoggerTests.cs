@@ -170,7 +170,7 @@ namespace NLog.UnitTests.Common
             Assert.True(writer2.ToString() == expected);
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
         [Fact]
         public void WriteToConsoleOutTests()
         {

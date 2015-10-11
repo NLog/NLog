@@ -36,7 +36,7 @@ using System.Linq;
 using System.Threading;
 using NLog.Targets;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
 namespace NLog.UnitTests
 {
     using System;

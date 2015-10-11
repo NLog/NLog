@@ -549,7 +549,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(result.IndexOf("4: close") != -1);
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
         [Fact]
         public void NetworkTargetTcpTest()
         {

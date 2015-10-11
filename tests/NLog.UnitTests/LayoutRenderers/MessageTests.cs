@@ -211,7 +211,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var ex = new InvalidOperationException("Exception message.");
             
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
             string newline = Environment.NewLine;
 #else
             string newline = "\r\n";

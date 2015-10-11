@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
     public class CallSiteLineNumberTests : NLogTestBase
     {
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
         [Fact]
         public void LineNumberOnlyTest()
         {

@@ -133,7 +133,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                         break;
 
                                     case "log4jmachinename":
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
                                         Assert.Equal(Environment.MachineName, value);
 #else
                                         Assert.Equal("silverlight", value);

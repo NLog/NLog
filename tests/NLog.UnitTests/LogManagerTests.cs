@@ -261,7 +261,7 @@ namespace NLog.UnitTests
             LogManager.Configuration = null;
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
         private int _reloadCounter = 0;
 
         private void WaitForConfigReload(int counter)
