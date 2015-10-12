@@ -214,7 +214,7 @@ namespace NLog.UnitTests
         protected int GetPrevLineNumber()
         {
         //fixed value set with #line 100000
-            return 100000;
+            return 100001;
         }
 
 #endif
