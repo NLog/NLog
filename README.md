@@ -34,7 +34,10 @@ NLog consists of multiple packages. Most of the functionality is inside the NLog
 
 Product  | Build status | Nuget |
 -------- | :------------ | :------------ | :------------------
-NLog (core)                                                         | [![AppVeyor](https://img.shields.io/appveyor/ci/Xharze/nlog-134/master.svg)](https://ci.appveyor.com/project/Xharze/nlog-134/branch/master)                   | [![NuGet package](https://img.shields.io/nuget/v/NLog.svg)](https://www.nuget.org/packages/NLog)                                 |
+NLog (Windows)                                                         | [![AppVeyor](https://img.shields.io/appveyor/ci/Xharze/nlog-134/master.svg)](https://ci.appveyor.com/project/Xharze/nlog-134/branch/master)                   | [![NuGet package](https://img.shields.io/nuget/v/NLog.svg)](https://www.nuget.org/packages/NLog)                                 |
+NLog (Mono) | [![Build Status](https://travis-ci.org/NLog/NLog.svg?branch=master)](https://travis-ci.org/NLog/NLog) | |
+
+
 NLog.Config                                                         | [![AppVeyor](https://img.shields.io/appveyor/ci/Xharze/nlog-134/master.svg)](https://ci.appveyor.com/project/Xharze/nlog-134/branch/master)                   | [![NuGet package](https://img.shields.io/nuget/v/NLog.Config.svg)](https://www.nuget.org/packages/NLog.Config)                                 |
 NLog.Extended                                                       | [![AppVeyor](https://img.shields.io/appveyor/ci/Xharze/nlog-134/master.svg)](https://ci.appveyor.com/project/Xharze/nlog-134/branch/master)                   | [![NuGet package](https://img.shields.io/nuget/v/NLog.Extended.svg)](https://www.nuget.org/packages/NLog.Extended)               |
 [NLog.Elmah](https://github.com/NLog/NLog.Elmah)                    | [![AppVeyor](https://img.shields.io/appveyor/ci/Xharze/nlog-Elmah/master.svg)](https://ci.appveyor.com/project/Xharze/nlog-Elmah/branch/master)               | [![NuGet package](https://img.shields.io/nuget/v/NLog.Elmah.svg)](https://www.nuget.org/packages/NLog.Elmah)                     |
