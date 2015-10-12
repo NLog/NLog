@@ -192,10 +192,10 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
-        { 
+        {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, args); 
+                this.WriteToTargets(level, formatProvider, message, args);
             }
         }
 
@@ -204,8 +204,8 @@ namespace NLog
         /// </summary>
         /// <param name="level">The log level.</param>
         /// <param name="message">Log message.</param>
-        public void Log(LogLevel level, [Localizable(false)] string message) 
-        { 
+        public void Log(LogLevel level, [Localizable(false)] string message)
+        {
             if (this.IsEnabled(level))
             {
                 this.WriteToTargets(level, null, message);
@@ -218,8 +218,8 @@ namespace NLog
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
-        public void Log(LogLevel level, [Localizable(false)] string message, params object[] args) 
-        { 
+        public void Log(LogLevel level, [Localizable(false)] string message, params object[] args)
+        {
             if (this.IsEnabled(level))
             {
                 this.WriteToTargets(level, message, args);
@@ -282,10 +282,10 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [StringFormatMethod("message")]
         public void Log<TArgument>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
-        { 
+        {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                this.WriteToTargets(level, formatProvider, message, new object[] { argument });
             }
         }
 
@@ -315,11 +315,11 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        public void Log<TArgument1, TArgument2>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
-        { 
+        public void Log<TArgument1, TArgument2>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
+        {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2 }); 
+                this.WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2 });
             }
         }
 
@@ -334,7 +334,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [StringFormatMethod("message")]
         public void Log<TArgument1, TArgument2>(LogLevel level, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
-        { 
+        {
             if (this.IsEnabled(level))
             {
                 this.WriteToTargets(level, message, new object[] { argument1, argument2 });
@@ -353,11 +353,11 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
-        { 
+        public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        {
             if (this.IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
+                this.WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2, argument3 });
             }
         }
 
@@ -374,7 +374,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [StringFormatMethod("message")]
         public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
-        { 
+        {
             if (this.IsEnabled(level))
             {
                 this.WriteToTargets(level, message, new object[] { argument1, argument2, argument3 });
@@ -556,7 +556,7 @@ namespace NLog
             {
                 //also record exception
                 logEvent.Exception = ex;
-             
+
             }
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), logEvent, this.Factory);
         }
@@ -573,6 +573,21 @@ namespace NLog
             this.WriteToTargets(level, this.Factory.DefaultCultureInfo, message, args);
         }
 
+#if NET4_6
+
+        /// <summary>
+        /// Write to target with <see cref="FormattableString"/>
+        /// </summary>
+        /// <remarks>With <see cref="IFormattable"/>we can't use the <see cref="IFormatProvider"/></remarks>
+        internal void WriteToTargetsFormattableString(LogLevel level, Exception ex, IFormatProvider formatProvider, [Localizable(false)] FormattableString message)
+        {
+            if (this.IsEnabled(level))
+            {
+                LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, Name, ex, null, message.ToString(formatProvider))), this.Factory);
+            }
+        }
+
+#endif
         internal void WriteToTargets(LogEventInfo logEvent)
         {
             LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(logEvent.Level), PrepareLogEventInfo(logEvent), this.Factory);

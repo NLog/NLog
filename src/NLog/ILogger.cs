@@ -1001,5 +1001,128 @@ namespace NLog
 
         #endregion
 
+#if NET4_6
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        void Trace(IFormatProvider formatProvider, [Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        void Trace([Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        void Trace(Exception exception, [Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        void Debug(IFormatProvider formatProvider, [Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        void Debug([Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        void Debug(Exception exception, [Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Info</c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        void Info(IFormatProvider formatProvider, [Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        void Info([Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        void Info(Exception exception, [Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        void Warn(IFormatProvider formatProvider, [Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        void Warn([Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        void Warn(Exception exception, [Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        void Error(IFormatProvider formatProvider, [Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        void Error([Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        void Error(Exception exception, [Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        void Fatal(IFormatProvider formatProvider, [Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        void Fatal([Localizable(false)] FormattableString message);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        void Fatal(Exception exception, [Localizable(false)] FormattableString message);
+
+#endif
     }
 }

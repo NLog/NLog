@@ -184,6 +184,49 @@ namespace NLog
             }
         }
 
+#if NET4_6
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        [StringFormatMethod("message")]
+        public void Trace(IFormatProvider formatProvider, [Localizable(false)] FormattableString message)
+        { 
+            if (this.IsTraceEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Trace, null, formatProvider, message); 
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void Trace([Localizable(false)] FormattableString message) 
+        { 
+            if (this.IsTraceEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Trace, null, null, message);
+            }
+        }
+
+		/// <summary>
+        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Trace(Exception exception, [Localizable(false)] FormattableString message)
+        {
+            if (this.IsTraceEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Trace, exception, null, message);
+            }
+        }
+
+#endif
+
         /// <summary>
         /// Writes the diagnostic message at the <c>Trace</c> level using the specified parameters.
         /// </summary>
@@ -453,6 +496,49 @@ namespace NLog
                 this.WriteToTargets(LogLevel.Debug, null, message);
             }
         }
+
+#if NET4_6
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        [StringFormatMethod("message")]
+        public void Debug(IFormatProvider formatProvider, [Localizable(false)] FormattableString message)
+        { 
+            if (this.IsDebugEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Debug, null, formatProvider, message); 
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void Debug([Localizable(false)] FormattableString message) 
+        { 
+            if (this.IsDebugEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Debug, null, null, message);
+            }
+        }
+
+		/// <summary>
+        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Debug(Exception exception, [Localizable(false)] FormattableString message)
+        {
+            if (this.IsDebugEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Debug, exception, null, message);
+            }
+        }
+
+#endif
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Debug</c> level using the specified parameters.
@@ -724,6 +810,49 @@ namespace NLog
             }
         }
 
+#if NET4_6
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Info</c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        [StringFormatMethod("message")]
+        public void Info(IFormatProvider formatProvider, [Localizable(false)] FormattableString message)
+        { 
+            if (this.IsInfoEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Info, null, formatProvider, message); 
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void Info([Localizable(false)] FormattableString message) 
+        { 
+            if (this.IsInfoEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Info, null, null, message);
+            }
+        }
+
+		/// <summary>
+        /// Writes the diagnostic message and exception at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Info(Exception exception, [Localizable(false)] FormattableString message)
+        {
+            if (this.IsInfoEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Info, exception, null, message);
+            }
+        }
+
+#endif
+
         /// <summary>
         /// Writes the diagnostic message at the <c>Info</c> level using the specified parameters.
         /// </summary>
@@ -993,6 +1122,49 @@ namespace NLog
                 this.WriteToTargets(LogLevel.Warn, null, message);
             }
         }
+
+#if NET4_6
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        [StringFormatMethod("message")]
+        public void Warn(IFormatProvider formatProvider, [Localizable(false)] FormattableString message)
+        { 
+            if (this.IsWarnEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Warn, null, formatProvider, message); 
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void Warn([Localizable(false)] FormattableString message) 
+        { 
+            if (this.IsWarnEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Warn, null, null, message);
+            }
+        }
+
+		/// <summary>
+        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Warn(Exception exception, [Localizable(false)] FormattableString message)
+        {
+            if (this.IsWarnEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Warn, exception, null, message);
+            }
+        }
+
+#endif
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Warn</c> level using the specified parameters.
@@ -1264,6 +1436,49 @@ namespace NLog
             }
         }
 
+#if NET4_6
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        [StringFormatMethod("message")]
+        public void Error(IFormatProvider formatProvider, [Localizable(false)] FormattableString message)
+        { 
+            if (this.IsErrorEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Error, null, formatProvider, message); 
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void Error([Localizable(false)] FormattableString message) 
+        { 
+            if (this.IsErrorEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Error, null, null, message);
+            }
+        }
+
+		/// <summary>
+        /// Writes the diagnostic message and exception at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Error(Exception exception, [Localizable(false)] FormattableString message)
+        {
+            if (this.IsErrorEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Error, exception, null, message);
+            }
+        }
+
+#endif
+
         /// <summary>
         /// Writes the diagnostic message at the <c>Error</c> level using the specified parameters.
         /// </summary>
@@ -1533,6 +1748,49 @@ namespace NLog
                 this.WriteToTargets(LogLevel.Fatal, null, message);
             }
         }
+
+#if NET4_6
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        [StringFormatMethod("message")]
+        public void Fatal(IFormatProvider formatProvider, [Localizable(false)] FormattableString message)
+        { 
+            if (this.IsFatalEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Fatal, null, formatProvider, message); 
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void Fatal([Localizable(false)] FormattableString message) 
+        { 
+            if (this.IsFatalEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Fatal, null, null, message);
+            }
+        }
+
+		/// <summary>
+        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void Fatal(Exception exception, [Localizable(false)] FormattableString message)
+        {
+            if (this.IsFatalEnabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.Fatal, exception, null, message);
+            }
+        }
+
+#endif
 
         /// <summary>
         /// Writes the diagnostic message at the <c>Fatal</c> level using the specified parameters.

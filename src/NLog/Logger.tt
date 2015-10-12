@@ -163,6 +163,49 @@ namespace NLog
             }
         }
 
+#if NET4_6
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c><#=level#></c> level using the specified parameters and formatting them with the supplied format provider.
+        /// </summary>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="message">A <see langword="string" /> containing format items.</param>
+        [StringFormatMethod("message")]
+        public void <#=level#>(IFormatProvider formatProvider, [Localizable(false)] FormattableString message)
+        { 
+            if (this.Is<#=level#>Enabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.<#=level#>, null, formatProvider, message); 
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message at the <c><#=level#></c> level.
+        /// </summary>
+        /// <param name="message">Log message.</param>
+        public void <#=level#>([Localizable(false)] FormattableString message) 
+        { 
+            if (this.Is<#=level#>Enabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.<#=level#>, null, null, message);
+            }
+        }
+
+		/// <summary>
+        /// Writes the diagnostic message and exception at the <c><#=level#></c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void <#=level#>(Exception exception, [Localizable(false)] FormattableString message)
+        {
+            if (this.Is<#=level#>Enabled)
+            {
+                this.WriteToTargetsFormattableString(LogLevel.<#=level#>, exception, null, message);
+            }
+        }
+
+#endif
+
         /// <summary>
         /// Writes the diagnostic message at the <c><#=level#></c> level using the specified parameters.
         /// </summary>
