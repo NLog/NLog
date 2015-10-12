@@ -437,7 +437,7 @@ namespace NLog.UnitTests.Targets
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.True(messageSent.IsBodyHtml);
-            var lines = messageSent.Body.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            var lines = messageSent.Body.Split(new[] {Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             Assert.True(lines.Length == 3);
         }
 
