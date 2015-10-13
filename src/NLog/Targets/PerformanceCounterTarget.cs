@@ -243,8 +243,12 @@ namespace NLog.Targets
         {
             if (this.EnsureInitialized())
             {
-                long incrementValue = Int64.Parse(IncrementValue.Render(logEvent));
-                this.perfCounter.IncrementBy(incrementValue);
+                string incrementValueString = IncrementValue.Render(logEvent);
+                long incrementValue;
+                if (Int64.TryParse(incrementValueString, out incrementValue))
+                    this.perfCounter.IncrementBy(incrementValue);
+                else
+                    InternalLogger.Error("Error incrementing PerfCounter {0}. IncrementValue must be an integer but was <{1}>", CounterName, incrementValueString);
             }
         }
 
