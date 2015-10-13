@@ -91,4 +91,4 @@ git checkout <your feature branch>
 git merge upstream/master
 ```
 
-It's also possible to send a PR in the opposite direction, but that's not preferred was it pollutes the commit log.
+It's also possible to send a PR in the opposite direction, but that's not preferred as it will pollute the commit log.
