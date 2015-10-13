@@ -39,9 +39,69 @@ namespace NLog
     /// <summary>
     /// Global Diagnostics Context - a dictionary structure to hold per-application-instance values.
     /// </summary>
-    public static class GlobalDiagnosticsContext
+    public class GlobalDiagnosticsContext
     {
-        private static Dictionary<string, object> dict = new Dictionary<string, object>();
+        private static GlobalDiagnosticsContext currentInstance = null;
+        private static readonly object lockingObject = new object();
+        private Dictionary<string, object> dict = new Dictionary<string, object>();
+
+        /// <summary>
+        /// Return the value from internal dictionary
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public object this[string key]
+        {
+            get
+            {
+                return this.dict[key];
+            }
+            set
+            {
+                this.dict[key] = value;                
+            }
+        }
+
+        /// <summary>
+        /// List of keys.
+        /// </summary>
+        public Dictionary<string, object>.KeyCollection Keys
+        {
+            get
+            {
+                return this.dict.Keys;
+            }
+        }
+
+        
+        /// <summary>
+        /// Singleton instance of the GlobalDiagnosticsContext
+        /// </summary>
+        public static GlobalDiagnosticsContext Instance
+        {
+            get
+            {
+                if (currentInstance == null)
+                {
+                    lock (lockingObject)
+                    {
+                        if (currentInstance == null)
+                        {
+                            currentInstance = new GlobalDiagnosticsContext();
+                        }
+                    }
+                }
+                return currentInstance;
+            }
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        private GlobalDiagnosticsContext()
+        {
+
+        }
 
         /// <summary>
         /// Sets the Global Diagnostics Context item to the specified value.
@@ -50,9 +110,9 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            lock (dict)
+            lock (lockingObject)
             {
-                dict[item] = value;
+                GlobalDiagnosticsContext.Instance.dict[item] = value;
             }
         }
 
@@ -63,9 +123,9 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, object value)
         {
-            lock (dict)
+            lock (lockingObject)
             {
-                dict[item] = value;
+                GlobalDiagnosticsContext.Instance.dict[item] = value;
             }
         }
 
@@ -97,10 +157,10 @@ namespace NLog
         /// <returns>The item value, if defined; otherwise <c>null</c>.</returns>
         public static object GetObject(string item)
         {
-            lock (dict)
+            lock (lockingObject)
             {
                 object o;
-                if (!dict.TryGetValue(item, out o))
+                if (!GlobalDiagnosticsContext.Instance.dict.TryGetValue(item, out o))
                     o = null;
 
                 return o;
@@ -114,9 +174,9 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified item exists in current thread GDC.</returns>
         public static bool Contains(string item)
         {
-            lock (dict)
+            lock (lockingObject)
             {
-                return dict.ContainsKey(item);
+                return GlobalDiagnosticsContext.Instance.dict.ContainsKey(item);
             }
         }
 
@@ -126,9 +186,9 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            lock (dict)
+            lock (lockingObject)
             {
-                dict.Remove(item);
+                GlobalDiagnosticsContext.Instance.dict.Remove(item);
             }
         }
 
@@ -137,9 +197,9 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            lock (dict)
+            lock (lockingObject)
             {
-                dict.Clear();
+                GlobalDiagnosticsContext.Instance.dict.Clear();
             }
         }
 
