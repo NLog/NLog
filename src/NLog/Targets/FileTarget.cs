@@ -157,17 +157,6 @@ namespace NLog.Targets
         public bool DeleteOldFileOnStartup { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to archive old log file on startup.
-        /// </summary>
-        /// <remarks>
-        /// This option works only when the "FileName" parameter denotes a single file.
-        /// After archiving the old file, the current log file will be empty.
-        /// </remarks>
-        /// <docgen category='Output Options' order='10' />
-        [DefaultValue(false)]
-        public bool ArchiveOldFileOnStartup { get; set; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to replace file contents on each write instead of appending log message at the end.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
@@ -202,16 +191,6 @@ namespace NLog.Targets
         /// <docgen category='Output Options' order='10' />
         [DefaultValue(true)]
         public bool EnableFileDelete { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value specifying the date format to use when archving files.
-        /// </summary>
-        /// <remarks>
-        /// This option works only when the "ArchiveNumbering" parameter is set either to Date or DateAndSequence.
-        /// </remarks>
-        /// <docgen category='Output Options' order='10' />
-        [DefaultValue("")]
-        public string ArchiveDateFormat { get; set; }
 
 #if !SILVERLIGHT
         /// <summary>
@@ -339,6 +318,27 @@ namespace NLog.Targets
         public int ConcurrentWriteAttemptDelay { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to archive old log file on startup.
+        /// </summary>
+        /// <remarks>
+        /// This option works only when the "FileName" parameter denotes a single file.
+        /// After archiving the old file, the current log file will be empty.
+        /// </remarks>
+        /// <docgen category='Output Options' order='10' />
+        [DefaultValue(false)]
+        public bool ArchiveOldFileOnStartup { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value specifying the date format to use when archving files.
+        /// </summary>
+        /// <remarks>
+        /// This option works only when the "ArchiveNumbering" parameter is set either to Date or DateAndSequence.
+        /// </remarks>
+        /// <docgen category='Output Options' order='10' />
+        [DefaultValue("")]
+        public string ArchiveDateFormat { get; set; }
+
+        /// <summary>
         /// Gets or sets the size in bytes above which log files will be automatically archived.
         /// 
         /// Warning: combining this with <see cref="ArchiveNumberingMode.Date"/> isn't supported. We cannot create multiple archive files, if they should have the same name.
@@ -401,12 +401,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or set a value indicating whether a managed file stream is forced, instead of used the native implementation.
-        /// </summary>
-        [DefaultValue(false)]
-        public bool ForceManaged { get; set; }
-
-        /// <summary>
         /// Gets or sets the way file archives are numbered. 
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
@@ -425,6 +419,12 @@ namespace NLog.Targets
         /// </summary>
         private const bool EnableArchiveFileCompression = false;
 #endif
+
+        /// <summary>
+        /// Gets or set a value indicating whether a managed file stream is forced, instead of used the native implementation.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool ForceManaged { get; set; }
 
         /// <summary>
         /// Gets the characters that are appended after each line.
@@ -806,7 +806,7 @@ namespace NLog.Targets
             pendingContinuations.Clear();
         }
 
-        private static bool ContainFileNamePattern(string fileName)
+        private static bool ContainsFileNamePattern(string fileName)
         {
             int startingIndex = fileName.IndexOf("{#", StringComparison.Ordinal);
             int endingIndex = fileName.IndexOf("#}", StringComparison.Ordinal);
@@ -828,13 +828,8 @@ namespace NLog.Targets
             }
 
             string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
-            if (File.Exists(fileName))
-            {
-                RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
-            }
-
-            InternalLogger.Trace("Renaming {0} to {1}", fileName, newFileName);
-
+            RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
+            
             var shouldCompress = archiveNumber == 0;
             try
             {
@@ -909,6 +904,7 @@ namespace NLog.Targets
 
                     if (number2Name.TryGetValue(i, out s))
                     {
+                        InternalLogger.Info("Deleting old archive {0}", s);
                         File.Delete(s);
                     }
                 }
@@ -923,6 +919,7 @@ namespace NLog.Targets
 #if NET4_5
             if (enableCompression)
             {
+                InternalLogger.Info("Archiving {0} to zip-archive {1}", fileName, archiveFileName);
                 using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
                 using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
                 using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -939,6 +936,7 @@ namespace NLog.Targets
             else
 #endif
             {
+                InternalLogger.Info("Archiving {0} to {1}", fileName, archiveFileName);
                 File.Move(fileName, archiveFileName);
             }
         }
@@ -1052,6 +1050,7 @@ namespace NLog.Targets
             int numberToDelete = oldArchiveFileNames.Count - this.MaxArchiveFiles;
             for (int fileIndex = 0; fileIndex <= numberToDelete; fileIndex++)
             {
+                InternalLogger.Info("Deleting old archive {0}.", oldArchiveFileNames[fileIndex]);
                 File.Delete(oldArchiveFileNames[fileIndex]);
             }
         }
@@ -1268,11 +1267,10 @@ namespace NLog.Targets
             {
                 return;
             }
-
-            // Console.WriteLine("DoAutoArchive({0})", fileName);
+            
             string fileNamePattern = GetFileNamePattern(fileName, eventInfo);
 
-            if (!ContainFileNamePattern(fileNamePattern))
+            if (!ContainsFileNamePattern(fileNamePattern))
             {
                 if (fileArchive.Archive(fileNamePattern, fileInfo.FullName, CreateDirs, EnableArchiveFileCompression))
                 {
