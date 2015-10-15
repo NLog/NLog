@@ -765,55 +765,54 @@ namespace NLog
 #endif
         }
 
-        private static IEnumerable<string> GetCandidateConfigFileNames()
-        {
+          private static IEnumerable<string> GetCandidateConfigFileNames()
+          {
 #if SILVERLIGHT
             yield return "NLog.config";
 #else
-            // NLog.config from application directory
-            if (CurrentAppDomain.BaseDirectory != null)
-            {
-                yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
-            }
+              string cf = CurrentAppDomain.ConfigurationFile;
+              if (cf != null)
+              {
+                  yield return Path.ChangeExtension(cf, ".nlog");
 
-            // Current config file with .config renamed to .nlog
-            string cf = CurrentAppDomain.ConfigurationFile;
-            if (cf != null)
-            {
-                yield return Path.ChangeExtension(cf, ".nlog");
+                  // .nlog file based on the non-vshost version of the current config file
+                  const string vshostSubStr = ".vshost.";
+                  if (cf.Contains(vshostSubStr))
+                  {
+                      yield return Path.ChangeExtension(cf.Replace(vshostSubStr, "."), ".nlog");
+                  }
 
-                // .nlog file based on the non-vshost version of the current config file
-                const string vshostSubStr = ".vshost.";
-                if (cf.Contains(vshostSubStr))
+                  IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
+                  if (privateBinPaths != null)
+                  {
+                      foreach (var path in privateBinPaths)
+                      {
+                          if (path != null)
+                          {
+                              yield return Path.Combine(path, "NLog.config");
+                          }
+                      }
+                  }
+              }
+
+// NLog.config from application directory
+              if (CurrentAppDomain.BaseDirectory != null)
                 {
-                    yield return Path.ChangeExtension(cf.Replace(vshostSubStr, "."), ".nlog");
+                      yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
                 }
 
-                IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
-                if (privateBinPaths != null)
-                {
-                    foreach (var path in privateBinPaths)
-                    {
-                        if (path != null)
-                        {
-                            yield return Path.Combine(path, "NLog.config");
-                        }
-                    }
-                }
-            }
-
-            // Get path to NLog.dll.nlog only if the assembly is not in the GAC
-            var nlogAssembly = typeof(LogFactory).Assembly;
-            if (!nlogAssembly.GlobalAssemblyCache)
-            {
-                if (!string.IsNullOrEmpty(nlogAssembly.Location))
-                {
-                    yield return nlogAssembly.Location + ".nlog";
-                }
-            }
+              // Get path to NLog.dll.nlog only if the assembly is not in the GAC
+              var nlogAssembly = typeof(LogFactory).Assembly;
+              if (!nlogAssembly.GlobalAssemblyCache)
+              {
+                  if (!string.IsNullOrEmpty(nlogAssembly.Location))
+                  {
+                      yield return nlogAssembly.Location + ".nlog";
+                  }
+              }
 #endif
-        }
-
+          }
+		 
         private Logger GetLogger(LoggerCacheKey cacheKey)
         {
             lock (this.syncRoot)

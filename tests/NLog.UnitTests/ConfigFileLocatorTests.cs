@@ -158,7 +158,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        public void PrecedenceTest()
+		  public void PrecedenceTest()
         {
             var precedence = new[]
                                  {
@@ -168,17 +168,17 @@ namespace NLog.UnitTests
                                              Contents = appConfigContents,
                                              Output = appConfigOutput
                                          },
+												 new
+                                         {
+                                             File = "ConfigFileLocator.exe.nlog",
+                                             Contents = appNLogContents,
+                                             Output = appNLogOutput
+                                         },
                                      new
                                          {
                                              File = "NLog.config",
                                              Contents = nlogConfigContents,
                                              Output = nlogConfigOutput
-                                         },
-                                     new
-                                         {
-                                             File = "ConfigFileLocator.exe.nlog",
-                                             Contents = appNLogContents,
-                                             Output = appNLogOutput
                                          },
                                      new
                                          {
@@ -199,9 +199,9 @@ namespace NLog.UnitTests
             foreach (var p in precedence)
             {
                 output = RunTest();
-                Assert.Equal(p.Output, output);
+					 Assert.Equal(p.Output, output);
                 File.Delete(Path.Combine(_tempDirectory, p.File));
-            }
+            } 
 
             output = RunTest();
             Assert.Equal(missingConfigOutput, output);
