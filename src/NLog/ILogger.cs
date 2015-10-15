@@ -140,6 +140,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Trace(Exception exception, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -149,6 +150,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Trace(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -171,6 +173,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Trace([Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -209,6 +212,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         void Trace<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2);
 
         /// <summary>
@@ -233,6 +237,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         void Trace<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3);
 
         /// <summary>
@@ -290,6 +295,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Debug(Exception exception, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -299,6 +305,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Debug(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -321,6 +328,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Debug([Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -359,6 +367,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         void Debug<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2);
 
         /// <summary>
@@ -383,6 +392,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         void Debug<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3);
 
         /// <summary>
@@ -440,6 +450,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Info(Exception exception, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -449,6 +460,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Info(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -471,6 +483,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Info([Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -509,6 +522,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         void Info<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2);
 
         /// <summary>
@@ -533,6 +547,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         void Info<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3);
 
         /// <summary>
@@ -590,6 +605,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Warn(Exception exception, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -599,6 +615,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Warn(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -621,6 +638,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Warn([Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -659,6 +677,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         void Warn<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2);
 
         /// <summary>
@@ -683,6 +702,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         void Warn<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3);
 
         /// <summary>
@@ -740,6 +760,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Error(Exception exception, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -749,6 +770,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Error(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
 
 
@@ -772,6 +794,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Error([Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -810,6 +833,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         void Error<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2);
 
         /// <summary>
@@ -834,6 +858,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         void Error<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3);
 
         /// <summary>
@@ -891,6 +916,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Fatal(Exception exception, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -900,6 +926,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Fatal(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -922,6 +949,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Fatal([Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -960,6 +988,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         void Fatal<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2);
 
         /// <summary>
@@ -984,6 +1013,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         void Fatal<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3);
 
         /// <summary>
