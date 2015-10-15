@@ -208,11 +208,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c><#=level#></c> level.
         /// </summary>
-		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
 		/// <param name="args">Arguments to format.</param>
-		[StringFormatMethod("message")]
+        [StringFormatMethod("message")]
         public void <#=level#>(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.Is<#=level#>Enabled)
