@@ -151,7 +151,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-	    [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead.")]
         public void TraceException([Localizable(false)] string message, Exception exception)
         {
             this.Trace(message, exception); 
@@ -203,7 +203,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead.")]
         public void Trace([Localizable(false)] string message, Exception exception)
         {
             if (this.IsTraceEnabled)
@@ -217,7 +217,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		/// <param name="args">Arguments to format.</param>
+        /// <param name="args">Arguments to format.</param>
         public void Trace(Exception exception, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsTraceEnabled)
@@ -229,10 +229,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Trace</c> level.
         /// </summary>
-		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		/// <param name="args">Arguments to format.</param>
+        /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         public void Trace(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsTraceEnabled)
@@ -270,22 +271,22 @@ namespace NLog
             {
 #pragma warning disable 618
            
-			//todo log also these calls as warning?
+            //todo log also these calls as warning?
                 if (this.configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-					var exceptionCandidate = argument as Exception;		
-					if (exceptionCandidate != null)		
-					{		
-				
-						// ReSharper disable CSharpWarnings::CS0618
-						#pragma warning disable 618
-						this.Trace(message, exceptionCandidate);	
-						#pragma warning restore 618
-						// ReSharper restore CSharpWarnings::CS0618	
-						return;		
-					}
-				}
+                    var exceptionCandidate = argument as Exception;		
+                    if (exceptionCandidate != null)		
+                    {
+
+                        // ReSharper disable CSharpWarnings::CS0618
+                        #pragma warning disable 618
+                        this.Trace(message, exceptionCandidate);	
+                        #pragma warning restore 618
+                        // ReSharper restore CSharpWarnings::CS0618	
+                        return;		
+                    }
+                }
 
                 this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
@@ -421,7 +422,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-	    [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead.")]
         public void DebugException([Localizable(false)] string message, Exception exception)
         {
             this.Debug(message, exception); 
@@ -473,7 +474,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead.")]
         public void Debug([Localizable(false)] string message, Exception exception)
         {
             if (this.IsDebugEnabled)
@@ -487,7 +488,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		/// <param name="args">Arguments to format.</param>
+        /// <param name="args">Arguments to format.</param>
         public void Debug(Exception exception, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsDebugEnabled)
@@ -499,10 +500,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Debug</c> level.
         /// </summary>
-		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		/// <param name="args">Arguments to format.</param>
+        /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         public void Debug(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsDebugEnabled)
@@ -540,22 +542,22 @@ namespace NLog
             {
 #pragma warning disable 618
            
-			//todo log also these calls as warning?
+            //todo log also these calls as warning?
                 if (this.configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-					var exceptionCandidate = argument as Exception;		
-					if (exceptionCandidate != null)		
-					{		
-				
-						// ReSharper disable CSharpWarnings::CS0618
-						#pragma warning disable 618
-						this.Debug(message, exceptionCandidate);	
-						#pragma warning restore 618
-						// ReSharper restore CSharpWarnings::CS0618	
-						return;		
-					}
-				}
+                    var exceptionCandidate = argument as Exception;		
+                    if (exceptionCandidate != null)		
+                    {
+
+                        // ReSharper disable CSharpWarnings::CS0618
+                        #pragma warning disable 618
+                        this.Debug(message, exceptionCandidate);	
+                        #pragma warning restore 618
+                        // ReSharper restore CSharpWarnings::CS0618	
+                        return;		
+                    }
+                }
 
                 this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
@@ -691,7 +693,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-	    [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead.")]
         public void InfoException([Localizable(false)] string message, Exception exception)
         {
             this.Info(message, exception); 
@@ -743,7 +745,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use Info(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead.")]
         public void Info([Localizable(false)] string message, Exception exception)
         {
             if (this.IsInfoEnabled)
@@ -757,7 +759,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		/// <param name="args">Arguments to format.</param>
+        /// <param name="args">Arguments to format.</param>
         public void Info(Exception exception, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsInfoEnabled)
@@ -769,10 +771,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Info</c> level.
         /// </summary>
-		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		/// <param name="args">Arguments to format.</param>
+        /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         public void Info(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsInfoEnabled)
@@ -810,22 +813,22 @@ namespace NLog
             {
 #pragma warning disable 618
            
-			//todo log also these calls as warning?
+            //todo log also these calls as warning?
                 if (this.configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-					var exceptionCandidate = argument as Exception;		
-					if (exceptionCandidate != null)		
-					{		
-				
-						// ReSharper disable CSharpWarnings::CS0618
-						#pragma warning disable 618
-						this.Info(message, exceptionCandidate);	
-						#pragma warning restore 618
-						// ReSharper restore CSharpWarnings::CS0618	
-						return;		
-					}
-				}
+                    var exceptionCandidate = argument as Exception;		
+                    if (exceptionCandidate != null)		
+                    {
+
+                        // ReSharper disable CSharpWarnings::CS0618
+                        #pragma warning disable 618
+                        this.Info(message, exceptionCandidate);	
+                        #pragma warning restore 618
+                        // ReSharper restore CSharpWarnings::CS0618	
+                        return;		
+                    }
+                }
 
                 this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
@@ -961,7 +964,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-	    [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead.")]
         public void WarnException([Localizable(false)] string message, Exception exception)
         {
             this.Warn(message, exception); 
@@ -1013,7 +1016,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead.")]
         public void Warn([Localizable(false)] string message, Exception exception)
         {
             if (this.IsWarnEnabled)
@@ -1027,7 +1030,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		/// <param name="args">Arguments to format.</param>
+        /// <param name="args">Arguments to format.</param>
         public void Warn(Exception exception, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsWarnEnabled)
@@ -1039,10 +1042,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Warn</c> level.
         /// </summary>
-		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		/// <param name="args">Arguments to format.</param>
+        /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         public void Warn(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsWarnEnabled)
@@ -1080,22 +1084,22 @@ namespace NLog
             {
 #pragma warning disable 618
            
-			//todo log also these calls as warning?
+            //todo log also these calls as warning?
                 if (this.configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-					var exceptionCandidate = argument as Exception;		
-					if (exceptionCandidate != null)		
-					{		
-				
-						// ReSharper disable CSharpWarnings::CS0618
-						#pragma warning disable 618
-						this.Warn(message, exceptionCandidate);	
-						#pragma warning restore 618
-						// ReSharper restore CSharpWarnings::CS0618	
-						return;		
-					}
-				}
+                    var exceptionCandidate = argument as Exception;		
+                    if (exceptionCandidate != null)		
+                    {
+
+                        // ReSharper disable CSharpWarnings::CS0618
+                        #pragma warning disable 618
+                        this.Warn(message, exceptionCandidate);	
+                        #pragma warning restore 618
+                        // ReSharper restore CSharpWarnings::CS0618	
+                        return;		
+                    }
+                }
 
                 this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
@@ -1231,7 +1235,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-	    [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead.")]
         public void ErrorException([Localizable(false)] string message, Exception exception)
         {
             this.Error(message, exception); 
@@ -1283,7 +1287,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use Error(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead.")]
         public void Error([Localizable(false)] string message, Exception exception)
         {
             if (this.IsErrorEnabled)
@@ -1297,7 +1301,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		/// <param name="args">Arguments to format.</param>
+        /// <param name="args">Arguments to format.</param>
         public void Error(Exception exception, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsErrorEnabled)
@@ -1309,10 +1313,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Error</c> level.
         /// </summary>
-		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		/// <param name="args">Arguments to format.</param>
+        /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         public void Error(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsErrorEnabled)
@@ -1350,22 +1355,22 @@ namespace NLog
             {
 #pragma warning disable 618
            
-			//todo log also these calls as warning?
+            //todo log also these calls as warning?
                 if (this.configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-					var exceptionCandidate = argument as Exception;		
-					if (exceptionCandidate != null)		
-					{		
-				
-						// ReSharper disable CSharpWarnings::CS0618
-						#pragma warning disable 618
-						this.Error(message, exceptionCandidate);	
-						#pragma warning restore 618
-						// ReSharper restore CSharpWarnings::CS0618	
-						return;		
-					}
-				}
+                    var exceptionCandidate = argument as Exception;		
+                    if (exceptionCandidate != null)		
+                    {
+
+                        // ReSharper disable CSharpWarnings::CS0618
+                        #pragma warning disable 618
+                        this.Error(message, exceptionCandidate);	
+                        #pragma warning restore 618
+                        // ReSharper restore CSharpWarnings::CS0618	
+                        return;		
+                    }
+                }
 
                 this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
@@ -1501,7 +1506,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-	    [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead.")]
         public void FatalException([Localizable(false)] string message, Exception exception)
         {
             this.Fatal(message, exception); 
@@ -1553,7 +1558,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		[Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead.")]
         public void Fatal([Localizable(false)] string message, Exception exception)
         {
             if (this.IsFatalEnabled)
@@ -1567,7 +1572,7 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		/// <param name="args">Arguments to format.</param>
+        /// <param name="args">Arguments to format.</param>
         public void Fatal(Exception exception, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsFatalEnabled)
@@ -1579,10 +1584,11 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
         /// </summary>
-		/// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
+        /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-		/// <param name="args">Arguments to format.</param>
+        /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         public void Fatal(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsFatalEnabled)
@@ -1620,22 +1626,22 @@ namespace NLog
             {
 #pragma warning disable 618
            
-			//todo log also these calls as warning?
+            //todo log also these calls as warning?
                 if (this.configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-					var exceptionCandidate = argument as Exception;		
-					if (exceptionCandidate != null)		
-					{		
-				
-						// ReSharper disable CSharpWarnings::CS0618
-						#pragma warning disable 618
-						this.Fatal(message, exceptionCandidate);	
-						#pragma warning restore 618
-						// ReSharper restore CSharpWarnings::CS0618	
-						return;		
-					}
-				}
+                    var exceptionCandidate = argument as Exception;		
+                    if (exceptionCandidate != null)		
+                    {
+
+                        // ReSharper disable CSharpWarnings::CS0618
+                        #pragma warning disable 618
+                        this.Fatal(message, exceptionCandidate);	
+                        #pragma warning restore 618
+                        // ReSharper restore CSharpWarnings::CS0618	
+                        return;		
+                    }
+                }
 
                 this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
