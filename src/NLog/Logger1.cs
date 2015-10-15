@@ -233,6 +233,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
 		/// <param name="args">Arguments to format.</param>
+		[StringFormatMethod("message")]
         public void Trace(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsTraceEnabled)
@@ -503,6 +504,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
 		/// <param name="args">Arguments to format.</param>
+		[StringFormatMethod("message")]
         public void Debug(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsDebugEnabled)
@@ -773,6 +775,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
 		/// <param name="args">Arguments to format.</param>
+		[StringFormatMethod("message")]
         public void Info(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsInfoEnabled)
@@ -1043,6 +1046,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
 		/// <param name="args">Arguments to format.</param>
+		[StringFormatMethod("message")]
         public void Warn(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsWarnEnabled)
@@ -1313,6 +1317,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
 		/// <param name="args">Arguments to format.</param>
+		[StringFormatMethod("message")]
         public void Error(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsErrorEnabled)
@@ -1583,6 +1588,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
 		/// <param name="args">Arguments to format.</param>
+		[StringFormatMethod("message")]
         public void Fatal(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.IsFatalEnabled)

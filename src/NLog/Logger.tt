@@ -212,6 +212,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
 		/// <param name="args">Arguments to format.</param>
+		[StringFormatMethod("message")]
         public void <#=level#>(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (this.Is<#=level#>Enabled)
