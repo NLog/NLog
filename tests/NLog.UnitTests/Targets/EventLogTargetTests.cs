@@ -42,7 +42,9 @@ namespace NLog.UnitTests.Targets
     using System.Linq;
     using Xunit;
     using System.Collections.Generic;
+#if !MONO_2_0
     using System.Diagnostics.Eventing.Reader;
+#endif
     using NLog.Layouts;
 
     public class EventLogTargetTests : NLogTestBase

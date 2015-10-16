@@ -284,7 +284,7 @@ namespace NLog.LogReceiverService
 
 #endif
 
-#if !NET4_0 && !NET3_5
+#if !NET4_0 && !NET3_5 && !MONO_2_0
         /// <summary>
         /// Gets or sets the cookie container.
         /// </summary>

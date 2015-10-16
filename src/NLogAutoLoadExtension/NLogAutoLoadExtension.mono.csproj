@@ -8,10 +8,9 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NLogAutloadExtension</RootNamespace>
-    <AssemblyName>NLogAutloadExtension</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <NoWarn>0419</NoWarn>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +22,7 @@
     <OutputPath>bin\Debug</OutputPath>
     <NoStdLib>true</NoStdLib>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
+    <AssemblyName>NLogAutloadExtension</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,12 +34,31 @@
     <OutputPath>bin\Release</OutputPath>
     <NoStdLib>true</NoStdLib>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
+    <AssemblyName>NLogAutloadExtension</AssemblyName>
   </PropertyGroup>
   <PropertyGroup>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_MONO_2_0|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug_MONO_2_0</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <AssemblyName>NLogAutoLoadExtension.mono</AssemblyName>
+    <NoWarn>
+    </NoWarn>
+    <NoStdLib>false</NoStdLib>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_MONO_2_0|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release_MONO_2_0</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <AssemblyName>NLogAutoLoadExtension.mono</AssemblyName>
+    <NoWarn>
+    </NoWarn>
+    <NoStdLib>false</NoStdLib>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

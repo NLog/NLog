@@ -45,6 +45,8 @@ using System.Security;
     [assembly: AssemblyTitle("NLog for .NET Framework 4.5")]
 #elif MONO_2_0
     [assembly: AssemblyTitle("NLog for Mono 2.0")]
+#elif MONO_4_0
+    [assembly: AssemblyTitle("NLog for Mono 4.0")]
 #elif SILVERLIGHT4
     [assembly: AssemblyTitle("NLog for Silverlight 4.0")]
 #elif SILVERLIGHT5
