@@ -839,22 +839,39 @@ namespace NLog
                 {
                     try
                     {
-                        var instance = FactoryHelper.CreateInstance(cacheKey.ConcreteType);
-                        newLogger = instance as Logger;
-                        if (newLogger == null)
+                        var fullName = cacheKey.ConcreteType.FullName;
+                        //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
+                        if (cacheKey.ConcreteType.IsStaticClass())
                         {
-                            //well, it's not a Logger, and we should return a Logger.
-                            var fullName = cacheKey.ConcreteType.FullName;
-                            var errorMessage = string.Format("GetLogger / GetCurrentClassLogger got '{0}' as loggerType which doesn't inherit from Logger", fullName);
+                            var errorMessage = string.Format("GetLogger / GetCurrentClassLogger is '{0}' as loggerType can be a static class and should inherit from Loger",
+                                fullName);
                             InternalLogger.Error(errorMessage);
                             if (ThrowExceptions)
                             {
                                 throw new NLogRuntimeException(errorMessage);
                             }
+                            newLogger = CreateDefaultLogger(ref cacheKey);
+                        }
+                        else
+                        {
 
-                            // Creating default instance of logger if instance of specified type cannot be created.
-                            cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));
-                            newLogger = new Logger();
+                            var instance = FactoryHelper.CreateInstance(cacheKey.ConcreteType);
+                            newLogger = instance as Logger;
+                            if (newLogger == null)
+                            {
+                                //well, it's not a Logger, and we should return a Logger.
+
+                                var errorMessage = string.Format("GetLogger / GetCurrentClassLogger got '{0}' as loggerType which doesn't inherit from Logger", fullName);
+                                InternalLogger.Error(errorMessage);
+                                if (ThrowExceptions)
+                                {
+                                    throw new NLogRuntimeException(errorMessage);
+                                }
+
+                                // Creating default instance of logger if instance of specified type cannot be created.
+                                newLogger = CreateDefaultLogger(ref cacheKey);
+                                
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -867,9 +884,7 @@ namespace NLog
                         InternalLogger.Error("Cannot create instance of specified type. Proceeding with default type instance. Exception : {0}", ex);
 
                         // Creating default instance of logger if instance of specified type cannot be created.
-                        cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));
-
-                        newLogger = new Logger();
+                        newLogger = CreateDefaultLogger(ref cacheKey);
                     }
                 }
                 else
@@ -890,6 +905,14 @@ namespace NLog
                 loggerCache.InsertOrUpdate(cacheKey, newLogger);
                 return newLogger;
             }
+        }
+
+        private static Logger CreateDefaultLogger(ref LoggerCacheKey cacheKey)
+        {
+            cacheKey = new LoggerCacheKey(cacheKey.Name, typeof (Logger));
+
+            var newLogger = new Logger();
+            return newLogger;
         }
 
 #if !SILVERLIGHT

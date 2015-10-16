@@ -455,6 +455,17 @@ namespace NLog.UnitTests
 
         }
 
+        /// <summary>
+        /// ImNotALogger inherits not from Logger , but should not throw an exception
+        /// </summary>
+        [Fact]
+        void GetLogger_wrong_loggertype_should_continue_even_if_class_is_static()
+        {
+            var instance = LogManager.GetLogger("a", typeof(ImAStaticClass));
+            Assert.NotNull(instance);
+
+        }
+
 
 #if NET4_0 || NET4_5
         [Fact]
