@@ -668,7 +668,7 @@ namespace NLog.Targets
                         this.previousFileNames.Dequeue();
                     }
 
-                    string fileNamePattern = CleanupInvalidFileNameChars(this.GetFileNamePattern(fileName, logEvent));
+                    string fileNamePattern = this.GetFileNamePattern(fileName, logEvent);
                     this.DeleteOldDateArchive(fileNamePattern);
                     this.previousFileNames.Enqueue(fileName);
                 }
@@ -1065,34 +1065,37 @@ namespace NLog.Targets
             int minSequenceLength, string dateFormat, FileNameTemplate fileTemplate)
         {
             var directoryInfo = new DirectoryInfo(dirName);
-            int archiveFileNameMinLength = fileNameMask.Length + minSequenceLength;
-            var archiveFileNames = GetFiles(directoryInfo, fileNameMask)
-                .Where(n => n.Name.Length >= archiveFileNameMinLength)
-                .OrderBy(n => n.CreationTime)
-                .Select(n => n.FullName);
-
-            foreach (string archiveFileName in archiveFileNames)
+            if (directoryInfo.Exists)
             {
-                //Get the archive file name or empty string if it's null
-                string archiveFileNameWithoutPath = Path.GetFileName(archiveFileName) ?? "";
+                int archiveFileNameMinLength = fileNameMask.Length + minSequenceLength;
+                var archiveFileNames = GetFiles(directoryInfo, fileNameMask)
+                    .Where(n => n.Name.Length >= archiveFileNameMinLength)
+                    .OrderBy(n => n.CreationTime)
+                    .Select(n => n.FullName);
 
-                DateTime date;
-                int sequence;
-                if (
-                    !TryParseDateAndSequence(archiveFileNameWithoutPath, dateFormat, fileTemplate, out date,
-                        out sequence))
+                foreach (string archiveFileName in archiveFileNames)
                 {
-                    continue;
-                }
+                    //Get the archive file name or empty string if it's null
+                    string archiveFileNameWithoutPath = Path.GetFileName(archiveFileName) ?? "";
 
-                //It's possible that the log file itself has a name that will match the archive file mask.
-                if (string.IsNullOrEmpty(archiveFileNameWithoutPath) ||
-                    archiveFileNameWithoutPath.Equals(Path.GetFileName(logFileName)))
-                {
-                    continue;
-                }
+                    DateTime date;
+                    int sequence;
+                    if (
+                        !TryParseDateAndSequence(archiveFileNameWithoutPath, dateFormat, fileTemplate, out date,
+                            out sequence))
+                    {
+                        continue;
+                    }
 
-                yield return new DateAndSequenceArchive(archiveFileName, date, dateFormat, sequence);
+                    //It's possible that the log file itself has a name that will match the archive file mask.
+                    if (string.IsNullOrEmpty(archiveFileNameWithoutPath) ||
+                        archiveFileNameWithoutPath.Equals(Path.GetFileName(logFileName)))
+                    {
+                        continue;
+                    }
+
+                    yield return new DateAndSequenceArchive(archiveFileName, date, dateFormat, sequence);
+                }
             }
         }
 
@@ -1164,9 +1167,14 @@ namespace NLog.Targets
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
 
-            try
+            if (dirName != null)
             {
                 DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
+                if (!directoryInfo.Exists)
+                {
+                    Directory.CreateDirectory(dirName);
+                    return;
+                }
 
 #if SILVERLIGHT
                 List<string> files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
@@ -1187,10 +1195,6 @@ namespace NLog.Targets
                 }
 
                 EnsureArchiveCount(filesByDate);
-            }
-            catch (DirectoryNotFoundException)
-            {
-                Directory.CreateDirectory(dirName);
             }
         }
 #endif
@@ -1331,6 +1335,7 @@ namespace NLog.Targets
                 //(1) User supplied the Filename with pattern
                 //(2) User supplied the normal filename
                 fileNamePattern = this.ArchiveFileName.Render(eventInfo);
+                fileNamePattern = CleanupInvalidFileNameChars(fileNamePattern);
             }
             return fileNamePattern;
         }
