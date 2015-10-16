@@ -20,41 +20,21 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <DefineConstants>DEBUG;TRACE;MONO;MONO_4_0;WCF_SUPPORTED</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;MONO;MONO4_0;WCF_SUPPORTED</DefineConstants>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
     <Optimize>false</Optimize>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_MONO_2_0|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <DefineConstants>DEBUG;TRACE;MONO;MONO_2_0;WCF_SUPPORTED</DefineConstants>
-    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
-    <Optimize>false</Optimize>
-    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
-    <DefineConstants>TRACE;MONO;MONO_4_0;WCF_SUPPORTED</DefineConstants>
+    <DefineConstants>TRACE;MONO;MONO4_0;WCF_SUPPORTED</DefineConstants>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
     <Optimize>true</Optimize>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_MONO_2_0|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>pdbonly</DebugType>
-    <DefineConstants>TRACE;MONO;MONO_2_0;WCF_SUPPORTED</DefineConstants>
-    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
-    <Optimize>true</Optimize>
-    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
@@ -92,7 +72,7 @@
     </ItemGroup>
   </Target>
   <ItemGroup>
-    <ProjectReference Include="..\NLog\NLog.mono2.csproj">
+    <ProjectReference Include="..\NLog\NLog.mono4.csproj">
       <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
       <Name>NLog.mono</Name>
     </ProjectReference>

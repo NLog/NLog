@@ -42,7 +42,7 @@ namespace NLog.Internal
     /// </summary>
     internal class MySmtpClient : SmtpClient, ISmtpClient
     {
-#if NET3_5 || MONO_2_0
+#if NET3_5 || MONO2_0
         /// <summary>
         /// Sends a QUIT message to the SMTP server, gracefully ends the TCP connection, and releases all resources used by the current instance of the <see cref="T:System.Net.Mail.SmtpClient"/> class.
         /// </summary>

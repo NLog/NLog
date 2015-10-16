@@ -67,7 +67,7 @@ namespace NLog.Internal
         /// <remarks>Wrapper because Enum.TryParse is not present in .net 3.5</remarks>
         public static bool TryParse<TEnum>(string value, bool ignoreCase, out TEnum result) where TEnum : struct
         {
-#if NET3_5 || MONO_2_0
+#if NET3_5 || MONO2_0
 
             return TryParseEnum_net3(value, ignoreCase, out result);
 #else

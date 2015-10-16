@@ -116,7 +116,7 @@ namespace NLog.LogReceiverService
 //   Universal Windows Platform, .NET Framework, Portable Class Library - since 4.5
 //   Silverlight - since 3.0
 //   Windows Phone Silverlight - since 7.0
-#if !NET4_0 && !NET3_5 && !MONO_2_0
+#if !NET4_0 && !NET3_5 && !MONO2_0
 
         /// <summary>
         /// Gets or sets the cookie container.

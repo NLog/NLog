@@ -42,10 +42,10 @@ using System.Runtime.InteropServices;
     [assembly: AssemblyTitle("NLog for .NET Framework 4 Extended Profile")]
 #elif NET4_5
     [assembly: AssemblyTitle("NLog for .NET Framework 4.5 Extended Profile")]
-#elif MONO_2_0
-    [assembly: AssemblyTitle("NLog for Mono 2.0 Extended Profile")]
-#elif MONO_4_0
-    [assembly: AssemblyTitle("NLog for Mono 4.0 Extended Profile")]
+#elif MONO2_0
+    [assembly: AssemblyTitle("NLog for Mono 2.x Extended Profile")]
+#elif MONO4_0
+    [assembly: AssemblyTitle("NLog for Mono 4.x Extended Profile")]
 #elif DOCUMENTATION
     [assembly: AssemblyTitle("NLog Documentation")]
 #else
