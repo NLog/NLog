@@ -42,24 +42,6 @@
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_MONO_2_0|AnyCPU' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug_MONO_2_0</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <AssemblyName>NLogAutoLoadExtension.mono</AssemblyName>
-    <NoWarn>
-    </NoWarn>
-    <NoStdLib>false</NoStdLib>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_MONO_2_0|AnyCPU' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Release_MONO_2_0</OutputPath>
-    <WarningLevel>4</WarningLevel>
-    <AssemblyName>NLogAutoLoadExtension.mono</AssemblyName>
-    <NoWarn>
-    </NoWarn>
-    <NoStdLib>false</NoStdLib>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
