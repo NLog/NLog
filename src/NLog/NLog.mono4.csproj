@@ -407,6 +407,7 @@
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\BuildInfoFile.targets" />
   <ItemGroup>
     <None Include="Logger.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

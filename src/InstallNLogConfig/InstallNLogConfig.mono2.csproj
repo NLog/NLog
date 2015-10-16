@@ -49,9 +49,5 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\..\src\Mono.targets" />
-  <Target Name="BeforeBuild">
-    <ItemGroup Condition="Exists('$(BuildInfoFile)')">
-      <Compile Include="$(BuildInfoFile)" />
-    </ItemGroup>
-  </Target>
+  <Import Project="..\BuildInfoFile.targets" />
 </Project>

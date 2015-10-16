@@ -60,6 +60,7 @@
     <None Include="NLogTests.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\src\BuildInfoFile.targets" />
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLog\NLog.mono4.csproj">
       <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>

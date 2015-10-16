@@ -64,11 +64,7 @@
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="BeforeBuild">
-    <ItemGroup Condition="Exists('$(BuildInfoFile)')">
-      <Compile Include="$(BuildInfoFile)" />
-    </ItemGroup>
-  </Target>
+  <Import Project="..\BuildInfoFile.targets" />
   <ItemGroup>
     <ProjectReference Include="..\NLog\NLog.mono4.csproj">
       <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
