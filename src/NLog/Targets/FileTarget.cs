@@ -1735,11 +1735,8 @@ namespace NLog.Targets
             if (fileInfo.Exists)
             {
                 fileLength = fileInfo.Length;
-#if !SILVERLIGHT
-                lastWriteTime = fileInfo.LastWriteTimeUtc;
-#else
+
                 lastWriteTime = fileInfo.LastWriteTime;
-#endif
                 return true;
             }
 
