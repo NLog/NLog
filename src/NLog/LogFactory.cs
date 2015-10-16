@@ -837,9 +837,10 @@ namespace NLog
 
                 if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
                 {
+                    var fullName = cacheKey.ConcreteType.FullName;
                     try
                     {
-                        var fullName = cacheKey.ConcreteType.FullName;
+
                         //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
                         if (cacheKey.ConcreteType.IsStaticClass())
                         {
@@ -870,18 +871,24 @@ namespace NLog
 
                                 // Creating default instance of logger if instance of specified type cannot be created.
                                 newLogger = CreateDefaultLogger(ref cacheKey);
-                                
+
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        if (ex.MustBeRethrown() || ThrowExceptions)
+                        if (ex.MustBeRethrown())
                         {
                             throw;
                         }
 
-                        InternalLogger.Error("Cannot create instance of specified type. Proceeding with default type instance. Exception : {0}", ex);
+                        var errorMessage = string.Format("GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
+                        if (ThrowExceptions)
+                        {
+                            throw new NLogRuntimeException(errorMessage, ex);
+                        }
+
+                        InternalLogger.Error(errorMessage + ". Exception : {0}", ex);
 
                         // Creating default instance of logger if instance of specified type cannot be created.
                         newLogger = CreateDefaultLogger(ref cacheKey);
@@ -909,7 +916,7 @@ namespace NLog
 
         private static Logger CreateDefaultLogger(ref LoggerCacheKey cacheKey)
         {
-            cacheKey = new LoggerCacheKey(cacheKey.Name, typeof (Logger));
+            cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));
 
             var newLogger = new Logger();
             return newLogger;
