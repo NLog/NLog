@@ -28,6 +28,7 @@
     <FrameworksPath>$(MSBuildProjectDirectory)\Frameworks</FrameworksPath>    
     <BuildAllFrameworks>true</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildMono2)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildMono4)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL4)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL5)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
@@ -80,6 +81,7 @@
     any specific framework, so we build all that are available -->
   <PropertyGroup Condition="'$(BuildAllFrameworks)' == 'true'">
     <BuildMono2>true</BuildMono2>
+    <BuildMono4>true</BuildMono4>
     <BuildSL4>true</BuildSL4>
     <BuildSL5>true</BuildSL5>
     <BuildNetFX35>true</BuildNetFX35>
@@ -88,6 +90,7 @@
 
     <!-- now disable those that we know cannot be built -->
     <BuildMono2 Condition="'$(MonoInstallLocation)'==''">false</BuildMono2>
+    <BuildMono4 Condition="'$(MonoInstallLocation)'==''">false</BuildMono4>
     <BuildSL4 Condition="!Exists('$(SL4RefPath)')">false</BuildSL4>
     <BuildSL5 Condition="!Exists('$(SL5RefPath)')">false</BuildSL5>
     <BuildNetFX35 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v3.5') == ''">false</BuildNetFX35>
@@ -105,6 +108,12 @@
     <TargetFramework Include="Mono 2.x" Condition="'$(BuildMono2)' == 'true'">
         <ProjectFileSuffix>.mono2</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
+        <NuGetDir>mono2</NuGetDir>
+    </TargetFramework>
+    <TargetFramework Include="Mono 4.x" Condition="'$(BuildMono4)' == 'true'">
+        <ProjectFileSuffix>.mono4</ProjectFileSuffix>
+        <ToolsVersion>4.5</ToolsVersion>
+        <NuGetDir>mono4</NuGetDir>
     </TargetFramework>
     <TargetFramework Include="Silverlight 4.0" Condition="'$(BuildSL4)'=='true'">
         <ProjectFileSuffix>.sl4</ProjectFileSuffix>
@@ -213,6 +222,7 @@
   <Target Name="RunTests">
     <Exec Command="$(BaseOutputDirectory)\bin\CreateTestUsers.cmd" IgnoreExitCode="true" />
     <!-- <CallTarget Targets="Mono2Test" Condition="'$(BuildMono2)'=='true'"/> -->
+    <!-- <CallTarget Targets="Mono4Test" Condition="'$(BuildMono4)'=='true'"/> -->
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
     <CallTarget Targets="NetFx45Test" Condition="'$(BuildNetFX45)'=='true'"/>
@@ -228,6 +238,16 @@
           Condition="Exists('$(MSTest10)')" />
     <Exec Command="$(BaseOutputDirectory)\bin\DeleteTestUsers.cmd" IgnoreExitCode="true" />
   </Target>
+
+<!--
+  <Target Name="Mono2Test">
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.mono2.dll" ContinueOnError="true" ShadowCopy="false" />
+  </Target>
+
+  <Target Name="Mono4Test">
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.mono4.dll" ContinueOnError="true" ShadowCopy="false" />
+  </Target>
+-->
 
   <Target Name="NetFx35Test">
     <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />

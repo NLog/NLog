@@ -104,6 +104,7 @@
 
         <Directory Id="APPLICATIONFOLDER" Name="NLog">
           <Directory Id="MONO2_DIR" Name="Mono 2.x" />
+          <Directory Id="MONO4_DIR" Name="Mono 4.x" />
           <Directory Id="NETFX20_DIR" Name=".NET Framework 2.0" />
           <Directory Id="NETFX35_DIR" Name=".NET Framework 3.5" />
           <Directory Id="NETFX40_DIR" Name=".NET Framework 4.0" />
@@ -343,6 +344,35 @@
          
                 
         <File Id="Mono2_InstallNLogConfig.pdb" Name="InstallNLogConfig.exe.mdb" />
+         
+      </Component>
+
+    </DirectoryRef>
+    <?endif ?>
+
+    <!-- Mono 4.x support -->
+
+    <?ifdef Include_Mono4 ?>
+    <DirectoryRef Id="MONO4_DIR" FileSource="$(var.NLogBuildPath)\Mono 4.x">
+    
+      <Component Id="Mono4_Binaries" Guid="53066b9f-9a03-3684-9aeb-6d044b77328d">
+        <File Id="Mono4_NLog.dll" Name="NLog.dll" Vital="yes" KeyPath="yes" />
+        <File Id="Mono4_NLog.xml" Name="NLog.xml" />
+        
+        <File Id="Mono4_InstallNLogConfig.exe" Name="InstallNLogConfig.exe" />
+                        
+        <File Id="Mono4_NLog.Extended.dll" Name="NLog.Extended.dll" Vital="yes" />
+        <File Id="Mono4_NLog.Extended.xml" Name="NLog.Extended.xml" />
+                        
+      </Component>
+
+      <Component Id="Mono4_DebugInfo" Guid="b04ec0aa-04ca-35d3-edaa-f95f9743dd95">
+        <File Id="Mono4_NLog.NLog.dll.mdb" Name="NLog.dll.mdb" />
+                
+        <File Id="Mono4_NLog.NLog.Extended.dll.mdb" Name="NLog.Extended.dll.mdb" />
+         
+                
+        <File Id="Mono4_InstallNLogConfig.pdb" Name="InstallNLogConfig.exe.mdb" />
          
       </Component>
 
@@ -823,6 +853,9 @@
       <?ifdef Include_Mono2 ?>
         <File Id="VS2005_NLog.Mono2.xsd" Name="NLog.Mono2.xsd" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.Mono2.xsd" />
       <?endif ?>
+      <?ifdef Include_Mono4 ?>
+        <File Id="VS2005_NLog.Mono4.xsd" Name="NLog.Mono4.xsd" Source="$(var.NLogBuildPath)\Mono 4.x\NLog.Mono4.xsd" />
+      <?endif ?>
       <?ifdef Include_NetFx20 ?>
         <File Id="VS2005_NLog.NetFx20.xsd" Name="NLog.NetFx20.xsd" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.NetFx20.xsd" />
       <?endif ?>
@@ -1021,6 +1054,9 @@
         <File Id="VS2008_NLog.xsd" Name="NLog.xsd" />
       <?ifdef Include_Mono2 ?>
         <File Id="VS2008_NLog.Mono2.xsd" Name="NLog.Mono2.xsd" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.Mono2.xsd" />
+      <?endif ?>
+      <?ifdef Include_Mono4 ?>
+        <File Id="VS2008_NLog.Mono4.xsd" Name="NLog.Mono4.xsd" Source="$(var.NLogBuildPath)\Mono 4.x\NLog.Mono4.xsd" />
       <?endif ?>
       <?ifdef Include_NetFx20 ?>
         <File Id="VS2008_NLog.NetFx20.xsd" Name="NLog.NetFx20.xsd" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.NetFx20.xsd" />
@@ -1251,6 +1287,9 @@
       <?ifdef Include_Mono2 ?>
         <File Id="VS2010_NLog.Mono2.xsd" Name="NLog.Mono2.xsd" Source="$(var.NLogBuildPath)\Mono 2.x\NLog.Mono2.xsd" />
       <?endif ?>
+      <?ifdef Include_Mono4 ?>
+        <File Id="VS2010_NLog.Mono4.xsd" Name="NLog.Mono4.xsd" Source="$(var.NLogBuildPath)\Mono 4.x\NLog.Mono4.xsd" />
+      <?endif ?>
       <?ifdef Include_NetFx20 ?>
         <File Id="VS2010_NLog.NetFx20.xsd" Name="NLog.NetFx20.xsd" Source="$(var.NLogBuildPath)\.NET Framework 2.0\NLog.NetFx20.xsd" />
       <?endif ?>
@@ -1297,6 +1336,12 @@
       <?ifdef Include_Mono2 ?>
       <Feature Id="Mono2_Binaries" Title="Mono 2.x" Level="1">
         <ComponentRef Id="Mono2_Binaries" />
+      </Feature>
+      <?endif?>
+
+      <?ifdef Include_Mono4 ?>
+      <Feature Id="Mono4_Binaries" Title="Mono 4.x" Level="1">
+        <ComponentRef Id="Mono4_Binaries" />
       </Feature>
       <?endif?>
       
@@ -1374,6 +1419,12 @@
       </Feature>
       <?endif?>
       
+      <?ifdef Include_Mono4 ?>
+      <Feature Id="Mono4_DebugInfo" Title="Mono 4.x" Level="1">
+        <ComponentRef Id="Mono4_DebugInfo" />
+      </Feature>
+      <?endif?>
+
       <?ifdef Include_NetFx20 ?>
       <Feature Id="NetFx20_DebugInfo" Title=".NET Framework 2.0" Level="1">
         <ComponentRef Id="NetFx20_DebugInfo" />

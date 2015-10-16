@@ -3,14 +3,10 @@
   <PropertyGroup>
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FE0A3713-E9A8-41F0-89FA-C1126F8FB6A8}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <ApplicationIcon>
-    </ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>NLog.UnitTests</AssemblyName>
@@ -32,10 +28,12 @@
     <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
+    <NoStdLib>true</NoStdLib>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
@@ -43,10 +41,12 @@
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <Optimize>true</Optimize>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>4</WarningLevel>
     <DebugType>pdbonly</DebugType>
     <ErrorReport>prompt</ErrorReport>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
+    <NoStdLib>true</NoStdLib>
   </PropertyGroup>
   <PropertyGroup>
     <NoStdLib>true</NoStdLib>
@@ -162,8 +162,14 @@
     <None Include="NLogTests.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.mono2.csproj" />
-    <ProjectReference Include="..\SampleExtensions\SampleExtensions.mono2.csproj" />
+    <ProjectReference Include="..\..\src\NLog\NLog.mono2.csproj">
+      <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
+      <Name>NLog.mono2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleExtensions\SampleExtensions.mono2.csproj">
+      <Project>{5CCB56C3-4A6E-4C11-960B-2877099F52CE}</Project>
+      <Name>SampleExtensions.mono2</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\..\src\Mono.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />

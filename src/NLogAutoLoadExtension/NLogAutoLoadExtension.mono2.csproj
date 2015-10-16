@@ -77,7 +77,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NLog\NLog.mono2.csproj">
       <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
-      <Name>NLog.mono</Name>
+      <Name>NLog.mono2</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
