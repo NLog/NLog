@@ -145,7 +145,8 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx45.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl4.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.wp7.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.mono.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.mono2.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.mono4.csproj");
 
             filesToCompile.Clear();
             GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLog.Extended/"), "*.cs", "");
@@ -153,7 +154,8 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx35.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx40.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx45.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.mono.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.mono2.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.mono4.csproj");
 
             filesToCompile.Clear();
             GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "tests/NLog.UnitTests/"), "*.cs", "");
@@ -162,7 +164,8 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx40.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx45.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl4.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.mono.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.mono2.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.mono4.csproj");
 
 			filesToCompile.Clear();
 			GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLogAutoLoadExtension/"), "*.cs", "");
@@ -170,7 +173,8 @@ namespace NLog.UnitTests
 			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx35.csproj");
 			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx40.csproj");
 			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx45.csproj");
-			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono.csproj");
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono2.csproj");
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono4.csproj");
 
             Assert.Equal(0, failures);
         }
