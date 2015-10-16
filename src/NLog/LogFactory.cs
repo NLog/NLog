@@ -671,7 +671,9 @@ namespace NLog
 #endif
         private void GetTargetsByLevelForLogger(string name, IEnumerable<LoggingRule> rules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
-            foreach (LoggingRule rule in rules)
+            //no "System.InvalidOperationException: Collection was modified"
+            var loggingRules = new List<LoggingRule>(rules);
+            foreach (LoggingRule rule in loggingRules)
             {
                 if (!rule.NameMatches(name))
                 {
@@ -688,7 +690,7 @@ namespace NLog
                     if (rule.Final)
                         suppressedLevels[i] = true;
 
-                    foreach (Target target in rule.Targets)
+                    foreach (Target target in rule.Targets.ToList())
                     {
                         var awf = new TargetWithFilterChain(target, rule.Filters);
                         if (lastTargetsByLevel[i] != null)
