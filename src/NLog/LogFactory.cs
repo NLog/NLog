@@ -192,7 +192,7 @@ namespace NLog
                         this.config.InitializeAll();
                         LogConfigurationInitialized();
                     }
-                    
+
                     return this.config;
                 }
             }
@@ -299,7 +299,7 @@ namespace NLog
             InternalLogger.Info("Configuration initialized.");
             InternalLogger.LogAssemblyVersion(typeof(ILogger).Assembly);
         }
-        
+
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting 
         /// unmanaged resources.
@@ -318,7 +318,7 @@ namespace NLog
         {
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             Logger newLogger = new Logger();
-            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel,false), this);
+            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel, false), this);
             return newLogger;
         }
 
@@ -603,8 +603,8 @@ namespace NLog
                     this.reloadTimer.Dispose();
                     this.reloadTimer = null;
                 }
-                
-                if(IsDisposing)
+
+                if (IsDisposing)
                 {
                     //timer was disposed already. 
                     this.watcher.Dispose();
@@ -839,7 +839,23 @@ namespace NLog
                 {
                     try
                     {
-                        newLogger = (Logger)FactoryHelper.CreateInstance(cacheKey.ConcreteType);
+                        var instance = FactoryHelper.CreateInstance(cacheKey.ConcreteType);
+                        newLogger = instance as Logger;
+                        if (newLogger == null)
+                        {
+                            //well, it's not a Logger, and we should return a Logger.
+                            var fullName = cacheKey.ConcreteType.FullName;
+                            var errorMessage = string.Format("GetLogger / GetCurrentClassLogger got '{0}' as loggerType which doesn't inherit from Logger", fullName);
+                            InternalLogger.Error(errorMessage);
+                            if (ThrowExceptions)
+                            {
+                                throw new NLogRuntimeException(errorMessage);
+                            }
+
+                            // Creating default instance of logger if instance of specified type cannot be created.
+                            cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));
+                            newLogger = new Logger();
+                        }
                     }
                     catch (Exception ex)
                     {
