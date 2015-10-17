@@ -12,12 +12,12 @@
     <RootNamespace>InstallNLogConfig</RootNamespace>
     <AssemblyName>InstallNLogConfig</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Optimize>false</Optimize>
+    <DebugType>full</DebugType>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -29,8 +29,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <NoStdLib>true</NoStdLib>
-    <NoConfig>true</NoConfig>
     <DefineConstants>MONO;WCF_SUPPORTED;MONO4_0;$(DefineConstants)</DefineConstants>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
@@ -48,6 +46,6 @@
       <Name>NLog.mono4</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\..\src\Mono.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\BuildInfoFile.targets" />
 </Project>
