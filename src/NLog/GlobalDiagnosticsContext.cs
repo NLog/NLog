@@ -33,87 +33,25 @@
 
 namespace NLog
 {
+    using NLog.Context;
+    using NLog.Helpers;
     using System;
     using System.Collections.Generic;
 
     /// <summary>
     /// Global Diagnostics Context - a dictionary structure to hold per-application-instance values.
     /// </summary>
-    public class GlobalDiagnosticsContext
+    [Obsolete("Use NLog.Context.GlobalContext Instead.")]
+    public static class GlobalDiagnosticsContext
     {
-        private static GlobalDiagnosticsContext currentInstance = null;
-        private static readonly object lockingObject = new object();
-        private Dictionary<string, object> dict = new Dictionary<string, object>();
-
-        /// <summary>
-        /// Return the value from internal dictionary
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public object this[string key]
-        {
-            get
-            {
-                return this.dict[key];
-            }
-            set
-            {
-                this.dict[key] = value;                
-            }
-        }
-
-        /// <summary>
-        /// List of keys.
-        /// </summary>
-        public Dictionary<string, object>.KeyCollection Keys
-        {
-            get
-            {
-                return this.dict.Keys;
-            }
-        }
-
-        
-        /// <summary>
-        /// Singleton instance of the GlobalDiagnosticsContext
-        /// </summary>
-        public static GlobalDiagnosticsContext Instance
-        {
-            get
-            {
-                if (currentInstance == null)
-                {
-                    lock (lockingObject)
-                    {
-                        if (currentInstance == null)
-                        {
-                            currentInstance = new GlobalDiagnosticsContext();
-                        }
-                    }
-                }
-                return currentInstance;
-            }
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        private GlobalDiagnosticsContext()
-        {
-
-        }
-
         /// <summary>
         /// Sets the Global Diagnostics Context item to the specified value.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <param name="value">Item value.</param>
+        /// <param name="value">Item value.</param>        
         public static void Set(string item, string value)
         {
-            lock (lockingObject)
-            {
-                GlobalDiagnosticsContext.Instance.dict[item] = value;
-            }
+            GlobalContext.Instance[item] = value;
         }
 
         /// <summary>
@@ -123,10 +61,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, object value)
         {
-            lock (lockingObject)
-            {
-                GlobalDiagnosticsContext.Instance.dict[item] = value;
-            }
+            GlobalContext.Instance[item] = value;
         }
 
         /// <summary>
@@ -145,9 +80,9 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
         /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
-        public static string Get(string item, IFormatProvider formatProvider) 
+        public static string Get(string item, IFormatProvider formatProvider)
         {
-            return ConvertToString(GetObject(item), formatProvider);
+            return ObjectHelpers.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>
@@ -157,14 +92,7 @@ namespace NLog
         /// <returns>The item value, if defined; otherwise <c>null</c>.</returns>
         public static object GetObject(string item)
         {
-            lock (lockingObject)
-            {
-                object o;
-                if (!GlobalDiagnosticsContext.Instance.dict.TryGetValue(item, out o))
-                    o = null;
-
-                return o;
-            }
+            return GlobalContext.Instance.TryGet(item);
         }
 
         /// <summary>
@@ -174,10 +102,7 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified item exists in current thread GDC.</returns>
         public static bool Contains(string item)
         {
-            lock (lockingObject)
-            {
-                return GlobalDiagnosticsContext.Instance.dict.ContainsKey(item);
-            }
+            return GlobalContext.Instance.Contains(item);
         }
 
         /// <summary>
@@ -186,10 +111,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            lock (lockingObject)
-            {
-                GlobalDiagnosticsContext.Instance.dict.Remove(item);
-            }
+            GlobalContext.Instance.Remove(item);
         }
 
         /// <summary>
@@ -197,19 +119,7 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            lock (lockingObject)
-            {
-                GlobalDiagnosticsContext.Instance.dict.Clear();
-            }
-        }
-
-        internal static string ConvertToString(object o, IFormatProvider formatProvider)
-        {
-            // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
-            if ((formatProvider == null) && (LogManager.Configuration != null))
-                formatProvider = LogManager.Configuration.DefaultCultureInfo;
-
-            return String.Format(formatProvider, "{0}", o);
+            GlobalContext.Instance.Clear();
         }
     }
 }

@@ -34,6 +34,7 @@
 namespace NLog
 {
 #if NET4_0 || NET4_5
+    using NLog.Helpers;
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -84,7 +85,7 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         public static string Get(string item, IFormatProvider formatProvider)
         {
-            return GlobalDiagnosticsContext.ConvertToString(GetObject(item), formatProvider);
+            return ObjectHelpers.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>

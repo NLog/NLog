@@ -38,6 +38,7 @@ namespace NLog
     using System.Linq;
 
     using NLog.Internal;
+    using NLog.Helpers;
 
     /// <summary>
     /// Nested Diagnostics Context - a thread-local structure that keeps a stack
@@ -56,7 +57,7 @@ namespace NLog
         {
             get
             {
-                return GlobalDiagnosticsContext.ConvertToString(TopObject, null);
+                return ObjectHelpers.ConvertToString(TopObject, null);
             }
         }
 
@@ -117,7 +118,7 @@ namespace NLog
         /// <returns>The top message, which is removed from the stack, as a string value.</returns>
         public static string Pop(IFormatProvider formatProvider)
         {
-            return GlobalDiagnosticsContext.ConvertToString(PopObject(), formatProvider);
+            return ObjectHelpers.ConvertToString(PopObject(), formatProvider);
         }
 
         /// <summary>
@@ -154,7 +155,7 @@ namespace NLog
         /// <returns>Array of strings.</returns>
         public static string[] GetAllMessages(IFormatProvider formatProvider) 
         {
-            return ThreadStack.Select((o) => GlobalDiagnosticsContext.ConvertToString(o, formatProvider)).ToArray();
+            return ThreadStack.Select((o) => ObjectHelpers.ConvertToString(o, formatProvider)).ToArray();
         }
 
         /// <summary>

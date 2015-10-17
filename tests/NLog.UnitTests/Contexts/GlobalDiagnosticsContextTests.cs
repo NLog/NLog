@@ -83,15 +83,6 @@ namespace NLog.UnitTests.Contexts
 
             Assert.True(GDC.Contains("foo2"));
             Assert.Equal("bar2", GDC.Get("foo2"));
-        }
-
-        [Fact]
-        public void GDCTest3()
-        {
-            GlobalDiagnosticsContext.Clear();
-            Assert.IsType(typeof(GlobalDiagnosticsContext), GlobalDiagnosticsContext.Instance);
-            
-            //GlobalDiagnosticsContext.Instance
-        }
+        }        
     }
 }

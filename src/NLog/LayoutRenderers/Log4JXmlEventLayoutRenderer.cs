@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
     using NLog.Internal;
     using NLog.Targets;
+    using NLog.Context;
 
     /// <summary>
     /// XML event description compatible with log4j, Chainsaw and NLogViewer.
@@ -258,11 +259,11 @@ namespace NLog.LayoutRenderers
                 xtw.WriteStartElement("log4j", "properties", dummyNamespace);
                 if (this.IncludeMdc)
                 {
-                    foreach (KeyValuePair<string, object> entry in MappedDiagnosticsContext.ThreadDictionary)
+                    foreach(string key in MappedContext.Instance.Keys)
                     {
                         xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                        xtw.WriteAttributeSafeString("name", entry.Key);
-                        xtw.WriteAttributeSafeString("value", String.Format(logEvent.FormatProvider, "{0}", entry.Value));
+                        xtw.WriteAttributeSafeString("name", key);
+                        xtw.WriteAttributeSafeString("value", String.Format(logEvent.FormatProvider, "{0}", MappedContext.Instance[key]));
                         xtw.WriteEndElement();
                     }
                 }
