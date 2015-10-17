@@ -323,7 +323,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger named after the currently-being-initialized class.
+        /// Gets the logger with the name of the current class. 
         /// </summary>
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
@@ -341,11 +341,11 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger named after the currently-being-initialized class.
+        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="loggerType">The type of the logger to create. The type must inherit from 
         /// NLog.Logger.</param>
-        /// <returns>The logger.</returns>
+        /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
         /// <remarks>This is a slow-running method. Make sure you are not calling this method in a 
         /// loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
@@ -372,11 +372,11 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified named logger.
+        /// Gets the specified named logger.  Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
-        /// <param name="loggerType">The type of the logger to create. The type must inherit from NLog.Logger.</param>
-        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the 
+        /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger" />.</param>
+        /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the 
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name, Type loggerType)
         {
