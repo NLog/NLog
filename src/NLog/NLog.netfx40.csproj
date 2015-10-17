@@ -111,6 +111,9 @@
     <Compile Include="Config\StackTraceUsage.cs" />
     <Compile Include="Config\ThreadAgnosticAttribute.cs" />
     <Compile Include="Config\XmlLoggingConfiguration.cs" />
+    <Compile Include="Context\GlobalContext.cs" />
+    <Compile Include="Context\IContext.cs" />
+    <Compile Include="Context\ThreadContext.cs" />
     <Compile Include="Filters\ConditionBasedFilter.cs" />
     <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\FilterAttribute.cs" />

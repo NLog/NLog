@@ -119,7 +119,7 @@
     <Compile Include="Config\XmlLoggingConfiguration.cs" />
     <Compile Include="Context\GlobalContext.cs" />
     <Compile Include="Context\IContext.cs" />
-    <Compile Include="Context\MappedContext.cs" />
+    <Compile Include="Context\ThreadContext.cs" />
     <Compile Include="Filters\ConditionBasedFilter.cs" />
     <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\FilterAttribute.cs" />
@@ -135,7 +135,6 @@
     <Compile Include="GDC.cs" />
     <Compile Include="GlobalDiagnosticsContext.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Helpers\ObjectHelpers.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="ILoggerBase.cs" />
     <Compile Include="ILoggerBase-V1.cs" />

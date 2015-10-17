@@ -37,13 +37,12 @@ namespace NLog
     using System.Collections.Generic;
 
     using NLog.Internal;
-    using NLog.Helpers;
-
+    
     /// <summary>
     /// Mapped Diagnostics Context - a thread-local structure that keeps a dictionary
     /// of strings and provides methods to output them in layouts.
     /// </summary>
-    [Obsolete("Use MappedContext Instead.")]
+    [Obsolete("Use NLog.Context.ThreadContext Instead.")]
     public static class MappedDiagnosticsContext
     {
         private static readonly object dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
@@ -91,7 +90,7 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         public static string Get(string item, IFormatProvider formatProvider)
         {
-            return ObjectHelpers.ConvertToString(GetObject(item), formatProvider);
+            return FormatHelper.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>

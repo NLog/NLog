@@ -259,11 +259,11 @@ namespace NLog.LayoutRenderers
                 xtw.WriteStartElement("log4j", "properties", dummyNamespace);
                 if (this.IncludeMdc)
                 {
-                    foreach(string key in MappedContext.Instance.Keys)
+                    foreach(string key in ThreadContext.Instance.Keys)
                     {
                         xtw.WriteStartElement("log4j", "data", dummyNamespace);
                         xtw.WriteAttributeSafeString("name", key);
-                        xtw.WriteAttributeSafeString("value", String.Format(logEvent.FormatProvider, "{0}", MappedContext.Instance[key]));
+                        xtw.WriteAttributeSafeString("value", String.Format(logEvent.FormatProvider, "{0}", ThreadContext.Instance[key]));
                         xtw.WriteEndElement();
                     }
                 }

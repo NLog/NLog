@@ -34,7 +34,7 @@
 namespace NLog
 {
     using NLog.Context;
-    using NLog.Helpers;
+    using NLog.Internal;
     using System;
     using System.Collections.Generic;
 
@@ -82,7 +82,7 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
         public static string Get(string item, IFormatProvider formatProvider)
         {
-            return ObjectHelpers.ConvertToString(GetObject(item), formatProvider);
+            return FormatHelper.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace NLog
         /// <returns>The item value, if defined; otherwise <c>null</c>.</returns>
         public static object GetObject(string item)
         {
-            return GlobalContext.Instance.TryGet(item);
+            return GlobalContext.Instance[item];
         }
 
         /// <summary>

@@ -1,6 +1,4 @@
-﻿
-// 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+﻿// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
 // 
@@ -34,26 +32,22 @@
 
 namespace NLog.Context
 {
-    using NLog.Helpers;
     using NLog.Internal;
     using System;
     using System.Collections.Generic;
 
     /// <summary>
-    /// Mapped Context - a thread-local structure that keeps a dictionary of strings and provides methods to output them in layouts.
+    /// Global Context - a dictionary structure to hold per-application-instance values.
     /// </summary>
-    public class MappedContext : IContext
+    public class GlobalContext : IContext
     {
-        private readonly object dataSlot = null;
         private static IContext currentInstance = null;
         private static readonly object syncRoot = new object();
         private Dictionary<string, object> dict;
 
-
-        private MappedContext()
+        private GlobalContext()
         {
-            dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
-            dict = ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(dataSlot);
+            this.dict = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -69,7 +63,7 @@ namespace NLog.Context
                     {
                         if (currentInstance == null)
                         {
-                            currentInstance = new MappedContext();
+                            currentInstance = new GlobalContext();
                         }
                     }
                 }
@@ -80,14 +74,13 @@ namespace NLog.Context
         /// <summary>
         /// Returns the keys in the context.
         /// </summary>
-        public Dictionary<string, object>.KeyCollection Keys
+        public HashSet<string> Keys
         {
             get
             {
-                return this.dict.Keys;
+                return new HashSet<string>(this.dict.Keys);
             }
         }
-
 
         /// <summary>
         /// Set / Get the key in the context.
@@ -98,7 +91,7 @@ namespace NLog.Context
         {
             get
             {
-                return this.dict[key];
+                return this.TryGet(key);
             }
             set
             {
@@ -110,7 +103,7 @@ namespace NLog.Context
         }
 
         /// <summary>
-        /// Clears the content of current thread Mapped Context.
+        /// Clears the content.
         /// </summary>
         public void Clear()
         {
@@ -121,10 +114,10 @@ namespace NLog.Context
         }
 
         /// <summary>
-        /// Checks whether the specified key exists in current thread Mapped Context.
+        /// Checks whether the specified key exists in the Context.
         /// </summary>
-        /// <param name="key">item name.</param>
-        /// <returns>A boolean indicating whether the specified <paramref name="key"/> exists in current thread Mapped Context.</returns>
+        /// <param name="key">key name.</param>
+        /// <returns>A boolean indicating whether the specified key exists in current context.</returns>
         public bool Contains(string key)
         {
             lock (syncRoot)
@@ -134,7 +127,7 @@ namespace NLog.Context
         }
 
         /// <summary>
-        /// Removes the specified <paramref name="key"/> from current thread Mapped Context.
+        /// Removes the specified key from the Context.
         /// </summary>
         /// <param name="key">key name.</param>
         public void Remove(string key)
@@ -146,10 +139,10 @@ namespace NLog.Context
         }
 
         /// <summary>
-        /// Sets the current thread Mapped Context key to the specified value.
+        /// Sets an key in the context.
         /// </summary>
-        /// <param name="key">key name.</param>
-        /// <param name="value">key value.</param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void Set(string key, object value)
         {
             lock (syncRoot)
@@ -159,16 +152,16 @@ namespace NLog.Context
         }
 
         /// <summary>
-        /// Gets the Mapped Context named key.
+        /// Gets the Global Context named item.
         /// </summary>
-        /// <param name="key">key name.</param>
-        /// <returns>The key value, if defined; otherwise <c>null</c>.</returns>
-        public object TryGet(string key)
+        /// <param name="item">Item name.</param>
+        /// <returns>The item value, if defined; otherwise <c>null</c>.</returns>
+        private object TryGet(string item)
         {
             lock (syncRoot)
             {
                 object o;
-                if (!this.dict.TryGetValue(key, out o))
+                if (!this.dict.TryGetValue(item, out o))
                     o = null;
 
                 return o;
@@ -176,14 +169,14 @@ namespace NLog.Context
         }
 
         /// <summary>
-        /// Gets the Mapped Context key.
+        /// Gets the Global Diagnostics Context item.
         /// </summary>
-        /// <param name="key">key name.</param>
-        /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the key's value to a string.</param>
-        /// <returns>The value of <paramref name="key"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
-        public string Get(string key, IFormatProvider formatProvider)
+        /// <param name="item">Item name.</param>
+        /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
+        /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        public string GetFormatted(string item, IFormatProvider formatProvider)
         {
-            return ObjectHelpers.ConvertToString(this.TryGet(key), formatProvider);
+            return FormatHelper.ConvertToString(this.TryGet(item), formatProvider);
         }
     }
 }

@@ -58,7 +58,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(GlobalContext.Instance.Get(this.Item, logEvent.FormatProvider));
+            builder.Append(GlobalContext.Instance.GetFormatted(this.Item, logEvent.FormatProvider));
         }
     }
 }

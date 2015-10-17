@@ -31,9 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog
+namespace NLog.Context
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
 
     /// <summary>
@@ -44,7 +45,7 @@ namespace NLog
         /// <summary>
         /// Returns the keys in the context.
         /// </summary>
-        Dictionary<string, object>.KeyCollection Keys { get; }
+        HashSet<string> Keys { get; }
 
         /// <summary>
         /// Set / Get the key in the context.
@@ -79,18 +80,11 @@ namespace NLog
         void Set(string key, object value);
 
         /// <summary>
-        /// Gets the Context named item.
-        /// </summary>
-        /// <param name="item">Item name.</param>
-        /// <returns>The item value, if defined; otherwise <c>null</c>.</returns>
-        object TryGet(string item);
-
-        /// <summary>
         /// Gets the Context item.
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
         /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
-        string Get(string item, IFormatProvider formatProvider);
+        string GetFormatted(string item, IFormatProvider formatProvider);
     }
 }
