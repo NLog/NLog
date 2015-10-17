@@ -39,22 +39,21 @@ namespace NLog
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Text;
     using System.Threading;
 
+#if SILVERLIGHT
+    using System.Windows;
+#endif
     using JetBrains.Annotations;
 
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
-    using NLog.Targets;
     using NLog.Internal.Fakeables;
-    using System.Reflection;
-
-#if SILVERLIGHT
-    using System.Windows;
-#endif
+    using NLog.Targets;
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
