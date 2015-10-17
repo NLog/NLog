@@ -765,16 +765,16 @@ namespace NLog.UnitTests.Targets
 
         public class MockMailTarget : MailTarget
         {
-            public MockSmtpClient client;
+            public MockSmtpClient Client;
 
             public MockMailTarget()
             {
-                client = new MockSmtpClient();
+                Client = new MockSmtpClient();
             }
 
             public MockMailTarget(string configPickUpdirectory)
             {
-                client = new MockSmtpClient
+                Client = new MockSmtpClient
                 {
                     PickupDirectoryLocation = configPickUpdirectory
                 };
@@ -786,6 +786,8 @@ namespace NLog.UnitTests.Targets
 
             internal override ISmtpClient CreateSmtpClient()
             {
+                var client = new MockSmtpClient();
+
                 CreatedMocks.Add(client);
 
                 return client;
@@ -794,10 +796,10 @@ namespace NLog.UnitTests.Targets
             public void ConfigureMailClient()
             {
                 if (UseSystemNetMailSettings) return;
-                client.PickupDirectoryLocation = this.PickupDirectoryLocation;
+                Client.PickupDirectoryLocation = this.PickupDirectoryLocation;
             }
 
-            public string SmtpClientPickUpDirectory { get { return client.PickupDirectoryLocation; } }
+            public string SmtpClientPickUpDirectory { get { return Client.PickupDirectoryLocation; } }
         }
 
 
