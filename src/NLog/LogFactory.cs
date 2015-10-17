@@ -590,6 +590,10 @@ namespace NLog
         }
 
 #if !SILVERLIGHT
+        /// <remarks>
+        /// This method does NOT need to internal as it is only referenced from this class. The only reason it remains
+        /// as internal is to be accesible to Unit Tests.
+        /// </remarks>
         internal void ReloadConfigOnTimer(object state)
         {
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
@@ -718,6 +722,10 @@ namespace NLog
             }
         }
 
+        /// <remarks>
+        /// This method does NOT need to internal as it is only referenced from this class. The only reason it remains
+        /// as internal is to be accesible to Unit Tests.
+        /// </remarks>
         internal LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration configuration)
         {
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
@@ -939,34 +947,58 @@ namespace NLog
         /// <summary>
         /// Logger cache key.
         /// </summary>
-        internal class LoggerCacheKey : IEquatable<LoggerCacheKey>
+        private sealed class LoggerCacheKey : IEquatable<LoggerCacheKey>
         {
-            public string Name { get; private set; }
+            private readonly string name;
+            private readonly Type concreteType;
 
-            public Type ConcreteType { get; private set; }
+            /// <summary>
+            /// Name associated with a <see cref="Logger"/>.
+            /// </summary>
+            public string Name
+            {
+                get
+                {
+                    return name;
+                }
+            }
 
+            /// <summary>
+            /// The concrete type of associated with a <see cref="Logger"/>. 
+            /// </summary>
+            public Type ConcreteType
+            {
+                get
+                {
+                    return concreteType;
+                }
+            }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="LoggerCacheKey" /> class.
+            /// </summary>
+            /// <param name="name">Name associated with a <see cref="Logger"/>.</param>
+            /// <param name="concreteType">The concrete type of associated with a <see cref="Logger"/>.</param>
             public LoggerCacheKey(string name, Type concreteType)
             {
-                this.Name = name;
-                this.ConcreteType = concreteType;
+                this.name = name;
+                this.concreteType = concreteType;
             }
 
             /// <summary>
             /// Serves as a hash function for a particular type.
             /// </summary>
-            /// <returns>
-            /// A hash code for the current <see cref="T:System.Object"/>.
-            /// </returns>
+            /// <returns>A hash code for the current <see cref="T:System.Object"/>.</returns>
             public override int GetHashCode()
             {
-                return this.ConcreteType.GetHashCode() ^ this.Name.GetHashCode();
+                return ConcreteType.GetHashCode() ^ Name.GetHashCode();
             }
 
             /// <summary>
             /// Determines if two objects are equal in value.
             /// </summary>
-            /// <param name="obj">Other object to compare to.</param>
-            /// <returns>True if objects are equal, false otherwise.</returns>
+            /// <param name="obj">Other <see cref="T:System.Object"/> to compare to.</param>
+            /// <returns><see langword="true" /> if objects are equal, <see langword="false" /> otherwise.</returns>
             public override bool Equals(object obj)
             {
                 LoggerCacheKey key = obj as LoggerCacheKey;
@@ -975,14 +1007,14 @@ namespace NLog
                     return false;
                 }
 
-                return (this.ConcreteType == key.ConcreteType) && (key.Name == this.Name);
+                return (ConcreteType == key.ConcreteType) && (Name == key.Name);
             }
 
             /// <summary>
             /// Determines if two objects of the same type are equal in value.
             /// </summary>
-            /// <param name="key">Other object to compare to.</param>
-            /// <returns>True if objects are equal, false otherwise.</returns>
+            /// <param name="key">Other <see cref="LoggerCacheKey"/> to compare to.</param>
+            /// <returns><see langword="true" /> if objects are equal, <see langword="false" /> otherwise.</returns>
             public bool Equals(LoggerCacheKey key)
             {
                 if (ReferenceEquals(key, null))
@@ -990,29 +1022,38 @@ namespace NLog
                     return false;
                 }
 
-                return (this.ConcreteType == key.ConcreteType) && (key.Name == this.Name);
+                return (ConcreteType == key.ConcreteType) && (Name == key.Name);
             }
         }
 
         /// <summary>
         /// Logger cache.
         /// </summary>
-        private class LoggerCache
+        private sealed class LoggerCache
         {
             // The values of WeakReferences are of type Logger i.e. Directory<LoggerCacheKey, Logger>.
             private readonly Dictionary<LoggerCacheKey, WeakReference> loggerCache =
                     new Dictionary<LoggerCacheKey, WeakReference>();
 
             /// <summary>
-            /// Inserts or updates. 
+            /// Inserts the <see cref="Logger"/> value if the <see cref="LoggerCacheKey"/> is not in the collection or
+            /// otherwise updates the existing entry.
             /// </summary>
-            /// <param name="cacheKey"></param>
-            /// <param name="logger"></param>
+            /// <param name="cacheKey">The object to use as the key of the element to add.</param>
+            /// <param name="logger">The object to use as the value of the element to add.</param>
             public void InsertOrUpdate(LoggerCacheKey cacheKey, Logger logger)
             {
                 loggerCache[cacheKey] = new WeakReference(logger);
             }
 
+            /// <summary>
+            /// Retrieves and returns the <see cref="Logger"/> for the specified <see cref="LoggerCacheKey"/> key.
+            /// </summary>
+            /// <param name="cacheKey">The object to use as the key of the element to retrieve.</param>
+            /// <returns>
+            /// Returns the <see cref="Logger"/> when the <see cref="LoggerCacheKey"/> is found in the collection, <see
+            /// langword="null"/> otherwise.
+            /// </returns>
             public Logger Retrieve(LoggerCacheKey cacheKey)
             {
                 WeakReference loggerReference;
@@ -1025,6 +1066,9 @@ namespace NLog
                 return null;
             }
 
+            /// <summary>
+            /// Get all the <see cref="Logger"/> availiable in the collection.
+            /// </summary>
             public IEnumerable<Logger> Loggers
             {
                 get { return GetLoggers(); }
@@ -1051,9 +1095,9 @@ namespace NLog
         /// <summary>
         /// Enables logging in <see cref="IDisposable.Dispose"/> implementation.
         /// </summary>
-        private class LogEnabler : IDisposable
+        private sealed class LogEnabler : IDisposable
         {
-            private LogFactory factory;
+            private readonly LogFactory factory;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="LogEnabler" /> class.
@@ -1069,7 +1113,7 @@ namespace NLog
             /// </summary>
             void IDisposable.Dispose()
             {
-                this.factory.ResumeLogging();
+                factory.ResumeLogging();
             }
         }
     }
