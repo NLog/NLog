@@ -286,7 +286,7 @@ namespace NLog
             }
 
             //new list to avoid "Collection was modified; enumeration operation may not execute"
-            var loggers = new List<Logger>(loggerCache.Loggers);
+            var loggers = new List<Logger>(loggerCache.Items);
             foreach (var logger in loggers)
             {
                 logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, this.config));
@@ -1080,26 +1080,16 @@ namespace NLog
             /// <summary>
             /// Get all the <see cref="Logger"/> availiable in the collection.
             /// </summary>
-            public IEnumerable<Logger> Loggers
+            public IEnumerable<Logger> Items
             {
-                get { return GetLoggers(); }
-            }
-
-            private IEnumerable<Logger> GetLoggers()
-            {
-                // TODO: Test if loggerCache.Values.ToList<Logger>() can be used for the conversion instead.
-                List<Logger> values = new List<Logger>(loggerCache.Count);
-
-                foreach (WeakReference loggerReference in loggerCache.Values)
+                get 
                 {
-                    Logger logger = loggerReference.Target as Logger;
-                    if (logger != null)
-                    {
-                        values.Add(logger);
-                    }
+                    var values =
+                            from item in loggerCache.Values
+                            where item.Target as Logger != null
+                            select item.Target as Logger;
+                    return values;
                 }
-
-                return values;
             }
         }
 
