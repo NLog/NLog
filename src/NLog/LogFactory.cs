@@ -61,19 +61,27 @@ namespace NLog
     public class LogFactory : IDisposable
     {
 #if !SILVERLIGHT
+        /// <remarks>
+        /// The file (re)configuration timeout is defined in milliseconds. 
+        /// </remarks>
         private const int ReconfigAfterFileChangedTimeout = 1000;
 
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
         private Timer reloadTimer;
         private readonly MultiFileWatcher watcher;
+
+        /// <summary>
+        /// Declares if the instance is currently disposing. 
+        /// </summary>
+        private bool isDisposing = false;
 #endif
 
         private static IAppDomain currentAppDomain;
         private readonly object syncRoot = new object();
 
         private LoggingConfiguration config;
+        private bool configLoaded = false;
         private LogLevel globalThreshold = LogLevel.MinLevel;
-        private bool configLoaded;
         // TODO: logsEnabled property might be possible to be encapsulated into LogFactory.LogsEnabler class. 
         private int logsEnabled;
         private readonly LoggerCache loggerCache = new LoggerCache();
@@ -98,7 +106,7 @@ namespace NLog
 #if !SILVERLIGHT
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
-            CurrentAppDomain.DomainUnload += currentAppDomain_DomainUnload;
+            CurrentAppDomain.DomainUnload += CurrentAppDomainUnload;
 #endif
         }
 
@@ -137,123 +145,12 @@ namespace NLog
         {
             get
             {
-                lock (this.syncRoot)
-                {
-                    if (this.configLoaded)
-                    {
-                        return this.config;
-                    }
-
-                    this.configLoaded = true;
-
-#if !SILVERLIGHT
-                    if (this.config == null)
-                    {
-                        // Try to load default configuration.
-                        this.config = XmlLoggingConfiguration.AppConfig;
-                    }
-#endif
-                    // Retest the condition as we might have loaded a config.
-                    if (this.config == null)
-                    {
-                        foreach (string configFile in GetCandidateConfigFileNames())
-                        {
-#if SILVERLIGHT
-                            Uri configFileUri = new Uri(configFile, UriKind.Relative);
-                            if (Application.GetResourceStream(configFileUri) != null)
-                            {
-                                LoadLoggingConfiguration(configFile);
-                                break;
-                            }
-#else
-                            if (File.Exists(configFile))
-                            {
-                                LoadLoggingConfiguration(configFile);
-                                break;
-                            }
-#endif
-                        }
-                    }
-
-                    if (this.config != null)
-                    {
-#if !SILVERLIGHT
-                        config.Dump();
-                        try
-                        {
-                            this.watcher.Watch(this.config.FileNamesToWatch);
-                        }
-                        catch (Exception exception)
-                        {
-                            InternalLogger.Warn("Cannot start file watching: {0}. File watching is disabled", exception);
-                        }
-#endif
-                        this.config.InitializeAll();
-                        LogConfigurationInitialized();
-                    }
-                    
-                    return this.config;
-                }
+                return GetConfiguration();
             }
 
             set
             {
-#if !SILVERLIGHT
-                try
-                {
-                    this.watcher.StopWatching();
-                }
-                catch (Exception exception)
-                {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    InternalLogger.Error("Cannot stop file watching: {0}", exception);
-                }
-#endif
-
-                lock (this.syncRoot)
-                {
-                    LoggingConfiguration oldConfig = this.config;
-                    if (oldConfig != null)
-                    {
-                        InternalLogger.Info("Closing old configuration.");
-#if !SILVERLIGHT
-                        this.Flush();
-#endif
-                        oldConfig.Close();
-                    }
-
-                    this.config = value;
-                    this.configLoaded = true;
-
-                    if (this.config != null)
-                    {
-                        config.Dump();
-
-                        this.config.InitializeAll();
-                        this.ReconfigExistingLoggers();
-#if !SILVERLIGHT
-                        try
-                        {
-                            this.watcher.Watch(this.config.FileNamesToWatch);
-                        }
-                        catch (Exception exception)
-                        {
-                            if (exception.MustBeRethrown())
-                            {
-                                throw;
-                            }
-
-                            InternalLogger.Warn("Cannot start file watching: {0}", exception);
-                        }
-#endif
-                    }
-
-                    this.OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
-                }
+                SetConfiguration(value);
             }
         }
 
@@ -291,12 +188,6 @@ namespace NLog
                 var configuration = this.Configuration;
                 return configuration != null ? configuration.DefaultCultureInfo : null;
             }
-        }
-
-        private void LogConfigurationInitialized()
-        {
-            InternalLogger.Info("Configuration initialized.");
-            InternalLogger.LogAssemblyVersion(typeof(ILogger).Assembly);
         }
         
         /// <summary>
@@ -506,7 +397,7 @@ namespace NLog
         /// </remarks>
         /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
         /// To be used with C# <c>using ()</c> statement.</returns>
-        [Obsolete("Use SuspendLogging() instead.")]
+        [Obsolete("Use SuspendLogging() instead. This option will be removed in NLog 5")]
         public IDisposable DisableLogging()
         {
             return SuspendLogging();
@@ -518,7 +409,7 @@ namespace NLog
         /// <remarks>
         /// Logging is enabled if the number of <see cref="ResumeLogging"/> calls is greater than 
         /// or equal to <see cref="SuspendLogging"/> calls.</remarks>
-        [Obsolete("Use ResumeLogging() instead.")]
+        [Obsolete("Use ResumeLogging() instead. This option will be removed in NLog 5")]
         public void EnableLogging()
         {
             ResumeLogging();
@@ -589,6 +480,27 @@ namespace NLog
             }
         }
 
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>True</c> to release both managed and unmanaged resources;
+        /// <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+#if !SILVERLIGHT
+            if (disposing)
+            {
+                this.watcher.Dispose();
+
+                if (this.reloadTimer != null)
+                {
+                    this.reloadTimer.Dispose();
+                    this.reloadTimer = null;
+                }
+            }
+#endif
+        }
+
 #if !SILVERLIGHT
         /// <remarks>
         /// This method does NOT need to internal as it is only referenced from this class. The only reason it remains
@@ -607,7 +519,7 @@ namespace NLog
                     this.reloadTimer = null;
                 }
                 
-                if(IsDisposing)
+                if(isDisposing)
                 {
                     //timer was disposed already. 
                     this.watcher.Dispose();
@@ -672,6 +584,43 @@ namespace NLog
             }
         }
 #endif
+        /// <remarks>
+        /// This method does NOT need to internal as it is only referenced from this class. The only reason it remains
+        /// as internal is to be accesible to Unit Tests.
+        /// </remarks>
+        internal LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration configuration)
+        {
+            TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
+            TargetWithFilterChain[] lastTargetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
+            bool[] suppressedLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
+
+            if (configuration != null && this.IsLoggingEnabled())
+            {
+                this.GetTargetsByLevelForLogger(name, configuration.LoggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
+            }
+
+            InternalLogger.Debug("Targets for {0} by level:", name);
+            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
+                for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
+                {
+                    sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
+                    if (afc.FilterChain.Count > 0)
+                    {
+                        sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
+                    }
+                }
+
+                InternalLogger.Debug(sb.ToString());
+            }
+
+#pragma warning disable 618
+            return new LoggerConfiguration(targetsByLevel, configuration != null && configuration.ExceptionLoggingOldStyle);
+#pragma warning restore 618
+        }
+
         private void GetTargetsByLevelForLogger(string name, IEnumerable<LoggingRule> rules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
             foreach (LoggingRule rule in rules)
@@ -720,64 +669,6 @@ namespace NLog
                     tfc.PrecalculateStackTraceUsage();
                 }
             }
-        }
-
-        /// <remarks>
-        /// This method does NOT need to internal as it is only referenced from this class. The only reason it remains
-        /// as internal is to be accesible to Unit Tests.
-        /// </remarks>
-        internal LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration configuration)
-        {
-            TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
-            TargetWithFilterChain[] lastTargetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
-            bool[] suppressedLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
-
-            if (configuration != null && this.IsLoggingEnabled())
-            {
-                this.GetTargetsByLevelForLogger(name, configuration.LoggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
-            }
-
-            InternalLogger.Debug("Targets for {0} by level:", name);
-            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
-                for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
-                {
-                    sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
-                    if (afc.FilterChain.Count > 0)
-                    {
-                        sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
-                    }
-                }
-
-                InternalLogger.Debug(sb.ToString());
-            }
-
-#pragma warning disable 618
-            return new LoggerConfiguration(targetsByLevel, configuration != null && configuration.ExceptionLoggingOldStyle);
-#pragma warning restore 618
-        }
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>True</c> to release both managed and unmanaged resources;
-        /// <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-#if !SILVERLIGHT
-            if (disposing)
-            {
-                this.watcher.Dispose();
-
-                if (this.reloadTimer != null)
-                {
-                    this.reloadTimer.Dispose();
-                    this.reloadTimer = null;
-                }
-            }
-#endif
         }
 
         private static IEnumerable<string> GetCandidateConfigFileNames()
@@ -913,27 +804,148 @@ namespace NLog
         }
 #endif
 
-        private void LoadLoggingConfiguration(string configFile)
+        private void ConfigurationInitialized()
+        {
+            InternalLogger.Info("Configuration initialized.");
+            InternalLogger.LogAssemblyVersion(typeof(ILogger).Assembly);
+        }
+
+        private void LoadConfiguration(string configFile)
         {
             InternalLogger.Debug("Loading config from {0}", configFile);
             this.config = new XmlLoggingConfiguration(configFile);
         }
 
+        private LoggingConfiguration GetConfiguration()
+        {
+            lock (syncRoot)
+            {
+                if (configLoaded)
+                {
+                    return config;
+                }
+
+                configLoaded = true;
 
 #if !SILVERLIGHT
-        /// <summary>
-        /// Currenty this logfactory is disposing?
-        /// </summary>
-        private bool IsDisposing;
+                if (config == null)
+                {
+                    // Try to load default configuration.
+                    config = XmlLoggingConfiguration.AppConfig;
+                }
+#endif
+                // Retest the condition as we might have loaded a config.
+                if (config == null)
+                {
+                    foreach (string configFile in GetCandidateConfigFileNames())
+                    {
+#if SILVERLIGHT
+                        Uri configFileUri = new Uri(configFile, UriKind.Relative);
+                        if (Application.GetResourceStream(configFileUri) != null)
+                        {
+                            LoadConfiguration(configFile);
+                            break;
+                        }
+#else
+                        if (File.Exists(configFile))
+                        {
+                            LoadConfiguration(configFile);
+                            break;
+                        }
+#endif
+                    }
+                }
 
-        private void currentAppDomain_DomainUnload(object sender, EventArgs e)
+                if (config != null)
+                {
+#if !SILVERLIGHT
+                    config.Dump();
+                    try
+                    {
+                        watcher.Watch(config.FileNamesToWatch);
+                    }
+                    catch (Exception exception)
+                    {
+                        InternalLogger.Warn("Cannot start file watching: {0}. File watching is disabled", exception);
+                    }
+#endif
+                    config.InitializeAll();
+                    ConfigurationInitialized();
+                }
+
+                return config;
+            }
+        }
+
+        private void SetConfiguration(LoggingConfiguration value)
+        {
+#if !SILVERLIGHT
+            try
+            {
+                watcher.StopWatching();
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                InternalLogger.Error("Cannot stop file watching: {0}", exception);
+            }
+#endif
+
+            lock (syncRoot)
+            {
+                LoggingConfiguration oldConfig = config;
+                if (oldConfig != null)
+                {
+                    InternalLogger.Info("Closing old configuration.");
+#if !SILVERLIGHT
+                    Flush();
+#endif
+                    oldConfig.Close();
+                }
+
+                config = value;
+                configLoaded = true;
+
+                if (config != null)
+                {
+                    config.Dump();
+
+                    config.InitializeAll();
+                    ReconfigExistingLoggers();
+#if !SILVERLIGHT
+                    try
+                    {
+                        watcher.Watch(config.FileNamesToWatch);
+                    }
+                    catch (Exception exception)
+                    {
+                        if (exception.MustBeRethrown())
+                        {
+                            throw;
+                        }
+
+                        InternalLogger.Warn("Cannot start file watching: {0}", exception);
+                    }
+#endif
+                }
+
+                OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
+            }
+        }
+
+#if !SILVERLIGHT
+        private void CurrentAppDomainUnload(object sender, EventArgs e)
         {
             //stop timer on domain unload, otherwise: 
             //Exception: System.AppDomainUnloadedException
             //Message: Attempted to access an unloaded AppDomain.
             lock (this.syncRoot)
             {
-                IsDisposing = true;
+                isDisposing = true;
                 if (this.reloadTimer != null)
                 {
                     this.reloadTimer.Dispose();
@@ -941,9 +953,8 @@ namespace NLog
                 }
             }
         }
-
-
 #endif
+
         /// <summary>
         /// Logger cache key.
         /// </summary>
