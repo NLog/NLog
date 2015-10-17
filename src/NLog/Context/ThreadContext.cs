@@ -1,5 +1,4 @@
-﻿
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -46,13 +45,16 @@ namespace NLog.Context
         private readonly object dataSlot = null;
         private static IContext currentInstance = null;
         private static readonly object syncRoot = new object();
-        private Dictionary<string, object> dict;
-
-
+        
+        private Dictionary<string, object> Dict
+        {   get
+            {
+                return ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(dataSlot);
+            }
+        }
         private ThreadContext()
         {
-            dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
-            dict = ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(dataSlot);
+            dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();            
         }
 
         /// <summary>
@@ -83,7 +85,7 @@ namespace NLog.Context
         {
             get
             {
-                return new HashSet<string>(this.dict.Keys);
+                return new HashSet<string>(this.Dict.Keys);
             }
         }
 
@@ -103,7 +105,7 @@ namespace NLog.Context
             {
                 lock (syncRoot)
                 {
-                    this.dict[key] = value;
+                    this.Dict[key] = value;
                 }
             }
         }
@@ -115,7 +117,7 @@ namespace NLog.Context
         {
             lock (syncRoot)
             {
-                this.dict.Clear();
+                this.Dict.Clear();
             }
         }
 
@@ -128,7 +130,7 @@ namespace NLog.Context
         {
             lock (syncRoot)
             {
-                return this.dict.ContainsKey(key);
+                return this.Dict.ContainsKey(key);
             }
         }
 
@@ -140,7 +142,7 @@ namespace NLog.Context
         {
             lock (syncRoot)
             {
-                this.dict.Remove(key);
+                this.Dict.Remove(key);
             }
         }
 
@@ -153,7 +155,7 @@ namespace NLog.Context
         {
             lock (syncRoot)
             {
-                this.dict[key] = value;
+                this.Dict[key] = value;
             }
         }
 
@@ -167,7 +169,7 @@ namespace NLog.Context
             lock (syncRoot)
             {
                 object o;
-                if (!this.dict.TryGetValue(key, out o))
+                if (!this.Dict.TryGetValue(key, out o))
                     o = null;
 
                 return o;

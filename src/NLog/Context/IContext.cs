@@ -1,4 +1,4 @@
-﻿
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -30,7 +30,6 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-
 namespace NLog.Context
 {
     using System;
