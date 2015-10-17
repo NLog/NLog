@@ -32,6 +32,8 @@
 // 
 
 
+using System.Threading;
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -671,8 +673,9 @@ namespace NLog.UnitTests.Targets
         public void MailTarget_UseSystemNetMailSettings_False_Override()
         {
             var inConfigVal = @"C:\config";
-            var mmt = new MockMailTarget
+            var mmt = new MockMailTarget(inConfigVal)
             {
+                SmtpServer = "",
                 From = "foo@bar.com",
                 To = "bar@bar.com",
                 Subject = "Hello from NLog",
@@ -681,15 +684,15 @@ namespace NLog.UnitTests.Targets
                 PickupDirectoryLocation = @"C:\TEMP",
                 UseSystemNetMailSettings = false
             };
-            mmt.Initialize(null);
-            Assert.NotEqual(mmt.PickupDirectoryLocation, inConfigVal);
+            mmt.ConfigureMailClient();
+            Assert.Equal(mmt.PickupDirectoryLocation, mmt.SmtpClientPickUpDirectory);
         }
 
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_True()
         {
             var inConfigVal = @"C:\config";
-            var mmt = new MailTarget
+            var mmt = new MockMailTarget(inConfigVal)
             {
                 From = "foo@bar.com",
                 To = "bar@bar.com",
@@ -697,10 +700,9 @@ namespace NLog.UnitTests.Targets
                 Body = "${level} ${logger} ${message}",
                 UseSystemNetMailSettings = true
             };
+            mmt.ConfigureMailClient();
 
-            var smtp = new SmtpClient();
-            mmt.Initialize(null);
-            Assert.Equal(mmt.PickupDirectoryLocation, inConfigVal);
+            Assert.Equal(mmt.SmtpClientPickUpDirectory, inConfigVal);
         }
 
         [Fact]
@@ -734,21 +736,21 @@ namespace NLog.UnitTests.Targets
                 this.MessagesSent = new List<MailMessage>();
             }
 
-            public new string Host { get; set; }
-            public new int Port { get; set; }
-            public new int Timeout { get; set; }
-            public new string PickupDirectoryLocation { get; set; }
+            public string Host { get; set; }
+            public int Port { get; set; }
+            public int Timeout { get; set; }
+            public string PickupDirectoryLocation { get; set; }
 
 
-            public new ICredentialsByHost Credentials { get; set; }
-            public new bool EnableSsl { get; set; }
+            public ICredentialsByHost Credentials { get; set; }
+            public bool EnableSsl { get; set; }
             public List<MailMessage> MessagesSent { get; private set; }
 
             public new void Send(MailMessage msg)
             {
-                if (string.IsNullOrEmpty(this.Host))
+                if (string.IsNullOrEmpty(this.Host) && string.IsNullOrEmpty(this.PickupDirectoryLocation))
                 {
-                    throw new InvalidOperationException("Host is null or empty.");
+                    throw new InvalidOperationException("[Host/Pickup directory] is null or empty.");
                 }
                 this.MessagesSent.Add(msg);
                 if (Host == "ERROR")
@@ -763,15 +765,42 @@ namespace NLog.UnitTests.Targets
 
         public class MockMailTarget : MailTarget
         {
+            public MockSmtpClient client;
+
+            public MockMailTarget()
+            {
+                client = new MockSmtpClient();
+            }
+
+            public MockMailTarget(string configPickUpdirectory)
+            {
+                client = new MockSmtpClient
+                {
+                    PickupDirectoryLocation = configPickUpdirectory
+                };
+
+            }
+
+
             public List<MockSmtpClient> CreatedMocks = new List<MockSmtpClient>();
 
             internal override ISmtpClient CreateSmtpClient()
             {
-                var mock = new MockSmtpClient();
-                CreatedMocks.Add(mock);
-                return mock;
+                CreatedMocks.Add(client);
+
+                return client;
             }
+
+            public void ConfigureMailClient()
+            {
+                if (UseSystemNetMailSettings) return;
+                client.PickupDirectoryLocation = this.PickupDirectoryLocation;
+            }
+
+            public string SmtpClientPickUpDirectory { get { return client.PickupDirectoryLocation; } }
         }
+
+
     }
 }
 

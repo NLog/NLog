@@ -383,7 +383,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="lastEvent">last event for username/password</param>
         /// <param name="client">client to set properties on</param>
-        private void ConfigureMailClient(LogEventInfo lastEvent, ISmtpClient client)
+        internal void ConfigureMailClient(LogEventInfo lastEvent, ISmtpClient client)
         {
 
             CheckRequiredParameters();
