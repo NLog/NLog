@@ -650,11 +650,9 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-#if !SILVERLIGHT
+
             string fileName = CleanupInvalidFileNameChars(this.FileName.Render(logEvent));
-#else
-            string fileName = this.FileName.Render(logEvent);
-#endif
+
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
             // Clean up old archives if this is the first time a log record has been written to
@@ -702,12 +700,8 @@ namespace NLog.Targets
 
                 foreach (var bucket in buckets)
                 {
-#if !SILVERLIGHT
                     string fileName = CleanupInvalidFileNameChars(bucket.Key);
-#else
-                    string fileName = bucket.Key;
-#endif
-
+                    
                     ms.SetLength(0);
                     ms.Position = 0;
 
@@ -1788,9 +1782,16 @@ namespace NLog.Targets
             }
         }
 
-#if !SILVERLIGHT
+        /// <summary>
+        /// Remove unwanted chars from filename. 
+        /// Note: not implemented in Silverlight
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         private static string CleanupInvalidFileNameChars(string fileName)
         {
+#if !SILVERLIGHT
+
             var lastDirSeparator =
                 fileName.LastIndexOfAny(new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar });
 
@@ -1798,8 +1799,11 @@ namespace NLog.Targets
             var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator) : string.Empty;
             fileName1 = Path.GetInvalidFileNameChars().Aggregate(fileName1, (current, c) => current.Replace(c, '_'));
             return Path.Combine(dirName, fileName1);
-        }
+#else
+            return fileName;
 #endif
+        }
+
 
         private class DynamicFileArchive
         {
