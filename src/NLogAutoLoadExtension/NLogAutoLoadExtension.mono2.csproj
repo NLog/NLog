@@ -11,6 +11,7 @@
     <FileAlignment>512</FileAlignment>
     <NoWarn>0419</NoWarn>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <AssemblyName>NLogAutloadExtension</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +23,6 @@
     <OutputPath>bin\Debug</OutputPath>
     <NoStdLib>true</NoStdLib>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
-    <AssemblyName>NLogAutloadExtension</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,7 +34,6 @@
     <OutputPath>bin\Release</OutputPath>
     <NoStdLib>true</NoStdLib>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
-    <AssemblyName>NLogAutloadExtension</AssemblyName>
   </PropertyGroup>
   <PropertyGroup>
     <NoStdLib>true</NoStdLib>

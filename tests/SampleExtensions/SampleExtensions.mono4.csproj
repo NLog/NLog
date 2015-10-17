@@ -8,6 +8,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SampleExtensions</RootNamespace>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <AssemblyName>SampleExtensions</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,9 +23,6 @@
     <WarningLevel>4</WarningLevel>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
-    <AssemblyName>SampleExtensions</AssemblyName>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
-    <AssemblyName>SampleExtensions</AssemblyName>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <NoStdLib>true</NoStdLib>

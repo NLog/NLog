@@ -14,6 +14,9 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <NoWarn>1591</NoWarn>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <AssemblyName>NLog.UnitTests</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
@@ -29,9 +32,6 @@
     <OutputPath>bin\Debug</OutputPath>
     <NoStdLib>true</NoStdLib>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
-    <AssemblyName>NLog.UnitTests</AssemblyName>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
@@ -45,9 +45,6 @@
     <OutputPath>bin\Release</OutputPath>
     <NoStdLib>true</NoStdLib>
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
-    <AssemblyName>NLog.UnitTests</AssemblyName>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <NoStdLib>true</NoStdLib>
