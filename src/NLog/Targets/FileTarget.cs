@@ -701,7 +701,7 @@ namespace NLog.Targets
                 foreach (var bucket in buckets)
                 {
                     string fileName = CleanupInvalidFileNameChars(bucket.Key);
-                    
+
                     ms.SetLength(0);
                     ms.Position = 0;
 
@@ -989,8 +989,8 @@ namespace NLog.Targets
                 // Find out the next sequence number among existing archives having the same date part as the current date.
                 int? lastSequenceNumber = archives
                     .Where(a => a.HasSameFormattedDate(archiveDate))
-                    .Max(a => (int?) a.Sequence);
-                nextSequenceNumber = (int) (lastSequenceNumber != null ? lastSequenceNumber + 1 : 0);
+                    .Max(a => (int?)a.Sequence);
+                nextSequenceNumber = (int)(lastSequenceNumber != null ? lastSequenceNumber + 1 : 0);
 
                 var oldArchiveFileNames = archives
                     .OrderBy(a => a.Date)
@@ -1028,7 +1028,7 @@ namespace NLog.Targets
 
                 return ts != ts2;
             }
-            
+
             return false;
         }
 
@@ -1059,37 +1059,35 @@ namespace NLog.Targets
             int minSequenceLength, string dateFormat, FileNameTemplate fileTemplate)
         {
             var directoryInfo = new DirectoryInfo(dirName);
-            if (directoryInfo.Exists)
+
+            int archiveFileNameMinLength = fileNameMask.Length + minSequenceLength;
+            var archiveFileNames = GetFiles(directoryInfo, fileNameMask)
+                .Where(n => n.Name.Length >= archiveFileNameMinLength)
+                .OrderBy(n => n.CreationTime)
+                .Select(n => n.FullName);
+
+            foreach (string archiveFileName in archiveFileNames)
             {
-                int archiveFileNameMinLength = fileNameMask.Length + minSequenceLength;
-                var archiveFileNames = GetFiles(directoryInfo, fileNameMask)
-                    .Where(n => n.Name.Length >= archiveFileNameMinLength)
-                    .OrderBy(n => n.CreationTime)
-                    .Select(n => n.FullName);
+                //Get the archive file name or empty string if it's null
+                string archiveFileNameWithoutPath = Path.GetFileName(archiveFileName) ?? "";
 
-                foreach (string archiveFileName in archiveFileNames)
+                DateTime date;
+                int sequence;
+                if (
+                    !TryParseDateAndSequence(archiveFileNameWithoutPath, dateFormat, fileTemplate, out date,
+                        out sequence))
                 {
-                    //Get the archive file name or empty string if it's null
-                    string archiveFileNameWithoutPath = Path.GetFileName(archiveFileName) ?? "";
-
-                    DateTime date;
-                    int sequence;
-                    if (
-                        !TryParseDateAndSequence(archiveFileNameWithoutPath, dateFormat, fileTemplate, out date,
-                            out sequence))
-                    {
-                        continue;
-                    }
-
-                    //It's possible that the log file itself has a name that will match the archive file mask.
-                    if (string.IsNullOrEmpty(archiveFileNameWithoutPath) ||
-                        archiveFileNameWithoutPath.Equals(Path.GetFileName(logFileName)))
-                    {
-                        continue;
-                    }
-
-                    yield return new DateAndSequenceArchive(archiveFileName, date, dateFormat, sequence);
+                    continue;
                 }
+
+                //It's possible that the log file itself has a name that will match the archive file mask.
+                if (string.IsNullOrEmpty(archiveFileNameWithoutPath) ||
+                    archiveFileNameWithoutPath.Equals(Path.GetFileName(logFileName)))
+                {
+                    continue;
+                }
+
+                yield return new DateAndSequenceArchive(archiveFileName, date, dateFormat, sequence);
             }
         }
 
@@ -1098,7 +1096,7 @@ namespace NLog.Targets
             int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt;
             int dateAndSequenceIndex = fileTemplate.BeginAt;
             int dateAndSequenceLength = archiveFileNameWithoutPath.Length - trailerLength - dateAndSequenceIndex;
-            
+
             string dateAndSequence = archiveFileNameWithoutPath.Substring(dateAndSequenceIndex, dateAndSequenceLength);
             int sequenceIndex = dateAndSequence.LastIndexOf('.') + 1;
 
@@ -1163,32 +1161,39 @@ namespace NLog.Targets
 
             if (dirName != null)
             {
-                DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
-                if (!directoryInfo.Exists)
+                try
                 {
-                    Directory.CreateDirectory(dirName);
-                    return;
-                }
+                    DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
+                    if (!directoryInfo.Exists)
+                    {
+                        Directory.CreateDirectory(dirName);
+                        return;
+                    }
 
 #if SILVERLIGHT
                 List<string> files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
 #else
-                List<string> files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
+                    List<string> files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
 #endif
-                List<string> filesByDate = new List<string>();
+                    List<string> filesByDate = new List<string>();
 
-                for (int index = 0; index < files.Count; index++)
-                {
-                    string archiveFileName = Path.GetFileName(files[index]);
-                    string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
-                    DateTime fileDate = DateTime.MinValue;
-                    if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
+                    for (int index = 0; index < files.Count; index++)
                     {
-                        filesByDate.Add(files[index]);
+                        string archiveFileName = Path.GetFileName(files[index]);
+                        string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
+                        DateTime fileDate = DateTime.MinValue;
+                        if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
+                        {
+                            filesByDate.Add(files[index]);
+                        }
                     }
-                }
 
-                EnsureArchiveCount(filesByDate);
+                    EnsureArchiveCount(filesByDate);
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    Directory.CreateDirectory(dirName);
+                }
             }
         }
 #endif
@@ -2027,7 +2032,7 @@ namespace NLog.Targets
             {
                 this.template = template;
                 this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
-                if (this.startIndex !=-1)
+                if (this.startIndex != -1)
                     this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
             }
 
