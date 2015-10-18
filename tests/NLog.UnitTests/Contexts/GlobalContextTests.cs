@@ -46,7 +46,7 @@ namespace NLog.UnitTests.Contexts
         [Fact]
         public void GlobalContextTest1()
         {
-            
+            GlobalContext.Instance.Clear();
             Assert.False(GlobalContext.Instance.Contains("foo"));
             Assert.Equal(string.Empty, GlobalContext.Instance.GetFormatted("foo", null));
 
