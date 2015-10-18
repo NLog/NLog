@@ -67,11 +67,13 @@ namespace NLog.UnitTests.Fluent
             TraceWrite(_logger.Trace());
         }
 
+#if NET4_5
         [Fact]
         public void TraceWrite_static_builder()
         {
             TraceWrite(Log.Trace());
         }
+#endif
 
         private void TraceWrite(LogBuilder logBuilder)
         {
