@@ -187,11 +187,13 @@ namespace NLog.UnitTests.Fluent
             InfoWrite(_logger.Info());
         }
 
+#if NET4_5
         [Fact]
         public void InfoWrite_static_builder()
         {
             InfoWrite(Log.Info());
         }
+#endif
 
         private void InfoWrite(LogBuilder logBuilder)
         {
@@ -227,35 +229,41 @@ namespace NLog.UnitTests.Fluent
             ErrorWrite(_logger.Debug(), LogLevel.Debug);
         }
 
+#if NET4_5
         [Fact]
         public void DebugWrite_static_builder()
         {
             ErrorWrite(Log.Debug(), LogLevel.Debug);
-        }        
-        
+        }
+#endif
+
         [Fact]
         public void FatalWrite()
         {
             ErrorWrite(_logger.Fatal(), LogLevel.Fatal);
         }
 
+#if NET4_5
         [Fact]
         public void FatalWrite_static_builder()
         {
             ErrorWrite(Log.Fatal(), LogLevel.Fatal);
-        }     
-        
+        }
+#endif
+
         [Fact]
         public void ErrorWrite()
         {
             ErrorWrite(_logger.Error(), LogLevel.Error);
         }
 
+#if NET4_5
         [Fact]
         public void ErrorWrite_static_builder()
         {
             ErrorWrite(Log.Error(), LogLevel.Error);
         }
+#endif
 
         private void ErrorWrite(LogBuilder logBuilder, LogLevel logLevel)
         {
