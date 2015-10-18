@@ -50,13 +50,23 @@ namespace NLog.Internal
             this.Position = 0;
         }
 
+        /// <summary>
+        /// Current position in <see cref="Text"/>
+        /// </summary>
         internal int Position { get; set; }
 
+        /// <summary>
+        /// Full text to be parsed
+        /// </summary>
         internal string Text
         {
             get { return this.text; }
         }
 
+        /// <summary>
+        /// Check current char while not changing the position.
+        /// </summary>
+        /// <returns></returns>
         internal int Peek()
         {
             if (this.Position < this.text.Length)
@@ -67,6 +77,10 @@ namespace NLog.Internal
             return -1;
         }
 
+        /// <summary>
+        /// Read the current char and change position
+        /// </summary>
+        /// <returns></returns>
         internal int Read()
         {
             if (this.Position < this.text.Length)
@@ -77,9 +91,15 @@ namespace NLog.Internal
             return -1;
         }
 
-        internal string Substring(int p0, int p1)
+        /// <summary>
+        /// Get the substring of the <see cref="Text"/>
+        /// </summary>
+        /// <param name="startIndex"></param>
+        /// <param name="endIndex"></param>
+        /// <returns></returns>
+        internal string Substring(int startIndex, int endIndex)
         {
-            return this.text.Substring(p0, p1 - p0);
+            return this.text.Substring(startIndex, endIndex - startIndex);
         }
     }
 }
