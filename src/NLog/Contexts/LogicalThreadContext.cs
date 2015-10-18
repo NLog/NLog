@@ -33,7 +33,7 @@
 
 namespace NLog.Contexts
 {
-    #if NET4_0 || NET4_5
+#if NET4_0 || NET4_5
     using NLog.Internal;
     using System;
     using System.Collections.Concurrent;
@@ -137,13 +137,12 @@ namespace NLog.Contexts
             }
             set
             {
-
-                this.LogicalThreadDictionary[key] = value;
-
                 lock (syncRoot)
                 {
+                    this.LogicalThreadDictionary[key] = value;
+
                     if (!keys.Contains(key))
-                    keys.Add(key);
+                        keys.Add(key);
                 }
             }
         }
@@ -153,8 +152,11 @@ namespace NLog.Contexts
         /// </summary>
         public void Clear()
         {
-            this.LogicalThreadDictionary.Clear();
-            this.keys.Clear();
+            lock (syncRoot)
+            {
+                this.LogicalThreadDictionary.Clear();
+                this.keys.Clear();
+            }
         }
 
         /// <summary>
@@ -164,7 +166,10 @@ namespace NLog.Contexts
         /// <returns>A boolean indicating whether the specified <paramref name="key"/> exists in current logical context.</returns>
         public bool Contains(string key)
         {
-            return this.LogicalThreadDictionary.ContainsKey(key);
+            lock (syncRoot)
+            {
+                return this.LogicalThreadDictionary.ContainsKey(key);
+            }
         }
 
         /// <summary>
@@ -173,7 +178,10 @@ namespace NLog.Contexts
         /// <param name="key">Item name.</param>
         public void Remove(string key)
         {
-            this.LogicalThreadDictionary.Remove(key);
+            lock (syncRoot)
+            {
+                this.LogicalThreadDictionary.Remove(key);
+            }
         }
 
         /// <summary>
@@ -183,7 +191,10 @@ namespace NLog.Contexts
         /// <param name="value">Item value.</param>
         public void Set(string key, object value)
         {
-            this[key] = value;
+            lock (syncRoot)
+            {
+                this[key] = value;
+            }
         }
 
         /// <summary>

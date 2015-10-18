@@ -43,7 +43,7 @@ namespace NLog
     /// Mapped Diagnostics Context - a thread-local structure that keeps a dictionary
     /// of strings and provides methods to output them in layouts.
     /// </summary>
-    [Obsolete("Use NLog.Context.ThreadContext Instead.")]
+    [Obsolete("Use NLog.Contexts.ThreadContext Instead.")]
     public static class MappedDiagnosticsContext
     {
         /// <summary>

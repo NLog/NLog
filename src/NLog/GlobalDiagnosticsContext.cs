@@ -41,7 +41,7 @@ namespace NLog
     /// <summary>
     /// Global Diagnostics Context - a dictionary structure to hold per-application-instance values.
     /// </summary>
-    [Obsolete("Use NLog.Context.GlobalContext Instead.")]
+    [Obsolete("Use NLog.Contexts.GlobalContext Instead.")]
     public static class GlobalDiagnosticsContext
     {
         /// <summary>
