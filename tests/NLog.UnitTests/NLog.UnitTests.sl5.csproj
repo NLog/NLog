@@ -17,8 +17,7 @@
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures></SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
@@ -32,8 +31,7 @@
     <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
     <UsePlatformExtensions>false</UsePlatformExtensions>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <LinkedServerProject>
-    </LinkedServerProject>
+    <LinkedServerProject></LinkedServerProject>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
@@ -116,6 +114,7 @@
     <Compile Include="ConfigFileLocatorTests.cs" />
     <Compile Include="Contexts\GlobalContextTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\LogicalThreadContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsLogicalContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
