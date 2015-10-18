@@ -34,9 +34,10 @@
 namespace NLog.UnitTests.Contexts
 {
     using NLog.Contexts;
-using System;
-using System.Threading.Tasks;
-using Xunit;
+#if NET4_0 || NET4_5
+    using System;
+    using System.Threading.Tasks;
+    using Xunit;
 
     public class LogicalThreadContextTests
     {
@@ -186,17 +187,20 @@ using Xunit;
             const string valueForLogicalThread2 = "ValueForTask2";
             const string valueForLogicalThread3 = "ValueForTask3";
 
-            var task1 = Task.Factory.StartNew(() => {
+            var task1 = Task.Factory.StartNew(() =>
+            {
                 LogicalThreadContext.Instance.Set(key, valueForLogicalThread1);
                 return LogicalThreadContext.Instance[key];
             });
 
-            var task2 = Task.Factory.StartNew(() => {
+            var task2 = Task.Factory.StartNew(() =>
+            {
                 LogicalThreadContext.Instance.Set(key, valueForLogicalThread2);
                 return LogicalThreadContext.Instance[key];
             });
 
-            var task3 = Task.Factory.StartNew(() => {
+            var task3 = Task.Factory.StartNew(() =>
+            {
                 LogicalThreadContext.Instance.Set(key, valueForLogicalThread3);
                 return LogicalThreadContext.Instance[key];
             });
@@ -208,4 +212,5 @@ using Xunit;
             Assert.Equal(task3.Result, valueForLogicalThread3);
         }
     }
+#endif
 }
