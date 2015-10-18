@@ -650,11 +650,9 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-#if !SILVERLIGHT
+
             string fileName = CleanupInvalidFileNameChars(this.FileName.Render(logEvent));
-#else
-            string fileName = this.FileName.Render(logEvent);
-#endif
+
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
             // Clean up old archives if this is the first time a log record has been written to
@@ -702,11 +700,7 @@ namespace NLog.Targets
 
                 foreach (var bucket in buckets)
                 {
-#if !SILVERLIGHT
                     string fileName = CleanupInvalidFileNameChars(bucket.Key);
-#else
-                    string fileName = bucket.Key;
-#endif
 
                     ms.SetLength(0);
                     ms.Position = 0;
@@ -995,8 +989,8 @@ namespace NLog.Targets
                 // Find out the next sequence number among existing archives having the same date part as the current date.
                 int? lastSequenceNumber = archives
                     .Where(a => a.HasSameFormattedDate(archiveDate))
-                    .Max(a => (int?) a.Sequence);
-                nextSequenceNumber = (int) (lastSequenceNumber != null ? lastSequenceNumber + 1 : 0);
+                    .Max(a => (int?)a.Sequence);
+                nextSequenceNumber = (int)(lastSequenceNumber != null ? lastSequenceNumber + 1 : 0);
 
                 var oldArchiveFileNames = archives
                     .OrderBy(a => a.Date)
@@ -1034,7 +1028,7 @@ namespace NLog.Targets
 
                 return ts != ts2;
             }
-            
+
             return false;
         }
 
@@ -1065,6 +1059,7 @@ namespace NLog.Targets
             int minSequenceLength, string dateFormat, FileNameTemplate fileTemplate)
         {
             var directoryInfo = new DirectoryInfo(dirName);
+
             int archiveFileNameMinLength = fileNameMask.Length + minSequenceLength;
             var archiveFileNames = GetFiles(directoryInfo, fileNameMask)
                 .Where(n => n.Name.Length >= archiveFileNameMinLength)
@@ -1101,7 +1096,7 @@ namespace NLog.Targets
             int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt;
             int dateAndSequenceIndex = fileTemplate.BeginAt;
             int dateAndSequenceLength = archiveFileNameWithoutPath.Length - trailerLength - dateAndSequenceIndex;
-            
+
             string dateAndSequence = archiveFileNameWithoutPath.Substring(dateAndSequenceIndex, dateAndSequenceLength);
             int sequenceIndex = dateAndSequence.LastIndexOf('.') + 1;
 
@@ -1164,32 +1159,41 @@ namespace NLog.Targets
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
 
-            try
+            if (dirName != null)
             {
-                DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
+                try
+                {
+                    DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
+                    if (!directoryInfo.Exists)
+                    {
+                        Directory.CreateDirectory(dirName);
+                        return;
+                    }
+
 #if SILVERLIGHT
                 List<string> files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
 #else
-                List<string> files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
+                    List<string> files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName).ToList();
 #endif
-                List<string> filesByDate = new List<string>();
+                    List<string> filesByDate = new List<string>();
 
-                for (int index = 0; index < files.Count; index++)
-                {
-                    string archiveFileName = Path.GetFileName(files[index]);
-                    string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
-                    DateTime fileDate = DateTime.MinValue;
-                    if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
+                    for (int index = 0; index < files.Count; index++)
                     {
-                        filesByDate.Add(files[index]);
+                        string archiveFileName = Path.GetFileName(files[index]);
+                        string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
+                        DateTime fileDate = DateTime.MinValue;
+                        if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
+                        {
+                            filesByDate.Add(files[index]);
+                        }
                     }
-                }
 
-                EnsureArchiveCount(filesByDate);
-            }
-            catch (DirectoryNotFoundException)
-            {
-                Directory.CreateDirectory(dirName);
+                    EnsureArchiveCount(filesByDate);
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    Directory.CreateDirectory(dirName);
+                }
             }
         }
 #endif
@@ -1330,6 +1334,7 @@ namespace NLog.Targets
                 //(1) User supplied the Filename with pattern
                 //(2) User supplied the normal filename
                 fileNamePattern = this.ArchiveFileName.Render(eventInfo);
+                fileNamePattern = CleanupInvalidFileNameChars(fileNamePattern);
             }
             return fileNamePattern;
         }
@@ -1782,9 +1787,16 @@ namespace NLog.Targets
             }
         }
 
-#if !SILVERLIGHT
+        /// <summary>
+        /// Remove unwanted chars from filename. 
+        /// Note: not implemented in Silverlight
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         private static string CleanupInvalidFileNameChars(string fileName)
         {
+#if !SILVERLIGHT
+
             var lastDirSeparator =
                 fileName.LastIndexOfAny(new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar });
 
@@ -1792,8 +1804,11 @@ namespace NLog.Targets
             var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator) : string.Empty;
             fileName1 = Path.GetInvalidFileNameChars().Aggregate(fileName1, (current, c) => current.Replace(c, '_'));
             return Path.Combine(dirName, fileName1);
-        }
+#else
+            return fileName;
 #endif
+        }
+
 
         private class DynamicFileArchive
         {
@@ -2003,6 +2018,11 @@ namespace NLog.Targets
                 }
             }
 
+            private bool FoundPattern
+            {
+                get { return startIndex != -1 && endIndex != -1; }
+            }
+
             private readonly string template;
 
             private readonly int startIndex;
@@ -2012,7 +2032,8 @@ namespace NLog.Targets
             {
                 this.template = template;
                 this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
-                this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
+                if (this.startIndex != -1)
+                    this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
             }
 
             /// <summary>
@@ -2022,7 +2043,7 @@ namespace NLog.Targets
             /// <returns></returns>
             public string ReplacePattern(string replacementValue)
             {
-                return String.IsNullOrEmpty(replacementValue) ? this.Template : template.Substring(0, this.BeginAt) + replacementValue + template.Substring(this.EndAt);
+                return !FoundPattern || String.IsNullOrEmpty(replacementValue) ? this.Template : template.Substring(0, this.BeginAt) + replacementValue + template.Substring(this.EndAt);
             }
         }
     }
