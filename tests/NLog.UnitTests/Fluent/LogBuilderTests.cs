@@ -64,18 +64,24 @@ namespace NLog.UnitTests.Fluent
         [Fact]
         public void TraceWrite()
         {
-            TraceWrite(_logger.Trace());
+            TraceWrite_internal(_logger.Trace());
         }
 
 #if NET4_5
         [Fact]
         public void TraceWrite_static_builder()
         {
-            TraceWrite(Log.Trace());
+            TraceWrite_internal(Log.Trace());
         }
 #endif
 
-        private void TraceWrite(LogBuilder logBuilder)
+
+        ///<remarks>
+        /// Caution: don't use overloading, that will break xUnit:
+        /// CATASTROPHIC ERROR OCCURRED:
+        /// System.ArgumentException: Ambiguous method named TraceWrite in type NLog.UnitTests.Fluent.LogBuilderTests
+        /// </remarks>
+        private void TraceWrite_internal(LogBuilder logBuilder)
         {
             logBuilder
                 .Message("This is a test fluent message.")
@@ -186,18 +192,23 @@ namespace NLog.UnitTests.Fluent
         [Fact]
         public void InfoWrite()
         {
-            InfoWrite(_logger.Info());
+            InfoWrite_internal(_logger.Info());
         }
 
 #if NET4_5
         [Fact]
         public void InfoWrite_static_builder()
         {
-            InfoWrite(Log.Info());
+            InfoWrite_internal(Log.Info());
         }
 #endif
 
-        private void InfoWrite(LogBuilder logBuilder)
+        ///<remarks>
+        /// Caution: don't use overloading, that will break xUnit:
+        /// CATASTROPHIC ERROR OCCURRED:
+        /// System.ArgumentException: Ambiguous method named TraceWrite in type NLog.UnitTests.Fluent.LogBuilderTests
+        /// </remarks>
+        private void InfoWrite_internal(LogBuilder logBuilder)
         {
             logBuilder
                 .Message("This is a test fluent message.")
@@ -228,46 +239,51 @@ namespace NLog.UnitTests.Fluent
         [Fact]
         public void DebugWrite()
         {
-            ErrorWrite(_logger.Debug(), LogLevel.Debug);
+            ErrorWrite_internal(_logger.Debug(), LogLevel.Debug);
         }
 
 #if NET4_5
         [Fact]
         public void DebugWrite_static_builder()
         {
-            ErrorWrite(Log.Debug(), LogLevel.Debug);
+            ErrorWrite_internal(Log.Debug(), LogLevel.Debug);
         }
 #endif
 
         [Fact]
         public void FatalWrite()
         {
-            ErrorWrite(_logger.Fatal(), LogLevel.Fatal);
+            ErrorWrite_internal(_logger.Fatal(), LogLevel.Fatal);
         }
 
 #if NET4_5
         [Fact]
         public void FatalWrite_static_builder()
         {
-            ErrorWrite(Log.Fatal(), LogLevel.Fatal);
+            ErrorWrite_internal(Log.Fatal(), LogLevel.Fatal);
         }
 #endif
 
         [Fact]
         public void ErrorWrite()
         {
-            ErrorWrite(_logger.Error(), LogLevel.Error);
+            ErrorWrite_internal(_logger.Error(), LogLevel.Error);
         }
 
 #if NET4_5
         [Fact]
         public void ErrorWrite_static_builder()
         {
-            ErrorWrite(Log.Error(), LogLevel.Error);
+            ErrorWrite_internal(Log.Error(), LogLevel.Error);
         }
 #endif
 
-        private void ErrorWrite(LogBuilder logBuilder, LogLevel logLevel)
+        ///<remarks>
+        /// Caution: don't use overloading, that will break xUnit:
+        /// CATASTROPHIC ERROR OCCURRED:
+        /// System.ArgumentException: Ambiguous method named TraceWrite in type NLog.UnitTests.Fluent.LogBuilderTests
+        /// </remarks>
+        private void ErrorWrite_internal(LogBuilder logBuilder, LogLevel logLevel)
         {
             Exception catchedException = null;
             string path = "blah.txt";
