@@ -80,12 +80,39 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         }
 
         [Fact]
-        public void ComplexWhenWithColonTest()
+        public void ComplexWhenWithColonTest_with_workaround()
         {
             SimpleLayout l = @"${when:when=1 == 1:Inner=Test${literal:text=\:} Hello}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             Assert.Equal("Test: Hello", l.Render(le));
+        }
+
+        [Fact]
+        public void ComplexWhenWithColonTest()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:Inner=Test\: Hello}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Test: Hello", l.Render(le));
+        }
+
+        [Fact]
+        public void ComplexWhenWithSlashTest()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:Inner=Test\\Hello}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Test\\Hello", l.Render(le));
+        }
+
+                [Fact]
+        public void ComplexWhenWithBracketsTest()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:Inner=Test{Hello\}}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Test{Hello}", l.Render(le));
         }
     }
 }
