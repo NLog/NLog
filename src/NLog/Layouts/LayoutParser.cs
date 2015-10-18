@@ -61,9 +61,33 @@ namespace NLog.Layouts
 
             while ((ch = sr.Peek()) != -1)
             {
-                if (isNested && (ch == '}' || ch == ':'))
+                if (isNested)
                 {
-                    break;
+                    //escape char? Then allow }, : and \
+                    if (ch == '\\')
+                    {
+                        sr.Read();
+                        var nextChar = sr.Peek();
+
+                        //char that can be escaped.
+                        if (nextChar == '}' || nextChar == ':' || nextChar == '\\')
+                        {
+                            //read next char and append
+                            sr.Read();
+                            literalBuf.Append((char)nextChar);
+                        }
+                        else
+                        {
+                            //dont read next char and just append the slash
+                            literalBuf.Append('\\');
+                        }
+                        continue;
+                    }
+
+                    if (ch == '}' || ch == ':')
+                    {
+                        break;
+                    }
                 }
 
                 sr.Read();
