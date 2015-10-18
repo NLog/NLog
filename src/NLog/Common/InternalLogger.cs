@@ -38,14 +38,16 @@ namespace NLog.Common
     using System.Configuration;
     using System.Globalization;
     using System.IO;
+    using System.Reflection;
     using System.Text;
     using NLog.Internal;
     using NLog.Time;
 #if !SILVERLIGHT
     using ConfigurationManager = System.Configuration.ConfigurationManager;
+    using System.Diagnostics;
 #endif
 
-	/// <summary>
+    /// <summary>
     /// NLog internal logger.
     /// </summary>
     public static class InternalLogger
@@ -379,6 +381,30 @@ namespace NLog.Common
             }
         }
 
+        /// <summary>
+        /// Logs the assembly version and file version of the given Assembly.
+        /// </summary>
+        /// <param name="assembly">The assembly to log.</param>
+        public static void LogAssemblyVersion(Assembly assembly)
+        {
+            try
+            {
+#if SILVERLIGHT
+                Info(assembly.FullName);
+#else
+                var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+                Info("{0}. File version: {1}. Product version: {2}.",
+                    assembly.FullName,
+                    fileVersionInfo.FileVersion,
+                    fileVersionInfo.ProductVersion);
+#endif
+            }
+            catch (Exception exc)
+            {
+                Error("Error logging version of assembly {0}: {1}.", assembly.FullName, exc.Message);
+            }
+        }
+
 #if !SILVERLIGHT
         private static string GetSettingString(string configName, string envName)
         {
@@ -451,7 +477,11 @@ namespace NLog.Common
         {
             try
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(filename));
+                string parentDirectory = Path.GetDirectoryName(filename);
+                if (!string.IsNullOrEmpty(parentDirectory))
+                {
+                    Directory.CreateDirectory(parentDirectory);
+                }
             }
             catch (Exception exception)
             {

@@ -46,6 +46,7 @@ namespace NLog.Targets
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
+    using Layouts;
 
     /// <summary>
     /// Increments specified performance counter on each write.
@@ -86,6 +87,7 @@ namespace NLog.Targets
         public PerformanceCounterTarget()
         {
             this.CounterType = PerformanceCounterType.NumberOfItems32;
+            this.IncrementValue = new SimpleLayout("1");
             this.InstanceName = string.Empty;
             this.CounterHelp = string.Empty;
         }
@@ -128,6 +130,13 @@ namespace NLog.Targets
         /// <docgen category='Performance Counter Options' order='10' />
         [DefaultValue(PerformanceCounterType.NumberOfItems32)]
         public PerformanceCounterType CounterType { get; set; }
+
+        /// <summary>
+        /// The value by which to increment the counter.
+        /// </summary>
+        /// <docgen category='Performance Counter Options' order='10' />
+        [DefaultValue(1)]
+        public Layout IncrementValue { get; set; }
 
         /// <summary>
         /// Performs installation which requires administrative permissions.
@@ -234,7 +243,12 @@ namespace NLog.Targets
         {
             if (this.EnsureInitialized())
             {
-                this.perfCounter.Increment();
+                string incrementValueString = IncrementValue.Render(logEvent);
+                long incrementValue;
+                if (Int64.TryParse(incrementValueString, out incrementValue))
+                    this.perfCounter.IncrementBy(incrementValue);
+                else
+                    InternalLogger.Error("Error incrementing PerfCounter {0}. IncrementValue must be an integer but was <{1}>", CounterName, incrementValueString);
             }
         }
 

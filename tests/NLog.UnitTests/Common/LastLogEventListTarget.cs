@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,57 +31,28 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#region
-
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using NLog.Targets;
 
-#endregion
-
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.UnitTests.Common
 {
-    #region
-
-    using System;
-
-    #endregion
-
-    public class CallSiteLineNumberTests : NLogTestBase
+    /// <summary>
+    /// Target for unit testing the last written LogEvent (non rendered!)
+    /// </summary>
+    [Target("LastLogEvent")]
+    public class LastLogEventListTarget : TargetWithLayout
     {
-
-#if !SILVERLIGHT
-
-#if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
-#else
-        [Fact]
-#endif
-        public void LineNumberOnlyTest()
+        /// <summary>
+        /// Increases the number of messages.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        protected override void Write(LogEventInfo logEvent)
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${callsite-linenumber} ${message}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
-
-            ILogger logger = LogManager.GetLogger("A");
-          
-#if !NET4_5 && !MONO
-#line 100000
-#endif
-            logger.Debug("msg");
-            var linenumber = GetPrevLineNumber();
-            var lastMessage = GetDebugLastMessage("debug");
-            // There's a difference in handling line numbers between .NET and Mono
-            // We're just interested in checking if it's above 100000
-            Assert.True(lastMessage.IndexOf(linenumber.ToString(), StringComparison.OrdinalIgnoreCase) == 0, "Invalid line number. Expected prefix of 10000, got: " + lastMessage);
-#if !NET4_5 && !MONO
-#line default
-#endif
+            this.LastLogEvent = logEvent;
         }
-#endif
+
+        public LogEventInfo LastLogEvent { get; set; }
     }
 }
