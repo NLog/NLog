@@ -67,7 +67,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             Assert.Equal("messageYYY", l.Render(le));
         }
-        
+
         [Fact]
         public void ComplexWhenTest2()
         {
@@ -106,13 +106,31 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             Assert.Equal("Test\\Hello", l.Render(le));
         }
 
-                [Fact]
+        [Fact]
         public void ComplexWhenWithBracketsTest()
         {
             SimpleLayout l = @"${when:when=1 == 1:Inner=Test{Hello\}}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             Assert.Equal("Test{Hello}", l.Render(le));
+        }
+
+
+        [Fact]
+        public void ComplexWhenWithHashTest()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:inner=Log_{#\}.log}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Log_{#}.log", l.Render(le));
+        }
+        [Fact]
+        public void ComplexWhenWithHashTest_and_layoutrender()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:inner=${counter}/Log_{#\}.log}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("1/Log_{#}.log", l.Render(le));
         }
     }
 }
