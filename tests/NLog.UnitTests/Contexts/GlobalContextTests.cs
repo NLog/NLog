@@ -35,7 +35,7 @@
 namespace NLog.UnitTests.Contexts
 {
 
-    using NLog.Context;
+    using NLog.Contexts;
     using Xunit;
 
     /// <summary>

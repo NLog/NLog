@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
     using NLog.Internal;
     using NLog.Targets;
-    using NLog.Context;
+    using NLog.Contexts;
 
     /// <summary>
     /// XML event description compatible with log4j, Chainsaw and NLogViewer.

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Context
+namespace NLog.Contexts
 {
     using NLog.Internal;
     using System;
@@ -45,10 +45,12 @@ namespace NLog.Context
         private static IContext currentInstance = null;
         private static readonly object syncRoot = new object();
         private Dictionary<string, object> dict;
+        private HashSet<String> keys;
 
         private GlobalContext()
         {
             this.dict = new Dictionary<string, object>();
+            keys = new HashSet<string>();
         }
 
         /// <summary>
@@ -79,7 +81,7 @@ namespace NLog.Context
         {
             get
             {
-                return new HashSet<string>(this.dict.Keys);
+                return keys;
             }
         }
 
@@ -87,7 +89,7 @@ namespace NLog.Context
         /// Set / Get the key in the context.
         /// </summary>
         /// <param name="key"></param>
-        /// <returns></returns>
+        /// <returns>The key value, if defined; otherwise <c>null</c>.</returns>
         public object this[string key]
         {
             get
@@ -99,6 +101,8 @@ namespace NLog.Context
                 lock (syncRoot)
                 {
                     this.dict[key] = value;
+                    if (!keys.Contains(key))
+                        keys.Add(key);
                 }
             }
         }
@@ -111,6 +115,7 @@ namespace NLog.Context
             lock (syncRoot)
             {
                 this.dict.Clear();
+                this.keys.Clear();
             }
         }
 
@@ -146,10 +151,7 @@ namespace NLog.Context
         /// <param name="value"></param>
         public void Set(string key, object value)
         {
-            lock (syncRoot)
-            {
-                this.dict[key] = value;
-            }
+            this[key] = value;
         }
 
         /// <summary>
@@ -172,12 +174,12 @@ namespace NLog.Context
         /// <summary>
         /// Gets the Global Diagnostics Context item.
         /// </summary>
-        /// <param name="item">Item name.</param>
+        /// <param name="key">Item name.</param>
         /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
-        /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
-        public string GetFormatted(string item, IFormatProvider formatProvider)
+        /// <returns>The value of <paramref name="key"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        public string GetFormatted(string key, IFormatProvider formatProvider)
         {
-            return FormatHelper.ConvertToString(this.TryGet(item), formatProvider);
+            return FormatHelper.ConvertToString(this.TryGet(key), formatProvider);
         }
     }
 }

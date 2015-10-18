@@ -69,9 +69,7 @@ namespace NLog.UnitTests.Contexts
                                 Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo2"));
 
                                 MappedDiagnosticsContext.Set("foo", "bar");
-                                MappedDiagnosticsContext.Set("foo2", "bar2");
-
-                                MappedDiagnosticsContext.Set("foo3", new { One = 1 });
+                                MappedDiagnosticsContext.Set("foo2", "bar2");                               
 
                                 Assert.True(MappedDiagnosticsContext.Contains("foo"));
                                 Assert.Equal("bar", MappedDiagnosticsContext.Get("foo"));
@@ -84,6 +82,7 @@ namespace NLog.UnitTests.Contexts
                                 Assert.Equal("bar2", MappedDiagnosticsContext.Get("foo2"));
 
                                 Assert.Null(MappedDiagnosticsContext.GetObject("foo3"));
+                                MappedDiagnosticsContext.Set("foo3", new { One = 1 });
                             }
                             catch (Exception exception)
                             {

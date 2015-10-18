@@ -31,32 +31,67 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Context
+namespace NLog.Contexts
 {
+    #if NET4_0 || NET4_5
     using NLog.Internal;
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.Remoting.Messaging;
+    using System.Text;
+    using System.Threading.Tasks;
 
     /// <summary>
-    /// Mapped Context - a thread-local structure that keeps a dictionary of strings and provides methods to output them in layouts.
+    /// Async version of Thread Context - a logical context structure that keeps a dictionary
+    /// of strings and provides methods to output them in layouts.  Allows for maintaining state across
+    /// asynchronous tasks and call contexts.
     /// </summary>
-    public class ThreadContext : IContext
+    /// <remarks>
+    /// </remarks>
+    public class LogicalThreadContext : IContext
     {
-        private readonly object dataSlot = null;
+        private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
         private static IContext currentInstance = null;
         private static readonly object syncRoot = new object();
-        
-        private Dictionary<string, object> Dict
-        {   get
+        private HashSet<string> keys;
+
+        private IDictionary<string, object> LogicalThreadDictionary
+        {
+            get
             {
-                return ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(dataSlot);
+                var dictionary = CallContext.LogicalGetData(LogicalThreadDictionaryKey) as ConcurrentDictionary<string, object>;
+                if (dictionary == null)
+                {
+                    dictionary = new ConcurrentDictionary<string, object>();
+                    CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
+                }
+                return dictionary;
             }
         }
-        private ThreadContext()
+
+        /// <summary>
+        /// Gets the Mapped Context named key.
+        /// </summary>
+        /// <param name="key">key name.</param>
+        /// <returns>The key value, if defined; otherwise <c>null</c>.</returns>
+        private object TryGet(string key)
         {
-            dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();            
+            lock (syncRoot)
+            {
+                object o;
+                if (!this.LogicalThreadDictionary.TryGetValue(key, out o))
+                    o = null;
+
+                return o;
+            }
         }
 
+        private LogicalThreadContext()
+        {
+            keys = new HashSet<string>();
+        }
         /// <summary>
         /// Current instance of the context.
         /// </summary>
@@ -70,7 +105,7 @@ namespace NLog.Context
                     {
                         if (currentInstance == null)
                         {
-                            currentInstance = new ThreadContext();
+                            currentInstance = new LogicalThreadContext();
                         }
                     }
                 }
@@ -85,16 +120,15 @@ namespace NLog.Context
         {
             get
             {
-                return new HashSet<string>(this.Dict.Keys);
+                return keys;
             }
         }
-
 
         /// <summary>
         /// Set / Get the key in the context.
         /// </summary>
         /// <param name="key"></param>
-        /// <returns></returns>
+        /// <returns>The key value, if defined; otherwise <c>null</c>.</returns>
         public object this[string key]
         {
             get
@@ -103,77 +137,53 @@ namespace NLog.Context
             }
             set
             {
+
+                this.LogicalThreadDictionary[key] = value;
+
                 lock (syncRoot)
                 {
-                    this.Dict[key] = value;
+                    if (!keys.Contains(key))
+                    keys.Add(key);
                 }
             }
         }
 
         /// <summary>
-        /// Clears the content of current thread Mapped Context.
+        /// Clears the content of current logical context.
         /// </summary>
         public void Clear()
         {
-            lock (syncRoot)
-            {
-                this.Dict.Clear();
-            }
+            this.LogicalThreadDictionary.Clear();
+            this.keys.Clear();
         }
 
         /// <summary>
-        /// Checks whether the specified key exists in current thread Mapped Context.
+        /// Checks whether the specified <paramref name="key"/> exists in current logical context.
         /// </summary>
-        /// <param name="key">item name.</param>
-        /// <returns>A boolean indicating whether the specified <paramref name="key"/> exists in current thread Mapped Context.</returns>
+        /// <param name="key">Item name.</param>
+        /// <returns>A boolean indicating whether the specified <paramref name="key"/> exists in current logical context.</returns>
         public bool Contains(string key)
         {
-            lock (syncRoot)
-            {
-                return this.Dict.ContainsKey(key);
-            }
+            return this.LogicalThreadDictionary.ContainsKey(key);
         }
 
         /// <summary>
-        /// Removes the specified <paramref name="key"/> from current thread Mapped Context.
+        /// Removes the specified <paramref name="key"/> from current logical context.
         /// </summary>
-        /// <param name="key">key name.</param>
+        /// <param name="key">Item name.</param>
         public void Remove(string key)
         {
-            lock (syncRoot)
-            {
-                this.Dict.Remove(key);
-            }
+            this.LogicalThreadDictionary.Remove(key);
         }
 
         /// <summary>
-        /// Sets the current thread Mapped Context key to the specified value.
+        /// Sets the current logical context key to the specified value.
         /// </summary>
-        /// <param name="key">key name.</param>
-        /// <param name="value">key value.</param>
+        /// <param name="key">Item name.</param>
+        /// <param name="value">Item value.</param>
         public void Set(string key, object value)
         {
-            lock (syncRoot)
-            {
-                this.Dict[key] = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the Mapped Context named key.
-        /// </summary>
-        /// <param name="key">key name.</param>
-        /// <returns>The key value, if defined; otherwise <c>null</c>.</returns>
-        private object TryGet(string key)
-        {
-            lock (syncRoot)
-            {
-                object o;
-                if (!this.Dict.TryGetValue(key, out o))
-                    o = null;
-
-                return o;
-            }
+            this[key] = value;
         }
 
         /// <summary>
@@ -187,4 +197,5 @@ namespace NLog.Context
             return FormatHelper.ConvertToString(this.TryGet(key), formatProvider);
         }
     }
+#endif
 }

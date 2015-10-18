@@ -34,7 +34,7 @@
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
-    using NLog.Context;
+    using NLog.Contexts;
     using NLog.Layouts;
     using Xunit;
 

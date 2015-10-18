@@ -33,7 +33,7 @@
 
 namespace NLog
 {
-    using NLog.Context;
+    using NLog.Contexts;
     using NLog.Internal;
     using System;
     using System.Collections.Generic;

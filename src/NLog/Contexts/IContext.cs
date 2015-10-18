@@ -30,7 +30,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-namespace NLog.Context
+namespace NLog.Contexts
 {
     using System;
     using System.Collections;
@@ -81,9 +81,9 @@ namespace NLog.Context
         /// <summary>
         /// Gets the Context item.
         /// </summary>
-        /// <param name="item">Item name.</param>
+        /// <param name="key">Item name.</param>
         /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
-        /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
-        string GetFormatted(string item, IFormatProvider formatProvider);
+        /// <returns>The value of <paramref name="key"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        string GetFormatted(string key, IFormatProvider formatProvider);
     }
 }

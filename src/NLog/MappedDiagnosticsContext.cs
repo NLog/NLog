@@ -37,7 +37,7 @@ namespace NLog
     using System.Collections.Generic;
 
     using NLog.Internal;
-    using NLog.Context;
+    using NLog.Contexts;
     
     /// <summary>
     /// Mapped Diagnostics Context - a thread-local structure that keeps a dictionary

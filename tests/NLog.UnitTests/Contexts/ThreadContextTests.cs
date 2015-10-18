@@ -35,7 +35,7 @@
 
 namespace NLog.UnitTests.Contexts
 {
-    using NLog.Context;
+    using NLog.Contexts;
     using System;
     using System.Collections.Generic;
     using System.Text;

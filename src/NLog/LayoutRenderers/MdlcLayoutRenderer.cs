@@ -36,6 +36,7 @@ namespace NLog.LayoutRenderers
 #if NET4_0 || NET4_5
     using System.Text;
     using NLog.Config;
+    using NLog.Contexts;
 
     /// <summary>
     /// Mapped Diagnostic Logical Context item (based on CallContext).
@@ -58,7 +59,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var message = MappedDiagnosticsLogicalContext.Get(Item);
+            var message = LogicalThreadContext.Instance[Item];
             builder.Append(message);
         }
     }
