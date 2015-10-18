@@ -64,7 +64,18 @@ namespace NLog.UnitTests.Fluent
         [Fact]
         public void TraceWrite()
         {
-            _logger.Trace()
+            TraceWrite(_logger.Trace());
+        }
+
+        [Fact]
+        public void TraceWrite_static_builder()
+        {
+            TraceWrite(Log.Trace());
+        }
+
+        private void TraceWrite(LogBuilder logBuilder)
+        {
+            logBuilder
                 .Message("This is a test fluent message.")
                 .Property("Test", "TraceWrite")
                 .Write();
@@ -76,7 +87,7 @@ namespace NLog.UnitTests.Fluent
             }
 
             var ticks = DateTime.Now.Ticks;
-            _logger.Trace()
+            logBuilder
                 .Message("This is a test fluent message '{0}'.", ticks)
                 .Property("Test", "TraceWrite")
                 .Write();
@@ -89,7 +100,6 @@ namespace NLog.UnitTests.Fluent
                 AssertDebugLastMessage("t2", rendered);
             }
         }
-
 
         [Fact]
         public void TraceWriteProperties()
@@ -174,7 +184,18 @@ namespace NLog.UnitTests.Fluent
         [Fact]
         public void InfoWrite()
         {
-            _logger.Info()
+            InfoWrite(_logger.Info());
+        }
+
+        [Fact]
+        public void InfoWrite_static_builder()
+        {
+            InfoWrite(Log.Info());
+        }
+
+        private void InfoWrite(LogBuilder logBuilder)
+        {
+            logBuilder
                 .Message("This is a test fluent message.")
                 .Property("Test", "InfoWrite")
                 .Write();
@@ -186,11 +207,10 @@ namespace NLog.UnitTests.Fluent
                 AssertLastLogEventTarget(expectedEvent);
             }
 
-            _logger.Info()
+            logBuilder
                 .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "InfoWrite")
                 .Write();
-
 
             {
                 //previous
@@ -202,10 +222,46 @@ namespace NLog.UnitTests.Fluent
         }
 
         [Fact]
+        public void DebugWrite()
+        {
+            ErrorWrite(_logger.Debug(), LogLevel.Debug);
+        }
+
+        [Fact]
+        public void DebugWrite_static_builder()
+        {
+            ErrorWrite(Log.Debug(), LogLevel.Debug);
+        }        
+        
+        [Fact]
+        public void FatalWrite()
+        {
+            ErrorWrite(_logger.Fatal(), LogLevel.Fatal);
+        }
+
+        [Fact]
+        public void FatalWrite_static_builder()
+        {
+            ErrorWrite(Log.Fatal(), LogLevel.Fatal);
+        }     
+        
+        [Fact]
         public void ErrorWrite()
+        {
+            ErrorWrite(_logger.Error(), LogLevel.Error);
+        }
+
+        [Fact]
+        public void ErrorWrite_static_builder()
+        {
+            ErrorWrite(Log.Error(), LogLevel.Error);
+        }
+
+        private void ErrorWrite(LogBuilder logBuilder, LogLevel logLevel)
         {
             Exception catchedException = null;
             string path = "blah.txt";
+
             try
             {
                 string text = File.ReadAllText(path);
@@ -213,46 +269,43 @@ namespace NLog.UnitTests.Fluent
             catch (Exception ex)
             {
                 catchedException = ex;
-                _logger.Error()
+                logBuilder
                     .Message("Error reading file '{0}'.", path)
                     .Exception(ex)
                     .Property("Test", "ErrorWrite")
                     .Write();
             }
 
-
-
             {
-                var expectedEvent = new LogEventInfo(LogLevel.Error, "logger1", "Error reading file '{0}'.");
+                var expectedEvent = new LogEventInfo(logLevel, "logger1", "Error reading file '{0}'.");
                 expectedEvent.Properties["Test"] = "ErrorWrite";
                 expectedEvent.Exception = catchedException;
                 AssertLastLogEventTarget(expectedEvent);
                 AssertDebugLastMessageContains("t2", "Error reading file '");
             }
-            _logger.Error()
+            logBuilder
                 .Message("This is a test fluent message.")
                 .Property("Test", "ErrorWrite")
                 .Write();
 
             {
-                var expectedEvent = new LogEventInfo(LogLevel.Error, "logger1", "This is a test fluent message.");
+                var expectedEvent = new LogEventInfo(logLevel, "logger1", "This is a test fluent message.");
                 expectedEvent.Properties["Test"] = "ErrorWrite";
                 AssertLastLogEventTarget(expectedEvent);
             }
 
-            _logger.Error()
+            logBuilder
                 .Message("This is a test fluent message '{0}'.", DateTime.Now.Ticks)
                 .Property("Test", "ErrorWrite")
                 .Write();
 
             {
-                var expectedEvent = new LogEventInfo(LogLevel.Error, "logger1", "This is a test fluent message '{0}'.");
+                var expectedEvent = new LogEventInfo(logLevel, "logger1", "This is a test fluent message '{0}'.");
                 expectedEvent.Properties["Test"] = "ErrorWrite";
                 AssertLastLogEventTarget(expectedEvent);
                 AssertDebugLastMessageContains("t2", "This is a test fluent message '");
             }
         }
-
 
         /// <summary>
         /// Test the written logevent
