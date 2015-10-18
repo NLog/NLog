@@ -55,9 +55,15 @@ namespace NLog.Targets
     [Target("File")]
     public class FileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters
     {
-        // Clean up period, of the initialied files, is defined in days.
+        /// <summary>
+        /// Default clean up period of the initilized files. When a file exceeds the clean up period is removed from the list.
+        /// </summary>
+        /// <remarks>Clean up period is defined in days.</remarks>
         private const int CleanupPeriod = 2;
-        // This value disables archiving based on the size of the archive file. 
+
+        /// <summary>
+        /// This value disables file archiving based on the size. 
+        /// </summary>
         private const int ArchiveAboveSizeDisabled = -1;
 
         private readonly InitializedFiles initializedFiles = new InitializedFiles();
@@ -67,8 +73,10 @@ namespace NLog.Targets
         private BaseFileAppenderCache recentAppenders; 
         private Timer autoClosingTimer;
 
-        // Queue used so the oldest used filename can be removed from when the list of filenames
-        // that exist have got too long.
+        /// <summary>
+        /// It holds the file names of existing archives in order for the oldest archives to be removed when the list of
+        /// filenames becomes too long.
+        /// </summary>
         private Queue<string> previousFileNames;
 
         /// <summary>
@@ -421,6 +429,13 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Gets the currently initialised files controlled by <see cref="FileTarget"/>.
+        /// </summary>
+        /// <remarks>
+        /// This proporty is used by archiving processes as they need to remove files from the active list of files
+        /// during clean up.
+        /// </remarks>
         internal InitializedFiles Files
         {
             get { return initializedFiles; }
@@ -480,6 +495,10 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Returns the suitable <see cref="IFileAppenderFactory"/> to be used from this class instance based on the values of various class properties.  
+        /// </summary>
+        /// <returns>A <see cref="IFileAppenderFactory"/> suitable for this instance.</returns>
         private IFileAppenderFactory GetFileAppenderFactory()
         {
             if (!this.KeepFileOpen)
@@ -640,7 +659,7 @@ namespace NLog.Targets
                     }
 
                     string fileNamePattern = GetFileNamePattern(fileName, logEvent);
-                    DeleteOldDateArchive(fileNamePattern);
+                    DeleteExcessDateArchiveFiles(fileNamePattern);
                     previousFileNames.Enqueue(fileName);
                 }
             }
@@ -648,13 +667,12 @@ namespace NLog.Targets
 
 #if !NET_CF
         /// <summary>
-        /// Deletes archive files in reverse chronological order until only the
-        /// MaxArchiveFiles number of archive files remain.
+        /// Deletes date archive files in reverse chronological order. The number of remaining archive files will be no
+        /// more the <see cref="MaxArchiveFiles"/> property.
         /// </summary>
-        /// <param name="pattern">The pattern that archive filenames will match</param>
-        private void DeleteOldDateArchive(string pattern)
+        /// <param name="pattern">The filename pattern used to match the date archive files.</param>
+        private void DeleteExcessDateArchiveFiles(string pattern)
         {
-            // REMOVED: fileArchiver.DateArchive(fileInfo.FullName, fileNamePattern);
             DateFileArchive fileArchive = new DateFileArchive(this)
             {
 #if NET4_5
@@ -1044,16 +1062,31 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// The sequence of <see langword="byte"/> to be written for the file header.
+        /// </summary>
+        /// <returns>Sequence of <see langword="byte"/> to be written.</returns>
         private byte[] GetHeaderBytes()
         {
             return GetLayoutBytes(Header);
         }
 
+        /// <summary>
+        /// The sequence of <see langword="byte"/> to be written for the file footer.
+        /// </summary>
+        /// <returns>Sequence of <see langword="byte"/> to be written.</returns>
         private byte[] GetFooterBytes()
         {
             return GetLayoutBytes(Footer);
         }
 
+        /// <summary>
+        /// The sequence of <see langword="byte"/> to be written in a file after applying any formating and any
+        /// transformations required from the <see cref="Layout"/>.
+        /// </summary>
+        /// <param name="layout">The layout used to render output message.</param>
+        /// <returns>Sequence of <see langword="byte"/> to be written.</returns>
+        /// <remarks>Usually it is used to render the header and hooter of the files.</remarks>
         private byte[] GetLayoutBytes(Layout layout)
         {
             if (layout == null)
@@ -1166,6 +1199,13 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Creates the file specified in <paramref name="fileName"/> and writes the file content in each entirety i.e.
+        /// Header, Content and Footer.
+        /// </summary>
+        /// <param name="fileName">The name of the file to be written.</param>
+        /// <param name="bytes">Sequence of <see langword="byte"/> to be written in the content section of the file.</param>
+        /// <remarks>This method is used when the content of the log file is re-written on every write.</remarks>
         private void ReplaceFileContent(string fileName, byte[] bytes)
         {
             using (FileStream fs = File.Create(fileName))
@@ -1217,10 +1257,13 @@ namespace NLog.Targets
             }
         }
 
-        // HACK: Exposing GetFileInfo() method as internal creates tight coupling between FileTarget and FileArchiver classes. 
-        //      Review code when possible.  
         internal bool GetFileInfo(string fileName, out DateTime lastWriteTime, out long fileLength)
         {
+            //
+            // HACK: Exposing GetFileInfo() method as internal creates tight coupling between FileTarget and DateAndSequentialFileArchive classes. 
+            //      Review code when possible.  
+            //
+
             if (recentAppenders.GetFileInfo(fileName, out lastWriteTime, out fileLength))
             {
                 return true;
@@ -1244,14 +1287,24 @@ namespace NLog.Targets
         }
 
 #if !SILVERLIGHT
+        /// <summary>
+        /// Replaces any invalid characters found in the <paramref name="fileName"/> with underscore i.e _ character.
+        /// Invalid characters are defined by .NET framework and they returned by <see
+        /// cref="M:System.IO.Path.GetInvalidFileNameChars"/> method.
+        /// </summary>
+        /// <param name="fileName">The original file name which might contain invalid characters.</param>
+        /// <returns>The cleaned up file name without any invalid characters.</returns>
         private static string CleanupInvalidFileNameChars(string fileName)
         {
+            // The character which will replace any invalid characters found in the file name. 
+            const char ReplacementChar = '_';
+            
             var lastDirSeparator =
                 fileName.LastIndexOfAny(new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar });
 
             var fileName1 = fileName.Substring(lastDirSeparator + 1);
             var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator) : string.Empty;
-            fileName1 = Path.GetInvalidFileNameChars().Aggregate(fileName1, (current, c) => current.Replace(c, '_'));
+            fileName1 = Path.GetInvalidFileNameChars().Aggregate(fileName1, (current, c) => current.Replace(c, ReplacementChar));
             return Path.Combine(dirName, fileName1);
         }
 #endif

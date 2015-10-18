@@ -84,10 +84,10 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Deletes archive files in reverse chronological order until only a number equal to Size property of archive
-        /// files remain.
+        /// Deletes archive files in reverse chronological order. The number of remaining archive files will be no more
+        /// the <see cref="P:NLog.Targets.DateFileArchive.Size"/> property.
         /// </summary>
-        /// <param name="pattern">The pattern that archive filenames will match</param>
+        /// <param name="pattern">The filename pattern used to match the archive files.</param>
         public void DeleteOutdatedFiles(string pattern)
         {
             string fileNameMask = ReplaceFileNamePattern(pattern, "*");
