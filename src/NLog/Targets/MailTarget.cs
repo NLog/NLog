@@ -385,22 +385,29 @@ namespace NLog.Targets
         /// <param name="client">client to set properties on</param>
         internal void ConfigureMailClient(LogEventInfo lastEvent, ISmtpClient client)
         {
-
             CheckRequiredParameters();
 
-
-            var renderedSmtpServer = this.SmtpServer.Render(lastEvent);
-            if (string.IsNullOrEmpty(renderedSmtpServer) && string.IsNullOrEmpty(this.PickupDirectoryLocation))
+            if (this.SmtpServer == null && string.IsNullOrEmpty(this.PickupDirectoryLocation))
             {
-
-                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat,
-                    string.IsNullOrEmpty(renderedSmtpServer) ? "SmtpServer" : "PickupDirectoryLocation"));
+                throw  new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer/PickupDirectoryLocation"));
             }
 
+            var smtpServer = this.SmtpServer;
+            if (smtpServer != null)
+            {
+                var renderedSmtpServer = smtpServer.Render(lastEvent);
+                if (string.IsNullOrEmpty(renderedSmtpServer) && string.IsNullOrEmpty(this.PickupDirectoryLocation))
+                {
+                
+                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat,
+                        string.IsNullOrEmpty(renderedSmtpServer) ? "SmtpServer" : "PickupDirectoryLocation"));
+                }
+                
+                client.Host = renderedSmtpServer;
 
-
-
-            client.Host = renderedSmtpServer;
+                // The network delivery method take precedence if both Host and PickupDirectoryLocation are present.
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            }
             client.Port = this.SmtpPort;
             client.EnableSsl = this.EnableSsl;
             client.Timeout = this.Timeout;

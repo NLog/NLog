@@ -736,6 +736,7 @@ namespace NLog.UnitTests.Targets
                 this.MessagesSent = new List<MailMessage>();
             }
 
+            public SmtpDeliveryMethod DeliveryMethod { get; set; }
             public string Host { get; set; }
             public int Port { get; set; }
             public int Timeout { get; set; }

@@ -44,18 +44,45 @@ namespace NLog.Internal
     /// </summary>
     internal interface ISmtpClient : IDisposable
     {
+        /// <summary>
+        /// Specifies how outgoing email messages will be handled.
+        /// </summary>
+        SmtpDeliveryMethod DeliveryMethod { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name or IP address of the host used for SMTP transactions.
+        /// </summary>
         string Host { get; set; }
 
+        /// <summary>
+        /// Gets or sets the port used for SMTP transactions.
+        /// </summary>
         int Port { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value that specifies the amount of time after which a synchronous <see cref="Send">Send</see> call times out.
+        /// </summary>
         int Timeout { get; set; }
 
+        /// <summary>
+        /// Gets or sets the credentials used to authenticate the sender.
+        /// </summary>
         ICredentialsByHost Credentials { get; set; }
 
         bool EnableSsl { get; set; }
 
+        /// <summary>
+        /// Sends an e-mail message to an SMTP server for delivery. These methods block while the message is being transmitted.
+        /// </summary>
+        /// <param name="msg">
+        ///   <typeparam>System.Net.Mail.MailMessage
+        ///     <name>MailMessage</name>
+        /// </typeparam> A <see cref="MailMessage">MailMessage</see> that contains the message to send.</param>
         void Send(MailMessage msg);
 
+        /// <summary>
+        /// Gets or sets the folder where applications save mail messages to be processed by the local SMTP server.
+        /// </summary>
         string PickupDirectoryLocation { get; set; }
     }
 }
