@@ -38,6 +38,16 @@ namespace NLog.Targets
     /// </summary>
     public enum ArchiveNumberingMode
     {
+        /* None
+        // This is a breaking change as it requires an extra value ArchiveNumberingMode.None to be added.
+        // The value None required for BaseFileArchive class.
+         
+        /// <summary>
+        /// The archiving method used does not involve any numbering mode.
+        /// </summary>
+        None,
+        */
+
         /// <summary>
         /// Sequence style numbering. The most recent archive has the highest number.
         /// </summary>
