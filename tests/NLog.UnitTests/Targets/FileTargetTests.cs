@@ -1747,7 +1747,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void Exception_is_thrown_when_archiving_is_enabled()
+        public void Dont_throw_Exception_when_archiving_is_enabled()
         {
             LogManager.Configuration = this.CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
@@ -1771,7 +1771,7 @@ namespace NLog.UnitTests.Targets
 
 
         [Fact]
-        public void Exception_is_thrown_when_archiving_is_enabled_with_async()
+        public void Dont_throw_Exception_when_archiving_is_enabled_with_async()
         {
             LogManager.Configuration = this.CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
