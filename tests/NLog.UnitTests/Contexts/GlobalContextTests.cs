@@ -68,6 +68,9 @@ namespace NLog.UnitTests.Contexts
             
             GlobalContext.Instance.Clear();
             Assert.Equal(0, GlobalContext.Instance.Keys.Count);
+
+            GlobalContext.Instance.Set("foo3", new { One = 1 });
+            Assert.NotNull(GlobalContext.Instance["foo3"]);
         }
 
         [Fact]
