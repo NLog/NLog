@@ -60,6 +60,10 @@ namespace NLog.UnitTests.Contexts
 
             Assert.True(GlobalDiagnosticsContext.Contains("foo2"));
             Assert.Equal("bar2", GlobalDiagnosticsContext.Get("foo2"));
+
+            Assert.Null(GlobalDiagnosticsContext.GetObject("foo3"));
+
+            Assert.Equal(string.Empty, GlobalDiagnosticsContext.Get("foo3", null));
         }
 
         [Fact]
@@ -83,6 +87,10 @@ namespace NLog.UnitTests.Contexts
 
             Assert.True(GDC.Contains("foo2"));
             Assert.Equal("bar2", GDC.Get("foo2"));
+
+            Assert.Null(GDC.GetObject("foo3"));
+
+            Assert.Equal(string.Empty, GDC.Get("foo3", null));
         }        
     }
 }
