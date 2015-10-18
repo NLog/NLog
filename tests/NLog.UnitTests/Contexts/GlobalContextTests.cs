@@ -46,7 +46,7 @@ namespace NLog.UnitTests.Contexts
         [Fact]
         public void GlobalContextTest1()
         {
-            GlobalContext.Instance.Clear();
+            
             Assert.False(GlobalContext.Instance.Contains("foo"));
             Assert.Equal(string.Empty, GlobalContext.Instance.GetFormatted("foo", null));
 
@@ -65,6 +65,9 @@ namespace NLog.UnitTests.Contexts
 
             Assert.True(GlobalContext.Instance.Contains("foo2"));
             Assert.Equal("bar2", GlobalContext.Instance.GetFormatted("foo2", null));
+            
+            GlobalContext.Instance.Clear();
+            Assert.Equal(0, GlobalContext.Instance.Keys.Count);
         }
 
         [Fact]

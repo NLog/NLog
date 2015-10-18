@@ -71,6 +71,8 @@ namespace NLog.UnitTests.Contexts
                                 MappedDiagnosticsContext.Set("foo", "bar");
                                 MappedDiagnosticsContext.Set("foo2", "bar2");
 
+                                GlobalDiagnosticsContext.Set("foo3", new { One = 1 });
+
                                 Assert.True(MappedDiagnosticsContext.Contains("foo"));
                                 Assert.Equal("bar", MappedDiagnosticsContext.Get("foo"));
 
