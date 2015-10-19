@@ -53,7 +53,7 @@ namespace NLog.Contexts
     public class LogicalThreadContext : IContext
     {
         private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
-        private static IContext currentInstance = null;
+        private static IContext currentInstance;
         private static readonly object syncRoot = new object();
         private HashSet<string> keys;
 
@@ -61,13 +61,14 @@ namespace NLog.Contexts
         {
             get
             {
-                var dictionary = CallContext.LogicalGetData(LogicalThreadDictionaryKey) as ConcurrentDictionary<string, object>;
-                if (dictionary == null)
+                return CallContext.LogicalGetData(LogicalThreadDictionaryKey) as ConcurrentDictionary<string, object>;
+            }
+            set
+            {
+                lock (syncRoot)
                 {
-                    dictionary = new ConcurrentDictionary<string, object>();
-                    CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
+                    CallContext.LogicalSetData(LogicalThreadDictionaryKey, value);
                 }
-                return dictionary;
             }
         }
 
@@ -91,6 +92,7 @@ namespace NLog.Contexts
         private LogicalThreadContext()
         {
             keys = new HashSet<string>();
+            LogicalThreadDictionary = new ConcurrentDictionary<string, object>();
         }
         /// <summary>
         /// Current instance of the context.
@@ -106,6 +108,7 @@ namespace NLog.Contexts
                         if (currentInstance == null)
                         {
                             currentInstance = new LogicalThreadContext();
+                            return currentInstance;
                         }
                     }
                 }
@@ -191,10 +194,7 @@ namespace NLog.Contexts
         /// <param name="value">Item value.</param>
         public void Set(string key, object value)
         {
-            lock (syncRoot)
-            {
-                this[key] = value;
-            }
+            this[key] = value;
         }
 
         /// <summary>

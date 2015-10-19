@@ -189,19 +189,19 @@ namespace NLog.UnitTests.Contexts
 
             var task1 = Task.Factory.StartNew(() =>
             {
-                LogicalThreadContext.Instance.Set(key, valueForLogicalThread1);
+                LogicalThreadContext.Instance[key] = valueForLogicalThread1;
                 return LogicalThreadContext.Instance[key];
             });
 
             var task2 = Task.Factory.StartNew(() =>
             {
-                LogicalThreadContext.Instance.Set(key, valueForLogicalThread2);
+                LogicalThreadContext.Instance[key] = valueForLogicalThread2;
                 return LogicalThreadContext.Instance[key];
             });
 
             var task3 = Task.Factory.StartNew(() =>
             {
-                LogicalThreadContext.Instance.Set(key, valueForLogicalThread3);
+                LogicalThreadContext.Instance[key] = valueForLogicalThread3;
                 return LogicalThreadContext.Instance[key];
             });
 
