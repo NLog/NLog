@@ -70,7 +70,7 @@ namespace NLog.Layouts
                         var nextChar = sr.Peek();
 
                         //char that can be escaped.
-                        if (nextChar == '}' || nextChar == ':' || nextChar == '\\')
+                        if (nextChar == '}' || nextChar == ':')
                         {
                             //read next char and append
                             sr.Read();
