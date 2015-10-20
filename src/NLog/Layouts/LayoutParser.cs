@@ -63,13 +63,13 @@ namespace NLog.Layouts
             {
                 if (isNested)
                 {
-                    //escape char? Then allow }, : and \
+                    //possible escape char \? 
                     if (ch == '\\')
                     {
                         sr.Read();
                         var nextChar = sr.Peek();
 
-                        //char that can be escaped.
+                        //escape of } en :
                         if (nextChar == '}' || nextChar == ':')
                         {
                             //read next char and append
@@ -78,7 +78,7 @@ namespace NLog.Layouts
                         }
                         else
                         {
-                            //dont read next char and just append the slash
+                            //dont treat \ as escape char and just read it
                             literalBuf.Append('\\');
                         }
                         continue;
@@ -86,12 +86,14 @@ namespace NLog.Layouts
 
                     if (ch == '}' || ch == ':')
                     {
+                        //end of innerlayout. } is when double nested inner layout. : when single nested layout
                         break;
                     }
                 }
 
                 sr.Read();
 
+                //detect ${
                 if (ch == '$' && sr.Peek() == '{')
                 {
                     if (literalBuf.Length > 0)
