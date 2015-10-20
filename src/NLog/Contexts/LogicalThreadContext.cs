@@ -73,6 +73,64 @@ namespace NLog.Contexts
         }
 
         /// <summary>
+        /// Gets the Mapped Context key.
+        /// </summary>
+        /// <param name="key">key name.</param>
+        /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the key's value to a string.</param>
+        /// <returns>The value of <paramref name="key"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        public string GetFormatted(string key, IFormatProvider formatProvider)
+        {
+            return FormatHelper.ConvertToString(this.TryGet(key), formatProvider);
+        }
+
+        /// <summary>
+        /// Sets the current logical context key to the specified value.
+        /// </summary>
+        /// <param name="key">Item name.</param>
+        /// <param name="value">Item value.</param>
+        public void Set(string key, object value)
+        {
+            this[key] = value;
+        }
+
+        /// <summary>
+        /// Checks whether the specified <paramref name="key"/> exists in current logical context.
+        /// </summary>
+        /// <param name="key">Item name.</param>
+        /// <returns>A boolean indicating whether the specified <paramref name="key"/> exists in current logical context.</returns>
+        public bool Contains(string key)
+        {
+            lock (syncRoot)
+            {
+                return this.LogicalThreadDictionary.ContainsKey(key);
+            }
+        }
+
+        /// <summary>
+        /// Removes the specified <paramref name="key"/> from current logical context.
+        /// </summary>
+        /// <param name="key">Item name.</param>
+        public void Remove(string key)
+        {
+            lock (syncRoot)
+            {
+                this.LogicalThreadDictionary.Remove(key);
+            }
+        }
+
+        /// <summary>
+        /// Clears the content of current logical context.
+        /// </summary>
+        public void Clear()
+        {
+            lock (syncRoot)
+            {
+                this.LogicalThreadDictionary.Clear();
+                this.keys.Clear();
+            }
+        }
+
+        /// <summary>
         /// Gets the Mapped Context named key.
         /// </summary>
         /// <param name="key">key name.</param>
@@ -148,65 +206,7 @@ namespace NLog.Contexts
                         keys.Add(key);
                 }
             }
-        }
-
-        /// <summary>
-        /// Clears the content of current logical context.
-        /// </summary>
-        public void Clear()
-        {
-            lock (syncRoot)
-            {
-                this.LogicalThreadDictionary.Clear();
-                this.keys.Clear();
-            }
-        }
-
-        /// <summary>
-        /// Checks whether the specified <paramref name="key"/> exists in current logical context.
-        /// </summary>
-        /// <param name="key">Item name.</param>
-        /// <returns>A boolean indicating whether the specified <paramref name="key"/> exists in current logical context.</returns>
-        public bool Contains(string key)
-        {
-            lock (syncRoot)
-            {
-                return this.LogicalThreadDictionary.ContainsKey(key);
-            }
-        }
-
-        /// <summary>
-        /// Removes the specified <paramref name="key"/> from current logical context.
-        /// </summary>
-        /// <param name="key">Item name.</param>
-        public void Remove(string key)
-        {
-            lock (syncRoot)
-            {
-                this.LogicalThreadDictionary.Remove(key);
-            }
-        }
-
-        /// <summary>
-        /// Sets the current logical context key to the specified value.
-        /// </summary>
-        /// <param name="key">Item name.</param>
-        /// <param name="value">Item value.</param>
-        public void Set(string key, object value)
-        {
-            this[key] = value;
-        }
-
-        /// <summary>
-        /// Gets the Mapped Context key.
-        /// </summary>
-        /// <param name="key">key name.</param>
-        /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the key's value to a string.</param>
-        /// <returns>The value of <paramref name="key"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
-        public string GetFormatted(string key, IFormatProvider formatProvider)
-        {
-            return FormatHelper.ConvertToString(this.TryGet(key), formatProvider);
-        }
+        }        
     }
 #endif
 }
