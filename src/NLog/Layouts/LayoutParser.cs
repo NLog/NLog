@@ -63,13 +63,13 @@ namespace NLog.Layouts
             {
                 if (isNested)
                 {
-                    //possible escape char \? 
+                    //possible escape char `\` 
                     if (ch == '\\')
                     {
                         sr.Read();
                         var nextChar = sr.Peek();
 
-                        //escape of } en :
+                        //escape chars
                         if (nextChar == '}' || nextChar == ':')
                         {
                             //read next char and append
@@ -86,16 +86,19 @@ namespace NLog.Layouts
 
                     if (ch == '}' || ch == ':')
                     {
-                        //end of innerlayout. } is when double nested inner layout. : when single nested layout
+                        //end of innerlayout. 
+                        // `}` is when double nested inner layout. 
+                        // `:` when single nested layout
                         break;
                     }
                 }
 
                 sr.Read();
 
-                //detect ${
+                //detect `${` (new layout-renderer)
                 if (ch == '$' && sr.Peek() == '{')
                 {
+                    //stach already found layout-renderer.
                     if (literalBuf.Length > 0)
                     {
                         result.Add(new LiteralLayoutRenderer(literalBuf.ToString()));
@@ -477,7 +480,7 @@ namespace NLog.Layouts
 
         private static void MergeLiterals(List<LayoutRenderer> list)
         {
-            for (int i = 0; i + 1 < list.Count;)
+            for (int i = 0; i + 1 < list.Count; )
             {
                 var lr1 = list[i] as LiteralLayoutRenderer;
                 var lr2 = list[i + 1] as LiteralLayoutRenderer;
