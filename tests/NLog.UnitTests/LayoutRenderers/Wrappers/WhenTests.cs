@@ -98,9 +98,18 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         }
 
         [Fact]
+        public void ComplexWhenWithSlashSingleTest()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:Inner=Test\Hello}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Test\\Hello", l.Render(le));
+        }
+
+        [Fact]
         public void ComplexWhenWithSlashTest()
         {
-            SimpleLayout l = @"${when:when=1 == 1:Inner=Test\\Hello}";
+            SimpleLayout l = @"${when:when=1 == 1:Inner=Test\Hello}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             Assert.Equal("Test\\Hello", l.Render(le));
