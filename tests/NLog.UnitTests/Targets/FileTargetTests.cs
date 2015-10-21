@@ -61,13 +61,14 @@ namespace NLog.UnitTests.Targets
         {
             string logFileName = Path.GetTempFileName();
             const int logFileMaxSize = 1;
-            var ft = new FileTarget {
-                                        FileName = logFileName,
-                                        ArchiveFileName = archiveFileName,
-                                        ArchiveDateFormat = archiveDateFormat,
-                                        ArchiveNumbering = archiveNumbering,
-                                        ArchiveAboveSize = logFileMaxSize
-                                    };
+            var ft = new FileTarget
+            {
+                FileName = logFileName,
+                ArchiveFileName = archiveFileName,
+                ArchiveDateFormat = archiveDateFormat,
+                ArchiveNumbering = archiveNumbering,
+                ArchiveAboveSize = logFileMaxSize
+            };
             SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
             for (int currentSequenceNumber = 0; currentSequenceNumber < count; currentSequenceNumber++)
                 logger.Debug("Test {0}", currentSequenceNumber);
@@ -485,7 +486,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact(Skip = "this is not supported, because we cannot create multiple archive files with  ArchiveNumberingMode.Date (for one day)")]
-        
+
         public void ArchiveAboveSizeWithArchiveNumberingModeDate_maxfiles_o()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), "ArchiveEveryCombinedWithArchiveAboveSize_" + Guid.NewGuid().ToString());
@@ -543,7 +544,7 @@ namespace NLog.UnitTests.Targets
                 //try (which fails)
                 AssertFileContents(
                     Path.Combine(tempPath, string.Format("archive/{0}.txt", archiveFileName)),
-                   StringRepeat(250, "aaa\n") +  StringRepeat(250, "bbb\n") + StringRepeat(250, "ccc\n") + StringRepeat(250, "ddd\n"),
+                   StringRepeat(250, "aaa\n") + StringRepeat(250, "bbb\n") + StringRepeat(250, "ccc\n") + StringRepeat(250, "ddd\n"),
                     Encoding.UTF8);
 
             }
@@ -1652,7 +1653,7 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempPath, true);
             }
         }
-        
+
         private void Generate1000BytesLog(char c)
         {
             for (var i = 0; i < 250; ++i)
@@ -1791,6 +1792,111 @@ namespace NLog.UnitTests.Targets
 ");
 
             NLog.LogManager.GetLogger("Test").Info("very important message");
+        }
+
+        [Fact]
+        public void MaxArchiveFilesWithDate()
+        {
+            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string archivePath = Path.Combine(logdir, "archive");
+            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm");
+        }
+
+        [Fact]
+        public void MaxArchiveFilesWithDate_only_date()
+        {
+            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string archivePath = Path.Combine(logdir, "archive");
+            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd");
+        }
+
+
+        [Fact]
+        public void MaxArchiveFilesWithDate_only_date2()
+        {
+            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string archivePath = Path.Combine(logdir, "archive");
+            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyy-MM-dd");
+        }
+
+        [Fact]
+        public void MaxArchiveFilesWithDate_in_sameDir()
+        {
+            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string archivePath = Path.Combine(logdir, "archive");
+            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm");
+        }
+
+
+
+        private void TestMaxArchiveFilesWithDate(string archivePath, string logdir, int maxArchiveFiles, int maxExpectedArchiveFiles, string dateFormat)
+        {
+            var archiveDir = new DirectoryInfo(archivePath);
+            try
+            {
+                archiveDir.Create();
+                //set-up, create files.
+
+                //same dateformat as in config
+                string fileExt = ".log";
+                foreach (string filePath in ArchiveFileNamesGenerator(archivePath, dateFormat, fileExt).Take(30))
+                {
+                    File.WriteAllLines(filePath, new[] { "test archive ", "=====", filePath });
+                }
+
+                //create config with archiving
+                var configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true' >
+                    <targets>
+                       <target name='fileAll' type='File' 
+                            fileName='" + logdir + @"/${date:format=yyyyMMdd-HHmm}" + fileExt + @"'
+                            layout='${message}' 
+                            archiveEvery='minute' 
+                            maxArchiveFiles='" + maxArchiveFiles + @"' 
+                            archiveFileName='" + archivePath + @"/{#}.log' 
+                            archiveDateFormat='" + dateFormat + @"' 
+                            archiveNumbering='Date'/>
+     
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='fileAll'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>");
+
+                LogManager.Configuration = configuration;
+                var logger = LogManager.GetCurrentClassLogger();
+                logger.Info("test");
+
+                Assert.True(archiveDir.GetFiles().Length <= maxExpectedArchiveFiles, "more files then expected");
+            }
+            finally
+            {
+                //cleanup
+                archiveDir.Delete(true);
+            }
+        }
+
+        /// <summary>
+        /// Generate unlimited archivefiles names. Don't use toList on this ;)
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="dateFormat"></param>
+        /// <param name="fileExt">fileext with .</param>
+        /// <returns></returns>
+        private static IEnumerable<string> ArchiveFileNamesGenerator(string path, string dateFormat, string fileExt)
+        {
+            //yyyyMMdd-HHmm
+            int dateOffset = 1;
+            var now = DateTime.Now;
+            while (true)
+            {
+                dateOffset--;
+                yield return Path.Combine(path, now.AddDays(dateOffset).ToString(dateFormat) + fileExt);
+
+            }
+
         }
     }
 
