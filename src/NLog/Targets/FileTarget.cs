@@ -80,7 +80,10 @@ namespace NLog.Targets
         private IFileAppenderFactory appenderFactory;
         private BaseFileAppender[] recentAppenders;
         private Timer autoClosingTimer;
-        // The number of initialised files at any one time.
+        
+        /// <summary>
+        /// The number of initialised files at any one time.
+        /// </summary>
         private int initializedFilesCounter;
 
         private int maxArchiveFiles;
