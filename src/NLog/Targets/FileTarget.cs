@@ -1064,7 +1064,11 @@ namespace NLog.Targets
             if (this.MaxArchiveFiles <= 0) return;
 
             int numberToDelete = oldArchiveFileNames.Count - this.MaxArchiveFiles;
-            for (int fileIndex = 0; fileIndex <= numberToDelete; fileIndex++)
+
+            //note! This one deletes one more then needed, because a new archive can be created after this.
+            numberToDelete++;
+
+            for (int fileIndex = 0; fileIndex < numberToDelete; fileIndex++)
             {
                 InternalLogger.Info("Deleting old archive {0}.", oldArchiveFileNames[fileIndex]);
                 File.Delete(oldArchiveFileNames[fileIndex]);
