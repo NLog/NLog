@@ -630,7 +630,7 @@ namespace NLog.Targets
 #endif
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
-            DeleteOldDateArchives(logEvent, fileName);
+            DeleteOldDateArchives(fileName, logEvent);
 
             if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
             {
@@ -640,8 +640,16 @@ namespace NLog.Targets
 
             this.WriteToFile(fileName, logEvent, bytes, false);
         }
-
-        private void DeleteOldDateArchives(LogEventInfo logEvent, string fileName)
+        
+        /// <summary>
+        /// Maintains a list of the names for all files which the <see cref="FieTarget"/> instance has written. It also
+        /// evaluates whether the certain date archives should be deleted and deletes them when necessary. Files deleted
+        /// in reverse chronological order. The number of remaining archive files will be no more the <see
+        /// cref="MaxArchiveFiles"/> property.
+        /// </summary>
+        /// <param name="fileName">Name of the file that is currently been written.</param>
+        /// <param name="logEvent">Log event info that is currently been written.</param>
+        private void DeleteOldDateArchives(string fileName, LogEventInfo logEvent)
         {
             // TODO: This appears to be the only method utilising the previousFileNames queue. 
             //      Does this method belong in this class or it should be moved?
@@ -1098,6 +1106,14 @@ namespace NLog.Targets
             return this.TransformBytes(this.Encoding.GetBytes(renderedText));
         }
 
+        /// <summary>
+        /// Evaluates which parts of a file should be written (header, content, footer) based on various properties of
+        /// <see cref="FileTarget"/> instance and writes them.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="logEvent"></param>
+        /// <param name="bytes"></param>
+        /// <param name="justData"></param>
         private void WriteToFile(string fileName, LogEventInfo logEvent, byte[] bytes, bool justData)
         {
             if (this.ReplaceFileContentsOnEachWrite)
