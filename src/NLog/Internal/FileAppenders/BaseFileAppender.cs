@@ -65,7 +65,7 @@ namespace NLog.Internal.FileAppenders
         }
 
         /// <summary>
-        /// Gets the name of the file.
+        /// Gets the path of the file, including file extension.
         /// </summary>
         /// <value>The name of the file.</value>
         public string FileName { get; private set; }
