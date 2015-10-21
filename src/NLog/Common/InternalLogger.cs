@@ -33,6 +33,7 @@
 
 namespace NLog.Common
 {
+    using JetBrains.Annotations;
     using System;
     using System.ComponentModel;
     using System.Configuration;
@@ -175,6 +176,7 @@ namespace NLog.Common
         /// <param name="level">Log level.</param>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Log(LogLevel level, string message, params object[] args)
         {
             Write(level, message, args);
@@ -195,6 +197,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Trace([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Trace, message, args);
@@ -214,6 +217,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Debug([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Debug, message, args);
@@ -233,6 +237,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Info([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Info, message, args);
@@ -252,6 +257,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Warn([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Warn, message, args);
@@ -271,6 +277,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Error([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Error, message, args);
@@ -290,6 +297,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Fatal([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Fatal, message, args);
