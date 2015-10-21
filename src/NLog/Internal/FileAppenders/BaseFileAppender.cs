@@ -108,7 +108,7 @@ namespace NLog.Internal.FileAppenders
         /// Gets the file info.
         /// </summary>
         /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
-        /// <param name="fileLength">Length of the file.</param>
+        /// <param name="fileLength">Length of the file in bytes.</param>
         /// <returns>True if the operation succeeded, false otherwise.</returns>
         public abstract bool GetFileInfo(out DateTime lastWriteTime, out long fileLength);
 
