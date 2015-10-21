@@ -31,11 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 namespace NLog.Internal
 {
     /// <summary>
     /// Simple character tokenizer.
     /// </summary>
+#if DEBUG
+     [System.Diagnostics.DebuggerDisplay("{CurrentState}")]
+#endif
     internal class SimpleStringReader
     {
         private readonly string text;
@@ -50,13 +55,36 @@ namespace NLog.Internal
             this.Position = 0;
         }
 
+        /// <summary>
+        /// Current position in <see cref="Text"/>
+        /// </summary>
         internal int Position { get; set; }
 
+        /// <summary>
+        /// Full text to be parsed
+        /// </summary>
         internal string Text
         {
             get { return this.text; }
         }
 
+#if DEBUG
+        string CurrentState
+        {
+            get
+            {
+                var current = (char)Peek();
+                var done = Substring(0, Position - 1);
+                var todo = ((Position > text.Length) ? Text.Substring(Position + 1) : "");
+                return string.Format("done: '{0}'.   current: '{1}'.   todo: '{2}'", done, current, todo);
+            }
+        }
+#endif
+
+        /// <summary>
+        /// Check current char while not changing the position.
+        /// </summary>
+        /// <returns></returns>
         internal int Peek()
         {
             if (this.Position < this.text.Length)
@@ -67,6 +95,10 @@ namespace NLog.Internal
             return -1;
         }
 
+        /// <summary>
+        /// Read the current char and change position
+        /// </summary>
+        /// <returns></returns>
         internal int Read()
         {
             if (this.Position < this.text.Length)
@@ -77,9 +109,15 @@ namespace NLog.Internal
             return -1;
         }
 
-        internal string Substring(int p0, int p1)
+        /// <summary>
+        /// Get the substring of the <see cref="Text"/>
+        /// </summary>
+        /// <param name="startIndex"></param>
+        /// <param name="endIndex"></param>
+        /// <returns></returns>
+        internal string Substring(int startIndex, int endIndex)
         {
-            return this.text.Substring(p0, p1 - p0);
+            return this.text.Substring(startIndex, endIndex - startIndex);
         }
     }
 }
