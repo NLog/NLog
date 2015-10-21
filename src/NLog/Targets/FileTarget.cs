@@ -1341,43 +1341,6 @@ namespace NLog.Targets
         {
             return ShouldAutoArchiveBasedOnFileSize(fileName, upcomingWriteSize) ||
                    ShouldAutoArchiveBasedOnTime(fileName, ev);
-
-            /*
-            if (this.ArchiveAboveSize == FileTarget.ArchiveAboveSizeDisabled && this.ArchiveEvery == FileArchivePeriod.None)
-            {
-                return false;
-            }
-
-            DateTime lastWriteTime;
-            long fileLength;
-
-            if (!this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
-            {
-                return false;
-            }
-
-            if (this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled)
-            {
-                if (fileLength + upcomingWriteSize > this.ArchiveAboveSize)
-                {
-                    return true;
-                }
-            }
-
-            if (this.ArchiveEvery != FileArchivePeriod.None)
-            {
-                string formatString = GetDateFormatString(string.Empty);
-                string ts = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
-                string ts2 = ev.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
-
-                if (ts != ts2)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-            */
         }
 
         private bool ShouldAutoArchiveBasedOnFileSize(string fileName, int upcomingWriteSize)
@@ -1554,30 +1517,11 @@ namespace NLog.Targets
         private byte[] GetHeaderBytes()
         {
             return this.GetLayoutBytes(this.Header);
-
-            /*
-            if (this.Header == null)
-            {
-                return null;
-            }
-
-            string renderedText = this.Header.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
-            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
-            */
         }
 
         private byte[] GetFooterBytes()
         {
             return this.GetLayoutBytes(this.Footer);
-            /*
-            if (this.Footer == null)
-            {
-                return null;
-            }
-
-            string renderedText = this.Footer.Render(LogEventInfo.CreateNullEvent()) + this.NewLineChars;
-            return this.TransformBytes(this.Encoding.GetBytes(renderedText));
-            */
         }
 
         private void WriteToFile(string fileName, LogEventInfo logEvent, byte[] bytes, bool justData)
