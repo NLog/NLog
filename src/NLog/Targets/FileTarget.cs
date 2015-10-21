@@ -1043,7 +1043,7 @@ namespace NLog.Targets
             if (this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
             {
                 string formatString = GetDateFormatString(string.Empty);
-                string ts = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
+                string ts = lastWriteTime.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
                 string ts2 = logEvent.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
 
                 return ts != ts2;
@@ -1745,6 +1745,13 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Gets the file info.
+        /// </summary>
+        /// <param name="fileName">name of file, excluding path, including file extension.</param>
+        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
+        /// <param name="fileLength">Length of the file in bytes.</param>
+        /// <returns>True if the operation succeeded, false otherwise.</returns>
         private bool GetFileInfo(string fileName, out DateTime lastWriteTime, out long fileLength)
         {
             foreach (BaseFileAppender appender in this.recentAppenders)
