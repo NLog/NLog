@@ -1804,6 +1804,17 @@ namespace NLog.UnitTests.Targets
             TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
         }
 
+        [Fact(Skip="TODO not working, needs to be fixed")]
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void MaxArchiveFilesWithDate_removesToManyFiles(bool changeCreationAndWriteTime)
+        {
+            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string archivePath = Path.Combine(logdir, "archive");
+            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime, true);
+        }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -1836,9 +1847,18 @@ namespace NLog.UnitTests.Targets
         }
 
 
-
-        private void TestMaxArchiveFilesWithDate(string archivePath, string logdir, 
-            int maxArchiveFiles, int maxExpectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="archivePath">path to dir of archived files</param>
+        /// <param name="logdir">path to dir of logged files</param>
+        /// <param name="maxArchiveFilesConfig">max count of archived files </param>
+        /// <param name="maxExpectedArchiveFiles">test number for max. If <paramref name="exactArchiveTest"/>, use equals instead of lower-or-equals</param>
+        /// <param name="dateFormat">date format</param>
+        /// <param name="changeCreationAndWriteTime">change file creation/last write date</param>
+        /// <param name="exactArchiveTest">true=equals. false =lower-or-equals</param>
+        private void TestMaxArchiveFilesWithDate(string archivePath, string logdir,
+            int maxArchiveFilesConfig, int maxExpectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime, bool exactArchiveTest = false)
         {
             var archiveDir = new DirectoryInfo(archivePath);
             try
@@ -1870,7 +1890,7 @@ namespace NLog.UnitTests.Targets
                             fileName='" + logdir + @"/${date:format=yyyyMMdd-HHmm}" + fileExt + @"'
                             layout='${message}' 
                             archiveEvery='minute' 
-                            maxArchiveFiles='" + maxArchiveFiles + @"' 
+                            maxArchiveFiles='" + maxArchiveFilesConfig + @"' 
                             archiveFileName='" + archivePath + @"/{#}.log' 
                             archiveDateFormat='" + dateFormat + @"' 
                             archiveNumbering='Date'/>
@@ -1887,7 +1907,15 @@ namespace NLog.UnitTests.Targets
                 var logger = LogManager.GetCurrentClassLogger();
                 logger.Info("test");
 
-                Assert.True(archiveDir.GetFiles().Length <= maxExpectedArchiveFiles, "more files then expected");
+                var currentFilesCount = archiveDir.GetFiles().Length;
+                if (exactArchiveTest)
+                {
+                    Assert.Equal(maxExpectedArchiveFiles, currentFilesCount);
+                }
+                else
+                {
+                    Assert.True(currentFilesCount <= maxExpectedArchiveFiles, "more files then expected");
+                }
             }
             finally
             {
