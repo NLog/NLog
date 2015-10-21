@@ -1794,42 +1794,51 @@ namespace NLog.UnitTests.Targets
             NLog.LogManager.GetLogger("Test").Info("very important message");
         }
 
-        [Fact]
-        public void MaxArchiveFilesWithDate()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void MaxArchiveFilesWithDate(bool changeCreationAndWriteTime)
         {
             string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             string archivePath = Path.Combine(logdir, "archive");
-            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm");
+            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
         }
 
-        [Fact]
-        public void MaxArchiveFilesWithDate_only_date()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void MaxArchiveFilesWithDate_only_date(bool changeCreationAndWriteTime)
         {
             string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             string archivePath = Path.Combine(logdir, "archive");
-            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd");
+            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd", changeCreationAndWriteTime);
         }
 
 
-        [Fact]
-        public void MaxArchiveFilesWithDate_only_date2()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void MaxArchiveFilesWithDate_only_date2(bool changeCreationAndWriteTime)
         {
             string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             string archivePath = Path.Combine(logdir, "archive");
-            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyy-MM-dd");
+            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyy-MM-dd", changeCreationAndWriteTime);
         }
 
-        [Fact]
-        public void MaxArchiveFilesWithDate_in_sameDir()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void MaxArchiveFilesWithDate_in_sameDir(bool changeCreationAndWriteTime)
         {
             string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             string archivePath = Path.Combine(logdir, "archive");
-            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm");
+            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
         }
 
 
 
-        private void TestMaxArchiveFilesWithDate(string archivePath, string logdir, int maxArchiveFiles, int maxExpectedArchiveFiles, string dateFormat)
+        private void TestMaxArchiveFilesWithDate(string archivePath, string logdir, 
+            int maxArchiveFiles, int maxExpectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
             var archiveDir = new DirectoryInfo(archivePath);
             try
@@ -1839,9 +1848,18 @@ namespace NLog.UnitTests.Targets
 
                 //same dateformat as in config
                 string fileExt = ".log";
+                DateTime now = DateTime.Now;
+                int i = 0;
                 foreach (string filePath in ArchiveFileNamesGenerator(archivePath, dateFormat, fileExt).Take(30))
                 {
                     File.WriteAllLines(filePath, new[] { "test archive ", "=====", filePath });
+                    var time = now.AddDays(i);
+                    if (changeCreationAndWriteTime)
+                    {
+                        File.SetCreationTime(filePath, time);
+                        File.SetLastWriteTime(filePath, time);
+                    }
+                    i--;
                 }
 
                 //create config with archiving
