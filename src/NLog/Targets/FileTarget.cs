@@ -58,9 +58,21 @@ namespace NLog.Targets
     [Target("File")]
     public class FileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters
     {
-        // Period is defined in days.
+        /// <summary>
+        /// Default clean up period of the initilized files. When a file exceeds the clean up period is removed from the list.
+        /// </summary>
+        /// <remarks>Clean up period is defined in days.</remarks>
         private const int InitializedFilesCleanupPeriod = 2;
+
+        /// <summary>
+        /// The maximum number of initialised files at any one time. Once this number is exceeded clean up procedures
+        /// are initiated to reduce the number of initialised files.
+        /// </summary>
         private const int InitializedFilesCounterMax = 100;
+
+        /// <summary>
+        /// This value disables file archiving based on the size. 
+        /// </summary>
         private const int ArchiveAboveSizeDisabled = -1;
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
 
@@ -68,14 +80,17 @@ namespace NLog.Targets
         private IFileAppenderFactory appenderFactory;
         private BaseFileAppender[] recentAppenders;
         private Timer autoClosingTimer;
+        // The number of initialised files at any one time.
         private int initializedFilesCounter;
 
         private int maxArchiveFiles;
 
         private readonly DynamicFileArchive fileArchive;
 
-        // Queue used so the oldest used filename can be removed from when the list of filenames
-        // that exist have got too long.
+ 		/// <summary>
+        /// It holds the file names of existing archives in order for the oldest archives to be removed when the list of
+        /// filenames becomes too long.
+        /// </summary>
         private Queue<string> previousFileNames;
 
         /// <summary>
@@ -512,6 +527,10 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Returns the suitable <see cref="IFileAppenderFactory"/> to be used from this class instance based on the values of various class properties.  
+        /// </summary>
+        /// <returns>A <see cref="IFileAppenderFactory"/> suitable for this instance.</returns>
         private IFileAppenderFactory GetFileAppenderFactory()
         {
             if (!this.KeepFileOpen)
@@ -1313,7 +1332,7 @@ namespace NLog.Targets
         /// Gets the pattern that archive files will match
         /// </summary>
         /// <param name="fileName">Filename of the log file</param>
-        /// <param name="eventInfo">Log event info of the log that is currently been written</param>
+        /// <param name="eventInfo">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         /// <returns>A string with a pattern that will match the archive filenames</returns>
         private string GetFileNamePattern(string fileName, LogEventInfo eventInfo)
         {
@@ -1337,6 +1356,13 @@ namespace NLog.Targets
             return fileNamePattern;
         }
 
+        /// <summary>
+        /// Indicates if the automatic archiving process should be executed.
+        /// </summary>
+        /// <param name="fileName">File name to be written.</param>
+        /// <param name="ev">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
+        /// <returns><see langword="true"/> when archiving should be executed; <see langword="false"/> otherwise.</returns>
         private bool ShouldAutoArchive(string fileName, LogEventInfo ev, int upcomingWriteSize)
         {
             return ShouldAutoArchiveBasedOnFileSize(fileName, upcomingWriteSize) ||
@@ -1380,6 +1406,12 @@ namespace NLog.Targets
             */
         }
 
+        /// <summary>
+        /// Indicates if the automatic archiving process should be executed based on file size constrains.
+        /// </summary>
+        /// <param name="fileName">File name to be written.</param>
+        /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
+        /// <returns><see langword="true"/> when archiving should be executed; <see langword="false"/> otherwise.</returns>
         private bool ShouldAutoArchiveBasedOnFileSize(string fileName, int upcomingWriteSize)
         {
             if (this.ArchiveAboveSize == FileTarget.ArchiveAboveSizeDisabled)
@@ -1406,6 +1438,12 @@ namespace NLog.Targets
             return false;
         }
 
+        /// <summary>
+        /// Indicates if the automatic archiving process should be executed based on date/time constrains.
+        /// </summary>
+        /// <param name="fileName">File name to be written.</param>
+        /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <returns><see langword="true"/> when archiving should be executed; <see langword="false"/> otherwise.</returns>
         private bool ShouldAutoArchiveBasedOnTime(string fileName, LogEventInfo logEvent)
         {
             if (this.ArchiveEvery == FileArchivePeriod.None)
@@ -1551,6 +1589,10 @@ namespace NLog.Targets
             return appenderToWrite;
         }
 
+        /// <summary>
+        /// The sequence of <see langword="byte"/> to be written for the file header.
+        /// </summary>
+        /// <returns>Sequence of <see langword="byte"/> to be written.</returns>
         private byte[] GetHeaderBytes()
         {
             return this.GetLayoutBytes(this.Header);
@@ -1566,6 +1608,10 @@ namespace NLog.Targets
             */
         }
 
+        /// <summary>
+        /// The sequence of <see langword="byte"/> to be written for the file footer.
+        /// </summary>
+        /// <returns>Sequence of <see langword="byte"/> to be written.</returns>        
         private byte[] GetFooterBytes()
         {
             return this.GetLayoutBytes(this.Footer);
@@ -1580,6 +1626,14 @@ namespace NLog.Targets
             */
         }
 
+        /// <summary>
+        /// Evaluates which parts of a file should be written (header, content, footer) based on various properties of
+        /// <see cref="FileTarget"/> instance and writes them.
+        /// </summary>
+        /// <param name="fileName">File name to be written.</param>
+        /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="bytes">Raw sequence of <see langword="byte"/> to be written into the content part of the file.</param>        
+        /// <param name="justData">Indicates that only content section should be written in the file.</param>
         private void WriteToFile(string fileName, LogEventInfo logEvent, byte[] bytes, bool justData)
         {
             if (this.ReplaceFileContentsOnEachWrite)
@@ -1604,6 +1658,14 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Initialise a file to be used by the <see cref="FileTarget"/> instance. Based on the number of initialised
+        /// files and the values of various instance properties clean up and/or archiving processes can be invoked.
+        /// </summary>
+        /// <param name="fileName">File name to be written.</param>
+        /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="justData">Indicates that only content section should be written in the file.</param>
+        /// <returns><see langword="true"/> when file header should be written; <see langword="false"/> otherwise.</returns>
         private bool InitializeFile(string fileName, LogEventInfo logEvent, bool justData)
         {
             bool writeHeader = false;
@@ -1631,6 +1693,10 @@ namespace NLog.Targets
             return writeHeader;
         }
 
+        /// <summary>
+        /// Writes the file footer and uninitialise the file in <see cref="FileTarget"/> instance internal structures.
+        /// </summary>
+        /// <param name="fileName">File name to be written.</param>
         private void WriteFooterAndUninitialize(string fileName)
         {
             byte[] footerBytes = this.GetFooterBytes();
@@ -1645,6 +1711,13 @@ namespace NLog.Targets
             this.initializedFiles.Remove(fileName);
         }
 
+        /// <summary>
+        /// Invokes the archiving and clean up of older archive file based on the values of <see
+        /// cref="P:NLog.Targets.FileTarget.ArchiveOldFileOnStartup"/> and <see
+        /// cref="P:NLog.Targets.FileTarget.DeleteOldFileOnStartup"/> properties respectively.
+        /// </summary>
+        /// <param name="fileName">File name to be written.</param>
+        /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         private void ProcessOnStartup(string fileName, LogEventInfo logEvent)
         {
             if (this.ArchiveOldFileOnStartup)
@@ -1682,6 +1755,13 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Creates the file specified in <paramref name="fileName"/> and writes the file content in each entirety i.e.
+        /// Header, Content and Footer.
+        /// </summary>
+        /// <param name="fileName">The name of the file to be written.</param>
+        /// <param name="bytes">Sequence of <see langword="byte"/> to be written in the content section of the file.</param>
+        /// <remarks>This method is used when the content of the log file is re-written on every write.</remarks>
         private void ReplaceFileContent(string fileName, byte[] bytes)
         {
             using (FileStream fs = File.Create(fileName))
@@ -1751,6 +1831,13 @@ namespace NLog.Targets
             return false;
         }
 
+        /// <summary>
+        /// The sequence of <see langword="byte"/> to be written in a file after applying any formating and any
+        /// transformations required from the <see cref="Layout"/>.
+        /// </summary>
+        /// <param name="layout">The layout used to render output message.</param>
+        /// <returns>Sequence of <see langword="byte"/> to be written.</returns>
+        /// <remarks>Usually it is used to render the header and hooter of the files.</remarks>
         private byte[] GetLayoutBytes(Layout layout)
         {
             if (layout == null)
@@ -1786,11 +1873,13 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Remove unwanted chars from filename. 
-        /// Note: not implemented in Silverlight
+        /// Replaces any invalid characters found in the <paramref name="fileName"/> with underscore i.e _ character.
+        /// Invalid characters are defined by .NET framework and they returned by <see
+        /// cref="M:System.IO.Path.GetInvalidFileNameChars"/> method.
+        /// <para>Note: not implemented in Silverlight</para>
         /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
+        /// <param name="fileName">The original file name which might contain invalid characters.</param>
+        /// <returns>The cleaned up file name without any invalid characters.</returns>
         private static string CleanupInvalidFileNameChars(string fileName)
         {
 #if !SILVERLIGHT
