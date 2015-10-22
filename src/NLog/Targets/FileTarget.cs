@@ -1860,8 +1860,15 @@ namespace NLog.Targets
 
         private class DynamicFileArchive
         {
+            /// <summary>
+            /// Gets or sets the maximum number of archive files that should be kept.
+            /// </summary>
             public int MaxArchiveFileToKeep { get; set; }
 
+            /// <summary>
+            /// Creates an instance of <see cref="DynamicFileArchive"/> class.
+            /// </summary>
+            /// <param name="maxArchivedFiles">Maximum number of archive files to be kept.</param>
             public DynamicFileArchive(int maxArchivedFiles)
                 : this()
             {
@@ -1875,7 +1882,7 @@ namespace NLog.Targets
             /// <param name="fileName">Original file name</param>
             /// <param name="createDirectory">Create a directory, if it does not exist</param>
             /// <param name="enableCompression">Enables file compression</param>
-            /// <returns><c>true</c> if the file has been moved successfully; <c>false</c> otherwise</returns>
+            /// <returns><see langword="true"/> if the file has been moved successfully; <see langword="false"/> otherwise.</returns>
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
             public bool Archive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
             {
@@ -1897,21 +1904,25 @@ namespace NLog.Targets
                 return true;
             }
 
+            /// <summary>
+            /// Creates an instance of <see cref="DynamicFileArchive"/> class.
+            /// </summary>
             public DynamicFileArchive()
             {
                 this.MaxArchiveFileToKeep = -1;
 
                 archiveFileQueue = new Queue<string>();
             }
+
             private readonly Queue<string> archiveFileQueue;
 
             /// <summary>
-            /// 
+            /// Archives the file, either by copying it to a new file system location or by compressing it, and add the file name into the list of archives.
             /// </summary>
-            /// <param name="archiveFileName"></param>
-            /// <param name="fileName"></param>
-            /// <param name="createDirectory"></param>
-            /// <param name="enableCompression"></param>
+            /// <param name="archiveFileName">Target file name.</param>
+            /// <param name="fileName">Original file name.</param>
+            /// <param name="createDirectory">Create a directory, if it does not exist.</param>
+            /// <param name="enableCompression">Enables file compression.</param>
             private void AddToArchive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
             {
                 String alternativeFileName = archiveFileName;
@@ -1956,8 +1967,7 @@ namespace NLog.Targets
             }
 
             /// <summary>
-            /// Remove old archive files when the files on the queue are more than the 
-            /// MaxArchiveFilesToKeep.  
+            /// Remove old archive files when the files on the queue are more than the <see cref="P:MaxArchiveFilesToKeep"/>.
             /// </summary>
             private void DeleteOldArchiveFiles()
             {
@@ -2002,7 +2012,7 @@ namespace NLog.Targets
             ///     Original Filename   trace.log
             ///     Target Filename     trace.15.log
             /// </summary>          
-            /// <param name="fileName">Original filename</param>
+            /// <param name="fileName">Original file name.</param>
             /// <param name="numberToStartWith">Number starting point</param>
             /// <returns>File name suitable for archiving</returns>
             private string FindSuitableFilename(string fileName, int numberToStartWith)
@@ -2017,7 +2027,6 @@ namespace NLog.Targets
                 return targetFileName;
             }
         }
-
 
         private sealed class FileNameTemplate
         {
