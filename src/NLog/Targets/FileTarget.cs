@@ -78,6 +78,10 @@ namespace NLog.Targets
 
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
         private IFileAppenderFactory appenderFactory;
+
+        /// <summary>
+        /// List of the associated file appenders with the <see cref="FileTarget"/> instance.
+        /// </summary>
         private BaseFileAppender[] recentAppenders;
         private Timer autoClosingTimer;
         
@@ -86,6 +90,9 @@ namespace NLog.Targets
         /// </summary>
         private int initializedFilesCounter;
 
+        /// <summary>
+        /// The maximum number of archive files that should be kept.
+        /// </summary>
         private int maxArchiveFiles;
 
         private readonly DynamicFileArchive fileArchive;
@@ -664,7 +671,6 @@ namespace NLog.Targets
             }
         }
 
-
         /// <summary>
         /// Writes the specified logging event to a file specified in the FileName 
         /// parameter.
@@ -777,6 +783,12 @@ namespace NLog.Targets
             return value;
         }
 
+        /// <summary>
+        /// Replaces the numeric pattern i.e. {#} in a file name with the <paramref name="value"/> parameter value.
+        /// </summary>
+        /// <param name="pattern">File name which contains the numeric pattern.</param>
+        /// <param name="value">Value which will replace the numeric pattern.</param>
+        /// <returns>File name with the value of <paramref name="value"/> in the position of the numberic pattern.</returns>
         private static string ReplaceNumberPattern(string pattern, int value)
         {
             int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
@@ -822,6 +834,18 @@ namespace NLog.Targets
             pendingContinuations.Clear();
         }
 
+        /// <summary>
+        /// Determines if the file name as <see cref="String"/> contains a numeric pattern i.e. {#} in it.  
+        ///
+        /// Example: 
+        ///     trace{#}.log        Contains the numeric pattern.
+        ///     trace{###}.log      Contains the numeric pattern.
+        ///     trace{#X#}.log      Contains the numeric pattern (See remarks).
+        ///     trace.log           Does not contain the pattern.
+        /// </summary>
+        /// <remarks>Occationally, this method can identify the existance of the {#} pattern incorrectly.</remarks>
+        /// <param name="fileName">File name to be checked.</param>
+        /// <returns><see langword="true"/> when the pattern is found; <see langword="false"/> otherwise.</returns>
         private static bool ContainsFileNamePattern(string fileName)
         {
             int startingIndex = fileName.IndexOf("{#", StringComparison.Ordinal);
@@ -830,6 +854,17 @@ namespace NLog.Targets
             return (startingIndex != -1 && endingIndex != -1 && startingIndex < endingIndex);
         }
 
+        /// <summary>
+        /// Archives the <paramref name="fileName"/> using a rolling style numbering (the most recent is always #0 then
+        /// #1, ..., #N. When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives
+        /// are deleted.
+        /// </summary>
+        /// <remarks>
+        /// This method is called recursively. This is the reason the <paramref name="archiveNumber"/> is required.
+        /// </remarks>
+        /// <param name="fileName">File name to be archived.</param>
+        /// <param name="pattern">File name template which contains the numeric pattern to be replaced.</param>
+        /// <param name="archiveNumber">Value which will replace the numeric pattern.</param>
         private void RecursiveRollingRename(string fileName, string pattern, int archiveNumber)
         {
             if (this.MaxArchiveFiles > 0 && archiveNumber >= this.MaxArchiveFiles)
@@ -1035,8 +1070,12 @@ namespace NLog.Targets
 
         /// <summary>
         /// Determines whether a file with a different name from <paramref name="fileName"/> is needed to receive the
-        /// <paramref name="logEvent"/>.
+        /// <paramref name="logEvent"/>. This is determined based on the last date and time which the file has been
+        /// written compared to the current local time.
         /// </summary>
+        /// <returns>
+        /// <see langword="true"/> when local time is "different" than the last write time; <see langword="false"/> otherwise.
+        /// </returns>
         private bool IsDaySwitch(string fileName, LogEventInfo logEvent)
         {
             DateTime lastWriteTime;
@@ -1145,6 +1184,12 @@ namespace NLog.Targets
             return true;
         }
 
+        /// <summary>
+        /// Gets the collection of files in the specified directory which they match the <paramref name="fileNameMask"/>.
+        /// </summary>
+        /// <param name="directoryInfo">Directory to searched.</param>
+        /// <param name="fileNameMask">Pattern whihc the files will be searched against.</param>
+        /// <returns>Lisf of files matching the pattern.</returns>
         private static IEnumerable<FileInfo> GetFiles(DirectoryInfo directoryInfo, string fileNameMask)
         {
 #if SILVERLIGHT
@@ -1154,8 +1199,21 @@ namespace NLog.Targets
 #endif
         }
 
+        /// <summary>
+        /// Replaces the string-based pattern i.e. {#} in a file name with the value passed in <paramref
+        /// name="replacementValue"/> parameter.
+        /// </summary>
+        /// <param name="pattern">File name which contains the string-based pattern.</param>
+        /// <param name="replacementValue">Value which will replace the string-based pattern.</param>
+        /// <returns>
+        /// File name with the value of <paramref name="replacementValue"/> in the position of the string-based pattern.
+        /// </returns>
         private static string ReplaceFileNamePattern(string pattern, string replacementValue)
         {
+            //
+            // TODO: ReplaceFileNamePattern() method is nearly identical to ReplaceNumberPattern(). Consider merging.
+            //
+
             return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
         }
 
@@ -1498,6 +1556,13 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// It allocates the first slot in the list ( <see cref="P:recentAppenders"/>) when the file name is not already
+        /// in the list and clean up any unused slots.
+        /// </summary>
+        /// <remarks>Each file name can only be associated with a single file appender.</remarks>
+        /// <param name="fileName">File name associated with an appender.</param>
+        /// <returns>The allocated appender.</returns>
         private BaseFileAppender AllocateFileAppender(string fileName)
         {
             //
