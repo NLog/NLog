@@ -74,6 +74,11 @@ namespace NLog.Targets
         /// This value disables file archiving based on the size. 
         /// </summary>
         private const int ArchiveAboveSizeDisabled = -1;
+
+        /// <summary>
+        /// Holds the initialised files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
+        /// </summary>
+        /// <remarks>Last write time is store in local time (no UTC).</remarks>
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
 
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
