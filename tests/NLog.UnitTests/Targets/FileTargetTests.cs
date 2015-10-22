@@ -1804,8 +1804,7 @@ namespace NLog.UnitTests.Targets
             TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
         }
 
-        [Fact(Skip="TODO not working, needs to be fixed")]
-        [Theory]
+        [Theory(Skip = "TODO not working, needs to be fixed")]
         [InlineData(true)]
         [InlineData(false)]
         public void MaxArchiveFilesWithDate_removesToManyFiles(bool changeCreationAndWriteTime)
