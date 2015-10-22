@@ -1,6 +1,6 @@
 Welcome to NLog!
 ===
-*Vote or add ideas at [UserEcho](https://nlog.userecho.com)!*
+*Vote or add ideas on [UserEcho](https://nlog.userecho.com)!*
 
 ===
 [![Join the chat at https://gitter.im/NLog/NLog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLog/NLog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
