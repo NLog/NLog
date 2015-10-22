@@ -1034,7 +1034,8 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Determines whether a file with a different name from <paramref name="fileName"/> is needed to receive <paramref name="logEvent"/>.
+        /// Determines whether a file with a different name from <paramref name="fileName"/> is needed to receive the
+        /// <paramref name="logEvent"/>.
         /// </summary>
         private bool IsDaySwitch(string fileName, LogEventInfo logEvent)
         {
@@ -1053,11 +1054,13 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the MaxArchiveFiles setting.
+        /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the <see
+        /// cref="P:FileTarget.MaxArchiveFiles"/> setting.
         /// </summary>
+        /// <param name="oldArchiveFileNames">List of the file archives.</param>
         /// <remarks>
-        /// Items are deleted in the same order as in <paramref name="oldArchiveFileNames" />.
-        /// No file is deleted if MaxArchiveFile is equal to zero.
+        /// Items are deleted in the same order as in <paramref name="oldArchiveFileNames"/>. No file is deleted if <see
+        /// cref="P:FileTarget.MaxArchiveFiles"/> property is zero.
         /// </remarks>
         private void EnsureArchiveCount(List<string> oldArchiveFileNames)
         {
@@ -1151,14 +1154,14 @@ namespace NLog.Targets
 #endif
         }
 
-        private static string ReplaceReplaceFileNamePattern(string pattern, string replacementValue)
+        private static string ReplaceFileNamePattern(string pattern, string replacementValue)
         {
             return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
         }
 
         private void DateArchive(string fileName, string pattern)
         {
-            string fileNameMask = ReplaceReplaceFileNamePattern(pattern, "*");
+            string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
 
@@ -1180,7 +1183,7 @@ namespace NLog.Targets
         private void DeleteOldDateArchive(string pattern)
         {
 
-            string fileNameMask = ReplaceReplaceFileNamePattern(pattern, "*");
+            string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
 
@@ -1750,12 +1753,12 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets the file info.
+        /// Returns the length of a specified file and the last time it has been written. File appender is queried before the file system.  
         /// </summary>
-        /// <param name="filePath">Path name of file, including file extension.</param>
-        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
-        /// <param name="fileLength">Length of the file in bytes.</param>
-        /// <returns>True if the operation succeeded, false otherwise.</returns>
+        /// <param name="filePath">File which the information are requested.</param>
+        /// <param name="lastWriteTime">The last time the file has been written is returned.</param>
+        /// <param name="fileLength">The length of the file is returned.</param>
+        /// <returns><see langword="true"/> when file details returned; <see langword="false"/> otherwise.</returns>
         private bool GetFileInfo(string filePath, out DateTime lastWriteTime, out long fileLength)
         {
             foreach (BaseFileAppender appender in this.recentAppenders)
