@@ -212,6 +212,20 @@ namespace NLog.UnitTests.Contexts
 
                             Assert.True(ThreadContext.Instance.Contains("foo2"));
                             Assert.Equal("bar2", ThreadContext.Instance["foo2"]);
+
+                            ThreadContext.Instance.Clear();
+                            ThreadContext.Instance.Set("foo1", "Test1");
+                            ThreadContext.Instance.Set("foo2", "Test2");
+                            ThreadContext.Instance.Set("foo3", "Test3");
+
+                            var count = 0;
+                            foreach (var item in ThreadContext.Instance)
+                                count++;
+
+                            Assert.Equal(3, count);
+
+                            ThreadContext.Instance.Clear();
+                            Assert.Equal(0, ThreadContext.Instance.Count);
                         }
                         catch (Exception ex)
                         {

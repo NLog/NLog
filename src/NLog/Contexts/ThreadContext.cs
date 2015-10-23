@@ -193,6 +193,20 @@ namespace NLog.Contexts
             return FormatHelper.ConvertToString(this.TryGet(key), formatProvider);
         }
 
+        /// <summary>
+        /// Gets the number of items in the collection.
+        /// </summary>
+        public int Count
+        {
+            get
+            {
+                lock (syncRoot)
+                {
+                    return this.Dict.Count;
+                }
+            }
+        }
+
         #region [Enumerators]
         /// <summary>
         /// Returns an enumerator that iterates through Internal Dictionary structure

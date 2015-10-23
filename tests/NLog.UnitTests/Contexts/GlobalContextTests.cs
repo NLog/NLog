@@ -65,12 +65,27 @@ namespace NLog.UnitTests.Contexts
 
             Assert.True(GlobalContext.Instance.Contains("foo2"));
             Assert.Equal("bar2", GlobalContext.Instance.GetFormatted("foo2", null));
-            
+
             GlobalContext.Instance.Clear();
             Assert.Equal(0, GlobalContext.Instance.Keys.Count);
 
             GlobalContext.Instance.Set("foo3", new { One = 1 });
             Assert.NotNull(GlobalContext.Instance["foo3"]);
+
+            GlobalContext.Instance.Clear();
+            GlobalContext.Instance.Set("foo1", "Test1");
+            GlobalContext.Instance.Set("foo2", "Test2");
+            GlobalContext.Instance.Set("foo3", "Test3");
+
+            var count = 0;
+            foreach (var item in GlobalContext.Instance)
+                count++;
+
+            Assert.Equal(3, count);
+
+            GlobalContext.Instance.Clear();
+            Assert.Equal(0, GlobalContext.Instance.Count);
+
         }
 
         [Fact]

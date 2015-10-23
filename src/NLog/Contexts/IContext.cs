@@ -85,5 +85,10 @@ namespace NLog.Contexts
         /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
         /// <returns>The value of <paramref name="key"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
         string GetFormatted(string key, IFormatProvider formatProvider);
+
+        /// <summary>
+        /// Gets the number of items in the collection.
+        /// </summary>
+        int Count { get; }
     }
 }

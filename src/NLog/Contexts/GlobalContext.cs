@@ -173,6 +173,20 @@ namespace NLog.Contexts
         }
 
         /// <summary>
+        /// Gets the number of items in the collection.
+        /// </summary>
+        public int Count
+        {
+            get
+            {
+                lock (syncRoot)
+                {
+                    return this.dict.Count;
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the Global Diagnostics Context item.
         /// </summary>
         /// <param name="key">Item name.</param>

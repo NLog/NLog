@@ -207,6 +207,17 @@ namespace NLog.Contexts
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the number of items in the collection.
+        /// </summary>
+        public int Count
+        {
+            get
+            {
+                return this.LogicalThreadDictionary.Count;
+            }
+        }
         //TODO SOLUTION IN PROGRESS.
         /// <summary>
         /// Returns an enumerator that iterates through the Internal Dictionary structure.
