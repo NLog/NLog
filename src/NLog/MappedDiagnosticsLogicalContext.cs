@@ -34,8 +34,6 @@
 namespace NLog
 {
 #if NET4_0 || NET4_5
-    using NLog.Contexts;
-    using NLog.Internal;
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -50,9 +48,24 @@ namespace NLog
     /// Ideally, these changes should be incorporated as a new version of the MappedDiagnosticsContext class in the original
     /// NLog library so that state can be maintained for multiple threads in asynchronous situations.
     /// </remarks>
-    [Obsolete("Use NLog.Contexts.LogicalThreadContext")]
     public static class MappedDiagnosticsLogicalContext
     {
+        private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
+
+        private static IDictionary<string, object> LogicalThreadDictionary
+        {
+            get
+            {
+                var dictionary = CallContext.LogicalGetData(LogicalThreadDictionaryKey) as ConcurrentDictionary<string, object>;
+                if (dictionary == null)
+                {
+                    dictionary = new ConcurrentDictionary<string, object>();
+                    CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
+                }
+                return dictionary;
+            }
+        }
+
         /// <summary>
         /// Gets the current logical context named item, as <see cref="string"/>.
         /// </summary>
@@ -71,7 +84,7 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         public static string Get(string item, IFormatProvider formatProvider)
         {
-            return FormatHelper.ConvertToString(GetObject(item), formatProvider);
+            return NLog.Internal.FormatHelper.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>
@@ -81,7 +94,12 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
         public static object GetObject(string item)
         {
-            return LogicalThreadContext.Instance[item];
+            object value;
+
+            if (!LogicalThreadDictionary.TryGetValue(item, out value))
+                value = null;
+
+            return value;
         }
 
         /// <summary>
@@ -91,7 +109,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            LogicalThreadContext.Instance[item] = value;
+            LogicalThreadDictionary[item] = value;
         }
 
         /// <summary>
@@ -101,7 +119,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, object value)
         {
-            LogicalThreadContext.Instance[item] = value;
+            LogicalThreadDictionary[item] = value;
         }
 
         /// <summary>
@@ -111,7 +129,7 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified <paramref name="item"/> exists in current logical context.</returns>
         public static bool Contains(string item)
         {
-            return LogicalThreadContext.Instance.Contains(item);
+            return LogicalThreadDictionary.ContainsKey(item);
         }
 
         /// <summary>
@@ -120,7 +138,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            LogicalThreadContext.Instance.Remove(item);
+            LogicalThreadDictionary.Remove(item);
         }
 
         /// <summary>
@@ -128,7 +146,7 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            LogicalThreadContext.Instance.Clear();
+            LogicalThreadDictionary.Clear();
         }
     }
 #endif

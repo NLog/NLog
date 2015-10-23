@@ -35,6 +35,7 @@ namespace NLog.Contexts
 {
     using NLog.Internal;
     using System;
+    using System.Collections;
     using System.Collections.Generic;
 
     /// <summary>
@@ -181,5 +182,25 @@ namespace NLog.Contexts
         {
             return FormatHelper.ConvertToString(this.TryGet(key), formatProvider);
         }
+
+        #region [Enumerators]
+        /// <summary>
+        /// Returns an enumerator that iterates through the Internal Dictionary structure.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+        {
+            return this.dict.GetEnumerator();
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the Internal Dictionary structure.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+        #endregion
     }
 }

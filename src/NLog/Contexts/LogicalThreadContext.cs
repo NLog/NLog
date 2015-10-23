@@ -206,7 +206,25 @@ namespace NLog.Contexts
                         keys.Add(key);
                 }
             }
-        }        
+        }
+        //TODO SOLUTION IN PROGRESS.
+        /// <summary>
+        /// Returns an enumerator that iterates through the Internal Dictionary structure.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the Internal Dictionary structure.
+        /// </summary>
+        /// <returns></returns>
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 #endif
 }

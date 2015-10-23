@@ -39,7 +39,7 @@ namespace NLog.Contexts
     /// <summary>
     /// A structure to hold define the context.
     /// </summary>
-    public interface IContext
+    public interface IContext : IEnumerable<KeyValuePair<string, object>>
     {
         /// <summary>
         /// Returns the keys in the context.
