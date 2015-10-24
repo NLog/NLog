@@ -112,7 +112,6 @@
     <Compile Include="ConfigFileLocatorTests.cs" />
     <Compile Include="Contexts\GlobalContextTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
-    <Compile Include="Contexts\LogicalThreadContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsLogicalContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />

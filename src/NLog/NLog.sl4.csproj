@@ -119,7 +119,6 @@
     <Compile Include="Config\XmlLoggingConfiguration.cs" />
     <Compile Include="Contexts\GlobalContext.cs" />
     <Compile Include="Contexts\IContext.cs" />
-    <Compile Include="Contexts\LogicalThreadContext.cs" />
     <Compile Include="Contexts\ThreadContext.cs" />
     <Compile Include="Filters\ConditionBasedFilter.cs" />
     <Compile Include="Filters\Filter.cs" />

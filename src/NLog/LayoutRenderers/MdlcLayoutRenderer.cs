@@ -59,7 +59,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var message = LogicalThreadContext.Instance[Item];
+            var message = MappedDiagnosticsLogicalContext.Get(Item);
             builder.Append(message);
         }
     }
