@@ -31,11 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 namespace NLog.Internal
 {
     /// <summary>
     /// Simple character tokenizer.
     /// </summary>
+#if DEBUG
+     [System.Diagnostics.DebuggerDisplay("{CurrentState}")]
+#endif
     internal class SimpleStringReader
     {
         private readonly string text;
@@ -62,6 +67,19 @@ namespace NLog.Internal
         {
             get { return this.text; }
         }
+
+#if DEBUG
+        string CurrentState
+        {
+            get
+            {
+                var current = (char)Peek();
+                var done = Substring(0, Position - 1);
+                var todo = ((Position > text.Length) ? Text.Substring(Position + 1) : "");
+                return string.Format("done: '{0}'.   current: '{1}'.   todo: '{2}'", done, current, todo);
+            }
+        }
+#endif
 
         /// <summary>
         /// Check current char while not changing the position.
