@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -32,15 +32,64 @@
 // 
 
 #pragma warning disable 0618
-
 namespace NLog.UnitTests.Contexts
 {
+
+    using NLog.Contexts;
     using Xunit;
 
-    public class GlobalDiagnosticsContextTests
+    /// <summary>
+    /// Summary description for GlobalContextTests
+    /// </summary>
+    public class GlobalContextTests
     {
         [Fact]
-        public void GDCTest1()
+        public void GlobalContextTest1()
+        {
+            GlobalContext.Instance.Clear();
+            Assert.False(GlobalContext.Instance.Contains("foo"));
+            Assert.Equal(string.Empty, GlobalContext.Instance.GetFormatted("foo", null));
+
+            Assert.False(GlobalContext.Instance.Contains("foo2"));
+            Assert.Equal(string.Empty, GlobalContext.Instance.GetFormatted("foo2", null));
+
+            GlobalContext.Instance["foo"] = "bar";
+            GlobalContext.Instance["foo2"] = "bar2";
+
+            Assert.True(GlobalContext.Instance.Contains("foo"));
+            Assert.Equal("bar", GlobalContext.Instance.GetFormatted("foo", null));
+
+            GlobalContext.Instance.Remove("foo");
+            Assert.False(GlobalContext.Instance.Contains("foo"));
+            Assert.Equal(string.Empty, GlobalContext.Instance.GetFormatted("foo", null));
+
+            Assert.True(GlobalContext.Instance.Contains("foo2"));
+            Assert.Equal("bar2", GlobalContext.Instance.GetFormatted("foo2", null));
+
+            GlobalContext.Instance.Clear();
+            Assert.Equal(0, GlobalContext.Instance.Keys.Count);
+
+            GlobalContext.Instance.Set("foo3", new { One = 1 });
+            Assert.NotNull(GlobalContext.Instance["foo3"]);
+
+            GlobalContext.Instance.Clear();
+            GlobalContext.Instance.Set("foo1", "Test1");
+            GlobalContext.Instance.Set("foo2", "Test2");
+            GlobalContext.Instance.Set("foo3", "Test3");
+
+            var count = 0;
+            foreach (var item in GlobalContext.Instance)
+                count++;
+
+            Assert.Equal(3, count);
+
+            GlobalContext.Instance.Clear();
+            Assert.Equal(0, GlobalContext.Instance.Count);
+
+        }
+
+        [Fact]
+        public void GlobalContextTest2()
         {
             GlobalDiagnosticsContext.Clear();
             Assert.False(GlobalDiagnosticsContext.Contains("foo"));
@@ -60,18 +109,10 @@ namespace NLog.UnitTests.Contexts
 
             Assert.True(GlobalDiagnosticsContext.Contains("foo2"));
             Assert.Equal("bar2", GlobalDiagnosticsContext.Get("foo2"));
-
-            Assert.Null(GlobalDiagnosticsContext.GetObject("foo3"));
-
-            Assert.Equal(string.Empty, GlobalDiagnosticsContext.Get("foo3", null));
-
-            GlobalDiagnosticsContext.Set("foo3", new { One = 1 });
-
-            Assert.NotNull(GlobalDiagnosticsContext.Get("foo3", null));
         }
 
         [Fact]
-        public void GDCTest2()
+        public void GlobalContextTest3()
         {
             GDC.Clear();
             Assert.False(GDC.Contains("foo"));
@@ -91,10 +132,6 @@ namespace NLog.UnitTests.Contexts
 
             Assert.True(GDC.Contains("foo2"));
             Assert.Equal("bar2", GDC.Get("foo2"));
-
-            Assert.Null(GDC.GetObject("foo3"));
-
-            Assert.Equal(string.Empty, GDC.Get("foo3", null));
         }
     }
 }

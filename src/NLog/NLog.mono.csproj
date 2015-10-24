@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
@@ -116,6 +116,9 @@
     <Compile Include="Config\StackTraceUsage.cs" />
     <Compile Include="Config\ThreadAgnosticAttribute.cs" />
     <Compile Include="Config\XmlLoggingConfiguration.cs" />
+    <Compile Include="Contexts\GlobalContext.cs" />
+    <Compile Include="Contexts\IContext.cs" />
+    <Compile Include="Contexts\ThreadContext.cs" />
     <Compile Include="Filters\ConditionBasedFilter.cs" />
     <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\FilterAttribute.cs" />

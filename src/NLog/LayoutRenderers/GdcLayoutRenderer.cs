@@ -35,6 +35,7 @@ namespace NLog.LayoutRenderers
 {
     using System.Text;
     using NLog.Config;
+    using NLog.Contexts;
 
     /// <summary>
     /// Global Diagnostics Context item. Provided for compatibility with log4net.
@@ -57,7 +58,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(GlobalDiagnosticsContext.Get(this.Item, logEvent.FormatProvider));
+            builder.Append(GlobalContext.Instance.GetFormatted(this.Item, logEvent.FormatProvider));
         }
     }
 }

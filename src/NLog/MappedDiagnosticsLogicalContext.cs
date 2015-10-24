@@ -84,7 +84,7 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         public static string Get(string item, IFormatProvider formatProvider)
         {
-            return GlobalDiagnosticsContext.ConvertToString(GetObject(item), formatProvider);
+            return NLog.Internal.FormatHelper.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>
