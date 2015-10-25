@@ -43,9 +43,23 @@ namespace NLog.Internal.FileAppenders
         private BaseFileAppender[] appenders;
 
         /// <summary>
-        /// Declares initialise a zero size, empty list of appenders.
+        /// Initializes a new "empty" instance of the <see cref="FileAppenderCache"/> class with zero size and empty
+        /// list of appenders.
         /// </summary>
-        public static readonly FileAppenderCache Empty = new FileAppenderCache(0, null, null);
+        public static readonly FileAppenderCache Empty = new FileAppenderCache();
+
+        /// <summary>
+        /// Initializes a new "empty" instance of the <see cref="FileAppenderCache"/> class with zero size and empty
+        /// list of appenders.
+        /// </summary>
+        private FileAppenderCache()
+        {
+            Size = 0;
+            Factory = null;
+            CreateFileParameters = null;
+
+            appenders = new BaseFileAppender[0];
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileAppenderCache"/> class.
@@ -85,8 +99,11 @@ namespace NLog.Internal.FileAppenders
         /// It allocates the first slot in the list when the file name does not already in the list and clean up any
         /// unused slots.
         /// </summary>
-        /// <param name="fileName">File name associated with a single appender</param>
-        /// <returns>The allocated appender</returns>
+        /// <param name="fileName">File name associated with a single appender.</param>
+        /// <returns>The allocated appender.</returns>
+        /// <exception cref="NullReferenceException">
+        /// Thrown when <see cref="M:AllocateAppender"/> is called on an <c>Empty</c><see cref="FileAppenderCache"/> instance.
+        /// </exception>
         public BaseFileAppender AllocateAppender(string fileName)
         {
             //
