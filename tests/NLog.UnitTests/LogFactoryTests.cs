@@ -31,17 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-using System.Linq;
-using System.Threading;
-using NLog.Targets;
-
 #if !SILVERLIGHT
 namespace NLog.UnitTests
 {
     using System;
-    using NLog.Config;
+    using System.IO;
+    using System.Linq;
+    using System.Threading;
+
     using Xunit;
+
+    using NLog.Config;
+    using NLog.Targets;
 
     public class LogFactoryTests : NLogTestBase
     {
