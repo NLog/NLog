@@ -47,6 +47,16 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public static readonly FileAppenderCache Empty = new FileAppenderCache(0, null, null);
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileAppenderCache"/> class.
+        /// </summary>
+        /// <remarks>
+        /// The size of the list should be positive. No validations are performed during initialisation as it is an
+        /// intenal class.
+        /// </remarks>
+        /// <param name="size">Total number of appenders allowed in list.</param>
+        /// <param name="appenderFactory">Factory used to create each appender.</param>
+        /// <param name="createFileParams">Parameters used for creating a file.</param>
         public FileAppenderCache(int size, IFileAppenderFactory appenderFactory, ICreateFileParameters createFileParams)
         {
             Size = size;
