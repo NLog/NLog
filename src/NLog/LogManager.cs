@@ -37,14 +37,15 @@ namespace NLog
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
-    using System.Reflection;
-    using System.Threading;
-    using System.Runtime.CompilerServices;
     using System.Linq;
-    using Internal.Fakeables;
+    using System.Reflection;
+    using System.Runtime.CompilerServices;
+    using System.Threading;
+
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Internal.Fakeables;
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
@@ -258,23 +259,23 @@ namespace NLog
             factory.Flush();
         }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-public static void Flush(TimeSpan timeout)
-{
-    factory.Flush(timeout);
-}
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(TimeSpan timeout)
+        {
+            factory.Flush(timeout);
+        }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-public static void Flush(int timeoutMilliseconds)
-{
-    factory.Flush(timeoutMilliseconds);
-}
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(int timeoutMilliseconds)
+        {
+            factory.Flush(timeoutMilliseconds);
+        }
 #endif
 
         /// <summary>
@@ -286,25 +287,25 @@ public static void Flush(int timeoutMilliseconds)
             factory.Flush(asyncContinuation);
         }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="asyncContinuation">The asynchronous continuation.</param>
-/// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-public static void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
-{
-    factory.Flush(asyncContinuation, timeout);
-}
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
+        {
+            factory.Flush(asyncContinuation, timeout);
+        }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="asyncContinuation">The asynchronous continuation.</param>
-/// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-public static void Flush(AsyncContinuation asyncContinuation, int timeoutMilliseconds)
-{
-    factory.Flush(asyncContinuation, timeoutMilliseconds);
-}
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(AsyncContinuation asyncContinuation, int timeoutMilliseconds)
+        {
+            factory.Flush(asyncContinuation, timeoutMilliseconds);
+        }
 
         /// <summary>
         /// Decreases the log enable counter and if it reaches -1 the logs are disabled.
