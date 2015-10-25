@@ -189,7 +189,7 @@ namespace NLog
                 return configuration != null ? configuration.DefaultCultureInfo : null;
             }
         }
-        
+
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting 
         /// unmanaged resources.
@@ -208,12 +208,12 @@ namespace NLog
         {
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             Logger newLogger = new Logger();
-            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel,false), this);
+            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel, false), this);
             return newLogger;
         }
 
         /// <summary>
-        /// Gets the logger named after the currently-being-initialized class.
+        /// Gets the logger with the name of the current class. 
         /// </summary>
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
@@ -231,11 +231,11 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger named after the currently-being-initialized class.
+        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="loggerType">The type of the logger to create. The type must inherit from 
         /// NLog.Logger.</param>
-        /// <returns>The logger.</returns>
+        /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
         /// <remarks>This is a slow-running method. Make sure you are not calling this method in a 
         /// loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
@@ -262,11 +262,11 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified named logger.
+        /// Gets the specified named logger.  Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
-        /// <param name="loggerType">The type of the logger to create. The type must inherit from NLog.Logger.</param>
-        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the 
+        /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger" />.</param>
+        /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the 
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name, Type loggerType)
         {
@@ -518,7 +518,7 @@ namespace NLog
                     this.reloadTimer.Dispose();
                     this.reloadTimer = null;
                 }
-                
+
                 if(isDisposing)
                 {
                     //timer was disposed already. 
@@ -623,7 +623,9 @@ namespace NLog
 
         private void GetTargetsByLevelForLogger(string name, IEnumerable<LoggingRule> rules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
-            foreach (LoggingRule rule in rules)
+            //no "System.InvalidOperationException: Collection was modified"
+            var loggingRules = new List<LoggingRule>(rules);
+            foreach (LoggingRule rule in loggingRules)
             {
                 if (!rule.NameMatches(name))
                 {
@@ -640,7 +642,7 @@ namespace NLog
                     if (rule.Final)
                         suppressedLevels[i] = true;
 
-                    foreach (Target target in rule.Targets)
+                    foreach (Target target in rule.Targets.ToList())
                     {
                         var awf = new TargetWithFilterChain(target, rule.Filters);
                         if (lastTargetsByLevel[i] != null)
@@ -735,23 +737,61 @@ namespace NLog
 
                 if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
                 {
+                    var fullName = cacheKey.ConcreteType.FullName;
                     try
                     {
-                        newLogger = (Logger)FactoryHelper.CreateInstance(cacheKey.ConcreteType);
+
+                        //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
+                        if (cacheKey.ConcreteType.IsStaticClass())
+                        {
+                            var errorMessage = string.Format("GetLogger / GetCurrentClassLogger is '{0}' as loggerType can be a static class and should inherit from Logger",
+                                fullName);
+                            InternalLogger.Error(errorMessage);
+                            if (ThrowExceptions)
+                            {
+                                throw new NLogRuntimeException(errorMessage);
+                            }
+                            newLogger = CreateDefaultLogger(ref cacheKey);
+                        }
+                        else
+                        {
+
+                            var instance = FactoryHelper.CreateInstance(cacheKey.ConcreteType);
+                            newLogger = instance as Logger;
+                            if (newLogger == null)
+                            {
+                                //well, it's not a Logger, and we should return a Logger.
+
+                                var errorMessage = string.Format("GetLogger / GetCurrentClassLogger got '{0}' as loggerType which doesn't inherit from Logger", fullName);
+                                InternalLogger.Error(errorMessage);
+                                if (ThrowExceptions)
+                                {
+                                    throw new NLogRuntimeException(errorMessage);
+                                }
+
+                                // Creating default instance of logger if instance of specified type cannot be created.
+                                newLogger = CreateDefaultLogger(ref cacheKey);
+
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {
-                        if (ex.MustBeRethrown() || ThrowExceptions)
+                        if (ex.MustBeRethrown())
                         {
                             throw;
                         }
 
-                        InternalLogger.Error("Cannot create instance of specified type. Proceeding with default type instance. Exception : {0}", ex);
+                        var errorMessage = string.Format("GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
+                        if (ThrowExceptions)
+                        {
+                            throw new NLogRuntimeException(errorMessage, ex);
+                        }
+
+                        InternalLogger.Error(errorMessage + ". Exception : {0}", ex);
 
                         // Creating default instance of logger if instance of specified type cannot be created.
-                        cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));
-
-                        newLogger = new Logger();
+                        newLogger = CreateDefaultLogger(ref cacheKey);
                     }
                 }
                 else
@@ -772,6 +812,14 @@ namespace NLog
                 loggerCache.InsertOrUpdate(cacheKey, newLogger);
                 return newLogger;
             }
+        }
+
+        private static Logger CreateDefaultLogger(ref LoggerCacheKey cacheKey)
+        {
+            cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));
+
+            var newLogger = new Logger();
+            return newLogger;
         }
 
 #if !SILVERLIGHT

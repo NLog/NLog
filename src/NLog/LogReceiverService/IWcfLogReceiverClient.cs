@@ -41,9 +41,16 @@ using System.ServiceModel.Description;
 
 namespace NLog.LogReceiverService
 {
+
+#if SILVERLIGHT
+    /// <summary>
+    /// Client of ILogReceiverServer
+    /// </summary>
+#else
     /// <summary>
     /// Client of <see cref="ILogReceiverServer"/>
     /// </summary>
+#endif
     public interface IWcfLogReceiverClient : ICommunicationObject
     {
         /// <summary>

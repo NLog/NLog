@@ -37,14 +37,15 @@ namespace NLog
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
-    using System.Reflection;
-    using System.Threading;
-    using System.Runtime.CompilerServices;
     using System.Linq;
-    using Internal.Fakeables;
+    using System.Reflection;
+    using System.Runtime.CompilerServices;
+    using System.Threading;
+
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Internal.Fakeables;
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
@@ -154,7 +155,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger named after the currently-being-initialized class.
+        /// Gets the logger with the name of the current class.  
         /// </summary>
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
@@ -192,10 +193,10 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger named after the currently-being-initialized class.
+        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
-        /// <returns>The logger.</returns>
+        /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [CLSCompliant(false)]
@@ -227,11 +228,12 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified named logger.
+        /// Gets the specified named custom logger.  Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
-        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
+        /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
+        /// <remarks>The generic way for this method is <see cref="LogFactory{loggerType}.GetLogger(string)"/></remarks>
         [CLSCompliant(false)]
         public static Logger GetLogger(string name, Type loggerType)
         {
@@ -257,23 +259,23 @@ namespace NLog
             factory.Flush();
         }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-public static void Flush(TimeSpan timeout)
-{
-    factory.Flush(timeout);
-}
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(TimeSpan timeout)
+        {
+            factory.Flush(timeout);
+        }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-public static void Flush(int timeoutMilliseconds)
-{
-    factory.Flush(timeoutMilliseconds);
-}
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(int timeoutMilliseconds)
+        {
+            factory.Flush(timeoutMilliseconds);
+        }
 #endif
 
         /// <summary>
@@ -285,25 +287,25 @@ public static void Flush(int timeoutMilliseconds)
             factory.Flush(asyncContinuation);
         }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="asyncContinuation">The asynchronous continuation.</param>
-/// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-public static void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
-{
-    factory.Flush(asyncContinuation, timeout);
-}
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
+        {
+            factory.Flush(asyncContinuation, timeout);
+        }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="asyncContinuation">The asynchronous continuation.</param>
-/// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-public static void Flush(AsyncContinuation asyncContinuation, int timeoutMilliseconds)
-{
-    factory.Flush(asyncContinuation, timeoutMilliseconds);
-}
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(AsyncContinuation asyncContinuation, int timeoutMilliseconds)
+        {
+            factory.Flush(asyncContinuation, timeoutMilliseconds);
+        }
 
         /// <summary>
         /// Decreases the log enable counter and if it reaches -1 the logs are disabled.

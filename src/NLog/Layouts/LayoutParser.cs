@@ -61,15 +61,44 @@ namespace NLog.Layouts
 
             while ((ch = sr.Peek()) != -1)
             {
-                if (isNested && (ch == '}' || ch == ':'))
+                if (isNested)
                 {
-                    break;
+                    //possible escape char `\` 
+                    if (ch == '\\')
+                    {
+                        sr.Read();
+                        var nextChar = sr.Peek();
+
+                        //escape chars
+                        if (nextChar == '}' || nextChar == ':')
+                        {
+                            //read next char and append
+                            sr.Read();
+                            literalBuf.Append((char)nextChar);
+                        }
+                        else
+                        {
+                            //dont treat \ as escape char and just read it
+                            literalBuf.Append('\\');
+                        }
+                        continue;
+                    }
+
+                    if (ch == '}' || ch == ':')
+                    {
+                        //end of innerlayout. 
+                        // `}` is when double nested inner layout. 
+                        // `:` when single nested layout
+                        break;
+                    }
                 }
 
                 sr.Read();
 
+                //detect `${` (new layout-renderer)
                 if (ch == '$' && sr.Peek() == '{')
                 {
+                    //stach already found layout-renderer.
                     if (literalBuf.Length > 0)
                     {
                         result.Add(new LiteralLayoutRenderer(literalBuf.ToString()));
@@ -451,7 +480,7 @@ namespace NLog.Layouts
 
         private static void MergeLiterals(List<LayoutRenderer> list)
         {
-            for (int i = 0; i + 1 < list.Count;)
+            for (int i = 0; i + 1 < list.Count; )
             {
                 var lr1 = list[i] as LiteralLayoutRenderer;
                 var lr2 = list[i + 1] as LiteralLayoutRenderer;

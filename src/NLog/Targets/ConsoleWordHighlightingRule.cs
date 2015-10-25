@@ -112,7 +112,7 @@ namespace NLog.Targets
                         regexpression = System.Text.RegularExpressions.Regex.Escape(this.Text);
                         if (this.WholeWords)
                         {
-                            regexpression = "\b" + regexpression + "\b";
+                            regexpression = "\\b" + regexpression + "\\b";
                         }
                     }
 

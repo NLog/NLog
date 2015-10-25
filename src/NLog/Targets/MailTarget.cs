@@ -197,7 +197,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether SSL (secure sockets layer) should be used when communicating with SMTP server.
         /// </summary>
-        /// <docgen category='SMTP Options' order='14' />
+        /// <docgen category='SMTP Options' order='14' />.
         [DefaultValue(false)]
         public bool EnableSsl { get; set; }
 
@@ -214,6 +214,20 @@ namespace NLog.Targets
         /// <docgen category='SMTP Options' order='16' />
         [DefaultValue(false)]
         public bool UseSystemNetMailSettings { get; set; }
+
+        /// <summary>
+        /// Specifies how outgoing email messages will be handled.
+        /// </summary>
+        /// <docgen category='SMTP Options' order='18' />
+        [DefaultValue(SmtpDeliveryMethod.Network)]
+        public SmtpDeliveryMethod DeliveryMethod { get; set; }
+
+        /// <summary>
+        /// Gets or sets the folder where applications save mail messages to be processed by the local SMTP server.
+        /// </summary>
+        /// <docgen category='SMTP Options' order='17' />
+        [DefaultValue(null)]
+        public string PickupDirectoryLocation { get; set; }
 
         /// <summary>
         /// Gets or sets the priority used for sending mails.
@@ -372,46 +386,81 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Set propertes of <paramref name="client"/>
+        /// Set properties of <paramref name="client"/>
         /// </summary>
         /// <param name="lastEvent">last event for username/password</param>
         /// <param name="client">client to set properties on</param>
-        private void ConfigureMailClient(LogEventInfo lastEvent, ISmtpClient client)
+        internal void ConfigureMailClient(LogEventInfo lastEvent, ISmtpClient client)
         {
-
             CheckRequiredParameters();
 
-            var renderedSmtpServer = this.SmtpServer.Render(lastEvent);
-            if (string.IsNullOrEmpty(renderedSmtpServer))
+            if (this.SmtpServer == null && string.IsNullOrEmpty(this.PickupDirectoryLocation))
+            {
+                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer/PickupDirectoryLocation"));
+            }
+
+            if (this.DeliveryMethod == SmtpDeliveryMethod.Network && this.SmtpServer == null)
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
             }
-            client.Host = renderedSmtpServer;
-            client.Port = this.SmtpPort;
-            client.EnableSsl = this.EnableSsl;
+            
+            if (this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(this.PickupDirectoryLocation))
+            {
+                throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
+            }
+
+            if (this.SmtpServer != null && this.DeliveryMethod == SmtpDeliveryMethod.Network)
+            {
+                var renderedSmtpServer = this.SmtpServer.Render(lastEvent);
+                if (string.IsNullOrEmpty(renderedSmtpServer))
+                {
+                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer" ));
+                }
+
+                client.Host = renderedSmtpServer;
+                client.Port = this.SmtpPort;
+                client.EnableSsl = this.EnableSsl;
+
+                if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
+                {
+                    InternalLogger.Trace("  Using NTLM authentication.");
+                    client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                }
+                else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
+                {
+                    string username = this.SmtpUserName.Render(lastEvent);
+                    string password = this.SmtpPassword.Render(lastEvent);
+
+                    InternalLogger.Trace("  Using basic authentication: Username='{0}' Password='{1}'", username, new string('*', password.Length));
+                    client.Credentials = new NetworkCredential(username, password);
+                }
+
+            }
+
+            if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
+            {
+                client.PickupDirectoryLocation = this.PickupDirectoryLocation;
+            }
+
+            // In case DeliveryMethod = PickupDirectoryFromIis we will not require Host nor PickupDirectoryLocation
+            client.DeliveryMethod = this.DeliveryMethod;
             client.Timeout = this.Timeout;
 
-            if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
-            {
-                InternalLogger.Trace("  Using NTLM authentication.");
-                client.Credentials = CredentialCache.DefaultNetworkCredentials;
-            }
-            else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
-            {
-                string username = this.SmtpUserName.Render(lastEvent);
-                string password = this.SmtpPassword.Render(lastEvent);
-
-                InternalLogger.Trace("  Using basic authentication: Username='{0}' Password='{1}'", username, new string('*', password.Length));
-                client.Credentials = new NetworkCredential(username, password);
-            }
+            
         }
 
         private void CheckRequiredParameters()
         {
-            if (!this.UseSystemNetMailSettings && this.SmtpServer == null)
+            if (!this.UseSystemNetMailSettings && this.SmtpServer == null && this.DeliveryMethod == SmtpDeliveryMethod.Network)
             {
                 throw new NLogConfigurationException(
-                    string.Format("The MailTarget's '{0}' property is not set - but needed because useSystemNetMailSettings=false. The email message will not be sent.", "SmtpServer"));
+                    string.Format("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=Network. The email message will not be sent.", "SmtpServer"));
+            }
+
+            if (!this.UseSystemNetMailSettings && string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
+            {
+                throw new NLogConfigurationException(
+                    string.Format("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=SpecifiedPickupDirectory. The email message will not be sent.", "PickupDirectoryLocation"));
             }
         }
 
