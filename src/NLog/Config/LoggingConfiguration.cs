@@ -323,6 +323,14 @@ namespace NLog.Config
             InternalLogger.Debug("Finished closing logging configuration.");
         }
 
+        /// <summary>
+        /// Log to the internal (NLog) logger the information about the <see cref="Target"/> and <see
+        /// cref="LoggingRule"/> associated with this <see cref="LoggingConfiguration"/> instance.
+        /// </summary>
+        /// <remarks>
+        /// The information are only recorded in the internal logger if Debug level is enabled, otherwise nothing is 
+        /// recorded.
+        /// </remarks>
         internal void Dump()
         {
             if (!InternalLogger.IsDebugEnabled)
@@ -330,17 +338,17 @@ namespace NLog.Config
                 return;
             }
 
-            InternalLogger.Debug("--- NLog configuration dump. ---");
+            InternalLogger.Debug("--- NLog configuration dump ---");
             InternalLogger.Debug("Targets:");
             foreach (Target target in this.targets.Values)
             {
-                InternalLogger.Info("{0}", target);
+                InternalLogger.Debug("{0}", target);
             }
 
             InternalLogger.Debug("Rules:");
             foreach (LoggingRule rule in this.LoggingRules)
             {
-                InternalLogger.Info("{0}", rule);
+                InternalLogger.Debug("{0}", rule);
             }
 
             InternalLogger.Debug("--- End of NLog configuration dump ---");
