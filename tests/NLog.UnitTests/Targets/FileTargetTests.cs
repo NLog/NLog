@@ -980,21 +980,25 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Fact]
-        public void RollingArchiveTest1()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void RollingArchiveTest(bool specifyArchiveFileName)
         {
-            RollingArchiveTests(enableCompression: false);
+            RollingArchiveTests(enableCompression: false, specifyArchiveFileName: specifyArchiveFileName);
         }
 
 #if NET4_5
-        [Fact]
-        public void RollingArchiveCompressionTest1()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void RollingArchiveCompressionTest(bool specifyArchiveFileName)
         {
-            RollingArchiveTests(enableCompression: true);
+            RollingArchiveTests(enableCompression: true, specifyArchiveFileName: specifyArchiveFileName);
         }
 #endif
 
-        private void RollingArchiveTests(bool enableCompression)
+        private void RollingArchiveTests(bool enableCompression, bool specifyArchiveFileName)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -1007,13 +1011,14 @@ namespace NLog.UnitTests.Targets
                     EnableArchiveFileCompression = enableCompression,
 #endif
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{####}." + archiveExtension),
                     ArchiveAboveSize = 1000,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Rolling,
                     Layout = "${message}",
                     MaxArchiveFiles = 3
                 };
+                if (specifyArchiveFileName)
+                    ft.ArchiveFileName = Path.Combine(tempPath, "archive/{####}." + archiveExtension);
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
@@ -1038,22 +1043,26 @@ namespace NLog.UnitTests.Targets
                     StringRepeat(250, "eee\n"),
                     Encoding.UTF8);
 
+                string archiveFileNameFormat = specifyArchiveFileName
+                    ? "archive/000{0}." + archiveExtension
+                    : "file.{0}." + archiveExtension;
+
                 assertFileContents(
-                    Path.Combine(tempPath, "archive/0000." + archiveExtension),
+                    Path.Combine(tempPath, string.Format(archiveFileNameFormat, 0)),
                     StringRepeat(250, "ddd\n"),
                     Encoding.UTF8);
 
                 assertFileContents(
-                    Path.Combine(tempPath, "archive/0001." + archiveExtension),
+                    Path.Combine(tempPath, string.Format(archiveFileNameFormat, 1)),
                     StringRepeat(250, "ccc\n"),
                     Encoding.UTF8);
 
                 assertFileContents(
-                    Path.Combine(tempPath, "archive/0002." + archiveExtension),
+                    Path.Combine(tempPath, string.Format(archiveFileNameFormat, 2)),
                     StringRepeat(250, "bbb\n"),
                     Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0003." + archiveExtension)));
+                Assert.True(!File.Exists(Path.Combine(tempPath, string.Format(archiveFileNameFormat, 3))));
             }
             finally
             {

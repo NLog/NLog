@@ -1448,7 +1448,7 @@ namespace NLog.Targets
 
             if (this.ArchiveFileName == null)
             {
-                string ext = Path.GetExtension(fileName);
+                string ext = EnableArchiveFileCompression ? ".zip" : Path.GetExtension(fileName);
                 fileNamePattern = Path.ChangeExtension(fileInfo.FullName, ".{#}" + ext);
             }
             else
