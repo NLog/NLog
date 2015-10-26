@@ -31,17 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-using System.Linq;
-using System.Threading;
-using NLog.Targets;
-
 #if !SILVERLIGHT
 namespace NLog.UnitTests
 {
     using System;
-    using NLog.Config;
+    using System.IO;
+    using System.Linq;
+    using System.Threading;
+
     using Xunit;
+
+    using NLog.Config;
+    using NLog.Targets;
 
     public class LogFactoryTests : NLogTestBase
     {
@@ -381,6 +382,60 @@ namespace NLog.UnitTests
             {
                 LogManager.Configuration = null;
             }
+        }
+
+        [Fact]
+        public void EnableAndDisableLogging()
+        {
+            LogFactory factory = new LogFactory();
+#pragma warning disable 618
+            // In order Suspend => Resume 
+            Assert.True(factory.IsLoggingEnabled());
+            factory.DisableLogging();
+            Assert.False(factory.IsLoggingEnabled());
+            factory.EnableLogging();
+            Assert.True(factory.IsLoggingEnabled());
+#pragma warning restore 618           
+        }
+
+        [Fact]
+        public void SuspendAndResumeLogging_InOrder()
+        {
+            LogFactory factory = new LogFactory();
+
+            // In order Suspend => Resume [Case 1]
+            Assert.True(factory.IsLoggingEnabled());
+            factory.SuspendLogging();
+            Assert.False(factory.IsLoggingEnabled());
+            factory.ResumeLogging();
+            Assert.True(factory.IsLoggingEnabled());
+
+            // In order Suspend => Resume [Case 2]
+            using (var factory2 = new LogFactory())
+            {
+                Assert.True(factory.IsLoggingEnabled());
+                factory.SuspendLogging();
+                Assert.False(factory.IsLoggingEnabled());
+                factory.ResumeLogging();
+                Assert.True(factory.IsLoggingEnabled());
+            }
+        }
+
+        [Fact]
+        public void SuspendAndResumeLogging_OutOfOrder()
+        {
+            LogFactory factory = new LogFactory();
+
+            // Out of order Resume => Suspend => (Suspend => Resume)
+            factory.ResumeLogging();
+            Assert.True(factory.IsLoggingEnabled());
+            factory.SuspendLogging();
+            Assert.True(factory.IsLoggingEnabled());
+            factory.SuspendLogging();
+            Assert.False(factory.IsLoggingEnabled());
+            factory.ResumeLogging();
+            Assert.True(factory.IsLoggingEnabled());
+
         }
 
         private static EventHandler<LoggingConfigurationReloadedEventArgs> SignalCounterEvent1(CountdownEvent counterEvent)
