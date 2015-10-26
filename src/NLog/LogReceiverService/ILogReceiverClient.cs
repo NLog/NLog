@@ -43,6 +43,7 @@ namespace NLog.LogReceiverService
 #if WCF_SUPPORTED
     [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace, ConfigurationName = "NLog.LogReceiverService.ILogReceiverClient")]
 #endif
+    [Obsolete("This may be removed in a future release.  Use ILogReceiverOneWayClient or ILogReceiverTwoWayClient.")]
     public interface ILogReceiverClient
     {
         /// <summary>

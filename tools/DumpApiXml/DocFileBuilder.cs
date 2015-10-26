@@ -22,6 +22,7 @@
             { typeof(Encoding).FullName, "Encoding" },
             { "NLog.Layouts.Layout", "Layout" },
             { "NLog.Targets.Target", "Target" },
+            { "NLog.Targets.LineEndingMode", "LineEndingMode" },
             { "NLog.Conditions.ConditionExpression", "Condition" },
             { "NLog.Filters.FilterResult", "FilterResult" },
             { "NLog.Layout", "Layout" },
@@ -69,6 +70,8 @@
             this.DumpApiDocs(writer, "layout", "NLog.LayoutAttribute", "", "");
             this.DumpApiDocs(writer, "layout-renderer", "NLog.LayoutRendererAttribute", "${", "}");
             this.DumpApiDocs(writer, "filter", "NLog.FilterAttribute", "", " filter");
+
+            this.DumpApiDocs(writer, "time-source", "NLog.Time.TimeSourceAttribute", "", " time source");
             writer.WriteEndElement();
         }
 
@@ -127,6 +130,11 @@
         private static string GetTypeName(Type type)
         {
             string simpleName;
+
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                type = type.GetGenericArguments()[0];
+            }
 
             if (simpleTypeNames.TryGetValue(type.FullName, out simpleName))
             {
@@ -557,6 +565,9 @@
 
                 case "filter":
                     return name + "_filter";
+
+                case "time-source":
+                    return name + "_time_source";
             }
 
             string slugBase;

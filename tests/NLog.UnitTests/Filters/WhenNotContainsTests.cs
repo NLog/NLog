@@ -56,7 +56,7 @@ namespace NLog.UnitTests.Filters
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 0);
             logger.Debug("zzz");
@@ -80,7 +80,7 @@ namespace NLog.UnitTests.Filters
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugCounter("debug", 0);
             logger.Debug("zzz");

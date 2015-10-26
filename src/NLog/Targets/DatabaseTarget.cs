@@ -44,6 +44,7 @@ namespace NLog.Targets
     using System.Globalization;
     using System.Reflection;
     using System.Text;
+    using System.Transactions;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -88,6 +89,7 @@ namespace NLog.Targets
             this.DBProvider = "sqlserver";
             this.DBHost = ".";
             this.ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
+            this.CommandType = CommandType.Text;
         }
 
         /// <summary>
@@ -160,7 +162,7 @@ namespace NLog.Targets
         /// database connection open between the log events.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool KeepConnection { get; set; }
 
         /// <summary>
@@ -168,15 +170,7 @@ namespace NLog.Targets
         /// Some data providers require this.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        [DefaultValue(false)]
-        public bool UseTransactions { get; set; }
 
-        /// <summary>
-        /// Gets or sets the database host name. If the ConnectionString is not provided
-        /// this value will be used to construct the "Server=" part of the
-        /// connection string.
-        /// </summary>
-        /// <docgen category='Connection Options' order='10' />
         public Layout DBHost { get; set; }
 
         /// <summary>
@@ -446,6 +440,9 @@ namespace NLog.Targets
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
         private void WriteEventToDatabase(LogEventInfo logEvent)
         {
+            //Always suppress transaction so that the caller does not rollback loggin if they are rolling back their transaction.
+            using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
+            {
             this.EnsureConnectionOpen(this.BuildConnectionString(logEvent));
 
             IDbCommand command = this.activeConnection.CreateCommand();
@@ -488,6 +485,10 @@ namespace NLog.Targets
 
             int result = command.ExecuteNonQuery();
             InternalLogger.Trace("Finished execution, result = {0}", result);
+
+                //not really needed as there is no transaction at all.
+                transactionScope.Complete();
+        }
         }
 
         private string BuildConnectionString(LogEventInfo logEvent)
@@ -548,6 +549,7 @@ namespace NLog.Targets
             if (this.activeConnection != null)
             {
                 this.activeConnection.Close();
+                this.activeConnection.Dispose();
                 this.activeConnection = null;
                 this.activeConnectionString = null;
             }

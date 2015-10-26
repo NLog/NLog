@@ -14,6 +14,7 @@
       <xs:element name="variable" type="NLogVariable" />
       <xs:element name="targets" type="NLogTargets" />
       <xs:element name="rules" type="NLogRules" />
+      <xs:element name="time" type="TimeSource" />
     </xs:choice>
     <xs:attribute name="autoReload" type="xs:boolean">
       <xs:annotation>
@@ -142,6 +143,12 @@
         <xs:documentation>Ignore further rules if this one matches.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+
+    <xs:attribute name="enabled" type="xs:boolean" default="true">
+      <xs:annotation>
+        <xs:documentation>Enable or disable logging rule. Disabled rules are ignored.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:complexType name="NLogFilters">
@@ -159,6 +166,16 @@
       <xs:enumeration value="Warn" />
       <xs:enumeration value="Error" />
       <xs:enumeration value="Fatal" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="LineEndingMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Default" />
+      <xs:enumeration value="CRLF" />
+      <xs:enumeration value="CR" />
+      <xs:enumeration value="LF" />
+      <xs:enumeration value="None" />
     </xs:restriction>
   </xs:simpleType>
 
@@ -241,6 +258,9 @@
   </xs:complexType>
 
   <xs:complexType name="Filter" abstract="true">
+  </xs:complexType>
+
+  <xs:complexType name="TimeSource" abstract="true">
   </xs:complexType>
 
   <xs:simpleType name="SimpleLayoutAttribute">

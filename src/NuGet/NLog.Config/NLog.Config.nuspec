@@ -4,18 +4,19 @@
     <id>NLog.Config</id>
     <title>NLog Configuration</title>
     <version>$BuildVersion$</version>
-    <authors>Kim Christensen</authors>
+    <authors>Kim Christensen, Julian Verdurmen</authors>
     <owners>Kim Christensen</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Empty NLog.config file for use with NLog.</summary>
     <description>Empty NLog.config file.</description>
     <language>en-US</language>
     <iconUrl>http://nlog-project.org/NConfig.png</iconUrl>
-    <projectUrl>http://github.com/NLog/NLog/</projectUrl>
+    <projectUrl>http://nlog-project.org/</projectUrl>
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
     <dependencies>
       <dependency id="NLog" version="$BuildVersion$" />
-      <dependency id="NLog.Schema" version="$BuildVersion$" />
+      <dependency id="NLog.Schema" version="4.0" />
     </dependencies>
+    <tags>nlog, xml, config</tags>
   </metadata>
 </package>

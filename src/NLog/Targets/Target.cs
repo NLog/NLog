@@ -501,11 +501,11 @@ namespace NLog.Targets
                 var logEventParameter = item as LogEventInfo;
                 if (logEventParameter != null)
                 {
-                    foreach (var propertyItem in logEventParameter.Properties)
+                    foreach (var key in logEventParameter.Properties.Keys)
                     {
-                        logEventParameter.Properties.Remove(propertyItem.Key);
-                        logEventParameter.Properties.Add(propertyItem);
+                        logEvent.Properties.Add(key, logEventParameter.Properties[key]);
                     }
+                    logEventParameter.Properties.Clear();
                 }
             }
         }

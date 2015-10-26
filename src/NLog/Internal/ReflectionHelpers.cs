@@ -84,5 +84,18 @@ namespace NLog.Internal
 			}
 #endif
 		}
-	}
+
+        /// <summary>
+        /// Is this a static class?
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        /// <remarks>This is a work around, as Type doesn't have this property. 
+        /// From: http://stackoverflow.com/questions/1175888/determine-if-a-type-is-static
+        /// </remarks>
+        public static bool IsStaticClass(this Type type)
+        {
+            return type.IsClass && type.IsAbstract && type.IsSealed;
+	    }
+    }
 }

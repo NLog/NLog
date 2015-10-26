@@ -92,6 +92,10 @@ namespace MakeNLogXSD
                     case "layout":
                         baseType = "Layout";
                         break;
+
+                    case "time-source":
+                        baseType = "TimeSource";
+                        break;
                 }
 
                 if (baseType == null)
@@ -280,6 +284,9 @@ namespace MakeNLogXSD
 
                 case "Condition":
                     return "Condition";
+
+                case "LineEndingMode":
+                    return "LineEndingMode";
 
                 case "String":
                     return "xs:string";

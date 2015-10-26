@@ -450,6 +450,8 @@ namespace NLog.UnitTests.Config
                         typeProperty='System.Int32'
                         layoutProperty='${level}'
                         conditionProperty=""starts-with(message, 'x')""
+                        uriProperty='http://nlog-project.org'
+                        lineEndingModeProperty='default'
                         />
                 </targets>
             </nlog>");
@@ -471,6 +473,8 @@ namespace NLog.UnitTests.Config
             Assert.Equal(typeof(int), myTarget.TypeProperty);
             Assert.Equal("'${level}'", myTarget.LayoutProperty.ToString());
             Assert.Equal("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
+            Assert.Equal(new Uri("http://nlog-project.org"), myTarget.UriProperty);
+            Assert.Equal(LineEndingMode.Default, myTarget.LineEndingModeProperty);
         }
 
         [Fact]
@@ -554,6 +558,10 @@ namespace NLog.UnitTests.Config
             public Layout LayoutProperty { get; set; }
 
             public ConditionExpression ConditionProperty { get; set; }
+
+            public Uri UriProperty { get; set; }
+
+            public LineEndingMode LineEndingModeProperty { get; set; }
         }
 
 

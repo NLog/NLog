@@ -68,26 +68,25 @@ namespace NLog.Config
         /// and methods marked with <typeparamref name="TMethodAttributeType"/> and adds them 
         /// to the factory.
         /// </summary>
-        /// <param name="theAssembly">The assembly.</param>
+        /// <param name="types">The types to scan.</param>
         /// <param name="prefix">The prefix to use for names.</param>
-        public void ScanAssembly(Assembly theAssembly, string prefix)
+        public void ScanTypes(Type[] types, string prefix)
         {
-            try
+            foreach (Type t in types)
             {
-                InternalLogger.Debug("ScanAssembly('{0}','{1}','{2}')", theAssembly.FullName, typeof(TClassAttributeType), typeof(TMethodAttributeType));
-                foreach (Type t in theAssembly.SafeGetTypes())
+                try
                 {
                     this.RegisterType(t, prefix);
                 }
-            }
-            catch (Exception exception)
-            {
-                if (exception.MustBeRethrown())
+                catch (Exception exception)
                 {
-                    throw;
-                }
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
 
-                InternalLogger.Error("Failed to add targets from '" + theAssembly.FullName + "': {0}", exception);
+                    InternalLogger.Error("Failed to add type '" + t.FullName + "': {0}", exception);
+                }
             }
         }
 

@@ -31,6 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO;
+using System.Linq;
+using NLog.Common;
+
 namespace NLog.Config
 {
     using System;
@@ -49,6 +53,8 @@ namespace NLog.Config
     /// </summary>
     public class ConfigurationItemFactory
     {
+        private static ConfigurationItemFactory defaultInstance = null;
+
         private readonly IList<object> allFactories;
         private readonly Factory<Target, TargetAttribute> targets;
         private readonly Factory<Filter, FilterAttribute> filters;
@@ -57,15 +63,7 @@ namespace NLog.Config
         private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> conditionMethods;
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties;
         private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
-
-        /// <summary>
-        /// Initializes static members of the <see cref="ConfigurationItemFactory"/> class.
-        /// </summary>
-        static ConfigurationItemFactory()
-        {
-            Default = BuildDefaultFactory();
-        }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
@@ -100,7 +98,20 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets default singleton instance of <see cref="ConfigurationItemFactory"/>.
         /// </summary>
-        public static ConfigurationItemFactory Default { get; set; }
+        /// <remarks>
+        /// This property implements lazy instantiation so that the <see cref="ConfigurationItemFactory"/> is not built before 
+        /// the internal logger is configured.
+        /// </remarks>
+        public static ConfigurationItemFactory Default
+        {
+            get
+            {
+                if (defaultInstance == null)
+                    defaultInstance = BuildDefaultFactory();
+                return defaultInstance;
+            }
+            set { defaultInstance = value; }
+        }
 
         /// <summary>
         /// Gets or sets the creator delegate used to instantiate configuration objects.
@@ -189,9 +200,11 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">Item name prefix.</param>
         public void RegisterItemsFromAssembly(Assembly assembly, string itemNamePrefix)
         {
+            InternalLogger.Debug("ScanAssembly('{0}')", assembly.FullName);
+            var typesToScan = assembly.SafeGetTypes();
             foreach (IFactory f in this.allFactories)
             {
-                f.ScanAssembly(assembly, itemNamePrefix);
+                f.ScanTypes(typesToScan, itemNamePrefix);
             }
         }
 
@@ -225,8 +238,49 @@ namespace NLog.Config
         /// <returns>Default factory.</returns>
         private static ConfigurationItemFactory BuildDefaultFactory()
         {
-            var factory = new ConfigurationItemFactory(typeof(Logger).Assembly);
+            var nlogAssembly = typeof(ILogger).Assembly;
+            var factory = new ConfigurationItemFactory(nlogAssembly);
             factory.RegisterExtendedItems();
+#if !SILVERLIGHT
+
+            var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.CodeBase).LocalPath);
+            if (assemblyLocation == null)
+            {
+                InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
+                return factory;
+            }
+
+            var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
+                .Select(Path.GetFileName)
+                .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
+                .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
+                .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
+                .Select(x => Path.Combine(assemblyLocation, x));
+
+            InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
+            foreach (var extensionDll in extensionDlls)
+            {
+                InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
+                var success = false;
+                try
+                {
+                    var extensionAssembly = Assembly.LoadFrom(extensionDll);
+                    InternalLogger.LogAssemblyVersion(extensionAssembly);
+                    factory.RegisterItemsFromAssembly(extensionAssembly);
+                    success = true;
+                }
+                catch (Exception)
+                {
+                    InternalLogger.Warn("Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
+                }
+                if (success)
+                {
+                    InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
+                }
+
+            }
+            InternalLogger.Debug("Auto loading done");
+#endif
 
             return factory;
         }
@@ -236,7 +290,7 @@ namespace NLog.Config
         /// </summary>
         private void RegisterExtendedItems()
         {
-            string suffix = typeof(Logger).AssemblyQualifiedName;
+            string suffix = typeof(ILogger).AssemblyQualifiedName;
             string myAssemblyName = "NLog,";
             string extendedAssemblyName = "NLog.Extended,";
             int p = suffix.IndexOf(myAssemblyName, StringComparison.OrdinalIgnoreCase);

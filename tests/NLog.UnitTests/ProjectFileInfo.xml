@@ -33,6 +33,15 @@
         <FileSet Include="AllContentFiles" />
      </ItemGroup>
    </Project>
+   
+   <Project File="NLog.UnitTests.sl5.csproj">
+     <ItemGroup Name="Compile">
+        <FileSet Include="AllFilesToCompile" />
+     </ItemGroup>
+     <ItemGroup Name="Content">
+        <FileSet Include="AllContentFiles" />
+     </ItemGroup>
+   </Project>
 
    <Project File="NLog.UnitTests.netfx35.csproj">
      <ItemGroup Name="Compile">
@@ -61,7 +70,7 @@
      </ItemGroup>
    </Project>
 
-   <Project File="NLog.UnitTests.monodevelop.csproj">
+   <Project File="NLog.UnitTests.mono.csproj">
      <ItemGroup Name="Compile">
         <FileSet Include="AllFilesToCompile" />
      </ItemGroup>

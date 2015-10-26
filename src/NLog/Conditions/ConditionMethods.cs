@@ -39,7 +39,7 @@ namespace NLog.Conditions
 
     /// <summary>
     /// A bunch of utility methods (mostly predicates) which can be used in
-    /// condition expressions. Parially inspired by XPath 1.0.
+    /// condition expressions. Partially inspired by XPath 1.0.
     /// </summary>
     [ConditionMethods]
     public static class ConditionMethods

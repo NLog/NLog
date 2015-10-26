@@ -40,7 +40,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Causes a flush after each write on a wrapped target.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/AutoFlushWrapper_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/AutoFlushWrapper-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <p>
     /// To set up the target in the <a href="config.html">configuration file</a>, 

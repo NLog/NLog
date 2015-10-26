@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog
 {
     using System;
@@ -56,6 +58,17 @@ namespace NLog
         /// <param name="message">The message.</param>
         public NLogRuntimeException(string message)
             : base(message)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NLogRuntimeException" /> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="messageParameters">Parameters for the message</param>
+        [StringFormatMethod("message")]
+        public NLogRuntimeException(string message, params object[] messageParameters)
+            : base(string.Format(message, messageParameters))
         {
         }
 

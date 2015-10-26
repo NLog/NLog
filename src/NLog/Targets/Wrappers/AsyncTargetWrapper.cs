@@ -43,7 +43,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Provides asynchronous, buffered execution of target writes.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/AsyncWrapper_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/AsyncWrapper-target">Documentation on NLog Wiki</seealso>
     /// <remarks>
     /// <p>
     /// Asynchronous target wrapper allows the logger code to execute more quickly, by queueing

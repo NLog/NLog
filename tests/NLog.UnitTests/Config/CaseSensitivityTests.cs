@@ -56,7 +56,7 @@ namespace NLog.UnitTests.Config
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             logger.Info("msg");
             logger.Warn("msg");
@@ -93,7 +93,7 @@ namespace NLog.UnitTests.Config
                 </RULES>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("msg");
             logger.Info("msg");
             logger.Warn("msg");

@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
     using System.Text;
     using NLog.Config;
 
@@ -57,8 +58,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string msg = MappedDiagnosticsContext.Get(this.Item);
-            builder.Append(msg);
+            builder.Append(MappedDiagnosticsContext.Get(this.Item, logEvent.FormatProvider));
         }
     }
 }

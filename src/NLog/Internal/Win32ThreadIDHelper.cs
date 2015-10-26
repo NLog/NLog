@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -41,7 +41,6 @@ namespace NLog.Internal
     using System.Runtime.InteropServices;
     using System.Security;
     using System.Text;
-    using System.Threading;
 
     /// <summary>
     /// Win32-optimized implementation of <see cref="ThreadIDHelper"/>.
@@ -74,15 +73,6 @@ namespace NLog.Internal
 
         /// <summary>
         /// Gets current thread ID.
-        /// </summary>
-        /// <value></value>
-        public override int CurrentThreadID
-        {
-            get { return Thread.CurrentThread.ManagedThreadId; }
-        }
-
-        /// <summary>
-        /// Gets current process ID.
         /// </summary>
         /// <value></value>
         public override int CurrentProcessID

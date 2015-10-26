@@ -67,11 +67,6 @@ namespace NLog.Internal
         /// <summary>
         /// Gets current thread ID.
         /// </summary>
-        public abstract int CurrentThreadID { get; }
-
-        /// <summary>
-        /// Gets current process ID.
-        /// </summary>
         public abstract int CurrentProcessID { get; }
 
         /// <summary>

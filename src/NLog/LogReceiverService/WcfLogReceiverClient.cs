@@ -31,170 +31,159 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Net;
+
 #if WCF_SUPPORTED
 
 namespace NLog.LogReceiverService
 {
+    using System.ServiceModel.Description;
     using System;
     using System.ComponentModel;
-    using System.Net;
     using System.ServiceModel;
     using System.ServiceModel.Channels;
 
+
     /// <summary>
-    /// Log Receiver Client using WCF.
+    /// Log Receiver Client facade. It allows the use either of the one way or two way 
+    /// service contract using WCF through its unified interface.
     /// </summary>
-    public sealed class WcfLogReceiverClient : ClientBase<ILogReceiverClient>, ILogReceiverClient
+    /// <remarks>
+    /// Delegating methods are generated with Resharper.
+    /// 1. change ProxiedClient to private field (instead of public property)
+    /// 2. delegate members
+    /// 3. change ProxiedClient back to public property.
+    /// 
+    /// </remarks>
+    public sealed class WcfLogReceiverClient : IWcfLogReceiverClient
     {
         /// <summary>
+        /// The client getting proxied
+        /// </summary>
+        public IWcfLogReceiverClient ProxiedClient { get; private set; }
+
+        /// <summary>
+        /// Do we use one-way or two-way messaging?
+        /// </summary>
+        public bool UseOneWay { get; private set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="WcfLogReceiverClient"/> class.
         /// </summary>
-        public WcfLogReceiverClient()
+        /// <param name="useOneWay">Whether to use the one way or two way WCF client.</param>
+        public WcfLogReceiverClient(bool useOneWay)
         {
+            UseOneWay = useOneWay;
+            ProxiedClient = useOneWay ? (IWcfLogReceiverClient)new WcfLogReceiverOneWayClient() : new WcfLogReceiverTwoWayClient();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WcfLogReceiverClient"/> class.
         /// </summary>
+        /// <param name="useOneWay">Whether to use the one way or two way WCF client.</param>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
-        public WcfLogReceiverClient(string endpointConfigurationName) :
-            base(endpointConfigurationName)
+        public WcfLogReceiverClient(bool useOneWay, string endpointConfigurationName)
         {
+            UseOneWay = useOneWay;
+            ProxiedClient = useOneWay ? (IWcfLogReceiverClient)new WcfLogReceiverOneWayClient(endpointConfigurationName) : new WcfLogReceiverTwoWayClient(endpointConfigurationName);
+
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WcfLogReceiverClient"/> class.
         /// </summary>
+        /// <param name="useOneWay">Whether to use the one way or two way WCF client.</param>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        public WcfLogReceiverClient(string endpointConfigurationName, string remoteAddress) :
-            base(endpointConfigurationName, remoteAddress)
+        public WcfLogReceiverClient(bool useOneWay, string endpointConfigurationName, string remoteAddress)
         {
+            UseOneWay = useOneWay;
+            ProxiedClient = useOneWay ? (IWcfLogReceiverClient)new WcfLogReceiverOneWayClient(endpointConfigurationName, remoteAddress) : new WcfLogReceiverTwoWayClient(endpointConfigurationName, remoteAddress);
+
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WcfLogReceiverClient"/> class.
         /// </summary>
+        /// <param name="useOneWay">Whether to use the one way or two way WCF client.</param>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        public WcfLogReceiverClient(string endpointConfigurationName, EndpointAddress remoteAddress) :
-            base(endpointConfigurationName, remoteAddress)
+        public WcfLogReceiverClient(bool useOneWay, string endpointConfigurationName, EndpointAddress remoteAddress)
         {
+            UseOneWay = useOneWay;
+            ProxiedClient = useOneWay ? (IWcfLogReceiverClient)new WcfLogReceiverOneWayClient(endpointConfigurationName, remoteAddress) : new WcfLogReceiverTwoWayClient(endpointConfigurationName, remoteAddress);
+
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WcfLogReceiverClient"/> class.
         /// </summary>
+        /// <param name="useOneWay">Whether to use the one way or two way WCF client.</param>
         /// <param name="binding">The binding.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        public WcfLogReceiverClient(Binding binding, EndpointAddress remoteAddress) :
-            base(binding, remoteAddress)
+        public WcfLogReceiverClient(bool useOneWay, Binding binding, EndpointAddress remoteAddress)
         {
+            UseOneWay = useOneWay;
+            ProxiedClient = useOneWay ? (IWcfLogReceiverClient)new WcfLogReceiverOneWayClient(binding, remoteAddress) : new WcfLogReceiverTwoWayClient(binding, remoteAddress);
+
+        }
+
+        #region delegating
+
+        /// <summary>
+        /// Causes a communication object to transition immediately from its current state into the closed state.  
+        /// </summary>
+        public void Abort()
+        {
+            ProxiedClient.Abort();
         }
 
         /// <summary>
-        /// Occurs when the log message processing has completed.
+        /// Begins an asynchronous operation to close a communication object.
         /// </summary>
-        public event EventHandler<AsyncCompletedEventArgs> ProcessLogMessagesCompleted;
-
-        /// <summary>
-        /// Occurs when Open operation has completed.
-        /// </summary>
-        public event EventHandler<AsyncCompletedEventArgs> OpenCompleted;
-
-        /// <summary>
-        /// Occurs when Close operation has completed.
-        /// </summary>
-        public event EventHandler<AsyncCompletedEventArgs> CloseCompleted;
-
-#if SILVERLIGHT
-        /// <summary>
-        /// Gets or sets the cookie container.
-        /// </summary>
-        /// <value>The cookie container.</value>
-        public CookieContainer CookieContainer
+        /// <returns>
+        /// The <see cref="T:System.IAsyncResult"/> that references the asynchronous close operation. 
+        /// </returns>
+        /// <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate that receives notification of the completion of the asynchronous close operation.</param><param name="state">An object, specified by the application, that contains state information associated with the asynchronous close operation.</param><exception cref="T:System.ServiceModel.CommunicationObjectFaultedException"><see cref="M:System.ServiceModel.ICommunicationObject.BeginClose"/> was called on an object in the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception><exception cref="T:System.TimeoutException">The default timeout elapsed before the <see cref="T:System.ServiceModel.ICommunicationObject"/> was able to close gracefully.</exception>
+        public IAsyncResult BeginClose(AsyncCallback callback, object state)
         {
-            get
-            {
-                var httpCookieContainerManager = this.InnerChannel.GetProperty<IHttpCookieContainerManager>();
-                if (httpCookieContainerManager != null)
-                {
-                    return httpCookieContainerManager.CookieContainer;
-                }
-
-                return null;
-            }
-            set
-            {
-                var httpCookieContainerManager = this.InnerChannel.GetProperty<IHttpCookieContainerManager>();
-                if (httpCookieContainerManager != null)
-                {
-                    httpCookieContainerManager.CookieContainer = value;
-                }
-                else
-                {
-                    throw new InvalidOperationException("Unable to set the CookieContainer. Please make sure the binding contains an HttpCookieContainerBindingElement.");
-                }
-            }
-        }
-#endif
-
-        /// <summary>
-        /// Opens the client asynchronously.
-        /// </summary>
-        public void OpenAsync()
-        {
-            this.OpenAsync(null);
+            return ProxiedClient.BeginClose(callback, state);
         }
 
         /// <summary>
-        /// Opens the client asynchronously.
+        /// Begins an asynchronous operation to close a communication object with a specified timeout.
         /// </summary>
-        /// <param name="userState">User-specific state.</param>
-        public void OpenAsync(object userState)
+        /// <returns>
+        /// The <see cref="T:System.IAsyncResult"/> that references the asynchronous close operation.
+        /// </returns>
+        /// <param name="timeout">The <see cref="T:System.Timespan"/> that specifies how long the send operation has to complete before timing out.</param><param name="callback">The <see cref="T:System.AsyncCallback"/> delegate that receives notification of the completion of the asynchronous close operation.</param><param name="state">An object, specified by the application, that contains state information associated with the asynchronous close operation.</param><exception cref="T:System.ServiceModel.CommunicationObjectFaultedException"><see cref="M:System.ServiceModel.ICommunicationObject.BeginClose"/> was called on an object in the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception><exception cref="T:System.TimeoutException">The specified timeout elapsed before the <see cref="T:System.ServiceModel.ICommunicationObject"/> was able to close gracefully.</exception>
+        public IAsyncResult BeginClose(TimeSpan timeout, AsyncCallback callback, object state)
         {
-            this.InvokeAsync(this.OnBeginOpen, null, this.OnEndOpen, this.OnOpenCompleted, userState);
+            return ProxiedClient.BeginClose(timeout, callback, state);
         }
 
         /// <summary>
-        /// Closes the client asynchronously.
+        /// Begins an asynchronous operation to open a communication object.
         /// </summary>
-        public void CloseAsync()
+        /// <returns>
+        /// The <see cref="T:System.IAsyncResult"/> that references the asynchronous open operation. 
+        /// </returns>
+        /// <param name="callback">The <see cref="T:System.AsyncCallback"/> delegate that receives notification of the completion of the asynchronous open operation.</param><param name="state">An object, specified by the application, that contains state information associated with the asynchronous open operation.</param><exception cref="T:System.ServiceModel.CommunicationException">The <see cref="T:System.ServiceModel.ICommunicationObject"/> was unable to be opened and has entered the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception><exception cref="T:System.TimeoutException">The default open timeout elapsed before the <see cref="T:System.ServiceModel.ICommunicationObject"/> was able to enter the <see cref="F:System.ServiceModel.CommunicationState.Opened"/> state and has entered the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception>
+        public IAsyncResult BeginOpen(AsyncCallback callback, object state)
         {
-            this.CloseAsync(null);
+            return ProxiedClient.BeginOpen(callback, state);
         }
 
         /// <summary>
-        /// Closes the client asynchronously.
+        /// Begins an asynchronous operation to open a communication object within a specified interval of time.
         /// </summary>
-        /// <param name="userState">User-specific state.</param>
-        public void CloseAsync(object userState)
+        /// <returns>
+        /// The <see cref="T:System.IAsyncResult"/> that references the asynchronous open operation. 
+        /// </returns>
+        /// <param name="timeout">The <see cref="T:System.Timespan"/> that specifies how long the send operation has to complete before timing out.</param><param name="callback">The <see cref="T:System.AsyncCallback"/> delegate that receives notification of the completion of the asynchronous open operation.</param><param name="state">An object, specified by the application, that contains state information associated with the asynchronous open operation.</param><exception cref="T:System.ServiceModel.CommunicationException">The <see cref="T:System.ServiceModel.ICommunicationObject"/> was unable to be opened and has entered the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception><exception cref="T:System.TimeoutException">The specified timeout elapsed before the <see cref="T:System.ServiceModel.ICommunicationObject"/> was able to enter the <see cref="F:System.ServiceModel.CommunicationState.Opened"/> state and has entered the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception>
+        public IAsyncResult BeginOpen(TimeSpan timeout, AsyncCallback callback, object state)
         {
-            this.InvokeAsync(this.OnBeginClose, null, this.OnEndClose, this.OnCloseCompleted, userState);
-        }
-
-        /// <summary>
-        /// Processes the log messages asynchronously.
-        /// </summary>
-        /// <param name="events">The events to send.</param>
-        public void ProcessLogMessagesAsync(NLogEvents events)
-        {
-            this.ProcessLogMessagesAsync(events, null);
-        }
-
-        /// <summary>
-        /// Processes the log messages asynchronously.
-        /// </summary>
-        /// <param name="events">The events to send.</param>
-        /// <param name="userState">User-specific state.</param>
-        public void ProcessLogMessagesAsync(NLogEvents events, object userState)
-        {
-            this.InvokeAsync(
-                this.OnBeginProcessLogMessages,
-                new object[] { events },
-                this.OnEndProcessLogMessages,
-                this.OnProcessLogMessagesCompleted,
-                userState);
+            return ProxiedClient.BeginOpen(timeout, callback, state);
         }
 
         /// <summary>
@@ -204,126 +193,274 @@ namespace NLog.LogReceiverService
         /// <param name="callback">The callback.</param>
         /// <param name="asyncState">Asynchronous state.</param>
         /// <returns>
-        /// IAsyncResult value which can be passed to <see cref="ILogReceiverClient.EndProcessLogMessages"/>.
+        /// IAsyncResult value which can be passed to <see cref="ILogReceiverOneWayClient.EndProcessLogMessages"/>.
         /// </returns>
-        IAsyncResult ILogReceiverClient.BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState)
+        public IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState)
         {
-            return this.Channel.BeginProcessLogMessages(events, callback, asyncState);
+            return ProxiedClient.BeginProcessLogMessages(events, callback, asyncState);
+        }
+
+        /// <summary>
+        /// Enables the user to configure client and service credentials as well as service credential authentication settings for use on the client side of communication.
+        /// </summary>
+        public ClientCredentials ClientCredentials
+        {
+            get { return ProxiedClient.ClientCredentials; }
+        }
+
+
+
+        /// <summary>
+        /// Causes a communication object to transition from its current state into the closed state.  
+        /// </summary>
+        /// <param name="timeout">The <see cref="T:System.Timespan"/> that specifies how long the send operation has to complete before timing out.</param><exception cref="T:System.ServiceModel.CommunicationObjectFaultedException"><see cref="M:System.ServiceModel.ICommunicationObject.Close"/> was called on an object in the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception><exception cref="T:System.TimeoutException">The timeout elapsed before the <see cref="T:System.ServiceModel.ICommunicationObject"/> was able to close gracefully.</exception>
+        public void Close(TimeSpan timeout)
+        {
+            ProxiedClient.Close(timeout);
+        }
+
+        /// <summary>
+        /// Causes a communication object to transition from its current state into the closed state.  
+        /// </summary>
+        /// <exception cref="T:System.ServiceModel.CommunicationObjectFaultedException"><see cref="M:System.ServiceModel.ICommunicationObject.Close"/> was called on an object in the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception><exception cref="T:System.TimeoutException">The default close timeout elapsed before the <see cref="T:System.ServiceModel.ICommunicationObject"/> was able to close gracefully.</exception>
+        public void Close()
+        {
+            ProxiedClient.Close();
+        }
+
+        /// <summary>
+        /// Closes the client asynchronously.
+        /// </summary>
+        /// <param name="userState">User-specific state.</param>
+        public void CloseAsync(object userState)
+        {
+            ProxiedClient.CloseAsync(userState);
+        }
+
+        /// <summary>
+        /// Closes the client asynchronously.
+        /// </summary>
+        public void CloseAsync()
+        {
+            ProxiedClient.CloseAsync();
+        }
+
+        /// <summary>
+        /// Occurs when Close operation has completed.
+        /// </summary>
+        public event EventHandler<AsyncCompletedEventArgs> CloseCompleted
+        {
+            add { ProxiedClient.CloseCompleted += value; }
+            remove { ProxiedClient.CloseCompleted -= value; }
+        }
+
+        /// <summary>
+        /// Occurs when the communication object completes its transition from the closing state into the closed state.
+        /// </summary>
+        public event EventHandler Closed
+        {
+            add { ProxiedClient.Closed += value; }
+            remove { ProxiedClient.Closed -= value; }
+        }
+
+        /// <summary>
+        /// Occurs when the communication object first enters the closing state.
+        /// </summary>
+        public event EventHandler Closing
+        {
+            add { ProxiedClient.Closing += value; }
+            remove { ProxiedClient.Closing -= value; }
+        }
+
+#if !SILVERLIGHT
+
+        /// <summary>
+        /// Instructs the inner channel to display a user interface if one is required to initialize the channel prior to using it.
+        /// </summary>
+        public void DisplayInitializationUI()
+        {
+            ProxiedClient.DisplayInitializationUI();
+        }
+
+#endif
+
+#if !NET4_0 && !NET3_5
+        /// <summary>
+        /// Gets or sets the cookie container.
+        /// </summary>
+        /// <value>The cookie container.</value>
+        public CookieContainer CookieContainer
+        {
+            get { return ProxiedClient.CookieContainer; }
+            set { ProxiedClient.CookieContainer = value; }
+        }
+
+#endif
+
+
+        /// <summary>
+        /// Completes an asynchronous operation to close a communication object.
+        /// </summary>
+        /// <param name="result">The <see cref="T:System.IAsyncResult"/> that is returned by a call to the <see cref="M:System.ServiceModel.ICommunicationObject.BeginClose"/> method.</param><exception cref="T:System.ServiceModel.CommunicationObjectFaultedException"><see cref="M:System.ServiceModel.ICommunicationObject.BeginClose"/> was called on an object in the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception><exception cref="T:System.TimeoutException">The timeout elapsed before the <see cref="T:System.ServiceModel.ICommunicationObject"/> was able to close gracefully.</exception>
+        public void EndClose(IAsyncResult result)
+        {
+            ProxiedClient.EndClose(result);
+        }
+
+        /// <summary>
+        /// Completes an asynchronous operation to open a communication object.
+        /// </summary>
+        /// <param name="result">The <see cref="T:System.IAsyncResult"/> that is returned by a call to the <see cref="M:System.ServiceModel.ICommunicationObject.BeginOpen"/> method.</param><exception cref="T:System.ServiceModel.CommunicationException">The <see cref="T:System.ServiceModel.ICommunicationObject"/> was unable to be opened and has entered the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception><exception cref="T:System.TimeoutException">The timeout elapsed before the <see cref="T:System.ServiceModel.ICommunicationObject"/> was able to enter the <see cref="F:System.ServiceModel.CommunicationState.Opened"/> state and has entered the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception>
+        public void EndOpen(IAsyncResult result)
+        {
+            ProxiedClient.EndOpen(result);
+        }
+
+        /// <summary>
+        /// Gets the target endpoint for the service to which the WCF client can connect.
+        /// </summary>
+        public ServiceEndpoint Endpoint
+        {
+            get { return ProxiedClient.Endpoint; }
         }
 
         /// <summary>
         /// Ends asynchronous processing of log messages.
         /// </summary>
         /// <param name="result">The result.</param>
-        void ILogReceiverClient.EndProcessLogMessages(IAsyncResult result)
+        public void EndProcessLogMessages(IAsyncResult result)
         {
-            this.Channel.EndProcessLogMessages(result);
+            ProxiedClient.EndProcessLogMessages(result);
         }
 
-#if SILVERLIGHT
         /// <summary>
-        /// Returns a new channel from the client to the service.
+        /// Occurs when the communication object first enters the faulted state.
+        /// </summary>
+        public event EventHandler Faulted
+        {
+            add { ProxiedClient.Faulted += value; }
+            remove { ProxiedClient.Faulted -= value; }
+        }
+
+        /// <summary>
+        /// Gets the underlying <see cref="IClientChannel"/> implementation.
+        /// </summary>
+        public IClientChannel InnerChannel
+        {
+            get { return ProxiedClient.InnerChannel; }
+        }
+
+        /// <summary>
+        /// Causes a communication object to transition from the created state into the opened state.  
+        /// </summary>
+        /// <exception cref="T:System.ServiceModel.CommunicationException">The <see cref="T:System.ServiceModel.ICommunicationObject"/> was unable to be opened and has entered the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception><exception cref="T:System.TimeoutException">The default open timeout elapsed before the <see cref="T:System.ServiceModel.ICommunicationObject"/> was able to enter the <see cref="F:System.ServiceModel.CommunicationState.Opened"/> state and has entered the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception>
+        public void Open()
+        {
+            ProxiedClient.Open();
+        }
+
+        /// <summary>
+        /// Causes a communication object to transition from the created state into the opened state within a specified interval of time.
+        /// </summary>
+        /// <param name="timeout">The <see cref="T:System.Timespan"/> that specifies how long the send operation has to complete before timing out.</param><exception cref="T:System.ServiceModel.CommunicationException">The <see cref="T:System.ServiceModel.ICommunicationObject"/> was unable to be opened and has entered the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception><exception cref="T:System.TimeoutException">The specified timeout elapsed before the <see cref="T:System.ServiceModel.ICommunicationObject"/> was able to enter the <see cref="F:System.ServiceModel.CommunicationState.Opened"/> state and has entered the <see cref="F:System.ServiceModel.CommunicationState.Faulted"/> state.</exception>
+        public void Open(TimeSpan timeout)
+        {
+            ProxiedClient.Open(timeout);
+        }
+
+        /// <summary>
+        /// Opens the client asynchronously.
+        /// </summary>
+        public void OpenAsync()
+        {
+            ProxiedClient.OpenAsync();
+        }
+
+        /// <summary>
+        /// Opens the client asynchronously.
+        /// </summary>
+        /// <param name="userState">User-specific state.</param>
+        public void OpenAsync(object userState)
+        {
+            ProxiedClient.OpenAsync(userState);
+        }
+
+        /// <summary>
+        /// Occurs when Open operation has completed.
+        /// </summary>
+        public event EventHandler<AsyncCompletedEventArgs> OpenCompleted
+        {
+            add { ProxiedClient.OpenCompleted += value; }
+            remove { ProxiedClient.OpenCompleted -= value; }
+        }
+
+        /// <summary>
+        /// Occurs when the communication object completes its transition from the opening state into the opened state.
+        /// </summary>
+        public event EventHandler Opened
+        {
+            add { ProxiedClient.Opened += value; }
+            remove { ProxiedClient.Opened -= value; }
+        }
+
+        /// <summary>
+        /// Occurs when the communication object first enters the opening state.
+        /// </summary>
+        public event EventHandler Opening
+        {
+            add { ProxiedClient.Opening += value; }
+            remove { ProxiedClient.Opening -= value; }
+        }
+
+        /// <summary>
+        /// Processes the log messages asynchronously.
+        /// </summary>
+        /// <param name="events">The events to send.</param>
+        public void ProcessLogMessagesAsync(NLogEvents events)
+        {
+            ProxiedClient.ProcessLogMessagesAsync(events);
+        }
+
+        /// <summary>
+        /// Processes the log messages asynchronously.
+        /// </summary>
+        /// <param name="events">The events to send.</param>
+        /// <param name="userState">User-specific state.</param>
+        public void ProcessLogMessagesAsync(NLogEvents events, object userState)
+        {
+            ProxiedClient.ProcessLogMessagesAsync(events, userState);
+        }
+
+        /// <summary>
+        /// Occurs when the log message processing has completed.
+        /// </summary>
+        public event EventHandler<AsyncCompletedEventArgs> ProcessLogMessagesCompleted
+        {
+            add { ProxiedClient.ProcessLogMessagesCompleted += value; }
+            remove { ProxiedClient.ProcessLogMessagesCompleted -= value; }
+        }
+
+        /// <summary>
+        /// Gets the current state of the communication-oriented object.
         /// </summary>
         /// <returns>
-        /// A channel of type <see cref="ILogReceiverClient"/> that identifies the type 
-        /// of service contract encapsulated by this client object (proxy).
+        /// The value of the <see cref="T:System.ServiceModel.CommunicationState"/> of the object.
         /// </returns>
-        protected override ILogReceiverClient CreateChannel()
+        public CommunicationState State
         {
-            return new LogReceiverServerClientChannel(this);
-        }
-#endif
-
-        private IAsyncResult OnBeginProcessLogMessages(object[] inValues, AsyncCallback callback, object asyncState)
-        {
-            var events = (NLogEvents)inValues[0];
-            return ((ILogReceiverClient)this).BeginProcessLogMessages(events, callback, asyncState);
+            get { return ProxiedClient.State; }
         }
 
-        private object[] OnEndProcessLogMessages(IAsyncResult result)
+        #endregion
+
+
+        /// <summary>
+        /// Causes a communication object to transition from its current state into the closed state.
+        /// </summary>
+        public void CloseCommunicationObject()
         {
-            ((ILogReceiverClient)this).EndProcessLogMessages(result);
-            return null;
+            ProxiedClient.Close();
         }
-
-        private void OnProcessLogMessagesCompleted(object state)
-        {
-            if (this.ProcessLogMessagesCompleted != null)
-            {
-                var e = (InvokeAsyncCompletedEventArgs)state;
-
-                this.ProcessLogMessagesCompleted(this, new AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-
-        private IAsyncResult OnBeginOpen(object[] inValues, AsyncCallback callback, object asyncState)
-        {
-            return ((ICommunicationObject)this).BeginOpen(callback, asyncState);
-        }
-
-        private object[] OnEndOpen(IAsyncResult result)
-        {
-            ((ICommunicationObject)this).EndOpen(result);
-            return null;
-        }
-
-        private void OnOpenCompleted(object state)
-        {
-            if (this.OpenCompleted != null)
-            {
-                var e = (InvokeAsyncCompletedEventArgs)state;
-
-                this.OpenCompleted(this, new AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-
-        private IAsyncResult OnBeginClose(object[] inValues, AsyncCallback callback, object asyncState)
-        {
-            return ((ICommunicationObject)this).BeginClose(callback, asyncState);
-        }
-
-        private object[] OnEndClose(IAsyncResult result)
-        {
-            ((ICommunicationObject)this).EndClose(result);
-            return null;
-        }
-
-        private void OnCloseCompleted(object state)
-        {
-            if (this.CloseCompleted != null)
-            {
-                var e = (InvokeAsyncCompletedEventArgs)state;
-
-                this.CloseCompleted(this, new AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-
-#if SILVERLIGHT
-        private class LogReceiverServerClientChannel : ChannelBase<ILogReceiverClient>, ILogReceiverClient
-        {
-            public LogReceiverServerClientChannel(ClientBase<ILogReceiverClient> client) :
-                base(client)
-            {
-            }
-
-            public IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState)
-            {
-                return this.BeginInvoke(
-                    "ProcessLogMessages", 
-                    new object[] { events }, 
-                    callback, 
-                    asyncState);
-            }
-
-            public void EndProcessLogMessages(IAsyncResult result)
-            {
-                this.EndInvoke(
-                    "ProcessLogMessages", 
-                    new object[] { }, 
-                    result);
-            }
-        }
-#endif
     }
 }
 

@@ -51,6 +51,15 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets the top NDC object but doesn't remove it.
+        /// </summary>
+        /// <returns>The object from the top of the NDC stack, if defined; otherwise <c>null</c>.</returns>
+        public static object TopObject 
+        {
+            get { return NestedDiagnosticsContext.TopObject; }
+        }
+
+        /// <summary>
         /// Pushes the specified text on current thread NDC.
         /// </summary>
         /// <param name="text">The text to be pushed.</param>
@@ -70,6 +79,15 @@ namespace NLog
         }
 
         /// <summary>
+        /// Pops the top object off the NDC stack. The object is removed from the stack.
+        /// </summary>
+        /// <returns>The top object from the NDC stack, if defined; otherwise <c>null</c>.</returns>
+        public static object PopObject()
+        {
+            return NestedDiagnosticsContext.PopObject();
+        }
+
+        /// <summary>
         /// Clears current thread NDC stack.
         /// </summary>
         public static void Clear()
@@ -84,6 +102,15 @@ namespace NLog
         public static string[] GetAllMessages()
         {
             return NestedDiagnosticsContext.GetAllMessages();
+        }
+
+        /// <summary>
+        /// Gets all objects on the NDC stack. The objects are not removed from the stack.
+        /// </summary>
+        /// <returns>Array of objects on the stack.</returns>
+        public static object[] GetAllObjects()
+        {
+            return NestedDiagnosticsContext.GetAllObjects();
         }
     }
 }

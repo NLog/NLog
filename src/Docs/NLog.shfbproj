@@ -11,7 +11,8 @@
     <NLogPath>$(MSBuildProjectDirectory)\..\..\</NLogPath>
     <WorkingPath>Working\</WorkingPath>
     <BuildLabel Condition="'$(BuildLabel)'==''"> (PrivateBuild)</BuildLabel>
-    <BuildLabel Condition="'$(BuildLabel)'=='(none)'"></BuildLabel>
+    <BuildLabel Condition="'$(BuildLabel)'=='(none)'">
+    </BuildLabel>
     <BuildVersion Condition="'$(BuildVersion)'==''">2.0.0.0</BuildVersion>
     <SHFBSchemaVersion>1.8.0.3</SHFBSchemaVersion>
     <SHFBROOT>$(MSBuildProjectDirectory)\..\..\Tools\SHFB</SHFBROOT>
@@ -36,8 +37,9 @@
       <DocumentationSource sourceFile="$(NLogBuildPath)\NLog.Extended.xml" xmlns="" />
     </DocumentationSources>
     <HelpTitle>NLog v$(BuildVersion)$(BuildLabel)</HelpTitle>
-    <CopyrightText>Copyright %28c%29 2004-2010 by Jaroslaw Kowalski</CopyrightText>
-    <FeedbackEMailAddress>feedback%40nlog-project.org</FeedbackEMailAddress>
+    <CopyrightText>Copyright %28c%29 2004-2015 by Kim Christensen</CopyrightText>
+    <FeedbackEMailAddress>
+    </FeedbackEMailAddress>
     <CopyrightHref>http://nlog-project.org/</CopyrightHref>
     <FrameworkVersion>2.0.50727</FrameworkVersion>
     <ComponentConfigurations>
@@ -65,7 +67,7 @@
         <Filter entryType="Class" fullName="System.Object" filterName="Object" isExposed="False" />
       </Filter>
     </ApiFilter>
-    <Preliminary>True</Preliminary>
+    <Preliminary>False</Preliminary>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="NLog" isDocumented="True" xmlns="">
         Contains classes used by instrumented application to output log messages.

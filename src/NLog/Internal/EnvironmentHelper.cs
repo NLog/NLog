@@ -33,7 +33,7 @@
 
 namespace NLog.Internal
 {
-    using Security;
+   
     using System;
     using System.Security;
 

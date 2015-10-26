@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Globalization;
 #if WCF_SUPPORTED
     using System.ServiceModel;
@@ -90,6 +91,12 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         public bool UseBinaryEncoding { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to use a WCF service contract that is one way (fire and forget) or two way (request-reply)
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        public bool UseOneWayContract { get; set; }
 #endif
 
         /// <summary>
@@ -158,7 +165,29 @@ namespace NLog.Targets
             this.Send(networkLogEvents, logEvents);
         }
 
-        private static int GetStringOrdinal(NLogEvents context, Dictionary<string, int> stringTable, string value)
+        /// <summary>
+        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            try
+            {
+                this.SendBufferedEvents();
+                asyncContinuation(null);
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                asyncContinuation(exception);
+            }
+        }
+
+        private static int AddValueAndGetStringOrdinal(NLogEvents context, Dictionary<string, int> stringTable, string value)
         {
             int stringIndex;
 
@@ -240,7 +269,7 @@ namespace NLog.Targets
             }
 
 #if WCF_SUPPORTED
-            var client = CreateWcfLogReceiverClient();
+            var client = CreateLogReceiver();
 
             client.ProcessLogMessagesCompleted += (sender, e) =>
                 {
@@ -311,6 +340,7 @@ namespace NLog.Targets
         /// service configuration - binding and endpoint address
         /// </summary>
         /// <returns></returns>
+        [Obsolete("Ths may be removed in a future release.  Use CreateLogReceiver.")]
         protected virtual WcfLogReceiverClient CreateWcfLogReceiverClient()
         {
             WcfLogReceiverClient client;
@@ -329,13 +359,42 @@ namespace NLog.Targets
                     binding = new BasicHttpBinding();
                 }
 
-                client = new WcfLogReceiverClient(binding, new EndpointAddress(this.EndpointAddress));
+                client = new WcfLogReceiverClient(UseOneWayContract, binding, new EndpointAddress(this.EndpointAddress));
             }
             else
             {
-                client = new WcfLogReceiverClient(this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
+                client = new WcfLogReceiverClient(UseOneWayContract, this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
             }
+
+            client.ProcessLogMessagesCompleted += ClientOnProcessLogMessagesCompleted;
+
             return client;
+        }
+
+        /// <summary>
+        /// Creating a new instance of IWcfLogReceiverClient
+        /// 
+        /// Inheritors can override this method and provide their own 
+        /// service configuration - binding and endpoint address
+        /// </summary>
+        /// <returns></returns>
+        protected IWcfLogReceiverClient CreateLogReceiver()
+        {
+#pragma warning disable 612, 618
+
+            return this.CreateWcfLogReceiverClient();
+
+#pragma warning restore 612, 618
+
+        }
+
+        private void ClientOnProcessLogMessagesCompleted(object sender, AsyncCompletedEventArgs asyncCompletedEventArgs)
+        {
+            var client = sender as WcfLogReceiverClient;
+            if (client != null && client.State == CommunicationState.Opened)
+            {
+                client.CloseCommunicationObject();
+            }
         }
 #endif
 
@@ -362,16 +421,16 @@ namespace NLog.Targets
         {
             var nlogEvent = new NLogEvent();
             nlogEvent.Id = eventInfo.SequenceID;
-            nlogEvent.MessageOrdinal = GetStringOrdinal(context, stringTable, eventInfo.FormattedMessage);
+            nlogEvent.MessageOrdinal = AddValueAndGetStringOrdinal(context, stringTable, eventInfo.FormattedMessage);
             nlogEvent.LevelOrdinal = eventInfo.Level.Ordinal;
-            nlogEvent.LoggerOrdinal = GetStringOrdinal(context, stringTable, eventInfo.LoggerName);
+            nlogEvent.LoggerOrdinal = AddValueAndGetStringOrdinal(context, stringTable, eventInfo.LoggerName);
             nlogEvent.TimeDelta = eventInfo.TimeStamp.ToUniversalTime().Ticks - context.BaseTimeUtc;
 
             for (int i = 0; i < this.Parameters.Count; ++i)
             {
                 var param = this.Parameters[i];
                 var value = param.Layout.Render(eventInfo);
-                int stringIndex = GetStringOrdinal(context, stringTable, value);
+                int stringIndex = AddValueAndGetStringOrdinal(context, stringTable, value);
 
                 nlogEvent.ValueIndexes.Add(stringIndex);
             }
@@ -391,9 +450,14 @@ namespace NLog.Targets
                     value = string.Empty;
                 }
 
-                int stringIndex = GetStringOrdinal(context, stringTable, value);
+                int stringIndex = AddValueAndGetStringOrdinal(context, stringTable, value);
                 nlogEvent.ValueIndexes.Add(stringIndex);
             }
+
+            if (eventInfo.Exception != null)
+            {
+            	nlogEvent.ValueIndexes.Add(AddValueAndGetStringOrdinal(context, stringTable, eventInfo.Exception.ToString()));
+        	}
 
             return nlogEvent;
         }

@@ -36,6 +36,7 @@
 namespace NLog.Targets
 {
     using System;
+    using System.Text;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
@@ -124,6 +125,16 @@ namespace NLog.Targets
         /// <docgen category='Highlighting Rules' order='9' />
         [DefaultValue(true)]
         public bool UseDefaultRowHighlightingRules { get; set; }
+
+        /// <summary>
+        /// Gets the row highlighting rules.
+        /// </summary>
+        /// <docgen category='Highlighting Rules' order='10' />
+        public Encoding Encoding
+        {
+            get { return Console.OutputEncoding; }
+            set { Console.OutputEncoding = value; }
+        }
 
         /// <summary>
         /// Gets the row highlighting rules.

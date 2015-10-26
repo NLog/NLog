@@ -47,9 +47,9 @@ namespace NLog
     {
         private static readonly object dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
 
-        internal static IDictionary<string, string> ThreadDictionary
+        internal static IDictionary<string, object> ThreadDictionary
         {
-            get { return ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, string>>(dataSlot); }
+            get { return ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(dataSlot); }
         }
 
         /// <summary>
@@ -63,34 +63,63 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the current thread MDC named item.
+        /// Sets the current thread MDC item to the specified value.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>The item value of string.Empty if the value is not present.</returns>
+        /// <param name="value">Item value.</param>
+        public static void Set(string item, object value)
+        {
+            ThreadDictionary[item] = value;
+        }
+
+        /// <summary>
+        /// Gets the current thread MDC named item, as <see cref="string"/>.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         public static string Get(string item)
         {
-            string s;
+            return Get(item, null);
+        }
 
-            if (!ThreadDictionary.TryGetValue(item, out s))
-            {
-                s = string.Empty;
-            }
+        /// <summary>
+        /// Gets the current thread MDC named item, as <see cref="string"/>.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        public static string Get(string item, IFormatProvider formatProvider)
+        {
+            return GlobalDiagnosticsContext.ConvertToString(GetObject(item), formatProvider);
+        }
 
-            return s;
+        /// <summary>
+        /// Gets the current thread MDC named item, as <see cref="object"/>.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
+        public static object GetObject(string item)
+        {
+            object o;
+
+            if (!ThreadDictionary.TryGetValue(item, out o))
+                o = null;
+
+            return o;
         }
 
         /// <summary>
         /// Checks whether the specified item exists in current thread MDC.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>A boolean indicating whether the specified item exists in current thread MDC.</returns>
+        /// <returns>A boolean indicating whether the specified <paramref name="item"/> exists in current thread MDC.</returns>
         public static bool Contains(string item)
         {
             return ThreadDictionary.ContainsKey(item);
         }
 
         /// <summary>
-        /// Removes the specified item from current thread MDC.
+        /// Removes the specified <paramref name="item"/> from current thread MDC.
         /// </summary>
         /// <param name="item">Item name.</param>
         public static void Remove(string item)

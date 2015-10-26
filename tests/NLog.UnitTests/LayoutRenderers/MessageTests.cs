@@ -54,7 +54,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "a");
             logger.Debug("a{0}", 1);
@@ -76,7 +76,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "  a");
             logger.Debug("a{0}", 1);
@@ -89,7 +89,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
 
         [Fact]
-        public void MessageFixedLengthRightPaddingTest()
+        public void MessageFixedLengthRightPaddingLeftAlignmentTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -99,7 +99,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "  a");
             logger.Debug("a{0}", 1);
@@ -108,6 +108,28 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "a12");
             logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
             AssertDebugLastMessage("debug", "a01");
+        }
+
+        [Fact]
+        public void MessageFixedLengthRightPaddingRightAlignmentTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message:padding=3:fixedlength=true:alignmentOnTruncation=right}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "  a");
+            logger.Debug("a{0}", 1);
+            AssertDebugLastMessage("debug", " a1");
+            logger.Debug("a{0}{1}", 1, "2");
+            AssertDebugLastMessage("debug", "a12");
+            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
+            AssertDebugLastMessage("debug", ":00");
         }
 
         [Fact]
@@ -121,7 +143,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "axx");
             logger.Debug("a{0}", 1);
@@ -133,7 +155,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void MessageFixedLengthLeftPaddingTest()
+        public void MessageFixedLengthLeftPaddingLeftAlignmentTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -143,7 +165,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "axx");
             logger.Debug("a{0}", 1);
@@ -155,17 +177,39 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void MessageWithExceptionTest()
+        public void MessageFixedLengthLeftPaddingRightAlignmentTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
+                <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x:fixedlength=true:alignmentOnTruncation=right}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "axx");
+            logger.Debug("a{0}", 1);
+            AssertDebugLastMessage("debug", "a1x");
+            logger.Debug("a{0}{1}", 1, "2");
+            AssertDebugLastMessage("debug", "a12");
+            logger.Debug(CultureInfo.InvariantCulture, "a{0}", new DateTime(2005, 1, 1));
+            AssertDebugLastMessage("debug", ":00");
+        }
+
+        [Fact]
+        public void MessageWithExceptionTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog exceptionLoggingOldStyle='true'>
                 <targets><target name='debug' type='Debug' layout='${message:withException=true}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "a");
 
@@ -183,7 +227,10 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
 #pragma warning restore 0618
 
-            logger.Debug("Foo", ex);
+            logger.Debug(ex, "Foo");
+            AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
+
+            logger.Debug( "Foo", ex);
             AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
         }
 
@@ -198,7 +245,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("A");
+            ILogger logger = LogManager.GetLogger("A");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "a");
 
@@ -209,7 +256,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "Foo," + ex.ToString());
 #pragma warning restore 0618
 
-            logger.Debug("Foo", ex);
+            logger.Debug(ex, "Foo");
             AssertDebugLastMessage("debug", "Foo," + ex.ToString());
         }
     }

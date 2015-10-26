@@ -32,13 +32,15 @@
 // 
 
 using System.Globalization;
+using System.Linq;
+using NLog.Layouts;
 
 namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Reflection;
+    using JetBrains.Annotations;
 
     using NLog.Common;
     using NLog.Internal;
@@ -56,11 +58,33 @@ namespace NLog.Config
         private object[] configItems;
 
         /// <summary>
+        /// Variables defined in xml or in API. name is case case insensitive. 
+        /// </summary>
+        private readonly Dictionary<string, SimpleLayout> variables = new Dictionary<string, SimpleLayout>(StringComparer.OrdinalIgnoreCase);
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
         /// </summary>
         public LoggingConfiguration()
         {
             this.LoggingRules = new List<LoggingRule>();
+        }
+
+        /// <summary>
+        /// Use the old exception log handling of NLog 3.0? 
+        /// </summary>
+        [Obsolete("This option will be removed in NLog 5")]
+        public bool ExceptionLoggingOldStyle { get; set; }
+
+        /// <summary>
+        /// Gets the variables defined in the configuration.
+        /// </summary>
+        public IDictionary<string, SimpleLayout> Variables
+        {
+            get
+            {
+                return variables;
+            }
         }
 
         /// <summary>
@@ -91,13 +115,13 @@ namespace NLog.Config
         public IList<LoggingRule> LoggingRules { get; private set; }
 
         /// <summary>
-        /// Gets or sets the default culture info use.
+        /// Gets or sets the default culture info to use as <see cref="LogEventInfo.FormatProvider"/>.
         /// </summary>
-        public CultureInfo DefaultCultureInfo
-        {
-            get { return LogManager.DefaultCultureInfo(); }
-            set { LogManager.DefaultCultureInfo = () => value; }
-        }
+        /// <value>
+        /// Specific culture info or null to use <see cref="CultureInfo.CurrentCulture"/>
+        /// </value>
+        [CanBeNull]
+        public CultureInfo DefaultCultureInfo { get; set; }
 
         /// <summary>
         /// Gets all targets.
@@ -105,6 +129,19 @@ namespace NLog.Config
         public ReadOnlyCollection<Target> AllTargets
         {
             get { return this.configItems.OfType<Target>().ToList().AsReadOnly(); }
+        }
+
+        /// <summary>
+        /// Registers the specified target object. The name of the target is read from <see cref="Target.Name"/>.
+        /// </summary>
+        /// <param name="target">
+        /// The target object with a non <see langword="null"/> <see cref="Target.Name"/>
+        /// </param>
+        /// <exception cref="ArgumentNullException">when <paramref name="target"/> is <see langword="null"/></exception>
+        public void AddTarget([NotNull] Target target)
+        {
+            if (target == null) throw new ArgumentNullException("target");
+            AddTarget(target.Name, target);
         }
 
         /// <summary>
@@ -149,6 +186,22 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Finds the target with the specified name and specified type.
+        /// </summary>
+        /// <param name="name">
+        /// The name of the target to be found.
+        /// </param>
+        /// <typeparam name="TTarget">Type of the target</typeparam>
+        /// <returns>
+        /// Found target or <see langword="null"/> when the target is not found of not of type <typeparamref name="TTarget"/>
+        /// </returns>
+        public TTarget FindTargetByName<TTarget>(string name)
+            where TTarget : Target
+        {
+            return FindTargetByName(name) as TTarget;
+        }
+
+        /// <summary>
         /// Called by LogManager when one of the log configuration files changes.
         /// </summary>
         /// <returns>
@@ -185,7 +238,7 @@ namespace NLog.Config
             }
 
             this.InitializeAll();
-            foreach (IInstallable installable in EnumerableHelpers.OfType<IInstallable>(this.configItems))
+            foreach (IInstallable installable in this.configItems.OfType<IInstallable>())
             {
                 installationContext.Info("Installing '{0}'", installable);
 
@@ -222,7 +275,7 @@ namespace NLog.Config
 
             this.InitializeAll();
 
-            foreach (IInstallable installable in EnumerableHelpers.OfType<IInstallable>(this.configItems))
+            foreach (IInstallable installable in this.configItems.OfType<IInstallable>())
             {
                 installationContext.Info("Uninstalling '{0}'", installable);
 
@@ -272,6 +325,11 @@ namespace NLog.Config
 
         internal void Dump()
         {
+            if (!InternalLogger.IsDebugEnabled)
+            {
+                return;
+            }
+
             InternalLogger.Debug("--- NLog configuration dump. ---");
             InternalLogger.Debug("Targets:");
             foreach (Target target in this.targets.Values)
