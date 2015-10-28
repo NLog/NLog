@@ -10,7 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>NLog.UnitTests</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>NLogUnitTests</AssemblyName>
+    <AssemblyName>NLog.UnitTests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
