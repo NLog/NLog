@@ -61,6 +61,40 @@ namespace NLog.UnitTests
         public string Skip { get; set; }
     }
 
+    public class InlineData : NUnit.Framework.TestCaseAttribute
+    {
+        public InlineData(params object[] arguments) : base(arguments)
+        {
+        }
+
+        public InlineData(object arg) : base(arg)
+        {
+        }
+
+        public InlineData(object arg1, object arg2) : base(arg1, arg2)
+        {
+        }
+
+        public InlineData(object arg1, object arg2, object arg3) : base(arg1, arg2, arg3)
+        {
+        }
+    }
+
+    public class PropertyData : NUnit.Framework.TestCaseSourceAttribute
+    {
+        public PropertyData(string sourceName) : base(sourceName)
+        {
+        }
+
+        public PropertyData(Type sourceType, string sourceName) : base(sourceType, sourceName)
+        {
+        }
+
+        public PropertyData(Type sourceType) : base(sourceType)
+        {
+        }
+    }
+
 }
 
 namespace NUnit.Framework.NLog
@@ -72,7 +106,7 @@ namespace NUnit.Framework.NLog
 			AreEqual(expected, actual);
 		}
 
-		public static void NotEqual(object value1, object value2)
+        public static void NotEqual(object value1, object value2)
 		{
 			AreNotEqual(value1,value2);
 		}
@@ -87,7 +121,20 @@ namespace NUnit.Framework.NLog
 			AreNotSame(expected, actual);
 		}
 
-		public static void IsType(Type type, object value)
+
+        public static void Contains(object expected, object actual)
+        {
+#if !DEBUG
+#error fixen
+#endif
+        }        public static void ThrowsDelegate(object expected, object actual)
+        {
+#if !DEBUG
+#error fixen
+#endif
+        }
+
+        public static void IsType(Type type, object value)
 		{
 			
 			AreEqual(type, value.GetType());
