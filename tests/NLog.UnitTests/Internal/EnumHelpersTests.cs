@@ -35,7 +35,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NLog.Internal;
-using Xunit;
+#if (__IOS__)
+using NUnit.Framework;
+using Assert = NUnit.Framework.NLog.Assert;
+#else
+    using Xunit;
+#endif
 
 namespace NLog.UnitTests.Internal
 {

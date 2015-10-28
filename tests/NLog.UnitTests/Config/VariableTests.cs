@@ -75,7 +75,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("]]", lr3.Text);
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
         /// <summary>
         /// Expand of property which are not layoutable <see cref="Layout"/>, but still get expanded.
@@ -99,7 +99,7 @@ namespace NLog.UnitTests.Config
     }
 #endif
 
-      
+
 
         [Fact]
         public void Xml_configuration_returns_defined_variables()

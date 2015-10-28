@@ -99,6 +99,8 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
+    <Compile Include="Common\InternalLoggerTests.cs" />
+    <Compile Include="Common\LastLogEventListTarget.cs" />
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
     <Compile Include="Config\CaseSensitivityTests.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="ConfigFileLocatorTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\MappedDiagnosticsLogicalContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
     <Compile Include="Filters\APITests.cs" />
     <Compile Include="Filters\ConditionBasedFilterTests.cs" />
@@ -123,10 +126,14 @@
     <Compile Include="Filters\WhenNotEqualTests.cs" />
     <Compile Include="Fluent\LogBuilderTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
+    <Compile Include="Internal\EnumHelpersTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
+    <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />
     <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
     <Compile Include="LayoutRenderers\BaseDirTests.cs" />
+    <Compile Include="LayoutRenderers\CallSiteLineNumberTests.cs" />
     <Compile Include="LayoutRenderers\CallSiteTests.cs" />
     <Compile Include="LayoutRenderers\CounterTests.cs" />
     <Compile Include="LayoutRenderers\DateTests.cs" />
@@ -143,6 +150,7 @@
     <Compile Include="LayoutRenderers\LogLevelTests.cs" />
     <Compile Include="LayoutRenderers\LongDateTests.cs" />
     <Compile Include="LayoutRenderers\MDCTests.cs" />
+    <Compile Include="LayoutRenderers\MdlcLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\MessageTests.cs" />
     <Compile Include="LayoutRenderers\NDCTests.cs" />
     <Compile Include="LayoutRenderers\RegistryTests.cs" />
@@ -151,16 +159,21 @@
     <Compile Include="LayoutRenderers\SpecialFolderTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
     <Compile Include="LayoutRenderers\TimeTests.cs" />
+    <Compile Include="LayoutRenderers\VariableLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\JsonEncodeTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\OnExceptionTests.cs" />
-    <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\PaddingTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\ReplaceNewLinesTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\ReplaceTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenEmptyTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeTests.cs" />
+    <Compile Include="Layouts\AllEventPropertiesTests.cs" />
     <Compile Include="Layouts\CsvLayoutTests.cs" />
+    <Compile Include="Layouts\JsonLayoutTests.cs" />
     <Compile Include="Layouts\SimpleLayoutOutputTests.cs" />
     <Compile Include="Layouts\SimpleLayoutParserTests.cs" />
     <Compile Include="Layouts\ThreadAgnosticTests.cs" />
@@ -178,16 +191,20 @@
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />
     <Compile Include="SourceCodeTests.cs" />
+    <Compile Include="Targets\ColoredConsoleTargetTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
     <Compile Include="Targets\ConsoleTargetTests.cs" />
     <Compile Include="Targets\DatabaseTargetTests.cs" />
+    <Compile Include="Targets\EventLogTargetTests.cs" />
     <Compile Include="Targets\FileTargetTests.cs" />
+    <Compile Include="Targets\LineEndingModeTests.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
     <Compile Include="Targets\MailTargetTests.cs" />
+    <Compile Include="Targets\MemoryTargetTests.cs" />
     <Compile Include="Targets\MessageQueueTargetTests.cs" />
     <Compile Include="Targets\NetworkTargetTests.cs" />
-    <Compile Include="Targets\RichTextBoxTargetTests.cs" />
     <Compile Include="Targets\TargetTests.cs" />
+    <Compile Include="Targets\WebServiceTargetTests.cs" />
     <Compile Include="Targets\Wrappers\AsyncRequestQueueTests.cs" />
     <Compile Include="Targets\Wrappers\AsyncTargetWrapperTests.cs" />
     <Compile Include="Targets\Wrappers\AutoFlushTargetWrapperTests.cs" />
@@ -206,16 +223,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigFiles\included.nlog" />
+    <Content Include="ConfigFiles\main.nlog" />
     <Content Include="ConfigFiles\referencemissingfile.nlog" />
     <Content Include="ConfigFiles\referencemissingfileignored.nlog" />
-    <None Include="Info.plist" />
     <Content Include="ProjectFileInfo.xml" />
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\OutOfBrowserSettings.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
-    <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Resources\Default%402x.png" />
-    <BundleResource Include="Resources\Default-568h%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigFiles\main.nlog" />

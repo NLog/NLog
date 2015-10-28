@@ -40,7 +40,6 @@ namespace NLog.UnitTests.Fluent
 {
     using System;
     using System.IO;
-    using Xunit;
     using NLog.Fluent;
 #if(__IOS__)
 	using NUnit.Framework;

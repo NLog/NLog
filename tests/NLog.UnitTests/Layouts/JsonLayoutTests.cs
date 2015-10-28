@@ -38,7 +38,12 @@ namespace NLog.UnitTests.Layouts
     using System.Globalization;
     using System.IO;
     using NLog.Layouts;
+#if (__IOS__)
+    using NUnit.Framework;
+    using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class JsonLayoutTests : NLogTestBase
     {

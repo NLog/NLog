@@ -46,7 +46,7 @@ namespace NLog.UnitTests
 {
 	public class Fact : NUnit.Framework.TestAttribute
 	{
-
+        public string Skip { get; set; }
 	}
 
 	public class Trait : Attribute
@@ -56,7 +56,10 @@ namespace NLog.UnitTests
 
 		}
 	}
-
+    public class Theory : NUnit.Framework.TheoryAttribute
+    {
+        public string Skip { get; set; }
+    }
 
 }
 
