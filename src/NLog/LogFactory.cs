@@ -63,11 +63,12 @@ namespace NLog
     {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private const int ReconfigAfterFileChangedTimeout = 1000;
-
-        private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
        
         private readonly MultiFileWatcher watcher;
 #endif
+
+        private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
+
 #if !SILVERLIGHT && !__IOS__
         private Timer reloadTimer;
 #endif
