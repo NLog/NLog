@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if __IOS__ || __ANDROID__
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -109,3 +111,5 @@ namespace NUnit.Framework.NLog
 	}
 
 }
+
+#endif

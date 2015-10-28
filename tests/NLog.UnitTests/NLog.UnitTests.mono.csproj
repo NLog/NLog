@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiTests.cs" />
+    <Compile Include="AppDelegate.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
     <Compile Include="Common\InternalLoggerTests.cs" />
@@ -157,8 +158,10 @@
     <Compile Include="LogManagerTests.cs" />
     <Compile Include="LogReceiverService\LogReceiverForwardingServiceTests.cs" />
     <Compile Include="LogReceiverService\LogReceiverServiceTests.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="NLogTestBase.cs" />
     <Compile Include="NLogTraceListenerTests.cs" />
+    <Compile Include="NUnit.cs" />
     <Compile Include="ProcessRunner.cs" />
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />

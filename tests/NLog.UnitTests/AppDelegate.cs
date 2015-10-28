@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if __IOS__ || __ANDROID__
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,3 +78,5 @@ namespace NLog.UnitTests
 		}
 	}
 }
+
+#endif
