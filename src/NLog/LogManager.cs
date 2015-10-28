@@ -57,10 +57,10 @@ namespace NLog
         private static ICollection<Assembly> _hiddenAssemblies;
 
         private static readonly object lockObject = new object();
+
+
         /// <summary>
-        /// Delegate used to the the culture to use.
-        /// </summary>
-        /// <returns></returns>
+        /// Delegate used to set/get the culture in use.
         /// </summary>
         [Obsolete]
         public delegate CultureInfo GetCultureInfo();
@@ -72,8 +72,8 @@ namespace NLog
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static LogManager()
         {
-                SetupTerminationEvents();
-            }
+            SetupTerminationEvents();
+        }
 #endif
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace NLog
             remove { factory.ConfigurationChanged -= value; }
         }
 
-#if !SILVERLIGHT 
+#if !SILVERLIGHT
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -102,7 +102,7 @@ namespace NLog
             remove { factory.ConfigurationReloaded -= value; }
         }
 #endif
-		/// <summary>
+        /// <summary>
         /// Gets or sets a value indicating whether NLog should throw exceptions. 
         /// By default exceptions are not thrown under any circumstances.
         /// </summary>
@@ -122,12 +122,12 @@ namespace NLog
                 currentAppDomain.ProcessExit -= TurnOffLogging;
 #endif
                 currentAppDomain = value;
-        }
+            }
         }
 
         /// <summary>
         /// Gets or sets the current logging configuration.
-        /// </summary>
+        /// <see cref="LogFactory.Configuration" />
         /// </summary>
         public static LoggingConfiguration Configuration
         {
@@ -155,7 +155,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger named after the currently-being-initialized class.
+        /// Gets the logger with the name of the current class.  
         /// </summary>
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
@@ -168,11 +168,11 @@ namespace NLog
         }
 
         internal static bool IsHiddenAssembly(Assembly assembly)
-            {
+        {
             return _hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly);
-                }
+        }
 
-
+        /// <summary>
         /// Adds the given assembly which will be skipped 
         /// when NLog is trying to find the calling method on stack trace.
         /// </summary>
@@ -183,27 +183,27 @@ namespace NLog
             lock (lockObject)
             {
                 if (_hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly))
-                return;
+                    return;
 
                 _hiddenAssemblies = new HashSet<Assembly>(_hiddenAssemblies ?? Enumerable.Empty<Assembly>())
                 {
                     assembly
                 };
-        }
+            }
         }
 
         /// <summary>
-        /// Gets the logger named after the currently-being-initialized class.
+        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
-        /// <returns>The logger.</returns>
+        /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger(Type loggerType)
         {
-            return factory.GetLogger(GetClassFullName(), loggerType);            
+            return factory.GetLogger(GetClassFullName(), loggerType);
         }
 
         /// <summary>
@@ -228,11 +228,11 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified named logger.
+        /// Gets the specified named custom logger.  Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
-        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
+        /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         /// <remarks>The generic way for this method is <see cref="LogFactory{loggerType}.GetLogger(string)"/></remarks>
         [CLSCompliant(false)]
         public static Logger GetLogger(string name, Type loggerType)
@@ -251,77 +251,77 @@ namespace NLog
         }
 
 #if !SILVERLIGHT
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-public static void Flush()
-{
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        public static void Flush()
+        {
             factory.Flush();
-}
+        }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-public static void Flush(TimeSpan timeout)
-{
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(TimeSpan timeout)
+        {
             factory.Flush(timeout);
-}
+        }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-public static void Flush(int timeoutMilliseconds)
-{
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(int timeoutMilliseconds)
+        {
             factory.Flush(timeoutMilliseconds);
-}
+        }
 #endif
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="asyncContinuation">The asynchronous continuation.</param>
-public static void Flush(AsyncContinuation asyncContinuation)
-{
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        public static void Flush(AsyncContinuation asyncContinuation)
+        {
             factory.Flush(asyncContinuation);
-}
+        }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="asyncContinuation">The asynchronous continuation.</param>
-/// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-public static void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
-{
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
+        {
             factory.Flush(asyncContinuation, timeout);
-}
+        }
 
-/// <summary>
-/// Flush any pending log messages (in case of asynchronous targets).
-/// </summary>
-/// <param name="asyncContinuation">The asynchronous continuation.</param>
-/// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-public static void Flush(AsyncContinuation asyncContinuation, int timeoutMilliseconds)
-{
+        /// <summary>
+        /// Flush any pending log messages (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+        public static void Flush(AsyncContinuation asyncContinuation, int timeoutMilliseconds)
+        {
             factory.Flush(asyncContinuation, timeoutMilliseconds);
-}
+        }
 
-        /// <summary>Decreases the log enable counter and if it reaches -1 
-        /// the logs are disabled.</summary>
+        /// <summary>
+        /// Decreases the log enable counter and if it reaches -1 the logs are disabled.
+        /// </summary>
         /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
-        /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
-        /// <returns>An object that iplements IDisposable whose Dispose() method
-        /// reenables logging. To be used with C# <c>using ()</c> statement.</returns>
+        ///     than or equal to <see cref="DisableLogging"/> calls.</remarks>
+        /// <returns>An object that implements IDisposable whose Dispose() method reenables logging. 
         ///     To be used with C# <c>using ()</c> statement.</returns>
         public static IDisposable DisableLogging()
         {
             return factory.SuspendLogging();
         }
 
-        /// <summary>Increases the log enable counter and if it reaches 0 the logs are disabled.</summary>
-        /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
-        /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
+        /// <summary>
+        /// Increases the log enable counter and if it reaches 0 the logs are disabled.
+        /// </summary>
         /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
         ///     than or equal to <see cref="DisableLogging"/> calls.</remarks>
         public static void EnableLogging()
@@ -330,12 +330,12 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
         }
 
         /// <summary>
-        /// Returns <see langword="true" /> if logging is currently enabled.
+        /// Checks if logging is currently enabled.
         /// </summary>
-        /// <returns>A value of <see langword="true" /> if logging is currently enabled, 
-        /// <see langword="false"/> otherwise.</returns>
+        /// <returns><see langword="true" /> if logging is currently enabled, <see langword="false"/> 
+        ///     otherwise.</returns>
         /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
-        /// than or equal to <see cref="DisableLogging"/> calls.</remarks>
+        ///     than or equal to <see cref="DisableLogging"/> calls.</remarks>
         public static bool IsLoggingEnabled()
         {
             return factory.IsLoggingEnabled();
@@ -357,9 +357,9 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
         {
             try
             {
-            CurrentAppDomain.ProcessExit += TurnOffLogging;
-            CurrentAppDomain.DomainUnload += TurnOffLogging;
-        }
+                CurrentAppDomain.ProcessExit += TurnOffLogging;
+                CurrentAppDomain.DomainUnload += TurnOffLogging;
+            }
             catch (Exception exception)
             {
                 if (exception.MustBeRethrown())
@@ -368,7 +368,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
                 }
 
                 InternalLogger.Warn("Error setting up termination events: {0}", exception);
-            }            
+            }
         }
 #endif
 
@@ -406,8 +406,8 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
 
         private static void TurnOffLogging(object sender, EventArgs args)
         {
-            // reset logging configuration to null
-            // this causes old configuration (if any) to be closed.
+            // Reset logging configuration to null; this causes old configuration (if any) to be 
+            // closed.
             InternalLogger.Info("Shutting down logging...");
             Configuration = null;
             InternalLogger.Info("Logger has been shut down.");

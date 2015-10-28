@@ -41,9 +41,9 @@ namespace NLog.Internal
 #if(__IOS__)
     public class LoggerConfiguration
 #else
-	internal class LoggerConfiguration
+    internal class LoggerConfiguration
 #endif
-	{
+    {
         private readonly TargetWithFilterChain[] targetsByLevel;
 
         /// <summary>
@@ -61,12 +61,12 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Gets targets for the specified level.
+        /// Use the old exception log handling of NLog 3.0? 
         /// </summary>
         [Obsolete("This option will be removed in NLog 5")]
         public bool ExceptionLoggingOldStyle { get; private set; }
-        /// <param name="level">The level.</param>
-        /// <returns>Chain of targets with attached filters.</returns>
+
+        /// <summary>
         /// Gets targets for the specified level.
         /// </summary>
         /// <param name="level">The level.</param>

@@ -154,7 +154,7 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Creates the file stream.
         /// </summary>
-        /// <param name="allowConcurrentWrite">If set to <c>true</c> allow concurrent writes.</param>
+        /// <param name="allowFileSharedWriting">If set to <c>true</c> sets the file stream to allow shared writing.</param>
         /// <returns>A <see cref="FileStream"/> object which can be used to write to the file.</returns>
         protected FileStream CreateFileStream(bool allowFileSharedWriting)
         {

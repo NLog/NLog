@@ -38,8 +38,6 @@ using System.Text;
 using NLog.Layouts;
 using NLog.Targets;
 
-#if !SILVERLIGHT
-
 namespace NLog.UnitTests
 {
     using System;

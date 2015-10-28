@@ -48,7 +48,7 @@ namespace NLog.Common
     using System.Diagnostics;
 #endif
 
-	/// <summary>
+    /// <summary>
     /// NLog internal logger.
     /// </summary>
     public static class InternalLogger
@@ -61,16 +61,16 @@ namespace NLog.Common
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static InternalLogger()
-		{
+        {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
-			
+
             Info("NLog internal logger initialized.");
 #else
-			LogLevel = LogLevel.Info;
+            LogLevel = LogLevel.Info;
 #endif
             IncludeTimestamp = true;
         }
@@ -91,7 +91,7 @@ namespace NLog.Common
         public static bool LogToConsoleError { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the internal log file.
+        /// Gets or sets the file path of the internal log file.
         /// </summary>
         /// <remarks>A value of <see langword="null" /> value disables internal logging to a file.</remarks>
         public static string LogFile
@@ -104,8 +104,8 @@ namespace NLog.Common
             set
             {
                 _logFile = value;
-        /// <summary>
-#if !SILVERLIGHT
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 if (!string.IsNullOrEmpty(_logFile))
                 {
                     CreateDirectoriesIfNeeded(_logFile);
@@ -113,8 +113,8 @@ namespace NLog.Common
 #endif
             }
         }
-        /// Gets or sets the text writer that will receive internal logs.
-        /// </summary>
+
+        /// <summary>
         /// Gets or sets the text writer that will receive internal logs.
         /// </summary>
         public static TextWriter LogWriter { get; set; }
@@ -387,8 +387,7 @@ namespace NLog.Common
 
                 // we have no place to log the message to so we ignore it
             }
-		}
-
+        }
 
         /// <summary>
         /// Logs the assembly version and file version of the given Assembly.
@@ -398,7 +397,7 @@ namespace NLog.Common
         {
             try
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if SILVERLIGHT || __IOS__ || __ANDROID__
                 Info(assembly.FullName);
 #else
                 var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
@@ -409,12 +408,12 @@ namespace NLog.Common
 #endif
             }
             catch (Exception exc)
-        {
+            {
                 Error("Error logging version of assembly {0}: {1}.", assembly.FullName, exc.Message);
             }
         }
 
-#if !SILVERLIGHT && !__IOS__       
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private static string GetSettingString(string configName, string envName)
         {
             string settingValue = ConfigurationManager.AppSettings[configName];
@@ -481,7 +480,7 @@ namespace NLog.Common
                 return defaultValue;
             }
         }
-        
+
         private static void CreateDirectoriesIfNeeded(string filename)
         {
             try
@@ -503,5 +502,5 @@ namespace NLog.Common
             }
         }
 #endif
-	}
+    }
 }
