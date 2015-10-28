@@ -54,7 +54,7 @@ namespace NLog.Targets
 	/// <summary>
     /// Writes log messages to the database using an ADO.NET provider.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/Database_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/Database-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <para>
     /// The configuration is dependent on the database type, because

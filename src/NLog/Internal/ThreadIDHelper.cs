@@ -65,7 +65,7 @@ namespace NLog.Internal
         public static ThreadIDHelper Instance { get; private set; }
 
         /// <summary>
-        /// Gets current thread ID.
+        /// Gets current process ID.
         /// </summary>
         public abstract int CurrentProcessID { get; }
 

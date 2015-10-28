@@ -65,7 +65,7 @@ namespace NLog.Internal.FileAppenders
         }
 
         /// <summary>
-        /// Gets the name of the file.
+        /// Gets the path of the file, including file extension.
         /// </summary>
         /// <value>The name of the file.</value>
         public string FileName { get; private set; }
@@ -73,13 +73,13 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the last write time.
         /// </summary>
-        /// <value>The last write time.</value>
+        /// <value>The last write time. DateTime value must be of UTC kind.</value>
         public DateTime LastWriteTime { get; private set; }
 
         /// <summary>
         /// Gets the open time of the file.
         /// </summary>
-        /// <value>The open time.</value>
+        /// <value>The open time. DateTime value must be of UTC kind.</value>
         public DateTime OpenTime { get; private set; }
 
         /// <summary>
@@ -107,8 +107,8 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the file info.
         /// </summary>
-        /// <param name="lastWriteTime">The last write time.</param>
-        /// <param name="fileLength">Length of the file.</param>
+        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
+        /// <param name="fileLength">Length of the file in bytes.</param>
         /// <returns>True if the operation succeeded, false otherwise.</returns>
         public abstract bool GetFileInfo(out DateTime lastWriteTime, out long fileLength);
 
@@ -145,7 +145,7 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Records the last write time for a file to be specific date.
         /// </summary>
-        /// <param name="dateTime">Date and time when the last write occurred.</param>
+        /// <param name="dateTime">Date and time when the last write occurred. The value must be of UTC kind.</param>
         protected void FileTouched(DateTime dateTime)
         {
             this.LastWriteTime = dateTime;
@@ -160,7 +160,7 @@ namespace NLog.Internal.FileAppenders
         {
             int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
 
-			InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting);
+            InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting);
             for (int i = 0; i < this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
             {
                 try
@@ -224,18 +224,18 @@ namespace NLog.Internal.FileAppenders
                 fileShare,
                 IntPtr.Zero,
                 Win32FileNativeMethods.CreationDisposition.OpenAlways,
-                this.CreateFileParameters.FileAttributes, 
+                this.CreateFileParameters.FileAttributes,
                 IntPtr.Zero);
 
                 if (handle.IsInvalid)
-            {
-                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-            }
+                {
+                    Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+                }
 
                 fileStream = new FileStream(handle, FileAccess.Write, this.CreateFileParameters.BufferSize);
                 fileStream.Seek(0, SeekOrigin.End);
                 return fileStream;
-        }
+            }
             catch
             {
                 if (fileStream != null)
@@ -261,7 +261,7 @@ namespace NLog.Internal.FileAppenders
             if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows)
             {
                 fileShare |= FileShare.Delete;
-			}
+            }
 
 #if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
             try
@@ -274,14 +274,14 @@ namespace NLog.Internal.FileAppenders
             catch (SecurityException)
             {
                 InternalLogger.Debug("Could not use native Windows create file, falling back to managed filestream");
-            } 
+            }
 #endif
 
-			return new FileStream(
-                this.FileName, 
-                FileMode.Append, 
-                FileAccess.Write, 
-                fileShare, 
+            return new FileStream(
+                this.FileName,
+                FileMode.Append,
+                FileAccess.Write,
+                fileShare,
                 this.CreateFileParameters.BufferSize);
         }
     }

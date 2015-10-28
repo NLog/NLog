@@ -266,8 +266,8 @@ namespace NLog.UnitTests.Targets
 
                 AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
 
-                // configure again, without
-                // ArchiveOldFileOnStartup
+                // Configure second time with ArchiveOldFileOnStartup = false again.
+                // Expected behavior: Extra content to be appended to the file.
                 ft = new FileTarget
                 {
                     ArchiveOldFileOnStartup = false,
@@ -285,8 +285,8 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;
                 AssertFileContents(tempFile, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
 
-                // configure again, this time with
-                // ArchiveldFileOnStartup                
+                // Configure third time with ArchiveOldFileOnStartup = true again. 		
+                // Expected behavior: Extra content will be stored in a new file; the                
 
                 //      old content should be moved into a new location.
 
@@ -314,7 +314,8 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;
                 AssertFileContents(tempFile, "Debug ddd\nInfo eee\nWarn fff\n", Encoding.UTF8);
                 Assert.True(File.Exists(archiveTempName));
-
+                //DUNNO what to expected!
+                //try (which fails)
                 var assertFileContents =
 #if NET4_5
  enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;

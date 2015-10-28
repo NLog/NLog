@@ -87,7 +87,7 @@ using System.Xml.Linq;
         {
             return GetDebugLastMessage(targetName, LogManager.Configuration);
         }
-            // Console.WriteLine("lastmsg: {0}", debugTarget.LastMessage);
+       
         public string GetDebugLastMessage(string targetName, LoggingConfiguration configuration)
         {
             return GetDebugTarget(targetName, configuration).LastMessage;

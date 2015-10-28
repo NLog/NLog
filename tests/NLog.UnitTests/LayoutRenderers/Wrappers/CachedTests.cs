@@ -67,7 +67,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             s3 = l.Render(LogEventInfo.CreateNullEvent());
             Assert.NotEqual(s2, s3);
 
-            // calling Initialize() on Layout Renderer will reset the cached value
+            // calling Initialize() on Layout Renderer will reset the cached value, unless we use clearcache=none
             l = "${cached:${guid}:cached=true:clearcache=none}";
             s1 = l.Render(LogEventInfo.CreateNullEvent());
             l.Renderers[0].Close();

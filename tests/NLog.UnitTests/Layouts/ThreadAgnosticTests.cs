@@ -56,7 +56,7 @@ namespace NLog.UnitTests.Layouts
                 {
                     if (t.IsAbstract || t.IsEnum || t.IsNestedPrivate)
                     {
-                        // skip non-concrete types
+                        // skip non-concrete types, enumerations, and private nested types
                         continue;
                     }
 

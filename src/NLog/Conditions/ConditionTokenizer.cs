@@ -384,7 +384,7 @@ namespace NLog.Conditions
                 return true;
             }
             return false;
-                }
+        }
 
         private static ConditionTokenType[] BuildCharIndexToTokenType()
         {

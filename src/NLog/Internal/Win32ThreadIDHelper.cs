@@ -72,7 +72,7 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Gets current thread ID.
+        /// Gets current process ID.
         /// </summary>
         /// <value></value>
         public override int CurrentProcessID

@@ -41,7 +41,7 @@ namespace NLog.Targets
     /// <summary>
     /// Outputs log messages through the ASP Response object.
     /// </summary>
-    /// <seealso href="http://nlog-project.org/wiki/AspResponse_target">Documentation on NLog Wiki</seealso>
+    /// <seealso href="https://github.com/nlog/nlog/wiki/AspResponse-target">Documentation on NLog Wiki</seealso>
     [Target("AspResponse")]
     public sealed class AspResponseTarget : TargetWithLayout
     {
