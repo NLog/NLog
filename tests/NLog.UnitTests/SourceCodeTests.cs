@@ -247,7 +247,8 @@ namespace NLog.UnitTests
 
             foreach (string dir in directoriesToVerify)
             {
-                failedFiles += VerifyClassNames(Path.Combine(this.sourceCodeDirectory, dir), Path.GetFileName(dir));
+                var verifyClassNames = VerifyClassNames(Path.Combine(this.sourceCodeDirectory, dir), Path.GetFileName(dir));
+                failedFiles += verifyClassNames;
             }
 
             Assert.Equal(0, failedFiles);
@@ -347,7 +348,7 @@ namespace NLog.UnitTests
         private bool VerifySingleFile(string file, string expectedNamespace, string expectedClassName)
         {
             bool success = true;
-            List<string> classNames = new List<string>();
+            HashSet<string> classNames = new HashSet<string>();
             using (StreamReader sr = File.OpenText(file))
             {
                 string line;
@@ -380,8 +381,10 @@ namespace NLog.UnitTests
 
             if (classNames.Count == 0)
             {
-                Console.WriteLine("No classes found in {0}", file);
-                success = false;
+                //Console.WriteLine("No classes found in {0}", file);
+
+                //ignore, because of files not used in other projects
+                success = true;
             }
 
             if (classNames.Count > 1)
@@ -390,9 +393,9 @@ namespace NLog.UnitTests
                 success = false;
             }
 
-            if (classNames.Count == 1 && classNames[0] != expectedClassName)
+            if (classNames.Count == 1 && classNames.First() != expectedClassName)
             {
-                Console.WriteLine("Invalid class name. Expected '{0}', actual: '{1}'", expectedClassName, classNames[0]);
+                Console.WriteLine("Invalid class name. Expected '{0}', actual: '{1}'", expectedClassName, classNames.First());
                 success = false;
             }
 
