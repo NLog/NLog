@@ -44,7 +44,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class CallSiteTests : NLogTestBase
     {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
         [Fact]
         public void HiddenAssemblyTest()
         {

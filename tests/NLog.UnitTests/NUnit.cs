@@ -56,7 +56,7 @@ namespace NLog.UnitTests
 
 		}
 	}
-    public class Theory : NUnit.Framework.TheoryAttribute
+    public class TheoryAttribute2 : NUnit.Framework.TheoryAttribute
     {
         public string Skip { get; set; }
     }

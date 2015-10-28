@@ -40,7 +40,7 @@ namespace NLog.UnitTests
     using System.Linq;
     using System.Diagnostics;
     using System.IO;
-    using Xunit;
+
     using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;

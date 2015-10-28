@@ -42,9 +42,10 @@ namespace NLog.UnitTests.Targets
     using System.Text;
     using System.Threading;
 
-#if(__IOS__)
+#if __IOS__
 	using NUnit.Framework;
 	using Assert = NUnit.Framework.NLog.Assert;
+	using TheoryAttribute = TheoryAttribute2;
 #else
     using Xunit;
     using Xunit.Extensions;
