@@ -64,7 +64,7 @@ namespace NLog.UnitTests
             ILogger logger = LogManager.GetCurrentClassLogger();
             logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
         }
-        
+
         [Fact]
         public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()
         {
@@ -72,7 +72,7 @@ namespace NLog.UnitTests
             try
             {
                 LogManager.ThrowExceptions = false;
-                
+
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog internalLogToConsole='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
@@ -81,15 +81,15 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 ExceptionThrown = true;
             }
-            
+
             Assert.False(ExceptionThrown);
-            
+
         }
-        
+
         [Fact]
         public void InvalidXMLConfiguration_ThrowErrorWhen_ThrowExceptionFlagIsSet()
         {
@@ -97,7 +97,7 @@ namespace NLog.UnitTests
             try
             {
                 LogManager.ThrowExceptions = true;
-                
+
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog internalLogToConsole='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
@@ -106,13 +106,13 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 ExceptionThrown = true;
             }
-            
+
             Assert.True(ExceptionThrown);
-            
+
         }
 
         [Fact]
@@ -206,7 +206,7 @@ namespace NLog.UnitTests
             </nlog>");
 
 
-    }
+        }
 
         /// <summary>
         /// Rename file, do edits, and then rename back. The auto reload should work.
@@ -267,7 +267,7 @@ namespace NLog.UnitTests
                 if (counterEvent.CurrentCount != 0)
                 {
                     throw new Exception("failed to reload");
-}
+                }
 
             }
             finally
@@ -404,7 +404,7 @@ namespace NLog.UnitTests
             Assert.False(factory.IsLoggingEnabled());
             factory.EnableLogging();
             Assert.True(factory.IsLoggingEnabled());
-#pragma warning restore 618           
+#pragma warning restore 618
         }
 
         [Fact]
@@ -529,7 +529,7 @@ namespace NLog.UnitTests
             }
         }
 
-     
+
     }
 }
 #endif

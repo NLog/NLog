@@ -38,10 +38,10 @@ using NLog.UnitTests.Common;
 
 namespace NLog.UnitTests.Fluent
 {
-using System;
-using System.IO;
+    using System;
+    using System.IO;
     using Xunit;
-using NLog.Fluent;
+    using NLog.Fluent;
 #if(__IOS__)
 	using NUnit.Framework;
 #else
@@ -49,11 +49,11 @@ using NLog.Fluent;
 #endif
 
     public class LogBuilderTests : NLogTestBase
-{
+    {
         private static readonly ILogger _logger = LogManager.GetLogger("logger1");
 
         public LogBuilderTests()
-    {
+        {
             var configuration = new LoggingConfiguration();
 
             var t1 = new LastLogEventListTarget { Name = "t1" };
@@ -115,7 +115,7 @@ using NLog.Fluent;
                 expectedEvent.Properties["Test"] = "TraceWrite";
                 AssertLastLogEventTarget(expectedEvent);
                 AssertDebugLastMessage("t2", rendered);
-        }
+            }
         }
 
         [Fact]
@@ -194,7 +194,7 @@ using NLog.Fluent;
                 expectedEvent.Properties["Test"] = "TraceWrite";
                 AssertLastLogEventTarget(expectedEvent);
                 AssertDebugLastMessageContains("t2", "This is a test fluent WriteIf message ");
-        }
+            }
 
         }
 
@@ -245,7 +245,7 @@ using NLog.Fluent;
                 expectedEvent.Properties["Test"] = "InfoWrite";
                 AssertLastLogEventTarget(expectedEvent);
                 AssertDebugLastMessageContains("t2", "This is a test fluent message '");
-        }
+            }
         }
 
         [Fact]
@@ -345,7 +345,7 @@ using NLog.Fluent;
                 expectedEvent.Properties["Test"] = "ErrorWrite";
                 AssertLastLogEventTarget(expectedEvent);
                 AssertDebugLastMessageContains("t2", "This is a test fluent message '");
-        }
+            }
         }
 
         /// <summary>
@@ -373,6 +373,6 @@ using NLog.Fluent;
             Assert.Equal(expected.Level, lastLogEvent.Level);
             Assert.Equal(expected.Exception, lastLogEvent.Exception);
             Assert.Equal(expected.FormatProvider, lastLogEvent.FormatProvider);
+        }
     }
-}
 }

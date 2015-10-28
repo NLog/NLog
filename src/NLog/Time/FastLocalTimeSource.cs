@@ -56,6 +56,6 @@ namespace NLog.Time
         public override DateTime FromSystemTime(DateTime systemTime)
         {
             return systemTime.ToLocalTime();
+        }
     }
-}
 }

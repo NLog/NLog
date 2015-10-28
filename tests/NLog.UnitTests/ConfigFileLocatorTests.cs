@@ -210,7 +210,7 @@ namespace NLog.UnitTests
 
         private string RunTest()
         {
-        string sourceCode = @"
+            string sourceCode = @"
 using System;
 using System.Reflection;
 using NLog;
@@ -251,7 +251,7 @@ class C1
         public static string RunAndRedirectOutput(string exeFile)
         {
             using (var proc = new Process())
-			{
+            {
 #if MONO
             var sb = new StringBuilder();
             sb.AppendFormat("\"{0}\" ", exeFile);

@@ -531,7 +531,7 @@ Dispose()
 
             dt = new DatabaseTarget();
             dt.DBHost = "HOST1";
-            dt.DBDatabase= "${logger}";
+            dt.DBDatabase = "${logger}";
             Assert.Equal("Server=HOST1;Trusted_Connection=SSPI;Database=Logger1", this.GetConnectionString(dt));
 
             dt = new DatabaseTarget();

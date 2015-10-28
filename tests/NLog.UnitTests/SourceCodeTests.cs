@@ -163,13 +163,13 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl4.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.mono.csproj");
 
-			filesToCompile.Clear();
-			GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLogAutoLoadExtension/"), "*.cs", "");
+            filesToCompile.Clear();
+            GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLogAutoLoadExtension/"), "*.cs", "");
 
-			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx35.csproj");
-			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx40.csproj");
-			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx45.csproj");
-			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx35.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx40.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx45.csproj");
+            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono.csproj");
 
             Assert.Equal(0, failures);
         }
@@ -417,14 +417,14 @@ namespace NLog.UnitTests
             foreach (var type in types)
             {
                 VerifyDefaultValuesType(type, reportErrors);
-    }
+            }
 
             //one message for all failing properties
             var fullMessage = string.Format("{0} errors: \n -------- \n- {1}", reportErrors.Count, string.Join("\n- ", reportErrors));
             Assert.False(reportErrors.Any(), fullMessage);
 
 
-}
+        }
 
         ///<summary>Verify all properties with the <see cref="DefaultValueAttribute"/></summary>
         ///<remarks>Note: Xunit dont like overloads</remarks>
@@ -513,7 +513,7 @@ namespace NLog.UnitTests
             //handle quotes with Layouts
             if (propType == typeof(Layout))
             {
-               
+
                 neededString = "'" + neededString + "'";
 
             }
@@ -525,7 +525,7 @@ namespace NLog.UnitTests
                 return true;
             }
 
-        
+
 
             //handle UTF-8 properly
             if (propType == typeof(Encoding))
@@ -536,7 +536,7 @@ namespace NLog.UnitTests
 
             }
 
-      
+
 
             //nulls or not string equals, fallback
             //Assert.Equal(neededVal, currentVal);

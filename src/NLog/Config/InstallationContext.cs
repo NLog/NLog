@@ -185,7 +185,7 @@ namespace NLog.Config
                 if (arguments != null && arguments.Length > 0)
                 {
                     message = string.Format(CultureInfo.InvariantCulture, message, arguments);
-				}
+                }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 var oldColor = Console.ForegroundColor;
@@ -200,7 +200,7 @@ namespace NLog.Config
                     Console.ForegroundColor = oldColor;
                 }
 #else
-				this.LogOutput.WriteLine(message);
+                this.LogOutput.WriteLine(message);
 #endif
             }
         }

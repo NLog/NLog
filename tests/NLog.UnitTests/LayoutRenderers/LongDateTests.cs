@@ -70,7 +70,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var dt = new LongDateLayoutRenderer();
             dt.UniversalTime = true;
-            
+
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
             Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss.ffff"), dt.Render(ei));
         }
@@ -80,7 +80,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var dt = new LongDateLayoutRenderer();
             dt.UniversalTime = false;
-            
+
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
             Assert.Equal(ei.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss.ffff"), dt.Render(ei));
         }
@@ -117,7 +117,7 @@ namespace NLog.UnitTests.LayoutRenderers
             string date = GetDebugLastMessage("debug");
             Assert.Equal(5, date.Length);
             Assert.Equal(date[0], '.');
-    }
+        }
 
         [Fact]
         public void LongDateWithPaddingPadRightAlignLeft()

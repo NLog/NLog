@@ -53,7 +53,7 @@ namespace NLog.UnitTests
             // set the culture info with the decimal separator (comma) different from InvariantCulture separator (point)
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
         }
-        
+
         public void Dispose()
         {
             // restore previous culture info
@@ -204,7 +204,7 @@ namespace NLog.UnitTests
             ts.TraceData(TraceEventType.Critical, 145, 42, 3.14, "foo");
             AssertDebugLastMessage("debug", string.Format("MySource1 Fatal 42, {0}, foo 145", 3.14.ToString(System.Globalization.CultureInfo.CurrentCulture)));
         }
-        
+
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -222,7 +222,7 @@ namespace NLog.UnitTests
 
             TraceSource ts = CreateTraceSource();
             ts.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
-            
+
             ts.TraceInformation("Quick brown fox");
             AssertDebugLastMessage("debug", "MySource1 Info Quick brown fox 0");
 
@@ -295,7 +295,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Warn Mary had a little lamb 0");
         }
 
-        
+
         private static TraceSource CreateTraceSource()
         {
             var ts = new TraceSource("MySource1", SourceLevels.All);

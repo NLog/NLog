@@ -87,7 +87,7 @@ using System.Xml.Linq;
         {
             return GetDebugLastMessage(targetName, LogManager.Configuration);
         }
-       
+
         public string GetDebugLastMessage(string targetName, LoggingConfiguration configuration)
         {
             return GetDebugTarget(targetName, configuration).LastMessage;
@@ -210,7 +210,7 @@ using System.Xml.Linq;
         /// </summary>
         protected int GetPrevLineNumber([CallerLineNumber] int callingFileLineNumber = 0)
         {
-            return callingFileLineNumber-1;
+            return callingFileLineNumber - 1;
         }
 #else
         /// <summary>

@@ -93,7 +93,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("bar@yourserver.com", msg.Bcc[1].Address);
             Assert.Equal(msg.Body, "Info MyLogger log message 1");
         }
-        
+
         [Fact]
         public void MailTarget_WithNewlineInSubject_SendsMail()
         {
@@ -254,7 +254,7 @@ namespace NLog.UnitTests.Targets
             var mock1 = mmt.CreatedMocks[0];
             Assert.Equal("MyLogger1.mydomain.com", mock1.Host);
             Assert.Equal(1, mock1.MessagesSent.Count);
-            
+
             var msg1 = mock1.MessagesSent[0];
             Assert.Equal("log message 1\nlog message 3\n", msg1.Body);
 
@@ -418,7 +418,7 @@ namespace NLog.UnitTests.Targets
             var lines = messageSent.Body.Split(new[] { "<br/>" }, StringSplitOptions.RemoveEmptyEntries);
             Assert.True(lines.Length == 3);
         }
-        
+
         [Fact]
         public void NoReplaceNewlinesWithBreakInHtmlMail()
         {
@@ -440,7 +440,7 @@ namespace NLog.UnitTests.Targets
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.True(messageSent.IsBodyHtml);
-            var lines = messageSent.Body.Split(new[] {Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            var lines = messageSent.Body.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             Assert.True(lines.Length == 3);
         }
 
@@ -456,13 +456,13 @@ namespace NLog.UnitTests.Targets
                 Priority = "high"
             };
             mmt.Initialize(null);
-            
+
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.Equal(MailPriority.High, messageSent.Priority);
         }
-        
+
         [Fact]
         public void MailTarget_WithoutPriority_SendsMailWithNormalPriority()
         {
@@ -474,13 +474,13 @@ namespace NLog.UnitTests.Targets
                 SmtpServer = "server1",
             };
             mmt.Initialize(null);
-            
+
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.Equal(MailPriority.Normal, messageSent.Priority);
         }
-        
+
         [Fact]
         public void MailTarget_WithInvalidPriority_SendsMailWithNormalPriority()
         {
@@ -493,7 +493,7 @@ namespace NLog.UnitTests.Targets
                 Priority = "invalidPriority"
             };
             mmt.Initialize(null);
-            
+
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
@@ -827,17 +827,17 @@ namespace NLog.UnitTests.Targets
                 if (this.SmtpServer == null && string.IsNullOrEmpty(this.PickupDirectoryLocation))
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer/PickupDirectoryLocation"));
-        }
+                }
 
                 if (this.DeliveryMethod == SmtpDeliveryMethod.Network && this.SmtpServer == null)
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
-    }
+                }
 
                 if (this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(this.PickupDirectoryLocation))
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
-}
+                }
 
                 if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
                 {

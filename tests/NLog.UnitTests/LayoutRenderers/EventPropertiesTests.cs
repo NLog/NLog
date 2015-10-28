@@ -74,7 +74,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // empty
             Assert.Equal("", layout.Render(logEvent));
-    }
+        }
 
 
         [Fact]

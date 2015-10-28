@@ -92,7 +92,7 @@ namespace NLog.UnitTests
             public override DateTime FromSystemTime(DateTime systemTime)
             {
                 return new DateTime(systemTime.ToUniversalTime().AddHours(1).Ticks, DateTimeKind.Unspecified);
-        }
+            }
         }
 
         internal class ShiftedTimeSource : TimeSource

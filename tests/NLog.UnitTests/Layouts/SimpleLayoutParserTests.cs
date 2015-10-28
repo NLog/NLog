@@ -363,7 +363,7 @@ namespace NLog.UnitTests.Layouts
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             Assert.Equal("Test: Hello", l.Render(le));
-    }
+        }
 
         [Fact]
         public void InnerLayoutWithColonTest()
@@ -372,7 +372,7 @@ namespace NLog.UnitTests.Layouts
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             Assert.Equal("Test: Hello", l.Render(le));
-}
+        }
 
         [Fact]
         public void InnerLayoutWithSlashSingleTest()

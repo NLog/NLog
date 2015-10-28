@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
@@ -49,9 +50,9 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
-	using ConfigurationManager = System.Configuration.ConfigurationManager;
+    using ConfigurationManager = System.Configuration.ConfigurationManager;
 
-	/// <summary>
+    /// <summary>
     /// Writes log messages to the database using an ADO.NET provider.
     /// </summary>
     /// <seealso href="https://github.com/nlog/nlog/wiki/Database-target">Documentation on NLog Wiki</seealso>
@@ -166,11 +167,11 @@ namespace NLog.Targets
         public bool KeepConnection { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to use database transactions. 
-        /// Some data providers require this.
+        /// Gets or sets the database host name. If the ConnectionString is not provided
+        /// this value will be used to construct the "Server=" part of the
+        /// connection string.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-
         public Layout DBHost { get; set; }
 
         /// <summary>
@@ -212,7 +213,7 @@ namespace NLog.Targets
         [RequiredParameter]
         public Layout CommandText { get; set; }
 
-	/// <summary>
+        /// <summary>
         /// Gets or sets the type of the SQL command to be run on each log level.
         /// </summary>
         /// <remarks>
@@ -223,7 +224,7 @@ namespace NLog.Targets
         /// <docgen category='SQL Statement' order='11' />
         [DefaultValue(CommandType.Text)]
         public CommandType CommandType { get; set; }
-        
+
         /// <summary>
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a database named or positional parameter.
@@ -235,7 +236,7 @@ namespace NLog.Targets
         internal DbProviderFactory ProviderFactory { get; set; }
 
         // this is so we can mock the connection string without creating sub-processes
-        internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set;  }
+        internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set; }
 
         internal Type ConnectionType { get; set; }
 
@@ -443,52 +444,52 @@ namespace NLog.Targets
             //Always suppress transaction so that the caller does not rollback loggin if they are rolling back their transaction.
             using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
             {
-            this.EnsureConnectionOpen(this.BuildConnectionString(logEvent));
+                this.EnsureConnectionOpen(this.BuildConnectionString(logEvent));
 
-            IDbCommand command = this.activeConnection.CreateCommand();
-            command.CommandText = this.CommandText.Render(logEvent);
-	    command.CommandType = this.CommandType;
-	    
-            InternalLogger.Trace("Executing {0}: {1}", command.CommandType, command.CommandText);
+                IDbCommand command = this.activeConnection.CreateCommand();
+                command.CommandText = this.CommandText.Render(logEvent);
+                command.CommandType = this.CommandType;
 
-            foreach (DatabaseParameterInfo par in this.Parameters)
-            {
-                IDbDataParameter p = command.CreateParameter();
-                p.Direction = ParameterDirection.Input;
-                if (par.Name != null)
+                InternalLogger.Trace("Executing {0}: {1}", command.CommandType, command.CommandText);
+
+                foreach (DatabaseParameterInfo par in this.Parameters)
                 {
-                    p.ParameterName = par.Name;
+                    IDbDataParameter p = command.CreateParameter();
+                    p.Direction = ParameterDirection.Input;
+                    if (par.Name != null)
+                    {
+                        p.ParameterName = par.Name;
+                    }
+
+                    if (par.Size != 0)
+                    {
+                        p.Size = par.Size;
+                    }
+
+                    if (par.Precision != 0)
+                    {
+                        p.Precision = par.Precision;
+                    }
+
+                    if (par.Scale != 0)
+                    {
+                        p.Scale = par.Scale;
+                    }
+
+                    string stringValue = par.Layout.Render(logEvent);
+
+                    p.Value = stringValue;
+                    command.Parameters.Add(p);
+
+                    InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
                 }
 
-                if (par.Size != 0)
-                {
-                    p.Size = par.Size;
-                }
-
-                if (par.Precision != 0)
-                {
-                    p.Precision = par.Precision;
-                }
-
-                if (par.Scale != 0)
-                {
-                    p.Scale = par.Scale;
-                }
-
-                string stringValue = par.Layout.Render(logEvent);
-
-                p.Value = stringValue;
-                command.Parameters.Add(p);
-
-                InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
-            }
-
-            int result = command.ExecuteNonQuery();
-            InternalLogger.Trace("Finished execution, result = {0}", result);
+                int result = command.ExecuteNonQuery();
+                InternalLogger.Trace("Finished execution, result = {0}", result);
 
                 //not really needed as there is no transaction at all.
                 transactionScope.Complete();
-        }
+            }
         }
 
         private string BuildConnectionString(LogEventInfo logEvent)
@@ -613,7 +614,7 @@ namespace NLog.Targets
                     }
                 }
             }
-            finally 
+            finally
             {
                 this.CloseConnection();
             }
