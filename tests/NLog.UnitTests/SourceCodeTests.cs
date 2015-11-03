@@ -297,6 +297,13 @@ namespace NLog.UnitTests
 
         private bool VerifySingleFile(string file)
         {
+
+            if (FileInObjFolder(file))
+            {
+                //don't scan files in obj folder
+                return true;
+            }
+
             using (StreamReader reader = File.OpenText(file))
             {
                 for (int i = 0; i < this.licenseLines.Length; ++i)
@@ -313,9 +320,19 @@ namespace NLog.UnitTests
             }
         }
 
+        private static bool FileInObjFolder(string file)
+        {
+            return file.Contains("/obj/") || file.Contains("\\obj\\");
+        }
+
         private int VerifyClassNames(string path, string expectedNamespace)
         {
             int failureCount = 0;
+
+            if (FileInObjFolder(path))
+            {
+                return 0;
+            }
 
             foreach (string file in Directory.GetFiles(path, "*.cs"))
             {
@@ -345,8 +362,15 @@ namespace NLog.UnitTests
             return failureCount;
         }
 
+        ///<returns>success?</returns>
         private bool VerifySingleFile(string file, string expectedNamespace, string expectedClassName)
         {
+            //ignore list
+            if (file != null && file.EndsWith("nunit.cs", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return true;
+            }
+
             bool success = true;
             HashSet<string> classNames = new HashSet<string>();
             using (StreamReader sr = File.OpenText(file))
