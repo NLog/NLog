@@ -27,12 +27,14 @@
     <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
     <FrameworksPath>$(MSBuildProjectDirectory)\Frameworks</FrameworksPath>    
     <BuildAllFrameworks>true</BuildAllFrameworks>
+    <!--disable "build all" if one or more build framework are passed-->
     <BuildAllFrameworks Condition="'$(BuildMono2)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL4)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL5)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX45)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildWP8)' == 'true'">false</BuildAllFrameworks>
     <IgnoreBuildFailures>false</IgnoreBuildFailures>
     <IgnoreBuildFailures Condition=" '$(BuildAllFrameworks)'=='true' ">true</IgnoreBuildFailures>
     <IgnoreBuildFailures Condition=" '$(IsNightlyBuild)'=='true' ">false</IgnoreBuildFailures>
@@ -85,6 +87,7 @@
     <BuildNetFX35>true</BuildNetFX35>
     <BuildNetFX40>true</BuildNetFX40>
     <BuildNetFX45>true</BuildNetFX45>
+    <BuildWP8>true</BuildWP8>
 
     <!-- now disable those that we know cannot be built -->
     <BuildMono2 Condition="'$(MonoInstallLocation)'==''">false</BuildMono2>
@@ -128,6 +131,11 @@
         <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
         <NuGetDir>net45</NuGetDir>
+    </TargetFramework>
+    <TargetFramework Include="Windows Phone 8" Condition="'$(BuildWP8)'=='true'">
+        <ProjectFileSuffix>.WinPhone</ProjectFileSuffix>
+        <ToolsVersion>4.0</ToolsVersion>
+        <NuGetDir>wp8</NuGetDir>
     </TargetFramework>
   </ItemGroup>
 
