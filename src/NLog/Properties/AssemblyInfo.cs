@@ -56,7 +56,7 @@ using System.Security;
 #elif WINDOWS_PHONE
 	[assembly: AssemblyTitle("NLog for Windows Phone 8")]
 #elif __ANDROID__
-	[assembly: AssemblyTitle("NLog for Android")]
+	[assembly: AssemblyTitle("NLog for Xamarin Android")]
 #else
 #error Unrecognized build target - please update AssemblyInfo.cs
 #endif
