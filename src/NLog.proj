@@ -107,6 +107,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!--The info for the nuspec-->
+    
     <TargetFramework Include="Mono 2.x" Condition="'$(BuildMono2)' == 'true'">
         <ProjectFileSuffix>.mono2</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
@@ -134,12 +136,13 @@
         <ToolsVersion>4.0</ToolsVersion>
         <NuGetDir>net45</NuGetDir>
     </TargetFramework>
-    <TargetFramework Include="Windows Phone 8" Condition="'$(BuildWP8)'=='true'">
+    <!--the include attribute is the folder name-->
+    <TargetFramework Include="WindowsPhone8" Condition="'$(BuildWP8)'=='true'">
         <ProjectFileSuffix>.WinPhone</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
         <NuGetDir>wp8</NuGetDir>
     </TargetFramework>
-    <TargetFramework Include="Xamarin Android" Condition="'$(BuildXamarinAndroid)'=='true'">
+    <TargetFramework Include="Xamarin.Android" Condition="'$(BuildXamarinAndroid)'=='true'">
       <ProjectFileSuffix>.Android</ProjectFileSuffix>
       <ToolsVersion>4.0</ToolsVersion>
       <NuGetDir>MonoAndroid10</NuGetDir>
