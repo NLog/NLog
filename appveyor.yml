@@ -1,7 +1,7 @@
 version: 4.0.{build}
 clone_folder: c:\projects\nlog
 build_script:
-  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildSL5=true /p:BuildSL4=true /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true
+  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildSL5=true /p:BuildSL4=true /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true /p:BuildWP8=true
 before_test:
   - .\tests\CreateTestUsers.cmd
 test_script:
