@@ -10,7 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>NLog.UnitTests</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>NLog.UnitTests</AssemblyName>
+    <AssemblyName>NLogUnitTests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -230,9 +230,6 @@
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\OutOfBrowserSettings.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ConfigFiles\main.nlog" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\OutOfBrowserSettings.xml" />
