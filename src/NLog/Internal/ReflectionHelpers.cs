@@ -33,11 +33,11 @@
 
 namespace NLog.Internal
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Reflection;
-	using System.Text;
-	using NLog.Common;
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Text;
+    using NLog.Common;
 
     /// <summary>
     /// Reflection helpers.

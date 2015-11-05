@@ -43,7 +43,7 @@ namespace NLog.Internal
     /// </summary>
     public static class StreamHelpers
     {
-            /// <summary>
+        /// <summary>
         /// Copy stream input to output. Skip the first bytes
         /// </summary>
         /// <param name="input">stream to read from</param>
