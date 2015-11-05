@@ -33,41 +33,41 @@
 
 namespace NLog.Internal
 {
-	using System;
-	using System.Reflection;
-	using NLog.Config;
+    using System;
+    using System.Reflection;
+    using NLog.Config;
 
-	/// <summary>
-	/// Object construction helper.
-	/// </summary>
+    /// <summary>
+    /// Object construction helper.
+    /// </summary>
 #if(__IOS__)
 	public class FactoryHelper
 #else
-	internal class FactoryHelper
+    internal class FactoryHelper
 #endif
-	{
-		private static Type[] emptyTypes = new Type[0];
-		private static object[] emptyParams = new object[0];
+    {
+        private static Type[] emptyTypes = new Type[0];
+        private static object[] emptyParams = new object[0];
 
-		private FactoryHelper()
-		{
-		}
+        private FactoryHelper()
+        {
+        }
 
 #if(__IOS__)
 		public static object CreateInstance(Type t)
 #else
-		internal static object CreateInstance(Type t)
+        internal static object CreateInstance(Type t)
 #endif
-		{
-			ConstructorInfo constructor = t.GetConstructor(emptyTypes);
-			if (constructor != null)
-			{
-				return constructor.Invoke(emptyParams);
-			}
-			else
-			{
-				throw new NLogConfigurationException("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
-			}
-		}
-	}
+        {
+            ConstructorInfo constructor = t.GetConstructor(emptyTypes);
+            if (constructor != null)
+            {
+                return constructor.Invoke(emptyParams);
+            }
+            else
+            {
+                throw new NLogConfigurationException("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
+            }
+        }
+    }
 }
