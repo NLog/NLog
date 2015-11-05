@@ -1,5 +1,13 @@
 version: 4.0.{build}
 clone_folder: c:\projects\nlog
+environment:
+  xamarin_email:
+    secure: 7v79qwPZ4B1i/0KMpwy5xRdxQO9qzPjtRR0IV+dI83c=
+  xamarin_password:
+    secure: koh9YQacPXLs0Exxx1dIHIqpDAwg79tKqGUtFIeRqiM=
+before_build:
+  - appveyor RegisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password% -Product Android
+
 build_script:
   - Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildSL5=true /p:BuildSL4=true /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true 
   - Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildWP8=true /p:BuildXamarinAndroid=true 
@@ -18,6 +26,10 @@ test_script:
   
 after_test:
   - .\tests\DeleteTestUsers.cmd
+after_build:
+  - appveyor UnregisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password%
+
+  
 deploy: off
 # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
 cache:
