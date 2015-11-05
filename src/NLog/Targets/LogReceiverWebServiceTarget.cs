@@ -398,7 +398,7 @@ namespace NLog.Targets
         }
 #endif
 
-	    private void SendBufferedEvents()
+        private void SendBufferedEvents()
         {
             lock (this.SyncRoot)
             {
@@ -440,7 +440,7 @@ namespace NLog.Targets
             {
                 string value;
                 object propertyValue;
-                
+
                 if (eventInfo.Properties.TryGetValue(context.LayoutNames[i], out propertyValue))
                 {
                     value = Convert.ToString(propertyValue, CultureInfo.InvariantCulture);
@@ -456,8 +456,8 @@ namespace NLog.Targets
 
             if (eventInfo.Exception != null)
             {
-            	nlogEvent.ValueIndexes.Add(AddValueAndGetStringOrdinal(context, stringTable, eventInfo.Exception.ToString()));
-        	}
+                nlogEvent.ValueIndexes.Add(AddValueAndGetStringOrdinal(context, stringTable, eventInfo.Exception.ToString()));
+            }
 
             return nlogEvent;
         }
