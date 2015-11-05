@@ -221,7 +221,7 @@ namespace NLog.UnitTests
                     continue;
                 }
 
-                if (file.Contains(Path.Combine("obj", "Debug")))
+                if (FileInObjFolder(prefix + file))
                 {
                     continue;
                 }
@@ -320,9 +320,10 @@ namespace NLog.UnitTests
             }
         }
 
-        private static bool FileInObjFolder(string file)
+        private static bool FileInObjFolder(string path)
         {
-            return file.Contains("/obj/") || file.Contains("\\obj\\");
+            return path.Contains("/obj/") || path.Contains("\\obj\\")
+                   || path.StartsWith("obj/", StringComparison.InvariantCultureIgnoreCase) || path.StartsWith("obj\\", StringComparison.InvariantCultureIgnoreCase);
         }
 
         private int VerifyClassNames(string path, string expectedNamespace)
