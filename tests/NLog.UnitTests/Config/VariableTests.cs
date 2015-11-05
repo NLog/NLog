@@ -96,7 +96,7 @@ namespace NLog.UnitTests.Config
             //dont change the ${test} as it isn't a Layout
             Assert.Equal("${test}", target.Source);
 
-    }
+        }
 #endif
 
 
