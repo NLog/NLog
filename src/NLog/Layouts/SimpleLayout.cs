@@ -253,8 +253,9 @@ namespace NLog.Layouts
 
             var builder = new StringBuilder(initialSize);
 
-            foreach (LayoutRenderer renderer in this.Renderers)
+            for (int i = 0; i < this.Renderers.Count; i++)
             {
+                LayoutRenderer renderer = this.Renderers[i];
                 try
                 {
                     renderer.Render(builder, logEvent);
