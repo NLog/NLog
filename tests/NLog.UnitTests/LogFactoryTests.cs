@@ -31,17 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-using System.Linq;
-using System.Threading;
-using NLog.Targets;
-
 #if !SILVERLIGHT
 namespace NLog.UnitTests
 {
     using System;
-    using NLog.Config;
+    using System.IO;
+    using System.Linq;
+    using System.Threading;
+
     using Xunit;
+
+    using NLog.Config;
+    using NLog.Targets;
 
     public class LogFactoryTests : NLogTestBase
     {
@@ -229,7 +230,8 @@ namespace NLog.UnitTests
                 new FileInfo(originalFilePath).Delete();
                 new FileInfo(newFilePath).Delete();
 
-                WriteToFile(GetValidXml(), originalFilePath);
+                string targetLogFile = Path.Combine(tempPath, @"log.txt");
+                WriteToFile(GetValidXml(targetLogFile), originalFilePath);
 
                 //event for async testing
                 var counterEvent = new CountdownEvent(1);
@@ -287,7 +289,8 @@ namespace NLog.UnitTests
 
                 var tempPathFile = Path.Combine(tempPath, "main.nlog");
 
-                WriteToFile(GetValidXml(), tempPathFile);
+                string targetLogFile = Path.Combine(tempPath, @"log.txt");
+                WriteToFile(GetValidXml(targetLogFile), tempPathFile);
 
                 //event for async testing
                 var counterEvent = new CountdownEvent(1);
@@ -302,16 +305,17 @@ namespace NLog.UnitTests
                         counterEvent.Signal();
                 };
 
-                Test_if_reload_success(@"c:\temp\log.txt");
+                Test_if_reload_success(targetLogFile);
 
-                WriteToFile(GetValidXml(@"c:\temp\log2.txt"), tempPathFile);
+                string targetLogFile2 = Path.Combine(tempPath, @"log2.txt");
+                WriteToFile(GetValidXml(targetLogFile2), tempPathFile);
 
                 //test after signal
                 counterEvent.Wait(3000);
                 //we need some extra time for completion
                 Thread.Sleep(1000);
 
-                Test_if_reload_success(@"c:\temp\log2.txt");
+                Test_if_reload_success(targetLogFile2);
 
             }
             finally
@@ -331,7 +335,8 @@ namespace NLog.UnitTests
 
                 var tempPathFile = Path.Combine(tempPath, "main.nlog");
 
-                WriteToFile(GetValidXml(), tempPathFile);
+                string targetLogFile = Path.Combine(tempPath, @"log.txt");
+                WriteToFile(GetValidXml(targetLogFile), tempPathFile);
 
                 //event for async testing
                 var counterEvent = new CountdownEvent(1);
@@ -341,7 +346,7 @@ namespace NLog.UnitTests
 
                 LogManager.ConfigurationReloaded += SignalCounterEvent1(counterEvent);
 
-                Test_if_reload_success(@"c:\temp\log.txt");
+                Test_if_reload_success(targetLogFile);
 
 
                 //set invalid, set valid
@@ -363,7 +368,8 @@ namespace NLog.UnitTests
                 var counterEvent2 = new CountdownEvent(1);
                 LogManager.ConfigurationReloaded += (sender, e) => SignalCounterEvent(counterEvent2);
 
-                WriteToFile(GetValidXml(@"c:\temp\log2.txt"), tempPathFile);
+                string targetLogFile2 = Path.Combine(tempPath, @"log2.txt");
+                WriteToFile(GetValidXml(targetLogFile2), tempPathFile);
 
                 counterEvent2.Wait(5000);
                 //we need some extra time for completion
@@ -374,13 +380,67 @@ namespace NLog.UnitTests
                     throw new Exception("failed to reload - 2");
                 }
 
-                Test_if_reload_success(@"c:\temp\log2.txt");
+                Test_if_reload_success(targetLogFile2);
 
             }
             finally
             {
                 LogManager.Configuration = null;
             }
+        }
+
+        [Fact]
+        public void EnableAndDisableLogging()
+        {
+            LogFactory factory = new LogFactory();
+#pragma warning disable 618
+            // In order Suspend => Resume 
+            Assert.True(factory.IsLoggingEnabled());
+            factory.DisableLogging();
+            Assert.False(factory.IsLoggingEnabled());
+            factory.EnableLogging();
+            Assert.True(factory.IsLoggingEnabled());
+#pragma warning restore 618           
+        }
+
+        [Fact]
+        public void SuspendAndResumeLogging_InOrder()
+        {
+            LogFactory factory = new LogFactory();
+
+            // In order Suspend => Resume [Case 1]
+            Assert.True(factory.IsLoggingEnabled());
+            factory.SuspendLogging();
+            Assert.False(factory.IsLoggingEnabled());
+            factory.ResumeLogging();
+            Assert.True(factory.IsLoggingEnabled());
+
+            // In order Suspend => Resume [Case 2]
+            using (var factory2 = new LogFactory())
+            {
+                Assert.True(factory.IsLoggingEnabled());
+                factory.SuspendLogging();
+                Assert.False(factory.IsLoggingEnabled());
+                factory.ResumeLogging();
+                Assert.True(factory.IsLoggingEnabled());
+            }
+        }
+
+        [Fact]
+        public void SuspendAndResumeLogging_OutOfOrder()
+        {
+            LogFactory factory = new LogFactory();
+
+            // Out of order Resume => Suspend => (Suspend => Resume)
+            factory.ResumeLogging();
+            Assert.True(factory.IsLoggingEnabled());
+            factory.SuspendLogging();
+            Assert.True(factory.IsLoggingEnabled());
+            factory.SuspendLogging();
+            Assert.False(factory.IsLoggingEnabled());
+            factory.ResumeLogging();
+            Assert.True(factory.IsLoggingEnabled());
+
         }
 
         private static EventHandler<LoggingConfigurationReloadedEventArgs> SignalCounterEvent1(CountdownEvent counterEvent)
@@ -397,7 +457,7 @@ namespace NLog.UnitTests
             }
         }
 
-        private static string GetValidXml(string fileName = @"c:\temp\log.txt")
+        private static string GetValidXml(string fileName)
         {
             return
                 string.Format(@"<?xml version=""1.0"" encoding=""utf-8"" ?>

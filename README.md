@@ -1,6 +1,6 @@
 Welcome to NLog!
 ===
-*Vote or add ideas on [UserEcho](https://nlog.userecho.com)!*
+*Vote or submit ideas on [UserEcho](https://nlog.userecho.com)!*
 
 ===
 [![Join the chat at https://gitter.im/NLog/NLog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLog/NLog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -56,7 +56,7 @@ NLog.Schema                                                         | [![AppVeyo
 Questions, bug reports or feature requests?
 ---
 Do you have feature requests, questions or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](CONTRIBUTING.md).
-
+Please also post or vote features requests on [UserEcho](https://nlog.userecho.com).
 
 Contributing
 ---
