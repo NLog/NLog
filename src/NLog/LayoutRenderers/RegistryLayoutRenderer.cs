@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers
         {
             Object registryValue = null;
             // Value = null is necessary for querying "unnamed values"
-            string renderedValue = (this.Value != null) ? this.Value.Render(logEvent) : null;
+            string renderedValue = this.Value != null ? this.Value.Render(logEvent) : null;
 
             var parseResult = ParseKey(this.Key.Render(logEvent));
             try
@@ -215,7 +215,7 @@ namespace NLog.LayoutRenderers
         }
 
 #if NET3_5
-        private RegistryKey MapHiveToKey(RegistryHive hive)
+        private static RegistryKey MapHiveToKey(RegistryHive hive)
         {
             switch(hive)
             {
