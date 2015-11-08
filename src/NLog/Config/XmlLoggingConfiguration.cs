@@ -1,64 +1,62 @@
-// 
+//
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
-// 
+//
 // All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
 // are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
+//
+// * Redistributions of source code must retain the above copyright notice,
+//   this list of conditions and the following disclaimer.
+//
 // * Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   and/or other materials provided with the distribution.
+//
+// * Neither the name of Jaroslaw Kowalski nor the names of its
 //   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
+//   software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-
+//
 
 namespace NLog.Config
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Linq;
-    using System.IO;
-    using System.Reflection;
-    using System.Xml;
     using NLog.Common;
     using NLog.Filters;
     using NLog.Internal;
+    using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
-    using NLog.LayoutRenderers;
     using NLog.Time;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
+    using System.Xml;
+
 #if SILVERLIGHT
 // ReSharper disable once RedundantUsingDirective
     using System.Windows;
 #endif
 
     /// <summary>
-    /// A class for configuring NLog through an XML configuration file 
+    /// A class for configuring NLog through an XML configuration file
     /// (App.config style or App.nlog style).
     /// </summary>
     public class XmlLoggingConfiguration : LoggingConfiguration
@@ -68,13 +66,13 @@ namespace NLog.Config
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
-        
+
         private ConfigurationItemFactory ConfigurationItemFactory
         {
             get { return ConfigurationItemFactory.Default; }
         }
 
-        #endregion
+        #endregion private fields
 
         #region contructors
 
@@ -125,6 +123,7 @@ namespace NLog.Config
         }
 
 #if !SILVERLIGHT
+
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
@@ -155,14 +154,17 @@ namespace NLog.Config
                 this.Initialize(reader, fileName, ignoreErrors);
             }
         }
+
 #endif
-        #endregion
+
+        #endregion contructors
 
         #region public properties
 
 #if !SILVERLIGHT
+
         /// <summary>
-        /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
+        /// Gets the default <see cref="LoggingConfiguration" /> object by parsing
         /// the application configuration file (<c>app.exe.config</c>).
         /// </summary>
         public static LoggingConfiguration AppConfig
@@ -173,13 +175,13 @@ namespace NLog.Config
                 return o as LoggingConfiguration;
             }
         }
+
 #endif
 
         /// <summary>
         /// Did the <see cref="Initialize"/> Succeeded? <c>true</c>= success, <c>false</c>= error, <c>null</c> = initialize not started yet.
         /// </summary>
         public bool? InitializeSucceeded { get; private set; }
-
 
         /// <summary>
         /// Gets or sets a value indicating whether the configuration files
@@ -205,7 +207,7 @@ namespace NLog.Config
             }
         }
 
-        #endregion
+        #endregion public properties
 
         #region public methods
 
@@ -218,7 +220,7 @@ namespace NLog.Config
             return new XmlLoggingConfiguration(this.originalFileName);
         }
 
-        #endregion
+        #endregion public methods
 
         private static bool IsTargetElement(string name)
         {
@@ -236,7 +238,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Remove all spaces, also in between text. 
+        /// Remove all spaces, also in between text.
         /// </summary>
         /// <param name="s">text</param>
         /// <returns>text without spaces</returns>
@@ -319,23 +321,16 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 InitializeSucceeded = false;
-                if (exception.MustBeRethrown())
+                if (exception.MustRethrowSevere())
                 {
                     throw;
                 }
 
                 NLogConfigurationException ConfigException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
 
-                if (!ignoreErrors)
+                if (!ignoreErrors && LogManager.ThrowExceptions)
                 {
-                    if (LogManager.ThrowExceptions)
-                    {
-                        throw ConfigException;
-                    }
-                    else
-                    {
-                        InternalLogger.Error("Error in Parsing Configuration File. Exception : {0}", ConfigException);
-                    }
+                    throw ConfigException;
                 }
                 else
                 {
@@ -815,7 +810,7 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
+                        if (exception.MustRethrowSevere())
                         {
                             throw;
                         }
@@ -848,7 +843,7 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
+                        if (exception.MustRethrowSevere())
                         {
                             throw;
                         }
@@ -897,7 +892,7 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustRethrowSevere())
                 {
                     throw;
                 }
@@ -927,7 +922,7 @@ namespace NLog.Config
             TimeSource.Current = newTimeSource;
         }
 
-        #endregion
+        #endregion parse methods
 
         private void SetPropertyFromElement(object o, NLogXmlElement element)
         {
@@ -1052,7 +1047,7 @@ namespace NLog.Config
 
         /// <summary>
         /// Replace a simple variable with a value. The orginal value is removed and thus we cannot redo this in a later stage.
-        /// 
+        ///
         /// Use for that: <see cref="VariableLayoutRenderer"/>
         /// </summary>
         /// <param name="input"></param>

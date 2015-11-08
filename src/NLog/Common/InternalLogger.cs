@@ -380,7 +380,7 @@ namespace NLog.Common
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown(false))
                 {
                     throw;
                 }
@@ -425,7 +425,7 @@ namespace NLog.Common
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown(false))
                     {
                         throw;
                     }
@@ -449,7 +449,7 @@ namespace NLog.Common
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown(false))
                 {
                     throw;
                 }
@@ -472,7 +472,7 @@ namespace NLog.Common
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown(false))
                 {
                     throw;
                 }
@@ -495,7 +495,7 @@ namespace NLog.Common
             {
                 Error("Cannot create needed directories to {0}. {1}", filename, exception.Message);
 
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown(false))
                 {
                     throw;
                 }

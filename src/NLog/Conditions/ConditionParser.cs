@@ -136,7 +136,7 @@ namespace NLog.Conditions
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown("While resolving function '{0}' follwing exception occured: {1}", functionName, exception))
                 {
                     throw;
                 }

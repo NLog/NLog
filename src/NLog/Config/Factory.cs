@@ -72,12 +72,10 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown(LogLevel.Error, "Failed to add type '{0}': {1}", t.FullName, exception))
                     {
                         throw;
                     }
-
-                    InternalLogger.Error("Failed to add type '" + t.FullName + "': {0}", exception);
                 }
             }
         }

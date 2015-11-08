@@ -91,7 +91,7 @@ namespace NLog.Internal
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustRethrowSevere())
                 {
                     throw;
                 }

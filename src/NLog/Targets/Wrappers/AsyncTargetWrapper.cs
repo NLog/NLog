@@ -288,12 +288,10 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown(LogLevel.Error, "Error in lazy writer timer procedure: {0}", exception))
                 {
                     throw;
                 }
-
-                InternalLogger.Error("Error in lazy writer timer procedure: {0}", exception);
             }
             finally
             {

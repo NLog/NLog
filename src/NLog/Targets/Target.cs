@@ -210,11 +210,6 @@ namespace NLog.Targets
                         throw;
                     }
 
-                    if (LogManager.ThrowExceptions)
-                    {
-                        throw;
-                    }
-
                     wrappedContinuation(exception);
                 }
             }
@@ -300,13 +295,12 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
+                        if (exception.MustBeRethrown(LogLevel.Error, "Error initializing target {0} {1}.", this, exception))
                         {
                             throw;
                         }
 
                         this.initializeException = exception;
-                        InternalLogger.Error("Error initializing target {0} {1}.", this, exception);
                         throw;
                     }
                 }
@@ -336,12 +330,11 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
+                        if (exception.MustBeRethrown(LogLevel.Error, "Error closing target {0} {1}.", this, exception))
                         {
                             throw;
                         }
 
-                        InternalLogger.Error("Error closing target {0} {1}.", this, exception);
                         throw;
                     }
                 }

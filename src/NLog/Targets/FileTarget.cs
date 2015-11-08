@@ -1598,12 +1598,10 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown("Exception in AutoClosingTimerCallback: {0}", exception))
                     {
                         throw;
                     }
-
-                    InternalLogger.Warn("Exception in AutoClosingTimerCallback: {0}", exception);
                 }
             }
         }
@@ -1799,12 +1797,10 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown("Unable to archive old log file '{0}': {1}", fileName, exception))
                     {
                         throw;
                     }
-
-                    InternalLogger.Warn("Unable to archive old log file '{0}': {1}", fileName, exception);
                 }
             }
 
@@ -1816,12 +1812,10 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown("Unable to delete old log file '{0}': {1}", fileName, exception))
                     {
                         throw;
                     }
-
-                    InternalLogger.Warn("Unable to delete old log file '{0}': {1}", fileName, exception);
                 }
             }
         }

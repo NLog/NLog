@@ -342,8 +342,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                InternalLogger.Error("Error when connecting to EventLog: {0}", exception);
-                if (alwaysThrowError || exception.MustBeRethrown())
+                if (exception.MustBeRethrown(LogLevel.Error, "Error when connecting to EventLog: {0}", exception) || alwaysThrowError)
                 {
                     throw;
                 }

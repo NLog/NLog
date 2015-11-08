@@ -375,12 +375,11 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown(LogLevel.Error, "Error when writing to database {0}", exception))
                 {
                     throw;
                 }
 
-                InternalLogger.Error("Error when writing to database {0}", exception);
                 this.CloseConnection();
                 throw;
             }
@@ -416,13 +415,11 @@ namespace NLog.Targets
                         }
                         catch (Exception exception)
                         {
-                            if (exception.MustBeRethrown())
+                            if (exception.MustBeRethrown(LogLevel.Error, "Error when writing to database {0}", exception))
                             {
                                 throw;
                             }
 
-                            // in case of exception, close the connection and report it
-                            InternalLogger.Error("Error when writing to database {0}", exception);
                             this.CloseConnection();
                             ev.Continuation(exception);
                         }
@@ -597,7 +594,7 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
+                        if (exception.MustRethrowSevere())
                         {
                             throw;
                         }

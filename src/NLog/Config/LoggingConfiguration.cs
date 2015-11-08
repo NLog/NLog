@@ -249,7 +249,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown("'{0}' installation failed: {1}.", installable, exception))
                     {
                         throw;
                     }
@@ -286,7 +286,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown("Uninstallation of '{0}' failed: {1}.", installable, exception))
                     {
                         throw;
                     }
@@ -311,12 +311,10 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown("Exception while closing {0}", exception))
                     {
                         throw;
                     }
-
-                    InternalLogger.Warn("Exception while closing {0}", exception);
                 }
             }
 
@@ -417,7 +415,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustRethrowSevere())
                     {
                         throw;
                     }
