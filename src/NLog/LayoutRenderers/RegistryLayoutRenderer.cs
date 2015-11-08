@@ -125,7 +125,7 @@ namespace NLog.LayoutRenderers
             try
             {
 #if !NET3_5
-                using (RegistryKey rootKey = RegistryKey.OpenBaseKey(hive, View))
+                using (RegistryKey rootKey = RegistryKey.OpenBaseKey(parseResult.Hive, View))
 #else                  
                 var rootKey = MapHiveToKey(parseResult.Hive);
 
