@@ -137,7 +137,8 @@ namespace NLog.Conditions
 
             string separator = string.Empty;
 
-            //perf: using for-loop to avoid Enumerator memory allocation in foreach-loop.
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
             for (int i = 0; i < this.MethodParameters.Count; i++)
             {
                 ConditionExpression expr = this.MethodParameters[i];
@@ -161,7 +162,8 @@ namespace NLog.Conditions
 
             var callParameters = new object[this.MethodParameters.Count + parameterOffset];
 
-            //perf: using for-loop to avoid Enumerator memory allocation in foreach-loop.
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
             for (int i = 0; i < this.MethodParameters.Count; i++)
             {
                 ConditionExpression ce = this.MethodParameters[i];
