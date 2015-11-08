@@ -120,7 +120,7 @@ namespace NLog.LayoutRenderers
                     {
                         using (RegistryKey registryKey = rootKey.OpenSubKey(this.subKey))
                         {
-                            registryValue = registryKey.GetValue(renderedValue);
+                            if (registryKey != null) registryValue = registryKey.GetValue(renderedValue);
                         }
                     }
                     else
