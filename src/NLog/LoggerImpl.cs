@@ -214,6 +214,7 @@ namespace NLog
 
             try
             {
+                //perf: using for-loop to avoid Enumerator memory allocation in foreach-loop.
                 for (int i = 0; i < filterChain.Count; i++)
                 {
                     Filter f = filterChain[i];
