@@ -132,10 +132,10 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception ex)
             {
-                //if (ex.MustBeRethrown())
-                //{
-                //    throw;
-                //}
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
             }
 
             string value = null;
