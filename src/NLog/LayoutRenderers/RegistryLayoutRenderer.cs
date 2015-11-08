@@ -208,6 +208,9 @@ namespace NLog.LayoutRenderers
                 //remove starting slashes
                 subkey = subkey.TrimStart('\\');
 
+                //replace double slashes from pre-layout times
+                subkey = subkey.Replace("\\\\", "\\");
+
             }
             else
             {
