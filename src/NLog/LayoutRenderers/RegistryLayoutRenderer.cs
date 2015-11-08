@@ -51,7 +51,13 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("registry")]
     public class RegistryLayoutRenderer : LayoutRenderer
     {
-      
+        /// <summary>
+        /// Create new renderer
+        /// </summary>
+        public RegistryLayoutRenderer()
+        {
+            RequireEscapingSlashesInDefaultValue = true;
+        }
 
         /// <summary>
         /// Gets or sets the registry value name.
@@ -64,6 +70,18 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Registry Options' order='10' />
         public Layout DefaultValue { get; set; }
+
+        /// <summary>
+        /// Require escaping backward slashes in <see cref="DefaultValue"/>. Need to be backwardscompatible.
+        /// 
+        /// When true:
+        /// 
+        /// `\` in value should be configured as `\\`
+        /// `\\` in value should be configured as `\\\\`.
+        /// </summary>
+        /// <remarks>Default value wasn't a Layout before and needed an escape of the slash</remarks>
+        [DefaultValue(true)]
+        public bool RequireEscapingSlashesInDefaultValue { get; set; }
 
 #if !NET3_5
         /// <summary>
@@ -144,6 +162,12 @@ namespace NLog.LayoutRenderers
             else if (this.DefaultValue != null)
             {
                 value = this.DefaultValue.Render(logEvent);
+
+                if (RequireEscapingSlashesInDefaultValue)
+                {
+                    //remove escape slash
+                    value = value.Replace("\\\\", "\\");
+                }
             }
             builder.Append(value);
         }
