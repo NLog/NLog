@@ -51,8 +51,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("registry")]
     public class RegistryLayoutRenderer : LayoutRenderer
     {
-        private RegistryHive hive = RegistryHive.LocalMachine;
-        private string subKey;
+      
 
         /// <summary>
         /// Gets or sets the registry value name.
@@ -104,21 +103,21 @@ namespace NLog.LayoutRenderers
             // Value = null is necessary for querying "unnamed values"
             string renderedValue = (this.Value != null) ? this.Value.Render(logEvent) : null;
 
-            ParseKey(this.Key.Render(logEvent));
-
+            var parseResult = ParseKey(this.Key.Render(logEvent));
             try
             {
 #if !NET3_5
                 using (RegistryKey rootKey = RegistryKey.OpenBaseKey(hive, View))
 #else                  
-                    var rootKey = MapHiveToKey(this.hive);
+                var rootKey = MapHiveToKey(parseResult.Hive);
 
 #endif
 
                 {
-                    if (!String.IsNullOrEmpty(this.subKey))
+
+                    if (parseResult.HasSubKey)
                     {
-                        using (RegistryKey registryKey = rootKey.OpenSubKey(this.subKey))
+                        using (RegistryKey registryKey = rootKey.OpenSubKey(parseResult.SubKey))
                         {
                             if (registryKey != null) registryValue = registryKey.GetValue(renderedValue);
                         }
@@ -127,7 +126,6 @@ namespace NLog.LayoutRenderers
                     {
                         registryValue = rootKey.GetValue(renderedValue);
                     }
-
                 }
             }
             catch (Exception ex)
@@ -150,39 +148,70 @@ namespace NLog.LayoutRenderers
             builder.Append(value);
         }
 
+        private class ParseResult
+        {
+            public string SubKey { get; set; }
+
+            public RegistryHive Hive { get; set; }
+
+            /// <summary>
+            /// Has <see cref="SubKey"/>?
+            /// </summary>
+            public bool HasSubKey
+            {
+                get { return !string.IsNullOrEmpty(SubKey); }
+            }
+        }
+
         /// <summary>
-        /// Splits up <paramref name="key"/> into its registry <see cref="hive"/> and <see cref="subKey"/>.
+        /// Parse key to <see cref="RegistryHive"/> and subkey.
         /// </summary>
         /// <param name="key">full registry key name</param>
-        private void ParseKey(string key)
+        /// <returns>Result of parsing, never <c>null</c>.</returns>
+        private static ParseResult ParseKey(string key)
         {
             string hiveName;
             int pos = key.IndexOfAny(new char[] { '\\', '/' });
 
+            string subkey = null;
             if (pos >= 0)
             {
                 hiveName = key.Substring(0, pos);
-                this.subKey = key.Substring(pos + 1).Replace('/', '\\');
+
+                //normalize slashes
+                subkey = key.Substring(pos + 1).Replace('/', '\\');
+
+                //remove starting slashes
+                subkey = subkey.TrimStart('\\');
+
             }
             else
             {
                 hiveName = key;
             }
+
+            RegistryHive hive;
             switch (hiveName.ToUpper(CultureInfo.InvariantCulture))
             {
                 case "HKEY_LOCAL_MACHINE":
                 case "HKLM":
-                    this.hive = RegistryHive.LocalMachine;
+                    hive = RegistryHive.LocalMachine;
                     break;
 
                 case "HKEY_CURRENT_USER":
                 case "HKCU":
-                    this.hive = RegistryHive.CurrentUser;
+                   hive = RegistryHive.CurrentUser;
                     break;
 
                 default:
                     throw new ArgumentException("Key name is invalid. Root hive not recognized.");
             }
+
+            return new ParseResult
+            {
+                SubKey = subkey,
+                Hive = hive,
+            };
         }
 
 #if NET3_5
