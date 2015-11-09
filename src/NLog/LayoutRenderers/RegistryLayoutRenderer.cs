@@ -227,11 +227,11 @@ namespace NLog.LayoutRenderers
 
                 case "HKEY_CURRENT_USER":
                 case "HKCU":
-                   hive = RegistryHive.CurrentUser;
+                    hive = RegistryHive.CurrentUser;
                     break;
 
                 default:
-                    throw new ArgumentException("Key name is invalid. Root hive not recognized.");
+                    throw new NLogConfigurationException(string.Format("Key name is invalid. Root hive '{0}' not recognized.", hiveName));
             }
 
             return new ParseResult
