@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     using NLog;
     using NLog.Internal;
     using NLog.Config;
-    using NLog.LayoutRenderers;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using NLog.Layouts;
 
@@ -126,7 +126,7 @@ namespace NLog.LayoutRenderers
             {
 #if !NET3_5
                 using (RegistryKey rootKey = RegistryKey.OpenBaseKey(parseResult.Hive, View))
-#else                  
+#else
                 var rootKey = MapHiveToKey(parseResult.Hive);
 
 #endif
@@ -226,43 +226,36 @@ namespace NLog.LayoutRenderers
             };
         }
 
+        /// <summary>
+        /// Aliases for the hives. See https://msdn.microsoft.com/en-us/library/ctb3kd86(v=vs.110).aspx
+        /// </summary>
+        private static readonly Dictionary<string, RegistryHive> HiveAliases = new Dictionary<string, RegistryHive>(StringComparer.InvariantCultureIgnoreCase)
+        {
+            {"HKEY_LOCAL_MACHINE", RegistryHive.LocalMachine},
+            {"HKLM", RegistryHive.LocalMachine},
+            {"HKEY_CURRENT_USER", RegistryHive.CurrentUser},
+            {"HKCU", RegistryHive.CurrentUser},
+            {"HKEY_CLASSES_ROOT", RegistryHive.ClassesRoot},
+            {"HKEY_USERS", RegistryHive.Users},
+            {"HKEY_CURRENT_CONFIG", RegistryHive.CurrentConfig},
+            {"HKEY_DYN_DATA", RegistryHive.DynData},
+            {"HKEY_PERFORMANCE_DATA", RegistryHive.PerformanceData},
+        };
+
         private static RegistryHive ParseHiveName(string hiveName)
         {
             RegistryHive hive;
-            switch (hiveName.ToUpper(CultureInfo.InvariantCulture))
+            if (HiveAliases.TryGetValue(hiveName, out hive))
             {
-                case "HKEY_LOCAL_MACHINE":
-                case "HKLM":
-                    hive = RegistryHive.LocalMachine;
-                    break;
-
-                case "HKEY_CURRENT_USER":
-                case "HKCU":
-                    hive = RegistryHive.CurrentUser;
-                    break;
-
-                case "HKEY_CLASSES_ROOT":
-                    hive = RegistryHive.ClassesRoot;
-                    break;
-
-                case "HKEY_USERS":
-                    hive = RegistryHive.Users;
-                    break;
-
-                case "HKEY_CURRENT_CONFIG":
-                    hive = RegistryHive.CurrentConfig;
-                    break;
-
-                default:
-                    throw new NLogConfigurationException(string.Format("Key name is not supported. Root hive '{0}' not recognized.", hiveName));
+                return hive;
             }
-            return hive;
+
         }
 
 #if NET3_5
         private static RegistryKey MapHiveToKey(RegistryHive hive)
         {
-            switch(hive)
+            switch (hive)
             {
                 case RegistryHive.LocalMachine:
                     return Registry.LocalMachine;

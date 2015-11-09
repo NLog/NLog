@@ -168,6 +168,13 @@ namespace NLog.LayoutRenderers
                 }
 
                 InternalLogger.Warn("Exception in layout renderer: {0}", exception);
+
+                if (LogManager.ThrowExceptions)
+                {
+                    throw;
+                }
+
+               
             }
         }
 
