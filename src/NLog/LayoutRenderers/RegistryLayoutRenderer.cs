@@ -217,6 +217,17 @@ namespace NLog.LayoutRenderers
                 hiveName = key;
             }
 
+            var hive = ParseHiveName(hiveName);
+
+            return new ParseResult
+            {
+                SubKey = subkey,
+                Hive = hive,
+            };
+        }
+
+        private static RegistryHive ParseHiveName(string hiveName)
+        {
             RegistryHive hive;
             switch (hiveName.ToUpper(CultureInfo.InvariantCulture))
             {
@@ -230,15 +241,22 @@ namespace NLog.LayoutRenderers
                     hive = RegistryHive.CurrentUser;
                     break;
 
-                default:
-                    throw new NLogConfigurationException(string.Format("Key name is invalid. Root hive '{0}' not recognized.", hiveName));
-            }
+                case "HKEY_CLASSES_ROOT":
+                    hive = RegistryHive.ClassesRoot;
+                    break;
 
-            return new ParseResult
-            {
-                SubKey = subkey,
-                Hive = hive,
-            };
+                case "HKEY_USERS":
+                    hive = RegistryHive.Users;
+                    break;
+
+                case "HKEY_CURRENT_CONFIG":
+                    hive = RegistryHive.CurrentConfig;
+                    break;
+
+                default:
+                    throw new NLogConfigurationException(string.Format("Key name is not supported. Root hive '{0}' not recognized.", hiveName));
+            }
+            return hive;
         }
 
 #if NET3_5
