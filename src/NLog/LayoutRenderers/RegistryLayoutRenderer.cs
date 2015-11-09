@@ -35,13 +35,13 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
     using Microsoft.Win32;
     using NLog;
     using NLog.Internal;
     using NLog.Config;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using NLog.Layouts;
 
@@ -250,6 +250,7 @@ namespace NLog.LayoutRenderers
                 return hive;
             }
 
+            throw new NLogConfigurationException(string.Format("Key name is not supported. Root hive '{0}' not recognized.", hiveName));
         }
 
 #if NET3_5
