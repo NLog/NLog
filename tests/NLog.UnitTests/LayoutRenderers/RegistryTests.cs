@@ -207,6 +207,20 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void Registy_nosubky()
+        {
+            //example: 0003: NLog.UnitTests
+            AssertLayoutRendererOutput("${registry:key=HKCU}", "0");
+        }
+
+        [Fact]
+        public void RegistyDefaultValueNull()
+        {
+            //example: 0003: NLog.UnitTests
+            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT}","");
+        }
+
+        [Fact]
         public void RegistyTestWrongKey_no_ex()
         {
             var throwExceptions = LogManager.ThrowExceptions;
