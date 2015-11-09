@@ -404,7 +404,7 @@ namespace NLog.UnitTests
         /// <summary>
         /// Vertify that all properties with the <see cref="DefaultValueAttribute"/> are set with the default ctor.
         /// </summary>
-        [Fact]
+        [Fact(Skip="skip for coverage")]
         public void VerifyDefaultValues()
         {
 
