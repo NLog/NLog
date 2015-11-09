@@ -205,6 +205,43 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\temp:requireEscapingSlashesInDefaultValue=false}",
                 "C\\temp");
         }
+
+        [Fact]
+        public void RegistyTestWrongKey_no_ex()
+        {
+            var throwExceptions = LogManager.ThrowExceptions;
+            try
+            {
+                LogManager.ThrowExceptions = false;
+
+                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}","");
+
+            }
+            finally
+            {
+                //restore
+                LogManager.ThrowExceptions = throwExceptions;
+            }
+        }
+        
+        [Fact]
+        public void RegistyTestWrongKey_ex()
+        {
+            var throwExceptions = LogManager.ThrowExceptions;
+            try
+            {
+                LogManager.ThrowExceptions = true;
+
+                Assert.Throws<NLogConfigurationException>(
+                    () => { AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}", ""); });
+
+            }
+            finally
+            {
+                //restore
+                LogManager.ThrowExceptions = throwExceptions;
+            }
+        }
     }
 }
 
