@@ -177,7 +177,6 @@ namespace NLog.Targets
         /// This option was removed in NLog 4.0 because the logging code always runs outside of transaction. 
         /// This ensures that the log gets written to the database if you rollback the main transaction because of an error and want to log the error.
         /// </remarks>
-        [DefaultValue(false)]
         [Obsolete("Obsolete - value will be ignored - logging code always runs outside of transaction. Will be removed in NLog 6.")]
         public bool? UseTransactions { get; set; }
 
