@@ -150,6 +150,19 @@ namespace NLog.Targets
         public int ConnectionCacheSize { get; set; }
 
         /// <summary>
+        /// Gets or sets the maximum current connections. 0 = no maximum.
+        /// </summary>
+        /// <docgen category="Connection Options" order="10"/>
+        [DefaultValue(0)]
+        public int MaxConnections { get; set; }
+
+        /// <summary>
+        /// Gets or sets the action that should be taken if the will be more connections than <see cref="MaxConnections"/>.
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public NetworkTargetConnectionsOverflowAction OnConnectionOverflow { get; set; }
+
+        /// <summary>
         /// Gets or sets the maximum queue size.
         /// </summary>
         [DefaultValue(0)]
@@ -257,6 +270,36 @@ namespace NLog.Targets
             }
             else
             {
+
+                //handle to many connections
+                var tooManyConnections = this.openNetworkSenders.Count >= MaxConnections;
+
+                if (tooManyConnections && MaxConnections > 0)
+                {
+                    switch (this.OnConnectionOverflow)
+                    {
+                        case NetworkTargetConnectionsOverflowAction.DiscardMessage:
+                            InternalLogger.Warn("Discarding message otherwise to many connections.");
+                            logEvent.Continuation(null);
+                            return;
+
+                        case NetworkTargetConnectionsOverflowAction.AllowNewConnnection:
+                            InternalLogger.Debug("Too may connections, but this is allowed");
+                            break;
+
+                        case NetworkTargetConnectionsOverflowAction.Block:
+                            while (this.openNetworkSenders.Count >= this.MaxConnections)
+                            {
+                                InternalLogger.Debug("Blocking networktarget otherwhise too many connections.");
+                                System.Threading.Monitor.Wait(this);
+                                InternalLogger.Trace("Entered critical section.");
+                            }
+
+                            InternalLogger.Trace("Limit ok.");
+                            break;
+                    }
+                }
+
                 var sender = this.SenderFactory.Create(address, MaxQueueSize);
                 sender.Initialize();
 
