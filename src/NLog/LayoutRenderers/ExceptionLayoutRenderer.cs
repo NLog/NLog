@@ -52,9 +52,10 @@ namespace NLog.LayoutRenderers
     {
         private string format;
         private string innerFormat = string.Empty;
-        private ExceptionDataTarget[] exceptionDataTargets;
-        private ExceptionDataTarget[] innerExceptionDataTargets;
-        
+        private HashSet<ExceptionRenderingFormat> _formats;
+        private HashSet<ExceptionRenderingFormat> _innerFormats;
+        private Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>> _functions;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ExceptionLayoutRenderer" /> class.
         /// </summary>
@@ -64,9 +65,8 @@ namespace NLog.LayoutRenderers
             this.Separator = " ";
             this.InnerExceptionSeparator = EnvironmentHelper.NewLine;
             this.MaxInnerExceptionLevel = 0;
+            this.CompileFunctions();
         }
-
-        private delegate void ExceptionDataTarget(StringBuilder sb, Exception ex);
 
         /// <summary>
         /// Gets or sets the format of the output. Must be a comma-separated list of exception
@@ -85,7 +85,7 @@ namespace NLog.LayoutRenderers
             set
             {
                 this.format = value;
-                this.exceptionDataTargets = CompileFormat(value);
+                _formats = CompileFormat(value);
             }
         }
 
@@ -105,7 +105,7 @@ namespace NLog.LayoutRenderers
             set
             {
                 this.innerFormat = value;
-                this.innerExceptionDataTargets = CompileFormat(value);
+                _innerFormats = CompileFormat(value);
             }
         }
 
@@ -131,6 +131,30 @@ namespace NLog.LayoutRenderers
         public string InnerExceptionSeparator { get; set; }
 
         /// <summary>
+        ///  Gets the formats of the output of inner exceptions to be rendered in target.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        public HashSet<ExceptionRenderingFormat> Formats
+        {
+            get
+            {
+                return _formats;
+            }
+        }
+
+        /// <summary>
+        ///  Gets the formats of the output to be rendered in target.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        public HashSet<ExceptionRenderingFormat> InnerFormats
+        {
+            get
+            {
+                return _innerFormats;
+            }
+        }
+
+        /// <summary>
         /// Renders the specified exception information and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -142,13 +166,13 @@ namespace NLog.LayoutRenderers
                 var sb2 = new StringBuilder(128);
                 string separator = string.Empty;
 
-                foreach (ExceptionDataTarget targetRenderFunc in this.exceptionDataTargets)
+                foreach (ExceptionRenderingFormat renderingFormat in this._formats)
                 {
                     sb2.Append(separator);
-                    targetRenderFunc(sb2, logEvent.Exception);
+                    _functions[renderingFormat](sb2, logEvent.Exception);
+                    
                     separator = this.Separator;
                 }
-
                 Exception currentException = logEvent.Exception.InnerException;
                 int currentLevel = 0;
                 while (currentException != null && currentLevel < this.MaxInnerExceptionLevel)
@@ -157,10 +181,10 @@ namespace NLog.LayoutRenderers
                     sb2.Append(this.InnerExceptionSeparator);
 
                     separator = string.Empty;
-                    foreach (ExceptionDataTarget targetRenderFunc in this.innerExceptionDataTargets ?? this.exceptionDataTargets)
+                    foreach (ExceptionRenderingFormat renderingFormat in this._innerFormats ?? this._formats)
                     {
                         sb2.Append(separator);
-                        targetRenderFunc(sb2, currentException);
+                        _functions[renderingFormat](sb2, currentException);
                         separator = this.Separator;
                     }
 
@@ -176,7 +200,7 @@ namespace NLog.LayoutRenderers
         /// Appends the Message of an Exception to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The exception containing the Message to append.</param>
+        /// <param name="ex">The exception containing the Message to append.</param>        
         protected virtual void AppendMessage(StringBuilder sb, Exception ex)
         {
             try
@@ -199,7 +223,7 @@ namespace NLog.LayoutRenderers
         /// Appends the method name from Exception's stack trace to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose method name should be appended.</param>
+        /// <param name="ex">The Exception whose method name should be appended.</param>        
         protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
 #if SILVERLIGHT
@@ -216,7 +240,7 @@ namespace NLog.LayoutRenderers
         /// Appends the stack trace from an Exception to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose stack trace should be appended.</param>
+        /// <param name="ex">The Exception whose stack trace should be appended.</param>        
         protected virtual void AppendStackTrace(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.StackTrace);
@@ -226,7 +250,7 @@ namespace NLog.LayoutRenderers
         /// Appends the result of calling ToString() on an Exception to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose call to ToString() should be appended.</param>
+        /// <param name="ex">The Exception whose call to ToString() should be appended.</param>       
         protected virtual void AppendToString(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.ToString());
@@ -236,7 +260,7 @@ namespace NLog.LayoutRenderers
         /// Appends the type of an Exception to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose type should be appended.</param>
+        /// <param name="ex">The Exception whose type should be appended.</param>        
         protected virtual void AppendType(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.GetType().FullName);
@@ -268,50 +292,64 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private ExceptionDataTarget[] CompileFormat(string formatSpecifier)
+        private HashSet<ExceptionRenderingFormat> CompileFormat(string formatSpecifier)
         {
+            HashSet<ExceptionRenderingFormat> formats = new HashSet<ExceptionRenderingFormat>();
             string[] parts = formatSpecifier.Replace(" ", string.Empty).Split(',');
-            var dataTargets = new List<ExceptionDataTarget>();
 
             foreach (string s in parts)
             {
+                ExceptionRenderingFormat renderingFormat;
+
                 switch (s.ToUpper(CultureInfo.InvariantCulture))
                 {
-                    case "MESSAGE":
-                        dataTargets.Add(AppendMessage);
+                    case ExceptionLayoutRenderFormattingConstants.MESSAGE:
+                        renderingFormat = ExceptionRenderingFormat.Message;
                         break;
-
-                    case "TYPE":
-                        dataTargets.Add(AppendType);
+                    case ExceptionLayoutRenderFormattingConstants.TYPE:
+                        renderingFormat = ExceptionRenderingFormat.Type;
                         break;
-
-                    case "SHORTTYPE":
-                        dataTargets.Add(AppendShortType);
+                    case ExceptionLayoutRenderFormattingConstants.SHORTTYPE:
+                        renderingFormat = ExceptionRenderingFormat.ShortType;
                         break;
-
-                    case "TOSTRING":
-                        dataTargets.Add(AppendToString);
+                    case ExceptionLayoutRenderFormattingConstants.TOSTRING:
+                        renderingFormat = ExceptionRenderingFormat.ToString;
                         break;
-
-                    case "METHOD":
-                        dataTargets.Add(AppendMethod);
+                    case ExceptionLayoutRenderFormattingConstants.METHOD:
+                        renderingFormat = ExceptionRenderingFormat.Method;
                         break;
-
-                    case "STACKTRACE":
-                        dataTargets.Add(AppendStackTrace);
+                    case ExceptionLayoutRenderFormattingConstants.STACKTRACE:
+                        renderingFormat = ExceptionRenderingFormat.StackTrace;
                         break;
-
-                    case "DATA":
-                        dataTargets.Add(AppendData);
+                    case ExceptionLayoutRenderFormattingConstants.DATA:
+                        renderingFormat = ExceptionRenderingFormat.Data;
                         break;
-
                     default:
                         InternalLogger.Warn("Unknown exception data target: {0}", s);
+                        renderingFormat = ExceptionRenderingFormat.NotSet;
                         break;
                 }
-            }
+                if (renderingFormat != ExceptionRenderingFormat.NotSet)
+                    formats.Add(renderingFormat);
 
-            return dataTargets.ToArray();
+            }
+            return formats;
+        }
+
+        private void CompileFunctions()
+        {
+            if (_functions == null)
+            {
+                _functions = new Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>>();
+                _functions.Add(ExceptionRenderingFormat.Message, AppendMessage);
+                _functions.Add(ExceptionRenderingFormat.Type, AppendType);
+                _functions.Add(ExceptionRenderingFormat.ShortType, AppendShortType);
+                _functions.Add(ExceptionRenderingFormat.ToString, AppendToString);
+                _functions.Add(ExceptionRenderingFormat.Method, AppendMethod);
+                _functions.Add(ExceptionRenderingFormat.StackTrace, AppendStackTrace);
+                _functions.Add(ExceptionRenderingFormat.Data, AppendData);
+
+            }
         }
 
 #if SILVERLIGHT

@@ -97,6 +97,7 @@
     <Compile Include="Config\ConfigurationItemCreator.cs" />
     <Compile Include="Config\ConfigurationItemFactory.cs" />
     <Compile Include="Config\DefaultParameterAttribute.cs" />
+    <Compile Include="Config\ExcpetionRenderFormat.cs" />
     <Compile Include="Config\Factory.cs" />
     <Compile Include="Config\IFactory.cs" />
     <Compile Include="Config\IInstallable.cs" />
@@ -116,9 +117,6 @@
     <Compile Include="Config\StackTraceUsage.cs" />
     <Compile Include="Config\ThreadAgnosticAttribute.cs" />
     <Compile Include="Config\XmlLoggingConfiguration.cs" />
-    <Compile Include="Contexts\GlobalContext.cs" />
-    <Compile Include="Contexts\IContext.cs" />
-    <Compile Include="Contexts\ThreadContext.cs" />
     <Compile Include="Filters\ConditionBasedFilter.cs" />
     <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\FilterAttribute.cs" />
@@ -142,6 +140,7 @@
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Internal\ConfigurationManager.cs" />
+    <Compile Include="Internal\Constants.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EncodingHelpers.cs" />
     <Compile Include="Internal\EnumHelpers.cs" />
@@ -152,6 +151,7 @@
     <Compile Include="Internal\Fakeables\IAppDomain.cs" />
     <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\FileAppenderCache.cs" />
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
     <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs" />
     <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs" />
