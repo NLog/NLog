@@ -253,8 +253,11 @@ namespace NLog.Layouts
 
             var builder = new StringBuilder(initialSize);
 
-            foreach (LayoutRenderer renderer in this.Renderers)
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
+            for (int i = 0; i < this.Renderers.Count; i++)
             {
+                LayoutRenderer renderer = this.Renderers[i];
                 try
                 {
                     renderer.Render(builder, logEvent);
