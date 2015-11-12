@@ -135,6 +135,8 @@ namespace NLog.Internal
                 return true;
             }
 
+            // only log after the 'serious' exceptions above
+
             var shallRethrow = LogManager.ThrowExceptions;
 
             if (!shallRethrow)
@@ -151,15 +153,13 @@ namespace NLog.Internal
 
             if (level != LogLevel.Off)
             {
-                // only log after the 'serious' exceptions above
-
                 if (string.IsNullOrEmpty(logMessage))
                 {
-                    InternalLogger.Log(level, exception.Message);
+                    InternalLogger.LogSecure(level, exception.Message);
                 }
                 else
                 {
-                    InternalLogger.Log(level, logMessage, args);
+                    InternalLogger.LogSecure(level, logMessage, args);
                 }
             }
             return shallRethrow;
