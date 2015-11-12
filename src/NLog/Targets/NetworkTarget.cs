@@ -271,40 +271,42 @@ namespace NLog.Targets
             else
             {
 
-                //handle to many connections
-                var tooManyConnections = this.openNetworkSenders.Count >= MaxConnections;
-
-                if (tooManyConnections && MaxConnections > 0)
-                {
-                    switch (this.OnConnectionOverflow)
-                    {
-                        case NetworkTargetConnectionsOverflowAction.DiscardMessage:
-                            InternalLogger.Warn("Discarding message otherwise to many connections.");
-                            logEvent.Continuation(null);
-                            return;
-
-                        case NetworkTargetConnectionsOverflowAction.AllowNewConnnection:
-                            InternalLogger.Debug("Too may connections, but this is allowed");
-                            break;
-
-                        case NetworkTargetConnectionsOverflowAction.Block:
-                            while (this.openNetworkSenders.Count >= this.MaxConnections)
-                            {
-                                InternalLogger.Debug("Blocking networktarget otherwhise too many connections.");
-                                System.Threading.Monitor.Wait(this);
-                                InternalLogger.Trace("Entered critical section.");
-                            }
-
-                            InternalLogger.Trace("Limit ok.");
-                            break;
-                    }
-                }
-
-                var sender = this.SenderFactory.Create(address, MaxQueueSize);
-                sender.Initialize();
-
                 lock (this.openNetworkSenders)
                 {
+
+
+                    //handle to many connections
+                    var tooManyConnections = this.openNetworkSenders.Count >= MaxConnections;
+
+                    if (tooManyConnections && MaxConnections > 0)
+                    {
+                        switch (this.OnConnectionOverflow)
+                        {
+                            case NetworkTargetConnectionsOverflowAction.DiscardMessage:
+                                InternalLogger.Warn("Discarding message otherwise to many connections.");
+                                logEvent.Continuation(null);
+                                return;
+
+                            case NetworkTargetConnectionsOverflowAction.AllowNewConnnection:
+                                InternalLogger.Debug("Too may connections, but this is allowed");
+                                break;
+
+                            case NetworkTargetConnectionsOverflowAction.Block:
+                                while (this.openNetworkSenders.Count >= this.MaxConnections)
+                                {
+                                    InternalLogger.Debug("Blocking networktarget otherwhise too many connections.");
+                                    System.Threading.Monitor.Wait(this.openNetworkSenders);
+                                    InternalLogger.Trace("Entered critical section.");
+                                }
+
+                                InternalLogger.Trace("Limit ok.");
+                                break;
+                        }
+                    }
+
+                    var sender = this.SenderFactory.Create(address, MaxQueueSize);
+                    sender.Initialize();
+
                     var linkedListNode = this.openNetworkSenders.AddLast(sender);
                     this.ChunkedSend(
                         sender,
@@ -314,6 +316,10 @@ namespace NLog.Targets
                             lock (this.openNetworkSenders)
                             {
                                 TryRemove(this.openNetworkSenders, linkedListNode);
+                                if (this.OnConnectionOverflow == NetworkTargetConnectionsOverflowAction.Block)
+                                {
+                                    System.Threading.Monitor.PulseAll(this.openNetworkSenders);
+                                }
                             }
 
                             if (ex != null)
