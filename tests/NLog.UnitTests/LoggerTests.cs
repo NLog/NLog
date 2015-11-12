@@ -917,8 +917,7 @@ namespace NLog.UnitTests
                     AssertDebugCounter("debug", 0);
             }
         }
-
-
+        
         [Fact]
         public void LogTest()
         {
@@ -1068,6 +1067,289 @@ namespace NLog.UnitTests
                 }
             }
         }
+
+        #region Conditional Logger
+#if DEBUG
+
+        [Fact]
+        public void ConditionalTraceTest()
+        {
+            // test all possible overloads of the Trace() method
+
+            for (int enabled = 0; enabled < 2; ++enabled)
+            {
+                if (enabled == 0)
+                {
+                    LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='' writeTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+                else
+                {
+                    LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Trace' writeTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+
+                var logger = LogManager.GetLogger("A");
+
+                logger.ConditionalTrace("message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.ConditionalTrace("message{0}", (ulong)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalTrace("message{0}", (long)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", (long)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalTrace("message{0}", (uint)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", (uint)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalTrace("message{0}", 1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalTrace("message{0}", (ushort)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalTrace("message{0}", (sbyte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalTrace("message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+
+                logger.ConditionalTrace("message{0}", (short)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", (short)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalTrace("message{0}", (byte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", (byte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalTrace("message{0}", 'c');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagec");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", 'd');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messaged");
+
+                logger.ConditionalTrace("message{0}", "ddd");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee");
+
+                logger.ConditionalTrace("message{0}{1}", "ddd", 1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2");
+
+                logger.ConditionalTrace("message{0}{1}{2}", "ddd", 1, "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1eee");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fff");
+
+                logger.ConditionalTrace("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fffggg");
+
+                logger.ConditionalTrace("message{0}", true);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageTrue");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", false);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageFalse");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", 2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+
+                logger.ConditionalTrace(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+
+                logger.ConditionalTrace(new Exception("test"), "message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.ConditionalTrace(delegate { return "message from lambda"; });
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
+
+                if (enabled == 0)
+                    AssertDebugCounter("debug", 0);
+            }
+        }
+
+        [Fact]
+        public void ConditionalDebugTest()
+        {
+            // test all possible overloads of the Debug() method
+
+            for (int enabled = 0; enabled < 2; ++enabled)
+            {
+                if (enabled == 0)
+                {
+                    LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='' writeTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+                else
+                {
+                    LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+                }
+
+                var logger = LogManager.GetLogger("A");
+
+                logger.ConditionalDebug("message");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message");
+
+                logger.ConditionalDebug("message{0}", (ulong)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (ulong)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalDebug("message{0}", (long)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (long)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalDebug("message{0}", (uint)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (uint)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalDebug("message{0}", 1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalDebug("message{0}", (ushort)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (ushort)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalDebug("message{0}", (sbyte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (sbyte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalDebug("message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", this);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageobject-to-string");
+
+                logger.ConditionalDebug("message{0}", (short)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (short)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalDebug("message{0}", (byte)1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message1");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (byte)2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2");
+
+                logger.ConditionalDebug("message{0}", 'c');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messagec");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", 'd');
+                if (enabled == 1) AssertDebugLastMessage("debug", "messaged");
+
+                logger.ConditionalDebug("message{0}", "ddd");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee");
+
+                logger.ConditionalDebug("message{0}{1}", "ddd", 1);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}{1}", "eee", 2);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2");
+
+                logger.ConditionalDebug("message{0}{1}{2}", "ddd", 1, "eee");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageddd1eee");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}{1}{2}", "eee", 2, "fff");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fff");
+
+                logger.ConditionalDebug("message{0}{1}{2}{3}", "eee", 2, "fff", "ggg");
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageeee2fffggg");
+
+                logger.ConditionalDebug("message{0}", true);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageTrue");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", false);
+                if (enabled == 1) AssertDebugLastMessage("debug", "messageFalse");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (float)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", 2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+
+                logger.ConditionalDebug(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
+                if (enabled == 1) AssertDebugLastMessage("debug", "message2.5");
+
+                logger.ConditionalDebug(delegate { return "message from lambda"; });
+                if (enabled == 1) AssertDebugLastMessage("debug", "message from lambda");
+
+                if (enabled == 0)
+                    AssertDebugCounter("debug", 0);
+            }
+        }
+
+#endif
+        #endregion
 
         [Fact]
         public void SwallowTest()
