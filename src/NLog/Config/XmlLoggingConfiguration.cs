@@ -321,10 +321,18 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 InitializeSucceeded = false;
-                if (exception.MustBeRethrown("Exception occurred when loading configuration from '{0}': {1}", fileName, exception))
+                var message = string.Format("Exception occurred when loading configuration from '{0}': {1}", fileName, exception);
+                if (exception.MustBeRethrown(true, LogLevel.Error, message))
                 {
                     throw;
                 }
+
+                // we already logged the exception, so merely rethrow if necessary, without logging
+                if (exception.MustBeRethrown(ignoreErrors, LogLevel.Off, null))
+                {
+                    throw new NLogConfigurationException(message);
+                }
+
             }
         }
 
@@ -842,6 +850,7 @@ namespace NLog.Config
             includeElement.AssertName("include");
 
             string newFileName = includeElement.GetRequiredAttribute("file");
+            bool ignoreErrors = includeElement.GetOptionalBooleanAttribute("ignoreErrors", false);
 
             try
             {
@@ -869,12 +878,15 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown("Error when including '{0}' {1}", newFileName, exception))
+                if (exception.MustBeRethrown(true, LogLevel.Error, "Error when including '{0}' {1}", newFileName, exception))
                 {
                     throw;
                 }
 
-                throw new NLogConfigurationException("Error when including: " + newFileName, exception);
+                if (!ignoreErrors)
+                {
+                    throw new NLogConfigurationException("Error when including: " + newFileName, exception);
+                }
             }
         }
 
