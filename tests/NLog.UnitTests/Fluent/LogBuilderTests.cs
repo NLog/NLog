@@ -215,6 +215,7 @@ namespace NLog.UnitTests.Fluent
 
         }
 
+#if NET4_5
         [Fact]
         public void LevelWriteProperties()
         {
@@ -237,9 +238,7 @@ namespace NLog.UnitTests.Fluent
             }
 
         }
-
-
-
+#endif
 
         [Fact]
         public void TraceIfWrite()
