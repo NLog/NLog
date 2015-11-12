@@ -120,17 +120,28 @@ namespace NLog.Internal
         /// </returns>
         public static bool MustBeRethrown(this Exception exception, LogLevel level, string logMessage, params object[] args)
         {
-            if (MustRethrowSevere(exception))
+            if (exception is StackOverflowException)
             {
                 return true;
             }
 
-            if (exception.GetType().IsSubclassOf(typeof(NLogConfigurationException)))
+            if (exception is ThreadAbortException)
+            {
+                return true;
+            }
+
+            if (exception is OutOfMemoryException)
             {
                 return true;
             }
 
             var shallRethrow = LogManager.ThrowExceptions;
+
+            if (!shallRethrow)
+            {
+                shallRethrow = (exception is NLogConfigurationException) 
+                    || (exception.GetType().IsSubclassOf(typeof(NLogConfigurationException)));
+            }
 
             if(level == null)
             {
@@ -152,35 +163,6 @@ namespace NLog.Internal
                 }
             }
             return shallRethrow;
-        }
-
-        /// <summary>
-        /// Determines whether the exception is severe and must be rethrown.
-        /// No Logging.
-        /// </summary>
-        public static bool MustRethrowSevere(this Exception exception)
-        {
-            if (exception is StackOverflowException)
-            {
-                return true;
-            }
-
-            if (exception is ThreadAbortException)
-            {
-                return true;
-            }
-
-            if (exception is OutOfMemoryException)
-            {
-                return true;
-            }
-
-            if (exception is NLogConfigurationException)
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }

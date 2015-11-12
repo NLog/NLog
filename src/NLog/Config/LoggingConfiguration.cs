@@ -415,14 +415,9 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustRethrowSevere())
+                    if (exception.MustBeRethrown("Error during initialization of '{0}': {1}", initialize, exception))
                     {
                         throw;
-                    }
-
-                    if (LogManager.ThrowExceptions)
-                    {
-                        throw new NLogConfigurationException("Error during initialization of " + initialize, exception);
                     }
                 }
             }

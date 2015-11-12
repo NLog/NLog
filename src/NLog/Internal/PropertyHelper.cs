@@ -91,12 +91,10 @@ namespace NLog.Internal
             }
             catch (Exception exception)
             {
-                if (exception.MustRethrowSevere())
+                if (exception.MustBeRethrown("Error when setting property '{0}' on {1}. Exception: {2}", propInfo.Name, o, exception))
                 {
                     throw;
                 }
-
-                throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + o, exception);
             }
         }
 

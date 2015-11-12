@@ -175,20 +175,21 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustRethrowSevere())
+                var errorString = string.Format("Error creating category '{0}': {1}", categoryName, exception.Message);
+                if (installationContext.IgnoreFailures)
+                {
+                    installationContext.Warning(errorString);
+                }
+                else
+                {
+                    installationContext.Error(errorString);
+                }
+
+                if (exception.MustBeRethrown(errorString))
                 {
                     throw;
                 }
 
-                if (installationContext.IgnoreFailures)
-                {
-                    installationContext.Warning("Error creating category '{0}': {1}", categoryName, exception.Message);
-                }
-                else
-                {
-                    installationContext.Error("Error creating category '{0}': {1}", categoryName, exception.Message);
-                    throw;
-                }
             }
             finally
             {

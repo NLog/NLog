@@ -594,11 +594,6 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustRethrowSevere())
-                        {
-                            throw;
-                        }
-
                         if (commandInfo.IgnoreFailures || installationContext.IgnoreFailures)
                         {
                             installationContext.Warning(exception.Message);
@@ -606,6 +601,11 @@ namespace NLog.Targets
                         else
                         {
                             installationContext.Error(exception.Message);
+                        }
+
+
+                        if (exception.MustBeRethrown())
+                        {
                             throw;
                         }
                     }

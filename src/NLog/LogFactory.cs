@@ -875,19 +875,11 @@ namespace NLog
                     }
                     catch (Exception ex)
                     {
-                        if (ex.MustRethrowSevere())
+                        if (ex.MustBeRethrown("GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName))
                         {
                             throw;
                         }
 
-                        var errorMessage = string.Format("GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
-                        if (ThrowExceptions)
-                        {
-                            throw new NLogRuntimeException(errorMessage, ex);
-                        }
-                        
-                        InternalLogger.Error(errorMessage + ". Exception : {0}", ex);
-                        
                         // Creating default instance of logger if instance of specified type cannot be created.
                         newLogger = CreateDefaultLogger(ref cacheKey);
                     }
