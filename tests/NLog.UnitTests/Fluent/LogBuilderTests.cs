@@ -137,6 +137,111 @@ namespace NLog.UnitTests.Fluent
         }
 
         [Fact]
+        public void WarnWriteProperties()
+        {
+            var props = new Dictionary<string, object>
+            {
+                {"prop1", "1"},
+                {"prop2", "2"},
+
+            };
+
+            _logger.Warn()
+                .Message("This is a test fluent message.")
+                .Properties(props).Write();
+
+            {
+                var expectedEvent = new LogEventInfo(LogLevel.Warn, "logger1", "This is a test fluent message.");
+                expectedEvent.Properties["prop1"] = "1";
+                expectedEvent.Properties["prop2"] = "2";
+                AssertLastLogEventTarget(expectedEvent);
+            }
+
+        }
+
+        [Fact]
+        public void LogWriteProperties()
+        {
+            var props = new Dictionary<string, object>
+            {
+                {"prop1", "1"},
+                {"prop2", "2"},
+
+            };
+
+            _logger.Log(LogLevel.Fatal)
+                .Message("This is a test fluent message.")
+                .Properties(props).Write();
+
+            {
+                var expectedEvent = new LogEventInfo(LogLevel.Fatal, "logger1", "This is a test fluent message.");
+                expectedEvent.Properties["prop1"] = "1";
+                expectedEvent.Properties["prop2"] = "2";
+                AssertLastLogEventTarget(expectedEvent);
+            }
+
+        }
+
+        [Fact]
+        public void LogOffWriteProperties()
+        {
+            var props = new Dictionary<string, object>
+            {
+                {"prop1", "1"},
+                {"prop2", "2"},
+
+            };
+            var props2 = new Dictionary<string, object>
+            {
+                {"prop1", "4"},
+                {"prop2", "5"},
+
+            };
+
+            _logger.Log(LogLevel.Fatal)
+                .Message("This is a test fluent message.")
+                .Properties(props).Write();
+
+            _logger.Log(LogLevel.Off)
+          .Message("dont log this.")
+          .Properties(props2).Write();
+
+            {
+                var expectedEvent = new LogEventInfo(LogLevel.Fatal, "logger1", "This is a test fluent message.");
+                expectedEvent.Properties["prop1"] = "1";
+                expectedEvent.Properties["prop2"] = "2";
+                AssertLastLogEventTarget(expectedEvent);
+            }
+
+        }
+
+        [Fact]
+        public void LevelWriteProperties()
+        {
+            var props = new Dictionary<string, object>
+            {
+                {"prop1", "1"},
+                {"prop2", "2"},
+
+            };
+
+            Log.Level(LogLevel.Fatal)
+                .Message("This is a test fluent message.")
+                .Properties(props).Write();
+
+            {
+                var expectedEvent = new LogEventInfo(LogLevel.Fatal, "LogBuilderTests", "This is a test fluent message.");
+                expectedEvent.Properties["prop1"] = "1";
+                expectedEvent.Properties["prop2"] = "2";
+                AssertLastLogEventTarget(expectedEvent);
+            }
+
+        }
+
+
+
+
+        [Fact]
         public void TraceIfWrite()
         {
             _logger.Trace()
@@ -156,6 +261,18 @@ namespace NLog.UnitTests.Fluent
                 .Property("Test", "TraceWrite")
                 .WriteIf(() => v == 1);
 
+
+            {
+                var expectedEvent = new LogEventInfo(LogLevel.Trace, "logger1", "This is a test fluent WriteIf message '{0}'.");
+                expectedEvent.Properties["Test"] = "TraceWrite";
+                AssertLastLogEventTarget(expectedEvent);
+                AssertDebugLastMessageContains("t2", "This is a test fluent WriteIf message ");
+            }
+
+            _logger.Trace()
+                .Message("dont write this! '{0}'.", DateTime.Now.Ticks)
+                .Property("Test", "TraceWrite")
+                .WriteIf(() => { return false; });
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Trace, "logger1", "This is a test fluent WriteIf message '{0}'.");
@@ -284,6 +401,31 @@ namespace NLog.UnitTests.Fluent
             ErrorWrite_internal(() => Log.Error(), LogLevel.Error, true);
         }
 #endif
+
+        [Fact]
+        public void LogBuilder_null_lead_to_ArgumentNullException()
+        {
+            var logger = LogManager.GetLogger("a");
+            Assert.Throws<ArgumentNullException>(() => new LogBuilder(null, LogLevel.Debug));
+            Assert.Throws<ArgumentNullException>(() => new LogBuilder(null));
+            Assert.Throws<ArgumentNullException>(() => new LogBuilder(logger, null));
+
+            var logBuilder = new LogBuilder(logger);
+            Assert.Throws<ArgumentNullException>(() => logBuilder.Properties(null));
+            Assert.Throws<ArgumentNullException>(() => logBuilder.Property(null, "b"));
+
+        }
+
+        [Fact]
+        public void LogBuilder_nLogEventInfo()
+        {
+            var d = new DateTime(2015, 01, 30, 14, 30, 5);
+            var logEventInfo = new LogBuilder(LogManager.GetLogger("a")).LoggerName("b").Level(LogLevel.Fatal).TimeStamp(d).LogEventInfo;
+
+            Assert.Equal("b", logEventInfo.LoggerName);
+            Assert.Equal(LogLevel.Fatal, logEventInfo.Level);
+            Assert.Equal(d, logEventInfo.TimeStamp);
+        }
 
         ///<remarks>
         /// func because 1 logbuilder creates 1 message
