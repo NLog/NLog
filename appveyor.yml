@@ -1,5 +1,10 @@
 version: 4.0.{build}
 clone_folder: c:\projects\nlog
+environment:
+  xamarin_email:
+    secure: 7v79qwPZ4B1i/0KMpwy5xRdxQO9qzPjtRR0IV+dI83c=
+  xamarin_password:
+    secure: koh9YQacPXLs0Exxx1dIHIqpDAwg79tKqGUtFIeRqiM=
 build_script:
   - Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildSL5=true /p:BuildSL4=true /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true
 before_test:

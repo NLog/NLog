@@ -644,7 +644,6 @@ namespace NLog.UnitTests.Targets
                 };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
-                //writing 4 times 10 bytes (9 char + linefeed) will result in 2 archive files and 1 current file
                 for (var i = 0; i < 4; ++i)
                 {
                     logger.Debug("123456789");
@@ -655,8 +654,8 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;
 
                 var files = Directory.GetFiles(tempPath).OrderBy(s => s);
-                //the amount of archived files may not exceed the set 'MaxArchiveFiles'
-                Assert.Equal(ft.MaxArchiveFiles, files.Count());
+                //we expect 3 archive files, plus one current file
+                Assert.Equal(ft.MaxArchiveFiles + 1, files.Count());
 
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -667,15 +666,16 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;
 
                 var files2 = Directory.GetFiles(tempPath).OrderBy(s => s);
-                Assert.Equal(ft.MaxArchiveFiles, files2.Count());
+                Assert.Equal(ft.MaxArchiveFiles + 1, files2.Count());
 
                 //the oldest file should be deleted
                 Assert.DoesNotContain(files.ElementAt(0), files2);
                 //two files should still be there
                 Assert.Equal(files.ElementAt(1), files2.ElementAt(0));
                 Assert.Equal(files.ElementAt(2), files2.ElementAt(1));
-                //one new archive file shoud be created
-                Assert.DoesNotContain(files2.ElementAt(2), files);
+                Assert.Equal(files.ElementAt(3), files2.ElementAt(2));
+                //one new file should be created
+                Assert.DoesNotContain(files2.ElementAt(3), files);
             }
             finally
             {
@@ -1074,8 +1074,10 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Fact]
-        public void RollingArchiveTest_MaxArchiveFiles_0()
+        [InlineData("/")]
+        [InlineData("\\")]
+        [Theory]
+        public void RollingArchiveTest_MaxArchiveFiles_0(string slash)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -1084,7 +1086,7 @@ namespace NLog.UnitTests.Targets
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
+                    ArchiveFileName = Path.Combine(tempPath, "archive" + slash + "{####}.txt"),
                     ArchiveAboveSize = 1000,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Rolling,
@@ -1109,22 +1111,22 @@ namespace NLog.UnitTests.Targets
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0000.txt"),
+                    Path.Combine(tempPath, "archive" + slash + "0000.txt"),
                     StringRepeat(250, "ddd\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0001.txt"),
+                    Path.Combine(tempPath, "archive" + slash + "0001.txt"),
                     StringRepeat(250, "ccc\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0002.txt"),
+                    Path.Combine(tempPath, "archive" + slash + "0002.txt"),
                     StringRepeat(250, "bbb\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0003.txt"),
+                    Path.Combine(tempPath, "archive" + slash + "0003.txt"),
                     StringRepeat(250, "aaa\n"),
                     Encoding.UTF8);
             }
@@ -1431,8 +1433,8 @@ namespace NLog.UnitTests.Targets
                 assertFileContents(helper.GetFullPath(3), StringRepeat(250, "ddd\n"), Encoding.UTF8);
                 AssertFileSize(helper.GetFullPath(3), ft.ArchiveAboveSize);
 
-                Assert.True(!helper.Exists(0), "old one removed - max files");
-                Assert.True(!helper.Exists(4), "stop at 3");
+                Assert.True(!helper.Exists(0), "First archive should have been deleted due to max archive count.");
+                Assert.True(!helper.Exists(4), "Fifth archive must not have been created yet.");
             }
             finally
             {
@@ -1444,8 +1446,10 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Fact]
-        public void FileTarget_WithArchiveFileNameEndingInNumberPlaceholder_ShouldArchiveFile()
+        [Theory]
+        [InlineData("/")]
+        [InlineData("\\")]
+        public void FileTarget_WithArchiveFileNameEndingInNumberPlaceholder_ShouldArchiveFile(string slash)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -1454,7 +1458,7 @@ namespace NLog.UnitTests.Targets
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/test.log.{####}"),
+                    ArchiveFileName = Path.Combine(tempPath, "archive" + slash + "test.log.{####}"),
                     ArchiveAboveSize = 1000
                 };
 
@@ -1467,7 +1471,7 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
                 Assert.True(File.Exists(tempFile));
-                Assert.True(File.Exists(Path.Combine(tempPath, "archive/test.log.0000")));
+                Assert.True(File.Exists(Path.Combine(tempPath, "archive" + slash + "test.log.0000")));
             }
             finally
             {
@@ -1812,17 +1816,7 @@ namespace NLog.UnitTests.Targets
             string archivePath = Path.Combine(logdir, "archive");
             TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
         }
-
-        [Theory(Skip = "TODO not working, needs to be fixed")]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MaxArchiveFilesWithDate_removesToManyFiles(bool changeCreationAndWriteTime)
-        {
-            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string archivePath = Path.Combine(logdir, "archive");
-            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime, true);
-        }
-
+        
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -1860,13 +1854,12 @@ namespace NLog.UnitTests.Targets
         /// </summary>
         /// <param name="archivePath">path to dir of archived files</param>
         /// <param name="logdir">path to dir of logged files</param>
-        /// <param name="maxArchiveFilesConfig">max count of archived files </param>
-        /// <param name="maxExpectedArchiveFiles">test number for max. If <paramref name="exactArchiveTest"/>, use equals instead of lower-or-equals</param>
+        /// <param name="maxArchiveFilesConfig">max count of archived files</param>
+        /// <param name="expectedArchiveFiles">expected count of archived files</param>
         /// <param name="dateFormat">date format</param>
         /// <param name="changeCreationAndWriteTime">change file creation/last write date</param>
-        /// <param name="exactArchiveTest">true=equals. false =lower-or-equals</param>
         private void TestMaxArchiveFilesWithDate(string archivePath, string logdir,
-            int maxArchiveFilesConfig, int maxExpectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime, bool exactArchiveTest = false)
+            int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
             var archiveDir = new DirectoryInfo(archivePath);
             try
@@ -1916,14 +1909,7 @@ namespace NLog.UnitTests.Targets
                 logger.Info("test");
 
                 var currentFilesCount = archiveDir.GetFiles().Length;
-                if (exactArchiveTest)
-                {
-                    Assert.Equal(maxExpectedArchiveFiles, currentFilesCount);
-                }
-                else
-                {
-                    Assert.True(currentFilesCount <= maxExpectedArchiveFiles, "more files then expected");
-                }
+                Assert.Equal(expectedArchiveFiles, currentFilesCount);
             }
             finally
             {

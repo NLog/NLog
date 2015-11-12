@@ -169,16 +169,16 @@ namespace NLog.Layouts
             }
 
             var sb = new StringBuilder();
-            bool first = true;
 
-            foreach (CsvColumn col in this.Columns)
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
+            for (int i = 0; i < this.Columns.Count; i++)
             {
-                if (!first)
+                CsvColumn col = this.Columns[i];
+                if (i != 0)
                 {
                     sb.Append(this.actualColumnDelimiter);
                 }
-
-                first = false;
 
                 bool useQuoting;
                 string text = col.Layout.Render(logEvent);
@@ -234,16 +234,15 @@ namespace NLog.Layouts
         {
             var sb = new StringBuilder();
 
-            bool first = true;
-
-            foreach (CsvColumn col in this.Columns)
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
+            for (int i = 0; i < this.Columns.Count; i++)
             {
-                if (!first)
+                CsvColumn col = this.Columns[i];
+                if (i != 0)
                 {
                     sb.Append(this.actualColumnDelimiter);
                 }
-
-                first = false;
 
                 bool useQuoting;
                 string text = col.Name;
