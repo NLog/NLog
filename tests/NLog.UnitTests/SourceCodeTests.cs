@@ -52,6 +52,7 @@ namespace NLog.UnitTests
     /// <summary>
     /// Source code tests.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public class SourceCodeTests
     {
         private static Regex classNameRegex = new Regex(@"^    (public |abstract |sealed |static |partial |internal )*(class|interface|struct|enum) (?<className>\w+)\b", RegexOptions.Compiled);
