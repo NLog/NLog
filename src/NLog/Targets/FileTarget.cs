@@ -88,14 +88,14 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>File appenders are stored in an instance of <see cref="FileAppenderCache"/>.</remarks>
         private IFileAppenderFactory appenderFactory;
-        
+
         /// <summary>
         /// List of the associated file appenders with the <see cref="FileTarget"/> instance.
         /// </summary>
         private FileAppenderCache recentAppenders;
 
         private Timer autoClosingTimer;
-        
+
         /// <summary>
         /// The number of initialised files at any one time.
         /// </summary>
@@ -108,7 +108,7 @@ namespace NLog.Targets
 
         private readonly DynamicFileArchive fileArchive;
 
- 		/// <summary>
+        /// <summary>
         /// It holds the file names of existing archives in order for the oldest archives to be removed when the list of
         /// filenames becomes too long.
         /// </summary>
@@ -661,13 +661,13 @@ namespace NLog.Targets
             }
 
             this.recentAppenders.CloseAppenders();           
-        }
+                    }
+
 
         /// <summary>
         /// Writes the specified logging event to a file specified in the FileName 
         /// parameter.
         /// </summary>
-        /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
             string fileName = CleanupInvalidFileNameChars(this.FileName.Render(logEvent));
@@ -679,8 +679,8 @@ namespace NLog.Targets
                 this.recentAppenders.InvalidateAppender(fileName);
                 this.DoAutoArchive(fileName, logEvent);
             }
-
-            // Clean up old archives if this is the first time a log record is being written to
+            // Clean up old archives if this is the first time a log record has been written to
+            // this log file and the archiving system is date/time based.
             // this log file and the archiving system is date/time based.
             if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None)
             {
@@ -871,7 +871,7 @@ namespace NLog.Targets
 
             string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
             RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
-            
+
             var shouldCompress = archiveNumber == 0;
             try
             {
@@ -911,7 +911,7 @@ namespace NLog.Targets
 
             try
             {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                 foreach (string s in Directory.EnumerateFiles(dirName, fileNameMask))
 #else
                 foreach (string s in Directory.GetFiles(dirName, fileNameMask))
@@ -1212,7 +1212,7 @@ namespace NLog.Targets
         /// <returns>Lisf of files matching the pattern.</returns>
         private static IEnumerable<FileInfo> GetFiles(DirectoryInfo directoryInfo, string fileNameMask)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
             return directoryInfo.EnumerateFiles(fileNameMask);
 #else
             return directoryInfo.GetFiles(fileNameMask);
@@ -1274,34 +1274,34 @@ namespace NLog.Targets
 
             if (dirName != null)
             {
-                DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
-                if (!directoryInfo.Exists)
-                {
-                    Directory.CreateDirectory(dirName);
-                    return;
-                }
+                    DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
+                    if (!directoryInfo.Exists)
+                    {
+                        Directory.CreateDirectory(dirName);
+                        return;
+                    }
 
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                 var files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
 #else
                 var files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
 #endif
-                List<string> filesByDate = new List<string>();
+                    List<string> filesByDate = new List<string>();
 
                 foreach (string nextFile in files)
-                {
-                    string archiveFileName = Path.GetFileName(nextFile);
-                    string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
-                    DateTime fileDate = DateTime.MinValue;
-                    if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
                     {
+                    string archiveFileName = Path.GetFileName(nextFile);
+                        string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
+                        DateTime fileDate = DateTime.MinValue;
+                        if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
+                        {
                         filesByDate.Add(nextFile);
+                        }
                     }
-                }
 
-                EnsureArchiveCount(filesByDate);
-            }
-        }
+                    EnsureArchiveCount(filesByDate);
+                }
+                }
 #endif
 
         /// <summary>
@@ -1350,7 +1350,7 @@ namespace NLog.Targets
         {
             DateTime archiveDate = TimeSource.Current.Time;
 
-            // Because AutoArchive/ArchiveByDate gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
+            // Because AutoArchive/DateArchive gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
             // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
             int addCount = isNextCycle ? -1 : 0;
 
@@ -1392,7 +1392,7 @@ namespace NLog.Targets
             {
                 return;
             }
-            
+
             string fileNamePattern = GetFileNamePattern(fileName, eventInfo);
 
             if (!ContainsFileNamePattern(fileNamePattern))
@@ -1555,7 +1555,7 @@ namespace NLog.Targets
                 {
                     DateTime expireTime = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
                     this.recentAppenders.CloseAppenders(expireTime);
-                }
+                        }
                 catch (Exception exception)
                 {
                     if (exception.MustBeRethrown())
@@ -1569,9 +1569,9 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// The sequence of <see langword="byte"/> to be written for the file header.
+        /// It allocates the first slot in the list ( <see cref="P:recentAppenders"/>) when the file name is not already
+        /// in the list and clean up any unused slots.
         /// </summary>
-        /// <returns>Sequence of <see langword="byte"/> to be written.</returns>
         private byte[] GetHeaderBytes()
         {
             return this.GetLayoutBytes(this.Header);
@@ -1773,8 +1773,8 @@ namespace NLog.Targets
         {
             if (this.recentAppenders.GetFileInfo(filePath, out lastWriteTime, out fileLength))
             {
-                return true;
-            }
+                    return true;
+                }
 
             FileInfo fileInfo = new FileInfo(filePath);
             if (fileInfo.Exists)
@@ -1812,13 +1812,9 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Replaces any invalid characters found in the <paramref name="fileName"/> with underscore i.e _ character.
-        /// Invalid characters are defined by .NET framework and they returned by <see
-        /// cref="M:System.IO.Path.GetInvalidFileNameChars"/> method.
-        /// <para>Note: not implemented in Silverlight</para>
+        /// Invalidates and closes the relevant file appender for a file.
         /// </summary>
-        /// <param name="fileName">The original file name which might contain invalid characters.</param>
-        /// <returns>The cleaned up file name without any invalid characters.</returns>
+        /// <param name="fileName">File name to be processed.</param>
         private static string CleanupInvalidFileNameChars(string fileName)
         {
 #if !SILVERLIGHT

@@ -40,8 +40,13 @@ namespace NLog.UnitTests.Fluent
 {
     using System;
     using System.IO;
-    using Xunit;
     using NLog.Fluent;
+#if(__IOS__)
+	using NUnit.Framework;
+    using Assert = NUnit.Framework.NLog.Assert;
+#else
+    using Xunit;
+#endif
 
     public class LogBuilderTests : NLogTestBase
     {

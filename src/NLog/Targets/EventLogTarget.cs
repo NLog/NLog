@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
 {
@@ -347,7 +347,7 @@ namespace NLog.Targets
                 {
                     throw;
                 }
-              
+
                 throw;
             }
         }

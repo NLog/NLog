@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
 
 #define DEBUG
 
@@ -53,7 +53,7 @@ namespace NLog.UnitTests
             // set the culture info with the decimal separator (comma) different from InvariantCulture separator (point)
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
         }
-        
+
         public void Dispose()
         {
             // restore previous culture info
@@ -222,7 +222,7 @@ namespace NLog.UnitTests
 
             TraceSource ts = CreateTraceSource();
             ts.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
-            
+
             ts.TraceInformation("Quick brown fox");
             AssertDebugLastMessage("debug", "MySource1 Info Quick brown fox 0");
 
@@ -295,7 +295,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Warn Mary had a little lamb 0");
         }
 
-        
+
         private static TraceSource CreateTraceSource()
         {
             var ts = new TraceSource("MySource1", SourceLevels.All);

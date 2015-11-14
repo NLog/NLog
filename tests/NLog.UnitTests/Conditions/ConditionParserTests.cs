@@ -38,7 +38,12 @@ namespace NLog.UnitTests.Conditions
     using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class ConditionParserTests : NLogTestBase
     {

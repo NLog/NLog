@@ -37,7 +37,11 @@ using System.Reflection;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
 
     public class AssemblyVersionTests : NLogTestBase
     {

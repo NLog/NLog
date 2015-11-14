@@ -35,7 +35,12 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
     using NLog.Layouts;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class FileSystemNormalizeTests : NLogTestBase
     {

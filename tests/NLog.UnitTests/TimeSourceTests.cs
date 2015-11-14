@@ -35,7 +35,12 @@ namespace NLog.UnitTests
 {
     using System;
     using NLog.Time;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class TimeSourceTests : NLogTestBase, IDisposable
     {

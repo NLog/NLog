@@ -34,7 +34,11 @@
 namespace NLog.UnitTests.Filters
 {
     using NLog;
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
 
     public class ConditionBasedFilterTests : NLogTestBase
     {

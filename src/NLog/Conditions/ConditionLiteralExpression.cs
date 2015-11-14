@@ -39,8 +39,12 @@ namespace NLog.Conditions
     /// <summary>
     /// Condition literal expression (numeric, <b>LogLevel.XXX</b>, <b>true</b> or <b>false</b>).
     /// </summary>
-    internal sealed class ConditionLiteralExpression : ConditionExpression
-    {
+#if(__IOS__)
+    public sealed class ConditionLiteralExpression : ConditionExpression
+#else
+	internal sealed class ConditionLiteralExpression : ConditionExpression
+#endif
+	{
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionLiteralExpression" /> class.
         /// </summary>

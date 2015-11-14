@@ -34,7 +34,12 @@
 namespace NLog.UnitTests.LayoutRenderers
 {
     using NLog.LayoutRenderers;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class LongDateTests : NLogTestBase
     {
@@ -65,7 +70,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var dt = new LongDateLayoutRenderer();
             dt.UniversalTime = true;
-            
+
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
             Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss.ffff"), dt.Render(ei));
         }
@@ -75,7 +80,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var dt = new LongDateLayoutRenderer();
             dt.UniversalTime = false;
-            
+
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
             Assert.Equal(ei.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss.ffff"), dt.Render(ei));
         }

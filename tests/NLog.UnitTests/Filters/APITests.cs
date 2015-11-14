@@ -35,7 +35,12 @@ namespace NLog.UnitTests.Filters
 {
     using NLog.Layouts;
     using NLog.Filters;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     public class APITests : NLogTestBase
     {

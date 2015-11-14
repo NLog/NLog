@@ -36,7 +36,12 @@ namespace NLog.UnitTests.Config
     using System;
     using System.Globalization;
     using System.Threading;
+#if(__IOS__)
+		using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
     using Xunit;
+#endif
 
     using NLog.Config;
     
@@ -86,7 +91,7 @@ namespace NLog.UnitTests.Config
                 AssertMessageFormattedWithCulture(configuration1, CultureInfo.CurrentCulture, formatString, testNumber, testDate);
                 AssertMessageFormattedWithCulture(configuration2, CultureInfo.InvariantCulture, formatString, testNumber, testDate);
 
-            }
+    }
             finally
             {
                 // restore current thread culture

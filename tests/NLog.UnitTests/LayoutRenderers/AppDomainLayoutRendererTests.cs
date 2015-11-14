@@ -33,7 +33,12 @@
 
 using System;
 using System.Linq;
-using Xunit;
+#if (__IOS__)
+using NUnit.Framework;
+using Assert = NUnit.Framework.NLog.Assert;
+#else
+    using Xunit;
+#endif
 
 #if !SILVERLIGHT
 

@@ -30,7 +30,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-
+#if(!__IOS__)
 namespace NLog.UnitTests.Config
 {
     using System.IO;
@@ -38,7 +38,11 @@ namespace NLog.UnitTests.Config
     using NLog.Filters;
     using NLog.Layouts;
     using NLog.Targets;
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
 
     public class ExtensionTests : NLogTestBase
     {
@@ -316,3 +320,5 @@ namespace NLog.UnitTests.Config
 #endif
     }
 }
+
+#endif

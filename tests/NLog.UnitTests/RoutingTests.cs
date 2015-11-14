@@ -33,7 +33,11 @@
 
 namespace NLog.UnitTests
 {
+#if(__IOS__)
+		using NUnit.Framework;
+#else
     using Xunit;
+#endif
 
     public class RoutingTests : NLogTestBase
     {

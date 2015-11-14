@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C48047FF-7E14-443D-906D-7E021AB5707A}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>NLog.UnitTests</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>NLogUnitTests</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchSdkVersion>7.0</MtouchSdkVersion>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchExtraArgs />
+    <MtouchFastDev>False</MtouchFastDev>
+    <MtouchEnableGenericValueTypeSharing>True</MtouchEnableGenericValueTypeSharing>
+    <MtouchArch>Default, ARMv7</MtouchArch>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchUseSGen>False</MtouchUseSGen>
+    <MtouchUseRefCounting>False</MtouchUseRefCounting>
+    <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <BuildIpa>True</BuildIpa>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MonoTouch.NUnitLite" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiTests.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AsyncHelperTests.cs" />
+    <Compile Include="Common\InternalLoggerTests.cs" />
+    <Compile Include="Common\LastLogEventListTarget.cs" />
+    <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
+    <Compile Include="Conditions\ConditionParserTests.cs" />
+    <Compile Include="Config\CaseSensitivityTests.cs" />
+    <Compile Include="Config\ConfigurationItemFactoryTests.cs" />
+    <Compile Include="Config\CultureInfoTests.cs" />
+    <Compile Include="Config\ExtensionTests.cs" />
+    <Compile Include="Config\IncludeTests.cs" />
+    <Compile Include="Config\InternalLoggingTests.cs" />
+    <Compile Include="Config\RuleConfigurationTests.cs" />
+    <Compile Include="Config\TargetConfigurationTests.cs" />
+    <Compile Include="Config\TimeConfigurationTests.cs" />
+    <Compile Include="Config\VariableTests.cs" />
+    <Compile Include="ConfigFileLocatorTests.cs" />
+    <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\MappedDiagnosticsLogicalContextTests.cs" />
+    <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
+    <Compile Include="Filters\APITests.cs" />
+    <Compile Include="Filters\ConditionBasedFilterTests.cs" />
+    <Compile Include="Filters\WhenContainsTests.cs" />
+    <Compile Include="Filters\WhenEqualTests.cs" />
+    <Compile Include="Filters\WhenNotContainsTests.cs" />
+    <Compile Include="Filters\WhenNotEqualTests.cs" />
+    <Compile Include="Fluent\LogBuilderTests.cs" />
+    <Compile Include="GetLoggerTests.cs" />
+    <Compile Include="Internal\EnumHelpersTests.cs" />
+    <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
+    <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
+    <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
+    <Compile Include="LayoutRenderers\AppSettingTests.cs" />
+    <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
+    <Compile Include="LayoutRenderers\BaseDirTests.cs" />
+    <Compile Include="LayoutRenderers\CallSiteLineNumberTests.cs" />
+    <Compile Include="LayoutRenderers\CallSiteTests.cs" />
+    <Compile Include="LayoutRenderers\CounterTests.cs" />
+    <Compile Include="LayoutRenderers\DateTests.cs" />
+    <Compile Include="LayoutRenderers\EnvironmentTests.cs" />
+    <Compile Include="LayoutRenderers\EventContextTests.cs" />
+    <Compile Include="LayoutRenderers\EventPropertiesTests.cs" />
+    <Compile Include="LayoutRenderers\ExceptionTests.cs" />
+    <Compile Include="LayoutRenderers\FileContentsTests.cs" />
+    <Compile Include="LayoutRenderers\GDCTests.cs" />
+    <Compile Include="LayoutRenderers\IdentityTests.cs" />
+    <Compile Include="LayoutRenderers\LiteralTests.cs" />
+    <Compile Include="LayoutRenderers\Log4JXmlTests.cs" />
+    <Compile Include="LayoutRenderers\LoggerNameTests.cs" />
+    <Compile Include="LayoutRenderers\LogLevelTests.cs" />
+    <Compile Include="LayoutRenderers\LongDateTests.cs" />
+    <Compile Include="LayoutRenderers\MDCTests.cs" />
+    <Compile Include="LayoutRenderers\MdlcLayoutRendererTests.cs" />
+    <Compile Include="LayoutRenderers\MessageTests.cs" />
+    <Compile Include="LayoutRenderers\NDCTests.cs" />
+    <Compile Include="LayoutRenderers\RegistryTests.cs" />
+    <Compile Include="LayoutRenderers\Rot13Tests.cs" />
+    <Compile Include="LayoutRenderers\ShortDateTests.cs" />
+    <Compile Include="LayoutRenderers\SpecialFolderTests.cs" />
+    <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
+    <Compile Include="LayoutRenderers\TimeTests.cs" />
+    <Compile Include="LayoutRenderers\VariableLayoutRendererTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\CachedTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\JsonEncodeTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\OnExceptionTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\PaddingTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\ReplaceNewLinesTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\ReplaceTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\WhenEmptyTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\WhenTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\XmlEncodeTests.cs" />
+    <Compile Include="Layouts\AllEventPropertiesTests.cs" />
+    <Compile Include="Layouts\CsvLayoutTests.cs" />
+    <Compile Include="Layouts\JsonLayoutTests.cs" />
+    <Compile Include="Layouts\SimpleLayoutOutputTests.cs" />
+    <Compile Include="Layouts\SimpleLayoutParserTests.cs" />
+    <Compile Include="Layouts\ThreadAgnosticTests.cs" />
+    <Compile Include="LogFactoryTests.cs" />
+    <Compile Include="LoggerTests.cs" />
+    <Compile Include="LogLevelTests.cs" />
+    <Compile Include="LogManagerTests.cs" />
+    <Compile Include="LogReceiverService\LogReceiverForwardingServiceTests.cs" />
+    <Compile Include="LogReceiverService\LogReceiverServiceTests.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="NLogTestBase.cs" />
+    <Compile Include="NLogTraceListenerTests.cs" />
+    <Compile Include="NUnit.cs" />
+    <Compile Include="ProcessRunner.cs" />
+    <Compile Include="RegressionTests.cs" />
+    <Compile Include="RoutingTests.cs" />
+    <Compile Include="SourceCodeTests.cs" />
+    <Compile Include="Targets\ColoredConsoleTargetTests.cs" />
+    <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
+    <Compile Include="Targets\ConsoleTargetTests.cs" />
+    <Compile Include="Targets\DatabaseTargetTests.cs" />
+    <Compile Include="Targets\EventLogTargetTests.cs" />
+    <Compile Include="Targets\FileTargetTests.cs" />
+    <Compile Include="Targets\LineEndingModeTests.cs" />
+    <Compile Include="Targets\LogReceiverWebServiceTargetTests.cs" />
+    <Compile Include="Targets\MailTargetTests.cs" />
+    <Compile Include="Targets\MemoryTargetTests.cs" />
+    <Compile Include="Targets\MessageQueueTargetTests.cs" />
+    <Compile Include="Targets\NetworkTargetTests.cs" />
+    <Compile Include="Targets\TargetTests.cs" />
+    <Compile Include="Targets\WebServiceTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\AsyncRequestQueueTests.cs" />
+    <Compile Include="Targets\Wrappers\AsyncTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\AutoFlushTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\BufferingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\FallbackGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\FilteringTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\PostFilteringTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\RandomizeGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\RepeatingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\RetryingTargetWrapperTests.cs" />
+    <Compile Include="Targets\Wrappers\RoundRobinGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\SplitGroupTargetTests.cs" />
+    <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
+    <Compile Include="TimeSourceTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ConfigFiles\included.nlog" />
+    <Content Include="ConfigFiles\main.nlog" />
+    <Content Include="ConfigFiles\referencemissingfile.nlog" />
+    <Content Include="ConfigFiles\referencemissingfileignored.nlog" />
+    <Content Include="ProjectFileInfo.xml" />
+    <Content Include="Properties\AppManifest.xml" />
+    <Content Include="Properties\OutOfBrowserSettings.xml" />
+    <Content Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\OutOfBrowserSettings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NLog\NLog.iOS.csproj">
+      <Project>{9E517F74-F072-4E1E-80C8-EEDCECBD0557}</Project>
+      <Name>NLog.iOS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+</Project>

@@ -40,11 +40,18 @@ namespace NLog.UnitTests
     using System.Linq;
     using System.Diagnostics;
     using System.IO;
-    using Xunit;
+
     using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
     using NLog.Targets;
+    using System.Diagnostics;
+#if(__IOS__)
+	using NUnit.Framework;
+	using Assert = NUnit.Framework.NLog.Assert;
+#else
+    using Xunit;
+#endif
 
 #if NET4_5
     using System.Threading.Tasks;

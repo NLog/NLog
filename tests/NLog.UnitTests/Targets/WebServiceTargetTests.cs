@@ -48,6 +48,8 @@ using System.Web.Http;
 using Owin;
 using Microsoft.Owin.Hosting;
 #endif
+
+#if !__IOS__
 using Xunit;
 
 namespace NLog.UnitTests.Targets
@@ -177,7 +179,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             Assert.Equal(bytes.Length, includeBom ? 126 : 123);
         }
 
-        #region helpers
+#region helpers
 
 
         private Stream GenerateStreamFromString(string s)
@@ -214,7 +216,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             public byte[] bytes;
             public string stringed;
 
-            #region Overrides of MemoryStream
+#region Overrides of MemoryStream
 
             /// <summary>
             /// Releases the unmanaged resources used by the <see cref="T:System.IO.MemoryStream"/> class and optionally releases the managed resources.
@@ -236,11 +238,11 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 return sr.ReadToEnd();
             }
 
-            #endregion
+#endregion
         }
 
 
-        #endregion
+#endregion
 
 #if NET4_5
 
@@ -552,3 +554,4 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
     }
 
 }
+#endif

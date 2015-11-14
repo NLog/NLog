@@ -33,7 +33,7 @@
 
 using System.Linq;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
 {

@@ -30,7 +30,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-
+#if !__IOS__ && !WINDOWS_PHONE && !__ANDROID__
 namespace NLog.Targets
 {
     using System;
@@ -164,7 +164,7 @@ namespace NLog.Targets
             var networkLogEvents = this.TranslateLogEvents(logEvents);
             this.Send(networkLogEvents, logEvents);
         }
-        
+
         /// <summary>
         /// Flush any pending log messages asynchronously (in case of asynchronous targets).
         /// </summary>
@@ -284,7 +284,7 @@ namespace NLog.Targets
                 };
 
             this.inCall = true;
-#if SILVERLIGHT
+#if SILVERLIGHT 
             if (!Deployment.Current.Dispatcher.CheckAccess())
             {
                 Deployment.Current.Dispatcher.BeginInvoke(() => client.ProcessLogMessagesAsync(events));
@@ -440,7 +440,7 @@ namespace NLog.Targets
             {
                 string value;
                 object propertyValue;
-                
+
                 if (eventInfo.Properties.TryGetValue(context.LayoutNames[i], out propertyValue))
                 {
                     value = Convert.ToString(propertyValue, CultureInfo.InvariantCulture);
@@ -456,10 +456,12 @@ namespace NLog.Targets
 
             if (eventInfo.Exception != null)
             {
-            	nlogEvent.ValueIndexes.Add(AddValueAndGetStringOrdinal(context, stringTable, eventInfo.Exception.ToString()));
-        	}
+                nlogEvent.ValueIndexes.Add(AddValueAndGetStringOrdinal(context, stringTable, eventInfo.Exception.ToString()));
+            }
 
             return nlogEvent;
         }
     }
 }
+
+#endif
