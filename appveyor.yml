@@ -11,7 +11,7 @@ before_build:
 
 build_script:
   - Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildSL5=true /p:BuildSL4=true /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true 
-  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildWP8=true /p:BuildXamarinAndroid=true p:BuildXamarinIOS=true 
+  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildWP8=true /p:BuildXamarinAndroid=true /p:BuildXamarinIOS=true 
 before_test:
   - .\tests\CreateTestUsers.cmd
 test_script:
