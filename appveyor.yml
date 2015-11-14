@@ -29,6 +29,7 @@ after_test:
   - .\tests\DeleteTestUsers.cmd
 after_build:
   - appveyor UnregisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password%
+  - appveyor UnregisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password%
 
   
 deploy: off
