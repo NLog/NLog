@@ -41,7 +41,7 @@ namespace NLog.Conditions
     /// <b>&gt;</b> or <b>&gt;=</b>) expression.
     /// </summary>
 	internal sealed class ConditionRelationalExpression : ConditionExpression
-	{
+    {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionRelationalExpression" /> class.
         /// </summary>

@@ -37,7 +37,7 @@ namespace NLog.Conditions
     /// Token types for condition expressions.
     /// </summary>
 	internal enum ConditionTokenType
-	{
+    {
         EndOfInput,
 
         BeginningOfInput,

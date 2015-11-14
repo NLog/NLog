@@ -40,7 +40,7 @@ namespace NLog.Conditions
     /// Condition literal expression (numeric, <b>LogLevel.XXX</b>, <b>true</b> or <b>false</b>).
     /// </summary>
 	internal sealed class ConditionLiteralExpression : ConditionExpression
-	{
+    {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionLiteralExpression" /> class.
         /// </summary>

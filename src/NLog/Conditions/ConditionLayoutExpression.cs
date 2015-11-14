@@ -40,7 +40,7 @@ namespace NLog.Conditions
     /// with embedded ${}).
     /// </summary>
 	internal sealed class ConditionLayoutExpression : ConditionExpression
-	{
+    {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionLayoutExpression" /> class.
         /// </summary>

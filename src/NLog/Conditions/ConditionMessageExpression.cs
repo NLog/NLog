@@ -37,7 +37,7 @@ namespace NLog.Conditions
     /// Condition message expression (represented by the <b>message</b> keyword).
     /// </summary>
 	internal sealed class ConditionMessageExpression : ConditionExpression
-	{
+    {
         /// <summary>
         /// Returns a string representation of this expression.
         /// </summary>

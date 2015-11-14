@@ -44,7 +44,7 @@ namespace NLog.Conditions
     /// Condition method invocation expression (represented by <b>method(p1,p2,p3)</b> syntax).
     /// </summary>
 	internal sealed class ConditionMethodExpression : ConditionExpression
-	{
+    {
         private readonly bool acceptsLogEvent;
         private readonly string conditionMethodName;
 

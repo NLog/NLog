@@ -37,7 +37,7 @@ namespace NLog.Conditions
     /// Relational operators used in conditions.
     /// </summary>
     internal enum ConditionRelationalOperator
-	{
+    {
         /// <summary>
         /// Equality (==).
         /// </summary>

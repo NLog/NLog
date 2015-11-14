@@ -37,7 +37,7 @@ namespace NLog.Conditions
     /// Condition level expression (represented by the <b>level</b> keyword).
     /// </summary>
 	internal sealed class ConditionLevelExpression : ConditionExpression
-	{
+    {
         /// <summary>
         /// Returns a string representation of the expression.
         /// </summary>
