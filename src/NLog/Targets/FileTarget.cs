@@ -82,7 +82,7 @@ namespace NLog.Targets
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
 
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
-        
+
         /// <summary>
         /// Factory used to create the file appeanders in the <see cref="FileTarget"/> instance. 
         /// </summary>
@@ -660,8 +660,8 @@ namespace NLog.Targets
                 this.autoClosingTimer = null;
             }
 
-            this.recentAppenders.CloseAppenders();           
-                    }
+            this.recentAppenders.CloseAppenders();
+        }
 
 
         /// <summary>
@@ -1274,34 +1274,34 @@ namespace NLog.Targets
 
             if (dirName != null)
             {
-                    DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
-                    if (!directoryInfo.Exists)
-                    {
-                        Directory.CreateDirectory(dirName);
-                        return;
-                    }
+                DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
+                if (!directoryInfo.Exists)
+                {
+                    Directory.CreateDirectory(dirName);
+                    return;
+                }
 
 #if SILVERLIGHT && !WINDOWS_PHONE
                 var files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
 #else
                 var files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
 #endif
-                    List<string> filesByDate = new List<string>();
+                List<string> filesByDate = new List<string>();
 
                 foreach (string nextFile in files)
-                    {
+                {
                     string archiveFileName = Path.GetFileName(nextFile);
-                        string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
-                        DateTime fileDate = DateTime.MinValue;
-                        if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
-                        {
+                    string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
+                    DateTime fileDate = DateTime.MinValue;
+                    if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
+                    {
                         filesByDate.Add(nextFile);
-                        }
                     }
+                }
 
-                    EnsureArchiveCount(filesByDate);
-                }
-                }
+                EnsureArchiveCount(filesByDate);
+            }
+        }
 #endif
 
         /// <summary>
@@ -1555,7 +1555,7 @@ namespace NLog.Targets
                 {
                     DateTime expireTime = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
                     this.recentAppenders.CloseAppenders(expireTime);
-                        }
+                }
                 catch (Exception exception)
                 {
                     if (exception.MustBeRethrown())
@@ -1773,8 +1773,8 @@ namespace NLog.Targets
         {
             if (this.recentAppenders.GetFileInfo(filePath, out lastWriteTime, out fileLength))
             {
-                    return true;
-                }
+                return true;
+            }
 
             FileInfo fileInfo = new FileInfo(filePath);
             if (fileInfo.Exists)
