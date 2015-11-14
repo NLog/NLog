@@ -663,11 +663,11 @@ namespace NLog.Targets
             this.recentAppenders.CloseAppenders();
         }
 
-
         /// <summary>
         /// Writes the specified logging event to a file specified in the FileName 
         /// parameter.
         /// </summary>
+        /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
             string fileName = CleanupInvalidFileNameChars(this.FileName.Render(logEvent));
@@ -681,7 +681,7 @@ namespace NLog.Targets
             }
 
             // Clean up old archives if this is the first time a log record is being written to
-            // this log file and the archiving system is date/time based
+            // this log file and the archiving system is date/time based.
             if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None)
             {
                 if (!previousFileNames.Contains(fileName))
@@ -1350,7 +1350,7 @@ namespace NLog.Targets
         {
             DateTime archiveDate = TimeSource.Current.Time;
 
-            // Because AutoArchive/DateArchive gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
+            // Because AutoArchive/ArchiveByDate gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
             // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
             int addCount = isNextCycle ? -1 : 0;
 
@@ -1569,9 +1569,9 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// It allocates the first slot in the list ( <see cref="P:recentAppenders"/>) when the file name is not already
-        /// in the list and clean up any unused slots.
+        /// The sequence of <see langword="byte"/> to be written for the file header.
         /// </summary>
+        /// <returns>Sequence of <see langword="byte"/> to be written.</returns>
         private byte[] GetHeaderBytes()
         {
             return this.GetLayoutBytes(this.Header);
@@ -1812,9 +1812,13 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Invalidates and closes the relevant file appender for a file.
+        /// Replaces any invalid characters found in the <paramref name="fileName"/> with underscore i.e _ character.
+        /// Invalid characters are defined by .NET framework and they returned by <see
+        /// cref="M:System.IO.Path.GetInvalidFileNameChars"/> method.
+        /// <para>Note: not implemented in Silverlight</para>
         /// </summary>
-        /// <param name="fileName">File name to be processed.</param>
+        /// <param name="fileName">The original file name which might contain invalid characters.</param>
+        /// <returns>The cleaned up file name without any invalid characters.</returns>
         private static string CleanupInvalidFileNameChars(string fileName)
         {
 #if !SILVERLIGHT
