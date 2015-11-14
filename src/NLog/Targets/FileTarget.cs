@@ -679,9 +679,9 @@ namespace NLog.Targets
                 this.recentAppenders.InvalidateAppender(fileName);
                 this.DoAutoArchive(fileName, logEvent);
             }
-            // Clean up old archives if this is the first time a log record has been written to
-            // this log file and the archiving system is date/time based.
-            // this log file and the archiving system is date/time based.
+
+            // Clean up old archives if this is the first time a log record is being written to
+            // this log file and the archiving system is date/time based
             if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None)
             {
                 if (!previousFileNames.Contains(fileName))
