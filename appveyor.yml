@@ -5,15 +5,15 @@ environment:
     secure: 7v79qwPZ4B1i/0KMpwy5xRdxQO9qzPjtRR0IV+dI83c=
   xamarin_password:
     secure: koh9YQacPXLs0Exxx1dIHIqpDAwg79tKqGUtFIeRqiM=
-before_build:
-  - appveyor UnregisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password%
-  - appveyor UnregisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password%
-  - appveyor RegisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password% -Product Android
-  - appveyor RegisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password% -Product iOS  
-
 build_script:
   - Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildSL5=true /p:BuildSL4=true /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true 
-  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildWP8=true /p:BuildXamarinAndroid=true /p:BuildXamarinIOS=true /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
+  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildWP8=true            /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
+  - appveyor RegisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password% -Product Android
+  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildXamarinAndroid=true /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
+  - appveyor UnregisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password%
+  - appveyor RegisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password% -Product iOS 
+  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildXamarinIOS=true     /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
+  - appveyor UnregisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password%
 before_test:
   - .\tests\CreateTestUsers.cmd
 test_script:
