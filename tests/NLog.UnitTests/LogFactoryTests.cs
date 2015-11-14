@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT
 namespace NLog.UnitTests
 {
     using System;
@@ -39,11 +39,7 @@ namespace NLog.UnitTests
     using System.Linq;
     using System.Threading;
 
-#if(__IOS__)
-		using NUnit.Framework;
-#else
     using Xunit;
-#endif
 
     using NLog.Config;
     using NLog.Targets;
@@ -404,7 +400,7 @@ namespace NLog.UnitTests
             Assert.False(factory.IsLoggingEnabled());
             factory.EnableLogging();
             Assert.True(factory.IsLoggingEnabled());
-#pragma warning restore 618
+#pragma warning restore 618           
         }
 
         [Fact]
@@ -529,7 +525,7 @@ namespace NLog.UnitTests
             }
         }
 
-
+     
     }
 }
 #endif

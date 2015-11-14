@@ -283,11 +283,7 @@ namespace NLog.Targets
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-#if(__IOS__)
-        public void Initialize(LoggingConfiguration configuration)
-#else
 		internal void Initialize(LoggingConfiguration configuration)
-#endif
 		{
             lock (this.SyncRoot)
             {
@@ -320,11 +316,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes this instance.
         /// </summary>
-#if(__IOS__)
-        public void Close()
-#else
 		internal void Close()
-#endif
 		{
             lock (this.SyncRoot)
             {

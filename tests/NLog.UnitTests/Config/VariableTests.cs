@@ -38,12 +38,7 @@ namespace NLog.UnitTests.Config
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class VariableTests : NLogTestBase
     {
@@ -75,7 +70,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("]]", lr3.Text);
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT
 
         /// <summary>
         /// Expand of property which are not layoutable <see cref="Layout"/>, but still get expanded.
@@ -99,7 +94,7 @@ namespace NLog.UnitTests.Config
         }
 #endif
 
-
+      
 
         [Fact]
         public void Xml_configuration_returns_defined_variables()

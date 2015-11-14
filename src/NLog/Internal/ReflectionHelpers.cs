@@ -42,12 +42,7 @@ namespace NLog.Internal
     /// <summary>
     /// Reflection helpers.
     /// </summary>
-#if(__IOS__)
-	public static class ReflectionHelpers
-#else
     internal static class ReflectionHelpers
-#endif
-
     {
         /// <summary>
         /// Gets all usable exported types from the given assembly.

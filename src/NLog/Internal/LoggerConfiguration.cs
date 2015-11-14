@@ -38,11 +38,7 @@ namespace NLog.Internal
     /// <summary>
     /// Logger configuration.
     /// </summary>
-#if(__IOS__)
-    public class LoggerConfiguration
-#else
     internal class LoggerConfiguration
-#endif
     {
         private readonly TargetWithFilterChain[] targetsByLevel;
 

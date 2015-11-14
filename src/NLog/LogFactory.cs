@@ -63,15 +63,11 @@ namespace NLog
     {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private const int ReconfigAfterFileChangedTimeout = 1000;
-       
+        private Timer reloadTimer;
         private readonly MultiFileWatcher watcher;
 #endif
 
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
-
-#if !SILVERLIGHT && !__IOS__
-        private Timer reloadTimer;
-#endif
 
 
         private static IAppDomain currentAppDomain;
@@ -89,7 +85,7 @@ namespace NLog
         /// </summary>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -966,7 +962,7 @@ namespace NLog
         }
 
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Currenty this logfactory is disposing?
         /// </summary>

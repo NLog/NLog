@@ -39,12 +39,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using NLog.Conditions;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class FilteringTargetWrapperTests : NLogTestBase
 	{

@@ -34,12 +34,7 @@
 namespace NLog.UnitTests.LayoutRenderers
 {
     using NLog.LayoutRenderers;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class TimeTests : NLogTestBase
     {
@@ -114,7 +109,7 @@ namespace NLog.UnitTests.LayoutRenderers
             string date = GetDebugLastMessage("debug");
             Assert.Equal(5, date.Length);
             Assert.Equal(date[0], '.');
-    }
+        }
 
         [Fact]
         public void LongDateWithPaddingPadRightAlignLeft()

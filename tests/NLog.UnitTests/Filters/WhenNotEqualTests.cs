@@ -33,11 +33,7 @@
 
 namespace NLog.UnitTests.Filters
 {
-#if(__IOS__)
-		using NUnit.Framework;
-#else
     using Xunit;
-#endif
 
     public class WhenNotEqualTests : NLogTestBase
     {

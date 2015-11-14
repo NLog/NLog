@@ -33,7 +33,7 @@
 
 using System.Threading;
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests
 {
@@ -210,7 +210,7 @@ namespace NLog.UnitTests
 
         private string RunTest()
         {
-            string sourceCode = @"
+        string sourceCode = @"
 using System;
 using System.Reflection;
 using NLog;
@@ -251,11 +251,11 @@ class C1
         public static string RunAndRedirectOutput(string exeFile)
         {
             using (var proc = new Process())
-            {
+			{
 #if MONO
-            var sb = new StringBuilder();
-            sb.AppendFormat("\"{0}\" ", exeFile);
-                proc.StartInfo.Arguments = sb.ToString();
+				var sb = new StringBuilder();
+				sb.AppendFormat("\"{0}\" ", exeFile);
+				proc.StartInfo.Arguments = sb.ToString();
                 proc.StartInfo.FileName = "mono";
 				proc.StartInfo.StandardOutputEncoding = Encoding.UTF8;
 				proc.StartInfo.StandardErrorEncoding = Encoding.UTF8;

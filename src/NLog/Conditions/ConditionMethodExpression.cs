@@ -43,11 +43,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Condition method invocation expression (represented by <b>method(p1,p2,p3)</b> syntax).
     /// </summary>
-#if(__IOS__)
-    public sealed class ConditionMethodExpression : ConditionExpression
-#else
 	internal sealed class ConditionMethodExpression : ConditionExpression
-#endif
 	{
         private readonly bool acceptsLogEvent;
         private readonly string conditionMethodName;

@@ -37,12 +37,7 @@ namespace NLog.UnitTests.Layouts
     using NLog.LayoutRenderers.Wrappers;
     using NLog.Layouts;
     using NLog.Targets;
-#if(__IOS__)
-		using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class SimpleLayoutParserTests : NLogTestBase
     {

@@ -38,12 +38,7 @@ namespace NLog.UnitTests.Config
     using NLog.Internal;
     using NLog.Targets;
     using System.Collections.Generic;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class ConfigurationItemFactoryTests : NLogTestBase
     {
@@ -76,7 +71,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(typeof(DebugTarget), resolvedTypes[0]);
         }
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT
         // this is just to force reference to NLog.Extended.dll
         public Type ForceExtendedReference = typeof(MessageQueueTarget).DeclaringType;
 

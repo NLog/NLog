@@ -36,11 +36,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Condition logger name expression (represented by the <b>logger</b> keyword).
     /// </summary>
-#if(__IOS__)
-    public sealed class ConditionLoggerNameExpression : ConditionExpression
-#else
-	internal sealed class ConditionLoggerNameExpression : ConditionExpression
-#endif
+    internal sealed class ConditionLoggerNameExpression : ConditionExpression
 	{
         /// <summary>
         /// Returns a string representation of this expression.

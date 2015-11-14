@@ -37,12 +37,7 @@ using NLog.Filters;
 namespace NLog.UnitTests.LayoutRenderers
 {
     using NLog.Layouts;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class EventPropertiesTests : NLogTestBase
     {
@@ -51,7 +46,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             Layout layout = "${event-properties:prop1}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "prop1", "bbb");
-
+            // empty
             Assert.Equal("", layout.Render(logEvent));
         }
 

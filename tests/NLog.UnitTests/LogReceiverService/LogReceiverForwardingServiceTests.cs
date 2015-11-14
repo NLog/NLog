@@ -37,11 +37,7 @@ namespace NLog.UnitTests.LogReceiverService
 {
     using System;
     using NLog.LogReceiverService;
-#if(__IOS__)
-		using NUnit.Framework;
-#else
     using Xunit;
-#endif
 
     public class LogReceiverForwardingServiceTests : NLogTestBase
     {

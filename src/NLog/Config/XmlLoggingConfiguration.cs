@@ -130,11 +130,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
-#if(__IOS__)
-        public XmlLoggingConfiguration(XmlElement element, string fileName)
-#else
 		internal XmlLoggingConfiguration(XmlElement element, string fileName)
-#endif
         {
             using (var stringReader = new StringReader(element.OuterXml))
             {

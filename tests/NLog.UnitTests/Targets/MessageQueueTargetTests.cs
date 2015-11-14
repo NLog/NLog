@@ -31,18 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !MONO && !__IOS__
+#if !SILVERLIGHT && !MONO
 
 namespace NLog.UnitTests.Targets
 {
     using System.Collections.Generic;
     using System.Messaging;
     using NLog.Targets;
-#if(__IOS__)
-		using NUnit.Framework;
-#else
     using Xunit;
-#endif
 
     public class MessageQueueTargetTests : NLogTestBase
     {

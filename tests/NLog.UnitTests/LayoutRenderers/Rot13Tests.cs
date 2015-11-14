@@ -35,12 +35,7 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     using NLog.Layouts;
     using NLog.LayoutRenderers.Wrappers;
-#if(__IOS__)
-		using NUnit.Framework;
-	using Assert=NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class Rot13Tests : NLogTestBase
     {

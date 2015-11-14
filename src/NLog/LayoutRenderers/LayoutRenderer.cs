@@ -138,11 +138,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Closes this instance.
         /// </summary>
-#if(__IOS__)
-		public void Close()
-#else
 		internal void Close()
-#endif
 		{
             if (this.isInitialized)
             {
@@ -152,11 +148,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-#if(__IOS__)
-        public void Render(StringBuilder builder, LogEventInfo logEvent)
-#else
 		internal void Render(StringBuilder builder, LogEventInfo logEvent)
-#endif
 		{
             if (!this.isInitialized)
             {

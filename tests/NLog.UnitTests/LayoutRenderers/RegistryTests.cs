@@ -31,14 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using Microsoft.Win32;
     using Xunit;
-
 
     public class RegistryTests : NLogTestBase, IDisposable
     {

@@ -40,17 +40,9 @@ namespace NLog.Internal
     /// <summary>
     /// Safe way to get environment variables.
     /// </summary>
-#if(__IOS__)
-    public static class EnvironmentHelper
-#else
 	internal static class EnvironmentHelper
-#endif
 	{
-		#if(__IOS__)
-        public static string NewLine
-			#else
 		internal static string NewLine
-#endif
 		{
             get
             {

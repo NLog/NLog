@@ -32,10 +32,9 @@
 // 
 
 
-#if !SILVERLIGHT && !__IOS__
 using System.Threading;
 
-
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
 {
@@ -440,7 +439,7 @@ namespace NLog.UnitTests.Targets
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.True(messageSent.IsBodyHtml);
-            var lines = messageSent.Body.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            var lines = messageSent.Body.Split(new[] {Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             Assert.True(lines.Length == 3);
         }
 

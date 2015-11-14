@@ -36,11 +36,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Condition level expression (represented by the <b>level</b> keyword).
     /// </summary>
-#if(__IOS__)
-    public sealed class ConditionLevelExpression : ConditionExpression
-#else
 	internal sealed class ConditionLevelExpression : ConditionExpression
-#endif
 	{
         /// <summary>
         /// Returns a string representation of the expression.

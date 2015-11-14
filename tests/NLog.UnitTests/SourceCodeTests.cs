@@ -31,12 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
 using System.ComponentModel;
 using System.Reflection;
 using System.Text;
 using NLog.Layouts;
 using NLog.Targets;
+
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests
 {
@@ -163,13 +164,13 @@ namespace NLog.UnitTests
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl4.csproj");
             failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.mono.csproj");
 
-            filesToCompile.Clear();
-            GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLogAutoLoadExtension/"), "*.cs", "");
+			filesToCompile.Clear();
+			GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLogAutoLoadExtension/"), "*.cs", "");
 
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx35.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx40.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx45.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono.csproj");
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx35.csproj");
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx40.csproj");
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx45.csproj");
+			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono.csproj");
 
             Assert.Equal(0, failures);
         }
@@ -221,7 +222,7 @@ namespace NLog.UnitTests
                     continue;
                 }
 
-                if (FileInObjFolder(prefix + file))
+                if (file.Contains(Path.Combine("obj", "Debug")))
                 {
                     continue;
                 }
@@ -247,8 +248,7 @@ namespace NLog.UnitTests
 
             foreach (string dir in directoriesToVerify)
             {
-                var verifyClassNames = VerifyClassNames(Path.Combine(this.sourceCodeDirectory, dir), Path.GetFileName(dir));
-                failedFiles += verifyClassNames;
+                failedFiles += VerifyClassNames(Path.Combine(this.sourceCodeDirectory, dir), Path.GetFileName(dir));
             }
 
             Assert.Equal(0, failedFiles);
@@ -297,13 +297,6 @@ namespace NLog.UnitTests
 
         private bool VerifySingleFile(string file)
         {
-
-            if (FileInObjFolder(file))
-            {
-                //don't scan files in obj folder
-                return true;
-            }
-
             using (StreamReader reader = File.OpenText(file))
             {
                 for (int i = 0; i < this.licenseLines.Length; ++i)
@@ -320,20 +313,9 @@ namespace NLog.UnitTests
             }
         }
 
-        private static bool FileInObjFolder(string path)
-        {
-            return path.Contains("/obj/") || path.Contains("\\obj\\")
-                   || path.StartsWith("obj/", StringComparison.InvariantCultureIgnoreCase) || path.StartsWith("obj\\", StringComparison.InvariantCultureIgnoreCase);
-        }
-
         private int VerifyClassNames(string path, string expectedNamespace)
         {
             int failureCount = 0;
-
-            if (FileInObjFolder(path))
-            {
-                return 0;
-            }
 
             foreach (string file in Directory.GetFiles(path, "*.cs"))
             {
@@ -363,17 +345,10 @@ namespace NLog.UnitTests
             return failureCount;
         }
 
-        ///<returns>success?</returns>
         private bool VerifySingleFile(string file, string expectedNamespace, string expectedClassName)
         {
-            //ignore list
-            if (file != null && file.EndsWith("nunit.cs", StringComparison.InvariantCultureIgnoreCase))
-            {
-                return true;
-            }
-
             bool success = true;
-            HashSet<string> classNames = new HashSet<string>();
+            List<string> classNames = new List<string>();
             using (StreamReader sr = File.OpenText(file))
             {
                 string line;
@@ -406,10 +381,8 @@ namespace NLog.UnitTests
 
             if (classNames.Count == 0)
             {
-                //Console.WriteLine("No classes found in {0}", file);
-
-                //ignore, because of files not used in other projects
-                success = true;
+                Console.WriteLine("No classes found in {0}", file);
+                success = false;
             }
 
             if (classNames.Count > 1)
@@ -418,9 +391,9 @@ namespace NLog.UnitTests
                 success = false;
             }
 
-            if (classNames.Count == 1 && classNames.First() != expectedClassName)
+            if (classNames.Count == 1 && classNames[0] != expectedClassName)
             {
-                Console.WriteLine("Invalid class name. Expected '{0}', actual: '{1}'", expectedClassName, classNames.First());
+                Console.WriteLine("Invalid class name. Expected '{0}', actual: '{1}'", expectedClassName, classNames[0]);
                 success = false;
             }
 
@@ -541,7 +514,7 @@ namespace NLog.UnitTests
             //handle quotes with Layouts
             if (propType == typeof(Layout))
             {
-
+               
                 neededString = "'" + neededString + "'";
 
             }
@@ -553,7 +526,7 @@ namespace NLog.UnitTests
                 return true;
             }
 
-
+        
 
             //handle UTF-8 properly
             if (propType == typeof(Encoding))
@@ -564,7 +537,7 @@ namespace NLog.UnitTests
 
             }
 
-
+      
 
             //nulls or not string equals, fallback
             //Assert.Equal(neededVal, currentVal);

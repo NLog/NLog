@@ -40,11 +40,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Asynchronous request queue.
     /// </summary>
-#if(__IOS__)
-    public class AsyncRequestQueue
-#else
 	internal class AsyncRequestQueue
-#endif
 	{
         private readonly Queue<AsyncLogEventInfo> logEventInfoQueue = new Queue<AsyncLogEventInfo>();
 

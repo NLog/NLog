@@ -30,7 +30,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-#if(!__IOS__)
+
 namespace NLog.UnitTests.Internal.NetworkSenders
 {
     using System;
@@ -41,11 +41,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
     using System.Text;
     using System.Threading;
     using NLog.Internal.NetworkSenders;
-#if(__IOS__)
-		using NUnit.Framework;
-#else
     using Xunit;
-#endif
 
     public class TcpNetworkSenderTests : NLogTestBase
     {
@@ -414,5 +410,3 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         }
     }
 }
-
-#endif

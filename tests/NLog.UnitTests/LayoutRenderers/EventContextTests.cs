@@ -34,12 +34,7 @@
 namespace NLog.UnitTests.LayoutRenderers
 {
     using NLog.Layouts;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class EventContextTests : NLogTestBase
     {

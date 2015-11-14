@@ -41,12 +41,7 @@ namespace NLog.UnitTests
 #if ASYNC_SUPPORTED
     using System.Threading.Tasks;
 #endif
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class LoggerTests : NLogTestBase
     {

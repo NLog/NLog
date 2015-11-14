@@ -39,12 +39,7 @@ namespace NLog.UnitTests.Targets
     using System.IO;
     using NLog.Targets;
     using System.Collections.Generic;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class ConsoleTargetTests : NLogTestBase
     {

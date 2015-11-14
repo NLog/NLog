@@ -35,11 +35,7 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using System.Globalization;
-#if(__IOS__)
-		using NUnit.Framework;
-#else
     using Xunit;
-#endif
 
     public class MessageTests : NLogTestBase
     {

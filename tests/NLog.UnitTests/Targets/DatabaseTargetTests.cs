@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
 {
@@ -48,7 +48,6 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using Xunit;
     using Xunit.Extensions;
-
 
     public class DatabaseTargetTests : NLogTestBase
     {

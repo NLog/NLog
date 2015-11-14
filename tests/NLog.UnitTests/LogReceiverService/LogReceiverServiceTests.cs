@@ -45,13 +45,7 @@ namespace NLog.UnitTests.LogReceiverService
 
     using System;
     using System.IO;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
-
 #if WCF_SUPPORTED && !SILVERLIGHT
         using System.Data;
     using System.Runtime.Serialization;
@@ -179,7 +173,7 @@ namespace NLog.UnitTests.LogReceiverService
             Assert.Equal(LogLevel.Warn, converted[1].Level);
         }
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT
         /// <summary>
         /// Ensures that serialization formats of DataContractSerializer and XmlSerializer are the same
         /// on the same <see cref="NLogEvents"/> object.
@@ -250,7 +244,7 @@ namespace NLog.UnitTests.LogReceiverService
         public void RealTestLogReciever_two_way()
         {
             RealTestLogReciever(false, false);
-    }
+        }
 
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
@@ -260,7 +254,7 @@ namespace NLog.UnitTests.LogReceiverService
         public void RealTestLogReciever_one_way()
         {
             RealTestLogReciever(true, false);
-}
+        }
 
         [Fact(Skip = "unit test should listen to non-http for this")]
         public void RealTestLogReciever_two_way_binary()

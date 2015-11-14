@@ -39,12 +39,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
     using NLog.Targets;
     using System;
     using System.Collections.Generic;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class ReplaceTests : NLogTestBase
     {

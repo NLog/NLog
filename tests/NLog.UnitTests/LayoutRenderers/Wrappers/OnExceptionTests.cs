@@ -36,12 +36,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
     using System;
     using NLog;
     using NLog.Layouts;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class OnExceptionTests : NLogTestBase
     {

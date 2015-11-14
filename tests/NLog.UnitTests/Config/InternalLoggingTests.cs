@@ -34,12 +34,7 @@
 namespace NLog.UnitTests.Config
 {
     using NLog.Common;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class InternalLoggingTests : NLogTestBase
     {

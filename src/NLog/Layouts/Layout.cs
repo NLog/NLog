@@ -55,11 +55,7 @@ namespace NLog.Layouts
         /// like that as well.
         /// Thread-agnostic layouts only use contents of <see cref="LogEventInfo"/> for its output.
         /// </remarks>
-#if(__IOS__)
-        public bool IsThreadAgnostic
-#else
 		internal bool IsThreadAgnostic
-#endif
 		{
             get { return this.threadAgnostic; }
         }
@@ -155,11 +151,7 @@ namespace NLog.Layouts
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-#if(__IOS__)
-        public void Initialize(LoggingConfiguration configuration)
-#else
 		internal void Initialize(LoggingConfiguration configuration)
-#endif
 		{
             if (!this.isInitialized)
             {
@@ -186,11 +178,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Closes this instance.
         /// </summary>
-#if(__IOS__)
-        public void Close()
-#else
 		internal void Close()
-#endif
 		{
             if (this.isInitialized)
             {

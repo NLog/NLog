@@ -38,12 +38,7 @@ namespace NLog.UnitTests
     using System.Collections.Generic;
     using System.Reflection;
     using NLog.Config;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
     using Xunit;
-#endif
 
     public class ApiTests : NLogTestBase
     {

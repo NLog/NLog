@@ -40,11 +40,7 @@ namespace NLog.Conditions
     /// Condition relational (<b>==</b>, <b>!=</b>, <b>&lt;</b>, <b>&lt;=</b>,
     /// <b>&gt;</b> or <b>&gt;=</b>) expression.
     /// </summary>
-#if(__IOS__)
-    public sealed class ConditionRelationalExpression : ConditionExpression
-#else
 	internal sealed class ConditionRelationalExpression : ConditionExpression
-#endif
 	{
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionRelationalExpression" /> class.
