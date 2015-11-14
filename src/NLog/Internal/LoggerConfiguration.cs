@@ -73,6 +73,11 @@ namespace NLog.Internal
         /// <returns>Chain of targets with attached filters.</returns>
         public TargetWithFilterChain GetTargetsForLevel(LogLevel level)
         {
+            if (level == LogLevel.Off)
+            {
+                return null;
+            }
+
             return this.targetsByLevel[level.Ordinal];
         }
 
@@ -85,6 +90,10 @@ namespace NLog.Internal
         /// </returns>
         public bool IsEnabled(LogLevel level)
         {
+            if (level == LogLevel.Off)
+            {
+                return false;
+            }
             return this.targetsByLevel[level.Ordinal] != null;
         }
     }

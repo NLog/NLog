@@ -86,6 +86,7 @@
     <Compile Include="Filters\WhenNotEqualTests.cs" />
     <Compile Include="Fluent\LogBuilderTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
+    <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="LayoutRenderers\BaseDirTests.cs" />
     <Compile Include="LayoutRenderers\CallSiteTests.cs" />

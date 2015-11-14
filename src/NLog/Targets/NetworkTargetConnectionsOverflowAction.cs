@@ -31,52 +31,30 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.UnitTests.LayoutRenderers
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace NLog.Targets
 {
-    using System;
-    using NLog.LayoutRenderers;
-#if(__IOS__)
-	using NUnit.Framework;
-	using Assert = NUnit.Framework.NLog.Assert;
-#else
-    using Xunit;
-#endif
-
-    public class ShortDateTests : NLogTestBase
+    /// <summary>
+    /// The action to be taken when there are more connections then the max.
+    /// </summary>
+    public enum NetworkTargetConnectionsOverflowAction
     {
-        [Fact]
-        public void UniversalTimeTest()
-        {
-            var dt = new ShortDateLayoutRenderer();
-            dt.UniversalTime = true;
+        /// <summary>
+        /// Just allow it.
+        /// </summary>
+        AllowNewConnnection,
 
-            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("yyyy-MM-dd"), dt.Render(ei));
-        }
+        /// <summary>
+        /// Discard the connection item.
+        /// </summary>
+        DiscardMessage,
 
-        [Fact]
-        public void LocalTimeTest()
-        {
-            var dt = new ShortDateLayoutRenderer();
-            dt.UniversalTime = false;
-
-            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.Equal(ei.TimeStamp.ToString("yyyy-MM-dd"), dt.Render(ei));
-        }
-        
-        [Fact]
-        public void ShortDateTest()
-        {
-            LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog>
-                <targets><target name='debug' type='Debug' layout='${shortdate}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
-
-            LogManager.GetLogger("d").Debug("zzz");
-            AssertDebugLastMessage("debug", DateTime.Now.ToString("yyyy-MM-dd"));
-        }
+        /// <summary>
+        /// Block until there's more room in the queue.
+        /// </summary>
+        Block,
     }
 }

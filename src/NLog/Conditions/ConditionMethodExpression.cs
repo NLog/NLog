@@ -140,8 +140,12 @@ namespace NLog.Conditions
             sb.Append("(");
 
             string separator = string.Empty;
-            foreach (ConditionExpression expr in this.MethodParameters)
+
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
+            for (int i = 0; i < this.MethodParameters.Count; i++)
             {
+                ConditionExpression expr = this.MethodParameters[i];
                 sb.Append(separator);
                 sb.Append(expr);
                 separator = ", ";
@@ -161,10 +165,13 @@ namespace NLog.Conditions
             int parameterOffset = this.acceptsLogEvent ? 1 : 0;
 
             var callParameters = new object[this.MethodParameters.Count + parameterOffset];
-            int i = 0;
-            foreach (ConditionExpression ce in this.MethodParameters)
+
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
+            for (int i = 0; i < this.MethodParameters.Count; i++)
             {
-                callParameters[i++ + parameterOffset] = ce.Evaluate(context);
+                ConditionExpression ce = this.MethodParameters[i];
+                callParameters[i + parameterOffset] = ce.Evaluate(context);
             }
 
             if (this.acceptsLogEvent)
