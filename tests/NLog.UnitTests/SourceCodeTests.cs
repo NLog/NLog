@@ -36,7 +36,6 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Text;
 using NLog.Layouts;
-using NLog.Targets;
 
 namespace NLog.UnitTests
 {
@@ -99,11 +98,18 @@ namespace NLog.UnitTests
         {
             if (this.sourceCodeDirectory == null)
             {
-                return;
+                Assert.True(false, "missing sourceCodeDirectory");
+            }
+            else
+            {
+                var missing = FindFilesWithMissingHeaders().ToList();
+                Assert.True(missing.Count == 0, "Missing headers (copy them form other another file): \n" + string.Join("\n-", missing));
             }
 
-            int failedFiles = 0;
+        }
 
+        private IEnumerable<string> FindFilesWithMissingHeaders()
+        {
             foreach (string dir in directoriesToVerify)
             {
                 foreach (string file in Directory.GetFiles(Path.Combine(this.sourceCodeDirectory, dir), "*.cs", SearchOption.AllDirectories))
@@ -115,13 +121,10 @@ namespace NLog.UnitTests
 
                     if (!VerifySingleFile(file))
                     {
-                        failedFiles++;
-                        System.Diagnostics.Debugger.Log(0, "Tests", string.Format("Missing header: {0}{1}", file, Environment.NewLine));
+                        yield return file;
                     }
                 }
             }
-
-            Assert.Equal(0, failedFiles);
         }
 
         private static XNamespace MSBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
@@ -164,10 +167,10 @@ namespace NLog.UnitTests
             var missingFiles = filesToCompile.Except(filesInProject).ToList();
             if (missingFiles.Count > 0)
             {
-                //ugly asser.false for the error message
-                var message = string.Format("project '{0}' is missing files. Run 'msbuild NLog.proj /t:SyncProjectItems'. Missing files: {1} ", projectFileName,
-                    string.Join("\n", missingFiles));
-                Assert.False(false, message);
+                //ugly assert.true for the error message
+                var message = string.Format("project '{0}' is missing files. Run 'msbuild NLog.proj /t:SyncProjectItems'. Missing files: \n-{1}", projectFileName,
+                    string.Join("\n-", missingFiles));
+                Assert.True(false, message);
 
             }
 
@@ -334,7 +337,7 @@ namespace NLog.UnitTests
                     expectedClassName = expectedClassName.Substring(0, p);
                 }
 
-                if (!this.VerifySingleFile(file, expectedNamespace, expectedClassName))
+                if (!VerifySingleFile(file, expectedNamespace, expectedClassName))
                 {
                     failureCount++;
                 }
@@ -349,7 +352,7 @@ namespace NLog.UnitTests
         }
 
         ///<returns>success?</returns>
-        private bool VerifySingleFile(string file, string expectedNamespace, string expectedClassName)
+        private static bool VerifySingleFile(string file, string expectedNamespace, string expectedClassName)
         {
             //ignore list
             if (file != null && file.EndsWith("nunit.cs", StringComparison.InvariantCultureIgnoreCase))
