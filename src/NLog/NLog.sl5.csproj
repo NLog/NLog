@@ -147,6 +147,7 @@
     <Compile Include="Internal\Fakeables\IAppDomain.cs" />
     <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\FileAppenderCache.cs" />
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
     <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs" />
     <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs" />
@@ -361,14 +362,13 @@
     <Compile Include="Targets\MethodCallTarget.cs" />
     <Compile Include="Targets\MethodCallTargetBase.cs" />
     <Compile Include="Targets\NetworkTarget.cs" />
+    <Compile Include="Targets\NetworkTargetConnectionsOverflowAction.cs" />
     <Compile Include="Targets\NetworkTargetOverflowAction.cs" />
     <Compile Include="Targets\NLogViewerParameterInfo.cs" />
     <Compile Include="Targets\NLogViewerTarget.cs" />
     <Compile Include="Targets\NullTarget.cs" />
     <Compile Include="Targets\OutputDebugStringTarget.cs" />
     <Compile Include="Targets\PerformanceCounterTarget.cs" />
-    <Compile Include="Targets\RichTextBoxRowColoringRule.cs" />
-    <Compile Include="Targets\RichTextBoxWordColoringRule.cs" />
     <Compile Include="Targets\SmtpAuthenticationMode.cs" />
     <Compile Include="Targets\Target.cs" />
     <Compile Include="Targets\TargetAttribute.cs" />

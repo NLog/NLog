@@ -53,6 +53,8 @@ namespace NLog.Config
     /// </summary>
     public class ConfigurationItemFactory
     {
+        private static ConfigurationItemFactory defaultInstance = null;
+
         private readonly IList<object> allFactories;
         private readonly Factory<Target, TargetAttribute> targets;
         private readonly Factory<Filter, FilterAttribute> filters;
@@ -61,15 +63,7 @@ namespace NLog.Config
         private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> conditionMethods;
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> ambientProperties;
         private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
-
-        /// <summary>
-        /// Initializes static members of the <see cref="ConfigurationItemFactory"/> class.
-        /// </summary>
-        static ConfigurationItemFactory()
-        {
-            Default = BuildDefaultFactory();
-        }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
@@ -104,7 +98,20 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets default singleton instance of <see cref="ConfigurationItemFactory"/>.
         /// </summary>
-        public static ConfigurationItemFactory Default { get; set; }
+        /// <remarks>
+        /// This property implements lazy instantiation so that the <see cref="ConfigurationItemFactory"/> is not built before 
+        /// the internal logger is configured.
+        /// </remarks>
+        public static ConfigurationItemFactory Default
+        {
+            get
+            {
+                if (defaultInstance == null)
+                    defaultInstance = BuildDefaultFactory();
+                return defaultInstance;
+            }
+            set { defaultInstance = value; }
+        }
 
         /// <summary>
         /// Gets or sets the creator delegate used to instantiate configuration objects.
@@ -254,8 +261,23 @@ namespace NLog.Config
             foreach (var extensionDll in extensionDlls)
             {
                 InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
-                var extensionAssembly = Assembly.LoadFrom(extensionDll);
-                factory.RegisterItemsFromAssembly(extensionAssembly);
+                var success = false;
+                try
+                {
+                    var extensionAssembly = Assembly.LoadFrom(extensionDll);
+                    InternalLogger.LogAssemblyVersion(extensionAssembly);
+                    factory.RegisterItemsFromAssembly(extensionAssembly);
+                    success = true;
+                }
+                catch (Exception)
+                {
+                    InternalLogger.Warn("Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
+                }
+                if (success)
+                {
+                    InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
+                }
+
             }
             InternalLogger.Debug("Auto loading done");
 #endif

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using NLog.Time;
@@ -237,6 +239,23 @@ namespace NLog.Fluent
                 throw new ArgumentNullException("name");
 
             _logEvent.Properties[name] = value;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets multiple per-event context properties on the logging event.
+        /// </summary>
+        /// <param name="properties">The properties to set.</param>
+        /// <returns></returns>
+        public LogBuilder Properties(IDictionary properties)
+        {
+            if (properties == null)
+                throw new ArgumentNullException("properties");
+
+            foreach (var key in properties.Keys)
+            {
+                _logEvent.Properties[key] = properties[key];
+            }
             return this;
         }
 

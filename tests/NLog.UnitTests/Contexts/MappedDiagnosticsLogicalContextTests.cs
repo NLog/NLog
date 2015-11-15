@@ -33,7 +33,8 @@
 
 namespace NLog.UnitTests.Contexts
 {
-#if NET4_5
+    using System;
+#if NET4_0 || NET4_5
     using System.Threading.Tasks;
     using Xunit;
 
@@ -42,6 +43,37 @@ namespace NLog.UnitTests.Contexts
         public MappedDiagnosticsLogicalContextTests()
         {
             MappedDiagnosticsLogicalContext.Clear();
+        }
+
+        [Fact]
+        public void given_item_exists_when_getting_item_should_return_item_for_objecttype_2()
+        {
+            string key = "testKey1";
+            object value = 5;
+
+            MappedDiagnosticsLogicalContext.Set(key, value);
+
+            string expected = "5";
+            string actual = MappedDiagnosticsLogicalContext.Get(key);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void given_item_exists_when_getting_item_should_return_item_for_objecttype()
+        {
+            string key = "testKey2";
+            object value = DateTime.Now;
+
+            MappedDiagnosticsLogicalContext.Set(key, value);
+
+            object actual = MappedDiagnosticsLogicalContext.GetObject(key);
+            Assert.Equal(value, actual);
+        }
+
+        [Fact]
+        public void given_no_item_exists_when_getting_item_should_return_null()
+        {
+            Assert.Null(MappedDiagnosticsLogicalContext.GetObject("itemThatShouldNotExist"));
         }
 
         [Fact]
@@ -142,7 +174,7 @@ namespace NLog.UnitTests.Contexts
             MappedDiagnosticsLogicalContext.Set(key, "Item");
 
             MappedDiagnosticsLogicalContext.Clear();
-            
+
             Assert.False(MappedDiagnosticsLogicalContext.Contains(key));
         }
 
@@ -154,20 +186,17 @@ namespace NLog.UnitTests.Contexts
             const string valueForLogicalThread2 = "ValueForTask2";
             const string valueForLogicalThread3 = "ValueForTask3";
 
-            var task1 = Task.Factory.StartNew(() =>
-            {
+            var task1 = Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread1);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            var task2 = Task.Factory.StartNew(() =>
-            {
+            var task2 = Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread2);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            var task3 = Task.Factory.StartNew(() =>
-            {
+            var task3 = Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread3);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });

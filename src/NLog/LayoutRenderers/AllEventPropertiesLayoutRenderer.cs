@@ -35,6 +35,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using NLog.Config;
 
 namespace NLog.LayoutRenderers
 {
@@ -46,6 +47,7 @@ namespace NLog.LayoutRenderers
     /// Log event context data.
     /// </summary>
     [LayoutRenderer("all-event-properties")]
+    [ThreadAgnostic]
     public class AllEventPropertiesLayoutRenderer : LayoutRenderer
     {
         private string format;
