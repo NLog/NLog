@@ -66,7 +66,17 @@ namespace NLog.LayoutRenderers
                 ts = ts.ToUniversalTime();
             }
 
-            builder.Append(ts.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+            builder.Append(ts.Year);
+            builder.Append("-");
+            Append2DigitsZeroPadded(builder, ts.Month);
+            builder.Append("-");
+            Append2DigitsZeroPadded(builder, ts.Day);
+        }
+
+        private static void Append2DigitsZeroPadded(StringBuilder builder, int number)
+        {
+            builder.Append((char)((number / 10) + '0'));
+            builder.Append((char)((number % 10) + '0'));
         }
     }
 }
