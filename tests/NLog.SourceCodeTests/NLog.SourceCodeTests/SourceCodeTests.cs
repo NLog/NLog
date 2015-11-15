@@ -1,120 +1,89 @@
-// 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
-// 
-// All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without 
-// modification, are permitted provided that the following conditions 
-// are met:
-// 
-// * Redistributions of source code must retain the above copyright notice, 
-//   this list of conditions and the following disclaimer. 
-// 
-// * Redistributions in binary form must reproduce the above copyright notice,
-//   this list of conditions and the following disclaimer in the documentation
-//   and/or other materials provided with the distribution. 
-// 
-// * Neither the name of Jaroslaw Kowalski nor the names of its 
-//   contributors may be used to endorse or promote products derived from this
-//   software without specific prior written permission. 
-// 
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
-// THE POSSIBILITY OF SUCH DAMAGE.
-// 
-
-#if !SILVERLIGHT && !__IOS__
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
-using NLog.Layouts;
+using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
-namespace NLog.UnitTests
+namespace NLog.SourceCodeTests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using Xunit;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Xml.Linq;
-
     /// <summary>
     /// Source code tests.
     /// </summary>
     public class SourceCodeTests
     {
-        private static Regex classNameRegex = new Regex(@"^\s+(public |abstract |sealed |static |partial |internal )*\s*(class|interface|struct|enum)\s+(?<className>\w+)\b", RegexOptions.Compiled);
-        private static Regex delegateTypeRegex = new Regex(@"^    (public |internal )delegate .*\b(?<delegateType>\w+)\(", RegexOptions.Compiled);
-        private static string[] directoriesToVerify = new[]
-            {
-                "src/NLog",
-                "tests/NLog.UnitTests"
-            };
+        private static readonly Regex ClassNameRegex = new Regex(@"^\s+(public |abstract |sealed |static |partial |internal )*\s*(class|interface|struct|enum)\s+(?<className>\w+)\b", RegexOptions.Compiled);
+        private static readonly Regex DelegateTypeRegex = new Regex(@"^    (public |internal )delegate .*\b(?<delegateType>\w+)\(", RegexOptions.Compiled);
+        private static List<string> _directoriesToVerify;
 
-        private static IList<string> fileNamesToIgnore = new List<string>()
-        {
-            "AssemblyInfo.cs",
-            "AssemblyBuildInfo.cs",
-            "GlobalSuppressions.cs",
-            "CompilerAttributes.cs",
-            "Logger1.cs"
-        };
+        private readonly IList<string> _fileNamesToIgnore;
 
-        private string sourceCodeDirectory;
-        private string licenseFile;
-        private string[] licenseLines;
+        private readonly List<string> _projectFolders;
+        private readonly string _rootDir;
+        private string _licenseFile;
+        private readonly string[] _licenseLines;
 
         public SourceCodeTests()
         {
-            this.sourceCodeDirectory = Directory.GetCurrentDirectory();
-            while (this.sourceCodeDirectory != null)
+            _rootDir = FindSourceDir();
+            _directoriesToVerify = GetAppSettingAsList("VerifyFiles.Paths");
+            _fileNamesToIgnore = GetAppSettingAsList("VerifyFiles.IgnoreFiles");
+            _projectFolders = GetAppSettingAsList("projectFolders");
+            if (_rootDir != null)
             {
-                this.licenseFile = Path.Combine(sourceCodeDirectory, "LICENSE.txt");
-                if (File.Exists(licenseFile))
+                _licenseLines = File.ReadAllLines(_licenseFile);
+            }
+            else
+            {
+                throw new Exception("root not found (where LICENSE.txt is located)");
+            }
+        }
+
+        private static List<string> GetAppSettingAsList(string setting)
+        {
+            return ConfigurationManager.AppSettings[setting].Split(";".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
+        }
+
+        /// <summary>
+        /// FInd source root by finding license.txt
+        /// </summary>
+        private string FindSourceDir()
+        {
+            var dir = ConfigurationManager.AppSettings["rootdir"];
+            while (dir != null)
+            {
+                _licenseFile = Path.Combine(dir, "LICENSE.txt");
+                if (File.Exists(_licenseFile))
                 {
                     break;
                 }
 
-                this.sourceCodeDirectory = Path.GetDirectoryName(this.sourceCodeDirectory);
+                dir = Path.GetDirectoryName(_rootDir);
             }
-
-            if (this.sourceCodeDirectory != null)
-            {
-                this.licenseLines = File.ReadAllLines(this.licenseFile);
-            }
+            return dir;
         }
 
-        [Fact]
-        public void VerifyFileHeaders()
+
+        public bool VerifyFileHeaders()
         {
-            if (this.sourceCodeDirectory == null)
-            {
-                Assert.True(false, "missing sourceCodeDirectory");
-            }
-            else
-            {
-                var missing = FindFilesWithMissingHeaders().ToList();
-                AssertNoErrors(missing, "Missing headers (copy them form other another file)");
-            }
+
+            var missing = FindFilesWithMissingHeaders().ToList();
+            return ReportErrors(missing, "Missing headers (copy them form other another file).");
+
 
         }
 
         private IEnumerable<string> FindFilesWithMissingHeaders()
         {
-            foreach (string dir in directoriesToVerify)
+            foreach (string dir in _directoriesToVerify)
             {
-                foreach (string file in Directory.GetFiles(Path.Combine(this.sourceCodeDirectory, dir), "*.cs", SearchOption.AllDirectories))
+                foreach (string file in Directory.GetFiles(Path.Combine(_rootDir, dir), "*.cs", SearchOption.AllDirectories))
                 {
-                    if (ShouldIgnoreFile(file))
+                    if (ShouldIgnoreFileForVerify(file))
                     {
                         continue;
                     }
@@ -127,45 +96,45 @@ namespace NLog.UnitTests
             }
         }
 
-        private static XNamespace MSBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
+        private static readonly XNamespace MsBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
 
-        /// <summary>
+
+        /// <summary>assemblyToCheckPath
         /// Verify that all projects has the needed files.
         /// </summary>
-        [Fact]
-        public void VerifyProjectsInSync()
+        public bool VerifyProjectsInSync()
         {
-            if (this.sourceCodeDirectory == null)
+            var success = true;
+            foreach (var folder in _projectFolders)
             {
-                return;
+                success = success & CheckProjects(folder);
             }
-            CheckProjects("src/NLog/");
-            CheckProjects("src/NLog.Extended/");
-            CheckProjects("tests/NLog.UnitTests/");
-            CheckProjects("src/NLogAutoLoadExtension/");
+            return success;
         }
 
-        private void CheckProjects(string rootDir)
+        private bool CheckProjects(string projectDir)
         {
-            var root = Path.Combine(this.sourceCodeDirectory, rootDir);
+            var success = true;
+
+            var root = Path.Combine(_rootDir, projectDir);
             List<string> filesToCompile = new List<string>(1024);
             GetAllFilesToCompileInDirectory(filesToCompile, root, "*.cs", "");
 
-            var projects = new DirectoryInfo(root).GetFiles("*.csproj");
+            var projects = new DirectoryInfo(root).GetFiles("*.csproj", SearchOption.AllDirectories);
             foreach (var project in projects)
             {
-                CompareDirectoryWithProjects(filesToCompile, project.FullName, project.Name);
+                success = success & CompareDirectoryWithProjects(filesToCompile, project.FullName, project.Name);
             }
-
+            return success;
         }
 
-        private static void CompareDirectoryWithProjects(List<string> filesToCompile, string projectFullPath, string projectFileName)
+        private static bool CompareDirectoryWithProjects(List<string> filesToCompile, string projectFullPath, string projectFileName)
         {
             var filesInProject = new List<string>();
             GetCompileItemsFromProjects(filesInProject, projectFullPath);
 
             var missingFiles = filesToCompile.Except(filesInProject).ToList();
-            AssertNoErrors(missingFiles, string.Format("project '{0}' is missing files. Run 'msbuild NLog.proj /t:SyncProjectItems'.", projectFileName));
+           return ReportErrors(missingFiles, $"project '{projectFileName}' is missing files.\nRun 'msbuild NLog.proj /t:SyncProjectItems'.");
 
         }
 
@@ -177,7 +146,7 @@ namespace NLog.UnitTests
         private static void GetCompileItemsFromProject(List<string> filesInProject, string csproj)
         {
             XElement contents = XElement.Load(csproj);
-            filesInProject.AddRange(contents.Descendants(MSBuildNamespace + "Compile").Select(c => (string)c.Attribute("Include")));
+            filesInProject.AddRange(contents.Descendants(MsBuildNamespace + "Compile").Select(c => (string)c.Attribute("Include")));
         }
 
         private static void GetAllFilesToCompileInDirectory(List<string> output, string path, string pattern, string prefix)
@@ -212,28 +181,22 @@ namespace NLog.UnitTests
             }
         }
 
-        [Fact]
-        public void VerifyNamespacesAndClassNames()
+        public bool VerifyNamespacesAndClassNames()
         {
-            if (this.sourceCodeDirectory == null)
-            {
-                return;
-            }
-
             var errors = new List<string>();
 
-            foreach (string dir in directoriesToVerify)
+            foreach (string dir in _directoriesToVerify)
             {
-                VerifyClassNames(Path.Combine(this.sourceCodeDirectory, dir), Path.GetFileName(dir), errors);
+                VerifyClassNames(Path.Combine(_rootDir, dir), Path.GetFileName(dir), errors);
             }
 
-            AssertNoErrors(errors);
+            return ReportErrors(errors, "Namespace or classname not in-sync with file name.");
         }
 
-        static bool ShouldIgnoreFile(string filePath)
+        bool ShouldIgnoreFileForVerify(string filePath)
         {
             string baseName = Path.GetFileName(filePath);
-            if (fileNamesToIgnore.Contains(baseName))
+            if (baseName == null || _fileNamesToIgnore.Contains(baseName))
             {
                 return true;
             }
@@ -286,10 +249,10 @@ namespace NLog.UnitTests
 
             using (StreamReader reader = File.OpenText(filePath))
             {
-                for (int i = 0; i < this.licenseLines.Length; ++i)
+                for (int i = 0; i < _licenseLines.Length; ++i)
                 {
                     string line = reader.ReadLine();
-                    string expected = "// " + this.licenseLines[i];
+                    string expected = "// " + _licenseLines[i];
                     if (line != expected)
                     {
                         return false;
@@ -306,9 +269,8 @@ namespace NLog.UnitTests
                    || path.StartsWith("obj/", StringComparison.InvariantCultureIgnoreCase) || path.StartsWith("obj\\", StringComparison.InvariantCultureIgnoreCase);
         }
 
-        private static void VerifyClassNames(string path, string expectedNamespace, List<string> errors)
+        private void VerifyClassNames(string path, string expectedNamespace, List<string> errors)
         {
-            int failureCount = 0;
 
             if (FileInObjFolder(path))
             {
@@ -317,20 +279,24 @@ namespace NLog.UnitTests
 
             foreach (string filePath in Directory.GetFiles(path, "*.cs"))
             {
-                if (ShouldIgnoreFile(filePath))
+                if (ShouldIgnoreFileForVerify(filePath))
                 {
                     continue;
                 }
 
                 string expectedClassName = Path.GetFileNameWithoutExtension(filePath);
-                int p = expectedClassName.IndexOf('-');
-                if (p >= 0)
-                {
-                    expectedClassName = expectedClassName.Substring(0, p);
-                }
 
-                var fileErrors = VerifySingleFile(filePath, expectedNamespace, expectedClassName);
-                errors.AddRange(fileErrors.Select(errorMessage => string.Format("{0}:{1}", filePath, errorMessage)));
+                if (expectedClassName != null)
+                {
+                    int p = expectedClassName.IndexOf('-');
+                    if (p >= 0)
+                    {
+                        expectedClassName = expectedClassName.Substring(0, p);
+                    }
+
+                    var fileErrors = VerifySingleFile(filePath, expectedNamespace, expectedClassName);
+                    errors.AddRange(fileErrors.Select(errorMessage => $"{filePath}:{errorMessage}"));
+                }
 
             }
 
@@ -338,7 +304,7 @@ namespace NLog.UnitTests
             {
                 VerifyClassNames(dir, expectedNamespace + "." + Path.GetFileName(dir), errors);
             }
-            
+
         }
 
         ///<summary>Verify classname and namespace in a file.</summary>
@@ -360,17 +326,17 @@ namespace NLog.UnitTests
                             string ns = line.Substring(10);
                             if (expectedNamespace != ns)
                             {
-                                yield return string.Format("Invalid namespace: '{0}' Expected: '{1}'", ns, expectedNamespace);
+                                yield return $"Invalid namespace: '{ns}' Expected: '{expectedNamespace}'";
                             }
                         }
 
-                        Match match = classNameRegex.Match(line);
+                        Match match = ClassNameRegex.Match(line);
                         if (match.Success)
                         {
                             classNames.Add(match.Groups["className"].Value);
                         }
 
-                        match = delegateTypeRegex.Match(line);
+                        match = DelegateTypeRegex.Match(line);
                         if (match.Success)
                         {
                             classNames.Add(match.Groups["delegateType"].Value);
@@ -388,7 +354,7 @@ namespace NLog.UnitTests
                 {
 
 
-                    yield return string.Format("Invalid class name. Expected '{0}', actual: '{1}'", expectedClassName, string.Join(",", classNames));
+                    yield return $"Invalid class name. Expected '{expectedClassName}', actual: '{string.Join(",", classNames)}'";
                 }
             }
         }
@@ -396,41 +362,48 @@ namespace NLog.UnitTests
         /// <summary>
         /// Vertify that all properties with the <see cref="DefaultValueAttribute"/> are set with the default ctor.
         /// </summary>
-        [Fact]
-        public void VerifyDefaultValues()
+        public bool VerifyDefaultValues()
         {
+            var assemblyToCheck = ConfigurationManager.AppSettings["assemblyToCheckPath"];
+            var assemblyToCheck2 = Path.GetFullPath(Path.Combine(_rootDir, assemblyToCheck));
 
-            var ass = typeof(LoggerImpl).Assembly;
+            var ass = Assembly.LoadFile(assemblyToCheck2);
             //var types = AppDomain.CurrentDomain.GetAssemblies()
             //    .SelectMany(s => s.GetTypes());
             var types = ass.GetTypes();
 
             //  VerifyDefaultValuesType(typeof(MailTarget));
-            List<string> reportErrors = new List<string>();
+            List<string> errors = new List<string>();
 
             foreach (var type in types)
             {
-                VerifyDefaultValuesType(type, reportErrors);
+                VerifyDefaultValuesType(type, errors);
             }
 
             //one message for all failing properties
-            AssertNoErrors(reportErrors);
+            return ReportErrors(errors, "DefaultValueAttribute not in sync with initial value.");
         }
 
-        private static void AssertNoErrors(List<string> reportErrors, string globalErrorMessage = null)
+        private static bool ReportErrors(List<string> errors, string globalErrorMessage)
         {
-            if (string.IsNullOrWhiteSpace(globalErrorMessage))
+
+            var count = errors.Count;
+
+            if (count == 0)
             {
-                globalErrorMessage += " ";
+                return true;
             }
 
-            var fullMessage = string.Format("{0}{1} errors: \n -------- \n- {2}", globalErrorMessage, reportErrors.Count, string.Join("\n- ", reportErrors));
-            Assert.False(reportErrors.Any(), fullMessage);
+      
+            var fullMessage = $"{globalErrorMessage}\n{count} errors: \n -------- \n-{string.Join("\n- ", errors)} \n\n";
+            Console.Error.WriteLine(fullMessage);
+                
+            return false;
         }
 
         ///<summary>Verify all properties with the <see cref="DefaultValueAttribute"/></summary>
         ///<remarks>Note: Xunit dont like overloads</remarks>
-        private static void VerifyDefaultValuesType(Type type, List<string> reportErrors)
+        private static void VerifyDefaultValuesType(Type type, List<string> errors)
         {
             var props = type.GetProperties();
 
@@ -467,9 +440,9 @@ namespace NLog.UnitTests
                         if (!eq)
                         {
                             //report
-                            string message = string.Format("{0}.{1} has a wrong value for [DefaultValueAttribute] compared to the default ctor. DefaultValueAttribute says = {2} and ctor tells = {3}",
-                                type.FullName, propertyInfo.Name, PrintValForMessage(neededVal), PrintValForMessage(currentVal));
-                            reportErrors.Add(message);
+                            string message =
+                                $"{type.FullName}.{propertyInfo.Name} . DefaultValueAttribute = {PrintValForMessage(neededVal)}, ctor = {PrintValForMessage(currentVal)}";
+                            errors.Add(message);
                         }
                     }
                 }
@@ -513,7 +486,7 @@ namespace NLog.UnitTests
 
 
             //handle quotes with Layouts
-            if (propType == typeof(Layout))
+            if (propType.Name == "Layout")
             {
 
                 neededString = "'" + neededString + "'";
@@ -560,5 +533,3 @@ namespace NLog.UnitTests
 
     }
 }
-
-#endif
