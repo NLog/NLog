@@ -19,6 +19,11 @@ namespace NLog.SourceCodeTests
 
             if (Environment.UserInteractive)
             {
+                if (success)
+                {
+                    Console.WriteLine("YESS everything OK");
+                }
+
                 Console.WriteLine("press any key");
                 Console.ReadKey();
             }
