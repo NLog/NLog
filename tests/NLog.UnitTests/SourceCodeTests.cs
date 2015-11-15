@@ -31,13 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !__IOS__
 using System.ComponentModel;
 using System.Reflection;
 using System.Text;
 using NLog.Layouts;
 using NLog.Targets;
-
-#if !SILVERLIGHT
 
 namespace NLog.UnitTests
 {
@@ -54,7 +53,7 @@ namespace NLog.UnitTests
     /// </summary>
     public class SourceCodeTests
     {
-        private static Regex classNameRegex = new Regex(@"^    (public |abstract |sealed |static |partial |internal )*(class|interface|struct|enum) (?<className>\w+)\b", RegexOptions.Compiled);
+        private static Regex classNameRegex = new Regex(@"^\s+(public |abstract |sealed |static |partial |internal )*\s*(class|interface|struct|enum)\s+(?<className>\w+)\b", RegexOptions.Compiled);
         private static Regex delegateTypeRegex = new Regex(@"^    (public |internal )delegate .*\b(?<delegateType>\w+)\(", RegexOptions.Compiled);
         private static string[] directoriesToVerify = new[]
             {
@@ -127,6 +126,9 @@ namespace NLog.UnitTests
 
         private static XNamespace MSBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
 
+        /// <summary>
+        /// Verify that all projects has the needed files.
+        /// </summary>
         [Fact]
         public void VerifyProjectsInSync()
         {
@@ -134,72 +136,46 @@ namespace NLog.UnitTests
             {
                 return;
             }
-
-            int failures = 0;
-            var filesToCompile = new List<string>();
-
-            GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLog/"), "*.cs", "");
-
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx35.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx40.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.netfx45.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.sl4.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.wp7.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog/NLog.mono.csproj");
-
-            filesToCompile.Clear();
-            GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLog.Extended/"), "*.cs", "");
-
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx35.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx40.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.netfx45.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "src/NLog.Extended/NLog.Extended.mono.csproj");
-
-            filesToCompile.Clear();
-            GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "tests/NLog.UnitTests/"), "*.cs", "");
-
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx35.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx40.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.netfx45.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.sl4.csproj");
-            failures += CompareDirectoryWithProjects(filesToCompile, "tests/NLog.UnitTests/NLog.UnitTests.mono.csproj");
-
-			filesToCompile.Clear();
-			GetAllFilesToCompileInDirectory(filesToCompile, Path.Combine(this.sourceCodeDirectory, "src/NLogAutoLoadExtension/"), "*.cs", "");
-
-			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx35.csproj");
-			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx40.csproj");
-			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.netfx45.csproj");
-			failures += CompareDirectoryWithProjects(filesToCompile, "src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono.csproj");
-
-            Assert.Equal(0, failures);
+            CheckProjects("src/NLog/");
+            CheckProjects("src/NLog.Extended/");
+            CheckProjects("tests/NLog.UnitTests/");
+            CheckProjects("src/NLogAutoLoadExtension/");
         }
 
-        private int CompareDirectoryWithProjects(List<string> filesToCompile, params string[] projectFiles)
+        private void CheckProjects(string rootDir)
+        {
+            var root = Path.Combine(this.sourceCodeDirectory, rootDir);
+            List<string> filesToCompile = new List<string>(1024);
+            GetAllFilesToCompileInDirectory(filesToCompile, root, "*.cs", "");
+
+            var projects = new DirectoryInfo(root).GetFiles("*.csproj");
+            foreach (var project in projects)
+            {
+                CompareDirectoryWithProjects(filesToCompile, project.FullName, project.Name);
+            }
+
+        }
+
+        private static void CompareDirectoryWithProjects(List<string> filesToCompile, string projectFullPath, string projectFileName)
         {
             var filesInProject = new List<string>();
-            this.GetCompileItemsFromProjects(filesInProject, projectFiles);
+            GetCompileItemsFromProjects(filesInProject, projectFullPath);
 
             var missingFiles = filesToCompile.Except(filesInProject).ToList();
             if (missingFiles.Count > 0)
             {
-                System.Diagnostics.Debugger.Log(0, "Tests", string.Format("The following files must be added to {0}{1}", string.Join(";", projectFiles), Environment.NewLine));
-                foreach (var f in missingFiles)
-                {
-                    System.Diagnostics.Debugger.Log(0, "Tests", string.Format("  {0}{1}", f, Environment.NewLine));
-                }
+                //ugly asser.false for the error message
+                var message = string.Format("project '{0}' is missing files. Run 'msbuild NLog.proj /t:SyncProjectItems'. Missing files: {1} ", projectFileName,
+                    string.Join("\n", missingFiles));
+                Assert.False(false, message);
+
             }
 
-            return missingFiles.Count;
         }
 
-        private void GetCompileItemsFromProjects(List<string> filesInProject, params string[] projectFiles)
+        private static void GetCompileItemsFromProjects(List<string> filesInProject, string projectFullPath)
         {
-            foreach (string proj in projectFiles)
-            {
-                string csproj = Path.Combine(this.sourceCodeDirectory, proj);
-                GetCompileItemsFromProject(filesInProject, csproj);
-            }
+            GetCompileItemsFromProject(filesInProject, projectFullPath);
         }
 
         private static void GetCompileItemsFromProject(List<string> filesInProject, string csproj)
@@ -221,8 +197,12 @@ namespace NLog.UnitTests
                 {
                     continue;
                 }
+                if (file.IndexOf(".designer.", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    continue;
+                }
 
-                if (file.Contains(Path.Combine("obj", "Debug")))
+                if (FileInObjFolder(prefix + file))
                 {
                     continue;
                 }
@@ -248,13 +228,14 @@ namespace NLog.UnitTests
 
             foreach (string dir in directoriesToVerify)
             {
-                failedFiles += VerifyClassNames(Path.Combine(this.sourceCodeDirectory, dir), Path.GetFileName(dir));
+                var verifyClassNames = VerifyClassNames(Path.Combine(this.sourceCodeDirectory, dir), Path.GetFileName(dir));
+                failedFiles += verifyClassNames;
             }
 
             Assert.Equal(0, failedFiles);
         }
 
-        bool IgnoreFile(string file)
+        static bool IgnoreFile(string file)
         {
             string baseName = Path.GetFileName(file);
             if (fileNamesToIgnore.Contains(baseName))
@@ -268,6 +249,10 @@ namespace NLog.UnitTests
             }
 
             if (baseName.IndexOf(".g.", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                return true;
+            }
+            if (baseName.IndexOf(".designer.", StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 return true;
             }
@@ -297,6 +282,13 @@ namespace NLog.UnitTests
 
         private bool VerifySingleFile(string file)
         {
+
+            if (FileInObjFolder(file))
+            {
+                //don't scan files in obj folder
+                return true;
+            }
+
             using (StreamReader reader = File.OpenText(file))
             {
                 for (int i = 0; i < this.licenseLines.Length; ++i)
@@ -313,9 +305,20 @@ namespace NLog.UnitTests
             }
         }
 
+        private static bool FileInObjFolder(string path)
+        {
+            return path.Contains("/obj/") || path.Contains("\\obj\\")
+                   || path.StartsWith("obj/", StringComparison.InvariantCultureIgnoreCase) || path.StartsWith("obj\\", StringComparison.InvariantCultureIgnoreCase);
+        }
+
         private int VerifyClassNames(string path, string expectedNamespace)
         {
             int failureCount = 0;
+
+            if (FileInObjFolder(path))
+            {
+                return 0;
+            }
 
             foreach (string file in Directory.GetFiles(path, "*.cs"))
             {
@@ -345,10 +348,17 @@ namespace NLog.UnitTests
             return failureCount;
         }
 
+        ///<returns>success?</returns>
         private bool VerifySingleFile(string file, string expectedNamespace, string expectedClassName)
         {
+            //ignore list
+            if (file != null && file.EndsWith("nunit.cs", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return true;
+            }
+
             bool success = true;
-            List<string> classNames = new List<string>();
+            HashSet<string> classNames = new HashSet<string>();
             using (StreamReader sr = File.OpenText(file))
             {
                 string line;
@@ -381,19 +391,14 @@ namespace NLog.UnitTests
 
             if (classNames.Count == 0)
             {
-                Console.WriteLine("No classes found in {0}", file);
-                success = false;
-            }
+                //Console.WriteLine("No classes found in {0}", file);
 
-            if (classNames.Count > 1)
-            {
-                Console.WriteLine("More than 1 class name found in {0}", file);
-                success = false;
+                //ignore, because of files not used in other projects
+                success = true;
             }
-
-            if (classNames.Count == 1 && classNames[0] != expectedClassName)
+            else if (!classNames.Contains(expectedClassName))
             {
-                Console.WriteLine("Invalid class name. Expected '{0}', actual: '{1}'", expectedClassName, classNames[0]);
+                Console.WriteLine("Invalid class name. Expected '{0}', actual: '{1}'", expectedClassName, string.Join(",", classNames));
                 success = false;
             }
 
@@ -514,7 +519,7 @@ namespace NLog.UnitTests
             //handle quotes with Layouts
             if (propType == typeof(Layout))
             {
-               
+
                 neededString = "'" + neededString + "'";
 
             }
@@ -526,7 +531,7 @@ namespace NLog.UnitTests
                 return true;
             }
 
-        
+
 
             //handle UTF-8 properly
             if (propType == typeof(Encoding))
@@ -537,7 +542,7 @@ namespace NLog.UnitTests
 
             }
 
-      
+
 
             //nulls or not string equals, fallback
             //Assert.Equal(neededVal, currentVal);
