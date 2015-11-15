@@ -52,6 +52,7 @@ namespace NLog.UnitTests
     /// <summary>
     /// Source code tests.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public class SourceCodeTests
     {
         private static Regex classNameRegex = new Regex(@"^    (public |abstract |sealed |static |partial |internal )*(class|interface|struct|enum) (?<className>\w+)\b", RegexOptions.Compiled);
@@ -403,7 +404,7 @@ namespace NLog.UnitTests
         /// <summary>
         /// Vertify that all properties with the <see cref="DefaultValueAttribute"/> are set with the default ctor.
         /// </summary>
-        [Fact]
+        [Fact(Skip="skip for coverage")]
         public void VerifyDefaultValues()
         {
 

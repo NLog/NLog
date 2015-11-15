@@ -196,6 +196,15 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\\\temp}",
                 "C\\temp");
         }
+
+
+        [Fact]
+        public void RegistyDefaultValueTest_with_foward_slash2()
+        {
+            //example: 0003: NLog.UnitTests
+            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\temp:requireEscapingSlashesInDefaultValue=false}",
+                "C\\temp");
+        }
     }
 }
 
