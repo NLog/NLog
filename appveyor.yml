@@ -10,7 +10,7 @@ build_script:
 before_test:
   - tests\CreateTestUsers.cmd
 test_script:
-  - tools\CheckSourceCode\NLog.SourceCodeTests.exe
+  - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
   - xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow
   - xunit.console.clr4 "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" /appveyor /noshadow
   - xunit.console.clr4 "build\bin\Debug\.NET Framework 4.5\NLog.UnitTests.dll" /appveyor /noshadow

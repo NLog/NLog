@@ -17,16 +17,21 @@ namespace NLog.SourceCodeTests
             success = success & tests.VerifyNamespacesAndClassNames();
             success = success & tests.VerifyProjectsInSync();
 
-            if (Environment.UserInteractive)
-            {
-                if (success)
-                {
-                    Console.WriteLine("YESS everything OK");
-                }
 
+            var noInteractive = args.FirstOrDefault() == "no-interactive";
+
+
+            if (success)
+            {
+                Console.WriteLine("YESS everything OK");
+            }
+
+            if (!noInteractive)
+            {
                 Console.WriteLine("press any key");
                 Console.ReadKey();
             }
+
 
             if (success)
             {
