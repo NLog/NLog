@@ -103,7 +103,7 @@ namespace NLog.UnitTests
             else
             {
                 var missing = FindFilesWithMissingHeaders().ToList();
-                Assert.True(missing.Count == 0, "Missing headers (copy them form other another file): \n" + string.Join("\n-", missing));
+                AssertNoErrors(missing, "Missing headers (copy them form other another file)");
             }
 
         }
@@ -114,12 +114,12 @@ namespace NLog.UnitTests
             {
                 foreach (string file in Directory.GetFiles(Path.Combine(this.sourceCodeDirectory, dir), "*.cs", SearchOption.AllDirectories))
                 {
-                    if (IgnoreFile(file))
+                    if (ShouldIgnoreFile(file))
                     {
                         continue;
                     }
 
-                    if (!VerifySingleFile(file))
+                    if (!VerifyFileHeader(file))
                     {
                         yield return file;
                     }
@@ -165,14 +165,7 @@ namespace NLog.UnitTests
             GetCompileItemsFromProjects(filesInProject, projectFullPath);
 
             var missingFiles = filesToCompile.Except(filesInProject).ToList();
-            if (missingFiles.Count > 0)
-            {
-                //ugly assert.true for the error message
-                var message = string.Format("project '{0}' is missing files. Run 'msbuild NLog.proj /t:SyncProjectItems'. Missing files: \n-{1}", projectFileName,
-                    string.Join("\n-", missingFiles));
-                Assert.True(false, message);
-
-            }
+            AssertNoErrors(missingFiles, string.Format("project '{0}' is missing files. Run 'msbuild NLog.proj /t:SyncProjectItems'.", projectFileName));
 
         }
 
@@ -227,20 +220,19 @@ namespace NLog.UnitTests
                 return;
             }
 
-            int failedFiles = 0;
+            var errors = new List<string>();
 
             foreach (string dir in directoriesToVerify)
             {
-                var verifyClassNames = VerifyClassNames(Path.Combine(this.sourceCodeDirectory, dir), Path.GetFileName(dir));
-                failedFiles += verifyClassNames;
+                VerifyClassNames(Path.Combine(this.sourceCodeDirectory, dir), Path.GetFileName(dir), errors);
             }
 
-            Assert.Equal(0, failedFiles);
+            AssertNoErrors(errors);
         }
 
-        static bool IgnoreFile(string file)
+        static bool ShouldIgnoreFile(string filePath)
         {
-            string baseName = Path.GetFileName(file);
+            string baseName = Path.GetFileName(filePath);
             if (fileNamesToIgnore.Contains(baseName))
             {
                 return true;
@@ -283,16 +275,16 @@ namespace NLog.UnitTests
             return false;
         }
 
-        private bool VerifySingleFile(string file)
+        private bool VerifyFileHeader(string filePath)
         {
 
-            if (FileInObjFolder(file))
+            if (FileInObjFolder(filePath))
             {
                 //don't scan files in obj folder
                 return true;
             }
 
-            using (StreamReader reader = File.OpenText(file))
+            using (StreamReader reader = File.OpenText(filePath))
             {
                 for (int i = 0; i < this.licenseLines.Length; ++i)
                 {
@@ -314,98 +306,91 @@ namespace NLog.UnitTests
                    || path.StartsWith("obj/", StringComparison.InvariantCultureIgnoreCase) || path.StartsWith("obj\\", StringComparison.InvariantCultureIgnoreCase);
         }
 
-        private int VerifyClassNames(string path, string expectedNamespace)
+        private static void VerifyClassNames(string path, string expectedNamespace, List<string> errors)
         {
             int failureCount = 0;
 
             if (FileInObjFolder(path))
             {
-                return 0;
+                return;
             }
 
-            foreach (string file in Directory.GetFiles(path, "*.cs"))
+            foreach (string filePath in Directory.GetFiles(path, "*.cs"))
             {
-                if (IgnoreFile(file))
+                if (ShouldIgnoreFile(filePath))
                 {
                     continue;
                 }
 
-                string expectedClassName = Path.GetFileNameWithoutExtension(file);
+                string expectedClassName = Path.GetFileNameWithoutExtension(filePath);
                 int p = expectedClassName.IndexOf('-');
                 if (p >= 0)
                 {
                     expectedClassName = expectedClassName.Substring(0, p);
                 }
 
-                if (!VerifySingleFile(file, expectedNamespace, expectedClassName))
-                {
-                    failureCount++;
-                }
+                var fileErrors = VerifySingleFile(filePath, expectedNamespace, expectedClassName);
+                errors.AddRange(fileErrors.Select(errorMessage => string.Format("{0}:{1}", filePath, errorMessage)));
+
             }
 
             foreach (string dir in Directory.GetDirectories(path))
             {
-                failureCount += VerifyClassNames(dir, expectedNamespace + "." + Path.GetFileName(dir));
+                VerifyClassNames(dir, expectedNamespace + "." + Path.GetFileName(dir), errors);
             }
-
-            return failureCount;
+            
         }
 
-        ///<returns>success?</returns>
-        private static bool VerifySingleFile(string file, string expectedNamespace, string expectedClassName)
+        ///<summary>Verify classname and namespace in a file.</summary>
+        ///<returns>errors</returns>
+        private static IEnumerable<string> VerifySingleFile(string filePath, string expectedNamespace, string expectedClassName)
         {
             //ignore list
-            if (file != null && file.EndsWith("nunit.cs", StringComparison.InvariantCultureIgnoreCase))
+            if (filePath != null && !filePath.EndsWith("nunit.cs", StringComparison.InvariantCultureIgnoreCase))
             {
-                return true;
-            }
-
-            bool success = true;
-            HashSet<string> classNames = new HashSet<string>();
-            using (StreamReader sr = File.OpenText(file))
-            {
-                string line;
-
-                while ((line = sr.ReadLine()) != null)
+                HashSet<string> classNames = new HashSet<string>();
+                using (StreamReader sr = File.OpenText(filePath))
                 {
-                    if (line.StartsWith("namespace ", StringComparison.Ordinal))
+                    string line;
+
+                    while ((line = sr.ReadLine()) != null)
                     {
-                        string ns = line.Substring(10);
-                        if (expectedNamespace != ns)
+                        if (line.StartsWith("namespace ", StringComparison.Ordinal))
                         {
-                            Console.WriteLine("Invalid namespace: '{0}' Expected: '{1}'", ns, expectedNamespace);
-                            success = false;
+                            string ns = line.Substring(10);
+                            if (expectedNamespace != ns)
+                            {
+                                yield return string.Format("Invalid namespace: '{0}' Expected: '{1}'", ns, expectedNamespace);
+                            }
+                        }
+
+                        Match match = classNameRegex.Match(line);
+                        if (match.Success)
+                        {
+                            classNames.Add(match.Groups["className"].Value);
+                        }
+
+                        match = delegateTypeRegex.Match(line);
+                        if (match.Success)
+                        {
+                            classNames.Add(match.Groups["delegateType"].Value);
                         }
                     }
+                }
 
-                    Match match = classNameRegex.Match(line);
-                    if (match.Success)
-                    {
-                        classNames.Add(match.Groups["className"].Value);
-                    }
+                if (classNames.Count == 0)
+                {
+                    //Console.WriteLine("No classes found in {0}", file);
 
-                    match = delegateTypeRegex.Match(line);
-                    if (match.Success)
-                    {
-                        classNames.Add(match.Groups["delegateType"].Value);
-                    }
+                    //ignore, because of files not used in other projects
+                }
+                else if (!classNames.Contains(expectedClassName))
+                {
+
+
+                    yield return string.Format("Invalid class name. Expected '{0}', actual: '{1}'", expectedClassName, string.Join(",", classNames));
                 }
             }
-
-            if (classNames.Count == 0)
-            {
-                //Console.WriteLine("No classes found in {0}", file);
-
-                //ignore, because of files not used in other projects
-                success = true;
-            }
-            else if (!classNames.Contains(expectedClassName))
-            {
-                Console.WriteLine("Invalid class name. Expected '{0}', actual: '{1}'", expectedClassName, string.Join(",", classNames));
-                success = false;
-            }
-
-            return success;
         }
 
         /// <summary>
@@ -429,10 +414,18 @@ namespace NLog.UnitTests
             }
 
             //one message for all failing properties
-            var fullMessage = string.Format("{0} errors: \n -------- \n- {1}", reportErrors.Count, string.Join("\n- ", reportErrors));
+            AssertNoErrors(reportErrors);
+        }
+
+        private static void AssertNoErrors(List<string> reportErrors, string globalErrorMessage = null)
+        {
+            if (string.IsNullOrWhiteSpace(globalErrorMessage))
+            {
+                globalErrorMessage += " ";
+            }
+
+            var fullMessage = string.Format("{0}{1} errors: \n -------- \n- {2}", globalErrorMessage, reportErrors.Count, string.Join("\n- ", reportErrors));
             Assert.False(reportErrors.Any(), fullMessage);
-
-
         }
 
         ///<summary>Verify all properties with the <see cref="DefaultValueAttribute"/></summary>
