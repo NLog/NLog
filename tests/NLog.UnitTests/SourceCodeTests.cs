@@ -54,7 +54,7 @@ namespace NLog.UnitTests
     /// </summary>
     public class SourceCodeTests
     {
-        private static Regex classNameRegex = new Regex(@"^    (public |abstract |sealed |static |partial |internal )*(class|interface|struct|enum) (?<className>\w+)\b", RegexOptions.Compiled);
+        private static Regex classNameRegex = new Regex(@"^\s+(public |abstract |sealed |static |partial |internal )*\s*(class|interface|struct|enum)\s+(?<className>\w+)\b", RegexOptions.Compiled);
         private static Regex delegateTypeRegex = new Regex(@"^    (public |internal )delegate .*\b(?<delegateType>\w+)\(", RegexOptions.Compiled);
         private static string[] directoriesToVerify = new[]
             {
@@ -348,7 +348,7 @@ namespace NLog.UnitTests
         private bool VerifySingleFile(string file, string expectedNamespace, string expectedClassName)
         {
             bool success = true;
-            List<string> classNames = new List<string>();
+            var classNames = new HashSet<string>();
             using (StreamReader sr = File.OpenText(file))
             {
                 string line;
@@ -382,18 +382,13 @@ namespace NLog.UnitTests
             if (classNames.Count == 0)
             {
                 Console.WriteLine("No classes found in {0}", file);
-                success = false;
+                success = true;
             }
 
-            if (classNames.Count > 1)
-            {
-                Console.WriteLine("More than 1 class name found in {0}", file);
-                success = false;
-            }
 
-            if (classNames.Count == 1 && classNames[0] != expectedClassName)
+            else if (!classNames.Contains( expectedClassName))
             {
-                Console.WriteLine("Invalid class name. Expected '{0}', actual: '{1}'", expectedClassName, classNames[0]);
+                Console.WriteLine("Invalid class name. Expected '{0}', actual: '{1}'", expectedClassName, string.Join(",", classNames));
                 success = false;
             }
 
