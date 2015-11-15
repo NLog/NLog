@@ -186,24 +186,24 @@ namespace NLog.UnitTests.Contexts
             const string valueForLogicalThread2 = "ValueForTask2";
             const string valueForLogicalThread3 = "ValueForTask3";
 
-            var value1 = await Task.Run(() => {
+            var task1 = await Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread1);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            var value2 = await Task.Run(() => {
+            var task2 = await Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread2);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            var value3 = await Task.Run(() => {
+            var task3 = await Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread3);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            Assert.Equal(value1, valueForLogicalThread1);
-            Assert.Equal(value2, valueForLogicalThread2);
-            Assert.Equal(value3, valueForLogicalThread3);
+            Assert.Equal(task1, valueForLogicalThread1);
+            Assert.Equal(task2, valueForLogicalThread2);
+            Assert.Equal(task3, valueForLogicalThread3);
         }
     }
 #endif
