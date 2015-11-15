@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
@@ -148,8 +148,8 @@
     <Compile Include="Internal\Fakeables\AppDomainWrapper.cs" />
     <Compile Include="Internal\Fakeables\IAppDomain.cs" />
     <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />
-    <Compile Include="Internal\FileAppenders\FileAppenderCache.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\FileAppenderCache.cs" />
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
     <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs" />
     <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs" />
@@ -365,6 +365,7 @@
     <Compile Include="Targets\MethodCallTarget.cs" />
     <Compile Include="Targets\MethodCallTargetBase.cs" />
     <Compile Include="Targets\NetworkTarget.cs" />
+    <Compile Include="Targets\NetworkTargetConnectionsOverflowAction.cs" />
     <Compile Include="Targets\NetworkTargetOverflowAction.cs" />
     <Compile Include="Targets\NLogViewerParameterInfo.cs" />
     <Compile Include="Targets\NLogViewerTarget.cs" />
