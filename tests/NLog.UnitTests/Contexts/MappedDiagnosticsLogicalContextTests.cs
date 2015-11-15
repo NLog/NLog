@@ -179,33 +179,31 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
-        public void given_multiple_threads_running_asynchronously_when_setting_and_getting_values_should_return_thread_specific_values()
+        public async void given_multiple_threads_running_asynchronously_when_setting_and_getting_values_should_return_thread_specific_values()
         {
             const string key = "Key";
             const string valueForLogicalThread1 = "ValueForTask1";
             const string valueForLogicalThread2 = "ValueForTask2";
             const string valueForLogicalThread3 = "ValueForTask3";
 
-            var task1 = Task.Factory.StartNew(() => {
+            var value1 = await Task.Run(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread1);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            var task2 = Task.Factory.StartNew(() => {
+            var value2 = await Task.Run(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread2);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            var task3 = Task.Factory.StartNew(() => {
+            var value3 = await Task.Run(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread3);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            Task.WaitAll();
-
-            Assert.Equal(task1.Result, valueForLogicalThread1);
-            Assert.Equal(task2.Result, valueForLogicalThread2);
-            Assert.Equal(task3.Result, valueForLogicalThread3);
+            Assert.Equal(value1, valueForLogicalThread1);
+            Assert.Equal(value2, valueForLogicalThread2);
+            Assert.Equal(value3, valueForLogicalThread3);
         }
     }
 #endif
