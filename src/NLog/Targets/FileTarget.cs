@@ -78,7 +78,7 @@ namespace NLog.Targets
         /// <summary>
         /// Cached directory separator char array to avoid memory allocation on each method call.
         /// </summary>
-        private readonly static char[] DirectorySeparatorChar = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
+        private readonly static char[] DirectorySeparatorChars = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
 
         /// <summary>
         /// Cached invalid filenames char array to avoid memory allocation everytime Path.GetInvalidFileNameChars() is called.
@@ -1833,7 +1833,7 @@ namespace NLog.Targets
         {
 #if !SILVERLIGHT
 
-            var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChar);
+            var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChars);
 
             var fileName1 = fileName.Substring(lastDirSeparator + 1);
             var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator) : string.Empty;
