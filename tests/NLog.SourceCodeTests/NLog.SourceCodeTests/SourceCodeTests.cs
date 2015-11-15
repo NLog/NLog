@@ -29,7 +29,7 @@ namespace NLog.SourceCodeTests
 
         public SourceCodeTests()
         {
-            _rootDir = FindSourceDir();
+            _rootDir = FindRootDir();
             _directoriesToVerify = GetAppSettingAsList("VerifyFiles.Paths");
             _fileNamesToIgnore = GetAppSettingAsList("VerifyFiles.IgnoreFiles");
             _projectFolders = GetAppSettingAsList("projectFolders");
@@ -49,11 +49,12 @@ namespace NLog.SourceCodeTests
         }
 
         /// <summary>
-        /// FInd source root by finding license.txt
+        /// Find source root by finding LICENSE.txt
         /// </summary>
-        private string FindSourceDir()
+        private string FindRootDir()
         {
             var dir = ConfigurationManager.AppSettings["rootdir"];
+            dir = Path.GetFullPath(dir);
             while (dir != null)
             {
                 _licenseFile = Path.Combine(dir, "LICENSE.txt");
@@ -62,7 +63,7 @@ namespace NLog.SourceCodeTests
                     break;
                 }
 
-                dir = Path.GetDirectoryName(_rootDir);
+                dir = Path.GetDirectoryName(dir);
             }
             return dir;
         }
