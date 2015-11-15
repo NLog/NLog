@@ -76,11 +76,21 @@ namespace NLog.Targets
         private const int ArchiveAboveSizeDisabled = -1;
 
         /// <summary>
+        /// Cached directory separator char array to avoid memory allocation on each method call.
+        /// </summary>
+        private readonly static char[] DirectorySeparatorChar = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
+
+        /// <summary>
+        /// Cached invalid filenames char array to avoid memory allocation everytime Path.GetInvalidFileNameChars() is called.
+        /// </summary>
+        private readonly static char[] InvalidFileNameChars = Path.GetInvalidFileNameChars();
+
+        /// <summary>
         /// Holds the initialised files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
         /// </summary>
         /// <remarks>Last write time is store in local time (no UTC).</remarks>
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
-
+        
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
         
         /// <summary>
@@ -1823,12 +1833,31 @@ namespace NLog.Targets
         {
 #if !SILVERLIGHT
 
-            var lastDirSeparator =
-                fileName.LastIndexOfAny(new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar });
+            var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChar);
 
             var fileName1 = fileName.Substring(lastDirSeparator + 1);
             var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator) : string.Empty;
-            fileName1 = Path.GetInvalidFileNameChars().Aggregate(fileName1, (current, c) => current.Replace(c, '_'));
+
+            char[] fileName1Chars = null;
+            foreach (var invalidChar in InvalidFileNameChars)
+            {
+                for (int i = 0; i < fileName1.Length; i++)
+                {
+                    if (fileName1[i] == invalidChar)
+                    {
+                        //delay char[] creation until first invalid char
+                        //is found to avoid memory allocation.
+                        if (fileName1Chars == null)
+                            fileName1Chars = fileName1.ToCharArray();
+                        fileName1Chars[i] = '_';
+                    }
+                }
+            }
+
+            //only if an invalid char was replaced do we create a new string.
+            if (fileName1Chars != null)
+                fileName1 = new string(fileName1Chars);
+
             return Path.Combine(dirName, fileName1);
 #else
             return fileName;
