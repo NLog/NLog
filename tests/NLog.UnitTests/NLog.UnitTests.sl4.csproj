@@ -185,7 +185,6 @@
     <Compile Include="ProcessRunner.cs" />
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />
-    <Compile Include="SourceCodeTests.cs" />
     <Compile Include="Targets\ColoredConsoleTargetTests.cs" />
     <Compile Include="Targets\ConcurrentFileTargetTests.cs" />
     <Compile Include="Targets\ConsoleTargetTests.cs" />
