@@ -50,13 +50,14 @@ namespace NLog.Targets
     using Internal.FileAppenders;
     using Layouts;
     using Time;
+    using FileTargetArchival;
 
     /// <summary>
     /// Writes log messages to one or more files.
     /// </summary>
     /// <seealso href="https://github.com/nlog/nlog/wiki/File-target">Documentation on NLog Wiki</seealso>
     [Target("File")]
-    public class FileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters
+    public class FileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters, IArchivalOptions, IArchivalCallbacks
     {
         /// <summary>
         /// Default clean up period of the initilized files. When a file exceeds the clean up period is removed from the list.
@@ -71,18 +72,18 @@ namespace NLog.Targets
         private const int InitializedFilesCounterMax = 100;
 
         /// <summary>
-        /// This value disables file archiving based on the size. 
-        /// </summary>
-        private const int ArchiveAboveSizeDisabled = -1;
-
-        /// <summary>
         /// Holds the initialised files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
         /// </summary>
         /// <remarks>Last write time is store in local time (no UTC).</remarks>
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
 
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
-        
+
+        /// <summary>
+        /// Provides log file archival functionality.
+        /// </summary>
+        private Archival archival;
+
         /// <summary>
         /// Factory used to create the file appeanders in the <see cref="FileTarget"/> instance. 
         /// </summary>
@@ -102,19 +103,6 @@ namespace NLog.Targets
         private int initializedFilesCounter;
 
         /// <summary>
-        /// The maximum number of archive files that should be kept.
-        /// </summary>
-        private int maxArchiveFiles;
-
-        private readonly DynamicFileArchive fileArchive;
-
- 		/// <summary>
-        /// It holds the file names of existing archives in order for the oldest archives to be removed when the list of
-        /// filenames becomes too long.
-        /// </summary>
-        private Queue<string> previousFileNames;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
         /// <remarks>
@@ -123,10 +111,9 @@ namespace NLog.Targets
         public FileTarget()
         {
             this.ArchiveNumbering = ArchiveNumberingMode.Sequence;
-            this.maxArchiveFiles = 0;
             this.ConcurrentWriteAttemptDelay = 1;
             this.ArchiveEvery = FileArchivePeriod.None;
-            this.ArchiveAboveSize = FileTarget.ArchiveAboveSizeDisabled;
+            this.ArchiveAboveSize = Archival.ArchiveAboveSizeDisabled;
             this.ConcurrentWriteAttempts = 10;
             this.ConcurrentWrites = true;
 #if SILVERLIGHT
@@ -144,13 +131,13 @@ namespace NLog.Targets
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
             this.CreateDirs = true;
-            this.fileArchive = new DynamicFileArchive(MaxArchiveFiles);
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
 
             this.maxLogFilenames = 20;
-            this.previousFileNames = new Queue<string>(this.maxLogFilenames);
             this.recentAppenders = FileAppenderCache.Empty;
+
+            this.archival = new Archival(this, this);
         }
 
         /// <summary>
@@ -221,6 +208,8 @@ namespace NLog.Targets
         /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(20)] //NLog5: todo rename correct for text case
         public int maxLogFilenames { get; set; }
+
+        int IArchivalOptions.MaxLogFilenames { get { return maxLogFilenames; } } // NLog5: todo remove and use renamed property
 
         /// <summary>
         /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
@@ -424,18 +413,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
         [DefaultValue(0)]
-        public int MaxArchiveFiles
-        {
-            get
-            {
-                return maxArchiveFiles;
-            }
-            set
-            {
-                maxArchiveFiles = value;
-                fileArchive.MaxArchiveFileToKeep = value;
-            }
-        }
+        public int MaxArchiveFiles { get; set; }
 
         /// <summary>
         /// Gets or sets the way file archives are numbered. 
@@ -455,6 +433,8 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
         /// </summary>
         private const bool EnableArchiveFileCompression = false;
+
+        bool IArchivalOptions.EnableArchiveFileCompression { get { return EnableArchiveFileCompression; } }
 #endif
 
         /// <summary>
@@ -555,62 +535,36 @@ namespace NLog.Targets
             }
             else
             {
-                if (this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled || this.ArchiveEvery != FileArchivePeriod.None)
+                if (this.NetworkWrites)
                 {
-                    if (this.NetworkWrites)
-                    {
-                        return RetryingMultiProcessFileAppender.TheFactory;
-                    }
-                    else if (this.ConcurrentWrites)
-                    {
+                    return RetryingMultiProcessFileAppender.TheFactory;
+                }
+                else if (this.ConcurrentWrites)
+                {
 #if SILVERLIGHT
-                        return RetryingMultiProcessFileAppender.TheFactory;
+                    return RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
-                        //
-                        // mono on Windows uses mutexes, on Unix - special appender
-                        //
-                        if (PlatformDetector.IsUnix)
-                        {
-                            return UnixMultiProcessFileAppender.TheFactory;
-                        }
-                        else
-                        {
-                            return MutexMultiProcessFileAppender.TheFactory;
-                        }
-#else
-                        return MutexMultiProcessFileAppender.TheFactory;
-#endif
+                    //
+                    // mono on Windows uses mutexes, on Unix - special appender
+                    //
+                    if (PlatformDetector.IsUnix)
+                    {
+                        return UnixMultiProcessFileAppender.TheFactory;
                     }
                     else
                     {
-                        return CountingSingleProcessFileAppender.TheFactory;
+                        return MutexMultiProcessFileAppender.TheFactory;
                     }
+#else
+                    return MutexMultiProcessFileAppender.TheFactory;
+#endif
                 }
                 else
                 {
-                    if (this.NetworkWrites)
+                    // TODO: document why this difference matters
+                    if (archival.Enabled)
                     {
-                        return RetryingMultiProcessFileAppender.TheFactory;
-                    }
-                    else if (this.ConcurrentWrites)
-                    {
-#if SILVERLIGHT
-                        return RetryingMultiProcessFileAppender.TheFactory;
-#elif MONO
-                        //
-                        // mono on Windows uses mutexes, on Unix - special appender
-                        //
-                        if (PlatformDetector.IsUnix)
-                        {
-                            return UnixMultiProcessFileAppender.TheFactory;
-                        }
-                        else
-                        {
-                            return MutexMultiProcessFileAppender.TheFactory;
-                        }
-#else
-                        return MutexMultiProcessFileAppender.TheFactory;
-#endif
+                        return CountingSingleProcessFileAppender.TheFactory;
                     }
                     else
                     {
@@ -674,28 +628,14 @@ namespace NLog.Targets
 
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
-            if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
+            if (archival.ShouldAutoArchive(fileName, logEvent, bytes.Length))
             {
                 this.recentAppenders.InvalidateAppender(fileName);
-                this.DoAutoArchive(fileName, logEvent);
+                archival.DoAutoArchive(fileName, logEvent);
             }
 
-            // Clean up old archives if this is the first time a log record is being written to
-            // this log file and the archiving system is date/time based.
-            if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None)
-            {
-                if (!previousFileNames.Contains(fileName))
-                {
-                    if (this.previousFileNames.Count > this.maxLogFilenames)
-                    {
-                        this.previousFileNames.Dequeue();
-                    }
-
-                    string fileNamePattern = this.GetFileNamePattern(fileName, logEvent);
-                    this.DeleteOldDateArchives(fileNamePattern);
-                    this.previousFileNames.Enqueue(fileName);
-                }
-            }
+            // Offer to clean up old archives if this is the first time a log record is being written
+            archival.CheckToDeleteOldArchives(fileName, logEvent);
 
             this.WriteToFile(fileName, logEvent, bytes, false);
         }
@@ -774,21 +714,6 @@ namespace NLog.Targets
             return value;
         }
 
-        /// <summary>
-        /// Replaces the numeric pattern i.e. {#} in a file name with the <paramref name="value"/> parameter value.
-        /// </summary>
-        /// <param name="pattern">File name which contains the numeric pattern.</param>
-        /// <param name="value">Value which will replace the numeric pattern.</param>
-        /// <returns>File name with the value of <paramref name="value"/> in the position of the numberic pattern.</returns>
-        private static string ReplaceNumberPattern(string pattern, int value)
-        {
-            int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
-            int lastPart = pattern.IndexOf("#}", StringComparison.Ordinal) + 2;
-            int numDigits = lastPart - firstPart - 2;
-
-            return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') + pattern.Substring(lastPart);
-        }
-
         private void FlushCurrentFileWrites(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms, List<AsyncContinuation> pendingContinuations)
         {
             Exception lastException = null;
@@ -797,11 +722,11 @@ namespace NLog.Targets
             {
                 if (currentFileName != null)
                 {
-                    if (this.ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
+                    if (archival.ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
                     {
                         this.WriteFooterAndUninitialize(currentFileName);
                         this.recentAppenders.InvalidateAppender(currentFileName);
-                        this.DoAutoArchive(currentFileName, firstLogEvent);
+                        archival.DoAutoArchive(currentFileName, firstLogEvent);
                     }
 
                     this.WriteToFile(currentFileName, firstLogEvent, ms.ToArray(), false);
@@ -823,723 +748,6 @@ namespace NLog.Targets
             }
 
             pendingContinuations.Clear();
-        }
-
-        /// <summary>
-        /// Determines if the file name as <see cref="String"/> contains a numeric pattern i.e. {#} in it.  
-        ///
-        /// Example: 
-        ///     trace{#}.log        Contains the numeric pattern.
-        ///     trace{###}.log      Contains the numeric pattern.
-        ///     trace{#X#}.log      Contains the numeric pattern (See remarks).
-        ///     trace.log           Does not contain the pattern.
-        /// </summary>
-        /// <remarks>Occationally, this method can identify the existance of the {#} pattern incorrectly.</remarks>
-        /// <param name="fileName">File name to be checked.</param>
-        /// <returns><see langword="true"/> when the pattern is found; <see langword="false"/> otherwise.</returns>
-        private static bool ContainsFileNamePattern(string fileName)
-        {
-            int startingIndex = fileName.IndexOf("{#", StringComparison.Ordinal);
-            int endingIndex = fileName.IndexOf("#}", StringComparison.Ordinal);
-
-            return (startingIndex != -1 && endingIndex != -1 && startingIndex < endingIndex);
-        }
-
-        /// <summary>
-        /// Archives the <paramref name="fileName"/> using a rolling style numbering (the most recent is always #0 then
-        /// #1, ..., #N. When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives
-        /// are deleted.
-        /// </summary>
-        /// <remarks>
-        /// This method is called recursively. This is the reason the <paramref name="archiveNumber"/> is required.
-        /// </remarks>
-        /// <param name="fileName">File name to be archived.</param>
-        /// <param name="pattern">File name template which contains the numeric pattern to be replaced.</param>
-        /// <param name="archiveNumber">Value which will replace the numeric pattern.</param>
-        private void RecursiveRollingRename(string fileName, string pattern, int archiveNumber)
-        {
-            if (this.MaxArchiveFiles > 0 && archiveNumber >= this.MaxArchiveFiles)
-            {
-                File.Delete(fileName);
-                return;
-            }
-
-            if (!File.Exists(fileName))
-            {
-                return;
-            }
-
-            string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
-            RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
-            
-            var shouldCompress = archiveNumber == 0;
-            try
-            {
-                RollArchiveForward(fileName, newFileName, shouldCompress);
-            }
-            catch (IOException)
-            {
-                // TODO: Check the value of CreateDirs property before creating directories.
-                string dir = Path.GetDirectoryName(newFileName);
-                if (!Directory.Exists(dir))
-                {
-                    Directory.CreateDirectory(dir);
-                }
-
-                RollArchiveForward(fileName, newFileName, shouldCompress);
-            }
-        }
-
-        /// <summary>
-        /// Archives the <paramref name="fileName"/> using a sequence style numbering. The most recent archive has the
-        /// highest number. When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete
-        /// archives are deleted.
-        /// </summary>
-        /// <param name="fileName">File name to be archived.</param>
-        /// <param name="pattern">File name template which contains the numeric pattern to be replaced.</param>
-        private void ArchiveBySequence(string fileName, string pattern)
-        {
-            FileNameTemplate fileTemplate = new FileNameTemplate(Path.GetFileName(pattern));
-            int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt;
-            string fileNameMask = fileTemplate.ReplacePattern("*");
-
-            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
-            int nextNumber = -1;
-            int minNumber = -1;
-
-            var number2Name = new Dictionary<int, string>();
-
-            try
-            {
-#if SILVERLIGHT
-                foreach (string s in Directory.EnumerateFiles(dirName, fileNameMask))
-#else
-                foreach (string s in Directory.GetFiles(dirName, fileNameMask))
-#endif
-                {
-                    string baseName = Path.GetFileName(s);
-                    string number = baseName.Substring(fileTemplate.BeginAt, baseName.Length - trailerLength - fileTemplate.BeginAt);
-                    int num;
-
-                    try
-                    {
-                        num = Convert.ToInt32(number, CultureInfo.InvariantCulture);
-                    }
-                    catch (FormatException)
-                    {
-                        continue;
-                    }
-
-                    nextNumber = Math.Max(nextNumber, num);
-                    minNumber = minNumber != -1 ? Math.Min(minNumber, num) : num;
-
-                    number2Name[num] = s;
-                }
-
-                nextNumber++;
-            }
-            catch (DirectoryNotFoundException)
-            {
-                Directory.CreateDirectory(dirName);
-                nextNumber = 0;
-            }
-
-            if (minNumber != -1 && this.MaxArchiveFiles != 0)
-            {
-                int minNumberToKeep = nextNumber - this.MaxArchiveFiles + 1;
-                for (int i = minNumber; i < minNumberToKeep; ++i)
-                {
-                    string s;
-
-                    if (number2Name.TryGetValue(i, out s))
-                    {
-                        InternalLogger.Info("Deleting old archive {0}", s);
-                        File.Delete(s);
-                    }
-                }
-            }
-
-            string newFileName = ReplaceNumberPattern(pattern, nextNumber);
-            RollArchiveForward(fileName, newFileName, allowCompress: true);
-        }
-
-        /// <summary>
-        /// Creates an archive copy of source file either by compressing it or moving to a new location in the file
-        /// system. Which action will be used is determined by the value of <paramref name="enableCompression"/> parameter.
-        /// </summary>
-        /// <param name="fileName">File name to be archived.</param>
-        /// <param name="archiveFileName">Name of the archive file.</param>
-        /// <param name="enableCompression">Enables file compression</param>
-        private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
-        {
-            string archiveFolderPath = Path.GetDirectoryName(archiveFileName);
-            if (!Directory.Exists(archiveFolderPath))
-                Directory.CreateDirectory(archiveFolderPath);
-
-#if NET4_5
-            if (enableCompression)
-            {
-                InternalLogger.Info("Archiving {0} to zip-archive {1}", fileName, archiveFileName);
-                using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
-                using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
-                    using (var destination = zipArchiveEntry.Open())
-                    {
-                        originalFileStream.CopyTo(destination);
-                    }
-                }
-
-                File.Delete(fileName);
-            }
-            else
-#endif
-            {
-                InternalLogger.Info("Archiving {0} to {1}", fileName, archiveFileName);
-                File.Move(fileName, archiveFileName);
-            }
-        }
-
-        private void RollArchiveForward(string existingFileName, string archiveFileName, bool allowCompress)
-        {
-            ArchiveFile(existingFileName, archiveFileName, allowCompress && EnableArchiveFileCompression);
-
-            string fileName = Path.GetFileName(existingFileName);
-            if (fileName == null) { return; }
-
-            // When the file has been moved, the original filename is 
-            // no longer one of the initializedFiles. The initializedFilesCounter
-            // should be left alone, the amount is still valid.
-            if (this.initializedFiles.ContainsKey(fileName))
-            {
-                this.initializedFiles.Remove(fileName);
-            }
-            else if (this.initializedFiles.ContainsKey(existingFileName))
-            {
-                this.initializedFiles.Remove(existingFileName);
-            }
-        }
-
-#if !NET_CF
-        /// <summary>
-        /// <para>
-        /// Archives the <paramref name="fileName"/> using a date and sequence style numbering. Archives will be stamped
-        /// with the prior period (Year, Month, Day) datetime. The most recent archive has the highest number (in
-        /// combination with the date).
-        /// </para>
-        /// <para>
-        /// When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
-        /// </para>
-        /// </summary>
-        /// <param name="fileName">File name to be archived.</param>
-        /// <param name="pattern">File name template which contains the numeric pattern to be replaced.</param>
-        /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
-        private void ArchiveByDateAndSequence(string fileName, string pattern, LogEventInfo logEvent)
-        {
-            string baseNamePattern = Path.GetFileName(pattern);
-
-            if (string.IsNullOrEmpty(baseNamePattern))
-            {
-                return;
-            }
-
-            FileNameTemplate fileTemplate = new FileNameTemplate(baseNamePattern);
-            string fileNameMask = fileTemplate.ReplacePattern("*");
-            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
-
-            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
-            if (string.IsNullOrEmpty(dirName))
-            {
-                return;
-            }
-
-            int minSequenceLength = fileTemplate.EndAt - fileTemplate.BeginAt - 2;
-            int nextSequenceNumber;
-            DateTime archiveDate = GetArchiveDate(IsDaySwitch(fileName, logEvent));
-            List<string> archiveFileNames;
-            if (Directory.Exists(dirName))
-            {
-                List<DateAndSequenceArchive> archives = FindDateAndSequenceArchives(dirName, fileName, fileNameMask, minSequenceLength, dateFormat, fileTemplate)
-                    .ToList();
-
-                // Find out the next sequence number among existing archives having the same date part as the current date.
-                int? lastSequenceNumber = archives
-                    .Where(a => a.HasSameFormattedDate(archiveDate))
-                    .Max(a => (int?)a.Sequence);
-                nextSequenceNumber = (int)(lastSequenceNumber != null ? lastSequenceNumber + 1 : 0);
-
-                archiveFileNames = archives
-                    .OrderBy(a => a.Date)
-                    .ThenBy(a => a.Sequence)
-                    .Select(a => a.FileName)
-                    .ToList();
-            }
-            else
-            {
-                Directory.CreateDirectory(dirName);
-                nextSequenceNumber = 0;
-                archiveFileNames = new List<string>();
-            }
-
-            string paddedSequence = nextSequenceNumber.ToString().PadLeft(minSequenceLength, '0');
-            string archiveFileNameWithoutPath = fileNameMask.Replace("*",
-                string.Format("{0}.{1}", archiveDate.ToString(dateFormat), paddedSequence));
-            string archiveFileName = Path.Combine(dirName, archiveFileNameWithoutPath);
-
-            RollArchiveForward(fileName, archiveFileName, allowCompress: true);
-            archiveFileNames.Add(archiveFileName);
-            EnsureArchiveCount(archiveFileNames);
-        }
-
-        /// <summary>
-        /// Determines whether a file with a different name from <paramref name="fileName"/> is needed to receive the
-        /// <paramref name="logEvent"/>. This is determined based on the last date and time which the file has been
-        /// written compared to the time the log event was initiated.
-        /// </summary>
-        /// <returns>
-        /// <see langword="true"/> when log event time is "different" than the last write time; <see langword="false"/> otherwise.
-        /// </returns>
-        private bool IsDaySwitch(string fileName, LogEventInfo logEvent)
-        {
-            DateTime lastWriteTime;
-            long fileLength;
-            if (this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
-            {
-                string formatString = GetDateFormatString(string.Empty);
-                string ts = lastWriteTime.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
-                string ts2 = logEvent.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
-
-                return ts != ts2;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the <see
-        /// cref="P:FileTarget.MaxArchiveFiles"/> setting.
-        /// </summary>
-        /// <param name="oldArchiveFileNames">List of the file archives.</param>
-        /// <remarks>
-        /// Items are deleted in the same order as in <paramref name="oldArchiveFileNames"/>. No file is deleted if <see
-        /// cref="P:FileTarget.MaxArchiveFiles"/> property is zero.
-        /// </remarks>
-        private void EnsureArchiveCount(List<string> oldArchiveFileNames)
-        {
-            if (this.MaxArchiveFiles <= 0) return;
-
-            int numberToDelete = oldArchiveFileNames.Count - this.MaxArchiveFiles;
-            for (int fileIndex = 0; fileIndex < numberToDelete; fileIndex++)
-            {
-                InternalLogger.Info("Deleting old archive {0}.", oldArchiveFileNames[fileIndex]);
-                File.Delete(oldArchiveFileNames[fileIndex]);
-            }
-        }
-
-        /// <summary>
-        /// Searches a given directory for archives that comply with the current archive pattern.
-        /// </summary>
-        /// <returns>An enumeration of archive infos, ordered by their file creation date.</returns>
-        private IEnumerable<DateAndSequenceArchive> FindDateAndSequenceArchives(string dirName, string logFileName,
-            string fileNameMask,
-            int minSequenceLength, string dateFormat, FileNameTemplate fileTemplate)
-        {
-            var directoryInfo = new DirectoryInfo(dirName);
-
-            int archiveFileNameMinLength = fileNameMask.Length + minSequenceLength;
-            var archiveFileNames = GetFiles(directoryInfo, fileNameMask)
-                .Where(n => n.Name.Length >= archiveFileNameMinLength)
-                .OrderBy(n => n.CreationTime)
-                .Select(n => n.FullName);
-
-            foreach (string archiveFileName in archiveFileNames)
-            {
-                //Get the archive file name or empty string if it's null
-                string archiveFileNameWithoutPath = Path.GetFileName(archiveFileName) ?? "";
-
-                DateTime date;
-                int sequence;
-                if (
-                    !TryParseDateAndSequence(archiveFileNameWithoutPath, dateFormat, fileTemplate, out date,
-                        out sequence))
-                {
-                    continue;
-                }
-
-                //It's possible that the log file itself has a name that will match the archive file mask.
-                if (string.IsNullOrEmpty(archiveFileNameWithoutPath) ||
-                    archiveFileNameWithoutPath.Equals(Path.GetFileName(logFileName)))
-                {
-                    continue;
-                }
-
-                yield return new DateAndSequenceArchive(archiveFileName, date, dateFormat, sequence);
-            }
-        }
-
-        private static bool TryParseDateAndSequence(string archiveFileNameWithoutPath, string dateFormat, FileNameTemplate fileTemplate, out DateTime date, out int sequence)
-        {
-            int trailerLength = fileTemplate.Template.Length - fileTemplate.EndAt;
-            int dateAndSequenceIndex = fileTemplate.BeginAt;
-            int dateAndSequenceLength = archiveFileNameWithoutPath.Length - trailerLength - dateAndSequenceIndex;
-
-            string dateAndSequence = archiveFileNameWithoutPath.Substring(dateAndSequenceIndex, dateAndSequenceLength);
-            int sequenceIndex = dateAndSequence.LastIndexOf('.') + 1;
-
-            string sequencePart = dateAndSequence.Substring(sequenceIndex);
-            if (!Int32.TryParse(sequencePart, NumberStyles.None, CultureInfo.CurrentCulture, out sequence))
-            {
-                date = default(DateTime);
-                return false;
-            }
-
-            string datePart = dateAndSequence.Substring(0, dateAndSequence.Length - sequencePart.Length - 1);
-            if (!DateTime.TryParseExact(datePart, dateFormat, CultureInfo.CurrentCulture, DateTimeStyles.None,
-                out date))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Gets the collection of files in the specified directory which they match the <paramref name="fileNameMask"/>.
-        /// </summary>
-        /// <param name="directoryInfo">Directory to searched.</param>
-        /// <param name="fileNameMask">Pattern whihc the files will be searched against.</param>
-        /// <returns>Lisf of files matching the pattern.</returns>
-        private static IEnumerable<FileInfo> GetFiles(DirectoryInfo directoryInfo, string fileNameMask)
-        {
-#if SILVERLIGHT
-            return directoryInfo.EnumerateFiles(fileNameMask);
-#else
-            return directoryInfo.GetFiles(fileNameMask);
-#endif
-        }
-
-        /// <summary>
-        /// Replaces the string-based pattern i.e. {#} in a file name with the value passed in <paramref
-        /// name="replacementValue"/> parameter.
-        /// </summary>
-        /// <param name="pattern">File name which contains the string-based pattern.</param>
-        /// <param name="replacementValue">Value which will replace the string-based pattern.</param>
-        /// <returns>
-        /// File name with the value of <paramref name="replacementValue"/> in the position of the string-based pattern.
-        /// </returns>
-        private static string ReplaceFileNamePattern(string pattern, string replacementValue)
-        {
-            //
-            // TODO: ReplaceFileNamePattern() method is nearly identical to ReplaceNumberPattern(). Consider merging.
-            //
-
-            return new FileNameTemplate(Path.GetFileName(pattern)).ReplacePattern(replacementValue);
-        }
-
-        /// <summary>
-        /// Archives the <paramref name="fileName"/> using a date style numbering. Archives will be stamped with the
-        /// prior period (Year, Month, Day, Hour, Minute) datetime. When the number of archive files exceed <see
-        /// cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
-        /// </summary>
-        /// <param name="fileName">File name to be archived.</param>
-        /// <param name="pattern">File name template which contains the numeric pattern to be replaced.</param>
-        private void ArchiveByDate(string fileName, string pattern)
-        {
-            string fileNameMask = ReplaceFileNamePattern(pattern, "*");
-            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
-            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
-
-            DateTime archiveDate = GetArchiveDate(true);
-            if (dirName != null)
-            {
-                string archiveFileName = Path.Combine(dirName, fileNameMask.Replace("*", archiveDate.ToString(dateFormat)));
-                RollArchiveForward(fileName, archiveFileName, allowCompress: true);
-            }
-
-            DeleteOldDateArchives(pattern);
-        }
-
-        /// <summary>
-        /// Deletes archive files in reverse chronological order until only the
-        /// MaxArchiveFiles number of archive files remain.
-        /// </summary>
-        /// <param name="pattern">The pattern that archive filenames will match</param>
-        private void DeleteOldDateArchives(string pattern)
-        {
-
-            string fileNameMask = ReplaceFileNamePattern(pattern, "*");
-            string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
-            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
-
-            if (dirName != null)
-            {
-                DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
-                if (!directoryInfo.Exists)
-                {
-                    Directory.CreateDirectory(dirName);
-                    return;
-                }
-
-#if SILVERLIGHT
-                var files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
-#else
-                var files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
-#endif
-                List<string> filesByDate = new List<string>();
-
-                foreach (string nextFile in files)
-                {
-                    string archiveFileName = Path.GetFileName(nextFile);
-                    string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
-                    DateTime fileDate = DateTime.MinValue;
-                    if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
-                    {
-                        filesByDate.Add(nextFile);
-                    }
-                }
-
-                EnsureArchiveCount(filesByDate);
-            }
-        }
-#endif
-
-        /// <summary>
-        /// Gets the correct formating <see langword="String"/> to be used based on the value of <see
-        /// cref="P:ArchiveEvery"/> for converting <see langword="DateTime"/> values which will be inserting into file
-        /// names during archiving.
-        /// 
-        /// This value will be computed only when a empty value or <see langword="null"/> is passed into <paramref name="defaultFormat"/>
-        /// </summary>
-        /// <param name="defaultFormat">Date format to used irrespectively of <see cref="P:ArchiveEvery"/> value.</param>
-        /// <returns>Formatting <see langword="String"/> for dates.</returns>
-        private string GetDateFormatString(string defaultFormat)
-        {
-            // If archiveDateFormat is not set in the config file, use a default 
-            // date format string based on the archive period.
-            string formatString = defaultFormat;
-            if (string.IsNullOrEmpty(formatString))
-            {
-                switch (this.ArchiveEvery)
-                {
-                    case FileArchivePeriod.Year:
-                        formatString = "yyyy";
-                        break;
-
-                    case FileArchivePeriod.Month:
-                        formatString = "yyyyMM";
-                        break;
-
-                    default:
-                        formatString = "yyyyMMdd";
-                        break;
-
-                    case FileArchivePeriod.Hour:
-                        formatString = "yyyyMMddHH";
-                        break;
-
-                    case FileArchivePeriod.Minute:
-                        formatString = "yyyyMMddHHmm";
-                        break;
-                }
-            }
-            return formatString;
-        }
-
-        private DateTime GetArchiveDate(bool isNextCycle)
-        {
-            DateTime archiveDate = TimeSource.Current.Time;
-
-            // Because AutoArchive/ArchiveByDate gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
-            // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
-            int addCount = isNextCycle ? -1 : 0;
-
-            switch (this.ArchiveEvery)
-            {
-                case FileArchivePeriod.Day:
-                    archiveDate = archiveDate.AddDays(addCount);
-                    break;
-
-                case FileArchivePeriod.Hour:
-                    archiveDate = archiveDate.AddHours(addCount);
-                    break;
-
-                case FileArchivePeriod.Minute:
-                    archiveDate = archiveDate.AddMinutes(addCount);
-                    break;
-
-                case FileArchivePeriod.Month:
-                    archiveDate = archiveDate.AddMonths(addCount);
-                    break;
-
-                case FileArchivePeriod.Year:
-                    archiveDate = archiveDate.AddYears(addCount);
-                    break;
-            }
-
-            return archiveDate;
-        }
-
-        /// <summary>
-        /// Invokes the archiving process after determining when and which type of archiving is required.
-        /// </summary>
-        /// <param name="fileName">File name to be checked and archived.</param>
-        /// <param name="eventInfo">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
-        private void DoAutoArchive(string fileName, LogEventInfo eventInfo)
-        {
-            FileInfo fileInfo = new FileInfo(fileName);
-            if (!fileInfo.Exists)
-            {
-                return;
-            }
-            
-            string fileNamePattern = GetFileNamePattern(fileName, eventInfo);
-
-            if (!ContainsFileNamePattern(fileNamePattern))
-            {
-                if (fileArchive.Archive(fileNamePattern, fileInfo.FullName, CreateDirs, EnableArchiveFileCompression))
-                {
-                    if (this.initializedFiles.ContainsKey(fileInfo.FullName))
-                    {
-                        this.initializedFiles.Remove(fileInfo.FullName);
-                    }
-                }
-            }
-            else
-            {
-                switch (this.ArchiveNumbering)
-                {
-                    case ArchiveNumberingMode.Rolling:
-                        this.RecursiveRollingRename(fileInfo.FullName, fileNamePattern, 0);
-                        break;
-
-                    case ArchiveNumberingMode.Sequence:
-                        this.ArchiveBySequence(fileInfo.FullName, fileNamePattern);
-                        break;
-
-#if !NET_CF
-                    case ArchiveNumberingMode.Date:
-                        this.ArchiveByDate(fileInfo.FullName, fileNamePattern);
-                        break;
-
-                    case ArchiveNumberingMode.DateAndSequence:
-                        this.ArchiveByDateAndSequence(fileInfo.FullName, fileNamePattern, eventInfo);
-                        break;
-#endif
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the pattern that archive files will match
-        /// </summary>
-        /// <param name="fileName">Filename of the log file</param>
-        /// <param name="eventInfo">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
-        /// <returns>A string with a pattern that will match the archive filenames</returns>
-        private string GetFileNamePattern(string fileName, LogEventInfo eventInfo)
-        {
-            string fileNamePattern;
-
-            FileInfo fileInfo = new FileInfo(fileName);
-
-            if (this.ArchiveFileName == null)
-            {
-                string ext = EnableArchiveFileCompression ? ".zip" : Path.GetExtension(fileName);
-                fileNamePattern = Path.ChangeExtension(fileInfo.FullName, ".{#}" + ext);
-            }
-            else
-            {
-                //The archive file name is given. There are two possibilities
-                //(1) User supplied the Filename with pattern
-                //(2) User supplied the normal filename
-                fileNamePattern = this.ArchiveFileName.Render(eventInfo);
-                fileNamePattern = CleanupInvalidFileNameChars(fileNamePattern);
-            }
-            return fileNamePattern;
-        }
-
-        /// <summary>
-        /// Indicates if the automatic archiving process should be executed.
-        /// </summary>
-        /// <param name="fileName">File name to be written.</param>
-        /// <param name="ev">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
-        /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
-        /// <returns><see langword="true"/> when archiving should be executed; <see langword="false"/> otherwise.</returns>
-        private bool ShouldAutoArchive(string fileName, LogEventInfo ev, int upcomingWriteSize)
-        {
-            return ShouldAutoArchiveBasedOnFileSize(fileName, upcomingWriteSize) ||
-                   ShouldAutoArchiveBasedOnTime(fileName, ev);
-        }
-
-        /// <summary>
-        /// Indicates if the automatic archiving process should be executed based on file size constrains.
-        /// </summary>
-        /// <param name="fileName">File name to be written.</param>
-        /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
-        /// <returns><see langword="true"/> when archiving should be executed; <see langword="false"/> otherwise.</returns>
-        private bool ShouldAutoArchiveBasedOnFileSize(string fileName, int upcomingWriteSize)
-        {
-            if (this.ArchiveAboveSize == FileTarget.ArchiveAboveSizeDisabled)
-            {
-                return false;
-            }
-
-            DateTime lastWriteTime;
-            long fileLength;
-
-            if (!this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
-            {
-                return false;
-            }
-
-            if (this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled)
-            {
-                if (fileLength + upcomingWriteSize > this.ArchiveAboveSize)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Indicates if the automatic archiving process should be executed based on date/time constrains.
-        /// </summary>
-        /// <param name="fileName">File name to be written.</param>
-        /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
-        /// <returns><see langword="true"/> when archiving should be executed; <see langword="false"/> otherwise.</returns>
-        private bool ShouldAutoArchiveBasedOnTime(string fileName, LogEventInfo logEvent)
-        {
-            if (this.ArchiveEvery == FileArchivePeriod.None)
-            {
-                return false;
-            }
-
-            DateTime lastWriteTime;
-            long fileLength;
-
-            if (!this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
-            {
-                return false;
-            }
-
-            if (this.ArchiveEvery != FileArchivePeriod.None)
-            {
-                // file write time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
-                // so we should ask the TimeSource to convert file time to TimeSource time:
-                lastWriteTime = TimeSource.Current.FromSystemTime(lastWriteTime);
-                string formatString = GetDateFormatString(string.Empty);
-                string fileLastChanged = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
-                string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
-
-                if (fileLastChanged != logEventRecorded)
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         private void AutoClosingTimerCallback(object state)
@@ -1684,7 +892,7 @@ namespace NLog.Targets
             {
                 try
                 {
-                    this.DoAutoArchive(fileName, logEvent);
+                    archival.DoAutoArchive(fileName, logEvent);
                 }
                 catch (Exception exception)
                 {
@@ -1712,6 +920,46 @@ namespace NLog.Targets
 
                     InternalLogger.Warn("Unable to delete old log file '{0}': {1}", fileName, exception);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Removes an item from <c>initializedFiles</c>.
+        /// </summary>
+        /// <param name="fileNameOrPath">The filename or path to remove.</param>
+        void IArchivalCallbacks.RemoveInitializedFileNameOrPath(string fileNameOrPath)
+        {
+            // force non-null to safely use as dictionary key
+            fileNameOrPath = fileNameOrPath ?? string.Empty;
+
+            string fileName = Path.GetFileName(fileNameOrPath);
+            if (fileName == null) { return; }
+
+            // When the file has been moved, the original filename is 
+            // no longer one of the initializedFiles. The initializedFilesCounter
+            // should be left alone, the amount is still valid.
+            if (this.initializedFiles.ContainsKey(fileName))
+            {
+                this.initializedFiles.Remove(fileName);
+            }
+            else if (this.initializedFiles.ContainsKey(fileNameOrPath))
+            {
+                this.initializedFiles.Remove(fileNameOrPath);
+            }
+        }
+
+        /// <summary>
+        /// Removes an item from <c>initializedFiles</c>.
+        /// </summary>
+        /// <param name="fileName">The filename to remove.</param>
+        void IArchivalCallbacks.RemoveInitializedFileName(string fileName)
+        {
+            // force non-null to safely use as dictionary key
+            fileName = fileName ?? string.Empty;
+
+            if (this.initializedFiles.ContainsKey(fileName))
+            {
+                this.initializedFiles.Remove(fileName);
             }
         }
 
@@ -1763,13 +1011,13 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Returns the length of a specified file and the last time it has been written. File appender is queried before the file system.  
+        /// Gets info about the given file, from cached data if possible.
         /// </summary>
         /// <param name="filePath">File which the information are requested.</param>
         /// <param name="lastWriteTime">The last time the file has been written is returned.</param>
         /// <param name="fileLength">The length of the file is returned.</param>
         /// <returns><see langword="true"/> when file details returned; <see langword="false"/> otherwise.</returns>
-        private bool GetFileInfo(string filePath, out DateTime lastWriteTime, out long fileLength)
+        public bool GetFileInfo(string filePath, out DateTime lastWriteTime, out long fileLength)
         {
             if (this.recentAppenders.GetFileInfo(filePath, out lastWriteTime, out fileLength))
             {
@@ -1819,7 +1067,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">The original file name which might contain invalid characters.</param>
         /// <returns>The cleaned up file name without any invalid characters.</returns>
-        private static string CleanupInvalidFileNameChars(string fileName)
+        public static string CleanupInvalidFileNameChars(string fileName)
         {
 #if !SILVERLIGHT
 
@@ -1833,253 +1081,6 @@ namespace NLog.Targets
 #else
             return fileName;
 #endif
-        }
-
-
-        private class DynamicFileArchive
-        {
-            /// <summary>
-            /// Gets or sets the maximum number of archive files that should be kept.
-            /// </summary>
-            public int MaxArchiveFileToKeep { get; set; }
-
-            /// <summary>
-            /// Creates an instance of <see cref="DynamicFileArchive"/> class.
-            /// </summary>
-            /// <param name="maxArchivedFiles">Maximum number of archive files to be kept.</param>
-            public DynamicFileArchive(int maxArchivedFiles)
-                : this()
-            {
-                this.MaxArchiveFileToKeep = maxArchivedFiles;
-            }
-
-            /// <summary>
-            /// Adds a file into archive.
-            /// </summary>
-            /// <param name="archiveFileName">File name of the archive</param>
-            /// <param name="fileName">Original file name</param>
-            /// <param name="createDirectory">Create a directory, if it does not exist</param>
-            /// <param name="enableCompression">Enables file compression</param>
-            /// <returns><see langword="true"/> if the file has been moved successfully; <see langword="false"/> otherwise.</returns>
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-            public bool Archive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
-            {
-                if (MaxArchiveFileToKeep < 1)
-                {
-                    InternalLogger.Warn("Archive is called. Even though the MaxArchiveFiles is set to less than 1");
-                    return false;
-                }
-
-                if (!File.Exists(fileName))
-                {
-                    InternalLogger.Error("Error while archiving, Source File : {0} Not found.", fileName);
-                    return false;
-                }
-
-                DeleteOldArchiveFiles();
-                AddToArchive(archiveFileName, fileName, createDirectory, enableCompression);
-                archiveFileQueue.Enqueue(archiveFileName);
-                return true;
-            }
-
-            /// <summary>
-            /// Creates an instance of <see cref="DynamicFileArchive"/> class.
-            /// </summary>
-            public DynamicFileArchive()
-            {
-                this.MaxArchiveFileToKeep = -1;
-
-                archiveFileQueue = new Queue<string>();
-            }
-
-            private readonly Queue<string> archiveFileQueue;
-
-            /// <summary>
-            /// Archives the file, either by copying it to a new file system location or by compressing it, and add the file name into the list of archives.
-            /// </summary>
-            /// <param name="archiveFileName">Target file name.</param>
-            /// <param name="fileName">Original file name.</param>
-            /// <param name="createDirectory">Create a directory, if it does not exist.</param>
-            /// <param name="enableCompression">Enables file compression.</param>
-            private void AddToArchive(string archiveFileName, string fileName, bool createDirectory, bool enableCompression)
-            {
-                String alternativeFileName = archiveFileName;
-
-                if (archiveFileQueue.Contains(archiveFileName))
-                {
-                    InternalLogger.Trace("AddToArchive file {0} already exist. Trying different file name.", archiveFileName);
-                    alternativeFileName = FindSuitableFilename(archiveFileName, 1);
-                }
-
-                try
-                {
-                    ArchiveFile(fileName, alternativeFileName, enableCompression);
-                }
-                catch (DirectoryNotFoundException)
-                {
-                    if (createDirectory)
-                    {
-                        InternalLogger.Trace("AddToArchive directory not found. Creating {0}", Path.GetDirectoryName(archiveFileName));
-
-                        try
-                        {
-                            Directory.CreateDirectory(Path.GetDirectoryName(archiveFileName));
-                            ArchiveFile(fileName, alternativeFileName, enableCompression);
-                        }
-                        catch (Exception ex)
-                        {
-                            InternalLogger.Error("Cannot create archive directory, Exception : {0}", ex);
-                            throw;
-                        }
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error("Cannot archive file {0}, Exception : {1}", fileName, ex);
-                    throw;
-                }
-            }
-
-            /// <summary>
-            /// Remove old archive files when the files on the queue are more than the <see cref="P:MaxArchiveFilesToKeep"/>.
-            /// </summary>
-            private void DeleteOldArchiveFiles()
-            {
-                if (MaxArchiveFileToKeep == 1 && archiveFileQueue.Any())
-                {
-                    var archiveFileName = archiveFileQueue.Dequeue();
-
-                    try
-                    {
-                        File.Delete(archiveFileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Warn("Cannot delete old archive file : {0} , Exception : {1}", archiveFileName, ex);
-                    }
-                }
-
-                while (archiveFileQueue.Count >= MaxArchiveFileToKeep)
-                {
-                    string oldestArchivedFileName = archiveFileQueue.Dequeue();
-
-                    try
-                    {
-                        File.Delete(oldestArchivedFileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Warn("Cannot delete old archive file : {0} , Exception : {1}", oldestArchivedFileName, ex);
-                    }
-                }
-            }
-
-            /// <summary>
-            /// Creates a new unique filename by appending a number to it. This method tests that 
-            /// the filename created does not exist.
-            /// 
-            /// This process can be slow as it increments the number sequentially from a specified 
-            /// starting point until it finds a number which produces a filename which does not 
-            /// exist.
-            /// 
-            /// Example: 
-            ///     Original Filename   trace.log
-            ///     Target Filename     trace.15.log
-            /// </summary>          
-            /// <param name="fileName">Original file name.</param>
-            /// <param name="numberToStartWith">Number starting point</param>
-            /// <returns>File name suitable for archiving</returns>
-            private string FindSuitableFilename(string fileName, int numberToStartWith)
-            {
-                String targetFileName = Path.GetFileNameWithoutExtension(fileName) + ".{#}" + Path.GetExtension(fileName);
-
-                while (File.Exists(ReplaceNumberPattern(targetFileName, numberToStartWith)))
-                {
-                    InternalLogger.Trace("AddToArchive file {0} already exist. Trying with different file name.", fileName);
-                    numberToStartWith++;
-                }
-                return targetFileName;
-            }
-        }
-
-        private sealed class FileNameTemplate
-        {
-            /// <summary>
-            /// Characters determining the start of the <see cref="P:FileNameTemplate.Pattern"/>.
-            /// </summary>
-            public const string PatternStartCharacters = "{#";
-
-            /// <summary>
-            /// Characters determining the end of the <see cref="P:FileNameTemplate.Pattern"/>.
-            /// </summary>
-            public const string PatternEndCharacters = "#}";
-
-            /// <summary>
-            /// File name which is used as template for matching and replacements. 
-            /// It is expected to contain a pattern to match.
-            /// </summary>
-            public string Template
-            {
-                get { return this.template; }
-            }
-
-            /// <summary>
-            /// The begging position of the <see cref="P:FileNameTemplate.Pattern"/> 
-            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
-            /// when no pattern can be found.
-            /// </summary>
-            public int BeginAt
-            {
-                get
-                {
-                    return startIndex;
-                }
-            }
-
-            /// <summary>
-            /// The ending position of the <see cref="P:FileNameTemplate.Pattern"/> 
-            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
-            /// when no pattern can be found.
-            /// </summary>
-            public int EndAt
-            {
-                get
-                {
-                    return endIndex;
-                }
-            }
-
-            private bool FoundPattern
-            {
-                get { return startIndex != -1 && endIndex != -1; }
-            }
-
-            private readonly string template;
-
-            private readonly int startIndex;
-            private readonly int endIndex;
-
-            public FileNameTemplate(string template)
-            {
-                this.template = template;
-                this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
-                if (this.startIndex != -1)
-                    this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
-            }
-
-            /// <summary>
-            /// Replace the pattern with the specified String.
-            /// </summary>
-            /// <param name="replacementValue"></param>
-            /// <returns></returns>
-            public string ReplacePattern(string replacementValue)
-            {
-                return !FoundPattern || String.IsNullOrEmpty(replacementValue) ? this.Template : template.Substring(0, this.BeginAt) + replacementValue + template.Substring(this.EndAt);
-            }
         }
     }
 }
