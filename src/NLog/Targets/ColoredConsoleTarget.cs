@@ -72,6 +72,7 @@ namespace NLog.Targets
             this.UseDefaultRowHighlightingRules = true;
         }
 
+
         /// <summary>
         /// Gets or sets a value indicating whether the error stream (stderr) should be used instead of the output stream (stdout).
         /// </summary>
@@ -151,6 +152,13 @@ namespace NLog.Targets
         public IList<ConsoleWordHighlightingRule> WordHighlightingRules { get; private set; }
 
         /// <summary>
+        /// High perfomarce mode
+        /// </summary> 
+        /// <docgen category='Output Options' order='10' />
+        [DefaultValue(false)]
+        public bool FastModus { get; set; }
+
+        /// <summary>
         /// Initializes the target.
         /// </summary>
         protected override void InitializeTarget()
@@ -177,14 +185,31 @@ namespace NLog.Targets
             base.CloseTarget();
         }
 
-            /// <summary>
+        /// <summary>
         /// Writes the specified log event to the console highlighting entries
         /// and words based on a set of defined rules.
         /// </summary>
         /// <param name="logEvent">Log event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            this.Output(logEvent, this.Layout.Render(logEvent));
+            if (!FastModus)
+            {
+                this.Output(logEvent, this.Layout.Render(logEvent));
+            }
+            else
+            {
+                this.FastOutput(logEvent, this.Layout.Render(logEvent));
+            }
+
+        }
+
+        private void FastOutput(LogEventInfo logEvent, string render)
+        {
+
+            ConsoleRowHighlightingRule matchingRule = FindConsoleRowHighlightingRule(logEvent);
+            SetUpConsoleColors(matchingRule);
+            (ErrorStream ? Console.Error : Console.Out).WriteLine(render);
+            Console.ResetColor();
         }
 
         private static void ColorizeEscapeSequences(
@@ -292,43 +317,8 @@ namespace NLog.Targets
 
             try
             {
-                ConsoleRowHighlightingRule matchingRule = null;
-
-                foreach (ConsoleRowHighlightingRule cr in this.RowHighlightingRules)
-                {
-                    if (cr.CheckCondition(logEvent))
-                    {
-                        matchingRule = cr;
-                        break;
-                    }
-                }
-
-                if (this.UseDefaultRowHighlightingRules && matchingRule == null)
-                {
-                    foreach (ConsoleRowHighlightingRule cr in defaultConsoleRowHighlightingRules)
-                    {
-                        if (cr.CheckCondition(logEvent))
-                        {
-                            matchingRule = cr;
-                            break;
-                        }
-                    }
-                }
-
-                if (matchingRule == null)
-                {
-                    matchingRule = ConsoleRowHighlightingRule.Default;
-                }
-
-                if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
-                {
-                    Console.ForegroundColor = (ConsoleColor)matchingRule.ForegroundColor;
-                }
-
-                if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
-                {
-                    Console.BackgroundColor = (ConsoleColor)matchingRule.BackgroundColor;
-                }
+                var matchingRule = FindConsoleRowHighlightingRule(logEvent);
+                SetUpConsoleColors(matchingRule);
 
                 message = message.Replace("\a", "\a\a");
 
@@ -353,6 +343,51 @@ namespace NLog.Targets
             {
                 Console.WriteLine();
             }
+        }
+
+        private static void SetUpConsoleColors(ConsoleRowHighlightingRule matchingRule)
+        {
+            if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
+            {
+                Console.ForegroundColor = (ConsoleColor)matchingRule.ForegroundColor;
+            }
+
+            if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
+            {
+                Console.BackgroundColor = (ConsoleColor)matchingRule.BackgroundColor;
+            }
+        }
+
+        private ConsoleRowHighlightingRule FindConsoleRowHighlightingRule(LogEventInfo logEvent)
+        {
+            ConsoleRowHighlightingRule matchingRule = null;
+
+            foreach (ConsoleRowHighlightingRule cr in this.RowHighlightingRules)
+            {
+                if (cr.CheckCondition(logEvent))
+                {
+                    matchingRule = cr;
+                    break;
+                }
+            }
+
+            if (this.UseDefaultRowHighlightingRules && matchingRule == null)
+            {
+                foreach (ConsoleRowHighlightingRule cr in defaultConsoleRowHighlightingRules)
+                {
+                    if (cr.CheckCondition(logEvent))
+                    {
+                        matchingRule = cr;
+                        break;
+                    }
+                }
+            }
+
+            if (matchingRule == null)
+            {
+                matchingRule = ConsoleRowHighlightingRule.Default;
+            }
+            return matchingRule;
         }
 
         /// <summary>
