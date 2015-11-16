@@ -33,19 +33,22 @@
 
 namespace NLog.Common
 {
+    using JetBrains.Annotations;
     using System;
     using System.ComponentModel;
     using System.Configuration;
     using System.Globalization;
     using System.IO;
+    using System.Reflection;
     using System.Text;
     using NLog.Internal;
     using NLog.Time;
 #if !SILVERLIGHT
     using ConfigurationManager = System.Configuration.ConfigurationManager;
+    using System.Diagnostics;
 #endif
 
-	/// <summary>
+    /// <summary>
     /// NLog internal logger.
     /// </summary>
     public static class InternalLogger
@@ -175,6 +178,7 @@ namespace NLog.Common
         /// <param name="level">Log level.</param>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Log(LogLevel level, string message, params object[] args)
         {
             Write(level, message, args);
@@ -195,6 +199,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Trace([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Trace, message, args);
@@ -214,6 +219,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Debug([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Debug, message, args);
@@ -233,6 +239,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Info([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Info, message, args);
@@ -252,6 +259,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Warn([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Warn, message, args);
@@ -271,6 +279,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Error([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Error, message, args);
@@ -290,6 +299,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Fatal([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Fatal, message, args);
@@ -376,6 +386,30 @@ namespace NLog.Common
                 }
 
                 // we have no place to log the message to so we ignore it
+            }
+        }
+
+        /// <summary>
+        /// Logs the assembly version and file version of the given Assembly.
+        /// </summary>
+        /// <param name="assembly">The assembly to log.</param>
+        public static void LogAssemblyVersion(Assembly assembly)
+        {
+            try
+            {
+#if SILVERLIGHT
+                Info(assembly.FullName);
+#else
+                var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+                Info("{0}. File version: {1}. Product version: {2}.",
+                    assembly.FullName,
+                    fileVersionInfo.FileVersion,
+                    fileVersionInfo.ProductVersion);
+#endif
+            }
+            catch (Exception exc)
+            {
+                Error("Error logging version of assembly {0}: {1}.", assembly.FullName, exc.Message);
             }
         }
 

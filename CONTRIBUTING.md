@@ -1,4 +1,4 @@
-Support & contributing guidelines (March 2, 2015)
+Support & contributing guidelines (Oktober 13, 2015)
 ===
 Do you have feature requests, questions or would you like to report a bug? Please follow these guidelines when posting on the [issue list](https://github.com/NLog/NLog/issues). The issues are labeled with the [following guideline](issue-labeling.md). 
 
@@ -74,4 +74,21 @@ Keep in mind that multiple versions of .Net are supported. Some methods are not 
 #if #WINDOWS_PHONE_7_1
 ```
 
+Sync back
+===
+Is your fork not up-to-date with the NLog code? Most of the time that isn't a problem. But I you like to "sync back" the changes to your repository, execute the following command:
 
+The first time:
+```
+git remote add upstream https://github.com/NLog/NLog.git 
+```
+
+After that:
+
+```
+git fetch upstream
+git checkout <your feature branch>
+git merge upstream/master
+```
+
+It's also possible to send a PR in the opposite direction, but that's not preferred as it will pollute the commit log.

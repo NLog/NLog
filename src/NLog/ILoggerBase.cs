@@ -37,6 +37,9 @@ namespace NLog
     using System.ComponentModel;
     using JetBrains.Annotations;
 
+    /// <summary>
+    /// Logger with only generic methods (passing 'LogLevel' to methods) and core properties.
+    /// </summary>
     public partial interface ILoggerBase
     {
         /// <summary>
@@ -125,6 +128,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="args">Arguments to format.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [StringFormatMethod("message")]
         void Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -135,6 +139,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="args">Arguments to format.</param>
         /// <param name="exception">An exception to be logged.</param>
+        [StringFormatMethod("message")]
         void Log(LogLevel level, Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -160,6 +165,7 @@ namespace NLog
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
+        [StringFormatMethod("message")]
         void Log(LogLevel level, [Localizable(false)] string message, params object[] args);
 
         /// <summary>
@@ -202,6 +208,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
+        [StringFormatMethod("message")]
         void Log<TArgument1, TArgument2>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2);
 
         /// <summary>
@@ -228,6 +235,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
+        [StringFormatMethod("message")]
         void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3);
 
         /// <summary>
