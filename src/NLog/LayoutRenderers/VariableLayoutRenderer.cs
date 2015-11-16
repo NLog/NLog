@@ -72,10 +72,11 @@ namespace NLog.LayoutRenderers
                 SimpleLayout layout;
                 var loggingConfiguration = LoggingConfiguration ?? LogManager.Configuration;
                 var vars = loggingConfiguration.Variables;
-                if(vars != null && vars.TryGetValue(Name, out layout))
+                if (vars != null && vars.TryGetValue(Name, out layout))
                 {
                     //todo in later stage also layout as values?
-                    builder.Append(layout.Render(logEvent));
+                    //ignore NULL, but it set, so don't use default.
+                    if (layout != null) builder.Append(layout.Render(logEvent));
                 }
                 else if (Default != null)
                 {

@@ -36,6 +36,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NLog.Layouts;
 using Xunit;
 
 #endregion
@@ -233,6 +234,18 @@ namespace NLog.UnitTests.LayoutRenderers
             var lastMessage = GetDebugLastMessage("debug");
             Assert.Equal("msg and admin=", lastMessage);
         }
+
+        [Fact]
+        public void null_should_be_ok()
+        {
+            Layout l = "${var:var1}";
+            LogManager.Configuration = new NLog.Config.LoggingConfiguration();
+            LogManager.Configuration.Variables["var1"] = null;
+            var result = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("", result);
+        }
+
+
 
         private void CreateConfigFromXml()
         {
