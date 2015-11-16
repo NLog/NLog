@@ -247,7 +247,6 @@ namespace NLog.UnitTests.LayoutRenderers
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-            LogManager.ThrowExceptions = false;     // since none of these test are prepared for exceptions
         }
     }
 }
