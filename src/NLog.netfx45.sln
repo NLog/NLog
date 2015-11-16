@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7638C35C-A8AC-437C-94FD-9DABD9D5839C}"
 	ProjectSection(SolutionItems) = preProject
@@ -27,7 +27,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A2DA21
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogAutoLoadExtension.netfx45", "NLogAutoLoadExtension\NLogAutoLoadExtension.netfx45.csproj", "{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1456C919-72FD-4EF0-882B-F8EC6CE530C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManyThreadsTest", "..\tests\ManyThreadsTest\ManyThreadsTest.csproj", "{953B2CB2-C876-4D2F-911D-8A9C18D2F2C8}"
+EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -97,16 +105,25 @@ Global
 		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}.Release|x86.ActiveCfg = Release|Any CPU
+		{953B2CB2-C876-4D2F-911D-8A9C18D2F2C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{953B2CB2-C876-4D2F-911D-8A9C18D2F2C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{953B2CB2-C876-4D2F-911D-8A9C18D2F2C8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{953B2CB2-C876-4D2F-911D-8A9C18D2F2C8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{953B2CB2-C876-4D2F-911D-8A9C18D2F2C8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{953B2CB2-C876-4D2F-911D-8A9C18D2F2C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{953B2CB2-C876-4D2F-911D-8A9C18D2F2C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{953B2CB2-C876-4D2F-911D-8A9C18D2F2C8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{953B2CB2-C876-4D2F-911D-8A9C18D2F2C8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{953B2CB2-C876-4D2F-911D-8A9C18D2F2C8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{953B2CB2-C876-4D2F-911D-8A9C18D2F2C8} = {1456C919-72FD-4EF0-882B-F8EC6CE530C1}
+	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = NLog.netfx45.vsmdi
-	EndGlobalSection
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
 		DPCodeReviewSolutionGUID = {C4811F53-E779-47F0-8C06-71551FBDB047}

@@ -272,6 +272,9 @@
       <Name>SampleExtensions.netfx45</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PerformanceTests\" />
+  </ItemGroup>
   <Import Project="$(StyleCopTargetsFile)" Condition="'$(StyleCopTargetsFile)' != ''" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
