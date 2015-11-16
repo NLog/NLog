@@ -362,7 +362,7 @@ namespace NLog
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown("Error setting up termination events: {0}", exception))
+                if (exception.MustBeRethrown("Error setting up termination events."))
                 {
                     throw;
                 }

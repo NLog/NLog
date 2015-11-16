@@ -241,7 +241,7 @@ namespace NLog
                         }
                         catch (Exception exception)
                         {
-                            if (exception.MustBeRethrown("Cannot start file watching: {0}", exception))
+                            if (exception.MustBeRethrown("Cannot start file watching."))
                             {
                                 throw;
                             }

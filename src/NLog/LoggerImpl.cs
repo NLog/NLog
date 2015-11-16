@@ -230,7 +230,7 @@ namespace NLog
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown("Exception during filter evaluation: {0}", exception))
+                if (exception.MustBeRethrown("Exception during filter evaluation."))
                 {
                     throw;
                 }

@@ -91,7 +91,7 @@ namespace NLog.Internal
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown("Error when setting property '{0}' on {1}. Exception: {2}", propInfo.Name, o, exception))
+                if (exception.MustBeRethrown("Error when setting property '{0}' on {1}.", propInfo.Name, o))
                 {
                     throw;
                 }

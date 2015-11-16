@@ -834,7 +834,7 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown("Error loading extensions for assembly '{0}': {1}", assemblyName, exception))
+                        if (exception.MustBeRethrown("Error loading extensions for assembly '{0}':", assemblyName))
                         {
                             throw;
                         }
