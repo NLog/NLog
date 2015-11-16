@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
 using NLog.Layouts;
 
 namespace NLog.LayoutRenderers
@@ -69,7 +70,9 @@ namespace NLog.LayoutRenderers
             if (this.Name != null)
             {
                 SimpleLayout layout;
-                if(LogManager.Configuration.Variables != null && LogManager.Configuration.Variables.TryGetValue(Name, out layout))
+                var loggingConfiguration = LoggingConfiguration ?? LogManager.Configuration;
+                var vars = loggingConfiguration.Variables;
+                if(vars != null && vars.TryGetValue(Name, out layout))
                 {
                     //todo in later stage also layout as values?
                     builder.Append(layout.Render(logEvent));
