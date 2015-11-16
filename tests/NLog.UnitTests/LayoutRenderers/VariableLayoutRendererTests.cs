@@ -245,6 +245,26 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("", result);
         }
 
+        [Fact]
+        public void null_should_not_use_default()
+        {
+            Layout l = "${var:var1:default=x}";
+            LogManager.Configuration = new NLog.Config.LoggingConfiguration();
+            LogManager.Configuration.Variables["var1"] = null;
+            var result = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("", result);
+        }
+
+        [Fact]
+        public void notset_should_use_default()
+        {
+            Layout l = "${var:var1:default=x}";
+            LogManager.Configuration = new NLog.Config.LoggingConfiguration();
+        
+            var result = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("x", result);
+        }
+
 
 
         private void CreateConfigFromXml()
