@@ -1074,8 +1074,10 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Fact]
-        public void RollingArchiveTest_MaxArchiveFiles_0()
+        [InlineData("/")]
+        [InlineData("\\")]
+        [Theory]
+        public void RollingArchiveTest_MaxArchiveFiles_0(string slash)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -1084,7 +1086,7 @@ namespace NLog.UnitTests.Targets
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
+                    ArchiveFileName = Path.Combine(tempPath, "archive" + slash + "{####}.txt"),
                     ArchiveAboveSize = 1000,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Rolling,
@@ -1109,22 +1111,22 @@ namespace NLog.UnitTests.Targets
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0000.txt"),
+                    Path.Combine(tempPath, "archive" + slash + "0000.txt"),
                     StringRepeat(250, "ddd\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0001.txt"),
+                    Path.Combine(tempPath, "archive" + slash + "0001.txt"),
                     StringRepeat(250, "ccc\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0002.txt"),
+                    Path.Combine(tempPath, "archive" + slash + "0002.txt"),
                     StringRepeat(250, "bbb\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0003.txt"),
+                    Path.Combine(tempPath, "archive" + slash + "0003.txt"),
                     StringRepeat(250, "aaa\n"),
                     Encoding.UTF8);
             }
@@ -1444,8 +1446,10 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Fact]
-        public void FileTarget_WithArchiveFileNameEndingInNumberPlaceholder_ShouldArchiveFile()
+        [Theory]
+        [InlineData("/")]
+        [InlineData("\\")]
+        public void FileTarget_WithArchiveFileNameEndingInNumberPlaceholder_ShouldArchiveFile(string slash)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -1454,7 +1458,7 @@ namespace NLog.UnitTests.Targets
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/test.log.{####}"),
+                    ArchiveFileName = Path.Combine(tempPath, "archive" + slash + "test.log.{####}"),
                     ArchiveAboveSize = 1000
                 };
 
@@ -1467,7 +1471,7 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
                 Assert.True(File.Exists(tempFile));
-                Assert.True(File.Exists(Path.Combine(tempPath, "archive/test.log.0000")));
+                Assert.True(File.Exists(Path.Combine(tempPath, "archive" + slash + "test.log.0000")));
             }
             finally
             {
