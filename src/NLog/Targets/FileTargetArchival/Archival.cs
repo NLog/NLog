@@ -33,7 +33,9 @@
 
 using System;
 using System.IO;
+#if !SILVERLIGHT
 using System.IO.Compression;
+#endif
 using System.Collections.Generic;
 using System.Globalization;
 using NLog.Time;
