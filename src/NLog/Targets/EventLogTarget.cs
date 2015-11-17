@@ -135,8 +135,8 @@ namespace NLog.Targets
         /// Gets or sets the action to take if the message is larger than the Event Log max message size.
         /// </summary>
         /// <docgen category='Event Log Overflow Action' order='10' />
-        [DefaultValue(EventLogTargetOverlowAction.Truncate)]
-        public EventLogTargetOverlowAction OnOverflow { get; set; }
+        [DefaultValue(EventLogTargetOverflowAction.Truncate)]
+        public EventLogTargetOverflowAction OnOverflow { get; set; }
 
         /// <summary>
         /// Performs installation which requires administrative permissions.
@@ -239,12 +239,12 @@ namespace NLog.Targets
             // limitation of EventLog API
             if (message.Length > MaxMessageSize)
             {
-                if (OnOverflow == EventLogTargetOverlowAction.Truncate)
+                if (OnOverflow == EventLogTargetOverflowAction.Truncate)
                 {
                     message = message.Substring(0, MaxMessageSize);
                     eventLog.WriteEntry(message, entryType, eventId, category);
                 }
-                else if (OnOverflow == EventLogTargetOverlowAction.Multiple)
+                else if (OnOverflow == EventLogTargetOverflowAction.Split)
                 {
                     int index = 0;
                     while (index + MaxMessageSize < message.Length)
@@ -256,6 +256,11 @@ namespace NLog.Targets
 
                     if (index < message.Length)
                         eventLog.WriteEntry(message.Substring(index));
+                }
+                else if (OnOverflow == EventLogTargetOverflowAction.Discard)
+                {
+                    //message will not be written
+                    return;
                 }
             }
             else
