@@ -42,8 +42,10 @@ using System.Runtime.InteropServices;
     [assembly: AssemblyTitle("NLog configuration installer for .NET Framework 4")]
 #elif NET4_5
     [assembly: AssemblyTitle("NLog configuration installer for .NET Framework 5")]
-#elif MONO_2_0
-    [assembly: AssemblyTitle("NLog configuration installer for Mono 2.0")]
+#elif MONO2_0
+    [assembly: AssemblyTitle("NLog configuration installer for Mono 2.x")]
+#elif MONO4_0
+    [assembly: AssemblyTitle("NLog configuration installer for Mono 4.x")]
 #elif SILVERLIGHT4
     [assembly: AssemblyTitle("NLog configuration installer for Silverlight 4.0")]
 #elif DOCUMENTATION

@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>InstallNLogConfig</RootNamespace>
     <AssemblyName>InstallNLogConfig</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
@@ -29,9 +29,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <DefineConstants>MONO;WCF_SUPPORTED;MONO2_0;$(DefineConstants)</DefineConstants>
-    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
-    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
+    <DefineConstants>MONO;WCF_SUPPORTED;MONO4_0;$(DefineConstants)</DefineConstants>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,9 +41,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.mono2.csproj">
+    <ProjectReference Include="..\..\src\NLog\NLog.mono4.csproj">
       <Project>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</Project>
-      <Name>NLog.mono2</Name>
+      <Name>NLog.mono4</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

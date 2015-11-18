@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <BuildVersion Condition=" '$(BuildVersion)' == '' ">4.1.3-pre</BuildVersion>
+    <AssemblyFileVersion Condition=" '$(AssemblyFileVersion)' == '' ">4.1.3</AssemblyFileVersion>
+    <BuildLastMajorVersion Condition=" '$(BuildLastMajorVersion)' == '' ">4.0.0</BuildLastMajorVersion>
+    <BuildProductName Condition=" '$(BuildProductName)' == '' ">NLog v$(BuildVersion)$(BuildLabel)</BuildProductName>
+  </PropertyGroup>
+  <Target Name="BeforeBuild">
+    <PropertyGroup>
+        <BaseOutputDirectory>$(MSBuildProjectDirectory)\..\build\</BaseOutputDirectory>
+        <BuildInfoFile>$(BaseOutputDirectory)\bin\BuildInfo.cs</BuildInfoFile>
+        <BuildInfoFileContent>
+// automatically generated
+[assembly: System.Reflection.AssemblyProduct("$(BuildProductName)")]
+[assembly: System.Reflection.AssemblyVersion("$(BuildLastMajorVersion)")]
+[assembly: System.Reflection.AssemblyFileVersion("$(AssemblyFileVersion)")]
+[assembly: System.Reflection.AssemblyInformationalVersion("$(BuildVersion)")]
+</BuildInfoFileContent>
+    </PropertyGroup>
+
+    <MakeDir Directories="$(BaseOutputDirectory)\bin" />
+
+    <ReadLinesFromFile File="$(BuildInfoFile)" Condition="Exists('$(BuildInfoFile)')">
+        <Output TaskParameter="Lines" ItemName="CurrentBuildInfoFileContent" />
+    </ReadLinesFromFile>
+
+    <WriteLinesToFile File="$(BuildInfoFile)" 
+            Lines='$(BuildInfoFileContent)'
+            Overwrite="true" 
+            Condition="'$(BuildInfoFileContent)' != '@(CurrentBuildInfoFileContent)' " />
+
+    <ItemGroup Condition="Exists('$(BuildInfoFile)')">
+      <Compile Include="$(BuildInfoFile)" />
+    </ItemGroup>
+  </Target>
+</Project>

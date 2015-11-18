@@ -38,6 +38,13 @@ var supportedFrameworks = new []
     },
     new FrameworkInfo
     {
+        ShortName = "Mono4",
+        FullName = "Mono 4.x",
+        HasExtendedProfile = true,
+        HasConfigInstaller = true,
+    },
+    new FrameworkInfo
+    {
         ShortName = "NetFx20",
         FullName = ".NET Framework 2.0",
         HasConfigInstaller = true,

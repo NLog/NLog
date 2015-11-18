@@ -1,49 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>NLog</AssemblyName>
+    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <NoConfig>true</NoConfig>
+    <NoStdLib>true</NoStdLib>
+    <NoWarn>0419</NoWarn>
+    <OutputType>Library</OutputType>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NLog</RootNamespace>
-    <AssemblyName>NLog</AssemblyName>
-    <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <NoWarn>0419</NoWarn>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
+    <DefineConstants>MONO;WCF_SUPPORTED;MONO4_0;DEBUG;TRACE</DefineConstants>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
     <Optimize>false</Optimize>
-    <DefineConstants>MONO;WCF_SUPPORTED;MONO_2_0;DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <OutputPath>bin\Debug</OutputPath>
-    <NoStdLib>true</NoStdLib>
-    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
     <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>MONO;WCF_SUPPORTED;MONO_2_0;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <OutputPath>bin\Release</OutputPath>
-    <NoStdLib>true</NoStdLib>
-    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
+    <DefineConstants>MONO;WCF_SUPPORTED;MONO4_0;TRACE</DefineConstants>
+    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
+    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
     <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <NoStdLib>true</NoStdLib>
-    <NoConfig>true</NoConfig>
-    <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 2.x</OutputPath>
-    <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
     <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
@@ -53,6 +46,7 @@
     <Reference Include="System.Messaging" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
@@ -415,6 +409,7 @@
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\BuildInfoFile.targets" />
   <ItemGroup>
     <None Include="Logger.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

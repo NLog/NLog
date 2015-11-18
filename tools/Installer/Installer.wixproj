@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
      <MonoInclude Include="Include_Mono2" />
+     <MonoInclude Include="Include_Mono4" />
   </ItemGroup>
   <ItemGroup>
      <WPInclude Include="Include_WP7" />

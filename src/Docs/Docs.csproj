@@ -35,6 +35,7 @@
     <None Include="Frameworks\.NET Compact Framework 2.0.shfbproj" />
     <None Include="Frameworks\.NET Compact Framework 3.5.shfbproj" />
     <None Include="Frameworks\Mono 2.x.shfbproj" />
+    <None Include="Frameworks\Mono 4.x.shfbproj" />
     <None Include="Frameworks\Silverlight 2.0.shfbproj" />
     <None Include="Frameworks\Silverlight 3.0.shfbproj" />
     <None Include="glossary.aml" />
