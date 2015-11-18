@@ -80,8 +80,11 @@ namespace NLog.Layouts
             AppendIf(!this.SuppressSpaces, sb, " ");
             bool first = true;
 
-            foreach (var col in this.Attributes)
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
+            for (int i = 0; i < this.Attributes.Count; i++)
             {
+                var col = this.Attributes[i];
                 jsonWrapper.Inner = col.Layout;
                 jsonWrapper.JsonEncode = col.Encode;
                 string text = jsonWrapper.Render(logEvent);

@@ -31,61 +31,30 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.Collections.Generic;
-using NLog.Layouts;
+using System.Linq;
 
-namespace NLog.LayoutRenderers
+namespace NLog.Targets
 {
-    using System.Text;
-    using Config;
-
     /// <summary>
-    /// Render a NLog variable (xml or config)
+    /// The action to be taken when there are more connections then the max.
     /// </summary>
-    [LayoutRenderer("var")]
-    public class VariableLayoutRenderer : LayoutRenderer
+    public enum NetworkTargetConnectionsOverflowAction
     {
         /// <summary>
-        /// Gets or sets the name of the NLog variable.
+        /// Just allow it.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [RequiredParameter]
-        [DefaultParameter]
-        public string Name { get; set; }
+        AllowNewConnnection,
 
         /// <summary>
-        /// Gets or sets the default value to be used when the variable is not set.
+        /// Discard the connection item.
         /// </summary>
-        /// <remarks>Not used if Name is <c>null</c></remarks>
-        /// <docgen category='Rendering Options' order='10' />
-        public string Default { get; set; }
+        DiscardMessage,
 
         /// <summary>
-        /// Renders the specified variable and appends it to the specified <see cref="StringBuilder" />.
+        /// Block until there's more room in the queue.
         /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            if (this.Name != null)
-            {
-                SimpleLayout layout;
-                var loggingConfiguration = LoggingConfiguration ?? LogManager.Configuration;
-                var vars = loggingConfiguration.Variables;
-                if (vars != null && vars.TryGetValue(Name, out layout))
-                {
-                    //todo in later stage also layout as values?
-                    //ignore NULL, but it set, so don't use default.
-                    if (layout != null) builder.Append(layout.Render(logEvent));
-                }
-                else if (Default != null)
-                {
-                    //fallback
-                    builder.Append(Default);
-                }
-            }
-        }
+        Block,
     }
 }
-
-
