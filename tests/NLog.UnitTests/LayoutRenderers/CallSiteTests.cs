@@ -132,6 +132,8 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 #endif
 
+#if !UWP10
+
         [Fact]
         public void MethodNameTest()
         {
@@ -236,6 +238,8 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
         }
 
+#endif
+
         [Fact]
         public void MethodNameWithPaddingTestPadLeftAlignLeftTest()
         {
@@ -333,6 +337,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
         }
 
+#if !UWP10
         [Fact]
         public void CleanMethodNamesOfAnonymousDelegatesTest()
         {
@@ -466,7 +471,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 Assert.True(lastMessage.Contains("+<>"));
             }
         }
-
+#endif
 
         [Fact]
         public void When_Wrapped_Ignore_Wrapper_Methods_In_Callstack()

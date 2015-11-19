@@ -51,221 +51,227 @@ namespace NLog.UnitTests
 
     public abstract class NLogTestBase
     {
-//        protected NLogTestBase()
-//        {
-//            InternalLogger.LogToConsole = false;
-//            InternalLogger.LogToConsoleError = false;
-//            LogManager.ThrowExceptions = false;
-//        }
+        protected NLogTestBase()
+        {
+#if !UWP10
+            InternalLogger.LogToConsole = false;
+            InternalLogger.LogToConsoleError = false;
+#endif
+            LogManager.ThrowExceptions = false;
+        }
 
-//        public void AssertDebugCounter(string targetName, int val)
-//        {
-//            Assert.Equal(val, GetDebugTarget(targetName).Counter);
-//        }
+        public void AssertDebugCounter(string targetName, int val)
+        {
+            Assert.Equal(val, GetDebugTarget(targetName).Counter);
+        }
 
-//        public void AssertDebugLastMessage(string targetName, string msg)
-//        {
-//            Assert.Equal(msg, GetDebugLastMessage(targetName));
-//        }
+        public void AssertDebugLastMessage(string targetName, string msg)
+        {
+            Assert.Equal(msg, GetDebugLastMessage(targetName));
+        }
 
 
-//        public void AssertDebugLastMessageContains(string targetName, string msg)
-//        {
-//            string debugLastMessage = GetDebugLastMessage(targetName);
-//            Assert.True(debugLastMessage.Contains(msg),
-//                string.Format("Expected to find '{0}' in last message value on '{1}', but found '{2}'", msg, targetName, debugLastMessage));
-//        }
+        public void AssertDebugLastMessageContains(string targetName, string msg)
+        {
+            string debugLastMessage = GetDebugLastMessage(targetName);
+            Assert.True(debugLastMessage.Contains(msg),
+                string.Format("Expected to find '{0}' in last message value on '{1}', but found '{2}'", msg, targetName, debugLastMessage));
+        }
 
-//        public string GetDebugLastMessage(string targetName)
-//        {
-//            return GetDebugLastMessage(targetName, LogManager.Configuration);
-//        }
+        public string GetDebugLastMessage(string targetName)
+        {
+            return GetDebugLastMessage(targetName, LogManager.Configuration);
+        }
 
-//        public string GetDebugLastMessage(string targetName, LoggingConfiguration configuration)
-//        {
-//            return GetDebugTarget(targetName, configuration).LastMessage;
-//        }
+        public string GetDebugLastMessage(string targetName, LoggingConfiguration configuration)
+        {
+            return GetDebugTarget(targetName, configuration).LastMessage;
+        }
 
-//        public NLog.Targets.DebugTarget GetDebugTarget(string targetName)
-//        {
-//            return GetDebugTarget(targetName, LogManager.Configuration);
-//        }
+        public NLog.Targets.DebugTarget GetDebugTarget(string targetName)
+        {
+            return GetDebugTarget(targetName, LogManager.Configuration);
+        }
 
-//        public NLog.Targets.DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
-//        {
-//            var debugTarget = (NLog.Targets.DebugTarget)configuration.FindTargetByName(targetName);
-//            Assert.NotNull(debugTarget);
-//            return debugTarget;
-//        }
+        public NLog.Targets.DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
+        {
+            var debugTarget = (NLog.Targets.DebugTarget)configuration.FindTargetByName(targetName);
+            Assert.NotNull(debugTarget);
+            return debugTarget;
+        }
 
-//        public void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
-//        {
-//            FileInfo fi = new FileInfo(fileName);
-//            if (!fi.Exists)
-//                Assert.True(true, "File '" + fileName + "' doesn't exist.");
+        public void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
+        {
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                Assert.True(true, "File '" + fileName + "' doesn't exist.");
 
-//            byte[] encodedBuf = encoding.GetBytes(contents);
-//            Assert.True(encodedBuf.Length <= fi.Length);
-//            byte[] buf = new byte[encodedBuf.Length];
-//            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-//            {
-//                fs.Read(buf, 0, buf.Length);
-//            }
+            byte[] encodedBuf = encoding.GetBytes(contents);
+            Assert.True(encodedBuf.Length <= fi.Length);
+            byte[] buf = new byte[encodedBuf.Length];
+            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            {
+                fs.Read(buf, 0, buf.Length);
+            }
 
-//            for (int i = 0; i < buf.Length; ++i)
-//            {
-//                Assert.Equal(encodedBuf[i], buf[i]);
-//            }
-//        }
+            for (int i = 0; i < buf.Length; ++i)
+            {
+                Assert.Equal(encodedBuf[i], buf[i]);
+            }
+        }
 
-//        public void AssertFileSize(string filename, long expectedSize)
-//        {
-//            var fi = new FileInfo(filename);
+        public void AssertFileSize(string filename, long expectedSize)
+        {
+            var fi = new FileInfo(filename);
 
-//            if (!fi.Exists)
-//            {
-//                Assert.True(true, string.Format("File \"{0}\" doesn't exist.", filename));
-//            }
+            if (!fi.Exists)
+            {
+                Assert.True(true, string.Format("File \"{0}\" doesn't exist.", filename));
+            }
 
-//            if (fi.Length != expectedSize)
-//            {
-//                Assert.True(true, string.Format("Filesize of \"{0}\" unequals {1}.", filename, expectedSize));
-//            }
-//        }
+            if (fi.Length != expectedSize)
+            {
+                Assert.True(true, string.Format("Filesize of \"{0}\" unequals {1}.", filename, expectedSize));
+            }
+        }
 
-//#if NET4_5
-//        public void AssertZipFileContents(string fileName, string contents, Encoding encoding)
-//        {
-//            FileInfo fi = new FileInfo(fileName);
-//            if (!fi.Exists)
-//                Assert.True(true, "File '" + fileName + "' doesn't exist.");
+#if NET4_5
+        public void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+        {
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                Assert.True(true, "File '" + fileName + "' doesn't exist.");
 
-//            byte[] encodedBuf = encoding.GetBytes(contents);
-//            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
-//            using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
-//            {
-//                Assert.Equal(1, zip.Entries.Count);
-//                Assert.Equal(encodedBuf.Length, zip.Entries[0].Length);
+            byte[] encodedBuf = encoding.GetBytes(contents);
+            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
+            {
+                Assert.Equal(1, zip.Entries.Count);
+                Assert.Equal(encodedBuf.Length, zip.Entries[0].Length);
 
-//                byte[] buf = new byte[(int)zip.Entries[0].Length];
-//                using (var fs = zip.Entries[0].Open())
-//                {
-//                    fs.Read(buf, 0, buf.Length);
-//                }
+                byte[] buf = new byte[(int)zip.Entries[0].Length];
+                using (var fs = zip.Entries[0].Open())
+                {
+                    fs.Read(buf, 0, buf.Length);
+                }
 
-//                for (int i = 0; i < buf.Length; ++i)
-//                {
-//                    Assert.Equal(encodedBuf[i], buf[i]);
-//                }
-//            }
-//        }
-//#endif
+                for (int i = 0; i < buf.Length; ++i)
+                {
+                    Assert.Equal(encodedBuf[i], buf[i]);
+                }
+            }
+        }
+#endif
 
-//        public void AssertFileContents(string fileName, string contents, Encoding encoding)
-//        {
-//            FileInfo fi = new FileInfo(fileName);
-//            if (!fi.Exists)
-//                Assert.True(true, "File '" + fileName + "' doesn't exist.");
+        public void AssertFileContents(string fileName, string contents, Encoding encoding)
+        {
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                Assert.True(true, "File '" + fileName + "' doesn't exist.");
 
-//            byte[] encodedBuf = encoding.GetBytes(contents);
-//            Assert.Equal(encodedBuf.Length, fi.Length);
-//            byte[] buf = new byte[(int)fi.Length];
-//            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-//            {
-//                fs.Read(buf, 0, buf.Length);
-//            }
+            byte[] encodedBuf = encoding.GetBytes(contents);
+            Assert.Equal(encodedBuf.Length, fi.Length);
+            byte[] buf = new byte[(int)fi.Length];
+            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            {
+                fs.Read(buf, 0, buf.Length);
+            }
 
-//            for (int i = 0; i < buf.Length; ++i)
-//            {
-//                Assert.Equal(encodedBuf[i], buf[i]);
-//            }
-//        }
+            for (int i = 0; i < buf.Length; ++i)
+            {
+                Assert.Equal(encodedBuf[i], buf[i]);
+            }
+        }
 
-//        public string StringRepeat(int times, string s)
-//        {
-//            StringBuilder sb = new StringBuilder(s.Length * times);
-//            for (int i = 0; i < times; ++i)
-//                sb.Append(s);
-//            return sb.ToString();
-//        }
+        public string StringRepeat(int times, string s)
+        {
+            StringBuilder sb = new StringBuilder(s.Length * times);
+            for (int i = 0; i < times; ++i)
+                sb.Append(s);
+            return sb.ToString();
+        }
 
-//        protected void AssertLayoutRendererOutput(Layout l, string expected)
-//        {
-//            l.Initialize(null);
-//            string actual = l.Render(LogEventInfo.Create(LogLevel.Info, "loggername", "message"));
-//            l.Close();
-//            Assert.Equal(expected, actual);
-//        }
+        protected void AssertLayoutRendererOutput(Layout l, string expected)
+        {
+            l.Initialize(null);
+            string actual = l.Render(LogEventInfo.Create(LogLevel.Info, "loggername", "message"));
+            l.Close();
+            Assert.Equal(expected, actual);
+        }
 
-//        protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
-//        {
-//#if SILVERLIGHT
-//            XElement element = XElement.Parse(configXml);
-//            return new XmlLoggingConfiguration(element.CreateReader(), null);
-//#else
-//            XmlDocument doc = new XmlDocument();
-//            doc.LoadXml(configXml);
+        protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
+        {
+#if SILVERLIGHT || UWP10
+            XElement element = XElement.Parse(configXml);
+            return new XmlLoggingConfiguration(element.CreateReader(), null);
+#else
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(configXml);
 
-//            return new XmlLoggingConfiguration(doc.DocumentElement, Environment.CurrentDirectory);
-//#endif
-//        }
+            return new XmlLoggingConfiguration(doc.DocumentElement, Environment.CurrentDirectory);
+#endif
+        }
 
-//        protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
-//        {
-//            var stringWriter = new StringWriter();
-//            var oldWriter = InternalLogger.LogWriter;
-//            var oldLevel = InternalLogger.LogLevel;
-//            var oldIncludeTimestamp = InternalLogger.IncludeTimestamp;
-//            try
-//            {
-//                InternalLogger.LogWriter = stringWriter;
-//                InternalLogger.LogLevel = LogLevel.Trace;
-//                InternalLogger.IncludeTimestamp = false;
-//                action();
+        protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
+        {
+            var stringWriter = new StringWriter();
+            var oldWriter = InternalLogger.LogWriter;
+            var oldLevel = InternalLogger.LogLevel;
+            var oldIncludeTimestamp = InternalLogger.IncludeTimestamp;
+            try
+            {
+                InternalLogger.LogWriter = stringWriter;
+                InternalLogger.LogLevel = LogLevel.Trace;
+                InternalLogger.IncludeTimestamp = false;
+                action();
 
-//                return stringWriter.ToString();
-//            }
-//            finally
-//            {
-//                InternalLogger.LogWriter = oldWriter;
-//                InternalLogger.LogLevel = oldLevel;
-//                InternalLogger.IncludeTimestamp = oldIncludeTimestamp;
-//            }
-//        }
+                return stringWriter.ToString();
+            }
+            finally
+            {
+                InternalLogger.LogWriter = oldWriter;
+                InternalLogger.LogLevel = oldLevel;
+                InternalLogger.IncludeTimestamp = oldIncludeTimestamp;
+            }
+        }
 
-//        public delegate void SyncAction();
+        public delegate void SyncAction();
 
-//        public class InternalLoggerScope : IDisposable
-//        {
-//            private readonly string logFile;
-//            private readonly LogLevel logLevel;
-//            private readonly bool logToConsole;
-//            private readonly bool includeTimestamp;
-//            private readonly bool logToConsoleError;
-//            private readonly LogLevel globalThreshold;
-//            private readonly bool throwExceptions;
+        public class InternalLoggerScope : IDisposable
+        {
+            private readonly string logFile;
+            private readonly LogLevel logLevel;
+            private readonly bool logToConsole;
+            private readonly bool includeTimestamp;
+            private readonly bool logToConsoleError;
+            private readonly LogLevel globalThreshold;
+            private readonly bool throwExceptions;
 
-//            public InternalLoggerScope()
-//            {
-//                this.logFile = InternalLogger.LogFile;
-//                this.logLevel = InternalLogger.LogLevel;
-//                this.logToConsole = InternalLogger.LogToConsole;
-//                this.includeTimestamp = InternalLogger.IncludeTimestamp;
-//                this.logToConsoleError = InternalLogger.LogToConsoleError;
-//                this.globalThreshold = LogManager.GlobalThreshold;
-//                this.throwExceptions = LogManager.ThrowExceptions;
-//            }
+            public InternalLoggerScope()
+            {
+                this.logFile = InternalLogger.LogFile;
+                this.logLevel = InternalLogger.LogLevel;
+#if !UWP10
+                this.logToConsole = InternalLogger.LogToConsole;
+                this.logToConsoleError = InternalLogger.LogToConsoleError;
+#endif
+                this.includeTimestamp = InternalLogger.IncludeTimestamp;
+                this.globalThreshold = LogManager.GlobalThreshold;
+                this.throwExceptions = LogManager.ThrowExceptions;
+            }
 
-//            public void Dispose()
-//            {
-//                InternalLogger.LogFile = this.logFile;
-//                InternalLogger.LogLevel = this.logLevel;
-//                InternalLogger.LogToConsole = this.logToConsole;
-//                InternalLogger.IncludeTimestamp = this.includeTimestamp;
-//                InternalLogger.LogToConsoleError = this.logToConsoleError;
-//                LogManager.GlobalThreshold = this.globalThreshold;
-//                LogManager.ThrowExceptions = this.throwExceptions;
-//            }
-//        }
+            public void Dispose()
+            {
+                InternalLogger.LogFile = this.logFile;
+                InternalLogger.LogLevel = this.logLevel;
+#if !UWP10
+                InternalLogger.LogToConsole = this.logToConsole;
+                InternalLogger.LogToConsoleError = this.logToConsoleError;
+#endif
+                InternalLogger.IncludeTimestamp = this.includeTimestamp;
+                LogManager.GlobalThreshold = this.globalThreshold;
+                LogManager.ThrowExceptions = this.throwExceptions;
+            }
+        }
     }
 }

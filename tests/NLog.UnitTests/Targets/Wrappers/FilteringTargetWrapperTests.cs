@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using Windows.System.Threading;
+
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
@@ -279,7 +281,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             protected override void Write(AsyncLogEventInfo logEvent)
             {
                 this.WriteCount++;
-                ThreadPool.QueueUserWorkItem(
+                ThreadPool.RunAsync(
                     s =>
                         {
                             if (this.ThrowExceptions)

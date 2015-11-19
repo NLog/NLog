@@ -49,7 +49,7 @@ namespace NLog
     using NLog.Config;
     using NLog.Internal;
     using NLog.Targets;
-    using NLog.Internal.Fakeables;
+  
 
 #if SILVERLIGHT
     using System.Windows;

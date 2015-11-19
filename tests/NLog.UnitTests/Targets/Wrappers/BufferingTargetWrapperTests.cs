@@ -32,6 +32,7 @@
 // 
 
 using System.Diagnostics;
+using Windows.System.Threading;
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
@@ -44,6 +45,8 @@ namespace NLog.UnitTests.Targets.Wrappers
 
     public class BufferingTargetWrapperTests : NLogTestBase
     {
+
+#if !UWP10
         [Fact]
         public void BufferingTargetWrapperSyncTest1()
         {
@@ -483,6 +486,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(2, myTarget.WriteCount);
         }
 
+#endif
         [Fact]
         public void WhenWrappedTargetThrowsExceptionThisIsHandled()
         {
@@ -530,7 +534,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 foreach (var logEvent in logEvents)
                 {
                     var @event = logEvent;
-                    ThreadPool.QueueUserWorkItem(
+                    ThreadPool.RunAsync(
                         s =>
                         {
                             if (this.ThrowExceptions)
@@ -549,7 +553,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                ThreadPool.QueueUserWorkItem(
+                ThreadPool.RunAsync(
                     s => asyncContinuation(null));
             }
 

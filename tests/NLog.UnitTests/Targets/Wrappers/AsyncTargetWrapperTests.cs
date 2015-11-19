@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using Windows.System.Threading;
+
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
@@ -42,7 +44,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using Xunit;
 
     public class AsyncTargetWrapperTests : NLogTestBase
-	{
+    {
         [Fact]
         public void AsyncTargetWrapperInitTest()
         {
@@ -69,6 +71,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(100, targetWrapper.BatchSize);
         }
 
+#if !UWP10
         [Fact]
         public void AsyncTargetWrapperSyncTest1()
         {
@@ -107,6 +110,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Null(lastException);
             Assert.Equal(2, myTarget.WriteCount);
         }
+#endif
 
         [Fact]
         public void AsyncTargetWrapperAsyncTest1()
@@ -185,7 +189,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var myTarget = new MyAsyncTarget
             {
                 ThrowExceptions = true,
-               
+
             };
 
             var targetWrapper = new AsyncTargetWrapper(myTarget)
@@ -348,7 +352,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 Assert.True(this.FlushCount <= this.WriteCount);
                 Interlocked.Increment(ref this.WriteCount);
-                ThreadPool.QueueUserWorkItem(
+                ThreadPool.RunAsync(
                     s =>
                         {
                             if (this.ThrowExceptions)
@@ -367,7 +371,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
                 Interlocked.Increment(ref this.FlushCount);
-                ThreadPool.QueueUserWorkItem(
+                ThreadPool.RunAsync(
                     s => asyncContinuation(null));
             }
 

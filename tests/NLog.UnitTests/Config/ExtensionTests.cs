@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
 namespace NLog.UnitTests.Config
 {
     using System.IO;
@@ -268,3 +269,4 @@ namespace NLog.UnitTests.Config
 #endif
     }
 }
+#endif

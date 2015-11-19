@@ -45,17 +45,17 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void ThreadAgnosticAttributeTest()
         {
-            foreach (var t in ReflectionHelpers.SafeGetTypes(typeof(Layout).Assembly))
+            foreach (var t in ReflectionHelpers.SafeGetTypes(typeof(Layout).Assembly()))
             {
                 if (t.Namespace == typeof(WrapperLayoutRendererBase).Namespace)
                 {
-                    if (t.IsAbstract || t.IsEnum)
+                    if (t.IsAbstract() || t.IsEnum())
                     {
                         // skip non-concrete types and enumerations
                         continue;
                     }
 
-                    Assert.True(t.IsDefined(typeof(ThreadAgnosticAttribute), true), "Type " + t + " is missing [ThreadAgnostic] attribute.");
+                    Assert.True(t.IsDefined< ThreadAgnosticAttribute>(true), "Type " + t + " is missing [ThreadAgnostic] attribute.");
                 }
             }
         }

@@ -37,12 +37,3 @@ namespace NLog
 #endif
 }
 
-namespace NLog.Internal.Fakeables
-{
-    class Foo
-    {
-        
-    }
-
-
-}

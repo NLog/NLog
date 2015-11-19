@@ -162,6 +162,7 @@ namespace NLog.UnitTests
             Assert.Equal(1, exceptions.Count);
         }
 
+#if !UWP10
         [Fact]
         public void ContinuationTimeoutNotHitTest()
         {
@@ -189,6 +190,7 @@ namespace NLog.UnitTests
             Assert.Equal(1, exceptions.Count);
             Assert.Null(exceptions[0]);
         }
+
 
         [Fact]
         public void ContinuationErrorTimeoutNotHitTest()
@@ -220,6 +222,7 @@ namespace NLog.UnitTests
             Assert.Equal(1, exceptions.Count);
             Assert.NotNull(exceptions[0]);
         }
+#endif
 
         [Fact]
         public void RepeatTest1()
@@ -443,7 +446,9 @@ namespace NLog.UnitTests
             using (new InternalLoggerScope())
             {
                 InternalLogger.LogLevel = LogLevel.Trace;
+#if !UWP10
                 InternalLogger.LogToConsole = true;
+#endif
 
                 var finalContinuationInvoked = new ManualResetEvent(false);
                 Exception lastException = null;
@@ -460,7 +465,9 @@ namespace NLog.UnitTests
                 AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
                     (i, cont) =>
                         {
+#if !UWP10
                             Console.WriteLine("Callback on {0}", Thread.CurrentThread.ManagedThreadId);
+#endif
                             lock (input)
                             {
                                 sum += i;

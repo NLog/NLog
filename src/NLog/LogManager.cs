@@ -43,7 +43,7 @@ namespace NLog
     using System.Threading;
     using System.Runtime.CompilerServices;
     using System.Linq;
-    using Internal.Fakeables;
+ 
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;

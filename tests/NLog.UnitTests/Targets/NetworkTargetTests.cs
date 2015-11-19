@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -916,3 +918,4 @@ namespace NLog.UnitTests.Targets
         }
     }
 }
+#endif

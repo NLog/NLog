@@ -122,7 +122,7 @@ namespace NLog.Internal
             return type.IsDefined(typeof(TAttr), inherit);
 #else
             var typeInfo = type.GetTypeInfo();
-            return typeInfo.IsDefined(typeof (TAttr), inherit);
+            return typeInfo.IsDefined(typeof(TAttr), inherit);
 #endif
         }
 
@@ -133,6 +133,65 @@ namespace NLog.Internal
 #else
             var typeInfo = type.GetTypeInfo();
             return typeInfo.IsEnum;
+#endif
+        }
+        public static bool IsGenericTypeDefinition(this Type type)
+        {
+#if !UWP10
+            return type.IsGenericTypeDefinition;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsGenericTypeDefinition;
+#endif
+        }
+
+        public static bool IsGenericType(this Type type)
+        {
+#if !UWP10
+            return type.IsGenericType;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsGenericType;
+#endif
+        }
+        public static Type BaseType(this Type type)
+        {
+#if !UWP10
+            return type.BaseType;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.BaseType;
+#endif
+        }
+
+        public static bool IsPublic(this Type type)
+        {
+#if !UWP10
+            return type.IsPublic;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsPublic;
+#endif
+        }
+
+
+        public static bool IsInterface(this Type type)
+        {
+#if !UWP10
+            return type.IsInterface;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsInterface;
+#endif
+        }
+
+        public static bool IsAbstract(this Type type)
+        {
+#if !UWP10
+            return type.IsAbstract;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsAbstract;
 #endif
         }
 
@@ -178,8 +237,8 @@ namespace NLog.Internal
 #elif !SILVERLIGHT && !UWP10
                 , CultureInfo.InvariantCulture
 #else
-    //TODO test
-           return methodInfo.Invoke(methodName, callParameters);
+            //TODO test
+            return methodInfo.Invoke(methodName, callParameters);
 #endif
         }
 
@@ -200,7 +259,7 @@ namespace NLog.Internal
 #if !UWP10
             return assembly.CodeBase;
 #else
-            
+
 
             throw new NotImplementedException();
 

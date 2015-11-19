@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 namespace NLog.UnitTests.Conditions
 {
     using System;
@@ -42,6 +44,7 @@ namespace NLog.UnitTests.Conditions
     using NLog.Conditions;
     using NLog.Config;
     using Xunit;
+    using System.Reflection;
 
     public class ConditionEvaluatorTests : NLogTestBase
     {

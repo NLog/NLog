@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
+
 namespace NLog.Targets
 {
     /// <summary>
@@ -70,3 +72,4 @@ namespace NLog.Targets
         }
     }
 }
+#endif

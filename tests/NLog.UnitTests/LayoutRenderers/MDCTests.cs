@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
@@ -63,3 +64,4 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
+#endif

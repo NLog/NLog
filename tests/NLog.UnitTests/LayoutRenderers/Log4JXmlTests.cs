@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Threading;
@@ -190,3 +192,4 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
+#endif

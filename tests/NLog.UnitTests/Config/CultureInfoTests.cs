@@ -39,7 +39,7 @@ namespace NLog.UnitTests.Config
     using Xunit;
 
     using NLog.Config;
-    
+
     public class CultureInfoTests : NLogTestBase
     {
         [Fact]
@@ -50,6 +50,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(CultureInfo.InvariantCulture, configuration.DefaultCultureInfo);
         }
 
+#if !UWP10
         [Fact]
         public void DifferentConfigurations_UseDifferentDefaultCulture()
         {
@@ -94,6 +95,7 @@ namespace NLog.UnitTests.Config
             }
         }
 
+
         private void AssertMessageFormattedWithCulture(LoggingConfiguration configuration, CultureInfo culture, string formatString, params object[] parameters)
         {
             var expected = string.Format(culture, formatString, parameters);
@@ -104,5 +106,6 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(expected, GetDebugLastMessage("debug", configuration));
             }
         }
+#endif
     }
 }

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
+#if !UWP10
 
 
 namespace NLog.UnitTests.LogReceiverService
@@ -356,3 +356,5 @@ namespace NLog.UnitTests.LogReceiverService
 #endif
     }
 }
+
+#endif

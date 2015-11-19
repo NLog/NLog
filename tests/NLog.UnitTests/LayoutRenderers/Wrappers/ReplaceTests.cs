@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
+
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
@@ -183,3 +185,5 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         }
     }
 }
+
+#endif

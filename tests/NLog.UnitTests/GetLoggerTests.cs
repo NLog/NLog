@@ -68,6 +68,7 @@ namespace NLog.UnitTests
             Assert.Equal("AAA", l3.Name);
         }
 
+#if !UWP10
         [Fact]
         public void TypedGetCurrentClassLoggerTest()
         {
@@ -91,6 +92,7 @@ namespace NLog.UnitTests
             Assert.Equal("NLog.UnitTests.GetLoggerTests", l3.Name);
         }
 
+#endif
         [Fact]
         public void GenericGetLoggerTest()
         {
