@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
 
 namespace NLog.Targets.Wrappers
 {

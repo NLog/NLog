@@ -15,8 +15,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -147,6 +146,7 @@
     <Compile Include="Internal\FactoryHelper.cs" />
     <Compile Include="Internal\Fakeables\AppDomainWrapper.cs" />
     <Compile Include="Internal\Fakeables\IAppDomain.cs" />
+    <Compile Include="Internal\Fakeables\UAPP10Helpers.cs" />
     <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />

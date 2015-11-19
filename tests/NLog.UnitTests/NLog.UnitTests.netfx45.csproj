@@ -231,6 +231,7 @@
     <Compile Include="Targets\Wrappers\SplitGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
     <Compile Include="TimeSourceTests.cs" />
+    <Compile Include="UnitTestApp.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigFiles\included.nlog" />
@@ -240,6 +241,7 @@
     <Content Include="ProjectFileInfo.xml" />
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\OutOfBrowserSettings.xml" />
+    <Content Include="Properties\UnitTestApp.rd.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
