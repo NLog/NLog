@@ -52,7 +52,7 @@ using System.Security;
 #elif DOCUMENTATION
     [assembly: AssemblyTitle("NLog Documentation")]
 #elif __IOS__
-	[assembly: AssemblyTitle("NLog for iOS")]
+	[assembly: AssemblyTitle("NLog for Xamarin iOS")]
 #elif WINDOWS_PHONE
 	[assembly: AssemblyTitle("NLog for Windows Phone 8")]
 #elif __ANDROID__
