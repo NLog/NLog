@@ -379,7 +379,8 @@ namespace NLog.Targets
         /// service configuration - binding and endpoint address
         /// </summary>
         /// <returns></returns>
-        protected IWcfLogReceiverClient CreateLogReceiver()
+        /// <remarks>virtual is used by endusers</remarks>
+        protected virtual IWcfLogReceiverClient CreateLogReceiver()
         {
 #pragma warning disable 612, 618
 
