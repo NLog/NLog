@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 #if !SILVERLIGHT
 
 namespace NLog.Targets
@@ -152,7 +154,7 @@ namespace NLog.Targets
         public IList<ConsoleWordHighlightingRule> WordHighlightingRules { get; private set; }
 
         /// <summary>
-        /// High perfomarce mode
+        /// High performance mode
         /// </summary> 
         /// <docgen category='Output Options' order='10' />
         [DefaultValue(false)]
@@ -192,20 +194,20 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            if (!FastModus)
+            var renderedLayout = this.Layout.Render(logEvent);
+            if (FastModus)
             {
-                this.Output(logEvent, this.Layout.Render(logEvent));
+                this.FastOutput(logEvent, renderedLayout);
             }
             else
             {
-                this.FastOutput(logEvent, this.Layout.Render(logEvent));
+                this.Output(logEvent, renderedLayout);
             }
 
         }
 
         private void FastOutput(LogEventInfo logEvent, string render)
         {
-
             ConsoleRowHighlightingRule matchingRule = FindConsoleRowHighlightingRule(logEvent);
             SetUpConsoleColors(matchingRule);
             (ErrorStream ? Console.Error : Console.Out).WriteLine(render);
@@ -322,8 +324,9 @@ namespace NLog.Targets
 
                 message = message.Replace("\a", "\a\a");
 
-                foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
+                for (int index = 0; index < this.WordHighlightingRules.Count; index++)
                 {
+                    ConsoleWordHighlightingRule hl = this.WordHighlightingRules[index];
                     message = hl.ReplaceWithEscapeSequences(message);
                 }
 
@@ -345,6 +348,10 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Set up the colors used in the console output
+        /// </summary>
+        /// <param name="matchingRule"></param>
         private static void SetUpConsoleColors(ConsoleRowHighlightingRule matchingRule)
         {
             if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
@@ -358,12 +365,17 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Fin the matching row highlight rule bases on LogEvent
+        /// </summary>
+        /// <param name="logEvent">Log event used to find the matching rule.</param>
+        /// <returns>Highlighting Rule</returns>
         private ConsoleRowHighlightingRule FindConsoleRowHighlightingRule(LogEventInfo logEvent)
         {
             ConsoleRowHighlightingRule matchingRule = null;
-
-            foreach (ConsoleRowHighlightingRule cr in this.RowHighlightingRules)
+            for (int index = 0; index < this.RowHighlightingRules.Count; index++)
             {
+                var cr = this.RowHighlightingRules[index];
                 if (cr.CheckCondition(logEvent))
                 {
                     matchingRule = cr;
@@ -373,8 +385,9 @@ namespace NLog.Targets
 
             if (this.UseDefaultRowHighlightingRules && matchingRule == null)
             {
-                foreach (ConsoleRowHighlightingRule cr in defaultConsoleRowHighlightingRules)
+                for (int index = 0; index < defaultConsoleRowHighlightingRules.Count; index++)
                 {
+                    ConsoleRowHighlightingRule cr = defaultConsoleRowHighlightingRules[index];
                     if (cr.CheckCondition(logEvent))
                     {
                         matchingRule = cr;
@@ -383,11 +396,7 @@ namespace NLog.Targets
                 }
             }
 
-            if (matchingRule == null)
-            {
-                matchingRule = ConsoleRowHighlightingRule.Default;
-            }
-            return matchingRule;
+            return matchingRule ?? ConsoleRowHighlightingRule.Default;
         }
 
         /// <summary>
