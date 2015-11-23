@@ -33,6 +33,7 @@
 
 namespace NLog.Internal
 {
+    using Common;
     using System;
     using System.Threading;
 
@@ -42,11 +43,12 @@ namespace NLog.Internal
     internal static class ExceptionHelper
     {
         /// <summary>
-        /// Determines whether the exception must be rethrown.
+        /// Determines whether the exception is so serious, that it should always
+        /// be thrown and rather not be logged.
         /// </summary>
-        /// <param name="exception">The exception.</param>
-        /// <returns>True if the exception must be rethrown, false otherwise.</returns>
-        public static bool MustBeRethrown(this Exception exception)
+        /// <param name="exception">The exception to check.</param>
+        /// <returns><c>true</c>, if the exception is considered serious.</returns>
+        public static bool IsServereException(this Exception exception)
         {
             if (exception is StackOverflowException)
             {
@@ -63,17 +65,137 @@ namespace NLog.Internal
                 return true;
             }
 
-            if (exception is NLogConfigurationException)
-            {
-                return true;
-            }
-
-            if (exception.GetType().IsSubclassOf(typeof(NLogConfigurationException)))
-            {
-                return true;
-            }
-
             return false;
+        }
+
+        /// <summary>
+        /// Determines whether the exception must be rethrown
+        /// and logs an non severe exception message to the internal logger.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <returns>
+        /// True if the exception must be rethrown, false otherwise.
+        /// </returns>
+        public static bool MustBeRethrown(this Exception exception)
+        {
+            return MustBeRethrown(exception, null, null, null);
+        }
+
+        /// <summary>
+        /// Determines whether the exception must be rethrown
+        /// and optionally logs a message into internal logger
+        /// for an non severe exception.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <param name="logException">Determines, if a message should be written to the internal logger.</param>
+        /// <returns>
+        /// True if the exception must be rethrown, false otherwise.
+        /// </returns>
+        public static bool MustBeRethrown(this Exception exception, bool logException)
+        {
+            return MustBeRethrown(exception, logException ? null : LogLevel.Off, null, null);
+        }
+
+        /// <summary>
+        /// Determines whether the exception must be rethrown
+        /// and optionally logs a message into internal logger
+        /// for an non severe exception.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <param name="logMessage">
+        /// An optional log message, if <c>logMessage</c> is set to a certain level.
+        /// </param>
+        /// <returns>
+        /// True if the exception must be rethrown, false otherwise.
+        /// </returns>
+        public static bool MustBeRethrown(this Exception exception, string logMessage)
+        {
+            return MustBeRethrown(exception, null, logMessage, null);
+        }
+
+        /// <summary>
+        /// Determines whether the exception must be rethrown
+        /// and optionally logs a message into internal logger
+        /// for an non severe exception.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <param name="logMessage">An optional log message, if <c>logMessage</c> is set to a certain level.</param>
+        /// <param name="args">Arguments for the format string in <c>logMessage</c>.</param>
+        /// <returns>
+        /// True if the exception must be rethrown, false otherwise.
+        /// </returns>
+        public static bool MustBeRethrown(this Exception exception, string logMessage, params object[] args)
+        {
+            return MustBeRethrown(exception, null, logMessage, args);
+        }
+
+        /// <summary>
+        /// Determines whether the exception must be rethrown
+        /// and optionally logs a message into internal logger
+        /// for an non severe exception.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <param name="level">Specifies the level to log at (or <see cref="NLog.LogLevel.Off"/> to disable)
+        /// If <c>NULL</c>, it's automatically chosen between error (if exception rethrown)
+        /// and warning (if not rethrown).
+        /// </param>
+        /// <param name="logMessage">An optional log message, if <c>logMessage</c> is set to a certain level.</param>
+        /// <param name="args">Arguments for the format string in <c>logMessage</c>.</param>
+        /// <returns>
+        /// True if the exception must be rethrown, false otherwise.
+        /// </returns>
+        public static bool MustBeRethrown(this Exception exception, LogLevel level, string logMessage, params object[] args)
+        {
+            return MustBeRethrown(exception, false, level, logMessage, args);
+        }
+        /// <summary>
+        /// Determines whether the exception must be rethrown
+        /// and optionally logs a message into internal logger
+        /// for an non severe exception.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <param name="ignoreNonSevere">Determines, if non severe exceptions shall never be rethrown.</param>
+        /// <param name="level">Specifies the level to log at (or <see cref="NLog.LogLevel.Off" /> to disable)
+        /// If <c>NULL</c>, it's automatically chosen between error (if exception rethrown)
+        /// and warning (if not rethrown).</param>
+        /// <param name="logMessage">An optional log message, if <c>logMessage</c> is set to a certain level.</param>
+        /// <param name="args">Arguments for the format string in <c>logMessage</c>.</param>
+        /// <returns>
+        /// True if the exception must be rethrown, false otherwise.
+        /// </returns>
+        public static bool MustBeRethrown(this Exception exception, bool ignoreNonSevere, LogLevel level, string logMessage, params object[] args)
+        {
+            if(IsServereException(exception))
+            {
+                return true;
+            }
+
+            // only log after 'serious' exceptions
+
+            var shallRethrow = (exception is NLogConfigurationException)
+                    || (exception.GetType().IsSubclassOf(typeof(NLogConfigurationException)))
+                    || LogManager.ThrowExceptions && !ignoreNonSevere;
+
+            if (level == null)
+            {
+                level = shallRethrow ? LogLevel.Error : LogLevel.Warn;
+            }
+
+            if (level != LogLevel.Off)
+            {
+                var exceptionText = exception.ToString();
+                if (string.IsNullOrEmpty(logMessage))
+                {
+                    InternalLogger.Log(level, exceptionText);
+                }
+                else
+                {
+                    InternalLogger.Log(level, 
+                        string.Format("{0} {1}", logMessage, exceptionText), 
+                        args);
+                }
+            }
+            return shallRethrow;
         }
     }
 }

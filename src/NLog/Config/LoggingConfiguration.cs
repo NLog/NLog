@@ -249,7 +249,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown("'{0}' installation failed: ", installable))
                     {
                         throw;
                     }
@@ -286,7 +286,7 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown("Uninstallation of '{0}' failed:", installable))
                     {
                         throw;
                     }
@@ -311,12 +311,10 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown("Exception while closing '{0}'.", initialize))
                     {
                         throw;
                     }
-
-                    InternalLogger.Warn("Exception while closing {0}", exception);
                 }
             }
 
@@ -417,14 +415,9 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown("Error during initialization of '{0}':", initialize))
                     {
                         throw;
-                    }
-
-                    if (LogManager.ThrowExceptions)
-                    {
-                        throw new NLogConfigurationException("Error during initialization of " + initialize, exception);
                     }
                 }
             }

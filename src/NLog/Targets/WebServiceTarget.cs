@@ -200,7 +200,6 @@ namespace NLog.Targets
                             }
                             catch (Exception ex2)
                             {
-                                InternalLogger.Error(ex2.ToString());
                                 if (ex2.MustBeRethrown())
                                 {
                                     throw;
@@ -232,7 +231,6 @@ namespace NLog.Targets
                         catch (Exception ex)
                         {
                             postPayload.Dispose();
-                            InternalLogger.Error(ex.ToString());
                             if (ex.MustBeRethrown())
                             {
                                 throw;

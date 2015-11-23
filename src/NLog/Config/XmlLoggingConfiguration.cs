@@ -31,34 +31,32 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-
 namespace NLog.Config
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Linq;
-    using System.IO;
-    using System.Reflection;
-    using System.Xml;
     using NLog.Common;
     using NLog.Filters;
     using NLog.Internal;
+    using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
-    using NLog.LayoutRenderers;
     using NLog.Time;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
+    using System.Xml;
+
 #if SILVERLIGHT
 // ReSharper disable once RedundantUsingDirective
     using System.Windows;
 #endif
 
     /// <summary>
-    /// A class for configuring NLog through an XML configuration file 
+    /// A class for configuring NLog through an XML configuration file
     /// (App.config style or App.nlog style).
     /// </summary>
     public class XmlLoggingConfiguration : LoggingConfiguration
@@ -68,13 +66,13 @@ namespace NLog.Config
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
-        
+
         private ConfigurationItemFactory ConfigurationItemFactory
         {
             get { return ConfigurationItemFactory.Default; }
         }
 
-        #endregion
+        #endregion private fields
 
         #region contructors
 
@@ -125,6 +123,7 @@ namespace NLog.Config
         }
 
 #if !SILVERLIGHT
+
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
@@ -155,14 +154,17 @@ namespace NLog.Config
                 this.Initialize(reader, fileName, ignoreErrors);
             }
         }
+
 #endif
-        #endregion
+
+        #endregion contructors
 
         #region public properties
 
 #if !SILVERLIGHT
+
         /// <summary>
-        /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
+        /// Gets the default <see cref="LoggingConfiguration" /> object by parsing
         /// the application configuration file (<c>app.exe.config</c>).
         /// </summary>
         public static LoggingConfiguration AppConfig
@@ -173,13 +175,13 @@ namespace NLog.Config
                 return o as LoggingConfiguration;
             }
         }
+
 #endif
 
         /// <summary>
         /// Did the <see cref="Initialize"/> Succeeded? <c>true</c>= success, <c>false</c>= error, <c>null</c> = initialize not started yet.
         /// </summary>
         public bool? InitializeSucceeded { get; private set; }
-
 
         /// <summary>
         /// Gets or sets a value indicating whether the configuration files
@@ -205,7 +207,7 @@ namespace NLog.Config
             }
         }
 
-        #endregion
+        #endregion public properties
 
         #region public methods
 
@@ -218,7 +220,7 @@ namespace NLog.Config
             return new XmlLoggingConfiguration(this.originalFileName);
         }
 
-        #endregion
+        #endregion public methods
 
         private static bool IsTargetElement(string name)
         {
@@ -236,7 +238,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Remove all spaces, also in between text. 
+        /// Remove all spaces, also in between text.
         /// </summary>
         /// <param name="s">text</param>
         /// <returns>text without spaces</returns>
@@ -319,28 +321,18 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 InitializeSucceeded = false;
-                if (exception.MustBeRethrown())
+                var message = string.Format("Exception occurred when loading configuration from '{0}': {1}", fileName, exception);
+                if (exception.MustBeRethrown(true, LogLevel.Error, message))
                 {
                     throw;
                 }
 
-                NLogConfigurationException ConfigException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
+                // we already logged the exception, so merely rethrow if necessary, without logging
+                if (exception.MustBeRethrown(ignoreErrors, LogLevel.Off, null))
+                {
+                    throw new NLogConfigurationException(message);
+                }
 
-                if (!ignoreErrors)
-                {
-                    if (LogManager.ThrowExceptions)
-                    {
-                        throw ConfigException;
-                    }
-                    else
-                    {
-                        InternalLogger.Error("Error in Parsing Configuration File. Exception : {0}", ConfigException);
-                    }
-                }
-                else
-                {
-                    InternalLogger.Error("Error in Parsing Configuration File. Exception : {0}", ConfigException);
-                }
             }
         }
 
@@ -815,15 +807,9 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
+                        if (exception.MustBeRethrown(LogLevel.Error, "Error loading extensions from '{0}': {1}", assemblyFile, exception))
                         {
                             throw;
-                        }
-
-                        InternalLogger.Error("Error loading extensions: {0}", exception);
-                        if (LogManager.ThrowExceptions)
-                        {
-                            throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
                         }
                     }
 
@@ -848,15 +834,9 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
+                        if (exception.MustBeRethrown("Error loading extensions for assembly '{0}':", assemblyName))
                         {
                             throw;
-                        }
-
-                        InternalLogger.Error("Error loading extensions: {0}", exception);
-                        if (LogManager.ThrowExceptions)
-                        {
-                            throw new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
                         }
                     }
 
@@ -870,6 +850,7 @@ namespace NLog.Config
             includeElement.AssertName("include");
 
             string newFileName = includeElement.GetRequiredAttribute("file");
+            bool ignoreErrors = includeElement.GetOptionalBooleanAttribute("ignoreErrors", false);
 
             try
             {
@@ -897,19 +878,15 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown(true, LogLevel.Error, "Error when including '{0}' {1}", newFileName, exception))
                 {
                     throw;
                 }
 
-                InternalLogger.Error("Error when including '{0}' {1}", newFileName, exception);
-
-                if (includeElement.GetOptionalBooleanAttribute("ignoreErrors", false))
+                if (!ignoreErrors)
                 {
-                    return;
+                    throw new NLogConfigurationException("Error when including: " + newFileName, exception);
                 }
-
-                throw new NLogConfigurationException("Error when including: " + newFileName, exception);
             }
         }
 
@@ -927,7 +904,7 @@ namespace NLog.Config
             TimeSource.Current = newTimeSource;
         }
 
-        #endregion
+        #endregion parse methods
 
         private void SetPropertyFromElement(object o, NLogXmlElement element)
         {
@@ -1052,7 +1029,7 @@ namespace NLog.Config
 
         /// <summary>
         /// Replace a simple variable with a value. The orginal value is removed and thus we cannot redo this in a later stage.
-        /// 
+        ///
         /// Use for that: <see cref="VariableLayoutRenderer"/>
         /// </summary>
         /// <param name="input"></param>

@@ -362,12 +362,10 @@ namespace NLog
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown("Error setting up termination events."))
                 {
                     throw;
                 }
-
-                InternalLogger.Warn("Error setting up termination events: {0}", exception);
             }            
         }
 #endif
