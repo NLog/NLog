@@ -31,8 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
 {
@@ -50,9 +49,9 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
-	using ConfigurationManager = System.Configuration.ConfigurationManager;
+    using ConfigurationManager = System.Configuration.ConfigurationManager;
 
-	/// <summary>
+    /// <summary>
     /// Writes log messages to the database using an ADO.NET provider.
     /// </summary>
     /// <seealso href="https://github.com/nlog/nlog/wiki/Database-target">Documentation on NLog Wiki</seealso>
@@ -227,7 +226,7 @@ namespace NLog.Targets
         [RequiredParameter]
         public Layout CommandText { get; set; }
 
-	/// <summary>
+        /// <summary>
         /// Gets or sets the type of the SQL command to be run on each log level.
         /// </summary>
         /// <remarks>
@@ -238,7 +237,7 @@ namespace NLog.Targets
         /// <docgen category='SQL Statement' order='11' />
         [DefaultValue(CommandType.Text)]
         public CommandType CommandType { get; set; }
-        
+
         /// <summary>
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a database named or positional parameter.
@@ -250,7 +249,7 @@ namespace NLog.Targets
         internal DbProviderFactory ProviderFactory { get; set; }
 
         // this is so we can mock the connection string without creating sub-processes
-        internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set;  }
+        internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set; }
 
         internal Type ConnectionType { get; set; }
 
@@ -635,7 +634,7 @@ namespace NLog.Targets
                     }
                 }
             }
-            finally 
+            finally
             {
                 this.CloseConnection();
             }

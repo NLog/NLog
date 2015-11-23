@@ -68,7 +68,7 @@ namespace NLog.Config
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
-        
+
         private ConfigurationItemFactory ConfigurationItemFactory
         {
             get { return ConfigurationItemFactory.Default; }
@@ -130,7 +130,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
-        internal XmlLoggingConfiguration(XmlElement element, string fileName)
+		internal XmlLoggingConfiguration(XmlElement element, string fileName)
         {
             using (var stringReader = new StringReader(element.OuterXml))
             {
@@ -160,7 +160,7 @@ namespace NLog.Config
 
         #region public properties
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -800,7 +800,7 @@ namespace NLog.Config
                 {
                     try
                     {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                                 var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
                                 var assemblyPart = new AssemblyPart();
                                 Assembly asm = assemblyPart.Load(si.Stream);
@@ -836,7 +836,7 @@ namespace NLog.Config
                     try
                     {
                         InternalLogger.Info("Loading assembly name: {0}", assemblyName);
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                         var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
                         var assemblyPart = new AssemblyPart();
                         Assembly asm = assemblyPart.Load(si.Stream);
