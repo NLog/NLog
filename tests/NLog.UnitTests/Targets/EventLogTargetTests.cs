@@ -47,6 +47,8 @@ namespace NLog.UnitTests.Targets
 
     public class EventLogTargetTests : NLogTestBase
     {
+        private const int MaxMessageSize = 16384;
+
         [Fact]
         public void WriteEventLogEntryTrace()
         {
@@ -105,18 +107,95 @@ namespace NLog.UnitTests.Targets
         {
             WriteEventLogEntry2(LogLevel.Debug, EventLogEntryType.Error, new SimpleLayout("error"));
         }
+
+        [Fact]
+        public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowTruncate_TruncatesTheMessage()
+        {
+            string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize + 1));
+            string loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Truncate, message).Single();
+
+            Assert.Equal(MaxMessageSize, loggedMessage.Length);
+        }
+
+        [Fact]
+        public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowTruncate_TheMessageIsNotTruncated()
+        {
+            string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
+            string loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Truncate, message).Single();
+
+            Assert.Equal(MaxMessageSize, loggedMessage.Length);
+        }
+        
+        [Fact]
+        public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowSplitEntries_TheMessageIsSplit()
+        {
+            string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize + 1));
+            var chunks = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Split, message).ToList();
+
+            Assert.Equal(2, chunks.Count);
+            Assert.Equal(MaxMessageSize, chunks[0].Length);
+            Assert.Equal(1, chunks[1].Length);
+        }
+
+        [Fact]
+        public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowSplitEntries_TheMessageIsNotSplit()
+        {
+            string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
+            var loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Split, message).Single();
+
+            Assert.Equal(MaxMessageSize, loggedMessage.Length);
+        }
+
+        [Fact]
+        public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowDiscard_TheMessageIsWritten()
+        {
+            string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
+            string loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Discard, message).Single();
+
+            Assert.Equal(MaxMessageSize, loggedMessage.Length);
+        }
+
+        [Fact]
+        public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowDiscard_TheMessageIsNotWritten()
+        {
+            string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize + 1));
+            bool wasWritten = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Discard, message).Any();
+
+            Assert.False(wasWritten);
+        }
+
+        private static IEnumerable<string> WriteEventLogEntryForOverflow(EventLogTargetOverflowAction overflowAction, string message)
+        {
+            string sourceName = Guid.NewGuid().ToString();
+            var target = CreateEventLogTarget(null, sourceName);
+            target.OnOverflow = overflowAction;
+            target.Layout = new SimpleLayout("${message}");
+            LoggingConfiguration config = new LoggingConfiguration();
+            LoggingRule rule = new LoggingRule("*", LogLevel.Info, target);
+            config.LoggingRules.Add(rule);
+            LogManager.Configuration = config;
+
+            var logger = LogManager.GetLogger("WriteEventLogEntryOverflow");
+            var el = new EventLog(target.Log);
+
+            var loggedNotBefore = DateTime.Now.AddMinutes(-1);
+            logger.Log(LogLevel.Info, message);
+
+            var entries = GetEventRecords(el.Log).TakeWhile(e => e.TimeCreated > loggedNotBefore && e.ProviderName == sourceName).ToList();
+
+            var chunks = from entry in entries
+                         from prop in entry.Properties
+                         let msg = Convert.ToString(prop.Value)
+                         where msg.StartsWith("a")
+                         orderby msg descending
+                         select msg;
+
+            return chunks;
+        }
+
         private static void WriteEventLogEntry2(LogLevel logLevel, EventLogEntryType eventLogEntryType, Layout entryType = null)
         {
-            var target = new EventLogTarget();
-            //The Log to write to is intentionally lower case!!
-            target.Log = "application";
-            // set the source explicitly to prevent random AppDomain name being used as the source name
-            target.Source = "NLog.UnitTests";
-            if (entryType != null)
-            {
-                //set only when not default
-                target.EntryType = entryType;
-            }
+            var target = CreateEventLogTarget(entryType);
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             var el = new EventLog(target.Log);
@@ -130,6 +209,21 @@ namespace NLog.UnitTests.Targets
             //debug-> error
             var expectedSource = target.GetFixedSource();
             EntryExists(entries, testValue, expectedSource, eventLogEntryType);
+        }
+
+        private static EventLogTarget CreateEventLogTarget(Layout entryType = null, string sourceName = "NLog.UnitTests")
+        {
+            var target = new EventLogTarget();
+            //The Log to write to is intentionally lower case!!
+            target.Log = "application";
+            // set the source explicitly to prevent random AppDomain name being used as the source name
+            target.Source = sourceName;
+            if (entryType != null)
+            {
+                //set only when not default
+                target.EntryType = entryType;
+            }
+            return target;
         }
 
         private static void EntryExists(IEnumerable<EventRecord> entries, string expectedValue, string expectedSource, EventLogEntryType expectedEntryType)
