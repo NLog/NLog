@@ -5,7 +5,7 @@ Welcome to NLog!
 ===
 [![Join the chat at https://gitter.im/NLog/NLog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLog/NLog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Twitter](https://img.shields.io/badge/Twitter-NLogOfficial-blue.svg)](https://twitter.com/nlogofficial)
-[![Last News](https://img.shields.io/badge/News-24_okt_2015-orange.svg)](http://nlog-project.org/archives/)
+[![Last News](https://img.shields.io/badge/News-21_nov_2015-orange.svg)](http://nlog-project.org/archives/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg)](https://www.nuget.org/packages/NLog)
 [![codecov.io](https://codecov.io/github/NLog/NLog/coverage.svg?branch=master)](https://codecov.io/github/NLog/NLog?branch=master) 
 
