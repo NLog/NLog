@@ -9,8 +9,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ApplicationIcon></ApplicationIcon>
-    <AssemblyKeyContainerName></AssemblyKeyContainerName>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
     <AssemblyName>NLog.UnitTests</AssemblyName>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -132,10 +134,12 @@
     <Compile Include="Config\TimeConfigurationTests.cs" />
     <Compile Include="Config\VariableTests.cs" />
     <Compile Include="ConfigFileLocatorTests.cs" />
+    <Compile Include="Contexts\GlobalContextTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsLogicalContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
+    <Compile Include="Contexts\ThreadContextTests.cs" />
     <Compile Include="Filters\APITests.cs" />
     <Compile Include="Filters\ConditionBasedFilterTests.cs" />
     <Compile Include="Filters\WhenContainsTests.cs" />
