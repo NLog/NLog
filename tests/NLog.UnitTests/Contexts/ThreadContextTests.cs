@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,24 +31,24 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Text;
-
 #pragma warning disable 0618
 
 namespace NLog.UnitTests.Contexts
 {
+    using NLog.Contexts;
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using System.Threading;
     using Xunit;
 
-    public class MappedDiagnosticsContextTests
+    public class ThreadContextTests
     {
         /// <summary>
         /// Same as <see cref="MappedDiagnosticsContext" />, but there is one <see cref="MappedDiagnosticsContext"/> per each thread.
         /// </summary>
         [Fact]
-        public void MDCTest1()
+        public void ThreadContextTest1()
         {
             List<Exception> exceptions = new List<Exception>();
             ManualResetEvent mre = new ManualResetEvent(false);
@@ -59,46 +59,43 @@ namespace NLog.UnitTests.Contexts
             {
                 ThreadPool.QueueUserWorkItem(
                     s =>
+                    {
+                        try
                         {
-                            try
+                            MappedDiagnosticsContext.Clear();
+                            Assert.False(MappedDiagnosticsContext.Contains("foo"));
+                            Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo"));
+                            Assert.False(MappedDiagnosticsContext.Contains("foo2"));
+                            Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo2"));
+
+                            MappedDiagnosticsContext.Set("foo", "bar");
+                            MappedDiagnosticsContext.Set("foo2", "bar2");
+
+                            Assert.True(MappedDiagnosticsContext.Contains("foo"));
+                            Assert.Equal("bar", MappedDiagnosticsContext.Get("foo"));
+
+                            MappedDiagnosticsContext.Remove("foo");
+                            Assert.False(MappedDiagnosticsContext.Contains("foo"));
+                            Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo"));
+
+                            Assert.True(MappedDiagnosticsContext.Contains("foo2"));
+                            Assert.Equal("bar2", MappedDiagnosticsContext.Get("foo2"));
+                        }
+                        catch (Exception exception)
+                        {
+                            lock (exceptions)
                             {
-                                MappedDiagnosticsContext.Clear();
-                                Assert.False(MappedDiagnosticsContext.Contains("foo"));
-                                Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo"));
-                                Assert.False(MappedDiagnosticsContext.Contains("foo2"));
-                                Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo2"));
-
-                                MappedDiagnosticsContext.Set("foo", "bar");
-                                MappedDiagnosticsContext.Set("foo2", "bar2");                               
-
-                                Assert.True(MappedDiagnosticsContext.Contains("foo"));
-                                Assert.Equal("bar", MappedDiagnosticsContext.Get("foo"));
-
-                                MappedDiagnosticsContext.Remove("foo");
-                                Assert.False(MappedDiagnosticsContext.Contains("foo"));
-                                Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo"));
-
-                                Assert.True(MappedDiagnosticsContext.Contains("foo2"));
-                                Assert.Equal("bar2", MappedDiagnosticsContext.Get("foo2"));
-
-                                Assert.Null(MappedDiagnosticsContext.GetObject("foo3"));
-                                MappedDiagnosticsContext.Set("foo3", new { One = 1 });
+                                exceptions.Add(exception);
                             }
-                            catch (Exception exception)
+                        }
+                        finally
+                        {
+                            if (Interlocked.Decrement(ref remaining) == 0)
                             {
-                                lock (exceptions)
-                                {
-                                    exceptions.Add(exception);
-                                }
+                                mre.Set();
                             }
-                            finally
-                            {
-                                if (Interlocked.Decrement(ref remaining) == 0)
-                                {
-                                    mre.Set();
-                                }
-                            }
-                        });
+                        }
+                    });
             }
 
             mre.WaitOne();
@@ -117,7 +114,7 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
-        public void MDCTest2()
+        public void ThreadContextTest2()
         {
             List<Exception> exceptions = new List<Exception>();
             ManualResetEvent mre = new ManualResetEvent(false);
@@ -149,8 +146,86 @@ namespace NLog.UnitTests.Contexts
 
                             Assert.True(MDC.Contains("foo2"));
                             Assert.Equal("bar2", MDC.Get("foo2"));
+                        }
+                        catch (Exception ex)
+                        {
+                            lock (exceptions)
+                            {
+                                exceptions.Add(ex);
+                            }
+                        }
+                        finally
+                        {
+                            if (Interlocked.Decrement(ref remaining) == 0)
+                            {
+                                mre.Set();
+                            }
+                        }
+                    });
+            }
 
-                            Assert.Null(MDC.GetObject("foo3"));
+            mre.WaitOne();
+            StringBuilder exceptionsMessage = new StringBuilder();
+            foreach (var ex in exceptions)
+            {
+                if (exceptionsMessage.Length > 0)
+                {
+                    exceptionsMessage.Append("\r\n");
+                }
+
+                exceptionsMessage.Append(ex.ToString());
+            }
+
+            Assert.True(exceptions.Count == 0, exceptionsMessage.ToString());
+        }
+
+        [Fact]
+        public void ThreadContextTest3()
+        {
+            List<Exception> exceptions = new List<Exception>();
+            ManualResetEvent mre = new ManualResetEvent(false);
+            int counter = 100;
+            int remaining = counter;
+
+            for (int i = 0; i < counter; ++i)
+            {
+                ThreadPool.QueueUserWorkItem(
+                    s =>
+                    {
+                        try
+                        {
+                            ThreadContext.Instance.Clear();
+                            Assert.False(ThreadContext.Instance.Contains("foo"));
+                            Assert.Null(ThreadContext.Instance["foo"]);
+                            Assert.False(ThreadContext.Instance.Contains("foo2"));
+                            Assert.Null(ThreadContext.Instance["foo2"]);
+
+                            ThreadContext.Instance.Set("foo", "bar");
+                            ThreadContext.Instance.Set("foo2", "bar2");
+
+                            Assert.True(ThreadContext.Instance.Contains("foo"));
+                            Assert.Equal("bar", ThreadContext.Instance["foo"]);
+
+                            ThreadContext.Instance.Remove("foo");
+                            Assert.False(ThreadContext.Instance.Contains("foo"));
+                            Assert.Null(ThreadContext.Instance["foo"]);
+
+                            Assert.True(ThreadContext.Instance.Contains("foo2"));
+                            Assert.Equal("bar2", ThreadContext.Instance["foo2"]);
+
+                            ThreadContext.Instance.Clear();
+                            ThreadContext.Instance.Set("foo1", "Test1");
+                            ThreadContext.Instance.Set("foo2", "Test2");
+                            ThreadContext.Instance.Set("foo3", "Test3");
+
+                            var count = 0;
+                            foreach (var item in ThreadContext.Instance)
+                                count++;
+
+                            Assert.Equal(3, count);
+
+                            ThreadContext.Instance.Clear();
+                            Assert.Equal(0, ThreadContext.Instance.Count);
                         }
                         catch (Exception ex)
                         {
