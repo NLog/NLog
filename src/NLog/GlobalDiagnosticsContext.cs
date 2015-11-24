@@ -33,27 +33,25 @@
 
 namespace NLog
 {
+    using NLog.Contexts;
+    using NLog.Internal;
     using System;
     using System.Collections.Generic;
 
     /// <summary>
     /// Global Diagnostics Context - a dictionary structure to hold per-application-instance values.
     /// </summary>
+    [Obsolete("Use NLog.Contexts.GlobalContext Instead.")]
     public static class GlobalDiagnosticsContext
     {
-        private static Dictionary<string, object> dict = new Dictionary<string, object>();
-
         /// <summary>
         /// Sets the Global Diagnostics Context item to the specified value.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <param name="value">Item value.</param>
+        /// <param name="value">Item value.</param>        
         public static void Set(string item, string value)
         {
-            lock (dict)
-            {
-                dict[item] = value;
-            }
+            GlobalContext.Instance[item] = value;
         }
 
         /// <summary>
@@ -63,10 +61,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, object value)
         {
-            lock (dict)
-            {
-                dict[item] = value;
-            }
+            GlobalContext.Instance[item] = value;
         }
 
         /// <summary>
@@ -85,9 +80,9 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
         /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
-        public static string Get(string item, IFormatProvider formatProvider) 
+        public static string Get(string item, IFormatProvider formatProvider)
         {
-            return ConvertToString(GetObject(item), formatProvider);
+            return FormatHelper.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>
@@ -97,14 +92,7 @@ namespace NLog
         /// <returns>The item value, if defined; otherwise <c>null</c>.</returns>
         public static object GetObject(string item)
         {
-            lock (dict)
-            {
-                object o;
-                if (!dict.TryGetValue(item, out o))
-                    o = null;
-
-                return o;
-            }
+            return GlobalContext.Instance[item];
         }
 
         /// <summary>
@@ -114,10 +102,7 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified item exists in current thread GDC.</returns>
         public static bool Contains(string item)
         {
-            lock (dict)
-            {
-                return dict.ContainsKey(item);
-            }
+            return GlobalContext.Instance.Contains(item);
         }
 
         /// <summary>
@@ -126,10 +111,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            lock (dict)
-            {
-                dict.Remove(item);
-            }
+            GlobalContext.Instance.Remove(item);
         }
 
         /// <summary>
@@ -137,19 +119,7 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            lock (dict)
-            {
-                dict.Clear();
-            }
-        }
-
-        internal static string ConvertToString(object o, IFormatProvider formatProvider)
-        {
-            // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
-            if ((formatProvider == null) && (LogManager.Configuration != null))
-                formatProvider = LogManager.Configuration.DefaultCultureInfo;
-
-            return String.Format(formatProvider, "{0}", o);
+            GlobalContext.Instance.Clear();
         }
     }
 }

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -30,60 +30,58 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-
-#region
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-#endregion
-
-namespace NLog.Internal
+namespace NLog.Contexts
 {
-    internal static class FormatHelper
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// A structure to hold define the context.
+    /// </summary>
+    public interface IContext : IEnumerable<KeyValuePair<string, object>>
     {
         /// <summary>
-        /// toString(format) if the object is a <see cref="IFormattable"/>
+        /// Returns the keys in the context.
         /// </summary>
-        /// <param name="value">value to be converted</param>
-        /// <param name="format">format value</param>
-        /// <param name="formatProvider">provider, for example culture</param>
-        /// <returns></returns>
-        public static string ToStringWithOptionalFormat(this object value, string format, IFormatProvider formatProvider)
-        {
-            if (value == null)
-            {
-                return string.Empty;
-            }
-
-            if (format == null)
-            {
-                return Convert.ToString(value, formatProvider);
-            }
-
-            var formattable = value as IFormattable;
-            if (formattable != null)
-            {
-                return formattable.ToString(format, formatProvider);
-            }
-
-            return Convert.ToString(value, formatProvider);
-        }
+        HashSet<string> Keys { get; }
 
         /// <summary>
-        /// Convert to string with a formatter.
+        /// Set / Get the key in the context.
         /// </summary>
-        /// <param name="o"></param>
-        /// <param name="formatProvider"></param>
+        /// <param name="key"></param>
         /// <returns></returns>
-        internal static string ConvertToString(object o, IFormatProvider formatProvider)
-        {
-            // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
-            if ((formatProvider == null) && (LogManager.Configuration != null))
-                formatProvider = LogManager.Configuration.DefaultCultureInfo;
+        object this[string key] { get; set; }
 
-            return String.Format(formatProvider, "{0}", o);
-        }
+        /// <summary>
+        /// Clears the content.
+        /// </summary>
+        void Clear();
+
+        /// <summary>
+        /// Checks whether the specified key exists in the Context.
+        /// </summary>
+        /// <param name="key">key name.</param>
+        /// <returns>A boolean indicating whether the specified key exists in current context.</returns>
+        bool Contains(string key);
+
+        /// <summary>
+        /// Removes the specified key from the Context.
+        /// </summary>
+        /// <param name="key">key name.</param>
+        void Remove(string key);
+
+        /// <summary>
+        /// Gets the Context item.
+        /// </summary>
+        /// <param name="key">Item name.</param>
+        /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
+        /// <returns>The value of <paramref name="key"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        string GetFormatted(string key, IFormatProvider formatProvider);
+
+        /// <summary>
+        /// Gets the number of items in the collection.
+        /// </summary>
+        int Count { get; }
     }
 }

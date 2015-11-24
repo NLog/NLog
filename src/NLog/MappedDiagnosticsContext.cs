@@ -37,21 +37,15 @@ namespace NLog
     using System.Collections.Generic;
 
     using NLog.Internal;
-
+    using NLog.Contexts;
+    
     /// <summary>
     /// Mapped Diagnostics Context - a thread-local structure that keeps a dictionary
-    /// of strings and provides methods to output them in layouts. 
-    /// Mostly for compatibility with log4net.
+    /// of strings and provides methods to output them in layouts.
     /// </summary>
+    [Obsolete("Use NLog.Contexts.ThreadContext Instead.")]
     public static class MappedDiagnosticsContext
     {
-        private static readonly object dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
-
-        internal static IDictionary<string, object> ThreadDictionary
-        {
-            get { return ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(dataSlot); }
-        }
-
         /// <summary>
         /// Sets the current thread MDC item to the specified value.
         /// </summary>
@@ -59,7 +53,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            ThreadDictionary[item] = value;
+            ThreadContext.Instance[item] = value;
         }
 
         /// <summary>
@@ -69,7 +63,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, object value)
         {
-            ThreadDictionary[item] = value;
+            ThreadContext.Instance[item] = value;
         }
 
         /// <summary>
@@ -90,7 +84,7 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         public static string Get(string item, IFormatProvider formatProvider)
         {
-            return GlobalDiagnosticsContext.ConvertToString(GetObject(item), formatProvider);
+            return FormatHelper.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>
@@ -100,12 +94,7 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
         public static object GetObject(string item)
         {
-            object o;
-
-            if (!ThreadDictionary.TryGetValue(item, out o))
-                o = null;
-
-            return o;
+            return ThreadContext.Instance[item];
         }
 
         /// <summary>
@@ -115,7 +104,7 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified <paramref name="item"/> exists in current thread MDC.</returns>
         public static bool Contains(string item)
         {
-            return ThreadDictionary.ContainsKey(item);
+            return ThreadContext.Instance.Contains(item);
         }
 
         /// <summary>
@@ -124,7 +113,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            ThreadDictionary.Remove(item);
+            ThreadContext.Instance.Remove(item);
         }
 
         /// <summary>
@@ -132,7 +121,7 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            ThreadDictionary.Clear();
+            ThreadContext.Instance.Clear();
         }
     }
 }
