@@ -228,7 +228,7 @@ namespace NLog.Targets.FileTargetArchival
         /// <returns>Lisf of files matching the pattern.</returns>
         private static IEnumerable<FileInfo> GetFiles(DirectoryInfo directoryInfo, string fileNameMask)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
             return directoryInfo.EnumerateFiles(fileNameMask);
 #else
             return directoryInfo.GetFiles(fileNameMask);

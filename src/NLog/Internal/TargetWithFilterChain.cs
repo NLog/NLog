@@ -43,8 +43,8 @@ namespace NLog.Internal
     /// whether logging should happen.
     /// </summary>
     [NLogConfigurationItem]
-    internal class TargetWithFilterChain
-    {
+	internal class TargetWithFilterChain
+	{
         private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
 
         /// <summary>

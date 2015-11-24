@@ -89,14 +89,14 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>File appenders are stored in an instance of <see cref="FileAppenderCache"/>.</remarks>
         private IFileAppenderFactory appenderFactory;
-        
+
         /// <summary>
         /// List of the associated file appenders with the <see cref="FileTarget"/> instance.
         /// </summary>
         private FileAppenderCache recentAppenders;
 
         private Timer autoClosingTimer;
-        
+
         /// <summary>
         /// The number of initialised files at any one time.
         /// </summary>
@@ -614,7 +614,7 @@ namespace NLog.Targets
                 this.autoClosingTimer = null;
             }
 
-            this.recentAppenders.CloseAppenders();           
+            this.recentAppenders.CloseAppenders();
         }
 
         /// <summary>

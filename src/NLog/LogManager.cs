@@ -72,7 +72,7 @@ namespace NLog
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static LogManager()
         {
-            SetupTerminationEvents();            
+            SetupTerminationEvents();
         }
 #endif
 
@@ -92,7 +92,7 @@ namespace NLog
             remove { factory.ConfigurationChanged -= value; }
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -183,7 +183,7 @@ namespace NLog
             lock (lockObject)
             {
                 if (_hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly))
-                return;
+                    return;
 
                 _hiddenAssemblies = new HashSet<Assembly>(_hiddenAssemblies ?? Enumerable.Empty<Assembly>())
                 {
@@ -203,7 +203,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger(Type loggerType)
         {
-            return factory.GetLogger(GetClassFullName(), loggerType);            
+            return factory.GetLogger(GetClassFullName(), loggerType);
         }
 
         /// <summary>
@@ -368,7 +368,7 @@ namespace NLog
                 }
 
                 InternalLogger.Warn("Error setting up termination events: {0}", exception);
-            }            
+            }
         }
 #endif
 

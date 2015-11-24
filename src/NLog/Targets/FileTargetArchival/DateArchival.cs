@@ -108,7 +108,7 @@ namespace NLog.Targets.FileTargetArchival
                     return;
                 }
 
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                 var files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
 #else
                 var files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);

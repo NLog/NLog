@@ -70,7 +70,7 @@ namespace NLog.Targets.FileTargetArchival
 
             try
             {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                 foreach (string s in Directory.EnumerateFiles(dirName, fileNameMask))
 #else
                 foreach (string s in Directory.GetFiles(dirName, fileNameMask))

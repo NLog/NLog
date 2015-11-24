@@ -36,6 +36,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NLog.Config;
+using NLog.Layouts;
+using NLog.Targets;
 using Xunit;
 
 #endregion
@@ -44,6 +47,8 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     public class VariableLayoutRendererTests : NLogTestBase
     {
+
+
         [Fact]
         public void Var_from_xml()
         {
@@ -233,6 +238,76 @@ namespace NLog.UnitTests.LayoutRenderers
             var lastMessage = GetDebugLastMessage("debug");
             Assert.Equal("msg and admin=", lastMessage);
         }
+
+        [Fact]
+        public void null_should_be_ok()
+        {
+            Layout l = "${var:var1}";
+            LogManager.Configuration = new NLog.Config.LoggingConfiguration();
+            LogManager.Configuration.Variables["var1"] = null;
+            var result = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("", result);
+        }
+
+        [Fact]
+        public void null_should_not_use_default()
+        {
+            Layout l = "${var:var1:default=x}";
+            LogManager.Configuration = new NLog.Config.LoggingConfiguration();
+            LogManager.Configuration.Variables["var1"] = null;
+            var result = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("", result);
+        }
+
+        [Fact]
+        public void notset_should_use_default()
+        {
+            Layout l = "${var:var1:default=x}";
+            LogManager.Configuration = new NLog.Config.LoggingConfiguration();
+
+            var result = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("x", result);
+        }
+        [Fact]
+        public void test_with_mockLogManager()
+        {
+
+            ILogger logger = MyLogManager.Instance.GetLogger("A");
+            logger.Debug("msg");
+            var t1 = _mockConfig.FindTargetByName<DebugTarget>("t1");
+            Assert.NotNull(t1);
+            Assert.NotNull(t1.LastMessage);
+            Assert.Equal("msg|my-mocking-manager", t1.LastMessage);
+        }
+
+
+        private static readonly LoggingConfiguration _mockConfig = new LoggingConfiguration();
+
+        static VariableLayoutRendererTests()
+        {
+            var t1 = new DebugTarget
+            {
+                Name = "t1",
+                Layout = "${message}|${var:var1:default=x}"
+            };
+
+            _mockConfig.AddTarget(t1);
+            _mockConfig.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, t1));
+            _mockConfig.Variables["var1"] = "my-mocking-manager";
+        }
+
+        class MyLogManager
+        {
+            private static readonly LogFactory _instance = new LogFactory(_mockConfig);
+
+            public static LogFactory Instance
+            {
+                get { return _instance; }
+            }
+
+
+        }
+
 
         private void CreateConfigFromXml()
         {
