@@ -70,5 +70,20 @@ namespace NLog.Internal
 
             return Convert.ToString(value, formatProvider);
         }
+
+        /// <summary>
+        /// Convert to string with a formatter.
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="formatProvider"></param>
+        /// <returns></returns>
+        internal static string ConvertToString(object o, IFormatProvider formatProvider)
+        {
+            // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
+            if ((formatProvider == null) && (LogManager.Configuration != null))
+                formatProvider = LogManager.Configuration.DefaultCultureInfo;
+
+            return String.Format(formatProvider, "{0}", o);
+        }
     }
 }

@@ -34,6 +34,7 @@
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
+    using NLog.Contexts;
     using NLog.Layouts;
     using Xunit;
 
@@ -45,7 +46,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             MappedDiagnosticsContext.Clear();
             MappedDiagnosticsContext.Set("foo", " abc<>&'\"def ");
             SimpleLayout l = "${xml-encode:${mdc:foo}}";
-
+            
             Assert.Equal(" abc&lt;&gt;&amp;&apos;&quot;def ", l.Render(LogEventInfo.CreateNullEvent()));
         }
     }
