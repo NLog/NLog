@@ -1,19 +1,11 @@
 version: 4.0.{build}
 clone_folder: c:\projects\nlog
-environment:
-  xamarin_email:
-    secure: 7v79qwPZ4B1i/0KMpwy5xRdxQO9qzPjtRR0IV+dI83c=
-  xamarin_password:
-    secure: koh9YQacPXLs0Exxx1dIHIqpDAwg79tKqGUtFIeRqiM=
 build_script:
   - Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildSL5=true /p:BuildSL4=true /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true 
   - Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildWP8=true            /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
-  - appveyor RegisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password% -Product Android
-  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildXamarinAndroid=true /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
-  - appveyor UnregisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password%
-  - appveyor RegisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password% -Product iOS 
-  - Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildXamarinIOS=true     /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
-  - appveyor UnregisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password%
+  - if not defined build_with_xamarin appveyor AddCompilationMessage "Warning, Android and iOS compilation were not performed because AppVeyor account must be set" -Category Warning
+  - if defined build_with_xamarin Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildXamarinAndroid=true /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
+  - if defined build_with_xamarin Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildXamarinIOS=true     /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
 before_test:
   - tests\CreateTestUsers.cmd
 test_script:
@@ -30,11 +22,7 @@ test_script:
   
 after_test:
   - tests\DeleteTestUsers.cmd
-after_build:
-  - appveyor UnregisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password%
-  - appveyor UnregisterXamarinLicense -Email %xamarin_email% -Password %xamarin_password%
 
-  
 deploy: off
 # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
 cache:
