@@ -3,7 +3,6 @@ clone_folder: c:\projects\nlog
 build_script:
   - Msbuild.exe src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildSL5=true /p:BuildSL4=true /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true 
   - Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildWP8=true            /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
-  - if not defined build_with_xamarin appveyor AddCompilationMessage "Warning, Android and iOS compilation were not performed because AppVeyor account must be set" -Category Warning
   - if defined build_with_xamarin Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildXamarinAndroid=true /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
   - if defined build_with_xamarin Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildXamarinIOS=true     /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
 before_test:
@@ -19,6 +18,13 @@ test_script:
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - pip install codecov
   - codecov -f "coverage.xml"
+    # When a pull request comes from a forked repo, the variable 'build_with_xamarin' is not defined because xamarin licensing isn't set up. (for details see https://github.com/NLog/NLog/pull/1062 )
+    # That means xamarin-dependent .sln configurations (Android, iOS) won't be built or tested.
+    # In that scenario, if the pull request destination is 'master', then fail and suggest alternative actions to the user.
+    # Do this last, after all other build/test scripts have executed, so at least those build/test failures will reported first if they're broken
+  - if exist parent_is_master.txt del /F parent_is_master.txt
+  - if not defined build_with_xamarin perl tools/any_parent_is_master.pl parent_is_master.txt
+  - if exist parent_is_master.txt tools\fail.cmd "NLog was not built for Android and iOS configurations. This occurs for pull requests from forked repos. The pull request moderator may choose to ignore this error. To avoid this error, choose a destination branch other than 'master' and complete the pull request, then do a non-forked pull request to 'master' to verify Android and iOS configurations still build OK. Or just do non-forked pull requests in the first place. =)"
   
 after_test:
   - tests\DeleteTestUsers.cmd
