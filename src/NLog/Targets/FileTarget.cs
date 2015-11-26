@@ -92,20 +92,20 @@ namespace NLog.Targets
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
         
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
-        
+
         /// <summary>
         /// Factory used to create the file appeanders in the <see cref="FileTarget"/> instance. 
         /// </summary>
         /// <remarks>File appenders are stored in an instance of <see cref="FileAppenderCache"/>.</remarks>
         private IFileAppenderFactory appenderFactory;
-        
+
         /// <summary>
         /// List of the associated file appenders with the <see cref="FileTarget"/> instance.
         /// </summary>
         private FileAppenderCache recentAppenders;
 
         private Timer autoClosingTimer;
-        
+
         /// <summary>
         /// The number of initialised files at any one time.
         /// </summary>
@@ -118,7 +118,7 @@ namespace NLog.Targets
 
         private readonly DynamicFileArchive fileArchive;
 
- 		/// <summary>
+        /// <summary>
         /// It holds the file names of existing archives in order for the oldest archives to be removed when the list of
         /// filenames becomes too long.
         /// </summary>
@@ -670,7 +670,7 @@ namespace NLog.Targets
                 this.autoClosingTimer = null;
             }
 
-            this.recentAppenders.CloseAppenders();           
+            this.recentAppenders.CloseAppenders();
         }
 
         /// <summary>
@@ -881,7 +881,7 @@ namespace NLog.Targets
 
             string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
             RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
-            
+
             var shouldCompress = archiveNumber == 0;
             try
             {
@@ -921,7 +921,7 @@ namespace NLog.Targets
 
             try
             {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                 foreach (string s in Directory.EnumerateFiles(dirName, fileNameMask))
 #else
                 foreach (string s in Directory.GetFiles(dirName, fileNameMask))
@@ -1222,7 +1222,7 @@ namespace NLog.Targets
         /// <returns>Lisf of files matching the pattern.</returns>
         private static IEnumerable<FileInfo> GetFiles(DirectoryInfo directoryInfo, string fileNameMask)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
             return directoryInfo.EnumerateFiles(fileNameMask);
 #else
             return directoryInfo.GetFiles(fileNameMask);
@@ -1291,7 +1291,7 @@ namespace NLog.Targets
                     return;
                 }
 
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                 var files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
 #else
                 var files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
@@ -1402,7 +1402,7 @@ namespace NLog.Targets
             {
                 return;
             }
-            
+
             string fileNamePattern = GetFileNamePattern(fileName, eventInfo);
 
             if (!ContainsFileNamePattern(fileNamePattern))

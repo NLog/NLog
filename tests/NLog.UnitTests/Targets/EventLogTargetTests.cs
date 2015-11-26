@@ -112,7 +112,7 @@ namespace NLog.UnitTests.Targets
         public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowTruncate_TruncatesTheMessage()
         {
             string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize + 1));
-            string loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverlowAction.Truncate, message).Single();
+            string loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Truncate, message).Single();
 
             Assert.Equal(MaxMessageSize, loggedMessage.Length);
         }
@@ -121,16 +121,16 @@ namespace NLog.UnitTests.Targets
         public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowTruncate_TheMessageIsNotTruncated()
         {
             string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
-            string loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverlowAction.Truncate, message).Single();
+            string loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Truncate, message).Single();
 
             Assert.Equal(MaxMessageSize, loggedMessage.Length);
         }
         
         [Fact]
-        public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowMultipleEntries_TheMessageIsSplit()
+        public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowSplitEntries_TheMessageIsSplit()
         {
             string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize + 1));
-            var chunks = WriteEventLogEntryForOverflow(EventLogTargetOverlowAction.Multiple, message).ToList();
+            var chunks = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Split, message).ToList();
 
             Assert.Equal(2, chunks.Count);
             Assert.Equal(MaxMessageSize, chunks[0].Length);
@@ -138,33 +138,33 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowMultipleEntries_TheMessageIsNotSplit()
+        public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowSplitEntries_TheMessageIsNotSplit()
         {
             string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
-            var loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverlowAction.Multiple, message).Single();
+            var loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Split, message).Single();
 
             Assert.Equal(MaxMessageSize, loggedMessage.Length);
         }
 
         [Fact]
-        public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowIgnore_TheMessageIsWritten()
+        public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowDiscard_TheMessageIsWritten()
         {
             string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
-            string loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverlowAction.Ignore, message).Single();
+            string loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Discard, message).Single();
 
             Assert.Equal(MaxMessageSize, loggedMessage.Length);
         }
 
         [Fact]
-        public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowIgnore_TheMessageIsSkipped()
+        public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowDiscard_TheMessageIsNotWritten()
         {
             string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize + 1));
-            bool wasWritten = WriteEventLogEntryForOverflow(EventLogTargetOverlowAction.Ignore, message).Any();
+            bool wasWritten = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Discard, message).Any();
 
             Assert.False(wasWritten);
         }
 
-        private static IEnumerable<string> WriteEventLogEntryForOverflow(EventLogTargetOverlowAction overflowAction, string message)
+        private static IEnumerable<string> WriteEventLogEntryForOverflow(EventLogTargetOverflowAction overflowAction, string message)
         {
             string sourceName = Guid.NewGuid().ToString();
             var target = CreateEventLogTarget(null, sourceName);
