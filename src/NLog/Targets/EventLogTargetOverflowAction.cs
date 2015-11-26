@@ -40,7 +40,7 @@ namespace NLog.Targets
     /// Action that should be taken if the message is greater than
     /// the max message size allowed by the Event Log.
     /// </summary>
-    public enum EventLogTargetOverlowAction
+    public enum EventLogTargetOverflowAction
     {
         /// <summary>
         /// Truncate the message before writing to the Event Log.
@@ -50,12 +50,12 @@ namespace NLog.Targets
         /// <summary>
         /// Split the message and write multiple entries to the Event Log.
         /// </summary>
-        Multiple,
+        Split,
 
         /// <summary>
-        /// Ignore the message. It will not be written to the Event Log.
+        /// Discard of the message. It will not be written to the Event Log.
         /// </summary>
-        Ignore
+        Discard
     }
 }
 

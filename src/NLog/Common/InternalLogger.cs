@@ -43,7 +43,7 @@ namespace NLog.Common
     using System.Text;
     using NLog.Internal;
     using NLog.Time;
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
     using ConfigurationManager = System.Configuration.ConfigurationManager;
     using System.Diagnostics;
 #endif
@@ -62,12 +62,12 @@ namespace NLog.Common
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static InternalLogger()
         {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
-			
+
             Info("NLog internal logger initialized.");
 #else
             LogLevel = LogLevel.Info;
@@ -105,7 +105,7 @@ namespace NLog.Common
             {
                 _logFile = value;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 if (!string.IsNullOrEmpty(_logFile))
                 {
                     CreateDirectoriesIfNeeded(_logFile);
@@ -397,7 +397,7 @@ namespace NLog.Common
         {
             try
             {
-#if SILVERLIGHT
+#if SILVERLIGHT || __IOS__ || __ANDROID__
                 Info(assembly.FullName);
 #else
                 var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
@@ -413,7 +413,7 @@ namespace NLog.Common
             }
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private static string GetSettingString(string configName, string envName)
         {
             string settingValue = ConfigurationManager.AppSettings[configName];
@@ -480,7 +480,7 @@ namespace NLog.Common
                 return defaultValue;
             }
         }
-        
+
         private static void CreateDirectoriesIfNeeded(string filename)
         {
             try

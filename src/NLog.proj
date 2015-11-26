@@ -27,12 +27,16 @@
     <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
     <FrameworksPath>$(MSBuildProjectDirectory)\Frameworks</FrameworksPath>    
     <BuildAllFrameworks>true</BuildAllFrameworks>
+    <!--disable "build all" if one or more build framework are passed-->
     <BuildAllFrameworks Condition="'$(BuildMono2)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL4)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildSL5)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX45)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildWP8)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildXamarinAndroid)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildXamarinIOS)' == 'true'">false</BuildAllFrameworks>
     <IgnoreBuildFailures>false</IgnoreBuildFailures>
     <IgnoreBuildFailures Condition=" '$(BuildAllFrameworks)'=='true' ">true</IgnoreBuildFailures>
     <IgnoreBuildFailures Condition=" '$(IsNightlyBuild)'=='true' ">false</IgnoreBuildFailures>
@@ -85,6 +89,9 @@
     <BuildNetFX35>true</BuildNetFX35>
     <BuildNetFX40>true</BuildNetFX40>
     <BuildNetFX45>true</BuildNetFX45>
+    <BuildWP8>true</BuildWP8>
+    <BuildXamarinAndroid>true</BuildXamarinAndroid>
+    <BuildXamarinIOS>true</BuildXamarinIOS>
 
     <!-- now disable those that we know cannot be built -->
     <BuildMono2 Condition="'$(MonoInstallLocation)'==''">false</BuildMono2>
@@ -102,6 +109,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!--The info for the nuspec-->
+    
     <TargetFramework Include="Mono 2.x" Condition="'$(BuildMono2)' == 'true'">
         <ProjectFileSuffix>.mono2</ProjectFileSuffix>
         <ToolsVersion>3.5</ToolsVersion>
@@ -128,6 +137,22 @@
         <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
         <NuGetDir>net45</NuGetDir>
+    </TargetFramework>
+    <!--the include attribute is the folder name-->
+    <TargetFramework Include="WindowsPhone8" Condition="'$(BuildWP8)'=='true'">
+        <ProjectFileSuffix>.wp8</ProjectFileSuffix>
+        <ToolsVersion>4.0</ToolsVersion>
+        <NuGetDir>wp8</NuGetDir>
+    </TargetFramework>
+    <TargetFramework Include="Xamarin.Android" Condition="'$(BuildXamarinAndroid)'=='true'">
+      <ProjectFileSuffix>.Xamarin.Android</ProjectFileSuffix>
+      <ToolsVersion>4.0</ToolsVersion>
+      <NuGetDir>MonoAndroid10</NuGetDir>
+    </TargetFramework>
+    <TargetFramework Include="Xamarin.iOS" Condition="'$(BuildXamarinIOS)'=='true'">
+      <ProjectFileSuffix>.Xamarin.iOs</ProjectFileSuffix>
+      <ToolsVersion>4.0</ToolsVersion>
+      <NuGetDir>MonoTouch10</NuGetDir>
     </TargetFramework>
   </ItemGroup>
 
