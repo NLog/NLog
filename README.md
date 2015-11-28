@@ -1,4 +1,4 @@
-Welcome to NLog!
+![NLog](https://raw.githubusercontent.com/NLog/NLog.github.io/master/images/NLog-logo-only_small.png)
 ===
 *Vote or submit ideas on [UserEcho](https://nlog.userecho.com)!*
 
