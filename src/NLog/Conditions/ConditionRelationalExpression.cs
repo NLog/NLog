@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections;
+
 namespace NLog.Conditions
 {
     using System;
@@ -107,38 +109,32 @@ namespace NLog.Conditions
         private static object Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
         {
 #if !UWP10
-        
-             StringComparer comparer = StringComparer.InvariantCulture;
-            var leftValue2 = leftValue;
-            var rightValue2 = rightValue;
+            StringComparer comparer = StringComparer.InvariantCulture;
+#else
+            var comparer = new Comparer(CultureInfo.InvariantCulture);
 #endif
             PromoteTypes(ref leftValue, ref rightValue);
 
-#if UWP10
-            StringComparer comparer = StringComparer.Ordinal;
-            var leftValue2 = Convert.ToString(leftValue);
-            var rightValue2 = Convert.ToString(rightValue);
-#endif
 
             switch (relationalOperator)
             {
                 case ConditionRelationalOperator.Equal:
-                    return comparer.Compare(leftValue2, rightValue2) == 0;
+                    return comparer.Compare(leftValue, rightValue) == 0;
 
                 case ConditionRelationalOperator.NotEqual:
-                    return comparer.Compare(leftValue2, rightValue2) != 0;
+                    return comparer.Compare(leftValue, rightValue) != 0;
 
                 case ConditionRelationalOperator.Greater:
-                    return comparer.Compare(leftValue2, rightValue2) > 0;
+                    return comparer.Compare(leftValue, rightValue) > 0;
 
                 case ConditionRelationalOperator.GreaterOrEqual:
-                    return comparer.Compare(leftValue2, rightValue2) >= 0;
+                    return comparer.Compare(leftValue, rightValue) >= 0;
 
                 case ConditionRelationalOperator.LessOrEqual:
-                    return comparer.Compare(leftValue2, rightValue2) <= 0;
+                    return comparer.Compare(leftValue, rightValue) <= 0;
 
                 case ConditionRelationalOperator.Less:
-                    return comparer.Compare(leftValue2, rightValue2) < 0;
+                    return comparer.Compare(leftValue, rightValue) < 0;
 
                 default:
                     throw new NotSupportedException("Relational operator " + relationalOperator + " is not supported.");
