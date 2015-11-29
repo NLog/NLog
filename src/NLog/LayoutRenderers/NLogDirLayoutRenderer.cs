@@ -33,7 +33,7 @@
 
 using NLog.Internal;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
 
 namespace NLog.LayoutRenderers
 {

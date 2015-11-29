@@ -252,30 +252,23 @@ namespace NLog.Internal
             return typeInfo.Assembly;
 #endif
         }
-
+#if !UWP10
 
         public static string CodeBase(this Assembly assembly)
         {
-#if !UWP10
+
             return assembly.CodeBase;
-#else
-
-
-            throw new NotImplementedException();
+    }
 
 #endif
-        }
 
-
+#if !UWP10
         public static string Location(this Assembly assembly)
         {
-#if !UWP10
             return assembly.Location;
-#else
-            throw new NotImplementedException();
 
-#endif
         }
+#endif
 
 #if UWP10
         public static bool IsSubclassOf(this Type type, Type subtype)

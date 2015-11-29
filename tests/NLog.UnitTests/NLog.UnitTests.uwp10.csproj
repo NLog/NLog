@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{23D500C2-C0EF-4919-BE69-6A45DB9EB6B1}</ProjectGuid>
+    <ProjectGuid>{0C43183C-D3DC-4F7A-830E-624A8CF48A8C}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NLog.UnitTests</RootNamespace>
@@ -22,18 +22,17 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\build\bin\Debug\UWP10\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;UWP10</DefineConstants>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>ARM</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
-    <OutputPath>..\..\build\bin\Release\UWP10\</OutputPath>
+    <OutputPath>bin\ARM\Release\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
@@ -46,18 +45,17 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\build\bin\Debug\UWP10\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;UWP10</DefineConstants>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>..\..\build\bin\Release\UWP10\</OutputPath>
+    <OutputPath>bin\x64\Release\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
@@ -70,18 +68,17 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\build\bin\Debug\UWP10\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;UWP10</DefineConstants>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;UWP10</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>..\..\build\bin\Release\UWP10\</OutputPath>
+    <OutputPath>bin\x86\Release\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
@@ -95,17 +92,21 @@
   <ItemGroup>
     <!--A reference to the entire .Net Framework and Windows SDK are automatically included-->
     <None Include="App.config" />
-    <None Include="NLogTests.snk" />
+    <None Include="ConfigFiles\included.nlog" />
+    <None Include="ConfigFiles\main.nlog" />
+    <None Include="ConfigFiles\referencemissingfile.nlog" />
+    <None Include="ConfigFiles\referencemissingfileignored.nlog" />
+    <None Include="NLog.snk" />
     <None Include="project.json" />
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiTests.cs" />
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
     <Compile Include="Common\InternalLoggerTests.cs" />
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
+    <Compile Include="ConfigFileLocatorTests.cs" />
     <Compile Include="Config\CaseSensitivityTests.cs" />
     <Compile Include="Config\ConfigurationItemFactoryTests.cs" />
     <Compile Include="Config\CultureInfoTests.cs" />
@@ -116,7 +117,6 @@
     <Compile Include="Config\TargetConfigurationTests.cs" />
     <Compile Include="Config\TimeConfigurationTests.cs" />
     <Compile Include="Config\VariableTests.cs" />
-    <Compile Include="ConfigFileLocatorTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\MappedDiagnosticsContextTests.cs" />
     <Compile Include="Contexts\NestedDiagnosticsContextTests.cs" />
@@ -186,6 +186,7 @@
     <Compile Include="NLogTestBase.cs" />
     <Compile Include="NLogTraceListenerTests.cs" />
     <Compile Include="ProcessRunner.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />
     <Compile Include="SourceCodeTests.cs" />
@@ -217,7 +218,9 @@
     <Compile Include="Targets\Wrappers\SplitGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
     <Compile Include="TimeSourceTests.cs" />
-    <Compile Include="UnitTestApp.xaml.cs" />
+    <Compile Include="UnitTestApp.xaml.cs">
+      <DependentUpon>UnitTestApp.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="UnitTestApp.xaml">
@@ -229,17 +232,20 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="NLog.UnitTests.uwp10_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ConfigFiles\included.nlog" />
-    <Content Include="ConfigFiles\main.nlog" />
-    <Content Include="ConfigFiles\referencemissingfile.nlog" />
-    <Content Include="ConfigFiles\referencemissingfileignored.nlog" />
-    <Content Include="ProjectFileInfo.xml" />
-    <Content Include="Properties\AppManifest.xml" />
-    <Content Include="Properties\OutOfBrowserSettings.xml" />
     <Content Include="Properties\UnitTestApp.rd.xml" />
-    <Content Include="Properties\WMAppManifest.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLog\NLog.uwp10.csproj">
@@ -247,23 +253,14 @@
       <Name>NLog.uwp10</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Page Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>NLog.UnitTests.uwp10_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
