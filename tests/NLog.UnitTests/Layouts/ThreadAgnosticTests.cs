@@ -71,7 +71,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void NonThreadAgnosticTest()
         {
-            Layout l = new SimpleLayout("${threadname}");
+            Layout l = new SimpleLayout("${guid}");
             l.Initialize(null);
             Assert.False(l.IsThreadAgnostic);
         }
@@ -79,7 +79,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void AgnosticPlusNonAgnostic()
         {
-            Layout l = new SimpleLayout("${message}${threadname}");
+            Layout l = new SimpleLayout("${message}${guid}");
             l.Initialize(null);
             Assert.False(l.IsThreadAgnostic);
         }
@@ -119,7 +119,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void TripleWrapperOverNonAgnostic()
         {
-            Layout l = new SimpleLayout("${uppercase:${lowercase:${rot13:${message}${threadname}}}}");
+            Layout l = new SimpleLayout("${uppercase:${lowercase:${rot13:${message}${guid}}}}");
             l.Initialize(null);
             Assert.False(l.IsThreadAgnostic);
         }
@@ -135,7 +135,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void ComplexNonAgnosticWithCondition()
         {
-            Layout l = @"${message:padding=-10:padCharacter=Y:when='${pad:${threadname}:padding=10:padCharacter=X}'=='XXXXlogger'}";
+            Layout l = @"${message:padding=-10:padCharacter=Y:when='${pad:${guid}:padding=10:padCharacter=X}'=='XXXXlogger'}";
             l.Initialize(null);
             Assert.False(l.IsThreadAgnostic);
         }
