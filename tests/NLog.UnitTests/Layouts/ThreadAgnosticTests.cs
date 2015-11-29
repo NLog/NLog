@@ -147,6 +147,7 @@ namespace NLog.UnitTests.Layouts
             {
                 Columns =
                 {
+                    //all three ThreadAgnostic
                     new CsvColumn("name1", "${message}"),
                     new CsvColumn("name2", "${level}"),
                     new CsvColumn("name3", "${longdate}"),
@@ -165,7 +166,7 @@ namespace NLog.UnitTests.Layouts
                 Columns =
                 {
                     new CsvColumn("name1", "${message}"),
-                    new CsvColumn("name2", "${threadname}"),
+                    new CsvColumn("name2", "${guid}"),
                     new CsvColumn("name3", "${longdate}"),
                 },
             };
