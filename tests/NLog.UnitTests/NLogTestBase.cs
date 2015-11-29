@@ -49,6 +49,9 @@ namespace NLog.UnitTests
     using System.Security.Permissions;
 #endif
 
+#if XUNIT2
+    [Collection("dont run in parallel")]
+#endif
     public abstract class NLogTestBase
     {
         protected NLogTestBase()
