@@ -386,8 +386,11 @@ namespace NLog.UnitTests
         public void GivenCurrentClass_WhenGetCurrentClassLogger_ThenLoggerShouldBeCurrentClass()
         {
             var logger = LogManager.GetCurrentClassLogger();
-
+#if UWP10
+            Assert.Equal(this.GetType().Name, logger.Name);
+#else
             Assert.Equal(this.GetType().FullName, logger.Name);
+#endif
         }
 
 #if NET4_0 || NET4_5
