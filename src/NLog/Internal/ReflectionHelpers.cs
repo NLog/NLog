@@ -34,6 +34,7 @@
 using System.Collections;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using NLog.Config;
 
 namespace NLog.Internal
@@ -237,6 +238,18 @@ namespace NLog.Internal
 #elif !SILVERLIGHT && !UWP10
                 , CultureInfo.InvariantCulture
 #else
+
+        
+            var neededParameters = methodInfo.GetParameters();
+
+            var missingParametersCount = neededParameters.Length - callParameters.Length;
+            if (missingParametersCount > 0)
+            {
+                //optional parmeters needs to passed here with Type.Missing;
+                var paramList = callParameters.ToList();
+                paramList.AddRange(Enumerable.Repeat(Type.Missing, missingParametersCount));
+                callParameters = paramList.ToArray();
+            }
             //TODO test
             return methodInfo.Invoke(methodName, callParameters);
 #endif
