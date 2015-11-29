@@ -106,16 +106,20 @@ namespace NLog.Conditions
         /// <returns>Result of the given relational operator.</returns>
         private static object Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
         {
-#if UWP10
-            StringComparer comparer = StringComparer.Ordinal;
-            var leftValue2 = leftValue as string;
-            var rightValue2 = rightValue as string;
-#else
+#if !UWP10
+        
              StringComparer comparer = StringComparer.InvariantCulture;
             var leftValue2 = leftValue;
             var rightValue2 = rightValue;
 #endif
             PromoteTypes(ref leftValue, ref rightValue);
+
+#if UWP10
+            StringComparer comparer = StringComparer.Ordinal;
+            var leftValue2 = Convert.ToString(leftValue);
+            var rightValue2 = Convert.ToString(rightValue);
+#endif
+
             switch (relationalOperator)
             {
                 case ConditionRelationalOperator.Equal:
