@@ -48,6 +48,10 @@ namespace NLog
     using NLog.Config;
     using NLog.Internal;
 
+#if !UWP10
+    using NLog.Internal.Fakeables;
+#endif
+
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 namespace NLog
 {
     using System;
@@ -49,7 +51,9 @@ namespace NLog
     using NLog.Config;
     using NLog.Internal;
     using NLog.Targets;
-  
+#if !UWP10
+    using NLog.Internal.Fakeables;
+#endif
 
 #if SILVERLIGHT
     using System.Windows;
