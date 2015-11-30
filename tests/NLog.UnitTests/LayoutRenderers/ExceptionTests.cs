@@ -622,14 +622,14 @@ namespace NLog.UnitTests.LayoutRenderers
             // Obsolete method requires testing until completely removed.
             logger.ErrorException("msg", ex);
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
-                "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
-                "InvalidOperationException Test exception");
+                "Wrapper1" + EnvironmentHelper.NewLine +
+                "Test exception");
 #pragma warning restore 0618
 
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
-                "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
-                "InvalidOperationException Test exception");
+                "Wrapper1" + EnvironmentHelper.NewLine +
+                "Test exception");
 
             var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
@@ -638,7 +638,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal(ExceptionRenderingFormat.ShortType, elr.Formats[0]);
             Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats[1]);
 
-            Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats[0]);
+            Assert.Equal(ExceptionRenderingFormat.Message, elr.InnerFormats[0]);
         }
     }
 }
