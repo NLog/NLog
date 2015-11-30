@@ -87,10 +87,10 @@ namespace NLog
 
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
-        private static readonly LogLevel[] allLevels = { Trace, Debug, Info, Warn, Error, Fatal, Off };
+        private static readonly IList<LogLevel> allLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal, Off };
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
-        private static readonly LogLevel[] allLoggingLevels = {Trace, Debug, Info, Warn, Error, Fatal};
+        private static readonly IList<LogLevel> allLoggingLevels = new List<LogLevel> {Trace, Debug, Info, Warn, Error, Fatal};
 
         /// <summary>
         /// All log levels. (Trace, Debug, Info, Warn, Error, Fatal, Off)
