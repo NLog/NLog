@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+
 namespace NLog
 {
     using System;
@@ -82,6 +84,24 @@ namespace NLog
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
         public static readonly LogLevel Off = new LogLevel("Off", 6);
+
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
+        private static readonly IList<LogLevel> allLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal, Off };
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
+        private static readonly IList<LogLevel> allLoggingLevels = new List<LogLevel> {Trace, Debug, Info, Warn, Error, Fatal};
+
+        /// <summary>
+        /// All log levels. (Trace, Debug, Info, Warn, Error, Fatal, Off)
+        /// </summary>
+        public static IEnumerable<LogLevel> AllLevels { get { return allLevels; } }
+
+        /// <summary>
+        /// All log levels that can be used to log events (excludes Off). (Trace, Debug, Info, Warn, Error, Fatal)
+        /// </summary>
+        public static IEnumerable<LogLevel> AllLoggingLevels { get { return allLoggingLevels; } }
+
 
         private readonly int ordinal;
         private readonly string name;
