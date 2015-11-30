@@ -15,7 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -96,6 +97,7 @@
     <Compile Include="Config\ConfigurationItemCreator.cs" />
     <Compile Include="Config\ConfigurationItemFactory.cs" />
     <Compile Include="Config\DefaultParameterAttribute.cs" />
+    <Compile Include="Config\ExceptionRenderingFormat.cs" />
     <Compile Include="Config\Factory.cs" />
     <Compile Include="Config\IFactory.cs" />
     <Compile Include="Config\IInstallable.cs" />

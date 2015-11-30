@@ -40,6 +40,7 @@ namespace NLog.UnitTests.LayoutRenderers
     using NLog.Targets;
     using NLog.Internal;
     using Xunit;
+    using NLog.Config;
 
     public class ExceptionTests : NLogTestBase
     {
@@ -376,7 +377,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #pragma warning disable 0618
             // Obsolete method requires testing until completely removed.
             logger.ErrorException("msg", ex);
-            AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine + 
+            AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
                 "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
                 "InvalidOperationException Test exception");
 #pragma warning restore 0618
@@ -439,7 +440,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
             var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
-            var elr = ((SimpleLayout) t.Layout).Renderers[0] as ExceptionLayoutRenderer;
+            var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
             Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
 
             string exceptionMessage = "Test exception";
@@ -448,7 +449,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
             ex.InnerException.Data.Add(exceptionDataKey, exceptionDataValue);
             logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + 
+            AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" +
                 "\r\n----INNER----\r\n" +
                 "System.InvalidOperationException Wrapper1");
             AssertDebugLastMessage("debug2", string.Format("InvalidOperationException Wrapper2" +
@@ -561,6 +562,83 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 throw new InvalidOperationException(exceptionMessage);
             }
+        }
+
+        [Fact]
+        public void ExcpetionTestAPI()
+        {
+            var config = new LoggingConfiguration();
+
+            var debugTarget = new DebugTarget();
+            config.AddTarget("debug1", debugTarget);
+            debugTarget.Layout = @"${exception:format=shorttype,message:maxInnerExceptionLevel=3}";
+
+            var rule = new LoggingRule("*", LogLevel.Info, debugTarget);
+            config.LoggingRules.Add(rule);
+
+            LogManager.Configuration = config;
+
+            string exceptionMessage = "Test exception";
+            Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
+
+#pragma warning disable 0618
+            // Obsolete method requires testing until completely removed.
+            logger.ErrorException("msg", ex);
+            AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
+                "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                "InvalidOperationException Test exception");
+#pragma warning restore 0618
+
+            logger.Error(ex, "msg");
+            AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
+                "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                "InvalidOperationException Test exception");
+
+            var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
+            var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
+
+
+            Assert.Equal(ExceptionRenderingFormat.ShortType, elr.Formats[0]);
+            Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats[1]);
+        }
+
+        [Fact]
+        public void InnerExceptionTestAPI()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=3:innerFormat=message}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            string exceptionMessage = "Test exception";
+            Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
+
+#pragma warning disable 0618
+            // Obsolete method requires testing until completely removed.
+            logger.ErrorException("msg", ex);
+            AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
+                "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                "InvalidOperationException Test exception");
+#pragma warning restore 0618
+
+            logger.Error(ex, "msg");
+            AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
+                "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                "InvalidOperationException Test exception");
+
+            var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
+            var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
+
+
+            Assert.Equal(ExceptionRenderingFormat.ShortType, elr.Formats[0]);
+            Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats[1]);
+
+            Assert.Equal(ExceptionRenderingFormat.Message, elr.Formats[0]);
         }
     }
 }
