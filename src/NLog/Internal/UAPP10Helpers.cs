@@ -1,13 +1,15 @@
-﻿using System;
+﻿#if UWP10
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 using Microsoft.Win32.SafeHandles;
 
 namespace NLog
 {
-#if UWP10
+    using System.Threading.Tasks;
     public static class Uapp10Ext
     {
         public static void Close(this SafeFileHandle handle)
@@ -34,6 +36,5 @@ namespace NLog
             return s.ToLower();
         }
     }
-#endif
 }
-
+#endif

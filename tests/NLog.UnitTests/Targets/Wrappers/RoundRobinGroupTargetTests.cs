@@ -31,7 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if UWP10
 using Windows.System.Threading;
+#endif
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
@@ -144,7 +146,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 Assert.True(this.FlushCount <= this.WriteCount);
                 this.WriteCount++;
-                ThreadPool.RunAsync(
+                RunAsync2(
                     s =>
                         {
                             if (this.ThrowExceptions)
@@ -163,7 +165,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
                 this.FlushCount++;
-                ThreadPool.RunAsync(
+                RunAsync2(
                     s => asyncContinuation(null));
             }
 

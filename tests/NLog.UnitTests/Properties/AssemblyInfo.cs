@@ -5,15 +5,18 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NLog.UnitTests.uwp10")]
+[assembly: AssemblyTitle("NLog.UnitTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NLog.UnitTests.uwp10")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("NLog")]
+[assembly: AssemblyProduct("NLog.UnitTests")]
+[assembly: AssemblyCopyright("Copyright NLog © 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
+#if UWP10
 [assembly: AssemblyMetadata("TargetPlatform","UAP")]
+#endif
 
 // Version information for an assembly consists of the following four values:
 //

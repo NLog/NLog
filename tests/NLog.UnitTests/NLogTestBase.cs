@@ -31,12 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Threading.Tasks;
+
 namespace NLog.UnitTests
 {
     using System;
     using NLog.Common;
     using System.IO;
     using System.Text;
+
+#if UWP10
+    using Windows.System.Threading;
+#elif !SILVERLIGHT
+    using System.Threading;
+#endif
 
     using NLog.Layouts;
     using NLog.Config;
@@ -275,6 +283,16 @@ namespace NLog.UnitTests
                 LogManager.GlobalThreshold = this.globalThreshold;
                 LogManager.ThrowExceptions = this.throwExceptions;
             }
+        }
+
+        protected static void RunAsync2(Action<object> func)
+        {
+#if UWP10
+
+            ThreadPool.RunAsync((state) => func(state)).GetResults();
+#else
+            ThreadPool.QueueUserWorkItem(state => func(state));
+#endif
         }
     }
 }

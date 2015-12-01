@@ -148,7 +148,6 @@
     <Compile Include="Internal\FactoryHelper.cs" />
     <Compile Include="Internal\Fakeables\AppDomainWrapper.cs" />
     <Compile Include="Internal\Fakeables\IAppDomain.cs" />
-    <Compile Include="Internal\Fakeables\UAPP10Helpers.cs" />
     <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
@@ -197,6 +196,7 @@
     <Compile Include="Internal\ThreadIDHelper.cs" />
     <Compile Include="Internal\ThreadLocalStorageHelper.cs" />
     <Compile Include="Internal\TimeoutContinuation.cs" />
+    <Compile Include="Internal\UAPP10Helpers.cs" />
     <Compile Include="Internal\UrlHelper.cs" />
     <Compile Include="Internal\Win32FileInfoHelper.cs" />
     <Compile Include="Internal\Win32FileNativeMethods.cs">

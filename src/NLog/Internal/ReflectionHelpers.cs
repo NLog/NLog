@@ -100,9 +100,9 @@ namespace NLog.Internal
         }
 
         public static TAttr GetCustomAttribute<TAttr>(PropertyInfo info)
-    where TAttr : Attribute
+             where TAttr : Attribute
         {
-            return info.GetCustomAttribute<TAttr>();
+            return info.GetCustomAttributes(typeof(TAttr),false).FirstOrDefault() as TAttr;
         }
 
         public static IEnumerable<TAttr> GetCustomAttributes<TAttr>(Type type, bool inherit)

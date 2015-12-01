@@ -32,7 +32,9 @@
 // 
 
 using System.Diagnostics;
+#if UWP10
 using Windows.System.Threading;
+#endif
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
@@ -534,7 +536,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 foreach (var logEvent in logEvents)
                 {
                     var @event = logEvent;
-                    ThreadPool.RunAsync(
+                    RunAsync2(
                         s =>
                         {
                             if (this.ThrowExceptions)
@@ -553,7 +555,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                ThreadPool.RunAsync(
+                RunAsync2(
                     s => asyncContinuation(null));
             }
 

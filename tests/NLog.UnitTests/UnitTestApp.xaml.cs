@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UWP10
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -100,3 +101,4 @@ namespace NLog.UnitTests.uwp10
         }
     }
 }
+#endif
