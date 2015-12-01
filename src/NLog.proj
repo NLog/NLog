@@ -85,7 +85,7 @@
     <BuildNetFX35>true</BuildNetFX35>
     <BuildNetFX40>true</BuildNetFX40>
     <BuildNetFX45>true</BuildNetFX45>
-    <BuilUWP10>true</BuilUWP10>
+    <BuildUWP10>true</BuildUWP10>
     
 
     <!-- now disable those that we know cannot be built -->
