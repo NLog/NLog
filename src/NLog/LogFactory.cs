@@ -103,6 +103,7 @@ namespace NLog
 #if !SILVERLIGHT && !UWP10
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
+            CurrentAppDomain.DomainUnload += currentAppDomain_DomainUnload;
 #endif
         }
 
@@ -110,7 +111,8 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         /// <param name="config">The config.</param>
-        public LogFactory(LoggingConfiguration config) : this()
+        public LogFactory(LoggingConfiguration config)
+            : this()
         {
             this.Configuration = config;
         }
@@ -313,7 +315,7 @@ namespace NLog
         {
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             Logger newLogger = new Logger();
-            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel), this);
+            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel,false), this);
             return newLogger;
         }
 
@@ -616,6 +618,14 @@ namespace NLog
                     return;
                 }
 
+                
+                if(IsDisposing)
+                {
+                    //timer was disposed already. 
+                    this.watcher.Dispose();
+                    return;
+                }
+
                 this.watcher.StopWatching();
                 try
                 {
@@ -752,7 +762,9 @@ namespace NLog
                 InternalLogger.Debug(sb.ToString());
             }
 
-            return new LoggerConfiguration(targetsByLevel);
+#pragma warning disable 618
+            return new LoggerConfiguration(targetsByLevel, configuration != null && configuration.ExceptionLoggingOldStyle);
+#pragma warning restore 618
         }
 
         /// <summary>
@@ -915,6 +927,31 @@ namespace NLog
             this.config = new XmlLoggingConfiguration(configFile);
         }
 
+#if !SILVERLIGHT && !UWP10
+
+        /// <summary>
+        /// Logger cache key.
+        /// </summary>
+        private bool IsDisposing;
+
+        private void currentAppDomain_DomainUnload(object sender, EventArgs e)
+        {
+            //stop timer on domain unload, otherwise: 
+            //Exception: System.AppDomainUnloadedException
+            //Message: Attempted to access an unloaded AppDomain.
+            lock (this.syncRoot)
+            {
+                IsDisposing = true;
+                if (this.reloadTimer != null)
+                {
+                    this.reloadTimer.Dispose();
+                    this.reloadTimer = null;
+                }
+            }
+        }
+
+
+#endif
         /// <summary>
         /// Logger cache key.
         /// </summary>

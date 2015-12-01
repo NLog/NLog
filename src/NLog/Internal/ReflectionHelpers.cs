@@ -139,6 +139,16 @@ namespace NLog.Internal
             return typeInfo.IsEnum;
 #endif
         }
+
+        public static bool IsNestedPrivate(this Type type)
+        {
+#if !UWP10
+            return type.IsNestedPrivate;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsNestedPrivate;
+#endif
+        }
         public static bool IsGenericTypeDefinition(this Type type)
         {
 #if !UWP10

@@ -5,12 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C480452F-7E14-443D-906D-7E021ABAA107A}</ProjectGuid>
+    <ProjectGuid>{5CCB56C3-4A6E-4C11-960B-2877099F52CE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SampleExtensions</RootNamespace>
     <AssemblyName>SampleExtensions</AssemblyName>
     <SignAssembly>true</SignAssembly>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -40,6 +41,10 @@
     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 2.x</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="mscorlib" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="FooLayout.cs" />
     <Compile Include="FooLayoutRenderer.cs" />
     <Compile Include="MyConditionMethods.cs" />
@@ -50,7 +55,10 @@
     <None Include="NLogTests.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLog\NLog.mono2.csproj" />
+    <ProjectReference Include="..\..\src\NLog\NLog.mono.csproj">
+      <Project>{e7ab20bf-6920-442a-b876-cc05bc5cec79}</Project>
+      <Name>NLog.mono</Name>
+    </ProjectReference>
   </ItemGroup>
-  <Import Project="..\..\src\Mono.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

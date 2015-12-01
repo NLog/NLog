@@ -2,6 +2,8 @@ Welcome to NLog
 ===
 
 [![Join the chat at https://gitter.im/NLog/NLog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLog/NLog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Twitter](https://img.shields.io/badge/Twitter-NLogOfficial-blue.svg)](https://twitter.com/nlogofficial)
+[![News](https://img.shields.io/badge/News-5_aug_2015-orange.svg)](http://nlog-project.org/archives/)
 
 [![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg)](https://www.nuget.org/packages/NLog)
 [![Version](https://img.shields.io/nuget/v/NLog.svg)](https://www.nuget.org/packages/NLog) 
@@ -9,6 +11,11 @@ Welcome to NLog
 [![AppVeyor](https://img.shields.io/appveyor/ci/Xharze/nlog-134/master.svg)](https://ci.appveyor.com/project/Xharze/nlog-134/branch/master)
 <!--[![Pre-release version](https://img.shields.io/nuget/vpre/NLog.svg)](https://www.nuget.org/packages/NLog)--> 
 
+---
+
+[NLog is Looking for Developers!](http://nlog-project.org/2015/08/05/NLog-is-looking-for-developers.html)
+
+---
 
 NLog is a free logging platform for .NET with rich log routing and management 
 capabilities. It makes it easy to produce and manage high-quality logs for 
@@ -22,6 +29,11 @@ For more information, see the website [nlog-project.org](http://nlog-project.org
 or just get started with the tutorials on [the NLog wiki](https://github.com/NLog/NLog/wiki).
 
 [Project news - including RSS feed](http://nlog-project.org/archives/)
+
+Extensions
+---
+This is the core of NLog. There are multiple extensions on NLog, some are maintained by NLog and other by the community. Check [the targets](https://github.com/NLog/NLog/wiki/Targets#targets) and [the layout renderers](https://github.com/NLog/NLog/wiki/Layout-Renderers#layout-renderers) wiki pages for more information!
+
 
 Questions, bug reports or feature requests?
 ---

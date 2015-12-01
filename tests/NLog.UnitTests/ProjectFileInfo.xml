@@ -73,7 +73,7 @@
     </ItemGroup>
   </Project>
 
-  <Project File="NLog.UnitTests.uwp10.csproj">
+<Project File="NLog.UnitTests.uwp10.csproj">
     <ItemGroup Name="Compile">
       <FileSet Include="AllFilesToCompile" />
 
@@ -82,10 +82,7 @@
       <FileSet Include="AllContentFiles" />
       <FileSet Include="UwpAssets" />
     </ItemGroup>
-  </Project>
-
-  <Project File="NLog.UnitTests.monodevelop.csproj">
-    <ItemGroup Name="Compile">
+  </Project> <Project File="NLog.UnitTests.mono.csproj">    <ItemGroup Name="Compile">
       <FileSet Include="AllFilesToCompile" />
     </ItemGroup>
     <ItemGroup Name="Content">

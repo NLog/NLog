@@ -31,57 +31,32 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !SILVERLIGHT4
 
-#if !UWP10
-
-namespace NLog.Internal.Fakeables
+namespace NLog.LayoutRenderers
 {
     using System;
-    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.Text;
 
     /// <summary>
-    /// Interface for fakeable the current <see cref="AppDomain"/>. Not fully implemented, please methods/properties as necessary.
+    /// A renderer that puts into log a System.Diagnostics trace correlation id.
     /// </summary>
-    public interface IAppDomain
+    [LayoutRenderer("activityid")]
+    public class TraceActivityIdLayoutRenderer : LayoutRenderer
     {
-#if !SILVERLIGHT
         /// <summary>
-        /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
+        /// Renders the current trace activity ID.
         /// </summary>
-        string BaseDirectory { get; }
-
-        /// <summary>
-        /// Gets or sets the name of the configuration file for an application domain.
-        /// </summary>
-        string ConfigurationFile { get; }
-
-        /// <summary>
-        /// Gets or sets the list of directories under the application base directory that are probed for private assemblies.
-        /// </summary>
-        IEnumerable<string> PrivateBinPath { get; }
-
-        /// <summary>
-        /// Gets or set the friendly name.
-        /// </summary>
-        string FriendlyName { get; }
-
-        /// <summary>
-        /// Gets an integer that uniquely identifies the application domain within the process. 
-        /// </summary>
-        int Id { get; }
-#endif
-
-#if !SILVERLIGHT
-        /// <summary>
-        /// Process exit event.
-        /// </summary>
-        event EventHandler<EventArgs> ProcessExit;
-        
-        /// <summary>
-        /// Domain unloaded event.
-        /// </summary>
-        event EventHandler<EventArgs> DomainUnload;
-#endif
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="logEvent">Logging event.</param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            builder.Append(Guid.Empty.Equals(Trace.CorrelationManager.ActivityId) ?
+                String.Empty : Trace.CorrelationManager.ActivityId.ToString("D", CultureInfo.InvariantCulture));
+        }
     }
 }
+
 #endif

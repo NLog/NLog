@@ -1,11 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\..\..\build\</BaseOutputDirectory>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E7AB20BF-6920-442A-B876-CC05BC5CEC79}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -240,6 +238,7 @@
     <Compile Include="LayoutRenderers\LongDateLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\MachineNameLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\MdcLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\MdlcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\MessageLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\NdcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\NewLineLayoutRenderer.cs" />
@@ -263,6 +262,8 @@
     <Compile Include="LayoutRenderers\ThreadNameLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TicksLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\TimeLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\TraceActivityIdLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\VariableLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\WindowsIdentityLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeLayoutRendererWrapper.cs" />
@@ -326,6 +327,7 @@
     <Compile Include="LogReceiverService\WcfLogReceiverClientFacade.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverOneWayClient.cs" />
     <Compile Include="MappedDiagnosticsContext.cs" />
+    <Compile Include="MappedDiagnosticsLogicalContext.cs" />
     <Compile Include="MDC.cs" />
     <Compile Include="NDC.cs" />
     <Compile Include="NestedDiagnosticsContext.cs" />

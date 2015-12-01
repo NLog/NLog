@@ -94,14 +94,7 @@ namespace NLog.UnitTests.Config
         }
 #endif
 
-        [Fact]
-        public void None_xml_configuration_throws_not_supported_exception_when_accessing_variables()
-        {
-            var configuration = new LoggingConfiguration();
-            LogManager.Configuration = configuration;
-            
-            Assert.Throws<NotSupportedException>(() =>LogManager.Configuration.Variables);
-        }
+      
 
         [Fact]
         public void Xml_configuration_returns_defined_variables()
@@ -118,8 +111,8 @@ namespace NLog.UnitTests.Config
 
             LogManager.Configuration = configuration;
 
-            Assert.Equal("[[", LogManager.Configuration.Variables["prefix"]);
-            Assert.Equal("]]", LogManager.Configuration.Variables["suffix"]);
+            Assert.Equal("[[", LogManager.Configuration.Variables["prefix"].OriginalText);
+            Assert.Equal("]]", LogManager.Configuration.Variables["suffix"].OriginalText);
         }
     }
 }

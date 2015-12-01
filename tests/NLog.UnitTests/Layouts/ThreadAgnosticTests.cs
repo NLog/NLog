@@ -49,7 +49,7 @@ namespace NLog.UnitTests.Layouts
             {
                 if (t.Namespace == typeof(WrapperLayoutRendererBase).Namespace)
                 {
-                    if (t.IsAbstract() || t.IsEnum())
+                    if (t.IsAbstract() || t.IsEnum() || t.IsNestedPrivate())
                     {
                         // skip non-concrete types and enumerations
                         continue;

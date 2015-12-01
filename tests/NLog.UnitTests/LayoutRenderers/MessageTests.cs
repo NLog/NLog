@@ -198,7 +198,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void MessageWithExceptionTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog>
+            <nlog exceptionLoggingOldStyle='true'>
                 <targets><target name='debug' type='Debug' layout='${message:withException=true}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
@@ -224,6 +224,9 @@ namespace NLog.UnitTests.LayoutRenderers
 #pragma warning restore 0618
 
             logger.Debug(ex, "Foo");
+            AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
+
+            logger.Debug( "Foo", ex);
             AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
         }
 
