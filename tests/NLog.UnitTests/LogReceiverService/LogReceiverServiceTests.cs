@@ -37,12 +37,14 @@
 namespace NLog.UnitTests.LogReceiverService
 {
 
+#if !SILVERLIGHT
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
     using System.ServiceModel;
     using System.ServiceModel.Description;
     using System.Threading;
+#endif
 
     using System;
     using System.IO;
@@ -231,7 +233,7 @@ namespace NLog.UnitTests.LogReceiverService
 #endif
 
 
-#if WCF_SUPPORTED
+#if WCF_SUPPORTED && !SILVERLIGHT
 
         [Fact]
         public void RealTestLogReciever1()
@@ -300,6 +302,8 @@ namespace NLog.UnitTests.LogReceiverService
                 logFunc(logger1);
 
                 countdownEvent.Wait(20000);
+                //we need some extra time for completion
+                Thread.Sleep(1000);
                 var recieved = LogRecieverMock.recievedEvents;
 
 

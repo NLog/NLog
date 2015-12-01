@@ -42,7 +42,7 @@ namespace NLog.UnitTests
 
 #if UWP10
     using Windows.System.Threading;
-#elif !SILVERLIGHT
+#else
     using System.Threading;
 #endif
 

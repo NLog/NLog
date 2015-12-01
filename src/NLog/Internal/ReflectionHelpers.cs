@@ -35,6 +35,9 @@ using System.Collections;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+#if SILVERLIGHT
+using System.Windows;
+#endif
 using NLog.Config;
 
 namespace NLog.Internal
