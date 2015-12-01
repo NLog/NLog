@@ -72,7 +72,10 @@ namespace NLog
             {
                 StackTrace stackTrace;
 #if UWP10
-                stackTrace = new StackTrace(null, false);
+#if !DEBUG
+#error check this
+#endif
+                stackTrace = new StackTrace(new Exception(), stu == StackTraceUsage.WithSource);
 #elif !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
 

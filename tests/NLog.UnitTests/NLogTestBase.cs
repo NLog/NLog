@@ -285,11 +285,16 @@ namespace NLog.UnitTests
             }
         }
 
-        protected static void RunAsync2(Action<object> func)
+        
+        protected
+#if UWP10
+            async
+#endif
+            static void RunAsync2(Action<object> func)
         {
 #if UWP10
 
-            ThreadPool.RunAsync((state) => func(state)).GetResults();
+            await ThreadPool.RunAsync(state => func(state));
 #else
             ThreadPool.QueueUserWorkItem(state => func(state));
 #endif
