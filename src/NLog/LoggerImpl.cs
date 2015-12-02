@@ -114,18 +114,21 @@ namespace NLog
         {
             int? firstUserFrame = null;
 
-                for (int i = 0; i < stackTrace.FrameCount; ++i)
-                {
-                    StackFrame frame = stackTrace.GetFrame(i);
-                    MethodBase mb = frame.GetMethod();
+            for (int i = 0; i < stackTrace.FrameCount; ++i)
+            {
+                StackFrame frame = stackTrace.GetFrame(i);
+                MethodBase mb = frame.GetMethod();
                 if (IsNonUserStackFrame(mb, loggerType))
-                        firstUserFrame = i + 1;
-                    else if (firstUserFrame != null)
+                    firstUserFrame = i + 1;
+                else if (firstUserFrame != null)
+                {
+                    //first usercode
                     return firstUserFrame.Value;
                 }
+            }
 
             return 0;
-                    }
+        }
 
         /// <summary>
         ///  Defines whether a stack frame belongs to non-user code
@@ -141,7 +144,7 @@ namespace NLog
         {
             var declaringType = method.DeclaringType;
             // get assembly by declaring type or by module for global methods
-            var assembly = declaringType != null ? declaringType.Assembly : method.Module.Assembly; 
+            var assembly = declaringType != null ? declaringType.Assembly : method.Module.Assembly;
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             if (SkipAssembly(assembly)) return true;
             // or if that type is the loggerType or one of its subtypes
