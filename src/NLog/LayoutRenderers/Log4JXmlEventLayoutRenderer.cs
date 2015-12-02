@@ -62,10 +62,11 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer() : this(AppDomainWrapper.CurrentDomain)
+        public Log4JXmlEventLayoutRenderer()
+            : this(AppDomainWrapper.CurrentDomain)
         {
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
@@ -76,11 +77,13 @@ namespace NLog.LayoutRenderers
 
 #if SILVERLIGHT
             this.AppInfo = "Silverlight Application";
+#elif __IOS__
+            this.AppInfo = "MonoTouch Application";
 #else
             this.AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
-                "{0}({1})", 
-                appDomain.FriendlyName, 
+                "{0}({1})",
+                appDomain.FriendlyName,
                 ThreadIDHelper.Instance.CurrentProcessID);
 #endif
 
@@ -252,14 +255,14 @@ namespace NLog.LayoutRenderers
                             }
                             xtw.WriteEndElement();
                         }
-                        
+
                     }
                 }
 
                 xtw.WriteStartElement("log4j", "properties", dummyNamespace);
                 if (this.IncludeMdc)
                 {
-                    foreach(KeyValuePair<string, object> item in ThreadContext.Instance)
+                    foreach (KeyValuePair<string, object> item in ThreadContext.Instance)
                     {
                         xtw.WriteStartElement("log4j", "data", dummyNamespace);
                         xtw.WriteAttributeSafeString("name", item.Key);
