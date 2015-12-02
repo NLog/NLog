@@ -70,7 +70,10 @@ namespace NLog.UnitTests.Contexts
             Assert.Equal(0, GlobalContext.Instance.Keys.Count);
 
             GlobalContext.Instance.Clear();
-            
+
+            GlobalContext.Instance["foo"] = "bar";
+            GlobalContext.Instance["foo2"] = "bar2";
+            GlobalContext.Instance["foo3"] = "bar3";
             var count = 0;
             foreach (var item in GlobalContext.Instance)
                 count++;

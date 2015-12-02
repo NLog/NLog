@@ -184,7 +184,7 @@ namespace NLog.UnitTests.Contexts
         {
             List<Exception> exceptions = new List<Exception>();
             ManualResetEvent mre = new ManualResetEvent(false);
-            int counter = 100;
+            int counter = 1;
             int remaining = counter;
 
             for (int i = 0; i < counter; ++i)
@@ -200,6 +200,7 @@ namespace NLog.UnitTests.Contexts
                             Assert.False(ThreadContext.Instance.Contains("foo2"));
                             Assert.Null(ThreadContext.Instance["foo2"]);
 
+                            ThreadContext.Instance["foo"] = "bar";
                             Assert.True(ThreadContext.Instance.Contains("foo"));
                             Assert.Equal("bar", ThreadContext.Instance["foo"]);
 
@@ -207,6 +208,7 @@ namespace NLog.UnitTests.Contexts
                             Assert.False(ThreadContext.Instance.Contains("foo"));
                             Assert.Null(ThreadContext.Instance["foo"]);
 
+                            ThreadContext.Instance["foo2"] = "bar2";
                             Assert.True(ThreadContext.Instance.Contains("foo2"));
                             Assert.Equal("bar2", ThreadContext.Instance["foo2"]);
 
