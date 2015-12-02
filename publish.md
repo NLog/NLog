@@ -33,3 +33,10 @@ To www.symbolsource.org
 nuget push NLog\build\bin\release\NuGetPackages\NLog.4.2.0.symbols.nupkg
 nuget push NLog\build\bin\release\NuGetPackages\NLog.Extended.4.2.0.symbols.nupkg
 ```
+
+
+NuGet Package explorer
+---
+Example of correct version numbers:
+
+![image](https://cloud.githubusercontent.com/assets/5808377/11546997/fbfad58a-9950-11e5-952d-f7369f747089.png)
