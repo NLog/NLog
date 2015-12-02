@@ -112,22 +112,34 @@ namespace NLog
         /// <seealso cref="IsNonUserStackFrame"/>
         private static int FindCallingMethodOnStackTrace([NotNull] StackTrace stackTrace, [NotNull] Type loggerType)
         {
-            int? firstUserFrame = null;
+            var stackFrames = stackTrace.GetFrames();
+            if (stackFrames == null)
+                return 0;
+            var intermediate = stackFrames.Select((f, i) => new {index = i, frame = f});
+            intermediate = intermediate.SkipWhile(p => IsNonUserStackFrame(p.frame.GetMethod(), loggerType));
+            var last = intermediate.SkipWhile(p => !IsNonUserStackFrame(p.frame.GetMethod(), loggerType)).FirstOrDefault();
 
-            for (int i = 0; i < stackTrace.FrameCount; ++i)
+            if (last != null && last.index > 0)
             {
-                StackFrame frame = stackTrace.GetFrame(i);
-                MethodBase mb = frame.GetMethod();
-                if (IsNonUserStackFrame(mb, loggerType))
-                    firstUserFrame = i + 1;
-                else if (firstUserFrame != null)
-                {
-                    //first usercode
-                    return firstUserFrame.Value;
-                }
+                return last.index - 1;
             }
-
             return 0;
+
+            //  int? firstUserFrame = null;
+            //for (int i = 0; i < stackTrace.FrameCount; ++i)
+            //{
+            //    StackFrame frame = stackTrace.GetFrame(i);
+            //    MethodBase mb = frame.GetMethod();
+            //    if (IsNonUserStackFrame(mb, loggerType))
+            //        firstUserFrame = i + 1;
+            //    else if (firstUserFrame != null)
+            //    {
+            //        //first usercode
+            //        return firstUserFrame.Value;
+            //    }
+            //}
+
+            // return 0;
         }
 
         /// <summary>
@@ -148,7 +160,8 @@ namespace NLog
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             if (SkipAssembly(assembly)) return true;
             // or if that type is the loggerType or one of its subtypes
-            return declaringType != null && loggerType.IsAssignableFrom(declaringType);
+            var isNonUserStackFrame = declaringType != null && (loggerType != declaringType && loggerType.IsAssignableFrom(declaringType));
+            return isNonUserStackFrame;
         }
 
         private static bool SkipAssembly(Assembly assembly)
