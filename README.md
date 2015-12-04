@@ -58,6 +58,16 @@ Questions, bug reports or feature requests?
 Do you have feature requests, questions or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](CONTRIBUTING.md).
 Please also post or vote features requests on [UserEcho](https://nlog.userecho.com).
 
+
+Q&A
+---
+* **How do I upgrade to NLog 4.x?** 
+  - Read the [4.0 release post](http://nlog-project.org/2015/06/09/nlog-4-has-been-released.html), there are some breaking changes.
+  - Update all the NLog packages. The latest stable version is recommend. 
+
+
+
+
 Contributing
 ---
 As the current NLog team is a small team, we cannot fix every bug or implement every feature on our own. So contributions are really appreciated!
