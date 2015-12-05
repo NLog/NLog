@@ -621,14 +621,6 @@ namespace NLog
                     this.reloadTimer.Dispose();
                     this.reloadTimer = null;
                 }
-                else
-                {
-                    //timer was disposed already. 
-                    this.watcher.Dispose();
-                    return;
-                }
-
-                
                 if(IsDisposing)
                 {
                     //timer was disposed already. 
