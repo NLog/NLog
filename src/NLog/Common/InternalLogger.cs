@@ -33,6 +33,7 @@
 
 namespace NLog.Common
 {
+    using JetBrains.Annotations;
     using System;
     using System.ComponentModel;
     using System.Configuration;
@@ -42,7 +43,7 @@ namespace NLog.Common
     using System.Text;
     using NLog.Internal;
     using NLog.Time;
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
     using ConfigurationManager = System.Configuration.ConfigurationManager;
     using System.Diagnostics;
 #endif
@@ -61,12 +62,12 @@ namespace NLog.Common
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static InternalLogger()
         {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
-			
+
             Info("NLog internal logger initialized.");
 #else
             LogLevel = LogLevel.Info;
@@ -104,7 +105,7 @@ namespace NLog.Common
             {
                 _logFile = value;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 if (!string.IsNullOrEmpty(_logFile))
                 {
                     CreateDirectoriesIfNeeded(_logFile);
@@ -177,6 +178,7 @@ namespace NLog.Common
         /// <param name="level">Log level.</param>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Log(LogLevel level, string message, params object[] args)
         {
             Write(level, message, args);
@@ -197,6 +199,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Trace([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Trace, message, args);
@@ -216,6 +219,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Debug([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Debug, message, args);
@@ -235,6 +239,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Info([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Info, message, args);
@@ -254,6 +259,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Warn([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Warn, message, args);
@@ -273,6 +279,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Error([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Error, message, args);
@@ -292,6 +299,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
         public static void Fatal([Localizable(false)] string message, params object[] args)
         {
             Write(LogLevel.Fatal, message, args);
@@ -389,7 +397,7 @@ namespace NLog.Common
         {
             try
             {
-#if SILVERLIGHT
+#if SILVERLIGHT || __IOS__ || __ANDROID__
                 Info(assembly.FullName);
 #else
                 var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
@@ -405,7 +413,7 @@ namespace NLog.Common
             }
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private static string GetSettingString(string configName, string envName)
         {
             string settingValue = ConfigurationManager.AppSettings[configName];
@@ -472,7 +480,7 @@ namespace NLog.Common
                 return defaultValue;
             }
         }
-        
+
         private static void CreateDirectoriesIfNeeded(string filename)
         {
             try

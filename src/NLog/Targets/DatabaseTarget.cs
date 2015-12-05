@@ -31,8 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
 {
@@ -50,9 +49,9 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
-	using ConfigurationManager = System.Configuration.ConfigurationManager;
+    using ConfigurationManager = System.Configuration.ConfigurationManager;
 
-	/// <summary>
+    /// <summary>
     /// Writes log messages to the database using an ADO.NET provider.
     /// </summary>
     /// <seealso href="https://github.com/nlog/nlog/wiki/Database-target">Documentation on NLog Wiki</seealso>
@@ -167,6 +166,20 @@ namespace NLog.Targets
         public bool KeepConnection { get; set; }
 
         /// <summary>
+        /// Obsolete - value will be ignored! The logging code always runs outside of transaction. 
+        /// 
+        /// Gets or sets a value indicating whether to use database transactions. 
+        /// Some data providers require this.
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        /// <remarks>
+        /// This option was removed in NLog 4.0 because the logging code always runs outside of transaction. 
+        /// This ensures that the log gets written to the database if you rollback the main transaction because of an error and want to log the error.
+        /// </remarks>
+        [Obsolete("Obsolete - value will be ignored - logging code always runs outside of transaction. Will be removed in NLog 6.")]
+        public bool? UseTransactions { get; set; }
+
+        /// <summary>
         /// Gets or sets the database host name. If the ConnectionString is not provided
         /// this value will be used to construct the "Server=" part of the
         /// connection string.
@@ -213,7 +226,7 @@ namespace NLog.Targets
         [RequiredParameter]
         public Layout CommandText { get; set; }
 
-	/// <summary>
+        /// <summary>
         /// Gets or sets the type of the SQL command to be run on each log level.
         /// </summary>
         /// <remarks>
@@ -224,7 +237,7 @@ namespace NLog.Targets
         /// <docgen category='SQL Statement' order='11' />
         [DefaultValue(CommandType.Text)]
         public CommandType CommandType { get; set; }
-        
+
         /// <summary>
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a database named or positional parameter.
@@ -236,7 +249,7 @@ namespace NLog.Targets
         internal DbProviderFactory ProviderFactory { get; set; }
 
         // this is so we can mock the connection string without creating sub-processes
-        internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set;  }
+        internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set; }
 
         internal Type ConnectionType { get; set; }
 
@@ -296,6 +309,13 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
+
+#pragma warning disable 618
+            if (UseTransactions.HasValue)
+#pragma warning restore 618
+            {
+                InternalLogger.Warn("UseTransactions is obsolete and will not be used - will be removed in NLog 6");
+            }
 
             bool foundProvider = false;
 
@@ -614,7 +634,7 @@ namespace NLog.Targets
                     }
                 }
             }
-            finally 
+            finally
             {
                 this.CloseConnection();
             }
