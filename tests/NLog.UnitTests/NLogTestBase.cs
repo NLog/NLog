@@ -47,7 +47,7 @@ namespace NLog.UnitTests
     using System.Threading;
 #endif
 
-#if NET4_5
+#if MONO || NET4_5
     using System.Runtime.CompilerServices;
 #endif
 
