@@ -33,4 +33,4 @@ packages/
 build/
 *.sublime-*
 *.DotSettings
-src/NLog/project.lock.json
+src/NLog/project.lock.json*.vshost.*

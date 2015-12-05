@@ -31,8 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !UWP10
-
+#if !__IOS__ && !WINDOWS_PHONE && !__ANDROID__ && !UWP10
 namespace NLog.Targets
 {
     using System;
@@ -166,7 +165,7 @@ namespace NLog.Targets
             var networkLogEvents = this.TranslateLogEvents(logEvents);
             this.Send(networkLogEvents, logEvents);
         }
-        
+
         /// <summary>
         /// Flush any pending log messages asynchronously (in case of asynchronous targets).
         /// </summary>
@@ -271,22 +270,22 @@ namespace NLog.Targets
             }
 
 #if WCF_SUPPORTED
-            var client = CreateWcfLogReceiverClient();
+            var client = CreateLogReceiver();
 
             client.ProcessLogMessagesCompleted += (sender, e) =>
+            {
+                // report error to the callers
+                foreach (var ev in asyncContinuations)
                 {
-                    // report error to the callers
-                    foreach (var ev in asyncContinuations)
-                    {
-                        ev.Continuation(e.Error);
-                    }
+                    ev.Continuation(e.Error);
+                }
 
-                    // send any buffered events
-                    this.SendBufferedEvents();
-                };
+                // send any buffered events
+                this.SendBufferedEvents();
+            };
 
             this.inCall = true;
-#if SILVERLIGHT
+#if SILVERLIGHT 
             if (!Deployment.Current.Dispatcher.CheckAccess())
             {
                 Deployment.Current.Dispatcher.BeginInvoke(() => client.ProcessLogMessagesAsync(events));
@@ -342,9 +341,10 @@ namespace NLog.Targets
         /// service configuration - binding and endpoint address
         /// </summary>
         /// <returns></returns>
-        protected virtual WcfLogReceiverClientFacade CreateWcfLogReceiverClient()
+        [Obsolete("Ths may be removed in a future release.  Use CreateLogReceiver.")]
+        protected virtual WcfLogReceiverClient CreateWcfLogReceiverClient()
         {
-            WcfLogReceiverClientFacade client;
+            WcfLogReceiverClient client;
 
             if (string.IsNullOrEmpty(this.EndpointConfigurationName))
             {
@@ -360,11 +360,11 @@ namespace NLog.Targets
                     binding = new BasicHttpBinding();
                 }
 
-                client = new WcfLogReceiverClientFacade(UseOneWayContract, binding, new EndpointAddress(this.EndpointAddress));
+                client = new WcfLogReceiverClient(UseOneWayContract, binding, new EndpointAddress(this.EndpointAddress));
             }
             else
             {
-                client = new WcfLogReceiverClientFacade(UseOneWayContract, this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
+                client = new WcfLogReceiverClient(UseOneWayContract, this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
             }
 
             client.ProcessLogMessagesCompleted += ClientOnProcessLogMessagesCompleted;
@@ -372,9 +372,27 @@ namespace NLog.Targets
             return client;
         }
 
+        /// <summary>
+        /// Creating a new instance of IWcfLogReceiverClient
+        /// 
+        /// Inheritors can override this method and provide their own 
+        /// service configuration - binding and endpoint address
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>virtual is used by endusers</remarks>
+        protected virtual IWcfLogReceiverClient CreateLogReceiver()
+        {
+#pragma warning disable 612, 618
+
+            return this.CreateWcfLogReceiverClient();
+
+#pragma warning restore 612, 618
+
+        }
+
         private void ClientOnProcessLogMessagesCompleted(object sender, AsyncCompletedEventArgs asyncCompletedEventArgs)
         {
-            var client = sender as WcfLogReceiverClientFacade;
+            var client = sender as WcfLogReceiverClient;
             if (client != null && client.State == CommunicationState.Opened)
             {
                 client.CloseCommunicationObject();
@@ -424,7 +442,7 @@ namespace NLog.Targets
             {
                 string value;
                 object propertyValue;
-                
+
                 if (eventInfo.Properties.TryGetValue(context.LayoutNames[i], out propertyValue))
                 {
                     value = Convert.ToString(propertyValue, CultureInfo.InvariantCulture);
@@ -440,11 +458,12 @@ namespace NLog.Targets
 
             if (eventInfo.Exception != null)
             {
-            	nlogEvent.ValueIndexes.Add(AddValueAndGetStringOrdinal(context, stringTable, eventInfo.Exception.ToString()));
-        	}
+                nlogEvent.ValueIndexes.Add(AddValueAndGetStringOrdinal(context, stringTable, eventInfo.Exception.ToString()));
+            }
 
             return nlogEvent;
         }
     }
 }
+
 #endif

@@ -116,8 +116,8 @@ namespace NLog.Internal
                 var enumerable = value as IEnumerable;
                 if (enumerable != null)
                 {
-                    //cast to list otherwhise possible:  Collection was modified after the enumerator was instantiated.
-                    var elements = enumerable as IList<object> ?? enumerable.Cast<object>().ToList();
+                    //new list to prevent: Collection was modified after the enumerator was instantiated.
+                    var elements = new List<object>(enumerable.Cast<object>());
 
                     foreach (object element in elements)
                     {

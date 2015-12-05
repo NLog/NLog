@@ -362,5 +362,158 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(@"::", l1.ReplaceWith);
             Assert.Equal(@"(?<!\d[ -]*)(?:(?<digits>\d)[ -]*){8,16}(?=(\d[ -]*){3}(\d)(?![ -]\d))", l1.SearchFor);
         }
+
+
+
+
+        [Fact]
+        public void InnerLayoutWithColonTest_with_workaround()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:Inner=Test${literal:text=\:} Hello}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Test: Hello", l.Render(le));
+        }
+
+        [Fact]
+        public void InnerLayoutWithColonTest()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:Inner=Test\: Hello}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Test: Hello", l.Render(le));
+        }
+
+        [Fact]
+        public void InnerLayoutWithSlashSingleTest()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:Inner=Test\Hello}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Test\\Hello", l.Render(le));
+        }
+
+        [Fact]
+        public void InnerLayoutWithSlashTest()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:Inner=Test\Hello}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Test\\Hello", l.Render(le));
+        }
+
+        [Fact]
+        public void InnerLayoutWithBracketsTest()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:Inner=Test{Hello\}}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Test{Hello}", l.Render(le));
+        }
+
+        [Fact]
+        public void InnerLayoutWithBracketsTest2()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:Inner=Test{Hello\\}}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal(@"Test{Hello\}", l.Render(le));
+        }
+
+        [Fact]
+        public void InnerLayoutWithBracketsTest_reverse()
+        {
+            SimpleLayout l = @"${when:Inner=Test{Hello\}:when=1 == 1}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Test{Hello}", l.Render(le));
+        }
+
+
+
+        [Fact]
+        public void InnerLayoutWithBracketsTest_no_escape()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:Inner=Test{Hello}}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Test{Hello}", l.Render(le));
+        }
+
+        [Fact]
+        public void InnerLayoutWithHashTest()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:inner=Log_{#\}.log}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("Log_{#}.log", l.Render(le));
+        }
+
+
+
+        [Fact]
+        public void InnerLayoutWithHashTest_need_escape()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:inner=L\}.log}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("L}.log", l.Render(le));
+        }
+
+        [Fact]
+        public void InnerLayoutWithBracketsTest_needEscape()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:inner=\}{.log}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("}{.log", l.Render(le));
+        }
+
+
+        [Fact]
+        public void InnerLayoutWithBracketsTest_needEscape2()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:inner={\}\}{.log}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("{}}{.log", l.Render(le));
+        }
+
+        [Fact]
+        public void InnerLayoutWithBracketsTest_needEscape3()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:inner={\}\}\}.log}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("{}}}.log", l.Render(le));
+        }
+
+        [Fact]
+        public void InnerLayoutWithBracketsTest_needEscape4()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:inner={\}\}\}.log}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("{}}}.log", l.Render(le));
+        }
+
+        [Fact]
+        public void InnerLayoutWithBracketsTest_needEscape5()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:inner=\}{a\}.log}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("}{a}.log", l.Render(le));
+        }
+
+        [Fact]
+        public void InnerLayoutWithHashTest_and_layoutrender()
+        {
+            SimpleLayout l = @"${when:when=1 == 1:inner=${counter}/Log_{#\}.log}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("1/Log_{#}.log", l.Render(le));
+        }
+
     }
 }

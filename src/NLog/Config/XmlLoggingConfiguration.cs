@@ -65,10 +65,14 @@ namespace NLog.Config
     {
         #region private fields
 
-        private readonly ConfigurationItemFactory configurationItemFactory = ConfigurationItemFactory.Default;
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
+
+        private ConfigurationItemFactory ConfigurationItemFactory
+        {
+            get { return ConfigurationItemFactory.Default; }
+        }
 
         #endregion
 
@@ -155,7 +159,7 @@ namespace NLog.Config
 
         #region public properties
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__  && !UWP10
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -608,7 +612,7 @@ namespace NLog.Config
             {
                 string name = filterElement.LocalName;
 
-                Filter filter = this.configurationItemFactory.Filters.CreateInstance(name);
+                Filter filter = this.ConfigurationItemFactory.Filters.CreateInstance(name);
                 this.ConfigureObjectFromAttributes(filter, filterElement, false);
                 rule.Filters.Add(filter);
             }
@@ -662,7 +666,7 @@ namespace NLog.Config
                             throw new NLogConfigurationException("Missing 'type' attribute on <" + name + "/>.");
                         }
 
-                        Target newTarget = this.configurationItemFactory.Targets.CreateInstance(type);
+                        Target newTarget = this.ConfigurationItemFactory.Targets.CreateInstance(type);
 
                         NLogXmlElement defaults;
                         if (typeNameToDefaultTargetParameters.TryGetValue(type, out defaults))
@@ -719,7 +723,7 @@ namespace NLog.Config
                     {
                         string type = StripOptionalNamespacePrefix(childElement.GetRequiredAttribute("type"));
 
-                        Target newTarget = this.configurationItemFactory.Targets.CreateInstance(type);
+                        Target newTarget = this.ConfigurationItemFactory.Targets.CreateInstance(type);
                         if (newTarget != null)
                         {
                             this.ParseTargetElement(newTarget, childElement);
@@ -755,7 +759,7 @@ namespace NLog.Config
                     {
                         string type = StripOptionalNamespacePrefix(childElement.GetRequiredAttribute("type"));
 
-                        Target newTarget = this.configurationItemFactory.Targets.CreateInstance(type);
+                        Target newTarget = this.ConfigurationItemFactory.Targets.CreateInstance(type);
                         if (newTarget != null)
                         {
                             this.ParseTargetElement(newTarget, childElement);
@@ -798,7 +802,7 @@ namespace NLog.Config
                 string type = StripOptionalNamespacePrefix(addElement.GetOptionalAttribute("type", null));
                 if (type != null)
                 {
-                    this.configurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
+                    this.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
                 }
 
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
@@ -807,7 +811,7 @@ namespace NLog.Config
                     try
                     {
                         var asm = AssemblyHelpers.LoadFrom(assemblyFile, baseDirectory);
-                        this.configurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+                        this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
                     }
                     catch (Exception exception)
                     {
@@ -833,7 +837,7 @@ namespace NLog.Config
                     {
                         var asm = AssemblyHelpers.LoadFrom(assemblyName, baseDirectory);
                         
-                        this.configurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+                        this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
                     }
                     catch (Exception exception)
                     {
@@ -908,7 +912,7 @@ namespace NLog.Config
 
             string type = timeElement.GetRequiredAttribute("type");
 
-            TimeSource newTimeSource = this.configurationItemFactory.TimeSources.CreateInstance(type);
+            TimeSource newTimeSource = this.ConfigurationItemFactory.TimeSources.CreateInstance(type);
 
             this.ConfigureObjectFromAttributes(newTimeSource, timeElement, true);
 
@@ -930,7 +934,7 @@ namespace NLog.Config
                 return;
             }
 
-            PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandSimpleVariables(element.Value), this.configurationItemFactory);
+            PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandSimpleVariables(element.Value), this.ConfigurationItemFactory);
         }
 
         private bool AddArrayItemFromElement(object o, NLogXmlElement element)
@@ -969,7 +973,7 @@ namespace NLog.Config
                     continue;
                 }
 
-                PropertyHelper.SetPropertyFromString(targetObject, childName, this.ExpandSimpleVariables(childValue), this.configurationItemFactory);
+                PropertyHelper.SetPropertyFromString(targetObject, childName, this.ExpandSimpleVariables(childValue), this.ConfigurationItemFactory);
             }
         }
 
@@ -990,7 +994,7 @@ namespace NLog.Config
                     if (layoutTypeName != null)
                     {
                         // configure it from current element
-                        Layout layout = this.configurationItemFactory.Layouts.CreateInstance(this.ExpandSimpleVariables(layoutTypeName));
+                        Layout layout = this.ConfigurationItemFactory.Layouts.CreateInstance(this.ExpandSimpleVariables(layoutTypeName));
                         this.ConfigureObjectFromAttributes(layout, layoutElement, true);
                         this.ConfigureObjectFromElement(layout, layoutElement);
                         targetPropertyInfo.SetValue(o, layout, null);
@@ -1014,7 +1018,7 @@ namespace NLog.Config
         {
             string wrapperType = StripOptionalNamespacePrefix(defaultParameters.GetRequiredAttribute("type"));
 
-            Target wrapperTargetInstance = this.configurationItemFactory.Targets.CreateInstance(wrapperType);
+            Target wrapperTargetInstance = this.ConfigurationItemFactory.Targets.CreateInstance(wrapperType);
             WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
             if (wtb == null)
             {

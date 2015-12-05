@@ -54,7 +54,7 @@ namespace NLog.Config
         private string loggerNameMatchArgument;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoggingRule" /> class.
+        /// Create an empty <see cref="LoggingRule" />.
         /// </summary>
         public LoggingRule()
         {
@@ -64,7 +64,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoggingRule" /> class.
+        /// Create a new <see cref="LoggingRule" /> with a <paramref name="minLevel"/> which writes to <paramref name="target"/>.
         /// </summary>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
@@ -83,11 +83,10 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoggingRule" /> class.
+        /// Create a (disabled) <see cref="LoggingRule" />. You should call <see cref="EnableLoggingForLevel"/> to enable logging.
         /// </summary>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
-        /// <remarks>By default no logging levels are defined. You should call <see cref="EnableLoggingForLevel"/> and <see cref="DisableLoggingForLevel"/> to set them.</remarks>
         public LoggingRule(string loggerNamePattern, Target target)
         {
             this.Filters = new List<Filter>();

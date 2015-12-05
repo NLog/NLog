@@ -199,7 +199,7 @@ namespace NLog.Internal.FileAppenders
             throw new InvalidOperationException("Should not be reached.");
         }
 
-#if !SILVERLIGHT && !MONO && !UWP10
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && !UWP10
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting)
         {
@@ -266,7 +266,7 @@ namespace NLog.Internal.FileAppenders
                 fileShare |= FileShare.Delete;
             }
 #endif
-#if !SILVERLIGHT && !MONO && !UWP10
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && !UWP10
             try
             {
                 if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)

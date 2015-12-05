@@ -397,6 +397,57 @@ namespace NLog.UnitTests.Common
                 }
             }
         }
+
+        [Fact]
+        public void CreateFileInCurrentDirectoryTests()
+        {
+            string expected =
+                    "Warn WWW" + Environment.NewLine +
+                    "Error EEE" + Environment.NewLine +
+                    "Fatal FFF" + Environment.NewLine +
+                    "Trace TTT" + Environment.NewLine +
+                    "Debug DDD" + Environment.NewLine +
+                    "Info III" + Environment.NewLine;
+
+            // Store off the previous log file
+            string previousLogFile = InternalLogger.LogFile;
+
+            var tempFileName = Path.GetRandomFileName();
+
+            InternalLogger.LogLevel = LogLevel.Trace;
+            InternalLogger.IncludeTimestamp = false;
+
+            Assert.False(File.Exists(tempFileName));
+
+            // Set the log file, which only has a filename
+            InternalLogger.LogFile = tempFileName;
+
+            try
+            {
+                Assert.False(File.Exists(tempFileName));
+
+                // Invoke Log(LogLevel, string) for every log level.
+                InternalLogger.Log(LogLevel.Warn, "WWW");
+                InternalLogger.Log(LogLevel.Error, "EEE");
+                InternalLogger.Log(LogLevel.Fatal, "FFF");
+                InternalLogger.Log(LogLevel.Trace, "TTT");
+                InternalLogger.Log(LogLevel.Debug, "DDD");
+                InternalLogger.Log(LogLevel.Info, "III");
+
+                AssertFileContents(tempFileName, expected, Encoding.UTF8);
+                Assert.True(File.Exists(tempFileName));
+            }
+            finally
+            {
+                // Reset LogFile to the previous value
+                InternalLogger.LogFile = previousLogFile;
+
+                if (File.Exists(tempFileName))
+                {
+                    File.Delete(tempFileName);
+                }
+            }
+        }
 #endif
     }
 }

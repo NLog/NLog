@@ -220,14 +220,17 @@ namespace NLog
         /// <param name="filterChain">The filter chain.</param>
         /// <param name="logEvent">The log event.</param>
         /// <returns>The result of the filter.</returns>
-        private static FilterResult GetFilterResult(IEnumerable<Filter> filterChain, LogEventInfo logEvent)
+        private static FilterResult GetFilterResult(IList<Filter> filterChain, LogEventInfo logEvent)
         {
             FilterResult result = FilterResult.Neutral;
 
             try
             {
-                foreach (Filter f in filterChain)
+                //Memory profiling pointed out that using a foreach-loop was allocating
+                //an Enumerator. Switching to a for-loop avoids the memory allocation.
+                for (int i = 0; i < filterChain.Count; i++)
                 {
+                    Filter f = filterChain[i];
                     result = f.GetFilterResult(logEvent);
                     if (result != FilterResult.Neutral)
                     {

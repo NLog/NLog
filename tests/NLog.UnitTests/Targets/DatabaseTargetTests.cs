@@ -42,8 +42,12 @@ namespace NLog.UnitTests.Targets
     using System.Data;
     using System.Data.Common;
     using System.Globalization;
+    using System.IO;
+    using NLog.Common;
+    using NLog.Config;
     using NLog.Targets;
     using Xunit;
+    using Xunit.Extensions;
 
     public class DatabaseTargetTests : NLogTestBase
     {
@@ -530,7 +534,7 @@ Dispose()
 
             dt = new DatabaseTarget();
             dt.DBHost = "HOST1";
-            dt.DBDatabase= "${logger}";
+            dt.DBDatabase = "${logger}";
             Assert.Equal("Server=HOST1;Trusted_Connection=SSPI;Database=Logger1", this.GetConnectionString(dt));
 
             dt = new DatabaseTarget();
@@ -752,6 +756,48 @@ Dispose()
 
             dt.Initialize(null);
             Assert.Equal(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
+        }
+
+        [Theory]
+        [InlineData("usetransactions='false'",true)]
+        [InlineData("usetransactions='true'",true)]
+        [InlineData("",false)]
+        public void WarningForObsoleteUseTransactions(string property, bool printWarning)
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(string.Format(@"
+            <nlog ThrowExceptions='true'>
+                <targets>
+                    <target type='database' {0} name='t1' commandtext='fake sql' connectionstring='somewhere' />
+                </targets>
+                <rules>
+                      <logger name='*' writeTo='t1'>
+                       
+                      </logger>
+                    </rules>
+            </nlog>", property));
+
+            StringWriter writer1 = new StringWriter()
+            {
+                NewLine = "\n"
+            };
+            InternalLogger.LogWriter = writer1;
+            var t = c.FindTargetByName<DatabaseTarget>("t1");
+            t.Initialize(null);
+            var internalLog = writer1.ToString();
+
+            if (printWarning)
+            {
+                Assert.Contains("obsolete", internalLog, StringComparison.InvariantCultureIgnoreCase);
+                Assert.Contains("usetransactions", internalLog, StringComparison.InvariantCultureIgnoreCase);
+            }
+            else
+            {
+                Assert.DoesNotContain("obsolete", internalLog, StringComparison.InvariantCultureIgnoreCase);
+                Assert.DoesNotContain("usetransactions", internalLog, StringComparison.InvariantCultureIgnoreCase);
+            }
+
+
+
         }
 
         private static void AssertLog(string expectedLog)

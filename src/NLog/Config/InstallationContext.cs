@@ -187,7 +187,7 @@ namespace NLog.Config
                     message = string.Format(CultureInfo.InvariantCulture, message, arguments);
                 }
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
                 var oldColor = Console.ForegroundColor;
                 Console.ForegroundColor = logLevel2ConsoleColor[logLevel];
 

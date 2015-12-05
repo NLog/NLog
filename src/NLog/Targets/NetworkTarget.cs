@@ -84,8 +84,8 @@ namespace NLog.Targets
     [Target("Network")]
     public class NetworkTarget : TargetWithLayout
     {
-        private Dictionary<string, NetworkSender> currentSenderCache = new Dictionary<string, NetworkSender>();
-        private List<NetworkSender> openNetworkSenders = new List<NetworkSender>();
+        private Dictionary<string, LinkedListNode<NetworkSender>> currentSenderCache = new Dictionary<string, LinkedListNode<NetworkSender>>();
+        private LinkedList<NetworkSender> openNetworkSenders = new LinkedList<NetworkSender>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
@@ -152,6 +152,19 @@ namespace NLog.Targets
         public int ConnectionCacheSize { get; set; }
 
         /// <summary>
+        /// Gets or sets the maximum current connections. 0 = no maximum.
+        /// </summary>
+        /// <docgen category="Connection Options" order="10"/>
+        [DefaultValue(0)]
+        public int MaxConnections { get; set; }
+
+        /// <summary>
+        /// Gets or sets the action that should be taken if the will be more connections than <see cref="MaxConnections"/>.
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public NetworkTargetConnectionsOverflowAction OnConnectionOverflow { get; set; }
+
+        /// <summary>
         /// Gets or sets the maximum queue size.
         /// </summary>
         [DefaultValue(0)]
@@ -183,13 +196,13 @@ namespace NLog.Targets
 
             AsyncContinuation continuation =
                 ex =>
+                {
+                    // ignore exception
+                    if (Interlocked.Decrement(ref remainingCount) == 0)
                     {
-                        // ignore exception
-                        if (Interlocked.Decrement(ref remainingCount) == 0)
-                        {
-                            asyncContinuation(null);
-                        }
-                    };
+                        asyncContinuation(null);
+                    }
+                };
 
             lock (this.openNetworkSenders)
             {
@@ -217,7 +230,7 @@ namespace NLog.Targets
         protected override void CloseTarget()
         {
             base.CloseTarget();
-            
+
             lock (this.openNetworkSenders)
             {
                 foreach (var openSender in this.openNetworkSenders)
@@ -241,50 +254,103 @@ namespace NLog.Targets
 
             if (this.KeepConnection)
             {
-                var sender = this.GetCachedNetworkSender(address);
+                var senderNode = this.GetCachedNetworkSender(address);
 
                 this.ChunkedSend(
-                    sender,
+                    senderNode.Value,
                     bytes,
                     ex =>
+                    {
+                        if (ex != null)
                         {
-                            if (ex != null)
-                            {
-                                InternalLogger.Error("Error when sending {0}", ex);
-                                this.ReleaseCachedConnection(sender);
-                            }
+                            InternalLogger.Error("Error when sending {0}", ex);
+                            this.ReleaseCachedConnection(senderNode);
+                        }
 
-                            logEvent.Continuation(ex);
-                        });
+                        logEvent.Continuation(ex);
+                    });
             }
             else
             {
-                var sender = this.SenderFactory.Create(address, MaxQueueSize);
-                sender.Initialize();
 
                 lock (this.openNetworkSenders)
                 {
-                    this.openNetworkSenders.Add(sender);
+
+
+                    //handle to many connections
+                    var tooManyConnections = this.openNetworkSenders.Count >= MaxConnections;
+
+                    if (tooManyConnections && MaxConnections > 0)
+                    {
+                        switch (this.OnConnectionOverflow)
+                        {
+                            case NetworkTargetConnectionsOverflowAction.DiscardMessage:
+                                InternalLogger.Warn("Discarding message otherwise to many connections.");
+                                logEvent.Continuation(null);
+                                return;
+
+                            case NetworkTargetConnectionsOverflowAction.AllowNewConnnection:
+                                InternalLogger.Debug("Too may connections, but this is allowed");
+                                break;
+
+                            case NetworkTargetConnectionsOverflowAction.Block:
+                                while (this.openNetworkSenders.Count >= this.MaxConnections)
+                                {
+                                    InternalLogger.Debug("Blocking networktarget otherwhise too many connections.");
+                                    System.Threading.Monitor.Wait(this.openNetworkSenders);
+                                    InternalLogger.Trace("Entered critical section.");
+                                }
+
+                                InternalLogger.Trace("Limit ok.");
+                                break;
+                        }
+                    }
+
+                    var sender = this.SenderFactory.Create(address, MaxQueueSize);
+                    sender.Initialize();
+
+                    var linkedListNode = this.openNetworkSenders.AddLast(sender);
                     this.ChunkedSend(
                         sender,
                         bytes,
                         ex =>
+                        {
+                            lock (this.openNetworkSenders)
                             {
-                                lock (this.openNetworkSenders)
+                                TryRemove(this.openNetworkSenders, linkedListNode);
+                                if (this.OnConnectionOverflow == NetworkTargetConnectionsOverflowAction.Block)
                                 {
-                                    this.openNetworkSenders.Remove(sender);
+                                    System.Threading.Monitor.PulseAll(this.openNetworkSenders);
                                 }
+                            }
 
-                                if (ex != null)
-                                {
-                                    InternalLogger.Error("Error when sending {0}", ex);
-                                }
+                            if (ex != null)
+                            {
+                                InternalLogger.Error("Error when sending {0}", ex);
+                            }
 
-                                sender.Close(ex2 => { });
-                                logEvent.Continuation(ex);
-                            });
+                            sender.Close(ex2 => { });
+                            logEvent.Continuation(ex);
+                        });
                 }
             }
+        }
+
+        /// <summary>
+        /// Try to remove. 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="node"></param>
+        /// <returns>removed something?</returns>
+        private static bool TryRemove<T>(LinkedList<T> list, LinkedListNode<T> node)
+        {
+            if (node == null || list != node.List)
+            {
+                return false;
+            }
+            list.Remove(node);
+            return true;
         }
 
         /// <summary>
@@ -308,31 +374,32 @@ namespace NLog.Targets
             return this.Encoding.GetBytes(text);
         }
 
-        private NetworkSender GetCachedNetworkSender(string address)
+        private LinkedListNode<NetworkSender> GetCachedNetworkSender(string address)
         {
             lock (this.currentSenderCache)
             {
-                NetworkSender sender;
+                LinkedListNode<NetworkSender> senderNode;
 
                 // already have address
-                if (this.currentSenderCache.TryGetValue(address, out sender))
+                if (this.currentSenderCache.TryGetValue(address, out senderNode))
                 {
-                    sender.CheckSocket();
-                    return sender;
+                    senderNode.Value.CheckSocket();
+                    return senderNode;
                 }
 
                 if (this.currentSenderCache.Count >= this.ConnectionCacheSize)
                 {
                     // make room in the cache by closing the least recently used connection
                     int minAccessTime = int.MaxValue;
-                    NetworkSender leastRecentlyUsed = null;
+                    LinkedListNode<NetworkSender> leastRecentlyUsed = null;
 
-                    foreach (var kvp in this.currentSenderCache)
+                    foreach (var pair in this.currentSenderCache)
                     {
-                        if (kvp.Value.LastSendTime < minAccessTime)
+                        var networkSender = pair.Value.Value;
+                        if (networkSender.LastSendTime < minAccessTime)
                         {
-                            minAccessTime = kvp.Value.LastSendTime;
-                            leastRecentlyUsed = kvp.Value;
+                            minAccessTime = networkSender.LastSendTime;
+                            leastRecentlyUsed = pair.Value;
                         }
                     }
 
@@ -342,39 +409,41 @@ namespace NLog.Targets
                     }
                 }
 
-                sender = this.SenderFactory.Create(address, MaxQueueSize);
+                var sender = this.SenderFactory.Create(address, MaxQueueSize);
                 sender.Initialize();
                 lock (this.openNetworkSenders)
                 {
-                    this.openNetworkSenders.Add(sender);
+                    senderNode = this.openNetworkSenders.AddLast(sender);
                 }
 
-                this.currentSenderCache.Add(address, sender);
-                return sender;
+                this.currentSenderCache.Add(address, senderNode);
+                return senderNode;
             }
         }
 
-        private void ReleaseCachedConnection(NetworkSender sender)
+        private void ReleaseCachedConnection(LinkedListNode<NetworkSender> senderNode)
         {
             lock (this.currentSenderCache)
             {
+                var networkSender = senderNode.Value;
                 lock (this.openNetworkSenders)
                 {
-                    if (this.openNetworkSenders.Remove(sender))
+                    
+                    if(TryRemove(this.openNetworkSenders,senderNode))
                     {
                         // only remove it once
-                        sender.Close(ex => { });
+                        networkSender.Close(ex => { });
                     }
                 }
 
-                NetworkSender sender2;
+                LinkedListNode<NetworkSender> sender2;
 
                 // make sure the current sender for this address is the one we want to remove
-                if (this.currentSenderCache.TryGetValue(sender.Address, out sender2))
+                if (this.currentSenderCache.TryGetValue(networkSender.Address, out sender2))
                 {
-                    if (ReferenceEquals(sender, sender2))
+                    if (ReferenceEquals(senderNode, sender2))
                     {
-                        this.currentSenderCache.Remove(sender.Address);
+                        this.currentSenderCache.Remove(networkSender.Address);
                     }
                 }
             }

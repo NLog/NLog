@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog.UnitTests
 {
     using System;
@@ -75,8 +77,8 @@ namespace NLog.UnitTests
 
         static WeakReference GetWeakReferenceToTemporaryLogger()
         {
-            string uniqueLoggerName = Guid.NewGuid ().ToString();
-            return new WeakReference (LogManager.GetLogger(uniqueLoggerName));
+            string uniqueLoggerName = Guid.NewGuid().ToString();
+            return new WeakReference(LogManager.GetLogger(uniqueLoggerName));
         }
 
         [Fact]
@@ -164,7 +166,7 @@ namespace NLog.UnitTests
                         <logger name='DisableLoggingTest_UsingStatement_B' levels='Error' writeTo='debug' />
                     </rules>
                 </nlog>";
-            
+
             // Disable/Enable logging should affect ALL the loggers.
             ILogger loggerA = LogManager.GetLogger("DisableLoggingTest_UsingStatement_A");
             ILogger loggerB = LogManager.GetLogger("DisableLoggingTest_UsingStatement_B");
@@ -192,7 +194,7 @@ namespace NLog.UnitTests
                 AssertDebugLastMessage("debug", "---");
 
                 loggerB.Error("EEE");
-                AssertDebugLastMessage("debug", "---");                
+                AssertDebugLastMessage("debug", "---");
             }
 
             Assert.True(LogManager.IsLoggingEnabled());
@@ -235,7 +237,7 @@ namespace NLog.UnitTests
 
             loggerA.Trace("---");
             AssertDebugLastMessage("debug", "---");
-           
+
             LogManager.DisableLogging();
             Assert.False(LogManager.IsLoggingEnabled());
 
@@ -248,7 +250,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "---");
 
             LogManager.EnableLogging();
-            
+
             Assert.True(LogManager.IsLoggingEnabled());
 
             loggerA.Trace("TTT");
@@ -278,7 +280,7 @@ namespace NLog.UnitTests
             _reloadCounter++;
         }
 
-        private bool IsMacOsX ()
+        private bool IsMacOsX()
         {
 #if MONO
             if (Directory.Exists("/Library/Frameworks/Mono.framework/"))
@@ -299,7 +301,7 @@ namespace NLog.UnitTests
                 // filesystem watcher
                 return;
             }
-            
+
             using (new InternalLoggerScope())
             {
                 string fileName = Path.GetTempFileName();
@@ -392,6 +394,81 @@ namespace NLog.UnitTests
             Assert.Equal(this.GetType().FullName, logger.Name);
 #endif
         }
+
+        private static class ImAStaticClass
+        {
+            [UsedImplicitly]
+            private static readonly Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
+            static ImAStaticClass() { }
+
+            public static void DummyToInvokeInitializers() { }
+
+        }
+
+        [Fact]
+        void GetCurrentClassLogger_static_class()
+        {
+            ImAStaticClass.DummyToInvokeInitializers();
+        }
+
+        private abstract class ImAAbstractClass
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+            /// </summary>
+            protected ImAAbstractClass()
+            {
+                Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+            }
+        }
+
+        private class InheritedFromAbstractClass : ImAAbstractClass
+        {
+
+        }
+
+        /// <summary>
+        /// Creating instance in a static ctor should not be a problm
+        /// </summary>
+        [Fact]
+        void GetCurrentClassLogger_abstract_class()
+        {
+            var instance = new InheritedFromAbstractClass();
+        }
+
+        /// <summary>
+        /// I'm a class which isn't inhereting from Logger
+        /// </summary>
+        private class ImNotALogger
+        {
+
+        }
+
+
+
+        /// <summary>
+        /// ImNotALogger inherits not from Logger , but should not throw an exception
+        /// </summary>
+        [Fact]
+        void GetLogger_wrong_loggertype_should_continue()
+        {
+            var instance = LogManager.GetLogger("a", typeof(ImNotALogger));
+            Assert.NotNull(instance);
+
+        }
+
+        /// <summary>
+        /// ImNotALogger inherits not from Logger , but should not throw an exception
+        /// </summary>
+        [Fact]
+        void GetLogger_wrong_loggertype_should_continue_even_if_class_is_static()
+        {
+            var instance = LogManager.GetLogger("a", typeof(ImAStaticClass));
+            Assert.NotNull(instance);
+
+        }
+
 
 #if NET4_0 || NET4_5
         [Fact]

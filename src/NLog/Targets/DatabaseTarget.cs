@@ -31,8 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__  && !UWP10
 
 namespace NLog.Targets
 {
@@ -172,6 +171,20 @@ namespace NLog.Targets
         /// connection string.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
+        /// <docgen category='Connection Options' order='10' />
+        /// <remarks>
+        /// This option was removed in NLog 4.0 because the logging code always runs outside of transaction. 
+        /// This ensures that the log gets written to the database if you rollback the main transaction because of an error and want to log the error.
+        /// </remarks>
+        [Obsolete("Obsolete - value will be ignored - logging code always runs outside of transaction. Will be removed in NLog 6.")]
+        public bool? UseTransactions { get; set; }
+
+        /// <summary>
+        /// Gets or sets the database host name. If the ConnectionString is not provided
+        /// this value will be used to construct the "Server=" part of the
+        /// connection string.
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
         public Layout DBHost { get; set; }
 
         /// <summary>
@@ -296,6 +309,13 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
+
+#pragma warning disable 618
+            if (UseTransactions.HasValue)
+#pragma warning restore 618
+            {
+                InternalLogger.Warn("UseTransactions is obsolete and will not be used - will be removed in NLog 6");
+            }
 
             bool foundProvider = false;
 

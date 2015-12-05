@@ -46,7 +46,7 @@ namespace NLog
         where T : Logger
     {
         /// <summary>
-        /// Gets the logger.
+        /// Gets the logger with type <typeparamref name="T"/>.
         /// </summary>
         /// <param name="name">The logger name.</param>
         /// <returns>An instance of <typeparamref name="T"/>.</returns>
@@ -56,9 +56,9 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger named after the currently-being-initialized class.
+        /// Gets a custom logger with the name of the current class and type <typeparamref name="T"/>.
         /// </summary>
-        /// <returns>The logger.</returns>
+        /// <returns>An instance of <typeparamref name="T"/>.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Backwards compatibility")]

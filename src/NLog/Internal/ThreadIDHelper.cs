@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !UWP10
 
 namespace NLog.Internal
 {
@@ -66,11 +66,6 @@ namespace NLog.Internal
 
         /// <summary>
         /// Gets current thread ID.
-        /// </summary>
-        public abstract int CurrentThreadID { get; }
-
-        /// <summary>
-        /// Gets current process ID.
         /// </summary>
         public abstract int CurrentProcessID { get; }
 

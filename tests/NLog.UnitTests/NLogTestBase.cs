@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 using System.Threading.Tasks;
 
 namespace NLog.UnitTests
@@ -44,6 +45,10 @@ namespace NLog.UnitTests
     using Windows.System.Threading;
 #else
     using System.Threading;
+#endif
+
+#if NET4_5
+    using System.Runtime.CompilerServices;
 #endif
 
     using NLog.Layouts;
@@ -209,6 +214,26 @@ namespace NLog.UnitTests
             l.Close();
             Assert.Equal(expected, actual);
         }
+
+#if MONO || NET4_5
+        /// <summary>
+        /// Get line number of previous line.
+        /// </summary>
+        protected int GetPrevLineNumber([CallerLineNumber] int callingFileLineNumber = 0)
+        {
+            return callingFileLineNumber-1;
+        }
+#else
+        /// <summary>
+        /// Get line number of previous line.
+        /// </summary>
+        protected int GetPrevLineNumber()
+        {
+        //fixed value set with #line 100000
+            return 100001;
+        }
+
+#endif
 
         protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {

@@ -206,6 +206,7 @@
     <Compile Include="Internal\Fakeables\IAppDomain.cs" />
     <Compile Include="Internal\FileAppenders\BaseFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\CountingSingleProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\FileAppenderCache.cs" />
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
     <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs" />
     <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Internal\FileAppenders\SingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileInfoHelper.cs" />
+    <Compile Include="Internal\FormatHelper.cs" />
     <Compile Include="Internal\IConfigurationManager.cs" />
     <Compile Include="Internal\IRenderable.cs" />
     <Compile Include="Internal\ISmtpClient.cs" />
@@ -372,6 +374,8 @@
     <Compile Include="LogReceiverService\ILogReceiverOneWayClient.cs" />
     <Compile Include="LogReceiverService\ILogReceiverOneWayServer.cs" />
     <Compile Include="LogReceiverService\ILogReceiverServer.cs" />
+    <Compile Include="LogReceiverService\ILogReceiverTwoWayClient.cs" />
+    <Compile Include="LogReceiverService\IWcfLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\LogReceiverForwardingService.cs" />
     <Compile Include="LogReceiverService\LogReceiverOneWayForwardingService.cs" />
     <Compile Include="LogReceiverService\LogReceiverServiceConfig.cs" />
@@ -379,9 +383,11 @@
     <Compile Include="LogReceiverService\NLogEvents.cs" />
     <Compile Include="LogReceiverService\SoapLogReceiverClient.cs" />
     <Compile Include="LogReceiverService\StringCollection.cs" />
+    <Compile Include="LogReceiverService\WcfILogReceiverClient.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverClient.cs" />
-    <Compile Include="LogReceiverService\WcfLogReceiverClientFacade.cs" />
+    <Compile Include="LogReceiverService\WcfLogReceiverClientBase.cs" />
     <Compile Include="LogReceiverService\WcfLogReceiverOneWayClient.cs" />
+    <Compile Include="LogReceiverService\WcfLogReceiverTwoWayClient.cs" />
     <Compile Include="MappedDiagnosticsContext.cs" />
     <Compile Include="MappedDiagnosticsLogicalContext.cs" />
     <Compile Include="MDC.cs" />
@@ -391,6 +397,7 @@
     <Compile Include="NLogRuntimeException.cs" />
     <Compile Include="NLogTraceListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Targets\ArchiveNumberingMode.cs" />
     <Compile Include="Targets\AspResponseTarget.cs" />
     <Compile Include="Targets\ChainsawTarget.cs" />
@@ -402,9 +409,11 @@
     <Compile Include="Targets\DatabaseCommandInfo.cs" />
     <Compile Include="Targets\DatabaseParameterInfo.cs" />
     <Compile Include="Targets\DatabaseTarget.cs" />
+    <Compile Include="Targets\DateAndSequenceArchive.cs" />
     <Compile Include="Targets\DebuggerTarget.cs" />
     <Compile Include="Targets\DebugTarget.cs" />
     <Compile Include="Targets\EventLogTarget.cs" />
+    <Compile Include="Targets\EventLogTargetOverflowAction.cs" />
     <Compile Include="Targets\FileArchivePeriod.cs" />
     <Compile Include="Targets\FileTarget.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
@@ -415,14 +424,13 @@
     <Compile Include="Targets\MethodCallTarget.cs" />
     <Compile Include="Targets\MethodCallTargetBase.cs" />
     <Compile Include="Targets\NetworkTarget.cs" />
+    <Compile Include="Targets\NetworkTargetConnectionsOverflowAction.cs" />
     <Compile Include="Targets\NetworkTargetOverflowAction.cs" />
     <Compile Include="Targets\NLogViewerParameterInfo.cs" />
     <Compile Include="Targets\NLogViewerTarget.cs" />
     <Compile Include="Targets\NullTarget.cs" />
     <Compile Include="Targets\OutputDebugStringTarget.cs" />
     <Compile Include="Targets\PerformanceCounterTarget.cs" />
-    <Compile Include="Targets\RichTextBoxRowColoringRule.cs" />
-    <Compile Include="Targets\RichTextBoxWordColoringRule.cs" />
     <Compile Include="Targets\SmtpAuthenticationMode.cs" />
     <Compile Include="Targets\Target.cs" />
     <Compile Include="Targets\TargetAttribute.cs" />

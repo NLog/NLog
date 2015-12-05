@@ -55,10 +55,31 @@ namespace NLog
         /// Gets the Global Diagnostics Context named item.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <returns>The item value of string.Empty if the value is not present.</returns>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
         public static string Get(string item)
         {
             return GlobalDiagnosticsContext.Get(item);
+        }
+
+        /// <summary>
+        /// Gets the Global Diagnostics Context item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
+        /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        public static string Get(string item, IFormatProvider formatProvider) 
+        {
+            return GlobalDiagnosticsContext.Get(item, formatProvider);
+        }
+
+        /// <summary>
+        /// Gets the Global Diagnostics Context named item.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
+        public static object GetObject(string item)
+        {
+            return GlobalDiagnosticsContext.GetObject(item);
         }
 
         /// <summary>

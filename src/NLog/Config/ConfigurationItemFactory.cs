@@ -53,6 +53,8 @@ namespace NLog.Config
     /// </summary>
     public class ConfigurationItemFactory
     {
+        private static ConfigurationItemFactory defaultInstance = null;
+
         private readonly IList<object> allFactories;
         private readonly Factory<Target, TargetAttribute> targets;
         private readonly Factory<Filter, FilterAttribute> filters;
@@ -65,15 +67,7 @@ namespace NLog.Config
         /// <summary>
         /// Initializes static members of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
-        static ConfigurationItemFactory()
-        {
-            Default = BuildDefaultFactory();
-        }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
-        /// </summary>
-        /// <param name="assemblies">The assemblies to scan for named items.</param>
         public ConfigurationItemFactory(params Assembly[] assemblies)
         {
             this.CreateInstance = FactoryHelper.CreateInstance;
@@ -104,7 +98,16 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets default singleton instance of <see cref="ConfigurationItemFactory"/>.
         /// </summary>
-        public static ConfigurationItemFactory Default { get; set; }
+        public static ConfigurationItemFactory Default
+        {
+            get
+            {
+                if (defaultInstance == null)
+                    defaultInstance = BuildDefaultFactory();
+                return defaultInstance;
+            }
+            set { defaultInstance = value; }
+        }
 
         /// <summary>
         /// Gets or sets the creator delegate used to instantiate configuration objects.
@@ -254,8 +257,23 @@ namespace NLog.Config
             foreach (var extensionDll in extensionDlls)
             {
                 InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
-                var extensionAssembly = AssemblyHelpers.LoadFrom(extensionDll, assemblyLocation);
-                factory.RegisterItemsFromAssembly(extensionAssembly);
+                var success = false;
+                try
+                {
+                    var extensionAssembly = AssemblyHelpers.LoadFrom(extensionDll, assemblyLocation);
+                    InternalLogger.LogAssemblyVersion(extensionAssembly);
+                    factory.RegisterItemsFromAssembly(extensionAssembly);
+                    success = true;
+                }
+                catch (Exception)
+                {
+                    InternalLogger.Warn("Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
+                }
+                if (success)
+                {
+                    InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
+                }
+
             }
             InternalLogger.Debug("Auto loading done");
 #endif

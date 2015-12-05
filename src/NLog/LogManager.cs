@@ -39,11 +39,11 @@ namespace NLog
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
-    using System.Reflection;
-    using System.Threading;
-    using System.Runtime.CompilerServices;
     using System.Linq;
- 
+    using System.Reflection;
+    using System.Runtime.CompilerServices;
+    using System.Threading;
+
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -99,7 +99,7 @@ namespace NLog
             remove { factory.ConfigurationChanged -= value; }
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -219,7 +219,7 @@ namespace NLog
         /// <summary>
         /// Gets the logger named after the currently-being-initialized class.
         /// </summary>
-        /// <returns>The logger.</returns>
+        /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [CLSCompliant(false)]
@@ -273,6 +273,7 @@ namespace NLog
         /// <param name="name">Name of the logger.</param>
         /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
+        /// <remarks>The generic way for this method is <see cref="LogFactory{loggerType}.GetLogger(string)"/></remarks>
         [CLSCompliant(false)]
         public static Logger GetLogger(string name, Type loggerType)
         {

@@ -315,6 +315,11 @@ namespace NLog.LayoutRenderers
         }
 
 #if SILVERLIGHT || UWP10
+        /// <summary>
+        /// Find name of method on stracktrace.
+        /// </summary>
+        /// <param name="stackTrace">Full stracktrace</param>
+        /// <returns></returns>
         protected static string ParseMethodNameFromStackTrace(string stackTrace)
         {
             // get the first line of the stack trace

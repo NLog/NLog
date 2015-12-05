@@ -61,7 +61,7 @@ namespace NLog.Internal
         /// <remarks>Types which cannot be loaded are skipped.</remarks>
         public static Type[] SafeGetTypes(this Assembly assembly)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
             return assembly.GetTypes();
 #else
             try
@@ -102,10 +102,23 @@ namespace NLog.Internal
 #endif
         }
 
+        /// <summary>
+        /// Is this a static class?
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        /// <remarks>This is a work around, as Type doesn't have this property. 
+        /// From: http://stackoverflow.com/questions/1175888/determine-if-a-type-is-static
+        /// </remarks>
+        public static bool IsStaticClass(this Type type)
+        {
+            return type.IsClass() && type.IsAbstract() && type.IsSealed();
+        }
+
         public static TAttr GetCustomAttribute<TAttr>(PropertyInfo info)
              where TAttr : Attribute
         {
-            return info.GetCustomAttributes(typeof(TAttr),false).FirstOrDefault() as TAttr;
+            return info.GetCustomAttributes(typeof(TAttr), false).FirstOrDefault() as TAttr;
         }
 
         public static IEnumerable<TAttr> GetCustomAttributes<TAttr>(Type type, bool inherit)
@@ -218,6 +231,26 @@ namespace NLog.Internal
             return typeInfo.IsPrimitive;
 #endif
         }
+        public static bool IsClass(this Type type)
+        {
+#if !UWP10
+            return type.IsClass;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsClass;
+#endif
+        }
+        public static bool IsSealed(this Type type)
+        {
+#if !UWP10
+            return type.IsSealed;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsSealed;
+#endif
+        }
+
+
 
         public static Assembly Assembly(this Type type)
         {
@@ -252,7 +285,7 @@ namespace NLog.Internal
                 , CultureInfo.InvariantCulture
 #else
 
-        
+
             var neededParameters = methodInfo.GetParameters();
 
             var missingParametersCount = neededParameters.Length - callParameters.Length;
@@ -278,7 +311,7 @@ namespace NLog.Internal
             return typeInfo.Assembly;
 #endif
         }
-#if !UWP10
+#if !UWP10 && !WINDOWS_PHONE
 
         public static string CodeBase(this Assembly assembly)
         {
@@ -288,7 +321,7 @@ namespace NLog.Internal
 
 #endif
 
-#if !UWP10
+#if !UWP10  && !WINDOWS_PHONE
         public static string Location(this Assembly assembly)
         {
             return assembly.Location;
@@ -355,20 +388,23 @@ namespace NLog.Internal
         /// <returns></returns>
         public static Assembly LoadFrom(string assemblyName, string baseDirectory)
         {
-            var assemblyFile = assemblyName + ".dll";
-#if SILVERLIGHT
-                                var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
-                                var assemblyPart = new AssemblyPart();
-                                Assembly asm = assemblyPart.Load(si.Stream);
-            return asm;
-#elif UWP10
-
+#if UWP10 || WINDOWS_PHONE
 
             var name = new AssemblyName(assemblyName);
             return Assembly.Load(name);
 
 #else
+           var assemblyFile = assemblyName + ".dll";
 
+#if SILVERLIGHT && !WINDOWS_PHONE
+
+           
+            var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
+            var assemblyPart = new AssemblyPart();
+            Assembly asm = assemblyPart.Load(si.Stream);
+            return asm;
+
+#else
 
             string fullFileName = Path.Combine(baseDirectory, assemblyFile);
             InternalLogger.Info("Loading assembly file: {0}", fullFileName);
@@ -376,6 +412,7 @@ namespace NLog.Internal
             Assembly asm = Assembly.LoadFrom(fullFileName);
             return asm;
 
+#endif
 #endif
         }
 

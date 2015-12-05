@@ -58,13 +58,13 @@ namespace NLog.LogReceiverService
 #if WCF_SUPPORTED
         [OperationContractAttribute(IsOneWay = true, AsyncPattern = true, Action = "http://nlog-project.org/ws/ILogReceiverOneWayServer/ProcessLogMessages")]
 #endif
-        IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState);
+         IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState);
 
         /// <summary>
         /// Ends asynchronous processing of log messages.
         /// </summary>
         /// <param name="result">The result.</param>
-        void EndProcessLogMessages(IAsyncResult result);
+         void EndProcessLogMessages(IAsyncResult result);
     }
 }
 #endif
