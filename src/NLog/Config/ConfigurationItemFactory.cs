@@ -260,7 +260,7 @@ namespace NLog.Config
                 var success = false;
                 try
                 {
-                    var extensionAssembly = AssemblyHelpers.LoadFrom(extensionDll, assemblyLocation);
+                    var extensionAssembly = AssemblyHelpers.LoadFromPath(extensionDll);
                     InternalLogger.LogAssemblyVersion(extensionAssembly);
                     factory.RegisterItemsFromAssembly(extensionAssembly);
                     success = true;

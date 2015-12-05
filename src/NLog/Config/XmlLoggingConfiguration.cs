@@ -810,7 +810,7 @@ namespace NLog.Config
                 {
                     try
                     {
-                        var asm = AssemblyHelpers.LoadFrom(assemblyFile, baseDirectory);
+                        var asm = AssemblyHelpers.LoadFromPath(assemblyFile);
                         this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
                     }
                     catch (Exception exception)
@@ -835,7 +835,7 @@ namespace NLog.Config
                 {
                     try
                     {
-                        var asm = AssemblyHelpers.LoadFrom(assemblyName, baseDirectory);
+                        var asm = AssemblyHelpers.LoadFromName(assemblyName);
                         
                         this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
                     }

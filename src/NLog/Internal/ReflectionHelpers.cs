@@ -317,7 +317,7 @@ namespace NLog.Internal
         {
 
             return assembly.CodeBase;
-    }
+        }
 
 #endif
 
@@ -378,27 +378,45 @@ namespace NLog.Internal
     /// <summary>
     /// Helpers for <see cref="Assembly"/>.
     /// </summary>
-    public class AssemblyHelpers
+    internal class AssemblyHelpers
     {
+
+#if !UWP10 && !WINDOWS_PHONE && !SILVERLIGHT
+
+        /// <summary>
+        /// Load from url
+        /// </summary>
+        /// <param name="assemblyFileName">file or path, including .dll</param>
+        /// <param name="baseDirectory">basepath, optional</param>
+        /// <returns></returns>
+        public static Assembly LoadFromPath(string assemblyFileName, string baseDirectory = null)
+        {
+            string fullFileName = baseDirectory == null ? assemblyFileName : Path.Combine(baseDirectory, assemblyFileName);
+
+            InternalLogger.Info("Loading assembly file: {0}", fullFileName);
+
+            Assembly asm = Assembly.LoadFrom(fullFileName);
+            return asm;
+        }
+
+#endif
         /// <summary>
         /// Load from url
         /// </summary>
         /// <param name="assemblyName">name without .dll</param>
-        /// <param name="baseDirectory"></param>
         /// <returns></returns>
-        public static Assembly LoadFrom(string assemblyName, string baseDirectory)
+        public static Assembly LoadFromName(string assemblyName)
         {
+            InternalLogger.Info("Loading assembly: {0}", assemblyName);
 #if UWP10 || WINDOWS_PHONE
 
             var name = new AssemblyName(assemblyName);
             return Assembly.Load(name);
 
-#else
-           var assemblyFile = assemblyName + ".dll";
+#elif SILVERLIGHT && !WINDOWS_PHONE
 
-#if SILVERLIGHT && !WINDOWS_PHONE
-
-           
+            //as embedded resource
+             var assemblyFile = assemblyName + ".dll";
             var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
             var assemblyPart = new AssemblyPart();
             Assembly asm = assemblyPart.Load(si.Stream);
@@ -406,13 +424,11 @@ namespace NLog.Internal
 
 #else
 
-            string fullFileName = Path.Combine(baseDirectory, assemblyFile);
-            InternalLogger.Info("Loading assembly file: {0}", fullFileName);
 
-            Assembly asm = Assembly.LoadFrom(fullFileName);
-            return asm;
 
-#endif
+            Assembly assembly = Assembly.Load(assemblyName);
+            return assembly;
+
 #endif
         }
 
