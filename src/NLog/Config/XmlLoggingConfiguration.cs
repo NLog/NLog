@@ -805,6 +805,7 @@ namespace NLog.Config
                     this.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
                 }
 
+#if !UWP10
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {
@@ -829,6 +830,7 @@ namespace NLog.Config
 
                     continue;
                 }
+#endif
 
                 string assemblyName = addElement.GetOptionalAttribute("assembly", null);
                 if (assemblyName != null)

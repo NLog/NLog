@@ -381,7 +381,7 @@ namespace NLog.Internal
     internal class AssemblyHelpers
     {
 
-#if !UWP10 && !WINDOWS_PHONE && !SILVERLIGHT
+#if !UWP10
 
         /// <summary>
         /// Load from url
@@ -391,12 +391,22 @@ namespace NLog.Internal
         /// <returns></returns>
         public static Assembly LoadFromPath(string assemblyFileName, string baseDirectory = null)
         {
+
+#if SILVERLIGHT && !WINDOWS_PHONE
+            var stream = Application.GetResourceStream(new Uri(assemblyFileName, UriKind.Relative));
+            var assemblyPart = new AssemblyPart();
+            Assembly assembly = assemblyPart.Load(stream.Stream);
+            return assembly;
+
+#else
+
             string fullFileName = baseDirectory == null ? assemblyFileName : Path.Combine(baseDirectory, assemblyFileName);
 
             InternalLogger.Info("Loading assembly file: {0}", fullFileName);
 
             Assembly asm = Assembly.LoadFrom(fullFileName);
             return asm;
+#endif
         }
 
 #endif
@@ -411,16 +421,18 @@ namespace NLog.Internal
 #if UWP10 || WINDOWS_PHONE
 
             var name = new AssemblyName(assemblyName);
+
             return Assembly.Load(name);
+
 
 #elif SILVERLIGHT && !WINDOWS_PHONE
 
             //as embedded resource
-             var assemblyFile = assemblyName + ".dll";
-            var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
+            var assemblyFile = assemblyName + ".dll";
+            var stream = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
             var assemblyPart = new AssemblyPart();
-            Assembly asm = assemblyPart.Load(si.Stream);
-            return asm;
+            Assembly assembly = assemblyPart.Load(stream.Stream);
+            return assembly;
 
 #else
 
