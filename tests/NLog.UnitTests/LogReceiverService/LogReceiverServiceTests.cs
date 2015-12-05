@@ -63,7 +63,7 @@ namespace NLog.UnitTests.LogReceiverService
 
     public class LogReceiverServiceTests : NLogTestBase
     {
-        private const string logRecieverUrl = "http://localhost:8080/logrecievertest";
+        private const string logRecieverUrl = "http://localhost:80/Temporary_Listen_Addresses/";
 
         [Fact]
         public void ToLogEventInfoTest()
@@ -364,8 +364,8 @@ namespace NLog.UnitTests.LogReceiverService
 
             var logmessages = new HashSet<string> {recieved[0].ToEventInfo().First().Message, recieved[1].ToEventInfo().First().Message};
 
-            Assert.True(logmessages.Contains("test 1"), "message 1 is missing");
-            Assert.True(logmessages.Contains("test 2"), "message 2 is missing");
+            Assert.True(logmessages.Contains("test 1"), "message 1 is corrupt");
+            Assert.True(logmessages.Contains("test 2"), "message 2 is corrupt");
         }
 
         private static void ExecLogging1(Logger logger)
@@ -374,7 +374,7 @@ namespace NLog.UnitTests.LogReceiverService
 
             //we wait 10 ms, because after a cold boot, the messages are arrived in the same moment and the order can change.
             Thread.Sleep(10);
-            logger.Info(new InvalidConstraintException("boo"), "test2");
+            logger.Info(new InvalidConstraintException("boo"), "test 2");
         }
 
         public class LogRecieverMock : ILogReceiverServer, ILogReceiverOneWayServer
