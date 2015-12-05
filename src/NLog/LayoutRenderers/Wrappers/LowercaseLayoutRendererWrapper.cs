@@ -36,6 +36,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System.ComponentModel;
     using System.Globalization;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Converts the result of another layout output to lower case.

@@ -39,6 +39,7 @@ namespace NLog.Config
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
+    using NLog.Internal;
 
     /// <summary>
     /// Provides context for install/uninstall operations.
