@@ -32,8 +32,6 @@
 // 
 
 using System.Collections;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 #if SILVERLIGHT
 using System.Windows;
@@ -337,112 +335,5 @@ namespace NLog.Internal
 
         }
 #endif
-    }
-
-    /// <summary>
-    /// Ext for stackframe
-    /// </summary>
-    public static class StackFrameExt
-    {
-
-#if UWP10
-        /// <summary>
-        /// Null
-        /// </summary>
-        /// <returns></returns>
-        public static StackFrame GetFrame(this StackTrace strackTrace, int number)
-        {
-
-            //TODO
-            return null;
-        }
-#endif
-        /// <summary>
-        /// 0
-        /// </summary>
-        /// <returns></returns>
-        public static int GetFrameCount(this StackTrace strackTrace)
-        {
-
-#if !UWP10
-            return strackTrace.FrameCount;
-#else
-            return 0;
-
-#endif
-            //TODO
-
-        }
-    }
-
-    /// <summary>
-    /// Helpers for <see cref="Assembly"/>.
-    /// </summary>
-    internal class AssemblyHelpers
-    {
-
-#if !UWP10
-
-        /// <summary>
-        /// Load from url
-        /// </summary>
-        /// <param name="assemblyFileName">file or path, including .dll</param>
-        /// <param name="baseDirectory">basepath, optional</param>
-        /// <returns></returns>
-        public static Assembly LoadFromPath(string assemblyFileName, string baseDirectory = null)
-        {
-
-#if SILVERLIGHT && !WINDOWS_PHONE
-            var stream = Application.GetResourceStream(new Uri(assemblyFileName, UriKind.Relative));
-            var assemblyPart = new AssemblyPart();
-            Assembly assembly = assemblyPart.Load(stream.Stream);
-            return assembly;
-
-#else
-
-            string fullFileName = baseDirectory == null ? assemblyFileName : Path.Combine(baseDirectory, assemblyFileName);
-
-            InternalLogger.Info("Loading assembly file: {0}", fullFileName);
-
-            Assembly asm = Assembly.LoadFrom(fullFileName);
-            return asm;
-#endif
-        }
-
-#endif
-        /// <summary>
-        /// Load from url
-        /// </summary>
-        /// <param name="assemblyName">name without .dll</param>
-        /// <returns></returns>
-        public static Assembly LoadFromName(string assemblyName)
-        {
-            InternalLogger.Info("Loading assembly: {0}", assemblyName);
-#if UWP10 || WINDOWS_PHONE
-
-            var name = new AssemblyName(assemblyName);
-
-            return Assembly.Load(name);
-
-
-#elif SILVERLIGHT && !WINDOWS_PHONE
-
-            //as embedded resource
-            var assemblyFile = assemblyName + ".dll";
-            var stream = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
-            var assemblyPart = new AssemblyPart();
-            Assembly assembly = assemblyPart.Load(stream.Stream);
-            return assembly;
-
-#else
-
-
-
-            Assembly assembly = Assembly.Load(assemblyName);
-            return assembly;
-
-#endif
-        }
-
     }
 }

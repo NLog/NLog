@@ -119,6 +119,7 @@
     <Compile Include="Internal\AspHelper.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Internal\AssemblyHelpers.cs" />
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EncodingHelpers.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Internal\SimpleStringReader.cs" />
     <Compile Include="Internal\SingleCallContinuation.cs" />
     <Compile Include="Internal\SortHelpers.cs" />
+    <Compile Include="Internal\StackFrameExt.cs" />
     <Compile Include="Internal\StackTraceUsageUtils.cs" />
     <Compile Include="Internal\StreamHelpers.cs" />
     <Compile Include="Internal\TargetWithFilterChain.cs" />
