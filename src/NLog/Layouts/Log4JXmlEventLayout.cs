@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
 namespace NLog.Layouts
 {
     using NLog.LayoutRenderers;
@@ -75,3 +76,4 @@ namespace NLog.Layouts
         }
     }
 }
+#endif

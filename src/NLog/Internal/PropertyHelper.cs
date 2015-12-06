@@ -138,7 +138,7 @@ namespace NLog.Internal
 
         internal static Type GetArrayItemType(PropertyInfo propInfo)
         {
-            var arrayParameterAttribute = (ArrayParameterAttribute)Attribute.GetCustomAttribute(propInfo, typeof(ArrayParameterAttribute));
+            var arrayParameterAttribute =  ReflectionHelpers.GetCustomAttribute<ArrayParameterAttribute>(propInfo);
             if (arrayParameterAttribute != null)
             {
                 return arrayParameterAttribute.ItemType;
@@ -170,6 +170,8 @@ namespace NLog.Internal
 
         private static bool TryImplicitConversion(Type resultType, string value, out object result)
         {
+
+#if !UWP10
             MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string) }, null);
             if (operatorImplicitMethod == null)
             {
@@ -178,6 +180,21 @@ namespace NLog.Internal
             }
 
             result = operatorImplicitMethod.Invoke(null, new object[] { value });
+#else
+            try
+            {
+                result = Convert.ChangeType(value, resultType);
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+
+
+#endif
+
+
             return true;
         }
 
@@ -201,13 +218,13 @@ namespace NLog.Internal
 
         private static bool TryGetEnumValue(Type resultType, string value, out object result)
         {
-            if (!resultType.IsEnum)
+            if (!resultType.IsEnum())
             {
                 result = null;
                 return false;
             }
 
-            if (resultType.IsDefined(typeof(FlagsAttribute), false))
+            if (resultType.IsDefined<FlagsAttribute>(false))
             {
                 ulong union = 0;
 
@@ -266,7 +283,7 @@ namespace NLog.Internal
 
         private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
             var converter = TypeDescriptor.GetConverter(type);
             if (converter.CanConvertFrom(typeof(string)))
             {
@@ -322,7 +339,7 @@ namespace NLog.Internal
             var retVal = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
             foreach (PropertyInfo propInfo in GetAllReadableProperties(t))
             {
-                var arrayParameterAttribute = (ArrayParameterAttribute)Attribute.GetCustomAttribute(propInfo, typeof(ArrayParameterAttribute));
+                var arrayParameterAttribute = ReflectionHelpers.GetCustomAttribute<ArrayParameterAttribute>(propInfo);
 
                 if (arrayParameterAttribute != null)
                 {

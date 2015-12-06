@@ -77,7 +77,6 @@ namespace NLog.Config
         #endregion
 
         #region contructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
@@ -130,7 +129,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
-		internal XmlLoggingConfiguration(XmlElement element, string fileName)
+        internal XmlLoggingConfiguration(XmlElement element, string fileName)
         {
             using (var stringReader = new StringReader(element.OuterXml))
             {
@@ -160,7 +159,7 @@ namespace NLog.Config
 
         #region public properties
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__  && !UWP10
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -208,7 +207,7 @@ namespace NLog.Config
         #endregion
 
         #region public methods
-
+       
         /// <summary>
         /// Re-reads the original configuration file and returns the new <see cref="LoggingConfiguration" /> object.
         /// </summary>
@@ -420,16 +419,27 @@ namespace NLog.Config
 #pragma warning restore 618
             this.AutoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", false);
             LogManager.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", LogManager.ThrowExceptions);
+#if !UWP10
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
+#endif
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
             InternalLogger.LogLevel = LogLevel.FromString(nlogElement.GetOptionalAttribute("internalLogLevel", InternalLogger.LogLevel.Name));
             LogManager.GlobalThreshold = LogLevel.FromString(nlogElement.GetOptionalAttribute("globalThreshold", LogManager.GlobalThreshold.Name));
 
             var children = nlogElement.Children;
 
+#if !UWP10
+            var stringComparison = StringComparison.InvariantCultureIgnoreCase;
+#else
+            var stringComparison = StringComparison.OrdinalIgnoreCase;
+#endif
+
             //first load the extensions, as the can be used in other elements (targets etc)
-            var extensionsChilds = children.Where(child => child.LocalName.Equals("EXTENSIONS", StringComparison.InvariantCultureIgnoreCase));
+            var extensionsChilds = children.Where(child =>
+            {
+                return child.LocalName.Equals("EXTENSIONS", stringComparison);
+            });
             foreach (var extensionsChild in extensionsChilds)
             {
                 this.ParseExtensionsElement(extensionsChild, baseDirectory);
@@ -437,7 +447,7 @@ namespace NLog.Config
 
             //parse all other direct elements
             foreach (var child in children)
-            {
+                {
                 switch (child.LocalName.ToUpper(CultureInfo.InvariantCulture))
                 {
                     case "EXTENSIONS":
@@ -795,22 +805,13 @@ namespace NLog.Config
                     this.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
                 }
 
+#if !UWP10
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {
                     try
                     {
-#if SILVERLIGHT && !WINDOWS_PHONE
-                                var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
-                                var assemblyPart = new AssemblyPart();
-                                Assembly asm = assemblyPart.Load(si.Stream);
-#else
-
-                        string fullFileName = Path.Combine(baseDirectory, assemblyFile);
-                        InternalLogger.Info("Loading assembly file: {0}", fullFileName);
-
-                        Assembly asm = Assembly.LoadFrom(fullFileName);
-#endif
+                        var asm = AssemblyHelpers.LoadFromPath(assemblyFile);
                         this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
                     }
                     catch (Exception exception)
@@ -829,21 +830,15 @@ namespace NLog.Config
 
                     continue;
                 }
+#endif
 
                 string assemblyName = addElement.GetOptionalAttribute("assembly", null);
                 if (assemblyName != null)
                 {
                     try
                     {
-                        InternalLogger.Info("Loading assembly name: {0}", assemblyName);
-#if SILVERLIGHT && !WINDOWS_PHONE
-                        var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
-                        var assemblyPart = new AssemblyPart();
-                        Assembly asm = assemblyPart.Load(si.Stream);
-#else
-                        Assembly asm = Assembly.Load(assemblyName);
-#endif
-
+                        var asm = AssemblyHelpers.LoadFromName(assemblyName);
+                        
                         this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
                     }
                     catch (Exception exception)
@@ -927,7 +922,7 @@ namespace NLog.Config
             TimeSource.Current = newTimeSource;
         }
 
-        #endregion
+#endregion
 
         private void SetPropertyFromElement(object o, NLogXmlElement element)
         {

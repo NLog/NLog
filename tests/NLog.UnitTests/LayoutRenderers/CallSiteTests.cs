@@ -40,7 +40,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class CallSiteTests : NLogTestBase
     {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
         [Fact]
         public void HiddenAssemblyTest()
         {
@@ -109,7 +109,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 #endif
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -140,6 +140,8 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         }
 #endif
+
+#if !UWP10
 
         [Fact]
         public void MethodNameTest()
@@ -245,6 +247,8 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
         }
 
+#endif
+
         [Fact]
         public void MethodNameWithPaddingTestPadLeftAlignLeftTest()
         {
@@ -342,6 +346,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
         }
 
+#if !UWP10
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -491,7 +496,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 Assert.True(lastMessage.Contains("+<>"));
             }
         }
-
+#endif
 
         [Fact]
         public void When_Wrapped_Ignore_Wrapper_Methods_In_Callstack()

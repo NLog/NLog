@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !__IOS__ && !WINDOWS_PHONE && !__ANDROID__
+#if !__IOS__ && !WINDOWS_PHONE && !__ANDROID__ && !UWP10
 namespace NLog.Targets
 {
     using System;
@@ -273,16 +273,16 @@ namespace NLog.Targets
             var client = CreateLogReceiver();
 
             client.ProcessLogMessagesCompleted += (sender, e) =>
+            {
+                // report error to the callers
+                foreach (var ev in asyncContinuations)
                 {
-                    // report error to the callers
-                    foreach (var ev in asyncContinuations)
-                    {
-                        ev.Continuation(e.Error);
-                    }
+                    ev.Continuation(e.Error);
+                }
 
-                    // send any buffered events
-                    this.SendBufferedEvents();
-                };
+                // send any buffered events
+                this.SendBufferedEvents();
+            };
 
             this.inCall = true;
 #if SILVERLIGHT 

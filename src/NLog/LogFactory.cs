@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 namespace NLog
 {
     using System;
@@ -49,7 +51,9 @@ namespace NLog
     using NLog.Config;
     using NLog.Internal;
     using NLog.Targets;
+#if !UWP10
     using NLog.Internal.Fakeables;
+#endif
     using System.Reflection;
 
 #if SILVERLIGHT && !__IOS__ && !__ANDROID__
@@ -61,16 +65,17 @@ namespace NLog
     /// </summary>
     public class LogFactory : IDisposable
     {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
         private const int ReconfigAfterFileChangedTimeout = 1000;
         private Timer reloadTimer;
         private readonly MultiFileWatcher watcher;
 #endif
-
+#if !UWP10
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
 
 
         private static IAppDomain currentAppDomain;
+#endif
         private readonly object syncRoot = new object();
 
         private LoggingConfiguration config;
@@ -97,7 +102,7 @@ namespace NLog
         /// </summary>
         public LogFactory()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
             this.watcher = new MultiFileWatcher();
             this.watcher.OnChange += this.ConfigFileChanged;
             CurrentAppDomain.DomainUnload += currentAppDomain_DomainUnload;
@@ -114,6 +119,7 @@ namespace NLog
             this.Configuration = config;
         }
 
+#if !UWP10
         /// <summary>
         /// Gets the current <see cref="IAppDomain"/>.
         /// </summary>
@@ -122,6 +128,7 @@ namespace NLog
             get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
             set { currentAppDomain = value; }
         }
+#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether exceptions should be thrown.
@@ -131,9 +138,8 @@ namespace NLog
         public bool ThrowExceptions { get; set; }
 
         /// <summary>
-        /// Gets or sets the current logging configuration. After setting this property all
-        /// existing loggers will be re-configured, so that there is no need to call <see cref="ReconfigExistingLoggers" />
-        /// manually.
+        /// Gets or sets the current logging configuration. After setting this property all		
+        /// existing loggers will be re-configured, so that there is no need to call <see cref="ReconfigExistingLoggers" />	manually.
         /// </summary>
         public LoggingConfiguration Configuration
         {
@@ -148,7 +154,7 @@ namespace NLog
 
                     this.configLoaded = true;
 
-#if !SILVERLIGHT  && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT  && !__IOS__ && !__ANDROID__ && !UWP10
                     if (this.config == null)
                     {
                         // Try to load default configuration.
@@ -179,7 +185,7 @@ namespace NLog
 
                     if (this.config != null)
                     {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
                         config.Dump();
                         try
                         {
@@ -200,7 +206,7 @@ namespace NLog
 
             set
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
                 try
                 {
                     this.watcher.StopWatching();
@@ -222,7 +228,7 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
                         this.Flush();
 #endif
                         oldConfig.Close();
@@ -237,7 +243,7 @@ namespace NLog
 
                         this.config.InitializeAll();
                         this.ReconfigExistingLoggers();
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
                         try
                         {
                             this.watcher.Watch(this.config.FileNamesToWatch);
@@ -298,9 +304,8 @@ namespace NLog
         private void LogConfigurationInitialized()
         {
             InternalLogger.Info("Configuration initialized.");
-            InternalLogger.LogAssemblyVersion(typeof(ILogger).Assembly);
+            InternalLogger.LogAssemblyVersion(typeof(ILogger).GetAssembly());
         }
-
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting 
         /// unmanaged resources.
@@ -330,28 +335,39 @@ namespace NLog
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
+#if UWP10
+        public Logger GetCurrentClassLogger([CallerFilePath] string path = "")
+#else
         public Logger GetCurrentClassLogger()
+#endif
         {
+#if !UWP10
 #if SILVERLIGHT
             var frame = new StackFrame(1);
 #else
             var frame = new StackFrame(1, false);
 #endif
-
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
+#else
+
+            var filename = Path.GetFileNameWithoutExtension(path);
+
+            return this.GetLogger(filename);
+#endif
+
         }
 
-        /// <summary>
-        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
-        /// </summary>
-        /// <param name="loggerType">The type of the logger to create. The type must inherit from 
-        /// NLog.Logger.</param>
+#if !UWP10
+        /// <summary>	
+        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.		
+        /// </summary>		        
+        /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/>.	</param>       
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
-        /// <remarks>This is a slow-running method. Make sure you are not calling this method in a 
-        /// loop.</remarks>
+        /// <remarks>This is a slow-running method. Make sure you are not calling this method in a  loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
+
 #if !SILVERLIGHT
             var frame = new StackFrame(1, false);
 #else
@@ -360,7 +376,7 @@ namespace NLog
 
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
         }
-
+#endif
         /// <summary>
         /// Gets the specified named logger.
         /// </summary>
@@ -373,10 +389,10 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified named logger.  Use <paramref name="loggerType"/> to pass the type of the needed Logger.
+        /// Gets the custom named logger. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
-        /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger" />.</param>
+        /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/>.	</param>       
         /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the 
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name, Type loggerType)
@@ -404,7 +420,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>
@@ -591,7 +607,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
         internal void ReloadConfigOnTimer(object state)
         {
             LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
@@ -604,7 +620,6 @@ namespace NLog
                     this.reloadTimer.Dispose();
                     this.reloadTimer = null;
                 }
-
                 if (IsDisposing)
                 {
                     //timer was disposed already. 
@@ -762,7 +777,7 @@ namespace NLog
         /// <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
             if (disposing)
             {
                 this.watcher.Dispose();
@@ -778,7 +793,7 @@ namespace NLog
 
         private static IEnumerable<string> GetCandidateConfigFileNames()
         {
-#if SILVERLIGHT
+#if SILVERLIGHT || UWP10
             yield return "NLog.config";
 #else
             // NLog.config from application directory
@@ -892,8 +907,8 @@ namespace NLog
                         }
 
                         InternalLogger.Error(errorMessage + ". Exception : {0}", ex);
-
                         // Creating default instance of logger if instance of specified type cannot be created.
+
                         newLogger = CreateDefaultLogger(ref cacheKey);
                     }
                 }
@@ -925,7 +940,7 @@ namespace NLog
             return newLogger;
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
         private void ConfigFileChanged(object sender, EventArgs args)
         {
             InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", LogFactory.ReconfigAfterFileChangedTimeout);
@@ -962,9 +977,9 @@ namespace NLog
         }
 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
         /// <summary>
-        /// Currenty this logfactory is disposing?
+        /// Is this in disposing state?
         /// </summary>
         private bool IsDisposing;
 

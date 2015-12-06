@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Threading;
@@ -133,7 +135,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                         break;
 
                                     case "log4jmachinename":
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
                                         Assert.Equal(Environment.MachineName, value);
 #else
                                         Assert.Equal("silverlight", value);
@@ -190,3 +192,4 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
+#endif

@@ -31,9 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+#if !UWP10
 using System.Text;
 
 #pragma warning disable 0618
+
 
 namespace NLog.UnitTests.Contexts
 {
@@ -204,3 +207,4 @@ namespace NLog.UnitTests.Contexts
         }
     }
 }
+#endif

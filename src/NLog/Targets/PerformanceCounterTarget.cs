@@ -33,7 +33,7 @@
 
 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__  && !UWP10
 
 namespace NLog.Targets
 {
@@ -133,9 +133,8 @@ namespace NLog.Targets
         public PerformanceCounterType CounterType { get; set; }
 
         /// <summary>
-        /// The value by which to increment the counter.
+        /// Performs installation which requires administrative permissions.
         /// </summary>
-        /// <docgen category='Performance Counter Options' order='10' />
         [DefaultValue(1)]
         public Layout IncrementValue { get; set; }
 

@@ -35,6 +35,7 @@
     <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildNetFX45)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildWP8)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuilUWP10)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildXamarinAndroid)' == 'true'">false</BuildAllFrameworks>
     <BuildAllFrameworks Condition="'$(BuildXamarinIOS)' == 'true'">false</BuildAllFrameworks>
     <IgnoreBuildFailures>false</IgnoreBuildFailures>
@@ -90,8 +91,11 @@
     <BuildNetFX40>true</BuildNetFX40>
     <BuildNetFX45>true</BuildNetFX45>
     <BuildWP8>true</BuildWP8>
+    <BuildUWP10>true</BuildUWP10>
     <BuildXamarinAndroid>true</BuildXamarinAndroid>
     <BuildXamarinIOS>true</BuildXamarinIOS>
+    
+    
 
     <!-- now disable those that we know cannot be built -->
     <BuildMono2 Condition="'$(MonoInstallLocation)'==''">false</BuildMono2>
@@ -106,7 +110,8 @@
     <BuildSL5 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildSL5>
     <BuildNetFX40 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX40>
     <BuildNetFX45 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX45>
-  </PropertyGroup>
+  
+</PropertyGroup>
 
   <ItemGroup>
     <!--The info for the nuspec-->
@@ -137,6 +142,11 @@
         <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
         <ToolsVersion>4.0</ToolsVersion>
         <NuGetDir>net45</NuGetDir>
+    </TargetFramework>    
+    <TargetFramework Include="UWP10" Condition="'$(BuildUWP10)'=='true'">
+        <ProjectFileSuffix>.uwp10</ProjectFileSuffix>
+        <ToolsVersion>4.0</ToolsVersion>
+        <NuGetDir>uap10.0</NuGetDir>
     </TargetFramework>
     <!--the include attribute is the folder name-->
     <TargetFramework Include="WindowsPhone8" Condition="'$(BuildWP8)'=='true'">
@@ -241,6 +251,7 @@
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
     <CallTarget Targets="NetFx45Test" Condition="'$(BuildNetFX45)'=='true'"/>
+    <CallTarget Targets="NetUWP10Test" Condition="'$(BuildUWP10)'=='true'"/>
     <CallTarget Targets="SL4Test" Condition="'$(BuildSL4)'=='true'"/>
     <CallTarget Targets="SL5Test" Condition="'$(BuildSL5)'=='true'"/>
     <Exec Command="$(BaseOutputDirectory)\bin\DeleteTestUsers.cmd" IgnoreExitCode="true" />
@@ -264,6 +275,10 @@
 
   <Target Name="NetFx45Test">
     <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
+  </Target>
+  
+  <Target Name="UWP10Test">
+    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\UWP10\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
   </Target>
 
   <Target Name="SL4Test">

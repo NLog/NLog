@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,19 +31,41 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Reflection;
 
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
-[assembly: AssemblyVersion("1.0.0.0")]
+#if UWP10
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Win32.SafeHandles;
+
+namespace NLog.Internal
+{
+    internal static class UAPP10Helpers
+    {
+        public static void Close(this SafeFileHandle handle)
+        {
+            //todo
+            handle.Dispose();
+        }
+
+        public static void Close(this IDisposable handle)
+        {
+            //todo
+            handle.Dispose();
+        }
+
+        public static string ToUpper(this string s, IFormatProvider provider)
+        {
+            //todo
+            return s.ToUpper();
+        }
+
+        public static string ToLower(this string s, IFormatProvider provider)
+        {
+            //todo
+            return s.ToLower();
+        }
+    }
+}
+#endif

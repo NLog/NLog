@@ -31,7 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if SILVERLIGHT
+#if !UWP10
+#if SILVERLIGHT 
 #define TLS_WORKAROUND
 #endif
 
@@ -139,3 +140,4 @@ namespace NLog.Internal
 #endif
     }
 }
+#endif

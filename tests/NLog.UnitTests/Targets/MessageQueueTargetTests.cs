@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !UWP10 && !MONO
 
 namespace NLog.UnitTests.Targets
 {

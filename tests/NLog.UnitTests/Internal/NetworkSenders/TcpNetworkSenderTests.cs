@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
 namespace NLog.UnitTests.Internal.NetworkSenders
 {
     using System;
@@ -410,3 +411,4 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         }
     }
 }
+#endif

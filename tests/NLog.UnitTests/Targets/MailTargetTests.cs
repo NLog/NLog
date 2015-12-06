@@ -32,9 +32,8 @@
 // 
 
 
-using System.Threading;
+#if !SILVERLIGHT && !UWP10
 
-#if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
 {
@@ -42,6 +41,7 @@ namespace NLog.UnitTests.Targets
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Mail;
+    using System.Threading;
     using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
@@ -648,7 +648,7 @@ namespace NLog.UnitTests.Targets
                 Body = "${level} ${logger} ${message}",
                 UseSystemNetMailSettings = true
             };
-
+           
         }
 
         [Fact]
@@ -826,17 +826,17 @@ namespace NLog.UnitTests.Targets
                 if (this.SmtpServer == null && string.IsNullOrEmpty(this.PickupDirectoryLocation))
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer/PickupDirectoryLocation"));
-                }
+        }
 
                 if (this.DeliveryMethod == SmtpDeliveryMethod.Network && this.SmtpServer == null)
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
-                }
+    }
 
                 if (this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(this.PickupDirectoryLocation))
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
-                }
+}
 
                 if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
                 {

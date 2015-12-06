@@ -1,0 +1,8 @@
+﻿<Application
+    x:Class="NLog.UnitTests.uwp10.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NLog.UnitTests.uwp10"
+    RequestedTheme="Light">
+
+</Application>

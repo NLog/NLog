@@ -31,7 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Runtime.CompilerServices;
+
+using System.Threading.Tasks;
 
 namespace NLog.UnitTests
 {
@@ -40,10 +41,20 @@ namespace NLog.UnitTests
     using System.IO;
     using System.Text;
 
+#if UWP10
+    using Windows.System.Threading;
+#else
+    using System.Threading;
+#endif
+
+#if MONO || NET4_5
+    using System.Runtime.CompilerServices;
+#endif
+
     using NLog.Layouts;
     using NLog.Config;
     using Xunit;
-#if SILVERLIGHT
+#if SILVERLIGHT || UWP10
     using System.Xml.Linq;
 #else
     using System.Xml;
@@ -51,12 +62,17 @@ namespace NLog.UnitTests
     using System.Security.Permissions;
 #endif
 
+#if XUNIT2
+    [Collection("dont run in parallel")]
+#endif
     public abstract class NLogTestBase
     {
         protected NLogTestBase()
         {
+#if !UWP10
             InternalLogger.LogToConsole = false;
             InternalLogger.LogToConsoleError = false;
+#endif
             LogManager.ThrowExceptions = false;
         }
 
@@ -221,7 +237,7 @@ namespace NLog.UnitTests
 
         protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT || UWP10
             XElement element = XElement.Parse(configXml);
             return new XmlLoggingConfiguration(element.CreateReader(), null);
 #else
@@ -271,9 +287,11 @@ namespace NLog.UnitTests
             {
                 this.logFile = InternalLogger.LogFile;
                 this.logLevel = InternalLogger.LogLevel;
+#if !UWP10
                 this.logToConsole = InternalLogger.LogToConsole;
-                this.includeTimestamp = InternalLogger.IncludeTimestamp;
                 this.logToConsoleError = InternalLogger.LogToConsoleError;
+#endif
+                this.includeTimestamp = InternalLogger.IncludeTimestamp;
                 this.globalThreshold = LogManager.GlobalThreshold;
                 this.throwExceptions = LogManager.ThrowExceptions;
             }
@@ -282,12 +300,29 @@ namespace NLog.UnitTests
             {
                 InternalLogger.LogFile = this.logFile;
                 InternalLogger.LogLevel = this.logLevel;
+#if !UWP10
                 InternalLogger.LogToConsole = this.logToConsole;
-                InternalLogger.IncludeTimestamp = this.includeTimestamp;
                 InternalLogger.LogToConsoleError = this.logToConsoleError;
+#endif
+                InternalLogger.IncludeTimestamp = this.includeTimestamp;
                 LogManager.GlobalThreshold = this.globalThreshold;
                 LogManager.ThrowExceptions = this.throwExceptions;
             }
+        }
+
+        
+        protected
+#if UWP10
+            async
+#endif
+            static void RunAsync2(Action<object> func)
+        {
+#if UWP10
+
+            await ThreadPool.RunAsync(state => func(state));
+#else
+            ThreadPool.QueueUserWorkItem(state => func(state));
+#endif
         }
     }
 }

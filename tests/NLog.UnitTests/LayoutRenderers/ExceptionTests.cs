@@ -456,6 +456,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 "System.InvalidOperationException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
         }
 
+
         [Fact]
         public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception()
         {
@@ -469,13 +470,19 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
+
             var ex = new ExceptionWithBrokenMessagePropertyException();
 #pragma warning disable 0618
             // Obsolete method requires testing until completely removed.
+#if !UWP10
             Assert.ThrowsDelegate action = () => logger.ErrorException("msg", ex);
-#pragma warning restore 0618
             Assert.DoesNotThrow(action);
+#else
+            logger.ErrorException("msg", ex);
+#endif
+#pragma warning restore 0618
         }
+
 
         private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
         {

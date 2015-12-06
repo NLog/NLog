@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
+
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
@@ -152,7 +154,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 
             var regex = new System.Text.RegularExpressions.Regex(
                 pattern,
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
                 System.Text.RegularExpressions.RegexOptions.Compiled | System.Text.RegularExpressions.RegexOptions.IgnoreCase);
 #else
                 System.Text.RegularExpressions.RegexOptions.IgnoreCase);
@@ -183,3 +185,5 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         }
     }
 }
+
+#endif

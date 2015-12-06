@@ -263,7 +263,7 @@ namespace NLog.UnitTests
             LogManager.Configuration = null;
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
         private int _reloadCounter = 0;
 
         private void WaitForConfigReload(int counter)
@@ -388,8 +388,11 @@ namespace NLog.UnitTests
         public void GivenCurrentClass_WhenGetCurrentClassLogger_ThenLoggerShouldBeCurrentClass()
         {
             var logger = LogManager.GetCurrentClassLogger();
-
+#if UWP10
+            Assert.Equal(this.GetType().Name, logger.Name);
+#else
             Assert.Equal(this.GetType().FullName, logger.Name);
+#endif
         }
 
         private static class ImAStaticClass

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog.Conditions
 {
     using System;
@@ -175,16 +177,7 @@ namespace NLog.Conditions
                 callParameters[0] = context;
             }
 
-            return this.MethodInfo.DeclaringType.InvokeMember( 
-                MethodInfo.Name, 
-                BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding, 
-                null, 
-                null, 
-                callParameters
-#if !SILVERLIGHT
-                , CultureInfo.InvariantCulture
-#endif
-                );
+            return this.MethodInfo.InvokeMethod(MethodInfo.Name, callParameters);
         }
     }
 }

@@ -129,7 +129,7 @@ namespace NLog.Targets
             this.ArchiveAboveSize = FileTarget.ArchiveAboveSizeDisabled;
             this.ConcurrentWriteAttempts = 10;
             this.ConcurrentWrites = true;
-#if SILVERLIGHT
+#if SILVERLIGHT || UWP10
             this.Encoding = Encoding.UTF8;
 #else
             this.Encoding = Encoding.Default;
@@ -563,7 +563,7 @@ namespace NLog.Targets
                     }
                     else if (this.ConcurrentWrites)
                     {
-#if SILVERLIGHT
+#if SILVERLIGHT || UWP10
                         return RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
                         //
@@ -594,7 +594,7 @@ namespace NLog.Targets
                     }
                     else if (this.ConcurrentWrites)
                     {
-#if SILVERLIGHT
+#if SILVERLIGHT || UWP10
                         return RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
                         //

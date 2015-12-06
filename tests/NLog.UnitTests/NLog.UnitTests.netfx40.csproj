@@ -75,7 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiTests.cs" />
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
     <Compile Include="Common\InternalLoggerTests.cs" />
     <Compile Include="Common\LastLogEventListTarget.cs" />
@@ -165,6 +164,7 @@
     <Compile Include="NLogTestBase.cs" />
     <Compile Include="NLogTraceListenerTests.cs" />
     <Compile Include="ProcessRunner.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />
     <Compile Include="Targets\ColoredConsoleTargetTests.cs" />
@@ -196,6 +196,7 @@
     <Compile Include="Targets\Wrappers\SplitGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
     <Compile Include="TimeSourceTests.cs" />
+    <Compile Include="UnitTestApp.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigFiles\included.nlog" />
@@ -205,6 +206,7 @@
     <Content Include="ProjectFileInfo.xml" />
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\OutOfBrowserSettings.xml" />
+    <Content Include="Properties\UnitTestApp.rd.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>

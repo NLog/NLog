@@ -31,18 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
+
 namespace NLog.UnitTests
 {
     using System;
     using System.IO;
     using System.Linq;
     using System.Threading;
-
-    using Xunit;
-
     using NLog.Config;
     using NLog.Targets;
+    using Xunit;
+
 
     public class LogFactoryTests : NLogTestBase
     {

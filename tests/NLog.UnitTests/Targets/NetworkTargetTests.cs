@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -549,7 +551,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(result.IndexOf("4: close") != -1);
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
         [Fact]
         public void NetworkTargetTcpTest()
         {
@@ -916,3 +918,4 @@ namespace NLog.UnitTests.Targets
         }
     }
 }
+#endif

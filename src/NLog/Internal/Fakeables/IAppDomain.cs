@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+#if !UWP10
+
 namespace NLog.Internal.Fakeables
 {
     using System;
@@ -81,3 +84,4 @@ namespace NLog.Internal.Fakeables
 #endif
     }
 }
+#endif

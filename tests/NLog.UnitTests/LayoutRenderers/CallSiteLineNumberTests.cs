@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
     public class CallSiteLineNumberTests : NLogTestBase
     {
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
 
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]

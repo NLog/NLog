@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
 
 namespace NLog.Targets
 {
@@ -217,7 +217,7 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             string message = this.Layout.Render(logEvent);
-            
+            // limitation of EventLog API
             var entryType = GetEntryType(logEvent);
 
             int eventId = 0;
@@ -259,7 +259,6 @@ namespace NLog.Targets
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Discard)
                 {
-                    //message will not be written
                     return;
                 }
             }
@@ -268,7 +267,6 @@ namespace NLog.Targets
                 eventLog.WriteEntry(message, entryType, eventId, category);
             }
         }
-
         /// <summary>
         /// Get the entry type for logging the message.
         /// </summary>

@@ -48,6 +48,8 @@ namespace NLog.Internal
         /// <returns>True if the exception must be rethrown, false otherwise.</returns>
         public static bool MustBeRethrown(this Exception exception)
         {
+
+#if !UWP10
             if (exception is StackOverflowException)
             {
                 return true;
@@ -57,6 +59,7 @@ namespace NLog.Internal
             {
                 return true;
             }
+#endif
 
             if (exception is OutOfMemoryException)
             {

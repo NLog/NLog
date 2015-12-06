@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
+
 namespace NLog.Internal.NetworkSenders
 {
     /// <summary>
@@ -53,3 +55,4 @@ namespace NLog.Internal.NetworkSenders
         NetworkSender Create(string url, int maxQueueSize);
     }
 }
+#endif

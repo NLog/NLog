@@ -54,9 +54,9 @@ namespace NLog
     internal static class LoggerImpl
     {
         private const int StackTraceSkipMethods = 0;
-        private static readonly Assembly nlogAssembly = typeof(LoggerImpl).Assembly;
-        private static readonly Assembly mscorlibAssembly = typeof(string).Assembly;
-        private static readonly Assembly systemAssembly = typeof(Debug).Assembly;
+        private static readonly Assembly nlogAssembly = typeof(LoggerImpl).GetAssembly();
+        private static readonly Assembly mscorlibAssembly = typeof(string).GetAssembly();
+        private static readonly Assembly systemAssembly = typeof(Debug).GetAssembly();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
         internal static void Write([NotNull] Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
@@ -71,8 +71,14 @@ namespace NLog
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 StackTrace stackTrace;
-#if !SILVERLIGHT
+#if UWP10
+#if !DEBUG
+#error check this
+#endif
+                stackTrace = new StackTrace(new Exception(), stu == StackTraceUsage.WithSource);
+#elif !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
+
 #else
                 stackTrace = new StackTrace();
 #endif
@@ -82,6 +88,7 @@ namespace NLog
                 logEvent.SetStackTrace(stackTrace, firstUserFrame);
             }
 
+#if !UWP10
             int originalThreadId = Thread.CurrentThread.ManagedThreadId;
             AsyncContinuation exceptionHandler = ex =>
                 {
@@ -93,7 +100,12 @@ namespace NLog
                         }
                     }
                 };
-
+#else
+            //noop
+            //TODO
+            AsyncContinuation exceptionHandler = ex => { };
+            
+#endif
             for (var t = targets; t != null; t = t.NextInChain)
             {
                 if (!WriteToTargetWithFilterChain(t, logEvent, exceptionHandler))
@@ -114,7 +126,7 @@ namespace NLog
         {
             int? firstUserFrame = null;
 
-                for (int i = 0; i < stackTrace.FrameCount; ++i)
+                for (int i = 0; i < stackTrace.GetFrameCount(); ++i)
                 {
                     StackFrame frame = stackTrace.GetFrame(i);
                     MethodBase mb = frame.GetMethod();
@@ -141,7 +153,7 @@ namespace NLog
         {
             var declaringType = method.DeclaringType;
             // get assembly by declaring type or by module for global methods
-            var assembly = declaringType != null ? declaringType.Assembly : method.Module.Assembly; 
+            var assembly = declaringType != null ? declaringType.GetAssembly() : method.Module.GetAssembly(); 
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             if (SkipAssembly(assembly)) return true;
             // or if that type is the loggerType or one of its subtypes

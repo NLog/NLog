@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
 namespace NLog.UnitTests.Config
 {
     using System.IO;
@@ -294,7 +295,7 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(d1Target);
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
         [Fact]
         public void Extension_should_be_auto_loaded_when_following_NLog_dll_format()
         {
@@ -316,3 +317,4 @@ namespace NLog.UnitTests.Config
 #endif
     }
 }
+#endif

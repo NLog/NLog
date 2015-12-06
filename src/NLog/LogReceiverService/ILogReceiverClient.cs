@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !UWP10
 namespace NLog.LogReceiverService
 {
     using System;
@@ -67,3 +68,4 @@ namespace NLog.LogReceiverService
         void EndProcessLogMessages(IAsyncResult result);
     }
 }
+#endif

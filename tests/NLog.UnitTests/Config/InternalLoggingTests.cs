@@ -48,8 +48,10 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
                 Assert.Same(LogLevel.Trace, InternalLogger.LogLevel);
+#if !UWP10
                 Assert.True(InternalLogger.LogToConsole);
                 Assert.True(InternalLogger.LogToConsoleError);
+#endif
                 Assert.Same(LogLevel.Warn, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
             }
@@ -61,8 +63,10 @@ namespace NLog.UnitTests.Config
             using (new InternalLoggerScope())
             {
                 InternalLogger.LogLevel = LogLevel.Error;
+#if !UWP10
                 InternalLogger.LogToConsole = true;
                 InternalLogger.LogToConsoleError = true;
+#endif
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
 
@@ -71,8 +75,10 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
                 Assert.Same(LogLevel.Error, InternalLogger.LogLevel);
+#if !UWP10
                 Assert.True(InternalLogger.LogToConsole);
                 Assert.True(InternalLogger.LogToConsoleError);
+#endif
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
             }

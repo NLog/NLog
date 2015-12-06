@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections;
+
 namespace NLog.Conditions
 {
     using System;
@@ -106,8 +108,14 @@ namespace NLog.Conditions
         /// <returns>Result of the given relational operator.</returns>
         private static object Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
         {
+#if !UWP10
             StringComparer comparer = StringComparer.InvariantCulture;
+#else
+            var comparer = new Comparer(CultureInfo.InvariantCulture);
+#endif
             PromoteTypes(ref leftValue, ref rightValue);
+
+
             switch (relationalOperator)
             {
                 case ConditionRelationalOperator.Equal:

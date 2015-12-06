@@ -45,17 +45,17 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void ThreadAgnosticAttributeTest()
         {
-            foreach (var t in ReflectionHelpers.SafeGetTypes(typeof(Layout).Assembly))
+            foreach (var t in ReflectionHelpers.SafeGetTypes(typeof(Layout).GetAssembly()))
             {
                 if (t.Namespace == typeof(WrapperLayoutRendererBase).Namespace)
                 {
-                    if (t.IsAbstract || t.IsEnum || t.IsNestedPrivate)
+                    if (t.IsAbstract() || t.IsEnum() || t.IsNestedPrivate())
                     {
                         // skip non-concrete types, enumerations, and private nested types
                         continue;
                     }
 
-                    Assert.True(t.IsDefined(typeof(ThreadAgnosticAttribute), true), "Type " + t + " is missing [ThreadAgnostic] attribute.");
+                    Assert.True(t.IsDefined< ThreadAgnosticAttribute>(true), "Type " + t + " is missing [ThreadAgnostic] attribute.");
                 }
             }
         }
@@ -71,7 +71,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void NonThreadAgnosticTest()
         {
-            Layout l = new SimpleLayout("${threadname}");
+            Layout l = new SimpleLayout("${guid}");
             l.Initialize(null);
             Assert.False(l.IsThreadAgnostic);
         }
@@ -79,7 +79,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void AgnosticPlusNonAgnostic()
         {
-            Layout l = new SimpleLayout("${message}${threadname}");
+            Layout l = new SimpleLayout("${message}${guid}");
             l.Initialize(null);
             Assert.False(l.IsThreadAgnostic);
         }
@@ -119,7 +119,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void TripleWrapperOverNonAgnostic()
         {
-            Layout l = new SimpleLayout("${uppercase:${lowercase:${rot13:${message}${threadname}}}}");
+            Layout l = new SimpleLayout("${uppercase:${lowercase:${rot13:${message}${guid}}}}");
             l.Initialize(null);
             Assert.False(l.IsThreadAgnostic);
         }
@@ -135,7 +135,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void ComplexNonAgnosticWithCondition()
         {
-            Layout l = @"${message:padding=-10:padCharacter=Y:when='${pad:${threadname}:padding=10:padCharacter=X}'=='XXXXlogger'}";
+            Layout l = @"${message:padding=-10:padCharacter=Y:when='${pad:${guid}:padding=10:padCharacter=X}'=='XXXXlogger'}";
             l.Initialize(null);
             Assert.False(l.IsThreadAgnostic);
         }
@@ -147,6 +147,7 @@ namespace NLog.UnitTests.Layouts
             {
                 Columns =
                 {
+                    //all three ThreadAgnostic
                     new CsvColumn("name1", "${message}"),
                     new CsvColumn("name2", "${level}"),
                     new CsvColumn("name3", "${longdate}"),
@@ -165,7 +166,7 @@ namespace NLog.UnitTests.Layouts
                 Columns =
                 {
                     new CsvColumn("name1", "${message}"),
-                    new CsvColumn("name2", "${threadname}"),
+                    new CsvColumn("name2", "${guid}"),
                     new CsvColumn("name3", "${longdate}"),
                 },
             };

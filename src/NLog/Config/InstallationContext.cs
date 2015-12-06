@@ -39,13 +39,14 @@ namespace NLog.Config
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
+    using NLog.Internal;
 
     /// <summary>
     /// Provides context for install/uninstall operations.
     /// </summary>
     public sealed class InstallationContext : IDisposable
     {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !UWP10
         /// <summary>
         /// Mapping between log levels and console output colors.
         /// </summary>
@@ -187,7 +188,7 @@ namespace NLog.Config
                     message = string.Format(CultureInfo.InvariantCulture, message, arguments);
                 }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
                 var oldColor = Console.ForegroundColor;
                 Console.ForegroundColor = logLevel2ConsoleColor[logLevel];
 

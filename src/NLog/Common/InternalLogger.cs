@@ -36,14 +36,16 @@ namespace NLog.Common
     using JetBrains.Annotations;
     using System;
     using System.ComponentModel;
+#if !UWP10
     using System.Configuration;
+#endif
     using System.Globalization;
     using System.IO;
     using System.Reflection;
     using System.Text;
     using NLog.Internal;
     using NLog.Time;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !UWP10 && !__IOS__ && !__ANDROID__
     using ConfigurationManager = System.Configuration.ConfigurationManager;
     using System.Diagnostics;
 #endif
@@ -62,12 +64,12 @@ namespace NLog.Common
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static InternalLogger()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
-
+			
             Info("NLog internal logger initialized.");
 #else
             LogLevel = LogLevel.Info;
@@ -80,6 +82,7 @@ namespace NLog.Common
         /// </summary>
         public static LogLevel LogLevel { get; set; }
 
+#if !UWP10
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console output stream.
         /// </summary>
@@ -89,6 +92,8 @@ namespace NLog.Common
         /// Gets or sets a value indicating whether internal messages should be written to the console error stream.
         /// </summary>
         public static bool LogToConsoleError { get; set; }
+
+#endif
 
         /// <summary>
         /// Gets or sets the file path of the internal log file.
@@ -321,7 +326,11 @@ namespace NLog.Common
                 return;
             }
 
-            if (string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null)
+            if (string.IsNullOrEmpty(LogFile)
+#if !UWP10
+                && !LogToConsole && !LogToConsoleError 
+#endif
+                && LogWriter == null)
             {
                 return;
             }
@@ -365,7 +374,7 @@ namespace NLog.Common
                         writer.WriteLine(msg);
                     }
                 }
-
+#if !UWP10
                 // log to console
                 if (LogToConsole)
                 {
@@ -377,6 +386,7 @@ namespace NLog.Common
                 {
                     Console.Error.WriteLine(msg);
                 }
+#endif
             }
             catch (Exception exception)
             {
@@ -389,6 +399,7 @@ namespace NLog.Common
             }
         }
 
+
         /// <summary>
         /// Logs the assembly version and file version of the given Assembly.
         /// </summary>
@@ -397,7 +408,7 @@ namespace NLog.Common
         {
             try
             {
-#if SILVERLIGHT || __IOS__ || __ANDROID__
+#if SILVERLIGHT || __IOS__ || __ANDROID__|| UWP10
                 Info(assembly.FullName);
 #else
                 var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
@@ -413,7 +424,7 @@ namespace NLog.Common
             }
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
         private static string GetSettingString(string configName, string envName)
         {
             string settingValue = ConfigurationManager.AppSettings[configName];
@@ -480,6 +491,8 @@ namespace NLog.Common
                 return defaultValue;
             }
         }
+  
+#endif
 
         private static void CreateDirectoriesIfNeeded(string filename)
         {
@@ -489,7 +502,7 @@ namespace NLog.Common
                 if (!string.IsNullOrEmpty(parentDirectory))
                 {
                     Directory.CreateDirectory(parentDirectory);
-                }
+            }
             }
             catch (Exception exception)
             {
@@ -501,6 +514,5 @@ namespace NLog.Common
                 }
             }
         }
-#endif
     }
 }

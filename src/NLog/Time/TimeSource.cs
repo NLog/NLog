@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog.Time
 {
     using System;
@@ -69,7 +71,7 @@ namespace NLog.Time
         /// </returns>
         public override string ToString()
         {
-            var targetAttribute = (TimeSourceAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(TimeSourceAttribute));
+            var targetAttribute = ReflectionHelpers.GetCustomAttribute<TimeSourceAttribute>(this.GetType());
             if (targetAttribute != null)
             {
                 return targetAttribute.Name + " (time source)";

@@ -31,6 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if UWP10
+using Windows.System.Threading;
+#endif
+
 namespace NLog.Common
 {
     using System;
@@ -201,8 +205,11 @@ namespace NLog.Common
             foreach (T item in items)
             {
                 T itemCopy = item;
-
+#if UWP10
+                ThreadPool.RunAsync(s => action(itemCopy, PreventMultipleCalls(continuation)));
+#else
                 ThreadPool.QueueUserWorkItem(s => action(itemCopy, PreventMultipleCalls(continuation)));
+#endif
             }
         }
 

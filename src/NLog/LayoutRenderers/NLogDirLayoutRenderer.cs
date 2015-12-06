@@ -31,7 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+using NLog.Internal;
+
+#if !SILVERLIGHT && !UWP10
 
 namespace NLog.LayoutRenderers
 {
@@ -54,10 +56,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         static NLogDirLayoutRenderer()
         {
-            var assembly = typeof(LogManager).Assembly;
-            var location = !String.IsNullOrEmpty(assembly.Location)
-                ? assembly.Location
-                : new Uri(assembly.CodeBase).LocalPath;
+            var assembly = typeof(LogManager).GetAssembly();
+            var location = !String.IsNullOrEmpty(assembly.GetLocation())
+                ? assembly.GetLocation()
+                : new Uri(assembly.GetCodeBase()).LocalPath;
             NLogDir = Path.GetDirectoryName(location);
         }
 

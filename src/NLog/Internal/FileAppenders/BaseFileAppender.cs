@@ -65,7 +65,7 @@ namespace NLog.Internal.FileAppenders
         }
 
         /// <summary>
-        /// Gets the path of the file, including file extension.
+        /// Gets the name of the file.
         /// </summary>
         /// <value>The name of the file.</value>
         public string FileName { get; private set; }
@@ -108,7 +108,7 @@ namespace NLog.Internal.FileAppenders
         /// Gets the file info.
         /// </summary>
         /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
-        /// <param name="fileLength">Length of the file in bytes.</param>
+        /// <param name="fileLength">Length of the file.</param>
         /// <returns>True if the operation succeeded, false otherwise.</returns>
         public abstract bool GetFileInfo(out DateTime lastWriteTime, out long fileLength);
 
@@ -160,7 +160,7 @@ namespace NLog.Internal.FileAppenders
         {
             int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
 
-            InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting);
+			InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting);
             for (int i = 0; i < this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
             {
                 try
@@ -186,18 +186,20 @@ namespace NLog.Internal.FileAppenders
                     {
                         throw; // rethrow
                     }
-
+#if !UWP10
                     int actualDelay = this.random.Next(currentDelay);
                     InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
                     currentDelay *= 2;
+                   
                     System.Threading.Thread.Sleep(actualDelay);
+#endif
                 }
             }
 
             throw new InvalidOperationException("Should not be reached.");
         }
 
-#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && !UWP10
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting)
         {
@@ -257,13 +259,14 @@ namespace NLog.Internal.FileAppenders
             {
                 fileShare = FileShare.ReadWrite;
             }
+#if !UWP10
 
             if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows)
             {
                 fileShare |= FileShare.Delete;
             }
-
-#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
+#endif
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && !UWP10
             try
             {
                 if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)
@@ -274,14 +277,14 @@ namespace NLog.Internal.FileAppenders
             catch (SecurityException)
             {
                 InternalLogger.Debug("Could not use native Windows create file, falling back to managed filestream");
-            }
+            } 
 #endif
 
             return new FileStream(
-                this.FileName,
-                FileMode.Append,
-                FileAccess.Write,
-                fileShare,
+                this.FileName, 
+                FileMode.Append, 
+                FileAccess.Write, 
+                fileShare, 
                 this.CreateFileParameters.BufferSize);
         }
     }
