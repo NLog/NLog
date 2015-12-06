@@ -303,7 +303,7 @@ namespace NLog
         private void LogConfigurationInitialized()
         {
             InternalLogger.Info("Configuration initialized.");
-            InternalLogger.LogAssemblyVersion(typeof(ILogger).Assembly());
+            InternalLogger.LogAssemblyVersion(typeof(ILogger).GetAssembly());
         }
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting 

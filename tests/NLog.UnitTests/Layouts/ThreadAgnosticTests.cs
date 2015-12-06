@@ -45,7 +45,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void ThreadAgnosticAttributeTest()
         {
-            foreach (var t in ReflectionHelpers.SafeGetTypes(typeof(Layout).Assembly()))
+            foreach (var t in ReflectionHelpers.SafeGetTypes(typeof(Layout).GetAssembly()))
             {
                 if (t.Namespace == typeof(WrapperLayoutRendererBase).Namespace)
                 {

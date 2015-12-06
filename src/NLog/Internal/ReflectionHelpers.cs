@@ -181,7 +181,7 @@ namespace NLog.Internal
             return typeInfo.IsGenericType;
 #endif
         }
-        public static Type BaseType(this Type type)
+        public static Type GetBaseType(this Type type)
         {
 #if !UWP10
             return type.BaseType;
@@ -252,7 +252,7 @@ namespace NLog.Internal
 
 
 
-        public static Assembly Assembly(this Type type)
+        public static Assembly GetAssembly(this Type type)
         {
 #if !UWP10
             return type.Assembly;
@@ -263,7 +263,7 @@ namespace NLog.Internal
         }
 
 
-        public static Module Module(this Type type)
+        public static Module GetModule(this Type type)
         {
 #if !UWP10
             return type.Module;
@@ -301,7 +301,7 @@ namespace NLog.Internal
 #endif
         }
 
-        public static Assembly Assembly(this Module module)
+        public static Assembly GetAssembly(this Module module)
         {
 #if !UWP10
             return module.Assembly;
@@ -313,7 +313,7 @@ namespace NLog.Internal
         }
 #if !UWP10 && !WINDOWS_PHONE
 
-        public static string CodeBase(this Assembly assembly)
+        public static string GetCodeBase(this Assembly assembly)
         {
 
             return assembly.CodeBase;
@@ -322,7 +322,7 @@ namespace NLog.Internal
 #endif
 
 #if !UWP10  && !WINDOWS_PHONE
-        public static string Location(this Assembly assembly)
+        public static string GetLocation(this Assembly assembly)
         {
             return assembly.Location;
 

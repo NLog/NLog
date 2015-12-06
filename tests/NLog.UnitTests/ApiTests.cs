@@ -44,12 +44,12 @@ namespace NLog.UnitTests
     public class ApiTests : NLogTestBase
     {
         private Type[] allTypes;
-        private Assembly nlogAssembly = typeof(LogManager).Assembly();
+        private Assembly nlogAssembly = typeof(LogManager).GetAssembly();
         private readonly Dictionary<Type, int> typeUsageCount = new Dictionary<Type, int>();
 
         public ApiTests()
         {
-            allTypes = typeof(LogManager).Assembly().GetTypes();
+            allTypes = typeof(LogManager).GetAssembly().GetTypes();
         }
 
         [Fact]
@@ -77,9 +77,9 @@ namespace NLog.UnitTests
                     continue;
                 }
 
-                if (type.BaseType() != null)
+                if (type.GetBaseType() != null)
                 {
-                    this.IncrementUsageCount(type.BaseType());
+                    this.IncrementUsageCount(type.GetBaseType());
                 }
 
                 foreach (var iface in type.GetInterfaces())
@@ -149,7 +149,7 @@ namespace NLog.UnitTests
                 return;
             }
 
-            if (type.Assembly() != nlogAssembly)
+            if (type.GetAssembly() != nlogAssembly)
             {
                 return;
             }

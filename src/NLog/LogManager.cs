@@ -441,7 +441,7 @@ public static void Flush(AsyncContinuation asyncContinuation, int timeoutMillise
 
                 framesToSkip++;
                 className = declaringType.FullName;
-            } while (declaringType.Module().Name.Equals("mscorlib.dll", StringComparison.OrdinalIgnoreCase));
+            } while (declaringType.GetModule().Name.Equals("mscorlib.dll", StringComparison.OrdinalIgnoreCase));
 
             return className;
         }

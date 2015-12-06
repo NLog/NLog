@@ -234,12 +234,12 @@ namespace NLog.Config
         /// <returns>Default factory.</returns>
         private static ConfigurationItemFactory BuildDefaultFactory()
         {
-            var nlogAssembly = typeof(ILogger).Assembly();
+            var nlogAssembly = typeof(ILogger).GetAssembly();
             var factory = new ConfigurationItemFactory(nlogAssembly);
             factory.RegisterExtendedItems();
 #if !SILVERLIGHT && !UWP10
 
-            var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.CodeBase()).LocalPath);
+            var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.GetCodeBase()).LocalPath);
             if (assemblyLocation == null)
             {
                 InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
