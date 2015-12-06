@@ -89,12 +89,9 @@ namespace NLog.Internal
         {
 
             var enumType = typeof(TEnum);
-#if !UWP10
-            //UWP10 missing .IsEnum
-            if (!enumType.IsEnum)
-                throw new ArgumentException(string.Format("Type '{0}' is not an enum", enumType.FullName));
-#endif
 
+            if (!enumType.IsEnum())
+                throw new ArgumentException(string.Format("Type '{0}' is not an enum", enumType.FullName));
 
 
             if (IsNullOrWhiteSpace(value))
