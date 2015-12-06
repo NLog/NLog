@@ -37,7 +37,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+
 using NLog.Common;
+
+#if SILVERLIGHT && !WINDOWS_PHONE
+using System.Windows;
+#endif
 
 namespace NLog.Internal
 {
