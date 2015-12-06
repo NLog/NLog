@@ -65,9 +65,9 @@ namespace NLog.Config
         private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
 
         /// <summary>
-        /// Initializes static members of the <see cref="ConfigurationItemFactory"/> class.
+        /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
-
+        /// <param name="assemblies">The assemblies to scan for named items.</param>
         public ConfigurationItemFactory(params Assembly[] assemblies)
         {
             this.CreateInstance = FactoryHelper.CreateInstance;
@@ -98,6 +98,10 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets default singleton instance of <see cref="ConfigurationItemFactory"/>.
         /// </summary>
+        /// <remarks>		
+        /// This property implements lazy instantiation so that the <see cref="ConfigurationItemFactory"/> is not built before 		
+        /// the internal logger is configured.		
+        /// </remarks>
         public static ConfigurationItemFactory Default
         {
             get

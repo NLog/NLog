@@ -68,7 +68,7 @@ namespace NLog
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
         private const int ReconfigAfterFileChangedTimeout = 1000;
         private Timer reloadTimer;
-        private readonly MultiFileWatcher watcher;       
+        private readonly MultiFileWatcher watcher;
 #endif
 #if !UWP10
         private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
@@ -138,7 +138,8 @@ namespace NLog
         public bool ThrowExceptions { get; set; }
 
         /// <summary>
-        /// Gets or sets the current logging configuration.
+        /// Gets or sets the current logging configuration. After setting this property all		
+        /// existing loggers will be re-configured, so that there is no need to call <see cref="ReconfigExistingLoggers" />	manually.
         /// </summary>
         public LoggingConfiguration Configuration
         {
@@ -323,12 +324,12 @@ namespace NLog
         {
             TargetWithFilterChain[] targetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             Logger newLogger = new Logger();
-            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel,false), this);
+            newLogger.Initialize(string.Empty, new LoggerConfiguration(targetsByLevel, false), this);
             return newLogger;
         }
 
         /// <summary>
-        /// Gets the logger named after the currently-being-initialized class.
+        /// Gets the logger with the name of the current class. 
         /// </summary>
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
@@ -346,25 +347,23 @@ namespace NLog
 #else
             var frame = new StackFrame(1, false);
 #endif
-                return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
+            return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
 #else
 
             var filename = Path.GetFileNameWithoutExtension(path);
 
             return this.GetLogger(filename);
 #endif
-        
+
         }
 
 #if !UWP10
-        /// <summary>
-        /// Gets the logger named after the currently-being-initialized class.
-        /// </summary>
-        /// <param name="loggerType">The type of the logger to create. The type must inherit from 
-        /// NLog.Logger.</param>
-        /// <returns>The logger.</returns>
-        /// <remarks>This is a slow-running method. Make sure you are not calling this method in a 
-        /// loop.</remarks>
+        /// <summary>	
+        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.		
+        /// </summary>		        
+        /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/>.	</param>       
+        /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
+        /// <remarks>This is a slow-running method. Make sure you are not calling this method in a  loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
@@ -390,11 +389,11 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified named logger.
+        /// Gets the custom named logger. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
-        /// <param name="loggerType">The type of the logger to create. The type must inherit from NLog.Logger.</param>
-        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the 
+        /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/>.	</param>       
+        /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the 
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name, Type loggerType)
         {
@@ -621,7 +620,7 @@ namespace NLog
                     this.reloadTimer.Dispose();
                     this.reloadTimer = null;
                 }
-                if(IsDisposing)
+                if (IsDisposing)
                 {
                     //timer was disposed already. 
                     this.watcher.Dispose();
@@ -635,16 +634,16 @@ namespace NLog
                     {
                         throw new NLogConfigurationException("Config changed in between. Not reloading.");
                     }
-                
+
                     LoggingConfiguration newConfig = configurationToReload.Reload();
 
                     //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
                     //therefor we check the InitializeSucceeded property.
-                    
+
                     var xmlConfig = newConfig as XmlLoggingConfiguration;
                     if (xmlConfig != null)
                     {
-                        
+
                         if (!xmlConfig.InitializeSucceeded.HasValue || !xmlConfig.InitializeSucceeded.Value)
                         {
                             throw new NLogConfigurationException("Configuration.Reload() failed. Invalid XML?");
@@ -802,7 +801,7 @@ namespace NLog
             {
                 yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
             }
- 
+
             // Current config file with .config renamed to .nlog
             string cf = CurrentAppDomain.ConfigurationFile;
             if (cf != null)
@@ -813,7 +812,7 @@ namespace NLog
                 const string vshostSubStr = ".vshost.";
                 if (cf.Contains(vshostSubStr))
                 {
-                   yield return Path.ChangeExtension(cf.Replace(vshostSubStr, "."), ".nlog");
+                    yield return Path.ChangeExtension(cf.Replace(vshostSubStr, "."), ".nlog");
                 }
 
                 IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
@@ -869,7 +868,7 @@ namespace NLog
                             if (ThrowExceptions)
                             {
                                 throw new NLogRuntimeException(errorMessage);
-                    }
+                            }
                             newLogger = CreateDefaultLogger(ref cacheKey);
                         }
                         else
@@ -964,7 +963,7 @@ namespace NLog
                 else
                 {
                     this.reloadTimer.Change(
-                            LogFactory.ReconfigAfterFileChangedTimeout, 
+                            LogFactory.ReconfigAfterFileChangedTimeout,
                             Timeout.Infinite);
                 }
             }
@@ -980,7 +979,7 @@ namespace NLog
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
         /// <summary>
-        /// Logger cache key.
+        /// Is this in disposing state?
         /// </summary>
         private bool IsDisposing;
 
