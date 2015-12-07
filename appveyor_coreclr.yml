@@ -1,17 +1,17 @@
 version: 1.0.{build}
 init:
-- ps: '&".\tools\dnx\dnx-prebuild.ps1"'
+- ps: ".\tools\dnx\dnx-prebuild.ps1"
 build_script:
 - ps: >-
-    &".\tools\dnx\dnx-build" ".\src\NLog\project.json" -configuration "Release" -outputPath ".\build\"
+    ".\tools\dnx\dnx-build" ".\src\NLog\project.json" -configuration "Release" -outputPath ".\build\"
 
 
-    &".\tools\dnx\dnx-build" ".\src\NLog.Extended\project.json" -configuration "Release" -outputPath ".\build\"
+    ".\tools\dnx\dnx-build" ".\src\NLog.Extended\project.json" -configuration "Release" -outputPath ".\build\"
 
 
-    &".\tools\dnx\dnx-build" ".\src\NLogAutoLoadExtension\project.json" -configuration "Release" -outputPath ".\build\"
+    ".\tools\dnx\dnx-build" ".\src\NLogAutoLoadExtension\project.json" -configuration "Release" -outputPath ".\build\"
 test_script:
-- ps: '& ".\tools\dnx\dnx-tests.ps1" -projectJsonForTests ".\tests\**\project.json"'
+- ps: ".\tools\dnx\dnx-tests.ps1" -projectJsonForTests ".\tests\**\project.json"
 artifacts:
 - path: .\build\
   name: nugetpackages
