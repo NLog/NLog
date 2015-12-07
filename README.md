@@ -73,7 +73,7 @@ Q&A
   - NLog if fully written in C#, has many years of experience and is easy to extend!
   
 * **Show me the magic!**
-  - Check the [tutorial](https://github.com/NLog/NLog/wiki/Tutorial)
+  - Check the [tutorial](https://github.com/NLog/NLog/wiki/Tutorial) to get started!
 
 * **I can't see anything?!**
   - NLog not working as expected? Check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting). If you think it's a bug, please check [contributing.md](https://github.com/NLog/NLog/blob/master/CONTRIBUTING.md#bug-reports]) and [create a GitHub issue](https://github.com/NLog/NLog/issues/new)!
