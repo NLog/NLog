@@ -1,3 +1,3 @@
 {
-  "projects": [ "src_dnx", "tests_dnx", "wrap" ]
+  "projects": [ "src", "tests", "wrap" ]
 }

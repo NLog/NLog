@@ -33,7 +33,7 @@
 
 using System.Threading;
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !UWP10 && !DNX
 
 namespace NLog.UnitTests
 {

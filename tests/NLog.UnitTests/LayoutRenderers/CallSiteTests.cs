@@ -40,7 +40,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class CallSiteTests : NLogTestBase
     {
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !UWP10 && !DNX
         [Fact]
         public void HiddenAssemblyTest()
         {
