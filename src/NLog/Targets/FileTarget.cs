@@ -493,7 +493,7 @@ namespace NLog.Targets
         /// </remarks>
         public void CleanupInitializedFiles()
         {
-            this.CleanupInitializedFiles(DateTime.Now.AddDays(-FileTarget.InitializedFilesCleanupPeriod));
+            this.CleanupInitializedFiles(DateTime.UtcNow.AddDays(-FileTarget.InitializedFilesCleanupPeriod));
         }
 
         /// <summary>
@@ -1642,11 +1642,13 @@ namespace NLog.Targets
 
             if (!justData)
             {
+                //UtcNow is much faster then .now. This was a bottleneck in writing a lot of files after CPU test.
+                var now = DateTime.UtcNow;
                 if (!this.initializedFiles.ContainsKey(fileName))
                 {
                     ProcessOnStartup(fileName, logEvent);
 
-                    this.initializedFiles[fileName] = DateTime.Now;
+                    this.initializedFiles[fileName] = now;
                     this.initializedFilesCounter++;
                     writeHeader = true;
 
@@ -1657,7 +1659,7 @@ namespace NLog.Targets
                     }
                 }
 
-                this.initializedFiles[fileName] = DateTime.Now;
+                this.initializedFiles[fileName] = now;
             }
 
             return writeHeader;
