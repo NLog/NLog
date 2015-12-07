@@ -11,6 +11,21 @@
   },
 
   "frameworks": {
+    ".NETFramework,Version=v3.5": {
+      "frameworkAssemblies": {
+        "System": "",
+        "System.Configuration": "",
+        "System.Core": "",
+        "System.Data": "",
+        "System.Runtime.Serialization": "",
+        "System.ServiceModel": "",
+        "System.Transactions": "",
+        "System.Xml": ""
+      },
+      "compilationOptions": {
+        "define": [ "NET3_5", "WCF_SUPPORTED", "CLIENT_SKU" ]
+      }
+    },
     "dnx451": {
       "frameworkAssemblies": {
         "System.Runtime": "4.0.10.0",
@@ -90,10 +105,10 @@
         "System.Windows": "",
         "System.Windows.Browser": "",
         "System.Runtime.Serialization": "",
-        "System.ServiceModel":""
+        "System.ServiceModel": ""
       },
       "dependencies": {
-       
+
       },
       "compilationOptions": {
         "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]

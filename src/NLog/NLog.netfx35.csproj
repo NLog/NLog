@@ -27,9 +27,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Debug</OutputPath>
-    <CodeAnalysisRules></CodeAnalysisRules>
-    <CodeAnalysisRules></CodeAnalysisRules>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
