@@ -93,22 +93,22 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>Last write time is store in local time (no UTC).</remarks>
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
-        
+
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
-        
+
         /// <summary>
         /// Factory used to create the file appeanders in the <see cref="FileTarget"/> instance. 
         /// </summary>
         /// <remarks>File appenders are stored in an instance of <see cref="FileAppenderCache"/>.</remarks>
         private IFileAppenderFactory appenderFactory;
-        
+
         /// <summary>
         /// List of the associated file appenders with the <see cref="FileTarget"/> instance.
         /// </summary>
         private FileAppenderCache recentAppenders;
 
         private Timer autoClosingTimer;
-        
+
         /// <summary>
         /// The number of initialised files at any one time.
         /// </summary>
@@ -121,11 +121,21 @@ namespace NLog.Targets
 
         private readonly DynamicFileArchive fileArchive;
 
- 		/// <summary>
+        /// <summary>
         /// It holds the file names of existing archives in order for the oldest archives to be removed when the list of
         /// filenames becomes too long.
         /// </summary>
         private Queue<string> previousFileNames;
+
+        /// <summary>
+        /// The filename as target
+        /// </summary>
+        private Layout fileName;
+
+        /// <summary>
+        /// The filename if <see cref="FileName"/> is a fixed string
+        /// </summary>
+        private string cachedCleanedFileNamed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -182,7 +192,26 @@ namespace NLog.Targets
         /// </example>
         /// <docgen category='Output Options' order='1' />
         [RequiredParameter]
-        public Layout FileName { get; set; }
+        public Layout FileName
+        {
+            get { return fileName; }
+            set
+            {
+                var simpleLayout = value as SimpleLayout;
+                if (simpleLayout != null && simpleLayout.IsFixedText)
+                {
+                    cachedCleanedFileNamed = CleanupInvalidFileNameChars(simpleLayout.FixedText);
+                }
+                else
+                {
+                    //clear cache
+                    cachedCleanedFileNamed = null;
+                }
+
+
+                fileName = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to create directories if they do not exist.
@@ -673,7 +702,7 @@ namespace NLog.Targets
                 this.autoClosingTimer = null;
             }
 
-            this.recentAppenders.CloseAppenders();           
+            this.recentAppenders.CloseAppenders();
         }
 
         /// <summary>
@@ -683,7 +712,9 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            string fileName = CleanupInvalidFileNameChars(this.FileName.Render(logEvent));
+            var fileName = GetCleanedFileName(logEvent);
+
+
 
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
@@ -711,6 +742,11 @@ namespace NLog.Targets
             }
 
             this.WriteToFile(fileName, logEvent, bytes, false);
+        }
+
+        private string GetCleanedFileName(LogEventInfo logEvent)
+        {
+            return cachedCleanedFileNamed ?? CleanupInvalidFileNameChars(this.FileName.Render(logEvent));
         }
 
         /// <summary>
@@ -884,7 +920,7 @@ namespace NLog.Targets
 
             string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
             RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
-            
+
             var shouldCompress = archiveNumber == 0;
             try
             {
@@ -1405,7 +1441,7 @@ namespace NLog.Targets
             {
                 return;
             }
-            
+
             string fileNamePattern = GetFileNamePattern(fileName, eventInfo);
 
             if (!ContainsFileNamePattern(fileNamePattern))
@@ -2115,5 +2151,6 @@ namespace NLog.Targets
                 return !FoundPattern || String.IsNullOrEmpty(replacementValue) ? this.Template : template.Substring(0, this.BeginAt) + replacementValue + template.Substring(this.EndAt);
             }
         }
+
     }
 }
