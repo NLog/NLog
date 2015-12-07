@@ -18,6 +18,9 @@
     "Silverlight,Version=v5.0": {
     }
   },
+  "compilationOptions": {
+    "keyFile": "../../tests/NLog.UnitTests/NLogTests.snk"
+  },
   "compile": [
     "../../tests/SampleExtensions/**.cs"
   ]
