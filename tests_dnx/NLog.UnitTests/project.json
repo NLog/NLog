@@ -51,8 +51,11 @@
     }
   },
   "compilationOptions": {
-    "keyFile": "NLogTests.snk"
+    "keyFile": "../../tests/NLog.UnitTests/NLogTests.snk"
   },
+  "compile": [
+    "../../tests/NLog.UnitTests/**.cs"
+  ],
   "commands": {
     "test": "xunit.runner.dnx -xml testresults.xml"
   }

@@ -13,7 +13,14 @@
   "frameworks": {
     "dnx46": {
       "frameworkAssemblies": {
+        "System.Messaging": "4.0.0.0"
+      },
+      "compilationOptions": {
+        "define": [ "NET4_5", "WCF_SUPPORTED", "DNX" ]
       }
     }
-  }
+  },
+  "compile": [
+    "../../src/NLog.Extended/**.cs"
+  ]
 }

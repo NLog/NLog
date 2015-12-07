@@ -18,15 +18,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{98DCD5C9-EEA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7465E1D2-BD66-407E-8C23-E096626479C9}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NLog", "src\NLog\NLog.xproj", "{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NLog", "src_dnx\NLog\NLog.xproj", "{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NLog.Extended", "src\NLog.Extended\NLog.Extended.xproj", "{A961A1F9-1024-4446-BF9E-A923137340B8}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NLog.Extended", "src_dnx\NLog.Extended\NLog.Extended.xproj", "{A961A1F9-1024-4446-BF9E-A923137340B8}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NLogAutoLoadExtension", "src\NLogAutoLoadExtension\NLogAutoLoadExtension.xproj", "{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NLogAutoLoadExtension", "src_dnx\NLogAutoLoadExtension\NLogAutoLoadExtension.xproj", "{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NLog.UnitTests", "tests\NLog.UnitTests\NLog.UnitTests.xproj", "{FE067913-E9A8-41F0-89FA-C1126F8FB6A8}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NLog.UnitTests", "tests_dnx\NLog.UnitTests\NLog.UnitTests.xproj", "{FE067913-E9A8-41F0-89FA-C1126F8FB6A8}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SampleExtensions", "tests\SampleExtensions\SampleExtensions.xproj", "{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SampleExtensions", "tests_dnx\SampleExtensions\SampleExtensions.xproj", "{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

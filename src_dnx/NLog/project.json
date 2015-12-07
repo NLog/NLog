@@ -116,6 +116,9 @@
     }
   },
   "compilationOptions": {
-    "keyFile": "NLog.snk"
-  }
+    "keyFile": "../../src/NLog/NLog.snk"
+  },
+  "compile": [
+    "../../src/NLog/**.cs"
+  ]
 }
