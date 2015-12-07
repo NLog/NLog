@@ -76,5 +76,8 @@
         "define": [ "NETFX_CORE", "WINDOWS_UWP", "UWP10" ]
       }
     }
+  },
+  "compilationOptions": {
+    "keyFile": "NLog.snk"
   }
 }

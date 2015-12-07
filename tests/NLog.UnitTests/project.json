@@ -26,6 +26,9 @@
       }
     }
   },
+  "compilationOptions": {
+    "keyFile": "NLogTests.snk"
+  },
   "commands": {
     "test": "xunit.runner.dnx -xml testresults.xml"
   }
