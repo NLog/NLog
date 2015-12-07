@@ -704,7 +704,11 @@ namespace NLog.UnitTests.Targets
 
 
         [Theory]
+#if DNX
         [MemberData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
+#else
+        [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
+#endif
         public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
