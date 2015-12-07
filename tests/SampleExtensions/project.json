@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0.0",
+  "description": "NLog Library",
+  "authors": [ "NLog" ],
+  "tags": [ "NLog" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "NLog": ""
+  },
+
+  "frameworks": {
+    "dnx46": {
+      "frameworkAssemblies": {
+      }
+    }
+  }
+}

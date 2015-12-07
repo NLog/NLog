@@ -704,7 +704,7 @@ namespace NLog.UnitTests.Targets
 
 
         [Theory]
-        [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
+        [MemberData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
         public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());

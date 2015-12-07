@@ -474,7 +474,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var ex = new ExceptionWithBrokenMessagePropertyException();
 #pragma warning disable 0618
             // Obsolete method requires testing until completely removed.
-#if !UWP10
+#if !UWP10 && !DNX
             Assert.ThrowsDelegate action = () => logger.ErrorException("msg", ex);
             Assert.DoesNotThrow(action);
 #else

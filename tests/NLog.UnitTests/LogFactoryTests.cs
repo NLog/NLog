@@ -119,7 +119,11 @@ namespace NLog.UnitTests
             var logFactory = new LogFactory(loggingConfiguration);
             var differentConfiguration = new LoggingConfiguration();
 
+#if !DNX
             Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
+#else
+            logFactory.ReloadConfigOnTimer(differentConfiguration);
+#endif
         }
 
         private class ReloadNullConfiguration : LoggingConfiguration
@@ -137,7 +141,11 @@ namespace NLog.UnitTests
             LogManager.Configuration = loggingConfiguration;
             var logFactory = new LogFactory(loggingConfiguration);
 
+#if !DNX
             Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(loggingConfiguration));
+#else
+            logFactory.ReloadConfigOnTimer(loggingConfiguration);
+#endif
         }
 
         [Fact]
@@ -400,7 +408,7 @@ namespace NLog.UnitTests
             Assert.False(factory.IsLoggingEnabled());
             factory.EnableLogging();
             Assert.True(factory.IsLoggingEnabled());
-#pragma warning restore 618           
+#pragma warning restore 618
         }
 
         [Fact]
