@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "sl50": {
+      "bin": {
+        "assembly": "../../lib/sl50/System.Xml.Linq.dll"
+      }
+    }
+  }
+}

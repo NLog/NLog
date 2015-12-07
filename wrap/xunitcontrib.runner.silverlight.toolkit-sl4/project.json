@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "sl50": {
+      "bin": {
+        "assembly": "../../external/xunitcontrib-silverlight.0.2/Silverlight4/xunitcontrib.runner.silverlight.toolkit-sl4.dll"
+      },
+      "dependencies": {
+        "xunit-silverlight4": "1.0.0-*"
+      }
+    }
+  }
+}

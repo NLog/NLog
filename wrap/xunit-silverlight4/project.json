@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "sl50": {
+      "bin": {
+        "assembly": "../../external/xunitcontrib-silverlight.0.2/Silverlight4/xunit-silverlight4.dll"
+      }
+    }
+  }
+}
