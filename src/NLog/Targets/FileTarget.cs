@@ -80,11 +80,14 @@ namespace NLog.Targets
         /// </summary>
         private readonly static char[] DirectorySeparatorChars = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
 
+#if !SILVERLIGHT
+
         /// <summary>
         /// Cached invalid filenames char array to avoid memory allocation everytime Path.GetInvalidFileNameChars() is called.
         /// </summary>
         private readonly static char[] InvalidFileNameChars = Path.GetInvalidFileNameChars();
 
+#endif 
         /// <summary>
         /// Holds the initialised files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
         /// </summary>
