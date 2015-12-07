@@ -8,10 +8,7 @@
 
   "dependencies": {
     "NLog": "",
-    "NLog.Extended": "",
-    "SampleExtensions": "",
-    "xunit": "2.1.0",
-    "xunit.runner.dnx": "2.1.0-rc1-build204"
+    "SampleExtensions": ""
   },
 
   "frameworks": {
@@ -21,8 +18,35 @@
         "System.Reflection": "4.0.10.0",
         "System.Messaging": "4.0.0.0"
       },
+      "dependencies": {
+        "NLog.Extended": "",
+        "xunit.runner.dnx": "2.1.0-rc1-build204",
+        "xunit": "2.1.0"
+      },
       "compilationOptions": {
         "define": [ "WCF_SUPPORTED", "DNX" ]
+      }
+    },
+    "Silverlight,Version=v5.0": {
+      "frameworkAssemblies": {
+        "System.Windows": "",
+        "mscorlib": "",
+        "System": "",
+        "System.Core": "",
+        "System.Net": "",
+        "System.Xml": "",
+        "System.Windows.Browser": ""
+      },
+      "dependencies": {
+        "Microsoft.Silverlight.Testing": "1.0.0-*",
+        "Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight": "1.0.0-*",
+        "xunit-silverlight4": "1.0.0-*",
+        "xunit.extensions-silverlight4": "1.0.0-*",
+        "xunitcontrib.runner.silverlight.toolkit-sl4": "1.0.0-*",
+        "System.Xml.Linq": "1.0.0-*"
+      },
+      "compilationOptions": {
+        "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]
       }
     }
   },

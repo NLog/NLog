@@ -7,7 +7,7 @@
   "licenseUrl": "",
 
   "dependencies": {
-    "System.IO.Compression": "4.0.1-beta-23225"
+
   },
 
   "frameworks": {
@@ -20,7 +20,8 @@
         "System.Drawing": "4.0.0.0",
         "System.Data": "4.0.0.0",
         "System.Configuration": "4.0.0.0",
-        "System.Transactions": "4.0.0.0"
+        "System.Transactions": "4.0.0.0",
+        "System.IO.Compression": "4.0.0.0"
       },
       "compilationOptions": {
         "define": [ "NET4_5", "WCF_SUPPORTED" ]
@@ -35,7 +36,8 @@
         "System.Drawing": "4.0.0.0",
         "System.Data": "4.0.0.0",
         "System.Configuration": "4.0.0.0",
-        "System.Transactions": "4.0.0.0"
+        "System.Transactions": "4.0.0.0",
+        "System.IO.Compression": "4.0.0.0"
       },
       "compilationOptions": {
         "define": [ "NET4_5", "WCF_SUPPORTED" ]
@@ -59,7 +61,8 @@
         "System.ComponentModel.TypeConverter": "4.0.1-beta-23516",
         "System.Data.Common": "4.0.0-beta-23019",
         "System.Net.Requests": "4.0.10",
-        "System.Threading.ThreadPool": "4.0.10-beta-23516"
+        "System.Threading.ThreadPool": "4.0.10-beta-23516",
+        "System.IO.Compression": "4.0.1-beta-23225"
       },
       "compilationOptions": {
         "define": [ "NET4_5", "DNX", "UWP10" ]
@@ -70,10 +73,30 @@
       },
       "dependencies": {
         "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-        "System.Threading.ThreadPool": "4.0.10-beta-23516"
+        "System.Threading.ThreadPool": "4.0.10-beta-23516",
+        "System.IO.Compression": "4.0.1-beta-23225"
       },
       "compilationOptions": {
         "define": [ "NETFX_CORE", "WINDOWS_UWP", "UWP10" ]
+      }
+    },
+    "Silverlight,Version=v5.0": {
+      "frameworkAssemblies": {
+        "mscorlib": "",
+        "System": "",
+        "System.Core": "",
+        "System.Xml": "",
+        "System.Net": "",
+        "System.Windows": "",
+        "System.Windows.Browser": "",
+        "System.Runtime.Serialization": "",
+        "System.ServiceModel":""
+      },
+      "dependencies": {
+       
+      },
+      "compilationOptions": {
+        "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]
       }
     }
   },
