@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([string][Parameter(Mandatory=$true)]$projectJsonForTests,[string][Parameter(Mandatory=$true)]$configuration, [string][Parameter(Mandatory=$false)]$dnxVersion = "1.0.0-rc2-16249", [string][Parameter(Mandatory=$false)]$dnxRuntime = "CLR", [string][Parameter(Mandatory=$false)]$dnxArch = "x86")
+param([string][Parameter(Mandatory=$true)]$projectJsonForTests,[string][Parameter(Mandatory=$true)]$configuration, [string][Parameter(Mandatory=$false)]$dnxVersion = "1.0.0-rc1-update1", [string][Parameter(Mandatory=$false)]$dnxRuntime = "CLR", [string][Parameter(Mandatory=$false)]$dnxArch = "x86")
 
 $dnvm = "dnvm.ps1"
 
