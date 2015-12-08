@@ -71,14 +71,19 @@ namespace NLog
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 StackTrace stackTrace;
-#if UWP10
+#if UWP10 && !DNX
 #if !DEBUG
 #error check this
 #endif
                 stackTrace = new StackTrace(new Exception(), stu == StackTraceUsage.WithSource);
 #elif !SILVERLIGHT
-                stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
 
+#if DNX
+                var dispatchInfo = System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(new Exception());
+                stackTrace = new StackTrace(dispatchInfo.SourceException, stu == StackTraceUsage.WithSource);
+#else
+                stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
+#endif
 #else
                 stackTrace = new StackTrace();
 #endif
