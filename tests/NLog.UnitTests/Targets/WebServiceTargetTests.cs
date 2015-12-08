@@ -43,7 +43,7 @@ using JetBrains.Annotations;
 using NLog.Internal;
 using NLog.Targets;
 
-#if NET4_5
+#if NET4_5 && !DNX
 using System.Web.Http;
 using Owin;
 using Microsoft.Owin.Hosting;
@@ -242,7 +242,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
         #endregion
 
-#if NET4_5
+#if NET4_5 && !DNX
 
 
         const string WsAddress = "http://localhost:9000/";

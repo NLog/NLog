@@ -32,9 +32,6 @@
 // 
 
 using System.Diagnostics;
-#if UWP10
-using Windows.System.Threading;
-#endif
 
 namespace NLog.UnitTests.Targets.Wrappers
 {

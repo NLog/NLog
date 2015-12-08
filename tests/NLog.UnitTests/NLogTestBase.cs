@@ -40,12 +40,7 @@ namespace NLog.UnitTests
     using NLog.Common;
     using System.IO;
     using System.Text;
-
-#if UWP10
-    using Windows.System.Threading;
-#else
     using System.Threading;
-#endif
 
 #if MONO || NET4_5
     using System.Runtime.CompilerServices;
@@ -60,6 +55,10 @@ namespace NLog.UnitTests
     using System.Xml;
     using System.IO.Compression;
     using System.Security.Permissions;
+#endif
+
+#if DNX
+    using System.IO.Compression;
 #endif
 
 #if XUNIT2
@@ -221,7 +220,7 @@ namespace NLog.UnitTests
         /// </summary>
         protected int GetPrevLineNumber([CallerLineNumber] int callingFileLineNumber = 0)
         {
-            return callingFileLineNumber-1;
+            return callingFileLineNumber - 1;
         }
 #else
         /// <summary>
@@ -310,19 +309,10 @@ namespace NLog.UnitTests
             }
         }
 
-        
-        protected
-#if UWP10
-            async
-#endif
-            static void RunAsync2(Action<object> func)
-        {
-#if UWP10
 
-            await ThreadPool.RunAsync(state => func(state));
-#else
+        protected static void RunAsync2(Action<object> func)
+        {
             ThreadPool.QueueUserWorkItem(state => func(state));
-#endif
         }
     }
 }

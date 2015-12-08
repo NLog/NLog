@@ -12,7 +12,17 @@
   "frameworks": {
     "dnx46": {
       "frameworkAssemblies": {
+        "System.ServiceModel": "4.0.0.0",
+        "System.ServiceModel.Activation": "4.0.0.0",
+        "System.ServiceModel.Web": "4.0.0.0"
       }
+    },
+    "dnxcore50": {
+      "compilationOptions": {
+        "define": [ "NET4_5", "DNX", "UWP10" ]
+      }
+    },
+    "Silverlight,Version=v5.0": {
     }
   }
 }

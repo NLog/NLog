@@ -31,9 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if UWP10
-using Windows.System.Threading;
-#endif
 
 namespace NLog.UnitTests.Targets.Wrappers
 {

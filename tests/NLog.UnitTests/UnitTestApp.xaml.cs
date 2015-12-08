@@ -1,4 +1,4 @@
-﻿#if UWP10
+﻿#if UWP10 && !DNX
 using System;
 using System.Collections.Generic;
 using System.IO;

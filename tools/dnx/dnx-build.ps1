@@ -7,7 +7,7 @@ $dnvm = "dnvm.ps1"
 $solutionPath = [System.IO.Path]::GetFullPath($(join-path $toolsPath ".."))
 
 
-& $dnvm use $dnxVersion -runtime CLR -arch x86
+& $dnvm use $dnxVersion -runtime $dnxRuntime -arch $dnxArch
 
 # Restore packages and build
 & dnu pack $projectJson --configuration $configuration --out "$outputPath"
