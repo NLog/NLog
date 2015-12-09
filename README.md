@@ -70,7 +70,7 @@ Q&A
   - With a simple configuration file you can decide runtime (after deployment), what to log and where! No need to restart the program or recyle the app pool!
 
 * **Why should I use NLog?**
-  - NLog if fully written in C#, has many years of experience and is easy to extend!
+  - NLog is fully written in C#, has many years of experience and is easy to extend!
   
 * **Show me the magic!**
   - Check the [tutorial](https://github.com/NLog/NLog/wiki/Tutorial) to get started!
