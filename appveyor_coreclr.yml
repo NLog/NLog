@@ -3,17 +3,6 @@ branches:
   only:
   - coreCLR
 build_script:
-- ps: >-
-    .\tools\dnx\dnx-prebuild.ps1
-
-    .\tools\dnx\dnx-build.ps1 ".\src\NLog\project.json" -configuration "Release" -outputPath ".\build\"
-
-    .\tools\dnx\dnx-build.ps1 ".\src\NLog.Extended\project.json" -configuration "Release" -outputPath ".\build\"
-
-    .\tools\dnx\dnx-build.ps1 ".\src\NLogAutoLoadExtension\project.json" -configuration "Release" -outputPath ".\build\"
-test_script:
-- ps: .\tools\dnx\dnx-tests.ps1 -projectJsonForTests ".\tests\**\project.json" -configuration "Debug"
-artifacts:
-- path: .\build\
-  name: nugetpackages
+  - build.cmd
+test: off
 deploy: off
