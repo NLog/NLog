@@ -59,7 +59,7 @@ Do you have feature requests, questions or would you like to report a bug? Pleas
 Please also post or vote features requests on [UserEcho](https://nlog.userecho.com).
 
 
-Q&A
+Frequently Asked Questions (FAQ)
 ---
 * **What is NLog?**
  - NLog is a free and open source library which helps to write log messages. 
