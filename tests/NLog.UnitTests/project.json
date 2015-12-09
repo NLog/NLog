@@ -1,87 +1,47 @@
 {
-  "version": "1.0.0.0",
-  "description": "NLog Library",
-  "authors": [ "NLog" ],
-  "tags": [ "NLog" ],
-  "projectUrl": "",
-  "licenseUrl": "",
+    "version": "1.0.0.0",
+    "description": "NLog Library",
+    "authors": [ "NLog" ],
+    "tags": [ "NLog" ],
+    "projectUrl": "",
+    "licenseUrl": "",
 
-  "dependencies": {
-    "NLog": "",
-    "SampleExtensions": ""
-  },
+    "dependencies": {
+        "NLog": "",
+        "SampleExtensions": ""
+    },
 
-  "frameworks": {
-    "dnx46": {
-      "frameworkAssemblies": {
-        "System.Runtime.Serialization": "4.0.0.0",
-        "System.Reflection": "4.0.10.0",
-        "System.Messaging": "4.0.0.0"
-      },
-      "dependencies": {
-        "NLog.Extended": "",
-        "xunit.runner.dnx": "2.1.0-rc1-build204",
-        "xunit": "2.1.0",
-        "Microsoft.AspNet.Mvc.WebApiCompatShim": "6.0.0-rc1-final",
-        "Microsoft.AspNet.WebApi.Owin": "5.2.3",
-        "System.Threading.Tasks.Parallel": "4.0.1-beta-23516"
-      },
-      "compilationOptions": {
-        "define": [ "WCF_SUPPORTED", "DNX", "XUNIT2" ]
-      }
+    "frameworks": {
+        "dnxcore50": {
+            "dependencies": {
+                "System.Console": "4.0.0-beta-23516",
+                "System.Diagnostics.Contracts": "4.0.1-beta-23516",
+                "System.Diagnostics.StackTrace": "4.0.1-beta-23516",
+                "System.Diagnostics.Tools": "4.0.1-beta-23516",
+                "System.Diagnostics.TraceSource": "4.0.0-beta-23516",
+                "System.Linq": "4.0.1-beta-23516",
+                "System.Runtime": "4.0.20",
+                "System.Runtime.Serialization.Primitives": "4.1.0-beta-23516",
+                "System.Xml.XmlDocument": "4.0.1-beta-23225",
+                "System.ServiceModel.Primitives": "4.0.0",
+                "System.ComponentModel.TypeConverter": "4.0.1-beta-23516",
+                "System.Data.Common": "4.0.0-beta-23019",
+                "System.Net.Requests": "4.0.10",
+                "System.Threading.ThreadPool": "4.0.10-beta-23516",
+                "System.IO.Compression": "4.0.1-beta-23225",
+                "xunit.runner.dnx": "2.1.0-rc1-build204",
+                "xunit": "2.1.0",
+                "System.Threading.Tasks.Parallel": "4.0.1-beta-23516"
+            },
+            "compilationOptions": {
+                "define": [ "NET4_5", "DNX", "UWP10", "XUNIT2" ]
+            }
+        }
     },
-    "dnxcore50": {
-      "dependencies": {
-        "System.Console": "4.0.0-beta-23516",
-        "System.Diagnostics.Contracts": "4.0.1-beta-23516",
-        "System.Diagnostics.StackTrace": "4.0.1-beta-23516",
-        "System.Diagnostics.Tools": "4.0.1-beta-23516",
-        "System.Diagnostics.TraceSource": "4.0.0-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.20",
-        "System.Runtime.Serialization.Primitives": "4.1.0-beta-23516",
-        "System.Xml.XmlDocument": "4.0.1-beta-23225",
-        "System.ServiceModel.Primitives": "4.0.0",
-        "System.ComponentModel.TypeConverter": "4.0.1-beta-23516",
-        "System.Data.Common": "4.0.0-beta-23019",
-        "System.Net.Requests": "4.0.10",
-        "System.Threading.ThreadPool": "4.0.10-beta-23516",
-        "System.IO.Compression": "4.0.1-beta-23225",
-        "xunit.runner.dnx": "2.1.0-rc1-build204",
-        "xunit": "2.1.0",
-        "System.Threading.Tasks.Parallel": "4.0.1-beta-23516"
-      },
-      "compilationOptions": {
-        "define": [ "NET4_5", "DNX", "UWP10"]
-      }
+    "compilationOptions": {
+        "keyFile": "NLogTests.snk"
     },
-    "Silverlight,Version=v5.0": {
-      "frameworkAssemblies": {
-        "System.Windows": "",
-        "mscorlib": "",
-        "System": "",
-        "System.Core": "",
-        "System.Net": "",
-        "System.Xml": "",
-        "System.Windows.Browser": ""
-      },
-      "dependencies": {
-        "Microsoft.Silverlight.Testing": "1.0.0-*",
-        "Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight": "1.0.0-*",
-        "xunit-silverlight4": "1.0.0-*",
-        "xunit.extensions-silverlight4": "1.0.0-*",
-        "xunitcontrib.runner.silverlight.toolkit-sl4": "1.0.0-*",
-        "System.Xml.Linq": "1.0.0-*"
-      },
-      "compilationOptions": {
-        "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]
-      }
+    "commands": {
+        "test": "xunit.runner.dnx -xml testresults.xml"
     }
-  },
-  "compilationOptions": {
-    "keyFile": "NLogTests.snk"
-  },
-  "commands": {
-    "test": "xunit.runner.dnx -xml testresults.xml"
-  }
 }

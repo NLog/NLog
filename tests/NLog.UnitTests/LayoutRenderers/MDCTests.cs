@@ -30,8 +30,6 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-
-#if !UWP10
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
@@ -64,4 +62,3 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
-#endif

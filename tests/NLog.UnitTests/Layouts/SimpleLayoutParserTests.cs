@@ -144,12 +144,12 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
             Assert.Equal(1, nestedLayout.Renderers.Count);
 
-#if !UWP10
+
             var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
             Assert.NotNull(ndcLayoutRenderer);
             Assert.Equal(3, ndcLayoutRenderer.TopFrames);
             Assert.Equal("x", ndcLayoutRenderer.Separator);
-#endif
+
         }
 
         [Fact]

@@ -30,9 +30,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-
-#if !UWP10
-#if SILVERLIGHT 
+#if SILVERLIGHT || DNX || UWP10
 #define TLS_WORKAROUND
 #endif
 
@@ -140,4 +138,3 @@ namespace NLog.Internal
 #endif
     }
 }
-#endif

@@ -61,7 +61,7 @@ namespace NLog.UnitTests
     using System.IO.Compression;
 #endif
 
-#if XUNIT2
+#if XUNIT2 && !SILVERLIGHT
     [Collection("dont run in parallel")]
 #endif
     public abstract class NLogTestBase
