@@ -45,14 +45,9 @@ namespace NLog.Config
     public enum ExceptionRenderingFormat
     {
         /// <summary>
-        /// This is for internal NLog Library usage. This is required we would a default value in switch cases. 
-        /// </summary>
-        NotSet = -1,
-        /// <summary>
         /// Appends the Message of an Exception to the specified target.
         /// </summary>
         Message = 0,
-
         /// <summary>
         /// Appends the type of an Exception to the specified target.
         /// </summary>
