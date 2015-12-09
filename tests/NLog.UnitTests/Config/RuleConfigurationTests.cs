@@ -442,7 +442,7 @@ namespace NLog.UnitTests.Config
                         <target name='d2' type='Debug' />
                         <target name='d3' type='Debug' />
                         <target name='d4' type='Debug' />
-                        <target name='d5' type='Info' />
+                        <target name='d5' type='Debug' />
                     </targets>
 
                     <rules>

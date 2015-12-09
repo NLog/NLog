@@ -368,16 +368,16 @@ namespace NLog.Config
             var swatch = Stopwatch.StartNew();
 
             ReadOnlyCollection<Target> configuredNamedTargets = this.ConfiguredNamedTargets; //assign to variable. because it is returning new ReadOnlyCollection everytime.
-            InternalLogger.Warn("Unused targets checking is started... Rule Count: {0}, Target Count: {1}", this.LoggingRules.Count, configuredNamedTargets.Count);
+            InternalLogger.Warn("Unused target checking is started... Rule Count: {0}, Target Count: {1}", this.LoggingRules.Count, configuredNamedTargets.Count);
 
             HashSet<string> targetNamesAtRules = new HashSet<string>();
-            for (int i = 0; i < this.LoggingRules.Count; i++)
+            for (int ri = 0; ri < this.LoggingRules.Count; ri++)
             {
-                LoggingRule rule = this.LoggingRules[i];
+                LoggingRule rule = this.LoggingRules[ri];
 
-                for (int j = 0; j < rule.Targets.Count; j++)
+                for (int rti = 0; rti < rule.Targets.Count; rti++)
                 {
-                    Target target = rule.Targets[i];
+                    Target target = rule.Targets[rti];
                     targetNamesAtRules.Add(target.Name);
                 }
             }
@@ -394,7 +394,7 @@ namespace NLog.Config
             }
 
             swatch.Stop();
-            InternalLogger.Warn("Unused targets checking is completed ({0}). Rule Count: {1}, Target Count: {2}, UnusedTarget Count: {3}", swatch.Elapsed, this.LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
+            InternalLogger.Warn("Unused target checking is completed ({0}). Total Rule Count: {1}, Total Target Count: {2}, UnusedTarget Count: {3}", swatch.Elapsed, this.LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
         }
 
         private void ConfigureFromFile(string fileName)
