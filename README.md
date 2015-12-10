@@ -109,4 +109,4 @@ A good way to get started (flow)
 License
 ---
 NLog is open source software, licensed under the terms of BSD license. 
-See LICENSE.txt for details.
+See [LICENSE.txt](LICENSE.txt) for details.
