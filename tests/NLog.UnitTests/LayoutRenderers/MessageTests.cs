@@ -211,11 +211,8 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var ex = new InvalidOperationException("Exception message.");
             
-#if !SILVERLIGHT && !UWP10
+
             string newline = Environment.NewLine;
-#else
-            string newline = "\r\n";
-#endif
 
 #pragma warning disable 0618
             // Obsolete method requires testing until completely removed.

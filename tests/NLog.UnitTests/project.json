@@ -37,10 +37,10 @@
                 "define": [ "NET4_5", "DNX", "UWP10", "XUNIT2" ]
             }
         },
-        "dnx46": {
+        "dnx451": {
             "frameworkAssemblies": {
                 "System.Runtime.Serialization": "4.0.0.0",
-                "System.Reflection": "4.0.10.0",
+                "System.Reflection": "4.0.0.0",
                 "System.Messaging": "4.0.0.0"
             },
             "dependencies": {

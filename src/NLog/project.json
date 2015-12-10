@@ -42,25 +42,6 @@
                 "define": [ "NET4_5", "WCF_SUPPORTED" ]
             }
         },
-        "dnx46": {
-            "frameworkAssemblies": {
-                "System.Runtime": "4.0.20.0",
-                "System.Xml": "4.0.0.0",
-                "System.ServiceModel": "4.0.0.0",
-                "System.Runtime.Serialization": "4.0.0.0",
-                "System.Drawing": "4.0.0.0",
-                "System.Data": "4.0.0.0",
-                "System.Configuration": "4.0.0.0",
-                "System.Transactions": "4.0.0.0",
-                "System.IO.Compression": "4.0.0.0"
-            },
-            "compilationOptions": {
-                "define": [ "NET4_5", "WCF_SUPPORTED" ]
-            },
-            "dependencies": {
-                "System.ComponentModel.TypeConverter": "4.0.1-beta-23516"
-            }
-        },
         "dnxcore50": {
             "dependencies": {
                 "System.Console": "4.0.0-beta-23516",
