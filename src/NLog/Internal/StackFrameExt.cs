@@ -45,16 +45,14 @@ namespace NLog.Internal
     internal static class StackFrameExt
     {
 
-#if UWP10
+#if UWP10 || DNX
     /// <summary>
     /// Null
     /// </summary>
     /// <returns></returns>
         public static StackFrame GetFrame(this StackTrace strackTrace, int number)
         {
-
-            //TODO
-            return null;
+            return strackTrace.GetFrames()[number];
         }
 #endif
         /// <summary>
@@ -63,15 +61,7 @@ namespace NLog.Internal
         /// <returns></returns>
         public static int GetFrameCount(this StackTrace strackTrace)
         {
-
-#if !UWP10
-            return strackTrace.FrameCount;
-#else
-            return 0;
-
-#endif
-            //TODO
-
+            return strackTrace.GetFrames().Length;
         }
     }
 }

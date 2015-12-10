@@ -52,6 +52,7 @@ namespace NLog.UnitTests
             allTypes = typeof(LogManager).GetAssembly().GetTypes();
         }
 
+#if !UWP10 && !DNX
         [Fact]
         public void PublicEnumsTest()
         {
@@ -107,9 +108,8 @@ namespace NLog.UnitTests
                     catch (Exception ex)
                     {
                         // this sometimes throws on .NET Compact Framework, but is not fatal
-#if !UWP10
+
                         Console.WriteLine("EXCEPTION {0}", ex);
-#endif
                     }
                 }
             }
@@ -121,9 +121,8 @@ namespace NLog.UnitTests
             {
                 if (kvp.Value == 0)
                 {
-#if !UWP10
+
                     Console.WriteLine("Type '{0}' is not used.", kvp.Key);
-#endif
                     unusedTypes.Add(kvp.Key);
                     sb.Append(kvp.Key.FullName).Append("\n");
                 }
@@ -131,6 +130,7 @@ namespace NLog.UnitTests
 
             Assert.Equal(0, unusedTypes.Count);
         }
+#endif
 
         private void IncrementUsageCount(Type type)
         {

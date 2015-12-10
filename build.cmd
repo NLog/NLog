@@ -35,6 +35,8 @@ IF "%BUILDCMD_DNX_VERSION%"=="" (
 )
 IF "%SKIP_DNX_INSTALL%"=="" (
     CALL dnvm install %BUILDCMD_DNX_VERSION% -runtime CLR -arch x86 -alias default
+	CALL dnvm install %BUILDCMD_DNX_VERSION% -runtime coreclr -arch x86
+	CALL dnvm install %BUILDCMD_DNX_VERSION% -runtime coreclr -arch x64
 ) ELSE (
     CALL dnvm use default -runtime CLR -arch x86
 )

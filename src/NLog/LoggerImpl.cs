@@ -71,19 +71,14 @@ namespace NLog
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 StackTrace stackTrace;
-#if UWP10 && !DNX
+#if UWP10 || DNX
 #if !DEBUG
 #error check this
 #endif
-                stackTrace = new StackTrace(new Exception(), stu == StackTraceUsage.WithSource);
+                var stackTraceCtor = typeof(StackTrace).GetConstructor(new Type[] { typeof(bool) });
+                stackTrace = (StackTrace)stackTraceCtor.Invoke(new object[] { stu == StackTraceUsage.WithSource });
 #elif !SILVERLIGHT
-
-#if DNX
-                var dispatchInfo = System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(new Exception());
-                stackTrace = new StackTrace(dispatchInfo.SourceException, stu == StackTraceUsage.WithSource);
-#else
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
-#endif
 #else
                 stackTrace = new StackTrace();
 #endif
@@ -93,7 +88,6 @@ namespace NLog
                 logEvent.SetStackTrace(stackTrace, firstUserFrame);
             }
 
-#if !UWP10
             int originalThreadId = Thread.CurrentThread.ManagedThreadId;
             AsyncContinuation exceptionHandler = ex =>
                 {
@@ -105,12 +99,7 @@ namespace NLog
                         }
                     }
                 };
-#else
-            //noop
-            //TODO
-            AsyncContinuation exceptionHandler = ex => { };
-            
-#endif
+
             for (var t = targets; t != null; t = t.NextInChain)
             {
                 if (!WriteToTargetWithFilterChain(t, logEvent, exceptionHandler))
@@ -131,18 +120,18 @@ namespace NLog
         {
             int? firstUserFrame = null;
 
-                for (int i = 0; i < stackTrace.GetFrameCount(); ++i)
-                {
-                    StackFrame frame = stackTrace.GetFrame(i);
-                    MethodBase mb = frame.GetMethod();
+            for (int i = 0; i < stackTrace.GetFrameCount(); ++i)
+            {
+                StackFrame frame = stackTrace.GetFrame(i);
+                MethodBase mb = frame.GetMethod();
                 if (IsNonUserStackFrame(mb, loggerType))
-                        firstUserFrame = i + 1;
-                    else if (firstUserFrame != null)
+                    firstUserFrame = i + 1;
+                else if (firstUserFrame != null)
                     return firstUserFrame.Value;
-                }
+            }
 
             return 0;
-                    }
+        }
 
         /// <summary>
         ///  Defines whether a stack frame belongs to non-user code
@@ -158,7 +147,7 @@ namespace NLog
         {
             var declaringType = method.DeclaringType;
             // get assembly by declaring type or by module for global methods
-            var assembly = declaringType != null ? declaringType.GetAssembly() : method.Module.GetAssembly(); 
+            var assembly = declaringType != null ? declaringType.GetAssembly() : method.Module.GetAssembly();
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             if (SkipAssembly(assembly)) return true;
             // or if that type is the loggerType or one of its subtypes
