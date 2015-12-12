@@ -52,7 +52,6 @@ namespace NLog.UnitTests.Targets
     using NLog.Internal;
     using NLog.LayoutRenderers;
 
-    [System.Runtime.InteropServices.GuidAttribute("FF35CCD9-C7C7-4E3F-9194-3C3076DA3B7C")]
     public class FileTargetTests : NLogTestBase
     {
         private readonly ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
