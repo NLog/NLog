@@ -174,6 +174,7 @@ namespace NLog.Targets
             this.maxLogFilenames = 20;
             this.previousFileNames = new Queue<string>(this.maxLogFilenames);
             this.recentAppenders = FileAppenderCache.Empty;
+            this.CleanupFileName = true;
         }
 
         /// <summary>
@@ -212,6 +213,13 @@ namespace NLog.Targets
                 fileName = value;
             }
         }
+
+        /// <summary>
+        /// Cleanup invalid values in a filename, e.g. slashes in a filename. If set to <c>true</c>, this can impact the performance of massive writes. 
+        /// If set to <c>false</c>, nothing gets written when the filename is wrong.
+        /// </summary>
+        [DefaultValue(true)]
+        public bool CleanupFileName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to create directories if they do not exist.
@@ -1870,8 +1878,14 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">The original file name which might contain invalid characters.</param>
         /// <returns>The cleaned up file name without any invalid characters.</returns>
-        private static string CleanupInvalidFileNameChars(string fileName)
+        private string CleanupInvalidFileNameChars(string fileName)
         {
+
+            if (!this.CleanupFileName)
+            {
+                return fileName;
+            }
+
 #if !SILVERLIGHT
 
             var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChars);
