@@ -85,7 +85,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
         /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
-        public static string Get(string item, IFormatProvider formatProvider) 
+        public static string Get(string item, IFormatProvider formatProvider)
         {
             return ConvertToString(GetObject(item), formatProvider);
         }
@@ -149,7 +149,8 @@ namespace NLog
             if ((formatProvider == null) && (LogManager.Configuration != null))
                 formatProvider = LogManager.Configuration.DefaultCultureInfo;
 
-            return String.Format(formatProvider, "{0}", o);
+            return Convert.ToString(o, formatProvider);
+
         }
     }
 }
