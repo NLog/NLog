@@ -85,8 +85,9 @@ Frequently Asked Questions (FAQ)
   - Check the [4.0 release post](http://nlog-project.org/2015/06/09/nlog-4-has-been-released.html), there are some breaking changes.
   - Update all the NLog packages. The latest stable version is recommend. 
 
-* **I have trouble updating NLog from 4.1.0*
-  - We take [semver](https://semver.org) very serious! Because NLog is strong named, it's important to keep the assembly version of all major versions the same, otherwise every library build on 4.0.0 should be reompiled for every other 4.x release (4.1, 4.2 etc). In NLog 4.1 there was a mistake in the assembly version, which has been fixed in 4.1.1. Upgrading from NLog 4.1 to another version can give issues when using NuGet. This will result in the following error:
+* **I have trouble updating NLog from 4.1.0**
+  - We take [semver](https://semver.org) very serious! Because NLog is strong named, it's important to keep the assembly version of all major versions the same, otherwise every library build on 4.0.0 should be reompiled for every other 4.x release (4.1, 4.2 etc)  - which is unwanted because of semver. <br>
+   In NLog 4.1.0 there was a mistake in the assembly version, which has been fixed in 4.1.1. Upgrading from NLog 4.1.0 to another version can give issues when using NuGet. This will result in the following error:
    
   > Could not load file or assembly 'NLog' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
 
