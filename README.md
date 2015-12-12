@@ -84,6 +84,7 @@ Frequently Asked Questions (FAQ)
 * **How do I upgrade to NLog 4.x?** 
   - Check the [4.0 release post](http://nlog-project.org/2015/06/09/nlog-4-has-been-released.html), there are some breaking changes.
   - Update all the NLog packages. The latest stable version is recommend. 
+  - When upgrading from NLog 4.1.0, please the next question.
 
 * **I have trouble updating NLog from 4.1.0**
   - We take [semver](https://semver.org) very serious! Because NLog is strong named, it's important to keep the assembly version of all major versions the same, otherwise every library build on 4.0.0 should be reompiled for every other 4.x release (4.1, 4.2 etc)  - which is unwanted because of semver. <br>
