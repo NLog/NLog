@@ -59,7 +59,7 @@ Do you have feature requests, questions or would you like to report a bug? Pleas
 Please also post or vote features requests on [UserEcho](https://nlog.userecho.com).
 
 
-Q&A
+Frequently Asked Questions (FAQ)
 ---
 * **What is NLog?**
  - NLog is a free and open source library which helps to write log messages. 
@@ -70,7 +70,7 @@ Q&A
   - With a simple configuration file you can decide runtime (after deployment), what to log and where! No need to restart the program or recyle the app pool!
 
 * **Why should I use NLog?**
-  - NLog if fully written in C#, has many years of experience and is easy to extend!
+  - NLog is fully written in C#, has many years of experience and is easy to extend!
   
 * **Show me the magic!**
   - Check the [tutorial](https://github.com/NLog/NLog/wiki/Tutorial) to get started!
@@ -84,8 +84,16 @@ Q&A
 * **How do I upgrade to NLog 4.x?** 
   - Check the [4.0 release post](http://nlog-project.org/2015/06/09/nlog-4-has-been-released.html), there are some breaking changes.
   - Update all the NLog packages. The latest stable version is recommend. 
+  - When upgrading from NLog 4.1.0, please the next question.
 
+* **I have trouble updating NLog from 4.1.0**
+  - We take [semver](https://semver.org) very serious! Because NLog is strong named, it's important to keep the assembly version of all major versions the same, otherwise every library build on 4.0.0 should be reompiled for every other 4.x release (4.1, 4.2 etc)  - which is unwanted because of semver. <br>
+   In NLog 4.1.0 there was a mistake in the assembly version, which has been fixed in 4.1.1. Upgrading from NLog 4.1.0 to another version can give issues when using NuGet. This will result in the following error:
+   
+  > Could not load file or assembly 'NLog' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
 
+  If you upgrade, remove or alter the `<assemblybinding>`, as explained at the [4.1.1 news post](http://nlog-project.org/2015/09/12/nlog-4-1-1-has-been-released.html).    
+  
 
 
 Contributing
@@ -109,4 +117,4 @@ A good way to get started (flow)
 License
 ---
 NLog is open source software, licensed under the terms of BSD license. 
-See LICENSE.txt for details.
+See [LICENSE.txt](LICENSE.txt) for details.
