@@ -58,6 +58,44 @@ Questions, bug reports or feature requests?
 Do you have feature requests, questions or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](CONTRIBUTING.md).
 Please also post or vote features requests on [UserEcho](https://nlog.userecho.com).
 
+
+Frequently Asked Questions (FAQ)
+---
+* **What is NLog?**
+ - NLog is a free and open source library which helps to write log messages. 
+
+* **Why should I use a log libary? I can just do `file.WriteLine()`**
+  - Beside writing to files, you can write to many different targets, like databases, event viewer, trace etc. 
+  - The output is templatable with many predefined template values. 
+  - With a simple configuration file you can decide runtime (after deployment), what to log and where! No need to restart the program or recyle the app pool!
+
+* **Why should I use NLog?**
+  - NLog is fully written in C#, has many years of experience and is easy to extend!
+  
+* **Show me the magic!**
+  - Check the [tutorial](https://github.com/NLog/NLog/wiki/Tutorial) to get started!
+
+* **I can't see anything?!**
+  - NLog not working as expected? Check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting). If you think it's a bug, please check [contributing.md](https://github.com/NLog/NLog/blob/master/CONTRIBUTING.md#bug-reports]) and [create a GitHub issue](https://github.com/NLog/NLog/issues/new)!
+
+* **I'm missing important stuff!**
+  - You can send a feature request, but do you know you can [extend NLog with a few lines of code](http://nlog-project.org/2015/06/30/extending-nlog-is-easy.html)?
+
+* **How do I upgrade to NLog 4.x?** 
+  - Check the [4.0 release post](http://nlog-project.org/2015/06/09/nlog-4-has-been-released.html), there are some breaking changes.
+  - Update all the NLog packages. The latest stable version is recommend. 
+  - When upgrading from NLog 4.1.0, please the next question.
+
+* **I have trouble updating NLog from 4.1.0**
+  - We take [semver](https://semver.org) very serious! Because NLog is strong named, it's important to keep the assembly version of all major versions the same, otherwise every library build on 4.0.0 should be reompiled for every other 4.x release (4.1, 4.2 etc)  - which is unwanted because of semver. <br>
+   In NLog 4.1.0 there was a mistake in the assembly version, which has been fixed in 4.1.1. Upgrading from NLog 4.1.0 to another version can give issues when using NuGet. This will result in the following error:
+   
+  > Could not load file or assembly 'NLog' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+
+  If you upgrade, remove or alter the `<assemblybinding>`, as explained at the [4.1.1 news post](http://nlog-project.org/2015/09/12/nlog-4-1-1-has-been-released.html).    
+  
+
+
 Contributing
 ---
 As the current NLog team is a small team, we cannot fix every bug or implement every feature on our own. So contributions are really appreciated!
@@ -79,4 +117,4 @@ A good way to get started (flow)
 License
 ---
 NLog is open source software, licensed under the terms of BSD license. 
-See LICENSE.txt for details.
+See [LICENSE.txt](LICENSE.txt) for details.
