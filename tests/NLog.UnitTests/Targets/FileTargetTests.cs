@@ -52,6 +52,7 @@ namespace NLog.UnitTests.Targets
     using NLog.Internal;
     using NLog.LayoutRenderers;
 
+    [System.Runtime.InteropServices.GuidAttribute("FF35CCD9-C7C7-4E3F-9194-3C3076DA3B7C")]
     public class FileTargetTests : NLogTestBase
     {
         private readonly ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
@@ -1816,7 +1817,7 @@ namespace NLog.UnitTests.Targets
             string archivePath = Path.Combine(logdir, "archive");
             TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
         }
-        
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -1937,6 +1938,66 @@ namespace NLog.UnitTests.Targets
 
             }
 
+        }
+
+        [Fact]
+        public void RelativeFileNaming_ShouldSuccess()
+        {
+            var relativeFileName = @"Logs\myapp.log";
+            var fullFilePath = Path.GetFullPath(relativeFileName);
+            try
+            {
+                var ft = new FileTarget
+                {
+                    FileName = fullFilePath,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    OpenFileCacheTimeout = 0
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+                LogManager.Configuration = null;
+                AssertFileContents(fullFilePath, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(fullFilePath))
+                    File.Delete(fullFilePath);
+            }
+        }
+
+        [Fact]
+        public void RelativeFileNaming_DirectoryNavigation_ShouldSuccess()
+        {
+            var relativeFileName = @"..\..\Logs\myapp.log";
+            var fullFilePath = Path.GetFullPath(relativeFileName);
+            try
+            {
+                var ft = new FileTarget
+                {
+                    FileName = fullFilePath,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    OpenFileCacheTimeout = 0
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+                LogManager.Configuration = null;
+                AssertFileContents(fullFilePath, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(fullFilePath))
+                    File.Delete(fullFilePath);
+            }
         }
     }
 
