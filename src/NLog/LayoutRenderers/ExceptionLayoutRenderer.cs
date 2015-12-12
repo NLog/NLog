@@ -52,7 +52,8 @@ namespace NLog.LayoutRenderers
     {
         private string format;
         private string innerFormat = string.Empty;
-        private static readonly Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>> _functions = new Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>>() {
+        private static readonly Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>> _renderingfunctions = new Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>>() 
+                                                                                                    {
                                                                                                         {ExceptionRenderingFormat.Message, AppendMessage}, 
                                                                                                         {ExceptionRenderingFormat.Type, AppendType},
                                                                                                         {ExceptionRenderingFormat.ShortType, AppendShortType},
@@ -60,6 +61,17 @@ namespace NLog.LayoutRenderers
                                                                                                         {ExceptionRenderingFormat.Method, AppendMethod},
                                                                                                         {ExceptionRenderingFormat.StackTrace, AppendStackTrace},
                                                                                                         {ExceptionRenderingFormat.Data, AppendData}
+                                                                                                    };
+
+        private static readonly Dictionary<String, ExceptionRenderingFormat> _formatsMapping = new Dictionary<string, ExceptionRenderingFormat>(StringComparer.OrdinalIgnoreCase)
+                                                                                                    {
+                                                                                                        {"MESSAGE",ExceptionRenderingFormat.Message}, 
+                                                                                                        {"TYPE", ExceptionRenderingFormat.Type}, 
+                                                                                                        {"SHORTTYPE",ExceptionRenderingFormat.ShortType}, 
+                                                                                                        {"TOSTRING",ExceptionRenderingFormat.ToString}, 
+                                                                                                        {"METHOD",ExceptionRenderingFormat.Method}, 
+                                                                                                        {"STACKTRACE", ExceptionRenderingFormat.StackTrace}, 
+                                                                                                        {"DATA",ExceptionRenderingFormat.Data}, 
                                                                                                     };
 
         /// <summary>
@@ -175,7 +187,7 @@ namespace NLog.LayoutRenderers
                 {
                     sb2.Append(separator);
 
-                    var currentRenderFunction = _functions[renderingFormat];
+                    var currentRenderFunction = _renderingfunctions[renderingFormat];
 
                     currentRenderFunction(sb2, logEvent.Exception);
 
@@ -193,7 +205,7 @@ namespace NLog.LayoutRenderers
                     {
                         sb2.Append(separator);
 
-                        var currentRenderFunction = _functions[renderingFormat];
+                        var currentRenderFunction = _renderingfunctions[renderingFormat];
 
                         currentRenderFunction(sb2, currentException);
 
@@ -312,42 +324,19 @@ namespace NLog.LayoutRenderers
         private static List<ExceptionRenderingFormat> CompileFormat(string formatSpecifier)
         {
             List<ExceptionRenderingFormat> formats = new List<ExceptionRenderingFormat>();
-            string[] parts = formatSpecifier.Replace(" ", string.Empty).Split(',');
+            string[] parts = formatSpecifier.Replace(" ", string.Empty).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (string s in parts)
             {
-                ExceptionRenderingFormat? renderingFormat = null;
-
-                switch (s.ToUpper(CultureInfo.InvariantCulture))
+                ExceptionRenderingFormat renderingFormat;
+                if (_formatsMapping.TryGetValue(s, out renderingFormat))
                 {
-                    case "MESSAGE":
-                        renderingFormat = ExceptionRenderingFormat.Message;
-                        break;
-                    case "TYPE":
-                        renderingFormat = ExceptionRenderingFormat.Type;
-                        break;
-                    case "SHORTTYPE":
-                        renderingFormat = ExceptionRenderingFormat.ShortType;
-                        break;
-                    case "TOSTRING":
-                        renderingFormat = ExceptionRenderingFormat.ToString;
-                        break;
-                    case "METHOD":
-                        renderingFormat = ExceptionRenderingFormat.Method;
-                        break;
-                    case "STACKTRACE":
-                        renderingFormat = ExceptionRenderingFormat.StackTrace;
-                        break;
-                    case "DATA":
-                        renderingFormat = ExceptionRenderingFormat.Data;
-                        break;
-                    default:
-                        InternalLogger.Warn("Unknown exception data target: {0}", s);
-                        break;
+                    formats.Add(renderingFormat);
                 }
-                if (renderingFormat != null)
-                    formats.Add(renderingFormat.Value);
-
+                else
+                {
+                    InternalLogger.Warn("Unknown exception data target: {0}", s);
+                }
             }
             return formats;
         }
