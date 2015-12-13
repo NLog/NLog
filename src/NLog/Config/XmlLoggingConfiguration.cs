@@ -359,39 +359,28 @@ namespace NLog.Config
                 InternalLogger.Warn("Unused target checking is canceled -> initialize not started yet.");
                 return;
             }
-            if (this.InitializeSucceeded.Value == false)
+            if (!this.InitializeSucceeded.Value)
             {
                 InternalLogger.Warn("Unused target checking is canceled -> initialize not succeeded.");
                 return;
             }
 
             ReadOnlyCollection<Target> configuredNamedTargets = this.ConfiguredNamedTargets; //assign to variable. because it is returning new ReadOnlyCollection everytime.
-            InternalLogger.Warn("Unused target checking is started... Rule Count: {0}, Target Count: {1}", this.LoggingRules.Count, configuredNamedTargets.Count);
+            InternalLogger.Debug("Unused target checking is started... Rule Count: {0}, Target Count: {1}", this.LoggingRules.Count, configuredNamedTargets.Count);
 
-            HashSet<string> targetNamesAtRules = new HashSet<string>();
-            for (int ri = 0; ri < this.LoggingRules.Count; ri++)
-            {
-                LoggingRule rule = this.LoggingRules[ri];
-
-                for (int rti = 0; rti < rule.Targets.Count; rti++)
-                {
-                    Target target = rule.Targets[rti];
-                    targetNamesAtRules.Add(target.Name);
-                }
-            }
+            HashSet<string> targetNamesAtRules = new HashSet<string>(this.LoggingRules.SelectMany(r => r.Targets).Select(t => t.Name));
 
             int unusedCount = 0;
-            for (int i = 0; i < configuredNamedTargets.Count; i++)
+            configuredNamedTargets.ToList().ForEach((target) =>
             {
-                Target target = configuredNamedTargets[i];
                 if (!targetNamesAtRules.Contains(target.Name))
                 {
                     InternalLogger.Warn("Unused target detected. Add a rule for this target to the configuration. TargetName: {0}", target.Name);
                     unusedCount++;
                 }
-            }
+            });
 
-            InternalLogger.Warn("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, UnusedTarget Count: {2}", this.LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
+            InternalLogger.Debug("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", this.LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
         }
 
         private void ConfigureFromFile(string fileName)
