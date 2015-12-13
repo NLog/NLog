@@ -167,7 +167,7 @@ namespace NLog.UnitTests
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(true, "File '" + fileName + "' doesn't exist.");
+                Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
             Assert.Equal(encodedBuf.Length, fi.Length);
@@ -181,6 +181,28 @@ namespace NLog.UnitTests
             {
                 Assert.Equal(encodedBuf[i], buf[i]);
             }
+        }
+
+        public void AssertFileContains(string fileName, string contentToCheck, Encoding encoding)
+        {
+            if (contentToCheck.Contains(Environment.NewLine))
+                Assert.True(false, "Please use only single line string to check.");
+
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                        
+            using (TextReader fs = new StreamReader(fileName, encoding))
+            {
+                string line;
+                while ((line = fs.ReadLine()) != null)
+                {
+                    if (line.Contains(contentToCheck))
+                        return;
+                }
+            }
+
+            Assert.True(false, "File doesn't contains '" + contentToCheck + "'");
         }
 
         public string StringRepeat(int times, string s)
@@ -205,7 +227,7 @@ namespace NLog.UnitTests
         /// </summary>
         protected int GetPrevLineNumber([CallerLineNumber] int callingFileLineNumber = 0)
         {
-            return callingFileLineNumber-1;
+            return callingFileLineNumber - 1;
         }
 #else
         /// <summary>
