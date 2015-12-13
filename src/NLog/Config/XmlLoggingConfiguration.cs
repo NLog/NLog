@@ -365,7 +365,7 @@ namespace NLog.Config
                 return;
             }
 
-            ReadOnlyCollection<Target> configuredNamedTargets = this.ConfiguredNamedTargets; //assign to variable. because it is returning new ReadOnlyCollection everytime.
+            ReadOnlyCollection<Target> configuredNamedTargets = this.ConfiguredNamedTargets; //assign to variable because `ConfiguredNamedTargets` computes a new list every time.
             InternalLogger.Debug("Unused target checking is started... Rule Count: {0}, Target Count: {1}", this.LoggingRules.Count, configuredNamedTargets.Count);
 
             HashSet<string> targetNamesAtRules = new HashSet<string>(this.LoggingRules.SelectMany(r => r.Targets).Select(t => t.Name));
