@@ -280,12 +280,18 @@ namespace NLog.Internal.FileAppenders
            if( !File.Exists(this.FileName) )
            {
               this.CreationTime = DateTime.UtcNow;
+#if !SILVERLIGHT
               File.Create(this.FileName).Dispose();
               File.SetCreationTimeUtc(this.FileName, this.CreationTime);
-           }
-           else
+#endif
+         }
+         else
            {
+#if !SILVERLIGHT
               this.CreationTime = File.GetCreationTimeUtc(this.FileName);
+#else
+              this.CreationTime = File.GetCreationTime( this.FileName );
+#endif
            }
         }
     }
