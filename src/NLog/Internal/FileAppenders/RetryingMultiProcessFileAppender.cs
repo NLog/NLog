@@ -66,8 +66,6 @@ namespace NLog.Internal.FileAppenders
             {
                 fileStream.Write(bytes, 0, bytes.Length);
             }
-
-            FileTouched();
         }
 
         /// <summary>
@@ -89,28 +87,28 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the file info.
         /// </summary>
-        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
+        /// <param name="creationTime">The file creation time. The value must be of UTC kind.</param>
         /// <param name="fileLength">Length of the file.</param>
         /// <returns>
         /// True if the operation succeeded, false otherwise.
         /// </returns>
-        public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
+        public override bool GetFileInfo(out DateTime creationTime, out long fileLength)
         {
             FileInfo fi = new FileInfo(FileName);
             if (fi.Exists)
             {
                 fileLength = fi.Length;
 #if !SILVERLIGHT
-                lastWriteTime = fi.LastWriteTimeUtc;
+                creationTime = fi.CreationTimeUtc;
 #else
-                lastWriteTime = fi.LastWriteTime;
+                creationTime = fi.CreationTime;
 #endif
                 return true;
             }
             else
             {
                 fileLength = -1;
-                lastWriteTime = DateTime.MinValue;
+                creationTime = DateTime.MinValue;
                 return false;
             }
         }

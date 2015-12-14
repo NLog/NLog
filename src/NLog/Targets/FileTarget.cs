@@ -1094,20 +1094,20 @@ namespace NLog.Targets
 
         /// <summary>
         /// Determines whether a file with a different name from <paramref name="fileName"/> is needed to receive the
-        /// <paramref name="logEvent"/>. This is determined based on the last date and time which the file has been
-        /// written compared to the time the log event was initiated.
+        /// <paramref name="logEvent"/>. This is determined based on the creation date of the file compared to the 
+        /// time the log event was initiated.
         /// </summary>
         /// <returns>
-        /// <see langword="true"/> when log event time is "different" than the last write time; <see langword="false"/> otherwise.
+        /// <see langword="true"/> when log event time is "different" than the file creation time; <see langword="false"/> otherwise.
         /// </returns>
         private bool IsDaySwitch(string fileName, LogEventInfo logEvent)
         {
-            DateTime lastWriteTime;
+            DateTime creationTime;
             long fileLength;
-            if (this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            if (this.GetFileInfo(fileName, out creationTime, out fileLength))
             {
                 string formatString = GetDateFormatString(string.Empty);
-                string ts = lastWriteTime.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
+                string ts = creationTime.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
                 string ts2 = logEvent.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
 
                 return ts != ts2;
@@ -1484,10 +1484,10 @@ namespace NLog.Targets
                 return false;
             }
 
-            DateTime lastWriteTime;
+            DateTime creationTime;
             long fileLength;
 
-            if (!this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            if (!this.GetFileInfo(fileName, out creationTime, out fileLength))
             {
                 return false;
             }
@@ -1516,10 +1516,10 @@ namespace NLog.Targets
                 return false;
             }
 
-            DateTime lastWriteTime;
+            DateTime creationTime;
             long fileLength;
 
-            if (!this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            if (!this.GetFileInfo(fileName, out creationTime, out fileLength))
             {
                 return false;
             }
@@ -1528,12 +1528,12 @@ namespace NLog.Targets
             {
                 // file write time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
                 // so we should ask the TimeSource to convert file time to TimeSource time:
-                lastWriteTime = TimeSource.Current.FromSystemTime(lastWriteTime);
+                creationTime = TimeSource.Current.FromSystemTime(creationTime);
                 string formatString = GetDateFormatString(string.Empty);
-                string fileLastChanged = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
+                string fileCreated = creationTime.ToString(formatString, CultureInfo.InvariantCulture);
                 string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
 
-                if (fileLastChanged != logEventRecorded)
+                if (fileCreated != logEventRecorded)
                 {
                     return true;
                 }
@@ -1749,10 +1749,10 @@ namespace NLog.Targets
         private void WriteHeader(BaseFileAppender appender)
         {
             long fileLength;
-            DateTime lastWriteTime;
+            DateTime creationTime;
 
             //  Write header only on empty files or if file info cannot be obtained.
-            if (!appender.GetFileInfo(out lastWriteTime, out fileLength) || fileLength == 0)
+            if (!appender.GetFileInfo(out creationTime, out fileLength) || fileLength == 0)
             {
                 byte[] headerBytes = this.GetHeaderBytes();
                 if (headerBytes != null)
@@ -1766,12 +1766,12 @@ namespace NLog.Targets
         /// Returns the length of a specified file and the last time it has been written. File appender is queried before the file system.  
         /// </summary>
         /// <param name="filePath">File which the information are requested.</param>
-        /// <param name="lastWriteTime">The last time the file has been written is returned.</param>
+        /// <param name="creationTime">The file creation time. The value must be of UTC kind.</param>
         /// <param name="fileLength">The length of the file is returned.</param>
         /// <returns><see langword="true"/> when file details returned; <see langword="false"/> otherwise.</returns>
-        private bool GetFileInfo(string filePath, out DateTime lastWriteTime, out long fileLength)
+        private bool GetFileInfo(string filePath, out DateTime creationTime, out long fileLength)
         {
-            if (this.recentAppenders.GetFileInfo(filePath, out lastWriteTime, out fileLength))
+            if (this.recentAppenders.GetFileInfo(filePath, out creationTime, out fileLength))
             {
                 return true;
             }
@@ -1781,15 +1781,15 @@ namespace NLog.Targets
             {
                 fileLength = fileInfo.Length;
 #if !SILVERLIGHT
-                lastWriteTime = fileInfo.LastWriteTimeUtc;
+                creationTime = fileInfo.CreationTimeUtc;
 #else
-                lastWriteTime = fileInfo.LastWriteTime;
+                creationTime = fileInfo.CreationTime;
 #endif
                 return true;
             }
 
             fileLength = -1;
-            lastWriteTime = DateTime.MinValue;
+            creationTime = DateTime.MinValue;
             return false;
         }
 

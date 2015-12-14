@@ -47,24 +47,24 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileHandle">The file handle.</param>
-        /// <param name="lastWriteTime">The last write time of the file in UTC.</param>
+        /// <param name="creationTime">The file creation time. The value must be of UTC kind.</param>
         /// <param name="fileLength">Length of the file.</param>
         /// <returns>
         /// A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.
         /// </returns>
-        public override bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength)
+        public override bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime creationTime, out long fileLength)
         {
             Win32FileNativeMethods.BY_HANDLE_FILE_INFORMATION fi;
 
             if (Win32FileNativeMethods.GetFileInformationByHandle(fileHandle, out fi))
             {
-                lastWriteTime = DateTime.FromFileTimeUtc(fi.ftLastWriteTime);
+                creationTime = DateTime.FromFileTimeUtc(fi.ftCreationTime);
                 fileLength = fi.nFileSizeLow + (((long)fi.nFileSizeHigh) << 32);
                 return true;
             }
             else
             {
-                lastWriteTime = DateTime.MinValue;
+                creationTime = DateTime.MinValue;
                 fileLength = -1;
                 return false;
             }
