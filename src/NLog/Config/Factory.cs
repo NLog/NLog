@@ -135,9 +135,9 @@ namespace NLog.Config
         /// <returns>Item definition.</returns>
         public bool TryGetDefinition(string itemName, out Type result)
         {
-            GetTypeDelegate del;
+            GetTypeDelegate getTypeDelegate;
 
-            if (!this.items.TryGetValue(itemName, out del))
+            if (!this.items.TryGetValue(itemName, out getTypeDelegate))
             {
                 result = null;
                 return false;
@@ -145,7 +145,7 @@ namespace NLog.Config
 
             try
             {
-                result = del();
+                result = getTypeDelegate();
                 return result != null;
             }
             catch (Exception ex)
