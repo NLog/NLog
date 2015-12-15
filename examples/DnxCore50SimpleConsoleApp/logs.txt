@@ -1,0 +1,2 @@
+20151215222330 Hello world ! DnxCore50SimpleConsoleApp.Program.Main 
+20151215222330 Hello from MyLogger DnxCore50SimpleConsoleApp.Program.Main 
