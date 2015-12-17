@@ -109,14 +109,14 @@ namespace NLog
         /// <param name="stackTrace">The stack trace of the logging method invocation</param>
         /// <param name="loggerType">Type of the logger or logger wrapper</param>
         /// <returns>Index of the first user stack frame or 0 if all stack frames are non-user</returns>
-        /// <seealso cref="IsNonUserStackFrame"/>
+        /// <seealso cref="IsUserStackFrame"/>
         private static int FindCallingMethodOnStackTrace([NotNull] StackTrace stackTrace, [NotNull] Type loggerType)
         {
             var stackFrames = stackTrace.GetFrames();
             if (stackFrames == null)
                 return 0;
             var intermediate = stackFrames.Select((f, i) => new {index = i, frame = f});
-            intermediate = intermediate.SkipWhile(p => IsNonUserStackFrame(p.frame.GetMethod(), loggerType));
+            intermediate = intermediate.SkipWhile(p => !IsUserStackFrame(p.frame.GetMethod(), loggerType));
             var last = intermediate.FirstOrDefault();
 
             if (last != null && last.index > 0)
@@ -143,7 +143,7 @@ namespace NLog
         }
 
         /// <summary>
-        ///  Defines whether a stack frame belongs to non-user code
+        ///  Defines whether a stack frame belongs to user code
         /// </summary>
         /// <param name="method">Method of the stack frame</param>
         /// <param name="loggerType">Type of the logger or logger wrapper</param>
@@ -152,15 +152,15 @@ namespace NLog
         ///  The method is classified as non-user if its declaring assembly is from hidden assemblies list
         ///  or its declaring type is <paramref name="loggerType"/> or one of its subtypes.
         /// </remarks>
-        private static bool IsNonUserStackFrame([NotNull] MethodBase method, [NotNull] Type loggerType)
+        private static bool IsUserStackFrame([NotNull] MethodBase method, [NotNull] Type loggerType)
         {
             var declaringType = method.DeclaringType;
             // get assembly by declaring type or by module for global methods
             var assembly = declaringType != null ? declaringType.Assembly : method.Module.Assembly;
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
-            if (SkipAssembly(assembly)) return true;
+            if (SkipAssembly(assembly)) return false;
             // or if that type is the loggerType or one of its subtypes
-            var isNonUserStackFrame = (declaringType != null && (loggerType != declaringType && loggerType.IsAssignableFrom(declaringType)));
+            var isNonUserStackFrame = declaringType == null || (loggerType == declaringType || !loggerType.IsAssignableFrom(declaringType));
             return isNonUserStackFrame;
         }
 
