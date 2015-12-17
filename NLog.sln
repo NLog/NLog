@@ -4,6 +4,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7638C35C-A8AC-437C-94FD-9DABD9D5839C}"
 	ProjectSection(SolutionItems) = preProject
+		build.cake = build.cake
 		Global.json = Global.json
 	EndProjectSection
 EndProject
