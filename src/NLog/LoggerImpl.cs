@@ -117,11 +117,11 @@ namespace NLog
                 return 0;
             var intermediate = stackFrames.Select((f, i) => new {index = i, frame = f});
             intermediate = intermediate.SkipWhile(p => IsNonUserStackFrame(p.frame.GetMethod(), loggerType));
-            var last = intermediate.SkipWhile(p => !IsNonUserStackFrame(p.frame.GetMethod(), loggerType)).FirstOrDefault();
+            var last = intermediate.FirstOrDefault();
 
             if (last != null && last.index > 0)
             {
-                return last.index - 1;
+                return last.index;
             }
             return 0;
 
@@ -160,7 +160,7 @@ namespace NLog
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             if (SkipAssembly(assembly)) return true;
             // or if that type is the loggerType or one of its subtypes
-            var isNonUserStackFrame = declaringType != null && (loggerType != declaringType && loggerType.IsAssignableFrom(declaringType));
+            var isNonUserStackFrame = (declaringType != null && (loggerType != declaringType && loggerType.IsAssignableFrom(declaringType)));
             return isNonUserStackFrame;
         }
 
