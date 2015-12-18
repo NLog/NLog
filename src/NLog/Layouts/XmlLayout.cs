@@ -13,25 +13,36 @@ namespace NLog.Layouts
     [Layout("XmlLayout")]
     public class XmlLayout : Layout
     {
+        private readonly IList<XmlProperty> _properties;
+        private readonly XmlLayoutRenderer _renderer;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLayout"/> class.
         /// </summary>
         public XmlLayout()
         {
-            Renderer = new XmlLayoutRenderer();
-            Properties = new List<XmlProperty>();
+            _renderer = new XmlLayoutRenderer();
+            _properties = new List<XmlProperty>();
         }
+
 
         /// <summary>
         /// Gets the custom properties for the log event.
         /// </summary>
-        [ArrayParameter(typeof(XmlProperty), "property")]
-        public IList<XmlProperty> Properties { get; }
+        [ArrayParameter(typeof (XmlProperty), "property")]
+        public IList<XmlProperty> Properties
+        {
+            get { return _properties; }
+        }
+
 
         /// <summary>
         /// Gets the layout renderer.
         /// </summary>
-        public XmlLayoutRenderer Renderer { get; }
+        public XmlLayoutRenderer Renderer
+        {
+            get { return _renderer; }
+        }
 
         /// <summary>
         /// Renders the layout for the specified logging event by invoking layout renderers.
