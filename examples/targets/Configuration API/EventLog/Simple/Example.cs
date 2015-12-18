@@ -11,6 +11,7 @@ class Example
         target.Log = "Application";
         target.MachineName = ".";
         target.Layout = "${logger}: ${message}";
+		target.OnOverflow = EventLogTargetOverflowAction.Truncate;
 
         NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Debug);
 

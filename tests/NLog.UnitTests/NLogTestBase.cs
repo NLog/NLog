@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Runtime.CompilerServices;
+
 namespace NLog.UnitTests
 {
     using System;
@@ -165,7 +167,7 @@ namespace NLog.UnitTests
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(true, "File '" + fileName + "' doesn't exist.");
+                Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
             Assert.Equal(encodedBuf.Length, fi.Length);
@@ -179,6 +181,28 @@ namespace NLog.UnitTests
             {
                 Assert.Equal(encodedBuf[i], buf[i]);
             }
+        }
+
+        public void AssertFileContains(string fileName, string contentToCheck, Encoding encoding)
+        {
+            if (contentToCheck.Contains(Environment.NewLine))
+                Assert.True(false, "Please use only single line string to check.");
+
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+                        
+            using (TextReader fs = new StreamReader(fileName, encoding))
+            {
+                string line;
+                while ((line = fs.ReadLine()) != null)
+                {
+                    if (line.Contains(contentToCheck))
+                        return;
+                }
+            }
+
+            Assert.True(false, "File doesn't contains '" + contentToCheck + "'");
         }
 
         public string StringRepeat(int times, string s)
@@ -196,6 +220,26 @@ namespace NLog.UnitTests
             l.Close();
             Assert.Equal(expected, actual);
         }
+
+#if MONO || NET4_5
+        /// <summary>
+        /// Get line number of previous line.
+        /// </summary>
+        protected int GetPrevLineNumber([CallerLineNumber] int callingFileLineNumber = 0)
+        {
+            return callingFileLineNumber - 1;
+        }
+#else
+        /// <summary>
+        /// Get line number of previous line.
+        /// </summary>
+        protected int GetPrevLineNumber()
+        {
+        //fixed value set with #line 100000
+            return 100001;
+        }
+
+#endif
 
         protected XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {

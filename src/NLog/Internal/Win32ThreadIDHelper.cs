@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__
 
 namespace NLog.Internal
 {
@@ -41,7 +41,6 @@ namespace NLog.Internal
     using System.Runtime.InteropServices;
     using System.Security;
     using System.Text;
-    using System.Threading;
 
     /// <summary>
     /// Win32-optimized implementation of <see cref="ThreadIDHelper"/>.
@@ -70,15 +69,6 @@ namespace NLog.Internal
 
             this.currentProcessName = sb.ToString();
             this.currentProcessBaseName = Path.GetFileNameWithoutExtension(this.currentProcessName);
-        }
-
-        /// <summary>
-        /// Gets current thread ID.
-        /// </summary>
-        /// <value></value>
-        public override int CurrentThreadID
-        {
-            get { return Thread.CurrentThread.ManagedThreadId; }
         }
 
         /// <summary>

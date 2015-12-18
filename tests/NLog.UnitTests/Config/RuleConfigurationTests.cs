@@ -33,6 +33,8 @@
 
 namespace NLog.UnitTests.Config
 {
+    using System.IO;
+    using System.Text;
     using NLog.Config;
     using NLog.Filters;
     using Xunit;
@@ -297,6 +299,106 @@ namespace NLog.UnitTests.Config
             Assert.Equal(FilterResult.Ignore, conditionBasedFilter.Action);
         }
 
+        [Fact]
+        public void FiltersTest_ignoreFinal()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                    <target name='d2' type='Debug' layout='${message}' />
+                </targets>
+
+                <rules>
+                    <logger name='*' level='Warn' writeTo='d1'>
+                        <filters>
+                            <when condition=""starts-with(message, 'x')"" action='IgnoreFinal' />
+                      
+                        </filters>
+                    </logger>
+                     <logger name='*' level='Warn' writeTo='d2'>
+                    </logger>
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration = c;
+            var logger = LogManager.GetLogger("logger1");
+            logger.Warn("test 1");
+            AssertDebugLastMessage("d1", "test 1");
+            AssertDebugLastMessage("d2", "test 1");
+
+            logger.Warn("x-mass");
+            AssertDebugLastMessage("d1", "test 1");
+            AssertDebugLastMessage("d2", "test 1");
+        }
+
+        [Fact]
+        public void FiltersTest_logFinal()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                    <target name='d2' type='Debug' layout='${message}' />
+                </targets>
+
+                <rules>
+                    <logger name='*' level='Warn' writeTo='d1'>
+                        <filters>
+                            <when condition=""starts-with(message, 'x')"" action='LogFinal' />
+                      
+                        </filters>
+                    </logger>
+                     <logger name='*' level='Warn' writeTo='d2'>
+                    </logger>
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration = c;
+            var logger = LogManager.GetLogger("logger1");
+            logger.Warn("test 1");
+            AssertDebugLastMessage("d1", "test 1");
+            AssertDebugLastMessage("d2", "test 1");
+
+            logger.Warn("x-mass");
+            AssertDebugLastMessage("d1", "x-mass");
+            AssertDebugLastMessage("d2", "test 1");
+        }
+
+
+        [Fact]
+        public void FiltersTest_ignore()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                    <target name='d2' type='Debug' layout='${message}' />
+                </targets>
+
+                <rules>
+                    <logger name='*' level='Warn' writeTo='d1'>
+                        <filters>
+                            <when condition=""starts-with(message, 'x')"" action='Ignore' />
+                      
+                        </filters>
+                    </logger>
+                     <logger name='*' level='Warn' writeTo='d2'>
+                    </logger>
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration = c;
+            var logger = LogManager.GetLogger("logger1");
+            logger.Warn("test 1");
+            AssertDebugLastMessage("d1", "test 1");
+            AssertDebugLastMessage("d2", "test 1");
+
+            logger.Warn("x-mass");
+            AssertDebugLastMessage("d1", "test 1");
+            AssertDebugLastMessage("d2", "x-mass");
+
+        }
 
         [Fact]
         public void LoggingRule_Final_SuppressesOnlyMatchingLevels()
@@ -324,6 +426,42 @@ namespace NLog.UnitTests.Config
             Logger b = LogManager.GetLogger("b");
             b.Debug("testDebug");
             AssertDebugLastMessage("d1", "testDebug");
+        }
+
+        [Fact]
+        public void UnusedTargetsShouldBeLoggedToInternalLogger()
+        {
+            string tempFileName = Path.GetTempFileName();
+
+            try
+            {
+                CreateConfigurationFromString(
+                "<nlog internalLogFile='" + tempFileName + @"' internalLogLevel='Warn'>
+                    <targets>
+                        <target name='d1' type='Debug' />
+                        <target name='d2' type='Debug' />
+                        <target name='d3' type='Debug' />
+                        <target name='d4' type='Debug' />
+                        <target name='d5' type='Debug' />
+                    </targets>
+
+                    <rules>
+                           <logger name='*' level='Debug' writeTo='d1' />
+                           <logger name='*' level='Debug' writeTo='d1,d2,d3' />
+                    </rules>
+                </nlog>");
+
+                AssertFileContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d4", Encoding.UTF8);
+
+                AssertFileContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d5", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(tempFileName))
+                {
+                    File.Delete(tempFileName);
+                }
+            }
         }
     }
 }

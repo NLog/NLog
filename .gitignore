@@ -33,3 +33,4 @@ packages/
 build/
 *.sublime-*
 *.DotSettings
+*.vshost.*

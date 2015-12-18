@@ -65,7 +65,7 @@ namespace NLog.Internal.FileAppenders
         }
 
         /// <summary>
-        /// Gets the name of the file.
+        /// Gets the path of the file, including file extension.
         /// </summary>
         /// <value>The name of the file.</value>
         public string FileName { get; private set; }
@@ -108,7 +108,7 @@ namespace NLog.Internal.FileAppenders
         /// Gets the file info.
         /// </summary>
         /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
-        /// <param name="fileLength">Length of the file.</param>
+        /// <param name="fileLength">Length of the file in bytes.</param>
         /// <returns>True if the operation succeeded, false otherwise.</returns>
         public abstract bool GetFileInfo(out DateTime lastWriteTime, out long fileLength);
 
@@ -160,7 +160,7 @@ namespace NLog.Internal.FileAppenders
         {
             int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
 
-			InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting);
+            InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting);
             for (int i = 0; i < this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
             {
                 try
@@ -197,7 +197,7 @@ namespace NLog.Internal.FileAppenders
             throw new InvalidOperationException("Should not be reached.");
         }
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting)
         {
@@ -263,7 +263,7 @@ namespace NLog.Internal.FileAppenders
                 fileShare |= FileShare.Delete;
             }
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
             try
             {
                 if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)
@@ -274,14 +274,14 @@ namespace NLog.Internal.FileAppenders
             catch (SecurityException)
             {
                 InternalLogger.Debug("Could not use native Windows create file, falling back to managed filestream");
-            } 
+            }
 #endif
 
             return new FileStream(
-                this.FileName, 
-                FileMode.Append, 
-                FileAccess.Write, 
-                fileShare, 
+                this.FileName,
+                FileMode.Append,
+                FileAccess.Write,
+                fileShare,
                 this.CreateFileParameters.BufferSize);
         }
     }
