@@ -15,7 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -163,6 +164,7 @@
     <Compile Include="Internal\ISupportsInitialize.cs" />
     <Compile Include="Internal\IUsesStackTrace.cs" />
     <Compile Include="Internal\LocalizableAttribute.cs" />
+    <Compile Include="Internal\LogEventInfoXmlWriter.cs" />
     <Compile Include="Internal\LoggerConfiguration.cs" />
     <Compile Include="Internal\MultiFileWatcher.cs" />
     <Compile Include="Internal\MySmtpClient.cs" />
@@ -281,6 +283,7 @@
     <Compile Include="LayoutRenderers\Wrappers\WhenLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapperLayoutRendererBase.cs" />
     <Compile Include="LayoutRenderers\Wrappers\XmlEncodeLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\XmlLayoutRenderer.cs" />
     <Compile Include="Layouts\CsvColumn.cs" />
     <Compile Include="Layouts\CsvColumnDelimiterMode.cs" />
     <Compile Include="Layouts\CsvLayout.cs" />
@@ -293,6 +296,8 @@
     <Compile Include="Layouts\LayoutWithHeaderAndFooter.cs" />
     <Compile Include="Layouts\Log4JXmlEventLayout.cs" />
     <Compile Include="Layouts\SimpleLayout.cs" />
+    <Compile Include="Layouts\XmlLayout.cs" />
+    <Compile Include="Layouts\XmlProperty.cs" />
     <Compile Include="LogEventInfo.cs" />
     <Compile Include="LogFactory.cs" />
     <Compile Include="LogFactory-T.cs" />
