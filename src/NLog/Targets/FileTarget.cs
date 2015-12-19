@@ -1102,9 +1102,9 @@ namespace NLog.Targets
         /// </returns>
         private bool IsDaySwitch(string fileName, LogEventInfo logEvent)
         {
-            DateTime lastWriteTime;
+            DateTime creationTime, lastWriteTime;
             long fileLength;
-            if (this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            if (this.GetFileInfo(fileName, out creationTime, out lastWriteTime, out fileLength))
             {
                 string formatString = GetDateFormatString(string.Empty);
                 string ts = lastWriteTime.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
@@ -1484,10 +1484,10 @@ namespace NLog.Targets
                 return false;
             }
 
-            DateTime lastWriteTime;
+            DateTime creationTime, lastWriteTime;
             long fileLength;
 
-            if (!this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            if (!this.GetFileInfo(fileName, out creationTime, out lastWriteTime, out fileLength))
             {
                 return false;
             }
@@ -1516,24 +1516,24 @@ namespace NLog.Targets
                 return false;
             }
 
-            DateTime lastWriteTime;
+            DateTime creationTime, lastWriteTime;
             long fileLength;
 
-            if (!this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            if (!this.GetFileInfo(fileName, out creationTime, out lastWriteTime, out fileLength))
             {
                 return false;
             }
 
             if (this.ArchiveEvery != FileArchivePeriod.None)
             {
-                // file write time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
+                // file creation time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
                 // so we should ask the TimeSource to convert file time to TimeSource time:
-                lastWriteTime = TimeSource.Current.FromSystemTime(lastWriteTime);
+                creationTime = TimeSource.Current.FromSystemTime(creationTime);
                 string formatString = GetDateFormatString(string.Empty);
-                string fileLastChanged = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
+                string fileCreated = creationTime.ToString(formatString, CultureInfo.InvariantCulture);
                 string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
 
-                if (fileLastChanged != logEventRecorded)
+                if (fileCreated != logEventRecorded)
                 {
                     return true;
                 }
@@ -1749,10 +1749,10 @@ namespace NLog.Targets
         private void WriteHeader(BaseFileAppender appender)
         {
             long fileLength;
-            DateTime lastWriteTime;
+            DateTime creationTime, lastWriteTime;
 
             //  Write header only on empty files or if file info cannot be obtained.
-            if (!appender.GetFileInfo(out lastWriteTime, out fileLength) || fileLength == 0)
+            if (!appender.GetFileInfo(out creationTime, out lastWriteTime, out fileLength) || fileLength == 0)
             {
                 byte[] headerBytes = this.GetHeaderBytes();
                 if (headerBytes != null)
@@ -1766,12 +1766,13 @@ namespace NLog.Targets
         /// Returns the length of a specified file and the last time it has been written. File appender is queried before the file system.  
         /// </summary>
         /// <param name="filePath">File which the information are requested.</param>
+        /// <param name="creationTime">The time the file was created.</param>
         /// <param name="lastWriteTime">The last time the file has been written is returned.</param>
         /// <param name="fileLength">The length of the file is returned.</param>
         /// <returns><see langword="true"/> when file details returned; <see langword="false"/> otherwise.</returns>
-        private bool GetFileInfo(string filePath, out DateTime lastWriteTime, out long fileLength)
+        private bool GetFileInfo(string filePath, out DateTime creationTime, out DateTime lastWriteTime, out long fileLength)
         {
-            if (this.recentAppenders.GetFileInfo(filePath, out lastWriteTime, out fileLength))
+            if (this.recentAppenders.GetFileInfo(filePath, out creationTime, out lastWriteTime, out fileLength))
             {
                 return true;
             }
@@ -1781,15 +1782,17 @@ namespace NLog.Targets
             {
                 fileLength = fileInfo.Length;
 #if !SILVERLIGHT
+                creationTime = fileInfo.CreationTimeUtc;
                 lastWriteTime = fileInfo.LastWriteTimeUtc;
 #else
+                creationTime = fileInfo.CreationTime;
                 lastWriteTime = fileInfo.LastWriteTime;
 #endif
                 return true;
             }
 
             fileLength = -1;
-            lastWriteTime = DateTime.MinValue;
+            creationTime = lastWriteTime = DateTime.MinValue;
             return false;
         }
 

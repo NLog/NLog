@@ -744,6 +744,16 @@ namespace NLog.UnitTests.Targets
                 {
                     timeSource.AddToLocalTime(loggingInterval);
 
+                    if (timeSource.Time.Date != previousWriteTime.Date)
+                    {
+                        // Simulate that previous file write began in previous day and ended on current day.
+                        try
+                        {
+                            File.SetLastWriteTime(tempFile, timeSource.Time);
+                        }
+                        catch { }
+                    }
+
                     var eventInfo = new LogEventInfo(LogLevel.Debug, logger.Name, "123456789");
                     logger.Log(eventInfo);
 
