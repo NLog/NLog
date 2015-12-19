@@ -107,7 +107,7 @@ namespace NLog
         ///  Finds first user stack frame in a stack trace
         /// </summary>
         /// <param name="stackTrace">The stack trace of the logging method invocation</param>
-        /// <param name="loggerType">Type of the logger or logger wrapper</param>
+        /// <param name="loggerType">Type of the logger or logger wrapper. This is still Logger if it's a subclass of Logger.</param>
         /// <returns>Index of the first user stack frame or 0 if all stack frames are non-user</returns>
         private static int FindCallingMethodOnStackTrace([NotNull] StackTrace stackTrace, [NotNull] Type loggerType)
         {
@@ -134,7 +134,7 @@ namespace NLog
         /// <summary>
         /// Assembly to skip?
         /// </summary>
-        /// <param name="method"></param>
+        /// <param name="method">get asselmby from this method.</param>
         /// <returns></returns>
         private static bool SkipAssembly(MethodBase method)
         {
@@ -146,14 +146,13 @@ namespace NLog
         /// <summary>
         /// Is this the type of the logger?
         /// </summary>
-        /// <param name="methodBase"></param>
-        /// <param name="loggerType"></param>
+        /// <param name="methodBase">get type of this method.</param>
+        /// <param name="loggerType">Type of the logger.</param>
         /// <returns></returns>
         private static bool IsLoggerType(MethodBase methodBase, Type loggerType)
         {
             Type declaringType = methodBase.DeclaringType;
-            var isLoggerType = declaringType != null && (loggerType == declaringType);
-                //TODO not needed?|| loggerType.IsAssignableFrom(declaringType));
+            var isLoggerType = declaringType != null && loggerType == declaringType;
             return isLoggerType;
         }
 
