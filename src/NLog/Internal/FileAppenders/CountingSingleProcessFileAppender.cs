@@ -62,16 +62,10 @@ namespace NLog.Internal.FileAppenders
             var fi = new FileInfo(fileName);
             if (fi.Exists)
             {
-#if !SILVERLIGHT
-                this.FileTouched(fi.LastWriteTimeUtc);
-#else
-                this.FileTouched(fi.LastWriteTime);
-#endif
                 this.currentFileLength = fi.Length;
             }
             else
             {
-                this.FileTouched();
                 this.currentFileLength = 0;
             }
 
@@ -101,7 +95,6 @@ namespace NLog.Internal.FileAppenders
             }
 
             this.file.Flush();
-            this.FileTouched();
         }
 
         /// <summary>
@@ -111,7 +104,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>True if the operation succeeded, false otherwise.</returns>
         public override bool GetFileInfo(out Internal.FileInfo fileInfo)
         {
-            fileInfo = new Internal.FileInfo(this.OpenTime, this.LastWriteTime, this.currentFileLength);
+            fileInfo = new Internal.FileInfo(this.OpenTime, this.currentFileLength);
             return true;
         }
 
@@ -128,7 +121,6 @@ namespace NLog.Internal.FileAppenders
 
             this.currentFileLength += bytes.Length;
             this.file.Write(bytes, 0, bytes.Length);
-            this.FileTouched();
         }
 
         /// <summary>

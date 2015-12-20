@@ -57,7 +57,7 @@ namespace NLog.Internal
 
             if (Win32FileNativeMethods.GetFileInformationByHandle(fileHandle, out fi))
             {
-                fileInfo = new FileInfo(DateTime.FromFileTimeUtc(fi.ftCreationTime), DateTime.FromFileTimeUtc(fi.ftLastWriteTime), fi.nFileSizeLow + (((long)fi.nFileSizeHigh) << 32));
+                fileInfo = new FileInfo(DateTime.FromFileTimeUtc(fi.ftCreationTime), fi.nFileSizeLow + (((long)fi.nFileSizeHigh) << 32));
                 return true;
             }
             else

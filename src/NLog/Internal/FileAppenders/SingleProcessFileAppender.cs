@@ -56,19 +56,6 @@ namespace NLog.Internal.FileAppenders
         /// <param name="parameters">The parameters.</param>
         public SingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            var fi = new FileInfo(fileName);
-            if (fi.Exists)
-            {
-#if !SILVERLIGHT
-                this.FileTouched(fi.LastWriteTimeUtc);
-#else
-                this.FileTouched(fi.LastWriteTime);
-#endif
-            }
-            else
-            {
-                this.FileTouched();
-            }
             this.file = CreateFileStream(false);
         }
 
@@ -84,7 +71,6 @@ namespace NLog.Internal.FileAppenders
             }
 
             this.file.Write(bytes, 0, bytes.Length);
-            FileTouched();
         }
 
         /// <summary>
@@ -98,7 +84,6 @@ namespace NLog.Internal.FileAppenders
             }
 
             this.file.Flush();
-            FileTouched();
         }
 
         /// <summary>
@@ -127,7 +112,7 @@ namespace NLog.Internal.FileAppenders
         {
             if (file != null)
             {
-                fileInfo = new Internal.FileInfo(OpenTime, LastWriteTime, file.Length);
+                fileInfo = new Internal.FileInfo(OpenTime, file.Length);
                 return true;
             }
             else

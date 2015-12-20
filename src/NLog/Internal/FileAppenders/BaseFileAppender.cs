@@ -61,7 +61,6 @@ namespace NLog.Internal.FileAppenders
             this.CreateFileParameters = createParameters;
             this.FileName = fileName;
             this.OpenTime = DateTime.UtcNow; // to be consistent with timeToKill in FileTarget.AutoClosingTimerCallback
-            this.LastWriteTime = DateTime.MinValue;
         }
 
         /// <summary>
@@ -71,10 +70,10 @@ namespace NLog.Internal.FileAppenders
         public string FileName { get; private set; }
 
         /// <summary>
-        /// Gets the last write time.
+        /// Gets the file creation time.
         /// </summary>
-        /// <value>The last write time. DateTime value must be of UTC kind.</value>
-        public DateTime LastWriteTime { get; private set; }
+        /// <value>The file creation time. DateTime value must be of UTC kind.</value>
+        public DateTime CreationTime { get; private set; }
 
         /// <summary>
         /// Gets the open time of the file.
@@ -131,25 +130,7 @@ namespace NLog.Internal.FileAppenders
                 this.Close();
             }
         }
-
-        /// <summary>
-        /// Records the last write time for a file.
-        /// </summary>
-        protected void FileTouched()
-        {
-            // always use system time in UTC to be consistent with FileInfo.LastWriteTimeUtc
-            this.LastWriteTime = DateTime.UtcNow;
-        }
-
-        /// <summary>
-        /// Records the last write time for a file to be specific date.
-        /// </summary>
-        /// <param name="dateTime">Date and time when the last write occurred. The value must be of UTC kind.</param>
-        protected void FileTouched(DateTime dateTime)
-        {
-            this.LastWriteTime = dateTime;
-        }
-
+        
         /// <summary>
         /// Creates the file stream.
         /// </summary>
@@ -262,6 +243,8 @@ namespace NLog.Internal.FileAppenders
                 fileShare |= FileShare.Delete;
             }
 
+            UpdateCreationTime();
+
 #if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
             try
             {
@@ -282,6 +265,18 @@ namespace NLog.Internal.FileAppenders
                 FileAccess.Write,
                 fileShare,
                 this.CreateFileParameters.BufferSize);
+        }
+
+        private void UpdateCreationTime()
+        {
+            if (!File.Exists(this.FileName))
+                File.Create(this.FileName).Dispose();
+
+#if !SILVERLIGHT
+            this.CreationTime = File.GetCreationTimeUtc(this.FileName);
+#else
+            this.CreationTime = File.GetCreationTime(this.FileName);
+#endif
         }
     }
 }

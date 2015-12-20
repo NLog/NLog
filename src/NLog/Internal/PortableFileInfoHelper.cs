@@ -55,9 +55,9 @@ namespace NLog.Internal
             if (fi.Exists)
             {
 #if !SILVERLIGHT
-                fileInfo = new FileInfo(fi.CreationTimeUtc, fi.LastWriteTimeUtc, fi.Length);
+                fileInfo = new FileInfo(fi.CreationTimeUtc, fi.Length);
 #else
-                fileInfo = new FileInfo(fi.CreationTime, fi.LastWriteTime, fi.Length);
+                fileInfo = new FileInfo(fi.CreationTime, fi.Length);
 #endif
                 return true;
             }

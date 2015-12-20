@@ -66,8 +66,6 @@ namespace NLog.Internal.FileAppenders
             {
                 fileStream.Write(bytes, 0, bytes.Length);
             }
-
-            FileTouched();
         }
 
         /// <summary>
@@ -99,9 +97,9 @@ namespace NLog.Internal.FileAppenders
             if (fi.Exists)
             {
 #if !SILVERLIGHT
-                fileInfo = new Internal.FileInfo(fi.CreationTimeUtc, fi.LastWriteTimeUtc, fi.Length);
+                fileInfo = new Internal.FileInfo(fi.CreationTimeUtc, fi.Length);
 #else
-                fileInfo = new Internal.FileInfo(fi.CreationTime, fi.LastWriteTime, fi.Length);
+                fileInfo = new Internal.FileInfo(fi.CreationTime, fi.Length);
 #endif
                 return true;
             }

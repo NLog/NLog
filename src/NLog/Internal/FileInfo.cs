@@ -44,12 +44,10 @@ namespace NLog.Internal
         /// Constructs a FileInfo object.
         /// </summary>
         /// <param name="creationTime">The time the file was created in UTC.</param>
-        /// <param name="lastWriteTime">The last write time of the file in UTC.</param>
         /// <param name="fileLength">The size of the file in bytes.</param>
-        public FileInfo(DateTime creationTime, DateTime lastWriteTime, long fileLength)
+        public FileInfo(DateTime creationTime, long fileLength)
         {
             CreationTime = creationTime;
-            LastWriteTime = lastWriteTime;
             FileLength = fileLength;
         }
 
@@ -57,10 +55,6 @@ namespace NLog.Internal
         /// The time the file was created in UTC.
         /// </summary>
         public DateTime CreationTime { get; private set; }
-        /// <summary>
-        /// The last write time of the file in UTC.
-        /// </summary>
-        public DateTime LastWriteTime { get; private set; }
         /// <summary>
         /// The size of the file in bytes.
         /// </summary>

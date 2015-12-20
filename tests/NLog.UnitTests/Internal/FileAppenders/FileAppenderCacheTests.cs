@@ -200,7 +200,6 @@ namespace NLog.UnitTests.Internal.FileAppenders
             // File information should be returned.
             Assert.True(cache.GetFileInfo(tempFile, out fileInfo));
             Assert.NotEqual(DateTime.MinValue, fileInfo.CreationTime);
-            Assert.NotEqual(DateTime.MinValue, fileInfo.LastWriteTime);
             Assert.Equal(34, fileInfo.FileLength);
 
             // Clean up.
