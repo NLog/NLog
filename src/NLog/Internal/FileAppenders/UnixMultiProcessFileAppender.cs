@@ -126,19 +126,20 @@ namespace NLog.Internal.FileAppenders
             // do nothing, the stream is always flushed
         }
 
-        public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
+        public override bool GetFileInfo(out DateTime creationTime, out DateTime lastWriteTime, out long fileLength)
         {
             FileInfo fi = new FileInfo(FileName);
             if (fi.Exists)
             {
                 fileLength = fi.Length;
+                creationTime = fi.CreationTime;
                 lastWriteTime = fi.LastWriteTime;
                 return true;
             }
             else
             {
                 fileLength = -1;
-                lastWriteTime = DateTime.MinValue;
+                creationTime = lastWriteTime = DateTime.MinValue;
                 return false;
             }
         }

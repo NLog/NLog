@@ -698,14 +698,15 @@ namespace NLog.UnitTests.Targets
                     from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
                     from timeKind in timeKindValues
-                    select new object[] { timeKind, concurrentWrites, keepFileOpen, networkWrites };
+                    from includeSequenceInArchive in booleanValues
+                    select new object[] { timeKind, concurrentWrites, keepFileOpen, networkWrites, includeSequenceInArchive };
             }
         }
 
 
         [Theory]
         [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
-        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites)
+        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -722,7 +723,7 @@ namespace NLog.UnitTests.Targets
                     FileName = tempFile,
                     ArchiveFileName = archiveFileNameTemplate,
                     LineEnding = LineEndingMode.LF,
-                    ArchiveNumbering = ArchiveNumberingMode.Date,
+                    ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
                     ArchiveEvery = FileArchivePeriod.Day,
                     ArchiveDateFormat = "yyyyMMdd",
                     Layout = "${date:format=O}|${message}",
@@ -749,7 +750,7 @@ namespace NLog.UnitTests.Targets
                         // Simulate that previous file write began in previous day and ended on current day.
                         try
                         {
-                            File.SetLastWriteTime(tempFile, timeSource.Time);
+                            File.SetLastWriteTime(tempFile, timeSource.SystemTime);
                         }
                         catch { }
                     }
@@ -759,7 +760,7 @@ namespace NLog.UnitTests.Targets
 
                     var dayIsChanged = eventInfo.TimeStamp.Date != previousWriteTime.Date;
                     // ensure new archive is created only when the day part of time is changed
-                    var archiveFileName = archiveFileNameTemplate.Replace("{#}", previousWriteTime.ToString(ft.ArchiveDateFormat));
+                    var archiveFileName = archiveFileNameTemplate.Replace("{#}", previousWriteTime.ToString(ft.ArchiveDateFormat) + (includeSequenceInArchive ? ".0" : string.Empty));
                     var archiveExists = File.Exists(archiveFileName);
                     if (dayIsChanged)
                         Assert.True(archiveExists, string.Format("new archive should be created when the day part of {0} time is changed", timeKind));
@@ -794,7 +795,7 @@ namespace NLog.UnitTests.Targets
                 //two files should still be there
                 Assert.Equal(files[1], files2[0]);
                 Assert.Equal(files[2], files2[1]);
-                //one new archive file shoud be created
+                //one new archive file should be created
                 Assert.DoesNotContain(files2[2], files);
             }
             finally
@@ -1443,8 +1444,8 @@ namespace NLog.UnitTests.Targets
                 assertFileContents(helper.GetFullPath(3), StringRepeat(250, "ddd\n"), Encoding.UTF8);
                 AssertFileSize(helper.GetFullPath(3), ft.ArchiveAboveSize);
 
-                Assert.True(!helper.Exists(0), "First archive should have been deleted due to max archive count.");
-                Assert.True(!helper.Exists(4), "Fifth archive must not have been created yet.");
+                Assert.False(helper.Exists(0), "First archive should have been deleted due to max archive count.");
+                Assert.False(helper.Exists(4), "Fifth archive must not have been created yet.");
             }
             finally
             {
@@ -1455,7 +1456,7 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempPath, true);
             }
         }
-
+        
         [Theory]
         [InlineData("/")]
         [InlineData("\\")]

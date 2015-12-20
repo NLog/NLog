@@ -1056,7 +1056,7 @@ namespace NLog.Targets
 
             int minSequenceLength = fileTemplate.EndAt - fileTemplate.BeginAt - 2;
             int nextSequenceNumber;
-            DateTime archiveDate = GetArchiveDate(IsDaySwitch(fileName, logEvent));
+            DateTime archiveDate = GetArchiveDate(IsPeriodSwitch(fileName, logEvent));
             List<string> archiveFileNames;
             if (Directory.Exists(dirName))
             {
@@ -1100,14 +1100,14 @@ namespace NLog.Targets
         /// <returns>
         /// <see langword="true"/> when log event time is "different" than the last write time; <see langword="false"/> otherwise.
         /// </returns>
-        private bool IsDaySwitch(string fileName, LogEventInfo logEvent)
+        private bool IsPeriodSwitch(string fileName, LogEventInfo logEvent)
         {
             DateTime creationTime, lastWriteTime;
             long fileLength;
             if (this.GetFileInfo(fileName, out creationTime, out lastWriteTime, out fileLength))
             {
                 string formatString = GetDateFormatString(string.Empty);
-                string ts = lastWriteTime.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
+                string ts = creationTime.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
                 string ts2 = logEvent.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
 
                 return ts != ts2;
