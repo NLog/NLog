@@ -191,7 +191,7 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
-
+        
         [Fact]
         public void ClassNameWithPaddingTestPadLeftAlignRightTest()
         {
@@ -518,6 +518,69 @@ namespace NLog.UnitTests.LayoutRenderers
 
 
         }
+
+        private class MyLogger : Logger
+        {
+
+        }
+
+        [Fact]
+        public void CallsiteBySubclass_interface()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("mylogger", typeof(MyLogger));
+
+            Assert.True(logger is MyLogger, "logger isn't MyLogger");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_interface msg");
+
+        }
+
+        [Fact]
+        public void CallsiteBySubclass_mylogger()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            MyLogger logger = LogManager.GetLogger("mylogger", typeof(MyLogger)) as MyLogger;
+
+            Assert.NotNull(logger);
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_mylogger msg");
+
+        }
+
+
+        [Fact]
+        public void CallsiteBySubclass_logger()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            Logger logger = LogManager.GetLogger("mylogger", typeof(MyLogger)) as Logger;
+
+            Assert.NotNull(logger);
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_logger msg");
+        }
+
     }
 
 }
