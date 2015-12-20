@@ -38,7 +38,7 @@ namespace NLog.UnitTests.Internal.FileAppenders
     using System.Text;
 
     using Xunit;
-
+    
     using NLog.Targets;
     using NLog.Internal.FileAppenders;
 
@@ -170,26 +170,18 @@ namespace NLog.UnitTests.Internal.FileAppenders
         [Fact]
         public void FileAppenderCache_GetFileInfo()
         {
-            DateTime creationTime, lastWriteTime;
-            long fileLength;
-
+            NLog.Internal.FileInfo fileInfo;
             // Invoke GetFileInfo() on an Empty FileAppenderCache.
             FileAppenderCache emptyCache = FileAppenderCache.Empty;
-            emptyCache.GetFileInfo("file.txt", out creationTime, out lastWriteTime, out fileLength);
-            // Default values will be returned.
-            Assert.Equal(DateTime.MinValue, creationTime);
-            Assert.Equal(DateTime.MinValue, lastWriteTime);
-            Assert.Equal(-1, fileLength);
+            Assert.False(emptyCache.GetFileInfo("file.txt", out fileInfo));
+            Assert.Null(fileInfo);
 
             IFileAppenderFactory appenderFactory = SingleProcessFileAppender.TheFactory;
             ICreateFileParameters fileTarget = new FileTarget();
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileTarget);
             // Invoke GetFileInfo() on non-empty FileAppenderCache - Before allocating any appenders. 
-            cache.GetFileInfo("file.txt", out creationTime, out lastWriteTime, out fileLength);
-            // Default values will be returned.
-            Assert.Equal(DateTime.MinValue, creationTime);
-            Assert.Equal(DateTime.MinValue, lastWriteTime);
-            Assert.Equal(-1, fileLength);
+            Assert.False(cache.GetFileInfo("file.txt", out fileInfo));
+            Assert.Null(fileInfo);
 
             String tempFile = Path.Combine(
                     Path.GetTempPath(),
@@ -206,10 +198,10 @@ namespace NLog.UnitTests.Internal.FileAppenders
             //
 
             // File information should be returned.
-            cache.GetFileInfo(tempFile, out creationTime, out lastWriteTime, out fileLength);
-            Assert.NotEqual(DateTime.MinValue, creationTime);
-            Assert.NotEqual(DateTime.MinValue, lastWriteTime);
-            Assert.Equal(34, fileLength);
+            Assert.True(cache.GetFileInfo(tempFile, out fileInfo));
+            Assert.NotEqual(DateTime.MinValue, fileInfo.CreationTime);
+            Assert.NotEqual(DateTime.MinValue, fileInfo.LastWriteTime);
+            Assert.Equal(34, fileInfo.FileLength);
 
             // Clean up.
             appender.Flush();

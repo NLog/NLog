@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,42 +31,39 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.Internal
 {
     using System;
 
     /// <summary>
-    /// Win32-optimized implementation of <see cref="FileInfoHelper"/>.
+    /// An immutable object that stores basic file info.
     /// </summary>
-    internal class Win32FileInfoHelper : FileInfoHelper
+    internal class FileInfo
     {
         /// <summary>
-        /// Gets the information about a file.
+        /// Constructs a FileInfo object.
         /// </summary>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="fileHandle">The file handle.</param>
-        /// <param name="fileInfo">The file info, if the file information was retrieved successfully.</param>
-        /// <returns>
-        /// A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.
-        /// </returns>
-        public override bool GetFileInfo(string fileName, IntPtr fileHandle, out FileInfo fileInfo)
+        /// <param name="creationTime">The time the file was created in UTC.</param>
+        /// <param name="lastWriteTime">The last write time of the file in UTC.</param>
+        /// <param name="fileLength">The size of the file in bytes.</param>
+        public FileInfo(DateTime creationTime, DateTime lastWriteTime, long fileLength)
         {
-            Win32FileNativeMethods.BY_HANDLE_FILE_INFORMATION fi;
-
-            if (Win32FileNativeMethods.GetFileInformationByHandle(fileHandle, out fi))
-            {
-                fileInfo = new FileInfo(DateTime.FromFileTimeUtc(fi.ftCreationTime), DateTime.FromFileTimeUtc(fi.ftLastWriteTime), fi.nFileSizeLow + (((long)fi.nFileSizeHigh) << 32));
-                return true;
-            }
-            else
-            {
-                fileInfo = null;
-                return false;
-            }
+            CreationTime = creationTime;
+            LastWriteTime = lastWriteTime;
+            FileLength = fileLength;
         }
+
+        /// <summary>
+        /// The time the file was created in UTC.
+        /// </summary>
+        public DateTime CreationTime { get; private set; }
+        /// <summary>
+        /// The last write time of the file in UTC.
+        /// </summary>
+        public DateTime LastWriteTime { get; private set; }
+        /// <summary>
+        /// The size of the file in bytes.
+        /// </summary>
+        public long FileLength { get; private set; }
     }
 }
-
-#endif

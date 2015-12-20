@@ -107,11 +107,9 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the file info.
         /// </summary>
-        /// <param name="creationTime">The time the file was created. The value must be of UTC kind.</param>
-        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
-        /// <param name="fileLength">Length of the file in bytes.</param>
+        /// <param name="fileInfo">The file info, if the file information was retrieved successfully.</param>
         /// <returns>True if the operation succeeded, false otherwise.</returns>
-        public abstract bool GetFileInfo(out DateTime creationTime, out DateTime lastWriteTime, out long fileLength);
+        public abstract bool GetFileInfo(out Internal.FileInfo fileInfo);
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

@@ -89,31 +89,25 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the file info.
         /// </summary>
-        /// <param name="creationTime">The time the file was created. The value must be of UTC kind.</param>
-        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
-        /// <param name="fileLength">Length of the file.</param>
+        /// <param name="fileInfo">The file info, if the file information was retrieved successfully.</param>
         /// <returns>
         /// True if the operation succeeded, false otherwise.
         /// </returns>
-        public override bool GetFileInfo(out DateTime creationTime, out DateTime lastWriteTime, out long fileLength)
+        public override bool GetFileInfo(out Internal.FileInfo fileInfo)
         {
             FileInfo fi = new FileInfo(FileName);
             if (fi.Exists)
             {
-                fileLength = fi.Length;
 #if !SILVERLIGHT
-                creationTime = fi.CreationTimeUtc;
-                lastWriteTime = fi.LastWriteTimeUtc;
+                fileInfo = new Internal.FileInfo(fi.CreationTimeUtc, fi.LastWriteTimeUtc, fi.Length);
 #else
-                creationTime = fi.CreationTime;
-                lastWriteTime = fi.LastWriteTime;
+                fileInfo = new Internal.FileInfo(fi.CreationTime, fi.LastWriteTime, fi.Length);
 #endif
                 return true;
             }
             else
             {
-                fileLength = -1;
-                creationTime = lastWriteTime = DateTime.MinValue;
+                fileInfo = null;
                 return false;
             }
         }

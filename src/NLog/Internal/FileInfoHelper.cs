@@ -67,10 +67,8 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileHandle">The file handle.</param>
-        /// <param name="creationTime">The time the file was created in UTC.</param>
-        /// <param name="lastWriteTime">The last write time of the file in UTC.</param>
-        /// <param name="fileLength">Length of the file.</param>
+        /// <param name="fileInfo">The file info, if the file information was retrieved successfully.</param>
         /// <returns>A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.</returns>
-        public abstract bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime creationTime, out DateTime lastWriteTime, out long fileLength);
+        public abstract bool GetFileInfo(string fileName, IntPtr fileHandle, out FileInfo fileInfo);
     }
 }
