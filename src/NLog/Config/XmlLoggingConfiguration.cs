@@ -52,6 +52,7 @@ namespace NLog.Config
     using NLog.Targets.Wrappers;
     using NLog.LayoutRenderers;
     using NLog.Time;
+    using System.Collections.ObjectModel;
 #if SILVERLIGHT
 // ReSharper disable once RedundantUsingDirective
     using System.Windows;
@@ -68,7 +69,7 @@ namespace NLog.Config
         private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
-        
+
         private ConfigurationItemFactory ConfigurationItemFactory
         {
             get { return ConfigurationItemFactory.Default; }
@@ -130,7 +131,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
-        internal XmlLoggingConfiguration(XmlElement element, string fileName)
+		internal XmlLoggingConfiguration(XmlElement element, string fileName)
         {
             using (var stringReader = new StringReader(element.OuterXml))
             {
@@ -160,7 +161,7 @@ namespace NLog.Config
 
         #region public properties
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -315,6 +316,9 @@ namespace NLog.Config
                     this.ParseTopLevel(content, null);
                 }
                 InitializeSucceeded = true;
+
+                this.CheckUnusedTargets();
+
             }
             catch (Exception exception)
             {
@@ -342,6 +346,41 @@ namespace NLog.Config
                     InternalLogger.Error("Error in Parsing Configuration File. Exception : {0}", ConfigException);
                 }
             }
+        }
+
+        /// <summary>
+        /// Checks whether unused targets exist. If found any, just write an internal log at Warn level.
+        /// <remarks>If initializing not started or failed, then checking process will be canceled</remarks>
+        /// </summary>
+        private void CheckUnusedTargets()
+        {
+            if (this.InitializeSucceeded == null)
+            {
+                InternalLogger.Warn("Unused target checking is canceled -> initialize not started yet.");
+                return;
+            }
+            if (!this.InitializeSucceeded.Value)
+            {
+                InternalLogger.Warn("Unused target checking is canceled -> initialize not succeeded.");
+                return;
+            }
+
+            ReadOnlyCollection<Target> configuredNamedTargets = this.ConfiguredNamedTargets; //assign to variable because `ConfiguredNamedTargets` computes a new list every time.
+            InternalLogger.Debug("Unused target checking is started... Rule Count: {0}, Target Count: {1}", this.LoggingRules.Count, configuredNamedTargets.Count);
+
+            HashSet<string> targetNamesAtRules = new HashSet<string>(this.LoggingRules.SelectMany(r => r.Targets).Select(t => t.Name));
+
+            int unusedCount = 0;
+            configuredNamedTargets.ToList().ForEach((target) =>
+            {
+                if (!targetNamesAtRules.Contains(target.Name))
+                {
+                    InternalLogger.Warn("Unused target detected. Add a rule for this target to the configuration. TargetName: {0}", target.Name);
+                    unusedCount++;
+                }
+            });
+
+            InternalLogger.Debug("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", this.LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
         }
 
         private void ConfigureFromFile(string fileName)
@@ -629,7 +668,7 @@ namespace NLog.Config
             foreach (var targetElement in targetsElement.Children)
             {
                 string name = targetElement.LocalName;
-                string type = StripOptionalNamespacePrefix(targetElement.GetOptionalAttribute("type", null));
+                string typeAttributeVal = StripOptionalNamespacePrefix(targetElement.GetOptionalAttribute("type", null));
 
                 switch (name.ToUpper(CultureInfo.InvariantCulture))
                 {
@@ -638,12 +677,12 @@ namespace NLog.Config
                         break;
 
                     case "DEFAULT-TARGET-PARAMETERS":
-                        if (type == null)
+                        if (typeAttributeVal == null)
                         {
                             throw new NLogConfigurationException("Missing 'type' attribute on <" + name + "/>.");
                         }
 
-                        typeNameToDefaultTargetParameters[type] = targetElement;
+                        typeNameToDefaultTargetParameters[typeAttributeVal] = targetElement;
                         break;
 
                     case "TARGET":
@@ -651,15 +690,15 @@ namespace NLog.Config
                     case "WRAPPER":
                     case "WRAPPER-TARGET":
                     case "COMPOUND-TARGET":
-                        if (type == null)
+                        if (typeAttributeVal == null)
                         {
                             throw new NLogConfigurationException("Missing 'type' attribute on <" + name + "/>.");
                         }
 
-                        Target newTarget = this.ConfigurationItemFactory.Targets.CreateInstance(type);
+                        Target newTarget = this.ConfigurationItemFactory.Targets.CreateInstance(typeAttributeVal);
 
                         NLogXmlElement defaults;
-                        if (typeNameToDefaultTargetParameters.TryGetValue(type, out defaults))
+                        if (typeNameToDefaultTargetParameters.TryGetValue(typeAttributeVal, out defaults))
                         {
                             this.ParseTargetElement(newTarget, defaults);
                         }
@@ -800,7 +839,7 @@ namespace NLog.Config
                 {
                     try
                     {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                                 var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
                                 var assemblyPart = new AssemblyPart();
                                 Assembly asm = assemblyPart.Load(si.Stream);
@@ -836,7 +875,7 @@ namespace NLog.Config
                     try
                     {
                         InternalLogger.Info("Loading assembly name: {0}", assemblyName);
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                         var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
                         var assemblyPart = new AssemblyPart();
                         Assembly asm = assemblyPart.Load(si.Stream);

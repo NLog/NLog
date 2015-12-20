@@ -1,4 +1,4 @@
-﻿// 
+// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,72 +31,31 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
 
-namespace NLog.Internal
+#if !SILVERLIGHT
+
+namespace NLog.Targets
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
-    using System.Runtime.InteropServices;
-    using System.Security;
-    using System.Text;
-
     /// <summary>
-    /// Win32-optimized implementation of <see cref="ThreadIDHelper"/>.
+    /// Action that should be taken if the message is greater than
+    /// the max message size allowed by the Event Log.
     /// </summary>
-    [SecuritySafeCritical]
-    internal class Win32ThreadIDHelper : ThreadIDHelper
+    public enum EventLogTargetOverflowAction
     {
-        private readonly int currentProcessID;
-
-        private readonly string currentProcessName;
-
-        private readonly string currentProcessBaseName;
+        /// <summary>
+        /// Truncate the message before writing to the Event Log.
+        /// </summary>
+        Truncate,
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Win32ThreadIDHelper" /> class.
+        /// Split the message and write multiple entries to the Event Log.
         /// </summary>
-        public Win32ThreadIDHelper()
-        {
-            this.currentProcessID = NativeMethods.GetCurrentProcessId();
-
-            var sb = new StringBuilder(512);
-            if (0 == NativeMethods.GetModuleFileName(IntPtr.Zero, sb, sb.Capacity))
-            {
-                throw new InvalidOperationException("Cannot determine program name.");
-            }
-
-            this.currentProcessName = sb.ToString();
-            this.currentProcessBaseName = Path.GetFileNameWithoutExtension(this.currentProcessName);
-        }
+        Split,
 
         /// <summary>
-        /// Gets current process ID.
+        /// Discard of the message. It will not be written to the Event Log.
         /// </summary>
-        /// <value></value>
-        public override int CurrentProcessID
-        {
-            get { return this.currentProcessID; }
-        }
-
-        /// <summary>
-        /// Gets current process name.
-        /// </summary>
-        /// <value></value>
-        public override string CurrentProcessName
-        {
-            get { return this.currentProcessName; }
-        }
-
-        /// <summary>
-        /// Gets current process name (excluding filename extension, if any).
-        /// </summary>
-        /// <value></value>
-        public override string CurrentProcessBaseName
-        {
-            get { return this.currentProcessBaseName; }
-        }
+        Discard
     }
 }
 

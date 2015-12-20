@@ -968,7 +968,7 @@ namespace NLog.Targets
 
             try
             {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                 foreach (string s in Directory.EnumerateFiles(dirName, fileNameMask))
 #else
                 foreach (string s in Directory.GetFiles(dirName, fileNameMask))
@@ -1269,7 +1269,7 @@ namespace NLog.Targets
         /// <returns>Lisf of files matching the pattern.</returns>
         private static IEnumerable<FileInfo> GetFiles(DirectoryInfo directoryInfo, string fileNameMask)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
             return directoryInfo.EnumerateFiles(fileNameMask);
 #else
             return directoryInfo.GetFiles(fileNameMask);
@@ -1338,7 +1338,7 @@ namespace NLog.Targets
                     return;
                 }
 
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                 var files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
 #else
                 var files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
