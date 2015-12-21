@@ -176,6 +176,7 @@
     <Compile Include="Layouts\SimpleLayoutOutputTests.cs" />
     <Compile Include="Layouts\SimpleLayoutParserTests.cs" />
     <Compile Include="Layouts\ThreadAgnosticTests.cs" />
+    <Compile Include="Layouts\XmlLayoutTests.cs" />
     <Compile Include="LogFactoryTests.cs" />
     <Compile Include="LoggerTests.cs" />
     <Compile Include="LogLevelTests.cs" />
