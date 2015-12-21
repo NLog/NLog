@@ -191,7 +191,7 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
-
+        
         [Fact]
         public void ClassNameWithPaddingTestPadLeftAlignRightTest()
         {
@@ -518,6 +518,151 @@ namespace NLog.UnitTests.LayoutRenderers
 
 
         }
+
+
+
+        #region Compositio unit test
+
+        [Fact]
+        public void When_WrappedInCompsition_Ignore_Wrapper_Methods_In_Callstack()
+        {
+
+            //namespace en name of current method
+            const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.When_WrappedInCompsition_Ignore_Wrapper_Methods_In_Callstack";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+           <nlog>
+               <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
+               <rules>
+                   <logger name='*' levels='Warn' writeTo='debug' />
+               </rules>
+           </nlog>");
+
+            var logger = LogManager.GetLogger("A");
+            logger.Warn("direct");
+            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+
+            CompositeWrapper wrappedLogger = new CompositeWrapper();
+            wrappedLogger.Log("wrapped");
+            AssertDebugLastMessage("debug", string.Format("{0}|wrapped", currentMethodFullName));
+
+        }
+
+
+
+        public class CompositeWrapper
+        {
+            private readonly MyWrapper wrappedLogger;
+            public CompositeWrapper()
+            {
+                wrappedLogger = new MyWrapper();
+            }
+            public void Log(string what)
+            {
+                wrappedLogger.Log(typeof(CompositeWrapper), what);
+            }
+        }
+
+        public abstract class BaseWrapper
+        {
+            public void Log(string what)
+            {
+                InternalLog(typeof(BaseWrapper), what);
+            }
+
+            public void Log(Type type, string what) //overloaded with type for composition
+            {
+                InternalLog(type, what);
+            }
+
+            protected abstract void InternalLog(Type type, string what);
+        }
+
+        public class MyWrapper : BaseWrapper
+        {
+            private readonly ILogger wrapperLogger;
+
+            public MyWrapper()
+            {
+                wrapperLogger = LogManager.GetLogger("WrappedLogger");
+            }
+
+            protected override void InternalLog(Type type, string what) //added type for composition
+            {
+                LogEventInfo info = new LogEventInfo(LogLevel.Warn, wrapperLogger.Name, what);
+
+                // Provide BaseWrapper as wrapper type.
+                // Expected: UserStackFrame should point to the method that calls a 
+                // method of BaseWrapper.
+                wrapperLogger.Log(type, info);
+            }
+        }
+
+        #endregion
+
+        private class MyLogger : Logger
+        {
+
+        }
+
+        [Fact]
+        public void CallsiteBySubclass_interface()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("mylogger", typeof(MyLogger));
+
+            Assert.True(logger is MyLogger, "logger isn't MyLogger");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_interface msg");
+
+        }
+
+        [Fact]
+        public void CallsiteBySubclass_mylogger()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            MyLogger logger = LogManager.GetLogger("mylogger", typeof(MyLogger)) as MyLogger;
+
+            Assert.NotNull(logger);
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_mylogger msg");
+
+        }
+
+
+        [Fact]
+        public void CallsiteBySubclass_logger()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            Logger logger = LogManager.GetLogger("mylogger", typeof(MyLogger)) as Logger;
+
+            Assert.NotNull(logger);
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_logger msg");
+        }
+
+
     }
 
 }
