@@ -31,44 +31,42 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT
+
 namespace NLog.Internal
 {
     using System;
-    using NLog.Config;
 
     /// <summary>
-    /// Optimized routines to get the size and last write time of the specified file.
+    /// Win32-optimized implementation of <see cref="FileCharacteristicsHelper"/>.
     /// </summary>
-    internal abstract class FileInfoHelper
+    internal class Win32FileCharacteristicsHelper : FileCharacteristicsHelper
     {
-        /// <summary>
-        /// Initializes static members of the FileInfoHelper class.
-        /// </summary>
-        static FileInfoHelper()
-        {
-#if SILVERLIGHT
-            Helper = new PortableFileInfoHelper();
-#else
-            if (PlatformDetector.IsDesktopWin32)
-            {
-                Helper = new Win32FileInfoHelper();
-            }
-            else
-            {
-                Helper = new PortableFileInfoHelper();
-            }
-#endif
-        }
-
-        internal static FileInfoHelper Helper { get; private set; }
-
         /// <summary>
         /// Gets the information about a file.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileHandle">The file handle.</param>
-        /// <param name="fileInfo">The file info, if the file information was retrieved successfully.</param>
-        /// <returns>A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.</returns>
-        public abstract bool GetFileInfo(string fileName, IntPtr fileHandle, out FileInfo fileInfo);
+        /// <param name="fileCharacteristics">The file characteristics, if the file information was retrieved successfully.</param>
+        /// <returns>
+        /// A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.
+        /// </returns>
+        public override bool GetFileCharacteristics(string fileName, IntPtr fileHandle, out FileCharacteristics fileCharacteristics)
+        {
+            Win32FileNativeMethods.BY_HANDLE_FILE_INFORMATION fi;
+
+            if (Win32FileNativeMethods.GetFileInformationByHandle(fileHandle, out fi))
+            {
+                fileCharacteristics = new FileCharacteristics(DateTime.FromFileTimeUtc(fi.ftCreationTime), fi.nFileSizeLow + (((long)fi.nFileSizeHigh) << 32));
+                return true;
+            }
+            else
+            {
+                fileCharacteristics = null;
+                return false;
+            }
+        }
     }
 }
+
+#endif

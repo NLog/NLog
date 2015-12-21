@@ -1,4 +1,4 @@
-﻿// 
+// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -34,30 +34,39 @@
 namespace NLog.Internal
 {
     using System;
+    using System.IO;
 
     /// <summary>
-    /// An immutable object that stores basic file info.
+    /// Portable implementation of <see cref="FileCharacteristicsHelper"/>.
     /// </summary>
-    internal class FileInfo
+    internal class PortableFileCharacteristicsHelper : FileCharacteristicsHelper
     {
         /// <summary>
-        /// Constructs a FileInfo object.
+        /// Gets the information about a file.
         /// </summary>
-        /// <param name="creationTime">The time the file was created in UTC.</param>
-        /// <param name="fileLength">The size of the file in bytes.</param>
-        public FileInfo(DateTime creationTime, long fileLength)
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="fileHandle">The file handle.</param>
+        /// <param name="fileCharacteristics">The file characteristics, if the file information was retrieved successfully.</param>
+        /// <returns>
+        /// A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.
+        /// </returns>
+        public override bool GetFileCharacteristics(string fileName, IntPtr fileHandle, out FileCharacteristics fileCharacteristics)
         {
-            CreationTime = creationTime;
-            FileLength = fileLength;
+            var fi = new FileInfo(fileName);
+            if (fi.Exists)
+            {
+#if !SILVERLIGHT
+                fileCharacteristics = new FileCharacteristics(fi.CreationTimeUtc, fi.Length);
+#else
+                fileCharacteristics = new FileCharacteristics(fi.CreationTime, fi.Length);
+#endif
+                return true;
+            }
+            else
+            {
+                fileCharacteristics = null;
+                return false;
+            }
         }
-
-        /// <summary>
-        /// The time the file was created in UTC.
-        /// </summary>
-        public DateTime CreationTime { get; private set; }
-        /// <summary>
-        /// The size of the file in bytes.
-        /// </summary>
-        public long FileLength { get; private set; }
     }
 }

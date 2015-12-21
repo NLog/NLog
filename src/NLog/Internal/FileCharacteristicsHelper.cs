@@ -36,36 +36,38 @@ namespace NLog.Internal
     using System;
 
     /// <summary>
-    /// Portable implementation of <see cref="FileInfoHelper"/>.
+    /// Optimized routines to get the basic file characteristics of the specified file.
     /// </summary>
-    internal class PortableFileInfoHelper : FileInfoHelper
+    internal abstract class FileCharacteristicsHelper
     {
+        /// <summary>
+        /// Initializes static members of the FileCharacteristicsHelper class.
+        /// </summary>
+        static FileCharacteristicsHelper()
+        {
+#if SILVERLIGHT
+            Helper = new PortableFileInfoHelper();
+#else
+            if (PlatformDetector.IsDesktopWin32)
+            {
+                Helper = new Win32FileCharacteristicsHelper();
+            }
+            else
+            {
+                Helper = new PortableFileCharacteristicsHelper();
+            }
+#endif
+        }
+
+        internal static FileCharacteristicsHelper Helper { get; private set; }
+
         /// <summary>
         /// Gets the information about a file.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileHandle">The file handle.</param>
-        /// <param name="fileInfo">The file info, if the file information was retrieved successfully.</param>
-        /// <returns>
-        /// A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.
-        /// </returns>
-        public override bool GetFileInfo(string fileName, IntPtr fileHandle, out FileInfo fileInfo)
-        {
-            var fi = new System.IO.FileInfo(fileName);
-            if (fi.Exists)
-            {
-#if !SILVERLIGHT
-                fileInfo = new FileInfo(fi.CreationTimeUtc, fi.Length);
-#else
-                fileInfo = new FileInfo(fi.CreationTime, fi.Length);
-#endif
-                return true;
-            }
-            else
-            {
-                fileInfo = null;
-                return false;
-            }
-        }
+        /// <param name="fileCharacteristics">The file characteristics, if the file information was retrieved successfully.</param>
+        /// <returns>A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.</returns>
+        public abstract bool GetFileCharacteristics(string fileName, IntPtr fileHandle, out FileCharacteristics fileCharacteristics);
     }
 }

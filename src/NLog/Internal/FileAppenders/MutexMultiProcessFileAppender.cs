@@ -159,14 +159,14 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the file info.
         /// </summary>
-        /// <param name="fileInfo">The file info, if the file information was retrieved successfully.</param>
+        /// <param name="fileCharacteristics">The file characteristics, if the file information was retrieved successfully.</param>
         /// <returns>
         /// True if the operation succeeded, false otherwise.
         /// </returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle", Justification = "Optimization")]
-        public override bool GetFileInfo(out Internal.FileInfo fileInfo)
+        public override bool GetFileCharacteristics(out FileCharacteristics fileCharacteristics)
         {
-            return FileInfoHelper.Helper.GetFileInfo(FileName, this.file.SafeFileHandle.DangerousGetHandle(), out fileInfo);
+            return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, this.file.SafeFileHandle.DangerousGetHandle(), out fileCharacteristics);
         }
 
         private static Mutex CreateSharableMutex(string name)
