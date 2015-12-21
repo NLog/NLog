@@ -7,10 +7,11 @@
   "licenseUrl": "",
 
   "dependencies": {
+      "NLog": ""
   },
 
   "frameworks": {
-    "dnx46": {
+    "dnx451": {
       "frameworkAssemblies": {
         "System.ServiceModel": "4.0.0.0",
         "System.ServiceModel.Activation": "4.0.0.0",

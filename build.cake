@@ -4,6 +4,7 @@
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
+var outputDirectory = Argument("outputDirectory", "./artifacts");
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -33,37 +34,48 @@ Task("Build")
     .IsDependentOn("DnuRestore")
     .Does(() =>
 {
-	string[] frameworks = null;
-	if(!IsRunningOnWindows())
-		frameworks = new[] { "dnx451", "dnxcore50" };
-	else
-		frameworks = new[] { ".NETFramework,Version=v3.5", "dnx451", "dnxcore50", "uap10.0", "Silverlight,Version=v5.0" };
-
-	foreach(var framework in frameworks)
-	{
-		var settings = new DNUBuildSettings
+    string[] frameworks = null;
+    if(IsRunningOnWindows())
+        frameworks = new[] { ".NETFramework,Version=v3.5", "dnx451", "dnxcore50", "uap10.0", "Silverlight,Version=v5.0" };
+    else
+        frameworks = new[] { "dnx451", "dnxcore50" };
+        
+    var allFrameworks = new DNUBuildSettings
 		{
-		    Frameworks = new [] { framework },
-		    Configurations = new[] { "Debug" },
-		    OutputDirectory = "./artifacts/",
+		    Frameworks = frameworks,
+		    Configurations = new[] { configuration },
+		    OutputDirectory = outputDirectory,
 		    Quiet = true
 		};
-		DNUBuild("./src/**/project.json", settings);
-	}
+    var dnx451OnlyFrameworks = new DNUBuildSettings
+		{
+		    Frameworks = new [] { "dnx451" },
+		    Configurations = new[] { configuration },
+		    OutputDirectory = outputDirectory,
+		    Quiet = true
+		};
+    DNUBuild("./src/NLog", allFrameworks);
+    DNUBuild("./src/NLog.Extended", allFrameworks);
+    DNUBuild("./src/InstallNLogConfig", dnx451OnlyFrameworks);
+    DNUBuild("./src/NLogAutoLoadExtension", dnx451OnlyFrameworks);
+    DNUBuild("./tests/SampleExtensions", allFrameworks);
+    DNUBuild("./tests/NLog.UnitTests", allFrameworks);
+
 });
 
 Task("Test")
 	.IsDependentOn("Build")
 	.Does(() =>
 {
-	DNVMUse(new DNVMSettings(){ Version = "default", Arch = "x64", Runtime = "coreclr"});
+	DNVMUse("default", new DNVMSettings(){ Arch = "x64", Runtime = "coreclr"});
+	
 	var settings = new DNXRunSettings
 	{
 		Framework = "dnxcore50"
 	};
 	DNXRun("./tests/NLog.UnitTests/", "test", settings);
 
-	DNVMUse(new DNVMSettings(){ Version = "default", Arch = "x64", Runtime = "clr"});
+	DNVMUse("default", new DNVMSettings() { Arch = "x64", Runtime = "clr"});
 	settings = new DNXRunSettings
 	{
 		Framework = "dnx451"

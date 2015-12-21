@@ -28,7 +28,7 @@
         },
         "dnx451": {
             "frameworkAssemblies": {
-                "System.Runtime": "4.0.10.0",
+                "System.Runtime": "4.0.0.0",
                 "System.Xml": "4.0.0.0",
                 "System.ServiceModel": "4.0.0.0",
                 "System.Runtime.Serialization": "4.0.0.0",

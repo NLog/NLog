@@ -52,7 +52,7 @@
                 "System.Threading.Tasks.Parallel": "4.0.1-beta-23516"
             },
             "compilationOptions": {
-                "define": [ "WCF_SUPPORTED", "DNX", "XUNIT2" ]
+                "define": [ "WCF_SUPPORTED", "DNX", "XUNIT2", "MONO" ]
             }
         },
         "Silverlight,Version=v5.0": {
