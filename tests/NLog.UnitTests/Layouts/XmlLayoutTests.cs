@@ -43,10 +43,11 @@ namespace NLog.UnitTests.Layouts
     public class XmlLayoutTests
     {
         [Fact]
-        public void XmlLayoutRendering()
+        public void XmlLayoutRenderingWithoutIndent()
         {
-            var jsonLayout = new XmlLayout()
+            var xmlLayout = new XmlLayout()
             {
+                Indent = false,
                 Properties =
                     {
                         new XmlProperty("date", "${longdate}"),
@@ -61,27 +62,8 @@ namespace NLog.UnitTests.Layouts
             ev.Message = "hello, world";
 
 
-            var xml = jsonLayout.Render(ev);
-            var expected = @"<LogEvent>
-  <SequenceID>1</SequenceID>
-  <TimeStamp>2010-01-01T12:34:56</TimeStamp>
-  <Level>Info</Level>
-  <Message>hello, world</Message>
-  <Properties>
-    <Property>
-      <Name>date</Name>
-      <Value>2010-01-01 12:34:56.0000</Value>
-    </Property>
-    <Property>
-      <Name>level</Name>
-      <Value>Info</Value>
-    </Property>
-    <Property>
-      <Name>message</Name>
-      <Value>hello, world</Value>
-    </Property>
-  </Properties>
-</LogEvent>";
+            var xml = xmlLayout.Render(ev);
+            var expected = "<LogEvent><SequenceID>1</SequenceID><TimeStamp>2010-01-01T12:34:56</TimeStamp><Level>Info</Level><Message>hello, world</Message><Properties><Property><Name>date</Name><Value>2010-01-01 12:34:56.0000</Value></Property><Property><Name>level</Name><Value>Info</Value></Property><Property><Name>message</Name><Value>hello, world</Value></Property></Properties></LogEvent>";
 
 
             Assert.Equal(expected, xml);

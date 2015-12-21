@@ -33,9 +33,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using NLog.Config;
+using NLog.Internal;
 using NLog.LayoutRenderers;
 
 namespace NLog.Layouts
@@ -47,15 +50,15 @@ namespace NLog.Layouts
     public class XmlLayout : Layout
     {
         private readonly IList<XmlProperty> _properties;
-        private readonly XmlLayoutRenderer _renderer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLayout"/> class.
         /// </summary>
         public XmlLayout()
         {
-            _renderer = new XmlLayoutRenderer();
             _properties = new List<XmlProperty>();
+            Indent = true;
+            OmitXmlDeclaration = true;
         }
 
 
@@ -70,12 +73,22 @@ namespace NLog.Layouts
 
 
         /// <summary>
-        /// Gets the layout renderer.
+        /// Gets or sets a value indicating whether to indent the XML elements.
         /// </summary>
-        public XmlLayoutRenderer Renderer
-        {
-            get { return _renderer; }
-        }
+        /// <value>
+        ///   <c>true</c> if indent; otherwise, <c>false</c>.
+        /// </value>
+        [DefaultValue(true)]
+        public bool Indent { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to omit an XML declaration.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> to omit XML declaration; otherwise, <c>false</c>.
+        /// </value>
+        [DefaultValue(true)]
+        public bool OmitXmlDeclaration { get; set; }
 
         /// <summary>
         /// Renders the layout for the specified logging event by invoking layout renderers.
@@ -95,7 +108,18 @@ namespace NLog.Layouts
                 logEvent.Properties[name] =  text;
             }
 
-            return this.Renderer.Render(logEvent);
+            var builder = new StringBuilder();
+            var writer = new LogEventInfoXmlWriter();
+            var settings = new XmlWriterSettings
+            {
+                Indent = Indent,
+                Encoding = Encoding.UTF8,
+                OmitXmlDeclaration = OmitXmlDeclaration
+            };
+
+            writer.Write(builder, logEvent, settings);
+
+            return builder.ToString();
         }
     }
 }

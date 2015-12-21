@@ -59,6 +59,17 @@ namespace NLog.Internal
                 OmitXmlDeclaration = true
             };
 
+            Write(builder, logEventInfo, settings);
+        }
+
+        /// <summary>
+        /// Writes the specified <paramref name="logEventInfo" /> to the <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="builder">The <see cref="StringBuilder" /> to write the xml to.</param>
+        /// <param name="logEventInfo">The log event information to write.</param>
+        /// <param name="settings">The settings.</param>
+        public void Write(StringBuilder builder, LogEventInfo logEventInfo, XmlWriterSettings settings)
+        {
             using (var xw = XmlWriter.Create(builder, settings))
             {
                 Write(xw, logEventInfo);
