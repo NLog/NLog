@@ -1999,28 +1999,6 @@ namespace NLog.Targets
                 {
                     ArchiveFile(fileName, alternativeFileName, enableCompression);
                 }
-                catch (DirectoryNotFoundException)
-                {
-                    if (createDirectory)
-                    {
-                        InternalLogger.Trace("AddToArchive directory not found. Creating {0}", Path.GetDirectoryName(archiveFileName));
-
-                        try
-                        {
-                            Directory.CreateDirectory(Path.GetDirectoryName(archiveFileName));
-                            ArchiveFile(fileName, alternativeFileName, enableCompression);
-                        }
-                        catch (Exception ex)
-                        {
-                            InternalLogger.Error("Cannot create archive directory, Exception : {0}", ex);
-                            throw;
-                        }
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
                 catch (Exception ex)
                 {
                     InternalLogger.Error("Cannot archive file {0}, Exception : {1}", fileName, ex);
