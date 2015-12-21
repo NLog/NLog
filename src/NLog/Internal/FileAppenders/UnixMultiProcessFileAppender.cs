@@ -108,7 +108,6 @@ namespace NLog.Internal.FileAppenders
             if (this.file == null)
                 return;
             this.file.Write(bytes, 0, bytes.Length);
-            FileTouched();
         }
 
         public override void Close()
@@ -118,7 +117,6 @@ namespace NLog.Internal.FileAppenders
             InternalLogger.Trace("Closing '{0}'", FileName);
             this.file.Close();
             this.file = null;
-            FileTouched();
         }
 
         public override void Flush()
@@ -131,7 +129,7 @@ namespace NLog.Internal.FileAppenders
             FileInfo fi = new FileInfo(FileName);
             if (fi.Exists)
             {
-                fileCharacteristics = new FileCharacteristics(fi.CreationTime, fi.LastWriteTime, fi.Length);
+                fileCharacteristics = new FileCharacteristics(fi.CreationTime, fi.Length);
                 return true;
             }
             else
