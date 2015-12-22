@@ -71,6 +71,9 @@ Frequently Asked Questions (FAQ)
 
 * **Why should I use NLog?**
   - NLog is fully written in C#, has many years of experience and is easy to extend!
+
+* **Is it free?**
+  - It's licensed under the BSD license, so you can use it in commercial (closed sourse) programs without problems. 
   
 * **Show me the magic!**
   - Check the [tutorial](https://github.com/NLog/NLog/wiki/Tutorial) to get started!
