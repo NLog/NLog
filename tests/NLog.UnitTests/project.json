@@ -12,6 +12,15 @@
     },
 
     "frameworks": {
+		".NETFramework,Version=v3.5": {
+			"dependencies": {
+				"xunit.runner.dnx": "2.1.0-rc1-build204",
+                "xunit": "1.9.1"
+			},
+			"compilationOptions": {
+                "define": [ "NET3_5", "WCF_SUPPORTED", "CLIENT_SKU" ]
+            }
+		},
         "dnxcore50": {
             "dependencies": {
                 "System.Console": "4.0.0-beta-23516",

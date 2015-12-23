@@ -11,9 +11,11 @@
   },
 
   "frameworks": {
+  ".NETFramework,Version=v3.5": {},
     "dnx451": {
       "frameworkAssemblies": {
       }
-    }
+    },
+	"dnxcore50": {}
   }
 }

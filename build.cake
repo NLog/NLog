@@ -52,7 +52,6 @@ Task("Build")
 		};
         
         DNUBuild("./src/NLog", dnuBuildSettings);
-        DNUBuild("./src/NLog.Extended", dnuBuildSettings);
     }
     
     dnuBuildSettings = new DNUBuildSettings
@@ -62,7 +61,7 @@ Task("Build")
 		    OutputDirectory = outputDirectory,
 		    Quiet = true
 		};
-    DNUBuild("./src/InstallNLogConfig", dnuBuildSettings);
+	DNUBuild("./src/NLog.Extended", dnuBuildSettings);
     DNUBuild("./src/NLogAutoLoadExtension", dnuBuildSettings);
     
     foreach(var framework in frameworks)
