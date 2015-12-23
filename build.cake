@@ -40,26 +40,44 @@ Task("Build")
     else
         frameworks = new[] { "dnx451", "dnxcore50" };
         
-    var allFrameworks = new DNUBuildSettings
+    DNUBuildSettings dnuBuildSettings = null;
+    foreach(var framework in frameworks)
+    {
+        dnuBuildSettings = new DNUBuildSettings
 		{
-		    Frameworks = frameworks,
+		    Frameworks = new [] { framework },
 		    Configurations = new[] { configuration },
 		    OutputDirectory = outputDirectory,
 		    Quiet = true
 		};
-    var dnx451OnlyFrameworks = new DNUBuildSettings
+        
+        DNUBuild("./src/NLog", dnuBuildSettings);
+        DNUBuild("./src/NLog.Extended", dnuBuildSettings);
+    }
+    
+    dnuBuildSettings = new DNUBuildSettings
 		{
 		    Frameworks = new [] { "dnx451" },
 		    Configurations = new[] { configuration },
 		    OutputDirectory = outputDirectory,
 		    Quiet = true
 		};
-    DNUBuild("./src/NLog", allFrameworks);
-    DNUBuild("./src/NLog.Extended", allFrameworks);
-    DNUBuild("./src/InstallNLogConfig", dnx451OnlyFrameworks);
-    DNUBuild("./src/NLogAutoLoadExtension", dnx451OnlyFrameworks);
-    DNUBuild("./tests/SampleExtensions", allFrameworks);
-    DNUBuild("./tests/NLog.UnitTests", allFrameworks);
+    DNUBuild("./src/InstallNLogConfig", dnuBuildSettings);
+    DNUBuild("./src/NLogAutoLoadExtension", dnuBuildSettings);
+    
+    foreach(var framework in frameworks)
+    {
+        dnuBuildSettings = new DNUBuildSettings
+		{
+		    Frameworks = new [] { framework },
+		    Configurations = new[] { configuration },
+		    OutputDirectory = outputDirectory,
+		    Quiet = true
+		};
+        
+        DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
+        DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
+    }
 
 });
 
