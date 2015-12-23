@@ -540,8 +540,8 @@ namespace NLog.Targets
 
         private void RefreshFileArchive()
         {
-            var dummyEvent = new LogEventInfo();
-            string fileNamePattern = GetArchiveFileNamePattern(GetCleanedFileName(dummyEvent), dummyEvent);
+            var nullEvent = LogEventInfo.CreateNullEvent();
+            string fileNamePattern = GetArchiveFileNamePattern(GetCleanedFileName(nullEvent), nullEvent);
             if (!ContainsFileNamePattern(fileNamePattern))
             {
                 try
