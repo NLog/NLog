@@ -206,8 +206,9 @@ namespace NLog.UnitTests
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
-                        
-            using (TextReader fs = new StreamReader(fileName, encoding))
+
+            using (FileStream fileStream = new FileStream(fileName, FileMode.Open))
+            using (TextReader fs = new StreamReader(fileStream, encoding))
             {
                 string line;
                 while ((line = fs.ReadLine()) != null)

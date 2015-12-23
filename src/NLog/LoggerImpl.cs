@@ -145,7 +145,7 @@ namespace NLog
         private static bool SkipAssembly(StackFrame frame)
         {
             var method = frame.GetMethod();
-            var assembly = method.DeclaringType != null ? method.DeclaringType.Assembly : method.Module.Assembly;
+            var assembly = method.DeclaringType != null ? method.DeclaringType.GetAssembly() : method.Module.GetAssembly();
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             return SkipAssembly(assembly);
         }
