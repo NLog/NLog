@@ -46,28 +46,28 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileHandle">The file handle.</param>
-        /// <param name="lastWriteTime">The last write time of the file in UTC.</param>
+        /// <param name="creationTime">The file creation time. The value must be of UTC kind.</param>
         /// <param name="fileLength">Length of the file.</param>
         /// <returns>
         /// A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.
         /// </returns>
-        public override bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength)
+        public override bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime creationTime, out long fileLength)
         {
             FileInfo fi = new FileInfo(fileName);
             if (fi.Exists)
             {
                 fileLength = fi.Length;
 #if !SILVERLIGHT
-                lastWriteTime = fi.LastWriteTimeUtc;
+                creationTime = fi.CreationTimeUtc;
 #else
-                lastWriteTime = fi.LastWriteTime;
+                creationTime = fi.CreationTime;
 #endif
                 return true;
             }
             else
             {
                 fileLength = -1;
-                lastWriteTime = DateTime.MinValue;
+                creationTime = DateTime.MinValue;
                 return false;
             }
         }

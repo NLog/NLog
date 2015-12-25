@@ -170,23 +170,23 @@ namespace NLog.UnitTests.Internal.FileAppenders
         [Fact]
         public void FileAppenderCache_GetFileInfo()
         {
-            DateTime lastWriteTime;
+            DateTime creationTime;
             long fileLength;
 
             // Invoke GetFileInfo() on an Empty FileAppenderCache.
             FileAppenderCache emptyCache = FileAppenderCache.Empty;
-            emptyCache.GetFileInfo("file.txt", out lastWriteTime, out fileLength);
+            emptyCache.GetFileInfo("file.txt", out creationTime, out fileLength);
             // Default values will be returned.
-            Assert.True(lastWriteTime == DateTime.MinValue);         
+            Assert.True(creationTime == DateTime.MinValue);         
             Assert.True(fileLength == -1);
 
             IFileAppenderFactory appenderFactory = SingleProcessFileAppender.TheFactory;
             ICreateFileParameters fileTarget = new FileTarget();
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileTarget);
             // Invoke GetFileInfo() on non-empty FileAppenderCache - Before allocating any appenders. 
-            cache.GetFileInfo("file.txt", out lastWriteTime, out fileLength);
+            cache.GetFileInfo("file.txt", out creationTime, out fileLength);
             // Default values will be returned.
-            Assert.True(lastWriteTime == DateTime.MinValue);
+            Assert.True(creationTime == DateTime.MinValue);
             Assert.True(fileLength == -1);
 
             String tempFile = Path.Combine(
@@ -204,8 +204,8 @@ namespace NLog.UnitTests.Internal.FileAppenders
             //
 
             // File information should be returned.
-            cache.GetFileInfo(tempFile, out lastWriteTime, out fileLength);
-            Assert.False(lastWriteTime == DateTime.MinValue);
+            cache.GetFileInfo(tempFile, out creationTime, out fileLength);
+            Assert.False(creationTime == DateTime.MinValue);
             Assert.True(fileLength == 34);
 
             // Clean up.
