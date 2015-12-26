@@ -71,6 +71,9 @@ Frequently Asked Questions (FAQ)
 
 * **Why should I use NLog?**
   - NLog is fully written in C#, has many years of experience and is easy to extend!
+
+* **Is it free?**
+  - It's licensed under the BSD license, so you can use it in commercial (closed sourse) programs without problems. 
   
 * **Show me the magic!**
   - Check the [tutorial](https://github.com/NLog/NLog/wiki/Tutorial) to get started!
@@ -118,3 +121,39 @@ License
 ---
 NLog is open source software, licensed under the terms of BSD license. 
 See [LICENSE.txt](LICENSE.txt) for details.
+
+
+How to build
+---
+Use Visual studio 2012/2013/2015 and open solution file in the 'src' folder, like 'NLog.netfx45.sln'
+
+For building in the cloud we use:
+- AppVeyor for Windows builds, including Silverlight and Xamarin. 
+- Travis for Mono builds.
+- CodeCov for code coverage
+
+How to build your fork in the cloud
+---
+Steps to set up [AppVeyor](https://ci.appveyor.com)/[Travis](https://travis-ci.org/)/[CodeCov](https://codecov.io/) for your own fork.
+
+**AppVeyor**:
+
+1. Login with your Github account to https://ci.appveyor.com 
+2. Choose "projects" 
+3. Select your fork and press "+" button
+4. Done. All config is in appveyor.yml already
+
+**Travis**:
+
+1. Login with your Github account to https://travis-ci.org/
+2. Select your fork
+3. Push and wait
+
+**CodeCov**: (AppVeyor needed)
+
+1. Login with your Github account to https://codecov.io/
+2. Press "+  Add new repository to Codecov" button
+3. Select your fork
+4. Wait for a build on AppVeyor. All the config is already in appveyor.yml. The first report can take some minutes after the first build.
+
+
