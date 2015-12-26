@@ -189,6 +189,7 @@ namespace NLog.Targets
 
         private void Output(LogEventInfo logEvent, string message)
         {
+            var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
             ConsoleColor oldForegroundColor = Console.ForegroundColor;
             ConsoleColor oldBackgroundColor = Console.BackgroundColor;
 
@@ -239,7 +240,7 @@ namespace NLog.Targets
                     message = hl.ReplaceWithEscapeSequences(message);
                 }
 
-                ColorizeEscapeSequences(this.ErrorStream ? Console.Error : Console.Out, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
+                ColorizeEscapeSequences(consoleStream, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
             }
             finally
             {
@@ -247,14 +248,7 @@ namespace NLog.Targets
                 Console.BackgroundColor = oldBackgroundColor;
             }
 
-            if (this.ErrorStream)
-            {
-                Console.Error.WriteLine();
-            }
-            else
-            {
-                Console.WriteLine();
-            }
+            consoleStream.WriteLine();
         }
 
         private static void ColorizeEscapeSequences(
