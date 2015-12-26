@@ -196,7 +196,7 @@ namespace NLog.UnitTests.Internal.FileAppenders
             //
 
             // File information should be returned.
-            var fileCharacteristics = cache.GetFileCharacteristics("file.txt");
+            var fileCharacteristics = cache.GetFileCharacteristics(tempFile);
             Assert.NotNull(fileCharacteristics);
             Assert.NotEqual(DateTime.MinValue, fileCharacteristics.CreationTimeUtc);
             Assert.Equal(34, fileCharacteristics.FileLength);

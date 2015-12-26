@@ -244,7 +244,10 @@ namespace NLog.Internal.FileAppenders
         {
             foreach (BaseFileAppender appender in appenders)
             {
-                if ((appender != null) && (appender.FileName == fileName))
+                if (appender == null)
+                    break;
+
+                if (appender.FileName == fileName)
                     return appender.GetFileCharacteristics();
             }
 
