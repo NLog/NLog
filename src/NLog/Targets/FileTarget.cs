@@ -1144,7 +1144,7 @@ namespace NLog.Targets
 
             int minSequenceLength = fileTemplate.EndAt - fileTemplate.BeginAt - 2;
             int nextSequenceNumber;
-            DateTime archiveDate = GetArchiveDate(IsDaySwitch(fileName, logEvent));
+            DateTime archiveDate = GetArchiveDate(IsPeriodSwitch(fileName, logEvent));
             List<string> archiveFileNames;
             if (Directory.Exists(dirName))
             {
@@ -1182,23 +1182,22 @@ namespace NLog.Targets
 
         /// <summary>
         /// Determines whether a file with a different name from <paramref name="fileName"/> is needed to receive the
-        /// <paramref name="logEvent"/>. This is determined based on the last date and time which the file has been
-        /// written compared to the time the log event was initiated.
+        /// <paramref name="logEvent"/>. This is determined based on the date and time when the file was created compared 
+        /// to the time the log event was initiated.
         /// </summary>
         /// <returns>
-        /// <see langword="true"/> when log event time is "different" than the last write time; <see langword="false"/> otherwise.
+        /// <see langword="true"/> when log event time is "different" than the file creation time; <see langword="false"/> otherwise.
         /// </returns>
-        private bool IsDaySwitch(string fileName, LogEventInfo logEvent)
+        private bool IsPeriodSwitch(string fileName, LogEventInfo logEvent)
         {
-            DateTime lastWriteTime;
-            long fileLength;
-            if (this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            var fileCharacteristics = this.GetFileCharacteristics(fileName);
+            if (fileCharacteristics != null)
             {
                 string formatString = GetDateFormatString(string.Empty);
-                string ts = lastWriteTime.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
-                string ts2 = logEvent.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
+                string fileCreationTimeString = fileCharacteristics.CreationTimeUtc.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
+                string logEventTimeString = logEvent.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
 
-                return ts != ts2;
+                return fileCreationTimeString != logEventTimeString;
             }
 
             return false;
@@ -1475,7 +1474,7 @@ namespace NLog.Targets
         /// <param name="eventInfo">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         private void DoAutoArchive(string fileName, LogEventInfo eventInfo)
         {
-            FileInfo fileInfo = new FileInfo(fileName);
+            var fileInfo = new FileInfo(fileName);
             if (!fileInfo.Exists)
             {
                 return;
@@ -1567,17 +1566,15 @@ namespace NLog.Targets
                 return false;
             }
 
-            DateTime lastWriteTime;
-            long fileLength;
-
-            if (!this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            var fileCharacteristics = this.GetFileCharacteristics(fileName);
+            if (fileCharacteristics == null)
             {
                 return false;
             }
 
             if (this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled)
             {
-                if (fileLength + upcomingWriteSize > this.ArchiveAboveSize)
+                if (fileCharacteristics.FileLength + upcomingWriteSize > this.ArchiveAboveSize)
                 {
                     return true;
                 }
@@ -1599,27 +1596,22 @@ namespace NLog.Targets
                 return false;
             }
 
-            DateTime lastWriteTime;
-            long fileLength;
-
-            if (!this.GetFileInfo(fileName, out lastWriteTime, out fileLength))
+            var fileCharacteristics = this.GetFileCharacteristics(fileName);
+            if (fileCharacteristics == null)
             {
                 return false;
             }
 
             if (this.ArchiveEvery != FileArchivePeriod.None)
             {
-                // file write time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
+                // file creation time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
                 // so we should ask the TimeSource to convert file time to TimeSource time:
-                lastWriteTime = TimeSource.Current.FromSystemTime(lastWriteTime);
+                DateTime creationTime = TimeSource.Current.FromSystemTime(fileCharacteristics.CreationTimeUtc);
                 string formatString = GetDateFormatString(string.Empty);
-                string fileLastChanged = lastWriteTime.ToString(formatString, CultureInfo.InvariantCulture);
+                string fileCreated = creationTime.ToString(formatString, CultureInfo.InvariantCulture);
                 string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
 
-                if (fileLastChanged != logEventRecorded)
-                {
-                    return true;
-                }
+                return fileCreated != logEventRecorded;
             }
 
             return false;
@@ -1833,11 +1825,9 @@ namespace NLog.Targets
         /// <param name="appender">File appender associated with the file.</param>
         private void WriteHeader(BaseFileAppender appender)
         {
-            long fileLength;
-            DateTime lastWriteTime;
-
+            FileCharacteristics fileCharacteristics = appender.GetFileCharacteristics();
             //  Write header only on empty files or if file info cannot be obtained.
-            if (!appender.GetFileInfo(out lastWriteTime, out fileLength) || fileLength == 0)
+            if ((fileCharacteristics == null) || (fileCharacteristics.FileLength == 0))
             {
                 byte[] headerBytes = this.GetHeaderBytes();
                 if (headerBytes != null)
@@ -1851,31 +1841,25 @@ namespace NLog.Targets
         /// Returns the length of a specified file and the last time it has been written. File appender is queried before the file system.  
         /// </summary>
         /// <param name="filePath">File which the information are requested.</param>
-        /// <param name="lastWriteTime">The last time the file has been written is returned.</param>
-        /// <param name="fileLength">The length of the file is returned.</param>
-        /// <returns><see langword="true"/> when file details returned; <see langword="false"/> otherwise.</returns>
-        private bool GetFileInfo(string filePath, out DateTime lastWriteTime, out long fileLength)
+        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
+        private FileCharacteristics GetFileCharacteristics(string filePath)
         {
-            if (this.recentAppenders.GetFileInfo(filePath, out lastWriteTime, out fileLength))
-            {
-                return true;
-            }
+            var fileCharacteristics = this.recentAppenders.GetFileCharacteristics(filePath);
+            if (fileCharacteristics != null)
+                return fileCharacteristics;
 
-            FileInfo fileInfo = new FileInfo(filePath);
+            var fileInfo = new FileInfo(filePath);
             if (fileInfo.Exists)
             {
-                fileLength = fileInfo.Length;
 #if !SILVERLIGHT
-                lastWriteTime = fileInfo.LastWriteTimeUtc;
+                fileCharacteristics = new FileCharacteristics(fileInfo.CreationTimeUtc, fileInfo.Length);
 #else
-                lastWriteTime = fileInfo.LastWriteTime;
+                fileCharacteristics = new FileCharacteristics(fileInfo.CreationTime, fileInfo.Length);
 #endif
-                return true;
+                return fileCharacteristics;
             }
 
-            fileLength = -1;
-            lastWriteTime = DateTime.MinValue;
-            return false;
+            return null;
         }
 
         /// <summary>
