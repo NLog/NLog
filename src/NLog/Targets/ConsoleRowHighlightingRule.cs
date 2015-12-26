@@ -80,10 +80,16 @@ namespace NLog.Targets
         public static ConsoleRowHighlightingRule Default { get; private set; }
 
         /// <summary>
+        /// Gets or sets the log level that will select the specified foreground and background color.
+        /// This parameter overrides the condition parameter when set.
+        /// </summary>
+        /// <docgen category='Rule Matching Options' order='10' />
+        public LogLevel LogLevel { get; set; }
+
+        /// <summary>
         /// Gets or sets the condition that must be met in order to set the specified foreground and background color.
         /// </summary>
         /// <docgen category='Rule Matching Options' order='10' />
-        [RequiredParameter]
         public ConditionExpression Condition { get; set; }
 
         /// <summary>
@@ -112,6 +118,9 @@ namespace NLog.Targets
         /// </returns>
         public bool CheckCondition(LogEventInfo logEvent)
         {
+            if (this.LogLevel != null)
+                return logEvent.Level == this.LogLevel;
+
             if (this.Condition == null)
             {
                 return true;

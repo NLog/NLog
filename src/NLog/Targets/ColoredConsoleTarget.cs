@@ -187,6 +187,70 @@ namespace NLog.Targets
             this.Output(logEvent, this.Layout.Render(logEvent));
         }
 
+        private void Output(LogEventInfo logEvent, string message)
+        {
+            var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
+            ConsoleColor oldForegroundColor = Console.ForegroundColor;
+            ConsoleColor oldBackgroundColor = Console.BackgroundColor;
+
+            try
+            {
+                ConsoleRowHighlightingRule matchingRule = null;
+
+                foreach (ConsoleRowHighlightingRule cr in this.RowHighlightingRules)
+                {
+                    if (cr.CheckCondition(logEvent))
+                    {
+                        matchingRule = cr;
+                        break;
+                    }
+                }
+
+                if (this.UseDefaultRowHighlightingRules && matchingRule == null)
+                {
+                    foreach (ConsoleRowHighlightingRule cr in defaultConsoleRowHighlightingRules)
+                    {
+                        if (cr.CheckCondition(logEvent))
+                        {
+                            matchingRule = cr;
+                            break;
+                        }
+                    }
+                }
+
+                if (matchingRule == null)
+                {
+                    matchingRule = ConsoleRowHighlightingRule.Default;
+                }
+
+                if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
+                {
+                    Console.ForegroundColor = (ConsoleColor)matchingRule.ForegroundColor;
+                }
+
+                if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
+                {
+                    Console.BackgroundColor = (ConsoleColor)matchingRule.BackgroundColor;
+                }
+
+                message = message.Replace("\a", "\a\a");
+
+                foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
+                {
+                    message = hl.ReplaceWithEscapeSequences(message);
+                }
+
+                ColorizeEscapeSequences(consoleStream, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
+            }
+            finally
+            {
+                Console.ForegroundColor = oldForegroundColor;
+                Console.BackgroundColor = oldBackgroundColor;
+            }
+
+            consoleStream.WriteLine();
+        }
+
         private static void ColorizeEscapeSequences(
             TextWriter output,
             string message,
@@ -282,76 +346,6 @@ namespace NLog.Targets
             if (p0 < message.Length)
             {
                 output.Write(message.Substring(p0));
-            }
-        }
-
-        private void Output(LogEventInfo logEvent, string message)
-        {
-            ConsoleColor oldForegroundColor = Console.ForegroundColor;
-            ConsoleColor oldBackgroundColor = Console.BackgroundColor;
-
-            try
-            {
-                ConsoleRowHighlightingRule matchingRule = null;
-
-                foreach (ConsoleRowHighlightingRule cr in this.RowHighlightingRules)
-                {
-                    if (cr.CheckCondition(logEvent))
-                    {
-                        matchingRule = cr;
-                        break;
-                    }
-                }
-
-                if (this.UseDefaultRowHighlightingRules && matchingRule == null)
-                {
-                    foreach (ConsoleRowHighlightingRule cr in defaultConsoleRowHighlightingRules)
-                    {
-                        if (cr.CheckCondition(logEvent))
-                        {
-                            matchingRule = cr;
-                            break;
-                        }
-                    }
-                }
-
-                if (matchingRule == null)
-                {
-                    matchingRule = ConsoleRowHighlightingRule.Default;
-                }
-
-                if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
-                {
-                    Console.ForegroundColor = (ConsoleColor)matchingRule.ForegroundColor;
-                }
-
-                if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
-                {
-                    Console.BackgroundColor = (ConsoleColor)matchingRule.BackgroundColor;
-                }
-
-                message = message.Replace("\a", "\a\a");
-
-                foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
-                {
-                    message = hl.ReplaceWithEscapeSequences(message);
-                }
-
-                ColorizeEscapeSequences(this.ErrorStream ? Console.Error : Console.Out, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
-            }
-            finally
-            {
-                Console.ForegroundColor = oldForegroundColor;
-                Console.BackgroundColor = oldBackgroundColor;
-            }
-
-            if (this.ErrorStream)
-            {
-                Console.Error.WriteLine();
-            }
-            else
-            {
-                Console.WriteLine();
             }
         }
 
