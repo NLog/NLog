@@ -43,18 +43,18 @@ namespace NLog.Internal
         /// <summary>
         /// Constructs a FileCharacteristics object.
         /// </summary>
-        /// <param name="creationTime">The time the file was created in UTC.</param>
+        /// <param name="creationTimeUtc">The time the file was created in UTC.</param>
         /// <param name="fileLength">The size of the file in bytes.</param>
-        public FileCharacteristics(DateTime creationTime, long fileLength)
+        public FileCharacteristics(DateTime creationTimeUtc, long fileLength)
         {
-            CreationTime = creationTime;
+            CreationTimeUtc = creationTimeUtc;
             FileLength = fileLength;
         }
 
         /// <summary>
         /// The time the file was created in UTC.
         /// </summary>
-        public DateTime CreationTime { get; private set; }
+        public DateTime CreationTimeUtc { get; private set; }
         /// <summary>
         /// The size of the file in bytes.
         /// </summary>

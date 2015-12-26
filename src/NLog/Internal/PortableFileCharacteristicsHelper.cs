@@ -46,27 +46,20 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileHandle">The file handle.</param>
-        /// <param name="fileCharacteristics">The file characteristics, if the file information was retrieved successfully.</param>
-        /// <returns>
-        /// A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.
-        /// </returns>
-        public override bool GetFileCharacteristics(string fileName, IntPtr fileHandle, out FileCharacteristics fileCharacteristics)
+        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
+        public override FileCharacteristics GetFileCharacteristics(string fileName, IntPtr fileHandle)
         {
-            var fi = new FileInfo(fileName);
-            if (fi.Exists)
+            var fileInfo = new FileInfo(fileName);
+            if (fileInfo.Exists)
             {
 #if !SILVERLIGHT
-                fileCharacteristics = new FileCharacteristics(fi.CreationTimeUtc, fi.Length);
+                return new FileCharacteristics(fileInfo.CreationTimeUtc, fileInfo.Length);
 #else
-                fileCharacteristics = new FileCharacteristics(fi.CreationTime, fi.Length);
+                return new FileCharacteristics(fileInfo.CreationTime, fileInfo.Length);
 #endif
-                return true;
             }
             else
-            {
-                fileCharacteristics = null;
-                return false;
-            }
+                return null;
         }
     }
 }

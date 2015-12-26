@@ -124,19 +124,10 @@ namespace NLog.Internal.FileAppenders
             // do nothing, the stream is always flushed
         }
 
-        public override bool GetFileCharacteristics(out FileCharacteristics fileCharacteristics)
+        public override FileCharacteristics GetFileCharacteristics()
         {
-            FileInfo fi = new FileInfo(FileName);
-            if (fi.Exists)
-            {
-                fileCharacteristics = new FileCharacteristics(fi.CreationTime, fi.Length);
-                return true;
-            }
-            else
-            {
-                fileCharacteristics = null;
-                return false;
-            }
+            FileInfo fileInfo = new FileInfo(FileName);
+            return fileInfo.Exists ? new FileCharacteristics(fileInfo.CreationTime, fileInfo.Length) : null;
         }
     }
 }

@@ -100,12 +100,10 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the file info.
         /// </summary>
-        /// <param name="fileCharacteristics">The file info, if the file information was retrieved successfully.</param>
-        /// <returns>True if the operation succeeded, false otherwise.</returns>
-        public override bool GetFileCharacteristics(out FileCharacteristics fileCharacteristics)
+        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
+        public override FileCharacteristics GetFileCharacteristics()
         {
-            fileCharacteristics = new FileCharacteristics(this.OpenTime, this.currentFileLength);
-            return true;
+            return new FileCharacteristics(this.OpenTime, this.currentFileLength);
         }
 
         /// <summary>

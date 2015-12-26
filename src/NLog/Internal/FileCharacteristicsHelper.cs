@@ -66,8 +66,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileHandle">The file handle.</param>
-        /// <param name="fileCharacteristics">The file characteristics, if the file information was retrieved successfully.</param>
-        /// <returns>A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.</returns>
-        public abstract bool GetFileCharacteristics(string fileName, IntPtr fileHandle, out FileCharacteristics fileCharacteristics);
+        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
+        public abstract FileCharacteristics GetFileCharacteristics(string fileName, IntPtr fileHandle);
     }
 }

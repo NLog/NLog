@@ -171,18 +171,15 @@ namespace NLog.UnitTests.Internal.FileAppenders
         [Fact]
         public void FileAppenderCache_GetFileCharacteristics()
         {
-            FileCharacteristics fileCharacteristics;
             // Invoke GetFileCharacteristics() on an Empty FileAppenderCache.
             FileAppenderCache emptyCache = FileAppenderCache.Empty;
-            Assert.False(emptyCache.GetFileCharacteristics("file.txt", out fileCharacteristics));
-            Assert.Null(fileCharacteristics);
+            Assert.Null(emptyCache.GetFileCharacteristics("file.txt"));
 
             IFileAppenderFactory appenderFactory = SingleProcessFileAppender.TheFactory;
             ICreateFileParameters fileTarget = new FileTarget();
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileTarget);
             // Invoke GetFileCharacteristics() on non-empty FileAppenderCache - Before allocating any appenders. 
-            Assert.False(cache.GetFileCharacteristics("file.txt", out fileCharacteristics));
-            Assert.Null(fileCharacteristics);
+            Assert.Null(cache.GetFileCharacteristics("file.txt"));
 
             String tempFile = Path.Combine(
                     Path.GetTempPath(),
@@ -199,8 +196,9 @@ namespace NLog.UnitTests.Internal.FileAppenders
             //
 
             // File information should be returned.
-            Assert.True(cache.GetFileCharacteristics(tempFile, out fileCharacteristics));
-            Assert.NotEqual(DateTime.MinValue, fileCharacteristics.CreationTime);
+            var fileCharacteristics = cache.GetFileCharacteristics("file.txt");
+            Assert.NotNull(fileCharacteristics);
+            Assert.NotEqual(DateTime.MinValue, fileCharacteristics.CreationTimeUtc);
             Assert.Equal(34, fileCharacteristics.FileLength);
 
             // Clean up.
