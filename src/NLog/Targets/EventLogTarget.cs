@@ -218,7 +218,7 @@ namespace NLog.Targets
         {
             string message = this.Layout.Render(logEvent);
             
-            var entryType = GetEntryType(logEvent);
+            EventLogEntryType entryType = GetEntryType(logEvent);
 
             int eventId = 0;
 
@@ -234,10 +234,10 @@ namespace NLog.Targets
                 category = Convert.ToInt16(this.Category.Render(logEvent), CultureInfo.InvariantCulture);
             }
 
-            var eventLog = GetEventLog(logEvent);
+            EventLog eventLog = GetEventLog(logEvent);
 
             // limitation of EventLog API
-            if (message.Length > MaxMessageSize)
+            if (message.Length > EventLogTarget.MaxMessageSize)
             {
                 if (OnOverflow == EventLogTargetOverflowAction.Truncate)
                 {
@@ -246,16 +246,16 @@ namespace NLog.Targets
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Split)
                 {
-                    int index = 0;
-                    while (index + MaxMessageSize < message.Length)
+                    int offset = 0;
+                    while (offset + MaxMessageSize < message.Length)
                     {
-                        string chunk = message.Substring(index, MaxMessageSize);
-                        eventLog.WriteEntry(chunk);
-                        index += MaxMessageSize;
+                        string chunk = message.Substring(offset, MaxMessageSize);
+                        eventLog.WriteEntry(chunk, entryType, eventId, category);
+                        offset += MaxMessageSize;
                     }
 
-                    if (index < message.Length)
-                        eventLog.WriteEntry(message.Substring(index));
+                    if (offset < message.Length)
+                        eventLog.WriteEntry(message.Substring(offset), entryType, eventId, category);
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Discard)
                 {
