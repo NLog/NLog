@@ -195,33 +195,7 @@ namespace NLog.Targets
 
             try
             {
-                ConsoleRowHighlightingRule matchingRule = null;
-
-                foreach (ConsoleRowHighlightingRule cr in this.RowHighlightingRules)
-                {
-                    if (cr.CheckCondition(logEvent))
-                    {
-                        matchingRule = cr;
-                        break;
-                    }
-                }
-
-                if (this.UseDefaultRowHighlightingRules && matchingRule == null)
-                {
-                    foreach (ConsoleRowHighlightingRule cr in defaultConsoleRowHighlightingRules)
-                    {
-                        if (cr.CheckCondition(logEvent))
-                        {
-                            matchingRule = cr;
-                            break;
-                        }
-                    }
-                }
-
-                if (matchingRule == null)
-                {
-                    matchingRule = ConsoleRowHighlightingRule.Default;
-                }
+                var matchingRule = GetMatchingRowHighlightingRule(logEvent);
 
                 if ((matchingRule.ForegroundColor != ConsoleOutputColor.NoChange) && ((ConsoleColor)matchingRule.ForegroundColor != oldForegroundColor))
                 {
@@ -243,7 +217,6 @@ namespace NLog.Targets
                 else
                 {
                     message = message.Replace("\a", "\a\a");
-
                     foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
                     {
                         message = hl.ReplaceWithEscapeSequences(message);
@@ -262,6 +235,26 @@ namespace NLog.Targets
                 if (didChangeBackgroundColor)
                     Console.BackgroundColor = oldBackgroundColor;
             }
+        }
+
+        private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent)
+        {
+            foreach (ConsoleRowHighlightingRule rule in this.RowHighlightingRules)
+            {
+                if (rule.CheckCondition(logEvent))
+                    return rule;
+            }
+
+            if (this.UseDefaultRowHighlightingRules)
+            {
+                foreach (ConsoleRowHighlightingRule rule in defaultConsoleRowHighlightingRules)
+                {
+                    if (rule.CheckCondition(logEvent))
+                        return rule;
+                }
+            }
+
+            return ConsoleRowHighlightingRule.Default;
         }
 
         private static void ColorizeEscapeSequences(
