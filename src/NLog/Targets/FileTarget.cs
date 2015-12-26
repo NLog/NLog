@@ -1854,7 +1854,7 @@ namespace NLog.Targets
 #if !SILVERLIGHT
                 fileCharacteristics = new FileCharacteristics(fileInfo.CreationTimeUtc, fileInfo.Length);
 #else
-                fileCharacteristics = new FileCharacteristics(fi.CreationTime, fi.Length);
+                fileCharacteristics = new FileCharacteristics(fileInfo.CreationTime, fileInfo.Length);
 #endif
                 return fileCharacteristics;
             }
