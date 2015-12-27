@@ -313,7 +313,7 @@ namespace NLog.UnitTests.Targets
             target.Log = "application";
             // set the source explicitly to prevent random AppDomain name being used as the source name
             target.Source = sourceName;
-            //The Layout is intentionally just ${message}. Be able to check message length without other patterns.
+            //Be able to check message length and content, the Layout is intentionally only ${message}.
             target.Layout = new SimpleLayout("${message}");
             if (entryType != null)
             {
