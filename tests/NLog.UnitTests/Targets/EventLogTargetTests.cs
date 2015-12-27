@@ -49,9 +49,9 @@ namespace NLog.UnitTests.Targets
     {
         private const int MaxMessageSize = 16384;
 
-        private void AssertMessageAndLogLevelForTruncatedMessages(LogLevel loglevel, EventLogEntryType expectedEventLogEntryType, string expectedMessage, Layout entryType)
+        private void AssertMessageAndLogLevelForTruncatedMessages(LogLevel loglevel, EventLogEntryType expectedEventLogEntryType, string expectedMessage, Layout entryTypeLayout)
         {
-            var eventRecords = Write(loglevel, expectedEventLogEntryType, expectedMessage, entryType, EventLogTargetOverflowAction.Truncate).ToList();
+            var eventRecords = Write(loglevel, expectedEventLogEntryType, expectedMessage, entryTypeLayout, EventLogTargetOverflowAction.Truncate).ToList();
 
             Assert.True(eventRecords.Count == 1, string.Format("1 evenlog expected. But {0} exist", eventRecords.Count));
             AssertWrittenMessage(eventRecords, expectedMessage);
@@ -118,17 +118,17 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void TruncatedMessagesShouldBeWrittenAtSpecifiedNLogLevel_WhenWrongEntryTypeLayoutSpecified()
+        public void TruncatedMessagesShouldBeWrittenAtSpecifiedNLogLevel_WhenWrongEntryTypeLayoutSupplied()
         {
-            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Warn, EventLogEntryType.Warning, "TruncatedMessagesShouldBeWrittenAtSpecifiedNLogLevel_WhenWrongEntryTypeLayoutSpecified", new SimpleLayout("fallback to auto determined"));
+            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Warn, EventLogEntryType.Warning, "TruncatedMessagesShouldBeWrittenAtSpecifiedNLogLevel_WhenWrongEntryTypeLayoutSupplied", new SimpleLayout("fallback to auto determined"));
         }
 
 
 
-        private void AssertMessageCountAndLogLevelForSplittedMessages(LogLevel loglevel, EventLogEntryType expectedEventLogEntryType, Layout entryType)
+        private void AssertMessageCountAndLogLevelForSplittedMessages(LogLevel loglevel, EventLogEntryType expectedEventLogEntryType, Layout entryTypeLayout)
         {
-            string testMessage = string.Join("", Enumerable.Repeat("a", MaxMessageSize + 1));
-            var entries = Write(loglevel, expectedEventLogEntryType, testMessage, entryType, EventLogTargetOverflowAction.Split).ToList();
+            string testMessage = string.Join("", Enumerable.Repeat("l", MaxMessageSize + 1));
+            var entries = Write(loglevel, expectedEventLogEntryType, testMessage, entryTypeLayout, EventLogTargetOverflowAction.Split).ToList();
 
             Assert.True(entries.Count == 2, string.Format("2 evenlogs expected. But {0} exist", entries.Count));
         }
@@ -189,7 +189,7 @@ namespace NLog.UnitTests.Targets
 
 
         [Fact]
-        public void SplittedMessagesShouldBeWrittenAtSpecifiedNLogLevel_WhenWrongEntryTypeLayoutSpecified()
+        public void SplittedMessagesShouldBeWrittenAtSpecifiedNLogLevel_WhenWrongEntryTypeLayoutSupplied()
         {
             AssertMessageCountAndLogLevelForSplittedMessages(LogLevel.Info, EventLogEntryType.Information, new SimpleLayout("wrong entry type level"));
         }
@@ -198,8 +198,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowTruncate_TruncatesTheMessage()
         {
-            string expectedMessage = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
-            string testMessage = expectedMessage + " part that will be truncated";
+            string expectedMessage = string.Join("", Enumerable.Repeat("t", MaxMessageSize));
+            string expectedToTruncateMessage = " this part will be truncated";
+            string testMessage = expectedMessage + expectedToTruncateMessage;
 
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Truncate).ToList();
 
@@ -210,7 +211,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowTruncate_TheMessageIsNotTruncated()
         {
-            string expectedMessage = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
+            string expectedMessage = string.Join("", Enumerable.Repeat("t", MaxMessageSize));
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Truncate).ToList();
 
             Assert.True(entries.Count == 1, string.Format("1 evenlog expected. But {0} exist", entries.Count));
@@ -221,16 +222,21 @@ namespace NLog.UnitTests.Targets
         public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowSplitEntries_TheMessageShouldBeSplitted()
         {
             string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
-            string splittedMessagePart2 = "this part must be splitted";
-            string testMessage = messagePart1 + splittedMessagePart2;
+            string messagePart2 = string.Join("", Enumerable.Repeat("b", MaxMessageSize));
+            string messagePart3 = string.Join("", Enumerable.Repeat("c", MaxMessageSize));
+            string messagePart4 = string.Join("", Enumerable.Repeat("d", MaxMessageSize));
+            string messagePart5 = "this part must be splitted too";
+            string testMessage = messagePart1 + messagePart2 + messagePart3 + messagePart4 + messagePart5;
 
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Split).ToList();
 
-
-            Assert.True(entries.Count == 2, string.Format("2 evenlogs expected. But {0} exist", entries.Count));
+            Assert.True(entries.Count == 5, string.Format("5 evenlogs expected. But {0} exist", entries.Count));
 
             AssertWrittenMessage(entries, messagePart1);
-            AssertWrittenMessage(entries, splittedMessagePart2);
+            AssertWrittenMessage(entries, messagePart2);
+            AssertWrittenMessage(entries, messagePart3);
+            AssertWrittenMessage(entries, messagePart4);
+            AssertWrittenMessage(entries, messagePart5);
         }
 
         [Fact]
@@ -256,7 +262,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowDiscard_TheMessageIsNotWritten()
         {
-            string testMessage = string.Join("", Enumerable.Repeat("a", MaxMessageSize + 1));
+            string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
+            string messagePart2 = "b";
+            string testMessage = messagePart1 + messagePart2;
             bool wasWritten = Write(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Discard).Any();
 
             Assert.False(wasWritten);
@@ -280,8 +288,14 @@ namespace NLog.UnitTests.Targets
                                             entry.ProviderName == expectedSource &&
                                             HasEntryType(entry, expectedEventLogEntryType)
                                             );
-
-            Assert.True(filteredEntries.Any(), string.Format("Failed to find entry of type '{0}' from source '{1}'", expectedEventLogEntryType, expectedSource));
+            if (overflowAction == EventLogTargetOverflowAction.Discard && logMessage.Length > MaxMessageSize)
+            {
+                Assert.False(filteredEntries.Any(), string.Format("No message is expected. But {0} message(s) found entry of type '{1}' from source '{2}'.", filteredEntries.Count(), expectedEventLogEntryType, expectedSource));
+            }
+            else
+            {
+                Assert.True(filteredEntries.Any(), string.Format("Failed to find entry of type '{0}' from source '{1}'", expectedEventLogEntryType, expectedSource));
+            }
 
             return filteredEntries;
         }
@@ -299,6 +313,7 @@ namespace NLog.UnitTests.Targets
             target.Log = "application";
             // set the source explicitly to prevent random AppDomain name being used as the source name
             target.Source = sourceName;
+            //The Layout is intentionally just ${message}. Be able to check message length without other patterns.
             target.Layout = new SimpleLayout("${message}");
             if (entryType != null)
             {
@@ -339,7 +354,6 @@ namespace NLog.UnitTests.Targets
             }
             return false;
         }
-
     }
 }
 

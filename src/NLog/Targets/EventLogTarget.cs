@@ -217,7 +217,7 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             string message = this.Layout.Render(logEvent);
-            
+
             EventLogEntryType entryType = GetEntryType(logEvent);
 
             int eventId = 0;
