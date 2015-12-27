@@ -241,21 +241,16 @@ namespace NLog.Targets
             {
                 if (OnOverflow == EventLogTargetOverflowAction.Truncate)
                 {
-                    message = message.Substring(0, MaxMessageSize);
+                    message = message.Substring(0, EventLogTarget.MaxMessageSize);
                     eventLog.WriteEntry(message, entryType, eventId, category);
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Split)
                 {
-                    int offset = 0;
-                    while (offset + MaxMessageSize < message.Length)
+                    for (int offset = 0; offset < message.Length; offset += EventLogTarget.MaxMessageSize)
                     {
-                        string chunk = message.Substring(offset, MaxMessageSize);
+                        string chunk = message.Substring(offset, Math.Min(EventLogTarget.MaxMessageSize, message.Length - offset));
                         eventLog.WriteEntry(chunk, entryType, eventId, category);
-                        offset += MaxMessageSize;
                     }
-
-                    if (offset < message.Length)
-                        eventLog.WriteEntry(message.Substring(offset), entryType, eventId, category);
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Discard)
                 {

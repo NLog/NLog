@@ -127,7 +127,9 @@ namespace NLog.UnitTests.Targets
 
         private void AssertMessageCountAndLogLevelForSplittedMessages(LogLevel loglevel, EventLogEntryType expectedEventLogEntryType, Layout entryTypeLayout)
         {
-            string testMessage = string.Join("", Enumerable.Repeat("l", MaxMessageSize + 1));
+            string messagePart1 = string.Join("", Enumerable.Repeat("l", MaxMessageSize));
+            string messagePart2 = "this part must be splitted";
+            string testMessage = messagePart1 + messagePart2;
             var entries = Write(loglevel, expectedEventLogEntryType, testMessage, entryTypeLayout, EventLogTargetOverflowAction.Split).ToList();
 
             Assert.True(entries.Count == 2, string.Format("2 evenlogs expected. But {0} exist", entries.Count));
@@ -238,6 +240,22 @@ namespace NLog.UnitTests.Targets
             AssertWrittenMessage(entries, messagePart4);
             AssertWrittenMessage(entries, messagePart5);
         }
+
+        [Fact]
+        public void WriteEventLogEntryEqual2MaxMessageSizeWithOverflowSplitEntries_TheMessageShouldBeSplittedInTwoChunk()
+        {
+            string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
+            string messagePart2 = string.Join("", Enumerable.Repeat("b", MaxMessageSize));
+            string testMessage = messagePart1 + messagePart2;
+
+            var entries = Write(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Split).ToList();
+
+            Assert.True(entries.Count == 2, string.Format("2 evenlogs expected. But {0} exist", entries.Count));
+
+            AssertWrittenMessage(entries, messagePart1);
+            AssertWrittenMessage(entries, messagePart2);
+        }
+
 
         [Fact]
         public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowSplitEntries_TheMessageIsNotSplit()
