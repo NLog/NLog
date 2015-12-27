@@ -51,9 +51,10 @@ namespace NLog.UnitTests.Targets
 
         private void AssertMessageAndLogLevelForTruncatedMessages(LogLevel loglevel, EventLogEntryType expectedEventLogEntryType, string expectedMessage, Layout entryTypeLayout)
         {
+            const int expectedEntryCount = 1;
             var eventRecords = Write(loglevel, expectedEventLogEntryType, expectedMessage, entryTypeLayout, EventLogTargetOverflowAction.Truncate).ToList();
 
-            Assert.True(eventRecords.Count == 1, string.Format("1 evenlog expected. But {0} exist", eventRecords.Count));
+            Assert.Equal(expectedEntryCount, eventRecords.Count);
             AssertWrittenMessage(eventRecords, expectedMessage);
         }
 
@@ -127,12 +128,13 @@ namespace NLog.UnitTests.Targets
 
         private void AssertMessageCountAndLogLevelForSplittedMessages(LogLevel loglevel, EventLogEntryType expectedEventLogEntryType, Layout entryTypeLayout)
         {
+            const int expectedEntryCount = 2;
             string messagePart1 = string.Join("", Enumerable.Repeat("l", MaxMessageSize));
             string messagePart2 = "this part must be splitted";
             string testMessage = messagePart1 + messagePart2;
             var entries = Write(loglevel, expectedEventLogEntryType, testMessage, entryTypeLayout, EventLogTargetOverflowAction.Split).ToList();
 
-            Assert.True(entries.Count == 2, string.Format("2 evenlogs expected. But {0} exist", entries.Count));
+            Assert.Equal(expectedEntryCount, entries.Count);
         }
 
         [Fact]
@@ -200,29 +202,32 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowTruncate_TruncatesTheMessage()
         {
+            const int expectedEntryCount = 1;
             string expectedMessage = string.Join("", Enumerable.Repeat("t", MaxMessageSize));
             string expectedToTruncateMessage = " this part will be truncated";
             string testMessage = expectedMessage + expectedToTruncateMessage;
 
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Truncate).ToList();
 
-            Assert.True(entries.Count == 1, string.Format("1 evenlog expected. But {0} exist", entries.Count));
+            Assert.Equal(expectedEntryCount, entries.Count);
             AssertWrittenMessage(entries, expectedMessage);
         }
 
         [Fact]
         public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowTruncate_TheMessageIsNotTruncated()
         {
+            const int expectedEntryCount = 1;
             string expectedMessage = string.Join("", Enumerable.Repeat("t", MaxMessageSize));
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Truncate).ToList();
 
-            Assert.True(entries.Count == 1, string.Format("1 evenlog expected. But {0} exist", entries.Count));
+            Assert.Equal(expectedEntryCount, entries.Count);
             AssertWrittenMessage(entries, expectedMessage);
         }
 
         [Fact]
         public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowSplitEntries_TheMessageShouldBeSplitted()
         {
+            const int expectedEntryCount = 5;
             string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
             string messagePart2 = string.Join("", Enumerable.Repeat("b", MaxMessageSize));
             string messagePart3 = string.Join("", Enumerable.Repeat("c", MaxMessageSize));
@@ -232,7 +237,7 @@ namespace NLog.UnitTests.Targets
 
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Split).ToList();
 
-            Assert.True(entries.Count == 5, string.Format("5 evenlogs expected. But {0} exist", entries.Count));
+            Assert.Equal(expectedEntryCount, entries.Count);
 
             AssertWrittenMessage(entries, messagePart1);
             AssertWrittenMessage(entries, messagePart2);
@@ -244,13 +249,14 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryEqual2MaxMessageSizeWithOverflowSplitEntries_TheMessageShouldBeSplittedInTwoChunk()
         {
+            const int expectedEntryCount = 2;
             string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
             string messagePart2 = string.Join("", Enumerable.Repeat("b", MaxMessageSize));
             string testMessage = messagePart1 + messagePart2;
 
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Split).ToList();
 
-            Assert.True(entries.Count == 2, string.Format("2 evenlogs expected. But {0} exist", entries.Count));
+            Assert.Equal(expectedEntryCount, entries.Count);
 
             AssertWrittenMessage(entries, messagePart1);
             AssertWrittenMessage(entries, messagePart2);
@@ -260,20 +266,22 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowSplitEntries_TheMessageIsNotSplit()
         {
+            const int expectedEntryCount = 1;
             string expectedMessage = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Split).ToList();
 
-            Assert.True(entries.Count == 1, string.Format("1 evenlog expected. But {0} exist", entries.Count));
+            Assert.Equal(expectedEntryCount, entries.Count);
             AssertWrittenMessage(entries, expectedMessage);
         }
 
         [Fact]
         public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowDiscard_TheMessageIsWritten()
         {
+            const int expectedEntryCount = 1;
             string expectedMessage = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Discard).ToList();
 
-            Assert.True(entries.Count == 1, string.Format("1 evenlog expected. But {0} exist", entries.Count));
+            Assert.Equal(expectedEntryCount, entries.Count);
             AssertWrittenMessage(entries, expectedMessage);
         }
 
@@ -321,7 +329,7 @@ namespace NLog.UnitTests.Targets
         private void AssertWrittenMessage(IEnumerable<EventRecord> eventLogs, string expectedMessage)
         {
             var messages = eventLogs.Where(entry => entry.Properties.Any(prop => Convert.ToString(prop.Value) == expectedMessage));
-            Assert.True(messages.Any(), string.Format("Event log has not expected message: '{0}'", expectedMessage));
+            Assert.True(messages.Any(), string.Format("Event records has not expected message: '{0}'", expectedMessage));
         }
 
         private static EventLogTarget CreateEventLogTarget(Layout entryType, string sourceName, EventLogTargetOverflowAction overflowAction)
