@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 var target = Argument("target", "Default");
-var configuration = Argument("configuration", "Release");
+var configuration = Argument("configuration", "Debug");
 var outputDirectory = Argument("outputDirectory", "./artifacts");
 
 //////////////////////////////////////////////////////////////////////

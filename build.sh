@@ -22,4 +22,4 @@ curl -Lsfo buildcake.sh http://cakebuild.net/bootstrapper/linux
 chmod u+x ./buildcake.sh
 
 echo "Running cake"
-./buildcake.sh "build.cake"
+./buildcake.sh "build.cake" $@
