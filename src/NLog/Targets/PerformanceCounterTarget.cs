@@ -31,9 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
 
-#if !SILVERLIGHT
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
 {
@@ -43,6 +43,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Globalization;
+    using System.Linq;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;

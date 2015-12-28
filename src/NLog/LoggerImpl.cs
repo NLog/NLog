@@ -107,45 +107,55 @@ namespace NLog
         ///  Finds first user stack frame in a stack trace
         /// </summary>
         /// <param name="stackTrace">The stack trace of the logging method invocation</param>
-        /// <param name="loggerType">Type of the logger or logger wrapper</param>
+        /// <param name="loggerType">Type of the logger or logger wrapper. This is still Logger if it's a subclass of Logger.</param>
         /// <returns>Index of the first user stack frame or 0 if all stack frames are non-user</returns>
-        /// <seealso cref="IsNonUserStackFrame"/>
         private static int FindCallingMethodOnStackTrace([NotNull] StackTrace stackTrace, [NotNull] Type loggerType)
         {
-            int? firstUserFrame = null;
+            var stackFrames = stackTrace.GetFrames();
+            if (stackFrames == null)
+                return 0;
+            var intermediate = stackFrames.Select((f, i) => new {index = i, frame = f});
+            //find until logger type
+            intermediate = intermediate.SkipWhile(p => !IsLoggerType(p.frame, loggerType));
+            //skip to next
+            intermediate = intermediate.Skip(1);
+            //skip while in "skip" assemlbl
+            intermediate = intermediate.SkipWhile(p => SkipAssembly(p.frame));
+            var last = intermediate.FirstOrDefault();
 
-                for (int i = 0; i < stackTrace.FrameCount; ++i)
-                {
-                    StackFrame frame = stackTrace.GetFrame(i);
-                    MethodBase mb = frame.GetMethod();
-                if (IsNonUserStackFrame(mb, loggerType))
-                        firstUserFrame = i + 1;
-                    else if (firstUserFrame != null)
-                    return firstUserFrame.Value;
-                }
-
+            if (last != null)
+            {
+                return last.index;
+            }
             return 0;
-                    }
+
+        }
 
         /// <summary>
-        ///  Defines whether a stack frame belongs to non-user code
+        /// Assembly to skip?
         /// </summary>
-        /// <param name="method">Method of the stack frame</param>
-        /// <param name="loggerType">Type of the logger or logger wrapper</param>
-        /// <returns><see langword="true"/>, if the method is from non-user code and should be skipped</returns>
-        /// <remarks>
-        ///  The method is classified as non-user if its declaring assembly is from hidden assemblies list
-        ///  or its declaring type is <paramref name="loggerType"/> or one of its subtypes.
-        /// </remarks>
-        private static bool IsNonUserStackFrame([NotNull] MethodBase method, [NotNull] Type loggerType)
+        /// <param name="frame">Find assembly via this frame. </param>
+        /// <returns><c>true</c>, we should skip.</returns>
+        private static bool SkipAssembly(StackFrame frame)
         {
-            var declaringType = method.DeclaringType;
-            // get assembly by declaring type or by module for global methods
-            var assembly = declaringType != null ? declaringType.Assembly : method.Module.Assembly; 
+            var method = frame.GetMethod();
+            var assembly = method.DeclaringType != null ? method.DeclaringType.Assembly : method.Module.Assembly;
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
-            if (SkipAssembly(assembly)) return true;
-            // or if that type is the loggerType or one of its subtypes
-            return declaringType != null && loggerType.IsAssignableFrom(declaringType);
+            return SkipAssembly(assembly);
+        }
+
+        /// <summary>
+        /// Is this the type of the logger?
+        /// </summary>
+        /// <param name="frame">get type of this logger in this frame.</param>
+        /// <param name="loggerType">Type of the logger.</param>
+        /// <returns></returns>
+        private static bool IsLoggerType(StackFrame frame, Type loggerType)
+        {
+            var method = frame.GetMethod();
+            Type declaringType = method.DeclaringType;
+            var isLoggerType = declaringType != null && loggerType == declaringType;
+            return isLoggerType;
         }
 
         private static bool SkipAssembly(Assembly assembly)

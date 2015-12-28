@@ -117,7 +117,31 @@
       <FileSet Include="AllResources" />
     </ItemGroup>
   </Project>
-
+  
+  <Project File="NLog.Xamarin.Android.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+    <ItemGroup Name="EmbeddedResource">
+      <FileSet Include="AllResources" />
+    </ItemGroup>
+  </Project>
+  
+  <Project File="NLog.Xamarin.iOS.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+    <ItemGroup Name="EmbeddedResource">
+      <FileSet Include="AllResources" />
+    </ItemGroup>
+  </Project>
+  
   <Project File="NLog.wp7.csproj">
     <ItemGroup Name="Compile">
       <FileSet Include="AllFilesToCompile" />
@@ -125,7 +149,6 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
     </ItemGroup>
-
   </Project>
 
   <Project File="NLog.wp71.csproj">
@@ -135,7 +158,18 @@
     <ItemGroup Name="None" KeepOldFiles="true">
       <FileSet Include="Logger.tt" />
     </ItemGroup>
-
+  </Project>
+  
+  <Project File="NLog.wp8.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+    <ItemGroup Name="EmbeddedResource">
+      <FileSet Include="AllResources" />
+    </ItemGroup>
   </Project>
 
   <Project File="NLog.doc.csproj">

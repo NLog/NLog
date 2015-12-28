@@ -15,7 +15,7 @@
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
     <dependencies>
       <dependency id="NLog" version="$BuildVersion$" />
-      <dependency id="NLog.Schema" version="4.0" />
+      <dependency id="NLog.Schema" version="4.2.1" />
     </dependencies>
     <tags>nlog, xml, config</tags>
   </metadata>

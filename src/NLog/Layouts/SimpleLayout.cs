@@ -87,7 +87,6 @@ namespace NLog.Layouts
             this.configurationItemFactory = configurationItemFactory;
             this.Text = txt;
         }
-
         internal SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
         {
             this.configurationItemFactory = configurationItemFactory;

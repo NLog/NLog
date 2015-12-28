@@ -76,26 +76,39 @@ namespace NLog.Targets
         private const int ArchiveAboveSizeDisabled = -1;
 
         /// <summary>
+        /// Cached directory separator char array to avoid memory allocation on each method call.
+        /// </summary>
+        private readonly static char[] DirectorySeparatorChars = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
+
+#if !SILVERLIGHT
+
+        /// <summary>
+        /// Cached invalid filenames char array to avoid memory allocation everytime Path.GetInvalidFileNameChars() is called.
+        /// </summary>
+        private readonly static char[] InvalidFileNameChars = Path.GetInvalidFileNameChars();
+
+#endif 
+        /// <summary>
         /// Holds the initialised files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
         /// </summary>
         /// <remarks>Last write time is store in local time (no UTC).</remarks>
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
 
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
-        
+
         /// <summary>
         /// Factory used to create the file appeanders in the <see cref="FileTarget"/> instance. 
         /// </summary>
         /// <remarks>File appenders are stored in an instance of <see cref="FileAppenderCache"/>.</remarks>
         private IFileAppenderFactory appenderFactory;
-        
+
         /// <summary>
         /// List of the associated file appenders with the <see cref="FileTarget"/> instance.
         /// </summary>
         private FileAppenderCache recentAppenders;
 
         private Timer autoClosingTimer;
-        
+
         /// <summary>
         /// The number of initialised files at any one time.
         /// </summary>
@@ -108,11 +121,21 @@ namespace NLog.Targets
 
         private readonly DynamicFileArchive fileArchive;
 
- 		/// <summary>
+        /// <summary>
         /// It holds the file names of existing archives in order for the oldest archives to be removed when the list of
         /// filenames becomes too long.
         /// </summary>
         private Queue<string> previousFileNames;
+
+        /// <summary>
+        /// The filename as target
+        /// </summary>
+        private Layout fileName;
+
+        /// <summary>
+        /// The filename if <see cref="FileName"/> is a fixed string
+        /// </summary>
+        private string cachedCleanedFileNamed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
@@ -151,6 +174,7 @@ namespace NLog.Targets
             this.maxLogFilenames = 20;
             this.previousFileNames = new Queue<string>(this.maxLogFilenames);
             this.recentAppenders = FileAppenderCache.Empty;
+            this.CleanupFileName = true;
         }
 
         /// <summary>
@@ -169,7 +193,33 @@ namespace NLog.Targets
         /// </example>
         /// <docgen category='Output Options' order='1' />
         [RequiredParameter]
-        public Layout FileName { get; set; }
+        public Layout FileName
+        {
+            get { return fileName; }
+            set
+            {
+                var simpleLayout = value as SimpleLayout;
+                if (simpleLayout != null && simpleLayout.IsFixedText)
+                {
+                    cachedCleanedFileNamed = CleanupInvalidFileNameChars(simpleLayout.FixedText);
+                }
+                else
+                {
+                    //clear cache
+                    cachedCleanedFileNamed = null;
+                }
+
+
+                fileName = value;
+            }
+        }
+
+        /// <summary>
+        /// Cleanup invalid values in a filename, e.g. slashes in a filename. If set to <c>true</c>, this can impact the performance of massive writes. 
+        /// If set to <c>false</c>, nothing gets written when the filename is wrong.
+        /// </summary>
+        [DefaultValue(true)]
+        public bool CleanupFileName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to create directories if they do not exist.
@@ -483,7 +533,7 @@ namespace NLog.Targets
         /// </remarks>
         public void CleanupInitializedFiles()
         {
-            this.CleanupInitializedFiles(DateTime.Now.AddDays(-FileTarget.InitializedFilesCleanupPeriod));
+            this.CleanupInitializedFiles(DateTime.UtcNow.AddDays(-FileTarget.InitializedFilesCleanupPeriod));
         }
 
         /// <summary>
@@ -660,7 +710,7 @@ namespace NLog.Targets
                 this.autoClosingTimer = null;
             }
 
-            this.recentAppenders.CloseAppenders();           
+            this.recentAppenders.CloseAppenders();
         }
 
         /// <summary>
@@ -670,7 +720,9 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            string fileName = CleanupInvalidFileNameChars(this.FileName.Render(logEvent));
+            var fileName = GetCleanedFileName(logEvent);
+
+
 
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
@@ -698,6 +750,11 @@ namespace NLog.Targets
             }
 
             this.WriteToFile(fileName, logEvent, bytes, false);
+        }
+
+        private string GetCleanedFileName(LogEventInfo logEvent)
+        {
+            return cachedCleanedFileNamed ?? CleanupInvalidFileNameChars(this.FileName.Render(logEvent));
         }
 
         /// <summary>
@@ -871,7 +928,7 @@ namespace NLog.Targets
 
             string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
             RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
-            
+
             var shouldCompress = archiveNumber == 0;
             try
             {
@@ -911,7 +968,7 @@ namespace NLog.Targets
 
             try
             {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                 foreach (string s in Directory.EnumerateFiles(dirName, fileNameMask))
 #else
                 foreach (string s in Directory.GetFiles(dirName, fileNameMask))
@@ -1212,7 +1269,7 @@ namespace NLog.Targets
         /// <returns>Lisf of files matching the pattern.</returns>
         private static IEnumerable<FileInfo> GetFiles(DirectoryInfo directoryInfo, string fileNameMask)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
             return directoryInfo.EnumerateFiles(fileNameMask);
 #else
             return directoryInfo.GetFiles(fileNameMask);
@@ -1281,7 +1338,7 @@ namespace NLog.Targets
                     return;
                 }
 
-#if SILVERLIGHT
+#if SILVERLIGHT && !WINDOWS_PHONE
                 var files = directoryInfo.EnumerateFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
 #else
                 var files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
@@ -1392,7 +1449,7 @@ namespace NLog.Targets
             {
                 return;
             }
-            
+
             string fileNamePattern = GetFileNamePattern(fileName, eventInfo);
 
             if (!ContainsFileNamePattern(fileNamePattern))
@@ -1630,11 +1687,13 @@ namespace NLog.Targets
 
             if (!justData)
             {
+                //UtcNow is much faster then .now. This was a bottleneck in writing a lot of files after CPU test.
+                var now = DateTime.UtcNow;
                 if (!this.initializedFiles.ContainsKey(fileName))
                 {
                     ProcessOnStartup(fileName, logEvent);
 
-                    this.initializedFiles[fileName] = DateTime.Now;
+                    this.initializedFiles[fileName] = now;
                     this.initializedFilesCounter++;
                     writeHeader = true;
 
@@ -1645,7 +1704,7 @@ namespace NLog.Targets
                     }
                 }
 
-                this.initializedFiles[fileName] = DateTime.Now;
+                this.initializedFiles[fileName] = now;
             }
 
             return writeHeader;
@@ -1813,16 +1872,41 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">The original file name which might contain invalid characters.</param>
         /// <returns>The cleaned up file name without any invalid characters.</returns>
-        private static string CleanupInvalidFileNameChars(string fileName)
+        private string CleanupInvalidFileNameChars(string fileName)
         {
+
+            if (!this.CleanupFileName)
+            {
+                return fileName;
+            }
+
 #if !SILVERLIGHT
 
-            var lastDirSeparator =
-                fileName.LastIndexOfAny(new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar });
+            var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChars);
 
             var fileName1 = fileName.Substring(lastDirSeparator + 1);
             var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator) : string.Empty;
-            fileName1 = Path.GetInvalidFileNameChars().Aggregate(fileName1, (current, c) => current.Replace(c, '_'));
+
+            char[] fileName1Chars = null;
+            foreach (var invalidChar in InvalidFileNameChars)
+            {
+                for (int i = 0; i < fileName1.Length; i++)
+                {
+                    if (fileName1[i] == invalidChar)
+                    {
+                        //delay char[] creation until first invalid char
+                        //is found to avoid memory allocation.
+                        if (fileName1Chars == null)
+                            fileName1Chars = fileName1.ToCharArray();
+                        fileName1Chars[i] = '_';
+                    }
+                }
+            }
+
+            //only if an invalid char was replaced do we create a new string.
+            if (fileName1Chars != null)
+                fileName1 = new string(fileName1Chars);
+
             return Path.Combine(dirName, fileName1);
 #else
             return fileName;
@@ -2075,5 +2159,6 @@ namespace NLog.Targets
                 return !FoundPattern || String.IsNullOrEmpty(replacementValue) ? this.Template : template.Substring(0, this.BeginAt) + replacementValue + template.Substring(this.EndAt);
             }
         }
+
     }
 }

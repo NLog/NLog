@@ -278,7 +278,7 @@ namespace NLog.Targets
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-        internal void Initialize(LoggingConfiguration configuration)
+		internal void Initialize(LoggingConfiguration configuration)
         {
             lock (this.SyncRoot)
             {
@@ -310,7 +310,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes this instance.
         /// </summary>
-        internal void Close()
+		internal void Close()
         {
             lock (this.SyncRoot)
             {
@@ -476,10 +476,10 @@ namespace NLog.Targets
         /// <param name="logEvent">The event info object to perform the merge to.</param>
         protected void MergeEventProperties(LogEventInfo logEvent)
         {
-			if (logEvent.Parameters == null)
-			{
-				return;
-			}
+            if (logEvent.Parameters == null)
+            {
+                return;
+            }
 
             foreach (var item in logEvent.Parameters)
             {
