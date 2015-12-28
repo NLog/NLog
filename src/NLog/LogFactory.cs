@@ -207,7 +207,7 @@ namespace NLog
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown(LogLevel.Error, "Cannot stop file watching"))
+                    if (exception.MustBeRethrown("Cannot stop file watching"))
                     {
                         throw;
                     }

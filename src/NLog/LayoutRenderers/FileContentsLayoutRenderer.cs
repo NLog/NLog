@@ -38,7 +38,6 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -109,7 +108,7 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(LogLevel.Error, "Cannot read file contents: {0}", fileName))
+                if (exception.MustBeRethrown("Cannot read file contents: {0}", fileName))
                 {
                     throw;
                 }

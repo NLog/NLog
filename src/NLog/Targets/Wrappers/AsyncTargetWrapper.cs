@@ -288,7 +288,7 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(LogLevel.Error, "Error in lazy writer timer procedure"))
+                if (exception.MustBeRethrown("Error in lazy writer timer procedure"))
                 {
                     throw;
                 }

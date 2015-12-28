@@ -57,7 +57,7 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(LogLevel.Error, "ConfigSectionHandler error."))
+                if (exception.MustBeRethrown("ConfigSectionHandler error."))
                 {
                     throw;
                 }

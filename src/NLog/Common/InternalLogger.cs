@@ -493,7 +493,7 @@ namespace NLog.Common
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(LogLevel.Error, "Cannot create needed directories to {0}", filename))
+                if (exception.MustBeRethrown("Cannot create needed directories to {0}", filename))
                 {
                     throw;
                 }

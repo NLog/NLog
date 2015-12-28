@@ -72,6 +72,8 @@ namespace NLog.Internal
         /// <summary>
         /// Determines whether the exception must be rethrown
         /// and logs an non severe exception message to the internal logger.
+        /// 
+        /// NLog Configuration errors are logged as warning, all others as error.
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <returns>
@@ -79,13 +81,15 @@ namespace NLog.Internal
         /// </returns>
         public static bool MustBeRethrown(this Exception exception)
         {
-            return MustBeRethrown(exception, null, null, null);
+            return MustBeRethrown(exception, null, null);
         }
 
         /// <summary>
         /// Determines whether the exception must be rethrown
         /// and optionally logs a message into internal logger
         /// for an non severe exception.
+        /// 
+        /// NLog Configuration errors are logged as warning, all others as error.
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <param name="logMessage">
@@ -96,13 +100,15 @@ namespace NLog.Internal
         /// </returns>
         public static bool MustBeRethrown(this Exception exception, string logMessage)
         {
-            return MustBeRethrown(exception, null, logMessage, null);
+            return MustBeRethrown(exception, logMessage, null);
         }
 
         /// <summary>
         /// Determines whether the exception must be rethrown
         /// and optionally logs a message into internal logger
         /// for an non severe exception.
+        /// 
+        /// NLog Configuration errors are logged as warning, all others as error.
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <param name="logMessage">An optional log message, if <c>logMessage</c> is set to a certain level.</param>
@@ -113,27 +119,6 @@ namespace NLog.Internal
         [StringFormatMethod("logMessage")]
         public static bool MustBeRethrown(this Exception exception, string logMessage, params object[] args)
         {
-            return MustBeRethrown(exception, null, logMessage, args);
-        }
-
-        /// <summary>
-        /// Determines whether the exception must be rethrown
-        /// and optionally logs a message into internal logger
-        /// for an non severe exception.
-        /// </summary>
-        /// <param name="exception">The exception.</param>
-        /// <param name="level">Specifies the level to log at (or <see cref="NLog.LogLevel.Off"/> to disable)
-        /// If <c>NULL</c>, it's automatically chosen between error (if exception rethrown)
-        /// and warning (if not rethrown).
-        /// </param>
-        /// <param name="logMessage">An optional log message, if <c>logMessage</c> is set to a certain level.</param>
-        /// <param name="args">Arguments for the format string in <paramref name="logMessage"/>.</param>
-        /// <returns>
-        /// <c>True</c> if the exception must be rethrown, <c>false</c> otherwise.
-        /// </returns>
-        [StringFormatMethod("logMessage")]
-        public static bool MustBeRethrown(this Exception exception, LogLevel level, string logMessage, params object[] args)
-        {
 
             if (exception.IsServereException())
             {
@@ -141,28 +126,26 @@ namespace NLog.Internal
                 return true;
             }
 
+            var isConfigError = exception is NLogConfigurationException
+                              || exception.GetType().IsSubclassOf(typeof(NLogConfigurationException));
+
             //we throw always configuration exceptions (historical)
-            var shallRethrow = LogManager.ThrowExceptions || exception is NLogConfigurationException
-                               || exception.GetType().IsSubclassOf(typeof(NLogConfigurationException));
+            var shallRethrow = LogManager.ThrowExceptions || isConfigError;
 
 
-            if (level == null)
+
+            var level = isConfigError ? LogLevel.Warn : LogLevel.Error;
+
+            var exceptionText = exception.ToString();
+            if (string.IsNullOrEmpty(logMessage))
             {
-                level = shallRethrow ? LogLevel.Error : LogLevel.Warn;
+                InternalLogger.Log(level, exceptionText);
+            }
+            else
+            {
+                InternalLogger.Log(level, string.Format("{0}: {1}", logMessage, exceptionText), args);
             }
 
-            if (level != LogLevel.Off)
-            {
-                var exceptionText = exception.ToString();
-                if (string.IsNullOrEmpty(logMessage))
-                {
-                    InternalLogger.Log(level, exceptionText);
-                }
-                else
-                {
-                    InternalLogger.Log(level, string.Format("{0}: {1}", logMessage, exceptionText), args);
-                }
-            }
             return shallRethrow;
         }
     }

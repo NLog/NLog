@@ -335,7 +335,7 @@ namespace NLog.Config
 
                 if (ignoreErrors)
                 {
-                    if (exception.MustBeRethrown(LogLevel.Error, message))
+                    if (exception.MustBeRethrown(message))
                     {
                         throw new NLogConfigurationException(message);
                     }
@@ -854,7 +854,7 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown(LogLevel.Error, "Error loading extensions from '{0}'", assemblyFile))
+                        if (exception.MustBeRethrown("Error loading extensions from '{0}'", assemblyFile))
                         {
                             throw;
                         }
