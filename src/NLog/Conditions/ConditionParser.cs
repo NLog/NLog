@@ -108,7 +108,7 @@ namespace NLog.Conditions
         {
             var parser = new ConditionParser(stringReader, configurationItemFactories);
             ConditionExpression expression = parser.ParseExpression();
-        
+
             return expression;
         }
 
@@ -136,10 +136,10 @@ namespace NLog.Conditions
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown("Cannot resolve function '{0}'", functionName))
-                {
+                if (exception.IsServereException())
                     throw;
-                }
+
+                throw new ConditionParseException("Cannot resolve function '" + functionName + "'", exception);
             }
         }
 
