@@ -139,9 +139,9 @@ namespace NLog.Internal
 
             // only log after 'serious' exceptions
 
-            var shallRethrow = (exception is NLogConfigurationException)
-                               || (exception.GetType().IsSubclassOf(typeof(NLogConfigurationException)))
-                               || LogManager.ThrowExceptions;
+            var shallRethrow = LogManager.ThrowExceptions || (exception is NLogConfigurationException)
+                               || (exception.GetType().IsSubclassOf(typeof (NLogConfigurationException));
+                               
 
             if (level == null)
             {
