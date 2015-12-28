@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !MONO
 namespace NLog.UnitTests.Config
 {
     using NLog.Config;
