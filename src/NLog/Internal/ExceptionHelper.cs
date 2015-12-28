@@ -160,7 +160,7 @@ namespace NLog.Internal
                 }
                 else
                 {
-                    InternalLogger.Log(level, string.Format("{0} {1}", logMessage, exceptionText), args);
+                    InternalLogger.Log(level, string.Format("{0}: {1}", logMessage, exceptionText), args);
                 }
             }
             return shallRethrow;

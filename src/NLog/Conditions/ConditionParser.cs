@@ -136,12 +136,10 @@ namespace NLog.Conditions
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown("Exception occured While resolving function '{0}' :", functionName))
+                if (exception.MustBeRethrown("Cannot resolve function '{0}'", functionName))
                 {
                     throw;
                 }
-
-                throw new ConditionParseException("Cannot resolve function '" + functionName + "'", exception);
             }
         }
 

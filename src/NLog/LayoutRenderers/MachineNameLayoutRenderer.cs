@@ -63,7 +63,7 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(LogLevel.Error, "Error getting machine name {0}", exception))
+                if (exception.MustBeRethrown(LogLevel.Error, "Error getting machine name"))
                 {
                     throw;
                 }

@@ -109,7 +109,7 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(LogLevel.Error, "Cannot read file contents: {0} {1}", fileName, exception))
+                if (exception.MustBeRethrown(LogLevel.Error, "Cannot read file contents: {0}", fileName))
                 {
                     throw;
                 }

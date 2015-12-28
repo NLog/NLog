@@ -162,7 +162,7 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown("Exception in layout renderer."))
+                if (exception.MustBeRethrown("Exception in layout renderer"))
                 {
                     throw;
                 }

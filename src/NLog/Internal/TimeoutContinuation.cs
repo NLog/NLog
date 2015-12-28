@@ -74,7 +74,7 @@ namespace NLog.Internal
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown(LogLevel.Error, "Exception in asynchronous handler {0}", exception))
+                if (ex.MustBeRethrown(LogLevel.Error, "Exception in asynchronous handler"))
                 {
                     throw;
                 }

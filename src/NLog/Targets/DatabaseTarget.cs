@@ -395,7 +395,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(LogLevel.Error, "Error when writing to database {0}", exception))
+                if (exception.MustBeRethrown(LogLevel.Error, "Error when writing to database"))
                 {
                     throw;
                 }
@@ -435,7 +435,7 @@ namespace NLog.Targets
                         }
                         catch (Exception exception)
                         {
-                            if (exception.MustBeRethrown(LogLevel.Error, "Error when writing to database {0}", exception))
+                            if (exception.MustBeRethrown(LogLevel.Error, "Error when writing to database"))
                             {
                                 throw;
                             }

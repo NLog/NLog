@@ -207,7 +207,7 @@ namespace NLog
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown(LogLevel.Error, "Cannot stop file watching: {0}", exception))
+                    if (exception.MustBeRethrown(LogLevel.Error, "Cannot stop file watching"))
                     {
                         throw;
                     }
@@ -242,7 +242,7 @@ namespace NLog
                         }
                         catch (Exception exception)
                         {
-                            if (exception.MustBeRethrown("Cannot start file watching."))
+                            if (exception.MustBeRethrown("Cannot start file watching"))
                             {
                                 throw;
                             }
@@ -876,7 +876,7 @@ namespace NLog
                     }
                     catch (Exception ex)
                     {
-                        if (ex.MustBeRethrown("GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName))
+                        if (ex.MustBeRethrown("GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor", fullName))
                         {
                             throw;
                         }

@@ -263,7 +263,7 @@ namespace NLog.Layouts
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown("Exception in {0}.Append().", renderer.GetType().FullName))
+                    if (exception.MustBeRethrown("Exception in {0}.Append()", renderer.GetType().FullName))
                     {
                         throw;
                     }

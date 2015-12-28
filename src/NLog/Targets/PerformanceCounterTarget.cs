@@ -312,7 +312,7 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown(LogLevel.Error, "Cannot open performance counter {0}/{1}/{2}: {3}", this.CategoryName, this.CounterName, this.InstanceName, exception))
+                    if (exception.MustBeRethrown(LogLevel.Error, "Cannot open performance counter {0}/{1}/{2}", this.CategoryName, this.CounterName, this.InstanceName))
                     {
                         throw;
                     }

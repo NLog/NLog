@@ -295,7 +295,7 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown(LogLevel.Error, "Error initializing target {0} {1}.", this, exception))
+                        if (exception.MustBeRethrown(LogLevel.Error, "Error initializing target {0}", this))
                         {
                             throw;
                         }
@@ -330,7 +330,7 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown(LogLevel.Error, "Error closing target {0} {1}.", this, exception))
+                        if (exception.MustBeRethrown(LogLevel.Error, "Error closing target {0}", this))
                         {
                             throw;
                         }

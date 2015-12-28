@@ -377,12 +377,10 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown(LogLevel.Error, "Error when connecting to EventLog: {0}", exception) || alwaysThrowError)
+                if (exception.MustBeRethrown(LogLevel.Error, "Error when connecting to EventLog") || alwaysThrowError)
                 {
                     throw;
                 }
-
-                throw;
             }
         }
     }
