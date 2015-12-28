@@ -134,17 +134,17 @@ namespace NLog.Internal
         [StringFormatMethod("logMessage")]
         public static bool MustBeRethrown(this Exception exception, LogLevel level, string logMessage, params object[] args)
         {
-            
+
             if (exception.IsServereException())
             {
+                //no futher logging, because it can make servere exceptions only worse.
                 return true;
             }
 
-            // only log after 'serious' exceptions
-
+            //we throw always configuration exceptions (historical)
             var shallRethrow = LogManager.ThrowExceptions || exception is NLogConfigurationException
-                               || exception.GetType().IsSubclassOf(typeof (NLogConfigurationException));
-                               
+                               || exception.GetType().IsSubclassOf(typeof(NLogConfigurationException));
+
 
             if (level == null)
             {
