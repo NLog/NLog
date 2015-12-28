@@ -87,21 +87,6 @@ namespace NLog.Internal
         /// for an non severe exception.
         /// </summary>
         /// <param name="exception">The exception.</param>
-        /// <param name="logException">Determines, if a message should be written to the internal logger.</param>
-        /// <returns>
-        /// True if the exception must be rethrown, false otherwise.
-        /// </returns>
-        public static bool MustBeRethrown(this Exception exception, bool logException)
-        {
-            return MustBeRethrown(exception, logException ? null : LogLevel.Off, null, null);
-        }
-
-        /// <summary>
-        /// Determines whether the exception must be rethrown
-        /// and optionally logs a message into internal logger
-        /// for an non severe exception.
-        /// </summary>
-        /// <param name="exception">The exception.</param>
         /// <param name="logMessage">
         /// An optional log message, if <c>logMessage</c> is set to a certain level.
         /// </param>
