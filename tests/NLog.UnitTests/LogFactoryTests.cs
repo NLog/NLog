@@ -89,10 +89,11 @@ namespace NLog.UnitTests
         [Fact]
         public void InvalidXMLConfiguration_ThrowErrorWhen_ThrowExceptionFlagIsSet()
         {
-            Boolean ExceptionThrown = false;
-            try
+
+            LogManager.ThrowExceptions = true;
+
+            Assert.Throws<Exception>(() =>
             {
-                LogManager.ThrowExceptions = true;
 
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog internalLogToConsole='IamNotBooleanValue'>
@@ -101,13 +102,9 @@ namespace NLog.UnitTests
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
             </nlog>");
-            }
-            catch (Exception)
-            {
-                ExceptionThrown = true;
-            }
+            });
 
-            Assert.True(ExceptionThrown);
+
 
         }
 
@@ -400,7 +397,7 @@ namespace NLog.UnitTests
             Assert.False(factory.IsLoggingEnabled());
             factory.EnableLogging();
             Assert.True(factory.IsLoggingEnabled());
-#pragma warning restore 618           
+#pragma warning restore 618
         }
 
         [Fact]
@@ -525,7 +522,7 @@ namespace NLog.UnitTests
             }
         }
 
-     
+
     }
 }
 #endif
