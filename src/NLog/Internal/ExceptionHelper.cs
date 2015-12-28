@@ -91,7 +91,7 @@ namespace NLog.Internal
         /// An optional log message, if <c>logMessage</c> is set to a certain level.
         /// </param>
         /// <returns>
-        /// True if the exception must be rethrown, false otherwise.
+        /// <c>True</c> if the exception must be rethrown, <c>false</c> otherwise.
         /// </returns>
         public static bool MustBeRethrown(this Exception exception, string logMessage)
         {
@@ -105,9 +105,9 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <param name="logMessage">An optional log message, if <c>logMessage</c> is set to a certain level.</param>
-        /// <param name="args">Arguments for the format string in <c>logMessage</c>.</param>
+        /// <param name="args">Arguments for the format string in <paramref name="logMessage"/>.</param>
         /// <returns>
-        /// True if the exception must be rethrown, false otherwise.
+        /// <c>True</c> if the exception must be rethrown, <c>false</c> otherwise.
         /// </returns>
         public static bool MustBeRethrown(this Exception exception, string logMessage, params object[] args)
         {
@@ -125,9 +125,9 @@ namespace NLog.Internal
         /// and warning (if not rethrown).
         /// </param>
         /// <param name="logMessage">An optional log message, if <c>logMessage</c> is set to a certain level.</param>
-        /// <param name="args">Arguments for the format string in <c>logMessage</c>.</param>
+        /// <param name="args">Arguments for the format string in <paramref name="logMessage"/>.</param>
         /// <returns>
-        /// True if the exception must be rethrown, false otherwise.
+        /// <c>True</c> if the exception must be rethrown, <c>false</c> otherwise.
         /// </returns>
         public static bool MustBeRethrown(this Exception exception, LogLevel level, string logMessage, params object[] args)
         {
@@ -144,9 +144,9 @@ namespace NLog.Internal
         /// If <c>NULL</c>, it's automatically chosen between error (if exception rethrown)
         /// and warning (if not rethrown).</param>
         /// <param name="logMessage">An optional log message, if <c>logMessage</c> is set to a certain level.</param>
-        /// <param name="args">Arguments for the format string in <c>logMessage</c>.</param>
+        /// <param name="args">Arguments for the format string in <paramref name="logMessage"/>.</param>
         /// <returns>
-        /// True if the exception must be rethrown, false otherwise.
+        /// <c>True</c> if the exception must be rethrown, <c>false</c> otherwise.
         /// </returns>
         public static bool MustBeRethrown(this Exception exception, bool ignoreNonSevere, LogLevel level, string logMessage, params object[] args)
         {
@@ -175,8 +175,8 @@ namespace NLog.Internal
                 }
                 else
                 {
-                    InternalLogger.Log(level, 
-                        string.Format("{0} {1}", logMessage, exceptionText), 
+                    InternalLogger.Log(level,
+                        string.Format("{0} {1}", logMessage, exceptionText),
                         args);
                 }
             }
