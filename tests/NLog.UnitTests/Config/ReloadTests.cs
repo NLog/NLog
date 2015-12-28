@@ -64,6 +64,8 @@ namespace NLog.UnitTests.Config
             {
                 LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
 
+                Assert.False(((XmlLoggingConfiguration)LogManager.Configuration).AutoReload);
+
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa");
@@ -106,6 +108,8 @@ namespace NLog.UnitTests.Config
             try
             {
                 LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+
+                Assert.True(((XmlLoggingConfiguration)LogManager.Configuration).AutoReload);
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");

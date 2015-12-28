@@ -182,6 +182,23 @@ namespace NLog.Config
         public bool? InitializeSucceeded { get; private set; }
         
         /// <summary>
+        /// Gets or sets a value indicating whether all of the configuration files
+        /// should be watched for changes and reloaded automatically when changed.
+        /// </summary>
+        public bool AutoReload
+        {
+            get
+            {
+                return this.fileMustAutoReloadLookup.Values.All(mustAutoReload => mustAutoReload);
+            }
+            set
+            {
+                foreach (string nextFile in this.fileMustAutoReloadLookup.Keys.ToArray())
+                    this.fileMustAutoReloadLookup[nextFile] = value;
+            }
+        }
+
+        /// <summary>
         /// Gets the collection of file names which should be watched for changes by NLog.
         /// This is the list of configuration files processed.
         /// If the <c>autoReload</c> attribute is not set it returns empty collection.
@@ -366,10 +383,8 @@ namespace NLog.Config
 
         private void ConfigureFromFile(string fileName, bool autoReloadDefault = false)
         {
-            if (this.fileMustAutoReloadLookup.ContainsKey(GetFileLookupKey(fileName)))
-                return;
-            
-            this.ParseTopLevel(new NLogXmlElement(fileName), fileName, autoReloadDefault);
+            if (!this.fileMustAutoReloadLookup.ContainsKey(GetFileLookupKey(fileName)))
+                this.ParseTopLevel(new NLogXmlElement(fileName), fileName, autoReloadDefault);
         }
 
         #region parse methods
