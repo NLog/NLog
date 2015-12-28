@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -39,6 +41,7 @@ namespace NLog.LayoutRenderers
     using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
+    using NLog.Internal;
 
     /// <summary>
     /// Renders contents of the specified file.
