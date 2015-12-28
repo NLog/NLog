@@ -336,28 +336,28 @@ namespace NLog.Layouts
             return (char)code;
         }
 
-        private static LayoutRenderer ParseLayoutRenderer(ConfigurationItemFactory configurationItemFactory, SimpleStringReader sr)
+        private static LayoutRenderer ParseLayoutRenderer(ConfigurationItemFactory configurationItemFactory, SimpleStringReader stringReader)
         {
-            int ch = sr.Read();
+            int ch = stringReader.Read();
             Debug.Assert(ch == '{', "'{' expected in layout specification");
 
-            string name = ParseLayoutRendererName(sr);
-            LayoutRenderer lr = configurationItemFactory.LayoutRenderers.CreateInstance(name);
+            string name = ParseLayoutRendererName(stringReader);
+            LayoutRenderer layoutRenderer = configurationItemFactory.LayoutRenderers.CreateInstance(name);
 
             var wrappers = new Dictionary<Type, LayoutRenderer>();
             var orderedWrappers = new List<LayoutRenderer>();
 
-            ch = sr.Read();
+            ch = stringReader.Read();
             while (ch != -1 && ch != '}')
             {
-                string parameterName = ParseParameterName(sr).Trim();
-                if (sr.Peek() == '=')
+                string parameterName = ParseParameterName(stringReader).Trim();
+                if (stringReader.Peek() == '=')
                 {
-                    sr.Read(); // skip the '='
-                    PropertyInfo pi;
-                    LayoutRenderer parameterTarget = lr;
+                    stringReader.Read(); // skip the '='
+                    PropertyInfo propertyInfo;
+                    LayoutRenderer parameterTarget = layoutRenderer;
 
-                    if (!PropertyHelper.TryGetPropertyInfo(lr, parameterName, out pi))
+                    if (!PropertyHelper.TryGetPropertyInfo(layoutRenderer, parameterName, out propertyInfo))
                     {
                         Type wrapperType;
 
@@ -372,9 +372,9 @@ namespace NLog.Layouts
                                 orderedWrappers.Add(wrapperRenderer);
                             }
 
-                            if (!PropertyHelper.TryGetPropertyInfo(wrapperRenderer, parameterName, out pi))
+                            if (!PropertyHelper.TryGetPropertyInfo(wrapperRenderer, parameterName, out propertyInfo))
                             {
-                                pi = null;
+                                propertyInfo = null;
                             }
                             else
                             {
@@ -383,29 +383,29 @@ namespace NLog.Layouts
                         }
                     }
 
-                    if (pi == null)
+                    if (propertyInfo == null)
                     {
-                        ParseParameterValue(sr);
+                        ParseParameterValue(stringReader);
                     }
                     else
                     {
-                        if (typeof(Layout).IsAssignableFrom(pi.PropertyType))
+                        if (typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType))
                         {
                             var nestedLayout = new SimpleLayout();
                             string txt;
-                            LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, sr, true, out txt);
+                            LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, true, out txt);
 
                             nestedLayout.SetRenderers(renderers, txt);
-                            pi.SetValue(parameterTarget, nestedLayout, null);
+                            propertyInfo.SetValue(parameterTarget, nestedLayout, null);
                         }
-                        else if (typeof(ConditionExpression).IsAssignableFrom(pi.PropertyType))
+                        else if (typeof(ConditionExpression).IsAssignableFrom(propertyInfo.PropertyType))
                         {
-                            var conditionExpression = ConditionParser.ParseExpression(sr, configurationItemFactory);
-                            pi.SetValue(parameterTarget, conditionExpression, null);
+                            var conditionExpression = ConditionParser.ParseExpression(stringReader, configurationItemFactory);
+                            propertyInfo.SetValue(parameterTarget, conditionExpression, null);
                         }
                         else
                         {
-                            string value = ParseParameterValue(sr);
+                            string value = ParseParameterValue(stringReader);
                             PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, configurationItemFactory);
                         }
                     }
@@ -414,32 +414,32 @@ namespace NLog.Layouts
                 {
                     // what we've just read is not a parameterName, but a value
                     // assign it to a default property (denoted by empty string)
-                    PropertyInfo pi;
+                    PropertyInfo propertyInfo;
 
-                    if (PropertyHelper.TryGetPropertyInfo(lr, string.Empty, out pi))
+                    if (PropertyHelper.TryGetPropertyInfo(layoutRenderer, string.Empty, out propertyInfo))
                     {
-                        if (typeof(SimpleLayout) == pi.PropertyType)
+                        if (typeof(SimpleLayout) == propertyInfo.PropertyType)
                         {
-                            pi.SetValue(lr, new SimpleLayout(parameterName), null);
+                            propertyInfo.SetValue(layoutRenderer, new SimpleLayout(parameterName), null);
                         }
                         else
                         {
                             string value = parameterName;
-                            PropertyHelper.SetPropertyFromString(lr, pi.Name, value, configurationItemFactory);
+                            PropertyHelper.SetPropertyFromString(layoutRenderer, propertyInfo.Name, value, configurationItemFactory);
                         }
                     }
                     else
                     {
-                        InternalLogger.Warn("{0} has no default property", lr.GetType().FullName);
+                        InternalLogger.Warn("{0} has no default property", layoutRenderer.GetType().FullName);
                     }
                 }
 
-                ch = sr.Read();
+                ch = stringReader.Read();
             }
 
-            lr = ApplyWrappers(configurationItemFactory, lr, orderedWrappers);
+            layoutRenderer = ApplyWrappers(configurationItemFactory, layoutRenderer, orderedWrappers);
 
-            return lr;
+            return layoutRenderer;
         }
 
         private static LayoutRenderer ApplyWrappers(ConfigurationItemFactory configurationItemFactory, LayoutRenderer lr, List<LayoutRenderer> orderedWrappers)
