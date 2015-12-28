@@ -335,16 +335,15 @@ namespace NLog.Config
 
                 if (ignoreErrors)
                 {
+                    InternalLogger.Error(message);
+                }
+                else
+                {
                     if (exception.MustBeRethrown(message))
                     {
                         throw new NLogConfigurationException(message);
                     }
                 }
-                else
-                {
-                    InternalLogger.Error(message);
-                }
-
             }
         }
 
