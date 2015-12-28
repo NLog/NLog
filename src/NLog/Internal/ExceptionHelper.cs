@@ -150,7 +150,7 @@ namespace NLog.Internal
         /// </returns>
         public static bool MustBeRethrown(this Exception exception, bool ignoreNonSevere, LogLevel level, string logMessage, params object[] args)
         {
-            if(IsServereException(exception))
+            if (exception.IsServereException())
             {
                 return true;
             }
