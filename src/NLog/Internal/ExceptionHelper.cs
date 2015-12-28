@@ -36,6 +36,7 @@ namespace NLog.Internal
     using Common;
     using System;
     using System.Threading;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Helper class for dealing with exceptions.
@@ -109,6 +110,7 @@ namespace NLog.Internal
         /// <returns>
         /// <c>True</c> if the exception must be rethrown, <c>false</c> otherwise.
         /// </returns>
+        [StringFormatMethod("logMessage")]
         public static bool MustBeRethrown(this Exception exception, string logMessage, params object[] args)
         {
             return MustBeRethrown(exception, null, logMessage, args);
@@ -129,6 +131,7 @@ namespace NLog.Internal
         /// <returns>
         /// <c>True</c> if the exception must be rethrown, <c>false</c> otherwise.
         /// </returns>
+        [StringFormatMethod("logMessage")]
         public static bool MustBeRethrown(this Exception exception, LogLevel level, string logMessage, params object[] args)
         {
             
@@ -139,8 +142,8 @@ namespace NLog.Internal
 
             // only log after 'serious' exceptions
 
-            var shallRethrow = LogManager.ThrowExceptions || (exception is NLogConfigurationException)
-                               || (exception.GetType().IsSubclassOf(typeof (NLogConfigurationException));
+            var shallRethrow = LogManager.ThrowExceptions || exception is NLogConfigurationException
+                               || exception.GetType().IsSubclassOf(typeof (NLogConfigurationException));
                                
 
             if (level == null)
