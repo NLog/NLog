@@ -107,6 +107,7 @@
     <Compile Include="Config\ExtensionTests.cs" />
     <Compile Include="Config\IncludeTests.cs" />
     <Compile Include="Config\InternalLoggingTests.cs" />
+    <Compile Include="Config\ReloadTests.cs" />
     <Compile Include="Config\RuleConfigurationTests.cs" />
     <Compile Include="Config\TargetConfigurationTests.cs" />
     <Compile Include="Config\TimeConfigurationTests.cs" />
