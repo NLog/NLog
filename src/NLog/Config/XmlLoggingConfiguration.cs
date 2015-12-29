@@ -64,7 +64,7 @@ namespace NLog.Config
     {
         #region private fields
 
-        private readonly Dictionary<string, bool> visitedFile = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, bool> fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         private string originalFileName;
 
@@ -185,28 +185,34 @@ namespace NLog.Config
         public bool? InitializeSucceeded { get; private set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the configuration files
+        /// Gets or sets a value indicating whether all of the configuration files
         /// should be watched for changes and reloaded automatically when changed.
         /// </summary>
-        public bool AutoReload { get; set; }
+        public bool AutoReload
+        {
+            get
+            {
+                return this.fileMustAutoReloadLookup.Values.All(mustAutoReload => mustAutoReload);
+            }
+            set
+            {
+                foreach (string nextFile in this.fileMustAutoReloadLookup.Keys.ToList())
+                    this.fileMustAutoReloadLookup[nextFile] = value;
+            }
+        }
+
 
         /// <summary>
         /// Gets the collection of file names which should be watched for changes by NLog.
         /// This is the list of configuration files processed.
         /// If the <c>autoReload</c> attribute is not set it returns empty collection.
-        /// </summary>
         public override IEnumerable<string> FileNamesToWatch
         {
             get
             {
-                if (this.AutoReload)
-                {
-                    return this.visitedFile.Keys;
+                return this.fileMustAutoReloadLookup.Where(entry => entry.Value).Select(entry => entry.Key);
                 }
-
-                return new string[0];
             }
-        }
 
         #endregion public properties
 
@@ -301,21 +307,14 @@ namespace NLog.Config
                 var content = new NLogXmlElement(reader);
                 if (fileName != null)
                 {
-#if SILVERLIGHT
-                    string key = fileName;
-#else
-                    string key = Path.GetFullPath(fileName);
-#endif
-                    this.visitedFile[key] = true;
-
                     this.originalFileName = fileName;
-                    this.ParseTopLevel(content, Path.GetDirectoryName(fileName));
+                    this.ParseTopLevel(content, fileName, autoReloadDefault: false);
 
                     InternalLogger.Info("Configured from an XML element in {0}...", fileName);
                 }
                 else
                 {
-                    this.ParseTopLevel(content, null);
+                    this.ParseTopLevel(content, null, autoReloadDefault: false);
                 }
                 InitializeSucceeded = true;
 
@@ -382,43 +381,32 @@ namespace NLog.Config
             InternalLogger.Debug("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", this.LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
         }
 
-        private void ConfigureFromFile(string fileName)
+        private void ConfigureFromFile(string fileName, bool autoReloadDefault)
         {
-#if SILVERLIGHT
-            // file names are relative to XAP
-            string key = fileName;
-#else
-            string key = Path.GetFullPath(fileName);
-#endif
-            if (this.visitedFile.ContainsKey(key))
-            {
-                return;
+            if (!this.fileMustAutoReloadLookup.ContainsKey(GetFileLookupKey(fileName)))
+                this.ParseTopLevel(new NLogXmlElement(fileName), fileName, autoReloadDefault);
             }
 
-            this.visitedFile[key] = true;
-
-            this.ParseTopLevel(new NLogXmlElement(fileName), Path.GetDirectoryName(fileName));
-        }
-
         #region parse methods
+
+
 
         /// <summary>
         /// Parse the root
         /// </summary>
         /// <param name="content"></param>
-        /// <param name="baseDirectory">path to directory of config file.</param>
-        private void ParseTopLevel(NLogXmlElement content, string baseDirectory)
+        private void ParseTopLevel(NLogXmlElement content, string filePath, bool autoReloadDefault)
         {
             content.AssertName("nlog", "configuration");
 
             switch (content.LocalName.ToUpper(CultureInfo.InvariantCulture))
             {
                 case "CONFIGURATION":
-                    this.ParseConfigurationElement(content, baseDirectory);
+                    this.ParseConfigurationElement(content, filePath, autoReloadDefault);
                     break;
 
                 case "NLOG":
-                    this.ParseNLogElement(content, baseDirectory);
+                    this.ParseNLogElement(content, filePath, autoReloadDefault);
                     break;
             }
         }
@@ -428,14 +416,15 @@ namespace NLog.Config
         /// </summary>
         /// <param name="configurationElement"></param>
         /// <param name="baseDirectory">path to directory of config file.</param>
-        private void ParseConfigurationElement(NLogXmlElement configurationElement, string baseDirectory)
+        /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
+        private void ParseConfigurationElement(NLogXmlElement configurationElement, string filePath, bool autoReloadDefault)
         {
             InternalLogger.Trace("ParseConfigurationElement");
             configurationElement.AssertName("configuration");
 
             foreach (var el in configurationElement.Elements("nlog"))
             {
-                this.ParseNLogElement(el, baseDirectory);
+                this.ParseNLogElement(el, filePath, autoReloadDefault);
             }
         }
 
@@ -444,7 +433,8 @@ namespace NLog.Config
         /// </summary>
         /// <param name="nlogElement"></param>
         /// <param name="baseDirectory">path to directory of config file.</param>
-        private void ParseNLogElement(NLogXmlElement nlogElement, string baseDirectory)
+        /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
+        private void ParseNLogElement(NLogXmlElement nlogElement, string filePath, bool autoReloadDefault)
         {
             InternalLogger.Trace("ParseNLogElement");
             nlogElement.AssertName("nlog");
@@ -456,7 +446,11 @@ namespace NLog.Config
 #pragma warning disable 618
             this.ExceptionLoggingOldStyle = nlogElement.GetOptionalBooleanAttribute("exceptionLoggingOldStyle", false);
 #pragma warning restore 618
-            this.AutoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", false);
+
+            bool autoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", autoReloadDefault);
+            if (filePath != null)
+                this.fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
+            
             LogManager.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", LogManager.ThrowExceptions);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
@@ -470,7 +464,7 @@ namespace NLog.Config
             var extensionsChilds = children.Where(child => child.LocalName.Equals("EXTENSIONS", StringComparison.InvariantCultureIgnoreCase));
             foreach (var extensionsChild in extensionsChilds)
             {
-                this.ParseExtensionsElement(extensionsChild, baseDirectory);
+                this.ParseExtensionsElement(extensionsChild, Path.GetDirectoryName(filePath));
             }
 
             //parse all other direct elements
@@ -483,7 +477,7 @@ namespace NLog.Config
                         break;
 
                     case "INCLUDE":
-                        this.ParseIncludeElement(child, baseDirectory);
+                        this.ParseIncludeElement(child, Path.GetDirectoryName(filePath), autoReloadDefault: autoReload);
                         break;
 
                     case "APPENDERS":
@@ -891,7 +885,7 @@ namespace NLog.Config
             }
         }
 
-        private void ParseIncludeElement(NLogXmlElement includeElement, string baseDirectory)
+        private void ParseIncludeElement(NLogXmlElement includeElement, string baseDirectory, bool autoReloadDefault)
         {
             includeElement.AssertName("include");
 
@@ -915,7 +909,7 @@ namespace NLog.Config
 #endif
                 {
                     InternalLogger.Debug("Including file '{0}'", newFileName);
-                    this.ConfigureFromFile(newFileName);
+                    this.ConfigureFromFile(newFileName, autoReloadDefault);
                 }
                 else
                 {
@@ -953,6 +947,17 @@ namespace NLog.Config
         }
 
         #endregion parse methods
+
+        private static string GetFileLookupKey(string fileName)
+        {
+
+#if SILVERLIGHT
+            // file names are relative to XAP
+            return fileName;
+#else
+            return Path.GetFullPath(fileName);
+#endif
+        }
 
         private void SetPropertyFromElement(object o, NLogXmlElement element)
         {
