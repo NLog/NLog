@@ -234,34 +234,24 @@ namespace NLog.Internal.FileAppenders
                 appender.Flush();
             }
         }
-        
+
         /// <summary>
         /// Gets the file info for a particular appender.
         /// </summary>
         /// <param name="fileName">The file name associated with a particular appender.</param>
-        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
-        /// <param name="fileLength">Length of the file.</param>
-        /// <returns><see langword="true"/> when the operation succeeded; <see langword="false"/> otherwise.</returns>
-        public bool GetFileInfo(string fileName, out DateTime lastWriteTime, out long fileLength)
+        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
+        public FileCharacteristics GetFileCharacteristics(string fileName)
         {
             foreach (BaseFileAppender appender in appenders)
             {
                 if (appender == null)
-                {
                     break;
-                }
 
                 if (appender.FileName == fileName)
-                {
-                    appender.GetFileInfo(out lastWriteTime, out fileLength);
-                    return true;
-                }
+                    return appender.GetFileCharacteristics();
             }
 
-            // Return default values.
-            fileLength = -1;
-            lastWriteTime = DateTime.MinValue;
-            return false;
+            return null;
         }
 
         /// <summary>
