@@ -271,11 +271,12 @@ namespace NLog.Targets
             else
             {
 
+                NetworkSender sender;
+                LinkedListNode<NetworkSender> linkedListNode;
+
                 lock (this.openNetworkSenders)
                 {
-
-
-                    //handle to many connections
+                    //handle too many connections
                     var tooManyConnections = this.openNetworkSenders.Count >= MaxConnections;
 
                     if (tooManyConnections && MaxConnections > 0)
@@ -304,33 +305,34 @@ namespace NLog.Targets
                         }
                     }
 
-                    var sender = this.SenderFactory.Create(address, MaxQueueSize);
+                    sender = this.SenderFactory.Create(address, MaxQueueSize);
                     sender.Initialize();
 
-                    var linkedListNode = this.openNetworkSenders.AddLast(sender);
-                    this.ChunkedSend(
-                        sender,
-                        bytes,
-                        ex =>
-                        {
-                            lock (this.openNetworkSenders)
-                            {
-                                TryRemove(this.openNetworkSenders, linkedListNode);
-                                if (this.OnConnectionOverflow == NetworkTargetConnectionsOverflowAction.Block)
-                                {
-                                    System.Threading.Monitor.PulseAll(this.openNetworkSenders);
-                                }
-                            }
-
-                            if (ex != null)
-                            {
-                                InternalLogger.Error("Error when sending {0}", ex);
-                            }
-
-                            sender.Close(ex2 => { });
-                            logEvent.Continuation(ex);
-                        });
+                    linkedListNode = this.openNetworkSenders.AddLast(sender);
                 }
+                this.ChunkedSend(
+                    sender,
+                    bytes,
+                    ex =>
+                    {
+                        lock (this.openNetworkSenders)
+                        {
+                            TryRemove(this.openNetworkSenders, linkedListNode);
+                            if (this.OnConnectionOverflow == NetworkTargetConnectionsOverflowAction.Block)
+                            {
+                                System.Threading.Monitor.PulseAll(this.openNetworkSenders);
+                            }
+                        }
+
+                        if (ex != null)
+                        {
+                            InternalLogger.Error("Error when sending {0}", ex);
+                        }
+
+                        sender.Close(ex2 => { });
+                        logEvent.Continuation(ex);
+                });
+                
             }
         }
 
