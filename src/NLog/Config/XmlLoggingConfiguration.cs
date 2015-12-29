@@ -193,7 +193,7 @@ namespace NLog.Config
             }
             set
             {
-                foreach (string nextFile in this.fileMustAutoReloadLookup.Keys.ToArray())
+                foreach (string nextFile in this.fileMustAutoReloadLookup.Keys.ToList())
                     this.fileMustAutoReloadLookup[nextFile] = value;
             }
         }
