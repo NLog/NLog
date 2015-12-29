@@ -92,7 +92,7 @@ namespace NLog.UnitTests
 
             LogManager.ThrowExceptions = true;
 
-            Assert.Throws<Exception>(() =>
+            Assert.Throws<NLogConfigurationException>(() =>
             {
 
                 LogManager.Configuration = CreateConfigurationFromString(@"
