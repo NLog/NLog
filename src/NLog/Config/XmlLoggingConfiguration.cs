@@ -206,13 +206,14 @@ namespace NLog.Config
         /// Gets the collection of file names which should be watched for changes by NLog.
         /// This is the list of configuration files processed.
         /// If the <c>autoReload</c> attribute is not set it returns empty collection.
+        /// </summary>
         public override IEnumerable<string> FileNamesToWatch
         {
             get
             {
                 return this.fileMustAutoReloadLookup.Where(entry => entry.Value).Select(entry => entry.Key);
-                }
             }
+        }
 
         #endregion public properties
 
@@ -329,7 +330,7 @@ namespace NLog.Config
                 {
                     throw;
                 }
-                
+
                 var message = string.Format("Exception occurred when loading configuration from '{0}': {1}", fileName, exception);
 
                 if (ignoreErrors)
@@ -385,7 +386,7 @@ namespace NLog.Config
         {
             if (!this.fileMustAutoReloadLookup.ContainsKey(GetFileLookupKey(fileName)))
                 this.ParseTopLevel(new NLogXmlElement(fileName), fileName, autoReloadDefault);
-            }
+        }
 
         #region parse methods
 
@@ -395,6 +396,8 @@ namespace NLog.Config
         /// Parse the root
         /// </summary>
         /// <param name="content"></param>
+        /// <param name="filePath">path to config file.</param>
+        /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
         private void ParseTopLevel(NLogXmlElement content, string filePath, bool autoReloadDefault)
         {
             content.AssertName("nlog", "configuration");
@@ -415,7 +418,7 @@ namespace NLog.Config
         /// Parse {configuration} xml element.
         /// </summary>
         /// <param name="configurationElement"></param>
-        /// <param name="baseDirectory">path to directory of config file.</param>
+        /// <param name="filePath">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
         private void ParseConfigurationElement(NLogXmlElement configurationElement, string filePath, bool autoReloadDefault)
         {
@@ -432,7 +435,7 @@ namespace NLog.Config
         /// Parse {NLog} xml element.
         /// </summary>
         /// <param name="nlogElement"></param>
-        /// <param name="baseDirectory">path to directory of config file.</param>
+        /// <param name="filePath">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
         private void ParseNLogElement(NLogXmlElement nlogElement, string filePath, bool autoReloadDefault)
         {
@@ -450,7 +453,7 @@ namespace NLog.Config
             bool autoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", autoReloadDefault);
             if (filePath != null)
                 this.fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
-            
+
             LogManager.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", LogManager.ThrowExceptions);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
