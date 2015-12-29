@@ -809,6 +809,71 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        public static IEnumerable<object[]> DateArchive_SkipPeriod_TestParameters
+        {
+            get
+            {
+                var timeKindValues = new[] { DateTimeKind.Utc, DateTimeKind.Local };
+                var archivePeriodValues = new[] { FileArchivePeriod.Day, FileArchivePeriod.Hour };
+                var booleanValues = new[] { true, false };
+                return
+                    from timeKind in timeKindValues
+                    from archivePeriod in archivePeriodValues
+                    from includeSequenceInArchive in booleanValues
+                    select new object[] { timeKind, archivePeriod, includeSequenceInArchive };
+            }
+        }
+
+        [Theory]
+        [PropertyData("DateArchive_SkipPeriod_TestParameters")]
+        public void DateArchive_SkipPeriod(DateTimeKind timeKind, FileArchivePeriod archivePeriod, bool includeSequenceInArchive)
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            var defaultTimeSource = TimeSource.Current;
+            try
+            {
+                var timeSource = new TimeSourceTests.ShiftedTimeSource(timeKind);
+                TimeSource.Current = timeSource;
+                
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}.txt"),
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
+                    ArchiveEvery = archivePeriod,
+                    ArchiveDateFormat = "yyyyMMddHHmm",
+                    Layout = "${date:format=O}|${message}",
+                };
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+                
+                logger.Debug("1234567890");
+                timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
+                logger.Debug("1234567890");
+                // The archive file name must be based on the last time the file was written.
+                string archiveFileName = string.Format("{0}.txt", timeSource.Time.ToString(ft.ArchiveDateFormat) + (includeSequenceInArchive ? ".0" : string.Empty));
+                // Effectively update the file's last-write-time.
+                timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
+
+                timeSource.AddToLocalTime(TimeSpan.FromDays(2));
+                logger.Debug("1234567890");
+                LogManager.Configuration = null;
+
+                string archivePath = Path.Combine(tempPath, "archive");
+                var archiveFiles = Directory.GetFiles(archivePath);
+                Assert.Equal(1, archiveFiles.Length);
+                Assert.Equal(archiveFileName, Path.GetFileName(archiveFiles[0]));
+            }
+            finally
+            {
+                TimeSource.Current = defaultTimeSource; // restore default time source
+                LogManager.Configuration = null;
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
         [Fact]
         public void DeleteArchiveFilesByDate_MaxArchiveFiles_0()
         {

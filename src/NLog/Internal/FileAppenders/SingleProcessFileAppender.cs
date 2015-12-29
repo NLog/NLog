@@ -35,7 +35,6 @@ using System.Security;
 
 namespace NLog.Internal.FileAppenders
 {
-    using System;
     using System.IO;
     using NLog.Common;
 
@@ -56,6 +55,19 @@ namespace NLog.Internal.FileAppenders
         /// <param name="parameters">The parameters.</param>
         public SingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
+            var fileInfo = new FileInfo(fileName);
+            if (fileInfo.Exists)
+            {
+#if !SILVERLIGHT
+                FileTouched(fileInfo.LastWriteTimeUtc);
+#else
+                FileTouched(fi.LastWriteTime);
+#endif
+            }
+            else
+            {
+                FileTouched();
+            }
             this.file = CreateFileStream(false);
         }
 
@@ -71,6 +83,7 @@ namespace NLog.Internal.FileAppenders
             }
 
             this.file.Write(bytes, 0, bytes.Length);
+            FileTouched();
         }
 
         /// <summary>
@@ -84,6 +97,7 @@ namespace NLog.Internal.FileAppenders
             }
 
             this.file.Flush();
+            FileTouched();
         }
 
         /// <summary>
@@ -107,7 +121,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
         public override FileCharacteristics GetFileCharacteristics()
         {
-            return file == null ? null : new FileCharacteristics(OpenTime, file.Length);
+            return file == null ? null : new FileCharacteristics(CreationTime, LastWriteTime, file.Length);
         }
 
         /// <summary>

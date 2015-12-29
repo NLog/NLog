@@ -61,6 +61,7 @@ namespace NLog.Internal.FileAppenders
             this.CreateFileParameters = createParameters;
             this.FileName = fileName;
             this.OpenTime = DateTime.UtcNow; // to be consistent with timeToKill in FileTarget.AutoClosingTimerCallback
+            this.LastWriteTime = DateTime.MinValue;
         }
 
         /// <summary>
@@ -80,6 +81,12 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         /// <value>The open time. DateTime value must be of UTC kind.</value>
         public DateTime OpenTime { get; private set; }
+
+        /// <summary>
+        /// Gets the last write time.
+        /// </summary>
+        /// <value>The time the file was last written to. DateTime value must be of UTC kind.</value>
+        public DateTime LastWriteTime { get; private set; }
 
         /// <summary>
         /// Gets the file creation parameters.
@@ -128,6 +135,23 @@ namespace NLog.Internal.FileAppenders
             {
                 this.Close();
             }
+        }
+
+        /// <summary>
+        /// Updates the last write time of the file.
+        /// </summary>
+        protected void FileTouched()
+        {
+            FileTouched(DateTime.UtcNow);
+        }
+
+        /// <summary>
+        /// Updates the last write time of the file to the specified date.
+        /// </summary>
+        /// <param name="dateTime">Date and time when the last write occurred in UTC.</param>
+        protected void FileTouched(DateTime dateTime)
+        {
+            this.LastWriteTime = dateTime;
         }
         
         /// <summary>
