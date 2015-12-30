@@ -4,14 +4,19 @@
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
-var outputDirectory = Argument("outputDirectory", "./artifacts");
+var outputDirectory = Argument<string>("outputDirectory", "./artifacts");
+var samplesDirectory = Argument<string>("samplesDirectory", "./samples");
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
 //////////////////////////////////////////////////////////////////////
 
 // Define directories.
-var buildDir = Directory("./src/Example/bin") + Directory(configuration);
+var buildDir = Directory(outputDirectory) + Directory(configuration);
+var samplesDir = Directory(samplesDirectory) + Directory(configuration);
+
+Information("Argument {0}", Argument<string>("configuration", "is NOT valid"));
+Information("Argument {0}", configuration);
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -21,6 +26,7 @@ Task("Clean")
     .Does(() =>
 {
     CleanDirectory(buildDir);
+	CleanDirectory(samplesDir);
 });
 
 Task("DnuRestore")
@@ -47,7 +53,7 @@ Task("Build")
 		{
 		    Frameworks = new [] { framework },
 		    Configurations = new[] { configuration },
-		    OutputDirectory = outputDirectory,
+		    OutputDirectory = buildDir.ToString(),
 		    Quiet = true
 		};
         
@@ -58,7 +64,7 @@ Task("Build")
 		{
 		    Frameworks = new [] { "dnx451" },
 		    Configurations = new[] { configuration },
-		    OutputDirectory = outputDirectory,
+		    OutputDirectory = buildDir.ToString(),
 		    Quiet = true
 		};
 	DNUBuild("./src/NLog.Extended", dnuBuildSettings);
@@ -70,7 +76,7 @@ Task("Build")
 		{
 		    Frameworks = new [] { framework },
 		    Configurations = new[] { configuration },
-		    OutputDirectory = outputDirectory,
+		    OutputDirectory = buildDir.ToString(),
 		    Quiet = true
 		};
         

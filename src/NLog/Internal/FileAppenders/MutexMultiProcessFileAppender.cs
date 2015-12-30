@@ -121,7 +121,6 @@ namespace NLog.Internal.FileAppenders
                 this.file.Seek(0, SeekOrigin.End);
                 this.file.Write(bytes, 0, bytes.Length);
                 this.file.Flush();
-                FileTouched();
             }
             finally
             {
@@ -147,7 +146,6 @@ namespace NLog.Internal.FileAppenders
 
             this.mutex = null;
             this.file = null;
-            FileTouched();
         }
 
         /// <summary>
@@ -161,15 +159,11 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the file info.
         /// </summary>
-        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
-        /// <param name="fileLength">Length of the file.</param>
-        /// <returns>
-        /// True if the operation succeeded, false otherwise.
-        /// </returns>
+        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle", Justification = "Optimization")]
-        public override bool GetFileInfo(out DateTime lastWriteTime, out long fileLength)
+        public override FileCharacteristics GetFileCharacteristics()
         {
-            return FileInfoHelper.Helper.GetFileInfo(FileName, this.file.SafeFileHandle.DangerousGetHandle(), out lastWriteTime, out fileLength);
+            return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, this.file.SafeFileHandle.DangerousGetHandle());
         }
 
         private static Mutex CreateSharableMutex(string name)

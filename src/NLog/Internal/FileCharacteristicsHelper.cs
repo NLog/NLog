@@ -31,45 +31,42 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.Internal
 {
     using System;
 
     /// <summary>
-    /// Win32-optimized implementation of <see cref="FileInfoHelper"/>.
+    /// Optimized routines to get the basic file characteristics of the specified file.
     /// </summary>
-    internal class Win32FileInfoHelper : FileInfoHelper
+    internal abstract class FileCharacteristicsHelper
     {
+        /// <summary>
+        /// Initializes static members of the FileCharacteristicsHelper class.
+        /// </summary>
+        static FileCharacteristicsHelper()
+        {
+#if SILVERLIGHT
+            Helper = new PortableFileCharacteristicsHelper();
+#else
+            if (PlatformDetector.IsDesktopWin32)
+            {
+                Helper = new Win32FileCharacteristicsHelper();
+            }
+            else
+            {
+                Helper = new PortableFileCharacteristicsHelper();
+            }
+#endif
+        }
+
+        internal static FileCharacteristicsHelper Helper { get; private set; }
+
         /// <summary>
         /// Gets the information about a file.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileHandle">The file handle.</param>
-        /// <param name="lastWriteTime">The last write time of the file in UTC.</param>
-        /// <param name="fileLength">Length of the file.</param>
-        /// <returns>
-        /// A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.
-        /// </returns>
-        public override bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength)
-        {
-            Win32FileNativeMethods.BY_HANDLE_FILE_INFORMATION fi;
-
-            if (Win32FileNativeMethods.GetFileInformationByHandle(fileHandle, out fi))
-            {
-                lastWriteTime = DateTime.FromFileTimeUtc(fi.ftLastWriteTime);
-                fileLength = fi.nFileSizeLow + (((long)fi.nFileSizeHigh) << 32);
-                return true;
-            }
-            else
-            {
-                lastWriteTime = DateTime.MinValue;
-                fileLength = -1;
-                return false;
-            }
-        }
+        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
+        public abstract FileCharacteristics GetFileCharacteristics(string fileName, IntPtr fileHandle);
     }
 }
-
-#endif

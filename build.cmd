@@ -37,4 +37,4 @@ IF "%SKIP_DNX_INSTALL%"=="" (
     CALL dnvm use default -runtime CLR -arch x86
 )
 
-@powershell -NoProfile -ExecutionPolicy unrestricted -Command ".\build.ps1 build.cake %*"
+@powershell -NoProfile -ExecutionPolicy unrestricted -Command ".\build.ps1 -Script build.cake %*"

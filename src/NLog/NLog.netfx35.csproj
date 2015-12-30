@@ -153,7 +153,8 @@
     <Compile Include="Internal\FileAppenders\RetryingMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\SingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
-    <Compile Include="Internal\FileInfoHelper.cs" />
+    <Compile Include="Internal\FileCharacteristics.cs" />
+    <Compile Include="Internal\FileCharacteristicsHelper.cs" />
     <Compile Include="Internal\FormatHelper.cs" />
     <Compile Include="Internal\IConfigurationManager.cs" />
     <Compile Include="Internal\IRenderable.cs" />
@@ -180,7 +181,7 @@
     <Compile Include="Internal\ObjectGraphScanner.cs" />
     <Compile Include="Internal\ParameterUtils.cs" />
     <Compile Include="Internal\PlatformDetector.cs" />
-    <Compile Include="Internal\PortableFileInfoHelper.cs" />
+    <Compile Include="Internal\PortableFileCharacteristicsHelper.cs" />
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
     <Compile Include="Internal\PropertyHelper.cs" />
     <Compile Include="Internal\ReflectionHelpers.cs" />
@@ -197,7 +198,7 @@
     <Compile Include="Internal\TimeoutContinuation.cs" />
     <Compile Include="Internal\UAPP10Helpers.cs" />
     <Compile Include="Internal\UrlHelper.cs" />
-    <Compile Include="Internal\Win32FileInfoHelper.cs" />
+    <Compile Include="Internal\Win32FileCharacteristicsHelper.cs" />
     <Compile Include="Internal\Win32FileNativeMethods.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>

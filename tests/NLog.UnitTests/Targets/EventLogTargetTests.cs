@@ -49,197 +49,308 @@ namespace NLog.UnitTests.Targets
     {
         private const int MaxMessageSize = 16384;
 
-        [Fact]
-        public void WriteEventLogEntryTrace()
+        private void AssertMessageAndLogLevelForTruncatedMessages(LogLevel loglevel, EventLogEntryType expectedEventLogEntryType, string expectedMessage, Layout entryTypeLayout)
         {
-            WriteEventLogEntry2(LogLevel.Trace, EventLogEntryType.Information);
+            const int expectedEntryCount = 1;
+            var eventRecords = Write(loglevel, expectedEventLogEntryType, expectedMessage, entryTypeLayout, EventLogTargetOverflowAction.Truncate).ToList();
+
+            Assert.Equal(expectedEntryCount, eventRecords.Count);
+            AssertWrittenMessage(eventRecords, expectedMessage);
         }
 
         [Fact]
-        public void WriteEventLogEntryDebug()
+        public void TruncatedMessagesShouldBeWrittenAtInformationLevel_WhenNLogLevelIsTrace()
         {
-            WriteEventLogEntry2(LogLevel.Debug, EventLogEntryType.Information);
+            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Trace, EventLogEntryType.Information, "TruncatedMessagesShouldBeWrittenAtInformationLevel_WhenNLogLevelIsTrace", null);
         }
 
         [Fact]
-        public void WriteEventLogEntryInfo()
+        public void TruncatedMessagesShouldBeWrittenAtInformationLevel_WhenNLogLevelIsDebug()
         {
-            WriteEventLogEntry2(LogLevel.Info, EventLogEntryType.Information);
-        }
-        [Fact]
-        public void WriteEventLogEntryWarn()
-        {
-            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.Warning);
+            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Debug, EventLogEntryType.Information, "TruncatedMessagesShouldBeWrittenAtInformationLevel_WhenNLogLevelIsDebug", null);
         }
 
         [Fact]
-        public void WriteEventLogEntryError()
+        public void TruncatedMessagesShouldBeWrittenAtInformationLevel_WhenNLogLevelIsInfo()
         {
-            WriteEventLogEntry2(LogLevel.Error, EventLogEntryType.Error);
+            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Info, EventLogEntryType.Information, "TruncatedMessagesShouldBeWrittenAtInformationLevel_WhenNLogLevelIsInfo", null);
         }
+
         [Fact]
-        public void WriteEventLogEntryFatal()
+        public void TruncatedMessagesShouldBeWrittenAtWarningLevel_WhenNLogLevelIsWarn()
         {
-            WriteEventLogEntry2(LogLevel.Fatal, EventLogEntryType.Error);
+            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Warn, EventLogEntryType.Warning, "TruncatedMessagesShouldBeWrittenAtWarningLevel_WhenNLogLevelIsWarn", null);
+        }
+
+        [Fact]
+        public void TruncatedMessagesShouldBeWrittenAtErrorLevel_WhenNLogLevelIsError()
+        {
+            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Error, EventLogEntryType.Error, "TruncatedMessagesShouldBeWrittenAtErrorLevel_WhenNLogLevelIsError", null);
+        }
+
+        [Fact]
+        public void TruncatedMessagesShouldBeWrittenAtErrorLevel_WhenNLogLevelIsFatal()
+        {
+            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Fatal, EventLogEntryType.Error, "TruncatedMessagesShouldBeWrittenAtErrorLevel_WhenNLogLevelIsFatal", null);
+        }
+
+        [Fact]
+        public void TruncatedMessagesShouldBeWrittenAtSuccessAuditLevel_WhenEntryTypeLayoutSpecifiedAsSuccessAudit()
+        {
+            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Warn, EventLogEntryType.SuccessAudit, "TruncatedMessagesShouldBeWrittenAtSuccessAuditLevel_WhenEntryTypeLayoutSpecifiedAsSuccessAudit", new SimpleLayout("SuccessAudit"));
+        }
+
+        [Fact]
+        public void TruncatedMessagesShouldBeWrittenAtSuccessAuditLevel_WhenEntryTypeLayoutSpecifiedAsSuccessAudit_Uppercase()
+        {
+            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Warn, EventLogEntryType.SuccessAudit, "TruncatedMessagesShouldBeWrittenAtSuccessAuditLevel_WhenEntryTypeLayoutSpecifiedAsSuccessAudit_Uppercase", new SimpleLayout("SUCCESSAUDIT"));
+        }
+
+        [Fact]
+        public void TruncatedMessagesShouldBeWrittenAtFailureAuditLevel_WhenEntryTypeLayoutSpecifiedAsFailureAudit()
+        {
+            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Debug, EventLogEntryType.FailureAudit, "TruncatedMessagesShouldBeWrittenAtFailureAuditLevel_WhenEntryTypeLayoutSpecifiedAsFailureAudit", new SimpleLayout("FailureAudit"));
+        }
+
+        [Fact]
+        public void TruncatedMessagesShouldBeWrittenAtErrorLevel_WhenEntryTypeLayoutSpecifiedAsError()
+        {
+            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Debug, EventLogEntryType.Error, "TruncatedMessagesShouldBeWrittenAtErrorLevel_WhenEntryTypeLayoutSpecifiedAsError", new SimpleLayout("error"));
+        }
+
+        [Fact]
+        public void TruncatedMessagesShouldBeWrittenAtSpecifiedNLogLevel_WhenWrongEntryTypeLayoutSupplied()
+        {
+            AssertMessageAndLogLevelForTruncatedMessages(LogLevel.Warn, EventLogEntryType.Warning, "TruncatedMessagesShouldBeWrittenAtSpecifiedNLogLevel_WhenWrongEntryTypeLayoutSupplied", new SimpleLayout("fallback to auto determined"));
+        }
+
+
+
+        private void AssertMessageCountAndLogLevelForSplittedMessages(LogLevel loglevel, EventLogEntryType expectedEventLogEntryType, Layout entryTypeLayout)
+        {
+            const int expectedEntryCount = 2;
+            string messagePart1 = string.Join("", Enumerable.Repeat("l", MaxMessageSize));
+            string messagePart2 = "this part must be splitted";
+            string testMessage = messagePart1 + messagePart2;
+            var entries = Write(loglevel, expectedEventLogEntryType, testMessage, entryTypeLayout, EventLogTargetOverflowAction.Split).ToList();
+
+            Assert.Equal(expectedEntryCount, entries.Count);
+        }
+
+        [Fact]
+        public void SplittedMessagesShouldBeWrittenAtInformationLevel_WhenNLogLevelIsTrace()
+        {
+            AssertMessageCountAndLogLevelForSplittedMessages(LogLevel.Trace, EventLogEntryType.Information, null);
+        }
+
+        [Fact]
+        public void SplittedMessagesShouldBeWrittenAtInformationLevel_WhenNLogLevelIsDebug()
+        {
+            AssertMessageCountAndLogLevelForSplittedMessages(LogLevel.Debug, EventLogEntryType.Information, null);
+        }
+
+        [Fact]
+        public void SplittedMessagesShouldBeWrittenAtInformationLevel_WhenNLogLevelIsInfo()
+        {
+            AssertMessageCountAndLogLevelForSplittedMessages(LogLevel.Info, EventLogEntryType.Information, null);
+        }
+
+        [Fact]
+        public void SplittedMessagesShouldBeWrittenAtWarningLevel_WhenNLogLevelIsWarn()
+        {
+            AssertMessageCountAndLogLevelForSplittedMessages(LogLevel.Warn, EventLogEntryType.Warning, null);
+        }
+
+        [Fact]
+        public void SplittedMessagesShouldBeWrittenAtErrorLevel_WhenNLogLevelIsError()
+        {
+            AssertMessageCountAndLogLevelForSplittedMessages(LogLevel.Error, EventLogEntryType.Error, null);
+        }
+
+        [Fact]
+        public void SplittedMessagesShouldBeWrittenAtErrorLevel_WhenNLogLevelIsFatal()
+        {
+            AssertMessageCountAndLogLevelForSplittedMessages(LogLevel.Fatal, EventLogEntryType.Error, null);
+        }
+
+        [Fact]
+        public void SplittedMessagesShouldBeWrittenAtSuccessAuditLevel_WhenEntryTypeLayoutSpecifiedAsSuccessAudit()
+        {
+            AssertMessageCountAndLogLevelForSplittedMessages(LogLevel.Debug, EventLogEntryType.SuccessAudit, new SimpleLayout("SuccessAudit"));
+        }
+
+        [Fact]
+        public void SplittedMessagesShouldBeWrittenAtFailureLevel_WhenEntryTypeLayoutSpecifiedAsFailureAudit()
+        {
+            AssertMessageCountAndLogLevelForSplittedMessages(LogLevel.Debug, EventLogEntryType.FailureAudit, new SimpleLayout("FailureAudit"));
+        }
+
+        [Fact]
+        public void SplittedMessagesShouldBeWrittenAtErrorLevel_WhenEntryTypeLayoutSpecifiedAsError()
+        {
+            AssertMessageCountAndLogLevelForSplittedMessages(LogLevel.Debug, EventLogEntryType.Error, new SimpleLayout("error"));
         }
 
 
         [Fact]
-        public void WriteEventLogEntryFatalCustomEntryType()
+        public void SplittedMessagesShouldBeWrittenAtSpecifiedNLogLevel_WhenWrongEntryTypeLayoutSupplied()
         {
-            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.SuccessAudit, new SimpleLayout("SuccessAudit"));
+            AssertMessageCountAndLogLevelForSplittedMessages(LogLevel.Info, EventLogEntryType.Information, new SimpleLayout("wrong entry type level"));
         }
 
-        [Fact]
-        public void WriteEventLogEntryFatalCustomEntryTyp_caps()
-        {
-            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.SuccessAudit, new SimpleLayout("SUCCESSAUDIT"));
-        }
-
-        [Fact]
-        public void WriteEventLogEntryFatalCustomEntryTyp_fallback()
-        {
-            WriteEventLogEntry2(LogLevel.Warn, EventLogEntryType.Warning, new SimpleLayout("fallback to auto determined"));
-        }
-
-        [Fact]
-        public void WriteEventLogEntryFatalCustomEntryTyp_error()
-        {
-            WriteEventLogEntry2(LogLevel.Debug, EventLogEntryType.Error, new SimpleLayout("error"));
-        }
 
         [Fact]
         public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowTruncate_TruncatesTheMessage()
         {
-            string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize + 1));
-            string loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Truncate, message).Single();
+            const int expectedEntryCount = 1;
+            string expectedMessage = string.Join("", Enumerable.Repeat("t", MaxMessageSize));
+            string expectedToTruncateMessage = " this part will be truncated";
+            string testMessage = expectedMessage + expectedToTruncateMessage;
 
-            Assert.Equal(MaxMessageSize, loggedMessage.Length);
+            var entries = Write(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Truncate).ToList();
+
+            Assert.Equal(expectedEntryCount, entries.Count);
+            AssertWrittenMessage(entries, expectedMessage);
         }
 
         [Fact]
         public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowTruncate_TheMessageIsNotTruncated()
         {
-            string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
-            string loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Truncate, message).Single();
+            const int expectedEntryCount = 1;
+            string expectedMessage = string.Join("", Enumerable.Repeat("t", MaxMessageSize));
+            var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Truncate).ToList();
 
-            Assert.Equal(MaxMessageSize, loggedMessage.Length);
+            Assert.Equal(expectedEntryCount, entries.Count);
+            AssertWrittenMessage(entries, expectedMessage);
         }
-        
+
         [Fact]
-        public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowSplitEntries_TheMessageIsSplit()
+        public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowSplitEntries_TheMessageShouldBeSplitted()
         {
-            string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize + 1));
-            var chunks = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Split, message).ToList();
+            const int expectedEntryCount = 5;
+            string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
+            string messagePart2 = string.Join("", Enumerable.Repeat("b", MaxMessageSize));
+            string messagePart3 = string.Join("", Enumerable.Repeat("c", MaxMessageSize));
+            string messagePart4 = string.Join("", Enumerable.Repeat("d", MaxMessageSize));
+            string messagePart5 = "this part must be splitted too";
+            string testMessage = messagePart1 + messagePart2 + messagePart3 + messagePart4 + messagePart5;
 
-            Assert.Equal(2, chunks.Count);
-            Assert.Equal(MaxMessageSize, chunks[0].Length);
-            Assert.Equal(1, chunks[1].Length);
+            var entries = Write(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Split).ToList();
+
+            Assert.Equal(expectedEntryCount, entries.Count);
+
+            AssertWrittenMessage(entries, messagePart1);
+            AssertWrittenMessage(entries, messagePart2);
+            AssertWrittenMessage(entries, messagePart3);
+            AssertWrittenMessage(entries, messagePart4);
+            AssertWrittenMessage(entries, messagePart5);
         }
+
+        [Fact]
+        public void WriteEventLogEntryEqual2MaxMessageSizeWithOverflowSplitEntries_TheMessageShouldBeSplittedInTwoChunk()
+        {
+            const int expectedEntryCount = 2;
+            string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
+            string messagePart2 = string.Join("", Enumerable.Repeat("b", MaxMessageSize));
+            string testMessage = messagePart1 + messagePart2;
+
+            var entries = Write(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Split).ToList();
+
+            Assert.Equal(expectedEntryCount, entries.Count);
+
+            AssertWrittenMessage(entries, messagePart1);
+            AssertWrittenMessage(entries, messagePart2);
+        }
+
 
         [Fact]
         public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowSplitEntries_TheMessageIsNotSplit()
         {
-            string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
-            var loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Split, message).Single();
+            const int expectedEntryCount = 1;
+            string expectedMessage = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
+            var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Split).ToList();
 
-            Assert.Equal(MaxMessageSize, loggedMessage.Length);
+            Assert.Equal(expectedEntryCount, entries.Count);
+            AssertWrittenMessage(entries, expectedMessage);
         }
 
         [Fact]
         public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowDiscard_TheMessageIsWritten()
         {
-            string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
-            string loggedMessage = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Discard, message).Single();
+            const int expectedEntryCount = 1;
+            string expectedMessage = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
+            var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Discard).ToList();
 
-            Assert.Equal(MaxMessageSize, loggedMessage.Length);
+            Assert.Equal(expectedEntryCount, entries.Count);
+            AssertWrittenMessage(entries, expectedMessage);
         }
 
         [Fact]
         public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowDiscard_TheMessageIsNotWritten()
         {
-            string message = string.Join("", Enumerable.Repeat("a", MaxMessageSize + 1));
-            bool wasWritten = WriteEventLogEntryForOverflow(EventLogTargetOverflowAction.Discard, message).Any();
+            string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageSize));
+            string messagePart2 = "b";
+            string testMessage = messagePart1 + messagePart2;
+            bool wasWritten = Write(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Discard).Any();
 
             Assert.False(wasWritten);
         }
 
-        private static IEnumerable<string> WriteEventLogEntryForOverflow(EventLogTargetOverflowAction overflowAction, string message)
+        private static IEnumerable<EventRecord> Write(LogLevel logLevel, EventLogEntryType expectedEventLogEntryType, string logMessage, Layout entryType = null, EventLogTargetOverflowAction overflowAction = EventLogTargetOverflowAction.Truncate)
         {
-            string sourceName = Guid.NewGuid().ToString();
-            var target = CreateEventLogTarget(null, sourceName);
-            target.OnOverflow = overflowAction;
-            target.Layout = new SimpleLayout("${message}");
-            LoggingConfiguration config = new LoggingConfiguration();
-            LoggingRule rule = new LoggingRule("*", LogLevel.Info, target);
-            config.LoggingRules.Add(rule);
-            LogManager.Configuration = config;
-
-            var logger = LogManager.GetLogger("WriteEventLogEntryOverflow");
-            var el = new EventLog(target.Log);
-
-            var loggedNotBefore = DateTime.Now.AddMinutes(-1);
-            logger.Log(LogLevel.Info, message);
-
-            var entries = GetEventRecords(el.Log).TakeWhile(e => e.TimeCreated > loggedNotBefore && e.ProviderName == sourceName).ToList();
-
-            var chunks = from entry in entries
-                         from prop in entry.Properties
-                         let msg = Convert.ToString(prop.Value)
-                         where msg.StartsWith("a")
-                         orderby msg descending
-                         select msg;
-
-            return chunks;
-        }
-
-        private static void WriteEventLogEntry2(LogLevel logLevel, EventLogEntryType eventLogEntryType, Layout entryType = null)
-        {
-            var target = CreateEventLogTarget(entryType);
+            var target = CreateEventLogTarget(entryType, "NLog.UnitTests" + Guid.NewGuid().ToString("N"), overflowAction);
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
+
             var logger = LogManager.GetLogger("WriteEventLogEntry");
-            var el = new EventLog(target.Log);
+            logger.Log(logLevel, logMessage);
 
-            var loggedNotBefore = DateTime.Now.AddMinutes(-1);
+            var eventLog = new EventLog(target.Log);
 
-            var testValue = Guid.NewGuid().ToString();
-            logger.Log(logLevel, testValue);
+            var entries = GetEventRecords(eventLog.Log).ToList();
 
-            var entries = GetEventRecords(el.Log).TakeWhile(e => e.TimeCreated > loggedNotBefore).ToList();
-            //debug-> error
             var expectedSource = target.GetFixedSource();
-            EntryExists(entries, testValue, expectedSource, eventLogEntryType);
+
+            var filteredEntries = entries.Where(entry =>
+                                            entry.ProviderName == expectedSource &&
+                                            HasEntryType(entry, expectedEventLogEntryType)
+                                            );
+            if (overflowAction == EventLogTargetOverflowAction.Discard && logMessage.Length > MaxMessageSize)
+            {
+                Assert.False(filteredEntries.Any(), string.Format("No message is expected. But {0} message(s) found entry of type '{1}' from source '{2}'.", filteredEntries.Count(), expectedEventLogEntryType, expectedSource));
+            }
+            else
+            {
+                Assert.True(filteredEntries.Any(), string.Format("Failed to find entry of type '{0}' from source '{1}'", expectedEventLogEntryType, expectedSource));
+            }
+
+            return filteredEntries;
         }
 
-        private static EventLogTarget CreateEventLogTarget(Layout entryType = null, string sourceName = "NLog.UnitTests")
+        private void AssertWrittenMessage(IEnumerable<EventRecord> eventLogs, string expectedMessage)
+        {
+            var messages = eventLogs.Where(entry => entry.Properties.Any(prop => Convert.ToString(prop.Value) == expectedMessage));
+            Assert.True(messages.Any(), string.Format("Event records has not expected message: '{0}'", expectedMessage));
+        }
+
+        private static EventLogTarget CreateEventLogTarget(Layout entryType, string sourceName, EventLogTargetOverflowAction overflowAction)
         {
             var target = new EventLogTarget();
             //The Log to write to is intentionally lower case!!
             target.Log = "application";
             // set the source explicitly to prevent random AppDomain name being used as the source name
             target.Source = sourceName;
+            //Be able to check message length and content, the Layout is intentionally only ${message}.
+            target.Layout = new SimpleLayout("${message}");
             if (entryType != null)
             {
                 //set only when not default
                 target.EntryType = entryType;
             }
+
+            target.OnOverflow = overflowAction;
+
             return target;
         }
-
-        private static void EntryExists(IEnumerable<EventRecord> entries, string expectedValue, string expectedSource, EventLogEntryType expectedEntryType)
-        {
-            var entryExists = entries
-                .Any(entry =>
-                    entry.ProviderName == expectedSource &&
-                    HasEntryType(entry, expectedEntryType) &&
-                    entry.Properties.Any(prop => Convert.ToString(prop.Value).Contains(expectedValue))
-                    );
-
-            Assert.True(entryExists, string.Format(
-                "Failed to find entry of type '{1}' from source '{0}' containing text '{2}' in the message", 
-                expectedSource, expectedEntryType, expectedValue));
-        }
-
 
         private static IEnumerable<EventRecord> GetEventRecords(string logName)
         {
@@ -251,8 +362,8 @@ namespace NLog.UnitTests.Targets
 
         private static bool HasEntryType(EventRecord eventRecord, EventLogEntryType entryType)
         {
-            var keywords = (StandardEventKeywords) (eventRecord.Keywords ?? 0);
-            var level = (StandardEventLevel) (eventRecord.Level ?? 0);
+            var keywords = (StandardEventKeywords)(eventRecord.Keywords ?? 0);
+            var level = (StandardEventLevel)(eventRecord.Level ?? 0);
             bool isClassicEvent = keywords.HasFlag(StandardEventKeywords.EventLogClassic);
             switch (entryType)
             {
@@ -269,7 +380,6 @@ namespace NLog.UnitTests.Targets
             }
             return false;
         }
-
     }
 }
 

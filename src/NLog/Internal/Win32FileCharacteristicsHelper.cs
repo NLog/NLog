@@ -31,45 +31,32 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT
+
 namespace NLog.Internal
 {
     using System;
-    using System.IO;
 
     /// <summary>
-    /// Portable implementation of <see cref="FileInfoHelper"/>.
+    /// Win32-optimized implementation of <see cref="FileCharacteristicsHelper"/>.
     /// </summary>
-    internal class PortableFileInfoHelper : FileInfoHelper
+    internal class Win32FileCharacteristicsHelper : FileCharacteristicsHelper
     {
         /// <summary>
         /// Gets the information about a file.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileHandle">The file handle.</param>
-        /// <param name="lastWriteTime">The last write time of the file in UTC.</param>
-        /// <param name="fileLength">Length of the file.</param>
-        /// <returns>
-        /// A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.
-        /// </returns>
-        public override bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength)
+        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
+        public override FileCharacteristics GetFileCharacteristics(string fileName, IntPtr fileHandle)
         {
-            FileInfo fi = new FileInfo(fileName);
-            if (fi.Exists)
-            {
-                fileLength = fi.Length;
-#if !SILVERLIGHT
-                lastWriteTime = fi.LastWriteTimeUtc;
-#else
-                lastWriteTime = fi.LastWriteTime;
-#endif
-                return true;
-            }
-            else
-            {
-                fileLength = -1;
-                lastWriteTime = DateTime.MinValue;
-                return false;
-            }
+            Win32FileNativeMethods.BY_HANDLE_FILE_INFORMATION fileInfo;
+            if (Win32FileNativeMethods.GetFileInformationByHandle(fileHandle, out fileInfo))
+                return new FileCharacteristics(DateTime.FromFileTimeUtc(fileInfo.ftCreationTime), fileInfo.nFileSizeLow + (((long)fileInfo.nFileSizeHigh) << 32));
+
+            return null;
         }
     }
 }
+
+#endif
