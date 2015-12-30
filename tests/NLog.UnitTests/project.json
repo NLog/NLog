@@ -12,15 +12,6 @@
     },
 
     "frameworks": {
-		".NETFramework,Version=v3.5": {
-			"dependencies": {
-                "xunit": "1.9.1",
-                "xunit.extensions": "1.9.1"
-			},
-			"compilationOptions": {
-                "define": [ "NET3_5", "WCF_SUPPORTED" ]
-            }
-		},
         "dnxcore50": {
             "dependencies": {
                 "System.Console": "4.0.0-beta-23516",
@@ -28,8 +19,7 @@
                 "System.Diagnostics.StackTrace": "4.0.1-beta-23516",
                 "System.Diagnostics.Tools": "4.0.1-beta-23516",
                 "System.Diagnostics.TraceSource": "4.0.0-beta-23516",
-                "System.Linq": "4.0.1-beta-23516",
-                "System.Runtime": "4.0.20",
+                "System.Linq": "4.0.1-beta-23516",                
                 "System.Runtime.Serialization.Primitives": "4.1.0-beta-23516",
                 "System.Xml.XmlDocument": "4.0.1-beta-23225",
                 "System.ServiceModel.Primitives": "4.0.0",

@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !UWP10
-
 namespace NLog.Internal
 {
     using System;
@@ -45,7 +43,7 @@ namespace NLog.Internal
     internal static class PlatformDetector
     {
         private static RuntimeOS currentOS = GetCurrentRuntimeOS();
-        
+
         /// <summary>
         /// Gets the current runtime OS.
         /// </summary>
@@ -53,7 +51,7 @@ namespace NLog.Internal
         {
             get { return currentOS; }
         }
-        
+
         /// <summary>
         /// Gets a value indicating whether current OS is a desktop version of Windows.
         /// </summary>
@@ -61,7 +59,7 @@ namespace NLog.Internal
         {
             get { return currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT; }
         }
-        
+
         /// <summary>
         /// Gets a value indicating whether current OS is Win32-based (desktop or mobile).
         /// </summary>
@@ -69,7 +67,7 @@ namespace NLog.Internal
         {
             get { return currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT || currentOS == RuntimeOS.WindowsCE; }
         }
-        
+
         /// <summary>
         /// Gets a value indicating whether current OS is Unix-based.
         /// </summary>
@@ -77,9 +75,21 @@ namespace NLog.Internal
         {
             get { return currentOS == RuntimeOS.Unix; }
         }
-        
+
         private static RuntimeOS GetCurrentRuntimeOS()
         {
+#if DNX
+            var runtimeEnv = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default?.Runtime?.OperatingSystem;
+            if ("windows".Equals(runtimeEnv, StringComparison.CurrentCultureIgnoreCase))
+                return RuntimeOS.Windows;
+            else if ("darwin".Equals(runtimeEnv, StringComparison.CurrentCultureIgnoreCase))
+                return RuntimeOS.Unix;
+            else if (runtimeEnv.ToLower().Contains("unix"))
+                return RuntimeOS.Unix;
+
+#elif UWP10
+            return RuntimeOS.Unknown;
+#else
             PlatformID platformID = Environment.OSVersion.Platform;
             if ((int)platformID == 4 || (int)platformID == 128)
             {
@@ -100,9 +110,8 @@ namespace NLog.Internal
             {
                 return RuntimeOS.WindowsNT;
             }
-
+#endif
             return RuntimeOS.Unknown;
         }
     }
 }
-#endif

@@ -246,7 +246,7 @@ namespace NLog.Internal.FileAppenders
 
             UpdateCreationTime();
 
-#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && !UWP10
             try
             {
                 if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)

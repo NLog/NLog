@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !UWP10 || DNX
 
 namespace NLog.UnitTests.Targets
 {
@@ -709,8 +709,8 @@ namespace NLog.UnitTests.Targets
         [MemberData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
 #else
         [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
-        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive)
 #endif
+        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -1300,7 +1300,11 @@ namespace NLog.UnitTests.Targets
                     logger.Error("ddd");
                     logger.Fatal("eee");
                 }
+#if DNX ||UWP10
+                LogManager.Flush(null);
+#else
                 LogManager.Flush();
+#endif
                 LogManager.Configuration = null;
 
                 Assert.False(File.Exists(Path.Combine(tempPath, "Trace.txt")));

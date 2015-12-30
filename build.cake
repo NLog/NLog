@@ -15,9 +15,6 @@ var samplesDirectory = Argument<string>("samplesDirectory", "./samples");
 var buildDir = Directory(outputDirectory) + Directory(configuration);
 var samplesDir = Directory(samplesDirectory) + Directory(configuration);
 
-Information("Argument {0}", Argument<string>("configuration", "is NOT valid"));
-Information("Argument {0}", configuration);
-
 //////////////////////////////////////////////////////////////////////
 // TASKS
 //////////////////////////////////////////////////////////////////////
@@ -41,8 +38,8 @@ Task("Build")
     .Does(() =>
 {
     string[] frameworks = null;
-    if(IsRunningOnWindows())
-        frameworks = new[] { ".NETFramework,Version=v3.5", "dnx451", "dnxcore50", "uap10.0", "Silverlight,Version=v5.0" };
+    if(IsRunningOnWindows()) // ".NETFramework,Version=v3.5" "uap10.0",
+        frameworks = new[] { "dnx451", "dnxcore50", "Silverlight,Version=v5.0" };
     else
         frameworks = new[] { "dnx451", "dnxcore50" };
         
@@ -90,7 +87,7 @@ Task("Test")
 	.IsDependentOn("Build")
 	.Does(() =>
 {
-	DNVMUse("default", new DNVMSettings(){ Arch = "x64", Runtime = "coreclr"});
+	DNVMUse("default", new DNVMSettings(){ Arch = "x64", Runtime = "clr"});
 	
 	var settings = new DNXRunSettings
 	{
