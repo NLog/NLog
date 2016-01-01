@@ -52,16 +52,7 @@ namespace NLog.LayoutRenderers
     {
         private string format;
         private string innerFormat = string.Empty;
-        private static readonly Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>> _renderingfunctions = new Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>>() 
-                                                                                                    {
-                                                                                                        {ExceptionRenderingFormat.Message, AppendMessage}, 
-                                                                                                        {ExceptionRenderingFormat.Type, AppendType},
-                                                                                                        {ExceptionRenderingFormat.ShortType, AppendShortType},
-                                                                                                        {ExceptionRenderingFormat.ToString, AppendToString},
-                                                                                                        {ExceptionRenderingFormat.Method, AppendMethod},
-                                                                                                        {ExceptionRenderingFormat.StackTrace, AppendStackTrace},
-                                                                                                        {ExceptionRenderingFormat.Data, AppendData}
-                                                                                                    };
+        private readonly Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>> _renderingfunctions;
 
         private static readonly Dictionary<String, ExceptionRenderingFormat> _formatsMapping = new Dictionary<string, ExceptionRenderingFormat>(StringComparer.OrdinalIgnoreCase)
                                                                                                     {
@@ -83,6 +74,17 @@ namespace NLog.LayoutRenderers
             this.Separator = " ";
             this.InnerExceptionSeparator = EnvironmentHelper.NewLine;
             this.MaxInnerExceptionLevel = 0;
+
+            _renderingfunctions = new Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>>() 
+                                                                                                    {
+                                                                                                        {ExceptionRenderingFormat.Message, AppendMessage}, 
+                                                                                                        {ExceptionRenderingFormat.Type, AppendType},
+                                                                                                        {ExceptionRenderingFormat.ShortType, AppendShortType},
+                                                                                                        {ExceptionRenderingFormat.ToString, AppendToString},
+                                                                                                        {ExceptionRenderingFormat.Method, AppendMethod},
+                                                                                                        {ExceptionRenderingFormat.StackTrace, AppendStackTrace},
+                                                                                                        {ExceptionRenderingFormat.Data, AppendData}
+                                                                                                    };
         }
 
         /// <summary>
@@ -225,7 +227,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="ex">The exception containing the Message to append.</param>        
-        private static void AppendMessage(StringBuilder sb, Exception ex)
+        protected virtual void AppendMessage(StringBuilder sb, Exception ex)
         {
             try
             {
@@ -248,7 +250,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="ex">The Exception whose method name should be appended.</param>        
-        private static void AppendMethod(StringBuilder sb, Exception ex)
+        protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
 #if SILVERLIGHT
             sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
@@ -265,7 +267,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="ex">The Exception whose stack trace should be appended.</param>        
-        private static void AppendStackTrace(StringBuilder sb, Exception ex)
+        protected virtual void AppendStackTrace(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.StackTrace);
         }
@@ -275,7 +277,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="ex">The Exception whose call to ToString() should be appended.</param>       
-        private static void AppendToString(StringBuilder sb, Exception ex)
+        protected virtual void AppendToString(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.ToString());
         }
@@ -285,7 +287,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="ex">The Exception whose type should be appended.</param>        
-        private static void AppendType(StringBuilder sb, Exception ex)
+        protected virtual void AppendType(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.GetType().FullName);
         }
@@ -295,7 +297,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="ex">The Exception whose short type should be appended.</param>
-        private static void AppendShortType(StringBuilder sb, Exception ex)
+        protected virtual void AppendShortType(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.GetType().Name);
         }
@@ -305,7 +307,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="ex">The Exception whose Data property elements should be appended.</param>
-        private static void AppendData(StringBuilder sb, Exception ex)
+        protected virtual void AppendData(StringBuilder sb, Exception ex)
         {
             string separator = string.Empty;
             foreach (var key in ex.Data.Keys)

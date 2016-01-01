@@ -640,5 +640,58 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Assert.Equal(ExceptionRenderingFormat.Message, elr.InnerFormats[0]);
         }
+
+        [Fact]
+        public void CustomExceptionLayoutRendrerInnerExceptionTest()
+        {
+            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("exception-custom", typeof(CustomExceptionLayoutRendrer));
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception-custom:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
+                    <target name='debug2' type='Debug' layout='${exception-custom:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message,data}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                    <logger minlevel='Info' writeTo='debug2' />
+                </rules>
+            </nlog>");
+
+            var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
+            var elr = ((SimpleLayout)t.Layout).Renderers[0] as CustomExceptionLayoutRendrer;
+            Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
+
+            string exceptionMessage = "Test exception";
+            const string exceptionDataKey = "testkey";
+            const string exceptionDataValue = "testvalue";
+            Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
+            ex.InnerException.Data.Add(exceptionDataKey, exceptionDataValue);
+            logger.Error(ex, "msg");
+            AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + "\r\ncustom-exception-renderer" +
+                "\r\n----INNER----\r\n" +
+                "System.InvalidOperationException Wrapper1" + "\r\ncustom-exception-renderer");
+            AssertDebugLastMessage("debug2", string.Format("InvalidOperationException Wrapper2" + "\r\ncustom-exception-renderer" +
+                "\r\n----INNER----\r\n" +
+                "System.InvalidOperationException Wrapper1" + "\r\ncustom-exception-renderer " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue + "\r\ncustom-exception-renderer-data"));
+        }
+
+    }
+
+    [LayoutRenderer("exception-custom")]
+    [ThreadAgnostic]
+    public class CustomExceptionLayoutRendrer : ExceptionLayoutRenderer
+    {
+        protected override void AppendMessage(System.Text.StringBuilder sb, Exception ex)
+        {
+            base.AppendMessage(sb, ex);
+            sb.Append("\r\ncustom-exception-renderer");
+        }
+
+        protected override void AppendData(System.Text.StringBuilder sb, Exception ex)
+        {
+            base.AppendData(sb, ex);
+            sb.Append("\r\ncustom-exception-renderer-data");
+        }
     }
 }
