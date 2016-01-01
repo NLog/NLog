@@ -113,7 +113,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the compiled regular expression that matches either Text or Regex property.
         /// </summary>
-        private Regex CompiledRegex
+        public Regex CompiledRegex
         {
             get
             {
