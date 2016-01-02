@@ -74,8 +74,22 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("Test {0}", currentSequenceNumber);
         }
 
-        [Fact]
-        public void SimpleFileTest1()
+        public static IEnumerable<object[]> SimpleFileTest_TestParameters
+        {
+            get
+            {
+                var booleanValues = new[] { true, false };
+                return
+                    from concurrentWrites in booleanValues
+                    from keepFileOpen in booleanValues
+                    from networkWrites in booleanValues
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites };
+            }
+        }
+        
+        [Theory]
+        [PropertyData("SimpleFileTest_TestParameters")]
+        public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites)
         {
             var tempFile = Path.GetTempFileName();
             try
@@ -85,7 +99,10 @@ namespace NLog.UnitTests.Targets
                                         FileName = SimpleLayout.Escape(tempFile),
                                         LineEnding = LineEndingMode.LF,
                                         Layout = "${level} ${message}",
-                                        OpenFileCacheTimeout = 0
+                                        OpenFileCacheTimeout = 0,
+                                        ConcurrentWrites = concurrentWrites,
+                                        KeepFileOpen = keepFileOpen,
+                                        NetworkWrites = networkWrites
                                     };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -358,7 +375,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void SequentialArchiveTest1()
+        public void SequentialArchiveTest()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -420,7 +437,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void SequentialArchiveTest1_MaxArchiveFiles_0()
+        public void SequentialArchiveTest_MaxArchiveFiles_0()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -486,7 +503,6 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact(Skip = "this is not supported, because we cannot create multiple archive files with  ArchiveNumberingMode.Date (for one day)")]
-
         public void ArchiveAboveSizeWithArchiveNumberingModeDate_maxfiles_o()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), "ArchiveEveryCombinedWithArchiveAboveSize_" + Guid.NewGuid().ToString());

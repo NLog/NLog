@@ -658,10 +658,15 @@ namespace NLog.Targets
                 return MutexMultiProcessFileAppender.TheFactory;
 #endif
             }
-            else if (this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled || this.ArchiveEvery != FileArchivePeriod.None)
-                return CountingSingleProcessFileAppender.TheFactory;
-            else
+            else if (IsArchivingEnabled())
                 return SingleProcessFileAppender.TheFactory;
+            else
+                return CountingSingleProcessFileAppender.TheFactory;
+        }
+
+        private bool IsArchivingEnabled()
+        {
+            return this.ArchiveAboveSize == FileTarget.ArchiveAboveSizeDisabled && this.ArchiveEvery == FileArchivePeriod.None;
         }
 
         /// <summary>
