@@ -279,12 +279,13 @@ namespace NLog.Internal.FileAppenders
             else
             {
                 File.Create(this.FileName).Dispose();
+                
 #if !SILVERLIGHT
                 this.CreationTime = DateTime.UtcNow;
+                // Set the file's creation time to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
                 File.SetCreationTimeUtc(this.FileName, this.CreationTime);
 #else
-                this.CreationTime = DateTime.Now;
-                File.SetCreationTime(this.FileName, this.CreationTime);
+                this.CreationTime = File.GetCreationTime(this.FileName);
 #endif
             }
         }
