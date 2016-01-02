@@ -268,14 +268,25 @@ namespace NLog.Internal.FileAppenders
 
         private void UpdateCreationTime()
         {
-            if (!File.Exists(this.FileName))
-                File.Create(this.FileName).Dispose();
-
+            if (File.Exists(this.FileName))
+            {
 #if !SILVERLIGHT
-            this.CreationTime = File.GetCreationTimeUtc(this.FileName);
+                this.CreationTime = File.GetCreationTimeUtc(this.FileName);
 #else
-            this.CreationTime = File.GetCreationTime(this.FileName);
+                this.CreationTime = File.GetCreationTime(this.FileName);
 #endif
+            }
+            else
+            {
+                File.Create(this.FileName).Dispose();
+#if !SILVERLIGHT
+                this.CreationTime = DateTime.UtcNow;
+                File.SetCreationTimeUtc(this.FileName, this.CreationTime);
+#else
+                this.CreationTime = DateTime.Now;
+                File.SetCreationTime(this.FileName, this.CreationTime);
+#endif
+            }
         }
     }
 }

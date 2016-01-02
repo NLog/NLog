@@ -686,7 +686,7 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempPath, true);
             }
         }
-
+        
         public static IEnumerable<object[]> DateArchive_UsesDateFromCurrentTimeSource_TestParameters
         {
             get
@@ -702,8 +702,7 @@ namespace NLog.UnitTests.Targets
                     select new object[] { timeKind, concurrentWrites, keepFileOpen, networkWrites, includeSequenceInArchive };
             }
         }
-
-
+        
         [Theory]
         [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
         public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive)
@@ -804,6 +803,72 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        public static IEnumerable<object[]> DateArchive_ArchiveOnceOnly_TestParameters
+        {
+            get
+            {
+                var booleanValues = new[] { true, false };
+                return
+                    from concurrentWrites in booleanValues
+                    from keepFileOpen in booleanValues
+                    from networkWrites in booleanValues
+                    from includeSequenceInArchive in booleanValues
+                    where AllowsExternalFileModification(concurrentWrites, keepFileOpen, networkWrites)
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, includeSequenceInArchive };
+            }
+        }
+
+        private static bool AllowsExternalFileModification(bool concurrentWrites, bool keepFileOpen, bool networkWrites)
+        {
+            return (concurrentWrites) || (!keepFileOpen) || (networkWrites);
+        }
+
+        [Theory]
+        [PropertyData("DateArchive_ArchiveOnceOnly_TestParameters")]
+        public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive)
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                var archiveFileNameTemplate = Path.Combine(tempPath, "archive/{#}.txt");
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = archiveFileNameTemplate,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
+                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveDateFormat = "yyyyMMdd",
+                    Layout = "${message}",
+                    ConcurrentWrites = concurrentWrites,
+                    KeepFileOpen = keepFileOpen,
+                    NetworkWrites = networkWrites
+                };
+                
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                logger.Debug("123456789");
+                File.SetCreationTime(tempFile, File.GetCreationTime(tempFile).AddDays(-1));
+                File.SetLastWriteTime(tempFile, File.GetLastWriteTime(tempFile).AddDays(-1));
+                // This should archive the log before logging.
+                logger.Debug("123456789");
+                // This must not archive.
+                logger.Debug("123456789");
+
+                LogManager.Configuration = null;
+                string archivePath = Path.Combine(tempPath, "archive");
+                File.Equals(1, Directory.GetFiles(archivePath).Length);
+                AssertFileContents(tempFile, StringRepeat(2, "123456789\n"), Encoding.UTF8);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
