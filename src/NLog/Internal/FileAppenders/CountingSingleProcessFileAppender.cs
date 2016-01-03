@@ -58,15 +58,15 @@ namespace NLog.Internal.FileAppenders
         public CountingSingleProcessFileAppender(string fileName, ICreateFileParameters parameters)
             : base(fileName, parameters)
         {
-            var fi = new FileInfo(fileName);
-            if (fi.Exists)
+            var fileInfo = new FileInfo(fileName);
+            if (fileInfo.Exists)
             {
 #if !SILVERLIGHT
-                FileTouched(fi.LastWriteTimeUtc);
+                FileTouched(fileInfo.LastWriteTimeUtc);
 #else
-                FileTouched(fi.LastWriteTime);
+                FileTouched(fileInfo.LastWriteTime);
 #endif
-                this.currentFileLength = fi.Length;
+                this.currentFileLength = fileInfo.Length;
             }
             else
             {

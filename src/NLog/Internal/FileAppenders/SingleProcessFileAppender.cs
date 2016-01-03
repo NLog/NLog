@@ -61,7 +61,7 @@ namespace NLog.Internal.FileAppenders
 #if !SILVERLIGHT
                 FileTouched(fileInfo.LastWriteTimeUtc);
 #else
-                FileTouched(fi.LastWriteTime);
+                FileTouched(fileInfo.LastWriteTime);
 #endif
             }
             else
