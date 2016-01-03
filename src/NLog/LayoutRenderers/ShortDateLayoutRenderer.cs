@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.Threading;
+
 namespace NLog.LayoutRenderers
 {
     using System.ComponentModel;
@@ -46,6 +49,13 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class ShortDateLayoutRenderer : LayoutRenderer
     {
+
+        private static DateTime cachedLocalDate;
+        private static string cachedLocalDateFormatted;
+
+        private static DateTime cachedUtcDate;
+        private static string cachedUtcDateFormatted;
+
         /// <summary>
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
         /// </summary>
@@ -61,22 +71,26 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var ts = logEvent.TimeStamp;
+
             if (this.UniversalTime)
             {
                 ts = ts.ToUniversalTime();
+                if (cachedUtcDateFormatted == null || cachedUtcDate.Year != ts.Year || cachedUtcDate.Month != ts.Month || cachedUtcDate.Day != ts.Day)
+                {
+                    cachedUtcDate = ts;
+                    cachedUtcDateFormatted = ts.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                }
+                builder.Append(cachedUtcDateFormatted);
             }
-
-            builder.Append(ts.Year);
-            builder.Append("-");
-            Append2DigitsZeroPadded(builder, ts.Month);
-            builder.Append("-");
-            Append2DigitsZeroPadded(builder, ts.Day);
-        }
-
-        private static void Append2DigitsZeroPadded(StringBuilder builder, int number)
-        {
-            builder.Append((char)((number / 10) + '0'));
-            builder.Append((char)((number % 10) + '0'));
+            else
+            {
+                if (cachedLocalDateFormatted == null || cachedLocalDate.Year != ts.Year || cachedLocalDate.Month != ts.Month || cachedLocalDate.Day != ts.Day)
+                {
+                    cachedLocalDate = ts;
+                    cachedLocalDateFormatted = ts.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                }
+                builder.Append(cachedLocalDateFormatted);
+            }
         }
     }
 }
