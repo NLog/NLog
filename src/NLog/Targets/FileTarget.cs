@@ -639,71 +639,39 @@ namespace NLog.Targets
             {
                 return RetryingMultiProcessFileAppender.TheFactory;
             }
-            else
+            else if (this.NetworkWrites)
             {
-                if (this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled || this.ArchiveEvery != FileArchivePeriod.None)
-                {
-                    if (this.NetworkWrites)
-                    {
-                        return RetryingMultiProcessFileAppender.TheFactory;
-                    }
-                    else if (this.ConcurrentWrites)
-                    {
+                return RetryingMultiProcessFileAppender.TheFactory;
+            }
+            else if (this.ConcurrentWrites)
+            {
 #if SILVERLIGHT
-                        return RetryingMultiProcessFileAppender.TheFactory;
+                return RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
-                        //
-                        // mono on Windows uses mutexes, on Unix - special appender
-                        //
-                        if (PlatformDetector.IsUnix)
-                        {
-                            return UnixMultiProcessFileAppender.TheFactory;
-                        }
-                        else
-                        {
-                            return MutexMultiProcessFileAppender.TheFactory;
-                        }
-#else
-                        return MutexMultiProcessFileAppender.TheFactory;
-#endif
-                    }
-                    else
-                    {
-                        return CountingSingleProcessFileAppender.TheFactory;
-                    }
+                //
+                // mono on Windows uses mutexes, on Unix - special appender
+                //
+                if (PlatformDetector.IsUnix)
+                {
+                    return UnixMultiProcessFileAppender.TheFactory;
                 }
                 else
                 {
-                    if (this.NetworkWrites)
-                    {
-                        return RetryingMultiProcessFileAppender.TheFactory;
-                    }
-                    else if (this.ConcurrentWrites)
-                    {
-#if SILVERLIGHT
-                        return RetryingMultiProcessFileAppender.TheFactory;
-#elif MONO
-                        //
-                        // mono on Windows uses mutexes, on Unix - special appender
-                        //
-                        if (PlatformDetector.IsUnix)
-                        {
-                            return UnixMultiProcessFileAppender.TheFactory;
-                        }
-                        else
-                        {
-                            return MutexMultiProcessFileAppender.TheFactory;
-                        }
-#else
-                        return MutexMultiProcessFileAppender.TheFactory;
-#endif
-                    }
-                    else
-                    {
-                        return SingleProcessFileAppender.TheFactory;
-                    }
+                    return MutexMultiProcessFileAppender.TheFactory;
                 }
+#else
+                return MutexMultiProcessFileAppender.TheFactory;
+#endif
             }
+            else if (IsArchivingEnabled())
+                return SingleProcessFileAppender.TheFactory;
+            else
+                return CountingSingleProcessFileAppender.TheFactory;
+        }
+
+        private bool IsArchivingEnabled()
+        {
+            return this.ArchiveAboveSize == FileTarget.ArchiveAboveSizeDisabled && this.ArchiveEvery == FileArchivePeriod.None;
         }
 
         /// <summary>
