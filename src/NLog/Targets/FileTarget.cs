@@ -949,7 +949,7 @@ namespace NLog.Targets
         /// <param name="fileName">File name to be archived.</param>
         /// <param name="pattern">File name template which contains the numeric pattern to be replaced.</param>
         /// <param name="archiveNumber">Value which will replace the numeric pattern.</param>
-        private void RecursiveRollingRename(string fileName, string pattern, int archiveNumber)
+        private void RollArchivesForward(string fileName, string pattern, int archiveNumber)
         {
             if (this.MaxArchiveFiles > 0 && archiveNumber >= this.MaxArchiveFiles)
             {
@@ -963,7 +963,7 @@ namespace NLog.Targets
             }
 
             string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
-            RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
+            RollArchivesForward(newFileName, pattern, archiveNumber + 1);
 
             var shouldCompress = archiveNumber == 0;
             try
@@ -1405,9 +1405,12 @@ namespace NLog.Targets
         private DateTime GetArchiveDate(string fileName, LogEventInfo logEvent)
         {
             var fileCharacteristics = GetFileCharacteristics(fileName);
-            return PreviousLogOverlappedPeriod(fileCharacteristics, logEvent)
+            var lastWriteTime = TimeSource.Current.FromSystemTime(fileCharacteristics.LastWriteTimeUtc);
+
+            bool previousLogIsMoreRecent = (previousLogEventTimestamp.HasValue) && (previousLogEventTimestamp.Value > lastWriteTime);
+            return (previousLogIsMoreRecent) || (PreviousLogOverlappedPeriod(fileCharacteristics, logEvent))
                 ? previousLogEventTimestamp.Value
-                : TimeSource.Current.FromSystemTime(fileCharacteristics.LastWriteTimeUtc);
+                : lastWriteTime;
         }
 
         private bool PreviousLogOverlappedPeriod(FileCharacteristics fileCharacteristics, LogEventInfo logEvent)
@@ -1467,7 +1470,7 @@ namespace NLog.Targets
                 switch (this.ArchiveNumbering)
                 {
                     case ArchiveNumberingMode.Rolling:
-                        this.RecursiveRollingRename(fileInfo.FullName, fileNamePattern, 0);
+                        this.RollArchivesForward(fileInfo.FullName, fileNamePattern, 0);
                         break;
 
                     case ArchiveNumberingMode.Sequence:
