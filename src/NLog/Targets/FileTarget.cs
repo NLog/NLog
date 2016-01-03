@@ -719,8 +719,8 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            var fileName = GetCleanedFileName(logEvent);
-            
+            var fileName = Path.GetFullPath(GetCleanedFileName(logEvent));
+
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
             if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
@@ -773,7 +773,7 @@ namespace NLog.Targets
 
                 foreach (var bucket in buckets)
                 {
-                    string fileName = CleanupInvalidFileNameChars(bucket.Key);
+                    string fileName = Path.GetFullPath(CleanupInvalidFileNameChars(bucket.Key));
 
                     ms.SetLength(0);
                     ms.Position = 0;
@@ -1502,7 +1502,8 @@ namespace NLog.Targets
                 //(1) User supplied the Filename with pattern
                 //(2) User supplied the normal filename
                 string archiveFileName = this.ArchiveFileName.Render(eventInfo);
-                return CleanupInvalidFileNameChars(archiveFileName);
+                archiveFileName = CleanupInvalidFileNameChars(archiveFileName);
+                return Path.GetFullPath(archiveFileName);
             }
         }
 
