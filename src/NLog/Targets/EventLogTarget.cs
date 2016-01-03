@@ -86,7 +86,7 @@ namespace NLog.Targets
             this.Source = appDomain.FriendlyName;
             this.Log = "Application";
             this.MachineName = ".";
-            this.MaxMessageSize = 16384;
+            this.MaxMessageLength = 16384;
         }
 
         /// <summary>
@@ -130,11 +130,23 @@ namespace NLog.Targets
         [DefaultValue("Application")]
         public string Log { get; set; }
 
+        private int m_MaxMessageLength;
         /// <summary>
         /// Gets or sets the message size limit to write to the Event Log.
         /// </summary>
+        /// <remarks><value>MaxMessageLength</value> cannot be zero or negative</remarks>
         [DefaultValue(16384)]
-        public int MaxMessageSize { get; set; }
+        public int MaxMessageLength
+        {
+            get { return this.m_MaxMessageLength; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("MaxMessageLength cannot be zero or negative.");
+
+                this.m_MaxMessageLength = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the action to take if the message is larger than the MaxMessageSize option.
@@ -242,18 +254,18 @@ namespace NLog.Targets
             EventLog eventLog = GetEventLog(logEvent);
 
             // limitation of EventLog API
-            if (message.Length > this.MaxMessageSize)
+            if (message.Length > this.MaxMessageLength)
             {
                 if (OnOverflow == EventLogTargetOverflowAction.Truncate)
                 {
-                    message = message.Substring(0, this.MaxMessageSize);
+                    message = message.Substring(0, this.MaxMessageLength);
                     eventLog.WriteEntry(message, entryType, eventId, category);
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Split)
                 {
-                    for (int offset = 0; offset < message.Length; offset += this.MaxMessageSize)
+                    for (int offset = 0; offset < message.Length; offset += this.MaxMessageLength)
                     {
-                        string chunk = message.Substring(offset, Math.Min(this.MaxMessageSize, message.Length - offset));
+                        string chunk = message.Substring(offset, Math.Min(this.MaxMessageLength, (message.Length - offset)));
                         eventLog.WriteEntry(chunk, entryType, eventId, category);
                     }
                 }
