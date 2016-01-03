@@ -732,7 +732,7 @@ namespace NLog.UnitTests.Targets
 
                 TimeSource.Current = timeSource;
 
-                var archiveFileNameTemplate = Path.Combine(tempPath, "archive/{#}.txt");
+                var archiveFileNameTemplate = Path.Combine(tempPath, "archive", "{#}.txt");
                 var ft = new FileTarget
                 {
                     FileName = tempFile,

@@ -1502,8 +1502,8 @@ namespace NLog.Targets
                 //(1) User supplied the Filename with pattern
                 //(2) User supplied the normal filename
                 string archiveFileName = this.ArchiveFileName.Render(eventInfo);
-                return CleanupInvalidFileNameChars(archiveFileName);
-                fileNamePattern = Path.GetFullPath(fileNamePattern);
+                archiveFileName = CleanupInvalidFileNameChars(archiveFileName);
+                return Path.GetFullPath(archiveFileName);
             }
         }
 
