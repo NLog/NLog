@@ -217,8 +217,8 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             string message = this.Layout.Render(logEvent);
-            
-            var entryType = GetEntryType(logEvent);
+
+            EventLogEntryType entryType = GetEntryType(logEvent);
 
             int eventId = 0;
 
@@ -234,28 +234,23 @@ namespace NLog.Targets
                 category = Convert.ToInt16(this.Category.Render(logEvent), CultureInfo.InvariantCulture);
             }
 
-            var eventLog = GetEventLog(logEvent);
+            EventLog eventLog = GetEventLog(logEvent);
 
             // limitation of EventLog API
-            if (message.Length > MaxMessageSize)
+            if (message.Length > EventLogTarget.MaxMessageSize)
             {
                 if (OnOverflow == EventLogTargetOverflowAction.Truncate)
                 {
-                    message = message.Substring(0, MaxMessageSize);
+                    message = message.Substring(0, EventLogTarget.MaxMessageSize);
                     eventLog.WriteEntry(message, entryType, eventId, category);
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Split)
                 {
-                    int index = 0;
-                    while (index + MaxMessageSize < message.Length)
+                    for (int offset = 0; offset < message.Length; offset += EventLogTarget.MaxMessageSize)
                     {
-                        string chunk = message.Substring(index, MaxMessageSize);
-                        eventLog.WriteEntry(chunk);
-                        index += MaxMessageSize;
+                        string chunk = message.Substring(offset, Math.Min(EventLogTarget.MaxMessageSize, message.Length - offset));
+                        eventLog.WriteEntry(chunk, entryType, eventId, category);
                     }
-
-                    if (index < message.Length)
-                        eventLog.WriteEntry(message.Substring(index));
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Discard)
                 {
