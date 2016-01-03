@@ -132,7 +132,7 @@ namespace NLog.Targets
 
         private int m_MaxMessageLength;
         /// <summary>
-        /// Gets or sets the message size limit to write to the Event Log.
+        /// Gets or sets the message length limit to write to the Event Log.
         /// </summary>
         /// <remarks><value>MaxMessageLength</value> cannot be zero or negative</remarks>
         [DefaultValue(16384)]
@@ -149,7 +149,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets the action to take if the message is larger than the MaxMessageSize option.
+        /// Gets or sets the action to take if the message is larger than the MaxMessageLength option.
         /// </summary>
         /// <docgen category='Event Log Overflow Action' order='10' />
         [DefaultValue(EventLogTargetOverflowAction.Truncate)]

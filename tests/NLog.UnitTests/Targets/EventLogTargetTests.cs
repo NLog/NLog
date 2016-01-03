@@ -297,7 +297,7 @@ namespace NLog.UnitTests.Targets
 
 
         [Fact]
-        public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowTruncate_TruncatesTheMessage()
+        public void WriteEventLogEntryLargerThanMaxMessageLengthWithOverflowTruncate_TruncatesTheMessage()
         {
             const int maxMessageLength = 16384;
             const int expectedEntryCount = 1;
@@ -312,7 +312,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowTruncate_TheMessageIsNotTruncated()
+        public void WriteEventLogEntryEqualToMaxMessageLengthWithOverflowTruncate_TheMessageIsNotTruncated()
         {
             const int maxMessageLength = 16384;
             const int expectedEntryCount = 1;
@@ -324,7 +324,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowSplitEntries_TheMessageShouldBeSplitted()
+        public void WriteEventLogEntryLargerThanMaxMessageLengthWithOverflowSplitEntries_TheMessageShouldBeSplitted()
         {
             const int maxMessageLength = 16384;
             const int expectedEntryCount = 5;
@@ -347,7 +347,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void WriteEventLogEntryEqual2MaxMessageSizeWithOverflowSplitEntries_TheMessageShouldBeSplittedInTwoChunk()
+        public void WriteEventLogEntryEqual2MaxMessageLengthWithOverflowSplitEntries_TheMessageShouldBeSplittedInTwoChunk()
         {
             const int maxMessageLength = 16384;
             const int expectedEntryCount = 2;
@@ -365,7 +365,7 @@ namespace NLog.UnitTests.Targets
 
 
         [Fact]
-        public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowSplitEntries_TheMessageIsNotSplit()
+        public void WriteEventLogEntryEqualToMaxMessageLengthWithOverflowSplitEntries_TheMessageIsNotSplit()
         {
             const int maxMessageLength = 16384;
             const int expectedEntryCount = 1;
@@ -377,7 +377,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void WriteEventLogEntryEqualToMaxMessageSizeWithOverflowDiscard_TheMessageIsWritten()
+        public void WriteEventLogEntryEqualToMaxMessageLengthWithOverflowDiscard_TheMessageIsWritten()
         {
             const int maxMessageLength = 16384;
             const int expectedEntryCount = 1;
@@ -389,7 +389,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void WriteEventLogEntryLargerThanMaxMessageSizeWithOverflowDiscard_TheMessageIsNotWritten()
+        public void WriteEventLogEntryLargerThanMaxMessageLengthWithOverflowDiscard_TheMessageIsNotWritten()
         {
             const int maxMessageLength = 16384;
             string messagePart1 = string.Join("", Enumerable.Repeat("a", maxMessageLength));
