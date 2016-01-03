@@ -634,12 +634,8 @@ namespace NLog.Targets
             {
                 return RetryingMultiProcessFileAppender.TheFactory;
             }
-            else
+            else if (this.NetworkWrites)
             {
-                if (this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled || this.ArchiveEvery != FileArchivePeriod.None)
-                {
-                    if (this.NetworkWrites)
-                    {
                         return RetryingMultiProcessFileAppender.TheFactory;
                     }
                     else if (this.ConcurrentWrites)
@@ -662,44 +658,16 @@ namespace NLog.Targets
                         return MutexMultiProcessFileAppender.TheFactory;
 #endif
                     }
+            else if (IsArchivingEnabled())
+                return SingleProcessFileAppender.TheFactory;
                     else
-                    {
                         return CountingSingleProcessFileAppender.TheFactory;
                     }
-                }
-                else
+
+        private bool IsArchivingEnabled()
                 {
-                    if (this.NetworkWrites)
-                    {
-                        return RetryingMultiProcessFileAppender.TheFactory;
+            return this.ArchiveAboveSize == FileTarget.ArchiveAboveSizeDisabled && this.ArchiveEvery == FileArchivePeriod.None;
                     }
-                    else if (this.ConcurrentWrites)
-                    {
-#if SILVERLIGHT || UWP10
-                        return RetryingMultiProcessFileAppender.TheFactory;
-#elif MONO
-                        //
-                        // mono on Windows uses mutexes, on Unix - special appender
-                        //
-                        if (PlatformDetector.IsUnix)
-                        {
-                            return UnixMultiProcessFileAppender.TheFactory;
-                        }
-                        else
-                        {
-                            return MutexMultiProcessFileAppender.TheFactory;
-                        }
-#else
-                        return MutexMultiProcessFileAppender.TheFactory;
-#endif
-                    }
-                    else
-                    {
-                        return SingleProcessFileAppender.TheFactory;
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Initializes file logging by creating data structures that
@@ -751,9 +719,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            var fileName = GetCleanedFileName(logEvent);
-
-
+            var fileName = Path.GetFullPath(GetCleanedFileName(logEvent));
 
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
@@ -807,7 +773,7 @@ namespace NLog.Targets
 
                 foreach (var bucket in buckets)
                 {
-                    string fileName = CleanupInvalidFileNameChars(bucket.Key);
+                    string fileName = Path.GetFullPath(CleanupInvalidFileNameChars(bucket.Key));
 
                     ms.SetLength(0);
                     ms.Position = 0;
@@ -1536,7 +1502,8 @@ namespace NLog.Targets
                 //(1) User supplied the Filename with pattern
                 //(2) User supplied the normal filename
                 string archiveFileName = this.ArchiveFileName.Render(eventInfo);
-                return CleanupInvalidFileNameChars(archiveFileName);
+                archiveFileName = CleanupInvalidFileNameChars(archiveFileName);
+                return Path.GetFullPath(archiveFileName);
             }
         }
 
