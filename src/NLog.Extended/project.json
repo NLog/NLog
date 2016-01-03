@@ -13,7 +13,7 @@
     "frameworks": {
         "dnx451": {
             "frameworkAssemblies": {
-                "System.Messaging": "4.0.0.0"
+                "System.Messaging": ""
             },
             "compilationOptions": {
                 "define": [ "NET4_5", "WCF_SUPPORTED", "DNX" ]

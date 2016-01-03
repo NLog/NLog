@@ -18,7 +18,6 @@ var samplesDir = Directory(samplesDirectory) + Directory(configuration);
 //////////////////////////////////////////////////////////////////////
 // TASKS
 //////////////////////////////////////////////////////////////////////
-
 Task("Clean")
     .Does(() =>
 {
@@ -26,90 +25,78 @@ Task("Clean")
 	CleanDirectory(samplesDir);
 });
 
-Task("DnuRestore")
-    .IsDependentOn("Clean")
-    .Does(() =>
-{
-    DNURestore();
-});
+//////////////////////////////////////////////////////////////////////
+// TASK TARGETS
+//////////////////////////////////////////////////////////////////////
 
-Task("Build")
-    .IsDependentOn("DnuRestore")
-    .Does(() =>
-{
-    string[] frameworks = null;
-    if(IsRunningOnWindows()) // ".NETFramework,Version=v3.5" "uap10.0",
-        frameworks = new[] { "dnx451", "dnxcore50", "Silverlight,Version=v5.0" };
-    else
-        frameworks = new[] { "dnx451", "dnxcore50" };
-        
-    DNUBuildSettings dnuBuildSettings = null;
-    foreach(var framework in frameworks)
-    {
-        dnuBuildSettings = new DNUBuildSettings
-		{
-		    Frameworks = new [] { framework },
-		    Configurations = new[] { configuration },
-		    OutputDirectory = buildDir.ToString(),
-		    Quiet = true
-		};
-        
-        DNUBuild("./src/NLog", dnuBuildSettings);
-    }
-    
-    dnuBuildSettings = new DNUBuildSettings
-		{
-		    Frameworks = new [] { "dnx451" },
-		    Configurations = new[] { configuration },
-		    OutputDirectory = buildDir.ToString(),
-		    Quiet = true
-		};
-	DNUBuild("./src/NLog.Extended", dnuBuildSettings);
-    DNUBuild("./src/NLogAutoLoadExtension", dnuBuildSettings);
-    
-    foreach(var framework in frameworks)
-    {
-        dnuBuildSettings = new DNUBuildSettings
-		{
-		    Frameworks = new [] { framework },
-		    Configurations = new[] { configuration },
-		    OutputDirectory = buildDir.ToString(),
-		    Quiet = true
-		};
-        
-        DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
-        DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
-    }
+Task("Default")
+    .IsDependentOn("Dnx451");
 
-});
-
-Task("Test")
-	.IsDependentOn("Build")
+Task("Dnx451")
+	.IsDependentOn("Dnxcore50")
 	.Does(() =>
 {
+	// Use
 	DNVMUse("default", new DNVMSettings(){ Arch = "x64", Runtime = "clr"});
 	
+	// Restore
+	DNURestore();
+
+	// Build
+	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
+	{
+	    Frameworks = new [] { "dnx451" },
+	    Configurations = new[] { configuration },
+	    OutputDirectory = (buildDir + Directory("dnx451")).ToString(),
+	    Quiet = true
+	};
+        
+    DNUBuild("./src/NLog", dnuBuildSettings);
+	DNUBuild("./src/NLog.Extended", dnuBuildSettings);
+    DNUBuild("./src/NLogAutoLoadExtension", dnuBuildSettings);
+	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
+	DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
+
+	// Test
+	var settings = new DNXRunSettings
+	{
+		Framework = "dnx451"
+	};
+	DNXRun("./tests/NLog.UnitTests/", "test", settings);
+
+});
+
+Task("Dnxcore50")
+	.IsDependentOn("Clean")
+	.Does(() =>
+{
+	// Use
+	DNVMUse("default", new DNVMSettings(){ Arch = "x64", Runtime = "coreclr"});
+	
+	// Restore
+	DNURestore();
+
+	// Build
+	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
+	{
+	    Frameworks = new [] { "dnxcore50" },
+	    Configurations = new[] { configuration },
+	    OutputDirectory = (buildDir + Directory("dnxcore50")).ToString(),
+	    Quiet = true
+	};
+        
+    DNUBuild("./src/NLog", dnuBuildSettings);
+	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
+	DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
+
+	// Test
 	var settings = new DNXRunSettings
 	{
 		Framework = "dnxcore50"
 	};
 	DNXRun("./tests/NLog.UnitTests/", "test", settings);
 
-	DNVMUse("default", new DNVMSettings() { Arch = "x64", Runtime = "clr"});
-	settings = new DNXRunSettings
-	{
-		Framework = "dnx451"
-	};
-	DNXRun("./tests/NLog.UnitTests/", "test", settings);
 });
-
-//////////////////////////////////////////////////////////////////////
-// TASK TARGETS
-//////////////////////////////////////////////////////////////////////
-
-Task("Default")
-    .IsDependentOn("Test");
-
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
 //////////////////////////////////////////////////////////////////////

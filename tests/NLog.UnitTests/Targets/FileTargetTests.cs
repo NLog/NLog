@@ -88,7 +88,11 @@ namespace NLog.UnitTests.Targets
         }
         
         [Theory]
+#if XUNIT2
+        [MemberData("SimpleFileTest_TestParameters")]
+#else
         [PropertyData("SimpleFileTest_TestParameters")]
+#endif
         public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites)
         {
             var tempFile = Path.GetTempFileName();
@@ -849,7 +853,11 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
+#if XUNIT2
+        [MemberData("DateArchive_ArchiveOnceOnly_TestParameters")]
+#else
         [PropertyData("DateArchive_ArchiveOnceOnly_TestParameters")]
+#endif
         public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -1381,7 +1389,7 @@ namespace NLog.UnitTests.Targets
                     logger.Error("ddd");
                     logger.Fatal("eee");
                 }
-#if DNX ||UWP10
+#if DNX || UWP10
                 LogManager.Flush(null);
 #else
                 LogManager.Flush();

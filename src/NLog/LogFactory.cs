@@ -71,11 +71,9 @@ namespace NLog
         private readonly MultiFileWatcher watcher;
 #endif
 #if !UWP10
-        private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
-
-
         private static IAppDomain currentAppDomain;
 #endif
+        private static TimeSpan defaultFlushTimeout = TimeSpan.FromSeconds(15);
         private readonly object syncRoot = new object();
 
         private LoggingConfiguration config;
@@ -468,7 +466,7 @@ namespace NLog
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void Flush(AsyncContinuation asyncContinuation)
         {
-            this.Flush(asyncContinuation, TimeSpan.MaxValue);
+            this.Flush(asyncContinuation, defaultFlushTimeout);
         }
 
         /// <summary>
