@@ -889,7 +889,9 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempPath, true);
             }
         }
-        public static IEnumerable<object[]> DateArchive_SkipPeriod_TestParameters        {
+
+        public static IEnumerable<object[]> DateArchive_SkipPeriod_TestParameters
+        {
             get
             {
                 var timeKindValues = new[] { DateTimeKind.Utc, DateTimeKind.Local };
@@ -951,7 +953,9 @@ namespace NLog.UnitTests.Targets
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
-        }        [Fact]
+        }
+
+        [Fact]
         public void DeleteArchiveFilesByDate_MaxArchiveFiles_0()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
