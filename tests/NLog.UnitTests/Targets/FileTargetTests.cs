@@ -381,10 +381,11 @@ namespace NLog.UnitTests.Targets
             var tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
+                string archiveFolder = Path.Combine(tempPath, "archive");
                 var ft = new FileTarget
                                     {
                                         FileName = tempFile,
-                                        ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
+                                        ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
                                         ArchiveAboveSize = 1000,
                                         LineEnding = LineEndingMode.LF,
                                         Layout = "${message}",
@@ -409,22 +410,22 @@ namespace NLog.UnitTests.Targets
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0001.txt"),
+                    Path.Combine(archiveFolder, "0001.txt"),
                     StringRepeat(250, "bbb\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0002.txt"),
+                    Path.Combine(archiveFolder, "0002.txt"),
                     StringRepeat(250, "ccc\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0003.txt"),
+                    Path.Combine(archiveFolder, "0003.txt"),
                     StringRepeat(250, "ddd\n"),
                     Encoding.UTF8);
                 //0000 should not extists because of MaxArchiveFiles=3
-                Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0000.txt")));
-                Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0004.txt")));
+                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0000.txt")));
+                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0004.txt")));
             }
             finally
             {
@@ -443,10 +444,11 @@ namespace NLog.UnitTests.Targets
             var tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
+                string archiveFolder = Path.Combine(tempPath, "archive");
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
+                    ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
                     ArchiveAboveSize = 1000,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Sequence,
@@ -471,26 +473,26 @@ namespace NLog.UnitTests.Targets
                     Encoding.UTF8);
 
                 AssertFileContents(
-                   Path.Combine(tempPath, "archive/0000.txt"),
+                   Path.Combine(archiveFolder, "0000.txt"),
                    StringRepeat(250, "aaa\n"),
                    Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0001.txt"),
+                    Path.Combine(archiveFolder, "0001.txt"),
                     StringRepeat(250, "bbb\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0002.txt"),
+                    Path.Combine(archiveFolder, "0002.txt"),
                     StringRepeat(250, "ccc\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0003.txt"),
+                    Path.Combine(archiveFolder, "0003.txt"),
                     StringRepeat(250, "ddd\n"),
                     Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0004.txt")));
+                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0004.txt")));
             }
             finally
             {
@@ -509,10 +511,11 @@ namespace NLog.UnitTests.Targets
             var tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
+                string archiveFolder = Path.Combine(tempPath, "archive");
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
+                    ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
                     ArchiveAboveSize = 1000,
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
@@ -559,7 +562,7 @@ namespace NLog.UnitTests.Targets
                 //DUNNO what to expected!
                 //try (which fails)
                 AssertFileContents(
-                    Path.Combine(tempPath, string.Format("archive/{0}.txt", archiveFileName)),
+                    Path.Combine(archiveFolder, string.Format("{0}.txt", archiveFileName)),
                    StringRepeat(250, "aaa\n") + StringRepeat(250, "bbb\n") + StringRepeat(250, "ccc\n") + StringRepeat(250, "ddd\n"),
                     Encoding.UTF8);
 
@@ -582,10 +585,11 @@ namespace NLog.UnitTests.Targets
             var tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
+                string archiveFolder = Path.Combine(tempPath, "archive");
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}.txt"),
+                    ArchiveFileName = Path.Combine(archiveFolder, "{#}.txt"),
                     ArchiveAboveSize = 50,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Date,
@@ -606,9 +610,8 @@ namespace NLog.UnitTests.Targets
                 }
                 //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
                 LogManager.Configuration = null;
-
-                var archivePath = Path.Combine(tempPath, "archive");
-                var files = Directory.GetFiles(archivePath).OrderBy(s => s);
+                
+                var files = Directory.GetFiles(archiveFolder).OrderBy(s => s);
                 //the amount of archived files may not exceed the set 'MaxArchiveFiles'
                 Assert.Equal(ft.MaxArchiveFiles, files.Count());
 
@@ -619,7 +622,7 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("1234567890");
                 LogManager.Configuration = null;
 
-                var files2 = Directory.GetFiles(archivePath).OrderBy(s => s);
+                var files2 = Directory.GetFiles(archiveFolder).OrderBy(s => s);
                 Assert.Equal(ft.MaxArchiveFiles, files2.Count());
 
                 //the oldest file should be deleted
@@ -732,7 +735,8 @@ namespace NLog.UnitTests.Targets
 
                 TimeSource.Current = timeSource;
 
-                var archiveFileNameTemplate = Path.Combine(tempPath, "archive/{#}.txt");
+                string archiveFolder = Path.Combine(tempPath, "archive");
+                var archiveFileNameTemplate = Path.Combine(archiveFolder, "{#}.txt");
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
@@ -788,9 +792,8 @@ namespace NLog.UnitTests.Targets
                 }
                 //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
                 LogManager.Configuration = null;
-
-                var archivePath = Path.Combine(tempPath, "archive");
-                var files = Directory.GetFiles(archivePath).OrderBy(s => s).ToList();
+                
+                var files = Directory.GetFiles(archiveFolder).OrderBy(s => s).ToList();
                 //the amount of archived files may not exceed the set 'MaxArchiveFiles'
                 Assert.Equal(ft.MaxArchiveFiles, files.Count);
 
@@ -802,7 +805,7 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("1234567890");
                 LogManager.Configuration = null;
 
-                var files2 = Directory.GetFiles(archivePath).OrderBy(s => s).ToList();
+                var files2 = Directory.GetFiles(archiveFolder).OrderBy(s => s).ToList();
                 Assert.Equal(ft.MaxArchiveFiles, files2.Count);
 
                 //the oldest file should be deleted
@@ -852,11 +855,11 @@ namespace NLog.UnitTests.Targets
             var tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
-                var archiveFileNameTemplate = Path.Combine(tempPath, "archive/{#}.txt");
+                string archiveFolder = Path.Combine(tempPath, "archive");
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = archiveFileNameTemplate,
+                    ArchiveFileName = Path.Combine(archiveFolder, "{#}.txt"),
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
                     ArchiveEvery = FileArchivePeriod.Day,
@@ -878,8 +881,7 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("123456789");
 
                 LogManager.Configuration = null;
-                string archivePath = Path.Combine(tempPath, "archive");
-                File.Equals(1, Directory.GetFiles(archivePath).Length);
+                File.Equals(1, Directory.GetFiles(archiveFolder).Length);
                 AssertFileContents(tempFile, StringRepeat(2, "123456789\n"), Encoding.UTF8);
             }
             finally
@@ -897,10 +899,11 @@ namespace NLog.UnitTests.Targets
             var tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
+                string archiveFolder = Path.Combine(tempPath, "archive");
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}.txt"),
+                    ArchiveFileName = Path.Combine(archiveFolder, "{#}.txt"),
                     ArchiveAboveSize = 50,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Date,
@@ -924,9 +927,8 @@ namespace NLog.UnitTests.Targets
 
                 //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
                 LogManager.Configuration = null;
-
-                var archivePath = Path.Combine(tempPath, "archive");
-                var fileCount = Directory.EnumerateFiles(archivePath).Count();
+                
+                var fileCount = Directory.EnumerateFiles(archiveFolder).Count();
 
                 Assert.Equal(3, fileCount);
 
@@ -935,7 +937,7 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("1234567890");
                 LogManager.Configuration = null;
 
-                var fileCount2 = Directory.EnumerateFiles(archivePath).Count();
+                var fileCount2 = Directory.EnumerateFiles(archiveFolder).Count();
                 //there should be 1 more file
                 Assert.Equal(4, fileCount2);
             }
@@ -962,10 +964,11 @@ namespace NLog.UnitTests.Targets
             var tempFile = Path.Combine(tempPath, "file.txt");
             try
             {
+                string archiveFolder = Path.Combine(tempPath, "archive");
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}.txt"),
+                    ArchiveFileName = Path.Combine(archiveFolder, "{#}.txt"),
                     ArchiveAboveSize = 50,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Date,
@@ -986,9 +989,8 @@ namespace NLog.UnitTests.Targets
                 }
                 //Setting the Configuration to [null] will result in a 'Dump' of the current log entries
                 LogManager.Configuration = null;
-
-                var archivePath = Path.Combine(tempPath, "archive");
-                var files = Directory.GetFiles(archivePath).OrderBy(s => s);
+                
+                var files = Directory.GetFiles(archiveFolder).OrderBy(s => s);
                 //the amount of archived files may not exceed the set 'MaxArchiveFiles'
                 Assert.Equal(ft.MaxArchiveFiles, files.Count());
 
@@ -1001,7 +1003,7 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("1234567890");
                 LogManager.Configuration = null;
 
-                var files2 = Directory.GetFiles(archivePath).OrderBy(s => s);
+                var files2 = Directory.GetFiles(archiveFolder).OrderBy(s => s);
                 Assert.Equal(ft.MaxArchiveFiles, files2.Count());
 
                 //the oldest files should be deleted
@@ -1033,10 +1035,11 @@ namespace NLog.UnitTests.Targets
             {
                 const string header = "Headerline";
 
+                string archiveFolder = Path.Combine(tempPath, "archive");
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
+                    ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
                     ArchiveAboveSize = 51,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Sequence,
@@ -1056,11 +1059,11 @@ namespace NLog.UnitTests.Targets
 
                 AssertFileContentsStartsWith(tempFile, header, Encoding.UTF8);
 
-                AssertFileContentsStartsWith(Path.Combine(tempPath, "archive/0002.txt"), header, Encoding.UTF8);
+                AssertFileContentsStartsWith(Path.Combine(archiveFolder, "0002.txt"), header, Encoding.UTF8);
 
-                AssertFileContentsStartsWith(Path.Combine(tempPath, "archive/0001.txt"), header, Encoding.UTF8);
+                AssertFileContentsStartsWith(Path.Combine(archiveFolder, "0001.txt"), header, Encoding.UTF8);
 
-                Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0000.txt")));
+                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0000.txt")));
             }
             finally
             {
@@ -1110,7 +1113,7 @@ namespace NLog.UnitTests.Targets
                     MaxArchiveFiles = 3
                 };
                 if (specifyArchiveFileName)
-                    ft.ArchiveFileName = Path.Combine(tempPath, "archive/{####}." + archiveExtension);
+                    ft.ArchiveFileName = Path.Combine(tempPath, "archive", "{####}." + archiveExtension);
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
@@ -1136,7 +1139,7 @@ namespace NLog.UnitTests.Targets
                     Encoding.UTF8);
 
                 string archiveFileNameFormat = specifyArchiveFileName
-                    ? "archive/000{0}." + archiveExtension
+                    ? Path.Combine("archive", "000{0}." + archiveExtension)
                     : "file.{0}." + archiveExtension;
 
                 assertFileContents(
@@ -1284,8 +1287,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                //if (File.Exists(tempFile))
-                //    File.Delete(tempFile);
                 LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
@@ -1338,8 +1339,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                //if (File.Exists(tempFile))
-                //    File.Delete(tempFile);
                 LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
@@ -1399,8 +1398,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                //if (File.Exists(tempFile))
-                //    File.Delete(tempFile);
                 LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
