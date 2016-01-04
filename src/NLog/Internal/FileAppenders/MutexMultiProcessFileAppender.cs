@@ -121,6 +121,7 @@ namespace NLog.Internal.FileAppenders
                 this.file.Seek(0, SeekOrigin.End);
                 this.file.Write(bytes, 0, bytes.Length);
                 this.file.Flush();
+                FileTouched();
             }
             finally
             {
@@ -146,6 +147,7 @@ namespace NLog.Internal.FileAppenders
 
             this.mutex = null;
             this.file = null;
+            FileTouched();
         }
 
         /// <summary>

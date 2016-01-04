@@ -52,7 +52,7 @@ namespace NLog.Internal
         {
             Win32FileNativeMethods.BY_HANDLE_FILE_INFORMATION fileInfo;
             if (Win32FileNativeMethods.GetFileInformationByHandle(fileHandle, out fileInfo))
-                return new FileCharacteristics(DateTime.FromFileTimeUtc(fileInfo.ftCreationTime), fileInfo.nFileSizeLow + (((long)fileInfo.nFileSizeHigh) << 32));
+                return new FileCharacteristics(DateTime.FromFileTimeUtc(fileInfo.ftCreationTime), DateTime.FromFileTimeUtc(fileInfo.ftLastWriteTime), fileInfo.nFileSizeLow + (((long)fileInfo.nFileSizeHigh) << 32));
 
             return null;
         }

@@ -53,9 +53,9 @@ namespace NLog.Internal
             if (fileInfo.Exists)
             {
 #if !SILVERLIGHT
-                return new FileCharacteristics(fileInfo.CreationTimeUtc, fileInfo.Length);
+                return new FileCharacteristics(fileInfo.CreationTimeUtc, fileInfo.LastWriteTimeUtc, fileInfo.Length);
 #else
-                return new FileCharacteristics(fileInfo.CreationTime, fileInfo.Length);
+                return new FileCharacteristics(fileInfo.CreationTime, fileInfo.LastWriteTime, fileInfo.Length);
 #endif
             }
             else
