@@ -44,6 +44,7 @@ namespace NLog.UnitTests.Targets
     using System.Collections.Generic;
     using System.Diagnostics.Eventing.Reader;
     using NLog.Layouts;
+    using Xunit.Extensions;
 
     public class EventLogTargetTests : NLogTestBase
     {
@@ -85,65 +86,40 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(expectedMaxMessageLength, eventLog1.MaxMessageLength);
         }
 
-        [Fact]
-        public void ConfigurationShouldThrowException_WhenMaxMessageLengthIsNegative()
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public void ConfigurationShouldThrowException_WhenMaxMessageLengthIsNegativeOrZero(int maxMessageLength)
         {
-            string configrationText = @"
+            string configrationText = string.Format(@"
             <nlog ThrowExceptions='true'>
                 <targets>
-                    <target type='EventLog' name='eventLog1' layout='${message}' maxmessagelength='-1' />
+                    <target type='EventLog' name='eventLog1' layout='${{message}}' maxmessagelength='{0}' />
                 </targets>
                 <rules>
                       <logger name='*' writeTo='eventLog1'>
                       </logger>
                     </rules>
-            </nlog>";
+            </nlog>", maxMessageLength);
 
             NLogConfigurationException ex = Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configrationText));
             Assert.Equal("MaxMessageLength cannot be zero or negative.", ex.InnerException.Message);
         }
 
-        [Fact]
-        public void ConfigurationShouldThrowException_WhenMaxMessageLengthIsZero()
-        {
-            string configrationText = @"
-            <nlog ThrowExceptions='true'>
-                <targets>
-                    <target type='EventLog' name='eventLog1' layout='${message}' maxmessagelength='0' />
-                </targets>
-                <rules>
-                      <logger name='*' writeTo='eventLog1'>
-                      </logger>
-                    </rules>
-            </nlog>";
-
-            NLogConfigurationException ex = Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configrationText));
-            Assert.Equal("MaxMessageLength cannot be zero or negative.", ex.InnerException.Message);
-        }
-
-        [Fact]
-        public void ShouldThrowException_WhenMaxMessageLengthSetNegative()
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public void ShouldThrowException_WhenMaxMessageLengthSetNegativeOrZero(int maxMessageLength)
         {
             ArgumentException ex = Assert.Throws<ArgumentException>(() =>
             {
                 var target = new EventLogTarget();
-                target.MaxMessageLength = -1;
+                target.MaxMessageLength = maxMessageLength;
             });
 
             Assert.Equal("MaxMessageLength cannot be zero or negative.", ex.Message);
         }
 
-        [Fact]
-        public void ShouldThrowException_WhenMaxMessageLengthSetZero()
-        {
-            ArgumentException ex = Assert.Throws<ArgumentException>(() =>
-            {
-                var target = new EventLogTarget();
-                target.MaxMessageLength = 0;
-            });
-
-            Assert.Equal("MaxMessageLength cannot be zero or negative.", ex.Message);
-        }
 
         private void AssertMessageAndLogLevelForTruncatedMessages(LogLevel loglevel, EventLogEntryType expectedEventLogEntryType, string expectedMessage, Layout entryTypeLayout)
         {
