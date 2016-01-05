@@ -58,7 +58,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
             Assert.Equal(ei.TimeStamp.ToString("yyyy-MM-dd"), dt.Render(ei));
         }
-        
+
         [Fact]
         public void ShortDateTest()
         {
@@ -72,6 +72,50 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.GetLogger("d").Debug("zzz");
             AssertDebugLastMessage("debug", DateTime.Now.ToString("yyyy-MM-dd"));
+        }
+
+        [Fact]
+        public void OneDigitMonthTest()
+        {
+            var dt = new ShortDateLayoutRenderer();
+            dt.UniversalTime = false;
+
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            ei.TimeStamp = new DateTime(2015, 1, 1);
+            Assert.Equal(ei.TimeStamp.ToString("yyyy-MM-dd"), dt.Render(ei));
+        }
+
+        [Fact]
+        public void TwoDigitMonthTest()
+        {
+            var dt = new ShortDateLayoutRenderer();
+            dt.UniversalTime = false;
+
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            ei.TimeStamp = new DateTime(2015, 12, 1);
+            Assert.Equal(ei.TimeStamp.ToString("yyyy-MM-dd"), dt.Render(ei));
+        }
+
+        [Fact]
+        public void OneDigitDayTest()
+        {
+            var dt = new ShortDateLayoutRenderer();
+            dt.UniversalTime = false;
+
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            ei.TimeStamp = new DateTime(2015, 1, 1);
+            Assert.Equal(ei.TimeStamp.ToString("yyyy-MM-dd"), dt.Render(ei));
+        }
+
+        [Fact]
+        public void TwoDigitDayTest()
+        {
+            var dt = new ShortDateLayoutRenderer();
+            dt.UniversalTime = false;
+
+            var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            ei.TimeStamp = new DateTime(2015, 12, 12);
+            Assert.Equal(ei.TimeStamp.ToString("yyyy-MM-dd"), dt.Render(ei));
         }
     }
 }
