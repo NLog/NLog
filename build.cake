@@ -6,6 +6,7 @@ var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
 var outputDirectory = Argument<string>("outputDirectory", "./artifacts");
 var samplesDirectory = Argument<string>("samplesDirectory", "./samples");
+var dnxVersion = Argument<string>("dnxVersion", "1.0.0-rc1-update1");
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -37,7 +38,7 @@ Task("Dnx451")
 	.Does(() =>
 {
 	// Use
-	DNVMUse("default", new DNVMSettings(){ Arch = "x64", Runtime = "clr"});
+	DNVMUse(dnxVersion, new DNVMSettings(){ Arch = "x64", Runtime = "clr"});
 	
 	// Restore
 	DNURestore();
@@ -71,7 +72,7 @@ Task("Dnxcore50")
 	.Does(() =>
 {
 	// Use
-	DNVMUse("default", new DNVMSettings(){ Arch = "x64", Runtime = "coreclr"});
+	DNVMUse(dnxVersion, new DNVMSettings(){ Arch = "x64", Runtime = "coreclr"});
 	
 	// Restore
 	DNURestore();
@@ -91,9 +92,7 @@ Task("Dnxcore50")
 
 	// Test
 	var settings = new DNXRunSettings
-	{
-		Framework = "dnxcore50"
-	};
+	{	};
 	DNXRun("./tests/NLog.UnitTests/", "test", settings);
 
 });

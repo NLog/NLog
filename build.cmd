@@ -31,10 +31,6 @@ IF "%SKIP_DNX_INSTALL%"=="" (
     CALL dnvm install %BUILDCMD_DNX_VERSION% -runtime CLR -arch x86 -alias default
 	CALL dnvm install %BUILDCMD_DNX_VERSION% -runtime coreclr -arch x86
 	CALL dnvm install %BUILDCMD_DNX_VERSION% -runtime coreclr -arch x64
-	
-	CALL dnvm use default -runtime CLR -arch x86
-) ELSE (
-    CALL dnvm use default -runtime CLR -arch x86
 )
 
-@powershell -NoProfile -ExecutionPolicy unrestricted -Command ".\build.ps1 -Script build.cake %*"
+@powershell -NoProfile -ExecutionPolicy unrestricted -Command ".\build.ps1 -Script build.cake -dnxVersion %BUILDCMD_DNX_VERSION% %*"
