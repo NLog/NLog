@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,32 +31,46 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
 
-namespace NLog.Internal
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace NLog.Config
 {
-    using System;
-
     /// <summary>
-    /// Win32-optimized implementation of <see cref="FileCharacteristicsHelper"/>.
+    /// Format of the excpetion output to the specific target.
     /// </summary>
-    internal class Win32FileCharacteristicsHelper : FileCharacteristicsHelper
+    public enum ExceptionRenderingFormat
     {
         /// <summary>
-        /// Gets the information about a file.
+        /// Appends the Message of an Exception to the specified target.
         /// </summary>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="fileHandle">The file handle.</param>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics(string fileName, IntPtr fileHandle)
-        {
-            Win32FileNativeMethods.BY_HANDLE_FILE_INFORMATION fileInfo;
-            if (Win32FileNativeMethods.GetFileInformationByHandle(fileHandle, out fileInfo))
-                return new FileCharacteristics(DateTime.FromFileTimeUtc(fileInfo.ftCreationTime), DateTime.FromFileTimeUtc(fileInfo.ftLastWriteTime), fileInfo.nFileSizeLow + (((long)fileInfo.nFileSizeHigh) << 32));
-
-            return null;
-        }
+        Message = 0,
+        /// <summary>
+        /// Appends the type of an Exception to the specified target.
+        /// </summary>
+        Type = 1,
+        /// <summary>
+        /// Appends the short type of an Exception to the specified target.
+        /// </summary>
+        ShortType = 2,
+        /// <summary>
+        /// Appends the result of calling ToString() on an Exception to the specified target.
+        /// </summary>
+        ToString = 3,
+        /// <summary>
+        /// Appends the method name from Exception's stack trace to the specified target.
+        /// </summary>
+        Method = 4,
+        /// <summary>
+        /// Appends the stack trace from an Exception to the specified target.
+        /// </summary>
+        StackTrace = 5,
+        /// <summary>
+        /// Appends the contents of an Exception's Data property to the specified target.
+        /// </summary>
+        Data = 6
     }
 }
-
-#endif

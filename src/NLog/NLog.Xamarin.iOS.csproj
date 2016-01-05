@@ -78,6 +78,7 @@
     <Compile Include="Config\ConfigurationItemCreator.cs" />
     <Compile Include="Config\ConfigurationItemFactory.cs" />
     <Compile Include="Config\DefaultParameterAttribute.cs" />
+    <Compile Include="Config\ExceptionRenderingFormat.cs" />
     <Compile Include="Config\Factory.cs" />
     <Compile Include="Config\IFactory.cs" />
     <Compile Include="Config\IInstallable.cs" />
