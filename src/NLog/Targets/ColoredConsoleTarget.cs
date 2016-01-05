@@ -197,13 +197,13 @@ namespace NLog.Targets
             {
                 var matchingRule = GetMatchingRowHighlightingRule(logEvent);
 
-                if ((matchingRule.ForegroundColor != ConsoleOutputColor.NoChange) && ((ConsoleColor)matchingRule.ForegroundColor != oldForegroundColor))
+                if (ColorDoesChange(matchingRule.ForegroundColor, oldForegroundColor))
                 {
                     Console.ForegroundColor = (ConsoleColor)matchingRule.ForegroundColor;
                     didChangeForegroundColor = true;
                 }
 
-                if ((matchingRule.BackgroundColor != ConsoleOutputColor.NoChange) && ((ConsoleColor)matchingRule.BackgroundColor != oldBackgroundColor))
+                if (ColorDoesChange(matchingRule.BackgroundColor, oldBackgroundColor))
                 {
                     Console.BackgroundColor = (ConsoleColor)matchingRule.BackgroundColor;
                     didChangeBackgroundColor = true;
@@ -255,6 +255,11 @@ namespace NLog.Targets
             }
 
             return ConsoleRowHighlightingRule.Default;
+        }
+
+        private static bool ColorDoesChange(ConsoleOutputColor targetColor, ConsoleColor oldColor)
+        {
+            return (targetColor != ConsoleOutputColor.NoChange) && ((ConsoleColor)targetColor != oldColor);
         }
 
         private static void ColorizeEscapeSequences(
