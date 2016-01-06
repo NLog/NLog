@@ -1,0 +1,1087 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.CodeAnalysis.Scripting</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.CodeAnalysis.FusionAssemblyIdentity.ToAssemblyName(Microsoft.CodeAnalysis.FusionAssemblyIdentity.IAssemblyName)">
+            <summary>
+            Converts <see cref="T:Microsoft.CodeAnalysis.FusionAssemblyIdentity.IAssemblyName"/> to <see cref="T:System.Reflection.AssemblyName"/> with possibly missing name components.
+            </summary>
+            <returns>
+            An <see cref="T:System.Reflection.AssemblyName"/> whose fields are be null if not present in <paramref name="nameObject"/>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.FusionAssemblyIdentity.ToAssemblyIdentity(Microsoft.CodeAnalysis.FusionAssemblyIdentity.IAssemblyName)">
+            <summary>
+            Converts <see cref="T:Microsoft.CodeAnalysis.FusionAssemblyIdentity.IAssemblyName"/> to <see cref="T:System.Reflection.AssemblyName"/> with all metadata fields filled.
+            </summary>
+            <returns>
+            Assembly name with Version, Culture and PublicKeyToken components filled in:
+            "SimpleName, Version=#.#.#.#, Culture=XXX, PublicKeyToken=XXXXXXXXXXXXXXXX".
+            In addition Retargetable flag and ContentType are set.
+            </returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.FusionAssemblyIdentity.ToAssemblyNameObject(System.Reflection.AssemblyName)">
+            <summary>
+            Converts <see cref="T:System.Reflection.AssemblyName"/> to an equivalent <see cref="T:Microsoft.CodeAnalysis.FusionAssemblyIdentity.IAssemblyName"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.FusionAssemblyIdentity.ToAssemblyNameObject(System.String)">
+            <summary>
+            Creates <see cref="T:Microsoft.CodeAnalysis.FusionAssemblyIdentity.IAssemblyName"/> object by parsing given display name.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.FusionAssemblyIdentity.GetBestMatch(System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.FusionAssemblyIdentity.IAssemblyName},System.String)">
+            <summary>
+            Selects the candidate assembly with the largest version number.  Uses culture as a tie-breaker if it is provided.
+            All candidates are assumed to have the same name and must include versions and cultures.  
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.GlobalAssemblyCache">
+            <summary>
+            Provides APIs to enumerate and look up assemblies stored in the Global Assembly Cache.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.GlobalAssemblyCache.CurrentArchitectures">
+            <summary>
+            Represents the current Processor architecture
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GlobalAssemblyCache.GetAssemblyIdentities(System.Reflection.AssemblyName,System.Collections.Immutable.ImmutableArray{System.Reflection.ProcessorArchitecture})">
+            <summary>
+            Enumerates assemblies in the GAC returning those that match given partial name and
+            architecture.
+            </summary>
+            <param name="partialName">Optional partial name.</param>
+            <param name="architectureFilter">Optional architecture filter.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GlobalAssemblyCache.GetAssemblyIdentities(System.String,System.Collections.Immutable.ImmutableArray{System.Reflection.ProcessorArchitecture})">
+            <summary>
+            Enumerates assemblies in the GAC returning those that match given partial name and
+            architecture.
+            </summary>
+            <param name="partialName">The optional partial name.</param>
+            <param name="architectureFilter">The optional architecture filter.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GlobalAssemblyCache.GetAssemblySimpleNames(System.Collections.Immutable.ImmutableArray{System.Reflection.ProcessorArchitecture})">
+            <summary>
+            Enumerates assemblies in the GAC returning their simple names.
+            </summary>
+            <param name="architectureFilter">Optional architecture filter.</param>
+            <returns>Unique simple names of GAC assemblies.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GlobalAssemblyCache.ResolvePartialName(System.String,System.Collections.Immutable.ImmutableArray{System.Reflection.ProcessorArchitecture},System.Globalization.CultureInfo)">
+            <summary>
+            Looks up specified partial assembly name in the GAC and returns the best matching <see cref="T:Microsoft.CodeAnalysis.AssemblyIdentity"/>.
+            </summary>
+            <param name="displayName">The display name of an assembly</param>
+            <param name="architectureFilter">The optional processor architecture</param>
+            <param name="preferredCulture">The optional preferred culture information</param>
+            <returns>An assembly identity or null, if <paramref name="displayName"/> can't be resolved.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="displayName"/> is null.</exception>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GlobalAssemblyCache.ResolvePartialName(System.String,System.String@,System.Collections.Immutable.ImmutableArray{System.Reflection.ProcessorArchitecture},System.Globalization.CultureInfo)">
+            <summary>
+            Looks up specified partial assembly name in the GAC and returns the best matching <see cref="T:Microsoft.CodeAnalysis.AssemblyIdentity"/>.
+            </summary>
+            <param name="displayName">The display name of an assembly</param>
+            <param name="location">Full path name of the resolved assembly</param>
+            <param name="architectureFilter">The optional processor architecture</param>
+            <param name="preferredCulture">The optional preferred culture information</param>
+            <returns>An assembly identity or null, if <paramref name="displayName"/> can't be resolved.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="displayName"/> is null.</exception>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.GacFileResolver">
+            <summary>
+            Extends <see cref="T:Microsoft.CodeAnalysis.MetadataFileReferenceResolver"/> to enable resolution of assembly
+            simple names in the GAC.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.Scripting.GacFileResolver.Default">
+            <summary>
+            A resolver that is configured to resolve against the GAC associated
+            with the bitness of the currently executing process.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.GacFileResolver.#ctor(System.Collections.Generic.IEnumerable{System.String},System.String,System.Collections.Immutable.ImmutableArray{System.Reflection.ProcessorArchitecture},System.Globalization.CultureInfo)">
+            <summary>
+            Constructs an instance of a <see cref="T:Microsoft.CodeAnalysis.Scripting.GacFileResolver"/>
+            </summary>
+            <param name="assemblySearchPaths">An ordered set of fully qualified 
+            paths which are searched when resolving assembly names.</param>
+            <param name="baseDirectory">Directory used when resolving relative paths.</param>
+            <param name="architectures">Supported architectures used to filter GAC assemblies.</param>
+            <param name="preferredCulture">A culture to use when choosing the best assembly from 
+            among the set filtered by <paramref name="architectures"/></param>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.GacFileResolver.Architectures">
+            <summary>
+            Architecture filter used when resolving assembly references.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.GacFileResolver.PreferredCulture">
+            <summary>
+            CultureInfo used when resolving assembly references.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.AssemblyLoader">
+            <summary>
+            Loads assemblies for Reflection based APIs.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.AssemblyLoader.Load(Microsoft.CodeAnalysis.AssemblyIdentity,System.String)">
+            <summary>
+            Loads an assembly given its full name.
+            </summary>
+            <param name="identity">The identity of the assembly to load.</param>
+            <param name="location">Location of the assembly.</param>
+            <returns>The loaded assembly.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.AssemblyLoadResult">
+            <summary>
+            The result of loading an assembly reference to the interactive session.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.AssemblyLoadResult.IsSuccessful">
+            <summary>
+            True if the assembly was loaded by the assembly loader, false if has been loaded before.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.AssemblyLoadResult.Path">
+            <summary>
+            Full path to the physical assembly file (might be a shadow-copy of the original assembly file).
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.AssemblyLoadResult.OriginalPath">
+            <summary>
+            Original assembly file path.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.ObjectFormatter">
+            <summary>
+            Object pretty printer.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ObjectFormatter.VoidDisplayString">
+            <summary>
+            String that describes "void" return type in the language.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ObjectFormatter.NullLiteral">
+            <summary>
+            String that describes "null" literal in the language.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ObjectFormatter.FormatArrayTypeName(System.Array,Microsoft.CodeAnalysis.Scripting.ObjectFormattingOptions)">
+            <summary>
+            Formats an array type name (vector or multidimensional).
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ObjectFormatter.IsHiddenMember(System.Reflection.MemberInfo)">
+            <summary>
+            Returns true if the member shouldn't be displayed (e.g. it's a compiler generated field).
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ObjectFormatter.Formatter.FormatObjectMembers(Microsoft.CodeAnalysis.Scripting.ObjectFormatter.Builder,System.Object,System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            Formats object members to a list.
+            
+            Inline == false:
+            <code>
+            { A=true, B=false, C=new int[3] { 1, 2, 3 } }
+            </code>
+            
+            Inline == true:
+            <code>
+            {
+              A: true,
+              B: false,
+              C: new int[3] { 1, 2, 3 }
+            }
+            </code>
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ObjectFormatter.Formatter.FormatObjectMembersRecursive(System.Collections.Generic.List{Microsoft.CodeAnalysis.Scripting.ObjectFormatter.Formatter.FormattedMember},System.Object,System.Boolean,System.Int32@)">
+            <summary>
+            Enumerates sorted object members to display.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ObjectFormatter.Formatter.FormatWithEmbeddedExpressions(System.Int32,System.String,System.Object)">
+            <summary>
+            Evaluate a format string with possible member references enclosed in braces. 
+            E.g. "foo = {GetFooString(),nq}, bar = {Bar}".
+            </summary>
+            <remarks>
+            Although in theory any expression is allowed to be embedded in the string such behavior is in practice fundamentally broken.
+            The attribute doesn't specify what language (VB, C#, F#, etc.) to use to parse these expressions. Even if it did all languages 
+            would need to be able to evaluate each other language's expressions, which is not viable and the Expression Evaluator doesn't 
+            work that way today. Instead it evaluates the embedded expressions in the language of the current method frame. When consuming 
+            VB objects from C#, for example, the evaluation migth fail due to language mismatch (evaluating VB expression using C# parser).
+            
+            Therefore we limit the expressions to a simple language independent syntax: {clr-member-name} '(' ')' ',nq', 
+            where parentheses and ,nq suffix (no-quotes) are optional and the name is an arbitrary CLR field, property, or method name.
+            We then resolve the member by name using case-sensitive lookup first with fallback to case insensitive and evaluate it.
+            If parentheses are present we only look for methods.
+            Only parameter less members are considered.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.ScriptRunner">
+            <summary>
+            A delegate that will run a script when invoked.
+            </summary>
+            <param name="globals">An object instance whose members can be accessed by the script as global variables.</param>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.Script">
+            <summary>
+            A class that represents a script that you can run.
+            
+            Create a script using a language specific script class such as CSharpScript or VisualBasicScript.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.Script.Previous">
+            <summary>
+            A script that will run first when this script is run. 
+            Any declarations made in the previous script can be referenced in this script.
+            The end state from running this script includes all declarations made by both scripts.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.Script.Options">
+            <summary>
+            The options used by this script.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.Script.Code">
+            <summary>
+            The source code of the script.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.Script.Path">
+            <summary>
+            The path to the source if it originated from a file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.Script.GlobalsType">
+            <summary>
+            The type of an object whose members can be accessed by the script as global variables.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.Script.ReturnType">
+            <summary>
+            The expected return type of the script.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.Script.Builder">
+            <summary>
+            The <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptBuilder"/> that will be used to build the script before running.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.WithOptions(Microsoft.CodeAnalysis.Scripting.ScriptOptions)">
+            <summary>
+            Creates a new version of this script with the specified options.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.WithCode(System.String)">
+            <summary>
+            Creates a new version of this script with the source code specified.
+            </summary>
+            <param name="code">The source code of the script.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.WithPath(System.String)">
+            <summary>
+            Creates a new version of this script with the path specified.
+            The path is optional. It can be used to associate the script code with a file path.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.WithGlobalsType(System.Type)">
+            <summary>
+            Creates a new version of this script with the specified globals type. 
+            The members of this type can be accessed by the script as global variables.
+            </summary>
+            <param name="globalsType">The type that defines members that can be accessed by the script.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.WithReturnType(System.Type)">
+            <summary>
+            Creates a new version of this script with the specified return type.
+            The default return type for a script is <see cref="T:System.Object"/>. 
+            Specifying a return type may be necessary for proper understanding of some scripts.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.WithPrevious(Microsoft.CodeAnalysis.Scripting.Script)">
+            <summary>
+            Creates a new version of this script with the previous script specified.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.WithBuilder(Microsoft.CodeAnalysis.Scripting.ScriptBuilder)">
+            <summary>
+            Creates a new verion of this script with the <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptBuilder"/> specified.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.Make(System.String,System.String,Microsoft.CodeAnalysis.Scripting.ScriptOptions,System.Type,System.Type,Microsoft.CodeAnalysis.Scripting.ScriptBuilder,Microsoft.CodeAnalysis.Scripting.Script)">
+            <summary>
+            Creates a new instance of a script of this type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.Run(System.Object)">
+            <summary>
+            Runs this script.
+            </summary>
+            <param name="globals">An object instance whose members can be accessed by the script as global variables, 
+            or a <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptState"/> instance that was the output from a previously run script.</param>
+            <returns>A <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptState"/> that represents the state after running the script, including all declared variables and return value.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.TryRunFrom(Microsoft.CodeAnalysis.Scripting.ScriptState,Microsoft.CodeAnalysis.Scripting.ScriptExecutionState@,System.Object@)">
+            <summary>
+             Continue running script from the point after the intermediate state was produced.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.GetCompilation">
+            <summary>
+            Get's the <see cref="T:Microsoft.CodeAnalysis.Compilation"/> that represents the semantics of the script.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.Build">
+            <summary>
+            Forces the script through the build step.
+            If not called directly, the build step will occur on the first call to Run.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.GetReferencesForCompilation">
+            <summary>
+            Gets the references that need to be assigned to the compilation.
+            This can be different than the list of references defined by the <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.CreateCompilation">
+            <summary>
+            Creates a <see cref="T:Microsoft.CodeAnalysis.Compilation"/> instances based on script members.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.GetExecutor(System.Threading.CancellationToken)">
+            <summary>
+            Gets the executor that will run this portion of the script only. (does not include any previous scripts).
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.CreateDelegate(System.Threading.CancellationToken)">
+            <summary>
+            Creates a delegate that will execute this script when invoked.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Script.GetAggregateScriptExecutor(System.Threading.CancellationToken)">
+            <summary>
+            Creates an executor that while run the entire aggregate script (all submissions).
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.ScriptBuilder">
+            <summary>
+            Represents a runtime execution context for C# scripts.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.Scripting.ScriptBuilder.s_globalAssemblyNamePrefix">
+            <summary>
+            Unique prefix for generated uncollectible assemblies.
+            </summary>
+            <remarks>
+            The full names of uncollectible assemblies generated by this context must be unique,
+            so that we can resolve references among them. Note that CLR can load two different assemblies of the very 
+            identity into the same load context.
+            
+            We are using a certain naming scheme for the generated assemblies (a fixed name prefix followed by a number). 
+            If we allowed the compiled code to add references that match this exact pattern it migth happen that 
+            the user supplied reference identity conflicts with the identity we use for our generated assemblies and 
+            the AppDomain assembly resolve event won't be able to correctly identify the target assembly.
+            
+            To avoid this problem we use a prefix for assemblies we generate that is unlikely to conflict with user specified references.
+            We also check that no user provided references are allowed to be used in the compiled code and report an error ("reserved assembly name").
+            </remarks>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.Scripting.ScriptBuilder._gate">
+            <summary>
+            Lockable object only instance is knowledgeable about.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptBuilder.Build(Microsoft.CodeAnalysis.Scripting.Script,Microsoft.CodeAnalysis.DiagnosticBag,System.Threading.CancellationToken)">
+            <summary>
+            Builds a delegate that will execute just this scripts code.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptBuilder.MapAssemblySymbol(Microsoft.CodeAnalysis.IAssemblySymbol,System.Boolean)">
+            <summary>
+            Maps given assembly symbol to an assembly ref.
+            </summary>
+            <remarks>
+            The compiler represents every submission by a compilation instance for which it creates a distinct source assembly symbol.
+            However multiple submissions might compile into a single dynamic assembly and so we need to map the corresponding assembly symbols to 
+            the name of the dynamic assembly.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.Scripting.ScriptBuilder.CollectibleCodeManager._gate">
+            <summary>
+            lock(_gate) on access.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.Scripting.ScriptBuilder.CollectibleCodeManager.dynamicModule">
+            <summary>
+            lock(_gate) on access.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.ScriptBuilder.UncollectibleCodeManager">
+            <summary>
+            Manages uncollectible assemblies and resolves assembly references baked into CCI generated metadata. 
+            The resolution is triggered by the CLR Type Loader.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.Scripting.ScriptBuilder.UncollectibleCodeManager._gate">
+            <summary>
+            Lockable object only instance is knowledgeable about.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.ScriptingResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.AbsolutePathExpected">
+            <summary>
+              Looks up a localized string similar to Absolute path expected.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.AssemblyNotFound">
+            <summary>
+              Looks up a localized string similar to Assembly not found..
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.CantAssignTo">
+            <summary>
+              Looks up a localized string similar to Can&apos;t assign &apos;{0}&apos; to &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.DisplayNameOrPathCannotBe">
+            <summary>
+              Looks up a localized string similar to Display name or path cannot be empty..
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.ExecutionStateFrozen">
+            <summary>
+              Looks up a localized string similar to Execution state is frozen and cannot be modified..
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.ExpectedAnAssemblyReference">
+            <summary>
+              Looks up a localized string similar to Expected an assembly reference..
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.GlobalsNotAssignable">
+            <summary>
+              Looks up a localized string similar to The globals of type &apos;{0}&apos; is not assignable to &apos;{1}&apos;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.InvalidAssemblyName">
+            <summary>
+              Looks up a localized string similar to Invalid assembly name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.InvalidCharactersInAssemblyName">
+            <summary>
+              Looks up a localized string similar to Invalid characters in assemblyName.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.StackOverflowWhileEvaluat">
+            <summary>
+              Looks up a localized string similar to !&lt;Stack overflow while evaluating object&gt;.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptingResources.StartingStateIncompatible">
+            <summary>
+              Looks up a localized string similar to Starting state was incompatible with script..
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.CompilationErrorException">
+            <summary>
+            An exception thrown when the compilation stage of interactive execution produces compilation errors.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.CompilationErrorException.Diagnostics">
+            <summary>
+            The list of diagnostics produced by compilation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Emit.CommonCompilationExtensions.Emit(Microsoft.CodeAnalysis.Compilation,System.Reflection.Emit.ModuleBuilder,Microsoft.CodeAnalysis.Scripting.AssemblyLoader,System.Func{Microsoft.CodeAnalysis.IAssemblySymbol,Microsoft.CodeAnalysis.AssemblyIdentity},System.Boolean,Microsoft.CodeAnalysis.DiagnosticBag,System.Threading.CancellationToken,System.Reflection.MethodInfo@,System.Byte[]@)">
+            <summary>
+            Emits the compilation into given <see cref="T:System.Reflection.Emit.ModuleBuilder"/> using Reflection.Emit APIs.
+            </summary>
+            <param name="compilation">Compilation.</param>
+            <param name="moduleBuilder">
+            The module builder to add the types into. Can be reused for multiple compilation units.
+            </param>
+            <param name="assemblyLoader">
+            Loads an assembly given an <see cref="T:Microsoft.CodeAnalysis.AssemblyIdentity"/>. 
+            This callback is used for loading assemblies referenced by the compilation.
+            <see cref="M:System.Reflection.Assembly.Load(System.Reflection.AssemblyName)"/> is used if not specified.
+            </param>
+            <param name="assemblySymbolMapper">
+            Applied when converting assembly symbols to assembly references.
+            <see cref="T:Microsoft.CodeAnalysis.IAssemblySymbol"/> is mapped to its <see cref="P:Microsoft.CodeAnalysis.IAssemblySymbol.Identity"/> by default.
+            </param>
+            <param name="cancellationToken">Can be used to cancel the emit process.</param>
+            <param name="recoverOnError">If false the method returns an unsuccessful result instead of falling back to CCI writer.</param>
+            <param name="compiledAssemblyImage">Assembly image, returned only if we fallback to CCI writer.</param>
+            <param name="entryPoint">An entry point or null if not applicable or on failure.</param>
+            <param name="diagnostics">Diagnostics.</param>
+            <returns>True on success, false if a compilation error occurred or the compilation doesn't contain any code or declarations.</returns>
+            <remarks>
+            Reflection.Emit doesn't support all metadata constructs. If an unsupported construct is
+            encountered a metadata writer that procudes uncollectible code is used instead. This is
+            indicated by 
+            <see cref="P:Microsoft.CodeAnalysis.Emit.ReflectionEmitResult.IsUncollectible"/> flag on the result. 
+            
+            Reusing <see cref="T:System.Reflection.Emit.ModuleBuilder"/> may be beneficial in certain
+            scenarios. For example, when emitting a sequence of code snippets one at a time (like in
+            REPL). All the snippets can be compiled into a single module as long as the types being
+            emitted have unique names. Reusing a single module/assembly reduces memory overhead. On
+            the other hand, collectible assemblies are units of collection. Defining too many
+            unrelated types in a single assemly might prevent the unused types to be collected. 
+            
+            No need to provide a name override when using Reflection.Emit, since the assembly already
+            exists.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">Referenced assembly can't be resolved.</exception>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.Emit.ReflectionEmitter">
+             <summary>
+             Emits types in a given <see cref="T:Microsoft.Cci.IModule"/> to a <see cref="T:System.Reflection.Emit.ModuleBuilder"/>.
+             </summary>
+             <remarks>
+             Some types can't be emitted either due to the current Reflection.Emit implementation bugs/architecture or 
+             due to limitations of collectible assemblies (http://msdn.microsoft.com/en-us/library/dd554932.aspx).
+             
+             The main problem with Reflection.Emit is that it uses two-phase type creation process. <see cref="T:System.Reflection.Emit.TypeBuilder"/>s are defined in the first phase
+             and created (baked) one by one in the second. This isn't compatible with the way how CLR Type Loader loads cyclic type references. 
+             
+             The following rules apply and imply a partial order on the type baking (based upon observation and tests; they are not clearly documented anywhere) :
+             1) Before a type can be baked its derived type and all interfaces it implements needs to be baked.
+             2) Before a generic type can be baked the constraints of its generic type parameters need to be baked.
+             3) Before a type can be baked all types of its fields that are value types need to be baked (reference typed fields don't).
+             4) If a type is dependent on a generic type instantiation it is also dependent on its generic arguments.
+             5) If a type is dependent on a type nested in another type the outer type need to be baked first.
+            
+             If these rule imply an order that is not satisfiable (there is a cycle) the emitter throws <see cref="T:System.NotSupportedException"/>.
+             
+             TODO (tomat):
+             Some of these rules can be circumvented by using AppDomain.TypeLoad event, but it's unclear which exactly (I suspect #4).
+             
+             Examples of type topologies that can't be emitted today are:
+             
+             <code>
+             class B{T} where T : A              // B depends on A by rule #2
+             class A : B{A}                      // A depends on B by rule #1
+             </code>
+             
+             <code>
+             public class E                      
+             {
+                 public struct N2
+                 {
+                     public N3 n1;               // E.N2 depends on E.N3 by rule #3 and thus on E by rule #5
+                 }
+                 public struct N3    
+                 {
+                 }
+                 N2 n2;                          // E depends on E.N2 by rule #3
+             }
+             </code>
+             </remarks>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Emit.ReflectionEmitter.AddDependency(System.Reflection.Emit.TypeBuilder,System.Reflection.Emit.TypeBuilder)">
+            <summary>
+            Establishes a creation dependency of <paramref name="builder"/> on <paramref name="dependentType"/>. 
+            The <paramref name="builder"/> can't be baked before <paramref name="dependentType"/> is.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Emit.ReflectionEmitter.EmitWorker(Microsoft.Cci.IMethodReference,System.Threading.CancellationToken)">
+            <summary>
+            The main worker. Emits all types.
+            </summary>
+            <param name="entryPoint">An entry point to resolve and return. This could be an arbitrary method, not just PE entry point.</param>
+            <param name="cancellationToken">Token used to cancel the operation.</param>
+            <returns>The entry point or null if there is none.</returns>
+            <exception cref="T:System.NotSupportedException">Reflection.Emit doesn't support the feature being emitted.</exception>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.Emit.ReflectionEmitter.OrderTypeBuilders">
+            <summary>
+            Bakes types in the order implied by <see cref="F:Microsoft.CodeAnalysis.Scripting.Emit.ReflectionEmitter._dependencyGraph"/>. A type can't be baked until all of its dependencies are.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.Emit.ReflectionEmitter.DummyModule">
+            <summary>
+            GetMemberRefToken is broken for non-runtime members.
+            This is to work around call to ResolveMethod:
+            <code>
+            methDef = method.Module.ResolveMethod(
+                            method.MetadataToken,
+                            method.DeclaringType != null ? method.DeclaringType.GetGenericArguments() : null,
+                            null);
+            </code>
+            and to force call to GetMemberRefToken in GetMethodTokenInternal. Calling GetMethodTokenInternal produces incorrect token for 
+            a reference to a method on a baked type in a dynamic assembly (the modules are compared equal). Method gf{T} in test CompilationChain_Ldftn.
+            <code>
+              if (!this.Equals(methodInfoUnbound.Module)
+                  || (methodInfoUnbound.DeclaringType != null AndAlso methodInfoUnbound.DeclaringType.IsGenericType))
+              {
+                  tk = GetMemberRefToken(methodInfoUnbound, null);
+              }
+              else
+              {
+                  tk = GetMethodTokenInternal(methodInfoUnbound).Token;
+              }
+            </code>
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.InteractiveAssemblyLoader">
+            <summary>
+            Implements an assembly loader for interactive compiler and REPL.
+            </summary>
+            <remarks>
+            <para>
+            An assembly is loaded into CLR’s Load Context if it is in the GAC, otherwise it's loaded into No Context via <see cref="M:System.Reflection.Assembly.LoadFile(System.String)"/>.
+            <see cref="M:System.Reflection.Assembly.LoadFile(System.String)"/> automatically redirects to GAC if the assembly has a strong name and there is an equivalent assembly in GAC. 
+            </para>
+            <para>
+            The class is thread-safe.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.InteractiveAssemblyLoader.LoadedAssembly.OriginalPath">
+            <summary>
+            The original path of the assembly before it was shadow-copied.
+            For GAC'd assemblies, this is equal to Assembly.Location no matter what path was used to load them.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.InteractiveAssemblyLoader.Load(Microsoft.CodeAnalysis.AssemblyIdentity,System.String)">
+            <summary>
+            Loads assembly with given identity.
+            </summary>
+            <param name="identity">The assembly identity.</param>
+            <param name="location">Location of the assembly.</param>
+            <returns>Loaded assembly.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.InteractiveAssemblyLoader.LoadFromPath(System.String)">
+            <summary>
+            Loads an assembly from path.
+            </summary>
+            <param name="path">Absolute assembly file path.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is null.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="path"/> is not an exisiting assembly file path.</exception>
+            <exception cref="T:System.Reflection.TargetInvocationException">The assembly resolver threw an exception.</exception>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.InteractiveAssemblyLoader.RegisterDependency(Microsoft.CodeAnalysis.AssemblyIdentity,System.String)">
+            <summary>
+            Notifies the assembly loader about a dependency that might be loaded in future.
+            </summary>
+            <param name="dependency">Assembly identity.</param>
+            <param name="location">Assembly location.</param>
+            <remarks>
+            Associates a full assembly name with its location. The association is used when an assembly 
+            is being loaded and its name needs to be resolved to a location.
+            </remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dependency"/> is null.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="location"/> is null or empty.</exception>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.Scripting.MemberDisplayFormat.NoMembers">
+            <summary>
+            Display just a simple description of the object, like type name or ToString(). Don't
+            display any members or items of the object.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.Scripting.MemberDisplayFormat.Inline">
+            <summary>
+            Display structure of the object on a single line.
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.Scripting.MemberDisplayFormat.InlineValue">
+            <summary>
+            Display structure of the object on a single line, where the object is displayed as a value of its container's member.
+            E.g. { a = ... }
+            </summary>
+        </member>
+        <member name="F:Microsoft.CodeAnalysis.Scripting.MemberDisplayFormat.List">
+            <summary>
+            Displays a siple description of the object followed by list of members. Each member is
+            displayed on a separate line.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.MetadataShadowCopyProvider">
+            <summary>
+            Implements shadow-copying metadata file cache.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.MetadataShadowCopyProvider.ShadowCopyReference">
+            <summary>
+            Specialize <see cref="T:Microsoft.CodeAnalysis.PortableExecutableReference"/> with path being the original path of the copy.
+            Logically this reference represents that file, the fact that we load the image from a copy is an implementation detail.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.MetadataShadowCopyProvider.#ctor(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates an instance of <see cref="T:Microsoft.CodeAnalysis.Scripting.MetadataShadowCopyProvider"/>.
+            </summary>
+            <param name="directory">The directory to use to store file copies.</param>
+            <param name="noShadowCopyDirectories">Directories to exclude from shadow-copying.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="directory"/> is null.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="directory"/> is not an absolute path.</exception>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.MetadataShadowCopyProvider.IsShadowCopy(System.String)">
+            <summary>
+            Determine whether given path is under the shadow-copy directory managed by this shadow-copy provider.
+            </summary>
+            <param name="fullPath">Absolute path.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="fullPath"/> is null.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="fullPath"/> is not an absolute path.</exception>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.MetadataShadowCopyProvider.Dispose">
+            <summary>
+            Clears shadow-copy cache, disposes all allocated metadata, and attempts to delete copied files.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.MetadataShadowCopyProvider.GetMetadata(System.String,Microsoft.CodeAnalysis.MetadataImageKind)">
+            <summary>
+            Gets or creates metadata for specified file path.
+            </summary>
+            <param name="fullPath">Full path to an assembly manifest module file or a standalone module file.</param>
+            <param name="kind">Metadata kind (assembly or module).</param>
+            <returns>Metadata for the specified file.</returns>
+            <exception cref="T:System.IO.IOException">Error reading file <paramref name="fullPath"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.MetadataShadowCopyProvider.GetMetadataShadowCopy(System.String,Microsoft.CodeAnalysis.MetadataImageKind)">
+            <summary>
+            Gets or creates a copy of specified assembly or standalone module.
+            </summary>
+            <param name="fullPath">Full path to an assembly manifest module file or a standalone module file.</param>
+            <param name="kind">Metadata kind (assembly or module).</param>
+            <returns>
+            Copy of the specified file, or null if the file doesn't need a copy (<see cref="M:Microsoft.CodeAnalysis.Scripting.MetadataShadowCopyProvider.NeedsShadowCopy(System.String)"/>). 
+            Returns the same object if called multiple times with the same path.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="fullPath"/> is null.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="fullPath"/> is not an absolute path.</exception>
+            <exception cref="T:System.IO.IOException">Error reading file <paramref name="fullPath"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.MetadataShadowCopyProvider.GetReference(System.String,Microsoft.CodeAnalysis.MetadataReferenceProperties)">
+            <exception cref="T:System.ArgumentNullException"><paramref name="fullPath"/> is null.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="fullPath"/> is not an absolute path.</exception>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.MetadataShadowCopyProvider.SuppressShadowCopy(System.String)">
+            <summary>
+            Suppresses shadow-coping of specified path.
+            </summary>
+            <param name="originalPath">Full path.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="originalPath"/> is null.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="originalPath"/> is not an absolute path.</exception>
+            <remarks>
+            Doesn't affect files that have already been shadow-copied.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.MetadataShadowCopyProvider.NeedsShadowCopy(System.String)">
+            <summary>
+            Determines whether given file is a candidate for shadow-copy.
+            </summary>
+            <param name="fullPath">An absolute path.</param>
+            <returns>True if the shadow-copy policy applies to the specified path.</returns>
+            <exception cref="T:System.NullReferenceException"><paramref name="fullPath"/> is null.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="fullPath"/> is not absolute.</exception>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.ScriptExecutionState">
+            <summary>
+            Represents the submission states and globals that get passed to a script entry point when run.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptExecutionState.RunSubmission(System.Func{System.Object[],System.Object})">
+            <summary>
+            Run's the submission with this state. Submission's state get added to this as a side-effect.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.ScriptVariables">
+            <summary>
+            A collection that holds the final state of all global variables used by the script.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptVariables.Item(System.String)">
+            <summary>
+            Returns the global variable with the specified name.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptVariables.ContainsVariable(System.String)">
+            <summary>
+            Determines if a global variable with the specified name exists.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptVariables.Names">
+            <summary>
+            A list the global variable names.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptVariables.GetEnumerator">
+            <summary>
+            Gets an enumerator over all the variables.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions">
+            <summary>
+            Options for creating and running scripts.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptOptions.References">
+            <summary>
+            The set of <see cref="T:Microsoft.CodeAnalysis.MetadataReference"/>'s used by the script.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptOptions.Namespaces">
+            <summary>
+            The namespaces automatically imported by the script.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptOptions.SearchPaths">
+            <summary>
+            The paths used when searching for references.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptOptions.BaseDirectory">
+            <summary>
+            The base directory used when searching for references.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptOptions.ReferenceResolver">
+            <summary>
+            The <see cref="T:Microsoft.CodeAnalysis.MetadataFileReferenceProvider"/> scripts will use to translate assembly names into metadata file paths. (#r syntax)
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptOptions.IsInteractive">
+            <summary>
+            True if the script is interactive. 
+            Interactive scripts may contain a final expression whose value is returned when the script is run.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithReferences(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.MetadataReference})">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the references changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithReferences(System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.MetadataReference})">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the references changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithReferences(Microsoft.CodeAnalysis.MetadataReference[])">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the references changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.AddReferences(System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.MetadataReference})">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with references added.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.AddReferences(Microsoft.CodeAnalysis.MetadataReference[])">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with references added.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithReferences(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the references changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithReferences(System.Reflection.Assembly[])">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the references changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.AddReferences(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with references added.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.AddReferences(System.Reflection.Assembly[])">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with references added.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithReferences(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the references changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithReferences(System.String[])">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the references changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.AddReferences(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with references added.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.AddReferences(System.String[])">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with references added.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithNamespaces(System.Collections.Immutable.ImmutableArray{System.String})">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the namespaces changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithNamespaces(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the namespaces changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithNamespaces(System.String[])">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the namespaces changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.AddNamespaces(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with namespaces added.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.AddNamespaces(System.String[])">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with namespaces added.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithSearchPaths(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the search paths changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithSearchPaths(System.String[])">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the search paths changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.AddSearchPaths(System.String[])">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with search paths added.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.AddSearchPaths(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with search paths added.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithBaseDirectory(System.String)">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the base directory changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithReferenceResolver(Microsoft.CodeAnalysis.MetadataFileReferenceResolver)">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the reference resolver specified.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithReferenceProvider(Microsoft.CodeAnalysis.MetadataFileReferenceProvider)">
+            <summary>
+            Creates a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the reference provider specified.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptOptions.WithIsInteractive(System.Boolean)">
+            <summary>
+            Create a new <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptOptions"/> with the interactive state specified.
+            Interactive scripts may contain a final expression whose value is returned when the script is run.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.ScriptState">
+            <summary>
+            The result of running a script.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptState.Script">
+            <summary>
+            The script that ran to produce this result.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptState.ReturnValue">
+            <summary>
+            The final value produced by running the script.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptState.Variables">
+            <summary>
+            The global variables accessible to or declared by the script.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptState.Invoke(System.String,System.Object[])">
+            <summary>
+            Invoke a method declared by the script.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.ScriptState.CreateDelegate``1(System.String)">
+            <summary>
+            Create a delegate to a method declared by the script.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.ScriptVariable">
+            <summary>
+            A variable declared by the script.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptVariable.Name">
+            <summary>
+            The name of the variable.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptVariable.Type">
+            <summary>
+            The type of the variable.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.ScriptVariable.Value">
+            <summary>
+            The value of the variable after running the script.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Emit.ReflectionEmitResult.EntryPoint">
+            <summary>
+            Gets method information about the entrypoint of the emitted assembly.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Emit.ReflectionEmitResult.IsUncollectible">
+            <summary>
+            Indicates whether the emitted assembly can be garbage collected.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.MetadataShadowCopy">
+            <summary>
+            Represents a shadow copy of an assembly or a standalone module.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.MetadataShadowCopy.PrimaryModule">
+            <summary>
+            Assembly manifest module copy or a standalone module copy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.MetadataShadowCopy.DocumentationFile">
+            <summary>
+            Documentation file copy or null if there is none.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.ShadowCopy">
+            <summary>
+            Represents a shadow copy of a single file.
+            </summary>
+        </member>
+    </members>
+</doc>

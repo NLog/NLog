@@ -31,9 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !UWP10 && !SILVERLIGHT
-
-
+#if !UWP10 && !SILVERLIGHT && !NET3_5
 
 namespace NLog.UnitTests.LogReceiverService
 {

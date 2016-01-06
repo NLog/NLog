@@ -31,9 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-using System.Threading.Tasks;
-
 namespace NLog.UnitTests
 {
     using System;

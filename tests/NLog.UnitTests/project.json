@@ -75,16 +75,6 @@
       "compilationOptions": {
         "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED", "XUNIT2" ]
       }
-    },
-    ".NETFramework,Version=v3.5": {
-      "frameworkAssemblies": { },
-      "dependencies": {
-        "xunit": "1.9.2",
-        "xunit.extensions": "1.9.2"
-      },
-      "compilationOptions": {
-        "define": [ "NET3_5", "WCF_SUPPORTED" ]
-      }
     }
   },
   "compilationOptions": {

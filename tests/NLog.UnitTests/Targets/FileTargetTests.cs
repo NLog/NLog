@@ -724,7 +724,7 @@ namespace NLog.UnitTests.Targets
         }
         
         [Theory]
-#if DNX
+#if XUNIT2
         [MemberData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
 #else
         [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
@@ -918,7 +918,11 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
+#if XUNIT2
+        [MemberData("DateArchive_SkipPeriod_TestParameters")]
+#else
         [PropertyData("DateArchive_SkipPeriod_TestParameters")]
+#endif
         public void DateArchive_SkipPeriod(DateTimeKind timeKind, FileArchivePeriod archivePeriod, bool includeSequenceInArchive)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());

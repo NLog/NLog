@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.CodeAnalysis.Scripting.CSharp</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScript">
+            <summary>
+            A factory for creating and running csharp scripts.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScript.Create(System.String,Microsoft.CodeAnalysis.Scripting.ScriptOptions)">
+            <summary>
+            Create a new C# script.
+            <param name="code">The source code of the script.</param>
+            <param name="options">The script options.</param>
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScript.Create(System.String)">
+            <summary>
+            Create a new C# script.
+            <param name="code">The source code of the script.</param>
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScript.Run(System.String,Microsoft.CodeAnalysis.Scripting.ScriptOptions,System.Object)">
+            <summary>
+            Run a C# script.
+            </summary>
+            <param name="code">The source code of the script.</param>
+            <param name="options">The script options.</param>
+            <param name="globals">An object instance whose members can be accessed by the script as global variables, 
+            or a <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptState"/> instance that was the output from a previously run script.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScript.Run(System.String,Microsoft.CodeAnalysis.Scripting.ScriptOptions)">
+            <summary>
+            Run a C# script.
+            </summary>
+            <param name="code">The source code of the script.</param>
+            <param name="options">The script options.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScript.Run(System.String,System.Object)">
+            <summary>
+            Run a C# script.
+            </summary>
+            <param name="code">The source code of the script.</param>
+            <param name="globals">An object instance whose members can be accessed by the script as global variables, 
+            or a <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptState"/> instance that was the output from a previously run script.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScript.Run(System.String)">
+            <summary>
+            Run a C# script.
+            </summary>
+            <param name="code">The source code of the script.</param>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScript.Eval(System.String,Microsoft.CodeAnalysis.Scripting.ScriptOptions,System.Object)">
+            <summary>
+            Run a C# script and return its resulting value.
+            </summary>
+            <param name="code">The source code of the script.</param>
+            <param name="options">The script options.</param>
+            <param name="globals">An object instance whose members can be accessed by the script as global variables, 
+            or a <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptState"/> instance that was the output from a previously run script.</param>
+            <return>Returns the value returned by running the script.</return>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScript.Eval(System.String,Microsoft.CodeAnalysis.Scripting.ScriptOptions)">
+            <summary>
+            Run a C# script and return its resulting value.
+            </summary>
+            <param name="code">The source code of the script.</param>
+            <param name="options">The script options.</param>
+            <return>Returns the value returned by running the script.</return>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScript.Eval(System.String,System.Object)">
+            <summary>
+            Run a C# script and return its resulting value.
+            </summary>
+            <param name="code">The source code of the script.</param>
+            <param name="globals">An object instance whose members can be accessed by the script as global variables, 
+            or a <see cref="T:Microsoft.CodeAnalysis.Scripting.ScriptState"/> instance that was the output from a previously run script.</param>
+            <return>Returns the value returned by running the script.</return>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScript.Eval(System.String)">
+            <summary>
+            Run a C# script and return its resulting value.
+            </summary>
+            <param name="code">The source code of the script.</param>
+            <return>Returns the value returned by running the script.</return>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScriptingResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScriptingResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.Scripting.CSharp.CSharpScriptingResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>
