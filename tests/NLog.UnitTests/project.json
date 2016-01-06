@@ -11,72 +11,78 @@
         "SampleExtensions": ""
     },
 
-    "frameworks": {
-        "dnxcore50": {
-            "dependencies": {
-                "System.Console": "4.0.0-*",
-                "System.Diagnostics.Contracts": "4.0.1-*",
-                "System.Diagnostics.StackTrace": "4.0.1-*",
-                "System.Diagnostics.Tools": "4.0.1-*",
-                "System.Diagnostics.TraceSource": "4.0.0-*",
-                "System.Linq": "4.0.1-*",                
-                "System.Runtime.Serialization.Primitives": "4.1.0-*",
-                "System.Xml.XmlDocument": "4.0.1-*",
-                "System.ServiceModel.Primitives": "4.0.0",
-                "System.ComponentModel.TypeConverter": "4.0.1-*",
-                "System.Data.Common": "4.0.0-*",
-                "System.Net.Requests": "4.0.10",
-                "System.Threading.ThreadPool": "4.0.10-*",
-                "System.IO.Compression": "4.0.1-*",
-                "xunit.runner.dnx": "2.1.0-*",
-                "xunit": "2.1.0",
-                "System.Threading.Tasks.Parallel": "4.0.1-*"
-            },
-            "compilationOptions": {
-                "define": [ "NET4_5", "DNX", "UWP10", "XUNIT2" ]
-            }
-        },
-        "dnx451": {
-            "frameworkAssemblies": {
-                "System.Runtime.Serialization": "4.0.0.0",
-                "System.Reflection": "4.0.0.0",
-                "System.Messaging": "4.0.0.0"
-            },
-            "dependencies": {
-                "NLog.Extended": "",
-                "xunit.runner.dnx": "2.1.0-*",
-                "xunit": "2.1.0",
-                "Microsoft.AspNet.Mvc.WebApiCompatShim": "6.0.0-*",
-                "Microsoft.AspNet.WebApi.Owin": "5.2.3",
-                "System.Threading.Tasks.Parallel": "4.0.1-*"
-            },
-            "compilationOptions": {
-                "define": [ "WCF_SUPPORTED", "DNX", "XUNIT2" ]
-            }
-        },
-        "Silverlight,Version=v5.0": {
-            "frameworkAssemblies": {
-                "System.Windows": "",
-                "mscorlib": "",
-                "System": "",
-                "System.Core": "",
-                "System.Net": "",
-                "System.Xml": "",
-                "System.Windows.Browser": ""
-            },
-            "dependencies": {
-                "Microsoft.Silverlight.Testing": "1.0.0-*",
-                "Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight": "1.0.0-*",
-                "xunit-silverlight4": "1.0.0-*",
-                "xunit.extensions-silverlight4": "1.0.0-*",
-                "xunitcontrib.runner.silverlight.toolkit-sl4": "1.0.0-*",
-                "System.Xml.Linq": "1.0.0-*"
-            },
-            "compilationOptions": {
-                "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED", "XUNIT2" ]
-            }
-        }
+  "frameworks": {
+    "dnxcore50": {
+      "dependencies": {
+        "System.Console": "4.0.0-*",
+        "System.Diagnostics.Contracts": "4.0.1-*",
+        "System.Diagnostics.StackTrace": "4.0.1-*",
+        "System.Diagnostics.Tools": "4.0.1-*",
+        "System.Diagnostics.TraceSource": "4.0.0-*",
+        "System.Linq": "4.0.1-*",
+        "System.Runtime.Serialization.Primitives": "4.1.0-*",
+        "System.Xml.XmlDocument": "4.0.1-*",
+        "System.ServiceModel.Primitives": "4.0.0",
+        "System.ComponentModel.TypeConverter": "4.0.1-*",
+        "System.Data.Common": "4.0.0-*",
+        "System.Net.Requests": "4.0.10",
+        "System.Threading.ThreadPool": "4.0.10-*",
+        "System.IO.Compression": "4.0.1-*",
+        "xunit.runner.dnx": "2.1.0-*",
+        "xunit": "2.1.0",
+        "System.Threading.Tasks.Parallel": "4.0.1-*"
+      },
+      "compilationOptions": {
+        "define": [ "NET4_5", "DNX", "UWP10", "XUNIT2" ]
+      }
     },
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.Runtime.Serialization": "4.0.0.0",
+        "System.Reflection": "4.0.0.0",
+        "System.Messaging": "4.0.0.0"
+      },
+      "dependencies": {
+        "NLog.Extended": "",
+        "xunit.runner.dnx": "2.1.0-*",
+        "xunit": "2.1.0",
+        "Microsoft.AspNet.Mvc.WebApiCompatShim": "6.0.0-*",
+        "Microsoft.AspNet.WebApi.Owin": "5.2.3",
+        "System.Threading.Tasks.Parallel": "4.0.1-*"
+      },
+      "compilationOptions": {
+        "define": [ "WCF_SUPPORTED", "DNX", "XUNIT2" ]
+      }
+    },
+    "Silverlight,Version=v5.0": {
+      "frameworkAssemblies": {
+        "System.Windows": "",
+        "mscorlib": "",
+        "System": "",
+        "System.Core": "",
+        "System.Net": "",
+        "System.Xml": "",
+        "System.Windows.Browser": ""
+      },
+      "dependencies": {
+        "Microsoft.Silverlight.Testing": "1.0.0-*",
+        "Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight": "1.0.0-*",
+        "xunit-silverlight4": "1.0.0-*",
+        "xunit.extensions-silverlight4": "1.0.0-*",
+        "xunitcontrib.runner.silverlight.toolkit-sl4": "1.0.0-*",
+        "System.Xml.Linq": "1.0.0-*"
+      },
+      "compilationOptions": {
+        "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED", "XUNIT2" ]
+      }
+    },
+    ".NETFramework,Version=v3.5": {
+      "frameworkAssemblies": { },
+      "dependencies": {
+        "xunit": "1.9.2"
+      }
+    }
+  },
     "compilationOptions": {
         "keyFile": "NLogTests.snk"
     },

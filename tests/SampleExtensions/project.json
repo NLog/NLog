@@ -11,28 +11,25 @@
   },
 
   "frameworks": {
-	".NETFramework,Version=v3.5": {},
-    "dnx451": {
-      "frameworkAssemblies": {
-      }
-    },
+    ".NETFramework,Version=v3.5": { },
+    "dnx451": { },
     "dnxcore50": {
-        "dependencies": {
-            "System.Console": "4.0.0-*",
-            "System.Diagnostics.Contracts": "4.0.1-*",
-            "System.Diagnostics.StackTrace": "4.0.1-*",
-            "System.Diagnostics.Tools": "4.0.1-*",
-            "System.Diagnostics.TraceSource": "4.0.0-*",
-            "System.Linq": "4.0.1-*",
-            "System.Runtime.Serialization.Primitives": "4.1.0-*",
-            "System.Xml.XmlDocument": "4.0.1-*",
-            "System.ServiceModel.Primitives": "4.0.0-*",
-            "System.ComponentModel.TypeConverter": "4.0.1-*",
-            "System.Data.Common": "4.0.0-*",
-            "System.Net.Requests": "4.0.10-*",
-            "System.Threading.ThreadPool": "4.0.10-*",
-            "System.IO.Compression": "4.0.1-*"
-        },
+      "dependencies": {
+        "System.Console": "4.0.0-*",
+        "System.Diagnostics.Contracts": "4.0.1-*",
+        "System.Diagnostics.StackTrace": "4.0.1-*",
+        "System.Diagnostics.Tools": "4.0.1-*",
+        "System.Diagnostics.TraceSource": "4.0.0-*",
+        "System.Linq": "4.0.1-*",
+        "System.Runtime.Serialization.Primitives": "4.1.0-*",
+        "System.Xml.XmlDocument": "4.0.1-*",
+        "System.ServiceModel.Primitives": "4.0.0-*",
+        "System.ComponentModel.TypeConverter": "4.0.1-*",
+        "System.Data.Common": "4.0.0-*",
+        "System.Net.Requests": "4.0.10-*",
+        "System.Threading.ThreadPool": "4.0.10-*",
+        "System.IO.Compression": "4.0.1-*"
+      },
       "compilationOptions": {
         "define": [ "NET4_5", "DNX", "UWP10" ]
       }

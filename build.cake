@@ -31,7 +31,40 @@ Task("Clean")
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("Dnx451");
+    .IsDependentOn("Dotnet351");
+    
+Task("Dotnet35")
+	.IsDependentOn("Dnx451")
+	.Does(() =>
+{
+	// Use
+	DNVMUse(dnxVersion, new DNVMSettings(){ Arch = "x64", Runtime = "clr"});
+	
+	// Restore
+	DNURestore();
+
+	// Build
+	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
+	{
+	    Frameworks = new [] { ".NETFramework,Version=v3.5" },
+	    Configurations = new[] { configuration },
+	    OutputDirectory = (buildDir + Directory("Dotnet35")).ToString(),
+	    Quiet = true
+	};
+        
+    DNUBuild("./src/NLog", dnuBuildSettings);
+    DNUBuild("./src/NLogAutoLoadExtension", dnuBuildSettings);
+	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
+	DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
+
+	// Test
+	var settings = new DNXRunSettings
+	{
+		Framework = ".NETFramework,Version=v3.5"
+	};
+	DNXRun("./tests/NLog.UnitTests/", "test", settings);
+
+});
 
 Task("Dnx451")
 	.IsDependentOn("Dnxcore50")
