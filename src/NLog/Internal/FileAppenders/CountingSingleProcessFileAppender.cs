@@ -35,7 +35,6 @@ using System.Security;
 
 namespace NLog.Internal.FileAppenders
 {
-    using System;
     using System.IO;
 
     /// <summary>
@@ -59,13 +58,19 @@ namespace NLog.Internal.FileAppenders
         public CountingSingleProcessFileAppender(string fileName, ICreateFileParameters parameters)
             : base(fileName, parameters)
         {
-            var fi = new FileInfo(fileName);
-            if (fi.Exists)
+            var fileInfo = new FileInfo(fileName);
+            if (fileInfo.Exists)
             {
-                this.currentFileLength = fi.Length;
+#if !SILVERLIGHT
+                FileTouched(fileInfo.LastWriteTimeUtc);
+#else
+                FileTouched(fileInfo.LastWriteTime);
+#endif
+                this.currentFileLength = fileInfo.Length;
             }
             else
             {
+                FileTouched();
                 this.currentFileLength = 0;
             }
 
@@ -95,6 +100,7 @@ namespace NLog.Internal.FileAppenders
             }
 
             this.file.Flush();
+            FileTouched();
         }
 
         /// <summary>
@@ -103,7 +109,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
         public override FileCharacteristics GetFileCharacteristics()
         {
-            return new FileCharacteristics(this.OpenTime, this.currentFileLength);
+            return new FileCharacteristics(this.CreationTime, this.LastWriteTime, this.currentFileLength);
         }
 
         /// <summary>
@@ -119,6 +125,7 @@ namespace NLog.Internal.FileAppenders
 
             this.currentFileLength += bytes.Length;
             this.file.Write(bytes, 0, bytes.Length);
+            FileTouched();
         }
 
         /// <summary>
