@@ -1,26 +1,31 @@
 {
-    "version": "5.0.0.0",
-    "description": "NLog Library",
-    "authors": [ "NLog" ],
-    "tags": [ "NLog" ],
-    "projectUrl": "",
-    "licenseUrl": "",
+  "version": "5.0.0.0",
+  "description": "NLog Library",
+  "authors": [ "NLog" ],
+  "tags": [ "NLog" ],
+  "projectUrl": "",
+  "licenseUrl": "",
 
-    "dependencies": {
-        "NLog": ""
-    },
+  "dependencies": {
+    "NLog": ""
+  },
 
-    "frameworks": {
-        "dnx451": {
-            "frameworkAssemblies": {
-                "System.Messaging": ""
-            },
-            "compilationOptions": {
-                "define": [ "NET4_5", "WCF_SUPPORTED", "DNX" ]
-            }
-        }
+  "frameworks": {
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.Messaging": ""
+      },
+      "compilationOptions": {
+        "define": [ "NET4_5", "WCF_SUPPORTED", "DNX" ]
+      }
     },
-    "compilationOptions": {
-        "keyFile": "../NLog/NLog.snk"
+    ".NETFramework,Version=v3.5": {
+      "compilationOptions": {
+        "define": [ "NET3_5", "WCF_SUPPORTED" ]
+      }
     }
+  },
+  "compilationOptions": {
+    "keyFile": "../NLog/NLog.snk"
+  }
 }

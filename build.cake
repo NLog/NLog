@@ -31,9 +31,10 @@ Task("Clean")
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("Dotnet351");
+    .IsDependentOn("Dotnet35");
     
 Task("Dotnet35")
+	.ContinueOnError()
 	.IsDependentOn("Dnx451")
 	.Does(() =>
 {
@@ -67,6 +68,7 @@ Task("Dotnet35")
 });
 
 Task("Dnx451")
+	.ContinueOnError()
 	.IsDependentOn("Dnxcore50")
 	.Does(() =>
 {
@@ -101,6 +103,7 @@ Task("Dnx451")
 });
 
 Task("Dnxcore50")
+	.ContinueOnError()
 	.IsDependentOn("Clean")
 	.Does(() =>
 {

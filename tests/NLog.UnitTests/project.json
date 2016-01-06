@@ -1,15 +1,15 @@
 {
-    "version": "1.0.0.0",
-    "description": "NLog Library",
-    "authors": [ "NLog" ],
-    "tags": [ "NLog" ],
-    "projectUrl": "",
-    "licenseUrl": "",
+  "version": "1.0.0.0",
+  "description": "NLog Library",
+  "authors": [ "NLog" ],
+  "tags": [ "NLog" ],
+  "projectUrl": "",
+  "licenseUrl": "",
 
-    "dependencies": {
-        "NLog": "",
-        "SampleExtensions": ""
-    },
+  "dependencies": {
+    "NLog": "",
+    "SampleExtensions": ""
+  },
 
   "frameworks": {
     "dnxcore50": {
@@ -79,14 +79,18 @@
     ".NETFramework,Version=v3.5": {
       "frameworkAssemblies": { },
       "dependencies": {
-        "xunit": "1.9.2"
+        "xunit": "1.9.2",
+        "xunit.extensions": "1.9.2"
+      },
+      "compilationOptions": {
+        "define": [ "NET3_5", "WCF_SUPPORTED" ]
       }
     }
   },
-    "compilationOptions": {
-        "keyFile": "NLogTests.snk"
-    },
-    "commands": {
-        "test": "xunit.runner.dnx -xml testresults.xml"
-    }
+  "compilationOptions": {
+    "keyFile": "NLogTests.snk"
+  },
+  "commands": {
+    "test": "xunit.runner.dnx -xml testresults.xml"
+  }
 }
