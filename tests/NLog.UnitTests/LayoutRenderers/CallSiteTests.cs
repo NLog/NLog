@@ -551,7 +551,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
-
+#if ASYNC_SUPPORTED
         [Fact]
         public void Show_correct_method_with_async()
         {
@@ -645,6 +645,8 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Warn("direct");
 
         }
+
+#endif
 
         [Fact]
         public void Show_correct_method_for_moveNext()

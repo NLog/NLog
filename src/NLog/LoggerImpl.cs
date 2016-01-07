@@ -128,6 +128,8 @@ namespace NLog
        
             if (last != null)
             {
+#if ASYNC_SUPPORTED
+
                 //movenext and then AsyncTaskMethodBuilder (method start)? this is a generated MoveNext by async.
                 if (last.Item2.GetMethod().Name == "MoveNext" )
                 {
@@ -145,6 +147,7 @@ namespace NLog
                         }
                     }
                 }
+#endif
 
                 return last.Item1;
             }
