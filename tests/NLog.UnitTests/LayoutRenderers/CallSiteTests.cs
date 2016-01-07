@@ -557,7 +557,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
 
             //namespace en name of current method
-            const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.Show_correct_method_with_async";
+            const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod";
 
             LogManager.Configuration = CreateConfigurationFromString(@"
            <nlog>
@@ -574,13 +574,77 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private async Task AsyncMethod()
         {
-            var findFile = new FileInfo("test.txt");
             var logger = LogManager.GetCurrentClassLogger();
             logger.Warn("direct");
             var reader = new StreamReader(new MemoryStream(new byte[0]));
             await reader.ReadLineAsync();
         }
 
+        [Fact]
+        public void Show_correct_method_with_async2()
+        {
+
+            //namespace en name of current method
+            const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod2b";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+           <nlog>
+               <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
+               <rules>
+                   <logger name='*' levels='Warn' writeTo='debug' />
+               </rules>
+           </nlog>");
+
+            AsyncMethod2a().Wait();
+            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+
+        }
+
+        private async Task AsyncMethod2a()
+        {
+            await AsyncMethod2b();
+        }
+        private async Task AsyncMethod2b()
+        {
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Warn("direct");
+            var reader = new StreamReader(new MemoryStream(new byte[0]));
+            await reader.ReadLineAsync();
+        }
+
+
+        [Fact]
+        public void Show_correct_method_with_async3()
+        {
+
+            //namespace en name of current method
+            const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod3b";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+           <nlog>
+               <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
+               <rules>
+                   <logger name='*' levels='Warn' writeTo='debug' />
+               </rules>
+           </nlog>");
+
+            AsyncMethod3a().Wait();
+            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+
+        }
+
+        private async Task AsyncMethod3a()
+        {
+            var reader = new StreamReader(new MemoryStream(new byte[0]));
+            await reader.ReadLineAsync();
+            AsyncMethod3b();
+        }
+        private async Task AsyncMethod3b()
+        {
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Warn("direct");
+
+        }
 
         public class CompositeWrapper
         {
