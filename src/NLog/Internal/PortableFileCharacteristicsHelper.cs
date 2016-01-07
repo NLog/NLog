@@ -37,39 +37,29 @@ namespace NLog.Internal
     using System.IO;
 
     /// <summary>
-    /// Portable implementation of <see cref="FileInfoHelper"/>.
+    /// Portable implementation of <see cref="FileCharacteristicsHelper"/>.
     /// </summary>
-    internal class PortableFileInfoHelper : FileInfoHelper
+    internal class PortableFileCharacteristicsHelper : FileCharacteristicsHelper
     {
         /// <summary>
         /// Gets the information about a file.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileHandle">The file handle.</param>
-        /// <param name="lastWriteTime">The last write time of the file in UTC.</param>
-        /// <param name="fileLength">Length of the file.</param>
-        /// <returns>
-        /// A value of <c>true</c> if file information was retrieved successfully, <c>false</c> otherwise.
-        /// </returns>
-        public override bool GetFileInfo(string fileName, IntPtr fileHandle, out DateTime lastWriteTime, out long fileLength)
+        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
+        public override FileCharacteristics GetFileCharacteristics(string fileName, IntPtr fileHandle)
         {
-            FileInfo fi = new FileInfo(fileName);
-            if (fi.Exists)
+            var fileInfo = new FileInfo(fileName);
+            if (fileInfo.Exists)
             {
-                fileLength = fi.Length;
 #if !SILVERLIGHT
-                lastWriteTime = fi.LastWriteTimeUtc;
+                return new FileCharacteristics(fileInfo.CreationTimeUtc, fileInfo.LastWriteTimeUtc, fileInfo.Length);
 #else
-                lastWriteTime = fi.LastWriteTime;
+                return new FileCharacteristics(fileInfo.CreationTime, fileInfo.LastWriteTime, fileInfo.Length);
 #endif
-                return true;
             }
             else
-            {
-                fileLength = -1;
-                lastWriteTime = DateTime.MinValue;
-                return false;
-            }
+                return null;
         }
     }
 }
