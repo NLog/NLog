@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO;
+using System.Threading.Tasks;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -191,7 +194,7 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
-        
+
         [Fact]
         public void ClassNameWithPaddingTestPadLeftAlignRightTest()
         {
@@ -548,6 +551,35 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
+
+        [Fact]
+        public void Show_correct_method_with_async()
+        {
+
+            //namespace en name of current method
+            const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.Show_correct_method_with_async";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+           <nlog>
+               <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
+               <rules>
+                   <logger name='*' levels='Warn' writeTo='debug' />
+               </rules>
+           </nlog>");
+
+            AsyncMethod().Wait();
+            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+
+        }
+
+        private async Task AsyncMethod()
+        {
+            var findFile = new FileInfo("test.txt");
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Warn("direct");
+            var reader = new StreamReader(new MemoryStream(new byte[0]));
+            await reader.ReadLineAsync();
+        }
 
 
         public class CompositeWrapper
