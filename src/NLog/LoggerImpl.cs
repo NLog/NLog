@@ -114,21 +114,41 @@ namespace NLog
             var stackFrames = stackTrace.GetFrames();
             if (stackFrames == null)
                 return 0;
-            var intermediate = stackFrames.Select((f, i) => new {index = i, frame = f});
+            var intermediate = stackFrames.Select((f, i) => new Tuple<int, StackFrame>(i, f));
             //find until logger type
-            intermediate = intermediate.SkipWhile(p => !IsLoggerType(p.frame, loggerType));
+            intermediate = intermediate.SkipWhile(p => !IsLoggerType(p.Item2, loggerType));
+
+            intermediate = FilterBySkipAssembly(intermediate);
+            return GetIndexOfNonAsync(intermediate);
+        }
+
+        private static int GetIndexOfNonAsync(IEnumerable<Tuple<int, StackFrame>> intermediate)
+        {
+            var last = intermediate.FirstOrDefault();
+       
+            if (last != null)
+            {
+                if (last.Item2.GetMethod().Name == "MoveNext")
+                {
+                    //async, search futher
+
+                    intermediate = FilterBySkipAssembly(intermediate);
+                    return GetIndexOfNonAsync(intermediate);
+                }
+
+                return last.Item1;
+            }
+            return 0;
+        }
+
+        private static IEnumerable<Tuple<int, StackFrame>> FilterBySkipAssembly(IEnumerable<Tuple<int, StackFrame>> intermediate)
+        {
+            
             //skip to next
             intermediate = intermediate.Skip(1);
             //skip while in "skip" assemlbl
-            intermediate = intermediate.SkipWhile(p => SkipAssembly(p.frame));
-            var last = intermediate.FirstOrDefault();
-
-            if (last != null)
-            {
-                return last.index;
-            }
-            return 0;
-
+            intermediate = intermediate.SkipWhile(p => SkipAssembly(p.Item2));
+            return intermediate;
         }
 
         /// <summary>
