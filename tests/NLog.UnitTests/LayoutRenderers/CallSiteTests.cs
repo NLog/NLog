@@ -639,7 +639,35 @@ namespace NLog.UnitTests.LayoutRenderers
             await reader.ReadLineAsync();
             AsyncMethod3b();
         }
-        private async Task AsyncMethod3b()
+        private void AsyncMethod3b()
+        {
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Warn("direct");
+
+        }
+
+        [Fact]
+        public void Show_correct_method_for_moveNext()
+        {
+
+            //namespace en name of current method
+            const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.MoveNext";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+           <nlog>
+               <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
+               <rules>
+                   <logger name='*' levels='Warn' writeTo='debug' />
+               </rules>
+           </nlog>");
+
+            MoveNext();
+            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+
+        }
+
+              
+        private void MoveNext()
         {
             var logger = LogManager.GetCurrentClassLogger();
             logger.Warn("direct");

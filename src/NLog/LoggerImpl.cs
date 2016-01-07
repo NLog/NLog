@@ -128,12 +128,22 @@ namespace NLog
        
             if (last != null)
             {
-                if (last.Item2.GetMethod().Name == "MoveNext")
+                //movenext and then AsyncTaskMethodBuilder (method start)? this is a generated MoveNext by async.
+                if (last.Item2.GetMethod().Name == "MoveNext" )
                 {
-                    //async, search futher
+                    var next = intermediate.Skip(1).FirstOrDefault();
+                    if (next != null)
+                    {
+                        var declaringType = next.Item2.GetMethod().DeclaringType;
+                        if (declaringType != null && declaringType.FullName == "System.Runtime.CompilerServices.AsyncTaskMethodBuilder")
+                        {
 
-                    intermediate = FilterBySkipAssembly(intermediate);
-                    return GetIndexOfNonAsync(intermediate);
+                            //async, search futher
+
+                            intermediate = FilterBySkipAssembly(intermediate);
+                            return GetIndexOfNonAsync(intermediate);
+                        }
+                    }
                 }
 
                 return last.Item1;
