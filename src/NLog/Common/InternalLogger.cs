@@ -172,6 +172,12 @@ namespace NLog.Common
 
         private static void Write(Exception ex, LogLevel level, string message, object[] args)
         {
+            if (ex.MustBeRethrownImmediately())
+            {
+                //no logging!
+                return;
+            }
+
             if (level < LogLevel)
             {
                 return;
