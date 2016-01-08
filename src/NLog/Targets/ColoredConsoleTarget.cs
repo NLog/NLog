@@ -197,17 +197,13 @@ namespace NLog.Targets
             {
                 var matchingRule = GetMatchingRowHighlightingRule(logEvent);
 
-                if (ColorDoesChange(matchingRule.ForegroundColor, oldForegroundColor))
-                {
+                didChangeForegroundColor = IsColorChange(matchingRule.ForegroundColor, oldForegroundColor);
+                if (didChangeForegroundColor)
                     Console.ForegroundColor = (ConsoleColor)matchingRule.ForegroundColor;
-                    didChangeForegroundColor = true;
-                }
 
-                if (ColorDoesChange(matchingRule.BackgroundColor, oldBackgroundColor))
-                {
+                didChangeBackgroundColor = IsColorChange(matchingRule.BackgroundColor, oldBackgroundColor);
+                if (didChangeBackgroundColor)
                     Console.BackgroundColor = (ConsoleColor)matchingRule.BackgroundColor;
-                    didChangeBackgroundColor = true;
-                }
 
                 var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
                 if (this.WordHighlightingRules.Count == 0)
@@ -257,7 +253,7 @@ namespace NLog.Targets
             return ConsoleRowHighlightingRule.Default;
         }
 
-        private static bool ColorDoesChange(ConsoleOutputColor targetColor, ConsoleColor oldColor)
+        private static bool IsColorChange(ConsoleOutputColor targetColor, ConsoleColor oldColor)
         {
             return (targetColor != ConsoleOutputColor.NoChange) && ((ConsoleColor)targetColor != oldColor);
         }
