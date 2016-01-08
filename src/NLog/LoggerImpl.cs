@@ -114,29 +114,29 @@ namespace NLog
             var stackFrames = stackTrace.GetFrames();
             if (stackFrames == null)
                 return 0;
-            var intermediate = stackFrames.Select((f, i) => new Tuple<int, StackFrame>(i, f));
+            var intermediate = stackFrames.Select((f, i) => new StackFrameWithIndex(i, f));
             //find until logger type
-            intermediate = intermediate.SkipWhile(p => !IsLoggerType(p.Item2, loggerType));
+            intermediate = intermediate.SkipWhile(p => !IsLoggerType(p.StackFrame, loggerType));
 
             intermediate = FilterBySkipAssembly(intermediate);
             return GetIndexOfNonAsync(intermediate);
         }
 
-        private static int GetIndexOfNonAsync(IEnumerable<Tuple<int, StackFrame>> intermediate)
+        private static int GetIndexOfNonAsync(IEnumerable<StackFrameWithIndex> intermediate)
         {
             var last = intermediate.FirstOrDefault();
-       
+
             if (last != null)
             {
 #if ASYNC_SUPPORTED
 
                 //movenext and then AsyncTaskMethodBuilder (method start)? this is a generated MoveNext by async.
-                if (last.Item2.GetMethod().Name == "MoveNext" )
+                if (last.StackFrame.GetMethod().Name == "MoveNext")
                 {
                     var next = intermediate.Skip(1).FirstOrDefault();
                     if (next != null)
                     {
-                        var declaringType = next.Item2.GetMethod().DeclaringType;
+                        var declaringType = next.StackFrame.GetMethod().DeclaringType;
                         if (declaringType != null && declaringType.FullName == "System.Runtime.CompilerServices.AsyncTaskMethodBuilder")
                         {
 
@@ -149,18 +149,18 @@ namespace NLog
                 }
 #endif
 
-                return last.Item1;
+                return last.StackFrameIndex;
             }
             return 0;
         }
 
-        private static IEnumerable<Tuple<int, StackFrame>> FilterBySkipAssembly(IEnumerable<Tuple<int, StackFrame>> intermediate)
+        private static IEnumerable<StackFrameWithIndex> FilterBySkipAssembly(IEnumerable<StackFrameWithIndex> intermediate)
         {
-            
+
             //skip to next
             intermediate = intermediate.Skip(1);
             //skip while in "skip" assemlbl
-            intermediate = intermediate.SkipWhile(p => SkipAssembly(p.Item2));
+            intermediate = intermediate.SkipWhile(p => SkipAssembly(p.StackFrame));
             return intermediate;
         }
 
@@ -280,6 +280,31 @@ namespace NLog
 
                 InternalLogger.Warn("Exception during filter evaluation: {0}", exception);
                 return FilterResult.Ignore;
+            }
+        }
+
+        /// <summary>
+        /// Stackframe with correspending index on the stracktrace
+        /// </summary>
+        private class StackFrameWithIndex
+        {
+            /// <summary>
+            /// Index of <see cref="StackFrame"/> on the stack.
+            /// </summary>
+            public int StackFrameIndex { get; private set; }
+
+            /// <summary>
+            /// A stackframe
+            /// </summary>
+            public StackFrame StackFrame { get; private set; }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+            /// </summary>
+            public StackFrameWithIndex(int stackFrameIndex, StackFrame stackFrame)
+            {
+                StackFrameIndex = stackFrameIndex;
+                StackFrame = stackFrame;
             }
         }
     }
