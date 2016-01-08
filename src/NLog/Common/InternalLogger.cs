@@ -170,7 +170,14 @@ namespace NLog.Common
             Write(ex, level, message, null);
         }
 
-        private static void Write(Exception ex, LogLevel level, string message, object[] args)
+        /// <summary>
+        /// Write to internallogger.
+        /// </summary>
+        /// <param name="ex">optional exception to be logged.</param>
+        /// <param name="level">level</param>
+        /// <param name="message">message</param>
+        /// <param name="args">optional args for <paramref name="message"/></param>
+        private static void Write([CanBeNull]Exception ex, LogLevel level, string message, [CanBeNull]object[] args)
         {
             if (ex.MustBeRethrownImmediately())
             {
