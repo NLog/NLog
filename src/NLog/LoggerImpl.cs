@@ -299,8 +299,10 @@ namespace NLog
             public StackFrame StackFrame { get; private set; }
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+            /// New item
             /// </summary>
+            /// <param name="stackFrameIndex">Index of <paramref name="stackFrame"/> on the stack.</param>
+            /// <param name="stackFrame">A stackframe</param>
             public StackFrameWithIndex(int stackFrameIndex, StackFrame stackFrame)
             {
                 StackFrameIndex = stackFrameIndex;
