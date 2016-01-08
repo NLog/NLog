@@ -505,12 +505,10 @@ namespace NLog
                 catch (Exception exception)
                 {
                     this.formattedMessage = this.Message;
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown("Error when formatting a message"))
                     {
                         throw;
                     }
-
-                    InternalLogger.Warn("Error when formatting a message: {0}", exception);
                 }
             }
         }

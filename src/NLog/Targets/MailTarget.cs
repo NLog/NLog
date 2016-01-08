@@ -330,9 +330,6 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                //always log
-                InternalLogger.Error(exception.ToString());
-
                 if (exception.MustBeRethrown())
                 {
                     throw;

@@ -207,12 +207,10 @@ namespace NLog
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrown("Cannot stop file watching"))
                     {
                         throw;
                     }
-
-                    InternalLogger.Error("Cannot stop file watching: {0}", exception);
                 }
 #endif
 
@@ -244,12 +242,10 @@ namespace NLog
                         }
                         catch (Exception exception)
                         {
-                            if (exception.MustBeRethrown())
+                            if (exception.MustBeRethrown("Cannot start file watching"))
                             {
                                 throw;
                             }
-
-                            InternalLogger.Warn("Cannot start file watching: {0}", exception);
                         }
 #endif
                     }
@@ -880,18 +876,10 @@ namespace NLog
                     }
                     catch (Exception ex)
                     {
-                        if (ex.MustBeRethrown())
+                        if (ex.MustBeRethrown("GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor", fullName))
                         {
                             throw;
                         }
-
-                        var errorMessage = string.Format("GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
-                        if (ThrowExceptions)
-                        {
-                            throw new NLogRuntimeException(errorMessage, ex);
-                        }
-
-                        InternalLogger.Error(errorMessage + ". Exception : {0}", ex);
 
                         // Creating default instance of logger if instance of specified type cannot be created.
                         newLogger = CreateDefaultLogger(ref cacheKey);

@@ -31,27 +31,25 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-
 namespace NLog.Config
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Linq;
-    using System.IO;
-    using System.Reflection;
-    using System.Xml;
     using NLog.Common;
     using NLog.Filters;
     using NLog.Internal;
+    using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
-    using NLog.LayoutRenderers;
     using NLog.Time;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
+    using System.Xml;
+
     using System.Collections.ObjectModel;
 #if SILVERLIGHT
 // ReSharper disable once RedundantUsingDirective
@@ -59,7 +57,7 @@ namespace NLog.Config
 #endif
 
     /// <summary>
-    /// A class for configuring NLog through an XML configuration file 
+    /// A class for configuring NLog through an XML configuration file
     /// (App.config style or App.nlog style).
     /// </summary>
     public class XmlLoggingConfiguration : LoggingConfiguration
@@ -75,7 +73,7 @@ namespace NLog.Config
             get { return ConfigurationItemFactory.Default; }
         }
 
-        #endregion
+        #endregion private fields
 
         #region contructors
 
@@ -126,12 +124,13 @@ namespace NLog.Config
         }
 
 #if !SILVERLIGHT
+
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
-		internal XmlLoggingConfiguration(XmlElement element, string fileName)
+        internal XmlLoggingConfiguration(XmlElement element, string fileName)
         {
             using (var stringReader = new StringReader(element.OuterXml))
             {
@@ -156,14 +155,17 @@ namespace NLog.Config
                 this.Initialize(reader, fileName, ignoreErrors);
             }
         }
+
 #endif
-        #endregion
+
+        #endregion contructors
 
         #region public properties
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+
         /// <summary>
-        /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
+        /// Gets the default <see cref="LoggingConfiguration" /> object by parsing
         /// the application configuration file (<c>app.exe.config</c>).
         /// </summary>
         public static LoggingConfiguration AppConfig
@@ -174,13 +176,14 @@ namespace NLog.Config
                 return o as LoggingConfiguration;
             }
         }
+
 #endif
 
         /// <summary>
         /// Did the <see cref="Initialize"/> Succeeded? <c>true</c>= success, <c>false</c>= error, <c>null</c> = initialize not started yet.
         /// </summary>
         public bool? InitializeSucceeded { get; private set; }
-        
+
         /// <summary>
         /// Gets or sets a value indicating whether all of the configuration files
         /// should be watched for changes and reloaded automatically when changed.
@@ -198,6 +201,7 @@ namespace NLog.Config
             }
         }
 
+
         /// <summary>
         /// Gets the collection of file names which should be watched for changes by NLog.
         /// This is the list of configuration files processed.
@@ -211,7 +215,7 @@ namespace NLog.Config
             }
         }
 
-        #endregion
+        #endregion public properties
 
         #region public methods
 
@@ -224,7 +228,7 @@ namespace NLog.Config
             return new XmlLoggingConfiguration(this.originalFileName);
         }
 
-        #endregion
+        #endregion public methods
 
         private static bool IsTargetElement(string name)
         {
@@ -242,7 +246,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Remove all spaces, also in between text. 
+        /// Remove all spaces, also in between text.
         /// </summary>
         /// <param name="s">text</param>
         /// <returns>text without spaces</returns>
@@ -321,27 +325,24 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 InitializeSucceeded = false;
-                if (exception.MustBeRethrown())
+
+                if (exception.IsServereException())
                 {
                     throw;
                 }
 
-                NLogConfigurationException ConfigException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
+                var message = string.Format("Exception occurred when loading configuration from '{0}': {1}", fileName, exception);
 
-                if (!ignoreErrors)
+                if (ignoreErrors)
                 {
-                    if (LogManager.ThrowExceptions)
-                    {
-                        throw ConfigException;
-                    }
-                    else
-                    {
-                        InternalLogger.Error("Error in Parsing Configuration File. Exception : {0}", ConfigException);
-                    }
+                    InternalLogger.Error(message);
                 }
                 else
                 {
-                    InternalLogger.Error("Error in Parsing Configuration File. Exception : {0}", ConfigException);
+                    if (exception.MustBeRethrown(message))
+                    {
+                        throw new NLogConfigurationException(message);
+                    }
                 }
             }
         }
@@ -388,6 +389,8 @@ namespace NLog.Config
         }
 
         #region parse methods
+
+
 
         /// <summary>
         /// Parse the root
@@ -450,7 +453,7 @@ namespace NLog.Config
             bool autoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", autoReloadDefault);
             if (filePath != null)
                 this.fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
-            
+
             LogManager.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", LogManager.ThrowExceptions);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
@@ -847,15 +850,9 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
+                        if (exception.MustBeRethrown("Error loading extensions from '{0}'", assemblyFile))
                         {
                             throw;
-                        }
-
-                        InternalLogger.Error("Error loading extensions: {0}", exception);
-                        if (LogManager.ThrowExceptions)
-                        {
-                            throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
                         }
                     }
 
@@ -880,15 +877,9 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
+                        if (exception.MustBeRethrown("Error loading extensions for assembly '{0}':", assemblyName))
                         {
                             throw;
-                        }
-
-                        InternalLogger.Error("Error loading extensions: {0}", exception);
-                        if (LogManager.ThrowExceptions)
-                        {
-                            throw new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
                         }
                     }
 
@@ -902,6 +893,7 @@ namespace NLog.Config
             includeElement.AssertName("include");
 
             string newFileName = includeElement.GetRequiredAttribute("file");
+            bool ignoreErrors = includeElement.GetOptionalBooleanAttribute("ignoreErrors", false);
 
             try
             {
@@ -929,19 +921,17 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.IsServereException())
                 {
                     throw;
                 }
 
                 InternalLogger.Error("Error when including '{0}' {1}", newFileName, exception);
 
-                if (includeElement.GetOptionalBooleanAttribute("ignoreErrors", false))
+                if (!ignoreErrors)
                 {
-                    return;
+                    throw new NLogConfigurationException("Error when including: " + newFileName, exception);
                 }
-
-                throw new NLogConfigurationException("Error when including: " + newFileName, exception);
             }
         }
 
@@ -959,7 +949,7 @@ namespace NLog.Config
             TimeSource.Current = newTimeSource;
         }
 
-        #endregion
+        #endregion parse methods
 
         private static string GetFileLookupKey(string fileName)
         {
@@ -1095,7 +1085,7 @@ namespace NLog.Config
 
         /// <summary>
         /// Replace a simple variable with a value. The orginal value is removed and thus we cannot redo this in a later stage.
-        /// 
+        ///
         /// Use for that: <see cref="VariableLayoutRenderer"/>
         /// </summary>
         /// <param name="input"></param>

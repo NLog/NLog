@@ -395,12 +395,11 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown("Error when writing to database"))
                 {
                     throw;
                 }
 
-                InternalLogger.Error("Error when writing to database {0}", exception);
                 this.CloseConnection();
                 throw;
             }
@@ -436,13 +435,11 @@ namespace NLog.Targets
                         }
                         catch (Exception exception)
                         {
-                            if (exception.MustBeRethrown())
+                            if (exception.MustBeRethrown("Error when writing to database"))
                             {
                                 throw;
                             }
 
-                            // in case of exception, close the connection and report it
-                            InternalLogger.Error("Error when writing to database {0}", exception);
                             this.CloseConnection();
                             ev.Continuation(exception);
                         }
@@ -617,11 +614,6 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
-                        {
-                            throw;
-                        }
-
                         if (commandInfo.IgnoreFailures || installationContext.IgnoreFailures)
                         {
                             installationContext.Warning(exception.Message);
@@ -629,6 +621,11 @@ namespace NLog.Targets
                         else
                         {
                             installationContext.Error(exception.Message);
+                        }
+
+
+                        if (exception.MustBeRethrown())
+                        {
                             throw;
                         }
                     }

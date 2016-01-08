@@ -33,8 +33,10 @@
 
 namespace NLog.Internal
 {
+    using Common;
     using System;
     using System.Threading;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Helper class for dealing with exceptions.
@@ -42,11 +44,12 @@ namespace NLog.Internal
     internal static class ExceptionHelper
     {
         /// <summary>
-        /// Determines whether the exception must be rethrown.
+        /// Determines whether the exception is so serious, that it should always
+        /// be thrown and rather not be logged.
         /// </summary>
-        /// <param name="exception">The exception.</param>
-        /// <returns>True if the exception must be rethrown, false otherwise.</returns>
-        public static bool MustBeRethrown(this Exception exception)
+        /// <param name="exception">The exception to check.</param>
+        /// <returns><c>true</c>, if the exception is considered serious.</returns>
+        public static bool IsServereException(this Exception exception)
         {
             if (exception is StackOverflowException)
             {
@@ -63,17 +66,87 @@ namespace NLog.Internal
                 return true;
             }
 
-            if (exception is NLogConfigurationException)
-            {
-                return true;
-            }
-
-            if (exception.GetType().IsSubclassOf(typeof(NLogConfigurationException)))
-            {
-                return true;
-            }
-
             return false;
+        }
+
+        /// <summary>
+        /// Determines whether the exception must be rethrown
+        /// and logs an non severe exception message to the internal logger.
+        /// 
+        /// NLog Configuration errors are logged as warning, all others as error.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <returns>
+        /// True if the exception must be rethrown, false otherwise.
+        /// </returns>
+        public static bool MustBeRethrown(this Exception exception)
+        {
+            return MustBeRethrown(exception, null, null);
+        }
+
+        /// <summary>
+        /// Determines whether the exception must be rethrown
+        /// and optionally logs a message into internal logger
+        /// for an non severe exception.
+        /// 
+        /// NLog Configuration errors are logged as warning, all others as error.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <param name="logMessage">
+        /// An optional log message, if <c>logMessage</c> is set to a certain level.
+        /// </param>
+        /// <returns>
+        /// <c>True</c> if the exception must be rethrown, <c>false</c> otherwise.
+        /// </returns>
+        public static bool MustBeRethrown(this Exception exception, string logMessage)
+        {
+            return MustBeRethrown(exception, logMessage, null);
+        }
+
+        /// <summary>
+        /// Determines whether the exception must be rethrown
+        /// and optionally logs a message into internal logger
+        /// for an non severe exception.
+        /// 
+        /// NLog Configuration errors are logged as warning, all others as error.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <param name="logMessage">An optional log message, if <c>logMessage</c> is set to a certain level.</param>
+        /// <param name="args">Arguments for the format string in <paramref name="logMessage"/>.</param>
+        /// <returns>
+        /// <c>True</c> if the exception must be rethrown, <c>false</c> otherwise.
+        /// </returns>
+        [StringFormatMethod("logMessage")]
+        public static bool MustBeRethrown(this Exception exception, string logMessage, params object[] args)
+        {
+
+            if (exception.IsServereException())
+            {
+                //no futher logging, because it can make servere exceptions only worse.
+                return true;
+            }
+
+            var isConfigError = exception is NLogConfigurationException
+                              || exception.GetType().IsSubclassOf(typeof(NLogConfigurationException));
+
+            //we throw always configuration exceptions (historical)
+            var shallRethrow = LogManager.ThrowExceptions || isConfigError;
+
+
+
+            var level = isConfigError ? LogLevel.Warn : LogLevel.Error;
+
+            var exceptionText = exception.ToString();
+            if (string.IsNullOrEmpty(logMessage))
+            {
+                InternalLogger.Log(level, exceptionText);
+            }
+            else
+            {
+                InternalLogger.Log(level, string.Format("{0}: {1}", logMessage, exceptionText), args);
+            }
+
+            return shallRethrow;
         }
     }
 }

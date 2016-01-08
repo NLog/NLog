@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -38,8 +40,8 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Layouts;
+    using NLog.Internal;
 
     /// <summary>
     /// Renders contents of the specified file.
@@ -109,12 +111,11 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrown("Cannot read file contents: {0}", fileName))
                 {
                     throw;
                 }
 
-                InternalLogger.Error("Cannot read file contents: {0} {1}", fileName, exception);
                 return string.Empty;
             }
         }

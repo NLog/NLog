@@ -108,7 +108,6 @@ namespace NLog.Conditions
         {
             var parser = new ConditionParser(stringReader, configurationItemFactories);
             ConditionExpression expression = parser.ParseExpression();
-        
             return expression;
         }
 
