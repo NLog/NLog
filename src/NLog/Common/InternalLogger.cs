@@ -179,7 +179,7 @@ namespace NLog.Common
         /// <param name="args">optional args for <paramref name="message"/></param>
         private static void Write([CanBeNull]Exception ex, LogLevel level, string message, [CanBeNull]object[] args)
         {
-            if (ex.MustBeRethrownImmediately())
+            if (ex != null && ex.MustBeRethrownImmediately())
             {
                 //no logging!
                 return;
