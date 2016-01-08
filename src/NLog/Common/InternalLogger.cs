@@ -192,6 +192,7 @@ namespace NLog.Common
 
                 if (ex != null)
                 {
+                    ex.MarkedAsLoggedToInternalLogger();
                     formattedMessage += "Exception: " + ex.ToString();
                 }
 

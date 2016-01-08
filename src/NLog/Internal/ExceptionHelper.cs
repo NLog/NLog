@@ -42,6 +42,36 @@ namespace NLog.Internal
     /// </summary>
     internal static class ExceptionHelper
     {
+        private const string LoggedKey = "NLog.ExceptionLoggedToInternalLogger";
+
+        /// <summary>
+        /// Mark this exception as logged to the <see cref="InternalLogger"/>.
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <returns></returns>
+        public static void MarkedAsLoggedToInternalLogger(this Exception exception)
+        {
+            if (exception != null)
+            {
+                exception.Data[LoggedKey] = true;
+            }
+        }
+
+        /// <summary>
+        /// Is this exception logged to the <see cref="InternalLogger"/>? 
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <returns><c>true</c>if the <paramref name="exception"/> has been logged to the <see cref="InternalLogger"/>.</returns>
+        public static bool IsLoggedToInternalLogger(this Exception exception)
+        {
+            if (exception != null)
+            {
+                return exception.Data[LoggedKey] as bool? ?? false;
+            }
+            return false;
+        }
+
+
         /// <summary>
         /// Determines whether the exception must be rethrown.
         /// </summary>
@@ -63,7 +93,10 @@ namespace NLog.Internal
 
             var level = isConfigError ? LogLevel.Warn : LogLevel.Error;
 
-            InternalLogger.Log(exception, level, "Error has been raised.");
+            if (!exception.IsLoggedToInternalLogger())
+            {
+                InternalLogger.Log(exception, level, "Error has been raised.");
+            }
 
             return shallRethrow;
         }
