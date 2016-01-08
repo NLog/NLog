@@ -16,6 +16,13 @@ var dnxVersion = Argument<string>("dnxVersion", "1.0.0-rc1-update1");
 var buildDir = Directory(outputDirectory);
 var samplesDir = Directory(samplesDirectory);
 
+// Define runtime
+DNRuntime runtime = DNRuntime.Clr;
+if(IsRunningOnUnix())
+{
+    runtime = DNRuntime.Mono;
+}
+
 //////////////////////////////////////////////////////////////////////
 // TASKS
 //////////////////////////////////////////////////////////////////////
@@ -36,13 +43,14 @@ Task("Default")
 Task("uap10")
 	.ContinueOnError()
 	.IsDependentOn("sl5")
+    .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
     // Restore
     DNURestoreSettings restoreSettings = new DNURestoreSettings()
     {
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion
     };
 	DNURestore(restoreSettings);
@@ -51,7 +59,7 @@ Task("uap10")
 	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
 	{
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "uap10" },
 	    Configurations = new[] { configuration },
@@ -66,7 +74,7 @@ Task("uap10")
     dnuBuildSettings = new DNUBuildSettings
 	{
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "uap10" },
 	    Configurations = new[] { configuration },
@@ -79,7 +87,7 @@ Task("uap10")
 	var settings = new DNXRunSettings
 	{ 
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion	
     };
 	DNXRun("./tests/NLog.UnitTests/", "test", settings);
@@ -89,13 +97,14 @@ Task("uap10")
 Task("sl5")
 	.ContinueOnError()
 	.IsDependentOn("net35")
+    .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
     // Restore
     DNURestoreSettings restoreSettings = new DNURestoreSettings()
     {
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion
     };
 	DNURestore(restoreSettings);
@@ -104,7 +113,7 @@ Task("sl5")
 	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
 	{
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "sl5" },
 	    Configurations = new[] { configuration },
@@ -119,7 +128,7 @@ Task("sl5")
     dnuBuildSettings = new DNUBuildSettings
 	{
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "sl5" },
 	    Configurations = new[] { configuration },
@@ -132,7 +141,7 @@ Task("sl5")
 	var settings = new DNXRunSettings
 	{ 
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion	
     };
 	DNXRun("./tests/NLog.UnitTests/", "test", settings);
@@ -142,13 +151,14 @@ Task("sl5")
 Task("net35")
 	.ContinueOnError()
 	.IsDependentOn("Dnx451")
+    .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
     // Restore
     DNURestoreSettings restoreSettings = new DNURestoreSettings()
     {
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion
     };
 	DNURestore(restoreSettings);
@@ -157,7 +167,7 @@ Task("net35")
 	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
 	{
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "net35" },
 	    Configurations = new[] { configuration },
@@ -172,7 +182,7 @@ Task("net35")
     dnuBuildSettings = new DNUBuildSettings
 	{
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "dnx451" },
 	    Configurations = new[] { configuration },
@@ -185,7 +195,7 @@ Task("net35")
 	var settings = new DNXRunSettings
 	{ 
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion	
     };
 	DNXRun("./tests/NLog.UnitTests/", "test", settings);
@@ -202,7 +212,7 @@ Task("Dnx451")
     DNURestoreSettings restoreSettings = new DNURestoreSettings()
     {
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion
     };
 	DNURestore(restoreSettings);
@@ -211,7 +221,7 @@ Task("Dnx451")
 	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
 	{
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "dnx451" },
 	    Configurations = new[] { configuration },
@@ -229,7 +239,7 @@ Task("Dnx451")
 	var settings = new DNXRunSettings
 	{	
         Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.Clr,
+        Runtime = runtime,
         Version = dnxVersion
     };
 	DNXRun("./tests/NLog.UnitTests/", "test", settings);
@@ -237,7 +247,7 @@ Task("Dnx451")
 });
 
 Task("Dnxcore50")
-	.ContinueOnError()
+    .ContinueOnError()
 	.IsDependentOn("Clean")
 	.Does(() =>
 {
