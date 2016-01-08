@@ -73,7 +73,9 @@ namespace NLog.Internal
 
 
         /// <summary>
-        /// Determines whether the exception must be rethrown.
+        /// Determines whether the exception must be rethrown and logs the error to the <see cref="InternalLogger"/> if <see cref="IsLoggedToInternalLogger"/> is <c>false</c>.
+        /// 
+        /// Advised to log first the error to the <see cref="InternalLogger"/> before calling this method.
         /// </summary>
         /// <param name="exception">The exception to check.</param>
         /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
@@ -102,7 +104,9 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Determines whether the exception must be rethrown. Never logs to the <see cref="InternalLogger"/>.
+        /// Determines whether the exception must be rethrown immediately, without logging the error to the <see cref="InternalLogger"/>.
+        /// 
+        /// Only used this method in special cases.
         /// </summary>
         /// <param name="exception">The exception to check.</param>
         /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
