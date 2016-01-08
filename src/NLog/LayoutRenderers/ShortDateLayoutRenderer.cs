@@ -48,11 +48,8 @@ namespace NLog.LayoutRenderers
     public class ShortDateLayoutRenderer : LayoutRenderer
     {
 
-        private static DateTime cachedLocalDate;
-        private static string cachedLocalDateFormatted;
-
-        private static DateTime cachedUtcDate;
-        private static string cachedUtcDateFormatted;
+        private static readonly DateData CachedUtcDate = new DateData();
+        private static readonly DateData CachedLocalDate = new DateData();
 
         /// <summary>
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
@@ -73,33 +70,37 @@ namespace NLog.LayoutRenderers
             if (this.UniversalTime)
             {
                 ts = ts.ToUniversalTime();
-                AppendDate(builder, ts, ref cachedUtcDateFormatted, ref cachedUtcDate);
+                CachedUtcDate.AppendDate(builder, ts);
             }
             else
             {
-                AppendDate(builder, ts, ref cachedLocalDateFormatted, ref cachedLocalDate);
+                CachedLocalDate.AppendDate(builder, ts);
             }
         }
 
-        /// <summary>
-        /// Appends a date in format yyyy-MM-dd to the StringBuilder.
-        /// The DateTime.ToString() result is cached for future uses
-        /// since it only changes once a day. This optimization yields a
-        /// performance boost of 40% and makes the renderer allocation-free
-        /// in must cases.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the date to</param>
-        /// <param name="ts">The date to append</param>
-        /// <param name="cachedDateFormatted">A reference to the cached formatted date to use and update if needed.</param>
-        /// <param name="cachedDate">A reference to the cached date to compare against the date to append and update if needed.</param>
-        private static void AppendDate(StringBuilder builder, DateTime ts, ref string cachedDateFormatted, ref DateTime cachedDate)
+        private class DateData
         {
-            if (cachedDateFormatted == null || cachedDate.Day != ts.Day || cachedDate.Month != ts.Month || cachedDate.Year != ts.Year)
+            private DateTime date;
+            private string formattedDate;
+
+            /// <summary>
+            /// Appends a date in format yyyy-MM-dd to the StringBuilder.
+            /// The DateTime.ToString() result is cached for future uses
+            /// since it only changes once a day. This optimization yields a
+            /// performance boost of 40% and makes the renderer allocation-free
+            /// in must cases.
+            /// </summary>
+            /// <param name="builder">The <see cref="StringBuilder"/> to append the date to</param>
+            /// <param name="ts">The date to append</param>
+            public void AppendDate(StringBuilder builder, DateTime ts)
             {
-                cachedDate = ts;
-                cachedDateFormatted = ts.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                if (formattedDate == null || date.Day != ts.Day || date.Month != ts.Month || date.Year != ts.Year)
+                {
+                    date = ts;
+                    formattedDate = ts.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                }
+                builder.Append(formattedDate);
             }
-            builder.Append(cachedDateFormatted);
         }
     }
 }
