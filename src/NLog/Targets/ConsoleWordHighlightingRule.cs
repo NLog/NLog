@@ -130,7 +130,7 @@ namespace NLog.Targets
                         }
                     }
 
-                    RegexOptions regexOptions = RegexOptions.None;
+                    RegexOptions regexOptions = RegexOptions.Compiled;
                     if (this.IgnoreCase)
                     {
                         regexOptions |= RegexOptions.IgnoreCase;
