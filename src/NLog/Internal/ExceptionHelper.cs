@@ -34,6 +34,7 @@
 namespace NLog.Internal
 {
     using System;
+    using Common;
     using System.Threading;
 
     /// <summary>
@@ -44,9 +45,35 @@ namespace NLog.Internal
         /// <summary>
         /// Determines whether the exception must be rethrown.
         /// </summary>
-        /// <param name="exception">The exception.</param>
-        /// <returns>True if the exception must be rethrown, false otherwise.</returns>
+        /// <param name="exception">The exception to check.</param>
+        /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
         public static bool MustBeRethrown(this Exception exception)
+        {
+            if (exception.MustBeRethrownImmediately())
+            {
+                //no futher logging, because it can make servere exceptions only worse.
+                return true;
+            }
+
+            var isConfigError = exception is NLogConfigurationException
+                              || exception.GetType().IsSubclassOf(typeof(NLogConfigurationException));
+
+            //we throw always configuration exceptions (historical)
+            var shallRethrow = LogManager.ThrowExceptions || isConfigError;
+
+            var level = isConfigError ? LogLevel.Warn : LogLevel.Error;
+
+            InternalLogger.Log(exception, level, "Error has been raised.");
+
+            return shallRethrow;
+        }
+
+        /// <summary>
+        /// Determines whether the exception must be rethrown. Never logs to the <see cref="InternalLogger"/>.
+        /// </summary>
+        /// <param name="exception">The exception to check.</param>
+        /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
+        public static bool MustBeRethrownImmediately(this Exception exception)
         {
             if (exception is StackOverflowException)
             {
