@@ -255,12 +255,13 @@ namespace NLog.Common
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                // no log looping.
+                // we have no place to log the message to so we ignore it
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
 
-                // we have no place to log the message to so we ignore it
             }
         }
 

@@ -74,11 +74,6 @@ namespace NLog.Internal
                     throw;
                 }
 
-                if (LogManager.ThrowExceptions)
-                {
-                    throw;
-                }
-
                 ReportExceptionInHandler(ex);
             }
         }

@@ -207,12 +207,12 @@ namespace NLog
                 }
                 catch (Exception exception)
                 {
+                    InternalLogger.Error(exception, "Cannot stop file watching.");
+
                     if (exception.MustBeRethrown())
                     {
                         throw;
                     }
-
-                    InternalLogger.Error(exception, "Cannot stop file watching.");
                 }
 #endif
 
@@ -244,12 +244,12 @@ namespace NLog
                         }
                         catch (Exception exception)
                         {
+                            InternalLogger.Warn(exception, "Cannot start file watching: {0}");
+
                             if (exception.MustBeRethrown())
                             {
                                 throw;
                             }
-
-                            InternalLogger.Warn(exception, "Cannot start file watching: {0}");
                         }
 #endif
                     }
@@ -650,6 +650,7 @@ namespace NLog
                 }
                 catch (Exception exception)
                 {
+                    //special case, don't rethrow NLogConfigurationException
                     if (exception is NLogConfigurationException)
                     {
                         InternalLogger.Warn(exception, "NLog configuration while reloading");
@@ -880,18 +881,19 @@ namespace NLog
                     }
                     catch (Exception ex)
                     {
+                        var errorMessage = string.Format("GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
+
+                        InternalLogger.Error(ex, errorMessage);
+
                         if (ex.MustBeRethrown())
                         {
                             throw;
                         }
 
-                        var errorMessage = string.Format("GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
                         if (ThrowExceptions)
                         {
                             throw new NLogRuntimeException(errorMessage, ex);
                         }
-
-                        InternalLogger.Error(ex, errorMessage);
 
                         // Creating default instance of logger if instance of specified type cannot be created.
                         newLogger = CreateDefaultLogger(ref cacheKey);

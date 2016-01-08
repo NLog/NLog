@@ -249,12 +249,13 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
+                    InternalLogger.Error(exception, "Install of '{0}' failed.", installable);
                     if (exception.MustBeRethrown())
                     {
                         throw;
                     }
 
-                    installationContext.Error("'{0}' installation failed: {1}.", installable, exception);
+                    installationContext.Error("Install of '{0}' failed: {1}.", installable, exception);
                 }
             }
         }
@@ -286,12 +287,13 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
+                    InternalLogger.Error(exception, "Uninstall of '{0}' failed.", installable);
                     if (exception.MustBeRethrown())
                     {
                         throw;
                     }
 
-                    installationContext.Error("Uninstallation of '{0}' failed: {1}.", installable, exception);
+                    installationContext.Error("Uninstall of '{0}' failed: {1}.", installable, exception);
                 }
             }
         }
@@ -311,12 +313,14 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
+                    InternalLogger.Warn(exception, "Exception while closing.");
+
                     if (exception.MustBeRethrown())
                     {
                         throw;
                     }
 
-                    InternalLogger.Warn(exception, "Exception while closing.");
+                   
                 }
             }
 

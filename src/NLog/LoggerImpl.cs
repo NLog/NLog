@@ -239,13 +239,14 @@ namespace NLog
                 return result;
             }
             catch (Exception exception)
-            {
+            { 
+                InternalLogger.Warn(exception, "Exception during filter evaluation.");
+
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
-
-                InternalLogger.Warn(exception, "Exception during filter evaluation.");
+                
                 return FilterResult.Ignore;
             }
         }

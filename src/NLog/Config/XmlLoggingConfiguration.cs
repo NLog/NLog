@@ -847,12 +847,13 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
+                        InternalLogger.Error(exception, "Error loading extensions.");
+
                         if (exception.MustBeRethrown())
                         {
                             throw;
                         }
-
-                        InternalLogger.Error(exception, "Error loading extensions.");
+                        
                         if (LogManager.ThrowExceptions)
                         {
                             throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
@@ -880,12 +881,13 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
+                        InternalLogger.Error(exception, "Error loading extensions.");
+
                         if (exception.MustBeRethrown())
                         {
                             throw;
                         }
-
-                        InternalLogger.Error(exception, "Error loading extensions.");
+                        
                         if (LogManager.ThrowExceptions)
                         {
                             throw new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
@@ -929,12 +931,12 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
+                InternalLogger.Error(exception, "Error when including '{0}'.", newFileName);
+
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
-
-                InternalLogger.Error(exception, "Error when including '{0}'.", newFileName);
 
                 if (includeElement.GetOptionalBooleanAttribute("ignoreErrors", false))
                 {

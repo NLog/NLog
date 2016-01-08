@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Common;
+
 namespace NLog.Conditions
 {
     using System;
@@ -136,6 +138,8 @@ namespace NLog.Conditions
             }
             catch (Exception exception)
             {
+                InternalLogger.Warn(exception, "Cannot resolve function '{0}'", functionName);
+
                 if (exception.MustBeRethrown())
                 {
                     throw;
