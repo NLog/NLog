@@ -298,7 +298,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 },
                 LogLevel.Trace);
 
-            Assert.True(internalLog.StartsWith("Error Error in lazy writer timer procedure: System.NullReferenceException", StringComparison.Ordinal), internalLog);
+            Assert.True(internalLog.StartsWith("Error Error in lazy writer timer procedure. Exception: System.NullReferenceException", StringComparison.Ordinal), internalLog);
         }
 
         [Fact]
