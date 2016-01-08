@@ -125,7 +125,7 @@ namespace NLog.Common
         public static bool IncludeTimestamp { get; set; }
 
         /// <summary>
-        /// Logs the specified message at the specified level.
+        /// Logs the specified message without an <see cref="Exception"/> at the specified level.
         /// </summary>
         /// <param name="level">Log level.</param>
         /// <param name="message">Message which may include positional parameters.</param>
@@ -133,20 +133,44 @@ namespace NLog.Common
         [StringFormatMethod("message")]
         public static void Log(LogLevel level, string message, params object[] args)
         {
-            Write(level, message, args);
+            Write(null, level, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the specified level.
+        /// Logs the specified message without an <see cref="Exception"/> at the specified level.
         /// </summary>
         /// <param name="level">Log level.</param>
         /// <param name="message">Log message.</param>
         public static void Log(LogLevel level, [Localizable(false)] string message)
         {
-            Write(level, message, null);
+            Write(null, level, message, null);
         }
 
-        private static void Write(LogLevel level, string message, object[] args)
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the specified level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="level">Log level.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Log(Exception ex, LogLevel level, string message, params object[] args)
+        {
+            Write(ex, level, message, args);
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the specified level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="level">Log level.</param>
+        /// <param name="message">Log message.</param>
+        public static void Log(Exception ex, LogLevel level, [Localizable(false)] string message)
+        {
+            Write(ex, level, message, null);
+        }
+
+        private static void Write(Exception ex, LogLevel level, string message, object[] args)
         {
             if (level < LogLevel)
             {
@@ -164,6 +188,11 @@ namespace NLog.Common
                 if (args != null)
                 {
                     formattedMessage = string.Format(CultureInfo.InvariantCulture, message, args);
+                }
+
+                if (ex != null)
+                {
+                    formattedMessage += "Exception: " + ex.ToString();
                 }
 
                 var builder = new StringBuilder(message.Length + 32);

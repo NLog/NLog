@@ -90,124 +90,262 @@ namespace NLog.Common
 
 
         /// <summary>
-        /// Logs the specified message at the Trace level.
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
         public static void Trace([Localizable(false)] string message, params object[] args)
         {
-            Write(LogLevel.Trace, message, args);
+            Write(null, LogLevel.Trace, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the Trace level.
+        /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
         /// <param name="message">Log message.</param>
         public static void Trace([Localizable(false)] string message)
         {
-            Write(LogLevel.Trace, message, null);
+            Write(null, LogLevel.Trace, message, null);
+        }
+
+	
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Trace(Exception ex, [Localizable(false)] string message, params object[] args)
+        {
+            Write(ex, LogLevel.Trace, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the Debug level.
+        /// Logs the specified message with an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void Trace(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.Trace, message, null);
+        }	
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Debug level.
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
         public static void Debug([Localizable(false)] string message, params object[] args)
         {
-            Write(LogLevel.Debug, message, args);
+            Write(null, LogLevel.Debug, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the Debug level.
+        /// Logs the specified message without an <see cref="Exception"/> at the Debug level.
         /// </summary>
         /// <param name="message">Log message.</param>
         public static void Debug([Localizable(false)] string message)
         {
-            Write(LogLevel.Debug, message, null);
+            Write(null, LogLevel.Debug, message, null);
+        }
+
+	
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Debug level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Debug(Exception ex, [Localizable(false)] string message, params object[] args)
+        {
+            Write(ex, LogLevel.Debug, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the Info level.
+        /// Logs the specified message with an <see cref="Exception"/> at the Debug level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void Debug(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.Debug, message, null);
+        }	
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Info level.
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
         public static void Info([Localizable(false)] string message, params object[] args)
         {
-            Write(LogLevel.Info, message, args);
+            Write(null, LogLevel.Info, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the Info level.
+        /// Logs the specified message without an <see cref="Exception"/> at the Info level.
         /// </summary>
         /// <param name="message">Log message.</param>
         public static void Info([Localizable(false)] string message)
         {
-            Write(LogLevel.Info, message, null);
+            Write(null, LogLevel.Info, message, null);
+        }
+
+	
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Info level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Info(Exception ex, [Localizable(false)] string message, params object[] args)
+        {
+            Write(ex, LogLevel.Info, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the Warn level.
+        /// Logs the specified message with an <see cref="Exception"/> at the Info level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void Info(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.Info, message, null);
+        }	
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Warn level.
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
         public static void Warn([Localizable(false)] string message, params object[] args)
         {
-            Write(LogLevel.Warn, message, args);
+            Write(null, LogLevel.Warn, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the Warn level.
+        /// Logs the specified message without an <see cref="Exception"/> at the Warn level.
         /// </summary>
         /// <param name="message">Log message.</param>
         public static void Warn([Localizable(false)] string message)
         {
-            Write(LogLevel.Warn, message, null);
+            Write(null, LogLevel.Warn, message, null);
+        }
+
+	
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Warn level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Warn(Exception ex, [Localizable(false)] string message, params object[] args)
+        {
+            Write(ex, LogLevel.Warn, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the Error level.
+        /// Logs the specified message with an <see cref="Exception"/> at the Warn level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void Warn(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.Warn, message, null);
+        }	
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Error level.
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
         public static void Error([Localizable(false)] string message, params object[] args)
         {
-            Write(LogLevel.Error, message, args);
+            Write(null, LogLevel.Error, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the Error level.
+        /// Logs the specified message without an <see cref="Exception"/> at the Error level.
         /// </summary>
         /// <param name="message">Log message.</param>
         public static void Error([Localizable(false)] string message)
         {
-            Write(LogLevel.Error, message, null);
+            Write(null, LogLevel.Error, message, null);
+        }
+
+	
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Error level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Error(Exception ex, [Localizable(false)] string message, params object[] args)
+        {
+            Write(ex, LogLevel.Error, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the Fatal level.
+        /// Logs the specified message with an <see cref="Exception"/> at the Error level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void Error(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.Error, message, null);
+        }	
+
+        /// <summary>
+        /// Logs the specified message without an <see cref="Exception"/> at the Fatal level.
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
         public static void Fatal([Localizable(false)] string message, params object[] args)
         {
-            Write(LogLevel.Fatal, message, args);
+            Write(null, LogLevel.Fatal, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the Fatal level.
+        /// Logs the specified message without an <see cref="Exception"/> at the Fatal level.
         /// </summary>
         /// <param name="message">Log message.</param>
         public static void Fatal([Localizable(false)] string message)
         {
-            Write(LogLevel.Fatal, message, null);
+            Write(null, LogLevel.Fatal, message, null);
         }
+
+	
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Fatal level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Fatal(Exception ex, [Localizable(false)] string message, params object[] args)
+        {
+            Write(ex, LogLevel.Fatal, message, args);
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Fatal level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void Fatal(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.Fatal, message, null);
+        }	
      
     }
 }
