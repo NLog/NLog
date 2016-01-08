@@ -131,7 +131,7 @@ namespace NLog.Common
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
-        public static void Log(LogLevel level, string message, params object[] args)
+        public static void Log(LogLevel level, [Localizable(false)] string message, params object[] args)
         {
             Write(null, level, message, args);
         }
@@ -154,7 +154,7 @@ namespace NLog.Common
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
-        public static void Log(Exception ex, LogLevel level, string message, params object[] args)
+        public static void Log(Exception ex, LogLevel level, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, level, message, args);
         }
