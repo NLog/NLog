@@ -270,7 +270,7 @@ namespace NLog.Layouts
 
                     if (InternalLogger.IsWarnEnabled)
                     {
-                        InternalLogger.Warn("Exception in {0}.Append(): {1}.", renderer.GetType().FullName, exception);
+                        InternalLogger.Warn(exception, "Exception in Append(): {0}.", renderer.GetType().FullName);
                     }
                 }
             }

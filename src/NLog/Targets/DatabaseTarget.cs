@@ -400,7 +400,7 @@ namespace NLog.Targets
                     throw;
                 }
 
-                InternalLogger.Error("Error when writing to database {0}", exception);
+                InternalLogger.Error(exception, "Error when writing to database.");
                 this.CloseConnection();
                 throw;
             }
@@ -442,7 +442,7 @@ namespace NLog.Targets
                             }
 
                             // in case of exception, close the connection and report it
-                            InternalLogger.Error("Error when writing to database {0}", exception);
+                            InternalLogger.Error(exception, "Error when writing to database.");
                             this.CloseConnection();
                             ev.Continuation(exception);
                         }

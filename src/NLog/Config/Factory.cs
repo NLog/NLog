@@ -77,7 +77,7 @@ namespace NLog.Config
                         throw;
                     }
 
-                    InternalLogger.Error("Failed to add type '" + t.FullName + "': {0}", exception);
+                    InternalLogger.Error(exception, "Failed to add type '{0}'.", t.FullName);
                 }
             }
         }

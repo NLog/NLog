@@ -510,7 +510,7 @@ namespace NLog
                         throw;
                     }
 
-                    InternalLogger.Warn("Error when formatting a message: {0}", exception);
+                    InternalLogger.Warn(exception, "Error when formatting a message.");
                 }
             }
         }

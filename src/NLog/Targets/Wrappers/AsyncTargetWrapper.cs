@@ -293,7 +293,7 @@ namespace NLog.Targets.Wrappers
                     throw;
                 }
 
-                InternalLogger.Error("Error in lazy writer timer procedure: {0}", exception);
+                InternalLogger.Error(exception, "Error in lazy writer timer procedure.");
             }
             finally
             {

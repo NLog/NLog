@@ -200,7 +200,7 @@ namespace NLog.Targets
                             }
                             catch (Exception ex2)
                             {
-                                InternalLogger.Error(ex2.ToString());
+                                InternalLogger.Error(ex2, "Error when sending to Webservice.");
                                 if (ex2.MustBeRethrown())
                                 {
                                     throw;
@@ -232,7 +232,7 @@ namespace NLog.Targets
                         catch (Exception ex)
                         {
                             postPayload.Dispose();
-                            InternalLogger.Error(ex.ToString());
+                            InternalLogger.Error(ex, "Error when sending to Webservice.");
                             if (ex.MustBeRethrown())
                             {
                                 throw;

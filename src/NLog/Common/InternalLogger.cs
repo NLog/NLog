@@ -268,9 +268,9 @@ namespace NLog.Common
                     fileVersionInfo.ProductVersion);
 #endif
             }
-            catch (Exception exc)
+            catch (Exception ex)
             {
-                Error("Error logging version of assembly {0}: {1}.", assembly.FullName, exc.Message);
+                Error(ex, "Error logging version of assembly {0}.", assembly.FullName);
             }
         }
 
@@ -354,7 +354,7 @@ namespace NLog.Common
             }
             catch (Exception exception)
             {
-                Error("Cannot create needed directories to {0}. {1}", filename, exception.Message);
+                Error(exception, "Cannot create needed directories to '{0}'.", filename);
 
                 if (exception.MustBeRethrown())
                 {

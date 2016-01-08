@@ -316,7 +316,7 @@ namespace NLog.Config
                         throw;
                     }
 
-                    InternalLogger.Warn("Exception while closing {0}", exception);
+                    InternalLogger.Warn(exception, "Exception while closing.");
                 }
             }
 

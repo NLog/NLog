@@ -306,7 +306,7 @@ namespace NLog.Targets
                         }
 
                         this.initializeException = exception;
-                        InternalLogger.Error("Error initializing target {0} {1}.", this, exception);
+                        InternalLogger.Error(exception, "Error initializing target '{0}'.", this);
                         throw;
                     }
                 }
@@ -341,7 +341,7 @@ namespace NLog.Targets
                             throw;
                         }
 
-                        InternalLogger.Error("Error closing target {0} {1}.", this, exception);
+                        InternalLogger.Error(exception, "Error closing target '{0}'.", this);
                         throw;
                     }
                 }

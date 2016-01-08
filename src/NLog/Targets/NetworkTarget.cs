@@ -261,7 +261,7 @@ namespace NLog.Targets
                     {
                         if (ex != null)
                         {
-                            InternalLogger.Error("Error when sending {0}", ex);
+                            InternalLogger.Error(ex, "Error when sending.");
                             this.ReleaseCachedConnection(senderNode);
                         }
 
@@ -326,7 +326,7 @@ namespace NLog.Targets
 
                         if (ex != null)
                         {
-                            InternalLogger.Error("Error when sending {0}", ex);
+                            InternalLogger.Error(ex, "Error when sending.");
                         }
 
                         sender.Close(ex2 => { });

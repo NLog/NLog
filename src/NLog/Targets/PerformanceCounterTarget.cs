@@ -316,7 +316,7 @@ namespace NLog.Targets
                         throw;
                     }
 
-                    InternalLogger.Error("Cannot open performance counter {0}/{1}/{2}: {3}", this.CategoryName, this.CounterName, this.InstanceName, exception);
+                    InternalLogger.Error(exception, "Cannot open performance counter {0}/{1}/{2}.", this.CategoryName, this.CounterName, this.InstanceName);
                 }
             }
 

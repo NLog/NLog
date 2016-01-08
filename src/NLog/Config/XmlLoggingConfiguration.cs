@@ -336,12 +336,12 @@ namespace NLog.Config
                     }
                     else
                     {
-                        InternalLogger.Error("Error in Parsing Configuration File. Exception : {0}", ConfigException);
+                        InternalLogger.Error(ConfigException, "Error in Parsing Configuration File.");
                     }
                 }
                 else
                 {
-                    InternalLogger.Error("Error in Parsing Configuration File. Exception : {0}", ConfigException);
+                    InternalLogger.Error(ConfigException, "Error in Parsing Configuration File.");
                 }
             }
         }
@@ -852,7 +852,7 @@ namespace NLog.Config
                             throw;
                         }
 
-                        InternalLogger.Error("Error loading extensions: {0}", exception);
+                        InternalLogger.Error(exception, "Error loading extensions.");
                         if (LogManager.ThrowExceptions)
                         {
                             throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
@@ -885,7 +885,7 @@ namespace NLog.Config
                             throw;
                         }
 
-                        InternalLogger.Error("Error loading extensions: {0}", exception);
+                        InternalLogger.Error(exception, "Error loading extensions.");
                         if (LogManager.ThrowExceptions)
                         {
                             throw new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
@@ -934,7 +934,7 @@ namespace NLog.Config
                     throw;
                 }
 
-                InternalLogger.Error("Error when including '{0}' {1}", newFileName, exception);
+                InternalLogger.Error(exception, "Error when including '{0}'.", newFileName);
 
                 if (includeElement.GetOptionalBooleanAttribute("ignoreErrors", false))
                 {

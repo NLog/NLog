@@ -187,7 +187,7 @@ namespace NLog
                         }
                         catch (Exception exception)
                         {
-                            InternalLogger.Warn("Cannot start file watching: {0}. File watching is disabled", exception);
+                            InternalLogger.Warn(exception, "Cannot start file watching. File watching is disabled");
                         }
 #endif
                         this.config.InitializeAll();
@@ -212,7 +212,7 @@ namespace NLog
                         throw;
                     }
 
-                    InternalLogger.Error("Cannot stop file watching: {0}", exception);
+                    InternalLogger.Error(exception, "Cannot stop file watching.");
                 }
 #endif
 
@@ -249,7 +249,7 @@ namespace NLog
                                 throw;
                             }
 
-                            InternalLogger.Warn("Cannot start file watching: {0}", exception);
+                            InternalLogger.Warn(exception, "Cannot start file watching: {0}");
                         }
 #endif
                     }
@@ -424,14 +424,14 @@ namespace NLog
             {
                 AsyncHelpers.RunSynchronously(cb => this.Flush(cb, timeout));
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 if (ThrowExceptions)
                 {
                     throw;
                 }
 
-                InternalLogger.Error(e.ToString());
+                InternalLogger.Error(ex, "Error with flush.");
             }
         }
 
@@ -488,14 +488,14 @@ namespace NLog
                     asyncContinuation(null);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 if (ThrowExceptions)
                 {
                     throw;
                 }
 
-                InternalLogger.Error(e.ToString());
+                InternalLogger.Error(ex, "Error with flush.");
             }
         }
 
@@ -652,7 +652,7 @@ namespace NLog
                 {
                     if (exception is NLogConfigurationException)
                     {
-                        InternalLogger.Warn(exception.Message);
+                        InternalLogger.Warn(exception, "NLog configuration while reloading");
                     }
                     else if (exception.MustBeRethrown())
                     {
@@ -891,7 +891,7 @@ namespace NLog
                             throw new NLogRuntimeException(errorMessage, ex);
                         }
 
-                        InternalLogger.Error(errorMessage + ". Exception : {0}", ex);
+                        InternalLogger.Error(ex, errorMessage);
 
                         // Creating default instance of logger if instance of specified type cannot be created.
                         newLogger = CreateDefaultLogger(ref cacheKey);

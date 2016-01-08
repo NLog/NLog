@@ -85,7 +85,7 @@ namespace NLog.Internal
 
         private static void ReportExceptionInHandler(Exception exception)
         {
-            InternalLogger.Error("Exception in asynchronous handler {0}", exception);
+            InternalLogger.Error(exception, "Exception in asynchronous handler.");
         }
     }
 }

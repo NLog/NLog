@@ -269,9 +269,9 @@ namespace NLog.Config
                     factory.RegisterItemsFromAssembly(extensionAssembly);
                     success = true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    InternalLogger.Warn("Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
+                    InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
                 }
                 if (success)
                 {

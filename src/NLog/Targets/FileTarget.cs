@@ -553,9 +553,9 @@ namespace NLog.Targets
                 {
                     fileArchive.InitializeForArchiveFolderPath(Path.GetDirectoryName(fileNamePattern));
                 }
-                catch (Exception exc)
+                catch (Exception exception)
                 {
-                    InternalLogger.Warn("Error while initializing archive folder: {0}.", exc);
+                    InternalLogger.Warn(exception, "Error while initializing archive folder.");
                 }
             }
         }
@@ -1580,7 +1580,7 @@ namespace NLog.Targets
                         throw;
                     }
 
-                    InternalLogger.Warn("Exception in AutoClosingTimerCallback: {0}", exception);
+                    InternalLogger.Warn(exception, "Exception in AutoClosingTimerCallback.");
                 }
             }
         }
@@ -1712,7 +1712,7 @@ namespace NLog.Targets
                         throw;
                     }
 
-                    InternalLogger.Warn("Unable to archive old log file '{0}': {1}", fileName, exception);
+                    InternalLogger.Warn(exception, "Unable to archive old log file '{0}'.", fileName);
                 }
             }
 
@@ -1729,7 +1729,7 @@ namespace NLog.Targets
                         throw;
                     }
 
-                    InternalLogger.Warn("Unable to delete old log file '{0}': {1}", fileName, exception);
+                    InternalLogger.Warn(exception, "Unable to delete old log file '{0}'.", fileName);
                 }
             }
         }
@@ -1961,7 +1961,7 @@ namespace NLog.Targets
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error("Cannot archive file {0}, Exception : {1}", fileName, ex);
+                    InternalLogger.Error(ex, "Cannot archive file '{0}'.", fileName);
                     throw;
                 }
             }
@@ -1981,7 +1981,7 @@ namespace NLog.Targets
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Warn("Cannot delete old archive file : {0} , Exception : {1}", archiveFileName, ex);
+                        InternalLogger.Warn(ex, "Cannot delete old archive file : '{0}'.", archiveFileName);
                     }
                 }
 
@@ -1995,7 +1995,7 @@ namespace NLog.Targets
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Warn("Cannot delete old archive file : {0} , Exception : {1}", oldestArchivedFileName, ex);
+                        InternalLogger.Warn(ex, "Cannot delete old archive file : '{0}'.", oldestArchivedFileName);
                     }
                 }
             }

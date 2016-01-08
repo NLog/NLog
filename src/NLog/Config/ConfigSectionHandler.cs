@@ -62,7 +62,7 @@ namespace NLog.Config
                     throw;
                 }
 
-                InternalLogger.Error("ConfigSectionHandler error: {0}", exception);
+                InternalLogger.Error(exception, "ConfigSectionHandler error.");
                 throw;
             }
         }

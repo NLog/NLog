@@ -367,7 +367,7 @@ namespace NLog
                     throw;
                 }
 
-                InternalLogger.Warn("Error setting up termination events: {0}", exception);
+                InternalLogger.Warn(exception, "Error setting up termination events.");
             }
         }
 #endif
