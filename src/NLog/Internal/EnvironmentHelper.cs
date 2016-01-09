@@ -33,16 +33,17 @@
 
 namespace NLog.Internal
 {
+
     using System;
     using System.Security;
 
     /// <summary>
     /// Safe way to get environment variables.
     /// </summary>
-    internal static class EnvironmentHelper
-    {
-        internal static string NewLine
-        {
+	internal static class EnvironmentHelper
+	{
+		internal static string NewLine
+		{
             get
             {
 #if !SILVERLIGHT
@@ -69,7 +70,7 @@ namespace NLog.Internal
 
                 return s;
             }
-            catch (SecurityException)
+            catch (System.Security.SecurityException)
             {
                 return string.Empty;
             }

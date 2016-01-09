@@ -74,8 +74,22 @@ namespace NLog.UnitTests.Targets
                 logger.Debug("Test {0}", currentSequenceNumber);
         }
 
-        [Fact]
-        public void SimpleFileTest1()
+        public static IEnumerable<object[]> SimpleFileTest_TestParameters
+        {
+            get
+            {
+                var booleanValues = new[] { true, false };
+                return
+                    from concurrentWrites in booleanValues
+                    from keepFileOpen in booleanValues
+                    from networkWrites in booleanValues
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites };
+            }
+        }
+        
+        [Theory]
+        [PropertyData("SimpleFileTest_TestParameters")]
+        public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites)
         {
             var tempFile = Path.GetTempFileName();
             try
@@ -85,7 +99,10 @@ namespace NLog.UnitTests.Targets
                                         FileName = SimpleLayout.Escape(tempFile),
                                         LineEnding = LineEndingMode.LF,
                                         Layout = "${level} ${message}",
-                                        OpenFileCacheTimeout = 0
+                                        OpenFileCacheTimeout = 0,
+                                        ConcurrentWrites = concurrentWrites,
+                                        KeepFileOpen = keepFileOpen,
+                                        NetworkWrites = networkWrites
                                     };
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
@@ -358,7 +375,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void SequentialArchiveTest1()
+        public void SequentialArchiveTest()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -420,7 +437,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void SequentialArchiveTest1_MaxArchiveFiles_0()
+        public void SequentialArchiveTest_MaxArchiveFiles_0()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -486,7 +503,6 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact(Skip = "this is not supported, because we cannot create multiple archive files with  ArchiveNumberingMode.Date (for one day)")]
-
         public void ArchiveAboveSizeWithArchiveNumberingModeDate_maxfiles_o()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), "ArchiveEveryCombinedWithArchiveAboveSize_" + Guid.NewGuid().ToString());
@@ -686,7 +702,7 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempPath, true);
             }
         }
-
+        
         public static IEnumerable<object[]> DateArchive_UsesDateFromCurrentTimeSource_TestParameters
         {
             get
@@ -698,14 +714,14 @@ namespace NLog.UnitTests.Targets
                     from keepFileOpen in booleanValues
                     from networkWrites in booleanValues
                     from timeKind in timeKindValues
-                    select new object[] { timeKind, concurrentWrites, keepFileOpen, networkWrites };
+                    from includeSequenceInArchive in booleanValues
+                    select new object[] { timeKind, concurrentWrites, keepFileOpen, networkWrites, includeSequenceInArchive };
             }
         }
-
-
+        
         [Theory]
         [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
-        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites)
+        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -716,13 +732,13 @@ namespace NLog.UnitTests.Targets
 
                 TimeSource.Current = timeSource;
 
-                var archiveFileNameTemplate = Path.Combine(tempPath, "archive/{#}.txt");
+                var archiveFileNameTemplate = Path.Combine(tempPath, "archive", "{#}.txt");
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
                     ArchiveFileName = archiveFileNameTemplate,
                     LineEnding = LineEndingMode.LF,
-                    ArchiveNumbering = ArchiveNumberingMode.Date,
+                    ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
                     ArchiveEvery = FileArchivePeriod.Day,
                     ArchiveDateFormat = "yyyyMMdd",
                     Layout = "${date:format=O}|${message}",
@@ -744,12 +760,22 @@ namespace NLog.UnitTests.Targets
                 {
                     timeSource.AddToLocalTime(loggingInterval);
 
+                    if (timeSource.Time.Date != previousWriteTime.Date)
+                    {
+                        // Simulate that previous file write began in previous day and ended on current day.
+                        try
+                        {
+                            File.SetLastWriteTime(tempFile, timeSource.SystemTime);
+                        }
+                        catch { }
+                    }
+
                     var eventInfo = new LogEventInfo(LogLevel.Debug, logger.Name, "123456789");
                     logger.Log(eventInfo);
 
                     var dayIsChanged = eventInfo.TimeStamp.Date != previousWriteTime.Date;
                     // ensure new archive is created only when the day part of time is changed
-                    var archiveFileName = archiveFileNameTemplate.Replace("{#}", previousWriteTime.ToString(ft.ArchiveDateFormat));
+                    var archiveFileName = archiveFileNameTemplate.Replace("{#}", previousWriteTime.ToString(ft.ArchiveDateFormat) + (includeSequenceInArchive ? ".0" : string.Empty));
                     var archiveExists = File.Exists(archiveFileName);
                     if (dayIsChanged)
                         Assert.True(archiveExists, string.Format("new archive should be created when the day part of {0} time is changed", timeKind));
@@ -784,7 +810,7 @@ namespace NLog.UnitTests.Targets
                 //two files should still be there
                 Assert.Equal(files[1], files2[0]);
                 Assert.Equal(files[2], files2[1]);
-                //one new archive file shoud be created
+                //one new archive file should be created
                 Assert.DoesNotContain(files2[2], files);
             }
             finally
@@ -793,6 +819,143 @@ namespace NLog.UnitTests.Targets
                 LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        public static IEnumerable<object[]> DateArchive_ArchiveOnceOnly_TestParameters
+        {
+            get
+            {
+                var booleanValues = new[] { true, false };
+                return
+                    from concurrentWrites in booleanValues
+                    from keepFileOpen in booleanValues
+                    from networkWrites in booleanValues
+                    from includeSequenceInArchive in booleanValues
+                    where AllowsExternalFileModification(concurrentWrites, keepFileOpen, networkWrites)
+                    select new object[] { concurrentWrites, keepFileOpen, networkWrites, includeSequenceInArchive };
+            }
+        }
+
+        private static bool AllowsExternalFileModification(bool concurrentWrites, bool keepFileOpen, bool networkWrites)
+        {
+            return (concurrentWrites) || (!keepFileOpen) || (networkWrites);
+        }
+
+        [Theory]
+        [PropertyData("DateArchive_ArchiveOnceOnly_TestParameters")]
+        public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive)
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                var archiveFileNameTemplate = Path.Combine(tempPath, "archive/{#}.txt");
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = archiveFileNameTemplate,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
+                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveDateFormat = "yyyyMMdd",
+                    Layout = "${message}",
+                    ConcurrentWrites = concurrentWrites,
+                    KeepFileOpen = keepFileOpen,
+                    NetworkWrites = networkWrites
+                };
+                
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                logger.Debug("123456789");
+                File.SetCreationTime(tempFile, File.GetCreationTime(tempFile).AddDays(-1));
+                File.SetLastWriteTime(tempFile, File.GetLastWriteTime(tempFile).AddDays(-1));
+                // This should archive the log before logging.
+                logger.Debug("123456789");
+                // This must not archive.
+                logger.Debug("123456789");
+
+                LogManager.Configuration = null;
+                string archivePath = Path.Combine(tempPath, "archive");
+                File.Equals(1, Directory.GetFiles(archivePath).Length);
+                AssertFileContents(tempFile, StringRepeat(2, "123456789\n"), Encoding.UTF8);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        public static IEnumerable<object[]> DateArchive_SkipPeriod_TestParameters
+        {
+            get
+            {
+                var timeKindValues = new[] { DateTimeKind.Utc, DateTimeKind.Local };
+                var archivePeriodValues = new[] { FileArchivePeriod.Day, FileArchivePeriod.Hour };
+                var booleanValues = new[] { true, false };
+                return
+                    from timeKind in timeKindValues
+                    from archivePeriod in archivePeriodValues
+                    from includeSequenceInArchive in booleanValues
+                    select new object[] { timeKind, archivePeriod, includeSequenceInArchive };
+            }
+        }
+
+        [Theory]
+        [PropertyData("DateArchive_SkipPeriod_TestParameters")]
+        public void DateArchive_SkipPeriod(DateTimeKind timeKind, FileArchivePeriod archivePeriod, bool includeSequenceInArchive)
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            var defaultTimeSource = TimeSource.Current;
+            try
+            {
+                var timeSource = new TimeSourceTests.ShiftedTimeSource(timeKind);
+                if (timeSource.Time.Minute == 59)
+                {
+                    // Avoid double-archive due to overflow of the hour.
+                    timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
+                    timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
+                }
+                TimeSource.Current = timeSource;
+                
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/{#}.txt"),
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
+                    ArchiveEvery = archivePeriod,
+                    ArchiveDateFormat = "yyyyMMddHHmm",
+                    Layout = "${date:format=O}|${message}",
+                };
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+                
+                logger.Debug("1234567890");
+                timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
+                logger.Debug("1234567890");
+                // The archive file name must be based on the last time the file was written.
+                string archiveFileName = string.Format("{0}.txt", timeSource.Time.ToString(ft.ArchiveDateFormat) + (includeSequenceInArchive ? ".0" : string.Empty));
+                // Effectively update the file's last-write-time.
+                timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
+
+                timeSource.AddToLocalTime(TimeSpan.FromDays(2));
+                logger.Debug("1234567890");
+                LogManager.Configuration = null;
+
+                string archivePath = Path.Combine(tempPath, "archive");
+                var archiveFiles = Directory.GetFiles(archivePath);
+                Assert.Equal(1, archiveFiles.Length);
+                Assert.Equal(archiveFileName, Path.GetFileName(archiveFiles[0]));
+            }
+            finally
+            {
+                TimeSource.Current = defaultTimeSource; // restore default time source
+                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1074,8 +1237,10 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Fact]
-        public void RollingArchiveTest_MaxArchiveFiles_0()
+        [InlineData("/")]
+        [InlineData("\\")]
+        [Theory]
+        public void RollingArchiveTest_MaxArchiveFiles_0(string slash)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -1084,7 +1249,7 @@ namespace NLog.UnitTests.Targets
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
+                    ArchiveFileName = Path.Combine(tempPath, "archive" + slash + "{####}.txt"),
                     ArchiveAboveSize = 1000,
                     LineEnding = LineEndingMode.LF,
                     ArchiveNumbering = ArchiveNumberingMode.Rolling,
@@ -1109,22 +1274,22 @@ namespace NLog.UnitTests.Targets
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0000.txt"),
+                    Path.Combine(tempPath, "archive" + slash + "0000.txt"),
                     StringRepeat(250, "ddd\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0001.txt"),
+                    Path.Combine(tempPath, "archive" + slash + "0001.txt"),
                     StringRepeat(250, "ccc\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0002.txt"),
+                    Path.Combine(tempPath, "archive" + slash + "0002.txt"),
                     StringRepeat(250, "bbb\n"),
                     Encoding.UTF8);
 
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/0003.txt"),
+                    Path.Combine(tempPath, "archive" + slash + "0003.txt"),
                     StringRepeat(250, "aaa\n"),
                     Encoding.UTF8);
             }
@@ -1431,8 +1596,8 @@ namespace NLog.UnitTests.Targets
                 assertFileContents(helper.GetFullPath(3), StringRepeat(250, "ddd\n"), Encoding.UTF8);
                 AssertFileSize(helper.GetFullPath(3), ft.ArchiveAboveSize);
 
-                Assert.True(!helper.Exists(0), "First archive should have been deleted due to max archive count.");
-                Assert.True(!helper.Exists(4), "Fifth archive must not have been created yet.");
+                Assert.False(helper.Exists(0), "First archive should have been deleted due to max archive count.");
+                Assert.False(helper.Exists(4), "Fifth archive must not have been created yet.");
             }
             finally
             {
@@ -1443,9 +1608,11 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempPath, true);
             }
         }
-
-        [Fact]
-        public void FileTarget_WithArchiveFileNameEndingInNumberPlaceholder_ShouldArchiveFile()
+        
+        [Theory]
+        [InlineData("/")]
+        [InlineData("\\")]
+        public void FileTarget_WithArchiveFileNameEndingInNumberPlaceholder_ShouldArchiveFile(string slash)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -1454,7 +1621,7 @@ namespace NLog.UnitTests.Targets
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/test.log.{####}"),
+                    ArchiveFileName = Path.Combine(tempPath, "archive" + slash + "test.log.{####}"),
                     ArchiveAboveSize = 1000
                 };
 
@@ -1467,7 +1634,7 @@ namespace NLog.UnitTests.Targets
 
                 LogManager.Configuration = null;
                 Assert.True(File.Exists(tempFile));
-                Assert.True(File.Exists(Path.Combine(tempPath, "archive/test.log.0000")));
+                Assert.True(File.Exists(Path.Combine(tempPath, "archive" + slash + "test.log.0000")));
             }
             finally
             {
@@ -1558,7 +1725,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void Single_Archive_File_Rolls_Correctly()
+        public void SingleArchiveFileRollsCorrectly()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var tempFile = Path.Combine(tempPath, "file.txt");
@@ -1567,7 +1734,7 @@ namespace NLog.UnitTests.Targets
                 var ft = new FileTarget
                 {
                     FileName = tempFile,
-                    ArchiveFileName = Path.Combine(tempPath, "archive/file.txt2"),
+                    ArchiveFileName = Path.Combine(tempPath, "archive", "file.txt2"),
                     ArchiveAboveSize = 1000,
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
@@ -1576,8 +1743,8 @@ namespace NLog.UnitTests.Targets
 
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
-                // we emit 5 * 250 *(3 x aaa + \n) bytes
-                // so that we should get a full file + 3 archives
+                // we emit 2 * 250 *(aaa + \n) bytes
+                // so that we should get a full file + 1 archives
                 for (var i = 0; i < 250; ++i)
                 {
                     logger.Debug("aaa");
@@ -1587,16 +1754,158 @@ namespace NLog.UnitTests.Targets
                     logger.Debug("bbb");
                 }
 
+                AssertFileContents(tempFile,
+                    StringRepeat(250, "bbb\n"),
+                    Encoding.UTF8);
+                AssertFileContents(
+                    Path.Combine(tempPath, "archive", "file.txt2"),
+                    StringRepeat(250, "aaa\n"),
+                    Encoding.UTF8);
+
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("ccc");
+                }
+
                 LogManager.Configuration = null;
+
+                AssertFileContents(tempFile,
+                    StringRepeat(250, "ccc\n"),
+                    Encoding.UTF8);
+                AssertFileContents(
+                    Path.Combine(tempPath, "archive", "file.txt2"),
+                    StringRepeat(250, "bbb\n"),
+                    Encoding.UTF8);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        [Fact]
+        public void ArchiveFileRollsCorrectly()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive", "file.txt2"),
+                    ArchiveAboveSize = 1000,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    MaxArchiveFiles = 2,
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                // we emit 3 * 250 *(aaa + \n) bytes
+                // so that we should get a full file + 2 archives
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("aaa");
+                }
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("bbb");
+                }
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("ccc");
+                }
+
+                AssertFileContents(tempFile,
+                    StringRepeat(250, "ccc\n"),
+                    Encoding.UTF8);
+                AssertFileContents(
+                    Path.Combine(tempPath, "archive", "file.1.txt2"),
+                    StringRepeat(250, "bbb\n"),
+                    Encoding.UTF8);
+                AssertFileContents(
+                    Path.Combine(tempPath, "archive", "file.txt2"),
+                    StringRepeat(250, "aaa\n"),
+                    Encoding.UTF8);
+
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("ddd");
+                }
+
+                LogManager.Configuration = null;
+
+                AssertFileContents(tempFile,
+                    StringRepeat(250, "ddd\n"),
+                    Encoding.UTF8);
+                AssertFileContents(
+                    Path.Combine(tempPath, "archive", "file.2.txt2"),
+                    StringRepeat(250, "ccc\n"),
+                    Encoding.UTF8);
+                AssertFileContents(
+                    Path.Combine(tempPath, "archive", "file.1.txt2"),
+                    StringRepeat(250, "bbb\n"),
+                    Encoding.UTF8);
+                Assert.False(File.Exists(Path.Combine(tempPath, "archive", "file.txt2")));
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        [Fact]
+        public void ArchiveFileRollsCorrectly_ExistingArchives()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                Directory.CreateDirectory(Path.Combine(tempPath, "archive"));
+                File.Create(Path.Combine(tempPath, "archive", "file.10.txt2")).Dispose();
+                File.Create(Path.Combine(tempPath, "archive", "file.9.txt2")).Dispose();
+
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive", "file.txt2"),
+                    ArchiveAboveSize = 1000,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    MaxArchiveFiles = 2,
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                // we emit 2 * 250 *(aaa + \n) bytes
+                // so that we should get a full file + 1 archive
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("aaa");
+                }
+                for (var i = 0; i < 250; ++i)
+                {
+                    logger.Debug("bbb");
+                }
 
                 AssertFileContents(tempFile,
                     StringRepeat(250, "bbb\n"),
                     Encoding.UTF8);
-
                 AssertFileContents(
-                    Path.Combine(tempPath, "archive/file.txt2"),
+                    Path.Combine(tempPath, "archive", "file.11.txt2"),
                     StringRepeat(250, "aaa\n"),
                     Encoding.UTF8);
+                Assert.True(File.Exists(Path.Combine(tempPath, "archive", "file.10.txt2")));
+                Assert.False(File.Exists(Path.Combine(tempPath, "archive", "file.9.txt2")));
             }
             finally
             {
@@ -1812,7 +2121,7 @@ namespace NLog.UnitTests.Targets
             string archivePath = Path.Combine(logdir, "archive");
             TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
         }
-        
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -1933,6 +2242,132 @@ namespace NLog.UnitTests.Targets
 
             }
 
+        }
+
+        [Fact]
+        public void RelativeFileNaming_ShouldSuccess()
+        {
+            var relativeFileName = @"Logs\myapp.log";
+            var fullFilePath = Path.GetFullPath(relativeFileName);
+            try
+            {
+                var ft = new FileTarget
+                {
+                    FileName = fullFilePath,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    OpenFileCacheTimeout = 0
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+                LogManager.Configuration = null;
+                AssertFileContents(fullFilePath, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(fullFilePath))
+                    File.Delete(fullFilePath);
+            }
+        }
+
+        [Fact]
+        public void RelativeFileNaming_DirectoryNavigation_ShouldSuccess()
+        {
+            var relativeFileName = @"..\..\Logs\myapp.log";
+            var fullFilePath = Path.GetFullPath(relativeFileName);
+            try
+            {
+                var ft = new FileTarget
+                {
+                    FileName = fullFilePath,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    OpenFileCacheTimeout = 0
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+                LogManager.Configuration = null;
+                AssertFileContents(fullFilePath, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(fullFilePath))
+                    File.Delete(fullFilePath);
+            }
+        }
+
+        [Fact]
+        public void RelativeSequentialArchiveTest_MaxArchiveFiles_0()
+        {
+            var tempPath = Guid.NewGuid().ToString();
+            var tempFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                var ft = new FileTarget
+                {
+                    FileName = tempFile,
+                    ArchiveFileName = Path.Combine(tempPath, "archive/{####}.txt"),
+                    ArchiveAboveSize = 1000,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = ArchiveNumberingMode.Sequence,
+                    Layout = "${message}",
+                    MaxArchiveFiles = 0
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+                tempFile = Path.GetFullPath(tempFile);
+                // we emit 5 * 250 *(3 x aaa + \n) bytes
+                // so that we should get a full file + 4 archives
+                Generate1000BytesLog('a');
+                Generate1000BytesLog('b');
+                Generate1000BytesLog('c');
+                Generate1000BytesLog('d');
+                Generate1000BytesLog('e');
+
+                LogManager.Configuration = null;
+
+                AssertFileContents(tempFile,
+                    StringRepeat(250, "eee\n"),
+                    Encoding.UTF8);
+
+                AssertFileContents(
+                   Path.Combine(tempPath, "archive/0000.txt"),
+                   StringRepeat(250, "aaa\n"),
+                   Encoding.UTF8);
+
+                AssertFileContents(
+                    Path.Combine(tempPath, "archive/0001.txt"),
+                    StringRepeat(250, "bbb\n"),
+                    Encoding.UTF8);
+
+                AssertFileContents(
+                    Path.Combine(tempPath, "archive/0002.txt"),
+                    StringRepeat(250, "ccc\n"),
+                    Encoding.UTF8);
+
+                AssertFileContents(
+                    Path.Combine(tempPath, "archive/0003.txt"),
+                    StringRepeat(250, "ddd\n"),
+                    Encoding.UTF8);
+
+                Assert.True(!File.Exists(Path.Combine(tempPath, "archive/0004.txt")));
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
         }
     }
 

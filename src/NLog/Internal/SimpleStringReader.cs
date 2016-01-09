@@ -1,4 +1,4 @@
-﻿// 
+// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -38,11 +38,12 @@ namespace NLog.Internal
     /// <summary>
     /// Simple character tokenizer.
     /// </summary>
+
 #if DEBUG
      [System.Diagnostics.DebuggerDisplay("{CurrentState}")]
 #endif
-    internal class SimpleStringReader
-    {
+	internal class SimpleStringReader
+	{
         private readonly string text;
 
         /// <summary>

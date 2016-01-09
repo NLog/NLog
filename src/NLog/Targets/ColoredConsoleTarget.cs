@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
 {
@@ -187,6 +187,77 @@ namespace NLog.Targets
             this.Output(logEvent, this.Layout.Render(logEvent));
         }
 
+        private void Output(LogEventInfo logEvent, string message)
+        {
+            ConsoleColor oldForegroundColor = Console.ForegroundColor;
+            ConsoleColor oldBackgroundColor = Console.BackgroundColor;
+            bool didChangeForegroundColor = false, didChangeBackgroundColor = false;
+
+            try
+            {
+                var matchingRule = GetMatchingRowHighlightingRule(logEvent);
+
+                didChangeForegroundColor = IsColorChange(matchingRule.ForegroundColor, oldForegroundColor);
+                if (didChangeForegroundColor)
+                    Console.ForegroundColor = (ConsoleColor)matchingRule.ForegroundColor;
+
+                didChangeBackgroundColor = IsColorChange(matchingRule.BackgroundColor, oldBackgroundColor);
+                if (didChangeBackgroundColor)
+                    Console.BackgroundColor = (ConsoleColor)matchingRule.BackgroundColor;
+
+                var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
+                if (this.WordHighlightingRules.Count == 0)
+                {
+                    consoleStream.WriteLine(message);
+                }
+                else
+                {
+                    message = message.Replace("\a", "\a\a");
+                    foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
+                    {
+                        message = hl.ReplaceWithEscapeSequences(message);
+                    }
+
+                    ColorizeEscapeSequences(consoleStream, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
+                    consoleStream.WriteLine();
+
+                    didChangeForegroundColor = didChangeBackgroundColor = true;
+                }
+            }
+            finally
+            {
+                if (didChangeForegroundColor)
+                    Console.ForegroundColor = oldForegroundColor;
+                if (didChangeBackgroundColor)
+                    Console.BackgroundColor = oldBackgroundColor;
+            }
+        }
+
+        private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent)
+        {
+            foreach (ConsoleRowHighlightingRule rule in this.RowHighlightingRules)
+            {
+                if (rule.CheckCondition(logEvent))
+                    return rule;
+            }
+
+            if (this.UseDefaultRowHighlightingRules)
+            {
+                foreach (ConsoleRowHighlightingRule rule in defaultConsoleRowHighlightingRules)
+                {
+                    if (rule.CheckCondition(logEvent))
+                        return rule;
+                }
+            }
+
+            return ConsoleRowHighlightingRule.Default;
+        }
+
+        private static bool IsColorChange(ConsoleOutputColor targetColor, ConsoleColor oldColor)
+        {
+            return (targetColor != ConsoleOutputColor.NoChange) && ((ConsoleColor)targetColor != oldColor);
+        }
+
         private static void ColorizeEscapeSequences(
             TextWriter output,
             string message,
@@ -282,76 +353,6 @@ namespace NLog.Targets
             if (p0 < message.Length)
             {
                 output.Write(message.Substring(p0));
-            }
-        }
-
-        private void Output(LogEventInfo logEvent, string message)
-        {
-            ConsoleColor oldForegroundColor = Console.ForegroundColor;
-            ConsoleColor oldBackgroundColor = Console.BackgroundColor;
-
-            try
-            {
-                ConsoleRowHighlightingRule matchingRule = null;
-
-                foreach (ConsoleRowHighlightingRule cr in this.RowHighlightingRules)
-                {
-                    if (cr.CheckCondition(logEvent))
-                    {
-                        matchingRule = cr;
-                        break;
-                    }
-                }
-
-                if (this.UseDefaultRowHighlightingRules && matchingRule == null)
-                {
-                    foreach (ConsoleRowHighlightingRule cr in defaultConsoleRowHighlightingRules)
-                    {
-                        if (cr.CheckCondition(logEvent))
-                        {
-                            matchingRule = cr;
-                            break;
-                        }
-                    }
-                }
-
-                if (matchingRule == null)
-                {
-                    matchingRule = ConsoleRowHighlightingRule.Default;
-                }
-
-                if (matchingRule.ForegroundColor != ConsoleOutputColor.NoChange)
-                {
-                    Console.ForegroundColor = (ConsoleColor)matchingRule.ForegroundColor;
-                }
-
-                if (matchingRule.BackgroundColor != ConsoleOutputColor.NoChange)
-                {
-                    Console.BackgroundColor = (ConsoleColor)matchingRule.BackgroundColor;
-                }
-
-                message = message.Replace("\a", "\a\a");
-
-                foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
-                {
-                    message = hl.ReplaceWithEscapeSequences(message);
-                }
-
-                ColorizeEscapeSequences(this.ErrorStream ? Console.Error : Console.Out, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
-            }
-            finally
-            {
-                Console.ForegroundColor = oldForegroundColor;
-                Console.BackgroundColor = oldBackgroundColor;
-            }
-
-            if (this.ErrorStream)
-            {
-                Console.Error.WriteLine();
-            }
-            else
-            {
-                Console.WriteLine();
             }
         }
 

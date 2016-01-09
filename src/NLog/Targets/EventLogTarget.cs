@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
 {
@@ -68,6 +68,8 @@ namespace NLog.Targets
     [Target("EventLog")]
     public class EventLogTarget : TargetWithLayout, IInstallable
     {
+        private const int MaxMessageSize = 16384;
+
         private EventLog eventLogInstance;
 
         /// <summary>
@@ -128,6 +130,13 @@ namespace NLog.Targets
         /// <docgen category='Event Log Options' order='10' />
         [DefaultValue("Application")]
         public string Log { get; set; }
+
+        /// <summary>
+        /// Gets or sets the action to take if the message is larger than the Event Log max message size.
+        /// </summary>
+        /// <docgen category='Event Log Overflow Action' order='10' />
+        [DefaultValue(EventLogTargetOverflowAction.Truncate)]
+        public EventLogTargetOverflowAction OnOverflow { get; set; }
 
         /// <summary>
         /// Performs installation which requires administrative permissions.
@@ -208,13 +217,8 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             string message = this.Layout.Render(logEvent);
-            if (message.Length > 16384)
-            {
-                // limitation of EventLog API
-                message = message.Substring(0, 16384);
-            }
 
-            var entryType = GetEntryType(logEvent);
+            EventLogEntryType entryType = GetEntryType(logEvent);
 
             int eventId = 0;
 
@@ -230,8 +234,34 @@ namespace NLog.Targets
                 category = Convert.ToInt16(this.Category.Render(logEvent), CultureInfo.InvariantCulture);
             }
 
-            var eventLog = GetEventLog(logEvent);
-            eventLog.WriteEntry(message, entryType, eventId, category);
+            EventLog eventLog = GetEventLog(logEvent);
+
+            // limitation of EventLog API
+            if (message.Length > EventLogTarget.MaxMessageSize)
+            {
+                if (OnOverflow == EventLogTargetOverflowAction.Truncate)
+                {
+                    message = message.Substring(0, EventLogTarget.MaxMessageSize);
+                    eventLog.WriteEntry(message, entryType, eventId, category);
+                }
+                else if (OnOverflow == EventLogTargetOverflowAction.Split)
+                {
+                    for (int offset = 0; offset < message.Length; offset += EventLogTarget.MaxMessageSize)
+                    {
+                        string chunk = message.Substring(offset, Math.Min(EventLogTarget.MaxMessageSize, message.Length - offset));
+                        eventLog.WriteEntry(chunk, entryType, eventId, category);
+                    }
+                }
+                else if (OnOverflow == EventLogTargetOverflowAction.Discard)
+                {
+                    //message will not be written
+                    return;
+                }
+            }
+            else
+            {
+                eventLog.WriteEntry(message, entryType, eventId, category);
+            }
         }
 
         /// <summary>
@@ -347,7 +377,7 @@ namespace NLog.Targets
                 {
                     throw;
                 }
-              
+
                 throw;
             }
         }

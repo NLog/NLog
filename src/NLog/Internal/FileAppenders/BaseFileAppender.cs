@@ -71,16 +71,22 @@ namespace NLog.Internal.FileAppenders
         public string FileName { get; private set; }
 
         /// <summary>
-        /// Gets the last write time.
+        /// Gets the file creation time.
         /// </summary>
-        /// <value>The last write time. DateTime value must be of UTC kind.</value>
-        public DateTime LastWriteTime { get; private set; }
+        /// <value>The file creation time. DateTime value must be of UTC kind.</value>
+        public DateTime CreationTime { get; private set; }
 
         /// <summary>
         /// Gets the open time of the file.
         /// </summary>
         /// <value>The open time. DateTime value must be of UTC kind.</value>
         public DateTime OpenTime { get; private set; }
+
+        /// <summary>
+        /// Gets the last write time.
+        /// </summary>
+        /// <value>The time the file was last written to. DateTime value must be of UTC kind.</value>
+        public DateTime LastWriteTime { get; private set; }
 
         /// <summary>
         /// Gets the file creation parameters.
@@ -107,10 +113,8 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Gets the file info.
         /// </summary>
-        /// <param name="lastWriteTime">The last file write time. The value must be of UTC kind.</param>
-        /// <param name="fileLength">Length of the file in bytes.</param>
-        /// <returns>True if the operation succeeded, false otherwise.</returns>
-        public abstract bool GetFileInfo(out DateTime lastWriteTime, out long fileLength);
+        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
+        public abstract FileCharacteristics GetFileCharacteristics();
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -134,23 +138,22 @@ namespace NLog.Internal.FileAppenders
         }
 
         /// <summary>
-        /// Records the last write time for a file.
+        /// Updates the last write time of the file.
         /// </summary>
         protected void FileTouched()
         {
-            // always use system time in UTC to be consistent with FileInfo.LastWriteTimeUtc
-            this.LastWriteTime = DateTime.UtcNow;
+            FileTouched(DateTime.UtcNow);
         }
 
         /// <summary>
-        /// Records the last write time for a file to be specific date.
+        /// Updates the last write time of the file to the specified date.
         /// </summary>
-        /// <param name="dateTime">Date and time when the last write occurred. The value must be of UTC kind.</param>
+        /// <param name="dateTime">Date and time when the last write occurred in UTC.</param>
         protected void FileTouched(DateTime dateTime)
         {
             this.LastWriteTime = dateTime;
         }
-
+        
         /// <summary>
         /// Creates the file stream.
         /// </summary>
@@ -160,7 +163,7 @@ namespace NLog.Internal.FileAppenders
         {
             int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
 
-			InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting);
+            InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting);
             for (int i = 0; i < this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
             {
                 try
@@ -197,7 +200,7 @@ namespace NLog.Internal.FileAppenders
             throw new InvalidOperationException("Should not be reached.");
         }
 
-#if !SILVERLIGHT && !MONO
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting)
         {
@@ -263,7 +266,9 @@ namespace NLog.Internal.FileAppenders
                 fileShare |= FileShare.Delete;
             }
 
-#if !SILVERLIGHT && !MONO
+            UpdateCreationTime();
+
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
             try
             {
                 if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32)
@@ -274,15 +279,39 @@ namespace NLog.Internal.FileAppenders
             catch (SecurityException)
             {
                 InternalLogger.Debug("Could not use native Windows create file, falling back to managed filestream");
-            } 
+            }
 #endif
 
             return new FileStream(
-                this.FileName, 
-                FileMode.Append, 
-                FileAccess.Write, 
-                fileShare, 
+                this.FileName,
+                FileMode.Append,
+                FileAccess.Write,
+                fileShare,
                 this.CreateFileParameters.BufferSize);
+        }
+
+        private void UpdateCreationTime()
+        {
+            if (File.Exists(this.FileName))
+            {
+#if !SILVERLIGHT
+                this.CreationTime = File.GetCreationTimeUtc(this.FileName);
+#else
+                this.CreationTime = File.GetCreationTime(this.FileName);
+#endif
+            }
+            else
+            {
+                File.Create(this.FileName).Dispose();
+                
+#if !SILVERLIGHT
+                this.CreationTime = DateTime.UtcNow;
+                // Set the file's creation time to avoid being thwarted by Windows' Tunneling capabilities (https://support.microsoft.com/en-us/kb/172190).
+                File.SetCreationTimeUtc(this.FileName, this.CreationTime);
+#else
+                this.CreationTime = File.GetCreationTime(this.FileName);
+#endif
+            }
         }
     }
 }
