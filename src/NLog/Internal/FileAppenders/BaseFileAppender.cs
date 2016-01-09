@@ -230,18 +230,6 @@ namespace NLog.Internal.FileAppenders
 
         private FileStream TryCreateFileStream(bool allowFileSharedWriting)
         {
-            FileShare fileShare = FileShare.Read;
-
-            if (allowFileSharedWriting)
-            {
-                fileShare = FileShare.ReadWrite;
-            }
-
-            if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows)
-            {
-                fileShare |= FileShare.Delete;
-            }
-
             UpdateCreationTime();
 
 #if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
@@ -257,6 +245,12 @@ namespace NLog.Internal.FileAppenders
                 InternalLogger.Debug("Could not use native Windows create file, falling back to managed filestream");
             }
 #endif
+
+            FileShare fileShare = allowFileSharedWriting ? FileShare.ReadWrite : FileShare.Read;
+            if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows)
+            {
+                fileShare |= FileShare.Delete;
+            }
 
             return new FileStream(
                 this.FileName,

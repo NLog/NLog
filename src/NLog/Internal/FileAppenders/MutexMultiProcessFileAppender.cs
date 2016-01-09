@@ -61,7 +61,7 @@ namespace NLog.Internal.FileAppenders
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        private FileStream file;
+        private FileStream fileStream;
         private Mutex mutex;
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace NLog.Internal.FileAppenders
             try
             {
                 this.mutex = CreateSharableMutex(GetMutexName(fileName));
-                this.file = CreateFileStream(true);
+                this.fileStream = CreateFileStream(true);
             }
             catch
             {
@@ -84,10 +84,10 @@ namespace NLog.Internal.FileAppenders
                     this.mutex = null;
                 }
 
-                if (this.file != null)
+                if (this.fileStream != null)
                 {
-                    this.file.Close();
-                    this.file = null;
+                    this.fileStream.Close();
+                    this.fileStream = null;
                 }
 
                 throw;
@@ -118,9 +118,9 @@ namespace NLog.Internal.FileAppenders
 
             try
             {
-                this.file.Seek(0, SeekOrigin.End);
-                this.file.Write(bytes, 0, bytes.Length);
-                this.file.Flush();
+                this.fileStream.Seek(0, SeekOrigin.End);
+                this.fileStream.Write(bytes, 0, bytes.Length);
+                this.fileStream.Flush();
             }
             finally
             {
@@ -139,13 +139,13 @@ namespace NLog.Internal.FileAppenders
                 this.mutex.Close();
             }
 
-            if (this.file != null)
+            if (this.fileStream != null)
             {
-                this.file.Close();
+                this.fileStream.Close();
             }
 
             this.mutex = null;
-            this.file = null;
+            this.fileStream = null;
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace NLog.Internal.FileAppenders
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle", Justification = "Optimization")]
         public override FileCharacteristics GetFileCharacteristics()
         {
-            return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, this.file.SafeFileHandle.DangerousGetHandle());
+            return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, this.fileStream.SafeFileHandle.DangerousGetHandle());
         }
 
         private static Mutex CreateSharableMutex(string name)
