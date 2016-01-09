@@ -127,7 +127,7 @@ namespace NLog.Internal.FileAppenders
         public override FileCharacteristics GetFileCharacteristics()
         {
             FileInfo fileInfo = new FileInfo(FileName);
-            return fileInfo.Exists ? new FileCharacteristics(fileInfo.CreationTime, fileInfo.Length) : null;
+            return fileInfo.Exists ? new FileCharacteristics(fileInfo.CreationTime, fileInfo.LastWriteTime, fileInfo.Length) : null;
         }
     }
 }

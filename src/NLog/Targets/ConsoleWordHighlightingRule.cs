@@ -97,6 +97,20 @@ namespace NLog.Targets
         public bool IgnoreCase { get; set; }
 
         /// <summary>
+        /// Gets or sets the foreground color.
+        /// </summary>
+        /// <docgen category='Formatting Options' order='10' />
+        [DefaultValue("NoChange")]
+        public ConsoleOutputColor ForegroundColor { get; set; }
+
+        /// <summary>
+        /// Gets or sets the background color.
+        /// </summary>
+        /// <docgen category='Formatting Options' order='10' />
+        [DefaultValue("NoChange")]
+        public ConsoleOutputColor BackgroundColor { get; set; }
+
+        /// <summary>
         /// Gets the compiled regular expression that matches either Text or Regex property.
         /// </summary>
         public Regex CompiledRegex
@@ -129,21 +143,7 @@ namespace NLog.Targets
             }
         }
 
-        /// <summary>
-        /// Gets or sets the foreground color.
-        /// </summary>
-        /// <docgen category='Formatting Options' order='10' />
-        [DefaultValue("NoChange")]
-        public ConsoleOutputColor ForegroundColor { get; set; }
-
-        /// <summary>
-        /// Gets or sets the background color.
-        /// </summary>
-        /// <docgen category='Formatting Options' order='10' />
-        [DefaultValue("NoChange")]
-        public ConsoleOutputColor BackgroundColor { get; set; }
-
-        internal string MatchEvaluator(Match m)
+        private string MatchEvaluator(Match m)
         {
             StringBuilder result = new StringBuilder();
 

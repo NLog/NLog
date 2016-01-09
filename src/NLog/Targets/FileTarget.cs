@@ -158,6 +158,11 @@ namespace NLog.Targets
         private string cachedCleanedFileNamed;
 
         /// <summary>
+        /// The date of the previous log event.
+        /// </summary>
+        private DateTime? previousLogEventTimestamp;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
         /// <remarks>
@@ -754,7 +759,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            var fileName = GetCleanedFileName(logEvent);
+            var fileName = Path.GetFullPath(GetCleanedFileName(logEvent));
 
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
@@ -782,6 +787,8 @@ namespace NLog.Targets
             }
 
             this.WriteToFile(fileName, logEvent, bytes, false);
+
+            previousLogEventTimestamp = logEvent.TimeStamp;
         }
 
         private string GetCleanedFileName(LogEventInfo logEvent)
@@ -808,7 +815,7 @@ namespace NLog.Targets
 
                 foreach (var bucket in buckets)
                 {
-                    string fileName = CleanupInvalidFileNameChars(bucket.Key);
+                    string fileName = Path.GetFullPath(CleanupInvalidFileNameChars(bucket.Key));
 
                     ms.SetLength(0);
                     ms.Position = 0;
@@ -945,7 +952,7 @@ namespace NLog.Targets
         /// <param name="fileName">File name to be archived.</param>
         /// <param name="pattern">File name template which contains the numeric pattern to be replaced.</param>
         /// <param name="archiveNumber">Value which will replace the numeric pattern.</param>
-        private void RecursiveRollingRename(string fileName, string pattern, int archiveNumber)
+        private void RollArchivesForward(string fileName, string pattern, int archiveNumber)
         {
             if (this.MaxArchiveFiles > 0 && archiveNumber >= this.MaxArchiveFiles)
             {
@@ -959,7 +966,7 @@ namespace NLog.Targets
             }
 
             string newFileName = ReplaceNumberPattern(pattern, archiveNumber);
-            RecursiveRollingRename(newFileName, pattern, archiveNumber + 1);
+            RollArchivesForward(newFileName, pattern, archiveNumber + 1);
 
             var shouldCompress = archiveNumber == 0;
             try
@@ -1135,7 +1142,7 @@ namespace NLog.Targets
 
             FileNameTemplate fileTemplate = new FileNameTemplate(baseNamePattern);
             string fileNameMask = fileTemplate.ReplacePattern("*");
-            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
+            string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
 
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
             if (string.IsNullOrEmpty(dirName))
@@ -1145,7 +1152,7 @@ namespace NLog.Targets
 
             int minSequenceLength = fileTemplate.EndAt - fileTemplate.BeginAt - 2;
             int nextSequenceNumber;
-            DateTime archiveDate = GetArchiveDate(IsPeriodSwitch(fileName, logEvent));
+            DateTime archiveDate = GetArchiveDate(fileName, logEvent);
             List<string> archiveFileNames;
             if (Directory.Exists(dirName))
             {
@@ -1180,30 +1187,7 @@ namespace NLog.Targets
             archiveFileNames.Add(archiveFileName);
             EnsureArchiveCount(archiveFileNames);
         }
-
-        /// <summary>
-        /// Determines whether a file with a different name from <paramref name="fileName"/> is needed to receive the
-        /// <paramref name="logEvent"/>. This is determined based on the date and time when the file was created compared 
-        /// to the time the log event was initiated.
-        /// </summary>
-        /// <returns>
-        /// <see langword="true"/> when log event time is "different" than the file creation time; <see langword="false"/> otherwise.
-        /// </returns>
-        private bool IsPeriodSwitch(string fileName, LogEventInfo logEvent)
-        {
-            var fileCharacteristics = this.GetFileCharacteristics(fileName);
-            if (fileCharacteristics != null)
-            {
-                string formatString = GetDateFormatString(string.Empty);
-                string fileCreationTimeString = fileCharacteristics.CreationTimeUtc.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
-                string logEventTimeString = logEvent.TimeStamp.ToLocalTime().ToString(formatString, CultureInfo.InvariantCulture);
-
-                return fileCreationTimeString != logEventTimeString;
-            }
-
-            return false;
-        }
-
+        
         /// <summary>
         /// Deletes files among a given list, and stops as soon as the remaining files are fewer than the <see
         /// cref="P:FileTarget.MaxArchiveFiles"/> setting.
@@ -1332,13 +1316,14 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">File name to be archived.</param>
         /// <param name="pattern">File name template which contains the numeric pattern to be replaced.</param>
-        private void ArchiveByDate(string fileName, string pattern)
+        /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        private void ArchiveByDate(string fileName, string pattern, LogEventInfo logEvent)
         {
             string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
-            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
+            string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
 
-            DateTime archiveDate = GetArchiveDate(true);
+            DateTime archiveDate = GetArchiveDate(fileName, logEvent);
             if (dirName != null)
             {
                 string archiveFileName = Path.Combine(dirName, fileNameMask.Replace("*", archiveDate.ToString(dateFormat)));
@@ -1358,7 +1343,7 @@ namespace NLog.Targets
 
             string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
-            string dateFormat = GetDateFormatString(this.ArchiveDateFormat);
+            string dateFormat = GetArchiveDateFormatString(this.ArchiveDateFormat);
 
             if (dirName != null)
             {
@@ -1401,7 +1386,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="defaultFormat">Date format to used irrespectively of <see cref="P:ArchiveEvery"/> value.</param>
         /// <returns>Formatting <see langword="String"/> for dates.</returns>
-        private string GetDateFormatString(string defaultFormat)
+        private string GetArchiveDateFormatString(string defaultFormat)
         {
             // If archiveDateFormat is not set in the config file, use a default 
             // date format string based on the archive period.
@@ -1410,62 +1395,52 @@ namespace NLog.Targets
             {
                 switch (this.ArchiveEvery)
                 {
-                    case FileArchivePeriod.Year:
-                        formatString = "yyyy";
-                        break;
-
-                    case FileArchivePeriod.Month:
-                        formatString = "yyyyMM";
-                        break;
-
-                    default:
-                        formatString = "yyyyMMdd";
-                        break;
-
-                    case FileArchivePeriod.Hour:
-                        formatString = "yyyyMMddHH";
-                        break;
-
-                    case FileArchivePeriod.Minute:
-                        formatString = "yyyyMMddHHmm";
-                        break;
+                    case FileArchivePeriod.Year: formatString = "yyyy"; break;
+                    case FileArchivePeriod.Month: formatString = "yyyyMM"; break;
+                    default: formatString = "yyyyMMdd"; break;
+                    case FileArchivePeriod.Hour: formatString = "yyyyMMddHH";break;
+                    case FileArchivePeriod.Minute: formatString = "yyyyMMddHHmm"; break;
                 }
             }
             return formatString;
         }
 
-        private DateTime GetArchiveDate(bool isNextCycle)
+        private DateTime GetArchiveDate(string fileName, LogEventInfo logEvent)
         {
-            DateTime archiveDate = TimeSource.Current.Time;
+            var fileCharacteristics = GetFileCharacteristics(fileName);
+            var lastWriteTime = TimeSource.Current.FromSystemTime(fileCharacteristics.LastWriteTimeUtc);
 
-            // Because AutoArchive/ArchiveByDate gets called after the FileArchivePeriod condition matches, decrement the archive period by 1
-            // (i.e. If ArchiveEvery = Day, the file will be archived with yesterdays date)
-            int addCount = isNextCycle ? -1 : 0;
+            bool previousLogIsMoreRecent = (previousLogEventTimestamp.HasValue) && (previousLogEventTimestamp.Value > lastWriteTime);
+            return (previousLogIsMoreRecent) || (PreviousLogOverlappedPeriod(fileCharacteristics, logEvent))
+                ? previousLogEventTimestamp.Value
+                : lastWriteTime;
+        }
 
+        private bool PreviousLogOverlappedPeriod(FileCharacteristics fileCharacteristics, LogEventInfo logEvent)
+        {
+            if (!previousLogEventTimestamp.HasValue)
+                return false;
+
+            string formatString = GetArchiveDateFormatString(string.Empty);
+            string lastWriteTimeString = TimeSource.Current.FromSystemTime(fileCharacteristics.LastWriteTimeUtc).ToString(formatString, CultureInfo.InvariantCulture);
+            string logEventTimeString = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
+
+            if (lastWriteTimeString != logEventTimeString)
+                return false;
+
+            DateTime periodAfterPreviousLogEventTime;
             switch (this.ArchiveEvery)
             {
-                case FileArchivePeriod.Day:
-                    archiveDate = archiveDate.AddDays(addCount);
-                    break;
-
-                case FileArchivePeriod.Hour:
-                    archiveDate = archiveDate.AddHours(addCount);
-                    break;
-
-                case FileArchivePeriod.Minute:
-                    archiveDate = archiveDate.AddMinutes(addCount);
-                    break;
-
-                case FileArchivePeriod.Month:
-                    archiveDate = archiveDate.AddMonths(addCount);
-                    break;
-
-                case FileArchivePeriod.Year:
-                    archiveDate = archiveDate.AddYears(addCount);
-                    break;
+                case FileArchivePeriod.Year: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddYears(1); break;
+                case FileArchivePeriod.Month: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddMonths(1); break;
+                case FileArchivePeriod.Day: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddDays(1); break;
+                case FileArchivePeriod.Hour: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddHours(1); break;
+                case FileArchivePeriod.Minute: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddMinutes(1); break;
+                default: return false;
             }
 
-            return archiveDate;
+            string periodAfterPreviousLogEventTimeString = periodAfterPreviousLogEventTime.ToString(formatString, CultureInfo.InvariantCulture);
+            return lastWriteTimeString == periodAfterPreviousLogEventTimeString;
         }
 
         /// <summary>
@@ -1498,7 +1473,7 @@ namespace NLog.Targets
                 switch (this.ArchiveNumbering)
                 {
                     case ArchiveNumberingMode.Rolling:
-                        this.RecursiveRollingRename(fileInfo.FullName, fileNamePattern, 0);
+                        this.RollArchivesForward(fileInfo.FullName, fileNamePattern, 0);
                         break;
 
                     case ArchiveNumberingMode.Sequence:
@@ -1507,7 +1482,7 @@ namespace NLog.Targets
 
 #if !NET_CF
                     case ArchiveNumberingMode.Date:
-                        this.ArchiveByDate(fileInfo.FullName, fileNamePattern);
+                        this.ArchiveByDate(fileInfo.FullName, fileNamePattern, eventInfo);
                         break;
 
                     case ArchiveNumberingMode.DateAndSequence:
@@ -1537,7 +1512,8 @@ namespace NLog.Targets
                 //(1) User supplied the Filename with pattern
                 //(2) User supplied the normal filename
                 string archiveFileName = this.ArchiveFileName.Render(eventInfo);
-                return CleanupInvalidFileNameChars(archiveFileName);
+                archiveFileName = CleanupInvalidFileNameChars(archiveFileName);
+                return Path.GetFullPath(archiveFileName);
             }
         }
 
@@ -1608,7 +1584,7 @@ namespace NLog.Targets
                 // file creation time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
                 // so we should ask the TimeSource to convert file time to TimeSource time:
                 DateTime creationTime = TimeSource.Current.FromSystemTime(fileCharacteristics.CreationTimeUtc);
-                string formatString = GetDateFormatString(string.Empty);
+                string formatString = GetArchiveDateFormatString(string.Empty);
                 string fileCreated = creationTime.ToString(formatString, CultureInfo.InvariantCulture);
                 string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
 
@@ -1862,9 +1838,9 @@ namespace NLog.Targets
             if (fileInfo.Exists)
             {
 #if !SILVERLIGHT
-                fileCharacteristics = new FileCharacteristics(fileInfo.CreationTimeUtc, fileInfo.Length);
+                fileCharacteristics = new FileCharacteristics(fileInfo.CreationTimeUtc, fileInfo.LastWriteTimeUtc, fileInfo.Length);
 #else
-                fileCharacteristics = new FileCharacteristics(fileInfo.CreationTime, fileInfo.Length);
+                fileCharacteristics = new FileCharacteristics(fileInfo.CreationTime, fileInfo.LastWriteTime, fileInfo.Length);
 #endif
                 return fileCharacteristics;
             }
