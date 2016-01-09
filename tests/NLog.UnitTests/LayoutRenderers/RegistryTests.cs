@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Windows.Forms;
-
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.LayoutRenderers
