@@ -46,12 +46,22 @@ namespace NLog.Internal
     /// </summary>
     internal class MultiFileWatcher : IDisposable
     {
-        private List<FileSystemWatcher> watchers = new List<FileSystemWatcher>();
+        private Dictionary<string, FileSystemWatcher> watcherMap = new Dictionary<string, FileSystemWatcher>();
+
+        /// <summary>
+        /// The types of changes to watch for.
+        /// </summary>
+        public NotifyFilters NotifyFilters { get; set; }
 
         /// <summary>
         /// Occurs when a change is detected in one of the monitored files.
         /// </summary>
-        public event EventHandler OnChange;
+        public event FileSystemEventHandler OnChange;
+        
+        public MultiFileWatcher(NotifyFilters notifyFilters = NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes)
+        {
+            NotifyFilters = notifyFilters;
+        }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -63,21 +73,40 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Stops the watching.
+        /// Stops watching all files.
         /// </summary>
         public void StopWatching()
         {
             lock (this)
             {
-                foreach (FileSystemWatcher watcher in this.watchers)
-                {
-                    InternalLogger.Info("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
-                    watcher.EnableRaisingEvents = false;
-                    watcher.Dispose();
-                }
+                foreach (FileSystemWatcher watcher in this.watcherMap.Values)
+                    StopWatching(watcher);
 
-                this.watchers.Clear();
+                this.watcherMap.Clear();
             }
+        }
+
+        /// <summary>
+        /// Stops watching the specified file.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public void StopWatching(string fileName)
+        {
+            lock (this)
+            {
+                if (this.watcherMap.ContainsKey(fileName))
+                {
+                    StopWatching(this.watcherMap[fileName]);
+                    this.watcherMap.Remove(fileName);
+                }
+            }
+        }
+
+        private void StopWatching(FileSystemWatcher watcher)
+        {
+            InternalLogger.Info("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
+            watcher.EnableRaisingEvents = false;
+            watcher.Dispose();
         }
 
         /// <summary>
@@ -107,33 +136,33 @@ namespace NLog.Internal
                 return;
             }
 
-            var watcher = new FileSystemWatcher
-            {
-                Path = directory,
-                Filter = Path.GetFileName(fileName),
-                NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes
-            };
-
-            watcher.Created += this.OnWatcherChanged;
-            watcher.Changed += this.OnWatcherChanged;
-            watcher.Deleted += this.OnWatcherChanged;
-            watcher.EnableRaisingEvents = true;
-            InternalLogger.Info("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
-
             lock (this)
             {
-                this.watchers.Add(watcher);
+                if (this.watcherMap.ContainsKey(fileName))
+                    return;
+
+                var watcher = new FileSystemWatcher
+                {
+                    Path = directory,
+                    Filter = Path.GetFileName(fileName),
+                    NotifyFilter = NotifyFilters
+                };
+
+                watcher.Created += this.OnWatcherChanged;
+                watcher.Changed += this.OnWatcherChanged;
+                watcher.Deleted += this.OnWatcherChanged;
+                watcher.EnableRaisingEvents = true;
+                InternalLogger.Info("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
+                
+                this.watcherMap.Add(fileName, watcher);
             }
         }
 
         private void OnWatcherChanged(object source, FileSystemEventArgs e)
         {
-            lock (this)
+            if (this.OnChange != null)
             {
-                if (this.OnChange != null)
-                {
-                    this.OnChange(source, e);
-                }
+                this.OnChange(source, e);
             }
         }
     }
