@@ -65,16 +65,16 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var ts = logEvent.TimeStamp;
+            var timestamp = logEvent.TimeStamp;
 
             if (this.UniversalTime)
             {
-                ts = ts.ToUniversalTime();
-                CachedUtcDate.AppendDate(builder, ts);
+                timestamp = timestamp.ToUniversalTime();
+                CachedUtcDate.AppendDate(builder, timestamp);
             }
             else
             {
-                CachedLocalDate.AppendDate(builder, ts);
+                CachedLocalDate.AppendDate(builder, timestamp);
             }
         }
 
@@ -91,13 +91,13 @@ namespace NLog.LayoutRenderers
             /// in must cases.
             /// </summary>
             /// <param name="builder">The <see cref="StringBuilder"/> to append the date to</param>
-            /// <param name="ts">The date to append</param>
-            public void AppendDate(StringBuilder builder, DateTime ts)
+            /// <param name="timestamp">The date to append</param>
+            public void AppendDate(StringBuilder builder, DateTime timestamp)
             {
-                if (formattedDate == null || date.Day != ts.Day || date.Month != ts.Month || date.Year != ts.Year)
+                if (formattedDate == null || date.Day != timestamp.Day || date.Month != timestamp.Month || date.Year != timestamp.Year)
                 {
-                    date = ts;
-                    formattedDate = ts.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    date = timestamp;
+                    formattedDate = timestamp.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
                 }
                 builder.Append(formattedDate);
             }
