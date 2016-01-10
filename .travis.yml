@@ -1,5 +1,4 @@
 language: csharp
-solution: src/NLog.sln
 install:
 script:
   - build.sh --configuration Debug 

@@ -316,7 +316,7 @@ namespace NLog.UnitTests.LogReceiverService
                 // Enable metadata publishing.
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
-#if !MONO
+#if !MONO && !DNX
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
 #endif
                 host.Description.Behaviors.Add(smb);

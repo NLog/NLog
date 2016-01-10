@@ -38,7 +38,35 @@ Task("Clean")
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("uap10");
+    .IsDependentOn("pack");
+
+Task("pack")
+	.IsDependentOn("uap10")
+	.Does(() => 
+{
+	string[] frameworks = null;
+	if(IsRunningOnUnix())
+	{
+		frameworks = new [] { "dnx451","dnxcore50" };
+	}
+	else
+	{
+		frameworks = new [] { "dnxcore50", "dnx451", "net35", "sl5", "uap10.0" };
+	}
+
+	DNUPackSettings packSettings = new DNUPackSettings()
+	{
+		Architecture = DNArchitecture.X64,
+        Runtime = runtime,
+        Version = dnxVersion,
+	    Frameworks = frameworks,
+	    Configurations = new[] { configuration },
+	    OutputDirectory = buildDir,
+	    Quiet = false
+	};
+
+	DNUPack("./src/NLog/project.json", packSettings);
+});
 
 Task("uap10")
 	.ContinueOnError()
@@ -61,7 +89,7 @@ Task("uap10")
         Architecture = DNArchitecture.X64,
         Runtime = runtime,
         Version = dnxVersion,
-	    Frameworks = new [] { "uap10" },
+	    Frameworks = new [] { "uap10.0" },
 	    Configurations = new[] { configuration },
 	    OutputDirectory = buildDir,
 	    Quiet = false
@@ -76,7 +104,7 @@ Task("uap10")
         Architecture = DNArchitecture.X64,
         Runtime = runtime,
         Version = dnxVersion,
-	    Frameworks = new [] { "uap10" },
+	    Frameworks = new [] { "uap10.0" },
 	    Configurations = new[] { configuration },
 	    OutputDirectory = buildDir,
 	    Quiet = true
@@ -186,7 +214,7 @@ Task("net35")
         Version = dnxVersion,
 	    Frameworks = new [] { "dnx451" },
 	    Configurations = new[] { configuration },
-	    OutputDirectory = (buildDir + Directory("net35")).ToString(),
+	    OutputDirectory = buildDir,
 	    Quiet = true
 	};
     DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
@@ -208,14 +236,12 @@ Task("Dnx451")
 	.Does(() =>
 {
 	
-	// Restore
     DNURestoreSettings restoreSettings = new DNURestoreSettings()
     {
         Architecture = DNArchitecture.X64,
         Runtime = runtime,
         Version = dnxVersion
     };
-	DNURestore(restoreSettings);
 
 	// Build
 	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
@@ -228,11 +254,18 @@ Task("Dnx451")
 	    OutputDirectory = buildDir,
 	    Quiet = true
 	};
-        
+    
+	// Restore & build NLog
+	DNURestore("./src/NLog/project.json", restoreSettings);
     DNUBuild("./src/NLog", dnuBuildSettings);
+	DNURestore("./src/NLog.Extended/project.json", restoreSettings);
 	DNUBuild("./src/NLog.Extended", dnuBuildSettings);
+	DNURestore("./src/NLogAutoLoadExtension/project.json", restoreSettings);
     DNUBuild("./src/NLogAutoLoadExtension", dnuBuildSettings);
+
+	DNURestore("./test/SampleExtensions/project.json", restoreSettings);
 	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
+	DNURestore("./test/NLog.UnitTests/project.json", restoreSettings);
 	DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
 
 	// Test
@@ -275,6 +308,8 @@ Task("Dnxcore50")
     DNUBuild("./src/NLog", dnuBuildSettings);
 	
 	DNURestore("./test/SampleExtensions/project.json", restoreSettings);
+	DNURestore("./test/NLog.UnitTests/project.json", restoreSettings);
+	
 	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
 	DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
 
