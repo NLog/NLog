@@ -63,7 +63,7 @@ Task("uap10")
         Version = dnxVersion,
 	    Frameworks = new [] { "uap10" },
 	    Configurations = new[] { configuration },
-	    OutputDirectory = (buildDir + Directory("uap10")).ToString(),
+	    OutputDirectory = buildDir,
 	    Quiet = false
 	};
         
@@ -78,7 +78,7 @@ Task("uap10")
         Version = dnxVersion,
 	    Frameworks = new [] { "uap10" },
 	    Configurations = new[] { configuration },
-	    OutputDirectory = (buildDir + Directory("uap10")).ToString(),
+	    OutputDirectory = buildDir,
 	    Quiet = true
 	};
     DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
@@ -117,7 +117,7 @@ Task("sl5")
         Version = dnxVersion,
 	    Frameworks = new [] { "sl5" },
 	    Configurations = new[] { configuration },
-	    OutputDirectory = (buildDir + Directory("sl5")).ToString(),
+	    OutputDirectory = buildDir,
 	    Quiet = false
 	};
         
@@ -132,7 +132,7 @@ Task("sl5")
         Version = dnxVersion,
 	    Frameworks = new [] { "sl5" },
 	    Configurations = new[] { configuration },
-	    OutputDirectory = (buildDir + Directory("sl5")).ToString(),
+	    OutputDirectory = buildDir,
 	    Quiet = true
 	};
     DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
@@ -171,7 +171,7 @@ Task("net35")
         Version = dnxVersion,
 	    Frameworks = new [] { "net35" },
 	    Configurations = new[] { configuration },
-	    OutputDirectory = (buildDir + Directory("net35")).ToString(),
+	    OutputDirectory = buildDir,
 	    Quiet = false
 	};
         
@@ -225,7 +225,7 @@ Task("Dnx451")
         Version = dnxVersion,
 	    Frameworks = new [] { "dnx451" },
 	    Configurations = new[] { configuration },
-	    OutputDirectory = (buildDir + Directory("dnx451")).ToString(),
+	    OutputDirectory = buildDir,
 	    Quiet = true
 	};
         
@@ -258,8 +258,8 @@ Task("Dnxcore50")
         Runtime = DNRuntime.CoreClr,
         Version = dnxVersion
     };
-	DNURestore(restoreSettings);
-
+	DNURestore("./src/NLog/project.json", restoreSettings);
+	
 	// Build
 	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
 	{
@@ -268,11 +268,13 @@ Task("Dnxcore50")
         Version = dnxVersion,
 	    Frameworks = new [] { "dnxcore50" },
 	    Configurations = new[] { configuration },
-	    OutputDirectory = (buildDir + Directory("dnxcore50")).ToString(),
+	    OutputDirectory = buildDir,
 	    Quiet = true
 	};
         
     DNUBuild("./src/NLog", dnuBuildSettings);
+	
+	DNURestore("./test/SampleExtensions/project.json", restoreSettings);
 	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
 	DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
 
