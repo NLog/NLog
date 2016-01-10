@@ -1752,12 +1752,15 @@ namespace NLog.UnitTests.Targets
                 SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
 
                 // Create a file that will match the archive mask pattern but it's not the data format (needs to be shorter that the date format to break).
+                string existingFile = archiveFileLayout.Replace("{#}", "notadate");
                 Directory.CreateDirectory(Path.GetDirectoryName(logFile));
-                File.Create(archiveFileLayout.Replace("{#}", "notadate")).Close();
+                File.Create(existingFile).Close();
 
                 logger.Debug("test");
 
                 AssertFileContents(logFile, "test" + ft.NewLineChars, Encoding.UTF8);
+                Assert.True(File.Exists(existingFile));
+
             }
             finally
             {
