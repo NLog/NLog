@@ -91,15 +91,13 @@ namespace NLog.Internal
                               || exception.GetType().IsSubclassOf(typeof(NLogConfigurationException));
 
             //we throw always configuration exceptions (historical)
-            var shallRethrow = LogManager.ThrowExceptions || isConfigError;
-
-            var level = isConfigError ? LogLevel.Warn : LogLevel.Error;
-
             if (!exception.IsLoggedToInternalLogger())
             {
+                var level = isConfigError ? LogLevel.Warn : LogLevel.Error;
                 InternalLogger.Log(exception, level, "Error has been raised.");
             }
 
+            var shallRethrow = LogManager.ThrowExceptions || isConfigError;
             return shallRethrow;
         }
 

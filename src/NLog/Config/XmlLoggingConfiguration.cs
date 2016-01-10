@@ -321,28 +321,21 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 InitializeSucceeded = false;
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
 
-                NLogConfigurationException ConfigException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
+                InternalLogger.Error(new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception), "Error in Parsing Configuration File.");
 
                 if (!ignoreErrors)
                 {
-                    if (LogManager.ThrowExceptions)
+                    if (exception.MustBeRethrown())
                     {
-                        throw ConfigException;
-                    }
-                    else
-                    {
-                        InternalLogger.Error(ConfigException, "Error in Parsing Configuration File.");
+                        throw new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
                     }
                 }
-                else
-                {
-                    InternalLogger.Error(ConfigException, "Error in Parsing Configuration File.");
-                }
+              
             }
         }
 
@@ -849,12 +842,12 @@ namespace NLog.Config
                     {
                         InternalLogger.Error(exception, "Error loading extensions.");
 
-                        if (exception.MustBeRethrown())
+                        if (exception.MustBeRethrownImmediately())
                         {
                             throw;
                         }
-                        
-                        if (LogManager.ThrowExceptions)
+
+                        if (exception.MustBeRethrown())
                         {
                             throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
                         }

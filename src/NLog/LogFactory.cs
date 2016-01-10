@@ -188,6 +188,7 @@ namespace NLog
                         catch (Exception exception)
                         {
                             InternalLogger.Warn(exception, "Cannot start file watching. File watching is disabled");
+                            //TODO NLog 5: check "MustBeRethrown" 
                         }
 #endif
                         this.config.InitializeAll();
@@ -426,12 +427,12 @@ namespace NLog
             }
             catch (Exception ex)
             {
-                if (ThrowExceptions)
+                InternalLogger.Error(ex, "Error with flush.");
+                if (ex.MustBeRethrown())
                 {
                     throw;
                 }
-
-                InternalLogger.Error(ex, "Error with flush.");
+               
             }
         }
 

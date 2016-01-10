@@ -266,7 +266,7 @@ namespace NLog.Layouts
                     //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
                     if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
                     {
-                        InternalLogger.Warn(exception, "Exception in Append(): {0}.", renderer.GetType().FullName);
+                        InternalLogger.Warn(exception, "Exception in '{0}.Append()'", renderer.GetType().FullName);
                     }
 
                     if (exception.MustBeRethrown())

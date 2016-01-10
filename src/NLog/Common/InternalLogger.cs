@@ -203,12 +203,6 @@ namespace NLog.Common
                     formattedMessage = string.Format(CultureInfo.InvariantCulture, message, args);
                 }
 
-                if (ex != null)
-                {
-                    ex.MarkedAsLoggedToInternalLogger();
-                    formattedMessage += " Exception: " + ex.ToString();
-                }
-
                 var builder = new StringBuilder(message.Length + 32);
                 if (IncludeTimestamp)
                 {
@@ -219,6 +213,12 @@ namespace NLog.Common
                 builder.Append(level.ToString());
                 builder.Append(" ");
                 builder.Append(formattedMessage);
+                if (ex != null)
+                {
+                    ex.MarkedAsLoggedToInternalLogger();
+                    builder.Append(" Exception:");
+                    builder.Append(ex.ToString());
+                }
                 string msg = builder.ToString();
 
                 // log to file
