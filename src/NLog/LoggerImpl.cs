@@ -118,13 +118,19 @@ namespace NLog
             //find until logger type
             intermediate = intermediate.SkipWhile(p => !IsLoggerType(p.StackFrame, loggerType));
 
-            intermediate = FilterBySkipAssembly(intermediate);
-            return GetIndexOfNonAsync(intermediate);
+            intermediate = FilterBySkipAssembly(intermediate.Skip(1));
+            return FindIndexOfCallingMethod(intermediate);
         }
 
-        private static int GetIndexOfNonAsync(IEnumerable<StackFrameWithIndex> intermediate)
+        /// <summary>
+        /// Get the index which correspondens to the calling method.
+        /// </summary>
+        /// <param name="stackFrames"></param>
+        /// <returns></returns>
+        private static int FindIndexOfCallingMethod(IEnumerable<StackFrameWithIndex> stackFrames)
         {
-            var last = intermediate.FirstOrDefault();
+            var stackFrameWithIndex = stackFrames.FirstOrDefault();
+            var last = stackFrameWithIndex;
 
             if (last != null)
             {
@@ -133,7 +139,7 @@ namespace NLog
                 //movenext and then AsyncTaskMethodBuilder (method start)? this is a generated MoveNext by async.
                 if (last.StackFrame.GetMethod().Name == "MoveNext")
                 {
-                    var next = intermediate.Skip(1).FirstOrDefault();
+                    var next = stackFrames.Skip(1).FirstOrDefault();
                     if (next != null)
                     {
                         var declaringType = next.StackFrame.GetMethod().DeclaringType;
@@ -142,8 +148,8 @@ namespace NLog
 
                             //async, search futher
 
-                            intermediate = FilterBySkipAssembly(intermediate);
-                            return GetIndexOfNonAsync(intermediate);
+                            stackFrames = FilterBySkipAssembly(stackFrames.Skip(1));
+                            return FindIndexOfCallingMethod(stackFrames);
                         }
                     }
                 }
@@ -154,14 +160,16 @@ namespace NLog
             return 0;
         }
 
-        private static IEnumerable<StackFrameWithIndex> FilterBySkipAssembly(IEnumerable<StackFrameWithIndex> intermediate)
+        /// <summary>
+        /// Filter strackframes by assembly filter
+        /// </summary>
+        /// <param name="stackFrames"></param>
+        /// <returns></returns>
+        private static IEnumerable<StackFrameWithIndex> FilterBySkipAssembly(IEnumerable<StackFrameWithIndex> stackFrames)
         {
-
-            //skip to next
-            intermediate = intermediate.Skip(1);
             //skip while in "skip" assemlbl
-            intermediate = intermediate.SkipWhile(p => SkipAssembly(p.StackFrame));
-            return intermediate;
+            stackFrames = stackFrames.SkipWhile(p => SkipAssembly(p.StackFrame));
+            return stackFrames;
         }
 
         /// <summary>
