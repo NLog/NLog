@@ -1723,8 +1723,54 @@ namespace NLog.UnitTests.Targets
             }
 
         }
-
+    
         [Fact]
+        public void FileTarget_Handle_Other_Files_That_Match_Archive_Format()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var logFile = Path.Combine(tempPath, "Application.log");
+            var tempDirectory = new DirectoryInfo(tempPath);
+
+            try
+            {
+                string archiveFileLayout = Path.Combine(Path.GetDirectoryName(logFile), Path.GetFileNameWithoutExtension(logFile) + "{#}" + Path.GetExtension(logFile));
+
+                var ft = new FileTarget
+                {
+                    FileName = logFile,
+                    Layout = "${message}",
+                    EnableFileDelete = false,
+                    Encoding = Encoding.UTF8,
+                    ArchiveFileName = archiveFileLayout,
+                    ArchiveEvery = FileArchivePeriod.Day,
+                    ArchiveNumbering = ArchiveNumberingMode.Date,
+                    ArchiveDateFormat = "___________yyyyMMddHHmm"
+                 };
+        
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                // Create a file that will match the archive mask pattern but it's not the data format (needs to be shorter that the date format to break).
+                Directory.CreateDirectory(Path.GetDirectoryName(logFile));
+                File.Create(archiveFileLayout.Replace("{#}", "notadate")).Close();
+
+                logger.Debug("test");
+
+                AssertFileContents(logFile, "test" + ft.NewLineChars, Encoding.UTF8);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+
+                if (tempDirectory.Exists)
+                {
+                   tempDirectory.Delete(true);
+                }
+            }
+
+        }
+
+    [Fact]
         public void SingleArchiveFileRollsCorrectly()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
