@@ -736,7 +736,7 @@ namespace NLog.Targets
 
             // Clean up old archives if this is the first time a log record is being written to
             // this log file and the archiving system is date/time based.
-            if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None)
+            if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None && this.MaxArchiveFiles > 0)
             {
                 if (!previousFileNames.Contains(fileName))
                 {
@@ -1329,11 +1329,17 @@ namespace NLog.Targets
                 foreach (string nextFile in files)
                 {
                     string archiveFileName = Path.GetFileName(nextFile);
-                    string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
-                    DateTime fileDate = DateTime.MinValue;
-                    if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
+                    int lastIndexOfStar = fileNameMask.LastIndexOf('*');
+
+                    // Safety check for issue #1147.
+                    if (lastIndexOfStar + dateFormat.Length <= archiveFileName.Length)
                     {
-                        filesByDate.Add(nextFile);
+                        string datePart = archiveFileName.Substring(lastIndexOfStar, dateFormat.Length);
+                        DateTime fileDate = DateTime.MinValue;
+                        if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
+                        {
+                            filesByDate.Add(nextFile);
+                        }
                     }
                 }
 

@@ -1744,7 +1744,8 @@ namespace NLog.UnitTests.Targets
                     ArchiveFileName = archiveFileLayout,
                     ArchiveEvery = FileArchivePeriod.Day,
                     ArchiveNumbering = ArchiveNumberingMode.Date,
-                    ArchiveDateFormat = "___________yyyyMMddHHmm"
+                    ArchiveDateFormat = "___________yyyyMMddHHmm",
+                    MaxArchiveFiles = 10   // Get past the optimization to avoid deleting old files.
                  };
         
 
@@ -1769,8 +1770,8 @@ namespace NLog.UnitTests.Targets
             }
 
         }
-
-    [Fact]
+    
+        [Fact]
         public void SingleArchiveFileRollsCorrectly()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
