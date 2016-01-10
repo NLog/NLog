@@ -52,22 +52,29 @@ namespace NLog.Internal
     {
         private static Dictionary<Type, Dictionary<string, PropertyInfo>> parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
 
-        internal static void SetPropertyFromString(object o, string name, string value, ConfigurationItemFactory configurationItemFactory)
+        /// <summary>
+        /// Set value parsed from string.
+        /// </summary>
+        /// <param name="obj">object instance to set with property <paramref name="propertyName"/></param>
+        /// <param name="propertyName">name of the property on <paramref name="obj"/></param>
+        /// <param name="value">The value to be parsed.</param>
+        /// <param name="configurationItemFactory"></param>
+        internal static void SetPropertyFromString(object obj, string propertyName, string value, ConfigurationItemFactory configurationItemFactory)
         {
-            InternalLogger.Debug("Setting '{0}.{1}' to '{2}'", o.GetType().Name, name, value);
+            InternalLogger.Debug("Setting '{0}.{1}' to '{2}'", obj.GetType().Name, propertyName, value);
 
             PropertyInfo propInfo;
 
-            if (!TryGetPropertyInfo(o, name, out propInfo))
+            if (!TryGetPropertyInfo(obj, propertyName, out propInfo))
             {
-                throw new NotSupportedException("Parameter " + name + " not supported on " + o.GetType().Name);
+                throw new NotSupportedException("Parameter " + propertyName + " not supported on " + obj.GetType().Name);
             }
 
             try
             {
                 if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
                 {
-                    throw new NotSupportedException("Parameter " + name + " of " + o.GetType().Name + " is an array and cannot be assigned a scalar value.");
+                    throw new NotSupportedException("Parameter " + propertyName + " of " + obj.GetType().Name + " is an array and cannot be assigned a scalar value.");
                 }
 
                 object newValue;
@@ -83,11 +90,11 @@ namespace NLog.Internal
                 if (!TryTypeConverterConversion(propertyType, value, out newValue))
                     newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
 
-                propInfo.SetValue(o, newValue, null);
+                propInfo.SetValue(obj, newValue, null);
             }
             catch (TargetInvocationException ex)
             {
-                throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + o, ex.InnerException);
+                throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + obj, ex.InnerException);
             }
             catch (Exception exception)
             {
@@ -96,25 +103,38 @@ namespace NLog.Internal
                     throw;
                 }
 
-                throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + o, exception);
+                throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + obj, exception);
             }
         }
 
-        internal static bool IsArrayProperty(Type t, string name)
+        /// <summary>
+        /// Is the property of array-type?
+        /// </summary>
+        /// <param name="t">Type which has the property <paramref name="propertyName"/></param>
+        /// <param name="propertyName">name of the property.</param>
+        /// <returns></returns>
+        internal static bool IsArrayProperty(Type t, string propertyName)
         {
             PropertyInfo propInfo;
 
-            if (!TryGetPropertyInfo(t, name, out propInfo))
+            if (!TryGetPropertyInfo(t, propertyName, out propInfo))
             {
-                throw new NotSupportedException("Parameter " + name + " not supported on " + t.Name);
+                throw new NotSupportedException("Parameter " + propertyName + " not supported on " + t.Name);
             }
 
             return propInfo.IsDefined(typeof(ArrayParameterAttribute), false);
         }
 
-        internal static bool TryGetPropertyInfo(object o, string propertyName, out PropertyInfo result)
+        /// <summary>
+        /// Get propertyinfo
+        /// </summary>
+        /// <param name="obj">object which could have property <paramref name="propertyName"/></param>
+        /// <param name="propertyName">propertyname on <paramref name="obj"/></param>
+        /// <param name="result">result when success.</param>
+        /// <returns>success.</returns>
+        internal static bool TryGetPropertyInfo(object obj, string propertyName, out PropertyInfo result)
         {
-            PropertyInfo propInfo = o.GetType().GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+            PropertyInfo propInfo = obj.GetType().GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
             if (propInfo != null)
             {
                 result = propInfo;
@@ -123,7 +143,7 @@ namespace NLog.Internal
 
             lock (parameterInfoCache)
             {
-                Type targetType = o.GetType();
+                Type targetType = obj.GetType();
                 Dictionary<string, PropertyInfo> cache;
 
                 if (!parameterInfoCache.TryGetValue(targetType, out cache))

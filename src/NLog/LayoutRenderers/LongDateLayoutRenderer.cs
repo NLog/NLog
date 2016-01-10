@@ -67,7 +67,7 @@ namespace NLog.LayoutRenderers
                 dt = dt.ToUniversalTime();
             }
 
-            builder.Append(dt.Year);
+            Append4DigitsZeroPadded(builder, dt.Year);
             builder.Append('-');
             Append2DigitsZeroPadded(builder, dt.Month);
             builder.Append('-');

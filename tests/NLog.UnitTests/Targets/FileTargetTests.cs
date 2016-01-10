@@ -931,6 +931,12 @@ namespace NLog.UnitTests.Targets
             try
             {
                 var timeSource = new TimeSourceTests.ShiftedTimeSource(timeKind);
+                if (timeSource.Time.Minute == 59)
+                {
+                    // Avoid double-archive due to overflow of the hour.
+                    timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
+                    timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
+                }
                 TimeSource.Current = timeSource;
                 
                 var ft = new FileTarget
