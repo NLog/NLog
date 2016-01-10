@@ -2447,8 +2447,8 @@ namespace NLog.UnitTests.Targets
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
-        }    }
-
+        }
+    }
 }
 
 #endif

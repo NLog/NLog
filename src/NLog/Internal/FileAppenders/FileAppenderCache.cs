@@ -34,6 +34,8 @@
 namespace NLog.Internal.FileAppenders
 {
     using System;
+    using System.Collections.Generic;
+    using System.IO;
 
     /// <summary>
     /// Maintains a collection of file appenders usually associated with file targets.
@@ -41,10 +43,14 @@ namespace NLog.Internal.FileAppenders
     internal sealed class FileAppenderCache
     {
         private BaseFileAppender[] appenders;
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+        private bool watchExternalFileArchiving = false;
+        private readonly MultiFileWatcher externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.FileName);
+        private readonly HashSet<string> invalidFiles = new HashSet<string>();
+#endif
 
         /// <summary>
-        /// Initializes a new "empty" instance of the <see cref="FileAppenderCache"/> class with zero size and empty
-        /// list of appenders.
+        /// An "empty" instance of the <see cref="FileAppenderCache"/> class with zero size and empty list of appenders.
         /// </summary>
         public static readonly FileAppenderCache Empty = new FileAppenderCache();
 
@@ -52,15 +58,8 @@ namespace NLog.Internal.FileAppenders
         /// Initializes a new "empty" instance of the <see cref="FileAppenderCache"/> class with zero size and empty
         /// list of appenders.
         /// </summary>
-        private FileAppenderCache()
-        {
-            Size = 0;
-            Factory = null;
-            CreateFileParameters = null;
-
-            appenders = new BaseFileAppender[0];
-        }
-
+        private FileAppenderCache() : this(0, null, null) { }
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="FileAppenderCache"/> class.
         /// </summary>
@@ -78,7 +77,24 @@ namespace NLog.Internal.FileAppenders
             CreateFileParameters = createFileParams;
 
             appenders = new BaseFileAppender[Size];
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            externalFileArchivingWatcher.OnChange += ExternalFileArchivingWatcher_OnChange;
+#endif
         }
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+        private void ExternalFileArchivingWatcher_OnChange(object sender, FileSystemEventArgs e)
+        {
+            if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
+            {
+                lock (invalidFiles)
+                {
+                    invalidFiles.Add(e.FullPath);
+                }
+            }
+        }
+#endif
 
         /// <summary>
         /// Gets the parameters which will be used for creating a file.
@@ -94,6 +110,27 @@ namespace NLog.Internal.FileAppenders
         /// Gets the number of appenders which the list can hold.
         /// </summary>
         public int Size { get; private set; }
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+        /// <summary>
+        /// If `true`, files will be watched for external file archiving and invalidated. 
+        /// Call the <see cref="FileAppenderCache.InvalidateAppendersForInvalidFiles"/> method to "flush" the list
+        /// of invalidated files.
+        /// </summary>
+        public bool WatchExternalFileArchiving
+        {
+            get { return watchExternalFileArchiving; }
+            set
+            {
+                watchExternalFileArchiving = value;
+                if (!watchExternalFileArchiving)
+                {
+                    invalidFiles.Clear();
+                    externalFileArchivingWatcher.StopWatching();
+                }
+            }
+        }
+#endif
 
         /// <summary>
         /// It allocates the first slot in the list when the file name does not already in the list and clean up any
@@ -152,7 +189,7 @@ namespace NLog.Internal.FileAppenders
 
                 if (appenders[freeSpot] != null)
                 {
-                    appenders[freeSpot].Close();
+                    CloseAppender(appenders[freeSpot]);
                     appenders[freeSpot] = null;
                 }
 
@@ -163,8 +200,12 @@ namespace NLog.Internal.FileAppenders
 
                 appenders[0] = newAppender;
                 appenderToWrite = newAppender;
-            }
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                externalFileArchivingWatcher.Watch(fileName);
+#endif
+            }
+            
             return appenderToWrite;
         }
 
@@ -182,7 +223,7 @@ namespace NLog.Internal.FileAppenders
                         break;
                     }
 
-                    appenders[i].Close();
+                    CloseAppender(appenders[i]);
                     appenders[i] = null;
                 }
             }
@@ -210,7 +251,7 @@ namespace NLog.Internal.FileAppenders
                             break;
                         }
 
-                        this.appenders[j].Close();
+                        CloseAppender(this.appenders[j]);
                         this.appenders[j] = null;
                     }
 
@@ -255,6 +296,21 @@ namespace NLog.Internal.FileAppenders
         }
 
         /// <summary>
+        /// Invalidates appenders for all files that were archived.
+        /// </summary>
+        public void InvalidateAppendersForInvalidFiles()
+        {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            lock (invalidFiles)
+            {
+                foreach (string nextFile in invalidFiles)
+                    InvalidateAppender(nextFile);
+                invalidFiles.Clear();
+            }
+#endif
+        }
+
+        /// <summary>
         /// Closes the specified appender and removes it from the list. 
         /// </summary>
         /// <param name="fileName">File name of the appender to be closed.</param>
@@ -269,7 +325,7 @@ namespace NLog.Internal.FileAppenders
 
                 if (appenders[i].FileName == fileName)
                 {
-                    appenders[i].Close();
+                    CloseAppender(appenders[i]);
                     for (int j = i; j < appenders.Length - 1; ++j)
                     {
                         appenders[j] = appenders[j + 1];
@@ -279,6 +335,15 @@ namespace NLog.Internal.FileAppenders
                     break;
                 }
             }
+        }
+
+        private void CloseAppender(BaseFileAppender appender)
+        {
+            appender.Close();
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            externalFileArchivingWatcher.StopWatching(appender.FileName);
+#endif
         }
     }
 }
