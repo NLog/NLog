@@ -31,14 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-using System.Threading.Tasks;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using System.Reflection;
     using System.Threading;
+    using System.IO;
+    using System.Threading.Tasks;
     using Xunit;
 
     public class CallSiteTests : NLogTestBase
