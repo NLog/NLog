@@ -97,7 +97,7 @@ namespace NLog.Targets
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
 
         /// <summary>
-        /// Factory used to create the file appeanders in the <see cref="FileTarget"/> instance. 
+        /// Factory used to create the file appenders in the <see cref="FileTarget"/> instance. 
         /// </summary>
         /// <remarks>File appenders are stored in an instance of <see cref="FileAppenderCache"/>.</remarks>
         private IFileAppenderFactory appenderFactory;
@@ -427,7 +427,7 @@ namespace NLog.Targets
         public bool ArchiveOldFileOnStartup { get; set; }
 
         /// <summary>
-        /// Gets or sets a value specifying the date format to use when archving files.
+        /// Gets or sets a value specifying the date format to use when archiving files.
         /// </summary>
         /// <remarks>
         /// This option works only when the "ArchiveNumbering" parameter is set either to Date or DateAndSequence.
@@ -840,7 +840,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="pattern">File name which contains the numeric pattern.</param>
         /// <param name="value">Value which will replace the numeric pattern.</param>
-        /// <returns>File name with the value of <paramref name="value"/> in the position of the numberic pattern.</returns>
+        /// <returns>File name with the value of <paramref name="value"/> in the position of the numeric pattern.</returns>
         private static string ReplaceNumberPattern(string pattern, int value)
         {
             int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
@@ -895,7 +895,7 @@ namespace NLog.Targets
         ///     trace{#X#}.log      Contains the numeric pattern (See remarks).
         ///     trace.log           Does not contain the pattern.
         /// </summary>
-        /// <remarks>Occationally, this method can identify the existance of the {#} pattern incorrectly.</remarks>
+        /// <remarks>Occasionally, this method can identify the existence of the {#} pattern incorrectly.</remarks>
         /// <param name="fileName">File name to be checked.</param>
         /// <returns><see langword="true"/> when the pattern is found; <see langword="false"/> otherwise.</returns>
         private static bool ContainsFileNamePattern(string fileName)
@@ -1245,8 +1245,8 @@ namespace NLog.Targets
         /// Gets the collection of files in the specified directory which they match the <paramref name="fileNameMask"/>.
         /// </summary>
         /// <param name="directoryInfo">Directory to searched.</param>
-        /// <param name="fileNameMask">Pattern whihc the files will be searched against.</param>
-        /// <returns>Lisf of files matching the pattern.</returns>
+        /// <param name="fileNameMask">Pattern which the files will be searched against.</param>
+        /// <returns>List of files matching the pattern.</returns>
         private static IEnumerable<FileInfo> GetFiles(DirectoryInfo directoryInfo, string fileNameMask)
         {
 #if SILVERLIGHT && !WINDOWS_PHONE
@@ -1348,7 +1348,7 @@ namespace NLog.Targets
 #endif
 
         /// <summary>
-        /// Gets the correct formating <see langword="String"/> to be used based on the value of <see
+        /// Gets the correct formatting <see langword="String"/> to be used based on the value of <see
         /// cref="P:ArchiveEvery"/> for converting <see langword="DateTime"/> values which will be inserting into file
         /// names during archiving.
         /// 
