@@ -61,7 +61,8 @@ namespace NLog.Internal
             var result = new List<T>();
             var visitedObjects = new Dictionary<object, int>();
 
-            foreach (var rootObject in rootObjects)
+            var rootObjectsList = rootObjects.ToList();
+            foreach (var rootObject in rootObjectsList)
             {
                 ScanProperties(result, rootObject, 0, visitedObjects);
             }
@@ -100,7 +101,8 @@ namespace NLog.Internal
                 InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), o.GetType().Name, o);
             }
 
-            foreach (PropertyInfo prop in PropertyHelper.GetAllReadableProperties(o.GetType()))
+            var allReadableProperties = PropertyHelper.GetAllReadableProperties(o.GetType()).ToList();
+            foreach (PropertyInfo prop in allReadableProperties)
             {
                 if (prop.PropertyType.IsPrimitive || prop.PropertyType.IsEnum || prop.PropertyType == typeof(string) || prop.IsDefined(typeof(NLogConfigurationIgnorePropertyAttribute), true))
                 {
