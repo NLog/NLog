@@ -1164,7 +1164,7 @@ namespace NLog.Targets
         /// </remarks>
         private void EnsureArchiveCount(List<string> oldArchiveFileNames)
         {
-            if (this.MaxArchiveFiles <= 0)
+            if (!ShouldDeleteOldArchives())
             {
                 return;
             }
