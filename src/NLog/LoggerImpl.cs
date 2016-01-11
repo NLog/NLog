@@ -143,7 +143,7 @@ namespace NLog
                     if (next != null)
                     {
                         var declaringType = next.StackFrame.GetMethod().DeclaringType;
-                        if (declaringType != null && declaringType  == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder))
+                        if (declaringType  == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder))
                         {
 
                             //async, search futher
