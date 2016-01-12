@@ -215,7 +215,7 @@ namespace NLog.Common
                 builder.Append(formattedMessage);
                 if (ex != null)
                 {
-                    ex.MarkedAsLoggedToInternalLogger();
+                    ex.MarkAsLoggedToInternalLogger();
                     builder.Append(" Exception: ");
                     builder.Append(ex.ToString());
                 }

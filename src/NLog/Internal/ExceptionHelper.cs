@@ -49,7 +49,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="exception"></param>
         /// <returns></returns>
-        public static void MarkedAsLoggedToInternalLogger(this Exception exception)
+        public static void MarkAsLoggedToInternalLogger(this Exception exception)
         {
             if (exception != null)
             {
