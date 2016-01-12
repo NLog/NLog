@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !SILVERLIGHT
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -119,3 +121,4 @@ namespace NLog.UnitTests.Internal
         }
     }
 }
+#endif
