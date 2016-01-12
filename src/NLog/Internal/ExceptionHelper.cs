@@ -87,9 +87,8 @@ namespace NLog.Internal
                 return true;
             }
 
-            var isConfigError = exception is NLogConfigurationException
-                              || exception.GetType().IsSubclassOf(typeof(NLogConfigurationException));
-
+            var isConfigError = exception is NLogConfigurationException;
+                              
             //we throw always configuration exceptions (historical)
             if (!exception.IsLoggedToInternalLogger())
             {
