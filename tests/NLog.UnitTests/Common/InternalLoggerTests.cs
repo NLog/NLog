@@ -42,7 +42,7 @@ using System.Text;
 namespace NLog.UnitTests.Common
 {
     public class InternalLoggerTests : NLogTestBase
-    {        
+    {
         /// <summary>
         /// Test the return values of all Is[Level]Enabled() methods.
         /// </summary>
@@ -54,7 +54,7 @@ namespace NLog.UnitTests.Common
 
             Assert.True(InternalLogger.IsTraceEnabled);
             Assert.True(InternalLogger.IsDebugEnabled);
-            Assert.True(InternalLogger.IsInfoEnabled);            
+            Assert.True(InternalLogger.IsInfoEnabled);
             Assert.True(InternalLogger.IsWarnEnabled);
             Assert.True(InternalLogger.IsErrorEnabled);
             Assert.True(InternalLogger.IsFatalEnabled);
@@ -89,10 +89,10 @@ namespace NLog.UnitTests.Common
             InternalLogger.LogLevel = LogLevel.Trace;
             InternalLogger.IncludeTimestamp = false;
 
-            StringWriter writer1 = new StringWriter() 
-                                        {
-                                            NewLine = "\n"
-                                        };
+            StringWriter writer1 = new StringWriter()
+            {
+                NewLine = "\n"
+            };
             InternalLogger.LogWriter = writer1;
 
             // Named (based on LogLevel) public methods.
@@ -109,9 +109,9 @@ namespace NLog.UnitTests.Common
             // Reconfigure the LogWriter.
 
             StringWriter writer2 = new StringWriter()
-                                        {
-                                            NewLine = "\n"
-                                        };
+            {
+                NewLine = "\n"
+            };
             InternalLogger.LogWriter = writer2;
 
             // Invoke Log(LogLevel, string) for every log level.
@@ -182,9 +182,9 @@ namespace NLog.UnitTests.Common
             InternalLogger.LogToConsole = true;
 
             StringWriter consoleOutWriter1 = new StringWriter()
-                                        {
-                                            NewLine = "\n"
-                                        };
+            {
+                NewLine = "\n"
+            };
 
             // Redirect the console output to a StringWriter.
             Console.SetOut(consoleOutWriter1);
@@ -203,9 +203,9 @@ namespace NLog.UnitTests.Common
             // Redirect the console output to another StringWriter.
 
             StringWriter consoleOutWriter2 = new StringWriter()
-                                        {
-                                            NewLine = "\n"
-                                        };
+            {
+                NewLine = "\n"
+            };
             Console.SetOut(consoleOutWriter2);
 
             // Invoke Log(LogLevel, string) for every log level.
@@ -318,7 +318,7 @@ namespace NLog.UnitTests.Common
             };
 
             // Redirect the console output to a StringWriter.
-            Console.SetOut(consoleOutWriter);            
+            Console.SetOut(consoleOutWriter);
 
             // Named (based on LogLevel) public methods.
             InternalLogger.Warn("WWW");
@@ -336,6 +336,62 @@ namespace NLog.UnitTests.Common
                 Assert.Contains(expectedDateTime + ".", str);
             }
         }
+
+        /// <summary>
+        /// Test exception overloads
+        /// </summary>
+        [Fact]
+        public void ExceptionTests()
+        {
+            using (new InternalLoggerScope())
+            {
+
+
+                InternalLogger.LogLevel = LogLevel.Trace;
+                InternalLogger.LogToConsole = true;
+                InternalLogger.IncludeTimestamp = false;
+
+                var ex1 = new Exception("e1");
+                var ex2 = new Exception("e2", new Exception("inner"));
+                var ex3 = new NLogConfigurationException("config error");
+                var ex4 = new NLogConfigurationException("config error", ex2);
+                var ex5 = new PathTooLongException();
+                ex5.Data["key1"] = "value1";
+                Exception ex6 = null;
+
+                const string prefix = " Exception: ";
+                string expected =
+                    "Warn WWW" + prefix + ex1 + Environment.NewLine +
+                    "Error EEE" + prefix + ex2 + Environment.NewLine +
+                    "Fatal FFF" + prefix + ex3 + Environment.NewLine +
+                    "Trace TTT" + prefix + ex4 + Environment.NewLine +
+                    "Debug DDD" + prefix + ex5 + Environment.NewLine +
+                    "Info III" + Environment.NewLine;
+
+                StringWriter consoleOutWriter = new StringWriter()
+                {
+                    NewLine = Environment.NewLine
+                };
+
+                // Redirect the console output to a StringWriter.
+                Console.SetOut(consoleOutWriter);
+
+                // Named (based on LogLevel) public methods.
+
+                InternalLogger.Warn(ex1, "WWW");
+                InternalLogger.Error(ex2, "EEE");
+                InternalLogger.Fatal(ex3, "FFF");
+                InternalLogger.Trace(ex4, "TTT");
+                InternalLogger.Debug(ex5, "DDD");
+                InternalLogger.Info(ex6, "III");
+
+                consoleOutWriter.Flush();
+                var strings = consoleOutWriter.ToString();
+                Assert.Equal(expected, strings);
+            }
+
+        }
+
 
         [Fact]
         public void CreateDirectoriesIfNeededTests()
