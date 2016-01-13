@@ -10,6 +10,8 @@ before_test:
 after_test:
   - tests\DeleteTestUsers.cmd
 
+artifacts:
+  - path: '**\*.nupkg'
 deploy: off
 # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
 cache:
