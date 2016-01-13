@@ -5,6 +5,7 @@
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
 var outputDirectory = Argument<string>("outputDirectory", "./artifacts");
+var nugetDirectory = Argument<string>("nugetDirectory", "./nuget");
 var samplesDirectory = Argument<string>("samplesDirectory", "./samples");
 var dnxVersion = Argument<string>("dnxVersion", "1.0.0-rc1-update1");
 
@@ -15,6 +16,7 @@ var dnxVersion = Argument<string>("dnxVersion", "1.0.0-rc1-update1");
 // Define directories.
 var buildDir = Directory(outputDirectory);
 var samplesDir = Directory(samplesDirectory);
+var nugetDir = Directory(nugetDirectory);
 
 // Define runtime
 DNRuntime runtime = DNRuntime.Clr;
@@ -31,6 +33,7 @@ Task("Clean")
 {
     CleanDirectory(buildDir);
 	CleanDirectory(samplesDir);
+	CleanDirectory(nugetDir);
 });
 
 //////////////////////////////////////////////////////////////////////
@@ -59,10 +62,8 @@ Task("pack")
 		Architecture = DNArchitecture.X64,
         Runtime = runtime,
         Version = dnxVersion,
-	    Frameworks = frameworks,
 	    Configurations = new[] { configuration },
-	    OutputDirectory = buildDir,
-	    Quiet = false
+	    Quiet = true
 	};
 
 	DNUPack("./src/NLog/project.json", packSettings);
@@ -79,7 +80,8 @@ Task("uap10")
     {
         Architecture = DNArchitecture.X64,
         Runtime = runtime,
-        Version = dnxVersion
+        Version = dnxVersion,
+		Quiet = true
     };
 	DNURestore(restoreSettings);
 
@@ -92,7 +94,7 @@ Task("uap10")
 	    Frameworks = new [] { "uap10.0" },
 	    Configurations = new[] { configuration },
 	    OutputDirectory = buildDir,
-	    Quiet = false
+	    Quiet = true
 	};
         
     DNUBuild("./src/NLog", dnuBuildSettings);
@@ -119,7 +121,7 @@ Task("uap10")
         Version = dnxVersion	
     };
 	DNXRun("./tests/NLog.UnitTests/", "test", settings);
-
+	CopyFileToDirectory("./tests/NLog.UnitTests/testresults.xml", buildDir + Directory(configuration) + Directory("uap10.0"));
 });
    
 Task("sl5")
@@ -133,7 +135,8 @@ Task("sl5")
     {
         Architecture = DNArchitecture.X64,
         Runtime = runtime,
-        Version = dnxVersion
+        Version = dnxVersion,
+		Quiet = true
     };
 	DNURestore(restoreSettings);
 
@@ -146,7 +149,7 @@ Task("sl5")
 	    Frameworks = new [] { "sl5" },
 	    Configurations = new[] { configuration },
 	    OutputDirectory = buildDir,
-	    Quiet = false
+	    Quiet = true
 	};
         
     DNUBuild("./src/NLog", dnuBuildSettings);
@@ -173,7 +176,7 @@ Task("sl5")
         Version = dnxVersion	
     };
 	DNXRun("./tests/NLog.UnitTests/", "test", settings);
-
+	CopyFileToDirectory("./tests/NLog.UnitTests/testresults.xml", buildDir + Directory(configuration) + Directory("sl5"));
 });
 
 Task("net35")
@@ -187,7 +190,8 @@ Task("net35")
     {
         Architecture = DNArchitecture.X64,
         Runtime = runtime,
-        Version = dnxVersion
+        Version = dnxVersion,
+		Quiet = true
     };
 	DNURestore(restoreSettings);
 
@@ -200,7 +204,7 @@ Task("net35")
 	    Frameworks = new [] { "net35" },
 	    Configurations = new[] { configuration },
 	    OutputDirectory = buildDir,
-	    Quiet = false
+	    Quiet = true
 	};
         
     DNUBuild("./src/NLog", dnuBuildSettings);
@@ -227,7 +231,7 @@ Task("net35")
         Version = dnxVersion	
     };
 	DNXRun("./tests/NLog.UnitTests/", "test", settings);
-
+	CopyFileToDirectory("./tests/NLog.UnitTests/testresults.xml", buildDir + Directory(configuration) + Directory("net35"));
 });
 
 Task("Dnx451")
@@ -240,7 +244,8 @@ Task("Dnx451")
     {
         Architecture = DNArchitecture.X64,
         Runtime = runtime,
-        Version = dnxVersion
+        Version = dnxVersion,
+		Quiet = true
     };
 
 	// Build
@@ -276,7 +281,7 @@ Task("Dnx451")
         Version = dnxVersion
     };
 	DNXRun("./tests/NLog.UnitTests/", "test", settings);
-
+	CopyFileToDirectory("./tests/NLog.UnitTests/testresults.xml", buildDir + Directory(configuration) + Directory("dnx451"));
 });
 
 Task("Dnxcore50")
@@ -289,7 +294,8 @@ Task("Dnxcore50")
     {
         Architecture = DNArchitecture.X64,
         Runtime = DNRuntime.CoreClr,
-        Version = dnxVersion
+        Version = dnxVersion,
+		Quiet = true
     };
 	DNURestore("./src/NLog/project.json", restoreSettings);
 	
@@ -322,6 +328,7 @@ Task("Dnxcore50")
     };
 	DNXRun("./tests/NLog.UnitTests/", "test", settings);
 
+	CopyFileToDirectory("./tests/NLog.UnitTests/testresults.xml", buildDir + Directory(configuration) + Directory("dnxcore50"));
 });
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
