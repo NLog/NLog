@@ -40,14 +40,30 @@ Example of correct version numbers in NuGet Package explorer:
 Pull request management
 ===
 
+Reviewing
+---
 When reviewing a pull request, check the following:
 
 - Ensure the pull request has a good, descriptive name.
+- **Important:** Check for binary backwardscompatiblity. NB: new optional parameters are not binary compatible.
 - **Important:** set the Milestone.
 - Add the applicable Labels.  
   Eg.
-  - Type: `bug`, `enhancement`
+  - Part: `file-target`, `nlog-configuration` etc
+  - Type: `bug`, `enhancement`, `feature`, `performance`. And  `enhancement` is a change without functional impact. Small features are also labeled as `feature`.
   - Tests: `needs unittests`, `has unittests`
   - Status: `waiting for review`, `almost ready`, `ready for merge`
 - Set the Assignee. It must indicate who is currently holding the ball.   
   For example, if you intend to review, assign to yourself. If, after the review, some changes need to be made, assign it back to the PR author.
+
+
+Applying
+---
+Things to check before applying the PR.
+
+- Check if the comment of the PR has an `fixes ...` comment.
+- Check which documentation has to be done. Preferred to fix the documentation just before the merge of the PR>
+- Check for related issues and PR's
+- Double check binary backwardscompatiblity.
+- Add current milestone.
+
