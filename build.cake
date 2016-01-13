@@ -59,7 +59,7 @@ Task("pack")
 
 	DNUPackSettings packSettings = new DNUPackSettings()
 	{
-		Architecture = DNArchitecture.X64,
+		Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion,
 	    Configurations = new[] { configuration },
@@ -80,7 +80,7 @@ Task("uap10")
     // Restore
     DNURestoreSettings restoreSettings = new DNURestoreSettings()
     {
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion,
 		Quiet = true
@@ -90,7 +90,7 @@ Task("uap10")
 	// Build
 	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
 	{
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "uap10.0" },
@@ -105,7 +105,7 @@ Task("uap10")
 	
     dnuBuildSettings = new DNUBuildSettings
 	{
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "uap10.0" },
@@ -118,7 +118,7 @@ Task("uap10")
 	// Test
 	var settings = new DNXRunSettings
 	{ 
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion	
     };
@@ -135,7 +135,7 @@ Task("sl5")
     // Restore
     DNURestoreSettings restoreSettings = new DNURestoreSettings()
     {
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion,
 		Quiet = true
@@ -145,7 +145,7 @@ Task("sl5")
 	// Build
 	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
 	{
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "sl5" },
@@ -160,7 +160,7 @@ Task("sl5")
 	
     dnuBuildSettings = new DNUBuildSettings
 	{
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "sl5" },
@@ -173,7 +173,7 @@ Task("sl5")
 	// Test
 	var settings = new DNXRunSettings
 	{ 
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion	
     };
@@ -190,7 +190,7 @@ Task("net35")
     // Restore
     DNURestoreSettings restoreSettings = new DNURestoreSettings()
     {
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion,
 		Quiet = true
@@ -200,7 +200,7 @@ Task("net35")
 	// Build
 	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
 	{
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "net35" },
@@ -215,7 +215,7 @@ Task("net35")
 	
     dnuBuildSettings = new DNUBuildSettings
 	{
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "dnx451" },
@@ -228,7 +228,7 @@ Task("net35")
 	// Test
 	var settings = new DNXRunSettings
 	{ 
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion	
     };
@@ -244,7 +244,7 @@ Task("Dnx451")
 	
     DNURestoreSettings restoreSettings = new DNURestoreSettings()
     {
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion,
 		Quiet = true
@@ -253,7 +253,7 @@ Task("Dnx451")
 	// Build
 	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
 	{
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion,
 	    Frameworks = new [] { "dnx451" },
@@ -278,7 +278,7 @@ Task("Dnx451")
 	// Test
 	var settings = new DNXRunSettings
 	{	
-        Architecture = DNArchitecture.X64,
+        Architecture = DNArchitecture.X86,
         Runtime = runtime,
         Version = dnxVersion
     };
