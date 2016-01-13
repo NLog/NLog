@@ -67,6 +67,8 @@ Task("pack")
 	};
 
 	DNUPack("./src/NLog/project.json", packSettings);
+	
+	CopyFiles("./src/NLog/bin/" + configuration + "/*.nupkg", nugetDir);
 });
 
 Task("uap10")
