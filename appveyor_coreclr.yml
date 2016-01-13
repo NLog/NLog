@@ -1,8 +1,0 @@
-version: 1.0.{build}
-branches:
-  only:
-  - coreCLR
-build_script:
-  - build.cmd
-test: off
-deploy: off

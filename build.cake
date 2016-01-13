@@ -263,9 +263,9 @@ Task("Dnx451")
 	DNURestore("./src/NLogAutoLoadExtension/project.json", restoreSettings);
     DNUBuild("./src/NLogAutoLoadExtension", dnuBuildSettings);
 
-	DNURestore("./test/SampleExtensions/project.json", restoreSettings);
+	DNURestore("./tests/SampleExtensions/project.json", restoreSettings);
 	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
-	DNURestore("./test/NLog.UnitTests/project.json", restoreSettings);
+	DNURestore("./tests/NLog.UnitTests/project.json", restoreSettings);
 	DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
 
 	// Test
@@ -307,8 +307,8 @@ Task("Dnxcore50")
         
     DNUBuild("./src/NLog", dnuBuildSettings);
 	
-	DNURestore("./test/SampleExtensions/project.json", restoreSettings);
-	DNURestore("./test/NLog.UnitTests/project.json", restoreSettings);
+	DNURestore("./tests/SampleExtensions/project.json", restoreSettings);
+	DNURestore("./tests/NLog.UnitTests/project.json", restoreSettings);
 	
 	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
 	DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
