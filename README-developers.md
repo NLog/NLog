@@ -1,5 +1,26 @@
+Build Pipeline 
+===
+
+Requirements
+
+- Silverlight
+- Xamarin Studio license for Xamarin.iOs & Xamarin.Android
+- UWP (Univeral Windows platform)
+- .Net 3.5 / 4.5 (you have .Net 4 with the latest .Net 4.x release)
+
+Nuget packages and build are created in the following steps:
+
+
+1. Call MSbuild with correct version numbers.  See below
+2. Assemblies are patched by MSbuild
+3. Binaries are written to build\bin\debug \ build\bin\release
+4. NuGet packages are created from the binaries and src\NuGet\NLog\NLog.nuspec. Nuget packages are written to build\bin\release\NuGetPackages \ build\bin\debug\NuGetPackages
+
+
+
 NuGet package management
 ===
+
 
 ## Create NuGet packages
 
