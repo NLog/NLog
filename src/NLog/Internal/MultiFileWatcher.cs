@@ -57,8 +57,11 @@ namespace NLog.Internal
         /// Occurs when a change is detected in one of the monitored files.
         /// </summary>
         public event FileSystemEventHandler OnChange;
-        
-        public MultiFileWatcher(NotifyFilters notifyFilters = NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes)
+
+        public MultiFileWatcher() : 
+            this(NotifyFilters.LastWrite | NotifyFilters.CreationTime | NotifyFilters.Size | NotifyFilters.Security | NotifyFilters.Attributes) { }
+
+        public MultiFileWatcher(NotifyFilters notifyFilters)
         {
             NotifyFilters = notifyFilters;
         }
@@ -94,9 +97,10 @@ namespace NLog.Internal
         {
             lock (this)
             {
-                if (this.watcherMap.ContainsKey(fileName))
+                FileSystemWatcher watcher;
+                if (this.watcherMap.TryGetValue(fileName, out watcher))
                 {
-                    StopWatching(this.watcherMap[fileName]);
+                    StopWatching(watcher);
                     this.watcherMap.Remove(fileName);
                 }
             }

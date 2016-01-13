@@ -94,24 +94,7 @@ namespace NLog.Internal.FileAppenders
                 }
             }
         }
-#endif
 
-        /// <summary>
-        /// Gets the parameters which will be used for creating a file.
-        /// </summary>
-        public ICreateFileParameters CreateFileParameters { get; private set; }
-
-        /// <summary>
-        /// Gets the file appender factory used by all the appenders in this list.
-        /// </summary>
-        public IFileAppenderFactory Factory { get; private set; }
-
-        /// <summary>
-        /// Gets the number of appenders which the list can hold.
-        /// </summary>
-        public int Size { get; private set; }
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// If `true`, files will be watched for external file archiving and invalidated. 
         /// Call the <see cref="FileAppenderCache.InvalidateAppendersForInvalidFiles"/> method to "flush" the list
@@ -132,6 +115,21 @@ namespace NLog.Internal.FileAppenders
         }
 #endif
 
+        /// <summary>
+        /// Gets the parameters which will be used for creating a file.
+        /// </summary>
+        public ICreateFileParameters CreateFileParameters { get; private set; }
+
+        /// <summary>
+        /// Gets the file appender factory used by all the appenders in this list.
+        /// </summary>
+        public IFileAppenderFactory Factory { get; private set; }
+
+        /// <summary>
+        /// Gets the number of appenders which the list can hold.
+        /// </summary>
+        public int Size { get; private set; }
+        
         /// <summary>
         /// It allocates the first slot in the list when the file name does not already in the list and clean up any
         /// unused slots.
@@ -295,20 +293,20 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Invalidates appenders for all files that were archived.
         /// </summary>
         public void InvalidateAppendersForInvalidFiles()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             lock (invalidFiles)
             {
                 foreach (string nextFile in invalidFiles)
                     InvalidateAppender(nextFile);
                 invalidFiles.Clear();
             }
-#endif
         }
+#endif
 
         /// <summary>
         /// Closes the specified appender and removes it from the list. 
