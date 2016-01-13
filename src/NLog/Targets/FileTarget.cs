@@ -97,7 +97,7 @@ namespace NLog.Targets
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
 
         /// <summary>
-        /// Factory used to create the file appeanders in the <see cref="FileTarget"/> instance. 
+        /// Factory used to create the file appenders in the <see cref="FileTarget"/> instance. 
         /// </summary>
         /// <remarks>File appenders are stored in an instance of <see cref="FileAppenderCache"/>.</remarks>
         private IFileAppenderFactory appenderFactory;
@@ -427,7 +427,7 @@ namespace NLog.Targets
         public bool ArchiveOldFileOnStartup { get; set; }
 
         /// <summary>
-        /// Gets or sets a value specifying the date format to use when archving files.
+        /// Gets or sets a value specifying the date format to use when archiving files.
         /// </summary>
         /// <remarks>
         /// This option works only when the "ArchiveNumbering" parameter is set either to Date or DateAndSequence.
@@ -736,7 +736,7 @@ namespace NLog.Targets
 
             // Clean up old archives if this is the first time a log record is being written to
             // this log file and the archiving system is date/time based.
-            if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None)
+            if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None && ShouldDeleteOldArchives())
             {
                 if (!previousFileNames.Contains(fileName))
                 {
@@ -840,7 +840,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="pattern">File name which contains the numeric pattern.</param>
         /// <param name="value">Value which will replace the numeric pattern.</param>
-        /// <returns>File name with the value of <paramref name="value"/> in the position of the numberic pattern.</returns>
+        /// <returns>File name with the value of <paramref name="value"/> in the position of the numeric pattern.</returns>
         private static string ReplaceNumberPattern(string pattern, int value)
         {
             int firstPart = pattern.IndexOf("{#", StringComparison.Ordinal);
@@ -895,7 +895,7 @@ namespace NLog.Targets
         ///     trace{#X#}.log      Contains the numeric pattern (See remarks).
         ///     trace.log           Does not contain the pattern.
         /// </summary>
-        /// <remarks>Occationally, this method can identify the existance of the {#} pattern incorrectly.</remarks>
+        /// <remarks>Occasionally, this method can identify the existence of the {#} pattern incorrectly.</remarks>
         /// <param name="fileName">File name to be checked.</param>
         /// <returns><see langword="true"/> when the pattern is found; <see langword="false"/> otherwise.</returns>
         private static bool ContainsFileNamePattern(string fileName)
@@ -1164,7 +1164,10 @@ namespace NLog.Targets
         /// </remarks>
         private void EnsureArchiveCount(List<string> oldArchiveFileNames)
         {
-            if (this.MaxArchiveFiles <= 0) return;
+            if (!ShouldDeleteOldArchives())
+            {
+                return;
+            }
 
             int numberToDelete = oldArchiveFileNames.Count - this.MaxArchiveFiles;
             for (int fileIndex = 0; fileIndex < numberToDelete; fileIndex++)
@@ -1245,8 +1248,8 @@ namespace NLog.Targets
         /// Gets the collection of files in the specified directory which they match the <paramref name="fileNameMask"/>.
         /// </summary>
         /// <param name="directoryInfo">Directory to searched.</param>
-        /// <param name="fileNameMask">Pattern whihc the files will be searched against.</param>
-        /// <returns>Lisf of files matching the pattern.</returns>
+        /// <param name="fileNameMask">Pattern which the files will be searched against.</param>
+        /// <returns>List of files matching the pattern.</returns>
         private static IEnumerable<FileInfo> GetFiles(DirectoryInfo directoryInfo, string fileNameMask)
         {
 #if SILVERLIGHT && !WINDOWS_PHONE
@@ -1305,6 +1308,10 @@ namespace NLog.Targets
         /// <param name="pattern">The pattern that archive filenames will match</param>
         private void DeleteOldDateArchives(string pattern)
         {
+            if (!ShouldDeleteOldArchives())
+            {
+                return;
+            }
 
             string fileNameMask = ReplaceFileNamePattern(pattern, "*");
             string dirName = Path.GetDirectoryName(Path.GetFullPath(pattern));
@@ -1329,11 +1336,16 @@ namespace NLog.Targets
                 foreach (string nextFile in files)
                 {
                     string archiveFileName = Path.GetFileName(nextFile);
-                    string datePart = archiveFileName.Substring(fileNameMask.LastIndexOf('*'), dateFormat.Length);
-                    DateTime fileDate = DateTime.MinValue;
-                    if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
+                    int lastIndexOfStar = fileNameMask.LastIndexOf('*');
+          
+                    if (lastIndexOfStar + dateFormat.Length <= archiveFileName.Length)
                     {
-                        filesByDate.Add(nextFile);
+                        string datePart = archiveFileName.Substring(lastIndexOfStar, dateFormat.Length);
+                        DateTime fileDate = DateTime.MinValue;
+                        if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
+                        {
+                            filesByDate.Add(nextFile);
+                        }
                     }
                 }
 
@@ -1343,7 +1355,7 @@ namespace NLog.Targets
 #endif
 
         /// <summary>
-        /// Gets the correct formating <see langword="String"/> to be used based on the value of <see
+        /// Gets the correct formatting <see langword="String"/> to be used based on the value of <see
         /// cref="P:ArchiveEvery"/> for converting <see langword="DateTime"/> values which will be inserting into file
         /// names during archiving.
         /// 
@@ -1480,6 +1492,15 @@ namespace NLog.Targets
                 archiveFileName = CleanupInvalidFileNameChars(archiveFileName);
                 return Path.GetFullPath(archiveFileName);
             }
+        }
+      
+        /// <summary>
+        /// Determine if old archive files should be deleted.
+        /// </summary>
+        /// <returns><see langword="true"/> when old archives should be deleted; <see langword="false"/> otherwise.</returns>
+        private bool ShouldDeleteOldArchives()
+        {
+            return MaxArchiveFiles > 0;
         }
 
         /// <summary>
