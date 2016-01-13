@@ -31,16 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !UWP10 || DNX
 
 namespace NLog.LayoutRenderers
 {
     using System;
     using System.IO;
     using System.Text;
-    using Internal.Fakeables;
     using NLog.Config;
 
+#if DNX
+    using Microsoft.Extensions.PlatformAbstractions;
+#else
+    using Internal.Fakeables;
+#endif
     /// <summary>
     /// The current application domain's base directory.
     /// </summary>
@@ -50,6 +54,30 @@ namespace NLog.LayoutRenderers
     {
         private string baseDir;
 
+#if DNX
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer"/> class
+        /// </summary>
+        public BaseDirLayoutRenderer()
+        {
+            var appEnv = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default?.Application;
+            if (appEnv != null)
+                this.baseDir = appEnv.ApplicationBasePath;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer"/> class
+        /// </summary>
+        /// <param name="appEnv">The <see cref="IApplicationEnvironment"/> instance to be used</param>
+        public BaseDirLayoutRenderer(IApplicationEnvironment appEnv)
+        {
+            if (appEnv == null)
+                throw new ArgumentNullException(nameof(appEnv));
+
+            this.baseDir = appEnv.ApplicationBasePath;
+        }
+#else
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
@@ -64,7 +92,7 @@ namespace NLog.LayoutRenderers
         {
             this.baseDir = appDomain.BaseDirectory;
         }
-
+#endif
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with with the base directory.
         /// </summary>

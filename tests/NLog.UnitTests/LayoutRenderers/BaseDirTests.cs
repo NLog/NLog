@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !UWP10 || DNX
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -41,7 +41,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class BaseDirTests : NLogTestBase
     {
+#if DNX
+        private string baseDir = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationBasePath;
+#else
         private string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+#endif
 
         [Fact]
         public void BaseDirTest()
