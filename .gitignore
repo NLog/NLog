@@ -37,3 +37,6 @@ src/NLog/project.lock.json*.vshost.*
 **/project.lock.json
 artifacts/
 buildcake.sh
+nuget/
+artifacts/
+samples/
