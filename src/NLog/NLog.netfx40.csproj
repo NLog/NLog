@@ -63,6 +63,11 @@
     <Compile Include="Common\AsynchronousAction.cs" />
     <Compile Include="Common\AsyncLogEventInfo.cs" />
     <Compile Include="Common\InternalLogger.cs" />
+    <Compile Include="Common\InternalLogger-generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InternalLogger.tt</DependentUpon>
+    </Compile>
     <Compile Include="Common\LogEventInfoBuffer.cs" />
     <Compile Include="Conditions\ConditionAndExpression.cs" />
     <Compile Include="Conditions\ConditionEvaluationException.cs" />
@@ -417,6 +422,10 @@
     <None Include="Logger.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Logger1.cs</LastGenOutput>
+    </None>
+    <None Include="Common\InternalLogger.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>InternalLogger-generated.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

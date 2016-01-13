@@ -162,7 +162,7 @@
     <TargetFramework Include="Xamarin.iOS" Condition="'$(BuildXamarinIOS)'=='true'">
       <ProjectFileSuffix>.Xamarin.iOs</ProjectFileSuffix>
       <ToolsVersion>4.0</ToolsVersion>
-      <NuGetDir>MonoTouch10</NuGetDir>
+      <NuGetDir>Xamarin.iOS10</NuGetDir>
     </TargetFramework>
   </ItemGroup>
 
