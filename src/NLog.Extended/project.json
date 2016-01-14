@@ -23,6 +23,9 @@
       }
     },
     ".NETFramework,Version=v3.5": {
+      "frameworkAssemblies": {
+        "System.Messaging": ""
+      },
       "compilationOptions": {
         "define": [ "NET3_5", "WCF_SUPPORTED" ]
       }
