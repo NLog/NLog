@@ -1,4 +1,4 @@
 language: csharp
 install:
 script:
-  - build.sh --configuration Debug 
+  - ./build.sh --configuration Debug 
