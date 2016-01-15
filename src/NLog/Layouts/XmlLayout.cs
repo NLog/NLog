@@ -64,7 +64,7 @@ namespace NLog.Layouts
         /// Gets the custom properties for the log event.
         /// </summary>
         [ArrayParameter(typeof (XmlProperty), "property")]
-        public IList<XmlProperty> Properties { get; }
+        public IList<XmlProperty> Properties { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to indent the XML elements.
