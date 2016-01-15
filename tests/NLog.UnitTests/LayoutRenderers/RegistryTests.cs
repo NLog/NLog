@@ -313,7 +313,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 LogManager.ThrowExceptions = true;
 
-                Assert.Throws<NLogConfigurationException>(
+                Assert.Throws<ArgumentException>(
                     () => { AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}", ""); });
 
             }

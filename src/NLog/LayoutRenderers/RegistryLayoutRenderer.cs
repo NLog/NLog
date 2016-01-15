@@ -250,7 +250,8 @@ namespace NLog.LayoutRenderers
                 return hive;
             }
 
-            throw new NLogConfigurationException(string.Format("Key name is not supported. Root hive '{0}' not recognized.", hiveName));
+            //ArgumentException is consistent
+            throw new ArgumentException(string.Format("Key name is not supported. Root hive '{0}' not recognized.", hiveName));
         }
 
 #if NET3_5
