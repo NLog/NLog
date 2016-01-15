@@ -173,7 +173,7 @@ namespace NLog.Internal
             writer.WriteEndElement(); // InnerError
         }
 
-        private void WriteProperties(XmlWriter writer, IDictionary<object, object> properties)
+        private static void WriteProperties(XmlWriter writer, IDictionary<object, object> properties)
         {
             foreach (var property in properties)
             {
@@ -183,7 +183,7 @@ namespace NLog.Internal
             }
         }
 
-        private void WriteProperty(XmlWriter writer, KeyValuePair<object, object> property)
+        private static void WriteProperty(XmlWriter writer, KeyValuePair<object, object> property)
         {
             var name = Convert.ToString(property.Key, CultureInfo.InvariantCulture);
             var value = Convert.ToString(property.Value, CultureInfo.InvariantCulture);
