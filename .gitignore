@@ -40,3 +40,6 @@ buildcake.sh
 nuget/
 artifacts/
 samples/
+build.ps1
+tools/packages.config
+tests/NLog.UnitTests/testresults.xml
