@@ -39,7 +39,6 @@ using System.Text;
 using System.Xml;
 using NLog.Config;
 using NLog.Internal;
-using NLog.LayoutRenderers;
 
 namespace NLog.Layouts
 {
@@ -49,16 +48,15 @@ namespace NLog.Layouts
     [Layout("XmlLayout")]
     public class XmlLayout : Layout
     {
-        private readonly IList<XmlProperty> _properties;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLayout"/> class.
         /// </summary>
         public XmlLayout()
         {
-            _properties = new List<XmlProperty>();
+            Properties = new List<XmlProperty>();
             Indent = true;
             OmitXmlDeclaration = true;
+            Encoding = Encoding.UTF8;
         }
 
 
@@ -66,11 +64,7 @@ namespace NLog.Layouts
         /// Gets the custom properties for the log event.
         /// </summary>
         [ArrayParameter(typeof (XmlProperty), "property")]
-        public IList<XmlProperty> Properties
-        {
-            get { return _properties; }
-        }
-
+        public IList<XmlProperty> Properties { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to indent the XML elements.
@@ -89,6 +83,12 @@ namespace NLog.Layouts
         /// </value>
         [DefaultValue(true)]
         public bool OmitXmlDeclaration { get; set; }
+
+        /// <summary>
+        /// The encoding used.
+        /// </summary>
+        [DefaultValue("utf8")]
+        public Encoding Encoding { get; set; }
 
         /// <summary>
         /// Renders the layout for the specified logging event by invoking layout renderers.
@@ -113,7 +113,7 @@ namespace NLog.Layouts
             var settings = new XmlWriterSettings
             {
                 Indent = Indent,
-                Encoding = Encoding.UTF8,
+                Encoding = Encoding,
                 OmitXmlDeclaration = OmitXmlDeclaration
             };
 
@@ -121,5 +121,7 @@ namespace NLog.Layouts
 
             return builder.ToString();
         }
+
+    
     }
 }
