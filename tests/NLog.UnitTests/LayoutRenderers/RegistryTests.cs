@@ -277,7 +277,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void Registy_nosubky()
         {
             //example: 0003: NLog.UnitTests
-            AssertLayoutRendererOutput("${registry:key=HKCU}", "0");
+            AssertLayoutRendererOutput("${registry:key=HKEY_CURRENT_CONFIG}", "");
         }
 
         [Fact]
