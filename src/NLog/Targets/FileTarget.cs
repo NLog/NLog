@@ -93,7 +93,7 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks>Last write time is store in local time (no UTC).</remarks>
         private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
-
+        
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace NLog.Targets
         /// <summary>
         /// List of the associated file appenders with the <see cref="FileTarget"/> instance.
         /// </summary>
-        private FileAppenderCache recentAppenders;
+        private FileAppenderCache fileAppenderCache;
 
         private Timer autoClosingTimer;
 
@@ -147,6 +147,9 @@ namespace NLog.Targets
         /// </summary>
         private DateTime? previousLogEventTimestamp;
 
+        private bool concurrentWrites;
+        private bool keepFileOpen;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
@@ -183,7 +186,7 @@ namespace NLog.Targets
 
             this.maxLogFilenames = 20;
             this.previousFileNames = new Queue<string>(this.maxLogFilenames);
-            this.recentAppenders = FileAppenderCache.Empty;
+            this.fileAppenderCache = FileAppenderCache.Empty;
             this.CleanupFileName = true;
         }
 
@@ -270,7 +273,15 @@ namespace NLog.Targets
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(false)]
-        public bool KeepFileOpen { get; set; }
+        public bool KeepFileOpen
+        {
+            get { return keepFileOpen; }
+            set
+            {
+                keepFileOpen = value;
+                RefreshWatchExternalFileArchiving();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the maximum number of log filenames that should be stored as existing.
@@ -372,7 +383,15 @@ namespace NLog.Targets
         /// </remarks>
         /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(true)]
-        public bool ConcurrentWrites { get; set; }
+        public bool ConcurrentWrites
+        {
+            get { return concurrentWrites; }
+            set
+            {
+                concurrentWrites = value;
+                RefreshWatchExternalFileArchiving();
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether concurrent writes to the log file by multiple processes on different network hosts.
@@ -561,6 +580,19 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Refresh the `WatchExternalFileArchiving` option of the <see cref="FileAppenderCache" />. 
+        /// The log file must be watched for archiving when multiple processes are writing to the same 
+        /// open file.
+        /// </summary>
+        private void RefreshWatchExternalFileArchiving()
+        {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            if (this.fileAppenderCache != null)
+                this.fileAppenderCache.WatchExternalFileArchiving = ConcurrentWrites && KeepFileOpen;
+#endif
+        }
+
+        /// <summary>
         /// Removes records of initialized files that have not been 
         /// accessed in the last two days.
         /// </summary>
@@ -612,7 +644,7 @@ namespace NLog.Targets
         {
             try
             {
-                recentAppenders.FlushAppenders();
+                fileAppenderCache.FlushAppenders();
                 asyncContinuation(null);
             }
             catch (Exception exception)
@@ -683,7 +715,7 @@ namespace NLog.Targets
             base.InitializeTarget();
             this.appenderFactory = GetFileAppenderFactory();
 
-            this.recentAppenders = new FileAppenderCache(this.OpenFileCacheSize, this.appenderFactory, this);
+            this.fileAppenderCache = new FileAppenderCache(this.OpenFileCacheSize, this.appenderFactory, this);
 
             if ((this.OpenFileCacheSize > 0 || this.EnableFileDelete) && this.OpenFileCacheTimeout > 0)
             {
@@ -714,7 +746,7 @@ namespace NLog.Targets
                 this.autoClosingTimer = null;
             }
 
-            this.recentAppenders.CloseAppenders();
+            this.fileAppenderCache.CloseAppenders();
         }
 
         /// <summary>
@@ -726,11 +758,15 @@ namespace NLog.Targets
         {
             var fileName = Path.GetFullPath(GetCleanedFileName(logEvent));
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+#endif
+
             byte[] bytes = this.GetBytesToWrite(logEvent);
 
             if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
             {
-                this.recentAppenders.InvalidateAppender(fileName);
+                this.fileAppenderCache.InvalidateAppender(fileName);
                 this.DoAutoArchive(fileName, logEvent);
             }
 
@@ -861,7 +897,6 @@ namespace NLog.Targets
                     if (this.ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
                     {
                         this.WriteFooterAndUninitialize(currentFileName);
-                        this.recentAppenders.InvalidateAppender(currentFileName);
                         this.DoAutoArchive(currentFileName, firstLogEvent);
                     }
 
@@ -1592,7 +1627,7 @@ namespace NLog.Targets
                 try
                 {
                     DateTime expireTime = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
-                    this.recentAppenders.CloseAppenders(expireTime);
+                    this.fileAppenderCache.CloseAppenders(expireTime);
                 }
                 catch (Exception exception)
                 {
@@ -1641,7 +1676,7 @@ namespace NLog.Targets
             }
 
             bool writeHeader = InitializeFile(fileName, logEvent, justData);
-            BaseFileAppender appender = this.recentAppenders.AllocateAppender(fileName);
+            BaseFileAppender appender = this.fileAppenderCache.AllocateAppender(fileName);
 
             if (writeHeader)
             {
@@ -1675,7 +1710,7 @@ namespace NLog.Targets
                 if (!this.initializedFiles.ContainsKey(fileName))
                 {
                     ProcessOnStartup(fileName, logEvent);
-
+                    
                     this.initializedFiles[fileName] = now;
                     this.initializedFilesCounter++;
                     writeHeader = true;
@@ -1708,6 +1743,7 @@ namespace NLog.Targets
                 }
             }
 
+            this.fileAppenderCache.InvalidateAppender(fileName);
             this.initializedFiles.Remove(fileName);
         }
 
@@ -1807,7 +1843,7 @@ namespace NLog.Targets
         /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
         private FileCharacteristics GetFileCharacteristics(string filePath)
         {
-            var fileCharacteristics = this.recentAppenders.GetFileCharacteristics(filePath);
+            var fileCharacteristics = this.fileAppenderCache.GetFileCharacteristics(filePath);
             if (fileCharacteristics != null)
                 return fileCharacteristics;
 
