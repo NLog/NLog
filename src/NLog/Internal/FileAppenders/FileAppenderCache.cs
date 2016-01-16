@@ -113,6 +113,19 @@ namespace NLog.Internal.FileAppenders
                 }
             }
         }
+
+        /// <summary>
+        /// Invalidates appenders for all files that were archived.
+        /// </summary>
+        public void InvalidateAppendersForInvalidFiles()
+        {
+            lock (invalidFiles)
+            {
+                foreach (string nextFile in invalidFiles)
+                    InvalidateAppender(nextFile);
+                invalidFiles.Clear();
+            }
+        }
 #endif
 
         /// <summary>
@@ -292,21 +305,6 @@ namespace NLog.Internal.FileAppenders
 
             return null;
         }
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        /// <summary>
-        /// Invalidates appenders for all files that were archived.
-        /// </summary>
-        public void InvalidateAppendersForInvalidFiles()
-        {
-            lock (invalidFiles)
-            {
-                foreach (string nextFile in invalidFiles)
-                    InvalidateAppender(nextFile);
-                invalidFiles.Clear();
-            }
-        }
-#endif
 
         /// <summary>
         /// Closes the specified appender and removes it from the list. 
