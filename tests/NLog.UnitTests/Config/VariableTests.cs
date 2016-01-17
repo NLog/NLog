@@ -39,7 +39,6 @@ namespace NLog.UnitTests.Config
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
-    using Xunit.Extensions;
 
     public class VariableTests : NLogTestBase
     {
