@@ -39,6 +39,7 @@ namespace NLog.UnitTests.Config
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
+    using Xunit.Extensions;
 
     public class VariableTests : NLogTestBase
     {
@@ -94,7 +95,7 @@ namespace NLog.UnitTests.Config
         }
 #endif
 
-      
+
 
         [Fact]
         public void Xml_configuration_returns_defined_variables()
@@ -115,20 +116,29 @@ namespace NLog.UnitTests.Config
             Assert.Equal("]]", LogManager.Configuration.Variables["suffix"].OriginalText);
         }
 
-        [Fact]
-        public void NLogConfigurationExceptionShouldThrown_WhenVariableNodeIsWrittenToWrongPlace()
-        {
-            NLogConfigurationException nlogConfEx = Assert.Throws<NLogConfigurationException>(
-                () => CreateConfigurationFromString(
-                    @"<nlog>  
+        [Theory]
+        [InlineData(@"<nlog>  
 	                        <targets>
-			                    <variable name='messageLayout' value='${longdate:universalTime=True}Z | ${message}'/>
-                    			<target name='d1' type='Debug' layout='${messageLayout}' />
+			                    <variable name='variableOne' value='${longdate:universalTime=True}Z | ${message}'/>
+                    			<target name='d1' type='Debug' layout='${variableOne}' />
 	                        </targets>
                             <rules>
 			                    <logger name='*' minlevel='Debug' writeTo='d1'/>
                             </rules>
-                    </nlog>")
+                    </nlog>")]
+        [InlineData(@"<nlog>  
+	                        <targets>
+			                    <target name='d1' type='Debug' layout='${variableOne}' />
+	                        </targets>
+                            <variable name='variableOne' value='${longdate:universalTime=True}Z | ${message}'/>	
+                            <rules>
+			                    <logger name='*' minlevel='Debug' writeTo='d1'/>
+                            </rules>
+                    </nlog>")]
+        public void NLogConfigurationExceptionShouldThrown_WhenVariableNodeIsWrittenToWrongPlace(string configurationString)
+        {
+            NLogConfigurationException nlogConfEx = Assert.Throws<NLogConfigurationException>(
+                () => CreateConfigurationFromString(configurationString)
                 );
         }
     }
