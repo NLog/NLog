@@ -177,7 +177,7 @@ namespace NLog.Targets
         /// <returns></returns>
         private string MatchEvaluator(Match m)
         {
-            StringBuilder result = new StringBuilder();
+            StringBuilder result = new StringBuilder(m.Value.Length + 5);
 
             result.Append('\a');
             result.Append((char)((int)this.ForegroundColor + 'A'));
