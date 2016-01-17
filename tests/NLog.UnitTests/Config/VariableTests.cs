@@ -116,8 +116,11 @@ namespace NLog.UnitTests.Config
             Assert.Equal("]]", LogManager.Configuration.Variables["suffix"].OriginalText);
         }
 
-        [Theory]
-        [InlineData(@"<nlog>  
+        [Fact]
+        public void NLogConfigurationExceptionShouldThrown_WhenVariableNodeIsWrittenToWrongPlace()
+        {
+            const string configurationString_VariableNodeIsInnerTargets =
+                    @"<nlog>  
 	                        <targets>
 			                    <variable name='variableOne' value='${longdate:universalTime=True}Z | ${message}'/>
                     			<target name='d1' type='Debug' layout='${variableOne}' />
@@ -125,8 +128,11 @@ namespace NLog.UnitTests.Config
                             <rules>
 			                    <logger name='*' minlevel='Debug' writeTo='d1'/>
                             </rules>
-                    </nlog>")]
-        [InlineData(@"<nlog>  
+                    </nlog>";
+
+
+            const string configurationString_VariableNodeIsAfterTargets =
+                    @"<nlog>  
 	                        <targets>
 			                    <target name='d1' type='Debug' layout='${variableOne}' />
 	                        </targets>
@@ -134,11 +140,14 @@ namespace NLog.UnitTests.Config
                             <rules>
 			                    <logger name='*' minlevel='Debug' writeTo='d1'/>
                             </rules>
-                    </nlog>")]
-        public void NLogConfigurationExceptionShouldThrown_WhenVariableNodeIsWrittenToWrongPlace(string configurationString)
-        {
-            NLogConfigurationException nlogConfEx = Assert.Throws<NLogConfigurationException>(
-                () => CreateConfigurationFromString(configurationString)
+                    </nlog>";
+
+            NLogConfigurationException nlogConfEx_ForInnerTargets = Assert.Throws<NLogConfigurationException>(
+                () => CreateConfigurationFromString(configurationString_VariableNodeIsInnerTargets)
+                );
+
+            NLogConfigurationException nlogConfExForAfterTargets = Assert.Throws<NLogConfigurationException>(
+                () => CreateConfigurationFromString(configurationString_VariableNodeIsAfterTargets)
                 );
         }
     }
