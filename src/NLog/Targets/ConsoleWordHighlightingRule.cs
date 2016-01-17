@@ -35,6 +35,7 @@
 
 namespace NLog.Targets
 {
+    using System;
     using System.ComponentModel;
     using System.Text;
     using System.Text.RegularExpressions;
@@ -77,6 +78,12 @@ namespace NLog.Targets
         public string Regex { get; set; }
 
         /// <summary>
+        /// Compile the <see cref="Regex"/>? This can improve the performance, but at the costs of more memory usage. If <c>false</c>, the Regex Cache is used.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool CompileRegex { get; set; }
+
+        /// <summary>
         /// Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
         /// </summary>
         /// <docgen category='Rule Matching Options' order='10' />
@@ -111,31 +118,18 @@ namespace NLog.Targets
         public ConsoleOutputColor BackgroundColor { get; set; }
 
         /// <summary>
-        /// Gets the compiled regular expression that matches either Text or Regex property.
+        /// Gets the compiled regular expression that matches either Text or Regex property. Only used when <see cref="CompileRegex"/> is <c>true</c>.
         /// </summary>
+        /// <remarks>Access this property will compile the Regex.</remarks>
         public Regex CompiledRegex
         {
             get
             {
+                //compile regex on first usage.
                 if (this.compiledRegex == null)
                 {
-                    string regexpression = this.Regex;
-
-                    if (regexpression == null && this.Text != null)
-                    {
-                        regexpression = System.Text.RegularExpressions.Regex.Escape(this.Text);
-                        if (this.WholeWords)
-                        {
-                            regexpression = "\\b" + regexpression + "\\b";
-                        }
-                    }
-
-                    RegexOptions regexOptions = RegexOptions.Compiled;
-                    if (this.IgnoreCase)
-                    {
-                        regexOptions |= RegexOptions.IgnoreCase;
-                    }
-
+                    var regexpression = GetRegexExpression();
+                    var regexOptions = GetRegexOptions(RegexOptions.Compiled);
                     this.compiledRegex = new Regex(regexpression, regexOptions);
                 }
 
@@ -143,6 +137,44 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Get regex options. 
+        /// </summary>
+        /// <param name="regexOptions">Default option to start with.</param>
+        /// <returns></returns>
+        private RegexOptions GetRegexOptions(RegexOptions regexOptions)
+        {
+            if (this.IgnoreCase)
+            {
+                regexOptions |= RegexOptions.IgnoreCase;
+            }
+            return regexOptions;
+        }
+
+        /// <summary>
+        /// Get Expression for a <see cref="Regex"/>.
+        /// </summary>
+        /// <returns></returns>
+        private string GetRegexExpression()
+        {
+            string regexpression = this.Regex;
+
+            if (regexpression == null && this.Text != null)
+            {
+                regexpression = System.Text.RegularExpressions.Regex.Escape(this.Text);
+                if (this.WholeWords)
+                {
+                    regexpression = "\\b" + regexpression + "\\b";
+                }
+            }
+            return regexpression;
+        }
+
+        /// <summary>
+        /// Replace regex result
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
         private string MatchEvaluator(Match m)
         {
             StringBuilder result = new StringBuilder();
@@ -157,9 +189,22 @@ namespace NLog.Targets
             return result.ToString();
         }
 
+
         internal string ReplaceWithEscapeSequences(string message)
         {
-            return this.CompiledRegex.Replace(message, new MatchEvaluator(this.MatchEvaluator));
+            if (CompileRegex)
+            {
+                return this.CompiledRegex.Replace(message, this.MatchEvaluator);
+            }
+            //use regex cache
+            var expression = GetRegexExpression();
+            if (expression != null)
+            {
+                RegexOptions regexOptions = GetRegexOptions(RegexOptions.None);
+                //the static methods of Regex will cache the regex
+                return System.Text.RegularExpressions.Regex.Replace(message, expression, this.MatchEvaluator, regexOptions);
+            }
+            return message;
         }
     }
 }
