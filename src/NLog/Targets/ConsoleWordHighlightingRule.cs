@@ -129,6 +129,12 @@ namespace NLog.Targets
                 if (this.compiledRegex == null)
                 {
                     var regexpression = GetRegexExpression();
+                    if (regexpression == null)
+                    {
+                        //we can't build an empty regex
+                        return null;
+                    }
+
                     var regexOptions = GetRegexOptions(RegexOptions.Compiled);
                     this.compiledRegex = new Regex(regexpression, regexOptions);
                 }
