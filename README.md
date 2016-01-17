@@ -100,7 +100,7 @@ Frequently Asked Questions (FAQ)
   If you upgrade, remove or alter the `<assemblybinding>`, as explained at the [4.1.1 news post](http://nlog-project.org/2015/09/12/nlog-4-1-1-has-been-released.html).    
   
 * **Should I use Common Logging?**
-   - That's up to you. I has it pros and cons. The greatest advantage is that you can easily switch between logging implementations (NLog, Log4Net, EntLib). This can be very important if you’re writing a library yourself, then the user who's using your library can choose which implementation to use.
+   - That's up to you. It has it pros and cons. The greatest advantage is that you can easily switch between logging implementations (NLog, Log4Net, EntLib). This can be very important if you’re writing a library yourself, then the user who's using your library can choose which implementation to use.
 
   - There are some downsides: 
 
