@@ -114,5 +114,22 @@ namespace NLog.UnitTests.Config
             Assert.Equal("[[", LogManager.Configuration.Variables["prefix"].OriginalText);
             Assert.Equal("]]", LogManager.Configuration.Variables["suffix"].OriginalText);
         }
+
+        [Fact]
+        public void NLogConfigurationExceptionShouldThrown_WhenVariableNodeIsWrittenToWrongPlace()
+        {
+            NLogConfigurationException nlogConfEx = Assert.Throws<NLogConfigurationException>(
+                () => CreateConfigurationFromString(
+                    @"<nlog>  
+	                        <targets>
+			                    <variable name='messageLayout' value='${longdate:universalTime=True}Z | ${message}'/>
+                    			<target name='d1' type='Debug' layout='${messageLayout}' />
+	                        </targets>
+                            <rules>
+			                    <logger name='*' minlevel='Debug' writeTo='d1'/>
+                            </rules>
+                    </nlog>")
+                );
+        }
     }
 }
