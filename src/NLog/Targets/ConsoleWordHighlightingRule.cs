@@ -200,7 +200,14 @@ namespace NLog.Targets
         {
             if (CompileRegex)
             {
-                return this.CompiledRegex.Replace(message, this.MatchEvaluator);
+                var regex = this.CompiledRegex;
+                if (regex == null)
+                {
+                    //empty regex so nothing todo
+                    return message;
+                }
+
+                return regex.Replace(message, this.MatchEvaluator);
             }
             //use regex cache
             var expression = GetRegexExpression();
