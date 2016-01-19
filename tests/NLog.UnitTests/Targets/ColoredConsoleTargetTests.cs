@@ -121,6 +121,46 @@ namespace NLog.UnitTests.Targets
                 new string[] { "The ", "cat", " ", "sat", " at the bar." });
         }
 
+        /// <summary>
+        /// With or wihout CompileRegex, CompileRegex is never null, even if not used when CompileRegex=false. (needed for backwardscomp)
+        /// </summary>
+        /// <param name="compileRegex"></param>
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void CompiledRegexPropertyNotNull(bool compileRegex)
+        {
+            var rule = new ConsoleWordHighlightingRule
+            {
+                ForegroundColor = ConsoleOutputColor.Red,
+                Regex = "\\wat",
+                CompileRegex = compileRegex
+            };
+
+            Assert.NotNull(rule.CompiledRegex);
+        }
+
+
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void DonRemoveIfRegexIsEmpty(bool compileRegex)
+        {
+            var target = new ColoredConsoleTarget { Layout = "${logger} ${message}" };
+            target.WordHighlightingRules.Add(
+                new ConsoleWordHighlightingRule
+                {
+                    ForegroundColor = ConsoleOutputColor.Red,
+                    Text = null,
+                    IgnoreCase = true,
+                    CompileRegex = compileRegex
+                });
+
+            AssertOutput(target, "The Cat Sat At The Bar.",
+                new string[] { "The Cat Sat At The Bar." });
+        }
+
 
         private static void AssertOutput(Target target, string message, string[] expectedParts)
         {
