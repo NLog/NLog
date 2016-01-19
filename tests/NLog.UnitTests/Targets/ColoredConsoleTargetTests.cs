@@ -59,8 +59,8 @@ namespace NLog.UnitTests.Targets
                     CompileRegex = compileRegex
 
                 });
-            
-            AssertOutput(target, "The Cat Sat At The Bar.", 
+
+            AssertOutput(target, "The Cat Sat At The Bar.",
                 new string[] { "The C", "at", " S", "at", " At The Bar." });
         }
 
@@ -195,7 +195,7 @@ namespace NLog.UnitTests.Targets
                 Values = new List<string>();
             }
 
-            public List<string> Values { get; private set; } 
+            public List<string> Values { get; private set; }
 
             public override void Write(string value)
             {
