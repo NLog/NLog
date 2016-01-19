@@ -26,6 +26,53 @@ if(IsRunningOnUnix())
 }
 
 //////////////////////////////////////////////////////////////////////
+// Build method
+//////////////////////////////////////////////////////////////////////
+
+Action<string, string, DNRuntime, DNArchitecture, string[], string> buildAndTest = (string target, string dnxVersion, DNRuntime runtime, DNArchitecture architecture, string[] buildTargets, string testTarget) =>
+{
+	foreach(var buildTarget in buildTargets)
+	{
+		// Restore
+		DNURestoreSettings restoreSettings = new DNURestoreSettings()
+		{
+			Architecture = architecture,
+			Runtime = runtime,
+			Version = dnxVersion,
+			Quiet = true
+		};
+		DNURestore(buildTarget + "/project.json", restoreSettings);
+	
+		// Build
+		DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
+		{
+			Architecture = architecture,
+			Runtime = runtime,
+			Version = dnxVersion,
+			Frameworks = new [] { target },
+			Configurations = new[] { configuration },
+			OutputDirectory = buildDir,
+			Quiet = true
+		};
+        
+		DNUBuild(buildTarget, dnuBuildSettings);
+	}
+	
+	
+	// Test
+	var settings = new DNXRunSettings
+	{	
+        Architecture = architecture,
+        Runtime = runtime,
+        Version = dnxVersion
+    };
+	DNXRun(testTarget, "test", settings);
+
+	CopyFileToDirectory("./tests/NLog.UnitTests/testresults.xml", buildDir + Directory(configuration) + Directory(target));
+};
+
+
+//////////////////////////////////////////////////////////////////////
 // TASKS
 //////////////////////////////////////////////////////////////////////
 Task("Clean")
@@ -77,53 +124,10 @@ Task("uap10")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
-    // Restore
-    DNURestoreSettings restoreSettings = new DNURestoreSettings()
-    {
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion,
-		Quiet = true
-    };
-	DNURestore(restoreSettings);
-
-	// Build
-	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
-	{
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion,
-	    Frameworks = new [] { "uap10.0" },
-	    Configurations = new[] { configuration },
-	    OutputDirectory = buildDir,
-	    Quiet = true
-	};
-        
-    DNUBuild("./src/NLog", dnuBuildSettings);
-    DNUBuild("./src/NLogAutoLoadExtension", dnuBuildSettings);
-	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
-	
-    dnuBuildSettings = new DNUBuildSettings
-	{
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion,
-	    Frameworks = new [] { "uap10.0" },
-	    Configurations = new[] { configuration },
-	    OutputDirectory = buildDir,
-	    Quiet = true
-	};
-    DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
-
-	// Test
-	var settings = new DNXRunSettings
-	{ 
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion	
-    };
-	DNXRun("./tests/NLog.UnitTests/", "test", settings);
-	CopyFileToDirectory("./tests/NLog.UnitTests/testresults.xml", buildDir + Directory(configuration) + Directory("uap10.0"));
+	buildAndTest("uap10.0", dnxVersion, 
+					runtime, DNArchitecture.X86,
+					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
+					"./tests/NLog.UnitTests");
 });
    
 Task("sl5")
@@ -132,108 +136,34 @@ Task("sl5")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
-    // Restore
-    DNURestoreSettings restoreSettings = new DNURestoreSettings()
-    {
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion,
-		Quiet = true
-    };
-	DNURestore(restoreSettings);
-
-	// Build
-	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
-	{
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion,
-	    Frameworks = new [] { "sl5" },
-	    Configurations = new[] { configuration },
-	    OutputDirectory = buildDir,
-	    Quiet = true
-	};
-        
-    DNUBuild("./src/NLog", dnuBuildSettings);
-    DNUBuild("./src/NLogAutoLoadExtension", dnuBuildSettings);
-	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
-	
-    dnuBuildSettings = new DNUBuildSettings
-	{
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion,
-	    Frameworks = new [] { "sl5" },
-	    Configurations = new[] { configuration },
-	    OutputDirectory = buildDir,
-	    Quiet = true
-	};
-    DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
-
-	// Test
-	var settings = new DNXRunSettings
-	{ 
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion	
-    };
-	DNXRun("./tests/NLog.UnitTests/", "test", settings);
-	CopyFileToDirectory("./tests/NLog.UnitTests/testresults.xml", buildDir + Directory(configuration) + Directory("sl5"));
+	buildAndTest("sl5", dnxVersion, 
+					runtime, DNArchitecture.X86,
+					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
+					"./tests/NLog.UnitTests");
 });
 
 Task("net35")
 	.ContinueOnError()
-	.IsDependentOn("Dnx451")
+	.IsDependentOn("net5.4")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
-    // Restore
-    DNURestoreSettings restoreSettings = new DNURestoreSettings()
-    {
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion,
-		Quiet = true
-    };
-	DNURestore(restoreSettings);
+	buildAndTest("net35", dnxVersion, 
+					runtime, DNArchitecture.X86,
+					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
+					"./tests/NLog.UnitTests");
+});
 
-	// Build
-	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
-	{
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion,
-	    Frameworks = new [] { "net35" },
-	    Configurations = new[] { configuration },
-	    OutputDirectory = buildDir,
-	    Quiet = true
-	};
-        
-    DNUBuild("./src/NLog", dnuBuildSettings);
-    DNUBuild("./src/NLogAutoLoadExtension", dnuBuildSettings);
-	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
+Task("net5.4")
+	.ContinueOnError()
+	.IsDependentOn("Dnx451")
+	.Does(() =>
+{
 	
-    dnuBuildSettings = new DNUBuildSettings
-	{
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion,
-	    Frameworks = new [] { "dnx451" },
-	    Configurations = new[] { configuration },
-	    OutputDirectory = buildDir,
-	    Quiet = true
-	};
-    DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
-
-	// Test
-	var settings = new DNXRunSettings
-	{ 
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion	
-    };
-	DNXRun("./tests/NLog.UnitTests/", "test", settings);
-	CopyFileToDirectory("./tests/NLog.UnitTests/testresults.xml", buildDir + Directory(configuration) + Directory("net35"));
+	buildAndTest("net5.4", dnxVersion, 
+					runtime, DNArchitecture.X86,
+					new [] { "./src/NLog", "./src/NLog.Extended", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
+					"./tests/NLog.UnitTests");
 });
 
 Task("Dnx451")
@@ -242,48 +172,10 @@ Task("Dnx451")
 	.Does(() =>
 {
 	
-    DNURestoreSettings restoreSettings = new DNURestoreSettings()
-    {
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion,
-		Quiet = true
-    };
-
-	// Build
-	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
-	{
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion,
-	    Frameworks = new [] { "dnx451" },
-	    Configurations = new[] { configuration },
-	    OutputDirectory = buildDir,
-	    Quiet = true
-	};
-    
-	// Restore & build NLog
-	DNURestore("./src/NLog/project.json", restoreSettings);
-    DNUBuild("./src/NLog", dnuBuildSettings);
-	DNURestore("./src/NLog.Extended/project.json", restoreSettings);
-	DNUBuild("./src/NLog.Extended", dnuBuildSettings);
-	DNURestore("./src/NLogAutoLoadExtension/project.json", restoreSettings);
-    DNUBuild("./src/NLogAutoLoadExtension", dnuBuildSettings);
-
-	DNURestore("./tests/SampleExtensions/project.json", restoreSettings);
-	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
-	DNURestore("./tests/NLog.UnitTests/project.json", restoreSettings);
-	DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
-
-	// Test
-	var settings = new DNXRunSettings
-	{	
-        Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion
-    };
-	DNXRun("./tests/NLog.UnitTests/", "test", settings);
-	CopyFileToDirectory("./tests/NLog.UnitTests/testresults.xml", buildDir + Directory(configuration) + Directory("dnx451"));
+	buildAndTest("dnx451", dnxVersion, 
+					runtime, DNArchitecture.X86,
+					new [] { "./src/NLog", "./src/NLog.Extended", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
+					"./tests/NLog.UnitTests");
 });
 
 Task("Dnxcore50")
@@ -291,46 +183,10 @@ Task("Dnxcore50")
 	.IsDependentOn("Clean")
 	.Does(() =>
 {
-	// Restore
-    DNURestoreSettings restoreSettings = new DNURestoreSettings()
-    {
-        Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.CoreClr,
-        Version = dnxVersion,
-		Quiet = true
-    };
-	DNURestore("./src/NLog/project.json", restoreSettings);
-	
-	// Build
-	DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
-	{
-        Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.CoreClr,
-        Version = dnxVersion,
-	    Frameworks = new [] { "dnxcore50" },
-	    Configurations = new[] { configuration },
-	    OutputDirectory = buildDir,
-	    Quiet = true
-	};
-        
-    DNUBuild("./src/NLog", dnuBuildSettings);
-	
-	DNURestore("./tests/SampleExtensions/project.json", restoreSettings);
-	DNURestore("./tests/NLog.UnitTests/project.json", restoreSettings);
-	
-	DNUBuild("./tests/SampleExtensions", dnuBuildSettings);
-	DNUBuild("./tests/NLog.UnitTests", dnuBuildSettings);
-
-	// Test
-	var settings = new DNXRunSettings
-	{	
-        Architecture = DNArchitecture.X64,
-        Runtime = DNRuntime.CoreClr,
-        Version = dnxVersion
-    };
-	DNXRun("./tests/NLog.UnitTests/", "test", settings);
-
-	CopyFileToDirectory("./tests/NLog.UnitTests/testresults.xml", buildDir + Directory(configuration) + Directory("dnxcore50"));
+	buildAndTest("dnxcore50", dnxVersion, 
+					DNRuntime.CoreClr, DNArchitecture.X64,
+					new [] { "./src/NLog", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
+					"./tests/NLog.UnitTests");
 });
 //////////////////////////////////////////////////////////////////////
 // EXECUTION

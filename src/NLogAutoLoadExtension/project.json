@@ -16,6 +16,7 @@
   "frameworks": {
     ".NETFramework,Version=v3.5": { },
     "dnx451": { },
+    "dotnet5.4": {},
     "dnxcore50": { }
   }
 }

@@ -57,6 +57,24 @@
         "define": [ "WCF_SUPPORTED", "DNX", "XUNIT2" ]
       }
     },
+    "dotnet5.4": {
+      "frameworkAssemblies": {
+        "System.Runtime.Serialization": "4.0.0.0",
+        "System.Reflection": "4.0.0.0",
+        "System.Messaging": "4.0.0.0"
+      },
+      "dependencies": {
+        "NLog.Extended": "",
+        "xunit.runner.dnx": "2.1.0-*",
+        "xunit": "2.1.0",
+        "Microsoft.AspNet.Mvc.WebApiCompatShim": "6.0.0-*",
+        "Microsoft.AspNet.WebApi.Owin": "5.2.3",
+        "System.Threading.Tasks.Parallel": "4.0.1-*"
+      },
+      "compilationOptions": {
+        "define": [ "WCF_SUPPORTED", "DNX", "XUNIT2" ]
+      }
+    },
     "Silverlight,Version=v5.0": {
       "frameworkAssemblies": {
         "System.Windows": "",
