@@ -34,9 +34,11 @@ Packages & Status
 ---
 NLog consists of multiple packages. Most of the functionality is inside the NLog (core) package. What's inside the packages? See [targets](https://github.com/NLog/NLog/wiki/Targets) and [layout renderers](https://github.com/NLog/NLog/wiki/Layout-Renderers) overview!
 
-Package  | Build status | Nuget |
+Package  | Build status | NuGet |
 -------- | :------------ | :------------ | :------------------
-NLog (Windows / Xamarin)                                                      | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://img.shields.io/nuget/v/NLog.svg)](https://www.nuget.org/packages/NLog)                                 |
+NLog (Windows / Silverlight 4+5)                          | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://img.shields.io/nuget/v/NLog.svg)](https://www.nuget.org/packages/NLog)                            |
+NLog (Xamarin iOS / Xamarin Android / Windows Phone 8)                                          | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://img.shields.io/badge/nuget-v4.3.0--alpha4-blue.svg)](https://www.nuget.org/packages/NLog)         |
+NLog (CoreCLR / UWP)                                                | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/coreclr.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/coreclr)                   | [![NuGet package](https://img.shields.io/badge/nuget-v4.4.0--alpha1-blue.svg)](https://www.nuget.org/packages/NLog)       | 
 NLog (Mono)                                                         | [![Build Status](https://travis-ci.org/NLog/NLog.svg?branch=master)](https://travis-ci.org/NLog/NLog)                                                         |                                                                                                                                  |
 NLog.Config                                                         | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://img.shields.io/nuget/v/NLog.Config.svg)](https://www.nuget.org/packages/NLog.Config)                   |
 [NLog.Contrib.ActiveMQ](https://github.com/NLog/NLog.Contrib.ActiveMQ)                                              | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog-contrib-activemq/master.svg)](https://ci.appveyor.com/project/nlog/nlog-contrib-activemq/branch/master)                   | [![NuGet package](https://img.shields.io/nuget/v/NLog.Contrib.ActiveMQ.svg)](https://www.nuget.org/packages/NLog.Contrib.ActiveMQ)                   |
@@ -97,6 +99,21 @@ Frequently Asked Questions (FAQ)
 
   If you upgrade, remove or alter the `<assemblybinding>`, as explained at the [4.1.1 news post](http://nlog-project.org/2015/09/12/nlog-4-1-1-has-been-released.html).    
   
+* **Should I use Common Logging?**
+   - That's up to you. It has it pros and cons. The greatest advantage is that you can easily switch between logging implementations (NLog, Log4Net, EntLib). This can be very important if you’re writing a library yourself, then the user who's using your library can choose which implementation to use.
+
+  - There are some downsides: 
+
+     - You are limited in some features, or some features aren't available at all (like context classes or event properties)
+     - The performance is a bit lower.
+     - The platform support is lower. For example, there is no Xamarin support or a specialized .Net 4.5 build
+     - The progress is limited by NLog and Common logging. 
+  
+* **Which Common Logging version should I use?**
+   - As you may have noticed the latest version of Common Logging doesn't match the latest version of NLog -  the latest Common Logging is build to NLog 4.1. But that is not a problem! Since NLog 4.0 the assembly version is fixed to `4.0.0.0` and because follow [semver](https://semver.org), you can use the latest version of NLog with [Common.Logging.NLog41](https://www.nuget.org/packages/Common.Logging.NLog41/). 
+    
+* **I'm writing a library who's using NLog. Should I update when NLog has an update?**
+   - If you don't use the latest additions, then you should only update every NLog major version. As mentioned at the Common Logging version, we will keep the assembly version fixed. The end-user don't need `<assemblybinding>`-magic! So in short: your library should target NLog 4.0 and in the future NLog 5.0.
 
 
 Contributing

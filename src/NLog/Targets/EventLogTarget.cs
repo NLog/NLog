@@ -68,8 +68,6 @@ namespace NLog.Targets
     [Target("EventLog")]
     public class EventLogTarget : TargetWithLayout, IInstallable
     {
-        private const int MaxMessageSize = 16384;
-
         private EventLog eventLogInstance;
 
         /// <summary>
@@ -88,6 +86,7 @@ namespace NLog.Targets
             this.Source = appDomain.FriendlyName;
             this.Log = "Application";
             this.MachineName = ".";
+            this.MaxMessageLength = 16384;
         }
 
         /// <summary>
@@ -131,8 +130,26 @@ namespace NLog.Targets
         [DefaultValue("Application")]
         public string Log { get; set; }
 
+        private int maxMessageLength;
         /// <summary>
-        /// Gets or sets the action to take if the message is larger than the Event Log max message size.
+        /// Gets or sets the message length limit to write to the Event Log.
+        /// </summary>
+        /// <remarks><value>MaxMessageLength</value> cannot be zero or negative</remarks>
+        [DefaultValue(16384)]
+        public int MaxMessageLength
+        {
+            get { return this.maxMessageLength; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("MaxMessageLength cannot be zero or negative.");
+
+                this.maxMessageLength = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the action to take if the message is larger than the <see cref="MaxMessageLength"/> option.
         /// </summary>
         /// <docgen category='Event Log Overflow Action' order='10' />
         [DefaultValue(EventLogTargetOverflowAction.Truncate)]
@@ -237,18 +254,18 @@ namespace NLog.Targets
             EventLog eventLog = GetEventLog(logEvent);
 
             // limitation of EventLog API
-            if (message.Length > EventLogTarget.MaxMessageSize)
+            if (message.Length > this.MaxMessageLength)
             {
                 if (OnOverflow == EventLogTargetOverflowAction.Truncate)
                 {
-                    message = message.Substring(0, EventLogTarget.MaxMessageSize);
+                    message = message.Substring(0, this.MaxMessageLength);
                     eventLog.WriteEntry(message, entryType, eventId, category);
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Split)
                 {
-                    for (int offset = 0; offset < message.Length; offset += EventLogTarget.MaxMessageSize)
+                    for (int offset = 0; offset < message.Length; offset += this.MaxMessageLength)
                     {
-                        string chunk = message.Substring(offset, Math.Min(EventLogTarget.MaxMessageSize, message.Length - offset));
+                        string chunk = message.Substring(offset, Math.Min(this.MaxMessageLength, (message.Length - offset)));
                         eventLog.WriteEntry(chunk, entryType, eventId, category);
                     }
                 }
