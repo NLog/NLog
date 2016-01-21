@@ -101,7 +101,7 @@ Task("pack")
 	}
 	else
 	{
-		frameworks = new [] { "dnxcore50", "dnx451", "net35", "sl5", "uap10.0" };
+		frameworks = new [] { "dnxcore50", "dnx451", "net5.4", "net35", "sl5", "uap10.0" };
 	}
 
 	DNUPackSettings packSettings = new DNUPackSettings()
