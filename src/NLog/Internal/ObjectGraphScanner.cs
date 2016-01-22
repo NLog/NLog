@@ -78,7 +78,8 @@ namespace NLog.Internal
                 return;
             }
 
-            if (!o.GetType().IsDefined(typeof(NLogConfigurationItemAttribute), true))
+            var type = o.GetType();
+            if (!type.IsDefined(typeof(NLogConfigurationItemAttribute), true))
             {
                 return;
             }
@@ -98,10 +99,10 @@ namespace NLog.Internal
 
             if (InternalLogger.IsTraceEnabled)
             {
-                InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), o.GetType().Name, o);
+                InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), type.Name, o);
             }
 
-            var allReadableProperties = PropertyHelper.GetAllReadableProperties(o.GetType()).ToList();
+            var allReadableProperties = PropertyHelper.GetAllReadableProperties(type).ToList();
             foreach (PropertyInfo prop in allReadableProperties)
             {
                 if (prop.PropertyType.IsPrimitive || prop.PropertyType.IsEnum || prop.PropertyType == typeof(string) || prop.IsDefined(typeof(NLogConfigurationIgnorePropertyAttribute), true))
