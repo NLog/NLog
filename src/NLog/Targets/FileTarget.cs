@@ -180,7 +180,7 @@ namespace NLog.Targets
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
             this.CreateDirs = true;
-            this.fileArchive = new DynamicFileArchive(MaxArchiveFiles);
+            this.fileArchive = new DynamicFileArchive(this, MaxArchiveFiles);
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
 
@@ -1066,7 +1066,7 @@ namespace NLog.Targets
         /// <param name="fileName">File name to be archived.</param>
         /// <param name="archiveFileName">Name of the archive file.</param>
         /// <param name="enableCompression">Enables file compression</param>
-        private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
+        private void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
         {
             string archiveFolderPath = Path.GetDirectoryName(archiveFileName);
             if (!Directory.Exists(archiveFolderPath))
@@ -1078,7 +1078,7 @@ namespace NLog.Targets
                 InternalLogger.Info("Archiving {0} to zip-archive {1}", fileName, archiveFileName);
                 using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
                 using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
                 {
                     var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
                     using (var destination = zipArchiveEntry.Open())
@@ -1087,7 +1087,16 @@ namespace NLog.Targets
                     }
                 }
 
-                File.Delete(fileName);
+                if (ConcurrentWrites && KeepFileOpen)
+                {
+                    // Moving the file will cause all other FileTarget's to release the file, unlocking it for deleting.
+                    string tempFileName = Path.GetTempFileName();
+                    File.Delete(tempFileName);
+                    File.Move(fileName, tempFileName);
+                    File.Delete(tempFileName);
+                }
+                else
+                    File.Delete(fileName);
             }
             else
 #endif
@@ -1932,20 +1941,25 @@ namespace NLog.Targets
         private class DynamicFileArchive
         {
             private readonly Queue<string> archiveFileQueue = new Queue<string>();
-            
+
+            private FileTarget fileTarget;
+
             /// <summary>
             /// Creates an instance of <see cref="DynamicFileArchive"/> class.
             /// </summary>
+            /// <param name="fileTarget">The <see cref="FileTarget"/> whose files to archive.</param>
             /// <param name="maxArchivedFiles">Maximum number of archive files to be kept.</param>
-            public DynamicFileArchive(int maxArchivedFiles)
+            public DynamicFileArchive(FileTarget fileTarget, int maxArchivedFiles)
             {
+                this.fileTarget = fileTarget;
                 this.MaxArchiveFileToKeep = maxArchivedFiles;
             }
 
             /// <summary>
             /// Creates an instance of <see cref="DynamicFileArchive"/> class.
             /// </summary>
-            public DynamicFileArchive() : this(-1) { }
+            /// <param name="fileTarget">The <see cref="FileTarget"/> whose files to archive.</param>
+            public DynamicFileArchive(FileTarget fileTarget) : this(fileTarget, -1) { }
 
             /// <summary>
             /// Gets or sets the maximum number of archive files that should be kept.
@@ -2013,7 +2027,7 @@ namespace NLog.Targets
 
                 try
                 {
-                    ArchiveFile(fileName, archiveFileName, enableCompression);
+                    fileTarget.ArchiveFile(fileName, archiveFileName, enableCompression);
                     archiveFileQueue.Enqueue(archiveFileName);
                 }
                 catch (Exception ex)
