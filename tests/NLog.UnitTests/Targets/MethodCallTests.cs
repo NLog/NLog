@@ -44,32 +44,53 @@ namespace NLog.UnitTests.Targets
 {
     public class MethodCallTests : NLogTestBase
     {
+        private const string CorrectClassName = "NLog.UnitTests.Targets.MethodCallTests, NLog.UnitTests";
 
+        #region ToBeCalled Methods
 
         private static MethodCallRecord LastCallTest = null;
-        public static void StaticAndPublic(string param1, string param2)
+        public static void StaticAndPublic(string param1, int param2)
         {
             LastCallTest = new MethodCallRecord("StaticAndPublic", param1, param2);
         }
 
+        public static void StaticAndPublicWrongParameters(string param1, string param2)
+        {
+            LastCallTest = new MethodCallRecord("StaticAndPublic", param1, param2);
+        }
+
+        public static void StaticAndPublicTooLessParameters(string param1)
+        {
+            LastCallTest = new MethodCallRecord("StaticAndPublicTooLessParameters", param1);
+        }
+
+        public static void StaticAndPublicTooManyParameters(string param1, int param2, string param3)
+        {
+            LastCallTest = new MethodCallRecord("StaticAndPublicTooManyParameters", param1, param2);
+        }
+
+        public static void StaticAndPublicOptional(string param1, int param2, string param3 = "fixedValue")
+        {
+            LastCallTest = new MethodCallRecord("StaticAndPublicOptional", param1, param2, param3);
+        }
+
         public void NonStaticAndPublic()
         {
-
             LastCallTest = new MethodCallRecord("NonStaticAndPublic");
         }
 
 
         public static void StaticAndPrivate()
         {
-
             LastCallTest = new MethodCallRecord("StaticAndPrivate");
         }
 
+        #endregion
 
         [Fact]
         public void TestMethodCall1()
         {
-            TestMethodCall(new MethodCallRecord("StaticAndPublic", "test1", "test2"), "StaticAndPublic", "NLog.UnitTests.Targets.MethodCallTests, NLog.UnitTests");
+            TestMethodCall(new MethodCallRecord("StaticAndPublic", "test1", 2), "StaticAndPublic", CorrectClassName);
         }
 
         [Fact]
@@ -77,14 +98,47 @@ namespace NLog.UnitTests.Targets
         {
             //Type AssemblyQualifiedName 
             //to find, use typeof(MethodCallTests).AssemblyQualifiedName
-            TestMethodCall(new MethodCallRecord("StaticAndPublic", "test1", "test2"), "StaticAndPublic", "NLog.UnitTests.Targets.MethodCallTests, NLog.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b793d3de60bec2b9");
+            TestMethodCall(new MethodCallRecord("StaticAndPublic", "test1", 2), "StaticAndPublic", "NLog.UnitTests.Targets.MethodCallTests, NLog.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b793d3de60bec2b9");
         }
 
         [Fact]
-        public void WrongMethodDontThrow()
+        public void PrivateMethodDontThrow()
         {
-            TestMethodCall(null, "NonStaticAndPublic", "NLog.UnitTests.Targets.CallTest2, NLog.UnitTests");
+            TestMethodCall(null, "NonStaticAndPublic", CorrectClassName);
         }
+
+        [Fact]
+        public void WrongClassDontThrow()
+        {
+            TestMethodCall(null, "StaticAndPublic", "NLog.UnitTests222.Targets.CallTest, NLog.UnitTests");
+        }
+
+        [Fact]
+        public void WrongParametersDontThrow()
+        {
+            TestMethodCall(null, "StaticAndPublicWrongParameters", CorrectClassName);
+        }
+
+        [Fact]
+        public void TooLessParametersDontThrow()
+        {
+            TestMethodCall(null, "StaticAndPublicTooLessParameters", CorrectClassName);
+        }
+
+        [Fact]
+        public void TooManyParametersDontThrow()
+        {
+            TestMethodCall(null, "StaticAndPublicTooManyParameters", CorrectClassName);
+        }
+
+        [Fact]
+        public void OptionalParameters()
+        {
+            TestMethodCall(new MethodCallRecord("StaticAndPublicOptional", "test1", 2, "fixedValue"), "StaticAndPublicOptional", CorrectClassName);
+        }
+
+
+      
 
         private static void TestMethodCall(MethodCallRecord expected, string methodName, string className)
         {
@@ -95,7 +149,7 @@ namespace NLog.UnitTests.Targets
                 MethodName = methodName
             };
             target.Parameters.Add(new MethodCallParameter("param1", "test1"));
-            target.Parameters.Add(new MethodCallParameter("param2", "test2"));
+            target.Parameters.Add(new MethodCallParameter("param2", "2", typeof(int)));
 
             var configuration = new LoggingConfiguration();
             configuration.AddTarget(target);
@@ -114,14 +168,14 @@ namespace NLog.UnitTests.Targets
             /// <summary>
             /// Initializes a new instance of the <see cref="T:System.Object"/> class.
             /// </summary>
-            public MethodCallRecord(string method, params string[] parameterValues)
+            public MethodCallRecord(string method, params object[] parameterValues)
             {
                 Method = method;
-                ParameterValues = parameterValues.ToList();
+                if (parameterValues != null) ParameterValues = parameterValues.ToList();
             }
 
             public string Method { get; set; }
-            public List<string> ParameterValues { get; set; }
+            public List<object> ParameterValues { get; set; }
 
             protected bool Equals(MethodCallRecord other)
             {
