@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.Reflection;
+    using NLog.Common;
 
     /// <summary>
     /// Calls the specified static method on each log message and passes contextual parameters to it.
@@ -66,6 +67,9 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets the method name. The method must be public and static.
+        /// 
+        /// Use the AssemblyQualifiedName , https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname(v=vs.110).aspx
+        /// e.g. 
         /// </summary>
         /// <docgen category='Invocation Options' order='10' />
         public string MethodName { get; set; }
@@ -82,7 +86,21 @@ namespace NLog.Targets
             if (this.ClassName != null && this.MethodName != null)
             {
                 Type targetType = Type.GetType(this.ClassName);
-                this.Method = targetType.GetMethod(this.MethodName);
+
+                if (targetType != null)
+                {
+                    this.Method = targetType.GetMethod(this.MethodName);
+
+                    if (this.Method == null)
+                    {
+                        InternalLogger.Warn("Initialize MethodCallTarget, method '{0}' in class '{1}' not found - it should be static", Method, ClassName);
+                    }
+                }
+                else
+                {
+                    InternalLogger.Warn("Initialize MethodCallTarget, class '{0}' not found", ClassName);
+                    this.Method = null;
+                }
             }
             else
             {
@@ -99,6 +117,10 @@ namespace NLog.Targets
             if (this.Method != null)
             {
                 this.Method.Invoke(null, parameters);
+            }
+            else
+            {
+                InternalLogger.Trace("No invoke because class/method was not found or set");
             }
         }
     }
