@@ -35,6 +35,8 @@ namespace NLog.Targets
 {
     using System;
     using System.Reflection;
+    using System.Collections.Generic;
+    using System.Linq;
     using NLog.Common;
 
     /// <summary>
@@ -76,6 +78,8 @@ namespace NLog.Targets
 
         private MethodInfo Method { get; set; }
 
+        private int NeededParameters { get; set; }
+
         /// <summary>
         /// Initializes the target.
         /// </summary>
@@ -90,7 +94,7 @@ namespace NLog.Targets
                 if (targetType != null)
                 {
                     this.Method = targetType.GetMethod(this.MethodName);
-
+                    this.NeededParameters = this.Method.GetParameters().Length;
                     if (this.Method == null)
                     {
                         InternalLogger.Warn("Initialize MethodCallTarget, method '{0}' in class '{1}' not found - it should be static", Method, ClassName);
@@ -108,6 +112,8 @@ namespace NLog.Targets
             }
         }
 
+
+
         /// <summary>
         /// Calls the specified Method.
         /// </summary>
@@ -116,6 +122,15 @@ namespace NLog.Targets
         {
             if (this.Method != null)
             {
+                var missingParameters = NeededParameters - parameters.Length;
+                if (missingParameters > 0)
+                {
+                    //fill missing parameters with Type.Missing
+                    var newParams = new List<object>(parameters);
+                    newParams.AddRange(Enumerable.Repeat(Type.Missing, missingParameters));
+                    parameters = newParams.ToArray();
+                }
+
                 this.Method.Invoke(null, parameters);
             }
             else
