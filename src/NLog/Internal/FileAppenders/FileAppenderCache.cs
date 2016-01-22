@@ -43,7 +43,7 @@ namespace NLog.Internal.FileAppenders
     internal sealed class FileAppenderCache
     {
         private BaseFileAppender[] appenders;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !DNX && !UWP10
         private bool watchExternalFileArchiving = false;
         private readonly MultiFileWatcher externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.FileName);
         private readonly HashSet<string> invalidFiles = new HashSet<string>();
@@ -78,12 +78,12 @@ namespace NLog.Internal.FileAppenders
 
             appenders = new BaseFileAppender[Size];
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !DNX && !UWP10
             externalFileArchivingWatcher.OnChange += ExternalFileArchivingWatcher_OnChange;
 #endif
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !DNX && !UWP10
         private void ExternalFileArchivingWatcher_OnChange(object sender, FileSystemEventArgs e)
         {
             if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
@@ -212,11 +212,11 @@ namespace NLog.Internal.FileAppenders
                 appenders[0] = newAppender;
                 appenderToWrite = newAppender;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !DNX && !UWP10
                 externalFileArchivingWatcher.Watch(fileName);
 #endif
             }
-            
+
             return appenderToWrite;
         }
 
@@ -337,7 +337,7 @@ namespace NLog.Internal.FileAppenders
         {
             appender.Close();
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !DNX && !UWP10
             externalFileArchivingWatcher.StopWatching(appender.FileName);
 #endif
         }

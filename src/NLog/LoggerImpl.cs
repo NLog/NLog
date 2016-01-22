@@ -75,8 +75,7 @@ namespace NLog
 #if !DEBUG
 #error check this
 #endif
-                var stackTraceCtor = typeof(StackTrace).GetConstructor(new Type[] { typeof(bool) });
-                stackTrace = (StackTrace)stackTraceCtor.Invoke(new object[] { stu == StackTraceUsage.WithSource });
+                stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
 #elif !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
 #else

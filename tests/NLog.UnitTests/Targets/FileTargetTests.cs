@@ -993,7 +993,11 @@ namespace NLog.UnitTests.Targets
         }
         
         [Theory]
+#if XUNIT2
+        [MemberData("DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters")]
+#else
         [PropertyData("DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters")]
+#endif
         public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());

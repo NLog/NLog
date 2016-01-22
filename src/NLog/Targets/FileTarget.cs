@@ -586,7 +586,7 @@ namespace NLog.Targets
         /// </summary>
         private void RefreshWatchExternalFileArchiving()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !DNX && !UWP10
             if (this.fileAppenderCache != null)
                 this.fileAppenderCache.WatchExternalFileArchiving = ConcurrentWrites && KeepFileOpen;
 #endif
@@ -758,7 +758,7 @@ namespace NLog.Targets
         {
             var fileName = Path.GetFullPath(GetCleanedFileName(logEvent));
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !DNX && !UWP10
             this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
 
