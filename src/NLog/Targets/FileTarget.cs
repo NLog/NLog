@@ -109,6 +109,8 @@ namespace NLog.Targets
 
         private Timer autoClosingTimer;
 
+        private Thread appenderInvalidatorThread = null;
+
         /// <summary>
         /// The number of initialised files at any one time.
         /// </summary>
@@ -137,6 +139,10 @@ namespace NLog.Targets
         /// </summary>
         private Layout archiveFileName;
 
+        private FileArchivePeriod archiveEvery;
+        private long archiveAboveSize;
+        private bool enableArchiveFileCompression;
+
         /// <summary>
         /// The filename if <see cref="FileName"/> is a fixed string
         /// </summary>
@@ -149,7 +155,7 @@ namespace NLog.Targets
 
         private bool concurrentWrites;
         private bool keepFileOpen;
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="FileTarget" /> class.
         /// </summary>
@@ -180,7 +186,7 @@ namespace NLog.Targets
             this.OpenFileCacheTimeout = -1;
             this.OpenFileCacheSize = 5;
             this.CreateDirs = true;
-            this.fileArchive = new DynamicFileArchive(this, MaxArchiveFiles);
+            this.fileArchive = new DynamicFileArchive(MaxArchiveFiles);
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
 
@@ -225,6 +231,7 @@ namespace NLog.Targets
                 fileName = value;
 
                 RefreshFileArchive();
+                RefreshArchiveFilePatternToWatch();
             }
         }
 
@@ -279,7 +286,7 @@ namespace NLog.Targets
             set
             {
                 keepFileOpen = value;
-                RefreshWatchExternalFileArchiving();
+                RefreshArchiveFilePatternToWatch();
             }
         }
 
@@ -389,7 +396,7 @@ namespace NLog.Targets
             set
             {
                 concurrentWrites = value;
-                RefreshWatchExternalFileArchiving();
+                RefreshArchiveFilePatternToWatch();
             }
         }
 
@@ -468,7 +475,15 @@ namespace NLog.Targets
         /// to <c>false</c> for maximum performance.
         /// </remarks>
         /// <docgen category='Archival Options' order='10' />
-        public long ArchiveAboveSize { get; set; }
+        public long ArchiveAboveSize
+        {
+            get { return archiveAboveSize; }
+            set
+            {
+                archiveAboveSize = value;
+                RefreshArchiveFilePatternToWatch();
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to automatically archive log files every time the specified time passes.
@@ -485,7 +500,15 @@ namespace NLog.Targets
         /// </p>
         /// </remarks>
         /// <docgen category='Archival Options' order='10' />
-        public FileArchivePeriod ArchiveEvery { get; set; }
+        public FileArchivePeriod ArchiveEvery
+        {
+            get { return archiveEvery; }
+            set
+            {
+                archiveEvery = value;
+                RefreshArchiveFilePatternToWatch();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the name of the file to be used for an archive.
@@ -504,6 +527,7 @@ namespace NLog.Targets
             {
                 archiveFileName = value;
                 RefreshFileArchive();
+                RefreshArchiveFilePatternToWatch();
             }
         }
 
@@ -537,7 +561,15 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
         [DefaultValue(false)]
-        public bool EnableArchiveFileCompression { get; set; }
+        public bool EnableArchiveFileCompression
+        {
+            get { return enableArchiveFileCompression; }
+            set
+            {
+                enableArchiveFileCompression = value;
+                RefreshArchiveFilePatternToWatch();
+            }
+        }
 #else
         /// <summary>
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
@@ -580,15 +612,56 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Refresh the `WatchExternalFileArchiving` option of the <see cref="FileAppenderCache" />. 
+        /// Refresh the ArchiveFilePatternToWatch option of the <see cref="FileAppenderCache" />. 
         /// The log file must be watched for archiving when multiple processes are writing to the same 
         /// open file.
         /// </summary>
-        private void RefreshWatchExternalFileArchiving()
+        private void RefreshArchiveFilePatternToWatch()
         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (this.fileAppenderCache != null)
-                this.fileAppenderCache.WatchExternalFileArchiving = ConcurrentWrites && KeepFileOpen;
+            {
+                bool mustWatchArchiving = IsArchivingEnabled() && ConcurrentWrites && KeepFileOpen;
+                if (mustWatchArchiving)
+                {
+                    var nullEvent = LogEventInfo.CreateNullEvent();
+                    string fileNamePattern = GetArchiveFileNamePattern(GetCleanedFileName(nullEvent), nullEvent);
+                    if (!string.IsNullOrEmpty(fileNamePattern))
+                    {
+                        fileNamePattern = Path.Combine(Path.GetDirectoryName(fileNamePattern), ReplaceFileNamePattern(fileNamePattern, "*"));
+                        this.fileAppenderCache.ArchiveFilePatternToWatch = fileNamePattern;
+
+                        if ((EnableArchiveFileCompression) && (this.appenderInvalidatorThread == null))
+                        {
+                            // EnableArchiveFileCompression creates a new file for the archive, instead of just moving the log file.
+                            // The log file is deleted instead of moved. This process may be holding a lock to that file which will
+                            // avoid the file from being deleted. Therefore we must periodically close appenders for files that 
+                            // were archived so that the file can be deleted.
+
+                            this.appenderInvalidatorThread = new Thread(new ThreadStart(() =>
+                            {
+                                while (true)
+                                {
+                                    Thread.Sleep(200);
+                                    lock (SyncRoot)
+                                        this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+                                }
+                            }));
+                            this.appenderInvalidatorThread.Start();
+                        }
+                    }
+                }
+                else
+                {
+                    this.fileAppenderCache.ArchiveFilePatternToWatch = null;
+
+                    if (this.appenderInvalidatorThread != null)
+                    {
+                        this.appenderInvalidatorThread.Abort();
+                        this.appenderInvalidatorThread = null;
+                    }
+                }
+            }
 #endif
         }
 
@@ -696,14 +769,14 @@ namespace NLog.Targets
 #endif
             }
             else if (IsArchivingEnabled())
-                return SingleProcessFileAppender.TheFactory;
-            else
                 return CountingSingleProcessFileAppender.TheFactory;
+            else
+                return SingleProcessFileAppender.TheFactory;
         }
-
+        
         private bool IsArchivingEnabled()
         {
-            return this.ArchiveAboveSize == FileTarget.ArchiveAboveSizeDisabled && this.ArchiveEvery == FileArchivePeriod.None;
+            return this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled || this.ArchiveEvery != FileArchivePeriod.None;
         }
 
         /// <summary>
@@ -716,6 +789,7 @@ namespace NLog.Targets
             this.appenderFactory = GetFileAppenderFactory();
 
             this.fileAppenderCache = new FileAppenderCache(this.OpenFileCacheSize, this.appenderFactory, this);
+            RefreshArchiveFilePatternToWatch();
 
             if ((this.OpenFileCacheSize > 0 || this.EnableFileDelete) && this.OpenFileCacheTimeout > 0)
             {
@@ -744,6 +818,12 @@ namespace NLog.Targets
                 this.autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
                 this.autoClosingTimer.Dispose();
                 this.autoClosingTimer = null;
+            }
+
+            if (this.appenderInvalidatorThread != null)
+            {
+                this.appenderInvalidatorThread.Abort();
+                this.appenderInvalidatorThread = null;
             }
 
             this.fileAppenderCache.CloseAppenders();
@@ -1066,7 +1146,7 @@ namespace NLog.Targets
         /// <param name="fileName">File name to be archived.</param>
         /// <param name="archiveFileName">Name of the archive file.</param>
         /// <param name="enableCompression">Enables file compression</param>
-        private void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
+        private static void ArchiveFile(string fileName, string archiveFileName, bool enableCompression)
         {
             string archiveFolderPath = Path.GetDirectoryName(archiveFileName);
             if (!Directory.Exists(archiveFolderPath))
@@ -1078,7 +1158,7 @@ namespace NLog.Targets
                 InternalLogger.Info("Archiving {0} to zip-archive {1}", fileName, archiveFileName);
                 using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
                 using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
+                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
                 {
                     var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
                     using (var destination = zipArchiveEntry.Open())
@@ -1086,23 +1166,31 @@ namespace NLog.Targets
                         originalFileStream.CopyTo(destination);
                     }
                 }
-
-                if (ConcurrentWrites && KeepFileOpen)
-                {
-                    // Moving the file will cause all other FileTarget's to release the file, unlocking it for deleting.
-                    string tempFileName = Path.GetTempFileName();
-                    File.Delete(tempFileName);
-                    File.Move(fileName, tempFileName);
-                    File.Delete(tempFileName);
-                }
-                else
-                    File.Delete(fileName);
+                
+                DeleteAndWaitForFileDelete(fileName);
             }
             else
 #endif
             {
                 InternalLogger.Info("Archiving {0} to {1}", fileName, archiveFileName);
                 File.Move(fileName, archiveFileName);
+            }
+        }
+
+        private static void DeleteAndWaitForFileDelete(string fileName)
+        {
+            var originalFileCreationTime = (new FileInfo(fileName)).CreationTime;
+            File.Delete(fileName);
+
+            if (File.Exists(fileName))
+            {
+                FileInfo currentFileInfo;
+                do
+                {
+                    Thread.Sleep(100);
+                    currentFileInfo = new FileInfo(fileName);
+                }
+                while ((currentFileInfo.Exists) && (currentFileInfo.CreationTime == originalFileCreationTime));
             }
         }
 
@@ -1537,7 +1625,7 @@ namespace NLog.Targets
                 return Path.GetFullPath(archiveFileName);
             }
         }
-      
+        
         /// <summary>
         /// Determine if old archive files should be deleted.
         /// </summary>
@@ -1579,15 +1667,7 @@ namespace NLog.Targets
                 return false;
             }
 
-            if (this.ArchiveAboveSize != FileTarget.ArchiveAboveSizeDisabled)
-            {
-                if (fileCharacteristics.FileLength + upcomingWriteSize > this.ArchiveAboveSize)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return fileCharacteristics.FileLength + upcomingWriteSize > this.ArchiveAboveSize;
         }
 
         /// <summary>
@@ -1608,20 +1688,15 @@ namespace NLog.Targets
             {
                 return false;
             }
+            
+            // file creation time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
+            // so we should ask the TimeSource to convert file time to TimeSource time:
+            DateTime creationTime = TimeSource.Current.FromSystemTime(fileCharacteristics.CreationTimeUtc);
+            string formatString = GetArchiveDateFormatString(string.Empty);
+            string fileCreated = creationTime.ToString(formatString, CultureInfo.InvariantCulture);
+            string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
 
-            if (this.ArchiveEvery != FileArchivePeriod.None)
-            {
-                // file creation time is in Utc and logEvent's timestamp is originated from TimeSource.Current,
-                // so we should ask the TimeSource to convert file time to TimeSource time:
-                DateTime creationTime = TimeSource.Current.FromSystemTime(fileCharacteristics.CreationTimeUtc);
-                string formatString = GetArchiveDateFormatString(string.Empty);
-                string fileCreated = creationTime.ToString(formatString, CultureInfo.InvariantCulture);
-                string logEventRecorded = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
-
-                return fileCreated != logEventRecorded;
-            }
-
-            return false;
+            return fileCreated != logEventRecorded;
         }
 
         private void AutoClosingTimerCallback(object state)
@@ -1941,25 +2016,20 @@ namespace NLog.Targets
         private class DynamicFileArchive
         {
             private readonly Queue<string> archiveFileQueue = new Queue<string>();
-
-            private FileTarget fileTarget;
-
+            
             /// <summary>
             /// Creates an instance of <see cref="DynamicFileArchive"/> class.
             /// </summary>
-            /// <param name="fileTarget">The <see cref="FileTarget"/> whose files to archive.</param>
             /// <param name="maxArchivedFiles">Maximum number of archive files to be kept.</param>
-            public DynamicFileArchive(FileTarget fileTarget, int maxArchivedFiles)
+            public DynamicFileArchive(int maxArchivedFiles)
             {
-                this.fileTarget = fileTarget;
                 this.MaxArchiveFileToKeep = maxArchivedFiles;
             }
 
             /// <summary>
             /// Creates an instance of <see cref="DynamicFileArchive"/> class.
             /// </summary>
-            /// <param name="fileTarget">The <see cref="FileTarget"/> whose files to archive.</param>
-            public DynamicFileArchive(FileTarget fileTarget) : this(fileTarget, -1) { }
+            public DynamicFileArchive() : this(-1) { }
 
             /// <summary>
             /// Gets or sets the maximum number of archive files that should be kept.
@@ -2027,7 +2097,7 @@ namespace NLog.Targets
 
                 try
                 {
-                    fileTarget.ArchiveFile(fileName, archiveFileName, enableCompression);
+                    ArchiveFile(fileName, archiveFileName, enableCompression);
                     archiveFileQueue.Enqueue(archiveFileName);
                 }
                 catch (Exception ex)

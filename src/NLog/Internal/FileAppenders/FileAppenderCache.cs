@@ -44,9 +44,9 @@ namespace NLog.Internal.FileAppenders
     {
         private BaseFileAppender[] appenders;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-        private bool watchExternalFileArchiving = false;
+        private string archiveFilePatternToWatch = null;
+        private bool logFileWasArchived = false;
         private readonly MultiFileWatcher externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.FileName);
-        private readonly HashSet<string> invalidFiles = new HashSet<string>();
 #endif
 
         /// <summary>
@@ -87,28 +87,22 @@ namespace NLog.Internal.FileAppenders
         private void ExternalFileArchivingWatcher_OnChange(object sender, FileSystemEventArgs e)
         {
             if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
-            {
-                lock (invalidFiles)
-                {
-                    invalidFiles.Add(e.FullPath);
-                }
-            }
+                logFileWasArchived = true;
         }
 
         /// <summary>
-        /// If `true`, files will be watched for external file archiving and invalidated. 
-        /// Call the <see cref="FileAppenderCache.InvalidateAppendersForInvalidFiles"/> method to "flush" the list
-        /// of invalidated files.
+        /// The archive file path pattern that is used to detect when archiving occurs.
         /// </summary>
-        public bool WatchExternalFileArchiving
+        public string ArchiveFilePatternToWatch
         {
-            get { return watchExternalFileArchiving; }
+            get { return archiveFilePatternToWatch; }
             set
             {
-                watchExternalFileArchiving = value;
-                if (!watchExternalFileArchiving)
+                if (archiveFilePatternToWatch != value)
                 {
-                    invalidFiles.Clear();
+                    archiveFilePatternToWatch = value;
+
+                    logFileWasArchived = false;
                     externalFileArchivingWatcher.StopWatching();
                 }
             }
@@ -119,11 +113,10 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public void InvalidateAppendersForInvalidFiles()
         {
-            lock (invalidFiles)
+            if (logFileWasArchived)
             {
-                foreach (string nextFile in invalidFiles)
-                    InvalidateAppender(nextFile);
-                invalidFiles.Clear();
+                CloseAppenders();
+                logFileWasArchived = false;
             }
         }
 #endif
@@ -213,7 +206,14 @@ namespace NLog.Internal.FileAppenders
                 appenderToWrite = newAppender;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                externalFileArchivingWatcher.Watch(fileName);
+                if (!string.IsNullOrEmpty(archiveFilePatternToWatch))
+                {
+                    string directoryPath = Path.GetDirectoryName(archiveFilePatternToWatch);
+                    if (!Directory.Exists(directoryPath))
+                        Directory.CreateDirectory(directoryPath);
+
+                    externalFileArchivingWatcher.Watch(archiveFilePatternToWatch);
+                }
 #endif
             }
             
@@ -338,7 +338,7 @@ namespace NLog.Internal.FileAppenders
             appender.Close();
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            externalFileArchivingWatcher.StopWatching(appender.FileName);
+            externalFileArchivingWatcher.StopWatching();
 #endif
         }
     }
