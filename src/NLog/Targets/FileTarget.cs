@@ -141,7 +141,9 @@ namespace NLog.Targets
 
         private FileArchivePeriod archiveEvery;
         private long archiveAboveSize;
+#if NET4_5
         private bool enableArchiveFileCompression;
+#endif
 
         /// <summary>
         /// The filename if <see cref="FileName"/> is a fixed string
