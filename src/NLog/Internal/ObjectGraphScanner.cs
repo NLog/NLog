@@ -59,7 +59,7 @@ namespace NLog.Internal
         {
             InternalLogger.Trace("FindReachableObject<{0}>:", typeof(T));
             var result = new List<T>();
-            var visitedObjects = new Dictionary<object, int>();
+            var visitedObjects = new HashSet<object>();
 
             var rootObjectsList = rootObjects.ToList();
             foreach (var rootObject in rootObjectsList)
@@ -70,7 +70,7 @@ namespace NLog.Internal
             return result.ToArray();
         }
 
-        private static void ScanProperties<T>(List<T> result, object o, int level, Dictionary<object, int> visitedObjects)
+        private static void ScanProperties<T>(List<T> result, object o, int level, HashSet<object> visitedObjects)
             where T : class
         {
             if (o == null)
@@ -78,18 +78,21 @@ namespace NLog.Internal
                 return;
             }
 
+            //cheaper call then getType and isDefined
+            if (visitedObjects.Contains(o))
+            {
+                return;
+            }
+
+
             var type = o.GetType();
             if (!type.IsDefined(typeof(NLogConfigurationItemAttribute), true))
             {
                 return;
             }
 
-            if (visitedObjects.ContainsKey(o))
-            {
-                return;
-            }
-
-            visitedObjects.Add(o, 0);
+        
+            visitedObjects.Add(o);
 
             var t = o as T;
             if (t != null)
