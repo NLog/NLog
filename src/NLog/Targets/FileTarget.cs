@@ -1034,7 +1034,7 @@ namespace NLog.Targets
         /// <param name="archiveNumber">Value which will replace the numeric pattern.</param>
         private void RollArchivesForward(string fileName, string pattern, int archiveNumber)
         {
-            if (this.MaxArchiveFiles > 0 && archiveNumber >= this.MaxArchiveFiles)
+            if (ShouldDeleteOldArchives() && archiveNumber >= this.MaxArchiveFiles)
             {
                 File.Delete(fileName);
                 return;
@@ -1120,7 +1120,7 @@ namespace NLog.Targets
                 nextNumber = 0;
             }
 
-            if (minNumber != -1 && this.MaxArchiveFiles != 0)
+            if (minNumber != -1 && ShouldDeleteOldArchives())
             {
                 int minNumberToKeep = nextNumber - this.MaxArchiveFiles + 1;
                 for (int i = minNumber; i < minNumberToKeep; ++i)
