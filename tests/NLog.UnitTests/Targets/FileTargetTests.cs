@@ -998,7 +998,9 @@ namespace NLog.UnitTests.Targets
                     ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
                     ArchiveEvery = FileArchivePeriod.Day,
                     ArchiveDateFormat = "yyyyMMdd",
+#if NET4_5
                     EnableArchiveFileCompression = enableArchiveCompression,
+#endif
                     Layout = "${message}",
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
@@ -1015,7 +1017,9 @@ namespace NLog.UnitTests.Targets
                     ArchiveNumbering = includeSequenceInArchive ? ArchiveNumberingMode.DateAndSequence : ArchiveNumberingMode.Date,
                     ArchiveEvery = FileArchivePeriod.Day,
                     ArchiveDateFormat = "yyyyMMdd",
+#if NET4_5
                     EnableArchiveFileCompression = enableArchiveCompression,
+#endif
                     Layout = "${message}",
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
