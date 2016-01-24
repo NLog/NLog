@@ -148,7 +148,7 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown())
+                if (ex.MustBeRethrown() || LogManager.ThrowExceptions)
                 {
                     throw;
                 }
