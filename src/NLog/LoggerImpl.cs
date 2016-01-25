@@ -281,7 +281,7 @@ namespace NLog
             }
             catch (Exception exception)
             { 
-                InternalLogger.Warn(exception, "Exception during filter evaluation.");
+                InternalLogger.Warn(exception, "Exception during filter evaluation. Message will be ignore.");
 
                 if (exception.MustBeRethrown())
                 {

@@ -71,7 +71,7 @@ namespace NLog.Conditions
             {
                 InternalLogger.Warn(exception, "Exception occurred when evaluating condition");
 
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }

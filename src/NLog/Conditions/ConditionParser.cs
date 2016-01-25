@@ -140,7 +140,7 @@ namespace NLog.Conditions
             {
                 InternalLogger.Warn(exception, "Cannot resolve function '{0}'", functionName);
 
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }

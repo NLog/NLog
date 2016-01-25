@@ -252,7 +252,7 @@ namespace NLog
                         }
                         catch (Exception exception)
                         {
-                            InternalLogger.Warn(exception, "Cannot start file watching: {0}");
+                            InternalLogger.Warn(exception, "Cannot start file watching: {0}", string.Join(",", this.config.FileNamesToWatch));
 
                             if (exception.MustBeRethrown())
                             {
