@@ -521,7 +521,7 @@ namespace NLog.Targets
         private void fixOracleParameterForClob(IDbDataParameter parameter)
         {
             var value = parameter?.Value as string;
-            if (value == null || value.Length <= 4000) return;
+            if (value == null || value.Length <= 32767) return;
 
             Type paramType = parameter.GetType();
 
