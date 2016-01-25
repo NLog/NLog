@@ -252,7 +252,8 @@ namespace NLog
                         }
                         catch (Exception exception)
                         {
-                            InternalLogger.Warn(exception, "Cannot start file watching: {0}", string.Join(",", this.config.FileNamesToWatch));
+                            //ToArray needed for .Net 3.5
+                            InternalLogger.Warn(exception, "Cannot start file watching: {0}", string.Join(",", this.config.FileNamesToWatch.ToArray()));
 
                             if (exception.MustBeRethrown())
                             {
