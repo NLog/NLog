@@ -499,6 +499,7 @@ namespace NLog.Targets
                     string stringValue = par.Layout.Render(logEvent);
 
                     p.Value = stringValue;
+                    fixOracleParameterForClob(p);
                     command.Parameters.Add(p);
 
                     InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
@@ -509,6 +510,41 @@ namespace NLog.Targets
 
                 //not really needed as there is no transaction at all.
                 transactionScope.Complete();
+            }
+        }
+
+        /// <summary>
+        /// Fixes the oracle parameter for clob.
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
+        /// <remarks>fixes this issue https://groups.google.com/forum/#!topic/nlog-users/NPtPAx43uw8</remarks>
+        private void fixOracleParameterForClob(IDbDataParameter parameter)
+        {
+            var value = parameter?.Value as string;
+            if (value == null || value.Length <= 4000) return;
+
+            Type paramType = parameter.GetType();
+
+            switch (paramType.Name)
+
+            {
+                case "OracleParameter":
+
+                    var property = paramType.GetProperty("OracleDbType");
+                    var oracleType = paramType.Assembly.GetType("Oracle.DataAccess.Client.OracleDbType");
+                    var oracleTypeField = oracleType?.GetField("Clob");
+                    var oracleTypeFieldRawConstantValue = oracleTypeField?.GetRawConstantValue();
+                    if (oracleTypeFieldRawConstantValue != null)
+                    {
+                        property?.SetValue(parameter, oracleTypeFieldRawConstantValue, null);
+                    }
+                    break;
+
+                default:
+
+                    parameter.DbType = DbType.String;
+
+                    break;
             }
         }
 
