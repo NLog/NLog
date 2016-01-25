@@ -60,6 +60,9 @@ namespace NLog.UnitTests.Targets
         {
             var target = new MyTarget();
             target.ThrowOnInitialize = true;
+
+            LogManager.ThrowExceptions = true;
+
             try
             {
                 target.Initialize(null);

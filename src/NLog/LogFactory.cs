@@ -195,7 +195,7 @@ namespace NLog
                             InternalLogger.Warn(exception, "Cannot start file watching. File watching is disabled");
                             //TODO NLog 5: check "MustBeRethrown" 
 
-                          
+
                         }
 #endif
                         this.config.InitializeAll();
@@ -439,7 +439,7 @@ namespace NLog
                 {
                     throw;
                 }
-               
+
             }
         }
 
@@ -889,18 +889,11 @@ namespace NLog
                     }
                     catch (Exception ex)
                     {
-                        var errorMessage = string.Format("GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
+                        InternalLogger.Error(ex, "GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
 
-                        InternalLogger.Error(ex, errorMessage);
-
-                        if (ex.MustBeRethrownImmediately())
+                        if (ex.MustBeRethrown())
                         {
                             throw;
-                        }
-
-                        if (ThrowExceptions)
-                        {
-                            throw new NLogRuntimeException(errorMessage, ex);
                         }
 
                         // Creating default instance of logger if instance of specified type cannot be created.
