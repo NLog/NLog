@@ -283,7 +283,7 @@ namespace NLog.Targets
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-		internal void Initialize(LoggingConfiguration configuration)
+        internal void Initialize(LoggingConfiguration configuration)
         {
             lock (this.SyncRoot)
             {
@@ -297,6 +297,10 @@ namespace NLog.Targets
                     {
                         this.InitializeTarget();
                         this.initializeException = null;
+                        if (this.allLayouts == null)
+                        {
+                            throw new NLogRuntimeException("{0}.allLayouts is null. Call base.InitializeTarget() in {0}", this.GetType());
+                        }
                     }
                     catch (Exception exception)
                     {
@@ -316,7 +320,7 @@ namespace NLog.Targets
         /// <summary>
         /// Closes this instance.
         /// </summary>
-		internal void Close()
+        internal void Close()
         {
             lock (this.SyncRoot)
             {
@@ -395,7 +399,8 @@ namespace NLog.Targets
         /// </summary>
         protected virtual void InitializeTarget()
         {
-            this.GetAllLayouts();
+            this.allLayouts = new List<Layout>(ObjectGraphScanner.FindReachableObjects<Layout>(this));
+            InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
         }
 
         /// <summary>
@@ -468,12 +473,6 @@ namespace NLog.Targets
         private Exception CreateInitException()
         {
             return new NLogRuntimeException("Target " + this + " failed to initialize.", this.initializeException);
-        }
-
-        private void GetAllLayouts()
-        {
-            this.allLayouts = new List<Layout>(ObjectGraphScanner.FindReachableObjects<Layout>(this));
-            InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
         }
 
         /// <summary>
