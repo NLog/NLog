@@ -152,9 +152,12 @@ namespace NLog.Targets
             {
                 if (this.IsInitialized)
                 {
-                    foreach (Layout l in this.allLayouts)
+                    if (this.allLayouts != null)
                     {
-                        l.Precalculate(logEvent);
+                        foreach (Layout l in this.allLayouts)
+                        {
+                            l.Precalculate(logEvent);
+                        }
                     }
                 }
             }
