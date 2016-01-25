@@ -40,6 +40,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using Microsoft.Win32;
     using NLog;
+    using NLog.Common;
     using NLog.Internal;
     using NLog.Config;
     using System.ComponentModel;
@@ -148,7 +149,8 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown() || LogManager.ThrowExceptions)
+                InternalLogger.Error("Error when writing to registry");
+                if (ex.MustBeRethrown())
                 {
                     throw;
                 }
