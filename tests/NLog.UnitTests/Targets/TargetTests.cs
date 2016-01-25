@@ -63,14 +63,8 @@ namespace NLog.UnitTests.Targets
 
             LogManager.ThrowExceptions = true;
 
-            try
-            {
-                target.Initialize(null);
-                Assert.True(false, "Expected exception.");
-            }
-            catch (InvalidOperationException)
-            {
-            }
+
+            Assert.Throws<InvalidOperationException>(() => target.Initialize(null));
 
             // after exception in Initialize(), the target becomes non-functional and all Write() operations
             var exceptions = new List<Exception>();
