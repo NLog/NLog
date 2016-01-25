@@ -58,7 +58,7 @@ namespace NLog.UnitTests.Internal
         [InlineData(typeof(NullReferenceException), false)]
         [InlineData(typeof(ThreadAbortException), true)]
         [InlineData(typeof(OutOfMemoryException), true)]
-        public void TestMustBeRethrowIntermediateLyy(Type t, bool result)
+        public void TestMustBeRethrowImmediately(Type t, bool result)
         {
             var ex = CreateException(t);
             Assert.Equal(result, ex.MustBeRethrownImmediately());
