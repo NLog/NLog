@@ -232,7 +232,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
 
         [Fact]
-        public void RegistyDefaultValueTest()
+        public void RegistryDefaultValueTest()
         {
             //example: 0003: NLog.UnitTests
             AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=logdefaultvalue}",
@@ -240,7 +240,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void RegistyDefaultValueTest_with_colon()
+        public void RegistryDefaultValueTest_with_colon()
         {
             //example: 0003: NLog.UnitTests
             AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\:temp}",
@@ -249,7 +249,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
 
         [Fact]
-        public void RegistyDefaultValueTest_with_slash()
+        public void RegistryDefaultValueTest_with_slash()
         {
             //example: 0003: NLog.UnitTests
             AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C/temp}",
@@ -257,7 +257,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void RegistyDefaultValueTest_with_foward_slash()
+        public void RegistryDefaultValueTest_with_foward_slash()
         {
             //example: 0003: NLog.UnitTests
             AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\\\temp}",
@@ -266,7 +266,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
 
         [Fact]
-        public void RegistyDefaultValueTest_with_foward_slash2()
+        public void RegistryDefaultValueTest_with_foward_slash2()
         {
             //example: 0003: NLog.UnitTests
             AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\temp:requireEscapingSlashesInDefaultValue=false}",
@@ -274,21 +274,21 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void Registy_nosubky()
+        public void Registry_nosubky()
         {
             //example: 0003: NLog.UnitTests
             AssertLayoutRendererOutput("${registry:key=HKEY_CURRENT_CONFIG}", "");
         }
 
         [Fact]
-        public void RegistyDefaultValueNull()
+        public void RegistryDefaultValueNull()
         {
             //example: 0003: NLog.UnitTests
             AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT}", "");
         }
 
         [Fact]
-        public void RegistyTestWrongKey_no_ex()
+        public void RegistryTestWrongKey_no_ex()
         {
             var throwExceptions = LogManager.ThrowExceptions;
             try
@@ -307,7 +307,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         [Fact(Skip = "SimpleLayout.GetFormattedMessage catches exception. Will be fixed in the future")]
         
-        public void RegistyTestWrongKey_ex()
+        public void RegistryTestWrongKey_ex()
         {
             var throwExceptions = LogManager.ThrowExceptions;
             try
