@@ -104,9 +104,8 @@ namespace NLog.UnitTests.Internal
         [InlineData("Error has been raised.", typeof(NLogConfigurationException), false, "Warn")]
         [InlineData("Error has been raised.", typeof(NLogConfigurationException), true, "Warn")]
         [InlineData("", typeof(ArgumentException), true, "Warn")]
-        [InlineData("Error has been raised.", typeof(ArgumentException), false, "Error")]
         [InlineData("", typeof(NLogConfigurationException), true, "Warn")]
-        [InlineData("Error has been raised.", typeof(NLogConfigurationException), false, "Warn")]
+        
         public void MustBeRethrown_ShouldLog_exception_and_only_once(string text, Type exceptionType, bool logFirst, string levelText)
         {
             using (new InternalLoggerScope())
