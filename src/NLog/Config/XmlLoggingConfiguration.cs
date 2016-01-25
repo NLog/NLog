@@ -62,6 +62,7 @@ namespace NLog.Config
     /// A class for configuring NLog through an XML configuration file 
     /// (App.config style or App.nlog style).
     /// </summary>
+    ///<remarks>This class is thread-safe.<c>.ToList()</c> is used for that purpose.</remarks>
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
         #region private fields
@@ -193,7 +194,8 @@ namespace NLog.Config
             }
             set
             {
-                foreach (string nextFile in this.fileMustAutoReloadLookup.Keys.ToList())
+                var autoReloadFiles = this.fileMustAutoReloadLookup.Keys.ToList();
+                foreach (string nextFile in autoReloadFiles)
                     this.fileMustAutoReloadLookup[nextFile] = value;
             }
         }
@@ -416,9 +418,10 @@ namespace NLog.Config
             InternalLogger.Trace("ParseConfigurationElement");
             configurationElement.AssertName("configuration");
 
-            foreach (var el in configurationElement.Elements("nlog"))
+            var nlogElements = configurationElement.Elements("nlog").ToList();
+            foreach (var nlogElement in nlogElements)
             {
-                this.ParseNLogElement(el, filePath, autoReloadDefault);
+                this.ParseNLogElement(nlogElement, filePath, autoReloadDefault);
             }
         }
 
@@ -452,10 +455,10 @@ namespace NLog.Config
             InternalLogger.LogLevel = LogLevel.FromString(nlogElement.GetOptionalAttribute("internalLogLevel", InternalLogger.LogLevel.Name));
             LogManager.GlobalThreshold = LogLevel.FromString(nlogElement.GetOptionalAttribute("globalThreshold", LogManager.GlobalThreshold.Name));
 
-            var children = nlogElement.Children;
+            var children = nlogElement.Children.ToList();
 
             //first load the extensions, as the can be used in other elements (targets etc)
-            var extensionsChilds = children.Where(child => child.LocalName.Equals("EXTENSIONS", StringComparison.InvariantCultureIgnoreCase));
+            var extensionsChilds = children.Where(child => child.LocalName.Equals("EXTENSIONS", StringComparison.InvariantCultureIgnoreCase)).ToList();
             foreach (var extensionsChild in extensionsChilds)
             {
                 this.ParseExtensionsElement(extensionsChild, Path.GetDirectoryName(filePath));
@@ -508,7 +511,8 @@ namespace NLog.Config
             InternalLogger.Trace("ParseRulesElement");
             rulesElement.AssertName("rules");
 
-            foreach (var loggerElement in rulesElement.Elements("logger"))
+            var loggerElements = rulesElement.Elements("logger").ToList();
+            foreach (var loggerElement in loggerElements)
             {
                 this.ParseLoggerElement(loggerElement, rulesCollection);
             }
@@ -571,11 +575,11 @@ namespace NLog.Config
                 levelString = CleanSpaces(levelString);
 
                 string[] tokens = levelString.Split(',');
-                foreach (string s in tokens)
+                foreach (string token in tokens)
                 {
-                    if (!string.IsNullOrEmpty(s))
+                    if (!string.IsNullOrEmpty(token))
                     {
-                        LogLevel level = LogLevel.FromString(s);
+                        LogLevel level = LogLevel.FromString(token);
                         rule.EnableLoggingForLevel(level);
                     }
                 }
@@ -603,7 +607,8 @@ namespace NLog.Config
                 }
             }
 
-            foreach (var child in loggerElement.Children)
+            var children = loggerElement.Children.ToList();
+            foreach (var child in children)
             {
                 switch (child.LocalName.ToUpper(CultureInfo.InvariantCulture))
                 {
@@ -624,7 +629,8 @@ namespace NLog.Config
         {
             filtersElement.AssertName("filters");
 
-            foreach (var filterElement in filtersElement.Children)
+            var children = filtersElement.Children.ToList();
+            foreach (var filterElement in children)
             {
                 string name = filterElement.LocalName;
 
@@ -652,7 +658,8 @@ namespace NLog.Config
             NLogXmlElement defaultWrapperElement = null;
             var typeNameToDefaultTargetParameters = new Dictionary<string, NLogXmlElement>();
 
-            foreach (var targetElement in targetsElement.Children)
+            var children = targetsElement.Children.ToList();
+            foreach (var targetElement in children)
             {
                 string name = targetElement.LocalName;
                 string typeAttributeVal = StripOptionalNamespacePrefix(targetElement.GetOptionalAttribute("type", null));
@@ -716,7 +723,8 @@ namespace NLog.Config
 
             this.ConfigureObjectFromAttributes(target, targetElement, true);
 
-            foreach (var childElement in targetElement.Children)
+            var children = targetElement.Children.ToList();
+            foreach (var childElement in children)
             {
                 string name = childElement.LocalName;
 
@@ -806,7 +814,8 @@ namespace NLog.Config
         {
             extensionsElement.AssertName("extensions");
 
-            foreach (var addElement in extensionsElement.Elements("add"))
+            var addElements = extensionsElement.Elements("add").ToList();
+            foreach (var addElement in addElements)
             {
                 string prefix = addElement.GetOptionalAttribute("prefix", null);
 
@@ -888,8 +897,6 @@ namespace NLog.Config
                             throw new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
                         }
                     }
-
-                    continue;
                 }
             }
         }
@@ -1010,7 +1017,8 @@ namespace NLog.Config
 
         private void ConfigureObjectFromAttributes(object targetObject, NLogXmlElement element, bool ignoreType)
         {
-            foreach (var kvp in element.AttributeValues)
+            var attributeValues = element.AttributeValues.ToList();
+            foreach (var kvp in attributeValues)
             {
                 string childName = kvp.Key;
                 string childValue = kvp.Value;
@@ -1055,7 +1063,8 @@ namespace NLog.Config
 
         private void ConfigureObjectFromElement(object targetObject, NLogXmlElement element)
         {
-            foreach (var child in element.Children)
+            var children = element.Children.ToList();
+            foreach (var child in children)
             {
                 this.SetPropertyFromElement(targetObject, child);
             }
@@ -1102,7 +1111,8 @@ namespace NLog.Config
             string output = input;
 
             // TODO - make this case-insensitive, will probably require a different approach
-            foreach (var kvp in this.Variables)
+            var variables = this.Variables.ToList();
+            foreach (var kvp in variables)
             {
                 var layout = kvp.Value;
                 //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.

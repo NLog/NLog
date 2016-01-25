@@ -59,9 +59,10 @@ namespace NLog.Internal
         {
             InternalLogger.Trace("FindReachableObject<{0}>:", typeof(T));
             var result = new List<T>();
-            var visitedObjects = new Dictionary<object, int>();
+            var visitedObjects = new HashSet<object>();
 
-            foreach (var rootObject in rootObjects)
+            var rootObjectsList = rootObjects.ToList();
+            foreach (var rootObject in rootObjectsList)
             {
                 ScanProperties(result, rootObject, 0, visitedObjects);
             }
@@ -69,7 +70,7 @@ namespace NLog.Internal
             return result.ToArray();
         }
 
-        private static void ScanProperties<T>(List<T> result, object o, int level, Dictionary<object, int> visitedObjects)
+        private static void ScanProperties<T>(List<T> result, object o, int level, HashSet<object> visitedObjects)
             where T : class
         {
             if (o == null)
@@ -77,17 +78,21 @@ namespace NLog.Internal
                 return;
             }
 
-            if (!o.GetType().IsDefined(typeof(NLogConfigurationItemAttribute), true))
+            //cheaper call then getType and isDefined
+            if (visitedObjects.Contains(o))
             {
                 return;
             }
 
-            if (visitedObjects.ContainsKey(o))
+
+            var type = o.GetType();
+            if (!type.IsDefined(typeof(NLogConfigurationItemAttribute), true))
             {
                 return;
             }
 
-            visitedObjects.Add(o, 0);
+        
+            visitedObjects.Add(o);
 
             var t = o as T;
             if (t != null)
@@ -97,10 +102,11 @@ namespace NLog.Internal
 
             if (InternalLogger.IsTraceEnabled)
             {
-                InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), o.GetType().Name, o);
+                InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), type.Name, o);
             }
 
-            foreach (PropertyInfo prop in PropertyHelper.GetAllReadableProperties(o.GetType()))
+            var allReadableProperties = PropertyHelper.GetAllReadableProperties(type).ToList();
+            foreach (PropertyInfo prop in allReadableProperties)
             {
                 if (prop.PropertyType.IsPrimitive || prop.PropertyType.IsEnum || prop.PropertyType == typeof(string) || prop.IsDefined(typeof(NLogConfigurationIgnorePropertyAttribute), true))
                 {
