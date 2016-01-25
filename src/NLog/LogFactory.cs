@@ -187,8 +187,15 @@ namespace NLog
                         }
                         catch (Exception exception)
                         {
+                            if (exception.MustBeRethrownImmediately())
+                            {
+                                throw;
+                            }
+
                             InternalLogger.Warn(exception, "Cannot start file watching. File watching is disabled");
                             //TODO NLog 5: check "MustBeRethrown" 
+
+                          
                         }
 #endif
                         this.config.InitializeAll();
@@ -886,7 +893,7 @@ namespace NLog
 
                         InternalLogger.Error(ex, errorMessage);
 
-                        if (ex.MustBeRethrown())
+                        if (ex.MustBeRethrownImmediately())
                         {
                             throw;
                         }

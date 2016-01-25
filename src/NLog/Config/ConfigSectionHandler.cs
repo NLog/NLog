@@ -59,11 +59,7 @@ namespace NLog.Config
             {
                 InternalLogger.Error(exception, "ConfigSectionHandler error.");
               
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-                
+                //TODO NLog 5, check MustBeRethrown()
                 throw;
             }
         }

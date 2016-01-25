@@ -100,7 +100,7 @@ namespace NLog.Internal
             {
                 InternalLogger.Warn(exception, "Error when setting property '{0}' on '{1}'", propInfo.Name, obj);
 
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }

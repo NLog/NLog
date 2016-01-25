@@ -378,7 +378,6 @@ namespace NLog.Targets
                     throw;
                 }
 
-                throw;
             }
         }
     }

@@ -69,18 +69,15 @@ namespace NLog.Internal
             }
             catch (Exception ex)
             {
+                InternalLogger.Error(ex, "Exception in asynchronous handler.");
+
                 if (ex.MustBeRethrown())
                 {
                     throw;
                 }
 
-                ReportExceptionInHandler(ex);
+                
             }
-        }
-
-        private static void ReportExceptionInHandler(Exception exception)
-        {
-            InternalLogger.Error(exception, "Exception in asynchronous handler.");
         }
     }
 }

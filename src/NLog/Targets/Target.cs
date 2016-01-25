@@ -297,14 +297,13 @@ namespace NLog.Targets
                     {
                         InternalLogger.Error(exception, "Error initializing target '{0}'.", this);
 
+                        this.initializeException = exception;
+
                         if (exception.MustBeRethrown())
                         {
                             throw;
                         }
-
-                        this.initializeException = exception;
                       
-                        throw;
                     }
                 }
             }
@@ -339,8 +338,6 @@ namespace NLog.Targets
                         {
                             throw;
                         }
-                        
-                        throw;
                     }
                 }
             }

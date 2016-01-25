@@ -326,13 +326,14 @@ namespace NLog.Config
                     throw;
                 }
 
-                InternalLogger.Error(new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception), "Error in Parsing Configuration File.");
+                var configurationException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
+                InternalLogger.Error(configurationException, "Error in Parsing Configuration File.");
 
                 if (!ignoreErrors)
                 {
                     if (exception.MustBeRethrown())
                     {
-                        throw new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
+                        throw configurationException;
                     }
                 }
               
@@ -840,12 +841,12 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        InternalLogger.Error(exception, "Error loading extensions.");
-
                         if (exception.MustBeRethrownImmediately())
                         {
                             throw;
                         }
+
+                        InternalLogger.Error(exception, "Error loading extensions.");
 
                         if (exception.MustBeRethrown())
                         {
@@ -874,14 +875,15 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        InternalLogger.Error(exception, "Error loading extensions.");
 
-                        if (exception.MustBeRethrown())
+                        if (exception.MustBeRethrownImmediately())
                         {
                             throw;
                         }
-                        
-                        if (LogManager.ThrowExceptions)
+
+                        InternalLogger.Error(exception, "Error loading extensions.");
+
+                        if (exception.MustBeRethrown())
                         {
                             throw new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
                         }

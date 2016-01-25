@@ -250,7 +250,7 @@ namespace NLog.Config
                 catch (Exception exception)
                 {
                     InternalLogger.Error(exception, "Install of '{0}' failed.", installable);
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrownImmediately())
                     {
                         throw;
                     }
@@ -288,7 +288,7 @@ namespace NLog.Config
                 catch (Exception exception)
                 {
                     InternalLogger.Error(exception, "Uninstall of '{0}' failed.", installable);
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrownImmediately())
                     {
                         throw;
                     }

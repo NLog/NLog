@@ -555,6 +555,14 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
+
+                    if (exception.MustBeRethrownImmediately())
+                    {
+                        throw;
+                    }
+
+                    //TODO NLog 5, check MustBeRethrown()
+
                     InternalLogger.Warn(exception, "Error while initializing archive folder.");
                 }
             }

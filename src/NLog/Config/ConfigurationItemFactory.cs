@@ -271,6 +271,11 @@ namespace NLog.Config
                 }
                 catch (Exception ex)
                 {
+                    if (ex.MustBeRethrownImmediately())
+                    {
+                        throw;
+                    }
+
                     InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
                     //TODO NLog 5, check MustBeRethrown()
                 }
