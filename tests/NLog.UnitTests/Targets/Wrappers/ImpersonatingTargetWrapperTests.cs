@@ -148,6 +148,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 ExpectedUser = NLogTestUser,
             };
 
+            LogManager.ThrowExceptions = true;
+
             var wrapper = new ImpersonatingTargetWrapper()
             {
                 UserName = NLogTestUser,
@@ -175,6 +177,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 ExpectedUser = NLogTestUser,
             };
+
+            LogManager.ThrowExceptions = true;
 
             var wrapper = new ImpersonatingTargetWrapper()
             {
