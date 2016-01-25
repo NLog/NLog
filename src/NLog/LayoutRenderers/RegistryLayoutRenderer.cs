@@ -32,15 +32,18 @@
 // 
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
     using Microsoft.Win32;
-    using NLog.Config;
+    using NLog;
     using NLog.Internal;
+    using NLog.Config;
+    using System.ComponentModel;
+    using NLog.Layouts;
 
     /// <summary>
     /// A value from the Registry.
@@ -48,22 +51,46 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("registry")]
     public class RegistryLayoutRenderer : LayoutRenderer
     {
-        private string key;
-        private RegistryKey rootKey = Registry.LocalMachine;
-        private string subKey;
+        /// <summary>
+        /// Create new renderer
+        /// </summary>
+        public RegistryLayoutRenderer()
+        {
+            RequireEscapingSlashesInDefaultValue = true;
+        }
 
         /// <summary>
         /// Gets or sets the registry value name.
         /// </summary>
         /// <docgen category='Registry Options' order='10' />
-        public string Value { get; set; }
+        public Layout Value { get; set; }
 
         /// <summary>
         /// Gets or sets the value to be output when the specified registry key or value is not found.
         /// </summary>
         /// <docgen category='Registry Options' order='10' />
-        public string DefaultValue { get; set; }
+        public Layout DefaultValue { get; set; }
 
+        /// <summary>
+        /// Require escaping backward slashes in <see cref="DefaultValue"/>. Need to be backwardscompatible.
+        /// 
+        /// When true:
+        /// 
+        /// `\` in value should be configured as `\\`
+        /// `\\` in value should be configured as `\\\\`.
+        /// </summary>
+        /// <remarks>Default value wasn't a Layout before and needed an escape of the slash</remarks>
+        [DefaultValue(true)]
+        public bool RequireEscapingSlashesInDefaultValue { get; set; }
+
+#if !NET3_5
+        /// <summary>
+        /// Gets or sets the registry view (see: https://msdn.microsoft.com/de-de/library/microsoft.win32.registryview.aspx). 
+        /// Allowed values: Registry32, Registry64, Default 
+        /// </summary>
+        [DefaultValue("Default")]
+        public RegistryView View { get; set; }
+#endif
         /// <summary>
         /// Gets or sets the registry key.
         /// </summary>
@@ -74,49 +101,13 @@ namespace NLog.LayoutRenderers
         /// <li>HKEY_LOCAL_MACHINE\Key\Full\Name</li>
         /// <li>HKCU\Key\Full\Name</li>
         /// <li>HKEY_CURRENT_USER\Key\Full\Name</li>
+        /// <li>HKLM</li>
+        /// <li>HKEY_LOCAL_MACHINE</li>
         /// </ul>
         /// </remarks>
         /// <docgen category='Registry Options' order='10' />
         [RequiredParameter]
-        public string Key
-        {
-            get
-            {
-                return this.key;
-            }
-
-            set
-            {
-                this.key = value;
-                int pos = this.key.IndexOfAny(new char[] { '\\', '/' });
-
-                if (pos >= 0)
-                {
-                    string root = this.key.Substring(0, pos);
-                    switch (root.ToUpper(CultureInfo.InvariantCulture))
-                    {
-                        case "HKEY_LOCAL_MACHINE":
-                        case "HKLM":
-                            this.rootKey = Registry.LocalMachine;
-                            break;
-
-                        case "HKEY_CURRENT_USER":
-                        case "HKCU":
-                            this.rootKey = Registry.CurrentUser;
-                            break;
-
-                        default:
-                            throw new ArgumentException("Key name is invalid. Root hive not recognized.");
-                    }
-
-                    this.subKey = this.key.Substring(pos + 1).Replace('/', '\\');
-                }
-                else
-                {
-                    throw new ArgumentException("Key name is invalid");
-                }
-            }
-        }
+        public Layout Key { get; set; }
 
         /// <summary>
         /// Reads the specified registry key and value and appends it to
@@ -126,27 +117,157 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event. Ignored.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string value;
+            Object registryValue = null;
+            // Value = null is necessary for querying "unnamed values"
+            string renderedValue = this.Value != null ? this.Value.Render(logEvent) : null;
 
+            var parseResult = ParseKey(this.Key.Render(logEvent));
             try
             {
-                using (RegistryKey registryKey = this.rootKey.OpenSubKey(this.subKey))
+#if !NET3_5
+                using (RegistryKey rootKey = RegistryKey.OpenBaseKey(parseResult.Hive, View))
+#else
+                var rootKey = MapHiveToKey(parseResult.Hive);
+
+#endif
+
                 {
-                    value = Convert.ToString(registryKey.GetValue(this.Value, this.DefaultValue), CultureInfo.InvariantCulture);
+
+                    if (parseResult.HasSubKey)
+                    {
+                        using (RegistryKey registryKey = rootKey.OpenSubKey(parseResult.SubKey))
+                        {
+                            if (registryKey != null) registryValue = registryKey.GetValue(renderedValue);
+                        }
+                    }
+                    else
+                    {
+                        registryValue = rootKey.GetValue(renderedValue);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown())
+                if (ex.MustBeRethrown() || LogManager.ThrowExceptions)
                 {
                     throw;
                 }
-
-                value = this.DefaultValue;
             }
 
+            string value = null;
+            if (registryValue != null) // valid value returned from registry will never be null
+            {
+                value = Convert.ToString(registryValue, CultureInfo.InvariantCulture);
+            }
+            else if (this.DefaultValue != null)
+            {
+                value = this.DefaultValue.Render(logEvent);
+
+                if (RequireEscapingSlashesInDefaultValue)
+                {
+                    //remove escape slash
+                    value = value.Replace("\\\\", "\\");
+                }
+            }
             builder.Append(value);
         }
+
+        private class ParseResult
+        {
+            public string SubKey { get; set; }
+
+            public RegistryHive Hive { get; set; }
+
+            /// <summary>
+            /// Has <see cref="SubKey"/>?
+            /// </summary>
+            public bool HasSubKey
+            {
+                get { return !string.IsNullOrEmpty(SubKey); }
+            }
+        }
+
+        /// <summary>
+        /// Parse key to <see cref="RegistryHive"/> and subkey.
+        /// </summary>
+        /// <param name="key">full registry key name</param>
+        /// <returns>Result of parsing, never <c>null</c>.</returns>
+        private static ParseResult ParseKey(string key)
+        {
+            string hiveName;
+            int pos = key.IndexOfAny(new char[] { '\\', '/' });
+
+            string subkey = null;
+            if (pos >= 0)
+            {
+                hiveName = key.Substring(0, pos);
+
+                //normalize slashes
+                subkey = key.Substring(pos + 1).Replace('/', '\\');
+
+                //remove starting slashes
+                subkey = subkey.TrimStart('\\');
+
+                //replace double slashes from pre-layout times
+                subkey = subkey.Replace("\\\\", "\\");
+
+            }
+            else
+            {
+                hiveName = key;
+            }
+
+            var hive = ParseHiveName(hiveName);
+
+            return new ParseResult
+            {
+                SubKey = subkey,
+                Hive = hive,
+            };
+        }
+
+        /// <summary>
+        /// Aliases for the hives. See https://msdn.microsoft.com/en-us/library/ctb3kd86(v=vs.110).aspx
+        /// </summary>
+        private static readonly Dictionary<string, RegistryHive> HiveAliases = new Dictionary<string, RegistryHive>(StringComparer.InvariantCultureIgnoreCase)
+        {
+            {"HKEY_LOCAL_MACHINE", RegistryHive.LocalMachine},
+            {"HKLM", RegistryHive.LocalMachine},
+            {"HKEY_CURRENT_USER", RegistryHive.CurrentUser},
+            {"HKCU", RegistryHive.CurrentUser},
+            {"HKEY_CLASSES_ROOT", RegistryHive.ClassesRoot},
+            {"HKEY_USERS", RegistryHive.Users},
+            {"HKEY_CURRENT_CONFIG", RegistryHive.CurrentConfig},
+            {"HKEY_DYN_DATA", RegistryHive.DynData},
+            {"HKEY_PERFORMANCE_DATA", RegistryHive.PerformanceData},
+        };
+
+        private static RegistryHive ParseHiveName(string hiveName)
+        {
+            RegistryHive hive;
+            if (HiveAliases.TryGetValue(hiveName, out hive))
+            {
+                return hive;
+            }
+
+            //ArgumentException is consistent
+            throw new ArgumentException(string.Format("Key name is not supported. Root hive '{0}' not recognized.", hiveName));
+        }
+
+#if NET3_5
+        private static RegistryKey MapHiveToKey(RegistryHive hive)
+        {
+            switch (hive)
+            {
+                case RegistryHive.LocalMachine:
+                    return Registry.LocalMachine;
+                case RegistryHive.CurrentUser:
+                    return Registry.CurrentUser;
+                default:
+                    throw new ArgumentException("Only RegistryHive.LocalMachine and RegistryHive.CurrentUser are supported.", "hive");
+            }
+        }
+#endif
     }
 }
 
