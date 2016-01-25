@@ -95,15 +95,21 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the registry key.
         /// </summary>
+        /// <example>
+        /// HKCU\Software\NLogTest
+        /// </example>
         /// <remarks>
-        /// Must have one of the forms:
+        /// Possible keys:
         /// <ul>
-        /// <li>HKLM\Key\Full\Name</li>
-        /// <li>HKEY_LOCAL_MACHINE\Key\Full\Name</li>
-        /// <li>HKCU\Key\Full\Name</li>
-        /// <li>HKEY_CURRENT_USER\Key\Full\Name</li>
-        /// <li>HKLM</li>
-        /// <li>HKEY_LOCAL_MACHINE</li>
+        ///<li>HKEY_LOCAL_MACHINE</li>
+        ///<li>HKLM</li>
+        ///<li>HKEY_CURRENT_USER</li>
+        ///<li>HKCU</li>
+        ///<li>HKEY_CLASSES_ROOT</li>
+        ///<li>HKEY_USERS</li>
+        ///<li>HKEY_CURRENT_CONFIG</li>
+        ///<li>HKEY_DYN_DATA</li>
+        ///<li>HKEY_PERFORMANCE_DATA</li>
         /// </ul>
         /// </remarks>
         /// <docgen category='Registry Options' order='10' />
