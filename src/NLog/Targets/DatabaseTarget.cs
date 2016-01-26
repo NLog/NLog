@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
@@ -499,7 +501,7 @@ namespace NLog.Targets
                     string stringValue = par.Layout.Render(logEvent);
 
                     p.Value = stringValue;
-                    fixOracleParameterForClob(p);
+                    customizeParameterType(p, par);
                     command.Parameters.Add(p);
 
                     InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
@@ -514,38 +516,29 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Fixes the oracle parameter for clob.
+        /// Allows the database type to be customized if we
+        /// are not able to properly infer the database type.
         /// </summary>
-        /// <param name="parameter">The parameter.</param>
-        /// <remarks>fixes this issue https://groups.google.com/forum/#!topic/nlog-users/NPtPAx43uw8</remarks>
-        private void fixOracleParameterForClob(IDbDataParameter parameter)
+        /// <param name="dbDataParameter">The parameter.</param>
+        /// <param name="parameterInfo"></param>
+        private void customizeParameterType(IDbDataParameter dbDataParameter, DatabaseParameterInfo parameterInfo)
         {
-            var value = parameter?.Value as string;
-            if (value == null || value.Length <= 32767) return;
+            if (string.IsNullOrWhiteSpace(parameterInfo.DbType) ||
+                string.IsNullOrWhiteSpace(parameterInfo.DbTypePropertyName))
+                return;
+            var fullEnumNamespace = parameterInfo.DbType.Split('.');
+            var justEnumName = string.Join(".", fullEnumNamespace.Take(fullEnumNamespace.Length - 1));
+            var justEnumValue = fullEnumNamespace.Last();
 
-            Type paramType = parameter.GetType();
+            Type paramType = dbDataParameter.GetType();
+            var property = paramType.GetProperty(parameterInfo.DbTypePropertyName);
+            var oracleType = paramType.Assembly.GetType(justEnumName);
+            var oracleTypeField = oracleType?.GetField(justEnumValue);
+            var oracleTypeFieldRawConstantValue = oracleTypeField?.GetRawConstantValue();
 
-            switch (paramType.Name)
-
-            {
-                case "OracleParameter":
-
-                    var property = paramType.GetProperty("OracleDbType");
-                    var oracleType = paramType.Assembly.GetType("Oracle.DataAccess.Client.OracleDbType");
-                    var oracleTypeField = oracleType?.GetField("Clob");
-                    var oracleTypeFieldRawConstantValue = oracleTypeField?.GetRawConstantValue();
-                    if (oracleTypeFieldRawConstantValue != null)
-                    {
-                        property?.SetValue(parameter, oracleTypeFieldRawConstantValue, null);
-                    }
-                    break;
-
-                default:
-
-                    parameter.DbType = DbType.String;
-
-                    break;
-            }
+            if (oracleTypeFieldRawConstantValue == null)
+                throw  new Exception($"Unable set the database type from the database parameter for DbType: {parameterInfo.DbType} {Environment.NewLine} and DbTypePropertyName of: {parameterInfo.DbTypePropertyName}");
+            property?.SetValue(dbDataParameter, oracleTypeFieldRawConstantValue, null);
         }
 
         private string BuildConnectionString(LogEventInfo logEvent)

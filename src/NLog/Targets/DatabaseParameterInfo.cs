@@ -98,6 +98,20 @@ namespace NLog.Targets
         /// <docgen category='Parameter Options' order='10' />
         [DefaultValue(0)]
         public byte Scale { get; set; }
+
+        /// <summary>
+        /// Gets or sets the column type of the database.
+        /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
+        [DefaultValue(null)]
+        public string DbType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the database column type property.
+        /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
+        [DefaultValue(null)]
+        public string DbTypePropertyName { get; set; }
     }
 }
 
