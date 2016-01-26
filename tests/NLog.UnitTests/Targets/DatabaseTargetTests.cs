@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Drawing;
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -758,6 +760,76 @@ Dispose()
             Assert.Equal(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
         }
 
+        [Fact]
+        public void CustomizeParameterTypeShouldSetCustomEnumValueTest()
+        {
+            var expected = MockDbParameter.CustomDbType.Clob;
+            var dt = new DatabaseTarget
+            {
+                Name = "notimportant",
+                DBProvider = "notimportant",
+                ConnectionString = "notimportant",
+                CommandText = "notimportant",
+            };
+            var parameterInfo = new DatabaseParameterInfo
+            {
+                DbTypePropertyName = "CustomDbColumnType",
+                DbType = typeof(MockDbParameter.CustomDbType).FullName + ".Clob"
+            };
+            var parameter = new MockDbParameter(new MockDbCommand(), 0); 
+
+            dt.CustomizeParameterType(parameter, parameterInfo);
+
+            Assert.Equal(expected, parameter.CustomDbColumnType);
+        }
+
+        [Theory]
+        [InlineData("INVALID" + ".Clob", "CustomDbColumnType")]
+        [InlineData("INVALID", "CustomDbColumnType")]
+        [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType.Clob", " test ")]
+        [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType", "CustomDbColumnType")]
+        public void CustomizeParameterTypeShouldThrowExceptionTest(string dbType, string dbTypePropertyName)
+        {
+            var dt = new DatabaseTarget
+            {
+                Name = "notimportant",
+                DBProvider = "notimportant",
+                ConnectionString = "notimportant",
+                CommandText = "notimportant",
+            };
+            var parameterInfo = new DatabaseParameterInfo
+            {
+                DbTypePropertyName = dbTypePropertyName,
+                DbType = dbType
+            };
+            var parameter = new MockDbParameter(new MockDbCommand(), 0);
+
+            Exception exception = Assert.Throws<Exception>(() => 
+                dt.CustomizeParameterType(parameter, parameterInfo));
+
+            Assert.Contains(dbType, exception.Message);
+            Assert.Contains(dbTypePropertyName, exception.Message);
+        }
+
+        [Fact]
+        public void CustomizeParameterTypeShouldDoNothingIfNotSetTest()
+        {
+            var dt = new DatabaseTarget
+            {
+                Name = "notimportant",
+                DBProvider = "notimportant",
+                ConnectionString = "notimportant",
+                CommandText = "notimportant",
+            };
+            var parameterInfo = new DatabaseParameterInfo();
+            var parameter = new MockDbParameter(new MockDbCommand(), 0);
+            var expected = parameter.CustomDbColumnType = MockDbParameter.CustomDbType.Blob;
+
+            dt.CustomizeParameterType(parameter, parameterInfo);
+
+            Assert.Equal(expected, parameter.CustomDbColumnType);
+        }
+
         [Theory]
         [InlineData("usetransactions='false'",true)]
         [InlineData("usetransactions='true'",true)]
@@ -998,11 +1070,25 @@ Dispose()
             private string parameterName;
             private object parameterValue;
             private DbType parameterType;
+            private CustomDbType _customDbColumnType;
 
             public MockDbParameter(MockDbCommand mockDbCommand, int paramId)
             {
                 this.mockDbCommand = mockDbCommand;
                 this.paramId = paramId;
+            }
+
+            public CustomDbType CustomDbColumnType
+            {
+                get { return _customDbColumnType; }
+                set { _customDbColumnType = value; }
+            }
+
+            public enum CustomDbType
+            {
+                Default,
+                Clob,
+                Blob
             }
 
             public DbType DbType

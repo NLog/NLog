@@ -501,7 +501,7 @@ namespace NLog.Targets
                     string stringValue = par.Layout.Render(logEvent);
 
                     p.Value = stringValue;
-                    customizeParameterType(p, par);
+                    CustomizeParameterType(p, par);
                     command.Parameters.Add(p);
 
                     InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
@@ -521,24 +521,28 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="dbDataParameter">The parameter.</param>
         /// <param name="parameterInfo"></param>
-        private void customizeParameterType(IDbDataParameter dbDataParameter, DatabaseParameterInfo parameterInfo)
+        internal void CustomizeParameterType(IDbDataParameter dbDataParameter, DatabaseParameterInfo parameterInfo)
         {
-            if (string.IsNullOrWhiteSpace(parameterInfo.DbType) ||
-                string.IsNullOrWhiteSpace(parameterInfo.DbTypePropertyName))
+            if (string.IsNullOrEmpty(parameterInfo.DbType) ||
+                string.IsNullOrEmpty(parameterInfo.DbTypePropertyName))
                 return;
             var fullEnumNamespace = parameterInfo.DbType.Split('.');
             var justEnumName = string.Join(".", fullEnumNamespace.Take(fullEnumNamespace.Length - 1));
             var justEnumValue = fullEnumNamespace.Last();
 
+            object oracleTypeFieldRawConstantValue = null;
             Type paramType = dbDataParameter.GetType();
             var property = paramType.GetProperty(parameterInfo.DbTypePropertyName);
-            var oracleType = paramType.Assembly.GetType(justEnumName);
-            var oracleTypeField = oracleType?.GetField(justEnumValue);
-            var oracleTypeFieldRawConstantValue = oracleTypeField?.GetRawConstantValue();
+            if (!string.IsNullOrEmpty(justEnumName))
+            {
+                var oracleType = paramType.Assembly.GetType(justEnumName);
+                var oracleTypeField = oracleType != null ? oracleType.GetField(justEnumValue) : null;
+                oracleTypeFieldRawConstantValue = oracleTypeField != null ? oracleTypeField.GetRawConstantValue() : null;
+            }
 
-            if (oracleTypeFieldRawConstantValue == null)
+            if (oracleTypeFieldRawConstantValue == null || property == null)
                 throw  new Exception($"Unable set the database type from the database parameter for DbType: {parameterInfo.DbType} {Environment.NewLine} and DbTypePropertyName of: {parameterInfo.DbTypePropertyName}");
-            property?.SetValue(dbDataParameter, oracleTypeFieldRawConstantValue, null);
+            property.SetValue(dbDataParameter, oracleTypeFieldRawConstantValue, null);
         }
 
         private string BuildConnectionString(LogEventInfo logEvent)
