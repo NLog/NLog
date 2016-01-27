@@ -35,6 +35,7 @@ namespace NLog.UnitTests
 {
     using System;
     using Xunit;
+    using Xunit.Extensions;
 
     public class GetLoggerTests : NLogTestBase
     {
@@ -126,24 +127,14 @@ namespace NLog.UnitTests
             }
         }
 
-
-        [Fact]
-        public void InvalidLoggerConfiguration_ThrowsConfigurationException_IfThrowExceptionsFlagIsSet()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void InvalidLoggerConfiguration_ThrowsConfigurationException(bool throwExceptions)
         {
             Assert.Throws<NLogConfigurationException>(() =>
             {
-                LogManager.ThrowExceptions = false;
-                LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
-            });
-
-        }
-
-        [Fact]
-        public void InvalidLoggerConfiguration_ThrowsConfigurationException_IfThrowExceptionsFlagIsNotSet()
-        {
-            Assert.Throws<NLogConfigurationException>(() =>
-            {
-                LogManager.ThrowExceptions = true;
+                LogManager.ThrowExceptions = throwExceptions;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             });
 
