@@ -58,6 +58,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.True(Math.Abs((dt - now).TotalSeconds) < 5);
         }
 
+#if !SILVERLIGHT
 
         [Fact]
         public void TimeZoneTest()
@@ -84,6 +85,8 @@ namespace NLog.UnitTests.LayoutRenderers
             }
 
         }
+
+#endif
 
         [Fact]
         public void UniversalTimeTest()
