@@ -323,28 +323,22 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 InitializeSucceeded = false;
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
 
-                NLogConfigurationException ConfigException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
+                var configurationException = new NLogConfigurationException("Exception occurred when loading configuration from " + fileName, exception);
+                InternalLogger.Error(configurationException, "Error in Parsing Configuration File.");
 
                 if (!ignoreErrors)
                 {
-                    if (LogManager.ThrowExceptions)
+                    if (exception.MustBeRethrown())
                     {
-                        throw ConfigException;
-                    }
-                    else
-                    {
-                        InternalLogger.Error("Error in Parsing Configuration File. Exception : {0}", ConfigException);
+                        throw configurationException;
                     }
                 }
-                else
-                {
-                    InternalLogger.Error("Error in Parsing Configuration File. Exception : {0}", ConfigException);
-                }
+              
             }
         }
 
@@ -856,13 +850,14 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
+                        if (exception.MustBeRethrownImmediately())
                         {
                             throw;
                         }
 
-                        InternalLogger.Error("Error loading extensions: {0}", exception);
-                        if (LogManager.ThrowExceptions)
+                        InternalLogger.Error(exception, "Error loading extensions.");
+
+                        if (exception.MustBeRethrown())
                         {
                             throw new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
                         }
@@ -889,13 +884,15 @@ namespace NLog.Config
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
+
+                        if (exception.MustBeRethrownImmediately())
                         {
                             throw;
                         }
 
-                        InternalLogger.Error("Error loading extensions: {0}", exception);
-                        if (LogManager.ThrowExceptions)
+                        InternalLogger.Error(exception, "Error loading extensions.");
+
+                        if (exception.MustBeRethrown())
                         {
                             throw new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
                         }
@@ -936,12 +933,12 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
+                InternalLogger.Error(exception, "Error when including '{0}'.", newFileName);
+
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
-
-                InternalLogger.Error("Error when including '{0}' {1}", newFileName, exception);
 
                 if (includeElement.GetOptionalBooleanAttribute("ignoreErrors", false))
                 {

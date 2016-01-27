@@ -40,6 +40,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using Microsoft.Win32;
     using NLog;
+    using NLog.Common;
     using NLog.Internal;
     using NLog.Config;
     using System.ComponentModel;
@@ -94,15 +95,21 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the registry key.
         /// </summary>
+        /// <example>
+        /// HKCU\Software\NLogTest
+        /// </example>
         /// <remarks>
-        /// Must have one of the forms:
+        /// Possible keys:
         /// <ul>
-        /// <li>HKLM\Key\Full\Name</li>
-        /// <li>HKEY_LOCAL_MACHINE\Key\Full\Name</li>
-        /// <li>HKCU\Key\Full\Name</li>
-        /// <li>HKEY_CURRENT_USER\Key\Full\Name</li>
-        /// <li>HKLM</li>
-        /// <li>HKEY_LOCAL_MACHINE</li>
+        ///<li>HKEY_LOCAL_MACHINE</li>
+        ///<li>HKLM</li>
+        ///<li>HKEY_CURRENT_USER</li>
+        ///<li>HKCU</li>
+        ///<li>HKEY_CLASSES_ROOT</li>
+        ///<li>HKEY_USERS</li>
+        ///<li>HKEY_CURRENT_CONFIG</li>
+        ///<li>HKEY_DYN_DATA</li>
+        ///<li>HKEY_PERFORMANCE_DATA</li>
         /// </ul>
         /// </remarks>
         /// <docgen category='Registry Options' order='10' />
@@ -148,7 +155,8 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception ex)
             {
-                if (ex.MustBeRethrown() || LogManager.ThrowExceptions)
+                InternalLogger.Error("Error when writing to registry");
+                if (ex.MustBeRethrown())
                 {
                     throw;
                 }
