@@ -162,12 +162,13 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
+                InternalLogger.Warn(exception, "Exception in layout renderer.");
+
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
-
-                InternalLogger.Warn("Exception in layout renderer: {0}", exception);
+              
             }
         }
 

@@ -125,29 +125,66 @@ namespace NLog.Common
         public static bool IncludeTimestamp { get; set; }
 
         /// <summary>
-        /// Logs the specified message at the specified level.
+        /// Logs the specified message without an <see cref="Exception"/> at the specified level.
         /// </summary>
         /// <param name="level">Log level.</param>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
-        public static void Log(LogLevel level, string message, params object[] args)
+        public static void Log(LogLevel level, [Localizable(false)] string message, params object[] args)
         {
-            Write(level, message, args);
+            Write(null, level, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the specified level.
+        /// Logs the specified message without an <see cref="Exception"/> at the specified level.
         /// </summary>
         /// <param name="level">Log level.</param>
         /// <param name="message">Log message.</param>
         public static void Log(LogLevel level, [Localizable(false)] string message)
         {
-            Write(level, message, null);
+            Write(null, level, message, null);
         }
 
-        private static void Write(LogLevel level, string message, object[] args)
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the specified level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="level">Log level.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void Log(Exception ex, LogLevel level, [Localizable(false)] string message, params object[] args)
         {
+            Write(ex, level, message, args);
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the specified level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="level">Log level.</param>
+        /// <param name="message">Log message.</param>
+        public static void Log(Exception ex, LogLevel level, [Localizable(false)] string message)
+        {
+            Write(ex, level, message, null);
+        }
+
+        /// <summary>
+        /// Write to internallogger.
+        /// </summary>
+        /// <param name="ex">optional exception to be logged.</param>
+        /// <param name="level">level</param>
+        /// <param name="message">message</param>
+        /// <param name="args">optional args for <paramref name="message"/></param>
+        private static void Write([CanBeNull]Exception ex, LogLevel level, string message, [CanBeNull]object[] args)
+        {
+            if (ex != null && ex.MustBeRethrownImmediately())
+            {
+                //no logging!
+                return;
+            }
+
             if (level < LogLevel)
             {
                 return;
@@ -176,6 +213,12 @@ namespace NLog.Common
                 builder.Append(level.ToString());
                 builder.Append(" ");
                 builder.Append(formattedMessage);
+                if (ex != null)
+                {
+                    ex.MarkAsLoggedToInternalLogger();
+                    builder.Append(" Exception: ");
+                    builder.Append(ex.ToString());
+                }
                 string msg = builder.ToString();
 
                 // log to file
@@ -212,12 +255,13 @@ namespace NLog.Common
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                // no log looping.
+                // we have no place to log the message to so we ignore it
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
 
-                // we have no place to log the message to so we ignore it
             }
         }
 
@@ -239,9 +283,9 @@ namespace NLog.Common
                     fileVersionInfo.ProductVersion);
 #endif
             }
-            catch (Exception exc)
+            catch (Exception ex)
             {
-                Error("Error logging version of assembly {0}: {1}.", assembly.FullName, exc.Message);
+                Error(ex, "Error logging version of assembly {0}.", assembly.FullName);
             }
         }
 
@@ -325,7 +369,7 @@ namespace NLog.Common
             }
             catch (Exception exception)
             {
-                Error("Cannot create needed directories to {0}. {1}", filename, exception.Message);
+                Error(exception, "Cannot create needed directories to '{0}'.", filename);
 
                 if (exception.MustBeRethrown())
                 {

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Common;
+
 namespace NLog.Conditions
 {
     using System;
@@ -67,7 +69,9 @@ namespace NLog.Conditions
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                InternalLogger.Warn(exception, "Exception occurred when evaluating condition");
+
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }

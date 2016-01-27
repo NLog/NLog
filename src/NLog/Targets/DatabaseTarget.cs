@@ -396,12 +396,13 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                InternalLogger.Error(exception, "Error when writing to database.");
+
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
-
-                InternalLogger.Error("Error when writing to database {0}", exception);
+                
                 this.CloseConnection();
                 throw;
             }
@@ -437,15 +438,21 @@ namespace NLog.Targets
                         }
                         catch (Exception exception)
                         {
+                            // in case of exception, close the connection and report it
+                            InternalLogger.Error(exception, "Error when writing to database.");
+
+                            if (exception.MustBeRethrownImmediately())
+                            {
+                                throw;
+                            }
+                            
+                            this.CloseConnection();
+                            ev.Continuation(exception);
+
                             if (exception.MustBeRethrown())
                             {
                                 throw;
                             }
-
-                            // in case of exception, close the connection and report it
-                            InternalLogger.Error("Error when writing to database {0}", exception);
-                            this.CloseConnection();
-                            ev.Continuation(exception);
                         }
                     }
                 }
@@ -663,7 +670,7 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
-                        if (exception.MustBeRethrown())
+                        if (exception.MustBeRethrownImmediately())
                         {
                             throw;
                         }
@@ -677,6 +684,8 @@ namespace NLog.Targets
                             installationContext.Error(exception.Message);
                             throw;
                         }
+
+                      
                     }
                 }
             }
