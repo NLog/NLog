@@ -527,7 +527,7 @@ namespace NLog.Targets
                 string.IsNullOrEmpty(parameterInfo.DbTypePropertyName))
                 return;
             var fullEnumNamespace = parameterInfo.DbType.Split('.');
-            var justEnumName = string.Join(".", fullEnumNamespace.Take(fullEnumNamespace.Length - 1));
+            var justEnumName = string.Join(".", fullEnumNamespace.Take(fullEnumNamespace.Length - 1).ToArray());
             var justEnumValue = fullEnumNamespace.Last();
 
             object oracleTypeFieldRawConstantValue = null;
