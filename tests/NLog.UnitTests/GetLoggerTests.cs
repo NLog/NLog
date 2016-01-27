@@ -35,7 +35,6 @@ namespace NLog.UnitTests
 {
     using System;
     using Xunit;
-    using Xunit.Extensions;
 
     public class GetLoggerTests : NLogTestBase
     {
@@ -127,10 +126,21 @@ namespace NLog.UnitTests
             }
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void InvalidLoggerConfiguration_ThrowsConfigurationException(bool throwExceptions)
+    
+        [Fact]
+        public void InvalidLoggerConfiguration_ThrowsConfigurationException_isFalse()
+        {
+            InvalidLoggerConfiguration_ThrowsConfigurationException(false);
+        }
+
+
+        [Fact]
+        public void InvalidLoggerConfiguration_ThrowsConfigurationException_isTrue()
+        {
+            InvalidLoggerConfiguration_ThrowsConfigurationException(true);
+        }
+
+        private void InvalidLoggerConfiguration_ThrowsConfigurationException(bool throwExceptions)
         {
             Assert.Throws<NLogConfigurationException>(() =>
             {
@@ -139,6 +149,8 @@ namespace NLog.UnitTests
             });
 
         }
+
+
 
         public class MyLogger : Logger
         {
