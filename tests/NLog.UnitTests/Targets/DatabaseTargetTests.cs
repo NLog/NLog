@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Drawing;
-
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -50,6 +48,7 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using Xunit;
     using Xunit.Extensions;
+    using System.Linq;
 
     public class DatabaseTargetTests : NLogTestBase
     {
@@ -761,10 +760,10 @@ Dispose()
         }
 
         [Fact]
-        public void CustomizeParameterTypeShouldSetCustomEnumValueTest()
+        public void SetParamTypeShouldSetCustomEnumValueTest()
         {
             var expected = MockDbParameter.CustomDbType.Clob;
-            var dt = new DatabaseTarget
+            var target = new DatabaseTarget
             {
                 Name = "notimportant",
                 DBProvider = "notimportant",
@@ -778,7 +777,7 @@ Dispose()
             };
             var parameter = new MockDbParameter(new MockDbCommand(), 0); 
 
-            dt.CustomizeParameterType(parameter, parameterInfo);
+            target.SetParamType(parameter, parameterInfo);
 
             Assert.Equal(expected, parameter.CustomDbColumnType);
         }
@@ -788,9 +787,9 @@ Dispose()
         [InlineData("INVALID", "CustomDbColumnType")]
         [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType.Clob", " test ")]
         [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType", "CustomDbColumnType")]
-        public void CustomizeParameterTypeShouldThrowExceptionTest(string dbType, string dbTypePropertyName)
+        public void SetParamTypeShouldThrowExceptionTest(string dbType, string dbTypePropertyName)
         {
-            var dt = new DatabaseTarget
+            var target = new DatabaseTarget
             {
                 Name = "notimportant",
                 DBProvider = "notimportant",
@@ -805,16 +804,16 @@ Dispose()
             var parameter = new MockDbParameter(new MockDbCommand(), 0);
 
             Exception exception = Assert.Throws<Exception>(() => 
-                dt.CustomizeParameterType(parameter, parameterInfo));
+                target.SetParamType(parameter, parameterInfo));
 
             Assert.Contains(dbType, exception.Message);
             Assert.Contains(dbTypePropertyName, exception.Message);
         }
 
         [Fact]
-        public void CustomizeParameterTypeShouldDoNothingIfNotSetTest()
+        public void SetParamTypeShouldDoNothingIfNotSetTest()
         {
-            var dt = new DatabaseTarget
+            var target = new DatabaseTarget
             {
                 Name = "notimportant",
                 DBProvider = "notimportant",
@@ -825,9 +824,35 @@ Dispose()
             var parameter = new MockDbParameter(new MockDbCommand(), 0);
             var expected = parameter.CustomDbColumnType = MockDbParameter.CustomDbType.Blob;
 
-            dt.CustomizeParameterType(parameter, parameterInfo);
+            target.SetParamType(parameter, parameterInfo);
 
             Assert.Equal(expected, parameter.CustomDbColumnType);
+        }
+
+        [Theory]
+        [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType", "CustomDbColumnType")]
+        public void DbTypeParametersShouldBeSetByConfigurationTest(string dbType, string dbTypePropertyName)
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+                  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
+                <targets>
+                    <target name='database' xsi:type='Database' commandText = 'Begin End;' >
+                      <parameter name='@message' layout='${message}'
+                                 DbType='" + dbType + @"' DbTypePropertyName='" + dbTypePropertyName + @"'/>
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='database' />
+                </rules>
+            </nlog>");
+
+            var logger = LogManager.GetLogger("A");
+            var target = logger.Factory.Configuration.AllTargets.First() as DatabaseTarget;
+            var parameter = target.Parameters.First();
+            Assert.Equal(dbType, parameter.DbType);
+            Assert.Equal(dbTypePropertyName, parameter.DbTypePropertyName);
+
         }
 
         [Theory]
@@ -1069,8 +1094,6 @@ Dispose()
             private readonly int paramId;
             private string parameterName;
             private object parameterValue;
-            private DbType parameterType;
-            private CustomDbType _customDbColumnType;
 
             public MockDbParameter(MockDbCommand mockDbCommand, int paramId)
             {
@@ -1078,11 +1101,7 @@ Dispose()
                 this.paramId = paramId;
             }
 
-            public CustomDbType CustomDbColumnType
-            {
-                get { return _customDbColumnType; }
-                set { _customDbColumnType = value; }
-            }
+            public CustomDbType CustomDbColumnType { get; set; }
 
             public enum CustomDbType
             {
@@ -1091,11 +1110,7 @@ Dispose()
                 Blob
             }
 
-            public DbType DbType
-            {
-                get { return this.parameterType; }
-                set { this.parameterType = value; }
-            }
+            public DbType DbType { get; set; }
 
             public ParameterDirection Direction
             {

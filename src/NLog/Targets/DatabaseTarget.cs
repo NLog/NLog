@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
@@ -501,7 +500,7 @@ namespace NLog.Targets
                     string stringValue = par.Layout.Render(logEvent);
 
                     p.Value = stringValue;
-                    CustomizeParameterType(p, par);
+                    SetParamType(p, par);
                     command.Parameters.Add(p);
 
                     InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
@@ -521,28 +520,42 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="dbDataParameter">The parameter.</param>
         /// <param name="parameterInfo"></param>
-        internal void CustomizeParameterType(IDbDataParameter dbDataParameter, DatabaseParameterInfo parameterInfo)
+        internal void SetParamType(IDbDataParameter dbDataParameter, DatabaseParameterInfo parameterInfo)
         {
             if (string.IsNullOrEmpty(parameterInfo.DbType) ||
                 string.IsNullOrEmpty(parameterInfo.DbTypePropertyName))
                 return;
-            var fullEnumNamespace = parameterInfo.DbType.Split('.');
-            var justEnumName = string.Join(".", fullEnumNamespace.Take(fullEnumNamespace.Length - 1));
-            var justEnumValue = fullEnumNamespace.Last();
+            var lastIndexOfDot = parameterInfo.DbType.LastIndexOf('.');
 
-            object oracleTypeFieldRawConstantValue = null;
+            // Get just the fully qualified name of the enum but not the value
+            var justEnumName = lastIndexOfDot > 0 ? 
+                parameterInfo.DbType.Substring(0, lastIndexOfDot) : string.Empty;
+
+            object rawConstantValue = null;
             Type paramType = dbDataParameter.GetType();
-            var property = paramType.GetProperty(parameterInfo.DbTypePropertyName);
             if (!string.IsNullOrEmpty(justEnumName))
             {
-                var oracleType = paramType.Assembly.GetType(justEnumName);
-                var oracleTypeField = oracleType != null ? oracleType.GetField(justEnumValue) : null;
-                oracleTypeFieldRawConstantValue = oracleTypeField != null ? oracleTypeField.GetRawConstantValue() : null;
+                // get the enum type from the database parameter we are using
+                var databaseType = paramType.Assembly.GetType(justEnumName);
+
+                // get the enum value for the database type
+                var justEnumValue = parameterInfo.DbType.Substring(lastIndexOfDot + 1,
+                    parameterInfo.DbType.Length - lastIndexOfDot - 1);
+                var typeField = databaseType != null ? databaseType.GetField(justEnumValue) : null;
+                rawConstantValue = typeField != null ? typeField.GetRawConstantValue() : null;
             }
 
-            if (oracleTypeFieldRawConstantValue == null || property == null)
-                throw  new Exception($"Unable set the database type from the database parameter for DbType: {parameterInfo.DbType} {Environment.NewLine} and DbTypePropertyName of: {parameterInfo.DbTypePropertyName}");
-            property.SetValue(dbDataParameter, oracleTypeFieldRawConstantValue, null);
+            // find the property on the database specific parameter
+            var property = paramType.GetProperty(parameterInfo.DbTypePropertyName);
+
+            // if something went wrong with the reflection a bad value was probably set and we can't fix that
+            if (rawConstantValue == null || property == null)
+                throw new Exception("Unable set the database type from the database parameter for DbType: "
+                    + parameterInfo.DbType + Environment.NewLine +
+                    " and DbTypePropertyName of: " + parameterInfo.DbTypePropertyName);
+
+            // we find the enum and the property ok so now we just set it using reflection
+            property.SetValue(dbDataParameter, rawConstantValue, null);
         }
 
         private string BuildConnectionString(LogEventInfo logEvent)
