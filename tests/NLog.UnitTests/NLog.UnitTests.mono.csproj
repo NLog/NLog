@@ -101,6 +101,7 @@
     <Compile Include="Fluent\LogBuilderTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
     <Compile Include="Internal\EnumHelpersTests.cs" />
+    <Compile Include="Internal\ExceptionHelperTests.cs" />
     <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Targets\MailTargetTests.cs" />
     <Compile Include="Targets\MemoryTargetTests.cs" />
     <Compile Include="Targets\MessageQueueTargetTests.cs" />
+    <Compile Include="Targets\MethodCallTests.cs" />
     <Compile Include="Targets\NetworkTargetTests.cs" />
     <Compile Include="Targets\TargetTests.cs" />
     <Compile Include="Targets\WebServiceTargetTests.cs" />

@@ -269,9 +269,15 @@ namespace NLog.Config
                     factory.RegisterItemsFromAssembly(extensionAssembly);
                     success = true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    InternalLogger.Warn("Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
+                    if (ex.MustBeRethrownImmediately())
+                    {
+                        throw;
+                    }
+
+                    InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
+                    //TODO NLog 5, check MustBeRethrown()
                 }
                 if (success)
                 {

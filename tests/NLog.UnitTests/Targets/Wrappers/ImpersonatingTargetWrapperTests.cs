@@ -45,7 +45,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using Xunit;
 
     public class ImpersonatingTargetWrapperTests : NLogTestBase
-	{
+    {
         private const string NLogTestUser = "NLogTestUser";
         private const string NLogTestUserPassword = "BC@57acasd123";
 
@@ -148,6 +148,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                 ExpectedUser = NLogTestUser,
             };
 
+            LogManager.ThrowExceptions = true;
+
             var wrapper = new ImpersonatingTargetWrapper()
             {
                 UserName = NLogTestUser,
@@ -156,14 +158,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = wrapped,
             };
 
-            try
+            Assert.Throws<COMException>(() =>
             {
                 wrapper.Initialize(null);
-                Assert.True(false, "Expected exception");
-            }
-            catch (COMException)
-            {
-            }
+            });
 
             wrapper.Close(); // will not fail because Initialize() failed
         }
@@ -176,6 +174,9 @@ namespace NLog.UnitTests.Targets.Wrappers
                 ExpectedUser = NLogTestUser,
             };
 
+            LogManager.ThrowExceptions = true;
+
+
             var wrapper = new ImpersonatingTargetWrapper()
             {
                 UserName = NLogTestUser,
@@ -185,14 +186,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = wrapped,
             };
 
-            try
-            {
-                wrapper.Initialize(null);
-                Assert.True(false, "Expected exception");
-            }
-            catch (COMException)
-            {
-            }
+            Assert.Throws<COMException>(() =>
+                {
+                    wrapper.Initialize(null);
+                });
 
             wrapper.Close(); // will not fail because Initialize() failed
         }

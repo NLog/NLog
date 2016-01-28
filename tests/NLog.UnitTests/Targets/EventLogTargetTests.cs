@@ -103,7 +103,7 @@ namespace NLog.UnitTests.Targets
             </nlog>", maxMessageLength);
 
             NLogConfigurationException ex = Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configrationText));
-            Assert.Equal("MaxMessageLength cannot be zero or negative.", ex.InnerException.Message);
+            Assert.Equal("MaxMessageLength cannot be zero or negative.", ex.InnerException.InnerException.Message);
         }
 
         [Theory]

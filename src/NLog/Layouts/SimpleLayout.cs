@@ -263,14 +263,17 @@ namespace NLog.Layouts
                 }
                 catch (Exception exception)
                 {
+                    //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
+
+                    //check for performance
+                    if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
+                    {
+                        InternalLogger.Warn(exception, "Exception in '{0}.Append()'", renderer.GetType().FullName);
+                    }
+
                     if (exception.MustBeRethrown())
                     {
                         throw;
-                    }
-
-                    if (InternalLogger.IsWarnEnabled)
-                    {
-                        InternalLogger.Warn("Exception in {0}.Append(): {1}.", renderer.GetType().FullName, exception);
                     }
                 }
             }

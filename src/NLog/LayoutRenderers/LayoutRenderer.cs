@@ -138,8 +138,8 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Closes this instance.
         /// </summary>
-		internal void Close()
-		{
+        internal void Close()
+        {
             if (this.isInitialized)
             {
                 this.LoggingConfiguration = null;
@@ -148,8 +148,8 @@ namespace NLog.LayoutRenderers
             }
         }
 
-		internal void Render(StringBuilder builder, LogEventInfo logEvent)
-		{
+        internal void Render(StringBuilder builder, LogEventInfo logEvent)
+        {
             if (!this.isInitialized)
             {
                 this.isInitialized = true;
@@ -162,12 +162,13 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
+                InternalLogger.Warn(exception, "Exception in layout renderer.");
+
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
-
-                InternalLogger.Warn("Exception in layout renderer: {0}", exception);
+              
             }
         }
 

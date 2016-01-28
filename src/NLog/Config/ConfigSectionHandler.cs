@@ -57,12 +57,9 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-
-                InternalLogger.Error("ConfigSectionHandler error: {0}", exception);
+                InternalLogger.Error(exception, "ConfigSectionHandler error.");
+              
+                //TODO NLog 5, check MustBeRethrown()
                 throw;
             }
         }

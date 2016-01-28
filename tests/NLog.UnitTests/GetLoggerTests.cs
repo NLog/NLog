@@ -134,44 +134,36 @@ namespace NLog.UnitTests
 
         public class InvalidLogger
         {
-           private InvalidLogger()
-           {
-	       }
+            private InvalidLogger()
+            {
+            }
         }
-        
+
+    
         [Fact]
-        public void InvalidLoggerConfiguration_ThrowsConfigurationException_IfThrowExceptionsFlagIsSet()
+        public void InvalidLoggerConfiguration_ThrowsConfigurationException_isFalse()
         {
-            bool ExceptionThrown = false;
-            try 
-            {
-                LogManager.ThrowExceptions = false;
-                LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
-            }
-            catch (NLogConfigurationException)
-            {
-                ExceptionThrown = true;
-            }
-            Assert.True(ExceptionThrown);
+            InvalidLoggerConfiguration_ThrowsConfigurationException(false);
         }
-        
+
+
         [Fact]
-        public void InvalidLoggerConfiguration_ThrowsConfigurationException_IfThrowExceptionsFlagIsNotSet()
+        public void InvalidLoggerConfiguration_ThrowsConfigurationException_isTrue()
         {
-            bool ExceptionThrown = false;
-            try 
-            {
-                LogManager.ThrowExceptions = true;
-                LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
-            }
-            catch (NLogConfigurationException)
-            {
-                ExceptionThrown = true;
-            }
-            
-            Assert.True(ExceptionThrown);
-            
+            InvalidLoggerConfiguration_ThrowsConfigurationException(true);
         }
+
+        private void InvalidLoggerConfiguration_ThrowsConfigurationException(bool throwExceptions)
+        {
+            Assert.Throws<NLogConfigurationException>(() =>
+            {
+                LogManager.ThrowExceptions = throwExceptions;
+                LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
+            });
+
+        }
+
+
 
         public class MyLogger : Logger
         {

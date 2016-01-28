@@ -387,13 +387,12 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                InternalLogger.Error("Error when connecting to EventLog: {0}", exception);
+                InternalLogger.Error(exception, "Error when connecting to EventLog.");
                 if (alwaysThrowError || exception.MustBeRethrown())
                 {
                     throw;
                 }
 
-                throw;
             }
         }
     }

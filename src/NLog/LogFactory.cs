@@ -136,7 +136,7 @@ namespace NLog
         public bool ThrowExceptions { get; set; }
 
         /// <summary>
-        /// Gets or sets the current logging configuration. After setting this property all		
+        /// Gets or sets the current logging configuration. After setting this property all
         /// existing loggers will be re-configured, so that there is no need to call <see cref="ReconfigExistingLoggers" />	manually.
         /// </summary>
         public LoggingConfiguration Configuration
@@ -191,7 +191,15 @@ namespace NLog
                         }
                         catch (Exception exception)
                         {
-                            InternalLogger.Warn("Cannot start file watching: {0}. File watching is disabled", exception);
+                            if (exception.MustBeRethrownImmediately())
+                            {
+                                throw;
+                        }
+
+                            InternalLogger.Warn(exception, "Cannot start file watching. File watching is disabled");
+                            //TODO NLog 5: check "MustBeRethrown" 
+
+
                         }
 #endif
                         this.config.InitializeAll();
@@ -211,12 +219,12 @@ namespace NLog
                 }
                 catch (Exception exception)
                 {
+                    InternalLogger.Error(exception, "Cannot stop file watching.");
+
                     if (exception.MustBeRethrown())
                     {
                         throw;
                     }
-
-                    InternalLogger.Error("Cannot stop file watching: {0}", exception);
                 }
 #endif
 
@@ -248,12 +256,13 @@ namespace NLog
                         }
                         catch (Exception exception)
                         {
+                            //ToArray needed for .Net 3.5
+                            InternalLogger.Warn(exception, "Cannot start file watching: {0}", string.Join(",", this.config.FileNamesToWatch.ToArray()));
+
                             if (exception.MustBeRethrown())
                             {
                                 throw;
                             }
-
-                            InternalLogger.Warn("Cannot start file watching: {0}", exception);
                         }
 #endif
                     }
@@ -356,9 +365,9 @@ namespace NLog
         }
 
 #if !UWP10
-        /// <summary>	
-        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.		
-        /// </summary>		        
+        /// <summary>
+        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
+        /// </summary>
         /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/>.	</param>       
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
         /// <remarks>This is a slow-running method. Make sure you are not calling this method in a  loop.</remarks>
@@ -438,14 +447,14 @@ namespace NLog
             {
                 AsyncHelpers.RunSynchronously(cb => this.Flush(cb, timeout));
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                if (ThrowExceptions)
+                InternalLogger.Error(ex, "Error with flush.");
+                if (ex.MustBeRethrown())
                 {
                     throw;
                 }
 
-                InternalLogger.Error(e.ToString());
             }
         }
 
@@ -502,14 +511,14 @@ namespace NLog
                     asyncContinuation(null);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 if (ThrowExceptions)
                 {
                     throw;
                 }
 
-                InternalLogger.Error(e.ToString());
+                InternalLogger.Error(ex, "Error with flush.");
             }
         }
 
@@ -663,9 +672,10 @@ namespace NLog
                 }
                 catch (Exception exception)
                 {
+                    //special case, don't rethrow NLogConfigurationException
                     if (exception is NLogConfigurationException)
                     {
-                        InternalLogger.Warn(exception.Message);
+                        InternalLogger.Warn(exception, "NLog configuration while reloading");
                     }
                     else if (exception.MustBeRethrown())
                     {
@@ -893,20 +903,14 @@ namespace NLog
                     }
                     catch (Exception ex)
                     {
+                        InternalLogger.Error(ex, "GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
+
                         if (ex.MustBeRethrown())
                         {
                             throw;
                         }
 
-                        var errorMessage = string.Format("GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
-                        if (ThrowExceptions)
-                        {
-                            throw new NLogRuntimeException(errorMessage, ex);
-                        }
-
-                        InternalLogger.Error(errorMessage + ". Exception : {0}", ex);
                         // Creating default instance of logger if instance of specified type cannot be created.
-
                         newLogger = CreateDefaultLogger(ref cacheKey);
                     }
                 }

@@ -63,12 +63,13 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
+                InternalLogger.Error(exception, "Error getting machine name.");
+
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
 
-                InternalLogger.Error("Error getting machine name {0}", exception);
                 this.MachineName = string.Empty;
             }
         }

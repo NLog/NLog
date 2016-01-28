@@ -41,26 +41,14 @@ namespace NLog.UnitTests.Targets
     using System.Linq;
     using NLog.Targets;
     using Xunit;
+    using Xunit.Extensions;
 
     public class ColoredConsoleTargetTests : NLogTestBase
     {
-        [Fact]
-        public void WordHighlightingTextTest()
-        {
-            var target = new ColoredConsoleTarget { Layout = "${logger} ${message}" };
-            target.WordHighlightingRules.Add(
-                new ConsoleWordHighlightingRule
-                {
-                    ForegroundColor = ConsoleOutputColor.Red,
-                    Text = "at"
-                });
-            
-            AssertOutput(target, "The Cat Sat At The Bar.", 
-                new string[] { "The C", "at", " S", "at", " At The Bar." });
-        }
-
-        [Fact]
-        public void WordHighlightingTextIgnoreCase()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void WordHighlightingTextTest(bool compileRegex)
         {
             var target = new ColoredConsoleTarget { Layout = "${logger} ${message}" };
             target.WordHighlightingRules.Add(
@@ -68,15 +56,38 @@ namespace NLog.UnitTests.Targets
                 {
                     ForegroundColor = ConsoleOutputColor.Red,
                     Text = "at",
-                    IgnoreCase = true
+                    CompileRegex = compileRegex
+
+                });
+
+            AssertOutput(target, "The Cat Sat At The Bar.",
+                new string[] { "The C", "at", " S", "at", " At The Bar." });
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void WordHighlightingTextIgnoreCase(bool compileRegex)
+        {
+            var target = new ColoredConsoleTarget { Layout = "${logger} ${message}" };
+            target.WordHighlightingRules.Add(
+                new ConsoleWordHighlightingRule
+                {
+                    ForegroundColor = ConsoleOutputColor.Red,
+                    Text = "at",
+                    IgnoreCase = true,
+                    CompileRegex = compileRegex
                 });
 
             AssertOutput(target, "The Cat Sat At The Bar.",
                 new string[] { "The C", "at", " S", "at", " ", "At", " The Bar." });
         }
 
-        [Fact]
-        public void WordHighlightingTextWholeWords()
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void WordHighlightingTextWholeWords(bool compileRegex)
         {
             var target = new ColoredConsoleTarget { Layout = "${logger} ${message}" };
             target.WordHighlightingRules.Add(
@@ -84,30 +95,74 @@ namespace NLog.UnitTests.Targets
                 {
                     ForegroundColor = ConsoleOutputColor.Red,
                     Text = "at",
-                    WholeWords = true
+                    WholeWords = true,
+                    CompileRegex = compileRegex
                 });
 
             AssertOutput(target, "The cat sat at the bar.",
                 new string[] { "The cat sat ", "at", " the bar." });
         }
-        
-        [Fact]
-        public void WordHighlightingRegex()
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void WordHighlightingRegex(bool compileRegex)
         {
             var target = new ColoredConsoleTarget { Layout = "${logger} ${message}" };
             target.WordHighlightingRules.Add(
                 new ConsoleWordHighlightingRule
                 {
                     ForegroundColor = ConsoleOutputColor.Red,
-                    Regex = "\\wat"
+                    Regex = "\\wat",
+                    CompileRegex = compileRegex
                 });
 
             AssertOutput(target, "The cat sat at the bar.",
                 new string[] { "The ", "cat", " ", "sat", " at the bar." });
         }
 
+        /// <summary>
+        /// With or wihout CompileRegex, CompileRegex is never null, even if not used when CompileRegex=false. (needed for backwardscomp)
+        /// </summary>
+        /// <param name="compileRegex"></param>
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void CompiledRegexPropertyNotNull(bool compileRegex)
+        {
+            var rule = new ConsoleWordHighlightingRule
+            {
+                ForegroundColor = ConsoleOutputColor.Red,
+                Regex = "\\wat",
+                CompileRegex = compileRegex
+            };
 
-        private void AssertOutput(Target target, string message, string[] expectedParts)
+            Assert.NotNull(rule.CompiledRegex);
+        }
+
+
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void DonRemoveIfRegexIsEmpty(bool compileRegex)
+        {
+            var target = new ColoredConsoleTarget { Layout = "${logger} ${message}" };
+            target.WordHighlightingRules.Add(
+                new ConsoleWordHighlightingRule
+                {
+                    ForegroundColor = ConsoleOutputColor.Red,
+                    Text = null,
+                    IgnoreCase = true,
+                    CompileRegex = compileRegex
+                });
+
+            AssertOutput(target, "The Cat Sat At The Bar.",
+                new string[] { "The Cat Sat At The Bar." });
+        }
+
+
+        private static void AssertOutput(Target target, string message, string[] expectedParts)
         {
             var consoleOutWriter = new PartsWriter();
             TextWriter oldConsoleOutWriter = Console.Out;
@@ -140,7 +195,7 @@ namespace NLog.UnitTests.Targets
                 Values = new List<string>();
             }
 
-            public List<string> Values { get; private set; } 
+            public List<string> Values { get; private set; }
 
             public override void Write(string value)
             {
