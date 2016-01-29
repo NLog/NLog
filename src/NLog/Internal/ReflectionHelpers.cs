@@ -64,7 +64,11 @@ namespace NLog.Internal
 #else
             try
             {
+#if DNX
+                return new Type[0];
+#else
                 return assembly.GetTypes();
+#endif
             }
             catch (ReflectionTypeLoadException typeLoadException)
             {
@@ -85,7 +89,7 @@ namespace NLog.Internal
                 return loadedTypes.ToArray();
             }
 #endif
-        }
+            }
 
 
         public static TAttr GetCustomAttribute<TAttr>(this Type type)

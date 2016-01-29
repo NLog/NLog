@@ -87,6 +87,7 @@ namespace NLog.Internal
             else if (runtimeEnv.ToLower().Contains("unix"))
                 return RuntimeOS.Unix;
 
+            return RuntimeOS.Unknown;
 #elif UWP10
             return RuntimeOS.Unknown;
 #else
@@ -110,8 +111,9 @@ namespace NLog.Internal
             {
                 return RuntimeOS.WindowsNT;
             }
-#endif
+
             return RuntimeOS.Unknown;
+#endif
         }
     }
 }

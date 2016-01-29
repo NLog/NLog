@@ -75,8 +75,7 @@ namespace NLog
 #if !DEBUG
 #error check this
 #endif
-                var stackTraceCtor = typeof(StackTrace).GetConstructor(new Type[] { typeof(bool) });
-                stackTrace = (StackTrace)stackTraceCtor.Invoke(new object[] { stu == StackTraceUsage.WithSource });
+                stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
 #elif !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
 #else
@@ -120,21 +119,62 @@ namespace NLog
             var stackFrames = stackTrace.GetFrames();
             if (stackFrames == null)
                 return 0;
-            var intermediate = stackFrames.Select((f, i) => new {index = i, frame = f});
+            var intermediate = stackFrames.Select((f, i) => new StackFrameWithIndex(i, f));
             //find until logger type
-            intermediate = intermediate.SkipWhile(p => !IsLoggerType(p.frame, loggerType));
-            //skip to next
-            intermediate = intermediate.Skip(1);
-            //skip while in "skip" assemlbl
-            intermediate = intermediate.SkipWhile(p => SkipAssembly(p.frame));
-            var last = intermediate.FirstOrDefault();
+            intermediate = intermediate.SkipWhile(p => !IsLoggerType(p.StackFrame, loggerType));
+
+            intermediate = FilterBySkipAssembly(intermediate.Skip(1));
+            return FindIndexOfCallingMethod(intermediate);
+        }
+
+        /// <summary>
+        /// Get the index which correspondens to the calling method.
+        /// </summary>
+        /// <param name="stackFrames"></param>
+        /// <returns></returns>
+        private static int FindIndexOfCallingMethod(IEnumerable<StackFrameWithIndex> stackFrames)
+        {
+            var stackFrameWithIndex = stackFrames.FirstOrDefault();
+            var last = stackFrameWithIndex;
 
             if (last != null)
             {
-                return last.index;
+#if ASYNC_SUPPORTED
+
+                //movenext and then AsyncTaskMethodBuilder (method start)? this is a generated MoveNext by async.
+                if (last.StackFrame.GetMethod().Name == "MoveNext")
+                {
+                    var next = stackFrames.Skip(1).FirstOrDefault();
+                    if (next != null)
+                    {
+                        var declaringType = next.StackFrame.GetMethod().DeclaringType;
+                        if (declaringType  == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder))
+                        {
+
+                            //async, search futher
+
+                            stackFrames = FilterBySkipAssembly(stackFrames.Skip(1));
+                            return FindIndexOfCallingMethod(stackFrames);
+                        }
+                    }
+                }
+#endif
+
+                return last.StackFrameIndex;
             }
             return 0;
+        }
 
+        /// <summary>
+        /// Filter strackframes by assembly filter
+        /// </summary>
+        /// <param name="stackFrames"></param>
+        /// <returns></returns>
+        private static IEnumerable<StackFrameWithIndex> FilterBySkipAssembly(IEnumerable<StackFrameWithIndex> stackFrames)
+        {
+            //skip while in "skip" assemlbl
+            stackFrames = stackFrames.SkipWhile(p => SkipAssembly(p.StackFrame));
+            return stackFrames;
         }
 
         /// <summary>
@@ -253,6 +293,33 @@ namespace NLog
 
                 InternalLogger.Warn("Exception during filter evaluation: {0}", exception);
                 return FilterResult.Ignore;
+            }
+        }
+
+        /// <summary>
+        /// Stackframe with correspending index on the stracktrace
+        /// </summary>
+        private class StackFrameWithIndex
+        {
+            /// <summary>
+            /// Index of <see cref="StackFrame"/> on the stack.
+            /// </summary>
+            public int StackFrameIndex { get; private set; }
+
+            /// <summary>
+            /// A stackframe
+            /// </summary>
+            public StackFrame StackFrame { get; private set; }
+
+            /// <summary>
+            /// New item
+            /// </summary>
+            /// <param name="stackFrameIndex">Index of <paramref name="stackFrame"/> on the stack.</param>
+            /// <param name="stackFrame">A stackframe</param>
+            public StackFrameWithIndex(int stackFrameIndex, StackFrame stackFrame)
+            {
+                StackFrameIndex = stackFrameIndex;
+                StackFrame = stackFrame;
             }
         }
     }

@@ -94,7 +94,7 @@ namespace NLog.UnitTests.Config
         }
 #endif
 
-      
+
 
         [Fact]
         public void Xml_configuration_returns_defined_variables()
@@ -113,6 +113,41 @@ namespace NLog.UnitTests.Config
 
             Assert.Equal("[[", LogManager.Configuration.Variables["prefix"].OriginalText);
             Assert.Equal("]]", LogManager.Configuration.Variables["suffix"].OriginalText);
+        }
+
+        [Fact]
+        public void NLogConfigurationExceptionShouldThrown_WhenVariableNodeIsWrittenToWrongPlace()
+        {
+            const string configurationString_VariableNodeIsInnerTargets =
+                    @"<nlog>  
+	                        <targets>
+			                    <variable name='variableOne' value='${longdate:universalTime=True}Z | ${message}'/>
+                    			<target name='d1' type='Debug' layout='${variableOne}' />
+	                        </targets>
+                            <rules>
+			                    <logger name='*' minlevel='Debug' writeTo='d1'/>
+                            </rules>
+                    </nlog>";
+
+
+            const string configurationString_VariableNodeIsAfterTargets =
+                    @"<nlog>  
+	                        <targets>
+			                    <target name='d1' type='Debug' layout='${variableOne}' />
+	                        </targets>
+                            <variable name='variableOne' value='${longdate:universalTime=True}Z | ${message}'/>	
+                            <rules>
+			                    <logger name='*' minlevel='Debug' writeTo='d1'/>
+                            </rules>
+                    </nlog>";
+
+            NLogConfigurationException nlogConfEx_ForInnerTargets = Assert.Throws<NLogConfigurationException>(
+                () => CreateConfigurationFromString(configurationString_VariableNodeIsInnerTargets)
+                );
+
+            NLogConfigurationException nlogConfExForAfterTargets = Assert.Throws<NLogConfigurationException>(
+                () => CreateConfigurationFromString(configurationString_VariableNodeIsAfterTargets)
+                );
         }
     }
 }

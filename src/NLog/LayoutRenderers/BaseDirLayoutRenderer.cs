@@ -40,11 +40,12 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Config;
 
-#if DNX
-    using Microsoft.Extensions.PlatformAbstractions;
-#else
+#if !DNX
     using Internal.Fakeables;
+#else
+    using Microsoft.Extensions.PlatformAbstractions;
 #endif
+
     /// <summary>
     /// The current application domain's base directory.
     /// </summary>
@@ -54,30 +55,7 @@ namespace NLog.LayoutRenderers
     {
         private string baseDir;
 
-#if DNX
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer"/> class
-        /// </summary>
-        public BaseDirLayoutRenderer()
-        {
-            var appEnv = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default?.Application;
-            if (appEnv != null)
-                this.baseDir = appEnv.ApplicationBasePath;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer"/> class
-        /// </summary>
-        /// <param name="appEnv">The <see cref="IApplicationEnvironment"/> instance to be used</param>
-        public BaseDirLayoutRenderer(IApplicationEnvironment appEnv)
-        {
-            if (appEnv == null)
-                throw new ArgumentNullException(nameof(appEnv));
-
-            this.baseDir = appEnv.ApplicationBasePath;
-        }
-#else
+#if !DNX
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
@@ -92,6 +70,32 @@ namespace NLog.LayoutRenderers
         {
             this.baseDir = appDomain.BaseDirectory;
         }
+#else
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer"/> class
+        /// </summary>
+        public BaseDirLayoutRenderer()
+        {
+            var appEnv = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default?.Application;
+            if (appEnv == null)
+                throw new InvalidOperationException("Unable to access the default IApplicationEnvironment instance");
+
+            this.baseDir = appEnv.ApplicationBasePath;
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer"/> class
+        /// </summary>
+        /// <param name="appEnv">The application environment to be used</param>
+        public BaseDirLayoutRenderer(IApplicationEnvironment appEnv)
+        {
+            if (appEnv == null)
+                throw new ArgumentNullException(nameof(appEnv));
+
+            this.baseDir = appEnv.ApplicationBasePath;
+        }
+
 #endif
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with with the base directory.

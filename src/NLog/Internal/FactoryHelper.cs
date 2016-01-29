@@ -51,6 +51,16 @@ namespace NLog.Internal
 
         internal static object CreateInstance(Type t)
         {
+#if DNX
+            try
+            {
+                return Activator.CreateInstance(t);
+            }
+            catch(Exception)
+            {
+                throw new NLogConfigurationException("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
+            }
+#else
             ConstructorInfo constructor = t.GetConstructor(emptyTypes);
             if (constructor != null)
             {
@@ -60,6 +70,7 @@ namespace NLog.Internal
             {
                 throw new NLogConfigurationException("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
             }
+#endif
         }
     }
 }

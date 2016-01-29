@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !UWP10
+#if !UWP10 || DNX
 namespace NLog.LayoutRenderers
 {
     using System.Globalization;

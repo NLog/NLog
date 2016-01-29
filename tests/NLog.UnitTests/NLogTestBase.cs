@@ -317,6 +317,9 @@ namespace NLog.UnitTests
 
             public void Dispose()
             {
+                if (File.Exists(InternalLogger.LogFile))
+                    File.Delete(InternalLogger.LogFile);
+
                 InternalLogger.LogFile = this.logFile;
                 InternalLogger.LogLevel = this.logLevel;
 #if !UWP10

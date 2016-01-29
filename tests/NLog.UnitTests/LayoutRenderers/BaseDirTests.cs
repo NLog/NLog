@@ -41,10 +41,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class BaseDirTests : NLogTestBase
     {
-#if DNX
-        private string baseDir = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationBasePath;
-#else
+#if !DNX
         private string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+#else
+        private string baseDir = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationBasePath;
 #endif
 
         [Fact]

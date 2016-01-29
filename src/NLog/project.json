@@ -1,20 +1,20 @@
 {
-  "version": "4.4.0-alpha1",
-  "summary": "NLog - Advanced .NET and Silverlight Logging",
-  "description": "NLog is a logging platform for .NET with rich log routing and management capabilities. It can help you produce and manage high-quality logs for your application regardless of its size or complexity. This package installs NLog.dll with includes core logging functionality. For your main project also need to install 'NLog Configuration' package.",
-  "authors": [ "NLog" ],
-  "tags": [ "logging", "log", "tracing", "logfiles", "NLog", "database", "eventlog", "email", "wcf" ],
-  "projectUrl": "http://nlog-project.org/",
-  "licenseUrl": "http://raw.github.com/NLog/NLog/master/LICENSE.txt",
-  "requireLicenseAcceptance": false,
-  "iconUrl": "http://nlog-project.org/N.png",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/NLog/NLog"
-  },
-  "dependencies": {
+    "version": "4.4.0-alpha1",
+    "summary": "NLog - Advanced .NET and Silverlight Logging",
+    "description": "NLog is a logging platform for .NET with rich log routing and management capabilities. It can help you produce and manage high-quality logs for your application regardless of its size or complexity. This package installs NLog.dll with includes core logging functionality. For your main project also need to install 'NLog Configuration' package.",
+    "authors": [ "NLog" ],
+    "tags": [ "logging", "log", "tracing", "logfiles", "NLog", "database", "eventlog", "email", "wcf" ],
+    "projectUrl": "http://nlog-project.org/",
+    "licenseUrl": "http://raw.github.com/NLog/NLog/master/LICENSE.txt",
+    "requireLicenseAcceptance": false,
+    "iconUrl": "http://nlog-project.org/N.png",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/NLog/NLog"
+    },
+    "dependencies": {
 
-  },
+    },
 
   "frameworks": {
     ".NETFramework,Version=v3.5": {
@@ -32,7 +32,7 @@
         "define": [ "NET3_5", "WCF_SUPPORTED", "CLIENT_SKU" ]
       }
     },
-    "dnx451": {
+    "net451": {
       "frameworkAssemblies": {
         "System.Runtime": "",
         "System.Xml": "",
@@ -46,9 +46,12 @@
       },
       "compilationOptions": {
         "define": [ "NET4_5", "WCF_SUPPORTED" ]
+      },
+      "dependencies": {
+        "System.Threading.Timer": "4.0.1-*"
       }
     },
-    "dnxcore50": {
+    "dotnet5.4": {
       "dependencies": {
         "System.Console": "4.0.0-*",
         "System.Diagnostics.Contracts": "4.0.1-*",
@@ -65,7 +68,9 @@
         "System.Threading.ThreadPool": "4.0.10-*",
         "System.Threading.Thread": "4.0.0-*",
         "System.IO.Compression": "4.0.1-*",
-        "Microsoft.Extensions.PlatformAbstractions": "1.0.0-*"
+        "Microsoft.Extensions.PlatformAbstractions": "1.0.0-*",
+        "System.Threading.Timer": "4.0.1-*",
+        "System.Reflection.TypeExtensions": "4.1.0-*"
       },
       "compilationOptions": {
         "define": [ "NET4_5", "DNX", "UWP10" ]
@@ -103,7 +108,7 @@
       }
     }
   },
-  "compilationOptions": {
-    "keyFile": "NLog.snk"
-  }
+    "compilationOptions": {
+        "keyFile": "NLog.snk"
+    }
 }
