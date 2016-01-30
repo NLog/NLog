@@ -109,12 +109,13 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
+                InternalLogger.Error(exception, "Cannot read file contents of '{0}'.", fileName);
+
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
-
-                InternalLogger.Error("Cannot read file contents: {0} {1}", fileName, exception);
+               
                 return string.Empty;
             }
         }

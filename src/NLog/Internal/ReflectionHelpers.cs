@@ -63,7 +63,7 @@ namespace NLog.Internal
             {
                 foreach (var ex in typeLoadException.LoaderExceptions)
                 {
-                    InternalLogger.Warn("Type load exception: {0}", ex);
+                    InternalLogger.Warn(ex, "Type load exception.");
                 }
 
                 var loadedTypes = new List<Type>();

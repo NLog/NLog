@@ -125,7 +125,7 @@ namespace NLog.Targets.Wrappers
                     // failure
                     lock (this.lockObject)
                     {
-                        InternalLogger.Warn("Fallback: target '{0}' failed. Proceeding to the next one. Error was: {1}", this.Targets[this.currentTarget], ex);
+                        InternalLogger.Warn(ex, "Fallback: target '{0}' failed. Proceeding to the next one.", this.Targets[this.currentTarget]);
 
                         // error while writing, go to the next one
                         this.currentTarget = (this.currentTarget + 1) % this.Targets.Count;

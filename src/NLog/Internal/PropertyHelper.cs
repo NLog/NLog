@@ -98,7 +98,9 @@ namespace NLog.Internal
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                InternalLogger.Warn(exception, "Error when setting property '{0}' on '{1}'", propInfo.Name, obj);
+
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }

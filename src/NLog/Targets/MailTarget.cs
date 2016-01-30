@@ -331,7 +331,7 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 //always log
-                InternalLogger.Error(exception.ToString());
+                InternalLogger.Error(exception, "Error sending mail.");
 
                 if (exception.MustBeRethrown())
                 {

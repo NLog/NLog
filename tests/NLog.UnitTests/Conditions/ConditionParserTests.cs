@@ -289,7 +289,7 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void UnrecognizedMethod()
         {
-            Assert.Throws<NLogConfigurationException>(() => ConditionParser.ParseExpression("unrecognized-method()"));
+            Assert.Throws<ConditionParseException>(() => ConditionParser.ParseExpression("unrecognized-method()"));
         }
 
         [Fact]

@@ -61,24 +61,47 @@ namespace NLog.Common
 #>
 
         /// <summary>
-        /// Logs the specified message at the <#=level#> level.
+        /// Logs the specified message without an <see cref="Exception"/> at the <#=level#> level.
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
         [StringFormatMethod("message")]
         public static void <#=level#>([Localizable(false)] string message, params object[] args)
         {
-            Write(LogLevel.<#=level#>, message, args);
+            Write(null, LogLevel.<#=level#>, message, args);
         }
 
         /// <summary>
-        /// Logs the specified message at the <#=level#> level.
+        /// Logs the specified message without an <see cref="Exception"/> at the <#=level#> level.
         /// </summary>
         /// <param name="message">Log message.</param>
         public static void <#=level#>([Localizable(false)] string message)
         {
-            Write(LogLevel.<#=level#>, message, null);
+            Write(null, LogLevel.<#=level#>, message, null);
         }
+
+	
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the <#=level#> level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Message which may include positional parameters.</param>
+        /// <param name="args">Arguments to the message.</param>
+        [StringFormatMethod("message")]
+        public static void <#=level#>(Exception ex, [Localizable(false)] string message, params object[] args)
+        {
+            Write(ex, LogLevel.<#=level#>, message, args);
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the <#=level#> level.
+        /// </summary>
+		/// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void <#=level#>(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.<#=level#>, message, null);
+        }	
 <#
 	}
  #>     
