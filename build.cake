@@ -29,7 +29,7 @@ if(IsRunningOnUnix())
 // Build method
 //////////////////////////////////////////////////////////////////////
 
-Action<string, string, DNRuntime, DNArchitecture, string[], string> buildAndTest = (string target, string dnxVersion, DNRuntime runtime, DNArchitecture architecture, string[] buildTargets, string testTarget) =>
+Action<string, string, DNRuntime, DNArchitecture, string[], string, string> buildAndTest = (string target, string dnxVersion, DNRuntime runtime, DNArchitecture architecture, string[] buildTargets, string testTarget, string dnxVersionForTest) =>
 {
 	foreach(var buildTarget in buildTargets)
 	{
@@ -58,13 +58,36 @@ Action<string, string, DNRuntime, DNArchitecture, string[], string> buildAndTest
 		DNUBuild(buildTarget, dnuBuildSettings);
 	}
 	
+	// Restore
+		var restoreSettingsForTest = new DNURestoreSettings()
+		{
+			Architecture = architecture,
+			Runtime = runtime,
+			Version = dnxVersionForTest,
+			Quiet = true
+		};
+		DNURestore(testTarget + "/project.json", restoreSettingsForTest);
+	
+		// Build
+		var dnuBuildSettingsForTest = new DNUBuildSettings
+		{
+			Architecture = architecture,
+			Runtime = runtime,
+			Version = dnxVersionForTest,
+			Frameworks = new [] { target },
+			Configurations = new[] { configuration },
+			OutputDirectory = buildDir,
+			Quiet = true
+		};
+        
+		DNUBuild(testTarget, dnuBuildSettingsForTest);
 	
 	// Test
 	var settings = new DNXRunSettings
 	{	
         Architecture = architecture,
         Runtime = runtime,
-        Version = dnxVersion
+        Version = dnxVersionForTest
     };
 	DNXRun(testTarget, "test", settings);
 
@@ -126,8 +149,8 @@ Task("uap10")
 {
 	buildAndTest("uap10.0", dnxVersion, 
 					runtime, DNArchitecture.X86,
-					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
-					"./tests/NLog.UnitTests");
+					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
+					"./tests/NLog.UnitTests", dnxVersion);
 });
    
 Task("sl5")
@@ -138,8 +161,8 @@ Task("sl5")
 {
 	buildAndTest("sl5", dnxVersion, 
 					runtime, DNArchitecture.X86,
-					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
-					"./tests/NLog.UnitTests");
+					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
+					"./tests/NLog.UnitTests", "sl5");
 });
 
 Task("net35")
@@ -150,8 +173,8 @@ Task("net35")
 {
 	buildAndTest("net35", dnxVersion, 
 					runtime, DNArchitecture.X86,
-					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
-					"./tests/NLog.UnitTests");
+					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
+					"./tests/NLog.UnitTests", "dnx451");
 });
 
 Task("net451")
@@ -162,8 +185,8 @@ Task("net451")
 	
 	buildAndTest("net451", dnxVersion, 
 					runtime, DNArchitecture.X86,
-					new [] { "./src/NLog", "./src/NLog.Extended", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
-					"./tests/NLog.UnitTests");
+					new [] { "./src/NLog", "./src/NLog.Extended", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
+					"./tests/NLog.UnitTests", "dnx451");
 });
 
 Task("dotnet5.4")
@@ -171,10 +194,10 @@ Task("dotnet5.4")
 	.Does(() =>
 {
 	
-	buildAndTest("dotnet.5.4", dnxVersion, 
+	buildAndTest("dotnet5.4", dnxVersion, 
 					DNRuntime.CoreClr, DNArchitecture.X86,
-					new [] { "./src/NLog", "./src/NLog.Extended", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
-					"./tests/NLog.UnitTests");
+					new [] { "./src/NLog", "./src/NLog.Extended", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
+					"./tests/NLog.UnitTests", "dnxcore50");
 });
 
 //////////////////////////////////////////////////////////////////////
