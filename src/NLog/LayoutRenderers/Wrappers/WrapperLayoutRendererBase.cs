@@ -38,15 +38,20 @@ namespace NLog.LayoutRenderers.Wrappers
     using NLog.Layouts;
 
     /// <summary>
-    /// Decodes text "encrypted" with ROT-13.
+    /// Base class for <see cref="LayoutRenderer"/>s which wrapping other <see cref="LayoutRenderer"/>s. 
+    /// 
+    /// This has the <see cref="Inner"/> property (which is default) and can be used to wrap.
     /// </summary>
-    /// <remarks>
-    /// See <a href="http://en.wikipedia.org/wiki/ROT13">http://en.wikipedia.org/wiki/ROT13</a>.
-    /// </remarks>
+    /// <example>
+    /// ${uppercase:${level}} //[DefaultParameter]
+    /// ${uppercase:Inner=${level}} 
+    /// </example>
     public abstract class WrapperLayoutRendererBase : LayoutRenderer
     {
         /// <summary>
         /// Gets or sets the wrapped layout.
+        /// 
+        /// [DefaultParameter] so Inner: is not required if it's the first
         /// </summary>
         /// <docgen category='Transformation Options' order='10' />
         [DefaultParameter]
@@ -67,6 +72,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Transforms the output of another layout.
         /// </summary>
         /// <param name="text">Output to be transform.</param>
+        /// <remarks>If the <see cref="LogEventInfo"/> is needed, overwrite <see cref="Append"/>.</remarks>
         /// <returns>Transformed text.</returns>
         protected abstract string Transform(string text);
 

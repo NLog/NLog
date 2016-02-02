@@ -50,6 +50,7 @@ namespace NLog.Config
     /// Keeps logging configuration and provides simple API
     /// to modify it.
     /// </summary>
+    ///<remarks>This class is thread-safe.<c>.ToList()</c> is used for that purpose.</remarks>
     public class LoggingConfiguration
     {
         private readonly IDictionary<string, Target> targets =
@@ -238,7 +239,8 @@ namespace NLog.Config
             }
 
             this.InitializeAll();
-            foreach (IInstallable installable in this.configItems.OfType<IInstallable>())
+            var configItemsList = GetInstallableItems();
+            foreach (IInstallable installable in configItemsList)
             {
                 installationContext.Info("Installing '{0}'", installable);
 
@@ -249,15 +251,17 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    InternalLogger.Error(exception, "Install of '{0}' failed.", installable);
+                    if (exception.MustBeRethrownImmediately())
                     {
                         throw;
                     }
 
-                    installationContext.Error("'{0}' installation failed: {1}.", installable, exception);
+                    installationContext.Error("Install of '{0}' failed: {1}.", installable, exception);
                 }
             }
         }
+
 
         /// <summary>
         /// Uninstalls target-specific objects from current system.
@@ -275,7 +279,8 @@ namespace NLog.Config
 
             this.InitializeAll();
 
-            foreach (IInstallable installable in this.configItems.OfType<IInstallable>())
+            var configItemsList = GetInstallableItems();
+            foreach (IInstallable installable in configItemsList)
             {
                 installationContext.Info("Uninstalling '{0}'", installable);
 
@@ -286,12 +291,13 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    InternalLogger.Error(exception, "Uninstall of '{0}' failed.", installable);
+                    if (exception.MustBeRethrownImmediately())
                     {
                         throw;
                     }
 
-                    installationContext.Error("Uninstallation of '{0}' failed: {1}.", installable, exception);
+                    installationContext.Error("Uninstall of '{0}' failed: {1}.", installable, exception);
                 }
             }
         }
@@ -302,7 +308,8 @@ namespace NLog.Config
         internal void Close()
         {
             InternalLogger.Debug("Closing logging configuration...");
-            foreach (ISupportsInitialize initialize in this.configItems.OfType<ISupportsInitialize>())
+            var supportsInitializesList = GetSupportsInitializes();
+            foreach (ISupportsInitialize initialize in supportsInitializesList)
             {
                 InternalLogger.Trace("Closing {0}", initialize);
                 try
@@ -311,12 +318,14 @@ namespace NLog.Config
                 }
                 catch (Exception exception)
                 {
+                    InternalLogger.Warn(exception, "Exception while closing.");
+
                     if (exception.MustBeRethrown())
                     {
                         throw;
                     }
 
-                    InternalLogger.Warn("Exception while closing {0}", exception);
+                   
                 }
             }
 
@@ -340,13 +349,15 @@ namespace NLog.Config
 
             InternalLogger.Debug("--- NLog configuration dump ---");
             InternalLogger.Debug("Targets:");
-            foreach (Target target in this.targets.Values)
+            var targetList = this.targets.Values.ToList();
+            foreach (Target target in targetList)
             {
                 InternalLogger.Debug("{0}", target);
             }
 
             InternalLogger.Debug("Rules:");
-            foreach (LoggingRule rule in this.LoggingRules)
+            var loggingRules = this.LoggingRules.ToList();
+            foreach (LoggingRule rule in loggingRules)
             {
                 InternalLogger.Debug("{0}", rule);
             }
@@ -361,13 +372,15 @@ namespace NLog.Config
         internal void FlushAllTargets(AsyncContinuation asyncContinuation)
         {
             var uniqueTargets = new List<Target>();
-            foreach (var rule in this.LoggingRules)
+            var loggingRules = this.LoggingRules.ToList();
+            foreach (var rule in loggingRules)
             {
-                foreach (var t in rule.Targets)
+                var targetList = rule.Targets.ToList();
+                foreach (var target in targetList)
                 {
-                    if (!uniqueTargets.Contains(t))
+                    if (!uniqueTargets.Contains(target))
                     {
-                        uniqueTargets.Add(t);
+                        uniqueTargets.Add(target);
                     }
                 }
             }
@@ -381,12 +394,15 @@ namespace NLog.Config
         internal void ValidateConfig()
         {
             var roots = new List<object>();
-            foreach (LoggingRule r in this.LoggingRules)
+
+            var loggingRules = this.LoggingRules.ToList();
+            foreach (LoggingRule rule in loggingRules)
             {
-                roots.Add(r);
+                roots.Add(rule);
             }
 
-            foreach (Target target in this.targets.Values)
+            var targetList = this.targets.Values.ToList();
+            foreach (Target target in targetList)
             {
                 roots.Add(target);
             }
@@ -407,7 +423,8 @@ namespace NLog.Config
         {
             this.ValidateConfig();
 
-            foreach (ISupportsInitialize initialize in this.configItems.OfType<ISupportsInitialize>().Reverse())
+            var supportsInitializes = GetSupportsInitializes(true);
+            foreach (ISupportsInitialize initialize in supportsInitializes)
             {
                 InternalLogger.Trace("Initializing {0}", initialize);
 
@@ -430,9 +447,25 @@ namespace NLog.Config
             }
         }
 
+
         internal void EnsureInitialized()
         {
             this.InitializeAll();
+        }
+
+        private List<IInstallable> GetInstallableItems()
+        {
+            return this.configItems.OfType<IInstallable>().ToList();
+        }
+
+        private List<ISupportsInitialize> GetSupportsInitializes(bool reverse = false)
+        {
+            var items = this.configItems.OfType<ISupportsInitialize>();
+            if (reverse)
+            {
+                items = items.Reverse();
+            }
+            return items.ToList();
         }
     }
 }

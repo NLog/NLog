@@ -74,12 +74,11 @@ namespace NLog.Internal
             }
             catch (Exception ex)
             {
+                InternalLogger.Error(ex, "Exception in asynchronous handler.");
                 if (ex.MustBeRethrown())
                 {
                     throw;
                 }
-
-                ReportExceptionInHandler(ex);
             }
         }
 
@@ -90,11 +89,6 @@ namespace NLog.Internal
         {
             this.StopTimer();
             GC.SuppressFinalize(this);
-        }
-
-        private static void ReportExceptionInHandler(Exception exception)
-        {
-            InternalLogger.Error("Exception in asynchronous handler {0}", exception);
         }
 
         private void StopTimer()

@@ -58,6 +58,36 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.True(Math.Abs((dt - now).TotalSeconds) < 5);
         }
 
+#if !SILVERLIGHT
+
+        [Fact]
+        public void TimeZoneTest()
+        {
+            var dateLayoutRenderer = new DateLayoutRenderer();
+          
+            dateLayoutRenderer.Format = "yyyy-MM-ddTHH:mmK";
+
+            var logEvent = new LogEventInfo(LogLevel.Info, "logger", "msg");
+            var result = dateLayoutRenderer.Render(logEvent);
+
+            var offset = TimeZone.CurrentTimeZone;
+            var offset2 = offset.GetUtcOffset(DateTime.Now);
+
+            if (offset2 >= new TimeSpan(0))
+            {
+                //+00:00, +01:00 etc
+                Assert.Contains(string.Format("+{0:D2}:{1:D2}", offset2.Hours, offset2.Minutes), result);
+            }
+            else
+            {
+                //-01:00, etc
+                Assert.Contains(string.Format("-{0:D2}:{1:D2}", offset2.Hours, offset2.Minutes), result);
+            }
+
+        }
+
+#endif
+
         [Fact]
         public void UniversalTimeTest()
         {
