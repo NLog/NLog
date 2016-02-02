@@ -39,6 +39,10 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Designates a property of the class as an ambient property.
     /// </summary>
+    /// <example>
+    /// non-ambient:  ${uppercase:${level}} 
+    /// ambient    :  ${level:uppercase} 
+    /// </example>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class AmbientPropertyAttribute : NameBaseAttribute
     {

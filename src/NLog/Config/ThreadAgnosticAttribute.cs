@@ -39,6 +39,15 @@ namespace NLog.Config
     /// Marks the layout or layout renderer as producing correct results regardless of the thread
     /// it's running on.
     /// </summary>
+    /// <remarks>
+    /// This is important because some layout renders should use the main thread. E.g. for using <c>HttpContext.Current</c> etc.
+    /// 
+    /// If set to <c>true</c> then a layout will be render in the main thread, so for example in the AsyncTargetWrapper and BufferTargetWrapper with the <see cref="NLog.Targets.Target.PrecalculateVolatileLayouts"/> , using <see cref="NLog.Layouts.Layout.Precalculate"/>
+    /// 
+    /// Apply this attribute when:
+    /// - The result can we rendered in another thread. Delaying this could be more efficient. And/Or,
+    /// - The result should not be precalculated, for example the target sends some extra context information. 
+    /// </remarks>
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class ThreadAgnosticAttribute : Attribute
     {

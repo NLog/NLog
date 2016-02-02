@@ -2035,12 +2035,7 @@ namespace NLog.Targets
             {
                 this.MaxArchiveFileToKeep = maxArchivedFiles;
             }
-
-            /// <summary>
-            /// Creates an instance of <see cref="DynamicFileArchive"/> class.
-            /// </summary>
-            public DynamicFileArchive() : this(-1) { }
-
+            
             /// <summary>
             /// Gets or sets the maximum number of archive files that should be kept.
             /// </summary>
