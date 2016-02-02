@@ -347,5 +347,34 @@ namespace NLog.UnitTests.Targets
                 }
             }
         }
+
+
+        [Fact]
+        public void WrongMyTargetShouldThrowException()
+        {
+
+            Assert.Throws<NLogRuntimeException>(() =>
+            {
+                var target = new WrongMyTarget();
+                LogManager.ThrowExceptions = true;
+                SimpleConfigurator.ConfigureForTargetLogging(target);
+                var logger = LogManager.GetLogger("WrongMyTargetShouldThrowException");
+                logger.Info("Testing");
+            });
+
+        }
+
+
+        public class WrongMyTarget : Target
+        {
+            /// <summary>
+            /// Initializes the target. Can be used by inheriting classes
+            /// to initialize logging.
+            /// </summary>
+            protected override void InitializeTarget()
+            {
+                //this is wrong. base.InitializeTarget() should be called
+            }
+        }
     }
 }
