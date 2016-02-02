@@ -353,7 +353,7 @@ namespace NLog.UnitTests.Targets
         public void WrongMyTargetShouldThrowException()
         {
 
-            Assert.Throws<NLogConfigurationException>(() =>
+            Assert.Throws<NLogRuntimeException>(() =>
             {
                 var target = new WrongMyTarget();
                 LogManager.ThrowExceptions = true;
