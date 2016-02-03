@@ -60,30 +60,29 @@ namespace NLog.UnitTests
             LogManager.ThrowExceptions = false;
         }
 
-        public void AssertDebugCounter(string targetName, int val)
+        protected void AssertDebugCounter(string targetName, int val)
         {
             Assert.Equal(val, GetDebugTarget(targetName).Counter);
         }
 
-        public void AssertDebugLastMessage(string targetName, string msg)
+        protected void AssertDebugLastMessage(string targetName, string msg)
         {
             Assert.Equal(msg, GetDebugLastMessage(targetName));
         }
-
-
-        public void AssertDebugLastMessageContains(string targetName, string msg)
+        
+        protected void AssertDebugLastMessageContains(string targetName, string msg)
         {
             string debugLastMessage = GetDebugLastMessage(targetName);
             Assert.True(debugLastMessage.Contains(msg),
                 string.Format("Expected to find '{0}' in last message value on '{1}', but found '{2}'", msg, targetName, debugLastMessage));
         }
 
-        public string GetDebugLastMessage(string targetName)
+        protected string GetDebugLastMessage(string targetName)
         {
             return GetDebugLastMessage(targetName, LogManager.Configuration);
         }
 
-        public string GetDebugLastMessage(string targetName, LoggingConfiguration configuration)
+        protected string GetDebugLastMessage(string targetName, LoggingConfiguration configuration)
         {
             return GetDebugTarget(targetName, configuration).LastMessage;
         }
@@ -93,18 +92,18 @@ namespace NLog.UnitTests
             return GetDebugTarget(targetName, LogManager.Configuration);
         }
 
-        public NLog.Targets.DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
+        protected NLog.Targets.DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
         {
             var debugTarget = (NLog.Targets.DebugTarget)configuration.FindTargetByName(targetName);
             Assert.NotNull(debugTarget);
             return debugTarget;
         }
 
-        public void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
+        protected void AssertFileContentsStartsWith(string fileName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(true, "File '" + fileName + "' doesn't exist.");
+                Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
             Assert.True(encodedBuf.Length <= fi.Length);
@@ -120,27 +119,22 @@ namespace NLog.UnitTests
             }
         }
 
-        public void AssertFileSize(string filename, long expectedSize)
+        protected void AssertFileContentsEndsWith(string fileName, string contents, Encoding encoding)
         {
-            var fi = new FileInfo(filename);
+            if (!File.Exists(fileName))
+                Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
-            if (!fi.Exists)
-            {
-                Assert.True(true, string.Format("File \"{0}\" doesn't exist.", filename));
-            }
-
-            if (fi.Length != expectedSize)
-            {
-                Assert.True(true, string.Format("Filesize of \"{0}\" unequals {1}.", filename, expectedSize));
-            }
+            string fileText = File.ReadAllText(fileName, encoding);
+            Assert.True(fileText.Length >= contents.Length);
+            Assert.Equal(contents, fileText.Substring(fileText.Length - contents.Length));
         }
 
 #if NET4_5
-        public void AssertZipFileContents(string fileName, string contents, Encoding encoding)
+        protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
-                Assert.True(true, "File '" + fileName + "' doesn't exist.");
+                Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
             byte[] encodedBuf = encoding.GetBytes(contents);
             using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -163,7 +157,7 @@ namespace NLog.UnitTests
         }
 #endif
 
-        public void AssertFileContents(string fileName, string contents, Encoding encoding)
+        protected void AssertFileContents(string fileName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
@@ -183,7 +177,7 @@ namespace NLog.UnitTests
             }
         }
 
-        public void AssertFileContains(string fileName, string contentToCheck, Encoding encoding)
+        protected void AssertFileContains(string fileName, string contentToCheck, Encoding encoding)
         {
             if (contentToCheck.Contains(Environment.NewLine))
                 Assert.True(false, "Please use only single line string to check.");
@@ -205,7 +199,7 @@ namespace NLog.UnitTests
             Assert.True(false, "File doesn't contains '" + contentToCheck + "'");
         }
 
-        public string StringRepeat(int times, string s)
+        protected string StringRepeat(int times, string s)
         {
             StringBuilder sb = new StringBuilder(s.Length * times);
             for (int i = 0; i < times; ++i)
