@@ -341,31 +341,33 @@ namespace NLog.UnitTests.Targets
         {
             const string header = "Headerline", footer = "Footerline";
 
-            var tempFile = Path.GetTempFileName();
+            var logFile = Path.GetTempFileName();
             try
             {
-                var fileTarget = WrapFileTarget(new FileTarget
+                var innerFileTarget = new FileTarget
                 {
                     DeleteOldFileOnStartup = false,
                     FileName = SimpleLayout.Escape(logFile),
                     ReplaceFileContentsOnEachWrite = true,
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}"
-                });
+                };
                 if (useHeader)
-                    fileTarget.Header = header;
+                    innerFileTarget.Header = header;
                 if (useFooter)
-                    fileTarget.Footer = footer;
+                    innerFileTarget.Footer = footer;
+                var fileTarget = WrapFileTarget(innerFileTarget);
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
-                string headerPart = useHeader ? header + fileTarget.LineEnding.NewLineCharacters : string.Empty;
-                string footerPart = useFooter ? footer + fileTarget.LineEnding.NewLineCharacters : string.Empty;
+                string headerPart = useHeader ? header + LineEndingMode.Default.NewLineCharacters : string.Empty;
+                string footerPart = useFooter ? footer + LineEndingMode.Default.NewLineCharacters : string.Empty;
 
                 logger.Debug("aaa");
                 AssertFileContents(logFile, headerPart + "Debug aaa\n" + footerPart, Encoding.UTF8);
                 logger.Info("bbb");
-                AssertFileContents(logfile, headerPart + "Info bbb\n" + footerPart, Encoding.UTF8);                logger.Warn("ccc");
+                AssertFileContents(logFile, headerPart + "Info bbb\n" + footerPart, Encoding.UTF8);
+                logger.Warn("ccc");
                 AssertFileContents(logFile, headerPart + "Warn ccc\n" + footerPart, Encoding.UTF8);
 
                 LogManager.Configuration = null;
