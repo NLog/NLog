@@ -118,8 +118,8 @@ namespace NLog.UnitTests.Targets
             var target = new MyTarget();
             List<Exception> exceptions = new List<Exception>();
             target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-            target.WriteAsyncLogEvents(new[] 
-            { 
+            target.WriteAsyncLogEvents(new[]
+            {
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
@@ -236,7 +236,7 @@ namespace NLog.UnitTests.Targets
             Thread.Sleep(50);
             List<Exception> exceptions = new List<Exception>();
             target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-            target.WriteAsyncLogEvents(new[] 
+            target.WriteAsyncLogEvents(new[]
             {
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
@@ -275,8 +275,8 @@ namespace NLog.UnitTests.Targets
             SimpleConfigurator.ConfigureForTargetLogging(target);
             var logger = LogManager.GetLogger("WriteFormattedStringEvent_EventWithNullArguments");
             string t = null;
-            logger.Info("Testing null:{0}",t);
-            Assert.Equal(1, target.WriteCount); 
+            logger.Info("Testing null:{0}", t);
+            Assert.Equal(1, target.WriteCount);
         }
 
         public class MyTarget : Target
@@ -362,6 +362,16 @@ namespace NLog.UnitTests.Targets
                 logger.Info("Testing");
             });
 
+        }
+
+        [Fact]
+        public void WrongMyTargetShouldNotThrowExceptionWhenThrowExceptionsIsFalse()
+        {
+            var target = new WrongMyTarget();
+            LogManager.ThrowExceptions = false;
+            SimpleConfigurator.ConfigureForTargetLogging(target);
+            var logger = LogManager.GetLogger("WrongMyTargetShouldThrowException");
+            logger.Info("Testing");
         }
 
 
