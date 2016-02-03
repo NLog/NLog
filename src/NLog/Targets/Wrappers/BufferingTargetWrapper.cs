@@ -130,6 +130,7 @@ namespace NLog.Targets.Wrappers
             }
             else
             {
+                InternalLogger.Trace("BufferingWrapper: Flush {0} events async", events.Length);
                 this.WrappedTarget.WriteAsyncLogEvents(events, ex => this.WrappedTarget.Flush(asyncContinuation));
             }
         }
@@ -141,6 +142,7 @@ namespace NLog.Targets.Wrappers
         {
             base.InitializeTarget();
             this.buffer = new LogEventInfoBuffer(this.BufferSize, false, 0);
+            InternalLogger.Trace("BufferingWrapper: start timer");
             this.flushTimer = new Timer(this.FlushCallback, null, -1, -1);
         }
 
@@ -169,6 +171,7 @@ namespace NLog.Targets.Wrappers
             int count = this.buffer.Append(logEvent);
             if (count >= this.BufferSize)
             {
+                InternalLogger.Trace("BufferingWrapper: writing {0} events because of exceeding buffersize ({0}).", BufferSize);
                 AsyncLogEventInfo[] events = this.buffer.GetEventsAndClear();
                 this.WrappedTarget.WriteAsyncLogEvents(events);
             }
@@ -176,11 +179,16 @@ namespace NLog.Targets.Wrappers
             {
                 if (this.FlushTimeout > 0)
                 {
+                    InternalLogger.Trace("BufferingWrapper: writing {0} events because flushtimeout", count);
                     // reset the timer on first item added to the buffer or whenever SlidingTimeout is set to true
                     if (this.SlidingTimeout || count == 1)
                     {
                         this.flushTimer.Change(this.FlushTimeout, -1);
                     }
+                }
+                else
+                {
+                    InternalLogger.Trace("BufferingWrapper: wait for writing events. FlushTimeout isn't set and BufferSize ({0}) higher then current ({1}) events ", BufferSize, count);
                 }
             }
         }

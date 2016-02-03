@@ -178,6 +178,7 @@ namespace NLog.Targets.Wrappers
         {
             base.InitializeTarget();
             this.RequestQueue.Clear();
+            InternalLogger.Trace("AsyncWrapper: start timer");
             this.lazyWriterTimer = new Timer(this.ProcessPendingEvents, null, Timeout.Infinite, Timeout.Infinite);
             this.StartLazyWriterTimer();
         }
@@ -244,6 +245,7 @@ namespace NLog.Targets.Wrappers
 
         private void ProcessPendingEvents(object state)
         {
+            InternalLogger.Trace("AsyncWrapper: ProcessPendingEvents");
             AsyncContinuation[] continuations;
             lock (this.continuationQueueLock)
             {
@@ -261,8 +263,8 @@ namespace NLog.Targets.Wrappers
                     if (continuation != null)
                     {
                         count = this.RequestQueue.RequestCount;
-                        InternalLogger.Trace("Flushing {0} events.", count);
                     }
+                    InternalLogger.Trace("AsyncWrapper: Flushing {0} events.", count);
 
                     if (this.RequestQueue.RequestCount == 0)
                     {
@@ -288,7 +290,7 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "Error in lazy writer timer procedure.");
+                InternalLogger.Error(exception, "AsyncWrapper: Error in lazy writer timer procedure.");
 
                 if (exception.MustBeRethrown())
                 {
