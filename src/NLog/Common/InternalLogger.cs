@@ -81,9 +81,9 @@ namespace NLog.Common
             Info("NLog internal logger initialized.");
 #else
             LogLevel = LogLevel.Info;
-            LogToConsole = null;
-            LogToConsoleError = null;
-            LogFile = null;
+            LogToConsole = false;
+            LogToConsoleError = false;
+            LogFile = string.Empty;
 #endif
             IncludeTimestamp = true;
             LogWriter = null;
