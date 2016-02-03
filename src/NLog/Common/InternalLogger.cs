@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Runtime.CompilerServices;
+
 namespace NLog.Common
 {
     using JetBrains.Annotations;
@@ -62,6 +64,14 @@ namespace NLog.Common
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static InternalLogger()
         {
+            Reset();
+        }
+
+        /// <summary>
+        /// Set the config of the InternalLogger with defaults and config.
+        /// </summary>
+        public static void Reset()
+        {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
@@ -71,8 +81,12 @@ namespace NLog.Common
             Info("NLog internal logger initialized.");
 #else
             LogLevel = LogLevel.Info;
+            LogToConsole = null;
+            LogToConsoleError = null;
+            LogFile = null;
 #endif
             IncludeTimestamp = true;
+            LogWriter = null;
         }
 
         /// <summary>

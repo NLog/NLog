@@ -228,7 +228,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
             }
@@ -334,7 +333,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempArchiveFolder))
@@ -390,11 +388,9 @@ namespace NLog.UnitTests.Targets
                 logger.Warn("ccc");
                 AssertFileContents(tempFile, headerPart + "Warn ccc\n" + footerPart, Encoding.UTF8);
 
-                LogManager.Configuration = null;
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
             }
@@ -487,7 +483,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -554,7 +549,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -627,7 +621,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -693,7 +686,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -756,7 +748,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -877,7 +868,6 @@ namespace NLog.UnitTests.Targets
             finally
             {
                 TimeSource.Current = defaultTimeSource; // restore default time source
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -944,7 +934,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1015,7 +1004,6 @@ namespace NLog.UnitTests.Targets
             finally
             {
                 TimeSource.Current = defaultTimeSource; // restore default time source
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1106,7 +1094,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1163,7 +1150,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
 
                 if (File.Exists(tempFile))
                 {
@@ -1238,7 +1224,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -1287,7 +1272,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -1381,7 +1365,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -1447,7 +1430,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
 
                 if (File.Exists(tempFile))
                 {
@@ -1507,7 +1489,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1559,7 +1540,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1618,7 +1598,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
 
@@ -1747,7 +1726,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -1784,7 +1762,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -1860,8 +1837,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
-
                 if (tempDirectory.Exists)
                 {
                     tempDirectory.Delete(true);
@@ -1910,8 +1885,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
-
                 if (tempDirectory.Exists)
                 {
                     tempDirectory.Delete(true);
@@ -1975,7 +1948,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -2051,7 +2023,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -2105,7 +2076,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -2160,7 +2130,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))
@@ -2559,7 +2528,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(tempFile))
                     File.Delete(tempFile);
                 if (Directory.Exists(tempPath))

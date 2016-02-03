@@ -376,7 +376,6 @@ namespace NLog.UnitTests
                 finally
                 {
                     LogManager.ConfigurationReloaded -= OnConfigReloaded;
-                    LogManager.Configuration = null;
                     if (File.Exists(fileName))
                         File.Delete(fileName);
                 }
