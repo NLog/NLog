@@ -360,8 +360,8 @@ namespace NLog.UnitTests.Targets
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
-                string headerPart = useHeader ? header + LineEndingMode.Default.NewLineCharacters : string.Empty;
-                string footerPart = useFooter ? footer + LineEndingMode.Default.NewLineCharacters : string.Empty;
+                string headerPart = useHeader ? header + LineEndingMode.LF.NewLineCharacters : string.Empty;
+                string footerPart = useFooter ? footer + LineEndingMode.LF.NewLineCharacters : string.Empty;
 
                 logger.Debug("aaa");
                 AssertFileContents(logFile, headerPart + "Debug aaa\n" + footerPart, Encoding.UTF8);
