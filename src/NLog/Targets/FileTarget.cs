@@ -2020,13 +2020,7 @@ namespace NLog.Targets
                 this.fileTarget = fileTarget;
                 this.MaxArchiveFileToKeep = maxArchivedFiles;
             }
-
-            /// <summary>
-            /// Creates an instance of <see cref="DynamicFileArchive"/> class.
-            /// </summary>
-            /// <param name="fileTarget">The file target instance whose files to archive.</param>
-            public DynamicFileArchive(FileTarget fileTarget) : this(fileTarget, -1) { }
-
+            
             /// <summary>
             /// Gets or sets the maximum number of archive files that should be kept.
             /// </summary>
