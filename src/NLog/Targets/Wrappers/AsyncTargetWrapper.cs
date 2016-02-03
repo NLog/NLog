@@ -257,6 +257,13 @@ namespace NLog.Targets.Wrappers
 
             try
             {
+
+                if (this.WrappedTarget == null)
+                {
+                    InternalLogger.Error("AsyncWrapper: WrappedTarget is NULL");
+                    return;
+                }
+
                 foreach (var continuation in continuations)
                 {
                     int count = this.BatchSize;
