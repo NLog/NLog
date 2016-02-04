@@ -899,33 +899,6 @@ namespace NLog.Targets
             }
         }
 
-        private void FlushCurrentFileWrites(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms, List<AsyncContinuation> pendingContinuations)
-        {
-            Exception lastException = null;
-
-            try
-            {
-                if (currentFileName != null)
-                    ProcessLogEvent(firstLogEvent, currentFileName, ms.ToArray());
-            }
-            catch (Exception exception)
-            {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-
-                lastException = exception;
-            }
-
-            foreach (AsyncContinuation cont in pendingContinuations)
-            {
-                cont(lastException);
-            }
-
-            pendingContinuations.Clear();
-        }
-
         private void ProcessLogEvent(LogEventInfo logEvent, string fileName, byte[] bytesToWrite)
         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
@@ -1004,6 +977,33 @@ namespace NLog.Targets
             int numDigits = lastPart - firstPart - 2;
 
             return pattern.Substring(0, firstPart) + Convert.ToString(value, 10).PadLeft(numDigits, '0') + pattern.Substring(lastPart);
+        }
+
+        private void FlushCurrentFileWrites(string currentFileName, LogEventInfo firstLogEvent, MemoryStream ms, List<AsyncContinuation> pendingContinuations)
+        {
+            Exception lastException = null;
+
+            try
+            {
+                if (currentFileName != null)
+                    ProcessLogEvent(firstLogEvent, currentFileName, ms.ToArray());
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                lastException = exception;
+            }
+
+            foreach (AsyncContinuation cont in pendingContinuations)
+            {
+                cont(lastException);
+            }
+
+            pendingContinuations.Clear();
         }
 
         /// <summary>
