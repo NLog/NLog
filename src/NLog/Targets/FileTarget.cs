@@ -1498,10 +1498,23 @@ namespace NLog.Targets
             var fileCharacteristics = GetFileCharacteristics(fileName);
             var lastWriteTime = TimeSource.Current.FromSystemTime(fileCharacteristics.LastWriteTimeUtc);
 
+            InternalLogger.Trace("Calculating archive date. Last write time: {0}; Previous log event time: {1}", lastWriteTime, previousLogEventTimestamp);
+
             bool previousLogIsMoreRecent = (previousLogEventTimestamp.HasValue) && (previousLogEventTimestamp.Value > lastWriteTime);
-            return (previousLogIsMoreRecent) || (PreviousLogOverlappedPeriod(fileCharacteristics, logEvent))
-                ? previousLogEventTimestamp.Value
-                : lastWriteTime;
+            if (previousLogIsMoreRecent)
+            {
+                InternalLogger.Trace("Using previous log event time (is more recent)");
+                return previousLogEventTimestamp.Value;
+            }
+            
+            if (PreviousLogOverlappedPeriod(fileCharacteristics, logEvent))
+            {
+                InternalLogger.Trace("Using previous log event time (previous log overlapped period)");
+                return previousLogEventTimestamp.Value;
+            }
+
+            InternalLogger.Trace("Using last write time");
+            return lastWriteTime;
         }
 
         private bool PreviousLogOverlappedPeriod(FileCharacteristics fileCharacteristics, LogEventInfo logEvent)
