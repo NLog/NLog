@@ -52,6 +52,8 @@ namespace NLog.Common
 
     /// <summary>
     /// NLog internal logger.
+    /// 
+    /// Writes to file, console or custom textwriter (see <see cref="InternalLogger.LogWriter"/>)
     /// </summary>
     public static partial class InternalLogger
     {
@@ -90,18 +92,21 @@ namespace NLog.Common
         }
 
         /// <summary>
-        /// Gets or sets the internal log level.
+        /// Gets or sets the minimal internal log level. 
         /// </summary>
+        /// <example>If set to <see cref="NLog.LogLevel.Info"/>, then messages of the levels <see cref="NLog.LogLevel.Info"/>, <see cref="NLog.LogLevel.Error"/> and <see cref="NLog.LogLevel.Fatal"/> will be written.</example>
         public static LogLevel LogLevel { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console output stream.
         /// </summary>
+        /// <remarks>Your application must be a console application.</remarks>
         public static bool LogToConsole { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console error stream.
         /// </summary>
+        /// <remarks>Your application must be a console application.</remarks>
         public static bool LogToConsoleError { get; set; }
 
         /// <summary>

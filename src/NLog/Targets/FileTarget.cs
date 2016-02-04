@@ -847,37 +847,8 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             var fileName = Path.GetFullPath(GetCleanedFileName(logEvent));
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
-#endif
-
             byte[] bytes = this.GetBytesToWrite(logEvent);
-
-            if (this.ShouldAutoArchive(fileName, logEvent, bytes.Length))
-                this.DoAutoArchive(fileName, logEvent);
-
-            // Clean up old archives if this is the first time a log record is being written to
-            // this log file and the archiving system is date/time based.
-            if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None && ShouldDeleteOldArchives())
-            {
-                if (!previousFileNames.Contains(fileName))
-                {
-                    if (this.previousFileNames.Count > this.maxLogFilenames)
-                    {
-                        this.previousFileNames.Dequeue();
-                    }
-
-                    string fileNamePattern = this.GetArchiveFileNamePattern(fileName, logEvent);
-                    this.DeleteOldDateArchives(fileNamePattern);
-                    this.previousFileNames.Enqueue(fileName);
-                }
-            }
-
-            this.WriteToFile(fileName, logEvent, bytes, false);
-
-            previousLogEventTimestamp = logEvent.TimeStamp;
-        }
+            ProcessLogEvent(logEvent, fileName, bytes);        }
 
         private string GetCleanedFileName(LogEventInfo logEvent)
         {
@@ -925,6 +896,37 @@ namespace NLog.Targets
                     this.FlushCurrentFileWrites(fileName, firstLogEvent, ms, pendingContinuations);
                 }
             }
+        }
+
+        private void ProcessLogEvent(LogEventInfo logEvent, string fileName, byte[] bytesToWrite)
+        {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+#endif
+
+            if (this.ShouldAutoArchive(fileName, logEvent, bytesToWrite.Length))
+                this.DoAutoArchive(fileName, logEvent);
+
+            // Clean up old archives if this is the first time a log record is being written to
+            // this log file and the archiving system is date/time based.
+            if (this.ArchiveNumbering == ArchiveNumberingMode.Date && this.ArchiveEvery != FileArchivePeriod.None && ShouldDeleteOldArchives())
+            {
+                if (!previousFileNames.Contains(fileName))
+                {
+                    if (this.previousFileNames.Count > this.maxLogFilenames)
+                    {
+                        this.previousFileNames.Dequeue();
+                    }
+
+                    string fileNamePattern = this.GetArchiveFileNamePattern(fileName, logEvent);
+                    this.DeleteOldDateArchives(fileNamePattern);
+                    this.previousFileNames.Enqueue(fileName);
+                }
+            }
+
+            this.WriteToFile(fileName, logEvent, bytesToWrite, false);
+
+            previousLogEventTimestamp = logEvent.TimeStamp;
         }
 
         /// <summary>
@@ -980,13 +982,7 @@ namespace NLog.Targets
             try
             {
                 if (currentFileName != null)
-                {
-                    if (this.ShouldAutoArchive(currentFileName, firstLogEvent, (int)ms.Length))
-                        this.DoAutoArchive(currentFileName, firstLogEvent);
-
-                    this.WriteToFile(currentFileName, firstLogEvent, ms.ToArray(), false);
-                }
-            }
+                    ProcessLogEvent(firstLogEvent, currentFileName, ms.ToArray());            }
             catch (Exception exception)
             {
                 if (exception.MustBeRethrown())

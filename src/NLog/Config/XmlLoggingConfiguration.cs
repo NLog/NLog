@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-
 namespace NLog.Config
 {
     using System;
@@ -86,7 +84,7 @@ namespace NLog.Config
         /// <param name="fileName">Configuration file to be read.</param>
         public XmlLoggingConfiguration(string fileName)
         {
-            using (XmlReader reader = XmlReader.Create(fileName))
+            using (XmlReader reader = CreateFileReader(fileName))
             {
                 this.Initialize(reader, fileName, false);
             }
@@ -99,10 +97,36 @@ namespace NLog.Config
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         public XmlLoggingConfiguration(string fileName, bool ignoreErrors)
         {
-            using (XmlReader reader = XmlReader.Create(fileName))
+            using (XmlReader reader = CreateFileReader(fileName))
             {
                 this.Initialize(reader, fileName, ignoreErrors);
             }
+        }
+
+        /// <summary>
+        /// Create XML reader for (xml config) file.
+        /// </summary>
+        /// <param name="fileName">filepath</param>
+        /// <returns>reader or <c>null</c> if filename is empty.</returns>
+        private static XmlReader CreateFileReader(string fileName)
+        {
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                fileName = fileName.Trim();
+#if __ANDROID__
+                //suport loading config from special assets folder in nlog.config
+                const string assetsPrefix = "assets/";
+                if (fileName.StartsWith(assetsPrefix, StringComparison.OrdinalIgnoreCase))
+                {
+                    //remove prefix
+                    fileName = fileName.Substring(assetsPrefix.Length);
+                    Stream stream = Android.App.Application.Context.Assets.Open(fileName);
+                    return XmlReader.Create(stream);
+                }
+#endif
+                return XmlReader.Create(fileName);
+            }
+            return null;
         }
 
         /// <summary>
@@ -132,7 +156,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
-		internal XmlLoggingConfiguration(XmlElement element, string fileName)
+        internal XmlLoggingConfiguration(XmlElement element, string fileName)
         {
             using (var stringReader = new StringReader(element.OuterXml))
             {
@@ -181,7 +205,7 @@ namespace NLog.Config
         /// Did the <see cref="Initialize"/> Succeeded? <c>true</c>= success, <c>false</c>= error, <c>null</c> = initialize not started yet.
         /// </summary>
         public bool? InitializeSucceeded { get; private set; }
-        
+
         /// <summary>
         /// Gets or sets a value indicating whether all of the configuration files
         /// should be watched for changes and reloaded automatically when changed.
@@ -338,7 +362,7 @@ namespace NLog.Config
                         throw configurationException;
                     }
                 }
-              
+
             }
         }
 
@@ -447,7 +471,7 @@ namespace NLog.Config
             bool autoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", autoReloadDefault);
             if (filePath != null)
                 this.fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
-            
+
             LogManager.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", LogManager.ThrowExceptions);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
