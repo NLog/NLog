@@ -1285,6 +1285,53 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Fact]
+        public void RepeatingFooterTest()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var logFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                const string footer = "Footerline";
+
+                string archiveFolder = Path.Combine(tempPath, "archive");
+                var ft = new FileTarget
+                {
+                    FileName = logFile,
+                    ArchiveFileName = Path.Combine(archiveFolder, "{####}.txt"),
+                    ArchiveAboveSize = 51,
+                    LineEnding = LineEndingMode.LF,
+                    ArchiveNumbering = ArchiveNumberingMode.Sequence,
+                    Layout = "${message}",
+                    Footer = footer,
+                    MaxArchiveFiles = 2,
+                };
+
+                SimpleConfigurator.ConfigureForTargetLogging(ft, LogLevel.Debug);
+
+                for (var i = 0; i < 16; ++i)
+                {
+                    logger.Debug("123456789");
+                }
+
+                LogManager.Configuration = null;
+
+                string expectedEnding = footer + ft.LineEnding.NewLineCharacters;
+                AssertFileContentsEndsWith(logFile, expectedEnding, Encoding.UTF8);
+                AssertFileContentsEndsWith(Path.Combine(archiveFolder, "0002.txt"), expectedEnding, Encoding.UTF8);
+                AssertFileContentsEndsWith(Path.Combine(archiveFolder, "0001.txt"), expectedEnding, Encoding.UTF8);
+                Assert.True(!File.Exists(Path.Combine(archiveFolder, "0000.txt")));
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
         [Theory]
         [InlineData(false)]
         [InlineData(true)]
@@ -1703,13 +1750,8 @@ namespace NLog.UnitTests.Targets
                     Encoding.UTF8);
 
                 assertFileContents(helper.GetFullPath(1), StringRepeat(250, "bbb\n"), Encoding.UTF8);
-                AssertFileSize(helper.GetFullPath(1), archiveAboveSize);
-
                 assertFileContents(helper.GetFullPath(2), StringRepeat(250, "ccc\n"), Encoding.UTF8);
-                AssertFileSize(helper.GetFullPath(2), archiveAboveSize);
-
                 assertFileContents(helper.GetFullPath(3), StringRepeat(250, "ddd\n"), Encoding.UTF8);
-                AssertFileSize(helper.GetFullPath(3), archiveAboveSize);
 
                 Assert.False(helper.Exists(0), "First archive should have been deleted due to max archive count.");
                 Assert.False(helper.Exists(4), "Fifth archive must not have been created yet.");
