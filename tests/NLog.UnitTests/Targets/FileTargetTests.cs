@@ -54,7 +54,7 @@ namespace NLog.UnitTests.Targets
     public abstract class FileTargetTests : NLogTestBase
     {
         private readonly ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
-        
+
         public static IEnumerable<object[]> SimpleFileTest_TestParameters
         {
             get
@@ -209,7 +209,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
             }
@@ -315,7 +314,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempArchiveFolder))
@@ -370,11 +368,9 @@ namespace NLog.UnitTests.Targets
                 logger.Warn("ccc");
                 AssertFileContents(logFile, headerPart + "Warn ccc\n" + footerPart, Encoding.UTF8);
 
-                LogManager.Configuration = null;
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
             }
@@ -467,7 +463,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -534,7 +529,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -607,7 +601,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -675,7 +668,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -703,7 +695,7 @@ namespace NLog.UnitTests.Targets
                     Layout = "${message}",
                     MaxArchiveFiles = maxArchiveFiles
                 });
-                
+
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
                 for (var i = 0; i < 4; ++i)
                 {
@@ -740,7 +732,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -864,7 +855,6 @@ namespace NLog.UnitTests.Targets
             finally
             {
                 TimeSource.Current = defaultTimeSource; // restore default time source
-                LogManager.Configuration = null;
                 if (File.Exists(logfile))
                     File.Delete(logfile);
                 if (Directory.Exists(tempPath))
@@ -931,7 +921,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1004,7 +993,6 @@ namespace NLog.UnitTests.Targets
             finally
             {
                 TimeSource.Current = defaultTimeSource; // restore default time source
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1095,7 +1083,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1152,7 +1139,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
 
                 if (File.Exists(logFile))
                 {
@@ -1228,7 +1214,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -1277,7 +1262,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -1372,7 +1356,7 @@ namespace NLog.UnitTests.Targets
                 if (specifyArchiveFileName)
                     innerFileTarget.ArchiveFileName = Path.Combine(tempPath, "archive", "{####}." + archiveExtension);
                 var fileTarget = WrapFileTarget(innerFileTarget);
-                
+
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
                 // we emit 5 * 250 * (3 x aaa + \n) bytes
@@ -1419,7 +1403,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -1485,7 +1468,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
 
                 if (File.Exists(logFile))
                 {
@@ -1545,7 +1527,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1597,7 +1578,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -1656,7 +1636,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
 
@@ -1758,7 +1737,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -1795,7 +1773,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -1871,8 +1848,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
-
                 if (tempDirectory.Exists)
                 {
                     tempDirectory.Delete(true);
@@ -1904,10 +1879,10 @@ namespace NLog.UnitTests.Targets
                     ArchiveDateFormat = "___________yyyyMMddHHmm",
                     MaxArchiveFiles = 10   // Get past the optimization to avoid deleting old files.
                 });
-                
+
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
-                // Create a file that will match the archive mask pattern but it's not the data format (needs to be shorter that the date format to break).
+
                 string existingFile = archiveFileLayout.Replace("{#}", "notadate");
                 Directory.CreateDirectory(Path.GetDirectoryName(logFile));
                 File.Create(existingFile).Close();
@@ -1919,8 +1894,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
-
                 if (tempDirectory.Exists)
                 {
                     tempDirectory.Delete(true);
@@ -1984,7 +1957,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -2060,7 +2032,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -2114,7 +2085,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -2148,7 +2118,7 @@ namespace NLog.UnitTests.Targets
                 };
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
-                
+
                 ArchiveFileNameHelper helper = new ArchiveFileNameHelper(Path.Combine(tempPath, "archive"), DateTime.Now.ToString(fileTarget.ArchiveDateFormat), archiveExtension);
 
                 Generate1000BytesLog('a');
@@ -2169,7 +2139,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempPath))
@@ -2584,7 +2553,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (File.Exists(logfile))
                     File.Delete(logfile);
                 if (Directory.Exists(tempPath))
@@ -2602,7 +2570,7 @@ namespace NLog.UnitTests.Targets
         protected override Target WrapFileTarget(FileTarget target)
         {
             return target;
-        }
+}
 
         [Fact]
         public void BatchErrorHandlingTest()

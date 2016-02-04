@@ -55,8 +55,9 @@ namespace NLog.UnitTests
     {
         protected NLogTestBase()
         {
-            InternalLogger.LogToConsole = false;
-            InternalLogger.LogToConsoleError = false;
+            //reset before every test
+            LogManager.Configuration = null;
+            InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
         }
 
@@ -185,7 +186,7 @@ namespace NLog.UnitTests
             FileInfo fi = new FileInfo(fileName);
             if (!fi.Exists)
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
-                        
+
             using (TextReader fs = new StreamReader(fileName, encoding))
             {
                 string line;
@@ -251,45 +252,23 @@ namespace NLog.UnitTests
         protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
         {
             var stringWriter = new StringWriter();
-            var oldWriter = InternalLogger.LogWriter;
-            var oldLevel = InternalLogger.LogLevel;
-            var oldIncludeTimestamp = InternalLogger.IncludeTimestamp;
-            try
-            {
-                InternalLogger.LogWriter = stringWriter;
-                InternalLogger.LogLevel = LogLevel.Trace;
-                InternalLogger.IncludeTimestamp = false;
-                action();
+            InternalLogger.LogWriter = stringWriter;
+            InternalLogger.LogLevel = LogLevel.Trace;
+            InternalLogger.IncludeTimestamp = false;
+            action();
 
-                return stringWriter.ToString();
-            }
-            finally
-            {
-                InternalLogger.LogWriter = oldWriter;
-                InternalLogger.LogLevel = oldLevel;
-                InternalLogger.IncludeTimestamp = oldIncludeTimestamp;
-            }
+            return stringWriter.ToString();
         }
 
         public delegate void SyncAction();
 
         public class InternalLoggerScope : IDisposable
         {
-            private readonly string logFile;
-            private readonly LogLevel logLevel;
-            private readonly bool logToConsole;
-            private readonly bool includeTimestamp;
-            private readonly bool logToConsoleError;
             private readonly LogLevel globalThreshold;
             private readonly bool throwExceptions;
 
             public InternalLoggerScope()
             {
-                this.logFile = InternalLogger.LogFile;
-                this.logLevel = InternalLogger.LogLevel;
-                this.logToConsole = InternalLogger.LogToConsole;
-                this.includeTimestamp = InternalLogger.IncludeTimestamp;
-                this.logToConsoleError = InternalLogger.LogToConsoleError;
                 this.globalThreshold = LogManager.GlobalThreshold;
                 this.throwExceptions = LogManager.ThrowExceptions;
             }
@@ -299,11 +278,7 @@ namespace NLog.UnitTests
                 if (File.Exists(InternalLogger.LogFile))
                     File.Delete(InternalLogger.LogFile);
 
-                InternalLogger.LogFile = this.logFile;
-                InternalLogger.LogLevel = this.logLevel;
-                InternalLogger.LogToConsole = this.logToConsole;
-                InternalLogger.IncludeTimestamp = this.includeTimestamp;
-                InternalLogger.LogToConsoleError = this.logToConsoleError;
+                InternalLogger.Reset();
                 LogManager.GlobalThreshold = this.globalThreshold;
                 LogManager.ThrowExceptions = this.throwExceptions;
             }

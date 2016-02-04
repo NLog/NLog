@@ -404,8 +404,6 @@ namespace NLog.UnitTests.Common
                     "Debug DDD" + Environment.NewLine +
                     "Info III" + Environment.NewLine;
 
-            // Store off the previous log file
-            string previousLogFile = InternalLogger.LogFile;
 
             var tempPath = Path.GetTempPath();
             var tempFileName = Path.GetRandomFileName();
@@ -439,9 +437,6 @@ namespace NLog.UnitTests.Common
             }
             finally
             {
-                // Reset LogFile to the previous value
-                InternalLogger.LogFile = previousLogFile;
-
                 if (File.Exists(tempFile))
                 {
                     File.Delete(tempFile);
@@ -495,9 +490,6 @@ namespace NLog.UnitTests.Common
             }
             finally
             {
-                // Reset LogFile to the previous value
-                InternalLogger.LogFile = previousLogFile;
-
                 if (File.Exists(tempFileName))
                 {
                     File.Delete(tempFileName);
