@@ -304,7 +304,8 @@ namespace NLog.Common
 
             System.Diagnostics.Debug.WriteLine(msg);
 
-            if (level != LogLevel.Trace) {
+            if (level != LogLevel.Trace)
+            {
                 return;
             }
 
