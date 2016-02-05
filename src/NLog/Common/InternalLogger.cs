@@ -79,6 +79,7 @@ namespace NLog.Common
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
+            WriteToDiagnostics = GetSetting("nlog.internalWriteToDiagnostics", "NLOG_INTERNAL_WRITE_TO_DIAGNOSTICS", false);
 
             Info("NLog internal logger initialized.");
 #else
@@ -86,6 +87,7 @@ namespace NLog.Common
             LogToConsole = false;
             LogToConsoleError = false;
             LogFile = string.Empty;
+            WriteToDiagnostics = false;
 #endif
             IncludeTimestamp = true;
             LogWriter = null;
@@ -108,6 +110,11 @@ namespace NLog.Common
         /// </summary>
         /// <remarks>Your application must be a console application.</remarks>
         public static bool LogToConsoleError { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether internal messages should be written to the System.Diagnostics.Debug / System.Diagnostics.Trace.
+        /// </summary>
+        public static bool WriteToDiagnostics { get; set; }
 
         /// <summary>
         /// Gets or sets the file path of the internal log file.
@@ -214,7 +221,7 @@ namespace NLog.Common
                 return;
             }
 
-            if (string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null)
+            if (string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null && !WriteToDiagnostics)
             {
                 return;
             }
@@ -276,6 +283,8 @@ namespace NLog.Common
                 {
                     Console.Error.WriteLine(msg);
                 }
+
+                LogToDiagnostics(level, msg);
             }
             catch (Exception exception)
             {
@@ -287,6 +296,25 @@ namespace NLog.Common
                 }
 
             }
+        }
+
+        private static void LogToDiagnostics(LogLevel level, string msg)
+        {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            // log to System.Diagnostics.Debug / System.Diagnostics.Trace
+            if (!WriteToDiagnostics)
+            {
+                return;
+            }
+
+            System.Diagnostics.Debug.WriteLine(msg);
+
+            if (level != LogLevel.Trace) {
+                return;
+            }
+
+            System.Diagnostics.Trace.WriteLine(msg);
+#endif
         }
 
         /// <summary>
