@@ -478,6 +478,7 @@ namespace NLog.Config
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
             InternalLogger.LogLevel = LogLevel.FromString(nlogElement.GetOptionalAttribute("internalLogLevel", InternalLogger.LogLevel.Name));
             LogManager.GlobalThreshold = LogLevel.FromString(nlogElement.GetOptionalAttribute("globalThreshold", LogManager.GlobalThreshold.Name));
+            InternalLogger.WriteToDiagnostics = nlogElement.GetOptionalBooleanAttribute("internalWriteToDiagnostics", InternalLogger.WriteToDiagnostics);
 
             var children = nlogElement.Children.ToList();
 
