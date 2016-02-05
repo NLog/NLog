@@ -31,20 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Runtime.CompilerServices;
 
 namespace NLog.Common
 {
     using JetBrains.Annotations;
     using System;
     using System.ComponentModel;
-    using System.Configuration;
     using System.Globalization;
     using System.IO;
     using System.Reflection;
     using System.Text;
-    using NLog.Internal;
-    using NLog.Time;
+    using Internal;
+    using Time;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
     using ConfigurationManager = System.Configuration.ConfigurationManager;
     using System.Diagnostics;
@@ -57,7 +55,7 @@ namespace NLog.Common
     /// </summary>
     public static partial class InternalLogger
     {
-        private static object lockObject = new object();
+        private static readonly object LockObject = new object();
         private static string _logFile;
 
         /// <summary>
@@ -205,7 +203,7 @@ namespace NLog.Common
         /// <param name="args">optional args for <paramref name="message"/></param>
         private static void Write([CanBeNull]Exception ex, LogLevel level, string message, [CanBeNull]object[] args)
         {
-            if (ex != null && ex.MustBeRethrownImmediately())
+            if (IsSeriousException(ex))
             {
                 //no logging!
                 return;
@@ -216,14 +214,14 @@ namespace NLog.Common
                 return;
             }
 
-            if (string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null && !WriteToDiagnostics)
+            if (NoLogger())
             {
                 return;
             }
 
             try
             {
-                string formattedMessage = message;
+                var formattedMessage = message;
                 if (args != null)
                 {
                     formattedMessage = string.Format(CultureInfo.InvariantCulture, message, args);
@@ -236,16 +234,16 @@ namespace NLog.Common
                     builder.Append(" ");
                 }
 
-                builder.Append(level.ToString());
+                builder.Append(level);
                 builder.Append(" ");
                 builder.Append(formattedMessage);
                 if (ex != null)
                 {
                     ex.MarkAsLoggedToInternalLogger();
                     builder.Append(" Exception: ");
-                    builder.Append(ex.ToString());
+                    builder.Append(ex);
                 }
-                string msg = builder.ToString();
+                var msg = builder.ToString();
 
                 // log to file
                 var logFile = LogFile;
@@ -261,7 +259,7 @@ namespace NLog.Common
                 var writer = LogWriter;
                 if (writer != null)
                 {
-                    lock (lockObject)
+                    lock (LockObject)
                     {
                         writer.WriteLine(msg);
                     }
@@ -291,6 +289,16 @@ namespace NLog.Common
                 }
 
             }
+        }
+
+        private static bool IsSeriousException(Exception ex)
+        {
+            return ex != null && ex.MustBeRethrownImmediately();
+        }
+
+        private static bool NoLogger()
+        {
+            return string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null && !WriteToDiagnostics;
         }
 
         private static void LogToDiagnostics(LogLevel level, string msg)
