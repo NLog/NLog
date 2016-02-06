@@ -58,7 +58,10 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(MappedDiagnosticsContext.Get(this.Item, logEvent.FormatProvider));
+            //don't use MappedDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
+            var o = MappedDiagnosticsContext.GetObject(this.Item);
+            var formatProvider = logEvent.FormatProvider ?? LoggingConfiguration.DefaultCultureInfo;
+            builder.Append(Convert.ToString(o, formatProvider));
         }
     }
 }
