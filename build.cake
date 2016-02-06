@@ -171,9 +171,9 @@ Task("dotnet5.4")
 	.Does(() =>
 {
 	
-	buildAndTest("dotnet.5.4", dnxVersion, 
+	buildAndTest("dotnet5.4", dnxVersion, 
 					DNRuntime.CoreClr, DNArchitecture.X86,
-					new [] { "./src/NLog", "./src/NLog.Extended", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
+					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions", "./tests/NLog.UnitTests" },
 					"./tests/NLog.UnitTests");
 });
 
