@@ -15,7 +15,7 @@
   },
 
   "frameworks": {
-    "dotnet5.4": {
+    "dnxcore50": {
       "dependencies": {
         "System.Console": "4.0.0-*",
         "System.Diagnostics.Contracts": "4.0.1-*",
@@ -40,13 +40,19 @@
         "define": [ "NET4_5", "DNX", "UWP10", "XUNIT2" ]
       }
     },
-    "net451": {
-      "frameworkAssemblies": {
-        "System.Runtime.Serialization": "4.0.0.0",
-        "System.Reflection": "4.0.0.0",
-        "System.Messaging": "4.0.0.0",
-        "System.Threading.Tasks": "4.0.0.0"
-      },
+    "dnx451": {
+        "frameworkAssemblies": {
+            "System.Runtime": "",
+            "System.Xml": "",
+            "System.ServiceModel": "",
+            "System.Runtime.Serialization": "",
+            "System.Drawing": "",
+            "System.Data": "",
+            "System.Configuration": "",
+            "System.Transactions": "",
+            "System.IO.Compression": "",
+            "System.Threading.Tasks": ""
+        },
       "dependencies": {
         "NLog.Extended": "",
         "xunit.runner.dnx": "2.1.0-*",
@@ -54,7 +60,7 @@
         "Microsoft.AspNet.Mvc.WebApiCompatShim": "6.0.0-*",
         "Microsoft.AspNet.WebApi.Owin": "5.2.3",
         "System.Threading.Tasks.Parallel": "4.0.1-*",
-        "System.Xml.XDocument": "4.0.11-*s"
+        "System.Xml.XDocument": "4.0.11-*"
       },
       "compilationOptions": {
         "define": [ "WCF_SUPPORTED", "DNX", "XUNIT2" ]
