@@ -60,7 +60,11 @@ namespace NLog.LayoutRenderers
         {
             //don't use MappedDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
             var o = MappedDiagnosticsContext.GetObject(this.Item);
-            var formatProvider = logEvent.FormatProvider ?? LoggingConfiguration.DefaultCultureInfo;
+            var formatProvider = logEvent.FormatProvider;
+            if (formatProvider == null && LoggingConfiguration != null)
+            {
+                formatProvider = LoggingConfiguration.DefaultCultureInfo;
+            }
             builder.Append(Convert.ToString(o, formatProvider));
         }
     }
