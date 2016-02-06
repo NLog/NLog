@@ -15,8 +15,8 @@
 
   "frameworks": {
     ".NETFramework,Version=v3.5": { },
-    "net451": { },
-    "dotnet5.4": {
+    "dnx451": { },
+    "dnxcore50": {
       "dependencies": {
         "System.Console": "4.0.0-*",
         "System.Diagnostics.Contracts": "4.0.1-*",

@@ -832,7 +832,9 @@ namespace NLog.Targets
 
             if (this.appenderInvalidatorThread != null)
             {
+#if !DNX || !UWP10
                 this.appenderInvalidatorThread.Abort();
+#endif
                 this.appenderInvalidatorThread = null;
             }
 

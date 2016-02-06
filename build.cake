@@ -124,7 +124,7 @@ Task("pack")
 	}
 	else
 	{
-		frameworks = new [] { "net451", "dotnet5.4", "net35", "sl5", "uap10.0" };
+		frameworks = new [] { "dnx451", "dnxcore50", "net35", "sl5", "uap10.0" };
 	}
 
 	DNUPackSettings packSettings = new DNUPackSettings()
@@ -149,7 +149,7 @@ Task("uap10")
 {
 	buildAndTest("uap10.0", dnxVersion, 
 					runtime, DNArchitecture.X86,
-					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
+					new [] { "./src/NLog" },
 					"./tests/NLog.UnitTests", dnxVersion);
 });
    
@@ -161,13 +161,13 @@ Task("sl5")
 {
 	buildAndTest("sl5", dnxVersion, 
 					runtime, DNArchitecture.X86,
-					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
+					new [] { "./src/NLog", "./tests/SampleExtensions" },
 					"./tests/NLog.UnitTests", "sl5");
 });
 
 Task("net35")
 	.ContinueOnError()
-	.IsDependentOn("net451")
+	.IsDependentOn("dnx451")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
@@ -177,26 +177,26 @@ Task("net35")
 					"./tests/NLog.UnitTests", "dnx451");
 });
 
-Task("net451")
+Task("dnx451")
 	.ContinueOnError()
-	.IsDependentOn("dotnet5.4")
+	.IsDependentOn("dnxcore50")
 	.Does(() =>
 {
 	
-	buildAndTest("net451", dnxVersion, 
+	buildAndTest("dnx451", dnxVersion, 
 					runtime, DNArchitecture.X86,
 					new [] { "./src/NLog", "./src/NLog.Extended", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
 					"./tests/NLog.UnitTests", "dnx451");
 });
 
-Task("dotnet5.4")
+Task("dnxcore50")
 	.ContinueOnError()
 	.Does(() =>
 {
 	
-	buildAndTest("dotnet5.4", dnxVersion, 
+	buildAndTest("dnxcore50", dnxVersion, 
 					DNRuntime.CoreClr, DNArchitecture.X86,
-					new [] { "./src/NLog", "./src/NLog.Extended", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
+					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
 					"./tests/NLog.UnitTests", "dnxcore50");
 });
 

@@ -86,12 +86,19 @@ namespace NLog.Internal
 
 
             var type = o.GetType();
+
+#if DNX || UWP10
+#if !DEBUG
+#error "Fix this before releasing"
+#endif
+#else
+
             if (!type.IsDefined(typeof(NLogConfigurationItemAttribute), true))
             {
                 return;
             }
+#endif
 
-        
             visitedObjects.Add(o);
 
             var t = o as T;
