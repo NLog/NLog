@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog
 {
     using System;
@@ -90,7 +92,7 @@ namespace NLog
         /// <remarks>If <paramref name="formatProvider"/> is <c>null</c> and the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
         public static string Get(string item, IFormatProvider formatProvider)
         {
-            return ConvertToString(GetObject(item), formatProvider);
+            return FormatHelper.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>
@@ -144,31 +146,6 @@ namespace NLog
             {
                 dict.Clear();
             }
-        }
-
-        /// <summary>
-        /// Convert object to string
-        /// </summary>
-        /// <param name="o">value</param>
-        /// <param name="formatProvider">format for conversion.</param>
-        /// <returns></returns>
-        /// <remarks>
-        /// If <paramref name="formatProvider"/> is <c>null</c> and <paramref name="o"/> isn't a <see cref="string"/> already, then the <see cref="LogFactory"/> will get a locked by <see cref="LogManager.Configuration"/>
-        /// </remarks>
-        internal static string ConvertToString(object o, IFormatProvider formatProvider)
-        {
-            // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
-            if (formatProvider == null && !(o is string))
-            {
-                //variable so only 1 lock is needed
-                //TODO this locks the configuration, which can lead to deadlocks.
-                var loggingConfiguration = LogManager.Configuration;
-                if (loggingConfiguration != null)
-                    formatProvider = loggingConfiguration.DefaultCultureInfo;
-            }
-
-            return Convert.ToString(o, formatProvider);
-
         }
     }
 }
