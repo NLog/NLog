@@ -35,7 +35,8 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Text;
-    using NLog.Config;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Global Diagnostics Context item. Provided for compatibility with log4net.
@@ -60,12 +61,7 @@ namespace NLog.LayoutRenderers
         {
             //don't use GlobalDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
             var o = GlobalDiagnosticsContext.GetObject(this.Item);
-            var formatProvider = logEvent.FormatProvider;
-            if (formatProvider == null && LoggingConfiguration != null)
-            {
-                formatProvider = LoggingConfiguration.DefaultCultureInfo;
-            }
-            builder.Append(Convert.ToString(o, formatProvider));
+            builder.Append(o, logEvent, LoggingConfiguration);
         }
     }
 }
