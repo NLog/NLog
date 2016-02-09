@@ -147,7 +147,7 @@ namespace NLog.Targets
         /// <param name="continuation">The continuation.</param>
         protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
         {
-            var request = (HttpWebRequest)WebRequest.Create(this.Url);
+            var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
             Func<AsyncCallback, IAsyncResult> begin = (r) => request.BeginGetRequestStream(r, null);
             Func<IAsyncResult, Stream> getStream = request.EndGetRequestStream;
 
@@ -170,7 +170,7 @@ namespace NLog.Targets
                     break;
 
                 case WebServiceProtocol.HttpGet:
-                    postPayload = this.PrepareGetRequest(request, parameters);
+                    this.PrepareGetRequest(request);
                     break;
 
                 case WebServiceProtocol.HttpPost:
@@ -250,6 +250,45 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Builds the URL to use when calling the web service for a message, depending on the WebServiceProtocol.
+        /// </summary>
+        /// <param name="parameterValues"></param>
+        /// <returns></returns>
+        private Uri BuildWebServiceUrl(object[] parameterValues)
+        {
+            if (this.Protocol != WebServiceProtocol.HttpGet)
+            {
+                return this.Url;
+            }
+            
+            //if the protocol is HttpGet, we need to add the parameters to the query string of the url
+            var queryParameters = new StringBuilder();
+            string separator = string.Empty;
+            int i = 0;
+            foreach (MethodCallParameter parameter in this.Parameters)
+            {
+                queryParameters.Append(separator);
+                queryParameters.Append(parameter.Name);
+                queryParameters.Append("=");
+                queryParameters.Append(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), true));
+                separator = "&";
+                i++;
+            }
+
+            var builder = new UriBuilder(this.Url);
+            if (builder.Query != null && builder.Query.Length > 1)
+            {
+                builder.Query = builder.Query.Substring(1) + "&" + queryParameters.ToString();
+            }
+            else
+            {
+                builder.Query = queryParameters.ToString();
+            }
+
+            return builder.Uri;
+        }
+
         private MemoryStream PrepareSoap11Request(HttpWebRequest request, object[] parameterValues)
         {
             string soapAction;
@@ -312,10 +351,9 @@ namespace NLog.Targets
             return PrepareHttpRequest(request, parameterValues);
         }
 
-        private MemoryStream PrepareGetRequest(HttpWebRequest request, object[] parameterValues)
+        private void PrepareGetRequest(HttpWebRequest request)
         {
             request.Method = "GET";
-            return PrepareHttpRequest(request, parameterValues);
         }
 
         private MemoryStream PrepareHttpRequest(HttpWebRequest request, object[] parameterValues)

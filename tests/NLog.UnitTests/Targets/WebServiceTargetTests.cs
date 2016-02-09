@@ -296,7 +296,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         /// <summary>
         /// Test the Webservice with REST api -  <see cref="WebServiceProtocol.HttpGet"/>  (only checking for no exception)
         /// </summary>
-        [Fact(Skip = "Not working - ProtocolViolationException - skip for fix later")]
+        [Fact]
         public void WebserviceTest_restapi_httpget()
         {
 
