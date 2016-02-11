@@ -265,15 +265,13 @@ namespace NLog.Targets
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
             var queryParameters = new StringBuilder();
             string separator = string.Empty;
-            int i = 0;
-            foreach (MethodCallParameter parameter in this.Parameters)
+            for (int i = 0; i < this.Parameters.Count; i++)
             {
                 queryParameters.Append(separator);
-                queryParameters.Append(parameter.Name);
+                queryParameters.Append(this.Parameters[i].Name);
                 queryParameters.Append("=");
                 queryParameters.Append(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), true));
                 separator = "&";
-                i++;
             }
 
             var builder = new UriBuilder(this.Url);
