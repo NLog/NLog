@@ -275,6 +275,8 @@ namespace NLog.Targets
             }
 
             var builder = new UriBuilder(this.Url);
+            //append our query string to the URL following 
+            //the recommendations at https://msdn.microsoft.com/en-us/library/system.uribuilder.query.aspx
             if (builder.Query != null && builder.Query.Length > 1)
             {
                 builder.Query = builder.Query.Substring(1) + "&" + queryParameters.ToString();
