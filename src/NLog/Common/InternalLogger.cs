@@ -204,6 +204,11 @@ namespace NLog.Common
                 return;
             }
 
+            if (level == LogLevel.Off)
+            {
+                return;
+            }
+
             if (level < LogLevel)
             {
                 return;
@@ -380,7 +385,7 @@ namespace NLog.Common
         {
             try
             {
-                if(InternalLogger.LogLevel == NLog.LogLevel.Off)
+                if (InternalLogger.LogLevel == NLog.LogLevel.Off)
                 {
                     return;
                 }
