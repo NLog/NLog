@@ -394,8 +394,17 @@ namespace NLog.UnitTests.Common
         }
 
         [Theory]
-        public void CreateDirectoriesIfNeededTests()
+        [InlineData("trace", true)]
+        [InlineData("debug", true)]
+        [InlineData("info", true)]
+        [InlineData("warn", true)]
+        [InlineData("error", true)]
+        [InlineData("fatal", true)]
+        [InlineData("off", false)]
+        public void CreateDirectoriesIfNeededTests(string rawLogLevel, bool shouldCreateDirectory)
         {
+            var logLevel = LogLevel.FromString(rawLogLevel);
+
             string expected =
                     "Warn WWW" + Environment.NewLine +
                     "Error EEE" + Environment.NewLine +
