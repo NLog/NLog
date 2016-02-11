@@ -38,6 +38,7 @@ using System.Linq;
 using Xunit;
 using NLog.Common;
 using System.Text;
+using Xunit.Extensions;
 
 namespace NLog.UnitTests.Common
 {
@@ -392,8 +393,7 @@ namespace NLog.UnitTests.Common
 
         }
 
-
-        [Fact]
+        [Theory]
         public void CreateDirectoriesIfNeededTests()
         {
             string expected =
