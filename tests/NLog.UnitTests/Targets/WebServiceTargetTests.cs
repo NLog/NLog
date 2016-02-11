@@ -299,8 +299,17 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httpget()
         {
+            WebServiceTest_httpget("api/logme");
+        }
 
-
+        [Fact]
+        public void WebServiceTest_restapi_httpget_querystring()
+        {
+            WebServiceTest_httpget("api/logme?paramFromConfig=valueFromConfig");
+        }
+        
+        private void WebServiceTest_httpget(string relativeUrl)
+        {
             var configuration = CreateConfigurationFromString(string.Format(@"
                 <nlog throwExceptions='true' >
                     <targets>
@@ -320,7 +329,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", WsAddress, "api/logme"));
+                </nlog>", WsAddress, relativeUrl));
 
 
             LogManager.Configuration = configuration;
@@ -329,12 +338,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             LogMeController.ResetState(1);
 
             StartOwinTest(() =>
-         {
-
-             logger.Info("message 1 with a post");
-         });
-
-
+            {
+                logger.Info("message 1 with a post");
+            });
         }
 
 
