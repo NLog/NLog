@@ -270,7 +270,7 @@ namespace NLog.Targets
                 queryParameters.Append(separator);
                 queryParameters.Append(this.Parameters[i].Name);
                 queryParameters.Append("=");
-                queryParameters.Append(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), true));
+                queryParameters.Append(UrlHelper.UrlEncode(Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture), false));
                 separator = "&";
             }
 
