@@ -380,6 +380,11 @@ namespace NLog.Common
         {
             try
             {
+                if(InternalLogger.LogLevel == NLog.LogLevel.Off)
+                {
+                    return;
+                }
+
                 string parentDirectory = Path.GetDirectoryName(filename);
                 if (!string.IsNullOrEmpty(parentDirectory))
                 {
