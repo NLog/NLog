@@ -38,7 +38,9 @@ using System.Linq;
 using Xunit;
 using NLog.Common;
 using System.Text;
+#if !SILVERLIGHT 
 using Xunit.Extensions;
+#endif
 
 namespace NLog.UnitTests.Common
 {
