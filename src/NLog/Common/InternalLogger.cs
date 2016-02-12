@@ -209,6 +209,11 @@ namespace NLog.Common
                 return;
             }
 
+            if (level == LogLevel.Off)
+            {
+                return;
+            }
+
             if (level < LogLevel)
             {
                 return;
@@ -417,6 +422,11 @@ namespace NLog.Common
         {
             try
             {
+                if (InternalLogger.LogLevel == NLog.LogLevel.Off)
+                {
+                    return;
+                }
+
                 string parentDirectory = Path.GetDirectoryName(filename);
                 if (!string.IsNullOrEmpty(parentDirectory))
                 {
