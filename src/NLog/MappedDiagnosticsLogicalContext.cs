@@ -151,7 +151,24 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            LogicalThreadDictionary.Clear();
+            Clear(false);
+        }
+
+        /// <summary>
+        /// Clears the content of current logical context.
+        /// </summary>
+        /// <param name="free">Free the full slot.</param>
+        public static void Clear(bool free)
+        {
+            if (free)
+            {
+                CallContext.FreeNamedDataSlot(LogicalThreadDictionaryKey);
+            }
+            else
+            {
+
+                LogicalThreadDictionary.Clear();
+            }
         }
     }
 #endif
