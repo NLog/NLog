@@ -416,7 +416,7 @@ namespace NLog.UnitTests.Common
             // Set the log file, which will only create the needed directories
             InternalLogger.LogFile = tempFile;
 
-            Assert.True(Directory.Exists(randomSubDirectory) == shouldCreateDirectory);
+            Assert.Equal(Directory.Exists(randomSubDirectory), shouldCreateDirectory);
 
             try
             {
@@ -424,7 +424,7 @@ namespace NLog.UnitTests.Common
 
                 InternalLogger.Log(LogLevel.FromString(rawLogLevel), "File and Directory created.");
 
-                Assert.True(File.Exists(tempFile) == shouldCreateDirectory);
+                Assert.Equal(File.Exists(tempFile), shouldCreateDirectory);
             }
             finally
             {
