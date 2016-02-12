@@ -403,14 +403,6 @@ namespace NLog.UnitTests.Common
         [InlineData("off", false)]
         public void CreateDirectoriesIfNeededTests(string rawLogLevel, bool shouldCreateDirectory)
         {
-            string expected =
-                    "Warn WWW" + Environment.NewLine +
-                    "Error EEE" + Environment.NewLine +
-                    "Fatal FFF" + Environment.NewLine +
-                    "Trace TTT" + Environment.NewLine +
-                    "Debug DDD" + Environment.NewLine +
-                    "Info III" + Environment.NewLine;
-
             var tempPath = Path.GetTempPath();
             var tempFileName = Path.GetRandomFileName();
             var randomSubDirectory = Path.Combine(tempPath, Path.GetRandomFileName());
@@ -430,16 +422,9 @@ namespace NLog.UnitTests.Common
             {
                 Assert.False(File.Exists(tempFile));
 
-                // Invoke Log(LogLevel, string) for every log level.
-                InternalLogger.Log(LogLevel.Warn, "WWW");
-                InternalLogger.Log(LogLevel.Error, "EEE");
-                InternalLogger.Log(LogLevel.Fatal, "FFF");
-                InternalLogger.Log(LogLevel.Trace, "TTT");
-                InternalLogger.Log(LogLevel.Debug, "DDD");
-                InternalLogger.Log(LogLevel.Info, "III");
+                InternalLogger.Log(LogLevel.FromString(rawLogLevel), "File and Directory created.");
 
-                AssertFileContents(tempFile, expected, Encoding.UTF8);
-                Assert.True(File.Exists(tempFile));
+                Assert.True(File.Exists(tempFile) == shouldCreateDirectory);
             }
             finally
             {
