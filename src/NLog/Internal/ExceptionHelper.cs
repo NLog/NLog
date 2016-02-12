@@ -96,7 +96,7 @@ namespace NLog.Internal
                 InternalLogger.Log(exception, level, "Error has been raised.");
             }
 
-            var shallRethrow = LogManager.ThrowExceptions || isConfigError;
+            var shallRethrow = LogManager.ThrowExceptions || (LogManager.ThrowConfigExceptions && isConfigError);
             return shallRethrow;
         }
 
