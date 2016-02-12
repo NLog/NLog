@@ -126,25 +126,26 @@ namespace NLog.UnitTests
             }
         }
 
-    
+
         [Fact]
         public void InvalidLoggerConfiguration_ThrowsConfigurationException_isFalse()
         {
-            InvalidLoggerConfiguration_ThrowsConfigurationException(false);
+            InvalidLoggerConfiguration_ThrowsConfigurationException(false, true);
         }
 
 
         [Fact]
         public void InvalidLoggerConfiguration_ThrowsConfigurationException_isTrue()
         {
-            InvalidLoggerConfiguration_ThrowsConfigurationException(true);
+            InvalidLoggerConfiguration_ThrowsConfigurationException(true, false);
         }
 
-        private void InvalidLoggerConfiguration_ThrowsConfigurationException(bool throwExceptions)
+        private void InvalidLoggerConfiguration_ThrowsConfigurationException(bool throwExceptions, bool throwConfigExceptions)
         {
             Assert.Throws<NLogConfigurationException>(() =>
             {
                 LogManager.ThrowExceptions = throwExceptions;
+                LogManager.ThrowConfigExceptions = throwConfigExceptions;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             });
 
