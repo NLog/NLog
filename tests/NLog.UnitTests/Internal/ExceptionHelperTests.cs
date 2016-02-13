@@ -32,6 +32,7 @@
 // 
 
 #if !SILVERLIGHT
+//no silverlight for xunit InlineData
 
 using System;
 using System.Collections.Generic;
@@ -69,20 +70,30 @@ namespace NLog.UnitTests.Internal
         [InlineData(typeof(StackOverflowException), true, false, false)]
         [InlineData(typeof(StackOverflowException), true, true, false)]
         [InlineData(typeof(NLogConfigurationException), true, true, true)]
-        [InlineData(typeof(NLogConfigurationException), true, false, true)]
         [InlineData(typeof(NLogConfigurationException), false, true, false)]
+        [InlineData(typeof(NLogConfigurationException), true, true, null)]
         [InlineData(typeof(NLogConfigurationException), true, false, true)]
+        [InlineData(typeof(NLogConfigurationException), false, false, false)]
+        [InlineData(typeof(NLogConfigurationException), false, false, null)]
         [InlineData(typeof(Exception), false, false, false)]
+        [InlineData(typeof(Exception), false, false, true)]
+        [InlineData(typeof(Exception), false, false, null)]
         [InlineData(typeof(Exception), true, true, false)]
+        [InlineData(typeof(Exception), true, true, true)]
+        [InlineData(typeof(Exception), true, true, null)]
         [InlineData(typeof(ArgumentException), false, false, false)]
+        [InlineData(typeof(ArgumentException), false, false, true)]
+        [InlineData(typeof(ArgumentException), false, false, null)]
         [InlineData(typeof(ArgumentException), true, true, false)]
+        [InlineData(typeof(ArgumentException), true, true, true)]
+        [InlineData(typeof(ArgumentException), true, true, null)]
         [InlineData(typeof(NullReferenceException), false, false, false)]
         [InlineData(typeof(NullReferenceException), true, true, false)]
         [InlineData(typeof(ThreadAbortException), true, false, false)]
         [InlineData(typeof(ThreadAbortException), true, true, false)]
         [InlineData(typeof(OutOfMemoryException), true, false, false)]
         [InlineData(typeof(OutOfMemoryException), true, true, false)]
-        public void MustBeRethrown(Type exceptionType, bool result, bool throwExceptions, bool throwConfigException)
+        public void MustBeRethrown(Type exceptionType, bool result, bool throwExceptions, bool? throwConfigException)
         {
             LogManager.ThrowExceptions = throwExceptions;
             LogManager.ThrowConfigExceptions = throwConfigException;
