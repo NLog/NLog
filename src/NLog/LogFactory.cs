@@ -132,6 +132,8 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets a value indicating whether <see cref="NLogConfigurationException"/> should be thrown.
+        /// 
+        /// If <c>null</c> then <see cref="ThrowExceptions"/> is used.
         /// </summary>
         /// <value>A value of <c>true</c> if exception should be thrown; otherwise, <c>false</c>.</value>
         /// <remarks>
@@ -139,7 +141,7 @@ namespace NLog
         /// By default exceptions are not thrown under any circumstances.
         /// 
         /// </remarks>
-        public bool ThrowConfigExceptions { get; set; }
+        public bool? ThrowConfigExceptions { get; set; }
 
 
         /// <summary>
