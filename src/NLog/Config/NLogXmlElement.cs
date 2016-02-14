@@ -33,6 +33,7 @@
 
 namespace NLog.Config
 {
+    using Internal;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -166,7 +167,7 @@ namespace NLog.Config
                 return defaultValue;
             }
 
-            if (string.IsNullOrWhiteSpace(value))
+            if (StringHelpers.IsNullOrWhiteSpace(value))
             {
                 return defaultValue;
             }
