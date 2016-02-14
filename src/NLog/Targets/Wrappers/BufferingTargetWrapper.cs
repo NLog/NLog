@@ -179,16 +179,11 @@ namespace NLog.Targets.Wrappers
             {
                 if (this.FlushTimeout > 0)
                 {
-                    InternalLogger.Trace("BufferingWrapper: writing {0} events because flushtimeout", count);
                     // reset the timer on first item added to the buffer or whenever SlidingTimeout is set to true
                     if (this.SlidingTimeout || count == 1)
                     {
                         this.flushTimer.Change(this.FlushTimeout, -1);
                     }
-                }
-                else
-                {
-                    InternalLogger.Trace("BufferingWrapper: wait for writing events. FlushTimeout isn't set and BufferSize ({0}) higher then current ({1}) events ", BufferSize, count);
                 }
             }
         }

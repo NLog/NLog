@@ -156,11 +156,6 @@ namespace NLog.Targets
                     {
                         foreach (Layout l in this.allLayouts)
                         {
-                            if (InternalLogger.IsTraceEnabled)
-                            {
-                                var simplelayout = l as SimpleLayout;
-                                InternalLogger.Trace("Precalculate layout {0}", simplelayout != null ? simplelayout.OriginalText : l.GetType().FullName);
-                            }
                             l.Precalculate(logEvent);
                         }
                     }
