@@ -137,10 +137,10 @@ namespace NLog.UnitTests
         [Fact]
         public void InvalidLoggerConfiguration_ThrowsConfigurationException_isTrue()
         {
-            InvalidLoggerConfiguration_ThrowsConfigurationException(true, false);
+            InvalidLoggerConfiguration_ThrowsConfigurationException(true, null);
         }
 
-        private void InvalidLoggerConfiguration_ThrowsConfigurationException(bool throwExceptions, bool throwConfigExceptions)
+        private void InvalidLoggerConfiguration_ThrowsConfigurationException(bool throwExceptions, bool? throwConfigExceptions)
         {
             Assert.Throws<NLogConfigurationException>(() =>
             {

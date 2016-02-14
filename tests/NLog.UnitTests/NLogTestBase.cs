@@ -271,7 +271,7 @@ namespace NLog.UnitTests
         {
             private readonly LogLevel globalThreshold;
             private readonly bool throwExceptions;
-            private bool? throwConfigExceptions;
+            private readonly bool? throwConfigExceptions;
 
             public InternalLoggerScope()
             {
