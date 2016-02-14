@@ -153,7 +153,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Gets the optional boolean attribute value. If whitespace, then returning <paramref name="defaultValue"/>
+        /// Gets the optional boolean attribute value. If whitespace, then returning <c>null</c>.
         /// </summary>
         /// <param name="attributeName">Name of the attribute.</param>
         /// <param name="defaultValue">Default value to return if the attribute is not found.</param>
@@ -164,12 +164,14 @@ namespace NLog.Config
 
             if (!this.AttributeValues.TryGetValue(attributeName, out value))
             {
+                //not defined, don't override default
                 return defaultValue;
             }
 
             if (StringHelpers.IsNullOrWhiteSpace(value))
             {
-                return defaultValue;
+                //not default otherwise no difference between not defined and empty value.
+                return null;
             }
 
             return Convert.ToBoolean(value, CultureInfo.InvariantCulture);
