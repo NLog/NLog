@@ -129,6 +129,7 @@
     <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="Internal\PlatformDetectorTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />
     <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
@@ -244,6 +245,7 @@
     <Content Include="Properties\OutOfBrowserSettings.xml" />
     <Content Include="Properties\UnitTestApp.rd.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
+    <Content Include="testresults.xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigFiles\included.nlog" />
