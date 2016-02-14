@@ -33,7 +33,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\build\bin\Release\UWP10\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;UWP10</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\build\bin\Release\UWP10\NLog.XML</DocumentationFile>
@@ -113,7 +113,6 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="NLog.snk" />
-    <None Include="project.json" />
     <None Include="Logger.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Logger1.cs</LastGenOutput>
@@ -126,6 +125,11 @@
     <Compile Include="Common\AsynchronousAction.cs" />
     <Compile Include="Common\AsyncLogEventInfo.cs" />
     <Compile Include="Common\InternalLogger.cs" />
+    <Compile Include="Common\InternalLogger-generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InternalLogger.tt</DependentUpon>
+    </Compile>
     <Compile Include="Common\LogEventInfoBuffer.cs" />
     <Compile Include="Conditions\ConditionAndExpression.cs" />
     <Compile Include="Conditions\ConditionEvaluationException.cs" />
@@ -154,6 +158,7 @@
     <Compile Include="Config\ConfigurationItemCreator.cs" />
     <Compile Include="Config\ConfigurationItemFactory.cs" />
     <Compile Include="Config\DefaultParameterAttribute.cs" />
+    <Compile Include="Config\ExceptionRenderingFormat.cs" />
     <Compile Include="Config\Factory.cs" />
     <Compile Include="Config\IFactory.cs" />
     <Compile Include="Config\IInstallable.cs" />
@@ -214,7 +219,8 @@
     <Compile Include="Internal\FileAppenders\RetryingMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\SingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
-    <Compile Include="Internal\FileInfoHelper.cs" />
+    <Compile Include="Internal\FileCharacteristics.cs" />
+    <Compile Include="Internal\FileCharacteristicsHelper.cs" />
     <Compile Include="Internal\FormatHelper.cs" />
     <Compile Include="Internal\IConfigurationManager.cs" />
     <Compile Include="Internal\IRenderable.cs" />
@@ -241,7 +247,7 @@
     <Compile Include="Internal\ObjectGraphScanner.cs" />
     <Compile Include="Internal\ParameterUtils.cs" />
     <Compile Include="Internal\PlatformDetector.cs" />
-    <Compile Include="Internal\PortableFileInfoHelper.cs" />
+    <Compile Include="Internal\PortableFileCharacteristicsHelper.cs" />
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
     <Compile Include="Internal\PropertyHelper.cs" />
     <Compile Include="Internal\ReflectionHelpers.cs" />
@@ -258,7 +264,7 @@
     <Compile Include="Internal\TimeoutContinuation.cs" />
     <Compile Include="Internal\UAPP10Helpers.cs" />
     <Compile Include="Internal\UrlHelper.cs" />
-    <Compile Include="Internal\Win32FileInfoHelper.cs" />
+    <Compile Include="Internal\Win32FileCharacteristicsHelper.cs" />
     <Compile Include="Internal\Win32FileNativeMethods.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
