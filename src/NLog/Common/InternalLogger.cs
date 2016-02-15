@@ -219,7 +219,7 @@ namespace NLog.Common
                 return;
             }
 
-            if (NoLogger())
+            if (LoggingEnabled())
             {
                 return;
             }
@@ -301,9 +301,14 @@ namespace NLog.Common
             return ex != null && ex.MustBeRethrownImmediately();
         }
 
-        private static bool NoLogger()
+        /// <summary>
+        /// Determine if logging is enabled.
+        /// </summary>
+        /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
+        private static bool LoggingEnabled()
         {
-            return string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null && !LogToDiagnostics;
+            return string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null &&
+                   !LogToDiagnostics;
         }
 
         private static void PerformLogToDiagnostics(LogLevel level, string msg)
