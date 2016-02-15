@@ -44,7 +44,7 @@ namespace NLog.UnitTests.Config
             using (var scope = new InternalLoggerScope())
             {
                 CreateConfigurationFromString(@"
-<nlog internalLogFile='c:\file.txt' internalLogLevel='Trace' internalLogToConsole='true' internalLogToConsoleError='true' globalThreshold='Warn' throwExceptions='true' internalWriteToDiagnostics='true'>
+<nlog internalLogFile='c:\file.txt' internalLogLevel='Trace' internalLogToConsole='true' internalLogToConsoleError='true' globalThreshold='Warn' throwExceptions='true' internalLogToDiagnostics='true'>
 </nlog>");
 
                 Assert.Same(LogLevel.Trace, InternalLogger.LogLevel);
@@ -52,7 +52,7 @@ namespace NLog.UnitTests.Config
                 Assert.True(InternalLogger.LogToConsoleError);
                 Assert.Same(LogLevel.Warn, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
-                Assert.True(InternalLogger.WriteToDiagnostics);
+                Assert.True(InternalLogger.LogToDiagnostics);
             }
         }
 
@@ -66,7 +66,7 @@ namespace NLog.UnitTests.Config
                 InternalLogger.LogToConsoleError = true;
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
-                InternalLogger.WriteToDiagnostics = true;
+                InternalLogger.LogToDiagnostics = true;
 
                 CreateConfigurationFromString(@"
 <nlog>
@@ -77,7 +77,7 @@ namespace NLog.UnitTests.Config
                 Assert.True(InternalLogger.LogToConsoleError);
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
-                Assert.True(InternalLogger.WriteToDiagnostics);
+                Assert.True(InternalLogger.LogToDiagnostics);
             }
         }
     }
