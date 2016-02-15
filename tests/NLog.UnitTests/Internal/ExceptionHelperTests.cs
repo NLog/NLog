@@ -82,19 +82,11 @@ namespace NLog.UnitTests.Internal
         [InlineData(typeof(OutOfMemoryException), true, true)]
         public void MustBeRethrown(Type exceptionType, bool result, bool throwExceptions)
         {
-            var throws = LogManager.ThrowExceptions;
-            try
-            {
-                LogManager.ThrowExceptions = throwExceptions;
+            LogManager.ThrowExceptions = throwExceptions;
 
-                var ex = CreateException(exceptionType);
-                Assert.Equal(result, ex.MustBeRethrown());
-            }
-            finally
-            {
-                //restore
-                LogManager.ThrowExceptions = throws;
-            }
+            var ex = CreateException(exceptionType);
+            Assert.Equal(result, ex.MustBeRethrown());
+
 
         }
 
@@ -105,7 +97,7 @@ namespace NLog.UnitTests.Internal
         [InlineData("Error has been raised.", typeof(NLogConfigurationException), true, "Warn")]
         [InlineData("", typeof(ArgumentException), true, "Warn")]
         [InlineData("", typeof(NLogConfigurationException), true, "Warn")]
-        
+
         public void MustBeRethrown_ShouldLog_exception_and_only_once(string text, Type exceptionType, bool logFirst, string levelText)
         {
             using (new InternalLoggerScope())
@@ -117,7 +109,7 @@ namespace NLog.UnitTests.Internal
                 InternalLogger.IncludeTimestamp = false;
 
                 var ex1 = CreateException(exceptionType);
-              
+
 
                 //exception should be once 
                 const string prefix = " Exception: ";

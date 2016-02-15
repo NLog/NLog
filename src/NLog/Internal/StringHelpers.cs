@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,37 +31,33 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
-{
-    using System.Text;
-    using Config;
-    using Internal;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
+namespace NLog.Internal
+{
     /// <summary>
-    /// Mapped Diagnostic Context item. Provided for compatibility with log4net.
+    /// Helpers for <see cref="string"/>.
     /// </summary>
-    [LayoutRenderer("mdc")]
-    public class MdcLayoutRenderer : LayoutRenderer
+    public static class StringHelpers
     {
         /// <summary>
-        /// Gets or sets the name of the item.
+        /// IsNullOrWhiteSpace, including for .NET 3.5
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [RequiredParameter]
-        [DefaultParameter]
-        public string Item { get; set; }
-
-        /// <summary>
-        /// Renders the specified MDC item and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <param name="value"></param>
+        /// <returns></returns>
+        internal static bool IsNullOrWhiteSpace(string value)
         {
-            //don't use MappedDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
-            var o = MappedDiagnosticsContext.GetObject(this.Item);
-            
-            builder.Append(o, logEvent, LoggingConfiguration);
+
+#if NET3_5
+
+            if (value == null) return true;
+            if (value.Length == 0) return true;
+            return String.IsNullOrEmpty(value.Trim());
+#else
+            return string.IsNullOrWhiteSpace(value);
+#endif
         }
     }
 }

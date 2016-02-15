@@ -91,7 +91,7 @@ namespace NLog.Internal
                 return;
             }
 
-        
+
             visitedObjects.Add(o);
 
             var t = o as T;
@@ -118,13 +118,16 @@ namespace NLog.Internal
                 {
                     continue;
                 }
-                
-                var enumerable = value as IEnumerable;
-                if (enumerable != null)
-                {
-                    //new list to prevent: Collection was modified after the enumerator was instantiated.
-                    var elements = new List<object>(enumerable.Cast<object>());
 
+                var list = value as ICollection;
+                if (list != null)
+                {
+                    //try first icollection for syncroot
+                    List<object> elements;
+                    lock (list.SyncRoot)
+                    {
+                        elements = new List<object>(list.Cast<object>());
+                    }
                     foreach (object element in elements)
                     {
                         ScanProperties(result, element, level + 1, visitedObjects);
@@ -132,7 +135,22 @@ namespace NLog.Internal
                 }
                 else
                 {
-                    ScanProperties(result, value, level + 1, visitedObjects);
+                    var enumerable = value as IEnumerable;
+                    if (enumerable != null)
+                    {
+                        //new list to prevent: Collection was modified after the enumerator was instantiated.
+
+                        var elements = new List<object>(enumerable.Cast<object>());
+
+                        foreach (object element in elements)
+                        {
+                            ScanProperties(result, element, level + 1, visitedObjects);
+                        }
+                    }
+                    else
+                    {
+                        ScanProperties(result, value, level + 1, visitedObjects);
+                    }
                 }
             }
         }

@@ -88,7 +88,11 @@ After that:
 ```
 git fetch upstream
 git checkout <your feature branch>
-git merge upstream/master
+git rebase upstream/master
+..fix if needed and
+git push -f 
 ```
+
+if `rebase` wont work well, alternative use `git merge master`
 
 It's also possible to send a PR in the opposite direction, but that's not preferred as it will pollute the commit log.

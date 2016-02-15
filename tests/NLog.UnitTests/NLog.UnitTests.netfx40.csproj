@@ -110,6 +110,7 @@
     <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="Internal\StringHelpersTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />
     <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Targets\MemoryTargetTests.cs" />
     <Compile Include="Targets\MessageQueueTargetTests.cs" />
     <Compile Include="Targets\MethodCallTests.cs" />
+    <Compile Include="Targets\Mocks\MockTargetWrapper.cs" />
     <Compile Include="Targets\NetworkTargetTests.cs" />
     <Compile Include="Targets\TargetTests.cs" />
     <Compile Include="Targets\WebServiceTargetTests.cs" />
