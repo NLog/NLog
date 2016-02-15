@@ -78,7 +78,6 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -129,7 +128,6 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -187,7 +185,6 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -246,7 +243,6 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -302,7 +298,6 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -358,7 +353,6 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -419,7 +413,6 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                LogManager.Configuration = null;
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -480,7 +473,7 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                LogManager.Configuration = null;
+               
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,37 +31,33 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
-{
-    using System.Text;
-    using Config;
-    using Internal;
+using System;
+using System.Text;
+using NLog.Config;
 
+namespace NLog.Internal
+{
     /// <summary>
-    /// Mapped Diagnostic Context item. Provided for compatibility with log4net.
+    /// Helpers for <see cref="StringBuilder"/>, which is used in e.g. layout renderers.
     /// </summary>
-    [LayoutRenderer("mdc")]
-    public class MdcLayoutRenderer : LayoutRenderer
+    internal static class StringBuilderExt
     {
         /// <summary>
-        /// Gets or sets the name of the item.
+        /// Append a value and use formatProvider of <paramref name="logEvent"/> or <paramref name="configuration"/> to convert to string.
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [RequiredParameter]
-        [DefaultParameter]
-        public string Item { get; set; }
-
-        /// <summary>
-        /// Renders the specified MDC item and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <param name="builder"></param>
+        /// <param name="o">value to append.</param>
+        /// <param name="logEvent">current logEvent for FormatProvider.</param>
+        /// <param name="configuration">Configuration for DefaultCultureInfo</param>
+        public static void Append(this StringBuilder builder, object o, LogEventInfo logEvent, LoggingConfiguration configuration)
         {
-            //don't use MappedDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
-            var o = MappedDiagnosticsContext.GetObject(this.Item);
-            
-            builder.Append(o, logEvent, LoggingConfiguration);
+            var formatProvider = logEvent.FormatProvider;
+            if (formatProvider == null && configuration != null)
+            {
+                formatProvider = configuration.DefaultCultureInfo;
+            }
+            builder.Append(Convert.ToString(o, formatProvider));
         }
+
     }
 }

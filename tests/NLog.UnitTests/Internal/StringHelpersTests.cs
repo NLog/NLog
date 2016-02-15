@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,37 +31,32 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+
+#if !SILVERLIGHT
+//no silverlight for xunit InlineData
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using NLog.Internal;
+using Xunit;
+using Xunit.Extensions;
+
+namespace NLog.UnitTests.Internal
 {
-    using System.Text;
-    using Config;
-    using Internal;
-
-    /// <summary>
-    /// Mapped Diagnostic Context item. Provided for compatibility with log4net.
-    /// </summary>
-    [LayoutRenderer("mdc")]
-    public class MdcLayoutRenderer : LayoutRenderer
+    public class StringHelpersTests
     {
-        /// <summary>
-        /// Gets or sets the name of the item.
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [RequiredParameter]
-        [DefaultParameter]
-        public string Item { get; set; }
-
-        /// <summary>
-        /// Renders the specified MDC item and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        [Theory]
+        [InlineData("", true)]
+        [InlineData("  ", true)]
+        [InlineData("  \n", true)]
+        [InlineData("  \na", false)]
+        [InlineData("a", false)]
+        [InlineData(" a", false)]
+        public void IsNullOrWhiteSpaceTest(string input, bool result)
         {
-            //don't use MappedDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
-            var o = MappedDiagnosticsContext.GetObject(this.Item);
-            
-            builder.Append(o, logEvent, LoggingConfiguration);
+            Assert.Equal(result, StringHelpers.IsNullOrWhiteSpace(input));
         }
     }
 }
+#endif

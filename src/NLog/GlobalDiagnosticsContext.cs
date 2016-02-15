@@ -31,10 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using Config;
 
     /// <summary>
     /// Global Diagnostics Context - a dictionary structure to hold per-application-instance values.
@@ -74,6 +77,7 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        /// <remarks>If the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
         public static string Get(string item)
         {
             return Get(item, null);
@@ -85,9 +89,10 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="formatProvider"><see cref="IFormatProvider"/> to use when converting the item's value to a string.</param>
         /// <returns>The value of <paramref name="item"/> as a string, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        /// <remarks>If <paramref name="formatProvider"/> is <c>null</c> and the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
         public static string Get(string item, IFormatProvider formatProvider)
         {
-            return ConvertToString(GetObject(item), formatProvider);
+            return FormatHelper.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>
@@ -141,16 +146,6 @@ namespace NLog
             {
                 dict.Clear();
             }
-        }
-
-        internal static string ConvertToString(object o, IFormatProvider formatProvider)
-        {
-            // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
-            if ((formatProvider == null) && (LogManager.Configuration != null))
-                formatProvider = LogManager.Configuration.DefaultCultureInfo;
-
-            return Convert.ToString(o, formatProvider);
-
         }
     }
 }

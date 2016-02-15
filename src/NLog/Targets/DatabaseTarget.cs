@@ -378,7 +378,7 @@ namespace NLog.Targets
         protected override void CloseTarget()
         {
             base.CloseTarget();
-
+            InternalLogger.Trace("DatabaseTarget: close connection because of CloseTarget");
             this.CloseConnection();
         }
 
@@ -402,7 +402,8 @@ namespace NLog.Targets
                 {
                     throw;
                 }
-                
+
+                InternalLogger.Trace("DatabaseTarget: close connection because of error");
                 this.CloseConnection();
                 throw;
             }
@@ -410,6 +411,7 @@ namespace NLog.Targets
             {
                 if (!this.KeepConnection)
                 {
+                    InternalLogger.Trace("DatabaseTarget: close connection (KeepConnection = false).");
                     this.CloseConnection();
                 }
             }
@@ -445,7 +447,7 @@ namespace NLog.Targets
                             {
                                 throw;
                             }
-                            
+                            InternalLogger.Trace("DatabaseTarget: close connection because of exception");
                             this.CloseConnection();
                             ev.Continuation(exception);
 
@@ -461,6 +463,7 @@ namespace NLog.Targets
             {
                 if (!this.KeepConnection)
                 {
+                    InternalLogger.Trace("DatabaseTarget: close connection because of KeepConnection=false");
                     this.CloseConnection();
                 }
             }
@@ -605,6 +608,7 @@ namespace NLog.Targets
             {
                 if (this.activeConnectionString != connectionString)
                 {
+                    InternalLogger.Trace("DatabaseTarget: close connection because of opening new.");
                     this.CloseConnection();
                 }
             }
@@ -614,6 +618,7 @@ namespace NLog.Targets
                 return;
             }
 
+            InternalLogger.Trace("DatabaseTarget: open connection.");
             this.activeConnection = this.OpenConnection(connectionString);
             this.activeConnectionString = connectionString;
         }
@@ -691,6 +696,8 @@ namespace NLog.Targets
             }
             finally
             {
+                InternalLogger.Trace("DatabaseTarget: close connection after install.");
+
                 this.CloseConnection();
             }
         }

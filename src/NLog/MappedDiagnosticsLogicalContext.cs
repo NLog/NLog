@@ -31,9 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog
 {
 #if NET4_0 || NET4_5
+    using Config;
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
@@ -71,6 +74,7 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        /// <remarks>If the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
         public static string Get(string item)
         {
             return Get(item, null);
@@ -82,9 +86,10 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
+        /// <remarks>If <paramref name="formatProvider"/> is <c>null</c> and the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
         public static string Get(string item, IFormatProvider formatProvider)
         {
-            return GlobalDiagnosticsContext.ConvertToString(GetObject(item), formatProvider);
+            return FormatHelper.ConvertToString(GetObject(item), formatProvider);
         }
 
         /// <summary>
@@ -146,7 +151,24 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            LogicalThreadDictionary.Clear();
+            Clear(false);
+        }
+
+        /// <summary>
+        /// Clears the content of current logical context.
+        /// </summary>
+        /// <param name="free">Free the full slot.</param>
+        public static void Clear(bool free)
+        {
+            if (free)
+            {
+                CallContext.FreeNamedDataSlot(LogicalThreadDictionaryKey);
+            }
+            else
+            {
+
+                LogicalThreadDictionary.Clear();
+            }
         }
     }
 #endif

@@ -181,6 +181,8 @@
     <Compile Include="Internal\SortHelpers.cs" />
     <Compile Include="Internal\StackTraceUsageUtils.cs" />
     <Compile Include="Internal\StreamHelpers.cs" />
+    <Compile Include="Internal\StringBuilderExt.cs" />
+    <Compile Include="Internal\StringHelpers.cs" />
     <Compile Include="Internal\TargetWithFilterChain.cs" />
     <Compile Include="Internal\ThreadIDHelper.cs" />
     <Compile Include="Internal\ThreadLocalStorageHelper.cs" />

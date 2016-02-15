@@ -15,7 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -199,6 +200,8 @@
     <Compile Include="Internal\SortHelpers.cs" />
     <Compile Include="Internal\StackTraceUsageUtils.cs" />
     <Compile Include="Internal\StreamHelpers.cs" />
+    <Compile Include="Internal\StringBuilderExt.cs" />
+    <Compile Include="Internal\StringHelpers.cs" />
     <Compile Include="Internal\TargetWithFilterChain.cs" />
     <Compile Include="Internal\ThreadIDHelper.cs" />
     <Compile Include="Internal\ThreadLocalStorageHelper.cs" />
