@@ -296,9 +296,14 @@ namespace NLog.Common
             }
         }
 
-        private static bool IsSeriousException(Exception ex)
+        /// <summary>
+        /// Determine if logging should be avoided because of exception type. 
+        /// </summary>
+        /// <param name="exception">The exception to check.</param>
+        /// <returns><c>true</c> if logging should be avoided; otherwise, <c>false</c>.</returns>
+        private static bool IsSeriousException(Exception exception)
         {
-            return ex != null && ex.MustBeRethrownImmediately();
+            return exception != null && exception.MustBeRethrownImmediately();
         }
 
         /// <summary>
@@ -311,7 +316,13 @@ namespace NLog.Common
                    !LogToDiagnostics;
         }
 
-        private static void PerformLogToDiagnostics(LogLevel level, string msg)
+        /// <summary>
+        /// Write internal messages to the System.Diagnostics.Debug / System.Diagnostics.Trace.
+        /// </summary>
+        /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
+        /// <param name="message">A message to write.</param>
+        /// <remarks>Works when property <see cref="LogToDiagnostics"/> set to true.</remarks>
+        private static void PerformLogToDiagnostics(LogLevel logLevel, string message)
         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             // log to System.Diagnostics.Debug / System.Diagnostics.Trace
@@ -320,14 +331,14 @@ namespace NLog.Common
                 return;
             }
 
-            System.Diagnostics.Debug.WriteLine(msg);
+            System.Diagnostics.Debug.WriteLine(message);
 
-            if (level != LogLevel.Trace)
+            if (logLevel != LogLevel.Trace)
             {
                 return;
             }
 
-            System.Diagnostics.Trace.WriteLine(msg);
+            System.Diagnostics.Trace.WriteLine(message);
 #endif
         }
 
