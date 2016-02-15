@@ -84,7 +84,7 @@ namespace NLog.Common
             LogToConsole = false;
             LogToConsoleError = false;
             LogFile = string.Empty;
-            WriteToDiagnostics = false;
+            LogToDiagnostics = false;
 #endif
             IncludeTimestamp = true;
             LogWriter = null;
