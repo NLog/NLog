@@ -84,6 +84,14 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets the default LogFactory instance.
+        /// </summary>
+        internal static LogFactory LogFactory
+        {
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
         /// </summary>
         public static event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged

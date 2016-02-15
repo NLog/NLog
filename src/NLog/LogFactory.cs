@@ -972,7 +972,7 @@ namespace NLog
         private void LoadLoggingConfiguration(string configFile)
         {
             InternalLogger.Debug("Loading config from {0}", configFile);
-            this.config = new XmlLoggingConfiguration(configFile);
+            this.config = new XmlLoggingConfiguration(configFile, this);
         }
 
 
