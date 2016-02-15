@@ -529,8 +529,7 @@ namespace NLog.Targets
         /// <param name="parameterInfo"></param>
         internal void SetParamType(IDbDataParameter dbDataParameter, DatabaseParameterInfo parameterInfo)
         {
-            if (string.IsNullOrEmpty(parameterInfo.DbType) ||
-                string.IsNullOrEmpty(parameterInfo.DbTypePropertyName))
+            if (string.IsNullOrEmpty(parameterInfo.DbType))
                 return;
             var lastIndexOfDot = parameterInfo.DbType.LastIndexOf('.');
 
@@ -552,14 +551,20 @@ namespace NLog.Targets
                 rawConstantValue = typeField != null ? typeField.GetRawConstantValue() : null;
             }
 
+            // Each custom database type that we want to support will need added here on as needed basis
+            string propertyName = string.Empty;
+            if (parameterInfo.DbType.StartsWith("Oracle.DataAccess.Client.OracleDbType"))
+            {
+                propertyName = "OracleDbType";
+            }
+
             // find the property on the database specific parameter
-            var property = paramType.GetProperty(parameterInfo.DbTypePropertyName);
+            var property = paramType.GetProperty(propertyName);
 
             // if something went wrong with the reflection a bad value was probably set and we can't fix that
             if (rawConstantValue == null || property == null)
                 throw new Exception("Unable set the database type from the database parameter for DbType: "
-                    + parameterInfo.DbType + Environment.NewLine +
-                    " and DbTypePropertyName of: " + parameterInfo.DbTypePropertyName);
+                    + parameterInfo.DbType);
 
             // we find the enum and the property ok so now we just set it using reflection
             property.SetValue(dbDataParameter, rawConstantValue, null);

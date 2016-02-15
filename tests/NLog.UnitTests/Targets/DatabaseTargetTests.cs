@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using Oracle.DataAccess.Client;
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -760,9 +762,9 @@ Dispose()
         }
 
         [Fact]
-        public void SetParamTypeShouldSetCustomEnumValueTest()
+        public void Oracle_SetParamTypeShouldSetCustomEnumValueTest()
         {
-            var expected = MockDbParameter.CustomDbType.Clob;
+            var expected = OracleDbType.Clob;
             var target = new DatabaseTarget
             {
                 Name = "notimportant",
@@ -772,22 +774,21 @@ Dispose()
             };
             var parameterInfo = new DatabaseParameterInfo
             {
-                DbTypePropertyName = "CustomDbColumnType",
-                DbType = typeof(MockDbParameter.CustomDbType).FullName + ".Clob"
+                DbType = typeof(OracleDbType).FullName + ".Clob"
             };
             var parameter = new MockDbParameter(new MockDbCommand(), 0); 
 
             target.SetParamType(parameter, parameterInfo);
 
-            Assert.Equal(expected, parameter.CustomDbColumnType);
+            Assert.Equal(expected, parameter.OracleDbType);
         }
 
         [Theory]
-        [InlineData("INVALID" + ".Clob", "CustomDbColumnType")]
-        [InlineData("INVALID", "CustomDbColumnType")]
-        [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType.Clob", " test ")]
-        [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType", "CustomDbColumnType")]
-        public void SetParamTypeShouldThrowExceptionTest(string dbType, string dbTypePropertyName)
+        [InlineData("INVALID" + ".Clob")]
+        [InlineData("INVALID")]
+        [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType.Clob")]
+        [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType")]
+        public void Oracle_SetParamTypeShouldThrowExceptionTest(string dbType)
         {
             var target = new DatabaseTarget
             {
@@ -798,7 +799,6 @@ Dispose()
             };
             var parameterInfo = new DatabaseParameterInfo
             {
-                DbTypePropertyName = dbTypePropertyName,
                 DbType = dbType
             };
             var parameter = new MockDbParameter(new MockDbCommand(), 0);
@@ -807,11 +807,10 @@ Dispose()
                 target.SetParamType(parameter, parameterInfo));
 
             Assert.Contains(dbType, exception.Message);
-            Assert.Contains(dbTypePropertyName, exception.Message);
         }
 
         [Fact]
-        public void SetParamTypeShouldDoNothingIfNotSetTest()
+        public void Oracle_SetParamTypeShouldDoNothingIfNotSetTest()
         {
             var target = new DatabaseTarget
             {
@@ -822,16 +821,16 @@ Dispose()
             };
             var parameterInfo = new DatabaseParameterInfo();
             var parameter = new MockDbParameter(new MockDbCommand(), 0);
-            var expected = parameter.CustomDbColumnType = MockDbParameter.CustomDbType.Blob;
+            var expected = parameter.OracleDbType = OracleDbType.Blob;
 
             target.SetParamType(parameter, parameterInfo);
 
-            Assert.Equal(expected, parameter.CustomDbColumnType);
+            Assert.Equal(expected, parameter.OracleDbType);
         }
 
         [Theory]
-        [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType", "CustomDbColumnType")]
-        public void DbTypeParametersShouldBeSetByConfigurationTest(string dbType, string dbTypePropertyName)
+        [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType")]
+        public void DbTypeParametersShouldBeSetByConfigurationTest(string dbType)
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
@@ -839,7 +838,7 @@ Dispose()
                 <targets>
                     <target name='database' xsi:type='Database' commandText = 'Begin End;' >
                       <parameter name='@message' layout='${message}'
-                                 DbType='" + dbType + @"' DbTypePropertyName='" + dbTypePropertyName + @"'/>
+                                 DbType='" + dbType + @"'/>
                     </target>
                 </targets>
                 <rules>
@@ -851,7 +850,6 @@ Dispose()
             var target = logger.Factory.Configuration.AllTargets.First() as DatabaseTarget;
             var parameter = target.Parameters.First();
             Assert.Equal(dbType, parameter.DbType);
-            Assert.Equal(dbTypePropertyName, parameter.DbTypePropertyName);
 
         }
 
@@ -1101,14 +1099,7 @@ Dispose()
                 this.paramId = paramId;
             }
 
-            public CustomDbType CustomDbColumnType { get; set; }
-
-            public enum CustomDbType
-            {
-                Default,
-                Clob,
-                Blob
-            }
+            public OracleDbType OracleDbType { get; set; }
 
             public DbType DbType { get; set; }
 
@@ -1351,6 +1342,20 @@ Dispose()
                 get { throw new NotImplementedException(); }
             }
         }
+    }
+}
+
+namespace Oracle.DataAccess.Client
+{
+    /// <summary>
+    /// Since we don't really need to add a real life reference to oracle we just
+    /// make a fake enum that we can reference
+    /// </summary>
+    public enum OracleDbType
+    {
+        Default,
+        Clob,
+        Blob
     }
 }
 

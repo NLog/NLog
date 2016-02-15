@@ -106,12 +106,6 @@ namespace NLog.Targets
         [DefaultValue(null)]
         public string DbType { get; set; }
 
-        /// <summary>
-        /// Gets or sets the name of the database column type property.
-        /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
-        [DefaultValue(null)]
-        public string DbTypePropertyName { get; set; }
     }
 }
 
