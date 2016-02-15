@@ -77,7 +77,7 @@ namespace NLog.Common
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
-            WriteToDiagnostics = GetSetting("nlog.internalWriteToDiagnostics", "NLOG_INTERNAL_WRITE_TO_DIAGNOSTICS", false);
+            LogToDiagnostics = GetSetting("nlog.internalLogToDiagnostics", "NLOG_INTERNAL_LOG_TO_DIAGNOSTICS", false);
 
             Info("NLog internal logger initialized.");
 #else
@@ -112,7 +112,7 @@ namespace NLog.Common
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the System.Diagnostics.Debug / System.Diagnostics.Trace.
         /// </summary>
-        public static bool WriteToDiagnostics { get; set; }
+        public static bool LogToDiagnostics { get; set; }
 
         /// <summary>
         /// Gets or sets the file path of the internal log file.
@@ -282,7 +282,7 @@ namespace NLog.Common
                     Console.Error.WriteLine(msg);
                 }
 
-                LogToDiagnostics(level, msg);
+                PerformLogToDiagnostics(level, msg);
             }
             catch (Exception exception)
             {
@@ -303,14 +303,14 @@ namespace NLog.Common
 
         private static bool NoLogger()
         {
-            return string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null && !WriteToDiagnostics;
+            return string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null && !LogToDiagnostics;
         }
 
-        private static void LogToDiagnostics(LogLevel level, string msg)
+        private static void PerformLogToDiagnostics(LogLevel level, string msg)
         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             // log to System.Diagnostics.Debug / System.Diagnostics.Trace
-            if (!WriteToDiagnostics)
+            if (!LogToDiagnostics)
             {
                 return;
             }
