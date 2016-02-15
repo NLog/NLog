@@ -51,9 +51,9 @@ namespace NLog.UnitTests
             LogFactory lf = new LogFactory();
 
             MyLogger l1 = (MyLogger)lf.GetLogger("AAA", typeof(MyLogger));
-            MyLogger l2 = (MyLogger)lf.GetLogger("AAA", typeof(MyLogger));
+            MyLogger l2 = lf.GetLogger<MyLogger>("AAA");
             ILogger l3 = lf.GetLogger("AAA", typeof(Logger));
-            ILogger l4 = lf.GetLogger("AAA", typeof(Logger));
+            ILogger l4 = lf.GetLogger<Logger>("AAA");
             ILogger l5 = lf.GetLogger("AAA");
             ILogger l6 = lf.GetLogger("AAA");
 
@@ -74,9 +74,9 @@ namespace NLog.UnitTests
             LogFactory lf = new LogFactory();
 
             MyLogger l1 = (MyLogger)lf.GetCurrentClassLogger(typeof(MyLogger));
-            MyLogger l2 = (MyLogger)lf.GetCurrentClassLogger(typeof(MyLogger));
+            MyLogger l2 = lf.GetCurrentClassLogger<MyLogger>();
             ILogger l3 = lf.GetCurrentClassLogger(typeof(Logger));
-            ILogger l4 = lf.GetCurrentClassLogger(typeof(Logger));
+            ILogger l4 = lf.GetCurrentClassLogger<Logger>();
             ILogger l5 = lf.GetCurrentClassLogger();
             ILogger l6 = lf.GetCurrentClassLogger();
 

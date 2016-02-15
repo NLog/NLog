@@ -351,6 +351,24 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets the logger with the name of the current class. 
+        /// </summary>
+        /// <returns>The logger.</returns>
+        /// <remarks>This is a slow-running method. 
+        /// Make sure you're not doing this in a loop.</remarks>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public T GetCurrentClassLogger<T>() where T : Logger
+        {
+#if SILVERLIGHT
+            var frame = new StackFrame(1);
+#else
+            var frame = new StackFrame(1, false);
+#endif
+
+            return (T)this.GetLogger(frame.GetMethod().DeclaringType.FullName, typeof(T));
+        }
+
+        /// <summary>
         /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="loggerType">The type of the logger to create. The type must inherit from 
@@ -379,6 +397,17 @@ namespace NLog
         public Logger GetLogger(string name)
         {
             return this.GetLogger(new LoggerCacheKey(name, typeof(Logger)));
+        }
+
+        /// <summary>
+        /// Gets the specified named logger.
+        /// </summary>
+        /// <param name="name">Name of the logger.</param>
+        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument 
+        /// are not guaranteed to return the same logger reference.</returns>
+        public T GetLogger<T>(string name) where T : Logger
+        {
+            return (T)this.GetLogger(new LoggerCacheKey(name, typeof(T)));
         }
 
         /// <summary>
