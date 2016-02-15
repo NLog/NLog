@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
 namespace NLog.Common
 {
     using JetBrains.Annotations;
@@ -331,14 +330,12 @@ namespace NLog.Common
                 return;
             }
 
-            System.Diagnostics.Debug.WriteLine(message);
-
             if (logLevel != LogLevel.Trace)
             {
-                return;
+                System.Diagnostics.Debug.WriteLine(message, "NLog");
             }
 
-            System.Diagnostics.Trace.WriteLine(message);
+            System.Diagnostics.Trace.WriteLine(message, "NLog");
 #endif
         }
 
