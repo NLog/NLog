@@ -310,7 +310,7 @@ namespace NLog.Targets
                         {
                             throw;
                         }
-                      
+
                     }
                 }
             }

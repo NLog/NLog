@@ -413,6 +413,10 @@ namespace NLog.UnitTests.Common
             InternalLogger.LogLevel = LogLevel.FromString(rawLogLevel);
             InternalLogger.IncludeTimestamp = false;
 
+            if (Directory.Exists(randomSubDirectory))
+            {
+                Directory.Delete(randomSubDirectory);
+            }
             Assert.False(Directory.Exists(randomSubDirectory));
 
             // Set the log file, which will only create the needed directories
