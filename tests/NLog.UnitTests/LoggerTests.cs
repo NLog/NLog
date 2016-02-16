@@ -42,7 +42,7 @@ namespace NLog.UnitTests
     using System.Threading.Tasks;
 #endif
     using Xunit;
-
+    using System.Threading;
     public class LoggerTests : NLogTestBase
     {
         [Fact]
@@ -917,7 +917,7 @@ namespace NLog.UnitTests
                     AssertDebugCounter("debug", 0);
             }
         }
-        
+
         [Fact]
         public void LogTest()
         {
@@ -1363,7 +1363,7 @@ namespace NLog.UnitTests
                 </nlog>");
             ILogger logger = LogManager.GetLogger("A");
             bool warningFix = true;
-            
+
             bool executed = false;
             logger.Swallow(() => executed = true);
             Assert.True(executed);
@@ -1374,9 +1374,10 @@ namespace NLog.UnitTests
 #if ASYNC_SUPPORTED
             logger.SwallowAsync(Task.WhenAll()).Wait();
 
-            executed = false;
-            logger.SwallowAsync(async () => { await Task.Delay(20); executed = true; }).Wait();
-            Assert.True(executed);
+            int executions = 0;
+            logger.Swallow(Task.Run(() => ++executions));
+            logger.SwallowAsync(async () => { await Task.Delay(20); ++executions; }).Wait();
+            Assert.True(executions == 2);
 
             Assert.Equal(1, logger.SwallowAsync(async () => { await Task.Delay(20); return 1; }).Result);
             Assert.Equal(1, logger.SwallowAsync(async () => { await Task.Delay(20); return 1; }, 2).Result);
@@ -1389,11 +1390,17 @@ namespace NLog.UnitTests
 
             Assert.Equal(0, logger.Swallow(() => { if (warningFix) throw new InvalidOperationException("Test message 2"); return 1; }));
             AssertDebugLastMessageContains("debug", "Test message 2");
-            
+
             Assert.Equal(2, logger.Swallow(() => { if (warningFix) throw new InvalidOperationException("Test message 3"); return 1; }, 2));
             AssertDebugLastMessageContains("debug", "Test message 3");
 
 #if ASYNC_SUPPORTED
+            var fireAndFogetCompletion = new TaskCompletionSource<bool>();
+            fireAndFogetCompletion.SetException(new InvalidOperationException("Swallow fire and forget test message"));
+            logger.Swallow(fireAndFogetCompletion.Task);
+            while (!GetDebugLastMessage("debug").Contains("Swallow fire and forget test message"))
+                Thread.Sleep(10); // Polls forever since there is nothing to wait on.
+
             var completion = new TaskCompletionSource<bool>();
             completion.SetException(new InvalidOperationException("Test message 4"));
             logger.SwallowAsync(completion.Task).Wait();
