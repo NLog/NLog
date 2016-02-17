@@ -8,6 +8,7 @@ Please keep the relevant info from this template:
 
 
 **NLog version**: (e.g. 4.2.3)
+
 **Platform**: .Net 3.5 / .Net 4.0 / .Net 4.5 / Mono 4 / Silverlight 4 / Silverlight 5 / Xamarin Android / Xamarin iOs
 
 **Current NLog config** (xml or C#, if relevant)
@@ -37,3 +38,5 @@ in case of a FEATURE REQUEST:
  
  - Why do we need it?
  - An example of the XML config, if relevant. 
+
+
