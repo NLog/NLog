@@ -14,7 +14,7 @@
   },
 
   "frameworks": {
-    "dnx451": {
+    "net451": {
       "frameworkAssemblies": {
         "System.Messaging": ""
       },

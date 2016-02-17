@@ -120,11 +120,11 @@ Task("pack")
 	string[] frameworks = null;
 	if(IsRunningOnUnix())
 	{
-		frameworks = new [] { "dnx451","dnxcore50" };
+		frameworks = new [] { "net451","dotnet5.4" };
 	}
 	else
 	{
-		frameworks = new [] { "dnx451", "dnxcore50", "net35", "sl5", "uap10.0" };
+		frameworks = new [] { "net451", "dotnet5.4", "net35", "sl5" };
 	}
 
 	DNUPackSettings packSettings = new DNUPackSettings()
