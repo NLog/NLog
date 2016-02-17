@@ -76,19 +76,7 @@
         "define": [ "NET4_5", "DNX", "UWP10" ]
       }
     },
-    "uap10.0": {
-      "frameworkAssemblies": {
-      },
-      "dependencies": {
-        "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-        "System.Threading.ThreadPool": "4.0.10-*",
-        "System.Threading.Thread": "4.0.0-*",
-        "System.IO.Compression": "4.0.1-*"
-      },
-      "compilationOptions": {
-        "define": [ "NETFX_CORE", "WINDOWS_UWP", "UWP10" ]
-      }
-    },
+   
     "Silverlight,Version=v5.0": {
       "frameworkAssemblies": {
         "mscorlib": "",
