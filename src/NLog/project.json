@@ -32,7 +32,7 @@
         "define": [ "NET3_5", "WCF_SUPPORTED", "CLIENT_SKU" ]
       }
     },
-    "dnx451": {
+    "net451": {
       "frameworkAssemblies": {
         "System.Runtime": "",
         "System.Xml": "",
@@ -51,7 +51,7 @@
         "System.Threading.Timer": "4.0.1-*"
       }
     },
-    "dnxcore50": {
+    "dotnet5.4": {
       "dependencies": {
         "System.Console": "4.0.0-*",
         "System.Diagnostics.Contracts": "4.0.1-*",
