@@ -84,7 +84,6 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                LogManager.Configuration = null;
 #if !SILVERLIGHT && !UWP10
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
@@ -154,7 +153,6 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                LogManager.Configuration = null;
 #if !SILVERLIGHT && !UWP10
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);

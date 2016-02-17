@@ -32,9 +32,9 @@
 // 
 namespace NLog.LayoutRenderers
 {
-    using System;
     using System.Text;
-    using NLog.Config;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Mapped Diagnostic Context item. Provided for compatibility with log4net.
@@ -57,7 +57,10 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(MappedDiagnosticsContext.Get(this.Item, logEvent.FormatProvider));
+            //don't use MappedDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
+            var o = MappedDiagnosticsContext.GetObject(this.Item);
+            
+            builder.Append(o, logEvent, LoggingConfiguration);
         }
     }
 }

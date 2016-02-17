@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,28 +31,32 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
-{
-    using System;
-    using NLog.Config;
 
-    /// <summary>
-    /// Designates a property of the class as an ambient property.
-    /// </summary>
-    /// <example>
-    /// non-ambient:  ${uppercase:${level}} 
-    /// ambient    :  ${level:uppercase} 
-    /// </example>
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class AmbientPropertyAttribute : NameBaseAttribute
+#if !SILVERLIGHT
+//no silverlight for xunit InlineData
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using NLog.Internal;
+using Xunit;
+using Xunit.Extensions;
+
+namespace NLog.UnitTests.Internal
+{
+    public class StringHelpersTests
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AmbientPropertyAttribute" /> class.
-        /// </summary>
-        /// <param name="name">Ambient property name.</param>
-        public AmbientPropertyAttribute(string name)
-            : base(name)
+        [Theory]
+        [InlineData("", true)]
+        [InlineData("  ", true)]
+        [InlineData("  \n", true)]
+        [InlineData("  \na", false)]
+        [InlineData("a", false)]
+        [InlineData(" a", false)]
+        public void IsNullOrWhiteSpaceTest(string input, bool result)
         {
+            Assert.Equal(result, StringHelpers.IsNullOrWhiteSpace(input));
         }
     }
 }
+#endif

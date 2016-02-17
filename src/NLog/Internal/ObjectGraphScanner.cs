@@ -119,10 +119,27 @@ namespace NLog.Internal
                     continue;
                 }
                 
+                var list = value as ICollection;
+                if (list != null)
+                {
+                    //try first icollection for syncroot
+                    List<object> elements;
+                    lock (list.SyncRoot)
+                    {
+                        elements = new List<object>(list.Cast<object>());
+                    }
+                    foreach (object element in elements)
+                    {
+                        ScanProperties(result, element, level + 1, visitedObjects);
+                    }
+                }
+                else
+                {
                 var enumerable = value as IEnumerable;
                 if (enumerable != null)
                 {
                     //new list to prevent: Collection was modified after the enumerator was instantiated.
+
                     var elements = new List<object>(enumerable.Cast<object>());
 
                     foreach (object element in elements)
@@ -137,4 +154,5 @@ namespace NLog.Internal
             }
         }
     }
+}
 }

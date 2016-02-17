@@ -38,6 +38,9 @@ using System.Linq;
 using Xunit;
 using NLog.Common;
 using System.Text;
+#if !SILVERLIGHT 
+using Xunit.Extensions;
+#endif
 
 namespace NLog.UnitTests.Common
 {
@@ -392,56 +395,45 @@ namespace NLog.UnitTests.Common
 
         }
 
-
-        [Fact]
-        public void CreateDirectoriesIfNeededTests()
+        [Theory]
+        [InlineData("trace", true)]
+        [InlineData("debug", true)]
+        [InlineData("info", true)]
+        [InlineData("warn", true)]
+        [InlineData("error", true)]
+        [InlineData("fatal", true)]
+        [InlineData("off", false)]
+        public void CreateDirectoriesIfNeededTests(string rawLogLevel, bool shouldCreateDirectory)
         {
-            string expected =
-                    "Warn WWW" + Environment.NewLine +
-                    "Error EEE" + Environment.NewLine +
-                    "Fatal FFF" + Environment.NewLine +
-                    "Trace TTT" + Environment.NewLine +
-                    "Debug DDD" + Environment.NewLine +
-                    "Info III" + Environment.NewLine;
-
-            // Store off the previous log file
-            string previousLogFile = InternalLogger.LogFile;
-
             var tempPath = Path.GetTempPath();
             var tempFileName = Path.GetRandomFileName();
             var randomSubDirectory = Path.Combine(tempPath, Path.GetRandomFileName());
             string tempFile = Path.Combine(randomSubDirectory, tempFileName);
 
-            InternalLogger.LogLevel = LogLevel.Trace;
+            InternalLogger.LogLevel = LogLevel.FromString(rawLogLevel);
             InternalLogger.IncludeTimestamp = false;
 
+            if (Directory.Exists(randomSubDirectory))
+            {
+                Directory.Delete(randomSubDirectory);
+            }
             Assert.False(Directory.Exists(randomSubDirectory));
 
             // Set the log file, which will only create the needed directories
             InternalLogger.LogFile = tempFile;
 
-            Assert.True(Directory.Exists(randomSubDirectory));
+            Assert.Equal(Directory.Exists(randomSubDirectory), shouldCreateDirectory);
 
             try
             {
                 Assert.False(File.Exists(tempFile));
 
-                // Invoke Log(LogLevel, string) for every log level.
-                InternalLogger.Log(LogLevel.Warn, "WWW");
-                InternalLogger.Log(LogLevel.Error, "EEE");
-                InternalLogger.Log(LogLevel.Fatal, "FFF");
-                InternalLogger.Log(LogLevel.Trace, "TTT");
-                InternalLogger.Log(LogLevel.Debug, "DDD");
-                InternalLogger.Log(LogLevel.Info, "III");
+                InternalLogger.Log(LogLevel.FromString(rawLogLevel), "File and Directory created.");
 
-                AssertFileContents(tempFile, expected, Encoding.UTF8);
-                Assert.True(File.Exists(tempFile));
+                Assert.Equal(File.Exists(tempFile), shouldCreateDirectory);
             }
             finally
             {
-                // Reset LogFile to the previous value
-                InternalLogger.LogFile = previousLogFile;
-
                 if (File.Exists(tempFile))
                 {
                     File.Delete(tempFile);
@@ -495,9 +487,6 @@ namespace NLog.UnitTests.Common
             }
             finally
             {
-                // Reset LogFile to the previous value
-                InternalLogger.LogFile = previousLogFile;
-
                 if (File.Exists(tempFileName))
                 {
                     File.Delete(tempFileName);

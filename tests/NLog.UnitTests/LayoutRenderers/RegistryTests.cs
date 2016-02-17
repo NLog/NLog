@@ -290,39 +290,21 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void RegistryTestWrongKey_no_ex()
         {
-            var throwExceptions = LogManager.ThrowExceptions;
-            try
-            {
-                LogManager.ThrowExceptions = false;
+            LogManager.ThrowExceptions = false;
 
-                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}", "");
-
-            }
-            finally
-            {
-                //restore
-                LogManager.ThrowExceptions = throwExceptions;
-            }
+            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}", "");
         }
 
         [Fact(Skip = "SimpleLayout.GetFormattedMessage catches exception. Will be fixed in the future")]
-        
+
         public void RegistryTestWrongKey_ex()
         {
-            var throwExceptions = LogManager.ThrowExceptions;
-            try
-            {
-                LogManager.ThrowExceptions = true;
+            LogManager.ThrowExceptions = true;
 
-                Assert.Throws<ArgumentException>(
-                    () => { AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}", ""); });
+            Assert.Throws<ArgumentException>(
+                () => { AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}", ""); });
 
-            }
-            finally
-            {
-                //restore
-                LogManager.ThrowExceptions = throwExceptions;
-            }
+
         }
     }
 }

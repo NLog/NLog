@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,28 +31,33 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
-{
-    using System;
-    using NLog.Config;
+using System;
+using System.Text;
+using NLog.Config;
 
+namespace NLog.Internal
+{
     /// <summary>
-    /// Designates a property of the class as an ambient property.
+    /// Helpers for <see cref="StringBuilder"/>, which is used in e.g. layout renderers.
     /// </summary>
-    /// <example>
-    /// non-ambient:  ${uppercase:${level}} 
-    /// ambient    :  ${level:uppercase} 
-    /// </example>
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class AmbientPropertyAttribute : NameBaseAttribute
+    internal static class StringBuilderExt
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AmbientPropertyAttribute" /> class.
+        /// Append a value and use formatProvider of <paramref name="logEvent"/> or <paramref name="configuration"/> to convert to string.
         /// </summary>
-        /// <param name="name">Ambient property name.</param>
-        public AmbientPropertyAttribute(string name)
-            : base(name)
+        /// <param name="builder"></param>
+        /// <param name="o">value to append.</param>
+        /// <param name="logEvent">current logEvent for FormatProvider.</param>
+        /// <param name="configuration">Configuration for DefaultCultureInfo</param>
+        public static void Append(this StringBuilder builder, object o, LogEventInfo logEvent, LoggingConfiguration configuration)
         {
+            var formatProvider = logEvent.FormatProvider;
+            if (formatProvider == null && configuration != null)
+            {
+                formatProvider = configuration.DefaultCultureInfo;
+            }
+            builder.Append(Convert.ToString(o, formatProvider));
         }
+
     }
 }

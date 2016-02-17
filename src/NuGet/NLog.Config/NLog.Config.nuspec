@@ -13,6 +13,7 @@
     <iconUrl>http://nlog-project.org/NConfig.png</iconUrl>
     <projectUrl>http://nlog-project.org/</projectUrl>
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
+    <releaseNotes>NLog $BuildVersion$</releaseNotes>
     <dependencies>
       <dependency id="NLog" version="$BuildVersion$" />
       <dependency id="NLog.Schema" version="4.2.1" />

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Runtime.CompilerServices;
+
 namespace NLog.Common
 {
     using JetBrains.Annotations;
@@ -53,6 +55,8 @@ namespace NLog.Common
     /// <summary>
     /// NLog internal logger.
     /// </summary>
+    /// Writes to file, console or custom textwriter (see <see cref="InternalLogger.LogWriter"/>)
+    /// </summary>
     public static partial class InternalLogger
     {
         private static object lockObject = new object();
@@ -64,33 +68,54 @@ namespace NLog.Common
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = "Significant logic in .cctor()")]
         static InternalLogger()
         {
+            Reset();
+            Info("NLog internal logger initialized.");
+        }
+
+        /// <summary>
+        /// Set the config of the InternalLogger with defaults and config.
+        /// </summary>
+        public static void Reset()
+        {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
 			
-            Info("NLog internal logger initialized.");
+            
 #else
             LogLevel = LogLevel.Info;
-#endif
             IncludeTimestamp = true;
+            LogWriter = null;
+            LogFile = string.Empty;
+#if !UWP10
+            LogToConsole = false;
+            LogToConsoleError = false;
+#endif
+
+#endif
+            
+
         }
 
         /// <summary>
         /// Gets or sets the internal log level.
         /// </summary>
+        /// <example>If set to <see cref="NLog.LogLevel.Info"/>, then messages of the levels <see cref="NLog.LogLevel.Info"/>, <see cref="NLog.LogLevel.Error"/> and <see cref="NLog.LogLevel.Fatal"/> will be written.</example>
         public static LogLevel LogLevel { get; set; }
 
 #if !UWP10
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console output stream.
         /// </summary>
+        /// <remarks>Your application must be a console application.</remarks>
         public static bool LogToConsole { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console error stream.
         /// </summary>
+        /// <remarks>Your application must be a console application.</remarks>
         public static bool LogToConsoleError { get; set; }
 
 #endif
@@ -187,6 +212,11 @@ namespace NLog.Common
             if (ex != null && ex.MustBeRethrownImmediately())
             {
                 //no logging!
+                return;
+            }
+
+            if (level == LogLevel.Off)
+            {
                 return;
             }
 
@@ -374,6 +404,11 @@ namespace NLog.Common
         {
             try
             {
+                if (InternalLogger.LogLevel == NLog.LogLevel.Off)
+                {
+                    return;
+                }
+
                 string parentDirectory = Path.GetDirectoryName(filename);
                 if (!string.IsNullOrEmpty(parentDirectory))
                 {

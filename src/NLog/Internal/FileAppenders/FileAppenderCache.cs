@@ -34,7 +34,6 @@
 namespace NLog.Internal.FileAppenders
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
 
     /// <summary>

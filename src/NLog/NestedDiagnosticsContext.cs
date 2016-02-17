@@ -54,7 +54,7 @@ namespace NLog
         {
             get
             {
-                return GlobalDiagnosticsContext.ConvertToString(TopObject, null);
+                return FormatHelper.ConvertToString(TopObject, null);
             }
         }
 
@@ -115,7 +115,7 @@ namespace NLog
         /// <returns>The top message, which is removed from the stack, as a string value.</returns>
         public static string Pop(IFormatProvider formatProvider)
         {
-            return GlobalDiagnosticsContext.ConvertToString(PopObject(), formatProvider);
+            return FormatHelper.ConvertToString(PopObject(), formatProvider);
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace NLog
         /// <returns>Array of strings.</returns>
         public static string[] GetAllMessages(IFormatProvider formatProvider) 
         {
-            return ThreadStack.Select((o) => GlobalDiagnosticsContext.ConvertToString(o, formatProvider)).ToArray();
+            return ThreadStack.Select((o) => FormatHelper.ConvertToString(o, formatProvider)).ToArray();
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,28 +31,33 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
-{
-    using System;
-    using NLog.Config;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
+namespace NLog.Internal
+{
     /// <summary>
-    /// Designates a property of the class as an ambient property.
+    /// Helpers for <see cref="string"/>.
     /// </summary>
-    /// <example>
-    /// non-ambient:  ${uppercase:${level}} 
-    /// ambient    :  ${level:uppercase} 
-    /// </example>
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class AmbientPropertyAttribute : NameBaseAttribute
+    public static class StringHelpers
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AmbientPropertyAttribute" /> class.
+        /// IsNullOrWhiteSpace, including for .NET 3.5
         /// </summary>
-        /// <param name="name">Ambient property name.</param>
-        public AmbientPropertyAttribute(string name)
-            : base(name)
+        /// <param name="value"></param>
+        /// <returns></returns>
+        internal static bool IsNullOrWhiteSpace(string value)
         {
+
+#if NET3_5
+
+            if (value == null) return true;
+            if (value.Length == 0) return true;
+            return String.IsNullOrEmpty(value.Trim());
+#else
+            return string.IsNullOrWhiteSpace(value);
+#endif
         }
     }
 }

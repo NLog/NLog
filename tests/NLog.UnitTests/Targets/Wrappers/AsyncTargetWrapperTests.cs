@@ -288,32 +288,22 @@ namespace NLog.UnitTests.Targets.Wrappers
                 WrappedTarget = new DebugTarget(),
             };
 
-            var throwExceptions = LogManager.ThrowExceptions;
-            try
-            {
+            LogManager.ThrowExceptions = false;
 
-                LogManager.ThrowExceptions = false;
+            targetWrapper.Initialize(null);
 
-                targetWrapper.Initialize(null);
+            // null out wrapped target - will cause exception on the timer thread
+            targetWrapper.WrappedTarget = null;
 
-                // null out wrapped target - will cause exception on the timer thread
-                targetWrapper.WrappedTarget = null;
+            string internalLog = RunAndCaptureInternalLog(
+                () =>
+                {
+                    targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+                    targetWrapper.Close();
+                },
+                LogLevel.Trace);
 
-                string internalLog = RunAndCaptureInternalLog(
-                    () =>
-                    {
-                        targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
-                        targetWrapper.Close();
-                    },
-                    LogLevel.Trace);
-
-                Assert.True(internalLog.StartsWith("Error Error in lazy writer timer procedure. Exception: System.NullReferenceException", StringComparison.Ordinal), internalLog);
-
-            }
-            finally
-            {
-                LogManager.ThrowExceptions = throwExceptions;
-            }
+                Assert.True(internalLog.Contains("AsyncWrapper: WrappedTarget is NULL"), internalLog);
         }
 
         [Fact]

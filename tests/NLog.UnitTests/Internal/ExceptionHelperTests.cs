@@ -88,19 +88,11 @@ namespace NLog.UnitTests.Internal
         [InlineData(typeof(OutOfMemoryException), true, true)]
         public void MustBeRethrown(Type exceptionType, bool result, bool throwExceptions)
         {
-            var throws = LogManager.ThrowExceptions;
-            try
-            {
-                LogManager.ThrowExceptions = throwExceptions;
+            LogManager.ThrowExceptions = throwExceptions;
 
-                var ex = CreateException(exceptionType);
-                Assert.Equal(result, ex.MustBeRethrown());
-            }
-            finally
-            {
-                //restore
-                LogManager.ThrowExceptions = throws;
-            }
+            var ex = CreateException(exceptionType);
+            Assert.Equal(result, ex.MustBeRethrown());
+
 
         }
 

@@ -41,6 +41,11 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Converts the result of another layout output to upper case.
     /// </summary>
+    /// <example>
+    /// ${uppercase:${level}} //[DefaultParameter]
+    /// ${uppercase:Inner=${level}} 
+    /// ${level:uppercase} // [AmbientProperty]
+    /// </example>
     [LayoutRenderer("uppercase")]
     [AmbientProperty("Uppercase")]
     [ThreadAgnostic]

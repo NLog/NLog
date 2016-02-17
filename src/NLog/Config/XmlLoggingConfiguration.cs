@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-
 namespace NLog.Config
 {
     using System;
@@ -85,7 +83,7 @@ namespace NLog.Config
         /// <param name="fileName">Configuration file to be read.</param>
         public XmlLoggingConfiguration(string fileName)
         {
-            using (XmlReader reader = XmlReader.Create(fileName))
+            using (XmlReader reader = CreateFileReader(fileName))
             {
                 this.Initialize(reader, fileName, false);
             }
@@ -98,10 +96,36 @@ namespace NLog.Config
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         public XmlLoggingConfiguration(string fileName, bool ignoreErrors)
         {
-            using (XmlReader reader = XmlReader.Create(fileName))
+            using (XmlReader reader = CreateFileReader(fileName))
             {
                 this.Initialize(reader, fileName, ignoreErrors);
             }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
+        /// </summary>
+        /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
+        /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
+        private static XmlReader CreateFileReader(string fileName)
+        {
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                fileName = fileName.Trim();
+#if __ANDROID__
+                //suport loading config from special assets folder in nlog.config
+                const string assetsPrefix = "assets/";
+                if (fileName.StartsWith(assetsPrefix, StringComparison.OrdinalIgnoreCase))
+                {
+                    //remove prefix
+                    fileName = fileName.Substring(assetsPrefix.Length);
+                    Stream stream = Android.App.Application.Context.Assets.Open(fileName);
+                    return XmlReader.Create(stream);
+                }
+#endif
+                return XmlReader.Create(fileName);
+            }
+            return null;
         }
 
         /// <summary>

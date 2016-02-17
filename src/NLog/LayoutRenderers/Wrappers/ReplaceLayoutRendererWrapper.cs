@@ -41,6 +41,9 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Replaces a string in the output of another layout with another string.
     /// </summary>
+    /// <example>
+    /// ${replace:searchFor=\\n+:replaceWith=-:regex=true:inner=${message}}
+    /// </example>
     [LayoutRenderer("replace")]
     [ThreadAgnostic]
     public sealed class ReplaceLayoutRendererWrapper : WrapperLayoutRendererBase

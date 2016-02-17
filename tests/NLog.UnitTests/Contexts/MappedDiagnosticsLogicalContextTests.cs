@@ -186,6 +186,9 @@ namespace NLog.UnitTests.Contexts
             const string valueForLogicalThread2 = "ValueForTask2";
             const string valueForLogicalThread3 = "ValueForTask3";
 
+
+            MappedDiagnosticsLogicalContext.Clear(true);
+
             var task1 = Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread1);
                 return MappedDiagnosticsLogicalContext.Get(key);

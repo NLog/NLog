@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiTests.cs" />
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
     <Compile Include="Common\InternalLoggerTests.cs" />
     <Compile Include="Common\LastLogEventListTarget.cs" />
@@ -127,7 +128,7 @@
     <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
-    <Compile Include="Internal\PlatformDetectorTests.cs" />
+    <Compile Include="Internal\StringHelpersTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />
     <Compile Include="LayoutRenderers\AssemblyVersionTests.cs" />
@@ -185,7 +186,6 @@
     <Compile Include="NLogTestBase.cs" />
     <Compile Include="NLogTraceListenerTests.cs" />
     <Compile Include="ProcessRunner.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegressionTests.cs" />
     <Compile Include="RoutingTests.cs" />
     <Compile Include="Targets\ColoredConsoleTargetTests.cs" />
@@ -200,6 +200,7 @@
     <Compile Include="Targets\MemoryTargetTests.cs" />
     <Compile Include="Targets\MessageQueueTargetTests.cs" />
     <Compile Include="Targets\MethodCallTests.cs" />
+    <Compile Include="Targets\Mocks\MockTargetWrapper.cs" />
     <Compile Include="Targets\NetworkTargetTests.cs" />
     <Compile Include="Targets\TargetTests.cs" />
     <Compile Include="Targets\WebServiceTargetTests.cs" />
@@ -218,7 +219,6 @@
     <Compile Include="Targets\Wrappers\SplitGroupTargetTests.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBaseTests.cs" />
     <Compile Include="TimeSourceTests.cs" />
-    <Compile Include="UnitTestApp.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -243,9 +243,7 @@
     <Content Include="ProjectFileInfo.xml" />
     <Content Include="Properties\AppManifest.xml" />
     <Content Include="Properties\OutOfBrowserSettings.xml" />
-    <Content Include="Properties\UnitTestApp.rd.xml" />
     <Content Include="Properties\WMAppManifest.xml" />
-    <Content Include="testresults.xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigFiles\included.nlog" />

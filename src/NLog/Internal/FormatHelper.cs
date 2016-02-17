@@ -54,7 +54,7 @@ namespace NLog.Internal
         {
             if (value == null)
             {
-                return string.Empty;
+                return String.Empty;
             }
 
             if (format == null)
@@ -69,6 +69,31 @@ namespace NLog.Internal
             }
 
             return Convert.ToString(value, formatProvider);
+        }
+
+        /// <summary>
+        /// Convert object to string
+        /// </summary>
+        /// <param name="o">value</param>
+        /// <param name="formatProvider">format for conversion.</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// If <paramref name="formatProvider"/> is <c>null</c> and <paramref name="o"/> isn't a <see cref="string"/> already, then the <see cref="LogFactory"/> will get a locked by <see cref="LogManager.Configuration"/>
+        /// </remarks>
+        internal static string ConvertToString(object o, IFormatProvider formatProvider)
+        {
+            // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
+            if (formatProvider == null && !(o is string))
+            {
+                //variable so only 1 lock is needed
+                //TODO this locks the configuration, which can lead to deadlocks.
+                var loggingConfiguration = LogManager.Configuration;
+                if (loggingConfiguration != null)
+                    formatProvider = loggingConfiguration.DefaultCultureInfo;
+            }
+
+            return Convert.ToString(o, formatProvider);
+
         }
     }
 }

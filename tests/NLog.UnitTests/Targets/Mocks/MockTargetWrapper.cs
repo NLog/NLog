@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,28 +31,24 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+namespace NLog.UnitTests.Targets.Mocks
 {
-    using System;
-    using NLog.Config;
+    using NLog.Common;
+    using NLog.Targets;
+    using NLog.Targets.Wrappers;
 
-    /// <summary>
-    /// Designates a property of the class as an ambient property.
-    /// </summary>
-    /// <example>
-    /// non-ambient:  ${uppercase:${level}} 
-    /// ambient    :  ${level:uppercase} 
-    /// </example>
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class AmbientPropertyAttribute : NameBaseAttribute
+    [Target("MockWrapper", IsWrapper = true)]
+    public class MockTargetWrapper : WrapperTargetBase
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AmbientPropertyAttribute" /> class.
-        /// </summary>
-        /// <param name="name">Ambient property name.</param>
-        public AmbientPropertyAttribute(string name)
-            : base(name)
+        protected override void CloseTarget()
         {
+            base.CloseTarget();
+            WrappedTarget.Dispose();
+        }
+        
+        protected override void Write(AsyncLogEventInfo logEvent)
+        {
+            WrappedTarget.WriteAsyncLogEvents(logEvent);
         }
     }
 }

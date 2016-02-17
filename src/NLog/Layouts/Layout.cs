@@ -44,7 +44,15 @@ namespace NLog.Layouts
     [NLogConfigurationItem]
     public abstract class Layout : ISupportsInitialize, IRenderable
     {
+        /// <summary>
+        /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
+        /// </summary>
         private bool isInitialized;
+
+        /// <summary>
+        /// Does the layout contains threadAgnostic layout renders? If contains non-threadAgnostic-layoutrendender, then this layout is also not threadAgnostic. 
+        /// See <see cref="IsThreadAgnostic"/> and <see cref="Initialize"/>.
+        /// </summary>
         private bool threadAgnostic;
 
         /// <summary>
@@ -99,6 +107,8 @@ namespace NLog.Layouts
         /// <summary>
         /// Precalculates the layout for the specified log event and stores the result
         /// in per-log event cache.
+        /// 
+        /// Only if the layout doesn't have [ThreadAgnostic] and doens't contain layouts with [ThreadAgnostic]. 
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <remarks>
