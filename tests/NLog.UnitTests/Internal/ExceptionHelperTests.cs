@@ -51,12 +51,15 @@ namespace NLog.UnitTests.Internal
     public class ExceptionHelperTests : NLogTestBase
     {
         [Theory]
+#if !DNX
         [InlineData(typeof(StackOverflowException), true)]
+        [InlineData(typeof(ThreadAbortException), true)]
+#endif
         [InlineData(typeof(NLogConfigurationException), false)]
         [InlineData(typeof(Exception), false)]
         [InlineData(typeof(ArgumentException), false)]
         [InlineData(typeof(NullReferenceException), false)]
-        [InlineData(typeof(ThreadAbortException), true)]
+
         [InlineData(typeof(OutOfMemoryException), true)]
         public void TestMustBeRethrowImmediately(Type t, bool result)
         {
@@ -66,8 +69,12 @@ namespace NLog.UnitTests.Internal
         }
 
         [Theory]
+#if !DNX
         [InlineData(typeof(StackOverflowException), true, false)]
         [InlineData(typeof(StackOverflowException), true, true)]
+           [InlineData(typeof(ThreadAbortException), true, false)]
+        [InlineData(typeof(ThreadAbortException), true, true)]
+#endif
         [InlineData(typeof(NLogConfigurationException), true, false)]
         [InlineData(typeof(NLogConfigurationException), true, true)]
         [InlineData(typeof(Exception), false, false)]
@@ -76,8 +83,7 @@ namespace NLog.UnitTests.Internal
         [InlineData(typeof(ArgumentException), true, true)]
         [InlineData(typeof(NullReferenceException), false, false)]
         [InlineData(typeof(NullReferenceException), true, true)]
-        [InlineData(typeof(ThreadAbortException), true, false)]
-        [InlineData(typeof(ThreadAbortException), true, true)]
+
         [InlineData(typeof(OutOfMemoryException), true, false)]
         [InlineData(typeof(OutOfMemoryException), true, true)]
         public void MustBeRethrown(Type exceptionType, bool result, bool throwExceptions)
@@ -105,7 +111,7 @@ namespace NLog.UnitTests.Internal
         [InlineData("Error has been raised.", typeof(NLogConfigurationException), true, "Warn")]
         [InlineData("", typeof(ArgumentException), true, "Warn")]
         [InlineData("", typeof(NLogConfigurationException), true, "Warn")]
-        
+
         public void MustBeRethrown_ShouldLog_exception_and_only_once(string text, Type exceptionType, bool logFirst, string levelText)
         {
             using (new InternalLoggerScope())
@@ -113,11 +119,13 @@ namespace NLog.UnitTests.Internal
 
                 var level = LogLevel.FromString(levelText);
                 InternalLogger.LogLevel = LogLevel.Trace;
+#if !DNX && !SILVERLIGHT
                 InternalLogger.LogToConsole = true;
+#endif
                 InternalLogger.IncludeTimestamp = false;
 
                 var ex1 = CreateException(exceptionType);
-              
+
 
                 //exception should be once 
                 const string prefix = " Exception: ";
@@ -149,7 +157,12 @@ namespace NLog.UnitTests.Internal
 
         private static Exception CreateException(Type exceptionType)
         {
+#if DNX
+            return exceptionType.GetConstructor(Type.EmptyTypes).Invoke(null) as Exception;
+#else
+
             return exceptionType.GetConstructor(BindingFlags.NonPublic | BindingFlags.Default | BindingFlags.Instance | BindingFlags.Public, null, Type.EmptyTypes, null).Invoke(null) as Exception;
+#endif
         }
     }
 }
