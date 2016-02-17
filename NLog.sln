@@ -8,13 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Global.json = Global.json
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A2DA2123-68E5-4D58-AB61-CDB660CEA4C5}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{98DCD5C9-EEA3-4756-9A5B-2BA8A5036ECE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7465E1D2-BD66-407E-8C23-E096626479C9}"
@@ -31,17 +24,15 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SampleExtensions", "tests\S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{547DC77A-CF13-46AE-AD3B-903870CE3DB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net45SimpleConsoleApp", "examples\Net45SimpleConsoleApp\Net45SimpleConsoleApp.csproj", "{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net46SimpleConsoleApp", "examples\Net46SimpleConsoleApp\Net46SimpleConsoleApp.csproj", "{6998B72A-6F37-4575-9308-72B5E7B848E0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET46SimpleConsoleAppUsingDnxLib", "examples\NET46SimpleConsoleAppUsingDnxLib\NET46SimpleConsoleAppUsingDnxLib.csproj", "{13C8B05A-E10B-4D66-BD6E-C2DED966B197}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DnxCore50SimpleConsoleApp", "examples\DnxCore50SimpleConsoleApp\DnxCore50SimpleConsoleApp.xproj", "{2CD2453D-745F-48C1-B1BB-7E810D4BEA46}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UAP10SimpleApp", "examples\UAP10SimpleApp\UAP10SimpleApp.csproj", "{5EE028FD-90E7-4953-B3F4-00F7461C2E06}"
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
@@ -133,54 +124,6 @@ Global
 		{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}.Release|x64.Build.0 = Release|Any CPU
 		{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}.Release|x86.ActiveCfg = Release|Any CPU
 		{FE067913-E9A8-41F0-89FA-C1136F8FB6A8}.Release|x86.Build.0 = Release|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Debug|ARM.Build.0 = Debug|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Debug|x64.Build.0 = Debug|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Debug|x86.Build.0 = Debug|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Release|ARM.ActiveCfg = Release|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Release|ARM.Build.0 = Release|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Release|x64.ActiveCfg = Release|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Release|x64.Build.0 = Release|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Release|x86.ActiveCfg = Release|Any CPU
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5}.Release|x86.Build.0 = Release|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Debug|ARM.Build.0 = Debug|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Debug|x64.Build.0 = Debug|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Debug|x86.Build.0 = Debug|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Release|ARM.ActiveCfg = Release|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Release|ARM.Build.0 = Release|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Release|x64.ActiveCfg = Release|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Release|x64.Build.0 = Release|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Release|x86.ActiveCfg = Release|Any CPU
-		{6998B72A-6F37-4575-9308-72B5E7B848E0}.Release|x86.Build.0 = Release|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Debug|ARM.Build.0 = Debug|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Debug|x64.Build.0 = Debug|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Debug|x86.Build.0 = Debug|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Release|ARM.ActiveCfg = Release|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Release|ARM.Build.0 = Release|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Release|x64.ActiveCfg = Release|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Release|x64.Build.0 = Release|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Release|x86.ActiveCfg = Release|Any CPU
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197}.Release|x86.Build.0 = Release|Any CPU
 		{2CD2453D-745F-48C1-B1BB-7E810D4BEA46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2CD2453D-745F-48C1-B1BB-7E810D4BEA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CD2453D-745F-48C1-B1BB-7E810D4BEA46}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -227,18 +170,11 @@ Global
 		{0AA8FB16-A377-4541-BEF6-81D437D7B5E9} = {98DCD5C9-EEA3-4756-9A5B-2BA8A5036ECE}
 		{FE067913-E9A8-41F0-89FA-C1126F8FB6A8} = {7465E1D2-BD66-407E-8C23-E096626479C9}
 		{FE067913-E9A8-41F0-89FA-C1136F8FB6A8} = {7465E1D2-BD66-407E-8C23-E096626479C9}
-		{5A9B6E43-8B75-4826-9A08-4CAE89793BE5} = {547DC77A-CF13-46AE-AD3B-903870CE3DB9}
-		{6998B72A-6F37-4575-9308-72B5E7B848E0} = {547DC77A-CF13-46AE-AD3B-903870CE3DB9}
-		{13C8B05A-E10B-4D66-BD6E-C2DED966B197} = {547DC77A-CF13-46AE-AD3B-903870CE3DB9}
 		{2CD2453D-745F-48C1-B1BB-7E810D4BEA46} = {547DC77A-CF13-46AE-AD3B-903870CE3DB9}
 		{5EE028FD-90E7-4953-B3F4-00F7461C2E06} = {547DC77A-CF13-46AE-AD3B-903870CE3DB9}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = NLog.netfx45.vsmdi
-	EndGlobalSection
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
 		DPCodeReviewSolutionGUID = {C4811F53-E779-47F0-8C06-71551FBDB047}
