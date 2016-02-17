@@ -43,10 +43,12 @@ dnvm install $DNXVERSION -a x64 -r mono -alias default
 
 dnvm use default
 
-#echo "Downloading Cake bootstrap script"
-#curl -Lsfo buildcake.sh http://cakebuild.net/bootstrapper/linux
-#chmod u+x ./buildcake.sh
+dnu restore --quiet
+dnu build src/NLog --quiet
+dnu build src/NLog.Extended --quiet
+dnu build src/NLog.Extended --quiet
+dnu build src/NLogAutoLoadExtension --quiet
+dnu build tests/SampleExtensions --quiet
+dnu build tests/NLog.UnitTests --quiet
 
-echo "Running cake"
-#./buildcake.sh "build.cake" $@
-mono "$CAKE_EXE" $SCRIPT -verbosity=$VERBOSITY -configuration=$CONFIGURATION -target=$TARGET -dnxVersion=$DNXVERSION
+dnx -p tests\NLog.UnitTests test
