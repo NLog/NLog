@@ -111,9 +111,11 @@ namespace NLog.UnitTests.Internal
 
                 var level = LogLevel.FromString(levelText);
                 InternalLogger.LogLevel = LogLevel.Trace;
-#if !DNX && !SILVERLIGHT
-                InternalLogger.LogToConsole = true;
-#endif
+
+
+                var stringWriter = new StringWriter();
+                InternalLogger.LogWriter = stringWriter;
+
                 InternalLogger.IncludeTimestamp = false;
 
                 var ex1 = CreateException(exceptionType);
@@ -124,13 +126,7 @@ namespace NLog.UnitTests.Internal
                 string expected =
                     levelText + " " + text + prefix + ex1 + Environment.NewLine;
 
-                StringWriter consoleOutWriter = new StringWriter()
-                {
-                    NewLine = Environment.NewLine
-                };
-
-                // Redirect the console output to a StringWriter.
-                Console.SetOut(consoleOutWriter);
+            
 
                 // Named (based on LogLevel) public methods.
 
@@ -139,8 +135,8 @@ namespace NLog.UnitTests.Internal
 
                 ex1.MustBeRethrown();
 
-                consoleOutWriter.Flush();
-                var actual = consoleOutWriter.ToString();
+                stringWriter.Flush();
+                var actual = stringWriter.ToString();
                 Assert.Equal(expected, actual);
             }
 
