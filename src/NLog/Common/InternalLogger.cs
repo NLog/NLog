@@ -329,13 +329,22 @@ namespace NLog.Common
                 return;
             }
 
-            if (logLevel == LogLevel.Trace)
+            var previousLevel = LogLevel;
+            try
             {
-                System.Diagnostics.Trace.WriteLine(message, "NLog");
+                LogLevel = LogLevel.Off; // without this stackoverflowexception occured
+                if (logLevel == LogLevel.Trace)
+                {
+                    System.Diagnostics.Trace.WriteLine(message, "NLog");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine(message, "NLog");
+                }
             }
-            else
+            finally
             {
-                System.Diagnostics.Debug.WriteLine(message, "NLog");
+                LogLevel = previousLevel;
             }
 #endif
         }
