@@ -84,7 +84,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the default LogFactory instance.
+        /// Gets the default <see cref="NLog.LogFactory" /> instance.
         /// </summary>
         internal static LogFactory LogFactory
         {
