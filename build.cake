@@ -163,7 +163,6 @@ Task("pack")
 });*/
    
 Task("sl5")
-	.ContinueOnError()
 	.IsDependentOn("net35")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
@@ -175,7 +174,6 @@ Task("sl5")
 });
 
 Task("net35")
-	.ContinueOnError()
 	.IsDependentOn("net451")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
@@ -187,7 +185,6 @@ Task("net35")
 });
 
 Task("net451")
-	.ContinueOnError()
 	.IsDependentOn("dotnet5.4")
 	.Does(() =>
 {
@@ -199,7 +196,6 @@ Task("net451")
 });
 
 Task("dotnet5.4")
-	.ContinueOnError()
 	.Does(() =>
 {
 	

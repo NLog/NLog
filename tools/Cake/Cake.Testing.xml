@@ -1,0 +1,735 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cake.Testing</name>
+    </assembly>
+    <members>
+        <member name="T:Cake.Testing.FakeDirectoryExtensions">
+            <summary>
+            Contains extensions for <see cref="T:Cake.Testing.FakeDirectory"/>.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeDirectoryExtensions.Hide(Cake.Testing.FakeDirectory)">
+            <summary>
+            Hides the specified directory.
+            </summary>
+            <param name="directory">The directory to hide.</param>
+            <returns>The same <see cref="T:Cake.Testing.FakeDirectory"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="T:Cake.Testing.FakeFileExtensions">
+            <summary>
+            Contains extensions for <see cref="T:Cake.Testing.FakeFile"/>.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeFileExtensions.SetContent(Cake.Testing.FakeFile,System.String)">
+            <summary>
+            Sets the content of the provided file.
+            </summary>
+            <param name="file">The file.</param>
+            <param name="content">The content.</param>
+            <returns>The same <see cref="T:Cake.Testing.FakeFile"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeFileExtensions.GetTextContent(Cake.Testing.FakeFile)">
+            <summary>
+            Gets the text content of the file (UTF-8 encoding).
+            </summary>
+            <param name="file">The file.</param>
+            <returns>The text content of the file.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeFileExtensions.Hide(Cake.Testing.FakeFile)">
+            <summary>
+            Hides the specified file.
+            </summary>
+            <param name="file">The file.</param>
+            <returns>The same <see cref="T:Cake.Testing.FakeFile"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="T:Cake.Testing.FakeFileSystemExtensions">
+            <summary>
+            Contains extensions for <see cref="T:Cake.Testing.FakeFileSystem"/>.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeFileSystemExtensions.EnsureFileDoNotExist(Cake.Testing.FakeFileSystem,Cake.Core.IO.FilePath)">
+            <summary>
+            Ensures that the specified file do not exist.
+            </summary>
+            <param name="fileSystem">The file system.</param>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeFileSystemExtensions.CreateFile(Cake.Testing.FakeFileSystem,Cake.Core.IO.FilePath)">
+            <summary>
+            Creates a file at the specified path.
+            </summary>
+            <param name="fileSystem">The file system.</param>
+            <param name="path">The path.</param>
+            <returns>The same <see cref="T:Cake.Testing.FakeFile"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeFileSystemExtensions.CreateDirectory(Cake.Testing.FakeFileSystem,Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Creates a directory at the specified path.
+            </summary>
+            <param name="fileSystem">The file system.</param>
+            <param name="path">The path.</param>
+            <returns>The same <see cref="T:Cake.Testing.FakeDirectory"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="T:Cake.Testing.FakeConsole">
+            <summary>
+            Implementation of a fake <see cref="T:Cake.Core.IConsole"/>.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeConsole.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Testing.FakeConsole"/> class.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeConsole.Write(System.String,System.Object[])">
+            <summary>
+            Writes the text representation of the specified array of objects to the
+            console output using the specified format information.
+            </summary>
+            <param name="format">A composite format string</param>
+            <param name="arg">An array of objects to write using format.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeConsole.WriteLine(System.String,System.Object[])">
+            <summary>
+            Writes the text representation of the specified array of objects, followed
+            by the current line terminator, to the console output using the specified
+            format information.
+            </summary>
+            <param name="format">A composite format string</param>
+            <param name="arg">An array of objects to write using format.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeConsole.WriteError(System.String,System.Object[])">
+            <summary>
+            Writes the text representation of the specified array of objects to the
+            console error output using the specified format information.
+            </summary>
+            <param name="format">A composite format string</param>
+            <param name="arg">An array of objects to write using format.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeConsole.WriteErrorLine(System.String,System.Object[])">
+            <summary>
+            Writes the text representation of the specified array of objects, followed
+            by the current line terminator, to the console error output using the
+            specified format information.
+            </summary>
+            <param name="format">A composite format string</param>
+            <param name="arg">An array of objects to write using format.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeConsole.ResetColor">
+            <summary>
+            Sets the foreground and background console colors to their defaults.
+            </summary>
+        </member>
+        <member name="P:Cake.Testing.FakeConsole.Messages">
+            <summary>
+            Gets or sets the messages.
+            </summary>
+            <value>The messages.</value>
+        </member>
+        <member name="P:Cake.Testing.FakeConsole.ErrorMessages">
+            <summary>
+            Gets or sets the error messages.
+            </summary>
+            <value>The messages.</value>
+        </member>
+        <member name="P:Cake.Testing.FakeConsole.ForegroundColor">
+            <summary>
+            Gets or sets the foreground color.
+            </summary>
+            <value>The foreground color</value>
+        </member>
+        <member name="P:Cake.Testing.FakeConsole.BackgroundColor">
+            <summary>
+            Gets or sets the background color.
+            </summary>
+            <value>The background color</value>
+        </member>
+        <member name="T:Cake.Testing.FakeDirectory">
+            <summary>
+            Represents a fake directory.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeDirectory.Create">
+            <summary>
+            Creates the directory.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeDirectory.Delete(System.Boolean)">
+            <summary>
+            Deletes the directory.
+            </summary>
+            <param name="recursive">Will perform a recursive delete if set to <c>true</c>.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeDirectory.GetDirectories(System.String,Cake.Core.IO.SearchScope)">
+            <summary>
+            Gets directories matching the specified filter and scope.
+            </summary>
+            <param name="filter">The filter.</param>
+            <param name="scope">The search scope.</param>
+            <returns>Directories matching the filter and scope.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeDirectory.GetFiles(System.String,Cake.Core.IO.SearchScope)">
+            <summary>
+            Gets files matching the specified filter and scope.
+            </summary>
+            <param name="filter">The filter.</param>
+            <param name="scope">The search scope.</param>
+            <returns>Files matching the specified filter and scope.</returns>
+        </member>
+        <member name="P:Cake.Testing.FakeDirectory.Exists">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Cake.Core.IO.IFileSystemInfo"/> exists.
+            </summary>
+            <value>
+              <c>true</c> if the entry exists; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Cake.Testing.FakeDirectory.Hidden">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Cake.Core.IO.IFileSystemInfo"/> is hidden.
+            </summary>
+            <value>
+              <c>true</c> if the entry is hidden; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Cake.Testing.FakeDirectory.Path">
+            <summary>
+            Gets the path to the directory.
+            </summary>
+            <value>The path.</value>
+        </member>
+        <member name="T:Cake.Testing.FakeEnvironment">
+            <summary>
+            Represents a fake environment.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.CreateUnixEnvironment(System.Boolean)">
+            <summary>
+            Creates a Unix environment.
+            </summary>
+            <param name="is64Bit">if set to <c>true</c> the operating system is 64 bit.</param>
+            <returns>A Unix environment.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.CreateWindowsEnvironment(System.Boolean)">
+            <summary>
+            Creates a Windows environment.
+            </summary>
+            <param name="is64Bit">if set to <c>true</c> the operating system is 64 bit.</param>
+            <returns>A Windows environment.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.Is64BitOperativeSystem">
+            <summary>
+            Gets whether or not the current operative system is 64 bit.
+            </summary>
+            <returns>Whether or not the current operative system is 64 bit.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.ChangeOperativeSystemBitness(System.Boolean)">
+            <summary>
+            Changes the operative system bitness.
+            </summary>
+            <param name="is64Bit">if set to <c>true</c>, this is a 64-bit operative system.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.IsUnix">
+            <summary>
+            Determines whether the current machine is running Unix.
+            </summary>
+            <returns>Whether or not the current machine is running Unix.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.GetSpecialPath(Cake.Core.IO.SpecialPath)">
+            <summary>
+            Gets a special path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>
+            A <see cref="T:Cake.Core.IO.DirectoryPath"/> to the special path.
+            </returns>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.SetSpecialPath(Cake.Core.IO.SpecialPath,Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Sets a special path.
+            </summary>
+            <param name="kind">The special path kind.</param>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.GetApplicationRoot">
+            <summary>
+            Gets the application root path.
+            </summary>
+            <returns>
+            The application root path.
+            </returns>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.SetApplicationRoot(Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Sets the application root path.
+            </summary>
+            <param name="applicationRoot">The application root path.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.GetEnvironmentVariable(System.String)">
+            <summary>
+            Gets an environment variable.
+            </summary>
+            <param name="variable">The variable.</param>
+            <returns>
+            The value of the environment variable.
+            </returns>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.SetEnvironmentVariable(System.String,System.String)">
+            <summary>
+            Sets an environment variable.
+            </summary>
+            <param name="variable">The variable.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.GetEnvironmentVariables">
+            <summary>
+            Gets all environment variables.
+            </summary>
+            <returns>The environment variables as IDictionary&lt;string, string&gt; </returns>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.GetTargetFramework">
+            <summary>
+            Gets the target .Net framework version that the current AppDomain is targeting.
+            </summary>
+            <returns>The target framework.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeEnvironment.SetTargetFramework(System.Runtime.Versioning.FrameworkName)">
+            <summary>
+            Sets the target framework.
+            </summary>
+            <param name="targetFramework">The target framework.</param>
+        </member>
+        <member name="P:Cake.Testing.FakeEnvironment.WorkingDirectory">
+            <summary>
+            Gets or sets the working directory.
+            </summary>
+            <value>The working directory.</value>
+        </member>
+        <member name="T:Cake.Testing.FakeFile">
+            <summary>
+            Represents a fake file.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeFile.Copy(Cake.Core.IO.FilePath,System.Boolean)">
+            <summary>
+            Copies the file to the specified destination path.
+            </summary>
+            <param name="destination">The destination path.</param>
+            <param name="overwrite">Will overwrite existing destination file if set to <c>true</c>.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeFile.Move(Cake.Core.IO.FilePath)">
+            <summary>
+            Moves the file to the specified destination path.
+            </summary>
+            <param name="destination">The destination path.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeFile.Open(System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+            <summary>
+            Opens the file using the specified options.
+            </summary>
+            <param name="fileMode">The file mode.</param>
+            <param name="fileAccess">The file access.</param>
+            <param name="fileShare">The file share.</param>
+            <returns>A <see cref="T:System.IO.Stream"/> to the file.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeFile.Delete">
+            <summary>
+            Deletes the file.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeFile.Resize(System.Int64)">
+            <summary>
+            Resizes the file.
+            </summary>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="P:Cake.Testing.FakeFile.Path">
+            <summary>
+            Gets the path to the file.
+            </summary>
+            <value>The path.</value>
+        </member>
+        <member name="P:Cake.Testing.FakeFile.Exists">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Cake.Core.IO.IFileSystemInfo"/> exists.
+            </summary>
+            <value>
+              <c>true</c> if the entry exists; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Cake.Testing.FakeFile.Hidden">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Cake.Core.IO.IFileSystemInfo"/> is hidden.
+            </summary>
+            <value>
+              <c>true</c> if the entry is hidden; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Cake.Testing.FakeFile.Length">
+            <summary>
+            Gets the length of the file.
+            </summary>
+            <value>
+            The length of the file.
+            </value>
+        </member>
+        <member name="P:Cake.Testing.FakeFile.ContentLength">
+            <summary>
+            Gets the length of the content.
+            </summary>
+            <value>
+            The length of the content.
+            </value>
+        </member>
+        <member name="P:Cake.Testing.FakeFile.Content">
+            <summary>
+            Gets the content.
+            </summary>
+            <value>The content.</value>
+        </member>
+        <member name="T:Cake.Testing.FakeFileSystem">
+            <summary>
+            Represents a fake file system.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeFileSystem.#ctor(Cake.Core.ICakeEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Testing.FakeFileSystem"/> class.
+            </summary>
+            <param name="environment">The environment.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeFileSystem.GetFile(Cake.Core.IO.FilePath)">
+            <summary>
+            Gets a <see cref="T:Cake.Testing.FakeFile"/> instance representing the specified path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>A <see cref="T:Cake.Testing.FakeFile"/> instance representing the specified path.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeFileSystem.GetDirectory(Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Gets a <see cref="T:Cake.Testing.FakeDirectory"/> instance representing the specified path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>A <see cref="T:Cake.Testing.FakeDirectory"/> instance representing the specified path.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeFileSystem.Cake#Core#IO#IFileSystem#GetDirectory(Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Gets a <see cref="T:Cake.Core.IO.IDirectory"/> instance representing the specified path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>A <see cref="T:Cake.Core.IO.IDirectory"/> instance representing the specified path.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeFileSystem.Cake#Core#IO#IFileSystem#GetFile(Cake.Core.IO.FilePath)">
+            <summary>
+            Gets a <see cref="T:Cake.Core.IO.IFile"/> instance representing the specified path.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>A <see cref="T:Cake.Core.IO.IFile"/> instance representing the specified path.</returns>
+        </member>
+        <member name="T:Cake.Testing.FakeLog">
+            <summary>
+            Implementation of a <see cref="T:Cake.Core.Diagnostics.ICakeLog"/> that saves all messages written to it.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeLog.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Testing.FakeLog"/> class.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeLog.Write(Cake.Core.Diagnostics.Verbosity,Cake.Core.Diagnostics.LogLevel,System.String,System.Object[])">
+            <summary>
+            Writes the text representation of the specified array of objects to the
+            log using the specified verbosity, log level and format information.
+            </summary>
+            <param name="verbosity">The verbosity.</param>
+            <param name="level">The log level.</param>
+            <param name="format">A composite format string.</param>
+            <param name="args">An array of objects to write using format.</param>
+        </member>
+        <member name="P:Cake.Testing.FakeLog.Entries">
+            <summary>
+            Gets the messages.
+            </summary>
+            <value>The messages.</value>
+        </member>
+        <member name="P:Cake.Testing.FakeLog.Verbosity">
+            <summary>
+            Gets the verbosity.
+            </summary>
+            <value>The verbosity.</value>
+        </member>
+        <member name="T:Cake.Testing.FakeLogMessage">
+            <summary>
+            A log message produced by <see cref="T:Cake.Testing.FakeLog"/>.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeLogMessage.#ctor(Cake.Core.Diagnostics.Verbosity,Cake.Core.Diagnostics.LogLevel,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Testing.FakeLogMessage"/> class.
+            </summary>
+            <param name="verbosity">The verbosity.</param>
+            <param name="level">The log level.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="P:Cake.Testing.FakeLogMessage.Verbosity">
+            <summary>
+            Gets the verbosity.
+            </summary>
+            <value>The verbosity.</value>
+        </member>
+        <member name="P:Cake.Testing.FakeLogMessage.Level">
+            <summary>
+            Gets the log level.
+            </summary>
+            <value>The log level.</value>
+        </member>
+        <member name="P:Cake.Testing.FakeLogMessage.Message">
+            <summary>
+            Gets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="T:Cake.Testing.ToolFixtureExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:Cake.Testing.Fixtures.ToolFixture`2"/>.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.ToolFixtureExtensions.GivenDefaultToolDoNotExist``2(Cake.Testing.Fixtures.ToolFixture{``0,``1})">
+            <summary>
+            Ensures that the tool do not exist under the tool settings tool path.
+            </summary>
+            <typeparam name="TToolSettings">The type of the tool settings.</typeparam>
+            <typeparam name="TFixtureResult">The type of the fixture result.</typeparam>
+            <param name="fixture">The fixture.</param>
+        </member>
+        <member name="M:Cake.Testing.ToolFixtureExtensions.GivenSettingsToolPathExist``2(Cake.Testing.Fixtures.ToolFixture{``0,``1})">
+            <summary>
+            Ensures that the tool exist under the tool settings tool path.
+            </summary>
+            <typeparam name="TToolSettings">The type of the tool settings.</typeparam>
+            <typeparam name="TFixtureResult">The type of the fixture result.</typeparam>
+            <param name="fixture">The fixture.</param>
+        </member>
+        <member name="M:Cake.Testing.ToolFixtureExtensions.GivenProcessCannotStart``2(Cake.Testing.Fixtures.ToolFixture{``0,``1})">
+            <summary>
+            Ensures that the tool's process is unable to start.
+            </summary>
+            <typeparam name="TToolSettings">The type of the tool settings.</typeparam>
+            <typeparam name="TFixtureResult">The type of the fixture result.</typeparam>
+            <param name="fixture">The fixture.</param>
+        </member>
+        <member name="M:Cake.Testing.ToolFixtureExtensions.GivenProcessExitsWithCode``2(Cake.Testing.Fixtures.ToolFixture{``0,``1},System.Int32)">
+            <summary>
+            Ensures that the tool process exits with the given exit code.
+            </summary>
+            <typeparam name="TToolSettings">The type of the tool settings.</typeparam>
+            <typeparam name="TFixtureResult">The type of the fixture result.</typeparam>
+            <param name="fixture">The fixture.</param>
+            <param name="exitCode">The exit code.</param>
+        </member>
+        <member name="T:Cake.Testing.FakeProcess">
+            <summary>
+            Implementation of a fake process.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeProcess.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeProcess.WaitForExit">
+            <summary>
+            Waits for the process to exit
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeProcess.WaitForExit(System.Int32)">
+            <summary>
+            Waits for the process to exit with possible timeout for command.
+            </summary>
+            <param name="milliseconds">The amount of time, in milliseconds, to wait for the associated process to exit. The maximum is the largest possible value of a 32-bit integer, which represents infinity to the operating system.</param>
+            <returns>true if the associated process has exited; otherwise, false.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeProcess.GetExitCode">
+            <summary>
+            Gets the exit code.
+            </summary>
+            <returns>The process exit code.</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeProcess.GetStandardOutput">
+            <summary>
+            Get the standard output of process
+            </summary>
+            <returns>Returns process output <see cref="P:Cake.Core.IO.ProcessSettings.RedirectStandardOutput">RedirectStandardOutput</see> is true</returns>
+        </member>
+        <member name="M:Cake.Testing.FakeProcess.Kill">
+            <summary>
+            Immediately stops the associated process.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.FakeProcess.SetExitCode(System.Int32)">
+            <summary>
+            Sets the exit code.
+            </summary>
+            <param name="exitCode">The exit code.</param>
+        </member>
+        <member name="M:Cake.Testing.FakeProcess.SetStandardOutput(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Sets the standard output.
+            </summary>
+            <param name="standardOutput">The standard output.</param>
+        </member>
+        <member name="T:Cake.Testing.Fixtures.ToolFixtureProcessRunner`1">
+            <summary>
+            The tool fixture process runner.
+            </summary>
+            <typeparam name="TFixtureResult">The type of the fixture result.</typeparam>
+        </member>
+        <member name="M:Cake.Testing.Fixtures.ToolFixtureProcessRunner`1.Start(Cake.Core.IO.FilePath,Cake.Core.IO.ProcessSettings)">
+            <summary>
+            Starts the specified file path.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="settings">The settings.</param>
+            <returns>The (fake) tool fixture process.</returns>
+        </member>
+        <member name="P:Cake.Testing.Fixtures.ToolFixtureProcessRunner`1.Process">
+            <summary>
+            Gets or sets the process that will be returned
+            when starting a process.
+            </summary>
+            <value>The process.</value>
+        </member>
+        <member name="P:Cake.Testing.Fixtures.ToolFixtureProcessRunner`1.Results">
+            <summary>
+            Gets the results.
+            </summary>
+            <value>The results.</value>
+        </member>
+        <member name="T:Cake.Testing.Fixtures.ToolFixtureResult">
+            <summary>
+            Represents a tool fixture result.
+            </summary>
+        </member>
+        <member name="M:Cake.Testing.Fixtures.ToolFixtureResult.#ctor(Cake.Core.IO.FilePath,Cake.Core.IO.ProcessSettings)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Testing.Fixtures.ToolFixtureResult"/> class.
+            </summary>
+            <param name="path">The tool path.</param>
+            <param name="process">The process settings.</param>
+        </member>
+        <member name="P:Cake.Testing.Fixtures.ToolFixtureResult.Path">
+            <summary>
+            Gets the tool path.
+            </summary>
+            <value>The tool path.</value>
+        </member>
+        <member name="P:Cake.Testing.Fixtures.ToolFixtureResult.Process">
+            <summary>
+            Gets the process settings.
+            </summary>
+            <value>The process settings.</value>
+        </member>
+        <member name="P:Cake.Testing.Fixtures.ToolFixtureResult.Args">
+            <summary>
+            Gets the arguments.
+            </summary>
+            <value>The arguments.</value>
+        </member>
+        <member name="T:Cake.Testing.Fixtures.ToolFixture`1">
+            <summary>
+            Base class for tool fixtures.
+            </summary>
+            <typeparam name="TToolSettings">The type of the tool settings.</typeparam>
+        </member>
+        <member name="T:Cake.Testing.Fixtures.ToolFixture`2">
+            <summary>
+            Base class for tool fixtures.
+            </summary>
+            <typeparam name="TToolSettings">The type of the tool settings.</typeparam>
+            <typeparam name="TFixtureResult">The type of the fixture result.</typeparam>
+        </member>
+        <member name="M:Cake.Testing.Fixtures.ToolFixture`2.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Testing.Fixtures.ToolFixture`2"/> class.
+            </summary>
+            <param name="toolFilename">The tool filename.</param>
+        </member>
+        <member name="M:Cake.Testing.Fixtures.ToolFixture`2.GetDefaultToolPath(System.String)">
+            <summary>
+            Gets the default tool path.
+            </summary>
+            <param name="toolFilename">The tool filename.</param>
+            <returns>The default tool path.</returns>
+        </member>
+        <member name="M:Cake.Testing.Fixtures.ToolFixture`2.Run">
+            <summary>
+            Runs the tool.
+            </summary>
+            <returns>The result from running the tool.</returns>
+        </member>
+        <member name="M:Cake.Testing.Fixtures.ToolFixture`2.CreateResult(Cake.Core.IO.FilePath,Cake.Core.IO.ProcessSettings)">
+            <summary>
+            Creates the tool fixture result from the provided
+            tool path and process settings.
+            </summary>
+            <param name="path">The tool path.</param>
+            <param name="process">The process settings.</param>
+            <returns>A tool fixture result.</returns>
+        </member>
+        <member name="M:Cake.Testing.Fixtures.ToolFixture`2.RunTool">
+            <summary>
+            Runs the tool.
+            </summary>
+        </member>
+        <member name="P:Cake.Testing.Fixtures.ToolFixture`2.FileSystem">
+            <summary>
+            Gets or sets the file system.
+            </summary>
+            <value>The file system.</value>
+        </member>
+        <member name="P:Cake.Testing.Fixtures.ToolFixture`2.ProcessRunner">
+            <summary>
+            Gets or sets the process runner.
+            </summary>
+            <value>The process runner.</value>
+        </member>
+        <member name="P:Cake.Testing.Fixtures.ToolFixture`2.Environment">
+            <summary>
+            Gets or sets the environment.
+            </summary>
+            <value>The environment.</value>
+        </member>
+        <member name="P:Cake.Testing.Fixtures.ToolFixture`2.Globber">
+            <summary>
+            Gets or sets the globber.
+            </summary>
+            <value>The globber.</value>
+        </member>
+        <member name="P:Cake.Testing.Fixtures.ToolFixture`2.Settings">
+            <summary>
+            Gets or sets the tool settings.
+            </summary>
+            <value>The tool settings.</value>
+        </member>
+        <member name="P:Cake.Testing.Fixtures.ToolFixture`2.DefaultToolPath">
+            <summary>
+            Gets the default tool path.
+            </summary>
+            <value>The default tool path.</value>
+        </member>
+        <member name="M:Cake.Testing.Fixtures.ToolFixture`1.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Testing.Fixtures.ToolFixture`1"/> class.
+            </summary>
+            <param name="toolFilename">The tool filename.</param>
+        </member>
+        <member name="M:Cake.Testing.Fixtures.ToolFixture`1.CreateResult(Cake.Core.IO.FilePath,Cake.Core.IO.ProcessSettings)">
+            <summary>
+            Creates a <see cref="T:Cake.Testing.Fixtures.ToolFixtureResult"/> from a tool path and process settings.
+            </summary>
+            <param name="path">The tool path.</param>
+            <param name="process">The process settings.</param>
+            <returns>A tool fixture result.</returns>
+        </member>
+    </members>
+</doc>

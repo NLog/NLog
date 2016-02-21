@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cake.NuGet</name>
+    </assembly>
+    <members>
+        <member name="T:Cake.NuGet.AssemblyFrameworkNameParser">
+            <summary>
+            Represents an object that parses the segments of a filepath for a .Net framework name
+            </summary>
+        </member>
+        <member name="T:Cake.NuGet.IAssemblyFrameworkNameParser">
+            <summary>
+            Represents an object that parses the segments of a filepath for a .Net framework name
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.IAssemblyFrameworkNameParser.Parse(Cake.Core.IO.FilePath)">
+            <summary>
+            Parses the framework name from assembly file path.
+            </summary>
+            <param name="path">The assembly file path.</param>
+            <returns>the parsed framework name, or <c>null</c> when path contains no folders.</returns>
+        </member>
+        <member name="M:Cake.NuGet.AssemblyFrameworkNameParser.#ctor(Cake.NuGet.IFrameworkNameParser)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.NuGet.AssemblyFrameworkNameParser"/> class.
+            </summary>
+            <param name="frameworkNameParser">The framework name parser.</param>
+        </member>
+        <member name="M:Cake.NuGet.AssemblyFrameworkNameParser.Parse(Cake.Core.IO.FilePath)">
+            <summary>
+            Parses the framework name from assembly file path.
+            </summary>
+            <param name="path">The assembly file path.</param>
+            <returns>the parsed framework name, or <c>null</c> when path contains no folders.</returns>
+        </member>
+        <member name="T:Cake.NuGet.IFrameworkNameParser">
+            <summary>
+            Parses version-specific folder names into an instance of FrameworkName
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.IFrameworkNameParser.ParseFrameworkName(System.String)">
+            <summary>
+            This function tries to normalize a string that represents framework version names 
+            (the name of a framework version-specific folder in a nuget package, i.e., "net451" or "net35") into
+            something a framework name that the package manager understands.
+            </summary>
+            <param name="frameworkName">value to be parsed.</param>
+            <returns>A FrameworkName instance corresponding with the provided frameworkName token.  
+            When parsing is unsuccessful, returns a FrameworkName with an Identifier property of "Unsupported."</returns>
+            <exception cref="T:System.ArgumentNullException">when frameworkName is null.</exception>
+        </member>
+        <member name="T:Cake.NuGet.IFrameworkTargetable">
+            <summary>
+            Represents an item that may support specific .Net framework versions
+            </summary>
+        </member>
+        <member name="P:Cake.NuGet.IFrameworkTargetable.SupportedFrameworks">
+            <summary>
+            Gets the frameworks supported by this item.
+            </summary>
+            <value>
+            The supported frameworks.
+            </value>
+        </member>
+        <member name="T:Cake.NuGet.INuGetAssemblyCompatibilityFilter">
+            <summary>
+            Filters assemblies for .Net target framework compatibility
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.INuGetAssemblyCompatibilityFilter.FilterCompatibleAssemblies(System.Runtime.Versioning.FrameworkName,System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath})">
+            <summary>
+            Filters a collection of assembly files for .Net target framework compatibility.
+            </summary>
+            <param name="targetFramework">The target framework.</param>
+            <param name="assemblyPaths">The assembly file paths, relative to their package folder.</param>
+            <returns>a subset of the provided assemblyFiles that match the provided targetFramework.</returns>
+        </member>
+        <member name="T:Cake.NuGet.INuGetFrameworkCompatibilityFilter">
+            <summary>
+            Wrapper interface for NuGet's Target Framework compatibility functionality.
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.INuGetFrameworkCompatibilityFilter.GetCompatibleItems``1(System.Runtime.Versioning.FrameworkName,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Filters the provided list of items, returning only those items compatible with the given project framework.
+            </summary>
+            <typeparam name="T">the type of items being filtered</typeparam>
+            <param name="projectFramework">The project framework.</param>
+            <param name="items">The items.</param>
+            <returns>The compatible items. Empty if try is unsuccessful.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            projectFramework
+            or
+            items
+            </exception>
+        </member>
+        <member name="T:Cake.NuGet.INuGetPackageAssembliesLocator">
+            <summary>
+            Finds assemblies included in a nuget package.
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.INuGetPackageAssembliesLocator.FindAssemblies(Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Finds assemblies (DLLs) included in a nuget package.
+            </summary>
+            <param name="packageDirectory">The package directory.</param>
+            <returns>
+            the DLLs.
+            </returns>
+        </member>
+        <member name="T:Cake.NuGet.INuGetPackageContentResolver">
+            <summary>
+            Represents a file locator for NuGet packages that returns relevant
+            files for the current framework given the resource type.
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.INuGetPackageContentResolver.GetFiles(Cake.Core.IO.DirectoryPath,Cake.Core.Packaging.PackageType)">
+            <summary>
+            Gets the relevant files for a NuGet package
+            given a path and a resource type.
+            </summary>
+            <param name="path">The path to search.</param>
+            <param name="type">The resource type.</param>
+            <returns>A collection of files.</returns>
+        </member>
+        <member name="T:Cake.NuGet.INuGetPackageReferenceBundler">
+            <summary>
+            Bundles packageAssemblyFiles into package reference sets grouped by their target framework.
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.INuGetPackageReferenceBundler.BundleByTargetFramework(System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath})">
+            <summary>
+            Bundles the provided packageAssemblyFiles into package reference sets grouped by their target framework.
+            </summary>
+            <param name="packageAssemblyFiles">The package assembly files.</param>
+            <returns>The newly created PackageReferenceSets</returns>
+        </member>
+        <member name="T:Cake.NuGet.NuGetAssemblyCompatibilityFilter">
+            <summary>
+            Filters assemblies for .Net target framework compatibility
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.NuGetAssemblyCompatibilityFilter.#ctor(Cake.NuGet.INuGetFrameworkCompatibilityFilter,Cake.NuGet.INuGetPackageReferenceBundler)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.NuGet.NuGetAssemblyCompatibilityFilter"/> class.
+            </summary>
+            <param name="frameworkCompatibilityFilter">The framework compatibility filter.</param>
+            <param name="referenceBundler">The reference set factory.</param>
+        </member>
+        <member name="M:Cake.NuGet.NuGetAssemblyCompatibilityFilter.FilterCompatibleAssemblies(System.Runtime.Versioning.FrameworkName,System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath})">
+            <summary>
+            Filters the assemblies for .Net target framework compatibility .
+            </summary>
+            <param name="targetFramework">The target framework.</param>
+            <param name="assemblyPaths">The assembly files.</param>
+            <returns>a subset of the provided assemblyFiles that match the provided targetFramework.</returns>
+        </member>
+        <member name="T:Cake.NuGet.NuGetPackageAssembliesLocator">
+            <summary>
+            Finds assemblies (DLLs) included in a nuget package.
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.NuGetPackageAssembliesLocator.#ctor(Cake.Core.IO.IFileSystem,Cake.Core.Diagnostics.ICakeLog,Cake.NuGet.INuGetAssemblyCompatibilityFilter,Cake.Core.ICakeEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.NuGet.NuGetPackageAssembliesLocator"/> class.
+            </summary>
+            <param name="fileSystem">The file system.</param>
+            <param name="log">The log.</param>
+            <param name="assemblyCompatibilityFilter">The assembly compatibility filter.</param>
+            <param name="environment">The environment.</param>
+        </member>
+        <member name="M:Cake.NuGet.NuGetPackageAssembliesLocator.FindAssemblies(Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Finds assemblies (DLLs) included in a nuget package.
+            </summary>
+            <param name="packageDirectory">The package directory.</param>
+            <returns>
+            the DLLs.
+            </returns>
+        </member>
+        <member name="T:Cake.NuGet.NuGetPackageContentResolver">
+            <summary>
+            Implementation of a file locator for NuGet packages that
+            returns relevant files for the current framework given a resource type.
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.NuGetPackageContentResolver.#ctor(Cake.Core.IO.IFileSystem,Cake.NuGet.INuGetPackageAssembliesLocator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.NuGet.NuGetPackageContentResolver"/> class.
+            </summary>
+            <param name="fileSystem">The file system.</param>
+            <param name="locator">The locator.</param>
+        </member>
+        <member name="M:Cake.NuGet.NuGetPackageContentResolver.GetFiles(Cake.Core.IO.DirectoryPath,Cake.Core.Packaging.PackageType)">
+            <summary>
+            Gets the relevant files for a NuGet package
+            given a path and a resource type.
+            </summary>
+            <param name="path">The path to search.</param>
+            <param name="type">The resource type.</param>
+            <returns>A collection of files.</returns>
+        </member>
+        <member name="T:Cake.NuGet.NuGetPackageInstaller">
+            <summary>
+            Installer for NuGet URI resources.
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.NuGetPackageInstaller.#ctor(Cake.Core.IO.IFileSystem,Cake.Core.ICakeEnvironment,Cake.Core.IO.IProcessRunner,Cake.Core.IO.NuGet.INuGetToolResolver,Cake.NuGet.INuGetPackageContentResolver,Cake.Core.Diagnostics.ICakeLog)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.NuGet.NuGetPackageInstaller"/> class.
+            </summary>
+            <param name="fileSystem">The file system.</param>
+            <param name="environment">The environment.</param>
+            <param name="processRunner">The process runner.</param>
+            <param name="toolResolver">The NuGet tool resolver.</param>
+            <param name="contentResolver">The content resolver.</param>
+            <param name="log">The log.</param>
+        </member>
+        <member name="M:Cake.NuGet.NuGetPackageInstaller.CanInstall(Cake.Core.Packaging.PackageReference,Cake.Core.Packaging.PackageType)">
+            <summary>
+            Determines whether this instance can install the specified resource.
+            </summary>
+            <param name="package">The package reference.</param>
+            <param name="type">The package type.</param>
+            <returns>
+              <c>true</c> if this installer can install the
+              specified resource; otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Cake.NuGet.NuGetPackageInstaller.Install(Cake.Core.Packaging.PackageReference,Cake.Core.Packaging.PackageType,Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Installs the specified resource at the given location.
+            </summary>
+            <param name="package">The package reference.</param>
+            <param name="type">The package type.</param>
+            <param name="path">The location where to install the package.</param>
+            <returns>The installed files.</returns>
+        </member>
+        <member name="T:Cake.NuGet.NuGetPackageReferenceBundler">
+            <summary>
+            Bundles packageAssemblyFiles into package reference sets grouped by their target framework.
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.NuGetPackageReferenceBundler.#ctor(Cake.NuGet.IAssemblyFrameworkNameParser)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.NuGet.NuGetPackageReferenceBundler"/> class.
+            </summary>
+            <param name="frameworkNameParser">The framework name parser.</param>
+        </member>
+        <member name="M:Cake.NuGet.NuGetPackageReferenceBundler.BundleByTargetFramework(System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath})">
+            <summary>
+            Bundles the provided packageAssemblyFiles into package reference sets grouped by their target framework.
+            </summary>
+            <param name="packageAssemblyFiles">The package assembly files.</param>
+            <returns>The newly created PackageReferenceSets</returns>
+        </member>
+        <member name="T:Cake.NuGet.NuGetPackageReferenceSet">
+            <summary>
+            Represents a targetFramework-specific set of assembly references belonging to a nuget package.
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.NuGetPackageReferenceSet.#ctor(System.Runtime.Versioning.FrameworkName,System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.NuGet.NuGetPackageReferenceSet"/> class.
+            </summary>
+            <param name="targetFramework">The target framework. May be null.</param>
+            <param name="references">The references.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="references"/> is null.</exception>
+        </member>
+        <member name="P:Cake.NuGet.NuGetPackageReferenceSet.References">
+            <summary>
+            Gets the references.
+            </summary>
+            <value>
+            The references.
+            </value>
+        </member>
+        <member name="P:Cake.NuGet.NuGetPackageReferenceSet.TargetFramework">
+            <summary>
+            Gets the target framework.
+            </summary>
+            <value>
+            The target framework.
+            </value>
+        </member>
+        <member name="P:Cake.NuGet.NuGetPackageReferenceSet.SupportedFrameworks">
+            <summary>
+            Gets the supported frameworks.
+            </summary>
+            <value>
+            The supported frameworks.
+            </value>
+        </member>
+        <member name="T:Cake.NuGet.NuGetVersionUtilityAdapter">
+            <summary>
+            Adapts NuGet's <see cref="T:NuGet.VersionUtility"/> to <see cref="T:Cake.NuGet.INuGetFrameworkCompatibilityFilter"/>,
+            <see cref="T:Cake.NuGet.IFrameworkNameParser"/>.
+            </summary>
+        </member>
+        <member name="M:Cake.NuGet.NuGetVersionUtilityAdapter.ParseFrameworkName(System.String)">
+            <summary>
+            This function tries to normalize a string that represents framework version names
+            (the name of a framework version-specific folder in a nuget package, i.e., "net451" or "net35") into
+            something a framework name that the package manager understands.
+            </summary>
+            <param name="frameworkName">value to be parsed.</param>
+            <returns>
+            A FrameworkName instance corresponding with the provided frameworkName token.
+            When parsing is unsuccessful, returns a FrameworkName with an Identifier property of "Unsupported."
+            </returns>
+            <exception cref="T:System.ArgumentNullException">when frameworkName is null.</exception>
+        </member>
+        <member name="M:Cake.NuGet.NuGetVersionUtilityAdapter.GetCompatibleItems``1(System.Runtime.Versioning.FrameworkName,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Filters the provided list of items, returning only those items compatible with the given project framework.
+            </summary>
+            <typeparam name="T">the type of items being filtered</typeparam>
+            <param name="projectFramework">The project framework.</param>
+            <param name="items">The items.</param>
+            <returns>The compatible items. Empty if try is unsuccessful.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            projectFramework or items
+            </exception>
+        </member>
+    </members>
+</doc>

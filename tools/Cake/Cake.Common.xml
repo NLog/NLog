@@ -483,7 +483,7 @@
             different build systems.
             </summary>
         </member>
-        <member name="M:Cake.Common.Build.BuildSystem.#ctor(Cake.Common.Build.AppVeyor.IAppVeyorProvider,Cake.Common.Build.TeamCity.ITeamCityProvider,Cake.Common.Build.MyGet.IMyGetProvider,Cake.Common.Build.Bamboo.IBambooProvider)">
+        <member name="M:Cake.Common.Build.BuildSystem.#ctor(Cake.Common.Build.AppVeyor.IAppVeyorProvider,Cake.Common.Build.TeamCity.ITeamCityProvider,Cake.Common.Build.MyGet.IMyGetProvider,Cake.Common.Build.Bamboo.IBambooProvider,Cake.Common.Build.ContinuaCI.IContinuaCIProvider)">
             <summary>
             Initializes a new instance of the <see cref="T:Cake.Common.Build.BuildSystem"/> class.
             </summary>
@@ -491,6 +491,7 @@
             <param name="teamCityProvider">The TeamCity Provider.</param>
             <param name="myGetProvider">The MyGet Provider.</param>
             <param name="bambooProvider">The Bamboo Provider.</param>
+            <param name="continuaCIProvider">The Continua CI Provider.</param>
         </member>
         <member name="P:Cake.Common.Build.BuildSystem.IsRunningOnAppVeyor">
             <summary>
@@ -618,6 +619,39 @@
              </code>
              </example>
         </member>
+        <member name="P:Cake.Common.Build.BuildSystem.IsRunningOnContinuaCI">
+             <summary>
+             Gets a value indicating whether the current build is running on Continua CI.
+             </summary>
+             <example>
+             <code>
+             if(BuildSystem.IsRunningOnContinuaCI)
+             {
+                 // Get the build version.
+                 var buildVersion = BuildSystem.ContinuaCI.Environment.Build.Version;
+            
+             }
+             </code>
+             </example>
+             <value>
+             <c>true</c> if the build currently is running on Continua CI; otherwise, <c>false</c>.
+             </value>
+        </member>
+        <member name="P:Cake.Common.Build.BuildSystem.ContinuaCI">
+             <summary>
+             Gets the Continua CI Provider.
+             </summary>
+             <example>
+             <code>
+             if(BuildSystem.IsRunningOnContinuaCI)
+             {
+                 //Get the Continua CI Project Name
+                 var projectName = BuildSystem.ContinuaCI.Environment.Project.Name
+            
+             }
+             </code>
+             </example>
+        </member>
         <member name="P:Cake.Common.Build.BuildSystem.IsLocalBuild">
              <summary>
              Gets a value indicating whether the current build is local build.
@@ -708,6 +742,510 @@
             </example>
             <param name="context">The context.</param>
             <returns>A <see cref="N:Cake.Common.Build.Bamboo"/> instance.</returns>
+        </member>
+        <member name="M:Cake.Common.Build.BuildSystemAliases.ContinuaCI(Cake.Core.ICakeContext)">
+            <summary>
+            Gets a <see cref="T:Cake.Common.Build.ContinuaCI.ContinuaCIProvider"/> instance that can
+            be used to manipulate the Continua CI environment.
+            </summary>
+            <example>
+            <code>
+            var isContinuaCIBuild = ContinuaCI.IsRunningContinuaCI;
+            </code>
+            </example>
+            <param name="context">The context.</param>
+            <returns>A <see cref="N:Cake.Common.Build.ContinuaCI"/> instance.</returns>
+        </member>
+        <member name="T:Cake.Common.Build.ContinuaCI.ContinuaCIInfo">
+            <summary>
+            Base class used to provide information about the Continua CI environment.
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIInfo.#ctor(Cake.Core.ICakeEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Common.Build.ContinuaCI.ContinuaCIInfo"/> class.
+            </summary>
+            <param name="environment">The environment.</param>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIInfo.GetEnvironmentString(System.String)">
+            <summary>
+            Gets an environment variable as a <see cref="T:System.String"/>.
+            </summary>
+            <param name="variable">The environment variable name.</param>
+            <returns>The environment variable.</returns>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIInfo.GetEnvironmentInteger(System.String)">
+            <summary>
+            Gets an environment variable as a <see cref="T:System.Int32"/>.
+            </summary>
+            <param name="variable">The environment variable name.</param>
+            <returns>The environment variable.</returns>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIInfo.GetEnvironmentBoolean(System.String)">
+            <summary>
+            Gets an environment variable as a <see cref="T:System.Boolean"/>.
+            </summary>
+            <param name="variable">The environment variable name.</param>
+            <returns>The environment variable.</returns>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIInfo.GetEnvironmentDateTime(System.String)">
+            <summary>
+            Gets an environment variable as a <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="variable">The environment variable name.</param>
+            <returns>The environment variable.</returns>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIInfo.GetEnvironmentLong(System.String)">
+            <summary>
+            Gets an environment variable as a <see cref="T:System.Int64"/>.
+            </summary>
+            <param name="variable">The environment variable name.</param>
+            <returns>The environment variable.</returns>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIInfo.GetEnvironmentTimeSpan(System.String)">
+            <summary>
+            Gets an environment variable as a <see cref="T:System.TimeSpan"/>.
+            </summary>
+            <param name="variable">The environment variable name.</param>
+            <returns>The environment variable.</returns>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIInfo.GetEnvironmentStringList(System.String)">
+            <summary>
+            Gets an environment variable as an array of <see cref="T:System.String"/>.
+            </summary>
+            <param name="variable">The environment variable name.</param>
+            <returns>The environment variable value split by comma into an array of values.</returns>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIInfo.GetEnvironmentStringDictionary(System.String)">
+            <summary>
+            Gets matching list of environment variables as an dictionary of <see cref="T:System.String"/>.
+            </summary>
+            <param name="variablePrefix">The prefix for the environment variables name.</param>
+            <returns>A dictionary of environment variables starting with variablePrefix</returns>
+        </member>
+        <member name="T:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo">
+            <summary>
+            Provides Continua CI build information for a current build.
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.#ctor(Cake.Core.ICakeEnvironment,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo"/> class.
+            </summary>
+            <param name="environment">The environment.</param>
+            <param name="prefix">The prefix for environment variables in this clas</param>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.Id">
+            <summary>
+            Gets the build id.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.Version">
+            <summary>
+            Gets the build version.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.StartedBy">
+            <summary>
+            Gets the name of the user or trigger starting the build.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.IsFeatureBranchBuild">
+            <summary>
+            Gets a value indicating whether the build uses the feature branch.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.BuildNumber">
+            <summary>
+            Gets the build number.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.Started">
+            <summary>
+            Gets the build start date and time.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.UsesDefaultBranch">
+            <summary>
+            Gets a value indicating whether the build uses the default branch.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.HasNewChanges">
+            <summary>
+            Gets a value indicating whether the build has new changes.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.ChangesetCount">
+            <summary>
+            Gets build the number of changesets associated with this build
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.IssueCount">
+            <summary>
+            Gets build the number of issues associated with this build
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.Elapsed">
+            <summary>
+            Gets build elapsed time on queue as a time span.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.TimeOnQueue">
+            <summary>
+            Gets build time on queue in ticks.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.Repositories">
+            <summary>
+            Gets list of repository names
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.RepositoryBranches">
+            <summary>
+            Gets list of repository branch names
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.TriggeringBranch">
+            <summary>
+            Gets triggering branch name
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.ChangesetRevisions">
+            <summary>
+            Gets list of changeset revisions
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.ChangesetUserNames">
+            <summary>
+            Gets list of changeset user names
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.ChangesetTagNames">
+            <summary>
+            Gets list of changeset tag names
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIBuildInfo.LatestChangeset">
+            <summary>
+            Gets the latest build changeset
+            </summary>
+        </member>
+        <member name="T:Cake.Common.Build.ContinuaCI.Data.ContinuaCIChangesetInfo">
+            <summary>
+            Provides Continua CI changeset information for a current build.
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.Data.ContinuaCIChangesetInfo.#ctor(Cake.Core.ICakeEnvironment,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Common.Build.ContinuaCI.Data.ContinuaCIChangesetInfo"/> class.
+            </summary>
+            <param name="environment">The environment.</param>
+            <param name="prefix">The environment variable key prefix.</param>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIChangesetInfo.Revision">
+            <summary>
+            Gets the revision used to build this release. Format depends on the VCS used.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIChangesetInfo.Branch">
+            <summary>
+            Gets the changeset branch name
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIChangesetInfo.Created">
+            <summary>
+            Gets the changeset created date and time.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIChangesetInfo.FileCount">
+            <summary>
+            Gets the count of the number of files in the changeset.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIChangesetInfo.UserName">
+            <summary>
+            Gets the changeset author user/committer name
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIChangesetInfo.TagCount">
+            <summary>
+            Gets the count of the number of tags associated with the changeset.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIChangesetInfo.IssueCount">
+            <summary>
+            Gets the count of the number of tags associated with the changeset.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIChangesetInfo.TagNames">
+            <summary>
+            Gets list of changeset tag names
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIChangesetInfo.IssueNames">
+            <summary>
+            Gets list of changeset issue names
+            </summary>
+        </member>
+        <member name="T:Cake.Common.Build.ContinuaCI.Data.ContinuaCIEnvironmentInfo">
+            <summary>
+            Provides Continua CI environment information for a current build.
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.Data.ContinuaCIEnvironmentInfo.#ctor(Cake.Core.ICakeEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Common.Build.ContinuaCI.Data.ContinuaCIEnvironmentInfo"/> class.
+            </summary>
+            <param name="environment">The environment.</param>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIEnvironmentInfo.Configuration">
+            <summary>
+            Gets Continua CI configuration information.
+            </summary>
+            <value>
+              The Continua CI configuration information.
+            </value>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIEnvironmentInfo.Project">
+            <summary>
+            Gets Continua CI project information.
+            </summary>
+            <value>
+              The Continua CI project information.
+            </value>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIEnvironmentInfo.Build">
+            <summary>
+            Gets Continua CI build information.
+            </summary>
+            <value>
+              The Continua CI build information.
+            </value>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIEnvironmentInfo.Variable">
+            <summary>
+            Gets Continua CI build variables.
+            </summary>
+            <value>
+              The Continua CI build variables.
+            </value>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIEnvironmentInfo.AgentProperty">
+            <summary>
+            Gets Continua CI build agent properties
+            </summary>
+            <value>
+              The Continua CI build agent properties.
+            </value>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIEnvironmentInfo.Version">
+            <summary>
+            Gets Continua CI product version.
+            </summary>
+            <value>
+              The Continua CI product version.
+            </value>
+        </member>
+        <member name="T:Cake.Common.Build.ContinuaCI.Data.ContinuaCIProjectInfo">
+            <summary>
+            Provides Continua CI project information for a current build.
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.Data.ContinuaCIProjectInfo.#ctor(Cake.Core.ICakeEnvironment,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Common.Build.ContinuaCI.Data.ContinuaCIProjectInfo"/> class.
+            </summary>
+            <param name="environment">The environment.</param>
+            <param name="prefix">The environment variable key prefix.</param>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIProjectInfo.Name">
+            <summary>
+            Gets the Continua CI Project Name
+            </summary>
+            <value>
+              The Continua CI Project Name.
+            </value>
+        </member>
+        <member name="T:Cake.Common.Build.ContinuaCI.Data.ContinuaCIConfigurationInfo">
+            <summary>
+            Provides Continua CI configuration information for a current build.
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.Data.ContinuaCIConfigurationInfo.#ctor(Cake.Core.ICakeEnvironment,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Common.Build.ContinuaCI.Data.ContinuaCIConfigurationInfo"/> class.
+            </summary>
+            <param name="environment">The environment.</param>
+            <param name="prefix">The environment variable key prefix.</param>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.Data.ContinuaCIConfigurationInfo.Name">
+            <summary>
+            Gets the Continua CI Configuration Name
+            </summary>
+            <value>
+              The Continua CI Configuration Name.
+            </value>
+        </member>
+        <member name="T:Cake.Common.Build.ContinuaCI.IContinuaCIProvider">
+            <summary>
+            Represents a Continua CI provider.
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.IContinuaCIProvider.WriteMessage(System.String,Cake.Common.Build.ContinuaCI.ContinuaCIMessageType)">
+            <summary>
+            Write a status message to the Continua CI build log.
+            </summary>
+            <param name="message">Message contents.</param>
+            <param name="status">Build status.</param>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.IContinuaCIProvider.WriteStartGroup(System.String)">
+            <summary>
+            Write the start of a message group to the Continua CI build log.
+            </summary>
+            <param name="groupName">Group name.</param>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.IContinuaCIProvider.WriteEndBlock(System.String)">
+            <summary>
+            Write the end of a message block to the Continua CI build log.
+            </summary>
+            <param name="groupName">Group name.</param>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.IContinuaCIProvider.SetVariable(System.String,System.String,System.Boolean)">
+            <summary>
+            Set a Continua CI build variable.
+            </summary>
+            <param name="name">Name of the variable to set.</param>
+            <param name="value">Value to assign to the variable.</param>
+            <param name="skipIfNotDefined">Set to 'true' to prevent the build failing if the variable has not been defined for the configuration..</param>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.IContinuaCIProvider.SetBuildVersion(System.String)">
+            <summary>
+            Set a Continua CI build version.
+            </summary>
+            <param name="version">The new build version.</param>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.IContinuaCIProvider.SetBuildStatus(System.String)">
+            <summary>
+            Set a Continua CI build status message, which is shown on the build details page when a build is running.
+            </summary>
+            <param name="text">The new build status text.</param>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.IContinuaCIProvider.IsRunningOnContinuaCI">
+            <summary>
+            Gets a value indicating whether the current build is running on Continua CI.
+            </summary>
+            <value>
+            <c>true</c> if the current build is running on Continua CI; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.IContinuaCIProvider.Environment">
+            <summary>
+            Gets the Continua CI environment.
+            </summary>
+            <value>
+            The Continua CI environment.
+            </value>
+        </member>
+        <member name="T:Cake.Common.Build.ContinuaCI.ContinuaCIMessageType">
+            <summary>
+            Provides the known values for Continua CI Message Types
+            </summary>
+        </member>
+        <member name="F:Cake.Common.Build.ContinuaCI.ContinuaCIMessageType.Debug">
+            <summary>
+            Debug Message
+            </summary>
+        </member>
+        <member name="F:Cake.Common.Build.ContinuaCI.ContinuaCIMessageType.Success">
+            <summary>
+            Success Message
+            </summary>
+        </member>
+        <member name="F:Cake.Common.Build.ContinuaCI.ContinuaCIMessageType.Information">
+            <summary>
+            Information Message
+            </summary>
+        </member>
+        <member name="F:Cake.Common.Build.ContinuaCI.ContinuaCIMessageType.Warning">
+            <summary>
+            Warning Message
+            </summary>
+        </member>
+        <member name="F:Cake.Common.Build.ContinuaCI.ContinuaCIMessageType.Error">
+            <summary>
+            Error Message
+            </summary>
+        </member>
+        <member name="F:Cake.Common.Build.ContinuaCI.ContinuaCIMessageType.Fatal">
+            <summary>
+            Fatal Message
+            </summary>
+        </member>
+        <member name="T:Cake.Common.Build.ContinuaCI.ContinuaCIProvider">
+            <summary>
+            Responsible for communicating with Continua CI.
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIProvider.#ctor(Cake.Core.ICakeEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Common.Build.ContinuaCI.ContinuaCIProvider"/> class.
+            </summary>
+            <param name="environment">The cake environment.</param>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIProvider.WriteMessage(System.String,Cake.Common.Build.ContinuaCI.ContinuaCIMessageType)">
+            <summary>
+            Write a status message to the Continua CI build log.
+            </summary>
+            <param name="message">Message contents.</param>
+            <param name="status">Build status.</param>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIProvider.WriteStartGroup(System.String)">
+            <summary>
+            Write the start of a message group to the Continua CI build log.
+            </summary>
+            <param name="groupName">Group name.</param>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIProvider.WriteEndBlock(System.String)">
+            <summary>
+            Write the end of a message block to the Continua CI build log.
+            </summary>
+            <param name="groupName">Group name.</param>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIProvider.SetVariable(System.String,System.String,System.Boolean)">
+            <summary>
+            Set a Continua CI build variable.
+            </summary>
+            <param name="name">Name of the variable to set.</param>
+            <param name="value">Value to assign to the variable.</param>
+            <param name="skipIfNotDefined">Set to 'true' to prevent the build failing if the variable has not been defined for the configuration..</param>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIProvider.SetBuildVersion(System.String)">
+            <summary>
+            Set a Continua CI build version.
+            </summary>
+            <param name="version">The new build version.</param>
+        </member>
+        <member name="M:Cake.Common.Build.ContinuaCI.ContinuaCIProvider.SetBuildStatus(System.String)">
+            <summary>
+            Set a Continua CI build status message, which is shown on the build details page when a build is running.
+            </summary>
+            <param name="text">The new build status text.</param>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.ContinuaCIProvider.IsRunningOnContinuaCI">
+            <summary>
+            Gets a value indicating whether the current build is running on Continua CI.
+            </summary>
+            <value>
+            <c>true</c> if the current build is running on Continua CI; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Cake.Common.Build.ContinuaCI.ContinuaCIProvider.Environment">
+            <summary>
+            Gets the Continua CI environment.
+            </summary>
+            <value>
+            The Continua CI environment.
+            </value>
         </member>
         <member name="T:Cake.Common.Build.MyGet.IMyGetProvider">
             <summary>
@@ -5991,6 +6529,143 @@
             <param name="values">The option values.</param>
             <returns>The same <see cref="T:Cake.Common.Tools.Fixie.FixieSettings"/> instance so that multiple calls can be chained.</returns>
         </member>
+        <member name="T:Cake.Common.Tools.GitLink.GitLinkAliases">
+            <summary>
+            Contains functionality for working with GitLink.
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Tools.GitLink.GitLinkAliases.GitLink(Cake.Core.ICakeContext,Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Update pdb files to link all sources.
+            This will allow anyone to step through the source code while debugging without a symbol source server.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="repositoryRootPath">The Solution File to analyze.</param>
+            <example>
+            <code>
+            GitLink("C:/temp/solution");
+            </code>
+            </example>
+        </member>
+        <member name="M:Cake.Common.Tools.GitLink.GitLinkAliases.GitLink(Cake.Core.ICakeContext,Cake.Core.IO.DirectoryPath,Cake.Common.Tools.GitLink.GitLinkSettings)">
+            <summary>
+            Update pdb files to link all sources, using specified settings.
+            This will allow anyone to step through the source code while debugging without a symbol source server.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="repositoryRootPath">The path to the Root of the Repository to analyze.</param>
+            <param name="settings">The settings.</param>
+            <example>
+            <code>
+            GitLink("C:/temp/solution", new GitLinkSettings {
+                RepositoryUrl = new Uri("http://mydomain.com"),
+                Branch        = "master",
+                ShaHash       = "abcdef",
+            });
+            </code>
+            </example>
+        </member>
+        <member name="T:Cake.Common.Tools.GitLink.GitLinkRunner">
+            <summary>
+            GitLink runner
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Tools.GitLink.GitLinkRunner.#ctor(Cake.Core.IO.IFileSystem,Cake.Core.ICakeEnvironment,Cake.Core.IO.IProcessRunner,Cake.Core.IO.IGlobber,Cake.Core.Diagnostics.ICakeLog)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Common.Tools.GitLink.GitLinkRunner"/> class.
+            </summary>
+            <param name="fileSystem">The file system.</param>
+            <param name="environment">The environment.</param>
+            <param name="processRunner">The process runner.</param>
+            <param name="globber">The globber.</param>
+            <param name="log">The logger.</param>
+        </member>
+        <member name="M:Cake.Common.Tools.GitLink.GitLinkRunner.Run(Cake.Core.IO.DirectoryPath,Cake.Common.Tools.GitLink.GitLinkSettings)">
+            <summary>
+            Update pdb files to link all sources.
+            </summary>
+            <param name="repositoryRootPath">The path to the Root of the Repository to analyze.</param>
+            <param name="settings">The settings.</param>
+        </member>
+        <member name="M:Cake.Common.Tools.GitLink.GitLinkRunner.GetToolName">
+            <summary>
+            Gets the name of the tool.
+            </summary>
+            <returns>The name of the tool.</returns>
+        </member>
+        <member name="M:Cake.Common.Tools.GitLink.GitLinkRunner.GetToolExecutableNames">
+            <summary>
+            Gets the possible names of the tool executable.
+            </summary>
+            <returns>The tool executable name.</returns>
+        </member>
+        <member name="T:Cake.Common.Tools.GitLink.GitLinkSettings">
+            <summary>
+            Contains settings used by <see cref="T:Cake.Common.Tools.GitLink.GitLinkRunner"/> .
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Tools.GitLink.GitLinkSettings.RepositoryUrl">
+            <summary>
+            Gets or sets the Url to remote git repository.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Tools.GitLink.GitLinkSettings.SolutionFileName">
+            <summary>
+            Gets or sets the Solution file name.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Tools.GitLink.GitLinkSettings.Configuration">
+            <summary>
+            Gets or sets the name of the configuration.
+            </summary>
+            <remarks>Default is Release</remarks>
+        </member>
+        <member name="P:Cake.Common.Tools.GitLink.GitLinkSettings.Platform">
+            <summary>
+            Gets or sets the name of the platform.
+            </summary>
+            <remarks>Default is AnyCPU</remarks>
+        </member>
+        <member name="P:Cake.Common.Tools.GitLink.GitLinkSettings.Branch">
+            <summary>
+            Gets or sets the name of the branch to use on the remote repository.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Tools.GitLink.GitLinkSettings.LogFilePath">
+            <summary>
+            Gets or sets the path to the GitLink log file.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Tools.GitLink.GitLinkSettings.ShaHash">
+            <summary>
+            Gets or sets the SHA-1 hash of the git commit to be used.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Tools.GitLink.GitLinkSettings.PdbDirectoryPath">
+            <summary>
+            Gets or sets the directory where the PDB files are located.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Tools.GitLink.GitLinkSettings.UsePowerShell">
+            <summary>
+            Gets or sets a value indicating whether the Use PowerShell Command option should be enabled.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Tools.GitLink.GitLinkSettings.ErrorsAsWarnings">
+            <summary>
+            Gets or sets a value indicating whether the ErrorsAsWarnings option should be enabled.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Tools.GitLink.GitLinkSettings.SkipVerify">
+            <summary>
+            Gets or sets a value indicating whether the Skip Verify option should be enabled.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Tools.GitLink.GitLinkSettings.IsDebug">
+            <summary>
+            Gets or sets a value indicating whether the debug output should be enabled.
+            </summary>
+        </member>
         <member name="T:Cake.Common.Tools.GitVersion.GitVersion">
             <summary>
             GitVersion information
@@ -6527,6 +7202,26 @@
             Contains functionality for working with GitReleaseManager.
             </summary>
         </member>
+        <member name="M:Cake.Common.Tools.GitReleaseManager.GitReleaseManagerAliases.GitReleaseManagerCreate(Cake.Core.ICakeContext,System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates a Package Release.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="userName">The user name.</param>
+            <param name="password">The password.</param>
+            <param name="owner">The owner.</param>
+            <param name="repository">The repository.</param>
+            <example>
+            <code>
+            GitReleaseManagerCreate("user", "password", "owner", "repo");
+            </code>
+            </example>
+            <example>
+            <code>
+            GitReleaseManagerCreate("user", "password", "owner", "repo");
+            </code>
+            </example>
+        </member>
         <member name="M:Cake.Common.Tools.GitReleaseManager.GitReleaseManagerAliases.GitReleaseManagerCreate(Cake.Core.ICakeContext,System.String,System.String,System.String,System.String,Cake.Common.Tools.GitReleaseManager.Create.GitReleaseManagerCreateSettings)">
             <summary>
             Creates a Package Release using the specified settings.
@@ -6563,6 +7258,23 @@
             </code>
             </example>
         </member>
+        <member name="M:Cake.Common.Tools.GitReleaseManager.GitReleaseManagerAliases.GitReleaseManagerAddAssets(Cake.Core.ICakeContext,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Add Assets to an existing release.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="userName">The user name.</param>
+            <param name="password">The password.</param>
+            <param name="owner">The owner.</param>
+            <param name="repository">The repository.</param>
+            <param name="tagName">The tag name.</param>
+            <param name="assets">The assets.</param>
+            <example>
+            <code>
+            GitReleaseManagerAddAssets("user", "password", "owner", "repo", "0.1.0", "c:/temp/asset1.txt,c:/temp/asset2.txt");
+            </code>
+            </example>
+        </member>
         <member name="M:Cake.Common.Tools.GitReleaseManager.GitReleaseManagerAliases.GitReleaseManagerAddAssets(Cake.Core.ICakeContext,System.String,System.String,System.String,System.String,System.String,System.String,Cake.Common.Tools.GitReleaseManager.AddAssets.GitReleaseManagerAddAssetsSettings)">
             <summary>
             Add Assets to an existing release using the specified settings.
@@ -6581,6 +7293,22 @@
                 TargetDirectory   = "c:/repo",
                 LogFilePath       = "c:/temp/grm.log"
             });
+            </code>
+            </example>
+        </member>
+        <member name="M:Cake.Common.Tools.GitReleaseManager.GitReleaseManagerAliases.GitReleaseManagerClose(Cake.Core.ICakeContext,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Closes the milestone associated with a release.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="userName">The user name.</param>
+            <param name="password">The password.</param>
+            <param name="owner">The owner.</param>
+            <param name="repository">The repository.</param>
+            <param name="milestone">The milestone.</param>
+            <example>
+            <code>
+            GitReleaseManagerClose("user", "password", "owner", "repo", "0.1.0");
             </code>
             </example>
         </member>
@@ -6604,6 +7332,22 @@
             </code>
             </example>
         </member>
+        <member name="M:Cake.Common.Tools.GitReleaseManager.GitReleaseManagerAliases.GitReleaseManagerPublish(Cake.Core.ICakeContext,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Publishes the release.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="userName">The user name.</param>
+            <param name="password">The password.</param>
+            <param name="owner">The owner.</param>
+            <param name="repository">The repository.</param>
+            <param name="tagName">The tag name.</param>
+            <example>
+            <code>
+            GitReleaseManagerPublish("user", "password", "owner", "repo", "0.1.0");
+            </code>
+            </example>
+        </member>
         <member name="M:Cake.Common.Tools.GitReleaseManager.GitReleaseManagerAliases.GitReleaseManagerPublish(Cake.Core.ICakeContext,System.String,System.String,System.String,System.String,System.String,Cake.Common.Tools.GitReleaseManager.Publish.GitReleaseManagerPublishSettings)">
             <summary>
             Publishes the release using the specified settings.
@@ -6620,6 +7364,23 @@
             GitReleaseManagerPublish("user", "password", "owner", "repo", "0.1.0", new GitReleaseManagerPublishSettings {
                 TargetDirectory   = "c:/repo",
                 LogFilePath       = "c:/temp/grm.log"
+            });
+            </code>
+            </example>
+        </member>
+        <member name="M:Cake.Common.Tools.GitReleaseManager.GitReleaseManagerAliases.GitReleaseManagerExport(Cake.Core.ICakeContext,System.String,System.String,System.String,System.String,Cake.Core.IO.FilePath)">
+            <summary>
+            Exports the release notes.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="userName">The user name.</param>
+            <param name="password">The password.</param>
+            <param name="owner">The owner.</param>
+            <param name="repository">The repository.</param>
+            <param name="fileOutputPath">The output file path.</param>
+            <example>
+            <code>
+            GitReleaseManagerExport("user", "password", "owner", "repo", "c:/temp/releasenotes.md")
             });
             </code>
             </example>
@@ -7968,6 +8729,44 @@
             SettingsLayer: <c>ProjectPersonal</c>. This layer is saved in <c>%ProjectName%.csproj.DotSettings.user</c>.
             </summary>
         </member>
+        <member name="T:Cake.Common.Tools.DotNetBuildSettingsExtensions">
+            <summary>
+            Contains functionality related to .NET build settings.
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Tools.DotNetBuildSettingsExtensions.WithTarget(Cake.Common.Tools.DotNetBuildSettings,System.String)">
+            <summary>
+            Adds a .NET build target to the configuration.
+            </summary>
+            <param name="settings">The settings.</param>
+            <param name="target">The .NET build target.</param>
+            <returns>The same <see cref="T:Cake.Common.Tools.DotNetBuildSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Common.Tools.DotNetBuildSettingsExtensions.WithProperty(Cake.Common.Tools.DotNetBuildSettings,System.String,System.String[])">
+            <summary>
+            Adds a property to the configuration.
+            </summary>
+            <param name="settings">The settings.</param>
+            <param name="name">The property name.</param>
+            <param name="values">The property values.</param>
+            <returns>The same <see cref="T:Cake.Common.Tools.DotNetBuildSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Common.Tools.DotNetBuildSettingsExtensions.SetConfiguration(Cake.Common.Tools.DotNetBuildSettings,System.String)">
+            <summary>
+            Sets the configuration.
+            </summary>
+            <param name="settings">The settings.</param>
+            <param name="configuration">The configuration.</param>
+            <returns>The same <see cref="T:Cake.Common.Tools.DotNetBuildSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Cake.Common.Tools.DotNetBuildSettingsExtensions.SetVerbosity(Cake.Common.Tools.DotNetBuildSettings,Cake.Core.Diagnostics.Verbosity)">
+            <summary>
+            Sets the build log verbosity.
+            </summary>
+            <param name="settings">The settings.</param>
+            <param name="verbosity">The build log verbosity.</param>
+            <returns>The same <see cref="T:Cake.Common.Tools.DotNetBuildSettings"/> instance so that multiple calls can be chained.</returns>
+        </member>
         <member name="T:Cake.Common.Tools.MSBuild.MSBuildAliases">
             <summary>
             Contains functionality related to MSBuild.
@@ -8820,10 +9619,10 @@
         </member>
         <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetPack(Cake.Core.ICakeContext,Cake.Core.IO.FilePath,Cake.Common.Tools.NuGet.Pack.NuGetPackSettings)">
              <summary>
-             Creates a NuGet package using the specified Nuspec file.
+             Creates a NuGet package using the specified Nuspec or project file.
              </summary>
              <param name="context">The context.</param>
-             <param name="nuspecFilePath">The nuspec file path.</param>
+             <param name="filePath">The nuspec or project file path.</param>
              <param name="settings">The settings.</param>
              <example>
              <code>
@@ -8852,6 +9651,44 @@
                                              };
             
                  NuGetPack("./nuspec/TestNuget.nuspec", nuGetPackSettings);
+             </code>
+             </example>
+        </member>
+        <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetPack(Cake.Core.ICakeContext,System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath},Cake.Common.Tools.NuGet.Pack.NuGetPackSettings)">
+             <summary>
+             Creates NuGet packages using the specified Nuspec or project files.
+             </summary>
+             <param name="context">The context.</param>
+             <param name="filePaths">The nuspec or project file paths.</param>
+             <param name="settings">The settings.</param>
+             <example>
+             <code>
+                 var nuGetPackSettings   = new NuGetPackSettings {
+                                                 Id                      = "TestNuget",
+                                                 Version                 = "0.0.0.1",
+                                                 Title                   = "The tile of the package",
+                                                 Authors                 = new[] {"John Doe"},
+                                                 Owners                  = new[] {"Contoso"},
+                                                 Description             = "The description of the package",
+                                                 Summary                 = "Excellent summary of what the package does",
+                                                 ProjectUrl              = new Uri("https://github.com/SomeUser/TestNuget/"),
+                                                 IconUrl                 = new Uri("http://cdn.rawgit.com/SomeUser/TestNuget/master/icons/testnuget.png"),
+                                                 LicenseUrl              = new Uri("https://github.com/SomeUser/TestNuget/blob/master/LICENSE.md"),
+                                                 Copyright               = "Some company 2015",
+                                                 ReleaseNotes            = new [] {"Bug fixes", "Issue fixes", "Typos"},
+                                                 Tags                    = new [] {"Cake", "Script", "Build"},
+                                                 RequireLicenseAcceptance= false,
+                                                 Symbols                 = false,
+                                                 NoPackageAnalysis       = true,
+                                                 Files                   = new [] {
+                                                                                      new NuSpecContent {Source = "bin/TestNuget.dll", Target = "bin"},
+                                                                                   },
+                                                 BasePath                = "./src/TestNuget/bin/release",
+                                                 OutputDirectory         = "./nuget"
+                                             };
+            
+                 var nuspecFiles = GetFiles("./**/*.nuspec");
+                 NuGetPack(nuspecFiles, nuGetPackSettings);
              </code>
              </example>
         </member>
@@ -8909,6 +9746,19 @@
             </code>
             </example>
         </member>
+        <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetRestore(Cake.Core.ICakeContext,System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath})">
+            <summary>
+            Restores NuGet packages for the specified targets.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="targetFilePaths">The targets to restore.</param>
+            <example>
+            <code>
+                var solutions = GetFiles("./**/*.sln");
+                NuGetRestore(solutions);
+            </code>
+            </example>
+        </member>
         <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetRestore(Cake.Core.ICakeContext,Cake.Core.IO.FilePath,Cake.Common.Tools.NuGet.Restore.NuGetRestoreSettings)">
             <summary>
             Restores NuGet packages using the specified settings.
@@ -8928,6 +9778,20 @@
             </code>
             </example>
         </member>
+        <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetRestore(Cake.Core.ICakeContext,System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath},Cake.Common.Tools.NuGet.Restore.NuGetRestoreSettings)">
+            <summary>
+            Restores NuGet packages using the specified settings.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="targetFilePaths">The targets to restore.</param>
+            <param name="settings">The settings.</param>
+            <example>
+            <code>
+                var solutions = GetFiles("./**/*.sln");
+                NuGetRestore(solutions, new NuGetRestoreSettings { NoCache = true });
+            </code>
+            </example>
+        </member>
         <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetPush(Cake.Core.ICakeContext,Cake.Core.IO.FilePath,Cake.Common.Tools.NuGet.Push.NuGetPushSettings)">
              <summary>
              Pushes a NuGet package to a NuGet server and publishes it.
@@ -8942,6 +9806,26 @@
             
              // Push the package.
              NuGetPush(package, new NuGetPushSettings {
+                 Source = "http://example.com/nugetfeed",
+                 ApiKey = "4003d786-cc37-4004-bfdf-c4f3e8ef9b3a"
+             });
+             </code>
+             </example>
+        </member>
+        <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetPush(Cake.Core.ICakeContext,System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath},Cake.Common.Tools.NuGet.Push.NuGetPushSettings)">
+             <summary>
+             Pushes NuGet packages to a NuGet server and publishes them.
+             </summary>
+             <param name="context">The context.</param>
+             <param name="packageFilePaths">The <c>.nupkg</c> file paths.</param>
+             <param name="settings">The settings.</param>
+             <example>
+             <code>
+             // Get the paths to the packages.
+             var packages = GetFiles("./**/*.nupkg");
+            
+             // Push the package.
+             NuGetPush(packages, new NuGetPushSettings {
                  Source = "http://example.com/nugetfeed",
                  ApiKey = "4003d786-cc37-4004-bfdf-c4f3e8ef9b3a"
              });
@@ -9067,18 +9951,16 @@
               <code>
             var feed = new
             {
-            Name = EnvironmentVariable("PRIVATE_FEED_NAME"),
-            Source = EnvironmentVariable("PRIVATE_FEED_SOURCE")
+                Name = EnvironmentVariable("PRIVATE_FEED_NAME"),
+                Source = EnvironmentVariable("PRIVATE_FEED_SOURCE")
             };
-            if (!NuGetHasSource(
-            source:feed.Source
-            ))
+            if (!NuGetHasSource(source:feed.Source))
             {
-            Information("Source missing");
+                Information("Source missing");
             }
             else
             {
-            Information("Source already exists");
+                Information("Source already exists");
             }
             </code>
             </example>
@@ -9095,26 +9977,25 @@
               <code>
             var nugetSourceSettings = new NuGetSourcesSettings
             {
-            UserName = EnvironmentVariable("PRIVATE_FEED_USERNAME"),
-            Password = EnvironmentVariable("PRIVATE_FEED_PASSWORD"),
-            IsSensitiveSource = true,
-            Verbosity = NuGetVerbosity.Detailed
+                UserName = EnvironmentVariable("PRIVATE_FEED_USERNAME"),
+                Password = EnvironmentVariable("PRIVATE_FEED_PASSWORD"),
+                IsSensitiveSource = true,
+                Verbosity = NuGetVerbosity.Detailed
             };
             var feed = new
             {
-            Name = EnvironmentVariable("PRIVATE_FEED_NAME"),
-            Source = EnvironmentVariable("PRIVATE_FEED_SOURCE")
+                Name = EnvironmentVariable("PRIVATE_FEED_NAME"),
+                Source = EnvironmentVariable("PRIVATE_FEED_SOURCE")
             };
             if (!NuGetHasSource(
-            source:feed.Source,
-            settings:nugetSourceSettings
-            ))
+                source:feed.Source,
+                settings:nugetSourceSettings))
             {
-            Information("Source missing");
+                Information("Source missing");
             }
             else
             {
-            Information("Source already exists");
+                Information("Source already exists");
             }
             </code>
             </example>
@@ -9128,6 +10009,18 @@
             <example>
             <code>
             NuGetInstall("MyNugetPackage");
+            </code>
+            </example>
+        </member>
+        <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetInstall(Cake.Core.ICakeContext,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Installs NuGet packages.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="packageIds">The id's of the package to install.</param>
+            <example>
+            <code>
+            NuGetInstall(new[] { "MyNugetPackage", "OtherNugetPackage" });
             </code>
             </example>
         </member>
@@ -9147,6 +10040,22 @@
             </code>
             </example>
         </member>
+        <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetInstall(Cake.Core.ICakeContext,System.Collections.Generic.IEnumerable{System.String},Cake.Common.Tools.NuGet.Install.NuGetInstallSettings)">
+            <summary>
+            Installs NuGet packages using the specified settings.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="packageIds">The id's of the package to install.</param>
+            <param name="settings">The settings.</param>
+            <example>
+            <code>
+            NuGetInstall(new[] { "MyNugetPackage", "OtherNugetPackage" }, new NuGetInstallSettings {
+                ExcludeVersion  = true,
+                OutputDirectory = "./tools"
+                });
+            </code>
+            </example>
+        </member>
         <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetInstallFromConfig(Cake.Core.ICakeContext,Cake.Core.IO.FilePath)">
             <summary>
             Installs NuGet packages using the specified package configuration.
@@ -9156,6 +10065,20 @@
             <example>
             <code>
             NuGetInstallFromConfig("./tools/packages.config");
+            </code>
+            </example>
+        </member>
+        <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetInstallFromConfig(Cake.Core.ICakeContext,System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath})">
+            <summary>
+            Installs NuGet packages using the specified package configurations.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="packageConfigPaths">The package configurations to install.</param>
+            <example>
+            <code>
+            var packageConfigs = GetFiles("./**/packages.config");
+            
+            NuGetInstallFromConfig(packageConfigs);
             </code>
             </example>
         </member>
@@ -9169,6 +10092,24 @@
             <example>
             <code>
             NuGetInstallFromConfig("./tools/packages.config", new NuGetInstallSettings {
+                ExcludeVersion  = true,
+                OutputDirectory = "./tools"
+                });
+            </code>
+            </example>
+        </member>
+        <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetInstallFromConfig(Cake.Core.ICakeContext,System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath},Cake.Common.Tools.NuGet.Install.NuGetInstallSettings)">
+            <summary>
+            Installs NuGet packages using the specified package configurations and settings.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="packageConfigPaths">The package configurations to install.</param>
+            <param name="settings">The settings.</param>
+            <example>
+            <code>
+            var packageConfigs = GetFiles("./**/packages.config");
+            
+            NuGetInstallFromConfig(packageConfigs, new NuGetInstallSettings {
                 ExcludeVersion  = true,
                 OutputDirectory = "./tools"
                 });
@@ -9223,6 +10164,20 @@
             </code>
             </example>
         </member>
+        <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetUpdate(Cake.Core.ICakeContext,System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath})">
+            <summary>
+            Updates NuGet packages.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="targetFiles">The targets to update.</param>
+            <example>
+            <code>
+            var targets = GetFiles("./**/packages.config");
+            
+            NuGetUpdate(targets);
+            </code>
+            </example>
+        </member>
         <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetUpdate(Cake.Core.ICakeContext,Cake.Core.IO.FilePath,Cake.Common.Tools.NuGet.Update.NuGetUpdateSettings)">
             <summary>
             Updates NuGet packages using the specified settings.
@@ -9233,6 +10188,23 @@
             <example>
             <code>
             NuGetUpdate("./tools/packages.config", new NuGetUpdateSettings {
+                Prerelease = true,
+            });
+            </code>
+            </example>
+        </member>
+        <member name="M:Cake.Common.Tools.NuGet.NuGetAliases.NuGetUpdate(Cake.Core.ICakeContext,System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath},Cake.Common.Tools.NuGet.Update.NuGetUpdateSettings)">
+            <summary>
+            Updates NuGet packages using the specified settings.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="targetFiles">The targets to update.</param>
+            <param name="settings">The settings.</param>
+            <example>
+            <code>
+            var targets = GetFiles("./**/packages.config");
+            
+            NuGetUpdate(targets, new NuGetUpdateSettings {
                 Prerelease = true,
             });
             </code>
@@ -9262,9 +10234,9 @@
         </member>
         <member name="M:Cake.Common.Tools.NuGet.Pack.NuGetPacker.Pack(Cake.Core.IO.FilePath,Cake.Common.Tools.NuGet.Pack.NuGetPackSettings)">
             <summary>
-            Creates a NuGet package from the specified Nuspec file.
+            Creates a NuGet package from the specified Nuspec or project file.
             </summary>
-            <param name="nuspecFilePath">The nuspec file path.</param>
+            <param name="filePath">The nuspec or project file path.</param>
             <param name="settings">The settings.</param>
         </member>
         <member name="T:Cake.Common.Tools.NuGet.Pack.NuGetPackSettings">
@@ -9399,6 +10371,14 @@
             Gets or sets the verbosity.
             </summary>
             <value>The verbosity.</value>
+        </member>
+        <member name="P:Cake.Common.Tools.NuGet.Pack.NuGetPackSettings.Properties">
+            <summary>
+            Gets or sets the properties.
+            </summary>
+            <value>
+            The properties.
+            </value>
         </member>
         <member name="T:Cake.Common.Tools.NuGet.Push.NuGetPusher">
             <summary>
@@ -13211,6 +14191,59 @@
             <value>
               The Bamboo Job Name in it's short form.
             </value>
+        </member>
+        <member name="T:Cake.Common.Xml.XmlPeekAliases">
+            <summary>
+            Contains functionality related to XML XPath queries.
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Xml.XmlPeekAliases.XmlPeek(Cake.Core.ICakeContext,Cake.Core.IO.FilePath,System.String)">
+            <summary>
+            Gets the value of a target node.
+            </summary>
+            <returns>The value found at the given XPath query.</returns>
+            <param name="context">The context.</param>
+            <param name="filePath">The target file.</param>
+            <param name="xpath">The xpath of the node to get.</param>
+        </member>
+        <member name="M:Cake.Common.Xml.XmlPeekAliases.XmlPeek(Cake.Core.ICakeContext,Cake.Core.IO.FilePath,System.String,Cake.Common.Xml.XmlPeekSettings)">
+            <summary>
+            Get the value of a target node.
+            </summary>
+            <returns>The value found at the given XPath query.</returns>
+            <param name="context">The context.</param>
+            <param name="filePath">The target file.</param>
+            <param name="xpath">The xpath of the nodes to set.</param>
+            <param name="settings">Additional settings to tweak Xml Peek behavior.</param>
+        </member>
+        <member name="M:Cake.Common.Xml.XmlPeekAliases.XmlPeek(System.Xml.XmlReader,System.String,Cake.Common.Xml.XmlPeekSettings)">
+            <summary>
+            Gets the value of a target node.
+            </summary>
+            <returns>The value found at the given XPath query (or the first, if multiple eligible nodes are found).</returns>
+            <param name="source">The source xml to transform.</param>
+            <param name="xpath">The xpath of the nodes to set.</param>
+            <param name="settings">Additional settings to tweak Xml Peek behavior.</param>
+        </member>
+        <member name="T:Cake.Common.Xml.XmlPeekSettings">
+            <summary>
+            Contains settings for <see cref="T:Cake.Common.Xml.XmlPeekAliases"/>
+            </summary>
+        </member>
+        <member name="M:Cake.Common.Xml.XmlPeekSettings.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cake.Common.Xml.XmlPeekSettings"/> class.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Xml.XmlPeekSettings.Namespaces">
+            <summary>
+            Gets or sets namespaces to include for xpath recognition.
+            </summary>
+        </member>
+        <member name="P:Cake.Common.Xml.XmlPeekSettings.PreserveWhitespace">
+            <summary>
+            Gets or sets a value indicating whether to preserve white space.
+            </summary>
         </member>
     </members>
 </doc>

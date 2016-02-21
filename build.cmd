@@ -25,9 +25,7 @@ IF NOT EXIST build.ps1 @powershell -NoProfile -ExecutionPolicy unrestricted -Com
 :getdnx
 @powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"
 
-IF "%BUILDCMD_DNX_VERSION%"=="" (
-    SET BUILDCMD_DNX_VERSION=1.0.0-rc1-update1
-)
+
 IF "%SKIP_DNX_INSTALL%"=="" (
     CALL dnvm install %BUILDCMD_DNX_VERSION% -runtime CLR -arch x86 -alias default %BUILDCMD_DNX_OPTIONS%
 	CALL dnvm install %BUILDCMD_DNX_VERSION% -runtime coreclr -arch x86 %BUILDCMD_DNX_OPTIONS%
