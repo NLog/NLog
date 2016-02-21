@@ -2,12 +2,12 @@
 // ARGUMENTS
 //////////////////////////////////////////////////////////////////////
 
-var target = Argument("target", "Default");
+var buildTarget = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
 var outputDirectory = Argument<string>("outputDirectory", "./artifacts");
 var nugetDirectory = Argument<string>("nugetDirectory", "./nuget");
 var samplesDirectory = Argument<string>("samplesDirectory", "./samples");
-var dnxVersion = Argument<string>("dnxVersion", "1.0.0-rc1-update1");
+var buildDnxVersion = Argument<string>("dnxVersion", "1.0.0-rc1-update1");
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -19,10 +19,10 @@ var samplesDir = Directory(samplesDirectory);
 var nugetDir = Directory(nugetDirectory);
 
 // Define runtime
-DNRuntime runtime = DNRuntime.Clr;
+DNRuntime buildRuntime = DNRuntime.Clr;
 if(IsRunningOnUnix())
 {
-    runtime = DNRuntime.Mono;
+    buildRuntime = DNRuntime.Mono;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@ if(IsRunningOnUnix())
 
 Action<string, string, DNRuntime, DNArchitecture, string[], string, string> buildAndTest = (string target, string dnxVersion, DNRuntime runtime, DNArchitecture architecture, string[] buildTargets, string testTarget, string targetForDnx) =>
 {
-	foreach(var buildTarget in buildTargets)
+	foreach(var bTarget in buildTargets)
 	{
 		// Restore
         
@@ -43,7 +43,7 @@ Action<string, string, DNRuntime, DNArchitecture, string[], string, string> buil
 			Quiet = true
 		};
          Information("Restore");
-		DNURestore(buildTarget + "/project.json", restoreSettings);
+		DNURestore(bTarget + "/project.json", restoreSettings);
 	
 		// Build
          Information("Build");
@@ -58,7 +58,7 @@ Action<string, string, DNRuntime, DNArchitecture, string[], string, string> buil
 			Quiet = true
 		};
         
-		DNUBuild(buildTarget, dnuBuildSettings);
+		DNUBuild(bTarget, dnuBuildSettings);
 	}
 	
 	// Restore
@@ -139,8 +139,8 @@ Task("pack")
 	DNUPackSettings packSettings = new DNUPackSettings()
 	{
 		Architecture = DNArchitecture.X86,
-        Runtime = runtime,
-        Version = dnxVersion,
+        Runtime = buildRuntime,
+        Version = buildDnxVersion,
 	    Configurations = new[] { configuration },
 	    Quiet = true
 	};
@@ -156,8 +156,8 @@ Task("pack")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
-	buildAndTest("uap10.0", dnxVersion, 
-					runtime, DNArchitecture.X86,
+	buildAndTest("uap10.0", buildDnxVersion, 
+					buildRuntime, DNArchitecture.X86,
 					new [] { "./src/NLog" },
 					"./tests/NLog.UnitTests", dnxVersion);
 });*/
@@ -167,8 +167,8 @@ Task("sl5")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
-	buildAndTest("sl5", dnxVersion, 
-					runtime, DNArchitecture.X86,
+	buildAndTest("sl5", buildDnxVersion, 
+					buildRuntime, DNArchitecture.X86,
 					new [] { "./src/NLog", "./tests/SampleExtensions" },
 					"./tests/NLog.UnitTests", "sl5");
 });
@@ -178,8 +178,8 @@ Task("net35")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
-	buildAndTest("net35", dnxVersion, 
-					runtime, DNArchitecture.X86,
+	buildAndTest("net35", buildDnxVersion, 
+					buildRuntime, DNArchitecture.X86,
 					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
 					"./tests/NLog.UnitTests", "dnx451");  //unit test is application and not library, so dnx451
 });
@@ -189,8 +189,8 @@ Task("net451")
 	.Does(() =>
 {
 	
-	buildAndTest("net451", dnxVersion, 
-					runtime, DNArchitecture.X86,
+	buildAndTest("net451", buildDnxVersion, 
+					buildRuntime, DNArchitecture.X86,
 					new [] { "./src/NLog", "./src/NLog.Extended", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
 					"./tests/NLog.UnitTests", "dnx451");  //unit test is application and not library, so dnx451
 });
@@ -199,8 +199,8 @@ Task("dotnet5.4")
 	.Does(() =>
 {
 	
-	buildAndTest("dotnet5.4", dnxVersion, 
-					DNRuntime.CoreClr, DNArchitecture.X86,
+	buildAndTest("dotnet5.4", buildDnxVersion, 
+					DNRuntime.CoreClr, DNArchitecture.X64, // Coreclr doesn't support x86 on *unix
 					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
 					"./tests/NLog.UnitTests", "dnxcore50"); //unit test is application and not library, so dnxcore50
 });
@@ -209,4 +209,4 @@ Task("dotnet5.4")
 // EXECUTION
 //////////////////////////////////////////////////////////////////////
 
-RunTarget(target);
+RunTarget(buildTarget);
