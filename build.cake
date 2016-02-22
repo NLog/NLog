@@ -99,6 +99,7 @@ Action<string, string, DNRuntime, DNArchitecture, string[], string, string> buil
 Task("Clean")
     .Does(() =>
 {
+    CleanDirectory(outputDirectory);
     CleanDirectory(buildDir);
 	CleanDirectory(samplesDir);
 	CleanDirectory(nugetDir);
@@ -150,8 +151,8 @@ Task("pack")
 	DNURestoreSettings restoreSettings = new DNURestoreSettings()
 	{
 		Architecture = DNArchitecture.X86,
-		Runtime = runtime,
-		Version = dnxVersion,
+		Runtime = buildRuntime,
+		Version = buildDnxVersion,
 		Quiet = true
 	};
     Information("Restore");
@@ -172,8 +173,8 @@ Task("sl5")
 	DNURestoreSettings restoreSettings = new DNURestoreSettings()
 	{
 		Architecture = DNArchitecture.X86,
-		Runtime = runtime,
-		Version = dnxVersion,
+		Runtime = buildRuntime,
+		Version = buildDnxVersion,
 		Quiet = true
 	};
     Information("Restore");
@@ -194,8 +195,8 @@ Task("net35")
 	DNURestoreSettings restoreSettings = new DNURestoreSettings()
 	{
 		Architecture = DNArchitecture.X86,
-		Runtime = runtime,
-		Version = dnxVersion,
+		Runtime = buildRuntime,
+		Version = buildDnxVersion,
 		Quiet = true
 	};
     Information("Restore");
@@ -215,8 +216,8 @@ Task("net451")
 	DNURestoreSettings restoreSettings = new DNURestoreSettings()
 	{
 		Architecture = DNArchitecture.X86,
-		Runtime = runtime,
-		Version = dnxVersion,
+		Runtime = buildRuntime,
+		Version = buildDnxVersion,
 		Quiet = true
 	};
     Information("Restore");
@@ -234,9 +235,9 @@ Task("dotnet5.4")
 	// Restore
 	DNURestoreSettings restoreSettings = new DNURestoreSettings()
 	{
-		Architecture = DNArchitecture.X86,
+		Architecture = DNArchitecture.X64,
 		Runtime = DNRuntime.CoreClr,
-		Version = dnxVersion,
+		Version = buildDnxVersion,
 		Quiet = true
 	};
     Information("Restore");
