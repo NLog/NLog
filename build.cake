@@ -33,18 +33,7 @@ Action<string, string, DNRuntime, DNArchitecture, string[], string, string> buil
 {
 	foreach(var buildTarget in buildTargets)
 	{
-		// Restore
-        
-		DNURestoreSettings restoreSettings = new DNURestoreSettings()
-		{
-			Architecture = architecture,
-			Runtime = runtime,
-			Version = dnxVersion,
-			Quiet = true
-		};
-         Information("Restore");
-		DNURestore(buildTarget + "/project.json", restoreSettings);
-	
+		
 		// Build
          Information("Build");
 		DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
@@ -156,6 +145,17 @@ Task("pack")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
+	// Restore
+	DNURestoreSettings restoreSettings = new DNURestoreSettings()
+	{
+		Architecture = DNArchitecture.X86,
+		Runtime = runtime,
+		Version = dnxVersion,
+		Quiet = true
+	};
+    Information("Restore");
+	DNURestore(".", restoreSettings);
+	
 	buildAndTest("uap10.0", dnxVersion, 
 					runtime, DNArchitecture.X86,
 					new [] { "./src/NLog" },
@@ -167,6 +167,17 @@ Task("sl5")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
+	// Restore
+	DNURestoreSettings restoreSettings = new DNURestoreSettings()
+	{
+		Architecture = DNArchitecture.X86,
+		Runtime = runtime,
+		Version = dnxVersion,
+		Quiet = true
+	};
+    Information("Restore");
+	DNURestore(".", restoreSettings);
+	
 	buildAndTest("sl5", dnxVersion, 
 					runtime, DNArchitecture.X86,
 					new [] { "./src/NLog", "./tests/SampleExtensions" },
@@ -178,6 +189,17 @@ Task("net35")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
+	// Restore
+	DNURestoreSettings restoreSettings = new DNURestoreSettings()
+	{
+		Architecture = DNArchitecture.X86,
+		Runtime = runtime,
+		Version = dnxVersion,
+		Quiet = true
+	};
+    Information("Restore");
+	DNURestore(".", restoreSettings);
+	
 	buildAndTest("net35", dnxVersion, 
 					runtime, DNArchitecture.X86,
 					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
@@ -188,6 +210,16 @@ Task("net451")
 	.IsDependentOn("dotnet5.4")
 	.Does(() =>
 {
+	// Restore
+	DNURestoreSettings restoreSettings = new DNURestoreSettings()
+	{
+		Architecture = DNArchitecture.X86,
+		Runtime = runtime,
+		Version = dnxVersion,
+		Quiet = true
+	};
+    Information("Restore");
+	DNURestore(".", restoreSettings);
 	
 	buildAndTest("net451", dnxVersion, 
 					runtime, DNArchitecture.X86,
@@ -198,12 +230,23 @@ Task("net451")
 Task("dotnet5.4")
 	.Does(() =>
 {
+	// Restore
+	DNURestoreSettings restoreSettings = new DNURestoreSettings()
+	{
+		Architecture = DNArchitecture.X86,
+		Runtime = DNRuntime.CoreClr,
+		Version = dnxVersion,
+		Quiet = true
+	};
+    Information("Restore");
+	DNURestore(".", restoreSettings);
 	
 	buildAndTest("dotnet5.4", dnxVersion, 
 					DNRuntime.CoreClr, DNArchitecture.X86,
 					new [] { "./src/NLog", "./src/NLogAutoLoadExtension", "./tests/SampleExtensions" },
 					"./tests/NLog.UnitTests", "dnxcore50"); //unit test is application and not library, so dnxcore50
 });
+
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION

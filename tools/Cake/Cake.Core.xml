@@ -4081,6 +4081,22 @@
             <param name="settings">The settings.</param>
             <returns>The default tool path.</returns>
         </member>
+        <member name="M:Cake.Core.Tooling.Tool`1.GetToolPath(`0)">
+            <summary>
+            Gets the tool path
+            </summary>
+            <param name="settings">The settings</param>
+            <returns>The full path to the tool</returns>
+        </member>
+        <member name="M:Cake.Core.Tooling.Tool`1.GetToolPath(Cake.Core.IO.FilePath,System.Collections.Generic.IEnumerable{Cake.Core.IO.FilePath},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets the tool path
+            </summary>
+            <param name="toolPath">The tool path to be used</param>
+            <param name="alternativePaths">The alternatives paths to be used to look for the tools</param>
+            <param name="toolExeNames">The exe names to be looked for</param>
+            <returns>The full path to the tool</returns>
+        </member>
         <member name="T:Cake.Core.Tooling.ToolSettings">
             <summary>
             Base class for tool settings.
