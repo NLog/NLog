@@ -56,7 +56,7 @@ namespace NLog.Config
         private readonly IDictionary<string, Target> targets =
             new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
 
-        private object[] configItems;
+        private List<object> configItems = new List<object>();
 
         /// <summary>
         /// Variables defined in xml or in API. name is case case insensitive. 
@@ -129,7 +129,11 @@ namespace NLog.Config
         /// </summary>
         public ReadOnlyCollection<Target> AllTargets
         {
-            get { return this.configItems.OfType<Target>().ToList().AsReadOnly(); }
+            get
+            {
+                var configTargets = this.configItems.OfType<Target>();
+                return configTargets.Concat(targets.Values).ToList().AsReadOnly();
+            }
         }
 
         /// <summary>
@@ -411,7 +415,7 @@ namespace NLog.Config
 
             // initialize all config items starting from most nested first
             // so that whenever the container is initialized its children have already been
-            InternalLogger.Info("Found {0} configuration items", this.configItems.Length);
+            InternalLogger.Info("Found {0} configuration items", this.configItems.Count);
 
             foreach (object o in this.configItems)
             {
