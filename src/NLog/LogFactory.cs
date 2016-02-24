@@ -139,15 +139,14 @@ namespace NLog
         {
             get
             {
+                if (this.configLoaded)
+                    return this.config;
+
                 lock (this.syncRoot)
                 {
                     if (this.configLoaded)
-                    {
                         return this.config;
-                    }
-
-                    this.configLoaded = true;
-
+                    
 #if !SILVERLIGHT  && !__IOS__ && !__ANDROID__
                     if (this.config == null)
                     {
@@ -179,27 +178,32 @@ namespace NLog
 
                     if (this.config != null)
                     {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                        config.Dump();
                         try
                         {
-                            this.watcher.Watch(this.config.FileNamesToWatch);
-                        }
-                        catch (Exception exception)
-                        {
-                            if (exception.MustBeRethrownImmediately())
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                            config.Dump();
+                            try
                             {
-                                throw;
+                                this.watcher.Watch(this.config.FileNamesToWatch);
                             }
+                            catch (Exception exception)
+                            {
+                                if (exception.MustBeRethrownImmediately())
+                                {
+                                    throw;
+                                }
 
-                            InternalLogger.Warn(exception, "Cannot start file watching. File watching is disabled");
-                            //TODO NLog 5: check "MustBeRethrown" 
-
-
-                        }
+                                InternalLogger.Warn(exception, "Cannot start file watching. File watching is disabled");
+                                //TODO NLog 5: check "MustBeRethrown" 
+                            }
 #endif
-                        this.config.InitializeAll();
-                        LogConfigurationInitialized();
+                            this.config.InitializeAll();
+                            LogConfigurationInitialized();
+                        }
+                        finally
+                        {
+                            this.configLoaded = true;
+                        }
                     }
 
                     return this.config;
@@ -237,30 +241,36 @@ namespace NLog
                     }
 
                     this.config = value;
-                    this.configLoaded = true;
 
                     if (this.config != null)
                     {
-                        config.Dump();
-
-                        this.config.InitializeAll();
-                        this.ReconfigExistingLoggers();
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                         try
                         {
-                            this.watcher.Watch(this.config.FileNamesToWatch);
-                        }
-                        catch (Exception exception)
-                        {
-                            //ToArray needed for .Net 3.5
-                            InternalLogger.Warn(exception, "Cannot start file watching: {0}", string.Join(",", this.config.FileNamesToWatch.ToArray()));
+                            config.Dump();
 
-                            if (exception.MustBeRethrown())
+                            this.config.InitializeAll();
+                            this.ReconfigExistingLoggers();
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                            try
                             {
-                                throw;
+                                this.watcher.Watch(this.config.FileNamesToWatch);
                             }
-                        }
+                            catch (Exception exception)
+                            {
+                                //ToArray needed for .Net 3.5
+                                InternalLogger.Warn(exception, "Cannot start file watching: {0}", string.Join(",", this.config.FileNamesToWatch.ToArray()));
+
+                                if (exception.MustBeRethrown())
+                                {
+                                    throw;
+                                }
+                            }
 #endif
+                        }
+                        finally
+                        {
+                            this.configLoaded = true;
+                        }
                     }
 
                     this.OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
@@ -351,6 +361,24 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets the logger with the name of the current class. 
+        /// </summary>
+        /// <returns>The logger.</returns>
+        /// <remarks>This is a slow-running method. 
+        /// Make sure you're not doing this in a loop.</remarks>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public T GetCurrentClassLogger<T>() where T : Logger
+        {
+#if SILVERLIGHT
+            var frame = new StackFrame(1);
+#else
+            var frame = new StackFrame(1, false);
+#endif
+
+            return (T)this.GetLogger(frame.GetMethod().DeclaringType.FullName, typeof(T));
+        }
+
+        /// <summary>
         /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="loggerType">The type of the logger to create. The type must inherit from 
@@ -379,6 +407,17 @@ namespace NLog
         public Logger GetLogger(string name)
         {
             return this.GetLogger(new LoggerCacheKey(name, typeof(Logger)));
+        }
+
+        /// <summary>
+        /// Gets the specified named logger.
+        /// </summary>
+        /// <param name="name">Name of the logger.</param>
+        /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument 
+        /// are not guaranteed to return the same logger reference.</returns>
+        public T GetLogger<T>(string name) where T : Logger
+        {
+            return (T)this.GetLogger(new LoggerCacheKey(name, typeof(T)));
         }
 
         /// <summary>
@@ -962,7 +1001,7 @@ namespace NLog
         private void LoadLoggingConfiguration(string configFile)
         {
             InternalLogger.Debug("Loading config from {0}", configFile);
-            this.config = new XmlLoggingConfiguration(configFile);
+            this.config = new XmlLoggingConfiguration(configFile, this);
         }
 
 
