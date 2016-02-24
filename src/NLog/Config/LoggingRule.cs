@@ -69,11 +69,8 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
-        public LoggingRule(string loggerNamePattern, LogLevel minLevel, Target target)
+        public LoggingRule(string loggerNamePattern, LogLevel minLevel, Target target) : this()
         {
-            this.Filters = new List<Filter>();
-            this.ChildRules = new List<LoggingRule>();
-            this.Targets = new List<Target>();
             this.LoggerNamePattern = loggerNamePattern;
             this.Targets.Add(target);
             for (int i = minLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
@@ -88,10 +85,8 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, Target target)
+            : this()
         {
-            this.Filters = new List<Filter>();
-            this.ChildRules = new List<LoggingRule>();
-            this.Targets = new List<Target>();
             this.LoggerNamePattern = loggerNamePattern;
             this.Targets.Add(target);
         }
