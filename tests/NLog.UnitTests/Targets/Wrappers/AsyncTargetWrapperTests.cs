@@ -76,6 +76,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var targetWrapper = new AsyncTargetWrapper
             {
                 WrappedTarget = myTarget,
+                Name = "AsyncTargetWrapperSyncTest1_Wrapper",
             };
             targetWrapper.Initialize(null);
             myTarget.Initialize(null);
@@ -112,7 +113,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void AsyncTargetWrapperAsyncTest1()
         {
             var myTarget = new MyAsyncTarget();
-            var targetWrapper = new AsyncTargetWrapper(myTarget);
+            var targetWrapper = new AsyncTargetWrapper(myTarget) { Name = "AsyncTargetWrapperAsyncTest1_Wrapper" };
             targetWrapper.Initialize(null);
             myTarget.Initialize(null);
             var logEvent = new LogEventInfo();
@@ -144,9 +145,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             var myTarget = new MyAsyncTarget
             {
                 ThrowExceptions = true,
+       
             };
 
-            var targetWrapper = new AsyncTargetWrapper(myTarget);
+            var targetWrapper = new AsyncTargetWrapper(myTarget) {Name = "AsyncTargetWrapperAsyncWithExceptionTest1_Wrapper"};
             targetWrapper.Initialize(null);
             myTarget.Initialize(null);
             var logEvent = new LogEventInfo();
@@ -191,6 +193,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var targetWrapper = new AsyncTargetWrapper(myTarget)
             {
                 OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
+                Name = "AsyncTargetWrapperFlushTest_Wrapper"
             };
 
             targetWrapper.Initialize(null);
@@ -257,13 +260,13 @@ namespace NLog.UnitTests.Targets.Wrappers
             var myTarget = new MyAsyncTarget
             {
                 ThrowExceptions = true,
-
             };
 
             var targetWrapper = new AsyncTargetWrapper(myTarget)
             {
                 OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
                 TimeToSleepBetweenBatches = 1000,
+                Name = "AsyncTargetWrapperCloseTest_Wrapper",
             };
 
             targetWrapper.Initialize(null);
@@ -283,6 +286,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
                 TimeToSleepBetweenBatches = 500,
                 WrappedTarget = new DebugTarget(),
+                Name = "AsyncTargetWrapperExceptionTest_Wrapper"
             };
 
             LogManager.ThrowExceptions = false;
@@ -300,7 +304,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 },
                 LogLevel.Trace);
 
-                Assert.True(internalLog.Contains("AsyncWrapper: WrappedTarget is NULL"), internalLog);
+            Assert.True(internalLog.Contains("AsyncWrapper 'AsyncTargetWrapperExceptionTest_Wrapper': WrappedTarget is NULL"), internalLog);
         }
 
         [Fact]
@@ -310,6 +314,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 TimeToSleepBetweenBatches = 2000,
                 WrappedTarget = new DebugTarget(),
+                Name = "FlushingMultipleTimesSimultaneous_Wrapper"
             };
             asyncTarget.Initialize(null);
 

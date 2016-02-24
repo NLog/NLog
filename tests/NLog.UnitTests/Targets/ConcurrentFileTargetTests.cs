@@ -59,18 +59,20 @@ namespace NLog.UnitTests.Targets
             ft.OpenFileCacheSize = 1;
             ft.LineEnding = LineEndingMode.LF;
 
+            var name = "ConfigureSharedFile_" + mode + "-wrapper";
+
             switch (mode)
             {
                 case "async":
-                    SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 100, AsyncTargetWrapperOverflowAction.Grow), LogLevel.Debug);
+                    SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(ft, 100, AsyncTargetWrapperOverflowAction.Grow) { Name = name }, LogLevel.Debug);
                     break;
 
                 case "buffered":
-                    SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft, 100), LogLevel.Debug);
+                    SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft, 100) { Name = name }, LogLevel.Debug);
                     break;
 
                 case "buffered_timed_flush":
-                    SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft, 100, 10), LogLevel.Debug);
+                    SimpleConfigurator.ConfigureForTargetLogging(new BufferingTargetWrapper(ft, 100, 10) { Name = name }, LogLevel.Debug);
                     break;
 
                 default:
