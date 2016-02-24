@@ -49,7 +49,6 @@ namespace NLog.UnitTests.Targets
     using Xunit;
     using Xunit.Extensions;
     using System.Linq;
-    using Oracle.DataAccess.Client;
 
     public class DatabaseTargetTests : NLogTestBase
     {
@@ -1085,6 +1084,17 @@ Dispose()
             }
         }
 
+        /// <summary>
+        /// Since we don't really need to add a real life reference to oracle we just
+        /// make a fake enum that we can reference
+        /// </summary>
+        public enum OracleDbType
+        {
+            Default,
+            Clob,
+            Blob
+        }
+
         private class MockDbParameter : IDbDataParameter
         {
             private readonly MockDbCommand mockDbCommand;
@@ -1341,24 +1351,6 @@ Dispose()
                 get { throw new NotImplementedException(); }
             }
         }
-    }
-}
-
-#endif
-
-#if !SILVERLIGHT
-
-namespace Oracle.DataAccess.Client
-{
-    /// <summary>
-    /// Since we don't really need to add a real life reference to oracle we just
-    /// make a fake enum that we can reference
-    /// </summary>
-    public enum OracleDbType
-    {
-        Default,
-        Clob,
-        Blob
     }
 }
 

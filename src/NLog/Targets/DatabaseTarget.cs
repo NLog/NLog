@@ -556,7 +556,7 @@ namespace NLog.Targets
 
             // Each custom database type that we want to support will need added here on as needed basis
             string propertyName = string.Empty;
-            if (parameterInfo.DbType.StartsWith("Oracle.DataAccess.Client.OracleDbType"))
+            if (parameterInfo.DbType.Contains("OracleDbType"))
             {
                 propertyName = "OracleDbType";
             }
