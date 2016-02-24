@@ -206,6 +206,95 @@ namespace NLog.Config
             return FindTargetByName(name) as TTarget;
         }
 
+
+        /// <summary>
+        /// Add a rule with min- and maxLevel.
+        /// </summary>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
+        /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
+        /// <param name="targetName">Name of the target to be written when the rule matches.</param>
+        public void AddRule(string loggerNamePattern, LogLevel minLevel, LogLevel maxLevel, string targetName)
+        {
+            var target = FindTargetByName(targetName);
+            if (target == null)
+            {
+                throw new NLogRuntimeException("Target '{0}' not found", targetName);
+            }
+
+            AddRule(loggerNamePattern, minLevel, maxLevel, target);
+        }
+
+        /// <summary>
+        /// Add a rule with min- and maxLevel.
+        /// </summary>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
+        /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
+        /// <param name="target">Target to be written to when the rule matches.</param>
+        public void AddRule(string loggerNamePattern, LogLevel minLevel, LogLevel maxLevel, Target target)
+        {
+            LoggingRules.Add(new LoggingRule(loggerNamePattern, minLevel, maxLevel, target));
+        }
+
+        /// <summary>
+        /// Add a rule for one loglevel.
+        /// </summary>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="level">log level needed to trigger this rule. </param>
+        /// <param name="targetName">Name of the target to be written when the rule matches.</param>
+        public void AddRuleForOneLevel(string loggerNamePattern, LogLevel level, string targetName)
+        {
+            var target = FindTargetByName(targetName);
+            if (target == null)
+            {
+                throw new NLogRuntimeException("Target '{0}' not found", targetName);
+            }
+
+            AddRuleForOneLevel(loggerNamePattern, level, target);
+        }
+
+        /// <summary>
+        /// Add a rule for one loglevel.
+        /// </summary>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="level">log level needed to trigger this rule. </param>
+        /// <param name="target">Target to be written to when the rule matches.</param>
+        public void AddRuleForOneLevel(string loggerNamePattern, LogLevel level, Target target)
+        {
+            var loggingRule = new LoggingRule(loggerNamePattern, target);
+            loggingRule.EnableLoggingForLevel(level);
+            LoggingRules.Add(loggingRule);
+        }
+
+        /// <summary>
+        /// Add a rule for alle loglevels.
+        /// </summary>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="targetName">Name of the target to be written when the rule matches.</param>
+        public void AddRuleForAllLevels(string loggerNamePattern, string targetName)
+        {
+            var target = FindTargetByName(targetName);
+            if (target == null)
+            {
+                throw new NLogRuntimeException("Target '{0}' not found", targetName);
+            }
+
+            AddRuleForAllLevels(loggerNamePattern, target);
+        }
+
+        /// <summary>
+        /// Add a rule for alle loglevels.
+        /// </summary>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="target">Target to be written to when the rule matches.</param>
+        public void AddRuleForAllLevels(string loggerNamePattern, Target target)
+        {
+            var loggingRule = new LoggingRule(loggerNamePattern, target);
+            loggingRule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
+            LoggingRules.Add(loggingRule);
+        }
+
         /// <summary>
         /// Called by LogManager when one of the log configuration files changes.
         /// </summary>
@@ -329,7 +418,7 @@ namespace NLog.Config
                         throw;
                     }
 
-                   
+
                 }
             }
 
