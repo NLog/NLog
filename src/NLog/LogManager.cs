@@ -84,6 +84,14 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets the default <see cref="NLog.LogFactory" /> instance.
+        /// </summary>
+        internal static LogFactory LogFactory
+        {
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
         /// </summary>
         public static event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged
@@ -127,7 +135,7 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets the current logging configuration.
-        /// <see cref="LogFactory.Configuration" />
+        /// <see cref="NLog.LogFactory.Configuration" />
         /// </summary>
         public static LoggingConfiguration Configuration
         {
@@ -233,7 +241,7 @@ namespace NLog
         /// <param name="name">Name of the logger.</param>
         /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
-        /// <remarks>The generic way for this method is <see cref="LogFactory{loggerType}.GetLogger(string)"/></remarks>
+        /// <remarks>The generic way for this method is <see cref="NLog.LogFactory{loggerType}.GetLogger(string)"/></remarks>
         [CLSCompliant(false)]
         public static Logger GetLogger(string name, Type loggerType)
         {

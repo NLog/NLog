@@ -44,7 +44,7 @@ namespace NLog
     public interface ISuppress
     {
         /// <summary>
-        /// Runs action. If the action throws, the exception is logged at <c>Error</c> level. The exception is not propagated outside of this method.
+        /// Runs the provided action. If the action throws, the exception is logged at <c>Error</c> level. The exception is not propagated outside of this method.
         /// </summary>
         /// <param name="action">Action to execute.</param>
         void Swallow(Action action);
@@ -70,10 +70,17 @@ namespace NLog
 
 #if ASYNC_SUPPORTED
         /// <summary>
+        /// Logs an exception is logged at <c>Error</c> level if the provided task does not run to completion.
+        /// </summary>
+        /// <param name="task">The task for which to log an error if it does not run to completion.</param>
+        /// <remarks>This method is useful in fire-and-forget situations, where application logic does not depend on completion of task. This method is avoids C# warning CS4014 in such situations.</remarks>
+        void Swallow(Task task);
+
+        /// <summary>
         /// Returns a task that completes when a specified task to completes. If the task does not run to completion, an exception is logged at <c>Error</c> level. The returned task always runs to completion.
         /// </summary>
         /// <param name="task">The task for which to log an error if it does not run to completion.</param>
-        /// <returns>A task that completes in the <see cref="TaskStatus.RanToCompletion"/> state when when <paramref name="task"/> completes.</returns>
+        /// <returns>A task that completes in the <see cref="TaskStatus.RanToCompletion"/> state when <paramref name="task"/> completes.</returns>
         Task SwallowAsync(Task task);
  
         /// <summary>
@@ -101,5 +108,5 @@ namespace NLog
         /// <returns>A task that represents the completion of the supplied task. If the supplied task ends in the <see cref="TaskStatus.RanToCompletion"/> state, the result of the new task will be the result of the supplied task; otherwise, the result of the new task will be the fallback value.</returns>
         Task<TResult> SwallowAsync<TResult>(Func<Task<TResult>> asyncFunc, TResult fallback);
 #endif
-	}
+    }
 }
