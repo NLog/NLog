@@ -208,17 +208,7 @@ namespace NLog.Common
                 return;
             }
 
-            if (level == LogLevel.Off)
-            {
-                return;
-            }
-
-            if (level < LogLevel)
-            {
-                return;
-            }
-
-            if (LoggingEnabled())
+            if (!LoggingEnabled(level))
             {
                 return;
             }
@@ -308,11 +298,20 @@ namespace NLog.Common
         /// <summary>
         /// Determine if logging is enabled.
         /// </summary>
+        /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
         /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
-        private static bool LoggingEnabled()
+        private static bool LoggingEnabled(LogLevel logLevel)
         {
-            return string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null &&
-                   !LogToDiagnostics;
+            if (logLevel == LogLevel.Off || logLevel < LogLevel)
+            {
+                return false;
+            }
+
+            return !string.IsNullOrEmpty(LogFile) ||
+                   LogToConsole ||
+                   LogToConsoleError ||
+                   LogWriter != null ||
+                   LogToDiagnostics;
         }
 
         /// <summary>
@@ -330,12 +329,23 @@ namespace NLog.Common
                 return;
             }
 
-            if (logLevel != LogLevel.Trace)
+            var previousLevel = LogLevel;
+            try
             {
-                System.Diagnostics.Debug.WriteLine(message, "NLog");
+                LogLevel = LogLevel.Off; // without this stackoverflowexception occured
+                if (logLevel == LogLevel.Trace)
+                {
+                    System.Diagnostics.Trace.WriteLine(message, "NLog");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine(message, "NLog");
+                }
             }
-
-            System.Diagnostics.Trace.WriteLine(message, "NLog");
+            finally
+            {
+                LogLevel = previousLevel;
+            }
 #endif
         }
 
