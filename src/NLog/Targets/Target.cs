@@ -68,6 +68,23 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+        /// </summary>
+        protected Target()
+        {
+            if (Name == null)
+            {
+                //get name form TargetAttribute
+                var attr = GetTargetAttribute();
+                if (attr != null)
+                {
+                    Name = attr.Name;
+                }
+            }
+
+        }
+
+        /// <summary>
         /// Gets the logging configuration this target is part of.
         /// </summary>
         protected LoggingConfiguration LoggingConfiguration { get; private set; }
@@ -186,13 +203,18 @@ namespace NLog.Targets
         /// </returns>
         public override string ToString()
         {
-            var targetAttribute = (TargetAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(TargetAttribute));
+            var targetAttribute = GetTargetAttribute();
             if (targetAttribute != null)
             {
                 return targetAttribute.Name + " Target[" + (this.Name ?? "(unnamed)") + "]";
             }
 
             return this.GetType().Name;
+        }
+
+        private TargetAttribute GetTargetAttribute()
+        {
+            return (TargetAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(TargetAttribute));
         }
 
         /// <summary>
