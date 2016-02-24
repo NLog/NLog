@@ -1602,7 +1602,10 @@ namespace NLog.UnitTests.Targets
 
                 var threadID = Thread.CurrentThread.ManagedThreadId.ToString();
 
-                SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(fileTarget, 1000, AsyncTargetWrapperOverflowAction.Grow), LogLevel.Debug);
+                SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(fileTarget, 1000, AsyncTargetWrapperOverflowAction.Grow)
+                {
+                    Name = "AsyncMultiFileWrite_wrapper"
+                }, LogLevel.Debug);
                 LogManager.ThrowExceptions = true;
 
                 for (var i = 0; i < 250; ++i)
