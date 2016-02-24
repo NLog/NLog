@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using Oracle.DataAccess.Client;
-
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -51,6 +49,7 @@ namespace NLog.UnitTests.Targets
     using Xunit;
     using Xunit.Extensions;
     using System.Linq;
+    using Oracle.DataAccess.Client;
 
     public class DatabaseTargetTests : NLogTestBase
     {
