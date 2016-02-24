@@ -1344,6 +1344,10 @@ Dispose()
     }
 }
 
+#endif
+
+#if !SILVERLIGHT
+
 namespace Oracle.DataAccess.Client
 {
     /// <summary>
