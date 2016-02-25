@@ -108,7 +108,7 @@ namespace NLog.UnitTests.Config
         {
             var config = new LoggingConfiguration();
             config.AddTarget(new FileTarget());
-            config.AddRule("*a", LogLevel.Info, LogLevel.Error, "File");
+            config.AddRule(LogLevel.Info, LogLevel.Error, "File", "*a");
             Assert.NotNull(config.LoggingRules);
             Assert.Equal(1, config.LoggingRules.Count);
             var rule1 = config.LoggingRules.FirstOrDefault();
@@ -130,7 +130,7 @@ namespace NLog.UnitTests.Config
         {
             var config = new LoggingConfiguration();
             config.AddTarget(new FileTarget());
-            config.AddRuleForAllLevels("*a", "File");
+            config.AddRuleForAllLevels("File", "*a");
             Assert.NotNull(config.LoggingRules);
             Assert.Equal(1, config.LoggingRules.Count);
             var rule1 = config.LoggingRules.FirstOrDefault();
@@ -151,7 +151,7 @@ namespace NLog.UnitTests.Config
         {
             var config = new LoggingConfiguration();
             config.AddTarget(new FileTarget());
-            config.AddRuleForOneLevel("*a", LogLevel.Error, "File");
+            config.AddRuleForOneLevel(LogLevel.Error, "File", "*a");
             Assert.NotNull(config.LoggingRules);
             Assert.Equal(1, config.LoggingRules.Count);
             var rule1 = config.LoggingRules.FirstOrDefault();
@@ -172,7 +172,7 @@ namespace NLog.UnitTests.Config
         {
             var config = new LoggingConfiguration();
             var fileTarget = new FileTarget();
-            config.AddRuleForOneLevel("*a", LogLevel.Error, fileTarget);
+            config.AddRuleForOneLevel(LogLevel.Error, fileTarget, "*a");
             Assert.NotNull(config.LoggingRules);
             Assert.Equal(1, config.LoggingRules.Count);
             config.AddTarget(new FileTarget());
@@ -189,7 +189,7 @@ namespace NLog.UnitTests.Config
         {
             var config = new LoggingConfiguration();
 
-            Assert.Throws <NLogConfigurationException>(() => config.AddRuleForOneLevel("*a", LogLevel.Error, "File"));
+            Assert.Throws <NLogConfigurationException>(() => config.AddRuleForOneLevel(LogLevel.Error, "File", "*a"));
 
         }
     }
