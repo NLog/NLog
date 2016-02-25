@@ -119,14 +119,20 @@ namespace NLog.Internal
                     continue;
                 }
 
-                var list = value as ICollection;
+                var list = value as IList;
                 if (list != null)
                 {
                     //try first icollection for syncroot
                     List<object> elements;
                     lock (list.SyncRoot)
                     {
-                        elements = new List<object>(list.Cast<object>());
+                        elements = new List<object>(list.Count);
+                        //no foreach. Even .Cast can lead to  Collection was modified after the enumerator was instantiated.
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            var item = list[i];
+                            elements.Add(item);
+                        }
                     }
                     foreach (object element in elements)
                     {
