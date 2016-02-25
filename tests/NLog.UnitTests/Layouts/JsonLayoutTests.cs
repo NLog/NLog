@@ -192,11 +192,11 @@ namespace NLog.UnitTests.Layouts
                     new JsonAttribute("message", "${exception:format=Message}"),
                     new JsonAttribute("innerException", new JsonLayout
                     {
-
+            
                         Attributes =
                         {
-                            new JsonAttribute("type", "${exception:format=:innerFormat=Type:MaxInnerExceptionLevel=1}"),
-                            new JsonAttribute("message", "${exception:format=:innerFormat=Message:MaxInnerExceptionLevel=1}"),
+                            new JsonAttribute("type", "${exception:format=:innerFormat=Type:MaxInnerExceptionLevel=1:InnerExceptionSeparator=}"),
+                            new JsonAttribute("message", "${exception:format=:innerFormat=Message:MaxInnerExceptionLevel=1:InnerExceptionSeparator=}"),
                         }
                     },
                     //don't escape layout
@@ -210,7 +210,7 @@ namespace NLog.UnitTests.Layouts
             };
 
             var json = jsonLayout.Render(logEventInfo);
-            Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\", \"innerException\": { \"type\": \"\\r\\nSystem.NullReferenceException\", \"message\": \"\\r\\nnull is bad!\" } }", json);
+            Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\", \"innerException\": { \"type\": \"System.NullReferenceException\", \"message\": \"null is bad!\" } }", json);
 
         }
     }
