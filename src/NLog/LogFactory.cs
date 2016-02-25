@@ -827,9 +827,10 @@ namespace NLog
 
         private static IEnumerable<string> GetCandidateConfigFileNames()
         {
-#if SILVERLIGHT
+#if SILVERLIGHT || __ANDROID__ || __IOS__
+            //try.nlog.config is ios/android/silverlight
             yield return "NLog.config";
-#else
+#elif !SILVERLIGHT
             // NLog.config from application directory
             if (CurrentAppDomain.BaseDirectory != null)
             {
