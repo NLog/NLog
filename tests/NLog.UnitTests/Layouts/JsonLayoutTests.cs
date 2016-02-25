@@ -55,12 +55,14 @@ namespace NLog.UnitTests.Layouts
                     }
             };
 
-            var ev = new LogEventInfo();
-            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
-            ev.Level = LogLevel.Info;
-            ev.Message = "hello, world";
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = "hello, world"
+            };
 
-            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello, world\" }", jsonLayout.Render(ev));
+            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello, world\" }", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -77,12 +79,14 @@ namespace NLog.UnitTests.Layouts
                 SuppressSpaces = true
             };
 
-            var ev = new LogEventInfo();
-            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
-            ev.Level = LogLevel.Info;
-            ev.Message = "hello, world";
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = "hello, world"
+            };
 
-            Assert.Equal("{\"date\":\"2010-01-01 12:34:56.0000\",\"level\":\"Info\",\"message\":\"hello, world\"}", jsonLayout.Render(ev));
+            Assert.Equal("{\"date\":\"2010-01-01 12:34:56.0000\",\"level\":\"Info\",\"message\":\"hello, world\"}", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -98,12 +102,14 @@ namespace NLog.UnitTests.Layouts
                     }
             };
 
-            var ev = new LogEventInfo();
-            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
-            ev.Level = LogLevel.Info;
-            ev.Message = "\"hello, world\"";
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = "\"hello, world\""
+            };
 
-            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"\\\"hello, world\\\"\" }", jsonLayout.Render(ev));
+            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"\\\"hello, world\\\"\" }", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -119,12 +125,14 @@ namespace NLog.UnitTests.Layouts
                     }
             };
 
-            var ev = new LogEventInfo();
-            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
-            ev.Level = LogLevel.Info;
-            ev.Message = "hello,\n\r world";
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = "hello,\n\r world"
+            };
 
-            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello,\\n\\r world\" }", jsonLayout.Render(ev));
+            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"hello,\\n\\r world\" }", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -140,12 +148,14 @@ namespace NLog.UnitTests.Layouts
                     }
             };
 
-            var ev = new LogEventInfo();
-            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
-            ev.Level = LogLevel.Info;
-            ev.Message = "{ \"hello\" : \"world\" }";
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = "{ \"hello\" : \"world\" }"
+            };
 
-            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": { \"hello\" : \"world\" } }", jsonLayout.Render(ev));
+            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": { \"hello\" : \"world\" } }", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -161,12 +171,47 @@ namespace NLog.UnitTests.Layouts
                     }
             };
 
-            var ev = new LogEventInfo();
-            ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
-            ev.Level = LogLevel.Info;
-            ev.Message = "{ \"hello\" : \"world\" }";
+            var logEventInfo = new LogEventInfo
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+                Message = "{ \"hello\" : \"world\" }"
+            };
 
-            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"{ \\\"hello\\\" : \\\"world\\\" }\" }", jsonLayout.Render(ev));
+            Assert.Equal("{ \"date\": \"2010-01-01 12:34:56.0000\", \"level\": \"Info\", \"message\": \"{ \\\"hello\\\" : \\\"world\\\" }\" }", jsonLayout.Render(logEventInfo));
+        }
+
+        [Fact]
+        public void NestedJsonAttrTest()
+        {
+            var jsonLayout = new JsonLayout
+            {
+                Attributes =
+                {
+                    new JsonAttribute("type", "${exception:format=Type}"),
+                    new JsonAttribute("message", "${exception:format=Message}"),
+                    new JsonAttribute("innerException", new JsonLayout
+                    {
+
+                        Attributes =
+                        {
+                            new JsonAttribute("type", "${exception:format=:innerFormat=Type:MaxInnerExceptionLevel=1}"),
+                            new JsonAttribute("message", "${exception:format=:innerFormat=Message:MaxInnerExceptionLevel=1}"),
+                        }
+                    },
+                    //don't escape layout
+                    false)
+                }
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Exception = new NLogRuntimeException("test", new NullReferenceException("null is bad!"))
+            };
+
+            var json = jsonLayout.Render(logEventInfo);
+            Assert.Equal("{ \"type\": \"NLog.NLogRuntimeException\", \"message\": \"test\", \"innerException\": { \"type\": \"\\r\\nSystem.NullReferenceException\", \"message\": \"\\r\\nnull is bad!\" } }", json);
+
         }
     }
 }
