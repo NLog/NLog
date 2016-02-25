@@ -287,6 +287,11 @@ namespace NLog.Config
         /// <returns>A value of <see langword="true"/> when the log level is enabled, <see langword="false" /> otherwise.</returns>
         public bool IsLoggingEnabledForLevel(LogLevel level)
         {
+            if (level == LogLevel.Off)
+            {
+                return false;
+            }
+
             return this.logLevels[level.Ordinal];
         }
 
