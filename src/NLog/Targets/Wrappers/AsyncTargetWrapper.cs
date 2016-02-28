@@ -178,7 +178,7 @@ namespace NLog.Targets.Wrappers
         {
             base.InitializeTarget();
             this.RequestQueue.Clear();
-            InternalLogger.Trace("AsyncWrapper: start timer");
+            InternalLogger.Trace("AsyncWrapper '{0}': start timer", Name);
             this.lazyWriterTimer = new Timer(this.ProcessPendingEvents, null, Timeout.Infinite, Timeout.Infinite);
             this.StartLazyWriterTimer();
         }
@@ -245,7 +245,7 @@ namespace NLog.Targets.Wrappers
 
         private void ProcessPendingEvents(object state)
         {
-            InternalLogger.Trace("AsyncWrapper: ProcessPendingEvents");
+            InternalLogger.Trace("AsyncWrapper '{0}': ProcessPendingEvents", Name);
             AsyncContinuation[] continuations;
             lock (this.continuationQueueLock)
             {
@@ -260,7 +260,7 @@ namespace NLog.Targets.Wrappers
 
                 if (this.WrappedTarget == null)
                 {
-                    InternalLogger.Error("AsyncWrapper: WrappedTarget is NULL");
+                    InternalLogger.Error("AsyncWrapper '{0}': WrappedTarget is NULL", Name);
                     return;
                 }
 
@@ -271,7 +271,7 @@ namespace NLog.Targets.Wrappers
                     {
                         count = this.RequestQueue.RequestCount;
                     }
-                    InternalLogger.Trace("AsyncWrapper: Flushing {0} events.", count);
+                    InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, count);
 
                     if (this.RequestQueue.RequestCount == 0)
                     {
@@ -297,13 +297,13 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "AsyncWrapper: Error in lazy writer timer procedure.");
+                InternalLogger.Error(exception, "AsyncWrapper '{0}': Error in lazy writer timer procedure.", Name);
 
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
-                
+
             }
             finally
             {
