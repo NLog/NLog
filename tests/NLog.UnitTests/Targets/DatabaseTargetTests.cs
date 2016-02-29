@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Data.SqlClient;
-
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -51,6 +49,7 @@ namespace NLog.UnitTests.Targets
     using Xunit;
     using Xunit.Extensions;
     using System.Linq;
+    using System.Data.SqlClient;
 
     public class DatabaseTargetTests : NLogTestBase
     {
