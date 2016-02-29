@@ -101,6 +101,7 @@ namespace NLog.Targets
 
         /// <summary>
         /// Gets or sets the column type of the database.
+        /// if <c>null</c> then string/varchar type is used
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
         [DefaultValue(null)]

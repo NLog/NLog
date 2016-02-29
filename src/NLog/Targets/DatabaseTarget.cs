@@ -510,7 +510,7 @@ namespace NLog.Targets
                     string stringValue = par.Layout.Render(logEvent);
 
                     p.Value = stringValue;
-                    SetParamType(p, par);
+                    SetParamType(p, par.DbType);
                     command.Parameters.Add(p);
 
                     InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
@@ -525,52 +525,65 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Allows the database type to be customized if we
-        /// are not able to properly infer the database type.
+        /// Set database type <paramref name="dbType"/> on <paramref name="dbDataParameter"/>
         /// </summary>
         /// <param name="dbDataParameter">The parameter.</param>
-        /// <param name="parameterInfo"></param>
-        internal void SetParamType(IDbDataParameter dbDataParameter, DatabaseParameterInfo parameterInfo)
+        /// <param name="dbType"></param>
+        internal void SetParamType(IDbDataParameter dbDataParameter, string dbType)
         {
-            if (string.IsNullOrEmpty(parameterInfo.DbType))
+            if (string.IsNullOrEmpty(dbType))
                 return;
-            var lastIndexOfDot = parameterInfo.DbType.LastIndexOf('.');
+            var lastIndexOfDot = dbType.LastIndexOf('.');
 
             // Get just the fully qualified name of the enum but not the value
-            var justEnumName = lastIndexOfDot > 0 ? 
-                parameterInfo.DbType.Substring(0, lastIndexOfDot) : string.Empty;
+            var enumName = lastIndexOfDot > 0 ? 
+                dbType.Substring(0, lastIndexOfDot) : string.Empty;
 
-            object rawConstantValue = null;
+            object enumValueObject = null;
             Type paramType = dbDataParameter.GetType();
-            if (!string.IsNullOrEmpty(justEnumName))
+            if (!string.IsNullOrEmpty(enumName))
             {
-                // get the enum type from the database parameter we are using
-                var databaseType = paramType.Assembly.GetType(justEnumName);
+                try
+                {
+                    // get the enum type from the database parameter we are using
+                    var enumDatabaseType = paramType.Assembly.GetType(enumName);
 
-                // get the enum value for the database type
-                var justEnumValue = parameterInfo.DbType.Substring(lastIndexOfDot + 1,
-                    parameterInfo.DbType.Length - lastIndexOfDot - 1);
-                var typeField = databaseType != null ? databaseType.GetField(justEnumValue) : null;
-                rawConstantValue = typeField != null ? typeField.GetRawConstantValue() : null;
+                    // get the enum value for the database type
+                    var enumValueString = dbType.Substring(lastIndexOfDot + 1,
+                        dbType.Length - lastIndexOfDot - 1);
+                    var typeField = enumDatabaseType != null ? enumDatabaseType.GetField(enumValueString) : null;
+                    enumValueObject = typeField != null ? typeField.GetRawConstantValue() : null;
+                }
+                catch (Exception exception)
+                {
+                    InternalLogger.Trace(exception, "DatabaseTarget: unable to use " + enumName + " to set database column type.");
+                    throw;
+                }
             }
 
             // Each custom database type that we want to support will need added here on as needed basis
-            string propertyName = string.Empty;
-            if (parameterInfo.DbType.Contains("OracleDbType"))
+            string propertyName = null;
+            if (dbType.Contains("OracleDbType")) 
             {
+                // for Oracle we have to set the OracleDbType property on the parameter
                 propertyName = "OracleDbType";
+            }
+            else if(dbType.Contains("SqlDbType"))
+            {
+                // for Sql Server we have to set the SqlDbType property on the parameter
+                propertyName = "SqlDbType";
             }
 
             // find the property on the database specific parameter
-            var property = paramType.GetProperty(propertyName);
+            var property = paramType.GetProperty(propertyName ?? string.Empty);
 
             // if something went wrong with the reflection a bad value was probably set and we can't fix that
-            if (rawConstantValue == null || property == null)
-                throw new Exception("Unable set the database type from the database parameter for DbType: "
-                    + parameterInfo.DbType);
+            if (enumValueObject == null || property == null)
+                throw new NLogConfigurationException("Unable set the database type from the database parameter for DbType: "
+                    + dbType);
 
             // we find the enum and the property ok so now we just set it using reflection
-            property.SetValue(dbDataParameter, rawConstantValue, null);
+            property.SetValue(dbDataParameter, enumValueObject, null);
         }
 
         private string BuildConnectionString(LogEventInfo logEvent)

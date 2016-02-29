@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Data.SqlClient;
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -776,9 +778,31 @@ Dispose()
             };
             var parameter = new MockDbParameter(new MockDbCommand(), 0); 
 
-            target.SetParamType(parameter, parameterInfo);
+            target.SetParamType(parameter, parameterInfo.DbType);
 
             Assert.Equal(expected, parameter.OracleDbType);
+        }
+
+        [Fact]
+        public void SqlServer_SetParamTypeShouldSetCustomEnumValueTest()
+        {
+            var expected = SqlDbType.Bit;
+            var target = new DatabaseTarget
+            {
+                Name = "notimportant",
+                DBProvider = "notimportant",
+                ConnectionString = "notimportant",
+                CommandText = "notimportant",
+            };
+            var parameterInfo = new DatabaseParameterInfo
+            {
+                DbType = typeof(SqlDbType).FullName + ".Bit"
+            };
+            var parameter = new SqlParameter();
+
+            target.SetParamType(parameter, parameterInfo.DbType);
+
+            Assert.Equal(expected, parameter.SqlDbType);
         }
 
         [Theory]
@@ -801,8 +825,8 @@ Dispose()
             };
             var parameter = new MockDbParameter(new MockDbCommand(), 0);
 
-            Exception exception = Assert.Throws<Exception>(() => 
-                target.SetParamType(parameter, parameterInfo));
+            Exception exception = Assert.Throws<NLogConfigurationException>(() => 
+                target.SetParamType(parameter, parameterInfo.DbType));
 
             Assert.Contains(dbType, exception.Message);
         }
@@ -821,7 +845,7 @@ Dispose()
             var parameter = new MockDbParameter(new MockDbCommand(), 0);
             var expected = parameter.OracleDbType = OracleDbType.Blob;
 
-            target.SetParamType(parameter, parameterInfo);
+            target.SetParamType(parameter, parameterInfo.DbType);
 
             Assert.Equal(expected, parameter.OracleDbType);
         }
@@ -1108,6 +1132,10 @@ Dispose()
                 this.paramId = paramId;
             }
 
+            /// <summary>
+            /// Mocks Oracle data type property so that we won't have to add a 
+            /// direct reference to Oracle in order to test.
+            /// </summary>
             public OracleDbType OracleDbType { get; set; }
 
             public DbType DbType { get; set; }
