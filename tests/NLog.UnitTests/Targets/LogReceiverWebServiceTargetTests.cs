@@ -186,7 +186,10 @@ namespace NLog.UnitTests.Targets
             var target = new MyLogReceiverWebServiceTarget();
             target.EndpointAddress = "http://notimportant:9999/";
             target.Initialize(configuration);
-            var asyncTarget = new AsyncTargetWrapper(target);
+            var asyncTarget = new AsyncTargetWrapper(target)
+            {
+                Name = "NoEmptyEventLists_wrapper"
+            };
             asyncTarget.Initialize(configuration);
             asyncTarget.WriteAsyncLogEvents(new[] { LogEventInfo.Create(LogLevel.Info, "logger1", "message1").WithContinuation(ex => { }) });
             Thread.Sleep(1000);

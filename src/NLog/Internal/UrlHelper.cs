@@ -43,6 +43,12 @@ namespace NLog.Internal
         private static string safeUrlPunctuation = ".()*-_!'";
         private static string hexChars = "0123456789abcdef";
 
+        /// <summary>
+        /// Url encode and URL
+        /// </summary>
+        /// <param name="str">URL to be encoded</param>
+        /// <param name="spaceAsPlus">space as + or %20? <c>false</c> (%20) is the safe option.</param>
+        /// <returns>Encoded url.</returns>
         internal static string UrlEncode(string str, bool spaceAsPlus)
         {
             StringBuilder result = new StringBuilder(str.Length + 20);
@@ -78,6 +84,11 @@ namespace NLog.Internal
             return result.ToString();
         }
 
+        /// <summary>
+        /// Is this character safe in the URL?
+        /// </summary>
+        /// <param name="ch">char to test.</param>
+        /// <returns><c>true</c> is safe.</returns>
         private static bool IsSafeUrlCharacter(char ch)
         {
             if (ch >= 'a' && ch <= 'z')
