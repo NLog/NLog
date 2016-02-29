@@ -93,6 +93,14 @@ namespace NLog
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
         /// </summary>
+        internal static LogFactory LogFactory
+        {
+            get { return factory; }
+        }
+
+        /// <summary>
+        /// Occurs when logging <see cref="Configuration" /> changes.
+        /// </summary>
         public static event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged
         {
             add { factory.ConfigurationChanged += value; }
@@ -135,6 +143,7 @@ namespace NLog
 
         /// <summary>
         /// Gets or sets the current logging configuration.
+        /// <see cref="NLog.LogFactory.Configuration" />
         /// </summary>
         public static LoggingConfiguration Configuration
         {

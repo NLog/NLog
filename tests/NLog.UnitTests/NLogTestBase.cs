@@ -66,6 +66,11 @@ namespace NLog.UnitTests
         protected NLogTestBase()
         {
             //reset before every test
+            if (LogManager.Configuration != null)
+            {
+                //flush all events if needed.
+                LogManager.Configuration.Close();
+            }
             LogManager.Configuration = null;
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
