@@ -245,7 +245,6 @@ namespace NLog.Targets.Wrappers
 
         private void ProcessPendingEvents(object state)
         {
-            InternalLogger.Trace("AsyncWrapper '{0}': ProcessPendingEvents", Name);
             AsyncContinuation[] continuations;
             lock (this.continuationQueueLock)
             {
