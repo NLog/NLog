@@ -727,6 +727,26 @@ namespace NLog.UnitTests.Targets
 
             Assert.Equal(mmt.SmtpClientPickUpDirectory, inConfigVal);
         }
+    
+        [Fact]
+        public void MailTarget_UseSystemNetMailSettings_True_WithVirtualPath()
+        {
+            var inConfigVal = @"~/App_Data/Mail";
+            var mmt = new MockMailTarget(inConfigVal)
+            {
+                From = "foo@bar.com",
+                To = "bar@bar.com",
+                Subject = "Hello from NLog",
+                Body = "${level} ${logger} ${message}",
+                UseSystemNetMailSettings = false,
+                PickupDirectoryLocation = inConfigVal,
+                DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory
+            };
+            mmt.ConfigureMailClient();
+
+            Assert.NotEqual(inConfigVal, mmt.SmtpClientPickUpDirectory);
+            Assert.Contains(@"\App_Data\Mail", mmt.SmtpClientPickUpDirectory);
+        }
 
         [Fact]
         public void MailTarget_WithoutSubject_SendsMessageWithDefaultSubject()
@@ -841,6 +861,18 @@ namespace NLog.UnitTests.Targets
                 if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
                 {
                     Client.PickupDirectoryLocation = this.PickupDirectoryLocation;
+
+
+                    if (!PickupDirectoryLocation.StartsWith("~"))
+                    {
+                        Client.PickupDirectoryLocation = this.PickupDirectoryLocation;
+                        return;
+                    }
+
+                    // Support for Virtual Paths
+                    var root = AppDomain.CurrentDomain.BaseDirectory;
+                    var pickupRoot = System.IO.Path.Combine(root, Client.PickupDirectoryLocation.Replace("~/", "")).Replace("/", @"\");
+                    Client.PickupDirectoryLocation = pickupRoot;
                 }
                 Client.DeliveryMethod = this.DeliveryMethod;
             }

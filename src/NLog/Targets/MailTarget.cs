@@ -439,7 +439,16 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
             {
-                client.PickupDirectoryLocation = this.PickupDirectoryLocation;
+                if (!PickupDirectoryLocation.StartsWith("~"))
+                {
+                    client.PickupDirectoryLocation = this.PickupDirectoryLocation;
+                    return;
+                }
+
+                // Support for Virtual Paths
+                var root = AppDomain.CurrentDomain.BaseDirectory;
+                var pickupRoot = System.IO.Path.Combine(root, client.PickupDirectoryLocation.Replace("~/", "")).Replace("/", @"\");
+                client.PickupDirectoryLocation = pickupRoot;
             }
 
             // In case DeliveryMethod = PickupDirectoryFromIis we will not require Host nor PickupDirectoryLocation
