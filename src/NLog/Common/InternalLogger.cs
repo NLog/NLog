@@ -271,7 +271,7 @@ namespace NLog.Common
                     Console.Error.WriteLine(msg);
                 }
 
-                PerformLogToDiagnostics(level, msg);
+                WriteToDiagnostics(level, msg);
             }
             catch (Exception exception)
             {
@@ -320,10 +320,9 @@ namespace NLog.Common
         /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
         /// <param name="message">A message to write.</param>
         /// <remarks>Works when property <see cref="LogToDiagnostics"/> set to true.</remarks>
-        private static void PerformLogToDiagnostics(LogLevel logLevel, string message)
+        private static void WriteToDiagnostics(LogLevel logLevel, string message)
         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            // log to System.Diagnostics.Debug / System.Diagnostics.Trace
             if (!LogToDiagnostics)
             {
                 return;
