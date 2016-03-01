@@ -42,7 +42,6 @@ namespace NLog.UnitTests
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
-    using System.Text;
     using Xunit;
     using Xunit.Extensions;
 
@@ -56,58 +55,11 @@ namespace NLog.UnitTests
         [InlineData(false, false)]
         public void ShouldNotLogInternalWhenLogToDiagnosticIsDisabled(bool? internalLogToDiagnostics, bool? logToDiagnostics)
         {
-            var mockTraceListener = SetupTestConfiguration(LogLevel.Trace, CreateMockTraceListener, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Trace, internalLogToDiagnostics, logToDiagnostics);
 
             InternalLogger.Trace("Logger1 Hello");
 
             Assert.Equal(0, mockTraceListener.Messages.Count);
-        }
-
-        /// <summary>
-        /// Helper method to setup tests configuration
-        /// </summary>
-        /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
-        /// <param name="createTraceListenerFunc">Function which creates <see cref="TraceListener"/> instance.</param>
-        /// <param name="internalLogToDiagnostic">internalLogToDiagnostics XML attribute value. If <c>null</c> attribute is omitted.</param>
-        /// <param name="logToDiagnostic">Value of <see cref="InternalLogger.LogToDiagnostics"/> property. If <c>null</c> property is not set.</param>
-        /// <returns><see cref="TraceListener"/> instance.</returns>
-        private T SetupTestConfiguration<T>(LogLevel logLevel, Func<T> createTraceListenerFunc, bool? internalLogToDiagnostic, bool? logToDiagnostic) where T : TraceListener
-        {
-            var sb = new StringBuilder("<nlog ");
-            sb.AppendFormat("internalLogLevel='{0}'", logLevel);
-            if (internalLogToDiagnostic.HasValue)
-            {
-                sb.AppendFormat(" internalLogToDiagnostics='{0}'", internalLogToDiagnostic.Value);
-            }
-            sb.Append(">");
-            sb.AppendFormat(
-                @"<targets><target name='debug' type='Debug' layout='${{logger}} ${{level}} ${{message}}'/></targets><rules><logger name='*' level='{0}' writeTo='debug'/></rules></nlog>",
-                logLevel);
-
-            LogManager.Configuration = CreateConfigurationFromString(sb.ToString());
-
-            InternalLogger.IncludeTimestamp = false;
-
-            if (logToDiagnostic.HasValue)
-            {
-                InternalLogger.LogToDiagnostics = logToDiagnostic.Value;
-            }
-
-            var traceListener = createTraceListenerFunc();
-
-            Trace.Listeners.Clear();
-            Trace.Listeners.Add(traceListener);
-
-            return traceListener;
-        }
-
-        /// <summary>
-        /// Creates <see cref="MockTraceListener"/> instance.
-        /// </summary>
-        /// <returns><see cref="MockTraceListener"/> instance.</returns>
-        private static MockTraceListener CreateMockTraceListener()
-        {
-            return new MockTraceListener();
         }
 
         [Theory]
@@ -120,7 +72,7 @@ namespace NLog.UnitTests
         [InlineData(true, true)]
         public void ShouldNotLogInternalWhenLogLevelIsOff(bool? internalLogToDiagnostics, bool? logToDiagnostics)
         {
-            var mockTraceListener = SetupTestConfiguration(LogLevel.Off, CreateMockTraceListener, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Off, internalLogToDiagnostics, logToDiagnostics);
 
             InternalLogger.Trace("Logger1 Hello");
 
@@ -133,7 +85,7 @@ namespace NLog.UnitTests
         [InlineData(true, true)]
         public void ShouldLogToDiagnosticsWhenInternalLogToDiagnosticsIsOnAndLogLevelIsTrace(bool? internalLogToDiagnostics, bool? logToDiagnostics)
         {
-            var mockTraceListener = SetupTestConfiguration(LogLevel.Trace, CreateMockTraceListener, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Trace, internalLogToDiagnostics, logToDiagnostics);
 
             InternalLogger.Trace("Logger1 Hello");
 
@@ -147,7 +99,7 @@ namespace NLog.UnitTests
         [InlineData(true, true)]
         public void ShouldLogToDiagnosticsWhenInternalLogToDiagnosticsIsOnAndLogLevelIsDebug(bool? internalLogToDiagnostics, bool? logToDiagnostics)
         {
-            var mockTraceListener = SetupTestConfiguration(LogLevel.Debug, CreateMockTraceListener, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Debug, internalLogToDiagnostics, logToDiagnostics);
 
             InternalLogger.Debug("Logger1 Hello");
 
@@ -161,7 +113,7 @@ namespace NLog.UnitTests
         [InlineData(true, true)]
         public void ShouldLogToDiagnosticsWhenInternalLogToDiagnosticsIsOnAndLogLevelIsInfo(bool? internalLogToDiagnostics, bool? logToDiagnostics)
         {
-            var mockTraceListener = SetupTestConfiguration(LogLevel.Info, CreateMockTraceListener, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Info, internalLogToDiagnostics, logToDiagnostics);
 
             InternalLogger.Info("Logger1 Hello");
 
@@ -175,7 +127,7 @@ namespace NLog.UnitTests
         [InlineData(true, true)]
         public void ShouldLogToDiagnosticsWhenInternalLogToDiagnosticsIsOnAndLogLevelIsWarn(bool? internalLogToDiagnostics, bool? logToDiagnostics)
         {
-            var mockTraceListener = SetupTestConfiguration(LogLevel.Warn, CreateMockTraceListener, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Warn, internalLogToDiagnostics, logToDiagnostics);
 
             InternalLogger.Warn("Logger1 Hello");
 
@@ -189,7 +141,7 @@ namespace NLog.UnitTests
         [InlineData(true, true)]
         public void ShouldLogToDiagnosticsWhenInternalLogToDiagnosticsIsOnAndLogLevelIsError(bool? internalLogToDiagnostics, bool? logToDiagnostics)
         {
-            var mockTraceListener = SetupTestConfiguration(LogLevel.Error, CreateMockTraceListener, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Error, internalLogToDiagnostics, logToDiagnostics);
 
             InternalLogger.Error("Logger1 Hello");
 
@@ -203,7 +155,7 @@ namespace NLog.UnitTests
         [InlineData(true, true)]
         public void ShouldLogToDiagnosticsWhenInternalLogToDiagnosticsIsOnAndLogLevelIsFatal(bool? internalLogToDiagnostics, bool? logToDiagnostics)
         {
-            var mockTraceListener = SetupTestConfiguration(LogLevel.Fatal, CreateMockTraceListener, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Fatal, internalLogToDiagnostics, logToDiagnostics);
 
             InternalLogger.Fatal("Logger1 Hello");
 
@@ -211,12 +163,78 @@ namespace NLog.UnitTests
             Assert.Equal("NLog: Fatal Logger1 Hello" + Environment.NewLine, mockTraceListener.Messages.First());
         }
 
-        /*[Fact]
+        [Fact(Skip = "This test's not working - explenation is in documentation: https://msdn.microsoft.com/pl-pl/library/system.stackoverflowexception(v=vs.110).aspx#Anchor_5. To clarify if StackOverflowException should be thrown.")]
         public void ShouldThrowStackOverFlowExceptionWhenUsingNLogTraceListener()
         {
-            SetupTestConfiguration(LogLevel.Trace, CreateNLogTraceListener, true, null);
+            SetupTestConfiguration<NLogTraceListener>(LogLevel.Trace, true, null);
 
             Assert.Throws<StackOverflowException>(() => Trace.WriteLine("StackOverFlowException"));
+        }
+
+        /// <summary>
+        /// Helper method to setup tests configuration
+        /// </summary>
+        /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
+        /// <param name="internalLogToDiagnostic">internalLogToDiagnostics XML attribute value. If <c>null</c> attribute is omitted.</param>
+        /// <param name="logToDiagnostic">Value of <see cref="InternalLogger.LogToDiagnostics"/> property. If <c>null</c> property is not set.</param>
+        /// <returns><see cref="TraceListener"/> instance.</returns>
+        private T SetupTestConfiguration<T>(LogLevel logLevel, bool? internalLogToDiagnostic, bool? logToDiagnostic) where T : TraceListener
+        {
+            var internalLogToDiagnosticAttribute = "";
+            if (internalLogToDiagnostic.HasValue)
+            {
+                internalLogToDiagnosticAttribute = string.Format(" internalLogToDiagnostics='{0}'", internalLogToDiagnostic.Value);
+            }
+
+            var xmlConfiguration = string.Format(XmlConfigurationFormat, logLevel, internalLogToDiagnosticAttribute);
+
+            LogManager.Configuration = CreateConfigurationFromString(xmlConfiguration);
+
+            InternalLogger.IncludeTimestamp = false;
+
+            if (logToDiagnostic.HasValue)
+            {
+                InternalLogger.LogToDiagnostics = logToDiagnostic.Value;
+            }
+
+            T traceListener;
+            if (typeof (T) == typeof (MockTraceListener))
+            {
+                traceListener = CreateMockTraceListener() as T;
+            }
+            else
+            {
+                traceListener = CreateNLogTraceListener() as T;
+            }
+
+            Trace.Listeners.Clear();
+
+            if (traceListener == null)
+            {
+                return null;
+            }
+
+            Trace.Listeners.Add(traceListener);
+
+            return traceListener;
+        }
+
+        private const string XmlConfigurationFormat = @"<nlog internalLogLevel='{0}'{1}>
+    <targets>
+        <target name='debug' type='Debug' layout='${{logger}} ${{level}} ${{message}}'/>
+    </targets>
+    <rules>
+        <logger name='*' level='{0}' writeTo='debug'/>
+    </rules>
+</nlog>";
+
+        /// <summary>
+        /// Creates <see cref="MockTraceListener"/> instance.
+        /// </summary>
+        /// <returns><see cref="MockTraceListener"/> instance.</returns>
+        private static MockTraceListener CreateMockTraceListener()
+        {
+            return new MockTraceListener();
         }
 
         /// <summary>
@@ -226,7 +244,7 @@ namespace NLog.UnitTests
         private static NLogTraceListener CreateNLogTraceListener()
         {
             return new NLogTraceListener {Name = "Logger1", ForceLogLevel = LogLevel.Trace};
-        }*/
+        }
 
         private class MockTraceListener : TraceListener
         {
