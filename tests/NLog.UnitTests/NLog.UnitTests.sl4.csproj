@@ -96,6 +96,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AsyncHelperTests.cs" />
     <Compile Include="Common\InternalLoggerTests.cs" />
+    <Compile Include="Common\InternalLoggerTests.Diagnostics.cs" />
     <Compile Include="Common\LastLogEventListTarget.cs" />
     <Compile Include="Conditions\ConditionEvaluatorTests.cs" />
     <Compile Include="Conditions\ConditionParserTests.cs" />
@@ -183,7 +184,6 @@
     <Compile Include="LogManagerTests.cs" />
     <Compile Include="LogReceiverService\LogReceiverForwardingServiceTests.cs" />
     <Compile Include="LogReceiverService\LogReceiverServiceTests.cs" />
-    <Compile Include="LogToDiagnosticsTests.cs" />
     <Compile Include="NLogTestBase.cs" />
     <Compile Include="NLogTraceListenerTests.cs" />
     <Compile Include="ProcessRunner.cs" />

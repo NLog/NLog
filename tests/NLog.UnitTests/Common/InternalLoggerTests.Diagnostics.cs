@@ -35,17 +35,18 @@
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
-namespace NLog.UnitTests
+namespace NLog.UnitTests.Common
 {
-    using NLog.Common;
+
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+    using NLog.Common;
     using Xunit;
     using Xunit.Extensions;
 
-    public class LogToDiagnosticsTests : NLogTestBase
+    public partial class InternalLoggerTests
     {
 
         [Theory]
@@ -174,7 +175,7 @@ namespace NLog.UnitTests
         /// <summary>
         /// Helper method to setup tests configuration
         /// </summary>
-        /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
+        /// <param name="logLevel">The <see cref="System.LogLevel"/> for the log event.</param>
         /// <param name="internalLogToDiagnostic">internalLogToDiagnostics XML attribute value. If <c>null</c> attribute is omitted.</param>
         /// <param name="logToDiagnostic">Value of <see cref="InternalLogger.LogToDiagnostics"/> property. If <c>null</c> property is not set.</param>
         /// <returns><see cref="TraceListener"/> instance.</returns>

@@ -44,7 +44,7 @@ using Xunit.Extensions;
 
 namespace NLog.UnitTests.Common
 {
-    public class InternalLoggerTests : NLogTestBase
+    public partial class InternalLoggerTests : NLogTestBase
     {
         /// <summary>
         /// Test the return values of all Is[Level]Enabled() methods.
