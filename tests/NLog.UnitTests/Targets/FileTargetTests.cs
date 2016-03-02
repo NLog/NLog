@@ -2263,7 +2263,9 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void Dont_throw_Exception_when_archiving_is_enabled()
         {
-            LogManager.Configuration = this.CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+            try
+            {
+                LogManager.Configuration = this.CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
  
@@ -2280,14 +2282,21 @@ namespace NLog.UnitTests.Targets
 </nlog>
 ");
 
-            NLog.LogManager.GetLogger("Test").Info("very important message");
+                NLog.LogManager.GetLogger("Test").Info("very important message");
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+            }
         }
 
 
         [Fact]
         public void Dont_throw_Exception_when_archiving_is_enabled_with_async()
         {
-            LogManager.Configuration = this.CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+            try
+            {
+                LogManager.Configuration = this.CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
  
@@ -2304,7 +2313,12 @@ namespace NLog.UnitTests.Targets
 </nlog>
 ");
 
-            NLog.LogManager.GetLogger("Test").Info("very important message");
+                NLog.LogManager.GetLogger("Test").Info("very important message");
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+            }
         }
 
         [Theory]

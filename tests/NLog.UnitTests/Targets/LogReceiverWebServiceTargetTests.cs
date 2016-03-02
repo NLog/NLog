@@ -190,10 +190,18 @@ namespace NLog.UnitTests.Targets
             {
                 Name = "NoEmptyEventLists_wrapper"
             };
-            asyncTarget.Initialize(configuration);
-            asyncTarget.WriteAsyncLogEvents(new[] { LogEventInfo.Create(LogLevel.Info, "logger1", "message1").WithContinuation(ex => { }) });
-            Thread.Sleep(1000);
-            Assert.Equal(1, target.SendCount);
+            try
+            {
+                asyncTarget.Initialize(configuration);
+                asyncTarget.WriteAsyncLogEvents(new[] { LogEventInfo.Create(LogLevel.Info, "logger1", "message1").WithContinuation(ex => { }) });
+                Thread.Sleep(1000);
+                Assert.Equal(1, target.SendCount);
+            }
+            finally
+            {
+                asyncTarget.Close();
+                target.Close();
+            }
         }
 
         public class MyLogReceiverWebServiceTarget : LogReceiverWebServiceTarget
