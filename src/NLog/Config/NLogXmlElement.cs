@@ -33,6 +33,7 @@
 
 namespace NLog.Config
 {
+    using Internal;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -146,6 +147,31 @@ namespace NLog.Config
             if (!this.AttributeValues.TryGetValue(attributeName, out value))
             {
                 return defaultValue;
+            }
+
+            return Convert.ToBoolean(value, CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Gets the optional boolean attribute value. If whitespace, then returning <c>null</c>.
+        /// </summary>
+        /// <param name="attributeName">Name of the attribute.</param>
+        /// <param name="defaultValue">Default value to return if the attribute is not found.</param>
+        /// <returns>Boolean attribute value or default.</returns>
+        public bool? GetOptionalBooleanAttribute(string attributeName, bool? defaultValue)
+        {
+            string value;
+
+            if (!this.AttributeValues.TryGetValue(attributeName, out value))
+            {
+                //not defined, don't override default
+                return defaultValue;
+            }
+
+            if (StringHelpers.IsNullOrWhiteSpace(value))
+            {
+                //not default otherwise no difference between not defined and empty value.
+                return null;
             }
 
             return Convert.ToBoolean(value, CultureInfo.InvariantCulture);

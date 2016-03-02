@@ -36,13 +36,12 @@ namespace NLog.UnitTests
 {
     using System;
     using System.IO;
-    using System.Linq;
     using System.Threading;
+    using System.Reflection;
 
     using Xunit;
 
     using NLog.Config;
-    using NLog.Targets;
 
     public class LogFactoryTests : NLogTestBase
     {
@@ -109,6 +108,40 @@ namespace NLog.UnitTests
 
             Assert.True(ExceptionThrown);
 
+        }
+
+        [Fact]
+        public void SecondaryLogFactoryDoesNotTakePrimaryLogFactoryLock()
+        {
+            File.WriteAllText("NLog.config", "<nlog />");
+            try
+            {
+                bool threadTerminated;
+
+                var primaryLogFactory = typeof(LogManager).GetField("factory", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
+                var primaryLogFactoryLock = typeof(LogFactory).GetField("syncRoot", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(primaryLogFactory);
+                // Simulate a potential deadlock. 
+                // If the creation of the new LogFactory takes the lock of the global LogFactory, the thread will deadlock.
+                lock (primaryLogFactoryLock)
+                {
+                    var thread = new Thread(() =>
+                    {
+                        (new LogFactory()).GetCurrentClassLogger();
+                    });
+                    thread.Start();
+                    threadTerminated = thread.Join(TimeSpan.FromSeconds(1));
+                }
+
+                Assert.True(threadTerminated);
+            }
+            finally
+            {
+                try
+                {
+                    File.Delete("NLog.config");
+                }
+                catch { }
+            }
         }
 
         [Fact]
