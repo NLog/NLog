@@ -956,6 +956,10 @@ namespace NLog.UnitTests.Targets
             var defaultTimeSource = TimeSource.Current;
             try
             {
+                // Avoid inconsistency in file's last-write-time due to overflow of the minute during test run.
+                while (DateTime.Now.Second > 55)
+                    Thread.Sleep(1000);
+
                 var timeSource = new TimeSourceTests.ShiftedTimeSource(timeKind);
                 if (timeSource.Time.Minute == 59)
                 {
