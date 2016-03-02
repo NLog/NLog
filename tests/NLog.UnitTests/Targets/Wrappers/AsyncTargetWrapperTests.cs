@@ -215,8 +215,8 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             var targetWrapper = new AsyncTargetWrapper(myTarget)
             {
+                Name = "AsyncTargetWrapperFlushTest_Wrapper",
                 OverflowAction = AsyncTargetWrapperOverflowAction.Grow
-                Name = "AsyncTargetWrapperFlushTest_Wrapper"
             };
 
             targetWrapper.Initialize(null);
