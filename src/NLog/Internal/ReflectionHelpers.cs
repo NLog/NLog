@@ -65,7 +65,7 @@ namespace NLog.Internal
             try
             {
 #if DNX
-                return new Type[0];
+                return assembly.DefinedTypes.Select(typeinfo => typeinfo.AsType()).ToArray();
 #else
                 return assembly.GetTypes();
 #endif
@@ -323,7 +323,7 @@ namespace NLog.Internal
 
 #endif
 
-#if !UWP10  && !WINDOWS_PHONE
+#if !UWP10 && !WINDOWS_PHONE
         public static string GetLocation(this Assembly assembly)
         {
             return assembly.Location;
