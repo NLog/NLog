@@ -32,7 +32,6 @@
 // 
 
 
-
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -791,7 +790,7 @@ namespace NLog.UnitTests.Targets
             public bool EnableSsl { get; set; }
             public List<MailMessage> MessagesSent { get; private set; }
 
-            public new void Send(MailMessage msg)
+            public void Send(MailMessage msg)
             {
                 if (string.IsNullOrEmpty(this.Host) && string.IsNullOrEmpty(this.PickupDirectoryLocation))
                 {

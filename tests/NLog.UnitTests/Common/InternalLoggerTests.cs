@@ -372,8 +372,6 @@ namespace NLog.UnitTests.Common
         {
             using (new InternalLoggerScope())
             {
-
-
                 InternalLogger.LogLevel = LogLevel.Trace;
                 InternalLogger.LogToConsole = true;
                 InternalLogger.IncludeTimestamp = false;
