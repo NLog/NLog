@@ -53,6 +53,16 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             TimeSpan ts = logEvent.TimeStamp.ToUniversalTime() - LogEventInfo.ZeroDate;
+            WritetTimestamp(builder, ts);
+        }
+
+        /// <summary>
+        /// Write timestamp to builder with format hh:mm:ss:fff
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="ts"></param>
+        internal static void WritetTimestamp(StringBuilder builder, TimeSpan ts)
+        {
             if (ts.Hours < 10)
             {
                 builder.Append('0');
@@ -74,19 +84,23 @@ namespace NLog.LayoutRenderers
 
             builder.Append(ts.Seconds);
             builder.Append('.');
-            if (ts.Milliseconds < 1000)
-            {
-                builder.Append('0');
-            }
 
             if (ts.Milliseconds < 100)
             {
                 builder.Append('0');
-            }
 
-            if (ts.Milliseconds < 10)
-            {
-                builder.Append('0');
+                if (ts.Milliseconds < 10)
+                {
+                    builder.Append('0');
+
+                    if (ts.Milliseconds < 0)
+                    {
+                        //don't write negative times. This is probably an accuracy problem (accuracy is by default 16ms, see https://github.com/NLog/NLog/wiki/Time-Source)
+                        builder.Append('0');
+                        return;
+                        
+                    }
+                }
             }
 
             builder.Append(ts.Milliseconds);
