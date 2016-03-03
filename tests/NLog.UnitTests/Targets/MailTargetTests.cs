@@ -33,7 +33,6 @@
 
 
 
-
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
