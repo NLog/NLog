@@ -73,7 +73,7 @@
         "System.Reflection.TypeExtensions": "4.1.0-*"
       },
       "compilationOptions": {
-        "define": [ "NET4_5", "DNX", "UWP10" ]
+        "define": [ "NET4_5", "DNX", "UWP10", "DOTNET54" ]
       }
     },
    
