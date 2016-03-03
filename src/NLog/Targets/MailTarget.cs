@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO;
+using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 
 #if !SILVERLIGHT
@@ -439,16 +441,7 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
             {
-                if (!PickupDirectoryLocation.StartsWith("~"))
-                {
-                    client.PickupDirectoryLocation = this.PickupDirectoryLocation;
-                    return;
-                }
-
-                // Support for Virtual Paths
-                var root = AppDomain.CurrentDomain.BaseDirectory;
-                var pickupRoot = System.IO.Path.Combine(root, client.PickupDirectoryLocation.Replace("~/", "")).Replace("/", @"\");
-                client.PickupDirectoryLocation = pickupRoot;
+                client.PickupDirectoryLocation = GetPickupDirectoryLocation(client, PickupDirectoryLocation);
             }
 
             // In case DeliveryMethod = PickupDirectoryFromIis we will not require Host nor PickupDirectoryLocation
@@ -456,6 +449,26 @@ namespace NLog.Targets
             client.Timeout = this.Timeout;
 
             
+        }
+
+        /// <summary>
+        /// Handle <paramref name="pickupDirectoryLocation"/> if it is a virtual directory. Set PickupDirectoryLocation of <paramref name="client"/>
+        /// </summary>
+        /// <param name="client">client to set properties on</param>
+        /// <param name="pickupDirectoryLocation"></param>
+        /// <returns></returns>
+        internal static string GetPickupDirectoryLocation(ISmtpClient client, string pickupDirectoryLocation)
+        {
+            if (!pickupDirectoryLocation.StartsWith("~/"))
+            {
+                return pickupDirectoryLocation;
+            }
+
+            // Support for Virtual Paths
+            var root = AppDomain.CurrentDomain.BaseDirectory;
+            var directory = client.PickupDirectoryLocation.Replace("~/", "").Replace('/', Path.DirectorySeparatorChar);
+            var pickupRoot = Path.Combine(root, directory);
+            return pickupRoot;
         }
 
         private void CheckRequiredParameters()
