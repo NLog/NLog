@@ -31,8 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-using System.Text.RegularExpressions;
+
 using JetBrains.Annotations;
 
 #if !SILVERLIGHT
@@ -45,6 +44,7 @@ namespace NLog.Targets
     using System.Net;
     using System.Net.Mail;
     using System.Text;
+    using System.IO;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
