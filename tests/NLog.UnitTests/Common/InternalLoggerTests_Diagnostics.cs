@@ -46,7 +46,7 @@ namespace NLog.UnitTests.Common
     using Xunit;
     using Xunit.Extensions;
 
-    public partial class InternalLoggerTests
+    public class InternalLoggerTests_Diagnostics : NLogTestBase
     {
 
         [Theory]
