@@ -155,6 +155,11 @@ namespace NLog.Targets
         /// </summary>
         private DateTime? previousLogEventTimestamp;
 
+        /// <summary>
+        /// The file name of the previous log event.
+        /// </summary>
+        private string previousLogFileName;
+
         private bool concurrentWrites;
         private bool keepFileOpen;
         
@@ -848,7 +853,8 @@ namespace NLog.Targets
         {
             var fileName = Path.GetFullPath(GetCleanedFileName(logEvent));
             byte[] bytes = this.GetBytesToWrite(logEvent);
-            ProcessLogEvent(logEvent, fileName, bytes);        }
+            ProcessLogEvent(logEvent, fileName, bytes);
+        }
 
         private string GetCleanedFileName(LogEventInfo logEvent)
         {
@@ -904,8 +910,9 @@ namespace NLog.Targets
             this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
 
-            if (this.ShouldAutoArchive(fileName, logEvent, bytesToWrite.Length))
-                this.DoAutoArchive(fileName, logEvent);
+            string fileToArchive = this.GetFileCharacteristics(fileName) != null ? fileName : previousLogFileName;
+            if (this.ShouldAutoArchive(fileToArchive, logEvent, bytesToWrite.Length))
+                this.DoAutoArchive(fileToArchive, logEvent);
 
             // Clean up old archives if this is the first time a log record is being written to
             // this log file and the archiving system is date/time based.
@@ -926,6 +933,7 @@ namespace NLog.Targets
 
             this.WriteToFile(fileName, logEvent, bytesToWrite, false);
 
+            previousLogFileName = fileName;
             previousLogEventTimestamp = logEvent.TimeStamp;
         }
 
@@ -1636,8 +1644,9 @@ namespace NLog.Targets
         /// <returns><see langword="true"/> when archiving should be executed; <see langword="false"/> otherwise.</returns>
         private bool ShouldAutoArchive(string fileName, LogEventInfo ev, int upcomingWriteSize)
         {
-            return ShouldAutoArchiveBasedOnFileSize(fileName, upcomingWriteSize) ||
-                   ShouldAutoArchiveBasedOnTime(fileName, ev);
+            return (fileName != null) &&
+                (ShouldAutoArchiveBasedOnFileSize(fileName, upcomingWriteSize) ||
+                ShouldAutoArchiveBasedOnTime(fileName, ev));
         }
 
         /// <summary>
