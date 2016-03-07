@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </remarks>
     [LayoutRenderer("cached")]
     [AmbientProperty("Cached")]
+    [AmbientProperty("ClearCache")] 
     [ThreadAgnostic]
     public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase
     {
