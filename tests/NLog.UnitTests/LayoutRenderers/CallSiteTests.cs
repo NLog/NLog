@@ -31,6 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Runtime.CompilerServices;
+using Castle.Services.Logging.NLogIntegration;
+using NLog.Config;
+using NLog.Targets;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -667,7 +672,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
-              
+
         private void MoveNext()
         {
             var logger = LogManager.GetCurrentClassLogger();
@@ -787,7 +792,127 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_logger msg");
         }
 
+        [Fact]
+        public void Should_preserve_correct_callsite_information()
+        {
+            // Step 1. Create configuration object 
+            var config = new LoggingConfiguration();
 
+            // Step 2. Create targets and add them to the configuration 
+            var target = new MemoryTarget();
+            config.AddTarget("target", target);
+
+            // Step 3. Set target properties 
+            target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${callsite} ${message}";
+
+            // Step 4. Define rules
+            var rule = new LoggingRule("*", LogLevel.Debug, target);
+            config.LoggingRules.Add(rule);
+
+
+            var factory = new NLogFactory(config);
+
+            WriteLogMessage(factory);
+            var logMessage = target.Logs[0];
+            Assert.Contains("CallSiteTests.WriteLogMessage", logMessage);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private void WriteLogMessage(NLogFactory factory)
+        {
+            var logger = factory.Create("MyLoggerName");
+            logger.Debug("something");
+        }
+
+        /// <summary>
+        ///   
+        /// </summary>
+        public class NLogFactory
+        {
+            internal const string defaultConfigFileName = "nlog.config";
+
+
+            /// <summary>
+            ///   Initializes a new instance of the <see cref="NLogFactory" /> class.
+            /// </summary>
+            /// <param name="loggingConfiguration"> The NLog Configuration </param>
+            public NLogFactory(LoggingConfiguration loggingConfiguration)
+            {
+                LogManager.Configuration = loggingConfiguration;
+            }
+
+            /// <summary>
+            ///   Creates a logger with specified <paramref name="name" />.
+            /// </summary>
+            /// <param name="name"> The name. </param>
+            /// <returns> </returns>
+            public NLogLogger Create(string name)
+            {
+                var log = LogManager.GetLogger(name);
+                return new NLogLogger(log);
+            }
+
+
+        }
+
+      
     }
 
+}
+
+namespace Castle.Services.Logging.NLogIntegration
+{
+    using System;
+
+
+    using NLog;
+
+    /// <summary>
+    ///   Implementation of <see cref="ILogger" /> for NLog.
+    /// </summary>
+    public class NLogLogger 
+    {
+        /// <summary>
+        ///   Initializes a new instance of the <see cref="NLogLogger" /> class.
+        /// </summary>
+        /// <param name="logger"> The logger. </param>
+        public NLogLogger(Logger logger)
+        {
+            Logger = logger;
+        }
+        
+        /// <summary>
+        ///   Gets or sets the logger.
+        /// </summary>
+        /// <value> The logger. </value>
+        protected internal Logger Logger { get; set; }
+
+        /// <summary>
+        ///   Returns a <see cref="string" /> that represents this instance.
+        /// </summary>
+        /// <returns> A <see cref="string" /> that represents this instance. </returns>
+        public override string ToString()
+        {
+            return Logger.ToString();
+        }
+
+       
+
+        /// <summary>
+        ///   Logs a debug message.
+        /// </summary>
+        /// <param name="message"> The message to log </param>
+        public void Debug(string message)
+        {
+            Log(LogLevel.Debug, message);
+        }
+
+  
+
+        public void Log(LogLevel logLevel, string message)
+        {
+            Logger.Log(typeof(NLogLogger), new LogEventInfo(logLevel, Logger.Name, message));
+        }
+
+    }
 }
