@@ -32,7 +32,6 @@
 // 
 
 using System.Runtime.CompilerServices;
-using Castle.Services.Logging.NLogIntegration;
 using NLog.Config;
 using NLog.Targets;
 
@@ -851,26 +850,14 @@ namespace NLog.UnitTests.LayoutRenderers
                 var log = LogManager.GetLogger(name);
                 return new NLogLogger(log);
             }
-
-
         }
-
       
     }
-
-}
-
-namespace Castle.Services.Logging.NLogIntegration
-{
-    using System;
-
-
-    using NLog;
 
     /// <summary>
     ///   Implementation of <see cref="ILogger" /> for NLog.
     /// </summary>
-    public class NLogLogger 
+    public class NLogLogger
     {
         /// <summary>
         ///   Initializes a new instance of the <see cref="NLogLogger" /> class.
@@ -880,7 +867,7 @@ namespace Castle.Services.Logging.NLogIntegration
         {
             Logger = logger;
         }
-        
+
         /// <summary>
         ///   Gets or sets the logger.
         /// </summary>
@@ -896,8 +883,6 @@ namespace Castle.Services.Logging.NLogIntegration
             return Logger.ToString();
         }
 
-       
-
         /// <summary>
         ///   Logs a debug message.
         /// </summary>
@@ -907,12 +892,12 @@ namespace Castle.Services.Logging.NLogIntegration
             Log(LogLevel.Debug, message);
         }
 
-  
-
         public void Log(LogLevel logLevel, string message)
         {
             Logger.Log(typeof(NLogLogger), new LogEventInfo(logLevel, Logger.Name, message));
         }
 
     }
+
 }
+
