@@ -114,11 +114,14 @@ namespace NLog
             var stackFrames = stackTrace.GetFrames();
             if (stackFrames == null)
                 return 0;
+
             var intermediate = stackFrames.Select((f, i) => new StackFrameWithIndex(i, f));
             //find until logger type
             intermediate = intermediate.SkipWhile(p => !IsLoggerType(p.StackFrame, loggerType));
+            //skip the logger type
+            intermediate = intermediate.SkipWhile(p => IsLoggerType(p.StackFrame, loggerType));
 
-            intermediate = FilterBySkipAssembly(intermediate.Skip(1));
+            intermediate = FilterBySkipAssembly(intermediate);
             return FindIndexOfCallingMethod(intermediate);
         }
 
@@ -143,7 +146,7 @@ namespace NLog
                     if (next != null)
                     {
                         var declaringType = next.StackFrame.GetMethod().DeclaringType;
-                        if (declaringType  == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder))
+                        if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder))
                         {
 
                             //async, search futher
@@ -280,14 +283,14 @@ namespace NLog
                 return result;
             }
             catch (Exception exception)
-            { 
+            {
                 InternalLogger.Warn(exception, "Exception during filter evaluation. Message will be ignore.");
 
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
-                
+
                 return FilterResult.Ignore;
             }
         }
