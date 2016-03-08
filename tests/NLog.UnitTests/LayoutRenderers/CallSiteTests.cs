@@ -78,7 +78,7 @@ namespace NLog.UnitTests.LayoutRenderers
             // compile code and generate assembly
             System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
 
-            Assert.False(results.Errors.HasErrors);
+            Assert.False(results.Errors.HasErrors,"Compiler errors: " + string.Join(";", results.Errors));
 
             // create nlog configuration
             LogManager.Configuration = CreateConfigurationFromString(@"
