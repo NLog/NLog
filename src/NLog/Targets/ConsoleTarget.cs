@@ -32,7 +32,7 @@
 // 
 
 
-#if !UWP10
+#if !UWP10 || DOTNET54
 namespace NLog.Targets
 {
     using System;
@@ -68,7 +68,7 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool Error { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !DOTNET54
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>

@@ -37,7 +37,7 @@
         "System.Xml.XDocument": "4.0.11-*"
       },
       "compilationOptions": {
-        "define": [ "NET4_5", "DNX", "UWP10", "XUNIT2" ]
+        "define": [ "NET4_5", "DNX", "UWP10", "XUNIT2", "DOTNET54" ]
       }
     },
     "dnx451": {
