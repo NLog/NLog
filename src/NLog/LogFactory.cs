@@ -482,7 +482,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !UWP10 || DOTNET54
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
         /// </summary>

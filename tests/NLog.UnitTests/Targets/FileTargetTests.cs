@@ -1650,7 +1650,7 @@ namespace NLog.UnitTests.Targets
                     logger.Error("ddd");
                     logger.Fatal("eee");
                 }
-#if DNX || UWP10
+#if (DNX || UWP10) && !DOTNET54
                 LogManager.Flush(null);
 #else
                 LogManager.Flush();
