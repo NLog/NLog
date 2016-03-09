@@ -200,7 +200,7 @@ namespace NLog
                     {
                         try
                         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
                             config.Dump();
 
                             try
@@ -233,7 +233,7 @@ namespace NLog
 
             set
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
                 try
                 {
                     this.watcher.StopWatching();
@@ -255,7 +255,7 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
-#if !SILVERLIGHT && !UWP10
+#if !SILVERLIGHT && !UWP10 || DOTNET54
                         this.Flush();
 #endif
                         oldConfig.Close();
@@ -271,7 +271,7 @@ namespace NLog
 
                             this.config.InitializeAll();
                             this.ReconfigExistingLoggers();
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
                             try
                             {
                                 this.watcher.Watch(this.config.FileNamesToWatch);
@@ -840,7 +840,7 @@ namespace NLog
         /// <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !UWP10 || DOTNET54
             if (disposing)
             {
                 this.watcher.Dispose();
