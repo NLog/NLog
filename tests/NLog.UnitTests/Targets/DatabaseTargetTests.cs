@@ -679,8 +679,9 @@ Dispose()
         }
 
         [Fact]
-        public void ConnectionStringNameNegativeTest()
+        public void ConnectionStringNameNegativeTest_if_ThrowConfigExceptions()
         {
+            LogManager.ThrowConfigExceptions = true;
             var dt = new DatabaseTarget
             {
                 ConnectionStringName = "MyConnectionString",

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
 // 
 // All rights reserved.
@@ -31,49 +31,58 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+//no silverlight because of xUnit needed
 #if !SILVERLIGHT
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NLog.LayoutRenderers;
+using Xunit;
+using Xunit.Extensions;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    using System;
-    using System.IO;
-    using System.Text;
-    using Xunit;
-
-    public class FileContentsTests : NLogTestBase
+    public class ProcessTimeLayoutRendererTests : NLogTestBase
     {
-        [Fact]
-        public void FileContentUnicodeTest()
+        [Theory]
+        [InlineData(0, 1, 2, 30, 0, "01:02:30.000")]
+        [InlineData(0, 1, 2, 30, 1, "01:02:30.001")]
+        [InlineData(0, 1, 2, 30, 20, "01:02:30.020")]
+        [InlineData(0, 11, 2, 30, 20, "11:02:30.020")]
+        [InlineData(0, 50, 2, 30, 20, "02:02:30.020")]
+        [InlineData(0, 1, 2, 30, 506, "01:02:30.506")]
+        [InlineData(0, 1, 2, 30, -506, "01:02:29.494")]
+        [InlineData(0, 0, 0, 0, -506, "00:00:00.000")]
+        [InlineData(0, 0, 0, 0, 0, "00:00:00.000")]
+        [InlineData(1, 0, 0, 0, 0, "00:00:00.000")]
+        [InlineData(1, 0, 0, 0, 0, "00:00:00.000")]
+        public void RenderTimeSpanTest(int day, int hour, int min, int sec, int milisec, string expected)
         {
-            string content = "12345";
-            string fileName = Guid.NewGuid().ToString("N") + ".txt";
-            using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.Unicode))
-            {
-                sw.Write(content);
-            }
 
-            AssertLayoutRendererOutput("${file-contents:" + fileName + ":encoding=utf-16}", content);
+            var time = new TimeSpan(day, hour, min, sec, milisec);
+
+            var sb = new StringBuilder();
+            ProcessTimeLayoutRenderer.WritetTimestamp(sb, time);
+            var result = sb.ToString();
+            Assert.Equal(expected, result);
         }
 
-        [Fact]
-        public void FileContentUTF8Test()
-        {
-            string content = "12345";
-            string fileName = Guid.NewGuid().ToString("N") + ".txt";
-            using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
-            {
-                sw.Write(content);
-            }
-
-            AssertLayoutRendererOutput("${file-contents:" + fileName + ":encoding=utf-8}", content);
-        }
+#if !NET3_5
 
         [Fact]
-        public void FileContentTest2()
+        public void RenderProcessTimeLayoutRenderer()
         {
-            AssertLayoutRendererOutput("${file-contents:nosuchfile.txt}", string.Empty);
+            var layout = "${processtime}";
+            var logEvent = new LogEventInfo(LogLevel.Debug, "logger1", "message1");
+            var time = logEvent.TimeStamp.ToUniversalTime() - LogEventInfo.ZeroDate;
+
+            var expected = time.ToString("hh\\:mm\\:ss\\.fff");
+            AssertLayoutRendererOutput(layout, logEvent, expected);
         }
+#endif
     }
 }
-
 #endif

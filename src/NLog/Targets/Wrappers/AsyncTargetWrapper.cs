@@ -213,7 +213,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Starts the lazy writer thread.
+        /// Stops the lazy writer thread.
         /// </summary>
         protected virtual void StopLazyWriterThread()
         {
@@ -245,7 +245,6 @@ namespace NLog.Targets.Wrappers
 
         private void ProcessPendingEvents(object state)
         {
-            InternalLogger.Trace("AsyncWrapper '{0}': ProcessPendingEvents", Name);
             AsyncContinuation[] continuations;
             lock (this.continuationQueueLock)
             {

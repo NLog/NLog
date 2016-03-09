@@ -75,7 +75,7 @@ namespace NLog.UnitTests
         {
             Assert.Equal(msg, GetDebugLastMessage(targetName));
         }
-        
+
         protected void AssertDebugLastMessageContains(string targetName, string msg)
         {
             string debugLastMessage = GetDebugLastMessage(targetName);
@@ -213,11 +213,24 @@ namespace NLog.UnitTests
             return sb.ToString();
         }
 
-        protected void AssertLayoutRendererOutput(Layout l, string expected)
+        /// <summary>
+        /// Render layout <paramref name="layout"/> with dummy <see cref="LogEventInfo" />and compare result with <paramref name="expected"/>.
+        /// </summary>
+        protected static void AssertLayoutRendererOutput(Layout layout, string expected)
         {
-            l.Initialize(null);
-            string actual = l.Render(LogEventInfo.Create(LogLevel.Info, "loggername", "message"));
-            l.Close();
+            var logEventInfo = LogEventInfo.Create(LogLevel.Info, "loggername", "message");
+
+            AssertLayoutRendererOutput(layout, logEventInfo, expected);
+        }
+
+        /// <summary>
+        /// Render layout <paramref name="layout"/> with <paramref name="logEventInfo"/> and compare result with <paramref name="expected"/>.
+        /// </summary>
+        protected static void AssertLayoutRendererOutput(Layout layout, LogEventInfo logEventInfo, string expected)
+        {
+            layout.Initialize(null);
+            string actual = layout.Render(logEventInfo);
+            layout.Close();
             Assert.Equal(expected, actual);
         }
 
@@ -271,11 +284,13 @@ namespace NLog.UnitTests
         {
             private readonly LogLevel globalThreshold;
             private readonly bool throwExceptions;
+            private readonly bool? throwConfigExceptions;
 
             public InternalLoggerScope()
             {
                 this.globalThreshold = LogManager.GlobalThreshold;
                 this.throwExceptions = LogManager.ThrowExceptions;
+                this.throwConfigExceptions = LogManager.ThrowConfigExceptions;
             }
 
             public void Dispose()
@@ -284,8 +299,11 @@ namespace NLog.UnitTests
                     File.Delete(InternalLogger.LogFile);
 
                 InternalLogger.Reset();
+
+                //restore logmanager
                 LogManager.GlobalThreshold = this.globalThreshold;
                 LogManager.ThrowExceptions = this.throwExceptions;
+                LogManager.ThrowConfigExceptions = this.throwConfigExceptions;
             }
         }
     }

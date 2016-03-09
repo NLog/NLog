@@ -97,6 +97,7 @@ namespace NLog.UnitTests.Config
 #if SILVERLIGHT
             string fileToLoad = "ConfigFiles/referencemissingfile.nlog";
 #else
+            LogManager.ThrowConfigExceptions = true;
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 

@@ -88,7 +88,7 @@ namespace NLog.Internal
             }
 
             var isConfigError = exception is NLogConfigurationException;
-                              
+
             //we throw always configuration exceptions (historical)
             if (!exception.IsLoggedToInternalLogger())
             {
@@ -96,7 +96,8 @@ namespace NLog.Internal
                 InternalLogger.Log(exception, level, "Error has been raised.");
             }
 
-            var shallRethrow = LogManager.ThrowExceptions || isConfigError;
+            //if ThrowConfigExceptions == null, use  ThrowExceptions
+            var shallRethrow = isConfigError ? (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions) : LogManager.ThrowExceptions;
             return shallRethrow;
         }
 
