@@ -422,7 +422,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void DataTypesTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            
+            LoggingConfiguration c = CreateConfigurationFromString(string.Format(@"
             <nlog>
                 <extensions>
                     <add type='" + typeof(MyTarget).AssemblyQualifiedName + @"' />
@@ -436,20 +437,20 @@ namespace NLog.UnitTests.Config
                         int64Property='42000000000' 
                         stringProperty='foobar'
                         boolProperty='true'
-                        doubleProperty='3.14159'
-                        floatProperty='3.14159'
+                        doubleProperty='3{0}14159'
+                        floatProperty='3{0}14159'
                         enumProperty='Value3'
                         flagsEnumProperty='Value1,Value3'
                         encodingProperty='utf-8'
                         cultureProperty='en-US'
                         typeProperty='System.Int32'
-                        layoutProperty='${level}'
+                        layoutProperty='${{level}}'
                         conditionProperty=""starts-with(message, 'x')""
                         uriProperty='http://nlog-project.org'
                         lineEndingModeProperty='default'
                         />
                 </targets>
-            </nlog>");
+            </nlog>", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator));
 
             var myTarget = c.FindTargetByName("myTarget") as MyTarget;
             Assert.NotNull(myTarget);
@@ -475,7 +476,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void NullableDataTypesTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = CreateConfigurationFromString(string.Format(@"
             <nlog>
                 <extensions>
                     <add type='" + typeof(MyNullableTarget).AssemblyQualifiedName + @"' />
@@ -489,18 +490,18 @@ namespace NLog.UnitTests.Config
                         int64Property='42000000000' 
                         stringProperty='foobar'
                         boolProperty='true'
-                        doubleProperty='3.14159'
-                        floatProperty='3.14159'
+                        doubleProperty='3{0}14159'
+                        floatProperty='3{0}14159'
                         enumProperty='Value3'
                         flagsEnumProperty='Value1,Value3'
                         encodingProperty='utf-8'
                         cultureProperty='en-US'
                         typeProperty='System.Int32'
-                        layoutProperty='${level}'
+                        layoutProperty='${{level}}'
                         conditionProperty=""starts-with(message, 'x')""
                         />
                 </targets>
-            </nlog>");
+            </nlog>", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator));
 
             var myTarget = c.FindTargetByName("myTarget") as MyNullableTarget;
             Assert.NotNull(myTarget);
