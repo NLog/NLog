@@ -16,88 +16,119 @@
 
     },
 
-  "frameworks": {
-    ".NETFramework,Version=v3.5": {
-      "frameworkAssemblies": {
-        "System": "",
-        "System.Configuration": "",
-        "System.Core": "",
-        "System.Data": "",
-        "System.Runtime.Serialization": "",
-        "System.ServiceModel": "",
-        "System.Transactions": "",
-        "System.Xml": ""
-      },
-      "compilationOptions": {
-        "define": [ "NET3_5", "WCF_SUPPORTED", "CLIENT_SKU" ]
-      }
-    },
-    "net451": {
-      "frameworkAssemblies": {
-        "System.Runtime": "",
-        "System.Xml": "",
-        "System.ServiceModel": "",
-        "System.Runtime.Serialization": "",
-        "System.Drawing": "",
-        "System.Data": "",
-        "System.Configuration": "",
-        "System.Transactions": "",
-        "System.IO.Compression": ""
-      },
-      "compilationOptions": {
-        "define": [ "NET4_5", "WCF_SUPPORTED" ]
-      },
-      "dependencies": {
-        "System.Threading.Timer": "4.0.1-*"
-      }
-    },
-    "dotnet5.4": {
-        "dependencies": {
-            "System.Console": "4.0.0-*",
-            "System.Diagnostics.Contracts": "4.0.1-*",
-            "System.Diagnostics.StackTrace": "4.0.1-*",
-            "System.Diagnostics.Tools": "4.0.1-*",
-            "System.Diagnostics.TraceSource": "4.0.0-*",
-            "System.Linq": "4.0.1-*",
-            "System.Runtime.Serialization.Primitives": "4.1.0-*",
-            "System.Xml.XmlDocument": "4.0.1-*",
-            "System.ServiceModel.Primitives": "4.0.0",
-            "System.ComponentModel.TypeConverter": "4.0.1-*",
-            "System.Data.Common": "4.0.0-*",
-            "System.Net.Requests": "4.0.10",
-            "System.Threading.ThreadPool": "4.0.10-*",
-            "System.Threading.Thread": "4.0.0-*",
-            "System.IO.Compression": "4.0.1-*",
-            "Microsoft.Extensions.PlatformAbstractions": "1.0.0-*",
-            "System.Threading.Timer": "4.0.1-*",
-            "System.Reflection.TypeExtensions": "4.1.0-*",
-            "System.IO.FileSystem.Watcher": "4.0.0-beta-23225"
-            
+    "frameworks": {
+        ".NETFramework,Version=v3.5": {
+            "frameworkAssemblies": {
+                "System": "",
+                "System.Configuration": "",
+                "System.Core": "",
+                "System.Data": "",
+                "System.Runtime.Serialization": "",
+                "System.ServiceModel": "",
+                "System.Transactions": "",
+                "System.Xml": ""
+            },
+            "compilationOptions": {
+                "define": [ "NET3_5", "WCF_SUPPORTED", "CLIENT_SKU" ]
+            }
         },
-      "compilationOptions": {
-        "define": [ "NET4_5", "DNX", "UWP10", "DOTNET54" ]
-      }
+        ".NETFramework,Version=v4.0": {
+            "frameworkAssemblies": {
+                "System": "",
+                "System.Configuration": "",
+                "System.Core": "",
+                "System.Data": "",
+                "System.Runtime.Serialization": "",
+                "System.ServiceModel": "",
+                "System.Transactions": "",
+                "System.Xml": ""
+            },
+            "compilationOptions": {
+                "define": [ "NET4_0", "WCF_SUPPORTED" ]
+            }
+        },
+        ".NETFramework,Version=v4.5": {
+            "frameworkAssemblies": {
+                "System": "",
+                "System.Configuration": "",
+                "System.Core": "",
+                "System.Data": "",
+                "System.Runtime.Serialization": "",
+                "System.ServiceModel": "",
+                "System.Transactions": "",
+                "System.Xml": "",
+                "System.IO.Compression": ""
+            },
+            "compilationOptions": {
+                "define": [ "NET4_5", "WCF_SUPPORTED" ]
+            }
+        },
+        "net451": {
+            "frameworkAssemblies": {
+                "System.Runtime": "",
+                "System.Xml": "",
+                "System.ServiceModel": "",
+                "System.Runtime.Serialization": "",
+                "System.Drawing": "",
+                "System.Data": "",
+                "System.Configuration": "",
+                "System.Transactions": "",
+                "System.IO.Compression": ""
+            },
+            "compilationOptions": {
+                "define": [ "NET4_5", "WCF_SUPPORTED" ]
+            },
+            "dependencies": {
+                "System.Threading.Timer": "4.0.1-*"
+            }
+        },
+        "dotnet5.4": {
+            "dependencies": {
+                "System.Console": "4.0.0-*",
+                "System.Diagnostics.Contracts": "4.0.1-*",
+                "System.Diagnostics.StackTrace": "4.0.1-*",
+                "System.Diagnostics.Tools": "4.0.1-*",
+                "System.Diagnostics.TraceSource": "4.0.0-*",
+                "System.Linq": "4.0.1-*",
+                "System.Runtime.Serialization.Primitives": "4.1.0-*",
+                "System.Xml.XmlDocument": "4.0.1-*",
+                "System.ServiceModel.Primitives": "4.0.0",
+                "System.ComponentModel.TypeConverter": "4.0.1-*",
+                "System.Data.Common": "4.0.0-*",
+                "System.Net.Requests": "4.0.10",
+                "System.Threading.ThreadPool": "4.0.10-*",
+                "System.Threading.Thread": "4.0.0-*",
+                "System.IO.Compression": "4.0.1-*",
+                "Microsoft.Extensions.PlatformAbstractions": "1.0.0-*",
+                "System.Threading.Timer": "4.0.1-*",
+                "System.Reflection.TypeExtensions": "4.1.0-*",
+                "System.IO.FileSystem.Watcher": "4.0.0-beta-23225"
+
+            },
+            "compilationOptions": {
+                "define": [ "NET4_5", "DNX", "UWP10", "DOTNET54" ]
+            }
+        },
+
+        "Silverlight,Version=v5.0": {
+            "frameworkAssemblies": {
+                "mscorlib": "",
+                "System": "",
+                "System.Core": "",
+                "System.Xml": "",
+                "System.Net": "",
+                "System.Windows": "",
+                "System.Windows.Browser": "",
+                "System.Runtime.Serialization": "",
+                "System.ServiceModel": ""
+            },
+            "dependencies": {
+            },
+            "compilationOptions": {
+                "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]
+            }
+        }
     },
-   
-    "Silverlight,Version=v5.0": {
-      "frameworkAssemblies": {
-        "mscorlib": "",
-        "System": "",
-        "System.Core": "",
-        "System.Xml": "",
-        "System.Net": "",
-        "System.Windows": "",
-        "System.Windows.Browser": "",
-        "System.Runtime.Serialization": "",
-        "System.ServiceModel": ""
-      },
-      "dependencies": {
-      },
-      "compilationOptions": {
-        "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]
-      }
-    }
-  },
     "compilationOptions": {
         "keyFile": "NLog.snk"
     }

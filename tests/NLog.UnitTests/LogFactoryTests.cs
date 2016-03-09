@@ -152,7 +152,7 @@ namespace NLog.UnitTests
             var logFactory = new LogFactory(loggingConfiguration);
             var differentConfiguration = new LoggingConfiguration();
 
-#if !DNX
+#if !XUNIT2
             Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
 #else
             logFactory.ReloadConfigOnTimer(differentConfiguration);
@@ -174,7 +174,7 @@ namespace NLog.UnitTests
             LogManager.Configuration = loggingConfiguration;
             var logFactory = new LogFactory(loggingConfiguration);
 
-#if !DNX
+#if !XUNIT2
             Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(loggingConfiguration));
 #else
             logFactory.ReloadConfigOnTimer(loggingConfiguration);
