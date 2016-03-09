@@ -33,6 +33,7 @@
 
 namespace NLog.Internal
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
@@ -86,11 +87,11 @@ namespace NLog.Internal
 
 
             var type = o.GetType();
-
-            if (!type.IsDefined< NLogConfigurationItemAttribute>(true))
+            if (!type.IsDefined<NLogConfigurationItemAttribute>(true))
             {
                 return;
             }
+
 
             visitedObjects.Add(o);
 
@@ -118,12 +119,13 @@ namespace NLog.Internal
                 {
                     continue;
                 }
-                
+
+                List<object> elements;
                 var list = value as IList;
                 if (list != null)
                 {
                     //try first icollection for syncroot
-                    List<object> elements;
+
                     lock (list.SyncRoot)
                     {
                         elements = new List<object>(list.Count);
@@ -132,33 +134,59 @@ namespace NLog.Internal
                         {
                             var item = list[i];
                             elements.Add(item);
+                        }
                     }
-                    }
-                    foreach (object element in elements)
-                    {
-                        ScanProperties(result, element, level + 1, visitedObjects);
-                    }
+                    ScanPropertiesList(result, elements, level + 1, visitedObjects);
                 }
+
                 else
                 {
-                var enumerable = value as IEnumerable;
-                if (enumerable != null)
-                {
-                    //new list to prevent: Collection was modified after the enumerator was instantiated.
+                    var collection = value as ICollection;
 
-                    var elements = new List<object>(enumerable.Cast<object>());
-
-                    foreach (object element in elements)
+                    if (collection != null)
                     {
-                        ScanProperties(result, element, level + 1, visitedObjects);
+                        object[] elementsArray = new object[collection.Count];
+                        lock (collection.SyncRoot)
+                        {
+                            collection.CopyTo(elementsArray, 0);
+                        }
+                        ScanPropertiesList(result, elementsArray, level + 1, visitedObjects);
+
                     }
-                }
-                else
-                {
-                    ScanProperties(result, value, level + 1, visitedObjects);
+                    else
+                    {
+
+                        var enumerable = value as IEnumerable;
+                        if (enumerable != null)
+                        {
+                            //new list to prevent: Collection was modified after the enumerator was instantiated.
+                            //note .Cast is tread-unsafe! But at least it isn't a ICollection / IList
+                            try
+                            {
+                                elements = new List<object>(enumerable.Cast<object>());
+                            }
+                            catch (InvalidOperationException)
+                            {
+                                //retry once
+                                elements = new List<object>(enumerable.Cast<object>());
+                            }
+                            ScanPropertiesList(result, elements, level + 1, visitedObjects);
+                        }
+                        else
+                        {
+                            ScanProperties(result, value, level + 1, visitedObjects);
+                        }
+                    }
                 }
             }
         }
+
+        private static void ScanPropertiesList<T>(List<T> result, IEnumerable<object> elements, int level, HashSet<object> visitedObjects) where T : class
+        {
+            foreach (object element in elements)
+            {
+                ScanProperties(result, element, level, visitedObjects);
+            }
+        }
     }
-}
 }

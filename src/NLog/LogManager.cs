@@ -126,7 +126,24 @@ namespace NLog
             get { return factory.ThrowExceptions; }
             set { factory.ThrowExceptions = value; }
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether <see cref="NLogConfigurationException"/> should be thrown.
+        /// </summary>
+        /// <value>A value of <c>true</c> if exception should be thrown; otherwise, <c>false</c>.</value>
+        /// <remarks>
+        /// This option is for backwards-compatiblity.
+        /// By default exceptions are not thrown under any circumstances.
+        /// 
+        /// </remarks>
+        public static bool? ThrowConfigExceptions
+        {
+            get { return factory.ThrowConfigExceptions; }
+            set { factory.ThrowConfigExceptions = value; }
+        }
+
 #if !UWP10
+
         internal static IAppDomain CurrentAppDomain
         {
             get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }

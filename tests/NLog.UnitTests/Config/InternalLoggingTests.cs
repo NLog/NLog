@@ -41,24 +41,23 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void InternalLoggingConfigTest1()
         {
-            using (var scope = new InternalLoggerScope())
-            {
-                CreateConfigurationFromString(@"
-<nlog internalLogFile='c:\file.txt' internalLogLevel='Trace' internalLogToConsole='true' internalLogToConsoleError='true' globalThreshold='Warn' throwExceptions='true'>
-</nlog>");
-
-                Assert.Same(LogLevel.Trace, InternalLogger.LogLevel);
-#if !UWP10
-                Assert.True(InternalLogger.LogToConsole);
-                Assert.True(InternalLogger.LogToConsoleError);
-#endif
-                Assert.Same(LogLevel.Warn, LogManager.GlobalThreshold);
-                Assert.True(LogManager.ThrowExceptions);
-            }
+            InternalLoggingConfigTest(LogLevel.Trace, true, true, LogLevel.Warn, true, true, @"c:\temp\nlog\file.txt");
         }
 
         [Fact]
         public void InternalLoggingConfigTest2()
+        {
+            InternalLoggingConfigTest(LogLevel.Error, false, false, LogLevel.Info, false, false, @"c:\temp\nlog\file2.txt");
+        }
+
+        [Fact]
+        public void InternalLoggingConfigTes3()
+        {
+            InternalLoggingConfigTest(LogLevel.Info, false, false, LogLevel.Trace, false, null, @"c:\temp\nlog\file3.txt");
+        }
+
+        [Fact]
+        public void InternalLoggingConfigTestDefaults()
         {
             using (new InternalLoggerScope())
             {
@@ -69,6 +68,7 @@ namespace NLog.UnitTests.Config
 #endif
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
+                LogManager.ThrowConfigExceptions = null;
 
                 CreateConfigurationFromString(@"
 <nlog>
@@ -81,6 +81,41 @@ namespace NLog.UnitTests.Config
 #endif
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
+                Assert.Null(LogManager.ThrowConfigExceptions);
+            }
+        }
+
+
+        private void InternalLoggingConfigTest(LogLevel logLevel, bool logToConsole, bool logToConsoleError, LogLevel globalThreshold, bool throwExceptions, bool? throwConfigExceptions, string file)
+        {
+            var logLevelString = logLevel.ToString();
+            var internalLogToConsoleString = logToConsole.ToString().ToLower();
+            var internalLogToConsoleErrorString = logToConsoleError.ToString().ToLower();
+            var globalThresholdString = globalThreshold.ToString();
+            var throwExceptionsString = throwExceptions.ToString().ToLower();
+            var throwConfigExceptionsString = throwConfigExceptions == null ? "" : throwConfigExceptions.ToString().ToLower();
+
+            using (new InternalLoggerScope())
+            {
+                CreateConfigurationFromString(string.Format(@"
+<nlog internalLogFile='{0}' internalLogLevel='{1}' internalLogToConsole='{2}' internalLogToConsoleError='{3}' globalThreshold='{4}' throwExceptions='{5}' throwConfigExceptions='{6}'>
+</nlog>", file, logLevelString, internalLogToConsoleString, internalLogToConsoleErrorString, globalThresholdString, throwExceptionsString, throwConfigExceptionsString));
+
+                Assert.Same(logLevel, InternalLogger.LogLevel);
+
+                Assert.Equal(file, InternalLogger.LogFile);
+
+#if !UWP10
+                Assert.Equal(logToConsole, InternalLogger.LogToConsole);
+
+                Assert.Equal(logToConsoleError, InternalLogger.LogToConsoleError);
+#endif
+
+                Assert.Same(globalThreshold, LogManager.GlobalThreshold);
+
+                Assert.Equal(throwExceptions, LogManager.ThrowExceptions);
+
+                Assert.Equal(throwConfigExceptions, LogManager.ThrowConfigExceptions);
             }
         }
     }

@@ -33,6 +33,7 @@
 
 #if !SILVERLIGHT
 
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -70,25 +71,39 @@ namespace NLog.UnitTests.Internal
 
         [Theory]
 #if !DNX
-        [InlineData(typeof(StackOverflowException), true, false)]
-        [InlineData(typeof(StackOverflowException), true, true)]
-           [InlineData(typeof(ThreadAbortException), true, false)]
-        [InlineData(typeof(ThreadAbortException), true, true)]
+        [InlineData(typeof(StackOverflowException), true, false, false)]
+        [InlineData(typeof(StackOverflowException), true, true, false)]
 #endif
-        [InlineData(typeof(NLogConfigurationException), true, false)]
-        [InlineData(typeof(NLogConfigurationException), true, true)]
-        [InlineData(typeof(Exception), false, false)]
-        [InlineData(typeof(Exception), true, true)]
-        [InlineData(typeof(ArgumentException), false, false)]
-        [InlineData(typeof(ArgumentException), true, true)]
-        [InlineData(typeof(NullReferenceException), false, false)]
-        [InlineData(typeof(NullReferenceException), true, true)]
-
-        [InlineData(typeof(OutOfMemoryException), true, false)]
-        [InlineData(typeof(OutOfMemoryException), true, true)]
-        public void MustBeRethrown(Type exceptionType, bool result, bool throwExceptions)
+        [InlineData(typeof(NLogConfigurationException), true, true, true)]
+        [InlineData(typeof(NLogConfigurationException), false, true, false)]
+        [InlineData(typeof(NLogConfigurationException), true, true, null)]
+        [InlineData(typeof(NLogConfigurationException), true, false, true)]
+        [InlineData(typeof(NLogConfigurationException), false, false, false)]
+        [InlineData(typeof(NLogConfigurationException), false, false, null)]
+        [InlineData(typeof(Exception), false, false, false)]
+        [InlineData(typeof(Exception), false, false, true)]
+        [InlineData(typeof(Exception), false, false, null)]
+        [InlineData(typeof(Exception), true, true, false)]
+        [InlineData(typeof(Exception), true, true, true)]
+        [InlineData(typeof(Exception), true, true, null)]
+        [InlineData(typeof(ArgumentException), false, false, false)]
+        [InlineData(typeof(ArgumentException), false, false, true)]
+        [InlineData(typeof(ArgumentException), false, false, null)]
+        [InlineData(typeof(ArgumentException), true, true, false)]
+        [InlineData(typeof(ArgumentException), true, true, true)]
+        [InlineData(typeof(ArgumentException), true, true, null)]
+        [InlineData(typeof(NullReferenceException), false, false, false)]
+        [InlineData(typeof(NullReferenceException), true, true, false)]
+#if !DNX
+        [InlineData(typeof(ThreadAbortException), true, false, false)]
+        [InlineData(typeof(ThreadAbortException), true, true, false)]
+#endif
+        [InlineData(typeof(OutOfMemoryException), true, false, false)]
+        [InlineData(typeof(OutOfMemoryException), true, true, false)]
+        public void MustBeRethrown(Type exceptionType, bool result, bool throwExceptions, bool? throwConfigException)
         {
             LogManager.ThrowExceptions = throwExceptions;
+            LogManager.ThrowConfigExceptions = throwConfigException;
 
             var ex = CreateException(exceptionType);
             Assert.Equal(result, ex.MustBeRethrown());

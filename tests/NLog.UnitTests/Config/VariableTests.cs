@@ -118,6 +118,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void NLogConfigurationExceptionShouldThrown_WhenVariableNodeIsWrittenToWrongPlace()
         {
+            LogManager.ThrowConfigExceptions = true;
             const string configurationString_VariableNodeIsInnerTargets =
                     @"<nlog>  
 	                        <targets>

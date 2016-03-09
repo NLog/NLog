@@ -514,6 +514,7 @@ namespace NLog.Config
                 this.fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
             
             logFactory.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", logFactory.ThrowExceptions);
+            logFactory.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", logFactory.ThrowConfigExceptions);
 #if !UWP10
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);

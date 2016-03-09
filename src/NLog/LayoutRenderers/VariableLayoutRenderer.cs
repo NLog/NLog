@@ -71,7 +71,7 @@ namespace NLog.LayoutRenderers
             {
                 SimpleLayout layout;
                 var loggingConfiguration = LoggingConfiguration ?? LogManager.Configuration;
-                var vars = loggingConfiguration.Variables;
+                var vars = loggingConfiguration != null ? loggingConfiguration.Variables : null;
                 if (vars != null && vars.TryGetValue(Name, out layout))
                 {
                     //todo in later stage also layout as values?
