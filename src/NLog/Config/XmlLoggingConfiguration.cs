@@ -515,7 +515,7 @@ namespace NLog.Config
                 this.fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
 
             logFactory.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", logFactory.ThrowExceptions);
-            LogManager.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", LogManager.ThrowConfigExceptions);
+            logFactory.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", logFactory.ThrowConfigExceptions);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
