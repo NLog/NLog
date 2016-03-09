@@ -545,8 +545,8 @@ namespace NLog.Targets
             {
                 try
                 {
-                    // get the enum type from the database parameter we are using
-                    var enumDatabaseType = paramType.Assembly.GetType(enumName);
+                    // check first to see if this is DbType otherwise use reflection to get it from the database parameter's assembly
+                    var enumDatabaseType = enumName == typeof (DbType).FullName ? typeof(DbType) : paramType.Assembly.GetType(enumName);
 
                     // get the enum value for the database type
                     var enumValueString = dbType.Substring(lastIndexOfDot + 1,
@@ -561,29 +561,43 @@ namespace NLog.Targets
                 }
             }
 
-            // Each custom database type that we want to support will need added here on as needed basis
-            string propertyName = null;
-            if (dbType.Contains("OracleDbType")) 
+            SetParamType(dbDataParameter, dbType, enumName, enumValueObject);
+        }
+
+        internal static void SetParamType(IDbDataParameter dbDataParameter, string dbType, string enumFullName, object enumValueObject)
+        {
+            //if its a DbType then we can just set it
+            if (enumFullName == typeof(DbType).FullName)
             {
-                // for Oracle we have to set the OracleDbType property on the parameter
-                propertyName = "OracleDbType";
+                dbDataParameter.DbType = (DbType)enumValueObject;
             }
-            else if(dbType.Contains("SqlDbType"))
+            else
             {
-                // for Sql Server we have to set the SqlDbType property on the parameter
-                propertyName = "SqlDbType";
+                // Each custom database type that we want to support will need added here on as needed basis
+                string propertyName = null;
+                if (enumFullName.Contains("OracleDbType"))
+                {
+                    // for Oracle we have to set the OracleDbType property on the parameter
+                    propertyName = "OracleDbType";
+                }
+                else 
+                {
+                    // we only support additional database types by custom implementation
+                    throw new NLogConfigurationException("Custom setting of the database type is not supported for: " +
+                                                     dbType);
+                }
+
+                // find the property on the database specific parameter
+                var property = dbDataParameter.GetType().GetProperty(propertyName);
+
+                // if something went wrong with the reflection a bad value was probably set and we can't fix that
+                if (enumValueObject == null || property == null)
+                    throw new NLogConfigurationException("Unable set the database type from the database parameter for DbType: "
+                                                         + dbType);
+
+                // we find the enum and the property ok so now we just set it using reflection
+                property.SetValue(dbDataParameter, enumValueObject, null);
             }
-
-            // find the property on the database specific parameter
-            var property = paramType.GetProperty(propertyName ?? string.Empty);
-
-            // if something went wrong with the reflection a bad value was probably set and we can't fix that
-            if (enumValueObject == null || property == null)
-                throw new NLogConfigurationException("Unable set the database type from the database parameter for DbType: "
-                    + dbType);
-
-            // we find the enum and the property ok so now we just set it using reflection
-            property.SetValue(dbDataParameter, enumValueObject, null);
         }
 
         private string BuildConnectionString(LogEventInfo logEvent)

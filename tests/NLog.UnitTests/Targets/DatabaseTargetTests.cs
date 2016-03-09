@@ -784,9 +784,9 @@ Dispose()
         }
 
         [Fact]
-        public void SqlServer_SetParamTypeShouldSetCustomEnumValueTest()
+        public void DbType_SetParamTypeShouldSetEnumValueTest()
         {
-            var expected = SqlDbType.Bit;
+            var expected = DbType.DateTime2;
             var target = new DatabaseTarget
             {
                 Name = "notimportant",
@@ -796,13 +796,13 @@ Dispose()
             };
             var parameterInfo = new DatabaseParameterInfo
             {
-                DbType = typeof(SqlDbType).FullName + ".Bit"
+                DbType = typeof(DbType).FullName + "." + expected,
             };
-            var parameter = new SqlParameter();
+            var parameter = new MockDbParameter(new MockDbCommand(), 0); 
+            parameter.DbType = DbType.AnsiString;
 
             target.SetParamType(parameter, parameterInfo.DbType);
-
-            Assert.Equal(expected, parameter.SqlDbType);
+            Assert.Equal(expected, parameter.DbType);
         }
 
         [Theory]
