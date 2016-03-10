@@ -44,6 +44,7 @@ namespace NLog.UnitTests.Targets
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
+	  using System.IO;
 
     public class MailTargetTests : NLogTestBase
     {
@@ -725,6 +726,27 @@ namespace NLog.UnitTests.Targets
 
             Assert.Equal(mmt.SmtpClientPickUpDirectory, inConfigVal);
         }
+    
+        [Fact]
+        public void MailTarget_UseSystemNetMailSettings_True_WithVirtualPath()
+        {
+            var inConfigVal = @"~/App_Data/Mail";
+            var mmt = new MockMailTarget(inConfigVal)
+            {
+                From = "foo@bar.com",
+                To = "bar@bar.com",
+                Subject = "Hello from NLog",
+                Body = "${level} ${logger} ${message}",
+                UseSystemNetMailSettings = false,
+                PickupDirectoryLocation = inConfigVal,
+                DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory
+            };
+            mmt.ConfigureMailClient();
+            
+            Assert.NotEqual(inConfigVal, mmt.SmtpClientPickUpDirectory);
+            var separator = Path.DirectorySeparatorChar;
+            Assert.Contains(string.Format("{0}App_Data{0}Mail", separator), mmt.SmtpClientPickUpDirectory);
+        }
 
         [Fact]
         public void MailTarget_WithoutSubject_SendsMessageWithDefaultSubject()
@@ -838,8 +860,9 @@ namespace NLog.UnitTests.Targets
 
                 if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
                 {
-                    Client.PickupDirectoryLocation = this.PickupDirectoryLocation;
+                    Client.PickupDirectoryLocation = ConvertDirectoryLocation(PickupDirectoryLocation);
                 }
+
                 Client.DeliveryMethod = this.DeliveryMethod;
             }
 
