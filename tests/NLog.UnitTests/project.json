@@ -63,7 +63,7 @@
                 "System.Xml.XDocument": "4.0.11-*"
             },
             "compilationOptions": {
-                "define": [ "WCF_SUPPORTED", "DNX", "XUNIT2" ]
+                "define": [ "WCF_SUPPORTED", "DNX", "XUNIT2", "DNX451" ]
             }
         },
         ".NETFramework,Version=v4.5": {
