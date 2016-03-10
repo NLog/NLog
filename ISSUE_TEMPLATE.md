@@ -1,4 +1,6 @@
-Hi! Thanks for reporting this feature/bug/question! Please keep / fill in the relevant info from this template so that we can help you as best as possible.
+Hi! Thanks for reporting this feature/bug/question! 
+
+Please keep / fill in the relevant info from this template so that we can help you as best as possible.
 
 
 **Type** (choose one):
