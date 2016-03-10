@@ -860,7 +860,7 @@ namespace NLog.UnitTests.Targets
 
                 if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
                 {
-                    Client.PickupDirectoryLocation = GetPickupDirectoryLocation(Client, PickupDirectoryLocation);
+                    Client.PickupDirectoryLocation = ConvertDirectoryLocation(PickupDirectoryLocation);
                 }
 
                 Client.DeliveryMethod = this.DeliveryMethod;

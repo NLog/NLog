@@ -441,7 +441,7 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
             {
-                client.PickupDirectoryLocation = GetPickupDirectoryLocation(client, PickupDirectoryLocation);
+                client.PickupDirectoryLocation = ConvertDirectoryLocation(PickupDirectoryLocation);
             }
 
             // In case DeliveryMethod = PickupDirectoryFromIis we will not require Host nor PickupDirectoryLocation
@@ -452,21 +452,21 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Handle <paramref name="pickupDirectoryLocation"/> if it is a virtual directory. Set PickupDirectoryLocation of <paramref name="client"/>
+        /// Handle <paramref name="pickupDirectoryLocation"/> if it is a virtual directory.
         /// </summary>
-        /// <param name="client">client to set properties on</param>
         /// <param name="pickupDirectoryLocation"></param>
         /// <returns></returns>
-        internal static string GetPickupDirectoryLocation(ISmtpClient client, string pickupDirectoryLocation)
+        internal static string ConvertDirectoryLocation(string pickupDirectoryLocation)
         {
-            if (!pickupDirectoryLocation.StartsWith("~/"))
+            const string virtualPathPrefix = "~/";
+            if (!pickupDirectoryLocation.StartsWith(virtualPathPrefix))
             {
                 return pickupDirectoryLocation;
             }
 
             // Support for Virtual Paths
             var root = AppDomain.CurrentDomain.BaseDirectory;
-            var directory = client.PickupDirectoryLocation.Replace("~/", "").Replace('/', Path.DirectorySeparatorChar);
+            var directory = pickupDirectoryLocation.Substring(virtualPathPrefix.Length).Replace('/', Path.DirectorySeparatorChar);
             var pickupRoot = Path.Combine(root, directory);
             return pickupRoot;
         }
