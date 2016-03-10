@@ -424,7 +424,7 @@ namespace NLog.UnitTests.Config
         {
             
             LoggingConfiguration c = CreateConfigurationFromString(string.Format(@"
-            <nlog>
+            <nlog ThrowExceptions='true'>
                 <extensions>
                     <add type='" + typeof(MyTarget).AssemblyQualifiedName + @"' />
                 </extensions>
@@ -450,7 +450,7 @@ namespace NLog.UnitTests.Config
                         lineEndingModeProperty='default'
                         />
                 </targets>
-            </nlog>", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator));
+            </nlog>", CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator));
 
             var myTarget = c.FindTargetByName("myTarget") as MyTarget;
             Assert.NotNull(myTarget);
@@ -477,7 +477,7 @@ namespace NLog.UnitTests.Config
         public void NullableDataTypesTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(string.Format(@"
-            <nlog>
+            <nlog ThrowExceptions='true'>
                 <extensions>
                     <add type='" + typeof(MyNullableTarget).AssemblyQualifiedName + @"' />
                 </extensions>
@@ -501,7 +501,7 @@ namespace NLog.UnitTests.Config
                         conditionProperty=""starts-with(message, 'x')""
                         />
                 </targets>
-            </nlog>", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator));
+            </nlog>", CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator));
 
             var myTarget = c.FindTargetByName("myTarget") as MyNullableTarget;
             Assert.NotNull(myTarget);

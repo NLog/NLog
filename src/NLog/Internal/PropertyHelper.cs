@@ -193,8 +193,9 @@ namespace NLog.Internal
         private static bool TryImplicitConversion(Type resultType, string value, out object result)
         {
 
-#if !UWP10
-            MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string) }, null);
+#if !UWP10   
+            MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, 
+                null, new Type[] { typeof(string) }, null);
             if (operatorImplicitMethod == null)
             {
                 result = null;
@@ -205,7 +206,8 @@ namespace NLog.Internal
 #else
             try
             {
-                result = Convert.ChangeType(value, resultType);
+                //We used in Nlog4 already (unattended?) CultureInfo.InvariantCulture with op_Implicit
+                result = Convert.ChangeType(value, resultType, CultureInfo.InvariantCulture);
             }
             catch
             {
