@@ -517,7 +517,7 @@ namespace NLog.UnitTests.Config
 
             public void WaitForReload()
             {
-                counterEvent.Wait(2000);
+                counterEvent.Wait(3000);
             }
 
             private static EventHandler<LoggingConfigurationReloadedEventArgs> SignalCounterEvent(CountdownEvent counterEvent)
