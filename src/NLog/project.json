@@ -128,6 +128,22 @@
             "compilationOptions": {
                 "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]
             }
+        },
+
+        "wp8": {
+            "frameworkAssemblies": {
+                "mscorlib": "",
+                "System": "",
+                "System.Core": "",
+                "System.Xml": "",
+                "System.Net": "",
+                "System.Windows": ""
+            },
+            "dependencies": {
+            },
+            "compilationOptions": {
+                "define": [ "SILVERLIGHT", "WINDOWS_PHONE" ]
+            }
         }
     },
     "compilationOptions": {
