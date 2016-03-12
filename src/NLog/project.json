@@ -44,7 +44,7 @@
                 "System.Xml": ""
             },
             "compilationOptions": {
-                "define": [ "NET4_0", "WCF_SUPPORTED" ]
+                "define": [ "NET4_0", "WCF_SUPPORTED", "CLIENT_SKU" ]
             }
         },
         ".NETFramework,Version=v4.5": {
@@ -60,7 +60,7 @@
                 "System.IO.Compression": ""
             },
             "compilationOptions": {
-                "define": [ "NET4_5", "WCF_SUPPORTED" ]
+                "define": [ "NET4_5", "WCF_SUPPORTED", "CLIENT_SKU", "ASYNC_SUPPORTED" ]
             }
         },
         "net451": {
@@ -76,7 +76,7 @@
                 "System.IO.Compression": ""
             },
             "compilationOptions": {
-                "define": [ "NET4_5", "WCF_SUPPORTED" ]
+                "define": [ "NET4_5", "WCF_SUPPORTED", "CLIENT_SKU", "ASYNC_SUPPORTED" ]
             },
             "dependencies": {
                 "System.Threading.Timer": "4.0.1-*"
