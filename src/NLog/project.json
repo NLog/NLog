@@ -53,11 +53,12 @@
                 "System.Configuration": "",
                 "System.Core": "",
                 "System.Data": "",
+                "System.IO.Compression": "",
                 "System.Runtime.Serialization": "",
                 "System.ServiceModel": "",
                 "System.Transactions": "",
-                "System.Xml": "",
-                "System.IO.Compression": ""
+                "System.Xml": ""
+
             },
             "compilationOptions": {
                 "define": [ "NET4_5", "WCF_SUPPORTED", "CLIENT_SKU", "ASYNC_SUPPORTED" ]
@@ -65,25 +66,22 @@
         },
         "net451": {
             "frameworkAssemblies": {
+                "System.Configuration": "",
+                "System.Data": "",
+                "System.IO.Compression": "",
                 "System.Runtime": {
                     "type": "build",
                     "version": ""
                 },
-                "System.Xml": "",
-                "System.ServiceModel": "",
                 "System.Runtime.Serialization": "",
-                "System.Drawing": "",
-                "System.Data": "",
-                "System.Configuration": "",
+                "System.ServiceModel": "",
                 "System.Transactions": "",
-                "System.IO.Compression": ""
+                "System.Xml": ""
             },
             "compilationOptions": {
                 "define": [ "NET4_5", "WCF_SUPPORTED", "CLIENT_SKU", "ASYNC_SUPPORTED" ]
-            },
-            "dependencies": {
-                "System.Threading.Timer": "4.0.1-*"
             }
+
         },
         "dotnet5.4": {
             "dependencies": {
