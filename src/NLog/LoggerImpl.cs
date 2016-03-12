@@ -72,9 +72,6 @@ namespace NLog
             {
                 StackTrace stackTrace;
 #if UWP10 || DNX
-#if !DEBUG
-#error check this
-#endif
                 stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
 #elif !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
