@@ -1,21 +1,22 @@
 {
-  "version": "4.4.0-alpha1",
-  "description": "NLog Library",
-  "authors": [ "NLog" ],
-  "tags": [ "NLog" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/NLog/NLog"
-  },
-  "dependencies": {
-    "NLog": ""
-  },
+    "version": "4.4.0-alpha1",
+    "description": "NLog Library",
+    "authors": [ "NLog" ],
+    "tags": [ "NLog" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/NLog/NLog"
+    },
+    "dependencies": {
+        "NLog": ""
+    },
 
-  "frameworks": {
-    ".NETFramework,Version=v3.5": { },
-    "net451": { },
-    "dotnet5.4": { }
-  }
+    "frameworks": {
+        ".NETFramework,Version=v3.5": { },
+        "net451": { },
+        "dotnet5.4": { },
+        "Silverlight,Version=v5.0": { }
+    }
 }
