@@ -110,7 +110,24 @@
                 "define": [ "NET4_5", "DNX", "UWP10", "DOTNET54" ]
             }
         },
-
+        "Silverlight,Version=v4.0": {
+            "frameworkAssemblies": {
+                "mscorlib": "",
+                "System": "",
+                "System.Core": "",
+                "System.Xml": "",
+                "System.Net": "",
+                "System.Windows": "",
+                "System.Windows.Browser": "",
+                "System.Runtime.Serialization": "",
+                "System.ServiceModel": ""
+            },
+            "dependencies": {
+            },
+            "compilationOptions": {
+                "define": [ "SILVERLIGHT", "SILVERLIGHT4", "WCF_SUPPORTED" ]
+            }
+        },
         "Silverlight,Version=v5.0": {
             "frameworkAssemblies": {
                 "mscorlib": "",
