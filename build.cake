@@ -2,7 +2,7 @@
 // ARGUMENTS
 //////////////////////////////////////////////////////////////////////
 
-var buildTarget = Argument("target", "Default");
+var cakeTarget = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
 var outputDirectory = Argument<string>("outputDirectory", "./artifacts");
 var nugetDirectory = Argument<string>("nugetDirectory", "./nuget");
@@ -34,9 +34,9 @@ var excludedSrcProjects = new string[0];
 var excludedTestProjects = new string[0];
 
 // Look in standard .NET Core dirs
-var srcProjects = System.IO.Directory.GetDirectories(".\\src").Except(excludedSrcProjects);
+var srcProjects = System.IO.Directory.GetDirectories(string.Format(".{0}src", System.IO.Path.DirectorySeparatorChar)).Except(excludedSrcProjects); // It's absolutely ugly but it works. TODO: Find a better way to work with directories / files
 // Not so standard in NLog, tests dir and not test
-var testProjects = System.IO.Directory.GetDirectories(".\\tests").Except(excludedTestProjects);
+var testProjects = System.IO.Directory.GetDirectories(string.Format(".{0}tests", System.IO.Path.DirectorySeparatorChar)).Except(excludedTestProjects);
 
 
 // Error Handling
@@ -155,11 +155,12 @@ Task("checkErrors")
     });
 
 Task("pack")
+    .WithCriteria(() => !errors.Any())
 	.IsDependentOn("sl5") //last task in chain
 	.Does(() => 
 {
 	string[] frameworks = null;
-	if(IsRunningOnUnix())
+	if(!IsRunningOnWindows())
 	{
 		frameworks = new [] { "net451","dotnet5.4" };
 	}
@@ -173,6 +174,7 @@ Task("pack")
 		Architecture = DNArchitecture.X86,
         Runtime = buildRuntime,
         Version = buildDnxVersion,
+        //Frameworks = frameworks, // DNU Pack command doesn't really support frameworks option ... 
 	    Configurations = new[] { configuration },
 	    Quiet = true
 	};
@@ -223,7 +225,8 @@ Task("sl5")
 {
 	buildAndTest("sl5", buildDnxVersion, 
 					buildRuntime, DNArchitecture.X86,
-					srcProjects,
+					srcProjects.Except(new string[]{ string.Format(@".{0}src{0}NLog.Extended", System.IO.Path.DirectorySeparatorChar),
+													 string.Format(@".{0}src{0}NLogAutoLoadExtension", System.IO.Path.DirectorySeparatorChar)}),
 					testProjects, "sl5");
 }).OnError(exception => {
     errors.Add(exception);
@@ -259,8 +262,8 @@ Task("dotnet5.4")
 	.Does(() =>
 {
 	buildAndTest("dotnet5.4", buildDnxVersion, 
-					DNRuntime.CoreClr, DNArchitecture.X86,
-					srcProjects.Except(new string[]{ @".\src\NLog.Extended" }),
+					DNRuntime.CoreClr, DNArchitecture.X64,
+					srcProjects.Except(new string[]{ string.Format(@".{0}src{0}NLog.Extended", System.IO.Path.DirectorySeparatorChar) }),
 					testProjects, "dnxcore50");
 }).OnError(exception => {
     errors.Add(exception);
@@ -286,4 +289,4 @@ Task("restore")
 // EXECUTION
 //////////////////////////////////////////////////////////////////////
 
-RunTarget(buildTarget);
+RunTarget(cakeTarget);
