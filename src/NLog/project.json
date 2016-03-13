@@ -1,5 +1,5 @@
 {
-    "version": "4.4.0-alpha4",
+    "version": "4.4.0-beta2",
     "summary": "NLog - Advanced .NET and Silverlight Logging",
     "description": "NLog is a logging platform for .NET with rich log routing and management capabilities. It can help you produce and manage high-quality logs for your application regardless of its size or complexity. This package installs NLog.dll with includes core logging functionality. For your main project also need to install 'NLog Configuration' package.",
     "authors": [ "NLog" ],
@@ -44,7 +44,7 @@
                 "System.Xml": ""
             },
             "compilationOptions": {
-                "define": [ "NET4_0", "WCF_SUPPORTED" ]
+                "define": [ "NET4_0", "WCF_SUPPORTED", "CLIENT_SKU" ]
             }
         },
         ".NETFramework,Version=v4.5": {
@@ -53,34 +53,35 @@
                 "System.Configuration": "",
                 "System.Core": "",
                 "System.Data": "",
+                "System.IO.Compression": "",
                 "System.Runtime.Serialization": "",
                 "System.ServiceModel": "",
                 "System.Transactions": "",
-                "System.Xml": "",
-                "System.IO.Compression": ""
+                "System.Xml": ""
+
             },
             "compilationOptions": {
-                "define": [ "NET4_5", "WCF_SUPPORTED" ]
+                "define": [ "NET4_5", "WCF_SUPPORTED", "CLIENT_SKU", "ASYNC_SUPPORTED" ]
             }
         },
         "net451": {
             "frameworkAssemblies": {
-                "System.Runtime": "",
-                "System.Xml": "",
-                "System.ServiceModel": "",
-                "System.Runtime.Serialization": "",
-                "System.Drawing": "",
-                "System.Data": "",
                 "System.Configuration": "",
+                "System.Data": "",
+                "System.IO.Compression": "",
+                "System.Runtime": {
+                    "type": "build",
+                    "version": ""
+                },
+                "System.Runtime.Serialization": "",
+                "System.ServiceModel": "",
                 "System.Transactions": "",
-                "System.IO.Compression": ""
+                "System.Xml": ""
             },
             "compilationOptions": {
-                "define": [ "NET4_5", "WCF_SUPPORTED" ]
-            },
-            "dependencies": {
-                "System.Threading.Timer": "4.0.1-*"
+                "define": [ "NET4_5", "WCF_SUPPORTED", "CLIENT_SKU", "ASYNC_SUPPORTED" ]
             }
+
         },
         "dotnet5.4": {
             "dependencies": {
@@ -109,7 +110,24 @@
                 "define": [ "NET4_5", "DNX", "UWP10", "DOTNET54" ]
             }
         },
-
+        "Silverlight,Version=v4.0": {
+            "frameworkAssemblies": {
+                "mscorlib": "",
+                "System": "",
+                "System.Core": "",
+                "System.Xml": "",
+                "System.Net": "",
+                "System.Windows": "",
+                "System.Windows.Browser": "",
+                "System.Runtime.Serialization": "",
+                "System.ServiceModel": ""
+            },
+            "dependencies": {
+            },
+            "compilationOptions": {
+                "define": [ "SILVERLIGHT", "SILVERLIGHT4", "WCF_SUPPORTED" ]
+            }
+        },
         "Silverlight,Version=v5.0": {
             "frameworkAssemblies": {
                 "mscorlib": "",
@@ -126,6 +144,22 @@
             },
             "compilationOptions": {
                 "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]
+            }
+        },
+
+        "wp8": {
+            "frameworkAssemblies": {
+                "mscorlib": "",
+                "System": "",
+                "System.Core": "",
+                "System.Xml": "",
+                "System.Net": "",
+                "System.Windows": ""
+            },
+            "dependencies": {
+            },
+            "compilationOptions": {
+                "define": [ "SILVERLIGHT", "WINDOWS_PHONE" ]
             }
         }
     },
