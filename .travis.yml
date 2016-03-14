@@ -1,4 +1,7 @@
 language: csharp
+os: osx
+mono:
+  - latest
 install:
 script:
   - ./build.sh --configuration Debug 
