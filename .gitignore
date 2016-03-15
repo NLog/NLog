@@ -42,4 +42,6 @@ artifacts/
 samples/
 build.ps1
 tools/packages.config
+#ignore results of unit tests
 /**/testresults.xml
+tests/NLog.UnitTests/*.txt
