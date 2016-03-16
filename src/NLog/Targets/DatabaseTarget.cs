@@ -556,8 +556,11 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    InternalLogger.Trace(exception, "DatabaseTarget: unable to use " + enumName + " to set database column type.");
-                    throw;
+                    InternalLogger.Warn(exception, "DatabaseTarget: unable to use {0} to set database column type.", enumName);
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
                 }
             }
 
@@ -575,7 +578,7 @@ namespace NLog.Targets
             {
                 // Each custom database type that we want to support will need added here on as needed basis
                 string propertyName = null;
-                if (enumFullName.Contains("OracleDbType"))
+                if (dbType.Contains(".OracleDbType."))
                 {
                     // for Oracle we have to set the OracleDbType property on the parameter
                     propertyName = "OracleDbType";
@@ -583,8 +586,14 @@ namespace NLog.Targets
                 else 
                 {
                     // we only support additional database types by custom implementation
-                    throw new NLogConfigurationException("Custom setting of the database type is not supported for: " +
+                    var exception = new NLogConfigurationException("Custom setting of the database type is not supported for: " +
                                                      dbType);
+                    InternalLogger.Error(exception, "Custom setting of the database type is not supported for: {0}", dbType);
+                    if (exception.MustBeRethrown())
+                    {
+                        throw exception;
+                    }
+                    return;
                 }
 
                 // find the property on the database specific parameter
@@ -592,8 +601,16 @@ namespace NLog.Targets
 
                 // if something went wrong with the reflection a bad value was probably set and we can't fix that
                 if (enumValueObject == null || property == null)
-                    throw new NLogConfigurationException("Unable set the database type from the database parameter for DbType: "
+                {
+                    var exception = new NLogConfigurationException("Unable set the database type from the database parameter for DbType: "
                                                          + dbType);
+                    InternalLogger.Error(exception, "Unable set the database type from the database parameter for DbType: {0}", dbType);
+                    if (exception.MustBeRethrown())
+                    {
+                        throw exception;
+                    }
+                    return;
+                }
 
                 // we find the enum and the property ok so now we just set it using reflection
                 property.SetValue(dbDataParameter, enumValueObject, null);

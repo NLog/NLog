@@ -774,7 +774,10 @@ Dispose()
             };
             var parameterInfo = new DatabaseParameterInfo
             {
-                DbType = typeof(OracleDbType).FullName + ".Clob"
+                // normally this would be your DB providers namespace
+                // You can figure this value out by doing something like this:
+                // typeof(OracleDbType).FullName + ".Clob"
+                DbType = "NLog.UnitTests.Targets.OracleDbType.Clob"
             };
             var parameter = new MockDbParameter(new MockDbCommand(), 0); 
 
@@ -796,7 +799,7 @@ Dispose()
             };
             var parameterInfo = new DatabaseParameterInfo
             {
-                DbType = typeof(DbType).FullName + "." + expected,
+                DbType = string.Format("System.Data.DbType.{0}", expected),
             };
             var parameter = new MockDbParameter(new MockDbCommand(), 0); 
             parameter.DbType = DbType.AnsiString;
@@ -810,7 +813,7 @@ Dispose()
         [InlineData("INVALID")]
         [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType.Clob")]
         [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType")]
-        public void Oracle_SetParamTypeShouldThrowExceptionTest(string dbType)
+        public void Oracle_SetParamTypeShouldThrowExceptionsOrEatThemTest(string dbType)
         {
             var target = new DatabaseTarget
             {
@@ -825,10 +828,14 @@ Dispose()
             };
             var parameter = new MockDbParameter(new MockDbCommand(), 0);
 
-            Exception exception = Assert.Throws<NLogConfigurationException>(() => 
-                target.SetParamType(parameter, parameterInfo.DbType));
-
-            Assert.Contains(dbType, exception.Message);
+            try
+            {
+                target.SetParamType(parameter, parameterInfo.DbType);
+            }
+            catch (Exception exception)
+            {
+                Assert.Contains(dbType, exception.Message);
+            }
         }
 
         [Fact]
@@ -848,6 +855,23 @@ Dispose()
             target.SetParamType(parameter, parameterInfo.DbType);
 
             Assert.Equal(expected, parameter.OracleDbType);
+        }
+
+        [Fact]
+        public void SetParamTypeShouldDoNothingIfNotSetTest()
+        {
+            var target = new DatabaseTarget
+            {
+                Name = "notimportant",
+                DBProvider = "notimportant",
+                ConnectionString = "notimportant",
+                CommandText = "notimportant",
+            };
+            var parameterInfo = new DatabaseParameterInfo {DbType = null};
+            var parameter = new MockDbParameter(new MockDbCommand(), 0);
+            var expected = parameter.DbType = DbType.String;
+            target.SetParamType(parameter, parameterInfo.DbType);
+            Assert.Equal(expected, parameter.DbType);
         }
 
         [Theory]
@@ -1106,17 +1130,6 @@ Dispose()
             {
                 throw new NotImplementedException();
             }
-        }
-
-        /// <summary>
-        /// Since we don't really need to add a real life reference to oracle we just
-        /// make a fake enum that we can reference
-        /// </summary>
-        public enum OracleDbType
-        {
-            Default,
-            Clob,
-            Blob
         }
 
         private class MockDbParameter : IDbDataParameter
@@ -1379,6 +1392,19 @@ Dispose()
                 get { throw new NotImplementedException(); }
             }
         }
+    }
+
+    /// <summary>
+    /// Since we don't really need to add a real life reference to oracle we just
+    /// make a fake enum that we can reference
+    /// </summary>
+    /// <remarks>This needs to not be embedded in the test class
+    /// so that the namespace will have a . in front of it.</remarks>
+    public enum OracleDbType
+    {
+        Default,
+        Clob,
+        Blob
     }
 }
 
