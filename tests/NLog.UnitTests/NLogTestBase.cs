@@ -213,11 +213,24 @@ namespace NLog.UnitTests
             return sb.ToString();
         }
 
-        protected void AssertLayoutRendererOutput(Layout l, string expected)
+        /// <summary>
+        /// Render layout <paramref name="layout"/> with dummy <see cref="LogEventInfo" />and compare result with <paramref name="expected"/>.
+        /// </summary>
+        protected static void AssertLayoutRendererOutput(Layout layout, string expected)
         {
-            l.Initialize(null);
-            string actual = l.Render(LogEventInfo.Create(LogLevel.Info, "loggername", "message"));
-            l.Close();
+            var logEventInfo = LogEventInfo.Create(LogLevel.Info, "loggername", "message");
+
+            AssertLayoutRendererOutput(layout, logEventInfo, expected);
+        }
+
+        /// <summary>
+        /// Render layout <paramref name="layout"/> with <paramref name="logEventInfo"/> and compare result with <paramref name="expected"/>.
+        /// </summary>
+        protected static void AssertLayoutRendererOutput(Layout layout, LogEventInfo logEventInfo, string expected)
+        {
+            layout.Initialize(null);
+            string actual = layout.Render(logEventInfo);
+            layout.Close();
             Assert.Equal(expected, actual);
         }
 

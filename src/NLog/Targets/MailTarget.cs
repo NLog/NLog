@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 using JetBrains.Annotations;
 
 #if !SILVERLIGHT
@@ -43,6 +44,7 @@ namespace NLog.Targets
     using System.Net;
     using System.Net.Mail;
     using System.Text;
+    using System.IO;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -439,7 +441,7 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
             {
-                client.PickupDirectoryLocation = this.PickupDirectoryLocation;
+                client.PickupDirectoryLocation = ConvertDirectoryLocation(PickupDirectoryLocation);
             }
 
             // In case DeliveryMethod = PickupDirectoryFromIis we will not require Host nor PickupDirectoryLocation
@@ -447,6 +449,26 @@ namespace NLog.Targets
             client.Timeout = this.Timeout;
 
             
+        }
+
+        /// <summary>
+        /// Handle <paramref name="pickupDirectoryLocation"/> if it is a virtual directory.
+        /// </summary>
+        /// <param name="pickupDirectoryLocation"></param>
+        /// <returns></returns>
+        internal static string ConvertDirectoryLocation(string pickupDirectoryLocation)
+        {
+            const string virtualPathPrefix = "~/";
+            if (!pickupDirectoryLocation.StartsWith(virtualPathPrefix))
+            {
+                return pickupDirectoryLocation;
+            }
+
+            // Support for Virtual Paths
+            var root = AppDomain.CurrentDomain.BaseDirectory;
+            var directory = pickupDirectoryLocation.Substring(virtualPathPrefix.Length).Replace('/', Path.DirectorySeparatorChar);
+            var pickupRoot = Path.Combine(root, directory);
+            return pickupRoot;
         }
 
         private void CheckRequiredParameters()
