@@ -33,7 +33,6 @@
 
 namespace NLog.Internal
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
@@ -62,8 +61,7 @@ namespace NLog.Internal
             var result = new List<T>();
             var visitedObjects = new HashSet<object>();
 
-            var rootObjectsList = rootObjects.ToList();
-            foreach (var rootObject in rootObjectsList)
+            foreach (var rootObject in rootObjects)
             {
                 ScanProperties(result, rootObject, 0, visitedObjects);
             }
@@ -71,6 +69,7 @@ namespace NLog.Internal
             return result.ToArray();
         }
 
+        /// <remarks>ISet is not there in .net35, so using HashSet</remarks>
         private static void ScanProperties<T>(List<T> result, object o, int level, HashSet<object> visitedObjects)
             where T : class
         {
@@ -79,19 +78,16 @@ namespace NLog.Internal
                 return;
             }
 
-            //cheaper call then getType and isDefined
-            if (visitedObjects.Contains(o))
-            {
-                return;
-            }
-
-
             var type = o.GetType();
             if (!type.IsDefined(typeof(NLogConfigurationItemAttribute), true))
             {
                 return;
             }
 
+            if (visitedObjects.Contains(o))
+            {
+                return;
+            }
 
             visitedObjects.Add(o);
 
@@ -106,8 +102,7 @@ namespace NLog.Internal
                 InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), type.Name, o);
             }
 
-            var allReadableProperties = PropertyHelper.GetAllReadableProperties(type).ToList();
-            foreach (PropertyInfo prop in allReadableProperties)
+            foreach (PropertyInfo prop in PropertyHelper.GetAllReadableProperties(type))
             {
                 if (prop.PropertyType.IsPrimitive || prop.PropertyType.IsEnum || prop.PropertyType == typeof(string) || prop.IsDefined(typeof(NLogConfigurationIgnorePropertyAttribute), true))
                 {
@@ -120,12 +115,11 @@ namespace NLog.Internal
                     continue;
                 }
 
-                List<object> elements;
                 var list = value as IList;
                 if (list != null)
                 {
                     //try first icollection for syncroot
-
+                    List<object> elements;
                     lock (list.SyncRoot)
                     {
                         elements = new List<object>(list.Count);
@@ -138,44 +132,19 @@ namespace NLog.Internal
                     }
                     ScanPropertiesList(result, elements, level + 1, visitedObjects);
                 }
-
                 else
                 {
-                    var collection = value as ICollection;
-
-                    if (collection != null)
+                    var enumerable = value as IEnumerable;
+                    if (enumerable != null)
                     {
-                        object[] elementsArray = new object[collection.Count];
-                        lock (collection.SyncRoot)
-                        {
-                            collection.CopyTo(elementsArray, 0);
-                        }
-                        ScanPropertiesList(result, elementsArray, level + 1, visitedObjects);
+                        //cast to list otherwhise possible:  Collection was modified after the enumerator was instantiated.
+                        var elements = enumerable as IList<object> ?? enumerable.Cast<object>().ToList();
 
+                        ScanPropertiesList(result, elements, level + 1, visitedObjects);
                     }
                     else
                     {
-
-                        var enumerable = value as IEnumerable;
-                        if (enumerable != null)
-                        {
-                            //new list to prevent: Collection was modified after the enumerator was instantiated.
-                            //note .Cast is tread-unsafe! But at least it isn't a ICollection / IList
-                            try
-                            {
-                                elements = new List<object>(enumerable.Cast<object>());
-                            }
-                            catch (InvalidOperationException)
-                            {
-                                //retry once
-                                elements = new List<object>(enumerable.Cast<object>());
-                            }
-                            ScanPropertiesList(result, elements, level + 1, visitedObjects);
-                        }
-                        else
-                        {
-                            ScanProperties(result, value, level + 1, visitedObjects);
-                        }
+                        ScanProperties(result, value, level + 1, visitedObjects);
                     }
                 }
             }
