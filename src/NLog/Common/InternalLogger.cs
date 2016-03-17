@@ -109,7 +109,7 @@ namespace NLog.Common
         public static bool LogToConsoleError { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether internal messages should be written to the System.Diagnostics.Debug / System.Diagnostics.Trace.
+        /// Gets or sets a value indicating whether internal messages should be written to the <see cref="System.Diagnostics.Trace"/>.
         /// </summary>
         public static bool LogToDiagnostics { get; set; }
 
@@ -271,7 +271,7 @@ namespace NLog.Common
                     Console.Error.WriteLine(msg);
                 }
 
-                WriteToDiagnostics(level, msg);
+                WriteToDiagnostics(msg);
             }
             catch (Exception exception)
             {
@@ -315,27 +315,24 @@ namespace NLog.Common
         }
 
         /// <summary>
-        /// Write internal messages to the System.Diagnostics.Debug / System.Diagnostics.Trace.
+        /// Write internal messages to the <see cref="System.Diagnostics.Trace"/>.
         /// </summary>
-        /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
         /// <param name="message">A message to write.</param>
-        /// <remarks>Works when property <see cref="LogToDiagnostics"/> set to true.</remarks>
-        private static void WriteToDiagnostics(LogLevel logLevel, string message)
+        /// <remarks>
+        /// Works when property <see cref="LogToDiagnostics"/> set to true.
+        /// The <see cref="System.Diagnostics.Trace"/> is used in Debug and Relese configuration. 
+        /// The <see cref="System.Diagnostics.Debug"/> works only in Debug configuration and this is reason why is replaced by <see cref="System.Diagnostics.Trace"/>.
+        /// in DEBUG 
+        /// </remarks>
+        private static void WriteToDiagnostics(string message)
         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             if (!LogToDiagnostics)
             {
                 return;
             }
-
-            if (logLevel == LogLevel.Trace)
-            {
-                System.Diagnostics.Trace.WriteLine(message, "NLog");
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine(message, "NLog");
-            }
+            
+            System.Diagnostics.Trace.WriteLine(message, "NLog");
 #endif
         }
 
