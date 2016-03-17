@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace NLog.Layouts
 {
     using System;
@@ -51,7 +54,7 @@ namespace NLog.Layouts
     [Layout("SimpleLayout")]
     [ThreadAgnostic]
     [AppDomainFixedOutput]
-    public class SimpleLayout : Layout
+    public class SimpleLayout : Layout, IUsesStackTrace
     {
         private const int MaxInitialRenderBufferLength = 16384;
         private int maxRenderedLength;
@@ -146,6 +149,13 @@ namespace NLog.Layouts
         /// </summary>
         public ReadOnlyCollection<LayoutRenderer> Renderers { get; private set; }
 
+
+        /// <summary>
+        /// Gets the level of stack trace information required for rendering.
+        /// </summary>
+        /// <remarks>Calculated when setting <see cref="Renderers"/>.</remarks>
+        public StackTraceUsage StackTraceUsage { get; private set; }
+
         /// <summary>
         /// Converts a text to a simple layout.
         /// </summary>
@@ -208,17 +218,19 @@ namespace NLog.Layouts
         {
             return "'" + this.Text + "'";
         }
-
+ 
         internal void SetRenderers(LayoutRenderer[] renderers, string text)
         {
             this.Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
             if (this.Renderers.Count == 1 && this.Renderers[0] is LiteralLayoutRenderer)
             {
                 this.fixedText = ((LiteralLayoutRenderer)this.Renderers[0]).Text;
+                this.StackTraceUsage = StackTraceUsage.None;
             }
             else
             {
                 this.fixedText = null;
+                this.StackTraceUsage = this.Renderers.OfType<IUsesStackTrace>().DefaultIfEmpty().Max(usage => usage == null ? StackTraceUsage.None : usage.StackTraceUsage);
             }
 
             this.layoutText = text;
@@ -287,5 +299,7 @@ namespace NLog.Layouts
             logEvent.AddCachedLayoutValue(this, value);
             return value;
         }
+
+
     }
 }
