@@ -31,20 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Runtime.CompilerServices;
-
 namespace NLog.Common
 {
     using JetBrains.Annotations;
     using System;
     using System.ComponentModel;
-    using System.Configuration;
     using System.Globalization;
     using System.IO;
     using System.Reflection;
     using System.Text;
-    using NLog.Internal;
-    using NLog.Time;
+    using Internal;
+    using Time;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
     using ConfigurationManager = System.Configuration.ConfigurationManager;
     using System.Diagnostics;
@@ -57,7 +54,7 @@ namespace NLog.Common
     /// </summary>
     public static partial class InternalLogger
     {
-        private static object lockObject = new object();
+        private static readonly object LockObject = new object();
         private static string _logFile;
 
         /// <summary>
@@ -79,6 +76,7 @@ namespace NLog.Common
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
+            LogToTrace = GetSetting("nlog.internalLogToTrace", "NLOG_INTERNAL_LOG_TO_TRACE", false);
 
             Info("NLog internal logger initialized.");
 #else
@@ -86,6 +84,7 @@ namespace NLog.Common
             LogToConsole = false;
             LogToConsoleError = false;
             LogFile = string.Empty;
+            LogToTrace = false;
 #endif
             IncludeTimestamp = true;
             LogWriter = null;
@@ -108,6 +107,11 @@ namespace NLog.Common
         /// </summary>
         /// <remarks>Your application must be a console application.</remarks>
         public static bool LogToConsoleError { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether internal messages should be written to the <see cref="System.Diagnostics.Trace"/>.
+        /// </summary>
+        public static bool LogToTrace { get; set; }
 
         /// <summary>
         /// Gets or sets the file path of the internal log file.
@@ -198,30 +202,20 @@ namespace NLog.Common
         /// <param name="args">optional args for <paramref name="message"/></param>
         private static void Write([CanBeNull]Exception ex, LogLevel level, string message, [CanBeNull]object[] args)
         {
-            if (ex != null && ex.MustBeRethrownImmediately())
+            if (IsSeriousException(ex))
             {
                 //no logging!
                 return;
             }
 
-            if (level == LogLevel.Off)
-            {
-                return;
-            }
-
-            if (level < LogLevel)
-            {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(LogFile) && !LogToConsole && !LogToConsoleError && LogWriter == null)
+            if (!LoggingEnabled(level))
             {
                 return;
             }
 
             try
             {
-                string formattedMessage = message;
+                var formattedMessage = message;
                 if (args != null)
                 {
                     formattedMessage = string.Format(CultureInfo.InvariantCulture, message, args);
@@ -234,16 +228,16 @@ namespace NLog.Common
                     builder.Append(" ");
                 }
 
-                builder.Append(level.ToString());
+                builder.Append(level);
                 builder.Append(" ");
                 builder.Append(formattedMessage);
                 if (ex != null)
                 {
                     ex.MarkAsLoggedToInternalLogger();
                     builder.Append(" Exception: ");
-                    builder.Append(ex.ToString());
+                    builder.Append(ex);
                 }
-                string msg = builder.ToString();
+                var msg = builder.ToString();
 
                 // log to file
                 var logFile = LogFile;
@@ -259,7 +253,7 @@ namespace NLog.Common
                 var writer = LogWriter;
                 if (writer != null)
                 {
-                    lock (lockObject)
+                    lock (LockObject)
                     {
                         writer.WriteLine(msg);
                     }
@@ -276,6 +270,8 @@ namespace NLog.Common
                 {
                     Console.Error.WriteLine(msg);
                 }
+
+                WriteToTrace(msg);
             }
             catch (Exception exception)
             {
@@ -287,6 +283,57 @@ namespace NLog.Common
                 }
 
             }
+        }
+
+        /// <summary>
+        /// Determine if logging should be avoided because of exception type. 
+        /// </summary>
+        /// <param name="exception">The exception to check.</param>
+        /// <returns><c>true</c> if logging should be avoided; otherwise, <c>false</c>.</returns>
+        private static bool IsSeriousException(Exception exception)
+        {
+            return exception != null && exception.MustBeRethrownImmediately();
+        }
+
+        /// <summary>
+        /// Determine if logging is enabled.
+        /// </summary>
+        /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
+        /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
+        private static bool LoggingEnabled(LogLevel logLevel)
+        {
+            if (logLevel == LogLevel.Off || logLevel < LogLevel)
+            {
+                return false;
+            }
+
+            return !string.IsNullOrEmpty(LogFile) ||
+                   LogToConsole ||
+                   LogToConsoleError ||
+                   LogWriter != null ||
+                   LogToTrace;
+        }
+
+        /// <summary>
+        /// Write internal messages to the <see cref="System.Diagnostics.Trace"/>.
+        /// </summary>
+        /// <param name="message">A message to write.</param>
+        /// <remarks>
+        /// Works when property <see cref="LogToTrace"/> set to true.
+        /// The <see cref="System.Diagnostics.Trace"/> is used in Debug and Relese configuration. 
+        /// The <see cref="System.Diagnostics.Debug"/> works only in Debug configuration and this is reason why is replaced by <see cref="System.Diagnostics.Trace"/>.
+        /// in DEBUG 
+        /// </remarks>
+        private static void WriteToTrace(string message)
+        {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            if (!LogToTrace)
+            {
+                return;
+            }
+            
+            System.Diagnostics.Trace.WriteLine(message, "NLog");
+#endif
         }
 
         /// <summary>
