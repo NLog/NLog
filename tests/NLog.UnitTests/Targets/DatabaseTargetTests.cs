@@ -813,7 +813,7 @@ Dispose()
         [InlineData("INVALID")]
         [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType.Clob")]
         [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType")]
-        public void Oracle_SetParamTypeShouldThrowExceptionsOrEatThemTest(string dbType)
+        public void SetParamTypeShouldThrowExceptionsTest(string dbType)
         {
             var target = new DatabaseTarget
             {
@@ -828,14 +828,11 @@ Dispose()
             };
             var parameter = new MockDbParameter(new MockDbCommand(), 0);
 
-            try
-            {
-                target.SetParamType(parameter, parameterInfo.DbType);
-            }
-            catch (Exception exception)
-            {
-                Assert.Contains(dbType, exception.Message);
-            }
+            LogManager.ThrowExceptions = true;
+            Exception exception = Assert.Throws<NLogConfigurationException>(() =>
+                target.SetParamType(parameter, parameterInfo.DbType));
+            
+            Assert.Contains(dbType, exception.Message);
         }
 
         [Fact]
