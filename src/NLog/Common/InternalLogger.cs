@@ -76,7 +76,7 @@ namespace NLog.Common
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
-            LogToDiagnostics = GetSetting("nlog.internalLogToDiagnostics", "NLOG_INTERNAL_LOG_TO_DIAGNOSTICS", false);
+            LogToTrace = GetSetting("nlog.internalLogToTrace", "NLOG_INTERNAL_LOG_TO_TRACE", false);
 
             Info("NLog internal logger initialized.");
 #else
@@ -84,7 +84,7 @@ namespace NLog.Common
             LogToConsole = false;
             LogToConsoleError = false;
             LogFile = string.Empty;
-            LogToDiagnostics = false;
+            LogToTrace = false;
 #endif
             IncludeTimestamp = true;
             LogWriter = null;
@@ -111,7 +111,7 @@ namespace NLog.Common
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the <see cref="System.Diagnostics.Trace"/>.
         /// </summary>
-        public static bool LogToDiagnostics { get; set; }
+        public static bool LogToTrace { get; set; }
 
         /// <summary>
         /// Gets or sets the file path of the internal log file.
@@ -271,7 +271,7 @@ namespace NLog.Common
                     Console.Error.WriteLine(msg);
                 }
 
-                WriteToDiagnostics(msg);
+                WriteToTrace(msg);
             }
             catch (Exception exception)
             {
@@ -311,7 +311,7 @@ namespace NLog.Common
                    LogToConsole ||
                    LogToConsoleError ||
                    LogWriter != null ||
-                   LogToDiagnostics;
+                   LogToTrace;
         }
 
         /// <summary>
@@ -319,15 +319,15 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">A message to write.</param>
         /// <remarks>
-        /// Works when property <see cref="LogToDiagnostics"/> set to true.
+        /// Works when property <see cref="LogToTrace"/> set to true.
         /// The <see cref="System.Diagnostics.Trace"/> is used in Debug and Relese configuration. 
         /// The <see cref="System.Diagnostics.Debug"/> works only in Debug configuration and this is reason why is replaced by <see cref="System.Diagnostics.Trace"/>.
         /// in DEBUG 
         /// </remarks>
-        private static void WriteToDiagnostics(string message)
+        private static void WriteToTrace(string message)
         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            if (!LogToDiagnostics)
+            if (!LogToTrace)
             {
                 return;
             }

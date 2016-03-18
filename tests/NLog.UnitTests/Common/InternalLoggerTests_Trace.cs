@@ -46,7 +46,7 @@ namespace NLog.UnitTests.Common
     using Xunit;
     using Xunit.Extensions;
 
-    public class InternalLoggerTests_Diagnostics : NLogTestBase
+    public class InternalLoggerTests_Trace : NLogTestBase
     {
 
         [Theory]
@@ -54,9 +54,9 @@ namespace NLog.UnitTests.Common
         [InlineData(false, null)]
         [InlineData(null, false)]
         [InlineData(false, false)]
-        public void ShouldNotLogInternalWhenLogToDiagnosticIsDisabled(bool? internalLogToDiagnostics, bool? logToDiagnostics)
+        public void ShouldNotLogInternalWhenLogToTraceIsDisabled(bool? internalLogToTrace, bool? logToTrace)
         {
-            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Trace, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Trace, internalLogToTrace, logToTrace);
 
             InternalLogger.Trace("Logger1 Hello");
 
@@ -71,9 +71,9 @@ namespace NLog.UnitTests.Common
         [InlineData(true, null)]
         [InlineData(null, true)]
         [InlineData(true, true)]
-        public void ShouldNotLogInternalWhenLogLevelIsOff(bool? internalLogToDiagnostics, bool? logToDiagnostics)
+        public void ShouldNotLogInternalWhenLogLevelIsOff(bool? internalLogToTrace, bool? logToTrace)
         {
-            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Off, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Off, internalLogToTrace, logToTrace);
 
             InternalLogger.Trace("Logger1 Hello");
 
@@ -84,9 +84,9 @@ namespace NLog.UnitTests.Common
         [InlineData(true, null)]
         [InlineData(null, true)]
         [InlineData(true, true)]
-        public void ShouldLogToDiagnosticsWhenInternalLogToDiagnosticsIsOnAndLogLevelIsTrace(bool? internalLogToDiagnostics, bool? logToDiagnostics)
+        public void ShouldLogToTraceWhenInternalLogToTraceIsOnAndLogLevelIsTrace(bool? internalLogToTrace, bool? logToTrace)
         {
-            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Trace, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Trace, internalLogToTrace, logToTrace);
 
             InternalLogger.Trace("Logger1 Hello");
 
@@ -98,9 +98,9 @@ namespace NLog.UnitTests.Common
         [InlineData(true, null)]
         [InlineData(null, true)]
         [InlineData(true, true)]
-        public void ShouldLogToDiagnosticsWhenInternalLogToDiagnosticsIsOnAndLogLevelIsDebug(bool? internalLogToDiagnostics, bool? logToDiagnostics)
+        public void ShouldLogToTraceWhenInternalLogToTraceIsOnAndLogLevelIsDebug(bool? internalLogToTrace, bool? logToTrace)
         {
-            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Debug, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Debug, internalLogToTrace, logToTrace);
 
             InternalLogger.Debug("Logger1 Hello");
 
@@ -112,9 +112,9 @@ namespace NLog.UnitTests.Common
         [InlineData(true, null)]
         [InlineData(null, true)]
         [InlineData(true, true)]
-        public void ShouldLogToDiagnosticsWhenInternalLogToDiagnosticsIsOnAndLogLevelIsInfo(bool? internalLogToDiagnostics, bool? logToDiagnostics)
+        public void ShouldLogToTraceWhenInternalLogToTraceIsOnAndLogLevelIsInfo(bool? internalLogToTrace, bool? logToTrace)
         {
-            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Info, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Info, internalLogToTrace, logToTrace);
 
             InternalLogger.Info("Logger1 Hello");
 
@@ -126,9 +126,9 @@ namespace NLog.UnitTests.Common
         [InlineData(true, null)]
         [InlineData(null, true)]
         [InlineData(true, true)]
-        public void ShouldLogToDiagnosticsWhenInternalLogToDiagnosticsIsOnAndLogLevelIsWarn(bool? internalLogToDiagnostics, bool? logToDiagnostics)
+        public void ShouldLogToTraceWhenInternalLogToTraceIsOnAndLogLevelIsWarn(bool? internalLogToTrace, bool? logToTrace)
         {
-            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Warn, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Warn, internalLogToTrace, logToTrace);
 
             InternalLogger.Warn("Logger1 Hello");
 
@@ -140,9 +140,9 @@ namespace NLog.UnitTests.Common
         [InlineData(true, null)]
         [InlineData(null, true)]
         [InlineData(true, true)]
-        public void ShouldLogToDiagnosticsWhenInternalLogToDiagnosticsIsOnAndLogLevelIsError(bool? internalLogToDiagnostics, bool? logToDiagnostics)
+        public void ShouldLogToTraceWhenInternalLogToTraceIsOnAndLogLevelIsError(bool? internalLogToTrace, bool? logToTrace)
         {
-            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Error, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Error, internalLogToTrace, logToTrace);
 
             InternalLogger.Error("Logger1 Hello");
 
@@ -154,9 +154,9 @@ namespace NLog.UnitTests.Common
         [InlineData(true, null)]
         [InlineData(null, true)]
         [InlineData(true, true)]
-        public void ShouldLogToDiagnosticsWhenInternalLogToDiagnosticsIsOnAndLogLevelIsFatal(bool? internalLogToDiagnostics, bool? logToDiagnostics)
+        public void ShouldLogToTraceWhenInternalLogToTraceIsOnAndLogLevelIsFatal(bool? internalLogToTrace, bool? logToTrace)
         {
-            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Fatal, internalLogToDiagnostics, logToDiagnostics);
+            var mockTraceListener = SetupTestConfiguration<MockTraceListener>(LogLevel.Fatal, internalLogToTrace, logToTrace);
 
             InternalLogger.Fatal("Logger1 Hello");
 
@@ -175,27 +175,27 @@ namespace NLog.UnitTests.Common
         /// <summary>
         /// Helper method to setup tests configuration
         /// </summary>
-        /// <param name="logLevel">The <see cref="System.LogLevel"/> for the log event.</param>
-        /// <param name="internalLogToDiagnostic">internalLogToDiagnostics XML attribute value. If <c>null</c> attribute is omitted.</param>
-        /// <param name="logToDiagnostic">Value of <see cref="InternalLogger.LogToDiagnostics"/> property. If <c>null</c> property is not set.</param>
+        /// <param name="logLevel">The <see cref="NLog.LogLevel"/> for the log event.</param>
+        /// <param name="internalLogToTrace">internalLogToTrace XML attribute value. If <c>null</c> attribute is omitted.</param>
+        /// <param name="logToTrace">Value of <see cref="InternalLogger.LogToTrace"/> property. If <c>null</c> property is not set.</param>
         /// <returns><see cref="TraceListener"/> instance.</returns>
-        private T SetupTestConfiguration<T>(LogLevel logLevel, bool? internalLogToDiagnostic, bool? logToDiagnostic) where T : TraceListener
+        private T SetupTestConfiguration<T>(LogLevel logLevel, bool? internalLogToTrace, bool? logToTrace) where T : TraceListener
         {
-            var internalLogToDiagnosticAttribute = "";
-            if (internalLogToDiagnostic.HasValue)
+            var internalLogToTraceAttribute = "";
+            if (internalLogToTrace.HasValue)
             {
-                internalLogToDiagnosticAttribute = string.Format(" internalLogToDiagnostics='{0}'", internalLogToDiagnostic.Value);
+                internalLogToTraceAttribute = string.Format(" internalLogToTrace='{0}'", internalLogToTrace.Value);
             }
 
-            var xmlConfiguration = string.Format(XmlConfigurationFormat, logLevel, internalLogToDiagnosticAttribute);
+            var xmlConfiguration = string.Format(XmlConfigurationFormat, logLevel, internalLogToTraceAttribute);
 
             LogManager.Configuration = CreateConfigurationFromString(xmlConfiguration);
 
             InternalLogger.IncludeTimestamp = false;
 
-            if (logToDiagnostic.HasValue)
+            if (logToTrace.HasValue)
             {
-                InternalLogger.LogToDiagnostics = logToDiagnostic.Value;
+                InternalLogger.LogToTrace = logToTrace.Value;
             }
 
             T traceListener;
