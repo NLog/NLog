@@ -286,6 +286,15 @@ namespace NLog.Targets
 
         internal IDbConnection OpenConnection(string connectionString)
         {
+            var connection = CreateConnection();
+
+            connection.ConnectionString = connectionString;
+            connection.Open();
+            return connection;
+        }
+
+        internal IDbConnection CreateConnection()
+        {
             IDbConnection connection;
 
             if (this.ProviderFactory != null)
@@ -296,9 +305,6 @@ namespace NLog.Targets
             {
                 connection = (IDbConnection)Activator.CreateInstance(this.ConnectionType);
             }
-
-            connection.ConnectionString = connectionString;
-            connection.Open();
             return connection;
         }
 
@@ -477,44 +483,7 @@ namespace NLog.Targets
             {
                 this.EnsureConnectionOpen(this.BuildConnectionString(logEvent));
 
-                IDbCommand command = this.activeConnection.CreateCommand();
-                command.CommandText = this.CommandText.Render(logEvent);
-                command.CommandType = this.CommandType;
-
-                InternalLogger.Trace("Executing {0}: {1}", command.CommandType, command.CommandText);
-
-                foreach (DatabaseParameterInfo par in this.Parameters)
-                {
-                    IDbDataParameter p = command.CreateParameter();
-                    p.Direction = ParameterDirection.Input;
-                    if (par.Name != null)
-                    {
-                        p.ParameterName = par.Name;
-                    }
-
-                    if (par.Size != 0)
-                    {
-                        p.Size = par.Size;
-                    }
-
-                    if (par.Precision != 0)
-                    {
-                        p.Precision = par.Precision;
-                    }
-
-                    if (par.Scale != 0)
-                    {
-                        p.Scale = par.Scale;
-                    }
-
-                    string stringValue = par.Layout.Render(logEvent);
-
-                    p.Value = stringValue;
-                    SetParamType(p, par.DbType);
-                    command.Parameters.Add(p);
-
-                    InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
-                }
+                var command = CreateCommand(logEvent, this.activeConnection);
 
                 int result = command.ExecuteNonQuery();
                 InternalLogger.Trace("Finished execution, result = {0}", result);
@@ -522,6 +491,49 @@ namespace NLog.Targets
                 //not really needed as there is no transaction at all.
                 transactionScope.Complete();
             }
+        }
+
+        internal IDbCommand CreateCommand(LogEventInfo logEvent, IDbConnection dbConnection)
+        {
+            IDbCommand command = dbConnection.CreateCommand();
+            command.CommandText = this.CommandText.Render(logEvent);
+            command.CommandType = this.CommandType;
+
+            InternalLogger.Trace("Executing {0}: {1}", command.CommandType, command.CommandText);
+
+            foreach (DatabaseParameterInfo par in this.Parameters)
+            {
+                IDbDataParameter p = command.CreateParameter();
+                p.Direction = ParameterDirection.Input;
+                if (par.Name != null)
+                {
+                    p.ParameterName = par.Name;
+                }
+
+                if (par.Size != 0)
+                {
+                    p.Size = par.Size;
+                }
+
+                if (par.Precision != 0)
+                {
+                    p.Precision = par.Precision;
+                }
+
+                if (par.Scale != 0)
+                {
+                    p.Scale = par.Scale;
+                }
+
+                string stringValue = par.Layout.Render(logEvent);
+
+                p.Value = stringValue;
+                SetParamType(p, par.DbType);
+                command.Parameters.Add(p);
+
+                InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
+            }
+            return command;
         }
 
         /// <summary>
@@ -533,87 +545,167 @@ namespace NLog.Targets
         {
             if (string.IsNullOrEmpty(dbType))
                 return;
-            var lastIndexOfDot = dbType.LastIndexOf('.');
 
-            // Get just the fully qualified name of the enum but not the value
-            var enumName = lastIndexOfDot > 0 ? 
-                dbType.Substring(0, lastIndexOfDot) : string.Empty;
+            var parsedDbTyped = EnumNameParseResult.Parse(dbType, dbDataParameter.GetType());
 
-            object enumValueObject = null;
-            Type paramType = dbDataParameter.GetType();
-            if (!string.IsNullOrEmpty(enumName))
+            if (parsedDbTyped != null)
             {
+                // Get just the fully qualified name of the enum but not the value
+
                 try
                 {
                     // check first to see if this is DbType otherwise use reflection to get it from the database parameter's assembly
-                    var enumDatabaseType = enumName == typeof (DbType).FullName ? typeof(DbType) : paramType.Assembly.GetType(enumName);
+                    string enumName = parsedDbTyped.EnumName;
+                    var databaseType = parsedDbTyped.GetDatabaseType(enumName);
+                    var enumValueObject = parsedDbTyped.GetEnumValueObject(databaseType);
 
-                    // get the enum value for the database type
-                    var enumValueString = dbType.Substring(lastIndexOfDot + 1,
-                        dbType.Length - lastIndexOfDot - 1);
-                    var typeField = enumDatabaseType != null ? enumDatabaseType.GetField(enumValueString) : null;
-                    enumValueObject = typeField != null ? typeField.GetRawConstantValue() : null;
+
+                    //if its a DbType then we can just set it
+                    if (databaseType == typeof (DbType))
+                    {
+                        dbDataParameter.DbType = (DbType) enumValueObject;
+                    }
+                    else
+                    {
+                        // Each custom database type that we want to support will need added here on as needed basis
+                        string propertyName = null;
+                        if (dbType.Contains(".OracleDbType.") || dbType.StartsWith("OracleDbType."))
+                        {
+                            // for Oracle we have to set the OracleDbType property on the parameter
+                            propertyName = "OracleDbType";
+                        }
+                        else if (dbType.Contains(".SqlDbType.") || dbType.StartsWith("SqlDbType."))
+                        {
+                            // for Oracle we have to set the OracleDbType property on the parameter
+                            propertyName = "SqlDbType";
+                        }
+                        else
+                        {
+                            // we only support additional database types by custom implementation
+                            var exception = new NLogConfigurationException("Custom setting of the database type is not supported for: " +
+                                                                           dbType);
+                            InternalLogger.Error(exception, "Custom setting of the database type is not supported for: {0}", dbType);
+                            if (exception.MustBeRethrown())
+                            {
+                                throw exception;
+                            }
+                            return;
+                        }
+
+                        // find the property on the database specific parameter
+                        var property = dbDataParameter.GetType().GetProperty(propertyName);
+
+                        // if something went wrong with the reflection a bad value was probably set and we can't fix that
+                        if (enumValueObject == null || property == null)
+                        {
+                            var exception = new NLogConfigurationException("Unable set the database type from the database parameter for DbType: "
+                                                                           + dbType);
+                            InternalLogger.Error(exception, "Unable set the database type from the database parameter for DbType: {0}", dbType);
+                            if (exception.MustBeRethrown())
+                            {
+                                throw exception;
+                            }
+                            return;
+                        }
+
+                        // we find the enum and the property ok so now we just set it using reflection
+                        property.SetValue(dbDataParameter, enumValueObject, null);
+                    }
                 }
                 catch (Exception exception)
                 {
-                    InternalLogger.Warn(exception, "DatabaseTarget: unable to use {0} to set database column type.", enumName);
+                    InternalLogger.Warn(exception, "DatabaseTarget: unable to use {0} to set database column type.", parsedDbTyped.EnumName);
                     if (exception.MustBeRethrown())
                     {
                         throw;
                     }
                 }
             }
-
-            SetParamType(dbDataParameter, dbType, enumName, enumValueObject);
         }
 
-        internal static void SetParamType(IDbDataParameter dbDataParameter, string dbType, string enumFullName, object enumValueObject)
+        private class EnumNameParseResult
         {
-            //if its a DbType then we can just set it
-            if (enumFullName == typeof(DbType).FullName)
+            /// <summary>
+            /// Name of the enum without value
+            /// </summary>
+            public string EnumName { get; private set; }
+            public string EnumValue { get; private set; }
+
+            /// <summary>
+            /// Full name
+            /// </summary>
+            public string FullName { get; private set; }
+
+            /// <summary>
+            /// Name of assembly. Could be <c>null</c>.
+            /// </summary>
+            public AssemblyName AssemblyName { get; private set; }
+
+
+            public static EnumNameParseResult Parse(string name, Type parameterType)
             {
-                dbDataParameter.DbType = (DbType)enumValueObject;
+                EnumNameParseResult result = new EnumNameParseResult();
+                result.FullName = name;
+                var indexOfAssmemblySeparator = name.IndexOf(',');
+                if (indexOfAssmemblySeparator > 0)
+                {
+                    var assemblyName = name.Substring(indexOfAssmemblySeparator + 1).Trim();
+                    result.AssemblyName = new AssemblyName(assemblyName);
+                }
+                else
+                {
+                    result.AssemblyName = parameterType.Assembly.GetName();
+                }
+                int lastIndexOfDot;
+                if (indexOfAssmemblySeparator < 0)
+                {
+                    indexOfAssmemblySeparator = name.Length;
+                    lastIndexOfDot = name.LastIndexOf('.');
+                }
+                else
+                {
+                    lastIndexOfDot = name.LastIndexOf('.', indexOfAssmemblySeparator);
+                }
+                if (lastIndexOfDot > 0) result.EnumName = name.Substring(0, lastIndexOfDot);
+                else
+                {
+                    return null;
+                }
+                //todo
+                result.EnumValue = name.Substring(lastIndexOfDot + 1, indexOfAssmemblySeparator - lastIndexOfDot - 1);
+                return result;
             }
-            else
+
+            public object GetEnumValueObject(Type getDatabaseType)
             {
-                // Each custom database type that we want to support will need added here on as needed basis
-                string propertyName = null;
-                if (dbType.Contains(".OracleDbType."))
-                {
-                    // for Oracle we have to set the OracleDbType property on the parameter
-                    propertyName = "OracleDbType";
-                }
-                else 
-                {
-                    // we only support additional database types by custom implementation
-                    var exception = new NLogConfigurationException("Custom setting of the database type is not supported for: " +
-                                                     dbType);
-                    InternalLogger.Error(exception, "Custom setting of the database type is not supported for: {0}", dbType);
-                    if (exception.MustBeRethrown())
-                    {
-                        throw exception;
-                    }
-                    return;
-                }
 
-                // find the property on the database specific parameter
-                var property = dbDataParameter.GetType().GetProperty(propertyName);
+                var enumDatabaseType = getDatabaseType;
 
-                // if something went wrong with the reflection a bad value was probably set and we can't fix that
-                if (enumValueObject == null || property == null)
+                // get the enum value for the database type
+                var enumValueString = EnumValue;
+                var typeField = enumDatabaseType != null ? enumDatabaseType.GetField(enumValueString) : null;
+                var enumValueObject = typeField != null ? typeField.GetRawConstantValue() : null;
+                return enumValueObject;
+            }
+
+            public Type GetDatabaseType(string enumName)
+            {
+                Type enumDatabaseType;
+                if (IsDbType(enumName))
                 {
-                    var exception = new NLogConfigurationException("Unable set the database type from the database parameter for DbType: "
-                                                         + dbType);
-                    InternalLogger.Error(exception, "Unable set the database type from the database parameter for DbType: {0}", dbType);
-                    if (exception.MustBeRethrown())
-                    {
-                        throw exception;
-                    }
-                    return;
+                    enumDatabaseType = typeof(DbType);
                 }
+                else
+                {
+                    var assembly = this.AssemblyName == null ? Assembly.GetCallingAssembly() : Assembly.Load(this.AssemblyName);
+                    enumDatabaseType = assembly.GetType(enumName);
+                }
+                return enumDatabaseType;
+            }
 
-                // we find the enum and the property ok so now we just set it using reflection
-                property.SetValue(dbDataParameter, enumValueObject, null);
+            private static bool IsDbType(string enumName)
+            {
+                return enumName == typeof(DbType).FullName;
             }
         }
 
@@ -739,7 +831,7 @@ namespace NLog.Targets
                             throw;
                         }
 
-                      
+
                     }
                 }
             }
