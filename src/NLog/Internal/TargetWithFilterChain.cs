@@ -47,7 +47,7 @@ namespace NLog.Internal
     [NLogConfigurationItem]
     internal class TargetWithFilterChain
     {
-        private StackTraceUsage stackTraceUsage = StackTraceUsage.None;
+        private StackTraceUsage? _stackTraceUsage;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetWithFilterChain" /> class.
@@ -58,7 +58,6 @@ namespace NLog.Internal
         {
             this.Target = target;
             this.FilterChain = filterChain;
-            this.stackTraceUsage = StackTraceUsage.None;
         }
 
         /// <summary>
@@ -77,6 +76,7 @@ namespace NLog.Internal
         /// Gets or sets the next <see cref="TargetWithFilterChain"/> item in the chain.
         /// </summary>
         /// <value>The next item in the chain.</value>
+        /// <example>This is for example the 'target2' logger in writeTo='target1,target2'  </example>
         public TargetWithFilterChain NextInChain { get; set; }
 
         /// <summary>
@@ -85,20 +85,37 @@ namespace NLog.Internal
         /// <returns>A <see cref="StackTraceUsage" /> value that determines stack trace handling.</returns>
         public StackTraceUsage GetStackTraceUsage()
         {
-            return this.stackTraceUsage;
+            return _stackTraceUsage ?? StackTraceUsage.None;
         }
 
-        internal void PrecalculateStackTraceUsage()
+        internal StackTraceUsage PrecalculateStackTraceUsage()
         {
-            this.stackTraceUsage = StackTraceUsage.None;
+            //no need to recalculated as this method is only called once.
+            if (_stackTraceUsage.HasValue)
+            {
+                return _stackTraceUsage.Value;
+            }
+
+            var stackTraceUsage = StackTraceUsage.None;
 
             // find all objects which may need stack trace
             // and determine maximum
             // only the target can have IUsesStackTrace
             if (Target != null)
             {
-                this.stackTraceUsage = Target.GetAllLayouts().OfType<IUsesStackTrace>().DefaultIfEmpty().Max(usage => usage == null ? StackTraceUsage.None : usage.StackTraceUsage);
+                stackTraceUsage = Target.GetAllLayouts().OfType<IUsesStackTrace>().DefaultIfEmpty().Max(usage => usage == null ? StackTraceUsage.None : usage.StackTraceUsage);
             }
+
+            //recurse into chain if not max
+            if (NextInChain != null && stackTraceUsage != StackTraceUsage.Max)
+            {
+                var stackTraceUsageForChain = NextInChain.PrecalculateStackTraceUsage();
+                if (stackTraceUsageForChain > stackTraceUsage)
+                    stackTraceUsage = stackTraceUsageForChain;
+            }
+
+            _stackTraceUsage = stackTraceUsage;
+            return stackTraceUsage;
         }
     }
 }
