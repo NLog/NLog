@@ -165,6 +165,26 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void MethodNameInChainTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug' type='Debug' layout='${message}' />
+                    <target name='debug2' type='Debug' layout='${callsite} ${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug,debug2' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg2");
+            MethodBase currentMethod = MethodBase.GetCurrentMethod();
+            AssertDebugLastMessage("debug2", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg2");
+        }
+
+        [Fact]
         public void ClassNameTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
