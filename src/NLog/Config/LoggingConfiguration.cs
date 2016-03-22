@@ -56,7 +56,7 @@ namespace NLog.Config
         private readonly IDictionary<string, Target> targets =
             new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
 
-        private object[] configItems;
+        private List<object> configItems = new List<object>();
 
         /// <summary>
         /// Variables defined in xml or in API. name is case case insensitive. 
@@ -129,7 +129,11 @@ namespace NLog.Config
         /// </summary>
         public ReadOnlyCollection<Target> AllTargets
         {
-            get { return this.configItems.OfType<Target>().ToList().AsReadOnly(); }
+            get
+            {
+                var configTargets = this.configItems.OfType<Target>();
+                return configTargets.Concat(targets.Values).ToList().AsReadOnly();
+            }
         }
 
         /// <summary>
@@ -200,6 +204,94 @@ namespace NLog.Config
             where TTarget : Target
         {
             return FindTargetByName(name) as TTarget;
+        }
+
+        /// <summary>
+        /// Add a rule with min- and maxLevel.
+        /// </summary>
+        /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
+        /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
+        /// <param name="targetName">Name of the target to be written when the rule matches.</param>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        public void AddRule(LogLevel minLevel, LogLevel maxLevel, string targetName, string loggerNamePattern = "*")
+        {
+            var target = FindTargetByName(targetName);
+            if (target == null)
+            {
+                throw new NLogRuntimeException("Target '{0}' not found", targetName);
+            }
+
+            AddRule(minLevel, maxLevel, target, loggerNamePattern);
+        }
+
+        /// <summary>
+        /// Add a rule with min- and maxLevel.
+        /// </summary>
+        /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
+        /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
+        /// <param name="target">Target to be written to when the rule matches.</param>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        public void AddRule(LogLevel minLevel, LogLevel maxLevel, Target target, string loggerNamePattern = "*")
+        {
+            LoggingRules.Add(new LoggingRule(loggerNamePattern, minLevel, maxLevel, target));
+        }
+
+        /// <summary>
+        /// Add a rule for one loglevel.
+        /// </summary>
+        /// <param name="level">log level needed to trigger this rule. </param>
+        /// <param name="targetName">Name of the target to be written when the rule matches.</param>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        public void AddRuleForOneLevel(LogLevel level, string targetName, string loggerNamePattern = "*")
+        {
+            var target = FindTargetByName(targetName);
+            if (target == null)
+            {
+                throw new NLogConfigurationException("Target '{0}' not found", targetName);
+            }
+
+            AddRuleForOneLevel(level, target, loggerNamePattern);
+        }
+
+        /// <summary>
+        /// Add a rule for one loglevel.
+        /// </summary>
+        /// <param name="level">log level needed to trigger this rule. </param>
+        /// <param name="target">Target to be written to when the rule matches.</param>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        public void AddRuleForOneLevel(LogLevel level, Target target, string loggerNamePattern = "*")
+        {
+            var loggingRule = new LoggingRule(loggerNamePattern, target);
+            loggingRule.EnableLoggingForLevel(level);
+            LoggingRules.Add(loggingRule);
+        }
+
+        /// <summary>
+        /// Add a rule for alle loglevels.
+        /// </summary>
+        /// <param name="targetName">Name of the target to be written when the rule matches.</param>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        public void AddRuleForAllLevels(string targetName, string loggerNamePattern = "*")
+        {
+            var target = FindTargetByName(targetName);
+            if (target == null)
+            {
+                throw new NLogRuntimeException("Target '{0}' not found", targetName);
+            }
+
+            AddRuleForAllLevels(target, loggerNamePattern);
+        }
+
+        /// <summary>
+        /// Add a rule for alle loglevels.
+        /// </summary>
+        /// <param name="target">Target to be written to when the rule matches.</param>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        public void AddRuleForAllLevels(Target target, string loggerNamePattern = "*")
+        {
+            var loggingRule = new LoggingRule(loggerNamePattern, target);
+            loggingRule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
+            LoggingRules.Add(loggingRule);
         }
 
         /// <summary>
@@ -325,7 +417,7 @@ namespace NLog.Config
                         throw;
                     }
 
-                   
+
                 }
             }
 
@@ -411,7 +503,7 @@ namespace NLog.Config
 
             // initialize all config items starting from most nested first
             // so that whenever the container is initialized its children have already been
-            InternalLogger.Info("Found {0} configuration items", this.configItems.Length);
+            InternalLogger.Info("Found {0} configuration items", this.configItems.Count);
 
             foreach (object o in this.configItems)
             {
