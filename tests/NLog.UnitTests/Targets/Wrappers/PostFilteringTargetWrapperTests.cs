@@ -128,7 +128,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             string result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            Assert.True(result.IndexOf("Trace Running PostFilteringWrapper Target[(unnamed)](MyTarget) on 7 events") != -1);
+            Assert.True(result.IndexOf("Trace Running PostFilteringWrapper Target[PostFilteringWrapper](MyTarget) on 7 events") != -1);
             Assert.True(result.IndexOf("Trace Rule matched: (level >= Warn)") != -1);
             Assert.True(result.IndexOf("Trace Filter to apply: (level >= Debug)") != -1);
             Assert.True(result.IndexOf("Trace After filtering: 6 events.") != -1);
@@ -184,7 +184,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             var result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            Assert.True(result.IndexOf("Trace Running PostFilteringWrapper Target[(unnamed)](MyTarget) on 7 events") != -1);
+            Assert.True(result.IndexOf("Trace Running PostFilteringWrapper Target[PostFilteringWrapper](MyTarget) on 7 events") != -1);
             Assert.True(result.IndexOf("Trace Rule matched: (level >= Error)") != -1);
             Assert.True(result.IndexOf("Trace Filter to apply: True") != -1);
             Assert.True(result.IndexOf("Trace After filtering: 7 events.") != -1);
