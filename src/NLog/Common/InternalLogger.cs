@@ -77,7 +77,7 @@ namespace NLog.Common
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
             LogToTrace = GetSetting("nlog.internalLogToTrace", "NLOG_INTERNAL_LOG_TO_TRACE", false);
-
+            IncludeTimestamp = GetSetting("nlog.internalLogIncludeTimestamp", "NLOG_INTERNAL_INCLUDE_TIMESTAMP", true);
             Info("NLog internal logger initialized.");
 #else
             LogLevel = LogLevel.Info;
@@ -85,8 +85,9 @@ namespace NLog.Common
             LogToConsoleError = false;
             LogFile = string.Empty;
             LogToTrace = false;
-#endif
             IncludeTimestamp = true;
+#endif
+
             LogWriter = null;
         }
 
