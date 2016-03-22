@@ -40,6 +40,9 @@ namespace NLog.UnitTests
     using NLog.Config;
     using Xunit;
 
+    /// <summary>
+    /// Test the characteristics of the API. Config of the API is testged in <see cref="NLog.UnitTests.Config.ConfigApiTests"/>
+    /// </summary>
     public class ApiTests : NLogTestBase
     {
         private Type[] allTypes;
