@@ -177,8 +177,7 @@ namespace NLog.Targets.Wrappers
         protected override void InitializeTarget()
         {
             if (this.TimeToSleepBetweenBatches == 0) {
-                throw new NLogConfigurationException(
-                    string.Format("The AysncTargetWrapper's TimeToSleepBetweenBatches property must be > 0"));
+                throw new NLogConfigurationException("The AysncTargetWrapper's TimeToSleepBetweenBatches property must be > 0");
             }
 
             base.InitializeTarget();

@@ -64,34 +64,44 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Create a new <see cref="LoggingRule" /> with a <paramref name="minLevel"/> and  <paramref name="maxLevel"/> which writes to <paramref name="target"/>.
+        /// </summary>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
+        /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
+        /// <param name="target">Target to be written to when the rule matches.</param>
+        public LoggingRule(string loggerNamePattern, LogLevel minLevel, LogLevel maxLevel, Target target)
+            : this()
+        {
+            this.LoggerNamePattern = loggerNamePattern;
+            this.Targets.Add(target);
+            EnableLoggingForLevels(minLevel, maxLevel);
+        }
+
+
+
+        /// <summary>
         /// Create a new <see cref="LoggingRule" /> with a <paramref name="minLevel"/> which writes to <paramref name="target"/>.
         /// </summary>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, LogLevel minLevel, Target target)
+            : this()
         {
-            this.Filters = new List<Filter>();
-            this.ChildRules = new List<LoggingRule>();
-            this.Targets = new List<Target>();
             this.LoggerNamePattern = loggerNamePattern;
             this.Targets.Add(target);
-            for (int i = minLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
-            {
-                this.EnableLoggingForLevel(LogLevel.FromOrdinal(i));
-            }
+            EnableLoggingForLevels(minLevel, LogLevel.MaxLevel);
         }
 
         /// <summary>
-        /// Create a (disabled) <see cref="LoggingRule" />. You should call <see cref="EnableLoggingForLevel"/> to enable logging.
+        /// Create a (disabled) <see cref="LoggingRule" />. You should call <see cref="EnableLoggingForLevel"/> or see cref="EnableLoggingForLevels"/> to enable logging.
         /// </summary>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, Target target)
+            : this()
         {
-            this.Filters = new List<Filter>();
-            this.ChildRules = new List<LoggingRule>();
-            this.Targets = new List<Target>();
             this.LoggerNamePattern = loggerNamePattern;
             this.Targets.Add(target);
         }
@@ -219,6 +229,19 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Enables logging for a particular levels between (included) <paramref name="minLevel"/> and <paramref name="maxLevel"/>.
+        /// </summary>
+        /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
+        /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
+        public void EnableLoggingForLevels(LogLevel minLevel, LogLevel maxLevel)
+        {
+            for (int i = minLevel.Ordinal; i <= maxLevel.Ordinal; ++i)
+            {
+                this.EnableLoggingForLevel(LogLevel.FromOrdinal(i));
+            }
+        }
+
+        /// <summary>
         /// Disables logging for a particular level.
         /// </summary>
         /// <param name="level">Level to be disabled.</param>
@@ -264,6 +287,11 @@ namespace NLog.Config
         /// <returns>A value of <see langword="true"/> when the log level is enabled, <see langword="false" /> otherwise.</returns>
         public bool IsLoggingEnabledForLevel(LogLevel level)
         {
+            if (level == LogLevel.Off)
+            {
+                return false;
+            }
+
             return this.logLevels[level.Ordinal];
         }
 
@@ -296,5 +324,7 @@ namespace NLog.Config
                     return loggerName.IndexOf(this.loggerNameMatchArgument, StringComparison.Ordinal) >= 0;
             }
         }
+
+
     }
 }
